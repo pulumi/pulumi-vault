@@ -10,6 +10,8 @@ services:
 env:
   - VAULT_DEV_ROOT_TOKEN_ID=root
 before_install:
+    - docker pull vault
+    - docker run -d -e VAULT_DEV_ROOT_TOKEN_ID=root -p 8200:8200 --cap-add=IPC_LOCK -d --name=dev-vault vault server -dev
     - git clone https://github.com/pulumi/scripts ${GOPATH}/src/github.com/pulumi/scripts
     - source ${GOPATH}/src/github.com/pulumi/scripts/ci/prepare-environment.sh
     - source ${PULUMI_SCRIPTS}/ci/keep-failed-tests.sh
@@ -19,7 +21,6 @@ install:
     - export PATH=$HOME/.pulumi/bin:$PATH
 before_script:
     - ${PULUMI_SCRIPTS}/ci/ensure-dependencies
-    - docker run -d -e VAULT_DEV_ROOT_TOKEN_ID=root -p 8200:8200 vault server -dev
 script:
     - make travis_${TRAVIS_EVENT_TYPE}
 after_failure:
