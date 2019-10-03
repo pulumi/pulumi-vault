@@ -1,0 +1,311 @@
+// Copyright 2016-2018, Pulumi Corporation.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package vault
+
+import (
+	"unicode"
+
+	"github.com/hashicorp/terraform/helper/schema"
+	"github.com/hashicorp/terraform/terraform"
+	"github.com/pulumi/pulumi-terraform/pkg/tfbridge"
+	"github.com/pulumi/pulumi/pkg/resource"
+	"github.com/pulumi/pulumi/pkg/tokens"
+	"github.com/terraform-providers/terraform-provider-vault/vault"
+)
+
+// all of the token components used below.
+const (
+	// packages:
+	mainPkg = "vault"
+
+	// modules:
+	mainMod       = "index"
+	appRoleMod    = "appRole"
+	awsMod        = "aws"
+	azureMod      = "azure"
+	consulMod     = "consul"
+	databaseMod   = "database"
+	gcpMod        = "gcp"
+	genericMod    = "generic"
+	githubMod     = "github"
+	identityMod   = "identity"
+	jwtMod        = "jwt"
+	kubernetesMod = "kubernetes"
+	ldapMod       = "lDAP"
+	oktaMod       = "okta"
+	pkiSecretMod  = "pkiSecret"
+	rabbitMqMod   = "rabbitMq"
+	sshMod        = "ssh"
+	tokenMod      = "token"
+	transitMod    = "transit"
+)
+
+func makeMember(mod string, mem string) tokens.ModuleMember {
+	return tokens.ModuleMember(mainPkg + ":" + mod + ":" + mem)
+}
+
+func makeType(mod string, typ string) tokens.Type {
+	return tokens.Type(makeMember(mod, typ))
+}
+
+func makeDataSource(mod string, res string) tokens.ModuleMember {
+	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
+	return makeMember(mod+"/"+fn, res)
+}
+
+func makeResource(mod string, res string) tokens.Type {
+	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
+	return makeType(mod+"/"+fn, res)
+}
+
+func preConfigureCallback(vars resource.PropertyMap, c *terraform.ResourceConfig) error {
+	return nil
+}
+
+// Provider returns additional overlaid schema and metadata associated with the provider.
+func Provider() tfbridge.ProviderInfo {
+	p := vault.Provider().(*schema.Provider)
+	prov := tfbridge.ProviderInfo{
+		P:                    p,
+		Name:                 "vault",
+		Description:          "A Pulumi package for creating and managing vault cloud resources.",
+		Keywords:             []string{"pulumi", "vault"},
+		License:              "Apache-2.0",
+		Homepage:             "https://pulumi.io",
+		Repository:           "https://github.com/pulumi/pulumi-vault",
+		Config:               map[string]*tfbridge.SchemaInfo{},
+		PreConfigureCallback: preConfigureCallback,
+		Resources: map[string]*tfbridge.ResourceInfo{
+			// Main
+			"vault_audit":                  {Tok: makeResource(mainMod, "Audit")},
+			"vault_auth_backend":           {Tok: makeResource(mainMod, "AuthBackend")},
+			"vault_cert_auth_backend_role": {Tok: makeResource(mainMod, "CertAuthBackendRole")},
+			"vault_egp_policy":             {Tok: makeResource(mainMod, "EgpPolicy")},
+			"vault_mfa_duo":                {Tok: makeResource(mainMod, "MfaDuo")},
+			"vault_mount":                  {Tok: makeResource(mainMod, "Mount")},
+			"vault_namespace":              {Tok: makeResource(mainMod, "Namespace")},
+			"vault_policy":                 {Tok: makeResource(mainMod, "Policy")},
+			"vault_rgp_policy":             {Tok: makeResource(mainMod, "RgpPolicy")},
+			"vault_token":                  {Tok: makeResource(mainMod, "Token")},
+
+			// AppRole
+			"vault_approle_auth_backend_role":           {Tok: makeResource(appRoleMod, "AuthBackendRole")},
+			"vault_approle_auth_backend_login":          {Tok: makeResource(appRoleMod, "AuthBackendLogin")},
+			"vault_approle_auth_backend_role_secret_id": {Tok: makeResource(appRoleMod, "AuthBackendRoleSecretID")},
+
+			// AWS
+			"vault_aws_auth_backend_cert":               {Tok: makeResource(awsMod, "AuthBackendCert")},
+			"vault_aws_auth_backend_client":             {Tok: makeResource(awsMod, "AuthBackendClient")},
+			"vault_aws_auth_backend_identity_whitelist": {Tok: makeResource(awsMod, "AuthBackendIdentityWhitelist")},
+			"vault_aws_auth_backend_login":              {Tok: makeResource(awsMod, "AuthBackendLogin")},
+			"vault_aws_auth_backend_role":               {Tok: makeResource(awsMod, "AuthBackendRole")},
+			"vault_aws_auth_backend_role_tag":           {Tok: makeResource(awsMod, "AuthBackendRoleTag")},
+			"vault_aws_auth_backend_roletag_blacklist":  {Tok: makeResource(awsMod, "AuthBackendRoletagBlacklist")},
+			"vault_aws_auth_backend_sts_role":           {Tok: makeResource(awsMod, "AuthBackendStsRole")},
+			"vault_aws_secret_backend":                  {Tok: makeResource(awsMod, "SecretBackend")},
+			"vault_aws_secret_backend_role":             {Tok: makeResource(awsMod, "SecretBackendRole")},
+
+			// Azure
+			"vault_azure_auth_backend_config": {Tok: makeResource(azureMod, "AuthBackendConfig")},
+			"vault_azure_auth_backend_role":   {Tok: makeResource(azureMod, "AuthBackendRole")},
+			"vault_azure_secret_backend":      {Tok: makeResource(azureMod, "Backend")},
+			"vault_azure_secret_backend_role": {Tok: makeResource(azureMod, "BackendRole")},
+
+			// Consul
+			"vault_consul_secret_backend": {Tok: makeResource(consulMod, "SecretBackend")},
+
+			// Database
+			"vault_database_secret_backend_connection": {
+				Tok: makeResource(databaseMod, "SecretBackendConnection"),
+				Docs: &tfbridge.DocInfo{
+					Source: "database_secret_backend_connection.md",
+				},
+			},
+			"vault_database_secret_backend_role": {
+				Tok: makeResource(databaseMod, "SecretBackendRole"),
+				Docs: &tfbridge.DocInfo{
+					Source: "database_secret_backend_role.md",
+				},
+			},
+
+			// GCP
+			"vault_gcp_auth_backend":      {Tok: makeResource(gcpMod, "AuthBackend")},
+			"vault_gcp_auth_backend_role": {Tok: makeResource(gcpMod, "AuthBackendRole")},
+			"vault_gcp_secret_backend":    {Tok: makeResource(gcpMod, "SecretBackend")},
+			"vault_gcp_secret_roleset":    {Tok: makeResource(gcpMod, "SecretRoleset")},
+
+			// Generic
+			"vault_generic_endpoint": {Tok: makeResource(genericMod, "Endpoint")},
+			"vault_generic_secret":   {Tok: makeResource(genericMod, "Secret")},
+
+			// Github
+			"vault_github_auth_backend": {Tok: makeResource(githubMod, "AuthBackend")},
+			"vault_github_team":         {Tok: makeResource(githubMod, "Team")},
+			"vault_github_user":         {Tok: makeResource(githubMod, "User")},
+
+			// Identity
+			"vault_identity_entity":       {Tok: makeResource(identityMod, "Entity")},
+			"vault_identity_entity_alias": {Tok: makeResource(identityMod, "EntityAlias")},
+			"vault_identity_group":        {Tok: makeResource(identityMod, "Group")},
+			"vault_identity_group_alias":  {Tok: makeResource(identityMod, "GroupAlias")},
+			"vault_identity_group_policies": {
+				Tok: makeResource(identityMod, "GroupPolicies"),
+				Docs: &tfbridge.DocInfo{
+					Source: "database_secret_backend_role.md",
+				},
+			},
+			"vault_identity_oidc":                       {Tok: makeResource(identityMod, "Oidc")},
+			"vault_identity_oidc_key":                   {Tok: makeResource(identityMod, "OidcKey")},
+			"vault_identity_oidc_key_allowed_client_id": {Tok: makeResource(identityMod, "OidcKeyAllowedClientID")},
+			"vault_identity_oidc_role":                  {Tok: makeResource(identityMod, "OidcRole")},
+
+			// JWT
+			"vault_jwt_auth_backend":      {Tok: makeResource(jwtMod, "AuthBackend")},
+			"vault_jwt_auth_backend_role": {Tok: makeResource(jwtMod, "AuthBackendRole")},
+
+			// Kubernetes
+			"vault_kubernetes_auth_backend_config": {
+				Tok: makeResource(kubernetesMod, "AuthBackendConfig"),
+				Docs: &tfbridge.DocInfo{
+					Source: "kubernetes_auth_backend_config.md",
+				},
+			},
+			"vault_kubernetes_auth_backend_role": {
+				Tok: makeResource(kubernetesMod, "AuthBackendRole"),
+				Docs: &tfbridge.DocInfo{
+					Source: "kubernetes_auth_backend_role.html.md",
+				},
+			},
+
+			// LDAP
+			"vault_ldap_auth_backend":       {Tok: makeResource(ldapMod, "AuthBackend")},
+			"vault_ldap_auth_backend_user":  {Tok: makeResource(ldapMod, "AuthBackendUser")},
+			"vault_ldap_auth_backend_group": {Tok: makeResource(ldapMod, "AuthBackendGroup")},
+
+			// Okta
+			"vault_okta_auth_backend":       {Tok: makeResource(oktaMod, "AuthBackend")},
+			"vault_okta_auth_backend_group": {Tok: makeResource(oktaMod, "AuthBackendGroup")},
+			"vault_okta_auth_backend_user":  {Tok: makeResource(oktaMod, "AuthBackendUser")},
+
+			// PKI
+			"vault_pki_secret_backend":                           {Tok: makeResource(pkiSecretMod, "SecretBackend")},
+			"vault_pki_secret_backend_cert":                      {Tok: makeResource(pkiSecretMod, "SecretBackendCert")},
+			"vault_pki_secret_backend_config_ca":                 {Tok: makeResource(pkiSecretMod, "SecretBackendConfigCa")},
+			"vault_pki_secret_backend_config_urls":               {Tok: makeResource(pkiSecretMod, "SecretBackendConfigUrls")},
+			"vault_pki_secret_backend_intermediate_cert_request": {Tok: makeResource(pkiSecretMod, "SecretBackendIntermediateCertRequest")},
+			"vault_pki_secret_backend_intermediate_set_signed":   {Tok: makeResource(pkiSecretMod, "SecretBackendIntermediateSetSigned")},
+			"vault_pki_secret_backend_role": {
+				Tok: makeResource(pkiSecretMod, "SecretBackendRole"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"ou": {
+						// Renaming this field avoids an pluralization error.
+						Name: "organizationUnit",
+					},
+				},
+			},
+			"vault_pki_secret_backend_root_cert":              {Tok: makeResource(pkiSecretMod, "SecretBackendRootCert")},
+			"vault_pki_secret_backend_root_sign_intermediate": {Tok: makeResource(pkiSecretMod, "SecretBackendRootSignIntermediate")},
+			"vault_pki_secret_backend_sign":                   {Tok: makeResource(pkiSecretMod, "SecretBackendSign")},
+
+			// Token
+			"vault_token_auth_backend_role": {Tok: makeResource(tokenMod, "AuthBackendRole")},
+
+			// SSH
+			"vault_ssh_secret_backend_ca":   {Tok: makeResource(sshMod, "SecretBackendCa")},
+			"vault_ssh_secret_backend_role": {Tok: makeResource(sshMod, "SecretBackendRole")},
+
+			// RabbitMQ
+			"vault_rabbitmq_secret_backend":      {Tok: makeResource(rabbitMqMod, "SecretBackend")},
+			"vault_rabbitmq_secret_backend_role": {Tok: makeResource(rabbitMqMod, "SecretBackendRole")},
+
+			// Transit
+			"vault_transit_secret_backend_key": {Tok: makeResource(transitMod, "SecretBackendKey")},
+		},
+		DataSources: map[string]*tfbridge.DataSourceInfo{
+			// Main
+			"vault_policy_document": {
+				Tok: makeDataSource(mainMod, "getPolicyDocument"),
+				Docs: &tfbridge.DocInfo{
+					Source: "policy_document.md",
+				},
+			},
+
+			// AppRole
+			"vault_approle_auth_backend_role_id": {
+				Tok: makeDataSource(appRoleMod, "getAuthBackendRoleId"),
+				Docs: &tfbridge.DocInfo{
+					Source: "approle_auth_backend_role_id.md",
+				},
+			},
+
+			// AWS
+			"vault_aws_access_credentials": {Tok: makeDataSource(awsMod, "getAccessCredentials")},
+
+			// Generic
+			"vault_generic_secret": {Tok: makeDataSource(genericMod, "getSecret")},
+
+			// Identity
+			"vault_identity_group":  {Tok: makeDataSource(identityMod, "getGroup")},
+			"vault_identity_entity": {Tok: makeDataSource(identityMod, "getEntity")},
+
+			// Kubernetes
+			"vault_kubernetes_auth_backend_config": {
+				Tok: makeDataSource(kubernetesMod, "getAuthBackendConfig"),
+				Docs: &tfbridge.DocInfo{
+					Source: "kubernetes_auth_backend_config.md",
+				},
+			},
+			"vault_kubernetes_auth_backend_role": {
+				Tok: makeDataSource(kubernetesMod, "getAuthBackendRole"),
+				Docs: &tfbridge.DocInfo{
+					Source: "kubernetes_auth_backend_role.md",
+				},
+			},
+		},
+		JavaScript: &tfbridge.JavaScriptInfo{
+			Dependencies: map[string]string{
+				"@pulumi/pulumi": "latest",
+			},
+			DevDependencies: map[string]string{
+				"@types/node": "^8.0.25", // so we can access strongly typed node definitions.
+				"@types/mime": "^2.0.0",
+			},
+		},
+		Python: &tfbridge.PythonInfo{
+			Requires: map[string]string{
+				"pulumi": ">=1.0.0,<2.0.0",
+			},
+		},
+	}
+
+	// For all resources with name properties, we will add an auto-name property.  Make sure to skip those that
+	// already have a name mapping entry, since those may have custom overrides set above (e.g., for length).
+	const nameProperty = "name"
+	for resname, res := range prov.Resources {
+		if resourceSchema := p.ResourcesMap[resname]; resourceSchema != nil {
+			// Only apply auto-name to input properties (Optional || Required) named `name`
+			if tfs, has := resourceSchema.Schema[nameProperty]; has && (tfs.Optional || tfs.Required) {
+				if _, hasfield := res.Fields[nameProperty]; !hasfield {
+					if res.Fields == nil {
+						res.Fields = make(map[string]*tfbridge.SchemaInfo)
+					}
+					res.Fields[nameProperty] = tfbridge.AutoName(nameProperty, 255)
+				}
+			}
+		}
+	}
+
+	return prov
+}

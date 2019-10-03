@@ -1,0 +1,26 @@
+{
+    "name": "@pulumi/vault",
+    "version": "${VERSION}",
+    "description": "A Pulumi package for creating and managing vault cloud resources.",
+    "keywords": [
+        "pulumi",
+        "vault"
+    ],
+    "homepage": "https://pulumi.io",
+    "repository": "https://github.com/pulumi/pulumi-vault",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "tsc"
+    },
+    "dependencies": {
+        "@pulumi/pulumi": "latest"
+    },
+    "devDependencies": {
+        "@types/mime": "^2.0.0",
+        "@types/node": "^8.0.25",
+        "typescript": "^3.4.1"
+    },
+    "pulumi": {
+        "resource": true
+    }
+}
