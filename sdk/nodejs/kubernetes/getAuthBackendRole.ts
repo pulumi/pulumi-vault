@@ -15,12 +15,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  * 
- * const role = pulumi.output(vault.kubernetes.getAuthBackendRole({
+ * const role = vault.kubernetes.getAuthBackendRole({
  *     backend: "my-kubernetes-backend",
  *     roleName: "my-role",
- * }));
+ * });
  * 
- * export const policies = role.policies;
+ * export const policies = role.policies!;
  * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_role.html.markdown.

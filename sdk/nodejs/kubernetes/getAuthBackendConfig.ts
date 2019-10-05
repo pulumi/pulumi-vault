@@ -15,9 +15,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  * 
- * const config = pulumi.output(vault.kubernetes.getAuthBackendConfig({
+ * const config = vault.kubernetes.getAuthBackendConfig({
  *     backend: "my-kubernetes-backend",
- * }));
+ * });
  * 
  * export const tokenReviewerJwt = config.tokenReviewerJwt;
  * ```

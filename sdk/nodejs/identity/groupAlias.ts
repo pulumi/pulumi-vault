@@ -15,13 +15,13 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  * 
- * const github = new vault.AuthBackend("github", {
- *     path: "github",
- *     type: "github",
- * });
  * const group = new vault.identity.Group("group", {
  *     policies: ["test"],
  *     type: "external",
+ * });
+ * const github = new vault.AuthBackend("github", {
+ *     path: "github",
+ *     type: "github",
  * });
  * const groupAlias = new vault.identity.GroupAlias("group-alias", {
  *     canonicalId: group.id,

@@ -17,17 +17,17 @@ import * as utilities from "../utilities";
  * const example = new vault.Mount("example", {
  *     type: "ssh",
  * });
+ * const foo = new vault.ssh.SecretBackendRole("foo", {
+ *     allowUserCertificates: true,
+ *     backend: example.path,
+ *     keyType: "ca",
+ * });
  * const bar = new vault.ssh.SecretBackendRole("bar", {
  *     allowedUsers: "default,baz",
  *     backend: example.path,
  *     cidrList: "0.0.0.0/0",
  *     defaultUser: "default",
  *     keyType: "otp",
- * });
- * const foo = new vault.ssh.SecretBackendRole("foo", {
- *     allowUserCertificates: true,
- *     backend: example.path,
- *     keyType: "ca",
  * });
  * ```
  *
