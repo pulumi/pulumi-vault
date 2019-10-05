@@ -200,12 +200,16 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_okta_auth_backend_user":  {Tok: makeResource(oktaMod, "AuthBackendUser")},
 
 			// PKI
-			"vault_pki_secret_backend":                           {Tok: makeResource(pkiSecretMod, "SecretBackend")},
-			"vault_pki_secret_backend_cert":                      {Tok: makeResource(pkiSecretMod, "SecretBackendCert")},
-			"vault_pki_secret_backend_config_ca":                 {Tok: makeResource(pkiSecretMod, "SecretBackendConfigCa")},
-			"vault_pki_secret_backend_config_urls":               {Tok: makeResource(pkiSecretMod, "SecretBackendConfigUrls")},
-			"vault_pki_secret_backend_intermediate_cert_request": {Tok: makeResource(pkiSecretMod, "SecretBackendIntermediateCertRequest")},
-			"vault_pki_secret_backend_intermediate_set_signed":   {Tok: makeResource(pkiSecretMod, "SecretBackendIntermediateSetSigned")},
+			"vault_pki_secret_backend":             {Tok: makeResource(pkiSecretMod, "SecretBackend")},
+			"vault_pki_secret_backend_cert":        {Tok: makeResource(pkiSecretMod, "SecretBackendCert")},
+			"vault_pki_secret_backend_config_ca":   {Tok: makeResource(pkiSecretMod, "SecretBackendConfigCa")},
+			"vault_pki_secret_backend_config_urls": {Tok: makeResource(pkiSecretMod, "SecretBackendConfigUrls")},
+			"vault_pki_secret_backend_intermediate_cert_request": {
+				Tok: makeResource(pkiSecretMod, "SecretBackendIntermediateCertRequest"),
+			},
+			"vault_pki_secret_backend_intermediate_set_signed": {
+				Tok: makeResource(pkiSecretMod, "SecretBackendIntermediateSetSigned"),
+			},
 			"vault_pki_secret_backend_role": {
 				Tok: makeResource(pkiSecretMod, "SecretBackendRole"),
 				Fields: map[string]*tfbridge.SchemaInfo{
@@ -215,9 +219,11 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			"vault_pki_secret_backend_root_cert":              {Tok: makeResource(pkiSecretMod, "SecretBackendRootCert")},
-			"vault_pki_secret_backend_root_sign_intermediate": {Tok: makeResource(pkiSecretMod, "SecretBackendRootSignIntermediate")},
-			"vault_pki_secret_backend_sign":                   {Tok: makeResource(pkiSecretMod, "SecretBackendSign")},
+			"vault_pki_secret_backend_root_cert": {Tok: makeResource(pkiSecretMod, "SecretBackendRootCert")},
+			"vault_pki_secret_backend_root_sign_intermediate": {
+				Tok: makeResource(pkiSecretMod, "SecretBackendRootSignIntermediate"),
+			},
+			"vault_pki_secret_backend_sign": {Tok: makeResource(pkiSecretMod, "SecretBackendSign")},
 
 			// Token
 			"vault_token_auth_backend_role": {Tok: makeResource(tokenMod, "AuthBackendRole")},
