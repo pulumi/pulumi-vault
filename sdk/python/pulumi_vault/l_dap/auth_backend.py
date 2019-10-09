@@ -87,7 +87,7 @@ class AuthBackend(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, binddn=None, bindpass=None, certificate=None, deny_null_bind=None, description=None, discoverdn=None, groupattr=None, groupdn=None, groupfilter=None, insecure_tls=None, path=None, starttls=None, tls_max_version=None, tls_min_version=None, upndomain=None, url=None, use_token_groups=None, userattr=None, userdn=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a resource for managing an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
-        
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] binddn: DN of object to bind when performing user search
@@ -150,7 +150,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__['userdn'] = userdn
             __props__['accessor'] = None
         super(AuthBackend, __self__).__init__(
-            'vault:lDAP/authBackend:AuthBackend',
+            'vault:ldap/authBackend:AuthBackend',
             resource_name,
             __props__,
             opts)
@@ -160,7 +160,7 @@ class AuthBackend(pulumi.CustomResource):
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.

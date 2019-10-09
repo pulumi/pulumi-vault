@@ -25,7 +25,7 @@ class AuthBackendGroup(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, backend=None, groupname=None, policies=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a resource to create a group in an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
-        
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path to the authentication backend
@@ -57,7 +57,7 @@ class AuthBackendGroup(pulumi.CustomResource):
             __props__['groupname'] = groupname
             __props__['policies'] = policies
         super(AuthBackendGroup, __self__).__init__(
-            'vault:lDAP/authBackendGroup:AuthBackendGroup',
+            'vault:ldap/authBackendGroup:AuthBackendGroup',
             resource_name,
             __props__,
             opts)
@@ -67,7 +67,7 @@ class AuthBackendGroup(pulumi.CustomResource):
         """
         Get an existing AuthBackendGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.

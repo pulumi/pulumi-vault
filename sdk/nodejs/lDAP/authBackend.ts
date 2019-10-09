@@ -6,14 +6,14 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource for managing an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
- * 
+ *
  * ## Example Usage
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
- * const ldap = new vault.lDAP.AuthBackend("ldap", {
+ *
+ * const ldap = new vault.ldap.AuthBackend("ldap", {
  *     discoverdn: false,
  *     groupdn: "OU=Groups,DC=example,DC=org",
  *     groupfilter: "(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
@@ -41,7 +41,7 @@ export class AuthBackend extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'vault:lDAP/authBackend:AuthBackend';
+    public static readonly __pulumiType = 'vault:ldap/authBackend:AuthBackend';
 
     /**
      * Returns true if the given object is an instance of AuthBackend.  This is designed to work even

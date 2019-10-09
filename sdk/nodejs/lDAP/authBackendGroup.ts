@@ -6,14 +6,14 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource to create a group in an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
- * 
+ *
  * ## Example Usage
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
- * const ldap = new vault.lDAP.AuthBackend("ldap", {
+ *
+ * const ldap = new vault.ldap.AuthBackend("ldap", {
  *     discoverdn: false,
  *     groupdn: "OU=Groups,DC=example,DC=org",
  *     groupfilter: "(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
@@ -23,7 +23,7 @@ import * as utilities from "../utilities";
  *     userattr: "sAMAccountName",
  *     userdn: "OU=Users,OU=Accounts,DC=example,DC=org",
  * });
- * const group = new vault.lDAP.AuthBackendGroup("group", {
+ * const group = new vault.ldap.AuthBackendGroup("group", {
  *     backend: ldap.path,
  *     groupname: "dba",
  *     policies: ["dba"],
@@ -46,7 +46,7 @@ export class AuthBackendGroup extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'vault:lDAP/authBackendGroup:AuthBackendGroup';
+    public static readonly __pulumiType = 'vault:ldap/authBackendGroup:AuthBackendGroup';
 
     /**
      * Returns true if the given object is an instance of AuthBackendGroup.  This is designed to work even

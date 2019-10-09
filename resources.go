@@ -43,7 +43,7 @@ const (
 	identityMod   = "identity"
 	jwtMod        = "jwt"
 	kubernetesMod = "kubernetes"
-	ldapMod       = "lDAP"
+	ldapMod       = "ldap"
 	oktaMod       = "okta"
 	pkiSecretMod  = "pkiSecret"
 	rabbitMqMod   = "rabbitMq"
