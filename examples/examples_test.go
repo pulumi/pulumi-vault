@@ -3,7 +3,6 @@
 package examples
 
 import (
-	"github.com/stretchr/testify/assert"
 	"os"
 	"path"
 	"testing"
@@ -11,51 +10,51 @@ import (
 	"github.com/pulumi/pulumi/pkg/testing/integration"
 )
 
-func TestExamples(t *testing.T) {
+func TestAccPolicy(t *testing.T) {
+	test := getJSBaseOptions(t).
+		With(integration.ProgramTestOptions{
+			Dir: path.Join(getCwd(t), "policy"),
+		})
+
+	integration.ProgramTest(t, &test)
+}
+
+func getToken(t *testing.T) string {
 	token := os.Getenv("VAULT_DEV_ROOT_TOKEN_ID")
 	if token == "" {
 		t.Skipf("Skipping test due to missing VAULT_DEV_ROOT_TOKEN_ID environment variable")
 	}
 
+	return token
+}
+
+func getCwd(t *testing.T) string {
 	cwd, err := os.Getwd()
-	if !assert.NoError(t, err, "expected a valid working directory: %v", err) {
-		return
+	if err != nil {
+		t.FailNow()
 	}
 
-	// base options shared amongst all tests.
-	base := integration.ProgramTestOptions{
-		Config: map[string]string{
-			// Configuration map
-		},
+	return cwd
+}
+
+func getBaseOptions() integration.ProgramTestOptions {
+	return integration.ProgramTestOptions{
 		Tracing: "https://tracing.pulumi-engineering.com/collector/api/v1/spans",
 	}
+}
+
+func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
+	token := getToken(t)
+	base := getBaseOptions()
 	baseJS := base.With(integration.ProgramTestOptions{
+		Config: map[string]string{
+			"vault:address": "http://127.0.0.1:8200",
+			"vault:token": token,
+		},
 		Dependencies: []string{
-			// JavaScript dependencies
+			"@pulumi/vault",
 		},
 	})
 
-	examples := []integration.ProgramTestOptions{
-		baseJS.With(integration.ProgramTestOptions{
-			Dir: path.Join(cwd, "policy"),
-			Config: map[string]string{
-				"vault:address": "http://127.0.0.1:8200",
-				"vault:token": token,
-			},
-			Dependencies: []string{
-				"@pulumi/vault",
-			},
-		}),
-	}
-
-	if !testing.Short() {
-		// Append any longer running tests
-	}
-
-	for _, ex := range examples {
-		example := ex
-		t.Run(example.Dir, func(t *testing.T) {
-			integration.ProgramTest(t, &example)
-		})
-	}
+	return baseJS
 }
