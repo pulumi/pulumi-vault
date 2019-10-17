@@ -20,6 +20,6 @@ require (
 	github.com/pkg/errors v0.8.1
 	github.com/pulumi/pulumi v1.2.0
 	github.com/pulumi/pulumi-terraform v0.18.4-0.20190905205929-ed0b5c29edd1
-	github.com/stretchr/testify v1.4.0
+	github.com/stretchr/testify v1.4.0 // indirect
 	github.com/terraform-providers/terraform-provider-vault v0.0.0-20190906165453-bf7562d42d48
 )
