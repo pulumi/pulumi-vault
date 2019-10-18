@@ -94,6 +94,10 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      */
     public readonly postgresql!: pulumi.Output<outputs.database.SecretBackendConnectionPostgresql | undefined>;
     /**
+     * A list of database statements to be executed to rotate the root user's credentials.
+     */
+    public readonly rootRotationStatements!: pulumi.Output<string[] | undefined>;
+    /**
      * Whether the connection should be verified on
      * initial configuration or not.
      */
@@ -125,6 +129,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             inputs["name"] = state ? state.name : undefined;
             inputs["oracle"] = state ? state.oracle : undefined;
             inputs["postgresql"] = state ? state.postgresql : undefined;
+            inputs["rootRotationStatements"] = state ? state.rootRotationStatements : undefined;
             inputs["verifyConnection"] = state ? state.verifyConnection : undefined;
         } else {
             const args = argsOrState as SecretBackendConnectionArgs | undefined;
@@ -145,6 +150,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["oracle"] = args ? args.oracle : undefined;
             inputs["postgresql"] = args ? args.postgresql : undefined;
+            inputs["rootRotationStatements"] = args ? args.rootRotationStatements : undefined;
             inputs["verifyConnection"] = args ? args.verifyConnection : undefined;
         }
         if (!opts) {
@@ -220,6 +226,10 @@ export interface SecretBackendConnectionState {
      */
     readonly postgresql?: pulumi.Input<inputs.database.SecretBackendConnectionPostgresql>;
     /**
+     * A list of database statements to be executed to rotate the root user's credentials.
+     */
+    readonly rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Whether the connection should be verified on
      * initial configuration or not.
      */
@@ -287,6 +297,10 @@ export interface SecretBackendConnectionArgs {
      * A nested block containing configuration options for PostgreSQL connections.
      */
     readonly postgresql?: pulumi.Input<inputs.database.SecretBackendConnectionPostgresql>;
+    /**
+     * A list of database statements to be executed to rotate the root user's credentials.
+     */
+    readonly rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Whether the connection should be verified on
      * initial configuration or not.

@@ -337,12 +337,21 @@ export namespace gcp {
 
 export namespace github {
     export interface AuthBackendTune {
+        allowedResponseHeaders?: string[];
         auditNonHmacRequestKeys?: string[];
         auditNonHmacResponseKeys?: string[];
         defaultLeaseTtl?: string;
         listingVisibility?: string;
         maxLeaseTtl?: string;
         passthroughRequestHeaders?: string[];
+        /**
+         * (Optional) The type of token that should be generated. Can be `service`,
+         * `batch`, or `default` to use the mount's tuned default (which unless changed will be
+         * `service` tokens). For token store roles, there are two additional possibilities:
+         * `default-service` and `default-batch` which specify the type to return unless the client
+         * requests a different type at generation time.
+         */
+        tokenType?: string;
     }
 }
 
@@ -393,12 +402,14 @@ export namespace identity {
 
 export namespace jwt {
     export interface AuthBackendTune {
+        allowedResponseHeaders?: string[];
         auditNonHmacRequestKeys?: string[];
         auditNonHmacResponseKeys?: string[];
         defaultLeaseTtl?: string;
         listingVisibility?: string;
         maxLeaseTtl?: string;
         passthroughRequestHeaders?: string[];
+        tokenType?: string;
     }
 }
 

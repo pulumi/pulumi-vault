@@ -4,3 +4,4 @@
 
 # Export this package's modules as members:
 from .secret_backend import *
+from .secret_backend_role import *

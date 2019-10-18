@@ -47,6 +47,7 @@ export class Provider extends pulumi.ProviderResource {
                 throw new Error("Missing required property 'token'");
             }
             inputs["address"] = args ? args.address : undefined;
+            inputs["authLogins"] = pulumi.output(args ? args.authLogins : undefined).apply(JSON.stringify);
             inputs["caCertDir"] = args ? args.caCertDir : undefined;
             inputs["caCertFile"] = args ? args.caCertFile : undefined;
             inputs["clientAuths"] = pulumi.output(args ? args.clientAuths : undefined).apply(JSON.stringify);
@@ -75,6 +76,10 @@ export interface ProviderArgs {
      * URL of the root of the target Vault server.
      */
     readonly address: pulumi.Input<string>;
+    /**
+     * Login to vault with an existing auth method using auth/<mount>/login
+     */
+    readonly authLogins?: pulumi.Input<pulumi.Input<inputs.ProviderAuthLogin>[]>;
     /**
      * Path to directory containing CA certificate files to validate the server's certificate.
      */

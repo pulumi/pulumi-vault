@@ -61,6 +61,12 @@ export interface GetPolicyDocumentRuleDeniedParameter {
     values: string[];
 }
 
+export interface ProviderAuthLogin {
+    namespace?: pulumi.Input<string>;
+    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    path: pulumi.Input<string>;
+}
+
 export interface ProviderClientAuth {
     certFile: pulumi.Input<string>;
     keyFile: pulumi.Input<string>;
@@ -342,12 +348,21 @@ export namespace gcp {
 
 export namespace github {
     export interface AuthBackendTune {
+        allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
         auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
         auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
         defaultLeaseTtl?: pulumi.Input<string>;
         listingVisibility?: pulumi.Input<string>;
         maxLeaseTtl?: pulumi.Input<string>;
         passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * (Optional) The type of token that should be generated. Can be `service`,
+         * `batch`, or `default` to use the mount's tuned default (which unless changed will be
+         * `service` tokens). For token store roles, there are two additional possibilities:
+         * `default-service` and `default-batch` which specify the type to return unless the client
+         * requests a different type at generation time.
+         */
+        tokenType?: pulumi.Input<string>;
     }
 }
 
@@ -356,12 +371,14 @@ export namespace identity {
 
 export namespace jwt {
     export interface AuthBackendTune {
+        allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
         auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
         auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
         defaultLeaseTtl?: pulumi.Input<string>;
         listingVisibility?: pulumi.Input<string>;
         maxLeaseTtl?: pulumi.Input<string>;
         passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        tokenType?: pulumi.Input<string>;
     }
 }
 

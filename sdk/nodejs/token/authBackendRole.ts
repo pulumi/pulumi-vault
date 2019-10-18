@@ -134,8 +134,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly tokenPeriod!: pulumi.Output<number | undefined>;
     /**
-     * List of policies to encode onto generated tokens. Depending
-     * on the auth method, this list may be supplemented by user/group/other values.
+     * Generated Token's Policies
      */
     public readonly tokenPolicies!: pulumi.Output<string[] | undefined>;
     /**
@@ -296,8 +295,7 @@ export interface AuthBackendRoleState {
      */
     readonly tokenPeriod?: pulumi.Input<number>;
     /**
-     * List of policies to encode onto generated tokens. Depending
-     * on the auth method, this list may be supplemented by user/group/other values.
+     * Generated Token's Policies
      */
     readonly tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -394,8 +392,7 @@ export interface AuthBackendRoleArgs {
      */
     readonly tokenPeriod?: pulumi.Input<number>;
     /**
-     * List of policies to encode onto generated tokens. Depending
-     * on the auth method, this list may be supplemented by user/group/other values.
+     * Generated Token's Policies
      */
     readonly tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**

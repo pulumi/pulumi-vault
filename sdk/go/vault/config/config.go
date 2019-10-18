@@ -13,6 +13,11 @@ func GetAddress(ctx *pulumi.Context) string {
 	return config.Get(ctx, "vault:address")
 }
 
+// Login to vault with an existing auth method using auth/<mount>/login
+func GetAuthLogins(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:authLogins")
+}
+
 // Path to directory containing CA certificate files to validate the server's certificate.
 func GetCaCertDir(ctx *pulumi.Context) string {
 	return config.Get(ctx, "vault:caCertDir")

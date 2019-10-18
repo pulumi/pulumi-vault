@@ -17,9 +17,9 @@ package vault
 import (
 	"unicode"
 
-	"github.com/hashicorp/terraform/helper/schema"
-	"github.com/hashicorp/terraform/terraform"
-	"github.com/pulumi/pulumi-terraform/pkg/tfbridge"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/terraform"
+	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfbridge"
 	"github.com/pulumi/pulumi/pkg/resource"
 	"github.com/pulumi/pulumi/pkg/tokens"
 	"github.com/terraform-providers/terraform-provider-vault/vault"
@@ -124,7 +124,8 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_azure_secret_backend_role": {Tok: makeResource(azureMod, "BackendRole")},
 
 			// Consul
-			"vault_consul_secret_backend": {Tok: makeResource(consulMod, "SecretBackend")},
+			"vault_consul_secret_backend":      {Tok: makeResource(consulMod, "SecretBackend")},
+			"vault_consul_secret_backend_role": {Tok: makeResource(consulMod, "SecretBackendRole")},
 
 			// Database
 			"vault_database_secret_backend_connection": {
@@ -223,7 +224,8 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_pki_secret_backend_root_sign_intermediate": {
 				Tok: makeResource(pkiSecretMod, "SecretBackendRootSignIntermediate"),
 			},
-			"vault_pki_secret_backend_sign": {Tok: makeResource(pkiSecretMod, "SecretBackendSign")},
+			"vault_pki_secret_backend_sign":       {Tok: makeResource(pkiSecretMod, "SecretBackendSign")},
+			"vault_pki_secret_backend_crl_config": {Tok: makeResource(pkiSecretMod, "SecretBackendCrlConfig")},
 
 			// Token
 			"vault_token_auth_backend_role": {Tok: makeResource(tokenMod, "AuthBackendRole")},

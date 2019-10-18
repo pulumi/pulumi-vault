@@ -16,6 +16,11 @@ address = __config__.get('address')
 URL of the root of the target Vault server.
 """
 
+auth_logins = __config__.get('authLogins')
+"""
+Login to vault with an existing auth method using auth/<mount>/login
+"""
+
 ca_cert_dir = __config__.get('caCertDir')
 """
 Path to directory containing CA certificate files to validate the server's certificate.

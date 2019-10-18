@@ -37,6 +37,15 @@ func NewAuthBackend(ctx *pulumi.Context,
 		inputs["starttls"] = nil
 		inputs["tlsMaxVersion"] = nil
 		inputs["tlsMinVersion"] = nil
+		inputs["tokenBoundCidrs"] = nil
+		inputs["tokenExplicitMaxTtl"] = nil
+		inputs["tokenMaxTtl"] = nil
+		inputs["tokenNoDefaultPolicy"] = nil
+		inputs["tokenNumUses"] = nil
+		inputs["tokenPeriod"] = nil
+		inputs["tokenPolicies"] = nil
+		inputs["tokenTtl"] = nil
+		inputs["tokenType"] = nil
 		inputs["upndomain"] = nil
 		inputs["url"] = nil
 		inputs["useTokenGroups"] = nil
@@ -57,6 +66,15 @@ func NewAuthBackend(ctx *pulumi.Context,
 		inputs["starttls"] = args.Starttls
 		inputs["tlsMaxVersion"] = args.TlsMaxVersion
 		inputs["tlsMinVersion"] = args.TlsMinVersion
+		inputs["tokenBoundCidrs"] = args.TokenBoundCidrs
+		inputs["tokenExplicitMaxTtl"] = args.TokenExplicitMaxTtl
+		inputs["tokenMaxTtl"] = args.TokenMaxTtl
+		inputs["tokenNoDefaultPolicy"] = args.TokenNoDefaultPolicy
+		inputs["tokenNumUses"] = args.TokenNumUses
+		inputs["tokenPeriod"] = args.TokenPeriod
+		inputs["tokenPolicies"] = args.TokenPolicies
+		inputs["tokenTtl"] = args.TokenTtl
+		inputs["tokenType"] = args.TokenType
 		inputs["upndomain"] = args.Upndomain
 		inputs["url"] = args.Url
 		inputs["useTokenGroups"] = args.UseTokenGroups
@@ -92,6 +110,15 @@ func GetAuthBackend(ctx *pulumi.Context,
 		inputs["starttls"] = state.Starttls
 		inputs["tlsMaxVersion"] = state.TlsMaxVersion
 		inputs["tlsMinVersion"] = state.TlsMinVersion
+		inputs["tokenBoundCidrs"] = state.TokenBoundCidrs
+		inputs["tokenExplicitMaxTtl"] = state.TokenExplicitMaxTtl
+		inputs["tokenMaxTtl"] = state.TokenMaxTtl
+		inputs["tokenNoDefaultPolicy"] = state.TokenNoDefaultPolicy
+		inputs["tokenNumUses"] = state.TokenNumUses
+		inputs["tokenPeriod"] = state.TokenPeriod
+		inputs["tokenPolicies"] = state.TokenPolicies
+		inputs["tokenTtl"] = state.TokenTtl
+		inputs["tokenType"] = state.TokenType
 		inputs["upndomain"] = state.Upndomain
 		inputs["url"] = state.Url
 		inputs["useTokenGroups"] = state.UseTokenGroups
@@ -188,6 +215,66 @@ func (r *AuthBackend) TlsMinVersion() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["tlsMinVersion"])
 }
 
+// List of CIDR blocks; if set, specifies blocks of IP
+// addresses which can authenticate successfully, and ties the resulting token to these blocks
+// as well.
+func (r *AuthBackend) TokenBoundCidrs() *pulumi.ArrayOutput {
+	return (*pulumi.ArrayOutput)(r.s.State["tokenBoundCidrs"])
+}
+
+// If set, will encode an
+// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+// `tokenMaxTtl` would otherwise allow a renewal.
+func (r *AuthBackend) TokenExplicitMaxTtl() *pulumi.IntOutput {
+	return (*pulumi.IntOutput)(r.s.State["tokenExplicitMaxTtl"])
+}
+
+// The maximum lifetime for generated tokens in number of seconds.
+// Its current value will be referenced at renewal time.
+func (r *AuthBackend) TokenMaxTtl() *pulumi.IntOutput {
+	return (*pulumi.IntOutput)(r.s.State["tokenMaxTtl"])
+}
+
+// If set, the default policy will not be set on
+// generated tokens; otherwise it will be added to the policies set in token_policies.
+func (r *AuthBackend) TokenNoDefaultPolicy() *pulumi.BoolOutput {
+	return (*pulumi.BoolOutput)(r.s.State["tokenNoDefaultPolicy"])
+}
+
+// The
+// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+// if any, in number of seconds to set on the token.
+func (r *AuthBackend) TokenNumUses() *pulumi.IntOutput {
+	return (*pulumi.IntOutput)(r.s.State["tokenNumUses"])
+}
+
+// Generated Token's Period
+func (r *AuthBackend) TokenPeriod() *pulumi.IntOutput {
+	return (*pulumi.IntOutput)(r.s.State["tokenPeriod"])
+}
+
+// List of policies to encode onto generated tokens. Depending
+// on the auth method, this list may be supplemented by user/group/other values.
+func (r *AuthBackend) TokenPolicies() *pulumi.ArrayOutput {
+	return (*pulumi.ArrayOutput)(r.s.State["tokenPolicies"])
+}
+
+// The incremental lifetime for generated tokens in number of seconds.
+// Its current value will be referenced at renewal time.
+func (r *AuthBackend) TokenTtl() *pulumi.IntOutput {
+	return (*pulumi.IntOutput)(r.s.State["tokenTtl"])
+}
+
+// The type of token that should be generated. Can be `service`,
+// `batch`, or `default` to use the mount's tuned default (which unless changed will be
+// `service` tokens). For token store roles, there are two additional possibilities:
+// `default-service` and `default-batch` which specify the type to return unless the client
+// requests a different type at generation time.
+func (r *AuthBackend) TokenType() *pulumi.StringOutput {
+	return (*pulumi.StringOutput)(r.s.State["tokenType"])
+}
+
 // The userPrincipalDomain used to construct UPN string
 func (r *AuthBackend) Upndomain() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["upndomain"])
@@ -243,6 +330,39 @@ type AuthBackendState struct {
 	TlsMaxVersion interface{}
 	// Minimum acceptable version of TLS
 	TlsMinVersion interface{}
+	// List of CIDR blocks; if set, specifies blocks of IP
+	// addresses which can authenticate successfully, and ties the resulting token to these blocks
+	// as well.
+	TokenBoundCidrs interface{}
+	// If set, will encode an
+	// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+	// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+	// `tokenMaxTtl` would otherwise allow a renewal.
+	TokenExplicitMaxTtl interface{}
+	// The maximum lifetime for generated tokens in number of seconds.
+	// Its current value will be referenced at renewal time.
+	TokenMaxTtl interface{}
+	// If set, the default policy will not be set on
+	// generated tokens; otherwise it will be added to the policies set in token_policies.
+	TokenNoDefaultPolicy interface{}
+	// The
+	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+	// if any, in number of seconds to set on the token.
+	TokenNumUses interface{}
+	// Generated Token's Period
+	TokenPeriod interface{}
+	// List of policies to encode onto generated tokens. Depending
+	// on the auth method, this list may be supplemented by user/group/other values.
+	TokenPolicies interface{}
+	// The incremental lifetime for generated tokens in number of seconds.
+	// Its current value will be referenced at renewal time.
+	TokenTtl interface{}
+	// The type of token that should be generated. Can be `service`,
+	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
+	// `service` tokens). For token store roles, there are two additional possibilities:
+	// `default-service` and `default-batch` which specify the type to return unless the client
+	// requests a different type at generation time.
+	TokenType interface{}
 	// The userPrincipalDomain used to construct UPN string
 	Upndomain interface{}
 	// The URL of the LDAP server
@@ -283,6 +403,39 @@ type AuthBackendArgs struct {
 	TlsMaxVersion interface{}
 	// Minimum acceptable version of TLS
 	TlsMinVersion interface{}
+	// List of CIDR blocks; if set, specifies blocks of IP
+	// addresses which can authenticate successfully, and ties the resulting token to these blocks
+	// as well.
+	TokenBoundCidrs interface{}
+	// If set, will encode an
+	// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+	// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+	// `tokenMaxTtl` would otherwise allow a renewal.
+	TokenExplicitMaxTtl interface{}
+	// The maximum lifetime for generated tokens in number of seconds.
+	// Its current value will be referenced at renewal time.
+	TokenMaxTtl interface{}
+	// If set, the default policy will not be set on
+	// generated tokens; otherwise it will be added to the policies set in token_policies.
+	TokenNoDefaultPolicy interface{}
+	// The
+	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+	// if any, in number of seconds to set on the token.
+	TokenNumUses interface{}
+	// Generated Token's Period
+	TokenPeriod interface{}
+	// List of policies to encode onto generated tokens. Depending
+	// on the auth method, this list may be supplemented by user/group/other values.
+	TokenPolicies interface{}
+	// The incremental lifetime for generated tokens in number of seconds.
+	// Its current value will be referenced at renewal time.
+	TokenTtl interface{}
+	// The type of token that should be generated. Can be `service`,
+	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
+	// `service` tokens). For token store roles, there are two additional possibilities:
+	// `default-service` and `default-batch` which specify the type to return unless the client
+	// requests a different type at generation time.
+	TokenType interface{}
 	// The userPrincipalDomain used to construct UPN string
 	Upndomain interface{}
 	// The URL of the LDAP server

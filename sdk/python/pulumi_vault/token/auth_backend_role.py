@@ -79,10 +79,6 @@ class AuthBackendRole(pulumi.CustomResource):
     """
     token_period: pulumi.Output[float]
     token_policies: pulumi.Output[list]
-    """
-    List of policies to encode onto generated tokens. Depending
-    on the auth method, this list may be supplemented by user/group/other values.
-    """
     token_ttl: pulumi.Output[float]
     """
     The incremental lifetime for generated tokens in number of seconds.
@@ -131,8 +127,6 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[float] token_num_uses: The
                [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
                if any, in number of seconds to set on the token.
-        :param pulumi.Input[list] token_policies: List of policies to encode onto generated tokens. Depending
-               on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[float] token_ttl: The incremental lifetime for generated tokens in number of seconds.
                Its current value will be referenced at renewal time.
         :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
@@ -222,8 +216,6 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[float] token_num_uses: The
                [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
                if any, in number of seconds to set on the token.
-        :param pulumi.Input[list] token_policies: List of policies to encode onto generated tokens. Depending
-               on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[float] token_ttl: The incremental lifetime for generated tokens in number of seconds.
                Its current value will be referenced at renewal time.
         :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,

@@ -10,7 +10,7 @@ from typing import Union
 from . import utilities, tables
 
 class Provider(pulumi.ProviderResource):
-    def __init__(__self__, resource_name, opts=None, address=None, ca_cert_dir=None, ca_cert_file=None, client_auths=None, max_lease_ttl_seconds=None, max_retries=None, namespace=None, skip_tls_verify=None, token=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, address=None, auth_logins=None, ca_cert_dir=None, ca_cert_file=None, client_auths=None, max_lease_ttl_seconds=None, max_retries=None, namespace=None, skip_tls_verify=None, token=None, __props__=None, __name__=None, __opts__=None):
         """
         The provider type for the vault package. By default, resources use package-wide configuration
         settings, however an explicit `Provider` instance may be created and passed during resource
@@ -19,6 +19,12 @@ class Provider(pulumi.ProviderResource):
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        
+        The **auth_logins** object supports the following:
+        
+          * `namespace` (`pulumi.Input[str]`)
+          * `parameters` (`pulumi.Input[dict]`)
+          * `path` (`pulumi.Input[str]`)
         
         The **client_auths** object supports the following:
         
@@ -47,6 +53,7 @@ class Provider(pulumi.ProviderResource):
             if address is None:
                 raise TypeError("Missing required property 'address'")
             __props__['address'] = address
+            __props__['auth_logins'] = pulumi.Output.from_input(auth_logins).apply(json.dumps) if auth_logins is not None else None
             __props__['ca_cert_dir'] = ca_cert_dir
             __props__['ca_cert_file'] = ca_cert_file
             __props__['client_auths'] = pulumi.Output.from_input(client_auths).apply(json.dumps) if client_auths is not None else None

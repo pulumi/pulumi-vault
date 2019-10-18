@@ -3,3 +3,4 @@
 
 // Export members:
 export * from "./secretBackend";
+export * from "./secretBackendRole";

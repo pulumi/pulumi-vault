@@ -100,42 +100,33 @@ func (r *User) Backend() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["backend"])
 }
 
-// An array of strings
-// specifying the policies to be set on tokens issued using this role.
+// An array of strings specifying the policies to be set on tokens issued
+// using this role.
 func (r *User) Policies() *pulumi.ArrayOutput {
 	return (*pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
-// List of CIDR blocks; if set, specifies blocks of IP
-// addresses which can authenticate successfully, and ties the resulting token to these blocks
-// as well.
+// Specifies the blocks of IP addresses which are allowed to use the generated token
 func (r *User) TokenBoundCidrs() *pulumi.ArrayOutput {
 	return (*pulumi.ArrayOutput)(r.s.State["tokenBoundCidrs"])
 }
 
-// If set, will encode an
-// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
-// `tokenMaxTtl` would otherwise allow a renewal.
+// Generated Token's Explicit Maximum TTL in seconds
 func (r *User) TokenExplicitMaxTtl() *pulumi.IntOutput {
 	return (*pulumi.IntOutput)(r.s.State["tokenExplicitMaxTtl"])
 }
 
-// The maximum lifetime for generated tokens in number of seconds.
-// Its current value will be referenced at renewal time.
+// The maximum lifetime of the generated token
 func (r *User) TokenMaxTtl() *pulumi.IntOutput {
 	return (*pulumi.IntOutput)(r.s.State["tokenMaxTtl"])
 }
 
-// If set, the default policy will not be set on
-// generated tokens; otherwise it will be added to the policies set in token_policies.
+// If true, the 'default' policy will not automatically be added to generated tokens
 func (r *User) TokenNoDefaultPolicy() *pulumi.BoolOutput {
 	return (*pulumi.BoolOutput)(r.s.State["tokenNoDefaultPolicy"])
 }
 
-// The
-// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-// if any, in number of seconds to set on the token.
+// The maximum number of times a token may be used, a value of zero means unlimited
 func (r *User) TokenNumUses() *pulumi.IntOutput {
 	return (*pulumi.IntOutput)(r.s.State["tokenNumUses"])
 }
@@ -145,23 +136,17 @@ func (r *User) TokenPeriod() *pulumi.IntOutput {
 	return (*pulumi.IntOutput)(r.s.State["tokenPeriod"])
 }
 
-// List of policies to encode onto generated tokens. Depending
-// on the auth method, this list may be supplemented by user/group/other values.
+// Generated Token's Policies
 func (r *User) TokenPolicies() *pulumi.ArrayOutput {
 	return (*pulumi.ArrayOutput)(r.s.State["tokenPolicies"])
 }
 
-// The incremental lifetime for generated tokens in number of seconds.
-// Its current value will be referenced at renewal time.
+// The initial ttl of the token to generate in seconds
 func (r *User) TokenTtl() *pulumi.IntOutput {
 	return (*pulumi.IntOutput)(r.s.State["tokenTtl"])
 }
 
-// The type of token that should be generated. Can be `service`,
-// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-// `service` tokens). For token store roles, there are two additional possibilities:
-// `default-service` and `default-batch` which specify the type to return unless the client
-// requests a different type at generation time.
+// The type of token to generate, service or batch
 func (r *User) TokenType() *pulumi.StringOutput {
 	return (*pulumi.StringOutput)(r.s.State["tokenType"])
 }
@@ -176,41 +161,26 @@ type UserState struct {
 	// Path where the github auth backend is mounted. Defaults to `github`
 	// if not specified.
 	Backend interface{}
-	// An array of strings
-	// specifying the policies to be set on tokens issued using this role.
+	// An array of strings specifying the policies to be set on tokens issued
+	// using this role.
 	Policies interface{}
-	// List of CIDR blocks; if set, specifies blocks of IP
-	// addresses which can authenticate successfully, and ties the resulting token to these blocks
-	// as well.
+	// Specifies the blocks of IP addresses which are allowed to use the generated token
 	TokenBoundCidrs interface{}
-	// If set, will encode an
-	// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-	// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
-	// `tokenMaxTtl` would otherwise allow a renewal.
+	// Generated Token's Explicit Maximum TTL in seconds
 	TokenExplicitMaxTtl interface{}
-	// The maximum lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The maximum lifetime of the generated token
 	TokenMaxTtl interface{}
-	// If set, the default policy will not be set on
-	// generated tokens; otherwise it will be added to the policies set in token_policies.
+	// If true, the 'default' policy will not automatically be added to generated tokens
 	TokenNoDefaultPolicy interface{}
-	// The
-	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-	// if any, in number of seconds to set on the token.
+	// The maximum number of times a token may be used, a value of zero means unlimited
 	TokenNumUses interface{}
 	// Generated Token's Period
 	TokenPeriod interface{}
-	// List of policies to encode onto generated tokens. Depending
-	// on the auth method, this list may be supplemented by user/group/other values.
+	// Generated Token's Policies
 	TokenPolicies interface{}
-	// The incremental lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The initial ttl of the token to generate in seconds
 	TokenTtl interface{}
-	// The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// The type of token to generate, service or batch
 	TokenType interface{}
 	// GitHub user name.
 	User interface{}
@@ -221,41 +191,26 @@ type UserArgs struct {
 	// Path where the github auth backend is mounted. Defaults to `github`
 	// if not specified.
 	Backend interface{}
-	// An array of strings
-	// specifying the policies to be set on tokens issued using this role.
+	// An array of strings specifying the policies to be set on tokens issued
+	// using this role.
 	Policies interface{}
-	// List of CIDR blocks; if set, specifies blocks of IP
-	// addresses which can authenticate successfully, and ties the resulting token to these blocks
-	// as well.
+	// Specifies the blocks of IP addresses which are allowed to use the generated token
 	TokenBoundCidrs interface{}
-	// If set, will encode an
-	// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-	// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
-	// `tokenMaxTtl` would otherwise allow a renewal.
+	// Generated Token's Explicit Maximum TTL in seconds
 	TokenExplicitMaxTtl interface{}
-	// The maximum lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The maximum lifetime of the generated token
 	TokenMaxTtl interface{}
-	// If set, the default policy will not be set on
-	// generated tokens; otherwise it will be added to the policies set in token_policies.
+	// If true, the 'default' policy will not automatically be added to generated tokens
 	TokenNoDefaultPolicy interface{}
-	// The
-	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-	// if any, in number of seconds to set on the token.
+	// The maximum number of times a token may be used, a value of zero means unlimited
 	TokenNumUses interface{}
 	// Generated Token's Period
 	TokenPeriod interface{}
-	// List of policies to encode onto generated tokens. Depending
-	// on the auth method, this list may be supplemented by user/group/other values.
+	// Generated Token's Policies
 	TokenPolicies interface{}
-	// The incremental lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The initial ttl of the token to generate in seconds
 	TokenTtl interface{}
-	// The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// The type of token to generate, service or batch
 	TokenType interface{}
 	// GitHub user name.
 	User interface{}
