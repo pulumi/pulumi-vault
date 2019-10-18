@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a Github Auth mount in a Vault server. See the [Vault 
+ * Manages a Github Auth mount in a Vault server. See the [Vault
  * documentation](https://www.vaultproject.io/docs/auth/github.html) for more
  * information.
  * 
@@ -56,34 +56,85 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public /*out*/ readonly accessor!: pulumi.Output<string>;
     /**
-     * The API endpoint to use. Useful if you 
+     * The API endpoint to use. Useful if you
      * are running GitHub Enterprise or an API-compatible authentication server.
      */
     public readonly baseUrl!: pulumi.Output<string | undefined>;
     /**
-     * Specifies the description of the mount. 
+     * Specifies the description of the mount.
      * This overrides the current stored value, if any.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * Maximum duration after which authentication will be expired.
-     * This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
+     * (Optional; Deprecated, use `tokenMaxTtl` instead) The maximum allowed lifetime of tokens
+     * issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
      */
-    public readonly maxTtl!: pulumi.Output<string>;
+    public readonly maxTtl!: pulumi.Output<string | undefined>;
     /**
      * The organization configured users must be part of.
      */
     public readonly organization!: pulumi.Output<string>;
     /**
-     * Path where the auth backend is mounted. Defaults to `auth/github` 
+     * Path where the auth backend is mounted. Defaults to `auth/github`
      * if not specified.
      */
     public readonly path!: pulumi.Output<string | undefined>;
     /**
-     * Duration after which authentication will be expired. 
-     * This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
+     * (Optional) List of CIDR blocks; if set, specifies blocks of IP
+     * addresses which can authenticate successfully, and ties the resulting token to these blocks
+     * as well.
      */
-    public readonly ttl!: pulumi.Output<string>;
+    public readonly tokenBoundCidrs!: pulumi.Output<string[] | undefined>;
+    /**
+     * (Optional) If set, will encode an
+     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+     * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+     * `tokenMaxTtl` would otherwise allow a renewal.
+     */
+    public readonly tokenExplicitMaxTtl!: pulumi.Output<number | undefined>;
+    /**
+     * (Optional) The maximum lifetime for generated tokens in number of seconds.
+     * Its current value will be referenced at renewal time.
+     */
+    public readonly tokenMaxTtl!: pulumi.Output<number | undefined>;
+    /**
+     * (Optional) If set, the default policy will not be set on
+     * generated tokens; otherwise it will be added to the policies set in token_policies.
+     */
+    public readonly tokenNoDefaultPolicy!: pulumi.Output<boolean | undefined>;
+    /**
+     * (Optional) The
+     * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+     * if any, in number of seconds to set on the token.
+     */
+    public readonly tokenNumUses!: pulumi.Output<number | undefined>;
+    /**
+     * Generated Token's Period
+     */
+    public readonly tokenPeriod!: pulumi.Output<number | undefined>;
+    /**
+     * (Optional) List of policies to encode onto generated tokens. Depending
+     * on the auth method, this list may be supplemented by user/group/other values.
+     */
+    public readonly tokenPolicies!: pulumi.Output<string[] | undefined>;
+    /**
+     * (Optional) The incremental lifetime for generated tokens in number of seconds.
+     * Its current value will be referenced at renewal time.
+     */
+    public readonly tokenTtl!: pulumi.Output<number | undefined>;
+    /**
+     * (Optional) The type of token that should be generated. Can be `service`,
+     * `batch`, or `default` to use the mount's tuned default (which unless changed will be
+     * `service` tokens). For token store roles, there are two additional possibilities:
+     * `default-service` and `default-batch` which specify the type to return unless the client
+     * requests a different type at generation time.
+     */
+    public readonly tokenType!: pulumi.Output<string | undefined>;
+    /**
+     * (Optional; Deprecated, use `tokenTtl` isntead) The TTL period of tokens issued
+     * using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
+     */
+    public readonly ttl!: pulumi.Output<string | undefined>;
     public readonly tune!: pulumi.Output<outputs.github.AuthBackendTune>;
 
     /**
@@ -104,6 +155,15 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["maxTtl"] = state ? state.maxTtl : undefined;
             inputs["organization"] = state ? state.organization : undefined;
             inputs["path"] = state ? state.path : undefined;
+            inputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
+            inputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
+            inputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
+            inputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
+            inputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
+            inputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
+            inputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
+            inputs["tokenTtl"] = state ? state.tokenTtl : undefined;
+            inputs["tokenType"] = state ? state.tokenType : undefined;
             inputs["ttl"] = state ? state.ttl : undefined;
             inputs["tune"] = state ? state.tune : undefined;
         } else {
@@ -116,6 +176,15 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["maxTtl"] = args ? args.maxTtl : undefined;
             inputs["organization"] = args ? args.organization : undefined;
             inputs["path"] = args ? args.path : undefined;
+            inputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
+            inputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
+            inputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
+            inputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
+            inputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
+            inputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
+            inputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
+            inputs["tokenTtl"] = args ? args.tokenTtl : undefined;
+            inputs["tokenType"] = args ? args.tokenType : undefined;
             inputs["ttl"] = args ? args.ttl : undefined;
             inputs["tune"] = args ? args.tune : undefined;
             inputs["accessor"] = undefined /*out*/;
@@ -140,18 +209,18 @@ export interface AuthBackendState {
      */
     readonly accessor?: pulumi.Input<string>;
     /**
-     * The API endpoint to use. Useful if you 
+     * The API endpoint to use. Useful if you
      * are running GitHub Enterprise or an API-compatible authentication server.
      */
     readonly baseUrl?: pulumi.Input<string>;
     /**
-     * Specifies the description of the mount. 
+     * Specifies the description of the mount.
      * This overrides the current stored value, if any.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Maximum duration after which authentication will be expired.
-     * This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
+     * (Optional; Deprecated, use `tokenMaxTtl` instead) The maximum allowed lifetime of tokens
+     * issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
      */
     readonly maxTtl?: pulumi.Input<string>;
     /**
@@ -159,13 +228,64 @@ export interface AuthBackendState {
      */
     readonly organization?: pulumi.Input<string>;
     /**
-     * Path where the auth backend is mounted. Defaults to `auth/github` 
+     * Path where the auth backend is mounted. Defaults to `auth/github`
      * if not specified.
      */
     readonly path?: pulumi.Input<string>;
     /**
-     * Duration after which authentication will be expired. 
-     * This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
+     * (Optional) List of CIDR blocks; if set, specifies blocks of IP
+     * addresses which can authenticate successfully, and ties the resulting token to these blocks
+     * as well.
+     */
+    readonly tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * (Optional) If set, will encode an
+     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+     * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+     * `tokenMaxTtl` would otherwise allow a renewal.
+     */
+    readonly tokenExplicitMaxTtl?: pulumi.Input<number>;
+    /**
+     * (Optional) The maximum lifetime for generated tokens in number of seconds.
+     * Its current value will be referenced at renewal time.
+     */
+    readonly tokenMaxTtl?: pulumi.Input<number>;
+    /**
+     * (Optional) If set, the default policy will not be set on
+     * generated tokens; otherwise it will be added to the policies set in token_policies.
+     */
+    readonly tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    /**
+     * (Optional) The
+     * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+     * if any, in number of seconds to set on the token.
+     */
+    readonly tokenNumUses?: pulumi.Input<number>;
+    /**
+     * Generated Token's Period
+     */
+    readonly tokenPeriod?: pulumi.Input<number>;
+    /**
+     * (Optional) List of policies to encode onto generated tokens. Depending
+     * on the auth method, this list may be supplemented by user/group/other values.
+     */
+    readonly tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * (Optional) The incremental lifetime for generated tokens in number of seconds.
+     * Its current value will be referenced at renewal time.
+     */
+    readonly tokenTtl?: pulumi.Input<number>;
+    /**
+     * (Optional) The type of token that should be generated. Can be `service`,
+     * `batch`, or `default` to use the mount's tuned default (which unless changed will be
+     * `service` tokens). For token store roles, there are two additional possibilities:
+     * `default-service` and `default-batch` which specify the type to return unless the client
+     * requests a different type at generation time.
+     */
+    readonly tokenType?: pulumi.Input<string>;
+    /**
+     * (Optional; Deprecated, use `tokenTtl` isntead) The TTL period of tokens issued
+     * using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
      */
     readonly ttl?: pulumi.Input<string>;
     readonly tune?: pulumi.Input<inputs.github.AuthBackendTune>;
@@ -176,18 +296,18 @@ export interface AuthBackendState {
  */
 export interface AuthBackendArgs {
     /**
-     * The API endpoint to use. Useful if you 
+     * The API endpoint to use. Useful if you
      * are running GitHub Enterprise or an API-compatible authentication server.
      */
     readonly baseUrl?: pulumi.Input<string>;
     /**
-     * Specifies the description of the mount. 
+     * Specifies the description of the mount.
      * This overrides the current stored value, if any.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Maximum duration after which authentication will be expired.
-     * This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
+     * (Optional; Deprecated, use `tokenMaxTtl` instead) The maximum allowed lifetime of tokens
+     * issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
      */
     readonly maxTtl?: pulumi.Input<string>;
     /**
@@ -195,13 +315,64 @@ export interface AuthBackendArgs {
      */
     readonly organization: pulumi.Input<string>;
     /**
-     * Path where the auth backend is mounted. Defaults to `auth/github` 
+     * Path where the auth backend is mounted. Defaults to `auth/github`
      * if not specified.
      */
     readonly path?: pulumi.Input<string>;
     /**
-     * Duration after which authentication will be expired. 
-     * This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
+     * (Optional) List of CIDR blocks; if set, specifies blocks of IP
+     * addresses which can authenticate successfully, and ties the resulting token to these blocks
+     * as well.
+     */
+    readonly tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * (Optional) If set, will encode an
+     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+     * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+     * `tokenMaxTtl` would otherwise allow a renewal.
+     */
+    readonly tokenExplicitMaxTtl?: pulumi.Input<number>;
+    /**
+     * (Optional) The maximum lifetime for generated tokens in number of seconds.
+     * Its current value will be referenced at renewal time.
+     */
+    readonly tokenMaxTtl?: pulumi.Input<number>;
+    /**
+     * (Optional) If set, the default policy will not be set on
+     * generated tokens; otherwise it will be added to the policies set in token_policies.
+     */
+    readonly tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    /**
+     * (Optional) The
+     * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+     * if any, in number of seconds to set on the token.
+     */
+    readonly tokenNumUses?: pulumi.Input<number>;
+    /**
+     * Generated Token's Period
+     */
+    readonly tokenPeriod?: pulumi.Input<number>;
+    /**
+     * (Optional) List of policies to encode onto generated tokens. Depending
+     * on the auth method, this list may be supplemented by user/group/other values.
+     */
+    readonly tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * (Optional) The incremental lifetime for generated tokens in number of seconds.
+     * Its current value will be referenced at renewal time.
+     */
+    readonly tokenTtl?: pulumi.Input<number>;
+    /**
+     * (Optional) The type of token that should be generated. Can be `service`,
+     * `batch`, or `default` to use the mount's tuned default (which unless changed will be
+     * `service` tokens). For token store roles, there are two additional possibilities:
+     * `default-service` and `default-batch` which specify the type to return unless the client
+     * requests a different type at generation time.
+     */
+    readonly tokenType?: pulumi.Input<string>;
+    /**
+     * (Optional; Deprecated, use `tokenTtl` isntead) The TTL period of tokens issued
+     * using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
      */
     readonly ttl?: pulumi.Input<string>;
     readonly tune?: pulumi.Input<inputs.github.AuthBackendTune>;

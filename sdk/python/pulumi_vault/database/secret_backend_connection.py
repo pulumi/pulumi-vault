@@ -172,12 +172,16 @@ class SecretBackendConnection(pulumi.CustomResource):
       * `maxOpenConnections` (`float`) - The maximum number of open connections to
         use.
     """
+    root_rotation_statements: pulumi.Output[list]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
     verify_connection: pulumi.Output[bool]
     """
     Whether the connection should be verified on
     initial configuration or not.
     """
-    def __init__(__self__, resource_name, opts=None, allowed_roles=None, backend=None, cassandra=None, data=None, hana=None, mongodb=None, mssql=None, mysql=None, mysql_aurora=None, mysql_legacy=None, mysql_rds=None, name=None, oracle=None, postgresql=None, verify_connection=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, allowed_roles=None, backend=None, cassandra=None, data=None, hana=None, mongodb=None, mssql=None, mysql=None, mysql_aurora=None, mysql_legacy=None, mysql_rds=None, name=None, oracle=None, postgresql=None, root_rotation_statements=None, verify_connection=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a SecretBackendConnection resource with the given unique name, props, and options.
         
@@ -197,6 +201,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[str] name: A unique name to give the database connection.
         :param pulumi.Input[dict] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input[dict] postgresql: A nested block containing configuration options for PostgreSQL connections.
+        :param pulumi.Input[list] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         
@@ -363,6 +368,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             __props__['name'] = name
             __props__['oracle'] = oracle
             __props__['postgresql'] = postgresql
+            __props__['root_rotation_statements'] = root_rotation_statements
             __props__['verify_connection'] = verify_connection
         super(SecretBackendConnection, __self__).__init__(
             'vault:database/secretBackendConnection:SecretBackendConnection',
@@ -371,7 +377,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allowed_roles=None, backend=None, cassandra=None, data=None, hana=None, mongodb=None, mssql=None, mysql=None, mysql_aurora=None, mysql_legacy=None, mysql_rds=None, name=None, oracle=None, postgresql=None, verify_connection=None):
+    def get(resource_name, id, opts=None, allowed_roles=None, backend=None, cassandra=None, data=None, hana=None, mongodb=None, mssql=None, mysql=None, mysql_aurora=None, mysql_legacy=None, mysql_rds=None, name=None, oracle=None, postgresql=None, root_rotation_statements=None, verify_connection=None):
         """
         Get an existing SecretBackendConnection resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -393,6 +399,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[str] name: A unique name to give the database connection.
         :param pulumi.Input[dict] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input[dict] postgresql: A nested block containing configuration options for PostgreSQL connections.
+        :param pulumi.Input[list] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         
@@ -543,6 +550,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         __props__["name"] = name
         __props__["oracle"] = oracle
         __props__["postgresql"] = postgresql
+        __props__["root_rotation_statements"] = root_rotation_statements
         __props__["verify_connection"] = verify_connection
         return SecretBackendConnection(resource_name, opts=opts, __props__=__props__)
     def translate_output_property(self, prop):

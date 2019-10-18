@@ -87,12 +87,14 @@ class AuthBackend(pulumi.CustomResource):
         
         The **tune** object supports the following:
         
+          * `allowedResponseHeaders` (`pulumi.Input[list]`)
           * `auditNonHmacRequestKeys` (`pulumi.Input[list]`)
           * `auditNonHmacResponseKeys` (`pulumi.Input[list]`)
           * `defaultLeaseTtl` (`pulumi.Input[str]`)
           * `listingVisibility` (`pulumi.Input[str]`)
           * `maxLeaseTtl` (`pulumi.Input[str]`)
           * `passthroughRequestHeaders` (`pulumi.Input[list]`)
+          * `token_type` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/jwt_auth_backend.html.markdown.
         """
@@ -159,12 +161,14 @@ class AuthBackend(pulumi.CustomResource):
         
         The **tune** object supports the following:
         
+          * `allowedResponseHeaders` (`pulumi.Input[list]`)
           * `auditNonHmacRequestKeys` (`pulumi.Input[list]`)
           * `auditNonHmacResponseKeys` (`pulumi.Input[list]`)
           * `defaultLeaseTtl` (`pulumi.Input[str]`)
           * `listingVisibility` (`pulumi.Input[str]`)
           * `maxLeaseTtl` (`pulumi.Input[str]`)
           * `passthroughRequestHeaders` (`pulumi.Input[list]`)
+          * `token_type` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/jwt_auth_backend.html.markdown.
         """

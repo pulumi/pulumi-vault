@@ -38,9 +38,7 @@ func getCwd(t *testing.T) string {
 }
 
 func getBaseOptions() integration.ProgramTestOptions {
-	return integration.ProgramTestOptions{
-		Tracing: "https://tracing.pulumi-engineering.com/collector/api/v1/spans",
-	}
+	return integration.ProgramTestOptions{}
 }
 
 func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {

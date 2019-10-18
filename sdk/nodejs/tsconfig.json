@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "outDir": "bin",
-        "target": "es6",
+        "target": "es2016",
         "module": "commonjs",
         "moduleResolution": "node",
         "declaration": true,
@@ -42,6 +42,7 @@
         "config/vars.ts",
         "consul/index.ts",
         "consul/secretBackend.ts",
+        "consul/secretBackendRole.ts",
         "database/index.ts",
         "database/secretBackendConnection.ts",
         "database/secretBackendRole.ts",
@@ -97,6 +98,7 @@
         "pkiSecret/secretBackendCert.ts",
         "pkiSecret/secretBackendConfigCa.ts",
         "pkiSecret/secretBackendConfigUrls.ts",
+        "pkiSecret/secretBackendCrlConfig.ts",
         "pkiSecret/secretBackendIntermediateCertRequest.ts",
         "pkiSecret/secretBackendIntermediateSetSigned.ts",
         "pkiSecret/secretBackendRole.ts",

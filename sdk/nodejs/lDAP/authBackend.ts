@@ -109,6 +109,57 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly tlsMinVersion!: pulumi.Output<string>;
     /**
+     * List of CIDR blocks; if set, specifies blocks of IP
+     * addresses which can authenticate successfully, and ties the resulting token to these blocks
+     * as well.
+     */
+    public readonly tokenBoundCidrs!: pulumi.Output<string[] | undefined>;
+    /**
+     * If set, will encode an
+     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+     * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+     * `tokenMaxTtl` would otherwise allow a renewal.
+     */
+    public readonly tokenExplicitMaxTtl!: pulumi.Output<number | undefined>;
+    /**
+     * The maximum lifetime for generated tokens in number of seconds.
+     * Its current value will be referenced at renewal time.
+     */
+    public readonly tokenMaxTtl!: pulumi.Output<number | undefined>;
+    /**
+     * If set, the default policy will not be set on
+     * generated tokens; otherwise it will be added to the policies set in token_policies.
+     */
+    public readonly tokenNoDefaultPolicy!: pulumi.Output<boolean | undefined>;
+    /**
+     * The
+     * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+     * if any, in number of seconds to set on the token.
+     */
+    public readonly tokenNumUses!: pulumi.Output<number | undefined>;
+    /**
+     * Generated Token's Period
+     */
+    public readonly tokenPeriod!: pulumi.Output<number | undefined>;
+    /**
+     * List of policies to encode onto generated tokens. Depending
+     * on the auth method, this list may be supplemented by user/group/other values.
+     */
+    public readonly tokenPolicies!: pulumi.Output<string[] | undefined>;
+    /**
+     * The incremental lifetime for generated tokens in number of seconds.
+     * Its current value will be referenced at renewal time.
+     */
+    public readonly tokenTtl!: pulumi.Output<number | undefined>;
+    /**
+     * The type of token that should be generated. Can be `service`,
+     * `batch`, or `default` to use the mount's tuned default (which unless changed will be
+     * `service` tokens). For token store roles, there are two additional possibilities:
+     * `default-service` and `default-batch` which specify the type to return unless the client
+     * requests a different type at generation time.
+     */
+    public readonly tokenType!: pulumi.Output<string | undefined>;
+    /**
      * The userPrincipalDomain used to construct UPN string
      */
     public readonly upndomain!: pulumi.Output<string>;
@@ -156,6 +207,15 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["starttls"] = state ? state.starttls : undefined;
             inputs["tlsMaxVersion"] = state ? state.tlsMaxVersion : undefined;
             inputs["tlsMinVersion"] = state ? state.tlsMinVersion : undefined;
+            inputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
+            inputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
+            inputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
+            inputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
+            inputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
+            inputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
+            inputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
+            inputs["tokenTtl"] = state ? state.tokenTtl : undefined;
+            inputs["tokenType"] = state ? state.tokenType : undefined;
             inputs["upndomain"] = state ? state.upndomain : undefined;
             inputs["url"] = state ? state.url : undefined;
             inputs["useTokenGroups"] = state ? state.useTokenGroups : undefined;
@@ -180,6 +240,15 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["starttls"] = args ? args.starttls : undefined;
             inputs["tlsMaxVersion"] = args ? args.tlsMaxVersion : undefined;
             inputs["tlsMinVersion"] = args ? args.tlsMinVersion : undefined;
+            inputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
+            inputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
+            inputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
+            inputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
+            inputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
+            inputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
+            inputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
+            inputs["tokenTtl"] = args ? args.tokenTtl : undefined;
+            inputs["tokenType"] = args ? args.tokenType : undefined;
             inputs["upndomain"] = args ? args.upndomain : undefined;
             inputs["url"] = args ? args.url : undefined;
             inputs["useTokenGroups"] = args ? args.useTokenGroups : undefined;
@@ -257,6 +326,57 @@ export interface AuthBackendState {
      */
     readonly tlsMinVersion?: pulumi.Input<string>;
     /**
+     * List of CIDR blocks; if set, specifies blocks of IP
+     * addresses which can authenticate successfully, and ties the resulting token to these blocks
+     * as well.
+     */
+    readonly tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * If set, will encode an
+     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+     * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+     * `tokenMaxTtl` would otherwise allow a renewal.
+     */
+    readonly tokenExplicitMaxTtl?: pulumi.Input<number>;
+    /**
+     * The maximum lifetime for generated tokens in number of seconds.
+     * Its current value will be referenced at renewal time.
+     */
+    readonly tokenMaxTtl?: pulumi.Input<number>;
+    /**
+     * If set, the default policy will not be set on
+     * generated tokens; otherwise it will be added to the policies set in token_policies.
+     */
+    readonly tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    /**
+     * The
+     * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+     * if any, in number of seconds to set on the token.
+     */
+    readonly tokenNumUses?: pulumi.Input<number>;
+    /**
+     * Generated Token's Period
+     */
+    readonly tokenPeriod?: pulumi.Input<number>;
+    /**
+     * List of policies to encode onto generated tokens. Depending
+     * on the auth method, this list may be supplemented by user/group/other values.
+     */
+    readonly tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The incremental lifetime for generated tokens in number of seconds.
+     * Its current value will be referenced at renewal time.
+     */
+    readonly tokenTtl?: pulumi.Input<number>;
+    /**
+     * The type of token that should be generated. Can be `service`,
+     * `batch`, or `default` to use the mount's tuned default (which unless changed will be
+     * `service` tokens). For token store roles, there are two additional possibilities:
+     * `default-service` and `default-batch` which specify the type to return unless the client
+     * requests a different type at generation time.
+     */
+    readonly tokenType?: pulumi.Input<string>;
+    /**
      * The userPrincipalDomain used to construct UPN string
      */
     readonly upndomain?: pulumi.Input<string>;
@@ -332,6 +452,57 @@ export interface AuthBackendArgs {
      * Minimum acceptable version of TLS
      */
     readonly tlsMinVersion?: pulumi.Input<string>;
+    /**
+     * List of CIDR blocks; if set, specifies blocks of IP
+     * addresses which can authenticate successfully, and ties the resulting token to these blocks
+     * as well.
+     */
+    readonly tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * If set, will encode an
+     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+     * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+     * `tokenMaxTtl` would otherwise allow a renewal.
+     */
+    readonly tokenExplicitMaxTtl?: pulumi.Input<number>;
+    /**
+     * The maximum lifetime for generated tokens in number of seconds.
+     * Its current value will be referenced at renewal time.
+     */
+    readonly tokenMaxTtl?: pulumi.Input<number>;
+    /**
+     * If set, the default policy will not be set on
+     * generated tokens; otherwise it will be added to the policies set in token_policies.
+     */
+    readonly tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    /**
+     * The
+     * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+     * if any, in number of seconds to set on the token.
+     */
+    readonly tokenNumUses?: pulumi.Input<number>;
+    /**
+     * Generated Token's Period
+     */
+    readonly tokenPeriod?: pulumi.Input<number>;
+    /**
+     * List of policies to encode onto generated tokens. Depending
+     * on the auth method, this list may be supplemented by user/group/other values.
+     */
+    readonly tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The incremental lifetime for generated tokens in number of seconds.
+     * Its current value will be referenced at renewal time.
+     */
+    readonly tokenTtl?: pulumi.Input<number>;
+    /**
+     * The type of token that should be generated. Can be `service`,
+     * `batch`, or `default` to use the mount's tuned default (which unless changed will be
+     * `service` tokens). For token store roles, there are two additional possibilities:
+     * `default-service` and `default-batch` which specify the type to return unless the client
+     * requests a different type at generation time.
+     */
+    readonly tokenType?: pulumi.Input<string>;
     /**
      * The userPrincipalDomain used to construct UPN string
      */

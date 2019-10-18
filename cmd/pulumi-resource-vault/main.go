@@ -15,7 +15,7 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfbridge"
 
 	vault "github.com/pulumi/pulumi-vault"
 	"github.com/pulumi/pulumi-vault/pkg/version"

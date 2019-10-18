@@ -201,8 +201,7 @@ func (r *AuthBackendRole) TokenPeriod() *pulumi.IntOutput {
 	return (*pulumi.IntOutput)(r.s.State["tokenPeriod"])
 }
 
-// List of policies to encode onto generated tokens. Depending
-// on the auth method, this list may be supplemented by user/group/other values.
+// Generated Token's Policies
 func (r *AuthBackendRole) TokenPolicies() *pulumi.ArrayOutput {
 	return (*pulumi.ArrayOutput)(r.s.State["tokenPolicies"])
 }
@@ -268,8 +267,7 @@ type AuthBackendRoleState struct {
 	TokenNumUses interface{}
 	// Generated Token's Period
 	TokenPeriod interface{}
-	// List of policies to encode onto generated tokens. Depending
-	// on the auth method, this list may be supplemented by user/group/other values.
+	// Generated Token's Policies
 	TokenPolicies interface{}
 	// The incremental lifetime for generated tokens in number of seconds.
 	// Its current value will be referenced at renewal time.
@@ -328,8 +326,7 @@ type AuthBackendRoleArgs struct {
 	TokenNumUses interface{}
 	// Generated Token's Period
 	TokenPeriod interface{}
-	// List of policies to encode onto generated tokens. Depending
-	// on the auth method, this list may be supplemented by user/group/other values.
+	// Generated Token's Policies
 	TokenPolicies interface{}
 	// The incremental lifetime for generated tokens in number of seconds.
 	// Its current value will be referenced at renewal time.

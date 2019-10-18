@@ -11,6 +11,10 @@ let __config = new pulumi.Config("vault");
  */
 export let address: string | undefined = __config.get("address");
 /**
+ * Login to vault with an existing auth method using auth/<mount>/login
+ */
+export let authLogins: { namespace?: string, parameters?: {[key: string]: string}, path: string }[] | undefined = __config.getObject<{ namespace?: string, parameters?: {[key: string]: string}, path: string }[]>("authLogins");
+/**
  * Path to directory containing CA certificate files to validate the server's certificate.
  */
 export let caCertDir: string | undefined = __config.get("caCertDir");

@@ -6,6 +6,7 @@ export * from "./secretBackend";
 export * from "./secretBackendCert";
 export * from "./secretBackendConfigCa";
 export * from "./secretBackendConfigUrls";
+export * from "./secretBackendCrlConfig";
 export * from "./secretBackendIntermediateCertRequest";
 export * from "./secretBackendIntermediateSetSigned";
 export * from "./secretBackendRole";

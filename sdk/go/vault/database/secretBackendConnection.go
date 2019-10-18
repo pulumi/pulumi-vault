@@ -35,6 +35,7 @@ func NewSecretBackendConnection(ctx *pulumi.Context,
 		inputs["name"] = nil
 		inputs["oracle"] = nil
 		inputs["postgresql"] = nil
+		inputs["rootRotationStatements"] = nil
 		inputs["verifyConnection"] = nil
 	} else {
 		inputs["allowedRoles"] = args.AllowedRoles
@@ -51,6 +52,7 @@ func NewSecretBackendConnection(ctx *pulumi.Context,
 		inputs["name"] = args.Name
 		inputs["oracle"] = args.Oracle
 		inputs["postgresql"] = args.Postgresql
+		inputs["rootRotationStatements"] = args.RootRotationStatements
 		inputs["verifyConnection"] = args.VerifyConnection
 	}
 	s, err := ctx.RegisterResource("vault:database/secretBackendConnection:SecretBackendConnection", name, true, inputs, opts...)
@@ -80,6 +82,7 @@ func GetSecretBackendConnection(ctx *pulumi.Context,
 		inputs["name"] = state.Name
 		inputs["oracle"] = state.Oracle
 		inputs["postgresql"] = state.Postgresql
+		inputs["rootRotationStatements"] = state.RootRotationStatements
 		inputs["verifyConnection"] = state.VerifyConnection
 	}
 	s, err := ctx.ReadResource("vault:database/secretBackendConnection:SecretBackendConnection", name, id, inputs, opts...)
@@ -170,6 +173,11 @@ func (r *SecretBackendConnection) Postgresql() *pulumi.Output {
 	return r.s.State["postgresql"]
 }
 
+// A list of database statements to be executed to rotate the root user's credentials.
+func (r *SecretBackendConnection) RootRotationStatements() *pulumi.ArrayOutput {
+	return (*pulumi.ArrayOutput)(r.s.State["rootRotationStatements"])
+}
+
 // Whether the connection should be verified on
 // initial configuration or not.
 func (r *SecretBackendConnection) VerifyConnection() *pulumi.BoolOutput {
@@ -207,6 +215,8 @@ type SecretBackendConnectionState struct {
 	Oracle interface{}
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql interface{}
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements interface{}
 	// Whether the connection should be verified on
 	// initial configuration or not.
 	VerifyConnection interface{}
@@ -243,6 +253,8 @@ type SecretBackendConnectionArgs struct {
 	Oracle interface{}
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql interface{}
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements interface{}
 	// Whether the connection should be verified on
 	// initial configuration or not.
 	VerifyConnection interface{}
