@@ -133,7 +133,7 @@ export class AuthBackendLogin extends pulumi.CustomResource {
      * A map of information returned by the Vault server about the
      * authentication used to generate this token.
      */
-    public /*out*/ readonly metadata!: pulumi.Output<{[key: string]: string}>;
+    public /*out*/ readonly metadata!: pulumi.Output<{[key: string]: any}>;
     /**
      * The unique nonce to be used for login requests. Can be
      * set to a user-specified value, or will contain the server-generated value
@@ -288,7 +288,7 @@ export interface AuthBackendLoginState {
      * A map of information returned by the Vault server about the
      * authentication used to generate this token.
      */
-    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly metadata?: pulumi.Input<{[key: string]: any}>;
     /**
      * The unique nonce to be used for login requests. Can be
      * set to a user-specified value, or will contain the server-generated value

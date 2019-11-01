@@ -84,7 +84,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
      * * for key types `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
      * * for key types `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`, each key version will be a map of the following:
      */
-    public /*out*/ readonly keys!: pulumi.Output<{[key: string]: string}[]>;
+    public /*out*/ readonly keys!: pulumi.Output<{[key: string]: any}[]>;
     /**
      * Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
      */
@@ -224,7 +224,7 @@ export interface SecretBackendKeyState {
      * * for key types `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
      * * for key types `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`, each key version will be a map of the following:
      */
-    readonly keys?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
+    readonly keys?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
     /**
      * Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
      */

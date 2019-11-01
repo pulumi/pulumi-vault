@@ -9,7 +9,7 @@ require (
 	github.com/hashicorp/terraform-plugin-sdk v1.1.1
 	github.com/pkg/errors v0.8.1
 	github.com/pulumi/pulumi v1.3.3
-	github.com/pulumi/pulumi-terraform-bridge v1.1.0
+	github.com/pulumi/pulumi-terraform-bridge v1.2.1-0.20191030115615-68f8d85120cb
 	github.com/terraform-providers/terraform-provider-vault v0.0.0-20191017211552-55806c9f74a4
 )
 
