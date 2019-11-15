@@ -11,6 +11,7 @@ require (
 	github.com/pulumi/pulumi v1.3.3
 	github.com/pulumi/pulumi-terraform-bridge v1.2.1-0.20191030115615-68f8d85120cb
 	github.com/terraform-providers/terraform-provider-vault v0.0.0-20191017211552-55806c9f74a4
+	golang.org/x/xerrors v0.0.0-20190717185122-a985d3407aa7 // indirect
 )
 
 replace github.com/Azure/go-autorest => github.com/Azure/go-autorest v12.4.3+incompatible
