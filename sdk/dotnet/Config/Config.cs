@@ -12,7 +12,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// URL of the root of the target Vault server.
         /// </summary>
-        public static string? Address { get; set; } = __config.Get("address");
+        public static string? Address { get; set; } = __config.Get("address") ?? Utilities.GetEnv("VAULT_ADDR");
 
         /// <summary>
         /// Login to vault with an existing auth method using auth/&lt;mount&gt;/login
@@ -22,12 +22,12 @@ namespace Pulumi.Vault
         /// <summary>
         /// Path to directory containing CA certificate files to validate the server's certificate.
         /// </summary>
-        public static string? CaCertDir { get; set; } = __config.Get("caCertDir");
+        public static string? CaCertDir { get; set; } = __config.Get("caCertDir") ?? Utilities.GetEnv("VAULT_CAPATH");
 
         /// <summary>
         /// Path to a CA certificate file to validate the server's certificate.
         /// </summary>
-        public static string? CaCertFile { get; set; } = __config.Get("caCertFile");
+        public static string? CaCertFile { get; set; } = __config.Get("caCertFile") ?? Utilities.GetEnv("VAULT_CACERT");
 
         /// <summary>
         /// Client authentication credentials.
@@ -37,27 +37,27 @@ namespace Pulumi.Vault
         /// <summary>
         /// Maximum TTL for secret leases requested by this provider
         /// </summary>
-        public static int? MaxLeaseTtlSeconds { get; set; } = __config.GetInt32("maxLeaseTtlSeconds");
+        public static int? MaxLeaseTtlSeconds { get; set; } = __config.GetInt32("maxLeaseTtlSeconds") ?? Utilities.GetEnvInt32("TERRAFORM_VAULT_MAX_TTL");
 
         /// <summary>
         /// Maximum number of retries when a 5xx error code is encountered.
         /// </summary>
-        public static int? MaxRetries { get; set; } = __config.GetInt32("maxRetries");
+        public static int? MaxRetries { get; set; } = __config.GetInt32("maxRetries") ?? Utilities.GetEnvInt32("VAULT_MAX_RETRIES");
 
         /// <summary>
         /// The namespace to use. Available only for Vault Enterprise
         /// </summary>
-        public static string? Namespace { get; set; } = __config.Get("namespace");
+        public static string? Namespace { get; set; } = __config.Get("namespace") ?? Utilities.GetEnv("VAULT_NAMESPACE");
 
         /// <summary>
         /// Set this to true only if the target Vault server is an insecure development instance.
         /// </summary>
-        public static bool? SkipTlsVerify { get; set; } = __config.GetBoolean("skipTlsVerify");
+        public static bool? SkipTlsVerify { get; set; } = __config.GetBoolean("skipTlsVerify") ?? Utilities.GetEnvBoolean("VAULT_SKIP_VERIFY");
 
         /// <summary>
         /// Token to use to authenticate to Vault.
         /// </summary>
-        public static string? Token { get; set; } = __config.Get("token");
+        public static string? Token { get; set; } = __config.Get("token") ?? Utilities.GetEnv("VAULT_TOKEN");
 
     }
     namespace ConfigTypes

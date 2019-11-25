@@ -11,7 +11,7 @@ from .. import utilities, tables
 
 __config__ = pulumi.Config('vault')
 
-address = __config__.get('address')
+address = __config__.get('address') or utilities.get_env('VAULT_ADDR')
 """
 URL of the root of the target Vault server.
 """
@@ -21,12 +21,12 @@ auth_logins = __config__.get('authLogins')
 Login to vault with an existing auth method using auth/<mount>/login
 """
 
-ca_cert_dir = __config__.get('caCertDir')
+ca_cert_dir = __config__.get('caCertDir') or utilities.get_env('VAULT_CAPATH')
 """
 Path to directory containing CA certificate files to validate the server's certificate.
 """
 
-ca_cert_file = __config__.get('caCertFile')
+ca_cert_file = __config__.get('caCertFile') or utilities.get_env('VAULT_CACERT')
 """
 Path to a CA certificate file to validate the server's certificate.
 """
@@ -36,27 +36,27 @@ client_auths = __config__.get('clientAuths')
 Client authentication credentials.
 """
 
-max_lease_ttl_seconds = __config__.get('maxLeaseTtlSeconds')
+max_lease_ttl_seconds = __config__.get('maxLeaseTtlSeconds') or utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL')
 """
 Maximum TTL for secret leases requested by this provider
 """
 
-max_retries = __config__.get('maxRetries')
+max_retries = __config__.get('maxRetries') or utilities.get_env_int('VAULT_MAX_RETRIES')
 """
 Maximum number of retries when a 5xx error code is encountered.
 """
 
-namespace = __config__.get('namespace')
+namespace = __config__.get('namespace') or utilities.get_env('VAULT_NAMESPACE')
 """
 The namespace to use. Available only for Vault Enterprise
 """
 
-skip_tls_verify = __config__.get('skipTlsVerify')
+skip_tls_verify = __config__.get('skipTlsVerify') or utilities.get_env_bool('VAULT_SKIP_VERIFY')
 """
 Set this to true only if the target Vault server is an insecure development instance.
 """
 
-token = __config__.get('token')
+token = __config__.get('token') or utilities.get_env('VAULT_TOKEN')
 """
 Token to use to authenticate to Vault.
 """

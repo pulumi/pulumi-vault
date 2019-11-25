@@ -78,14 +78,89 @@ func preConfigureCallback(vars resource.PropertyMap, c *terraform.ResourceConfig
 func Provider() tfbridge.ProviderInfo {
 	p := vault.Provider().(*schema.Provider)
 	prov := tfbridge.ProviderInfo{
-		P:                    p,
-		Name:                 "vault",
-		Description:          "A Pulumi package for creating and managing vault cloud resources.",
-		Keywords:             []string{"pulumi", "vault"},
-		License:              "Apache-2.0",
-		Homepage:             "https://pulumi.io",
-		Repository:           "https://github.com/pulumi/pulumi-vault",
-		Config:               map[string]*tfbridge.SchemaInfo{},
+		P:           p,
+		Name:        "vault",
+		Description: "A Pulumi package for creating and managing vault cloud resources.",
+		Keywords:    []string{"pulumi", "vault"},
+		License:     "Apache-2.0",
+		Homepage:    "https://pulumi.io",
+		Repository:  "https://github.com/pulumi/pulumi-vault",
+		Config: map[string]*tfbridge.SchemaInfo{
+			"address": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{
+						"VAULT_ADDR",
+					},
+				},
+			},
+			"token": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{
+						"VAULT_TOKEN",
+					},
+				},
+			},
+			"ca_cert_file": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{
+						"VAULT_CACERT",
+					},
+				},
+			},
+			"ca_cert_dir": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{
+						"VAULT_CAPATH",
+					},
+				},
+			},
+			"client_auth": {
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"cert_file": {
+						Default: &tfbridge.DefaultInfo{
+							EnvVars: []string{
+								"VAULT_CLIENT_CERT",
+							},
+						},
+					},
+					"key_file": {
+						Default: &tfbridge.DefaultInfo{
+							EnvVars: []string{
+								"VAULT_CLIENT_KEY",
+							},
+						},
+					},
+				},
+			},
+			"skip_tls_verify": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{
+						"VAULT_SKIP_VERIFY",
+					},
+				},
+			},
+			"max_lease_ttl_seconds": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{
+						"TERRAFORM_VAULT_MAX_TTL",
+					},
+				},
+			},
+			"max_retries": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{
+						"VAULT_MAX_RETRIES",
+					},
+				},
+			},
+			"namespace": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{
+						"VAULT_NAMESPACE",
+					},
+				},
+			},
+		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			// Main

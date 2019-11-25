@@ -51,18 +51,30 @@ class Provider(pulumi.ProviderResource):
             __props__ = dict()
 
             if address is None:
-                raise TypeError("Missing required property 'address'")
+                address = utilities.get_env('VAULT_ADDR')
             __props__['address'] = address
             __props__['auth_logins'] = pulumi.Output.from_input(auth_logins).apply(json.dumps) if auth_logins is not None else None
+            if ca_cert_dir is None:
+                ca_cert_dir = utilities.get_env('VAULT_CAPATH')
             __props__['ca_cert_dir'] = ca_cert_dir
+            if ca_cert_file is None:
+                ca_cert_file = utilities.get_env('VAULT_CACERT')
             __props__['ca_cert_file'] = ca_cert_file
             __props__['client_auths'] = pulumi.Output.from_input(client_auths).apply(json.dumps) if client_auths is not None else None
+            if max_lease_ttl_seconds is None:
+                max_lease_ttl_seconds = utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL')
             __props__['max_lease_ttl_seconds'] = pulumi.Output.from_input(max_lease_ttl_seconds).apply(json.dumps) if max_lease_ttl_seconds is not None else None
+            if max_retries is None:
+                max_retries = utilities.get_env_int('VAULT_MAX_RETRIES')
             __props__['max_retries'] = pulumi.Output.from_input(max_retries).apply(json.dumps) if max_retries is not None else None
+            if namespace is None:
+                namespace = utilities.get_env('VAULT_NAMESPACE')
             __props__['namespace'] = namespace
+            if skip_tls_verify is None:
+                skip_tls_verify = utilities.get_env_bool('VAULT_SKIP_VERIFY')
             __props__['skip_tls_verify'] = pulumi.Output.from_input(skip_tls_verify).apply(json.dumps) if skip_tls_verify is not None else None
             if token is None:
-                raise TypeError("Missing required property 'token'")
+                token = utilities.get_env('VAULT_TOKEN')
             __props__['token'] = token
         super(Provider, __self__).__init__(
             'vault',

@@ -9,7 +9,7 @@ let __config = new pulumi.Config("vault");
 /**
  * URL of the root of the target Vault server.
  */
-export let address: string | undefined = __config.get("address");
+export let address: string | undefined = __config.get("address") || utilities.getEnv("VAULT_ADDR");
 /**
  * Login to vault with an existing auth method using auth/<mount>/login
  */
@@ -17,11 +17,11 @@ export let authLogins: { namespace?: string, parameters?: {[key: string]: string
 /**
  * Path to directory containing CA certificate files to validate the server's certificate.
  */
-export let caCertDir: string | undefined = __config.get("caCertDir");
+export let caCertDir: string | undefined = __config.get("caCertDir") || utilities.getEnv("VAULT_CAPATH");
 /**
  * Path to a CA certificate file to validate the server's certificate.
  */
-export let caCertFile: string | undefined = __config.get("caCertFile");
+export let caCertFile: string | undefined = __config.get("caCertFile") || utilities.getEnv("VAULT_CACERT");
 /**
  * Client authentication credentials.
  */
@@ -29,20 +29,20 @@ export let clientAuths: { certFile: string, keyFile: string }[] | undefined = __
 /**
  * Maximum TTL for secret leases requested by this provider
  */
-export let maxLeaseTtlSeconds: number | undefined = __config.getObject<number>("maxLeaseTtlSeconds");
+export let maxLeaseTtlSeconds: number | undefined = __config.getObject<number>("maxLeaseTtlSeconds") || utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL");
 /**
  * Maximum number of retries when a 5xx error code is encountered.
  */
-export let maxRetries: number | undefined = __config.getObject<number>("maxRetries");
+export let maxRetries: number | undefined = __config.getObject<number>("maxRetries") || utilities.getEnvNumber("VAULT_MAX_RETRIES");
 /**
  * The namespace to use. Available only for Vault Enterprise
  */
-export let namespace: string | undefined = __config.get("namespace");
+export let namespace: string | undefined = __config.get("namespace") || utilities.getEnv("VAULT_NAMESPACE");
 /**
  * Set this to true only if the target Vault server is an insecure development instance.
  */
-export let skipTlsVerify: boolean | undefined = __config.getObject<boolean>("skipTlsVerify");
+export let skipTlsVerify: boolean | undefined = __config.getObject<boolean>("skipTlsVerify") || utilities.getEnvBoolean("VAULT_SKIP_VERIFY");
 /**
  * Token to use to authenticate to Vault.
  */
-export let token: string | undefined = __config.get("token");
+export let token: string | undefined = __config.get("token") || utilities.getEnv("VAULT_TOKEN");
