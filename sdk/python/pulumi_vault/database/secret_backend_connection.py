@@ -39,6 +39,9 @@ class SecretBackendConnection(pulumi.CustomResource):
       * `username` (`str`) - The username to authenticate with.
     """
     data: pulumi.Output[dict]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
     hana: pulumi.Output[dict]
     """
     A nested block containing configuration options for SAP HanaDB connections.
@@ -191,6 +194,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                connection.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[dict] cassandra: A nested block containing configuration options for Cassandra connections.
+        :param pulumi.Input[dict] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         :param pulumi.Input[dict] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input[dict] mongodb: A nested block containing configuration options for MongoDB connections.
         :param pulumi.Input[dict] mssql: A nested block containing configuration options for MSSQL connections.
@@ -389,6 +393,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                connection.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[dict] cassandra: A nested block containing configuration options for Cassandra connections.
+        :param pulumi.Input[dict] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         :param pulumi.Input[dict] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input[dict] mongodb: A nested block containing configuration options for MongoDB connections.
         :param pulumi.Input[dict] mssql: A nested block containing configuration options for MSSQL connections.

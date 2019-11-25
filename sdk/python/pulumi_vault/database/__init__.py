@@ -5,3 +5,4 @@
 # Export this package's modules as members:
 from .secret_backend_connection import *
 from .secret_backend_role import *
+from .secret_backend_static_role import *

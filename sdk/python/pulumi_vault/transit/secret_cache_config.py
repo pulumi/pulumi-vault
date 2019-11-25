@@ -7,25 +7,27 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from . import utilities, tables
+from .. import utilities, tables
 
-class Namespace(pulumi.CustomResource):
-    namespace_id: pulumi.Output[str]
-    path: pulumi.Output[str]
+class SecretCacheConfig(pulumi.CustomResource):
+    backend: pulumi.Output[str]
     """
-    The path of the namespace. Must not have a trailing `/`
+    The path the transit secret backend is mounted at, with no leading or trailing `/`s.
     """
-    def __init__(__self__, resource_name, opts=None, path=None, __props__=None, __name__=None, __opts__=None):
+    size: pulumi.Output[float]
+    """
+    The number of cache entries. 0 means unlimited.
+    """
+    def __init__(__self__, resource_name, opts=None, backend=None, size=None, __props__=None, __name__=None, __opts__=None):
         """
-        Provides a resource to manage [Namespaces](https://www.vaultproject.io/docs/enterprise/namespaces/index.html).
-        
-        **Note** this feature is available only with Vault Enterprise.
+        Configure the cache for the Transit Secret Backend in Vault.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] path: The path of the namespace. Must not have a trailing `/`
+        :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[float] size: The number of cache entries. 0 means unlimited.
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/namespace.html.markdown.
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/transit_secret_cache_config.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -44,35 +46,38 @@ class Namespace(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if path is None:
-                raise TypeError("Missing required property 'path'")
-            __props__['path'] = path
-            __props__['namespace_id'] = None
-        super(Namespace, __self__).__init__(
-            'vault:index/namespace:Namespace',
+            if backend is None:
+                raise TypeError("Missing required property 'backend'")
+            __props__['backend'] = backend
+            if size is None:
+                raise TypeError("Missing required property 'size'")
+            __props__['size'] = size
+        super(SecretCacheConfig, __self__).__init__(
+            'vault:transit/secretCacheConfig:SecretCacheConfig',
             resource_name,
             __props__,
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, namespace_id=None, path=None):
+    def get(resource_name, id, opts=None, backend=None, size=None):
         """
-        Get an existing Namespace resource's state with the given name, id, and optional extra
+        Get an existing SecretCacheConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
         
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] path: The path of the namespace. Must not have a trailing `/`
+        :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[float] size: The number of cache entries. 0 means unlimited.
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/namespace.html.markdown.
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/transit_secret_cache_config.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
-        __props__["namespace_id"] = namespace_id
-        __props__["path"] = path
-        return Namespace(resource_name, opts=opts, __props__=__props__)
+        __props__["backend"] = backend
+        __props__["size"] = size
+        return SecretCacheConfig(resource_name, opts=opts, __props__=__props__)
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 

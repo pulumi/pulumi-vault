@@ -90,8 +90,7 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
      * If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. The maximum allowed lifetime of token issued using this
-     * role. Specified as a number of seconds.
+     * value of this field. Specified in seconds.
      */
     public readonly period!: pulumi.Output<string>;
     /**
@@ -133,7 +132,10 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
      */
     public readonly tokenNumUses!: pulumi.Output<number | undefined>;
     /**
-     * Generated Token's Period
+     * If set, indicates that the
+     * token generated using this role should never expire. The token should be renewed within the
+     * duration specified by this value. At each renewal, the token's TTL will be set to the
+     * value of this field. Specified in seconds.
      */
     public readonly tokenPeriod!: pulumi.Output<number | undefined>;
     /**
@@ -297,8 +299,7 @@ export interface CertAuthBackendRoleState {
      * If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. The maximum allowed lifetime of token issued using this
-     * role. Specified as a number of seconds.
+     * value of this field. Specified in seconds.
      */
     readonly period?: pulumi.Input<string>;
     /**
@@ -340,7 +341,10 @@ export interface CertAuthBackendRoleState {
      */
     readonly tokenNumUses?: pulumi.Input<number>;
     /**
-     * Generated Token's Period
+     * If set, indicates that the
+     * token generated using this role should never expire. The token should be renewed within the
+     * duration specified by this value. At each renewal, the token's TTL will be set to the
+     * value of this field. Specified in seconds.
      */
     readonly tokenPeriod?: pulumi.Input<number>;
     /**
@@ -426,8 +430,7 @@ export interface CertAuthBackendRoleArgs {
      * If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. The maximum allowed lifetime of token issued using this
-     * role. Specified as a number of seconds.
+     * value of this field. Specified in seconds.
      */
     readonly period?: pulumi.Input<string>;
     /**
@@ -469,7 +472,10 @@ export interface CertAuthBackendRoleArgs {
      */
     readonly tokenNumUses?: pulumi.Input<number>;
     /**
-     * Generated Token's Period
+     * If set, indicates that the
+     * token generated using this role should never expire. The token should be renewed within the
+     * duration specified by this value. At each renewal, the token's TTL will be set to the
+     * value of this field. Specified in seconds.
      */
     readonly tokenPeriod?: pulumi.Input<number>;
     /**

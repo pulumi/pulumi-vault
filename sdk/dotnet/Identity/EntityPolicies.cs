@@ -8,12 +8,24 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Identity
 {
     /// <summary>
-    /// Manages policies for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
+    /// Manages policies for an Identity Entity for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
     /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_group_policies.html.markdown.
+    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_entity_policies.html.markdown.
     /// </summary>
-    public partial class GroupPolicies : Pulumi.CustomResource
+    public partial class EntityPolicies : Pulumi.CustomResource
     {
+        /// <summary>
+        /// Entity ID to assign policies to.
+        /// </summary>
+        [Output("entityId")]
+        public Output<string> EntityId { get; private set; } = null!;
+
+        /// <summary>
+        /// The name of the entity that are assigned the policies.
+        /// </summary>
+        [Output("entityName")]
+        public Output<string> EntityName { get; private set; } = null!;
+
         /// <summary>
         /// Defaults to `true`.
         /// </summary>
@@ -21,38 +33,26 @@ namespace Pulumi.Vault.Identity
         public Output<bool?> Exclusive { get; private set; } = null!;
 
         /// <summary>
-        /// Group ID to assign policies to.
-        /// </summary>
-        [Output("groupId")]
-        public Output<string> GroupId { get; private set; } = null!;
-
-        /// <summary>
-        /// The name of the group that are assigned the policies.
-        /// </summary>
-        [Output("groupName")]
-        public Output<string> GroupName { get; private set; } = null!;
-
-        /// <summary>
-        /// List of policies to assign to the group
+        /// List of policies to assign to the entity
         /// </summary>
         [Output("policies")]
         public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
 
 
         /// <summary>
-        /// Create a GroupPolicies resource with the given unique name, arguments, and options.
+        /// Create a EntityPolicies resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public GroupPolicies(string name, GroupPoliciesArgs args, CustomResourceOptions? options = null)
-            : base("vault:identity/groupPolicies:GroupPolicies", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+        public EntityPolicies(string name, EntityPoliciesArgs args, CustomResourceOptions? options = null)
+            : base("vault:identity/entityPolicies:EntityPolicies", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
-        private GroupPolicies(string name, Input<string> id, GroupPoliciesState? state = null, CustomResourceOptions? options = null)
-            : base("vault:identity/groupPolicies:GroupPolicies", name, state, MakeResourceOptions(options, id))
+        private EntityPolicies(string name, Input<string> id, EntityPoliciesState? state = null, CustomResourceOptions? options = null)
+            : base("vault:identity/entityPolicies:EntityPolicies", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -68,7 +68,7 @@ namespace Pulumi.Vault.Identity
             return merged;
         }
         /// <summary>
-        /// Get an existing GroupPolicies resource's state with the given name, ID, and optional extra
+        /// Get an existing EntityPolicies resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -76,31 +76,31 @@ namespace Pulumi.Vault.Identity
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static GroupPolicies Get(string name, Input<string> id, GroupPoliciesState? state = null, CustomResourceOptions? options = null)
+        public static EntityPolicies Get(string name, Input<string> id, EntityPoliciesState? state = null, CustomResourceOptions? options = null)
         {
-            return new GroupPolicies(name, id, state, options);
+            return new EntityPolicies(name, id, state, options);
         }
     }
 
-    public sealed class GroupPoliciesArgs : Pulumi.ResourceArgs
+    public sealed class EntityPoliciesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Entity ID to assign policies to.
+        /// </summary>
+        [Input("entityId", required: true)]
+        public Input<string> EntityId { get; set; } = null!;
+
         /// <summary>
         /// Defaults to `true`.
         /// </summary>
         [Input("exclusive")]
         public Input<bool>? Exclusive { get; set; }
-
-        /// <summary>
-        /// Group ID to assign policies to.
-        /// </summary>
-        [Input("groupId", required: true)]
-        public Input<string> GroupId { get; set; } = null!;
 
         [Input("policies", required: true)]
         private InputList<string>? _policies;
 
         /// <summary>
-        /// List of policies to assign to the group
+        /// List of policies to assign to the entity
         /// </summary>
         public InputList<string> Policies
         {
@@ -108,36 +108,36 @@ namespace Pulumi.Vault.Identity
             set => _policies = value;
         }
 
-        public GroupPoliciesArgs()
+        public EntityPoliciesArgs()
         {
         }
     }
 
-    public sealed class GroupPoliciesState : Pulumi.ResourceArgs
+    public sealed class EntityPoliciesState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Entity ID to assign policies to.
+        /// </summary>
+        [Input("entityId")]
+        public Input<string>? EntityId { get; set; }
+
+        /// <summary>
+        /// The name of the entity that are assigned the policies.
+        /// </summary>
+        [Input("entityName")]
+        public Input<string>? EntityName { get; set; }
+
         /// <summary>
         /// Defaults to `true`.
         /// </summary>
         [Input("exclusive")]
         public Input<bool>? Exclusive { get; set; }
 
-        /// <summary>
-        /// Group ID to assign policies to.
-        /// </summary>
-        [Input("groupId")]
-        public Input<string>? GroupId { get; set; }
-
-        /// <summary>
-        /// The name of the group that are assigned the policies.
-        /// </summary>
-        [Input("groupName")]
-        public Input<string>? GroupName { get; set; }
-
         [Input("policies")]
         private InputList<string>? _policies;
 
         /// <summary>
-        /// List of policies to assign to the group
+        /// List of policies to assign to the entity
         /// </summary>
         public InputList<string> Policies
         {
@@ -145,7 +145,7 @@ namespace Pulumi.Vault.Identity
             set => _policies = value;
         }
 
-        public GroupPoliciesState()
+        public EntityPoliciesState()
         {
         }
     }

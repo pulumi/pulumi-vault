@@ -10,27 +10,52 @@ from typing import Union
 from .. import utilities, tables
 
 class SecretBackendRole(pulumi.CustomResource):
+    backend: pulumi.Output[str]
+    """
+    The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+    """
+    local: pulumi.Output[bool]
+    """
+    Indicates that the token should not be replicated globally and instead be local to the current datacenter.
+    """
+    max_ttl: pulumi.Output[float]
+    """
+    Maximum TTL for leases associated with this role, in seconds.
+    """
     name: pulumi.Output[str]
     """
     The name of the Consul secrets engine role to create.
     """
     path: pulumi.Output[str]
     """
-    The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`.
+    The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
     """
     policies: pulumi.Output[list]
     """
     The list of Consul ACL policies to associate with these roles.
     """
-    def __init__(__self__, resource_name, opts=None, name=None, path=None, policies=None, __props__=None, __name__=None, __opts__=None):
+    token_type: pulumi.Output[str]
+    """
+    Specifies the type of token to create when using this role. Valid values are "client" or "management".
+    """
+    ttl: pulumi.Output[float]
+    """
+    Specifies the TTL for this role.
+    """
+    def __init__(__self__, resource_name, opts=None, backend=None, local=None, max_ttl=None, name=None, path=None, policies=None, token_type=None, ttl=None, __props__=None, __name__=None, __opts__=None):
         """
         Manages a Consul secrets role for a Consul secrets engine in Vault. Consul secret backends can then issue Consul tokens.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] backend: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        :param pulumi.Input[bool] local: Indicates that the token should not be replicated globally and instead be local to the current datacenter.
+        :param pulumi.Input[float] max_ttl: Maximum TTL for leases associated with this role, in seconds.
         :param pulumi.Input[str] name: The name of the Consul secrets engine role to create.
-        :param pulumi.Input[str] path: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`.
+        :param pulumi.Input[str] path: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
         :param pulumi.Input[list] policies: The list of Consul ACL policies to associate with these roles.
+        :param pulumi.Input[str] token_type: Specifies the type of token to create when using this role. Valid values are "client" or "management".
+        :param pulumi.Input[float] ttl: Specifies the TTL for this role.
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/consul_secret_backend_role.html.markdown.
         """
@@ -51,13 +76,16 @@ class SecretBackendRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
+            __props__['backend'] = backend
+            __props__['local'] = local
+            __props__['max_ttl'] = max_ttl
             __props__['name'] = name
-            if path is None:
-                raise TypeError("Missing required property 'path'")
             __props__['path'] = path
             if policies is None:
                 raise TypeError("Missing required property 'policies'")
             __props__['policies'] = policies
+            __props__['token_type'] = token_type
+            __props__['ttl'] = ttl
         super(SecretBackendRole, __self__).__init__(
             'vault:consul/secretBackendRole:SecretBackendRole',
             resource_name,
@@ -65,7 +93,7 @@ class SecretBackendRole(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, name=None, path=None, policies=None):
+    def get(resource_name, id, opts=None, backend=None, local=None, max_ttl=None, name=None, path=None, policies=None, token_type=None, ttl=None):
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -73,18 +101,28 @@ class SecretBackendRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] backend: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        :param pulumi.Input[bool] local: Indicates that the token should not be replicated globally and instead be local to the current datacenter.
+        :param pulumi.Input[float] max_ttl: Maximum TTL for leases associated with this role, in seconds.
         :param pulumi.Input[str] name: The name of the Consul secrets engine role to create.
-        :param pulumi.Input[str] path: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`.
+        :param pulumi.Input[str] path: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
         :param pulumi.Input[list] policies: The list of Consul ACL policies to associate with these roles.
+        :param pulumi.Input[str] token_type: Specifies the type of token to create when using this role. Valid values are "client" or "management".
+        :param pulumi.Input[float] ttl: Specifies the TTL for this role.
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/consul_secret_backend_role.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+        __props__["backend"] = backend
+        __props__["local"] = local
+        __props__["max_ttl"] = max_ttl
         __props__["name"] = name
         __props__["path"] = path
         __props__["policies"] = policies
+        __props__["token_type"] = token_type
+        __props__["ttl"] = ttl
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

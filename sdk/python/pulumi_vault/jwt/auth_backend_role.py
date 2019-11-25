@@ -45,6 +45,18 @@ class AuthBackendRole(pulumi.CustomResource):
     If set, a map of claims (keys) to be copied
     to specified metadata fields (values).
     """
+    clock_skew_leeway: pulumi.Output[float]
+    """
+    The amount of leeway to add to all claims to account for clock skew, in
+    seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+    Only applicable with "jwt" roles.
+    """
+    expiration_leeway: pulumi.Output[float]
+    """
+    The amount of leeway to add to expiration (`exp`) claims to account for
+    clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+    Only applicable with "jwt" roles.
+    """
     groups_claim: pulumi.Output[str]
     """
     The claim to use to uniquely identify
@@ -69,6 +81,12 @@ class AuthBackendRole(pulumi.CustomResource):
     The maximum allowed lifetime of tokens
     issued using this role, provided as a number of seconds.
     """
+    not_before_leeway: pulumi.Output[float]
+    """
+    The amount of leeway to add to not before (`nbf`) claims to account for
+    clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+    Only applicable with "jwt" roles.
+    """
     num_uses: pulumi.Output[float]
     """
     If set, puts a use-count
@@ -84,8 +102,7 @@ class AuthBackendRole(pulumi.CustomResource):
     If set, indicates that the
     token generated using this role should never expire. The token should be renewed within the
     duration specified by this value. At each renewal, the token's TTL will be set to the
-    value of this field. The maximum allowed lifetime of token issued using this
-    role. Specified as a number of seconds.
+    value of this field. Specified in seconds.
     """
     policies: pulumi.Output[list]
     """
@@ -130,6 +147,12 @@ class AuthBackendRole(pulumi.CustomResource):
     if any, in number of seconds to set on the token.
     """
     token_period: pulumi.Output[float]
+    """
+    If set, indicates that the
+    token generated using this role should never expire. The token should be renewed within the
+    duration specified by this value. At each renewal, the token's TTL will be set to the
+    value of this field. Specified in seconds.
+    """
     token_policies: pulumi.Output[list]
     """
     List of policies to encode onto generated tokens. Depending
@@ -159,7 +182,13 @@ class AuthBackendRole(pulumi.CustomResource):
     the user; this will be used as the name for the Identity entity alias created
     due to a successful login.
     """
-    def __init__(__self__, resource_name, opts=None, allowed_redirect_uris=None, backend=None, bound_audiences=None, bound_cidrs=None, bound_claims=None, bound_subject=None, claim_mappings=None, groups_claim=None, groups_claim_delimiter_pattern=None, max_ttl=None, num_uses=None, oidc_scopes=None, period=None, policies=None, role_name=None, role_type=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None, user_claim=None, __props__=None, __name__=None, __opts__=None):
+    verbose_oidc_logging: pulumi.Output[bool]
+    """
+    Log received OIDC tokens and claims when debug-level
+    logging is active. Not recommended in production since sensitive information may be present
+    in OIDC responses.
+    """
+    def __init__(__self__, resource_name, opts=None, allowed_redirect_uris=None, backend=None, bound_audiences=None, bound_cidrs=None, bound_claims=None, bound_subject=None, claim_mappings=None, clock_skew_leeway=None, expiration_leeway=None, groups_claim=None, groups_claim_delimiter_pattern=None, max_ttl=None, not_before_leeway=None, num_uses=None, oidc_scopes=None, period=None, policies=None, role_name=None, role_type=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None, user_claim=None, verbose_oidc_logging=None, __props__=None, __name__=None, __opts__=None):
         """
         Manages an JWT/OIDC auth backend role in a Vault server. See the [Vault
         documentation](https://www.vaultproject.io/docs/auth/jwt.html) for more
@@ -181,6 +210,12 @@ class AuthBackendRole(pulumi.CustomResource):
                this value.
         :param pulumi.Input[dict] claim_mappings: If set, a map of claims (keys) to be copied
                to specified metadata fields (values).
+        :param pulumi.Input[float] clock_skew_leeway: The amount of leeway to add to all claims to account for clock skew, in
+               seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+               Only applicable with "jwt" roles.
+        :param pulumi.Input[float] expiration_leeway: The amount of leeway to add to expiration (`exp`) claims to account for
+               clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+               Only applicable with "jwt" roles.
         :param pulumi.Input[str] groups_claim: The claim to use to uniquely identify
                the set of groups to which the user belongs; this will be used as the names
                for the Identity group aliases created due to a successful login. The claim
@@ -196,6 +231,9 @@ class AuthBackendRole(pulumi.CustomResource):
                via nested structures of meta, user, name, and groups.
         :param pulumi.Input[float] max_ttl: The maximum allowed lifetime of tokens
                issued using this role, provided as a number of seconds.
+        :param pulumi.Input[float] not_before_leeway: The amount of leeway to add to not before (`nbf`) claims to account for
+               clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+               Only applicable with "jwt" roles.
         :param pulumi.Input[float] num_uses: If set, puts a use-count
                limitation on the issued token.
         :param pulumi.Input[list] oidc_scopes: If set, a list of OIDC scopes to be used with an OIDC role.
@@ -203,8 +241,7 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[float] period: If set, indicates that the
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. The maximum allowed lifetime of token issued using this
-               role. Specified as a number of seconds.
+               value of this field. Specified in seconds.
         :param pulumi.Input[list] policies: An array of strings
                specifying the policies to be set on tokens issued using this role.
         :param pulumi.Input[str] role_name: The name of the role.
@@ -223,6 +260,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[float] token_num_uses: The
                [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
                if any, in number of seconds to set on the token.
+        :param pulumi.Input[float] token_period: If set, indicates that the
+               token generated using this role should never expire. The token should be renewed within the
+               duration specified by this value. At each renewal, the token's TTL will be set to the
+               value of this field. Specified in seconds.
         :param pulumi.Input[list] token_policies: List of policies to encode onto generated tokens. Depending
                on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[float] token_ttl: The incremental lifetime for generated tokens in number of seconds.
@@ -237,6 +278,9 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] user_claim: The claim to use to uniquely identify
                the user; this will be used as the name for the Identity entity alias created
                due to a successful login.
+        :param pulumi.Input[bool] verbose_oidc_logging: Log received OIDC tokens and claims when debug-level
+               logging is active. Not recommended in production since sensitive information may be present
+               in OIDC responses.
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/jwt_auth_backend_role.html.markdown.
         """
@@ -266,9 +310,12 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__['bound_claims'] = bound_claims
             __props__['bound_subject'] = bound_subject
             __props__['claim_mappings'] = claim_mappings
+            __props__['clock_skew_leeway'] = clock_skew_leeway
+            __props__['expiration_leeway'] = expiration_leeway
             __props__['groups_claim'] = groups_claim
             __props__['groups_claim_delimiter_pattern'] = groups_claim_delimiter_pattern
             __props__['max_ttl'] = max_ttl
+            __props__['not_before_leeway'] = not_before_leeway
             __props__['num_uses'] = num_uses
             __props__['oidc_scopes'] = oidc_scopes
             __props__['period'] = period
@@ -290,6 +337,7 @@ class AuthBackendRole(pulumi.CustomResource):
             if user_claim is None:
                 raise TypeError("Missing required property 'user_claim'")
             __props__['user_claim'] = user_claim
+            __props__['verbose_oidc_logging'] = verbose_oidc_logging
         super(AuthBackendRole, __self__).__init__(
             'vault:jwt/authBackendRole:AuthBackendRole',
             resource_name,
@@ -297,7 +345,7 @@ class AuthBackendRole(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allowed_redirect_uris=None, backend=None, bound_audiences=None, bound_cidrs=None, bound_claims=None, bound_subject=None, claim_mappings=None, groups_claim=None, groups_claim_delimiter_pattern=None, max_ttl=None, num_uses=None, oidc_scopes=None, period=None, policies=None, role_name=None, role_type=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None, user_claim=None):
+    def get(resource_name, id, opts=None, allowed_redirect_uris=None, backend=None, bound_audiences=None, bound_cidrs=None, bound_claims=None, bound_subject=None, claim_mappings=None, clock_skew_leeway=None, expiration_leeway=None, groups_claim=None, groups_claim_delimiter_pattern=None, max_ttl=None, not_before_leeway=None, num_uses=None, oidc_scopes=None, period=None, policies=None, role_name=None, role_type=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None, user_claim=None, verbose_oidc_logging=None):
         """
         Get an existing AuthBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -319,6 +367,12 @@ class AuthBackendRole(pulumi.CustomResource):
                this value.
         :param pulumi.Input[dict] claim_mappings: If set, a map of claims (keys) to be copied
                to specified metadata fields (values).
+        :param pulumi.Input[float] clock_skew_leeway: The amount of leeway to add to all claims to account for clock skew, in
+               seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+               Only applicable with "jwt" roles.
+        :param pulumi.Input[float] expiration_leeway: The amount of leeway to add to expiration (`exp`) claims to account for
+               clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+               Only applicable with "jwt" roles.
         :param pulumi.Input[str] groups_claim: The claim to use to uniquely identify
                the set of groups to which the user belongs; this will be used as the names
                for the Identity group aliases created due to a successful login. The claim
@@ -334,6 +388,9 @@ class AuthBackendRole(pulumi.CustomResource):
                via nested structures of meta, user, name, and groups.
         :param pulumi.Input[float] max_ttl: The maximum allowed lifetime of tokens
                issued using this role, provided as a number of seconds.
+        :param pulumi.Input[float] not_before_leeway: The amount of leeway to add to not before (`nbf`) claims to account for
+               clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+               Only applicable with "jwt" roles.
         :param pulumi.Input[float] num_uses: If set, puts a use-count
                limitation on the issued token.
         :param pulumi.Input[list] oidc_scopes: If set, a list of OIDC scopes to be used with an OIDC role.
@@ -341,8 +398,7 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[float] period: If set, indicates that the
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. The maximum allowed lifetime of token issued using this
-               role. Specified as a number of seconds.
+               value of this field. Specified in seconds.
         :param pulumi.Input[list] policies: An array of strings
                specifying the policies to be set on tokens issued using this role.
         :param pulumi.Input[str] role_name: The name of the role.
@@ -361,6 +417,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[float] token_num_uses: The
                [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
                if any, in number of seconds to set on the token.
+        :param pulumi.Input[float] token_period: If set, indicates that the
+               token generated using this role should never expire. The token should be renewed within the
+               duration specified by this value. At each renewal, the token's TTL will be set to the
+               value of this field. Specified in seconds.
         :param pulumi.Input[list] token_policies: List of policies to encode onto generated tokens. Depending
                on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[float] token_ttl: The incremental lifetime for generated tokens in number of seconds.
@@ -375,6 +435,9 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] user_claim: The claim to use to uniquely identify
                the user; this will be used as the name for the Identity entity alias created
                due to a successful login.
+        :param pulumi.Input[bool] verbose_oidc_logging: Log received OIDC tokens and claims when debug-level
+               logging is active. Not recommended in production since sensitive information may be present
+               in OIDC responses.
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/jwt_auth_backend_role.html.markdown.
         """
@@ -388,9 +451,12 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__["bound_claims"] = bound_claims
         __props__["bound_subject"] = bound_subject
         __props__["claim_mappings"] = claim_mappings
+        __props__["clock_skew_leeway"] = clock_skew_leeway
+        __props__["expiration_leeway"] = expiration_leeway
         __props__["groups_claim"] = groups_claim
         __props__["groups_claim_delimiter_pattern"] = groups_claim_delimiter_pattern
         __props__["max_ttl"] = max_ttl
+        __props__["not_before_leeway"] = not_before_leeway
         __props__["num_uses"] = num_uses
         __props__["oidc_scopes"] = oidc_scopes
         __props__["period"] = period
@@ -408,6 +474,7 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__["token_type"] = token_type
         __props__["ttl"] = ttl
         __props__["user_claim"] = user_claim
+        __props__["verbose_oidc_logging"] = verbose_oidc_logging
         return AuthBackendRole(resource_name, opts=opts, __props__=__props__)
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

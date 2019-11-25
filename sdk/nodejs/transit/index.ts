@@ -3,3 +3,4 @@
 
 // Export members:
 export * from "./secretBackendKey";
+export * from "./secretCacheConfig";

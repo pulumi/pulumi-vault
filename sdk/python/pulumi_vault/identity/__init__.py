@@ -5,6 +5,7 @@
 # Export this package's modules as members:
 from .entity import *
 from .entity_alias import *
+from .entity_policies import *
 from .group import *
 from .group_alias import *
 from .group_policies import *

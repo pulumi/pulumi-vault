@@ -147,6 +147,12 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "database_secret_backend_role.md",
 				},
 			},
+			"vault_database_secret_backend_static_role": {
+				Tok: makeResource(databaseMod, "SecretBackendStaticRole"),
+				Docs: &tfbridge.DocInfo{
+					Source: "database_secret_backend_static_role.md",
+				},
+			},
 
 			// GCP
 			"vault_gcp_auth_backend":      {Tok: makeResource(gcpMod, "AuthBackend")},
@@ -192,6 +198,12 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_identity_oidc_key":                   {Tok: makeResource(identityMod, "OidcKey")},
 			"vault_identity_oidc_key_allowed_client_id": {Tok: makeResource(identityMod, "OidcKeyAllowedClientID")},
 			"vault_identity_oidc_role":                  {Tok: makeResource(identityMod, "OidcRole")},
+			"vault_identity_entity_policies": {
+				Tok: makeResource(identityMod, "EntityPolicies"),
+				Docs: &tfbridge.DocInfo{
+					Source: "identity_entity_policies.html.md",
+				},
+			},
 
 			// JWT
 			"vault_jwt_auth_backend":      {Tok: makeResource(jwtMod, "AuthBackend")},
@@ -261,6 +273,12 @@ func Provider() tfbridge.ProviderInfo {
 
 			// Transit
 			"vault_transit_secret_backend_key": {Tok: makeResource(transitMod, "SecretBackendKey")},
+			"vault_transit_secret_cache_config": {
+				Tok: makeResource(transitMod, "SecretCacheConfig"),
+				Docs: &tfbridge.DocInfo{
+					Source: "transit_secret_backend_cache_config.html.md",
+				},
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			// Main

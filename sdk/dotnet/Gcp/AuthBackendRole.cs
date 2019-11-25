@@ -82,8 +82,7 @@ namespace Pulumi.Vault.Gcp
         /// If set, indicates that the
         /// token generated using this role should never expire. The token should be renewed within the
         /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. The maximum allowed lifetime of token issued using this
-        /// role. Specified as a number of seconds.
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Output("period")]
         public Output<string> Period { get; private set; } = null!;
@@ -141,7 +140,10 @@ namespace Pulumi.Vault.Gcp
         public Output<int?> TokenNumUses { get; private set; } = null!;
 
         /// <summary>
-        /// Generated Token's Period
+        /// If set, indicates that the
+        /// token generated using this role should never expire. The token should be renewed within the
+        /// duration specified by this value. At each renewal, the token's TTL will be set to the
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Output("tokenPeriod")]
         public Output<int?> TokenPeriod { get; private set; } = null!;
@@ -333,8 +335,7 @@ namespace Pulumi.Vault.Gcp
         /// If set, indicates that the
         /// token generated using this role should never expire. The token should be renewed within the
         /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. The maximum allowed lifetime of token issued using this
-        /// role. Specified as a number of seconds.
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Input("period")]
         public Input<string>? Period { get; set; }
@@ -404,7 +405,10 @@ namespace Pulumi.Vault.Gcp
         public Input<int>? TokenNumUses { get; set; }
 
         /// <summary>
-        /// Generated Token's Period
+        /// If set, indicates that the
+        /// token generated using this role should never expire. The token should be renewed within the
+        /// duration specified by this value. At each renewal, the token's TTL will be set to the
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Input("tokenPeriod")]
         public Input<int>? TokenPeriod { get; set; }
@@ -563,8 +567,7 @@ namespace Pulumi.Vault.Gcp
         /// If set, indicates that the
         /// token generated using this role should never expire. The token should be renewed within the
         /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. The maximum allowed lifetime of token issued using this
-        /// role. Specified as a number of seconds.
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Input("period")]
         public Input<string>? Period { get; set; }
@@ -634,7 +637,10 @@ namespace Pulumi.Vault.Gcp
         public Input<int>? TokenNumUses { get; set; }
 
         /// <summary>
-        /// Generated Token's Period
+        /// If set, indicates that the
+        /// token generated using this role should never expire. The token should be renewed within the
+        /// duration specified by this value. At each renewal, the token's TTL will be set to the
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Input("tokenPeriod")]
         public Input<int>? TokenPeriod { get; set; }

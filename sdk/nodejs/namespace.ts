@@ -50,6 +50,10 @@ export class Namespace extends pulumi.CustomResource {
     }
 
     /**
+     * ID of the namepsace.
+     */
+    public /*out*/ readonly namespaceId!: pulumi.Output<string>;
+    /**
      * The path of the namespace. Must not have a trailing `/`
      */
     public readonly path!: pulumi.Output<string>;
@@ -66,6 +70,7 @@ export class Namespace extends pulumi.CustomResource {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state = argsOrState as NamespaceState | undefined;
+            inputs["namespaceId"] = state ? state.namespaceId : undefined;
             inputs["path"] = state ? state.path : undefined;
         } else {
             const args = argsOrState as NamespaceArgs | undefined;
@@ -73,6 +78,7 @@ export class Namespace extends pulumi.CustomResource {
                 throw new Error("Missing required property 'path'");
             }
             inputs["path"] = args ? args.path : undefined;
+            inputs["namespaceId"] = undefined /*out*/;
         }
         if (!opts) {
             opts = {}
@@ -89,6 +95,10 @@ export class Namespace extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Namespace resources.
  */
 export interface NamespaceState {
+    /**
+     * ID of the namepsace.
+     */
+    readonly namespaceId?: pulumi.Input<string>;
     /**
      * The path of the namespace. Must not have a trailing `/`
      */

@@ -74,7 +74,7 @@ export class Group extends pulumi.CustomResource {
     }
 
     /**
-     * Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned policies.
+     * `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
      */
     public readonly externalPolicies!: pulumi.Output<boolean | undefined>;
     /**
@@ -147,7 +147,7 @@ export class Group extends pulumi.CustomResource {
  */
 export interface GroupState {
     /**
-     * Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned policies.
+     * `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
      */
     readonly externalPolicies?: pulumi.Input<boolean>;
     /**
@@ -181,7 +181,7 @@ export interface GroupState {
  */
 export interface GroupArgs {
     /**
-     * Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned policies.
+     * `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
      */
     readonly externalPolicies?: pulumi.Input<boolean>;
     /**

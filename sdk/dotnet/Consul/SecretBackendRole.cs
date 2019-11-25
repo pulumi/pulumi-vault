@@ -15,22 +15,52 @@ namespace Pulumi.Vault.Consul
     public partial class SecretBackendRole : Pulumi.CustomResource
     {
         /// <summary>
+        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        /// </summary>
+        [Output("backend")]
+        public Output<string?> Backend { get; private set; } = null!;
+
+        /// <summary>
+        /// Indicates that the token should not be replicated globally and instead be local to the current datacenter.
+        /// </summary>
+        [Output("local")]
+        public Output<bool?> Local { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum TTL for leases associated with this role, in seconds.
+        /// </summary>
+        [Output("maxTtl")]
+        public Output<int?> MaxTtl { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the Consul secrets engine role to create.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`.
+        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
         /// </summary>
         [Output("path")]
-        public Output<string> Path { get; private set; } = null!;
+        public Output<string?> Path { get; private set; } = null!;
 
         /// <summary>
         /// The list of Consul ACL policies to associate with these roles.
         /// </summary>
         [Output("policies")]
         public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the type of token to create when using this role. Valid values are "client" or "management".
+        /// </summary>
+        [Output("tokenType")]
+        public Output<string?> TokenType { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the TTL for this role.
+        /// </summary>
+        [Output("ttl")]
+        public Output<int?> Ttl { get; private set; } = null!;
 
 
         /// <summary>
@@ -79,16 +109,34 @@ namespace Pulumi.Vault.Consul
     public sealed class SecretBackendRoleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        /// </summary>
+        [Input("backend")]
+        public Input<string>? Backend { get; set; }
+
+        /// <summary>
+        /// Indicates that the token should not be replicated globally and instead be local to the current datacenter.
+        /// </summary>
+        [Input("local")]
+        public Input<bool>? Local { get; set; }
+
+        /// <summary>
+        /// Maximum TTL for leases associated with this role, in seconds.
+        /// </summary>
+        [Input("maxTtl")]
+        public Input<int>? MaxTtl { get; set; }
+
+        /// <summary>
         /// The name of the Consul secrets engine role to create.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`.
+        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
         /// </summary>
-        [Input("path", required: true)]
-        public Input<string> Path { get; set; } = null!;
+        [Input("path")]
+        public Input<string>? Path { get; set; }
 
         [Input("policies", required: true)]
         private InputList<string>? _policies;
@@ -102,6 +150,18 @@ namespace Pulumi.Vault.Consul
             set => _policies = value;
         }
 
+        /// <summary>
+        /// Specifies the type of token to create when using this role. Valid values are "client" or "management".
+        /// </summary>
+        [Input("tokenType")]
+        public Input<string>? TokenType { get; set; }
+
+        /// <summary>
+        /// Specifies the TTL for this role.
+        /// </summary>
+        [Input("ttl")]
+        public Input<int>? Ttl { get; set; }
+
         public SecretBackendRoleArgs()
         {
         }
@@ -110,13 +170,31 @@ namespace Pulumi.Vault.Consul
     public sealed class SecretBackendRoleState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        /// </summary>
+        [Input("backend")]
+        public Input<string>? Backend { get; set; }
+
+        /// <summary>
+        /// Indicates that the token should not be replicated globally and instead be local to the current datacenter.
+        /// </summary>
+        [Input("local")]
+        public Input<bool>? Local { get; set; }
+
+        /// <summary>
+        /// Maximum TTL for leases associated with this role, in seconds.
+        /// </summary>
+        [Input("maxTtl")]
+        public Input<int>? MaxTtl { get; set; }
+
+        /// <summary>
         /// The name of the Consul secrets engine role to create.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`.
+        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -132,6 +210,18 @@ namespace Pulumi.Vault.Consul
             get => _policies ?? (_policies = new InputList<string>());
             set => _policies = value;
         }
+
+        /// <summary>
+        /// Specifies the type of token to create when using this role. Valid values are "client" or "management".
+        /// </summary>
+        [Input("tokenType")]
+        public Input<string>? TokenType { get; set; }
+
+        /// <summary>
+        /// Specifies the TTL for this role.
+        /// </summary>
+        [Input("ttl")]
+        public Input<int>? Ttl { get; set; }
 
         public SecretBackendRoleState()
         {

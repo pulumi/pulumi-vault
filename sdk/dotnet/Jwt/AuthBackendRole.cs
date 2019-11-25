@@ -66,6 +66,22 @@ namespace Pulumi.Vault.Jwt
         public Output<ImmutableDictionary<string, object>?> ClaimMappings { get; private set; } = null!;
 
         /// <summary>
+        /// The amount of leeway to add to all claims to account for clock skew, in
+        /// seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        /// Only applicable with "jwt" roles.
+        /// </summary>
+        [Output("clockSkewLeeway")]
+        public Output<int?> ClockSkewLeeway { get; private set; } = null!;
+
+        /// <summary>
+        /// The amount of leeway to add to expiration (`exp`) claims to account for
+        /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        /// Only applicable with "jwt" roles.
+        /// </summary>
+        [Output("expirationLeeway")]
+        public Output<int?> ExpirationLeeway { get; private set; } = null!;
+
+        /// <summary>
         /// The claim to use to uniquely identify
         /// the set of groups to which the user belongs; this will be used as the names
         /// for the Identity group aliases created due to a successful login. The claim
@@ -96,6 +112,14 @@ namespace Pulumi.Vault.Jwt
         public Output<int?> MaxTtl { get; private set; } = null!;
 
         /// <summary>
+        /// The amount of leeway to add to not before (`nbf`) claims to account for
+        /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        /// Only applicable with "jwt" roles.
+        /// </summary>
+        [Output("notBeforeLeeway")]
+        public Output<int?> NotBeforeLeeway { get; private set; } = null!;
+
+        /// <summary>
         /// If set, puts a use-count
         /// limitation on the issued token.
         /// </summary>
@@ -113,8 +137,7 @@ namespace Pulumi.Vault.Jwt
         /// If set, indicates that the
         /// token generated using this role should never expire. The token should be renewed within the
         /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. The maximum allowed lifetime of token issued using this
-        /// role. Specified as a number of seconds.
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Output("period")]
         public Output<int?> Period { get; private set; } = null!;
@@ -178,7 +201,10 @@ namespace Pulumi.Vault.Jwt
         public Output<int?> TokenNumUses { get; private set; } = null!;
 
         /// <summary>
-        /// Generated Token's Period
+        /// If set, indicates that the
+        /// token generated using this role should never expire. The token should be renewed within the
+        /// duration specified by this value. At each renewal, the token's TTL will be set to the
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Output("tokenPeriod")]
         public Output<int?> TokenPeriod { get; private set; } = null!;
@@ -221,6 +247,14 @@ namespace Pulumi.Vault.Jwt
         /// </summary>
         [Output("userClaim")]
         public Output<string> UserClaim { get; private set; } = null!;
+
+        /// <summary>
+        /// Log received OIDC tokens and claims when debug-level
+        /// logging is active. Not recommended in production since sensitive information may be present
+        /// in OIDC responses.
+        /// </summary>
+        [Output("verboseOidcLogging")]
+        public Output<bool?> VerboseOidcLogging { get; private set; } = null!;
 
 
         /// <summary>
@@ -348,6 +382,22 @@ namespace Pulumi.Vault.Jwt
         }
 
         /// <summary>
+        /// The amount of leeway to add to all claims to account for clock skew, in
+        /// seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        /// Only applicable with "jwt" roles.
+        /// </summary>
+        [Input("clockSkewLeeway")]
+        public Input<int>? ClockSkewLeeway { get; set; }
+
+        /// <summary>
+        /// The amount of leeway to add to expiration (`exp`) claims to account for
+        /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        /// Only applicable with "jwt" roles.
+        /// </summary>
+        [Input("expirationLeeway")]
+        public Input<int>? ExpirationLeeway { get; set; }
+
+        /// <summary>
         /// The claim to use to uniquely identify
         /// the set of groups to which the user belongs; this will be used as the names
         /// for the Identity group aliases created due to a successful login. The claim
@@ -378,6 +428,14 @@ namespace Pulumi.Vault.Jwt
         public Input<int>? MaxTtl { get; set; }
 
         /// <summary>
+        /// The amount of leeway to add to not before (`nbf`) claims to account for
+        /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        /// Only applicable with "jwt" roles.
+        /// </summary>
+        [Input("notBeforeLeeway")]
+        public Input<int>? NotBeforeLeeway { get; set; }
+
+        /// <summary>
         /// If set, puts a use-count
         /// limitation on the issued token.
         /// </summary>
@@ -401,8 +459,7 @@ namespace Pulumi.Vault.Jwt
         /// If set, indicates that the
         /// token generated using this role should never expire. The token should be renewed within the
         /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. The maximum allowed lifetime of token issued using this
-        /// role. Specified as a number of seconds.
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
@@ -478,7 +535,10 @@ namespace Pulumi.Vault.Jwt
         public Input<int>? TokenNumUses { get; set; }
 
         /// <summary>
-        /// Generated Token's Period
+        /// If set, indicates that the
+        /// token generated using this role should never expire. The token should be renewed within the
+        /// duration specified by this value. At each renewal, the token's TTL will be set to the
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Input("tokenPeriod")]
         public Input<int>? TokenPeriod { get; set; }
@@ -527,6 +587,14 @@ namespace Pulumi.Vault.Jwt
         /// </summary>
         [Input("userClaim", required: true)]
         public Input<string> UserClaim { get; set; } = null!;
+
+        /// <summary>
+        /// Log received OIDC tokens and claims when debug-level
+        /// logging is active. Not recommended in production since sensitive information may be present
+        /// in OIDC responses.
+        /// </summary>
+        [Input("verboseOidcLogging")]
+        public Input<bool>? VerboseOidcLogging { get; set; }
 
         public AuthBackendRoleArgs()
         {
@@ -615,6 +683,22 @@ namespace Pulumi.Vault.Jwt
         }
 
         /// <summary>
+        /// The amount of leeway to add to all claims to account for clock skew, in
+        /// seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        /// Only applicable with "jwt" roles.
+        /// </summary>
+        [Input("clockSkewLeeway")]
+        public Input<int>? ClockSkewLeeway { get; set; }
+
+        /// <summary>
+        /// The amount of leeway to add to expiration (`exp`) claims to account for
+        /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        /// Only applicable with "jwt" roles.
+        /// </summary>
+        [Input("expirationLeeway")]
+        public Input<int>? ExpirationLeeway { get; set; }
+
+        /// <summary>
         /// The claim to use to uniquely identify
         /// the set of groups to which the user belongs; this will be used as the names
         /// for the Identity group aliases created due to a successful login. The claim
@@ -645,6 +729,14 @@ namespace Pulumi.Vault.Jwt
         public Input<int>? MaxTtl { get; set; }
 
         /// <summary>
+        /// The amount of leeway to add to not before (`nbf`) claims to account for
+        /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        /// Only applicable with "jwt" roles.
+        /// </summary>
+        [Input("notBeforeLeeway")]
+        public Input<int>? NotBeforeLeeway { get; set; }
+
+        /// <summary>
         /// If set, puts a use-count
         /// limitation on the issued token.
         /// </summary>
@@ -668,8 +760,7 @@ namespace Pulumi.Vault.Jwt
         /// If set, indicates that the
         /// token generated using this role should never expire. The token should be renewed within the
         /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. The maximum allowed lifetime of token issued using this
-        /// role. Specified as a number of seconds.
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
@@ -745,7 +836,10 @@ namespace Pulumi.Vault.Jwt
         public Input<int>? TokenNumUses { get; set; }
 
         /// <summary>
-        /// Generated Token's Period
+        /// If set, indicates that the
+        /// token generated using this role should never expire. The token should be renewed within the
+        /// duration specified by this value. At each renewal, the token's TTL will be set to the
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Input("tokenPeriod")]
         public Input<int>? TokenPeriod { get; set; }
@@ -794,6 +888,14 @@ namespace Pulumi.Vault.Jwt
         /// </summary>
         [Input("userClaim")]
         public Input<string>? UserClaim { get; set; }
+
+        /// <summary>
+        /// Log received OIDC tokens and claims when debug-level
+        /// logging is active. Not recommended in production since sensitive information may be present
+        /// in OIDC responses.
+        /// </summary>
+        [Input("verboseOidcLogging")]
+        public Input<bool>? VerboseOidcLogging { get; set; }
 
         public AuthBackendRoleState()
         {

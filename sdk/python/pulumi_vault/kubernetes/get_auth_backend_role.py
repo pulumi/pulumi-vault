@@ -89,6 +89,12 @@ class GetAuthBackendRoleResult:
         if token_period and not isinstance(token_period, float):
             raise TypeError("Expected argument 'token_period' to be a float")
         __self__.token_period = token_period
+        """
+        (Optional) If set, indicates that the
+        token generated using this role should never expire. The token should be renewed within the
+        duration specified by this value. At each renewal, the token's TTL will be set to the
+        value of this field. Specified in seconds.
+        """
         if token_policies and not isinstance(token_policies, list):
             raise TypeError("Expected argument 'token_policies' to be a list")
         __self__.token_policies = token_policies

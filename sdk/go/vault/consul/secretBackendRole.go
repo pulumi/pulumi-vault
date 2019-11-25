@@ -18,21 +18,28 @@ type SecretBackendRole struct {
 // NewSecretBackendRole registers a new resource with the given unique name, arguments, and options.
 func NewSecretBackendRole(ctx *pulumi.Context,
 	name string, args *SecretBackendRoleArgs, opts ...pulumi.ResourceOpt) (*SecretBackendRole, error) {
-	if args == nil || args.Path == nil {
-		return nil, errors.New("missing required argument 'Path'")
-	}
 	if args == nil || args.Policies == nil {
 		return nil, errors.New("missing required argument 'Policies'")
 	}
 	inputs := make(map[string]interface{})
 	if args == nil {
+		inputs["backend"] = nil
+		inputs["local"] = nil
+		inputs["maxTtl"] = nil
 		inputs["name"] = nil
 		inputs["path"] = nil
 		inputs["policies"] = nil
+		inputs["tokenType"] = nil
+		inputs["ttl"] = nil
 	} else {
+		inputs["backend"] = args.Backend
+		inputs["local"] = args.Local
+		inputs["maxTtl"] = args.MaxTtl
 		inputs["name"] = args.Name
 		inputs["path"] = args.Path
 		inputs["policies"] = args.Policies
+		inputs["tokenType"] = args.TokenType
+		inputs["ttl"] = args.Ttl
 	}
 	s, err := ctx.RegisterResource("vault:consul/secretBackendRole:SecretBackendRole", name, true, inputs, opts...)
 	if err != nil {
@@ -47,9 +54,14 @@ func GetSecretBackendRole(ctx *pulumi.Context,
 	name string, id pulumi.ID, state *SecretBackendRoleState, opts ...pulumi.ResourceOpt) (*SecretBackendRole, error) {
 	inputs := make(map[string]interface{})
 	if state != nil {
+		inputs["backend"] = state.Backend
+		inputs["local"] = state.Local
+		inputs["maxTtl"] = state.MaxTtl
 		inputs["name"] = state.Name
 		inputs["path"] = state.Path
 		inputs["policies"] = state.Policies
+		inputs["tokenType"] = state.TokenType
+		inputs["ttl"] = state.Ttl
 	}
 	s, err := ctx.ReadResource("vault:consul/secretBackendRole:SecretBackendRole", name, id, inputs, opts...)
 	if err != nil {
@@ -68,12 +80,27 @@ func (r *SecretBackendRole) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
+// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+func (r *SecretBackendRole) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
+}
+
+// Indicates that the token should not be replicated globally and instead be local to the current datacenter.
+func (r *SecretBackendRole) Local() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["local"])
+}
+
+// Maximum TTL for leases associated with this role, in seconds.
+func (r *SecretBackendRole) MaxTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["maxTtl"])
+}
+
 // The name of the Consul secrets engine role to create.
 func (r *SecretBackendRole) Name() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
-// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`.
+// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
 func (r *SecretBackendRole) Path() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["path"])
 }
@@ -83,22 +110,52 @@ func (r *SecretBackendRole) Policies() pulumi.ArrayOutput {
 	return (pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
+// Specifies the type of token to create when using this role. Valid values are "client" or "management".
+func (r *SecretBackendRole) TokenType() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["tokenType"])
+}
+
+// Specifies the TTL for this role.
+func (r *SecretBackendRole) Ttl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["ttl"])
+}
+
 // Input properties used for looking up and filtering SecretBackendRole resources.
 type SecretBackendRoleState struct {
+	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+	Backend interface{}
+	// Indicates that the token should not be replicated globally and instead be local to the current datacenter.
+	Local interface{}
+	// Maximum TTL for leases associated with this role, in seconds.
+	MaxTtl interface{}
 	// The name of the Consul secrets engine role to create.
 	Name interface{}
-	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`.
+	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
 	Path interface{}
 	// The list of Consul ACL policies to associate with these roles.
 	Policies interface{}
+	// Specifies the type of token to create when using this role. Valid values are "client" or "management".
+	TokenType interface{}
+	// Specifies the TTL for this role.
+	Ttl interface{}
 }
 
 // The set of arguments for constructing a SecretBackendRole resource.
 type SecretBackendRoleArgs struct {
+	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+	Backend interface{}
+	// Indicates that the token should not be replicated globally and instead be local to the current datacenter.
+	Local interface{}
+	// Maximum TTL for leases associated with this role, in seconds.
+	MaxTtl interface{}
 	// The name of the Consul secrets engine role to create.
 	Name interface{}
-	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`.
+	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
 	Path interface{}
 	// The list of Consul ACL policies to associate with these roles.
 	Policies interface{}
+	// Specifies the type of token to create when using this role. Valid values are "client" or "management".
+	TokenType interface{}
+	// Specifies the TTL for this role.
+	Ttl interface{}
 }

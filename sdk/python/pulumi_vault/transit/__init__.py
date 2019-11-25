@@ -4,3 +4,4 @@
 
 # Export this package's modules as members:
 from .secret_backend_key import *
+from .secret_cache_config import *
