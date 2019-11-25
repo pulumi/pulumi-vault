@@ -17,7 +17,7 @@ namespace Pulumi.Vault.Kubernetes
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_config.html.markdown.
         /// </summary>
         public static Task<GetAuthBackendConfigResult> GetAuthBackendConfig(GetAuthBackendConfigArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? ResourceArgs.Empty, options.WithVersion());
     }
 
     public sealed class GetAuthBackendConfigArgs : Pulumi.ResourceArgs

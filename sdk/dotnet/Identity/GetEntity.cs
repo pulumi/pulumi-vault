@@ -13,7 +13,7 @@ namespace Pulumi.Vault.Identity
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/identity_entity.html.markdown.
         /// </summary>
         public static Task<GetEntityResult> GetEntity(GetEntityArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetEntityResult>("vault:identity/getEntity:getEntity", args, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? ResourceArgs.Empty, options.WithVersion());
     }
 
     public sealed class GetEntityArgs : Pulumi.ResourceArgs

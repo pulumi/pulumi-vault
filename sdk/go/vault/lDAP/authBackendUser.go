@@ -59,33 +59,33 @@ func GetAuthBackendUser(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackendUser) URN() *pulumi.URNOutput {
+func (r *AuthBackendUser) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackendUser) ID() *pulumi.IDOutput {
+func (r *AuthBackendUser) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Path to the authentication backend
-func (r *AuthBackendUser) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *AuthBackendUser) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // Override LDAP groups which should be granted to user
-func (r *AuthBackendUser) Groups() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["groups"])
+func (r *AuthBackendUser) Groups() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["groups"])
 }
 
 // Policies which should be granted to user
-func (r *AuthBackendUser) Policies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["policies"])
+func (r *AuthBackendUser) Policies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
 // The LDAP username
-func (r *AuthBackendUser) Username() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["username"])
+func (r *AuthBackendUser) Username() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["username"])
 }
 
 // Input properties used for looking up and filtering AuthBackendUser resources.

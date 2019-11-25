@@ -54,23 +54,23 @@ func GetOidcKeyAllowedClientID(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *OidcKeyAllowedClientID) URN() *pulumi.URNOutput {
+func (r *OidcKeyAllowedClientID) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *OidcKeyAllowedClientID) ID() *pulumi.IDOutput {
+func (r *OidcKeyAllowedClientID) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Client ID to allow usage with the OIDC named key
-func (r *OidcKeyAllowedClientID) AllowedClientId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["allowedClientId"])
+func (r *OidcKeyAllowedClientID) AllowedClientId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["allowedClientId"])
 }
 
 // Name of the OIDC Key allow the Client ID.
-func (r *OidcKeyAllowedClientID) KeyName() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["keyName"])
+func (r *OidcKeyAllowedClientID) KeyName() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["keyName"])
 }
 
 // Input properties used for looking up and filtering OidcKeyAllowedClientID resources.

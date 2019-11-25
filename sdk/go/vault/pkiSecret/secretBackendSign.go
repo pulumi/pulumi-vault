@@ -100,103 +100,103 @@ func GetSecretBackendSign(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *SecretBackendSign) URN() *pulumi.URNOutput {
+func (r *SecretBackendSign) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *SecretBackendSign) ID() *pulumi.IDOutput {
+func (r *SecretBackendSign) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // List of alternative names
-func (r *SecretBackendSign) AltNames() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["altNames"])
+func (r *SecretBackendSign) AltNames() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["altNames"])
 }
 
 // If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
-func (r *SecretBackendSign) AutoRenew() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["autoRenew"])
+func (r *SecretBackendSign) AutoRenew() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["autoRenew"])
 }
 
 // The PKI secret backend the resource belongs to.
-func (r *SecretBackendSign) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *SecretBackendSign) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // The CA chain
-func (r *SecretBackendSign) CaChains() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["caChains"])
+func (r *SecretBackendSign) CaChains() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["caChains"])
 }
 
 // The certificate
-func (r *SecretBackendSign) Certificate() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["certificate"])
+func (r *SecretBackendSign) Certificate() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["certificate"])
 }
 
 // CN of certificate to create
-func (r *SecretBackendSign) CommonName() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["commonName"])
+func (r *SecretBackendSign) CommonName() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["commonName"])
 }
 
 // The CSR
-func (r *SecretBackendSign) Csr() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["csr"])
+func (r *SecretBackendSign) Csr() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["csr"])
 }
 
 // Flag to exclude CN from SANs
-func (r *SecretBackendSign) ExcludeCnFromSans() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["excludeCnFromSans"])
+func (r *SecretBackendSign) ExcludeCnFromSans() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["excludeCnFromSans"])
 }
 
 // The expiration date of the certificate in unix epoch format
-func (r *SecretBackendSign) Expiration() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["expiration"])
+func (r *SecretBackendSign) Expiration() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["expiration"])
 }
 
 // The format of data
-func (r *SecretBackendSign) Format() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["format"])
+func (r *SecretBackendSign) Format() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["format"])
 }
 
 // List of alternative IPs
-func (r *SecretBackendSign) IpSans() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["ipSans"])
+func (r *SecretBackendSign) IpSans() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["ipSans"])
 }
 
 // The issuing CA
-func (r *SecretBackendSign) IssuingCa() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["issuingCa"])
+func (r *SecretBackendSign) IssuingCa() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["issuingCa"])
 }
 
 // Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
-func (r *SecretBackendSign) MinSecondsRemaining() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["minSecondsRemaining"])
+func (r *SecretBackendSign) MinSecondsRemaining() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["minSecondsRemaining"])
 }
 
 // Name of the role to create the certificate against
-func (r *SecretBackendSign) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *SecretBackendSign) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // List of other SANs
-func (r *SecretBackendSign) OtherSans() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["otherSans"])
+func (r *SecretBackendSign) OtherSans() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["otherSans"])
 }
 
 // The serial
-func (r *SecretBackendSign) Serial() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["serial"])
+func (r *SecretBackendSign) Serial() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["serial"])
 }
 
 // Time to live
-func (r *SecretBackendSign) Ttl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["ttl"])
+func (r *SecretBackendSign) Ttl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["ttl"])
 }
 
 // List of alterative URIs
-func (r *SecretBackendSign) UriSans() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["uriSans"])
+func (r *SecretBackendSign) UriSans() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["uriSans"])
 }
 
 // Input properties used for looking up and filtering SecretBackendSign resources.

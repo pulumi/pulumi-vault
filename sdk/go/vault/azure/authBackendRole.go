@@ -114,66 +114,66 @@ func GetAuthBackendRole(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackendRole) URN() *pulumi.URNOutput {
+func (r *AuthBackendRole) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackendRole) ID() *pulumi.IDOutput {
+func (r *AuthBackendRole) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Unique name of the auth backend to configure.
-func (r *AuthBackendRole) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *AuthBackendRole) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // If set, defines a constraint on the groups
 // that can perform the login operation that they should be using the group
 // ID specified by this field.
-func (r *AuthBackendRole) BoundGroupIds() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["boundGroupIds"])
+func (r *AuthBackendRole) BoundGroupIds() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["boundGroupIds"])
 }
 
 // If set, defines a constraint on the virtual machines
 // that can perform the login operation that the location in their identity
 // document must match the one specified by this field.
-func (r *AuthBackendRole) BoundLocations() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["boundLocations"])
+func (r *AuthBackendRole) BoundLocations() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["boundLocations"])
 }
 
 // If set, defines a constraint on the virtual
 // machiness that can perform the login operation that they be associated with
 // the resource group that matches the value specified by this field.
-func (r *AuthBackendRole) BoundResourceGroups() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["boundResourceGroups"])
+func (r *AuthBackendRole) BoundResourceGroups() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["boundResourceGroups"])
 }
 
 // If set, defines a constraint on the virtual
 // machines that can perform the login operation that they must match the scale set
 // specified by this field.
-func (r *AuthBackendRole) BoundScaleSets() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["boundScaleSets"])
+func (r *AuthBackendRole) BoundScaleSets() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["boundScaleSets"])
 }
 
 // If set, defines a constraint on the
 // service principals that can perform the login operation that they should be possess
 // the ids specified by this field.
-func (r *AuthBackendRole) BoundServicePrincipalIds() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["boundServicePrincipalIds"])
+func (r *AuthBackendRole) BoundServicePrincipalIds() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["boundServicePrincipalIds"])
 }
 
 // If set, defines a constraint on the subscriptions
 // that can perform the login operation to ones which  matches the value specified by this
 // field.
-func (r *AuthBackendRole) BoundSubscriptionIds() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["boundSubscriptionIds"])
+func (r *AuthBackendRole) BoundSubscriptionIds() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["boundSubscriptionIds"])
 }
 
 // The maximum allowed lifetime of tokens
 // issued using this role, provided as a number of seconds.
-func (r *AuthBackendRole) MaxTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["maxTtl"])
+func (r *AuthBackendRole) MaxTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["maxTtl"])
 }
 
 // If set, indicates that the
@@ -181,70 +181,70 @@ func (r *AuthBackendRole) MaxTtl() *pulumi.IntOutput {
 // duration specified by this value. At each renewal, the token's TTL will be set to the
 // value of this field. The maximum allowed lifetime of token issued using this
 // role. Specified as a number of seconds.
-func (r *AuthBackendRole) Period() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["period"])
+func (r *AuthBackendRole) Period() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["period"])
 }
 
 // An array of strings
 // specifying the policies to be set on tokens issued using this role.
-func (r *AuthBackendRole) Policies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["policies"])
+func (r *AuthBackendRole) Policies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
 // The name of the role.
-func (r *AuthBackendRole) Role() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["role"])
+func (r *AuthBackendRole) Role() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["role"])
 }
 
 // List of CIDR blocks; if set, specifies blocks of IP
 // addresses which can authenticate successfully, and ties the resulting token to these blocks
 // as well.
-func (r *AuthBackendRole) TokenBoundCidrs() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["tokenBoundCidrs"])
+func (r *AuthBackendRole) TokenBoundCidrs() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["tokenBoundCidrs"])
 }
 
 // If set, will encode an
 // [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
 // onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
 // `tokenMaxTtl` would otherwise allow a renewal.
-func (r *AuthBackendRole) TokenExplicitMaxTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenExplicitMaxTtl"])
+func (r *AuthBackendRole) TokenExplicitMaxTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenExplicitMaxTtl"])
 }
 
 // The maximum lifetime for generated tokens in number of seconds.
 // Its current value will be referenced at renewal time.
-func (r *AuthBackendRole) TokenMaxTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenMaxTtl"])
+func (r *AuthBackendRole) TokenMaxTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenMaxTtl"])
 }
 
 // If set, the default policy will not be set on
 // generated tokens; otherwise it will be added to the policies set in token_policies.
-func (r *AuthBackendRole) TokenNoDefaultPolicy() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["tokenNoDefaultPolicy"])
+func (r *AuthBackendRole) TokenNoDefaultPolicy() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["tokenNoDefaultPolicy"])
 }
 
 // The
 // [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
 // if any, in number of seconds to set on the token.
-func (r *AuthBackendRole) TokenNumUses() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenNumUses"])
+func (r *AuthBackendRole) TokenNumUses() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenNumUses"])
 }
 
 // Generated Token's Period
-func (r *AuthBackendRole) TokenPeriod() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenPeriod"])
+func (r *AuthBackendRole) TokenPeriod() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenPeriod"])
 }
 
 // List of policies to encode onto generated tokens. Depending
 // on the auth method, this list may be supplemented by user/group/other values.
-func (r *AuthBackendRole) TokenPolicies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["tokenPolicies"])
+func (r *AuthBackendRole) TokenPolicies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["tokenPolicies"])
 }
 
 // The incremental lifetime for generated tokens in number of seconds.
 // Its current value will be referenced at renewal time.
-func (r *AuthBackendRole) TokenTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenTtl"])
+func (r *AuthBackendRole) TokenTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenTtl"])
 }
 
 // The type of token that should be generated. Can be `service`,
@@ -252,14 +252,14 @@ func (r *AuthBackendRole) TokenTtl() *pulumi.IntOutput {
 // `service` tokens). For token store roles, there are two additional possibilities:
 // `default-service` and `default-batch` which specify the type to return unless the client
 // requests a different type at generation time.
-func (r *AuthBackendRole) TokenType() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["tokenType"])
+func (r *AuthBackendRole) TokenType() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["tokenType"])
 }
 
 // The TTL period of tokens issued
 // using this role, provided as a number of seconds.
-func (r *AuthBackendRole) Ttl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["ttl"])
+func (r *AuthBackendRole) Ttl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["ttl"])
 }
 
 // Input properties used for looking up and filtering AuthBackendRole resources.

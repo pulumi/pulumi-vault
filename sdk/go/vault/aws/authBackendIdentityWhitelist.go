@@ -55,31 +55,31 @@ func GetAuthBackendIdentityWhitelist(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackendIdentityWhitelist) URN() *pulumi.URNOutput {
+func (r *AuthBackendIdentityWhitelist) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackendIdentityWhitelist) ID() *pulumi.IDOutput {
+func (r *AuthBackendIdentityWhitelist) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The path of the AWS backend being configured.
-func (r *AuthBackendIdentityWhitelist) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *AuthBackendIdentityWhitelist) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // If set to true, disables the periodic
 // tidying of the identity-whitelist entries.
-func (r *AuthBackendIdentityWhitelist) DisablePeriodicTidy() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["disablePeriodicTidy"])
+func (r *AuthBackendIdentityWhitelist) DisablePeriodicTidy() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["disablePeriodicTidy"])
 }
 
 // The amount of extra time, in minutes, that must
 // have passed beyond the roletag expiration, before it is removed from the
 // backend storage.
-func (r *AuthBackendIdentityWhitelist) SafetyBuffer() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["safetyBuffer"])
+func (r *AuthBackendIdentityWhitelist) SafetyBuffer() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["safetyBuffer"])
 }
 
 // Input properties used for looking up and filtering AuthBackendIdentityWhitelist resources.

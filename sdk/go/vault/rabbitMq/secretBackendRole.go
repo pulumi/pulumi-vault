@@ -57,35 +57,35 @@ func GetSecretBackendRole(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *SecretBackendRole) URN() *pulumi.URNOutput {
+func (r *SecretBackendRole) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *SecretBackendRole) ID() *pulumi.IDOutput {
+func (r *SecretBackendRole) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The path the RabbitMQ secret backend is mounted at,
 // with no leading or trailing `/`s.
-func (r *SecretBackendRole) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *SecretBackendRole) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // The name to identify this role within the backend.
 // Must be unique within the backend.
-func (r *SecretBackendRole) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *SecretBackendRole) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // Specifies a comma-separated RabbitMQ management tags.
-func (r *SecretBackendRole) Tags() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["tags"])
+func (r *SecretBackendRole) Tags() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["tags"])
 }
 
 // Specifies a map of virtual hosts to permissions.
-func (r *SecretBackendRole) Vhosts() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["vhosts"])
+func (r *SecretBackendRole) Vhosts() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["vhosts"])
 }
 
 // Input properties used for looking up and filtering SecretBackendRole resources.

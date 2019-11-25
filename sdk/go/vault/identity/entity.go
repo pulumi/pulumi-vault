@@ -53,33 +53,33 @@ func GetEntity(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *Entity) URN() *pulumi.URNOutput {
+func (r *Entity) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *Entity) ID() *pulumi.IDOutput {
+func (r *Entity) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // True/false Is this entity currently disabled. Defaults to `false`
-func (r *Entity) Disabled() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["disabled"])
+func (r *Entity) Disabled() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["disabled"])
 }
 
 // A Map of additional metadata to associate with the user.
-func (r *Entity) Metadata() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["metadata"])
+func (r *Entity) Metadata() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["metadata"])
 }
 
 // Name of the identity entity to create.
-func (r *Entity) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *Entity) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // A list of policies to apply to the entity.
-func (r *Entity) Policies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["policies"])
+func (r *Entity) Policies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
 // Input properties used for looking up and filtering Entity resources.

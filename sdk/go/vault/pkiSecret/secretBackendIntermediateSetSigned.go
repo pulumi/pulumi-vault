@@ -54,23 +54,23 @@ func GetSecretBackendIntermediateSetSigned(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *SecretBackendIntermediateSetSigned) URN() *pulumi.URNOutput {
+func (r *SecretBackendIntermediateSetSigned) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *SecretBackendIntermediateSetSigned) ID() *pulumi.IDOutput {
+func (r *SecretBackendIntermediateSetSigned) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The PKI secret backend the resource belongs to.
-func (r *SecretBackendIntermediateSetSigned) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *SecretBackendIntermediateSetSigned) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // The certificate
-func (r *SecretBackendIntermediateSetSigned) Certificate() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["certificate"])
+func (r *SecretBackendIntermediateSetSigned) Certificate() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["certificate"])
 }
 
 // Input properties used for looking up and filtering SecretBackendIntermediateSetSigned resources.

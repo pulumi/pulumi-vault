@@ -92,119 +92,119 @@ func GetAuthBackendLogin(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackendLogin) URN() *pulumi.URNOutput {
+func (r *AuthBackendLogin) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackendLogin) ID() *pulumi.IDOutput {
+func (r *AuthBackendLogin) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The token's accessor.
-func (r *AuthBackendLogin) Accessor() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["accessor"])
+func (r *AuthBackendLogin) Accessor() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["accessor"])
 }
 
 // The authentication type used to generate this token.
-func (r *AuthBackendLogin) AuthType() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["authType"])
+func (r *AuthBackendLogin) AuthType() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["authType"])
 }
 
 // The unique name of the AWS auth backend. Defaults to
 // 'aws'.
-func (r *AuthBackendLogin) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *AuthBackendLogin) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // The token returned by Vault.
-func (r *AuthBackendLogin) ClientToken() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["clientToken"])
+func (r *AuthBackendLogin) ClientToken() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["clientToken"])
 }
 
 // The HTTP method used in the signed IAM
 // request.
-func (r *AuthBackendLogin) IamHttpRequestMethod() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["iamHttpRequestMethod"])
+func (r *AuthBackendLogin) IamHttpRequestMethod() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["iamHttpRequestMethod"])
 }
 
 // The base64-encoded body of the signed
 // request.
-func (r *AuthBackendLogin) IamRequestBody() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["iamRequestBody"])
+func (r *AuthBackendLogin) IamRequestBody() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["iamRequestBody"])
 }
 
 // The base64-encoded, JSON serialized
 // representation of the GetCallerIdentity HTTP request headers.
-func (r *AuthBackendLogin) IamRequestHeaders() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["iamRequestHeaders"])
+func (r *AuthBackendLogin) IamRequestHeaders() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["iamRequestHeaders"])
 }
 
 // The base64-encoded HTTP URL used in the signed
 // request.
-func (r *AuthBackendLogin) IamRequestUrl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["iamRequestUrl"])
+func (r *AuthBackendLogin) IamRequestUrl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["iamRequestUrl"])
 }
 
 // The base64-encoded EC2 instance identity document to
 // authenticate with. Can be retrieved from the EC2 metadata server.
-func (r *AuthBackendLogin) Identity() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["identity"])
+func (r *AuthBackendLogin) Identity() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["identity"])
 }
 
 // The duration in seconds the token will be valid, relative
 // to the time in `leaseStartTime`.
-func (r *AuthBackendLogin) LeaseDuration() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["leaseDuration"])
+func (r *AuthBackendLogin) LeaseDuration() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["leaseDuration"])
 }
 
 // Time at which the lease was read, using the clock of the system where Terraform was running
-func (r *AuthBackendLogin) LeaseStartTime() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["leaseStartTime"])
+func (r *AuthBackendLogin) LeaseStartTime() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["leaseStartTime"])
 }
 
 // A map of information returned by the Vault server about the
 // authentication used to generate this token.
-func (r *AuthBackendLogin) Metadata() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["metadata"])
+func (r *AuthBackendLogin) Metadata() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["metadata"])
 }
 
 // The unique nonce to be used for login requests. Can be
 // set to a user-specified value, or will contain the server-generated value
 // once a token is issued. EC2 instances can only acquire a single token until
 // the whitelist is tidied again unless they keep track of this nonce.
-func (r *AuthBackendLogin) Nonce() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["nonce"])
+func (r *AuthBackendLogin) Nonce() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["nonce"])
 }
 
 // The PKCS#7 signature of the identity document to
 // authenticate with, with all newline characters removed. Can be retrieved from
 // the EC2 metadata server.
-func (r *AuthBackendLogin) Pkcs7() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["pkcs7"])
+func (r *AuthBackendLogin) Pkcs7() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["pkcs7"])
 }
 
 // The Vault policies assigned to this token.
-func (r *AuthBackendLogin) Policies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["policies"])
+func (r *AuthBackendLogin) Policies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
 // Set to true if the token can be extended through renewal.
-func (r *AuthBackendLogin) Renewable() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["renewable"])
+func (r *AuthBackendLogin) Renewable() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["renewable"])
 }
 
 // The name of the AWS auth backend role to create tokens
 // against.
-func (r *AuthBackendLogin) Role() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["role"])
+func (r *AuthBackendLogin) Role() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["role"])
 }
 
 // The base64-encoded SHA256 RSA signature of the
 // instance identity document to authenticate with, with all newline characters
 // removed. Can be retrieved from the EC2 metadata server.
-func (r *AuthBackendLogin) Signature() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["signature"])
+func (r *AuthBackendLogin) Signature() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["signature"])
 }
 
 // Input properties used for looking up and filtering AuthBackendLogin resources.

@@ -99,7 +99,7 @@ namespace Pulumi.Vault.Github
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Team(string name, TeamArgs args, CustomResourceOptions? options = null)
-            : base("vault:github/team:Team", name, args, MakeResourceOptions(options, ""))
+            : base("vault:github/team:Team", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 

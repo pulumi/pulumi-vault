@@ -79,49 +79,49 @@ func GetMfaDuo(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *MfaDuo) URN() *pulumi.URNOutput {
+func (r *MfaDuo) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *MfaDuo) ID() *pulumi.IDOutput {
+func (r *MfaDuo) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // API hostname for Duo.
-func (r *MfaDuo) ApiHostname() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["apiHostname"])
+func (r *MfaDuo) ApiHostname() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["apiHostname"])
 }
 
 // Integration key for Duo.
-func (r *MfaDuo) IntegrationKey() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["integrationKey"])
+func (r *MfaDuo) IntegrationKey() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["integrationKey"])
 }
 
 // The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated
 // with this mount as the username in the mapping.
-func (r *MfaDuo) MountAccessor() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["mountAccessor"])
+func (r *MfaDuo) MountAccessor() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["mountAccessor"])
 }
 
 // Name of the MFA method.
-func (r *MfaDuo) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *MfaDuo) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // Push information for Duo.
-func (r *MfaDuo) PushInfo() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["pushInfo"])
+func (r *MfaDuo) PushInfo() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["pushInfo"])
 }
 
 // Secret key for Duo.
-func (r *MfaDuo) SecretKey() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["secretKey"])
+func (r *MfaDuo) SecretKey() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["secretKey"])
 }
 
 // A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`.
-func (r *MfaDuo) UsernameFormat() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["usernameFormat"])
+func (r *MfaDuo) UsernameFormat() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["usernameFormat"])
 }
 
 // Input properties used for looking up and filtering MfaDuo resources.

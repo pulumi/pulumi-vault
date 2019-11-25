@@ -52,18 +52,18 @@ func GetNamespace(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *Namespace) URN() *pulumi.URNOutput {
+func (r *Namespace) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *Namespace) ID() *pulumi.IDOutput {
+func (r *Namespace) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The path of the namespace. Must not have a trailing `/`
-func (r *Namespace) Path() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["path"])
+func (r *Namespace) Path() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["path"])
 }
 
 // Input properties used for looking up and filtering Namespace resources.

@@ -59,33 +59,33 @@ func GetGroupPolicies(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *GroupPolicies) URN() *pulumi.URNOutput {
+func (r *GroupPolicies) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *GroupPolicies) ID() *pulumi.IDOutput {
+func (r *GroupPolicies) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
-func (r *GroupPolicies) Exclusive() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["exclusive"])
+func (r *GroupPolicies) Exclusive() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["exclusive"])
 }
 
 // ID of the group.
-func (r *GroupPolicies) GroupId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["groupId"])
+func (r *GroupPolicies) GroupId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["groupId"])
 }
 
 // Name of the group.
-func (r *GroupPolicies) GroupName() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["groupName"])
+func (r *GroupPolicies) GroupName() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["groupName"])
 }
 
 // Policies to be tied to the group.
-func (r *GroupPolicies) Policies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["policies"])
+func (r *GroupPolicies) Policies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
 // Input properties used for looking up and filtering GroupPolicies resources.

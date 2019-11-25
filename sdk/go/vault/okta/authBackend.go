@@ -80,73 +80,73 @@ func GetAuthBackend(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackend) URN() *pulumi.URNOutput {
+func (r *AuthBackend) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackend) ID() *pulumi.IDOutput {
+func (r *AuthBackend) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
-func (r *AuthBackend) Accessor() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["accessor"])
+func (r *AuthBackend) Accessor() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["accessor"])
 }
 
 // The Okta url. Examples: oktapreview.com, okta.com
-func (r *AuthBackend) BaseUrl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["baseUrl"])
+func (r *AuthBackend) BaseUrl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["baseUrl"])
 }
 
 // When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
-func (r *AuthBackend) BypassOktaMfa() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["bypassOktaMfa"])
+func (r *AuthBackend) BypassOktaMfa() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["bypassOktaMfa"])
 }
 
 // The description of the auth backend
-func (r *AuthBackend) Description() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["description"])
+func (r *AuthBackend) Description() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["description"])
 }
 
 // Associate Okta groups with policies within Vault.
 // See below for more details.
-func (r *AuthBackend) Groups() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["groups"])
+func (r *AuthBackend) Groups() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["groups"])
 }
 
 // Maximum duration after which authentication will be expired
 // [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-func (r *AuthBackend) MaxTtl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["maxTtl"])
+func (r *AuthBackend) MaxTtl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["maxTtl"])
 }
 
 // The Okta organization. This will be the first part of the url `https://XXX.okta.com`
-func (r *AuthBackend) Organization() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["organization"])
+func (r *AuthBackend) Organization() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["organization"])
 }
 
 // Path to mount the Okta auth backend
-func (r *AuthBackend) Path() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["path"])
+func (r *AuthBackend) Path() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["path"])
 }
 
 // The Okta API token. This is required to query Okta for user group membership.
 // If this is not supplied only locally configured groups will be enabled.
-func (r *AuthBackend) Token() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["token"])
+func (r *AuthBackend) Token() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["token"])
 }
 
 // Duration after which authentication will be expired.
 // [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-func (r *AuthBackend) Ttl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["ttl"])
+func (r *AuthBackend) Ttl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["ttl"])
 }
 
 // Associate Okta users with groups or policies within Vault.
 // See below for more details.
-func (r *AuthBackend) Users() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["users"])
+func (r *AuthBackend) Users() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["users"])
 }
 
 // Input properties used for looking up and filtering AuthBackend resources.

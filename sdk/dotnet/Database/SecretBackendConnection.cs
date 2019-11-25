@@ -119,7 +119,7 @@ namespace Pulumi.Vault.Database
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretBackendConnection(string name, SecretBackendConnectionArgs args, CustomResourceOptions? options = null)
-            : base("vault:database/secretBackendConnection:SecretBackendConnection", name, args, MakeResourceOptions(options, ""))
+            : base("vault:database/secretBackendConnection:SecretBackendConnection", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 

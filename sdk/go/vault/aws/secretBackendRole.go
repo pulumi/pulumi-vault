@@ -72,26 +72,26 @@ func GetSecretBackendRole(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *SecretBackendRole) URN() *pulumi.URNOutput {
+func (r *SecretBackendRole) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *SecretBackendRole) ID() *pulumi.IDOutput {
+func (r *SecretBackendRole) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The path the AWS secret backend is mounted at,
 // with no leading or trailing `/`s.
-func (r *SecretBackendRole) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *SecretBackendRole) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // Specifies the type of credential to be used when
 // retrieving credentials from the role. Must be one of `iamUser`, `assumedRole`, or
 // `federationToken`.
-func (r *SecretBackendRole) CredentialType() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["credentialType"])
+func (r *SecretBackendRole) CredentialType() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["credentialType"])
 }
 
 // The default TTL in seconds for STS credentials.
@@ -99,40 +99,40 @@ func (r *SecretBackendRole) CredentialType() *pulumi.StringOutput {
 // and a default TTL is specified on the role,
 // then this default TTL will be used. Valid only when `credentialType` is one of
 // `assumedRole` or `federationToken`.
-func (r *SecretBackendRole) DefaultStsTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["defaultStsTtl"])
+func (r *SecretBackendRole) DefaultStsTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["defaultStsTtl"])
 }
 
 // The max allowed TTL in seconds for STS credentials
 // (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
 // one of `assumedRole` or `federationToken`.
-func (r *SecretBackendRole) MaxStsTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["maxStsTtl"])
+func (r *SecretBackendRole) MaxStsTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["maxStsTtl"])
 }
 
 // The name to identify this role within the backend.
 // Must be unique within the backend.
-func (r *SecretBackendRole) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *SecretBackendRole) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // The ARN for a pre-existing policy to associate
 // with this role. Either `policyDocument` or `policyArns` must be specified.
-func (r *SecretBackendRole) PolicyArns() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["policyArns"])
+func (r *SecretBackendRole) PolicyArns() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["policyArns"])
 }
 
 // The JSON-formatted policy to associate with this
 // role. Either `policyDocument` or `policyArns` must be specified.
-func (r *SecretBackendRole) PolicyDocument() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["policyDocument"])
+func (r *SecretBackendRole) PolicyDocument() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["policyDocument"])
 }
 
 // Specifies the ARNs of the AWS roles this Vault role
 // is allowed to assume. Required when `credentialType` is `assumedRole` and
 // prohibited otherwise.
-func (r *SecretBackendRole) RoleArns() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["roleArns"])
+func (r *SecretBackendRole) RoleArns() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["roleArns"])
 }
 
 // Input properties used for looking up and filtering SecretBackendRole resources.

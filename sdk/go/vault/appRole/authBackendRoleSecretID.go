@@ -73,65 +73,65 @@ func GetAuthBackendRoleSecretID(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackendRoleSecretID) URN() *pulumi.URNOutput {
+func (r *AuthBackendRoleSecretID) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackendRoleSecretID) ID() *pulumi.IDOutput {
+func (r *AuthBackendRoleSecretID) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The unique ID for this SecretID that can be safely logged.
-func (r *AuthBackendRoleSecretID) Accessor() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["accessor"])
+func (r *AuthBackendRoleSecretID) Accessor() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["accessor"])
 }
 
 // Unique name of the auth backend to configure.
-func (r *AuthBackendRoleSecretID) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *AuthBackendRoleSecretID) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // If set, specifies blocks of IP addresses which can
 // perform the login operation using this SecretID.
-func (r *AuthBackendRoleSecretID) CidrLists() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["cidrLists"])
+func (r *AuthBackendRoleSecretID) CidrLists() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["cidrLists"])
 }
 
 // A JSON-encoded string containing metadata in
 // key-value pairs to be set on tokens issued with this SecretID.
-func (r *AuthBackendRoleSecretID) Metadata() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["metadata"])
+func (r *AuthBackendRoleSecretID) Metadata() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["metadata"])
 }
 
 // The name of the role to create the SecretID for.
-func (r *AuthBackendRoleSecretID) RoleName() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["roleName"])
+func (r *AuthBackendRoleSecretID) RoleName() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["roleName"])
 }
 
 // The SecretID to be created. If set, uses "Push"
 // mode.  Defaults to Vault auto-generating SecretIDs.
-func (r *AuthBackendRoleSecretID) SecretId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["secretId"])
+func (r *AuthBackendRoleSecretID) SecretId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["secretId"])
 }
 
 // The unique ID for the response-wrapped SecretID that can
 // be safely logged.
-func (r *AuthBackendRoleSecretID) WrappingAccessor() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["wrappingAccessor"])
+func (r *AuthBackendRoleSecretID) WrappingAccessor() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["wrappingAccessor"])
 }
 
 // The token used to retrieve a response-wrapped SecretID.
-func (r *AuthBackendRoleSecretID) WrappingToken() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["wrappingToken"])
+func (r *AuthBackendRoleSecretID) WrappingToken() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["wrappingToken"])
 }
 
 // If set, the SecretID response will be
 // [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)
 // and available for the duration specified. Only a single unwrapping of the
 // token is allowed.
-func (r *AuthBackendRoleSecretID) WrappingTtl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["wrappingTtl"])
+func (r *AuthBackendRoleSecretID) WrappingTtl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["wrappingTtl"])
 }
 
 // Input properties used for looking up and filtering AuthBackendRoleSecretID resources.

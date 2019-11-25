@@ -62,56 +62,56 @@ func GetAuthBackendClient(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackendClient) URN() *pulumi.URNOutput {
+func (r *AuthBackendClient) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackendClient) ID() *pulumi.IDOutput {
+func (r *AuthBackendClient) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The AWS access key that Vault should use for the
 // auth backend.
-func (r *AuthBackendClient) AccessKey() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["accessKey"])
+func (r *AuthBackendClient) AccessKey() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["accessKey"])
 }
 
 // The path the AWS auth backend being configured was
 // mounted at.  Defaults to `aws`.
-func (r *AuthBackendClient) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *AuthBackendClient) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // Override the URL Vault uses when making EC2 API
 // calls.
-func (r *AuthBackendClient) Ec2Endpoint() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["ec2Endpoint"])
+func (r *AuthBackendClient) Ec2Endpoint() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["ec2Endpoint"])
 }
 
 // Override the URL Vault uses when making IAM API
 // calls.
-func (r *AuthBackendClient) IamEndpoint() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["iamEndpoint"])
+func (r *AuthBackendClient) IamEndpoint() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["iamEndpoint"])
 }
 
 // The value to require in the
 // `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
 // that are used in the IAM auth method.
-func (r *AuthBackendClient) IamServerIdHeaderValue() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["iamServerIdHeaderValue"])
+func (r *AuthBackendClient) IamServerIdHeaderValue() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["iamServerIdHeaderValue"])
 }
 
 // The AWS secret key that Vault should use for the
 // auth backend.
-func (r *AuthBackendClient) SecretKey() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["secretKey"])
+func (r *AuthBackendClient) SecretKey() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["secretKey"])
 }
 
 // Override the URL Vault uses when making STS API
 // calls.
-func (r *AuthBackendClient) StsEndpoint() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["stsEndpoint"])
+func (r *AuthBackendClient) StsEndpoint() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["stsEndpoint"])
 }
 
 // Input properties used for looking up and filtering AuthBackendClient resources.

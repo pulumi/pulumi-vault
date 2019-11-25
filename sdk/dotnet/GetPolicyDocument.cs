@@ -15,7 +15,7 @@ namespace Pulumi.Vault
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/policy_document.html.markdown.
         /// </summary>
         public static Task<GetPolicyDocumentResult> GetPolicyDocument(GetPolicyDocumentArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPolicyDocumentResult>("vault:index/getPolicyDocument:getPolicyDocument", args, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetPolicyDocumentResult>("vault:index/getPolicyDocument:getPolicyDocument", args ?? ResourceArgs.Empty, options.WithVersion());
     }
 
     public sealed class GetPolicyDocumentArgs : Pulumi.ResourceArgs

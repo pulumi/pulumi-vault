@@ -93,103 +93,103 @@ func GetToken(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *Token) URN() *pulumi.URNOutput {
+func (r *Token) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *Token) ID() *pulumi.IDOutput {
+func (r *Token) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // String containing the client token if stored in present file
-func (r *Token) ClientToken() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["clientToken"])
+func (r *Token) ClientToken() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["clientToken"])
 }
 
 // String containing the token display name
-func (r *Token) DisplayName() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["displayName"])
+func (r *Token) DisplayName() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["displayName"])
 }
 
 // The explicit max TTL of this token
-func (r *Token) ExplicitMaxTtl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["explicitMaxTtl"])
+func (r *Token) ExplicitMaxTtl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["explicitMaxTtl"])
 }
 
 // String containing the token lease duration if present in state file
-func (r *Token) LeaseDuration() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["leaseDuration"])
+func (r *Token) LeaseDuration() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["leaseDuration"])
 }
 
 // String containing the token lease started time if present in state file
-func (r *Token) LeaseStarted() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["leaseStarted"])
+func (r *Token) LeaseStarted() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["leaseStarted"])
 }
 
 // Flag to not attach the default policy to this token
-func (r *Token) NoDefaultPolicy() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["noDefaultPolicy"])
+func (r *Token) NoDefaultPolicy() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["noDefaultPolicy"])
 }
 
 // Flag to create a token without parent
-func (r *Token) NoParent() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["noParent"])
+func (r *Token) NoParent() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["noParent"])
 }
 
 // The number of allowed uses of this token
-func (r *Token) NumUses() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["numUses"])
+func (r *Token) NumUses() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["numUses"])
 }
 
 // The period of this token
-func (r *Token) Period() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["period"])
+func (r *Token) Period() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["period"])
 }
 
 // List of policies to attach to this token
-func (r *Token) Policies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["policies"])
+func (r *Token) Policies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
 // The renew increment
-func (r *Token) RenewIncrement() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["renewIncrement"])
+func (r *Token) RenewIncrement() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["renewIncrement"])
 }
 
 // The minimal lease to renew this token
-func (r *Token) RenewMinLease() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["renewMinLease"])
+func (r *Token) RenewMinLease() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["renewMinLease"])
 }
 
 // Flag to allow to renew this token
-func (r *Token) Renewable() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["renewable"])
+func (r *Token) Renewable() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["renewable"])
 }
 
 // The token role name
-func (r *Token) RoleName() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["roleName"])
+func (r *Token) RoleName() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["roleName"])
 }
 
 // The TTL period of this token
-func (r *Token) Ttl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["ttl"])
+func (r *Token) Ttl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["ttl"])
 }
 
 // The client wrapped token.
-func (r *Token) WrappedToken() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["wrappedToken"])
+func (r *Token) WrappedToken() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["wrappedToken"])
 }
 
 // The client wrapping accessor.
-func (r *Token) WrappingAccessor() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["wrappingAccessor"])
+func (r *Token) WrappingAccessor() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["wrappingAccessor"])
 }
 
 // The TTL period of the wrapped token.
-func (r *Token) WrappingTtl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["wrappingTtl"])
+func (r *Token) WrappingTtl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["wrappingTtl"])
 }
 
 // Input properties used for looking up and filtering Token resources.

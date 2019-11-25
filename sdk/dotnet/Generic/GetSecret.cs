@@ -13,7 +13,7 @@ namespace Pulumi.Vault.Generic
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/generic_secret.html.markdown.
         /// </summary>
         public static Task<GetSecretResult> GetSecret(GetSecretArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetSecretResult>("vault:generic/getSecret:getSecret", args, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetSecretResult>("vault:generic/getSecret:getSecret", args ?? ResourceArgs.Empty, options.WithVersion());
     }
 
     public sealed class GetSecretArgs : Pulumi.ResourceArgs

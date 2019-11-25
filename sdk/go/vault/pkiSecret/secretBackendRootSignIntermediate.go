@@ -121,133 +121,133 @@ func GetSecretBackendRootSignIntermediate(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *SecretBackendRootSignIntermediate) URN() *pulumi.URNOutput {
+func (r *SecretBackendRootSignIntermediate) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *SecretBackendRootSignIntermediate) ID() *pulumi.IDOutput {
+func (r *SecretBackendRootSignIntermediate) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // List of alternative names
-func (r *SecretBackendRootSignIntermediate) AltNames() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["altNames"])
+func (r *SecretBackendRootSignIntermediate) AltNames() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["altNames"])
 }
 
 // The PKI secret backend the resource belongs to.
-func (r *SecretBackendRootSignIntermediate) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *SecretBackendRootSignIntermediate) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // The CA chain
-func (r *SecretBackendRootSignIntermediate) CaChain() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["caChain"])
+func (r *SecretBackendRootSignIntermediate) CaChain() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["caChain"])
 }
 
 // The certificate
-func (r *SecretBackendRootSignIntermediate) Certificate() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["certificate"])
+func (r *SecretBackendRootSignIntermediate) Certificate() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["certificate"])
 }
 
 // CN of intermediate to create
-func (r *SecretBackendRootSignIntermediate) CommonName() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["commonName"])
+func (r *SecretBackendRootSignIntermediate) CommonName() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["commonName"])
 }
 
 // The country
-func (r *SecretBackendRootSignIntermediate) Country() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["country"])
+func (r *SecretBackendRootSignIntermediate) Country() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["country"])
 }
 
 // The CSR
-func (r *SecretBackendRootSignIntermediate) Csr() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["csr"])
+func (r *SecretBackendRootSignIntermediate) Csr() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["csr"])
 }
 
 // Flag to exclude CN from SANs
-func (r *SecretBackendRootSignIntermediate) ExcludeCnFromSans() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["excludeCnFromSans"])
+func (r *SecretBackendRootSignIntermediate) ExcludeCnFromSans() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["excludeCnFromSans"])
 }
 
 // The format of data
-func (r *SecretBackendRootSignIntermediate) Format() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["format"])
+func (r *SecretBackendRootSignIntermediate) Format() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["format"])
 }
 
 // List of alternative IPs
-func (r *SecretBackendRootSignIntermediate) IpSans() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["ipSans"])
+func (r *SecretBackendRootSignIntermediate) IpSans() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["ipSans"])
 }
 
 // The issuing CA
-func (r *SecretBackendRootSignIntermediate) IssuingCa() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["issuingCa"])
+func (r *SecretBackendRootSignIntermediate) IssuingCa() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["issuingCa"])
 }
 
 // The locality
-func (r *SecretBackendRootSignIntermediate) Locality() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["locality"])
+func (r *SecretBackendRootSignIntermediate) Locality() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["locality"])
 }
 
 // The maximum path length to encode in the generated certificate
-func (r *SecretBackendRootSignIntermediate) MaxPathLength() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["maxPathLength"])
+func (r *SecretBackendRootSignIntermediate) MaxPathLength() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["maxPathLength"])
 }
 
 // The organization
-func (r *SecretBackendRootSignIntermediate) Organization() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["organization"])
+func (r *SecretBackendRootSignIntermediate) Organization() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["organization"])
 }
 
 // List of other SANs
-func (r *SecretBackendRootSignIntermediate) OtherSans() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["otherSans"])
+func (r *SecretBackendRootSignIntermediate) OtherSans() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["otherSans"])
 }
 
 // The organization unit
-func (r *SecretBackendRootSignIntermediate) Ou() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["ou"])
+func (r *SecretBackendRootSignIntermediate) Ou() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["ou"])
 }
 
 // List of domains for which certificates are allowed to be issued
-func (r *SecretBackendRootSignIntermediate) PermittedDnsDomains() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["permittedDnsDomains"])
+func (r *SecretBackendRootSignIntermediate) PermittedDnsDomains() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["permittedDnsDomains"])
 }
 
 // The postal code
-func (r *SecretBackendRootSignIntermediate) PostalCode() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["postalCode"])
+func (r *SecretBackendRootSignIntermediate) PostalCode() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["postalCode"])
 }
 
 // The province
-func (r *SecretBackendRootSignIntermediate) Province() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["province"])
+func (r *SecretBackendRootSignIntermediate) Province() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["province"])
 }
 
 // The serial
-func (r *SecretBackendRootSignIntermediate) Serial() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["serial"])
+func (r *SecretBackendRootSignIntermediate) Serial() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["serial"])
 }
 
 // The street address
-func (r *SecretBackendRootSignIntermediate) StreetAddress() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["streetAddress"])
+func (r *SecretBackendRootSignIntermediate) StreetAddress() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["streetAddress"])
 }
 
 // Time to live
-func (r *SecretBackendRootSignIntermediate) Ttl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["ttl"])
+func (r *SecretBackendRootSignIntermediate) Ttl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["ttl"])
 }
 
 // List of alternative URIs
-func (r *SecretBackendRootSignIntermediate) UriSans() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["uriSans"])
+func (r *SecretBackendRootSignIntermediate) UriSans() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["uriSans"])
 }
 
 // Preserve CSR values
-func (r *SecretBackendRootSignIntermediate) UseCsrValues() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["useCsrValues"])
+func (r *SecretBackendRootSignIntermediate) UseCsrValues() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["useCsrValues"])
 }
 
 // Input properties used for looking up and filtering SecretBackendRootSignIntermediate resources.

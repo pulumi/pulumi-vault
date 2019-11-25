@@ -56,41 +56,41 @@ func GetOidcKey(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *OidcKey) URN() *pulumi.URNOutput {
+func (r *OidcKey) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *OidcKey) ID() *pulumi.IDOutput {
+func (r *OidcKey) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Signing algorithm to use. Signing algorithm to use.
 // Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
-func (r *OidcKey) Algorithm() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["algorithm"])
+func (r *OidcKey) Algorithm() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["algorithm"])
 }
 
 // Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
 // allowed.
-func (r *OidcKey) AllowedClientIds() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["allowedClientIds"])
+func (r *OidcKey) AllowedClientIds() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["allowedClientIds"])
 }
 
 // Name of the OIDC Key to create.
-func (r *OidcKey) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *OidcKey) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // How often to generate a new signing key in number of seconds
-func (r *OidcKey) RotationPeriod() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["rotationPeriod"])
+func (r *OidcKey) RotationPeriod() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["rotationPeriod"])
 }
 
 // "Controls how long the public portion of a signing key will be
 // available for verification after being rotated in seconds.
-func (r *OidcKey) VerificationTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["verificationTtl"])
+func (r *OidcKey) VerificationTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["verificationTtl"])
 }
 
 // Input properties used for looking up and filtering OidcKey resources.

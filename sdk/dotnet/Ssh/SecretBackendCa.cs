@@ -48,7 +48,7 @@ namespace Pulumi.Vault.Ssh
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretBackendCa(string name, SecretBackendCaArgs? args = null, CustomResourceOptions? options = null)
-            : base("vault:ssh/secretBackendCa:SecretBackendCa", name, args, MakeResourceOptions(options, ""))
+            : base("vault:ssh/secretBackendCa:SecretBackendCa", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 

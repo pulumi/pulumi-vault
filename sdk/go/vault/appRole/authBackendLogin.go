@@ -72,64 +72,64 @@ func GetAuthBackendLogin(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackendLogin) URN() *pulumi.URNOutput {
+func (r *AuthBackendLogin) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackendLogin) ID() *pulumi.IDOutput {
+func (r *AuthBackendLogin) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The accessor for the token.
-func (r *AuthBackendLogin) Accessor() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["accessor"])
+func (r *AuthBackendLogin) Accessor() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["accessor"])
 }
 
 // The unique path of the Vault backend to log in with.
-func (r *AuthBackendLogin) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *AuthBackendLogin) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // The Vault token created.
-func (r *AuthBackendLogin) ClientToken() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["clientToken"])
+func (r *AuthBackendLogin) ClientToken() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["clientToken"])
 }
 
 // How long the token is valid for, in seconds.
-func (r *AuthBackendLogin) LeaseDuration() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["leaseDuration"])
+func (r *AuthBackendLogin) LeaseDuration() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["leaseDuration"])
 }
 
 // The date and time the lease started, in RFC 3339 format.
-func (r *AuthBackendLogin) LeaseStarted() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["leaseStarted"])
+func (r *AuthBackendLogin) LeaseStarted() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["leaseStarted"])
 }
 
 // The metadata associated with the token.
-func (r *AuthBackendLogin) Metadata() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["metadata"])
+func (r *AuthBackendLogin) Metadata() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["metadata"])
 }
 
 // A list of policies applied to the token.
-func (r *AuthBackendLogin) Policies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["policies"])
+func (r *AuthBackendLogin) Policies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
 // Whether the token is renewable or not.
-func (r *AuthBackendLogin) Renewable() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["renewable"])
+func (r *AuthBackendLogin) Renewable() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["renewable"])
 }
 
 // The ID of the role to log in with.
-func (r *AuthBackendLogin) RoleId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["roleId"])
+func (r *AuthBackendLogin) RoleId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["roleId"])
 }
 
 // The secret ID of the role to log in with. Required
 // unless `bindSecretId` is set to false on the role.
-func (r *AuthBackendLogin) SecretId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["secretId"])
+func (r *AuthBackendLogin) SecretId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["secretId"])
 }
 
 // Input properties used for looking up and filtering AuthBackendLogin resources.

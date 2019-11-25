@@ -196,7 +196,7 @@ namespace Pulumi.Vault
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public CertAuthBackendRole(string name, CertAuthBackendRoleArgs args, CustomResourceOptions? options = null)
-            : base("vault:index/certAuthBackendRole:CertAuthBackendRole", name, args, MakeResourceOptions(options, ""))
+            : base("vault:index/certAuthBackendRole:CertAuthBackendRole", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 

@@ -108,108 +108,108 @@ func GetSecretBackendRole(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *SecretBackendRole) URN() *pulumi.URNOutput {
+func (r *SecretBackendRole) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *SecretBackendRole) ID() *pulumi.IDOutput {
+func (r *SecretBackendRole) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
-func (r *SecretBackendRole) AllowBareDomains() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["allowBareDomains"])
+func (r *SecretBackendRole) AllowBareDomains() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["allowBareDomains"])
 }
 
 // Specifies if certificates are allowed to be signed for use as a 'host'.
-func (r *SecretBackendRole) AllowHostCertificates() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["allowHostCertificates"])
+func (r *SecretBackendRole) AllowHostCertificates() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["allowHostCertificates"])
 }
 
 // Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowedDomains`.
-func (r *SecretBackendRole) AllowSubdomains() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["allowSubdomains"])
+func (r *SecretBackendRole) AllowSubdomains() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["allowSubdomains"])
 }
 
 // Specifies if certificates are allowed to be signed for use as a 'user'.
-func (r *SecretBackendRole) AllowUserCertificates() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["allowUserCertificates"])
+func (r *SecretBackendRole) AllowUserCertificates() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["allowUserCertificates"])
 }
 
 // Specifies if users can override the key ID for a signed certificate with the `keyId` field.
-func (r *SecretBackendRole) AllowUserKeyIds() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["allowUserKeyIds"])
+func (r *SecretBackendRole) AllowUserKeyIds() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["allowUserKeyIds"])
 }
 
 // Specifies a comma-separated list of critical options that certificates can have when signed.
-func (r *SecretBackendRole) AllowedCriticalOptions() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["allowedCriticalOptions"])
+func (r *SecretBackendRole) AllowedCriticalOptions() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["allowedCriticalOptions"])
 }
 
 // The list of domains for which a client can request a host certificate.
-func (r *SecretBackendRole) AllowedDomains() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["allowedDomains"])
+func (r *SecretBackendRole) AllowedDomains() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["allowedDomains"])
 }
 
 // Specifies a comma-separated list of extensions that certificates can have when signed.
-func (r *SecretBackendRole) AllowedExtensions() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["allowedExtensions"])
+func (r *SecretBackendRole) AllowedExtensions() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["allowedExtensions"])
 }
 
 // Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
-func (r *SecretBackendRole) AllowedUsers() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["allowedUsers"])
+func (r *SecretBackendRole) AllowedUsers() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["allowedUsers"])
 }
 
 // The path where the SSH secret backend is mounted.
-func (r *SecretBackendRole) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *SecretBackendRole) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // The comma-separated string of CIDR blocks for which this role is applicable.
-func (r *SecretBackendRole) CidrList() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["cidrList"])
+func (r *SecretBackendRole) CidrList() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["cidrList"])
 }
 
 // Specifies a map of critical options that certificates have when signed.
-func (r *SecretBackendRole) DefaultCriticalOptions() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["defaultCriticalOptions"])
+func (r *SecretBackendRole) DefaultCriticalOptions() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["defaultCriticalOptions"])
 }
 
 // Specifies a map of extensions that certificates have when signed.
-func (r *SecretBackendRole) DefaultExtensions() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["defaultExtensions"])
+func (r *SecretBackendRole) DefaultExtensions() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["defaultExtensions"])
 }
 
 // Specifies the default username for which a credential will be generated.
-func (r *SecretBackendRole) DefaultUser() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["defaultUser"])
+func (r *SecretBackendRole) DefaultUser() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["defaultUser"])
 }
 
 // Specifies a custom format for the key id of a signed certificate.
-func (r *SecretBackendRole) KeyIdFormat() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["keyIdFormat"])
+func (r *SecretBackendRole) KeyIdFormat() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["keyIdFormat"])
 }
 
 // Specifies the type of credentials generated by this role. This can be either `otp`, `dynamic` or `ca`.
-func (r *SecretBackendRole) KeyType() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["keyType"])
+func (r *SecretBackendRole) KeyType() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["keyType"])
 }
 
 // Specifies the Time To Live value.
-func (r *SecretBackendRole) MaxTtl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["maxTtl"])
+func (r *SecretBackendRole) MaxTtl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["maxTtl"])
 }
 
 // Specifies the name of the role to create.
-func (r *SecretBackendRole) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *SecretBackendRole) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // Specifies the maximum Time To Live value.
-func (r *SecretBackendRole) Ttl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["ttl"])
+func (r *SecretBackendRole) Ttl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["ttl"])
 }
 
 // Input properties used for looking up and filtering SecretBackendRole resources.

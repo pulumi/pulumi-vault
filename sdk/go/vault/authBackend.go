@@ -67,53 +67,53 @@ func GetAuthBackend(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackend) URN() *pulumi.URNOutput {
+func (r *AuthBackend) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackend) ID() *pulumi.IDOutput {
+func (r *AuthBackend) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The accessor for this auth method
-func (r *AuthBackend) Accessor() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["accessor"])
+func (r *AuthBackend) Accessor() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["accessor"])
 }
 
 // The default lease duration in seconds.
-func (r *AuthBackend) DefaultLeaseTtlSeconds() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["defaultLeaseTtlSeconds"])
+func (r *AuthBackend) DefaultLeaseTtlSeconds() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["defaultLeaseTtlSeconds"])
 }
 
 // A description of the auth method
-func (r *AuthBackend) Description() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["description"])
+func (r *AuthBackend) Description() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["description"])
 }
 
 // Speficies whether to show this mount in the UI-specific listing endpoint.
-func (r *AuthBackend) ListingVisibility() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["listingVisibility"])
+func (r *AuthBackend) ListingVisibility() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["listingVisibility"])
 }
 
 // Specifies if the auth method is local only.
-func (r *AuthBackend) Local() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["local"])
+func (r *AuthBackend) Local() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["local"])
 }
 
 // The maximum lease duration in seconds.
-func (r *AuthBackend) MaxLeaseTtlSeconds() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["maxLeaseTtlSeconds"])
+func (r *AuthBackend) MaxLeaseTtlSeconds() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["maxLeaseTtlSeconds"])
 }
 
 // The path to mount the auth method — this defaults to the name of the type
-func (r *AuthBackend) Path() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["path"])
+func (r *AuthBackend) Path() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["path"])
 }
 
 // The name of the auth method type
-func (r *AuthBackend) Type() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["type"])
+func (r *AuthBackend) Type() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["type"])
 }
 
 // Input properties used for looking up and filtering AuthBackend resources.

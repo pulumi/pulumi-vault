@@ -3,7 +3,7 @@
 
 using System.Collections.Immutable;
 
-namespace Pulumi.Vault.Config
+namespace Pulumi.Vault
 {
     public static class Config
     {

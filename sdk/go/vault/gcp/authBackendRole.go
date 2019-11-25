@@ -125,68 +125,68 @@ func GetAuthBackendRole(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackendRole) URN() *pulumi.URNOutput {
+func (r *AuthBackendRole) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackendRole) ID() *pulumi.IDOutput {
+func (r *AuthBackendRole) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
-func (r *AuthBackendRole) AddGroupAliases() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["addGroupAliases"])
+func (r *AuthBackendRole) AddGroupAliases() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["addGroupAliases"])
 }
 
 // A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.
-func (r *AuthBackendRole) AllowGceInference() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["allowGceInference"])
+func (r *AuthBackendRole) AllowGceInference() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["allowGceInference"])
 }
 
 // Path to the mounted GCP auth backend
-func (r *AuthBackendRole) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *AuthBackendRole) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `boundZones` or `boundRegions` must be set too.
-func (r *AuthBackendRole) BoundInstanceGroups() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["boundInstanceGroups"])
+func (r *AuthBackendRole) BoundInstanceGroups() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["boundInstanceGroups"])
 }
 
 // A comma-separated list of GCP labels formatted as `"key:value"` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL'd, we recommend that this be used in conjunction with other restrictions.
-func (r *AuthBackendRole) BoundLabels() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["boundLabels"])
+func (r *AuthBackendRole) BoundLabels() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["boundLabels"])
 }
 
 // GCP Projects that the role exists within
-func (r *AuthBackendRole) BoundProjects() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["boundProjects"])
+func (r *AuthBackendRole) BoundProjects() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["boundProjects"])
 }
 
 // The list of regions that a GCE instance must belong to in order to be authenticated. If boundInstanceGroups is provided, it is assumed to be a regional group and the group must belong to this region. If boundZones are provided, this attribute is ignored.
-func (r *AuthBackendRole) BoundRegions() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["boundRegions"])
+func (r *AuthBackendRole) BoundRegions() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["boundRegions"])
 }
 
 // GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
-func (r *AuthBackendRole) BoundServiceAccounts() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["boundServiceAccounts"])
+func (r *AuthBackendRole) BoundServiceAccounts() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["boundServiceAccounts"])
 }
 
 // The list of zones that a GCE instance must belong to in order to be authenticated. If boundInstanceGroups is provided, it is assumed to be a zonal group and the group must belong to this zone.
-func (r *AuthBackendRole) BoundZones() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["boundZones"])
+func (r *AuthBackendRole) BoundZones() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["boundZones"])
 }
 
 // The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
-func (r *AuthBackendRole) MaxJwtExp() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["maxJwtExp"])
+func (r *AuthBackendRole) MaxJwtExp() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["maxJwtExp"])
 }
 
 // The maximum allowed lifetime of tokens
 // issued using this role, provided as a number of seconds.
-func (r *AuthBackendRole) MaxTtl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["maxTtl"])
+func (r *AuthBackendRole) MaxTtl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["maxTtl"])
 }
 
 // If set, indicates that the
@@ -194,70 +194,70 @@ func (r *AuthBackendRole) MaxTtl() *pulumi.StringOutput {
 // duration specified by this value. At each renewal, the token's TTL will be set to the
 // value of this field. The maximum allowed lifetime of token issued using this
 // role. Specified as a number of seconds.
-func (r *AuthBackendRole) Period() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["period"])
+func (r *AuthBackendRole) Period() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["period"])
 }
 
 // An array of strings
 // specifying the policies to be set on tokens issued using this role.
-func (r *AuthBackendRole) Policies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["policies"])
+func (r *AuthBackendRole) Policies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
 // Name of the GCP role
-func (r *AuthBackendRole) Role() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["role"])
+func (r *AuthBackendRole) Role() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["role"])
 }
 
 // List of CIDR blocks; if set, specifies blocks of IP
 // addresses which can authenticate successfully, and ties the resulting token to these blocks
 // as well.
-func (r *AuthBackendRole) TokenBoundCidrs() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["tokenBoundCidrs"])
+func (r *AuthBackendRole) TokenBoundCidrs() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["tokenBoundCidrs"])
 }
 
 // If set, will encode an
 // [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
 // onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
 // `tokenMaxTtl` would otherwise allow a renewal.
-func (r *AuthBackendRole) TokenExplicitMaxTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenExplicitMaxTtl"])
+func (r *AuthBackendRole) TokenExplicitMaxTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenExplicitMaxTtl"])
 }
 
 // The maximum lifetime for generated tokens in number of seconds.
 // Its current value will be referenced at renewal time.
-func (r *AuthBackendRole) TokenMaxTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenMaxTtl"])
+func (r *AuthBackendRole) TokenMaxTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenMaxTtl"])
 }
 
 // If set, the default policy will not be set on
 // generated tokens; otherwise it will be added to the policies set in token_policies.
-func (r *AuthBackendRole) TokenNoDefaultPolicy() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["tokenNoDefaultPolicy"])
+func (r *AuthBackendRole) TokenNoDefaultPolicy() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["tokenNoDefaultPolicy"])
 }
 
 // The
 // [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
 // if any, in number of seconds to set on the token.
-func (r *AuthBackendRole) TokenNumUses() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenNumUses"])
+func (r *AuthBackendRole) TokenNumUses() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenNumUses"])
 }
 
 // Generated Token's Period
-func (r *AuthBackendRole) TokenPeriod() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenPeriod"])
+func (r *AuthBackendRole) TokenPeriod() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenPeriod"])
 }
 
 // List of policies to encode onto generated tokens. Depending
 // on the auth method, this list may be supplemented by user/group/other values.
-func (r *AuthBackendRole) TokenPolicies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["tokenPolicies"])
+func (r *AuthBackendRole) TokenPolicies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["tokenPolicies"])
 }
 
 // The incremental lifetime for generated tokens in number of seconds.
 // Its current value will be referenced at renewal time.
-func (r *AuthBackendRole) TokenTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenTtl"])
+func (r *AuthBackendRole) TokenTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenTtl"])
 }
 
 // The type of token that should be generated. Can be `service`,
@@ -265,19 +265,19 @@ func (r *AuthBackendRole) TokenTtl() *pulumi.IntOutput {
 // `service` tokens). For token store roles, there are two additional possibilities:
 // `default-service` and `default-batch` which specify the type to return unless the client
 // requests a different type at generation time.
-func (r *AuthBackendRole) TokenType() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["tokenType"])
+func (r *AuthBackendRole) TokenType() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["tokenType"])
 }
 
 // The TTL period of tokens issued
 // using this role, provided as a number of seconds.
-func (r *AuthBackendRole) Ttl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["ttl"])
+func (r *AuthBackendRole) Ttl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["ttl"])
 }
 
 // Type of GCP authentication role (either `gce` or `iam`)
-func (r *AuthBackendRole) Type() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["type"])
+func (r *AuthBackendRole) Type() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["type"])
 }
 
 // Input properties used for looking up and filtering AuthBackendRole resources.

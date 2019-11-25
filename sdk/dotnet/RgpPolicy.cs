@@ -43,7 +43,7 @@ namespace Pulumi.Vault
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public RgpPolicy(string name, RgpPolicyArgs args, CustomResourceOptions? options = null)
-            : base("vault:index/rgpPolicy:RgpPolicy", name, args, MakeResourceOptions(options, ""))
+            : base("vault:index/rgpPolicy:RgpPolicy", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 

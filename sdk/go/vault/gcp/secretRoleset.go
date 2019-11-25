@@ -78,48 +78,48 @@ func GetSecretRoleset(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *SecretRoleset) URN() *pulumi.URNOutput {
+func (r *SecretRoleset) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *SecretRoleset) ID() *pulumi.IDOutput {
+func (r *SecretRoleset) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Path where the GCP Secrets Engine is mounted
-func (r *SecretRoleset) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *SecretRoleset) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
-func (r *SecretRoleset) Bindings() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["bindings"])
+func (r *SecretRoleset) Bindings() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["bindings"])
 }
 
 // Name of the GCP project that this roleset's service account will belong to.
-func (r *SecretRoleset) Project() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["project"])
+func (r *SecretRoleset) Project() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["project"])
 }
 
 // Name of the Roleset to create
-func (r *SecretRoleset) Roleset() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["roleset"])
+func (r *SecretRoleset) Roleset() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["roleset"])
 }
 
 // Type of secret generated for this role set. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
-func (r *SecretRoleset) SecretType() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["secretType"])
+func (r *SecretRoleset) SecretType() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["secretType"])
 }
 
 // Email of the service account created by Vault for this Roleset
-func (r *SecretRoleset) ServiceAccountEmail() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["serviceAccountEmail"])
+func (r *SecretRoleset) ServiceAccountEmail() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["serviceAccountEmail"])
 }
 
 // List of OAuth scopes to assign to `accessToken` secrets generated under this role set (`accessToken` role sets only).
-func (r *SecretRoleset) TokenScopes() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["tokenScopes"])
+func (r *SecretRoleset) TokenScopes() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["tokenScopes"])
 }
 
 // Input properties used for looking up and filtering SecretRoleset resources.

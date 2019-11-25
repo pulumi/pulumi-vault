@@ -47,7 +47,7 @@ namespace Pulumi.Vault.LDAP
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthBackendUser(string name, AuthBackendUserArgs args, CustomResourceOptions? options = null)
-            : base("vault:lDAP/authBackendUser:AuthBackendUser", name, args, MakeResourceOptions(options, ""))
+            : base("vault:lDAP/authBackendUser:AuthBackendUser", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 

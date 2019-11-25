@@ -60,28 +60,28 @@ func GetAuthBackendGroup(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackendGroup) URN() *pulumi.URNOutput {
+func (r *AuthBackendGroup) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackendGroup) ID() *pulumi.IDOutput {
+func (r *AuthBackendGroup) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Name of the group within the Okta
-func (r *AuthBackendGroup) GroupName() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["groupName"])
+func (r *AuthBackendGroup) GroupName() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["groupName"])
 }
 
 // The path where the Okta auth backend is mounted
-func (r *AuthBackendGroup) Path() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["path"])
+func (r *AuthBackendGroup) Path() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["path"])
 }
 
 // Vault policies to associate with this group
-func (r *AuthBackendGroup) Policies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["policies"])
+func (r *AuthBackendGroup) Policies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
 // Input properties used for looking up and filtering AuthBackendGroup resources.

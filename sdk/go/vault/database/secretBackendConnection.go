@@ -93,95 +93,95 @@ func GetSecretBackendConnection(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *SecretBackendConnection) URN() *pulumi.URNOutput {
+func (r *SecretBackendConnection) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *SecretBackendConnection) ID() *pulumi.IDOutput {
+func (r *SecretBackendConnection) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // A list of roles that are allowed to use this
 // connection.
-func (r *SecretBackendConnection) AllowedRoles() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["allowedRoles"])
+func (r *SecretBackendConnection) AllowedRoles() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["allowedRoles"])
 }
 
 // The unique name of the Vault mount to configure.
-func (r *SecretBackendConnection) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *SecretBackendConnection) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // A nested block containing configuration options for Cassandra connections.
-func (r *SecretBackendConnection) Cassandra() *pulumi.Output {
+func (r *SecretBackendConnection) Cassandra() pulumi.Output {
 	return r.s.State["cassandra"]
 }
 
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-func (r *SecretBackendConnection) Data() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["data"])
+func (r *SecretBackendConnection) Data() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["data"])
 }
 
 // A nested block containing configuration options for SAP HanaDB connections.
-func (r *SecretBackendConnection) Hana() *pulumi.Output {
+func (r *SecretBackendConnection) Hana() pulumi.Output {
 	return r.s.State["hana"]
 }
 
 // A nested block containing configuration options for MongoDB connections.
-func (r *SecretBackendConnection) Mongodb() *pulumi.Output {
+func (r *SecretBackendConnection) Mongodb() pulumi.Output {
 	return r.s.State["mongodb"]
 }
 
 // A nested block containing configuration options for MSSQL connections.
-func (r *SecretBackendConnection) Mssql() *pulumi.Output {
+func (r *SecretBackendConnection) Mssql() pulumi.Output {
 	return r.s.State["mssql"]
 }
 
 // A nested block containing configuration options for MySQL connections.
-func (r *SecretBackendConnection) Mysql() *pulumi.Output {
+func (r *SecretBackendConnection) Mysql() pulumi.Output {
 	return r.s.State["mysql"]
 }
 
 // A nested block containing configuration options for Aurora MySQL connections.
-func (r *SecretBackendConnection) MysqlAurora() *pulumi.Output {
+func (r *SecretBackendConnection) MysqlAurora() pulumi.Output {
 	return r.s.State["mysqlAurora"]
 }
 
 // A nested block containing configuration options for legacy MySQL connections.
-func (r *SecretBackendConnection) MysqlLegacy() *pulumi.Output {
+func (r *SecretBackendConnection) MysqlLegacy() pulumi.Output {
 	return r.s.State["mysqlLegacy"]
 }
 
 // A nested block containing configuration options for RDS MySQL connections.
-func (r *SecretBackendConnection) MysqlRds() *pulumi.Output {
+func (r *SecretBackendConnection) MysqlRds() pulumi.Output {
 	return r.s.State["mysqlRds"]
 }
 
 // A unique name to give the database connection.
-func (r *SecretBackendConnection) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *SecretBackendConnection) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // A nested block containing configuration options for Oracle connections.
-func (r *SecretBackendConnection) Oracle() *pulumi.Output {
+func (r *SecretBackendConnection) Oracle() pulumi.Output {
 	return r.s.State["oracle"]
 }
 
 // A nested block containing configuration options for PostgreSQL connections.
-func (r *SecretBackendConnection) Postgresql() *pulumi.Output {
+func (r *SecretBackendConnection) Postgresql() pulumi.Output {
 	return r.s.State["postgresql"]
 }
 
 // A list of database statements to be executed to rotate the root user's credentials.
-func (r *SecretBackendConnection) RootRotationStatements() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["rootRotationStatements"])
+func (r *SecretBackendConnection) RootRotationStatements() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["rootRotationStatements"])
 }
 
 // Whether the connection should be verified on
 // initial configuration or not.
-func (r *SecretBackendConnection) VerifyConnection() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["verifyConnection"])
+func (r *SecretBackendConnection) VerifyConnection() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["verifyConnection"])
 }
 
 // Input properties used for looking up and filtering SecretBackendConnection resources.

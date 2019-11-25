@@ -69,49 +69,49 @@ func GetSecretBackend(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *SecretBackend) URN() *pulumi.URNOutput {
+func (r *SecretBackend) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *SecretBackend) ID() *pulumi.IDOutput {
+func (r *SecretBackend) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
-func (r *SecretBackend) Address() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["address"])
+func (r *SecretBackend) Address() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["address"])
 }
 
 // The default TTL for credentials issued by this backend.
-func (r *SecretBackend) DefaultLeaseTtlSeconds() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["defaultLeaseTtlSeconds"])
+func (r *SecretBackend) DefaultLeaseTtlSeconds() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["defaultLeaseTtlSeconds"])
 }
 
 // A human-friendly description for this backend.
-func (r *SecretBackend) Description() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["description"])
+func (r *SecretBackend) Description() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["description"])
 }
 
 // The maximum TTL that can be requested
 // for credentials issued by this backend.
-func (r *SecretBackend) MaxLeaseTtlSeconds() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["maxLeaseTtlSeconds"])
+func (r *SecretBackend) MaxLeaseTtlSeconds() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["maxLeaseTtlSeconds"])
 }
 
 // The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
-func (r *SecretBackend) Path() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["path"])
+func (r *SecretBackend) Path() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["path"])
 }
 
 // Specifies the URL scheme to use. Defaults to `http`.
-func (r *SecretBackend) Scheme() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["scheme"])
+func (r *SecretBackend) Scheme() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["scheme"])
 }
 
 // The Consul management token this backend should use to issue new tokens.
-func (r *SecretBackend) Token() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["token"])
+func (r *SecretBackend) Token() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["token"])
 }
 
 // Input properties used for looking up and filtering SecretBackend resources.
