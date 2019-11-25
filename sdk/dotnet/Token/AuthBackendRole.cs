@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Vault.Token
+namespace Pulumi.Vault.TokenAuth
 {
     /// <summary>
     /// Manages Token auth backend role in a Vault server. See the [Vault

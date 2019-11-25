@@ -34,7 +34,7 @@ namespace Pulumi.Vault.Github
         /// GitHub team name in "slugified" format.
         /// </summary>
         [Output("team")]
-        public Output<string> Team { get; private set; } = null!;
+        public Output<string> TeamCity { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the blocks of IP addresses which are allowed to use the generated token
@@ -160,7 +160,7 @@ namespace Pulumi.Vault.Github
         /// GitHub team name in "slugified" format.
         /// </summary>
         [Input("team", required: true)]
-        public Input<string> Team { get; set; } = null!;
+        public Input<string> TeamCity { get; set; } = null!;
 
         [Input("tokenBoundCidrs")]
         private InputList<string>? _tokenBoundCidrs;
@@ -259,7 +259,7 @@ namespace Pulumi.Vault.Github
         /// GitHub team name in "slugified" format.
         /// </summary>
         [Input("team")]
-        public Input<string>? Team { get; set; }
+        public Input<string>? TeamCity { get; set; }
 
         [Input("tokenBoundCidrs")]
         private InputList<string>? _tokenBoundCidrs;

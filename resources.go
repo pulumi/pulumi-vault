@@ -96,9 +96,16 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_mfa_duo":                {Tok: makeResource(mainMod, "MfaDuo")},
 			"vault_mount":                  {Tok: makeResource(mainMod, "Mount")},
 			"vault_namespace":              {Tok: makeResource(mainMod, "Namespace")},
-			"vault_policy":                 {Tok: makeResource(mainMod, "Policy")},
-			"vault_rgp_policy":             {Tok: makeResource(mainMod, "RgpPolicy")},
-			"vault_token":                  {Tok: makeResource(mainMod, "Token")},
+			"vault_policy": {
+				Tok: makeResource(mainMod, "Policy"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"policy": {
+						CSharpName: "PolicyContents",
+					},
+				},
+			},
+			"vault_rgp_policy": {Tok: makeResource(mainMod, "RgpPolicy")},
+			"vault_token":      {Tok: makeResource(mainMod, "Token")},
 
 			// AppRole
 			"vault_approle_auth_backend_role":           {Tok: makeResource(appRoleMod, "AuthBackendRole")},
@@ -153,8 +160,22 @@ func Provider() tfbridge.ProviderInfo {
 
 			// Github
 			"vault_github_auth_backend": {Tok: makeResource(githubMod, "AuthBackend")},
-			"vault_github_team":         {Tok: makeResource(githubMod, "Team")},
-			"vault_github_user":         {Tok: makeResource(githubMod, "User")},
+			"vault_github_team": {
+				Tok: makeResource(githubMod, "Team"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"team": {
+						CSharpName: "TeamCity",
+					},
+				},
+			},
+			"vault_github_user": {
+				Tok: makeResource(githubMod, "User"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"user": {
+						CSharpName: "UserName",
+					},
+				},
+			},
 
 			// Identity
 			"vault_identity_entity":       {Tok: makeResource(identityMod, "Entity")},
@@ -300,6 +321,9 @@ func Provider() tfbridge.ProviderInfo {
 			PackageReferences: map[string]string{
 				"Pulumi":                       "1.5.0-*",
 				"System.Collections.Immutable": "1.6.0",
+			},
+			Namespaces: map[string]string{
+				"token": "TokenAuth",
 			},
 		},
 	}

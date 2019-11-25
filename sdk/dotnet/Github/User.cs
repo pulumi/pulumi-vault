@@ -88,7 +88,7 @@ namespace Pulumi.Vault.Github
         /// GitHub user name.
         /// </summary>
         [Output("user")]
-        public Output<string> User { get; private set; } = null!;
+        public Output<string> UserName { get; private set; } = null!;
 
 
         /// <summary>
@@ -226,7 +226,7 @@ namespace Pulumi.Vault.Github
         /// GitHub user name.
         /// </summary>
         [Input("user", required: true)]
-        public Input<string> User { get; set; } = null!;
+        public Input<string> UserName { get; set; } = null!;
 
         public UserArgs()
         {
@@ -325,7 +325,7 @@ namespace Pulumi.Vault.Github
         /// GitHub user name.
         /// </summary>
         [Input("user")]
-        public Input<string>? User { get; set; }
+        public Input<string>? UserName { get; set; }
 
         public UserState()
         {
