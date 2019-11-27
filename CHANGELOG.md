@@ -2,11 +2,14 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+_(none)_
+
+---
+
+## 1.3.0 (2019-11-27)
 * Upgrade to support go 1.13.x
 * Upgrade to pulumi-terraform-bridge v1.4.2
 * Upgrade to v2.6.0 of the Vault Terraform Provider
-
----
 
 ## 1.2.0 (2019-11-15)
 * Add support for DotNet SDK Generation
