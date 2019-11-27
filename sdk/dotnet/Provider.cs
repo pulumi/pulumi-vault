@@ -24,8 +24,8 @@ namespace Pulumi.Vault
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Provider(string name, ProviderArgs args, ResourceOptions? options = null)
-            : base("vault", name, args, MakeResourceOptions(options, ""))
+        public Provider(string name, ProviderArgs? args = null, ResourceOptions? options = null)
+            : base("vault", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
@@ -47,8 +47,8 @@ namespace Pulumi.Vault
         /// <summary>
         /// URL of the root of the target Vault server.
         /// </summary>
-        [Input("address", required: true)]
-        public Input<string> Address { get; set; } = null!;
+        [Input("address")]
+        public Input<string>? Address { get; set; }
 
         [Input("authLogins", json: true)]
         private InputList<Inputs.ProviderAuthLoginsArgs>? _authLogins;
@@ -113,11 +113,19 @@ namespace Pulumi.Vault
         /// <summary>
         /// Token to use to authenticate to Vault.
         /// </summary>
-        [Input("token", required: true)]
-        public Input<string> Token { get; set; } = null!;
+        [Input("token")]
+        public Input<string>? Token { get; set; }
 
         public ProviderArgs()
         {
+            Address = Utilities.GetEnv("VAULT_ADDR");
+            CaCertDir = Utilities.GetEnv("VAULT_CAPATH");
+            CaCertFile = Utilities.GetEnv("VAULT_CACERT");
+            MaxLeaseTtlSeconds = Utilities.GetEnvInt32("TERRAFORM_VAULT_MAX_TTL");
+            MaxRetries = Utilities.GetEnvInt32("VAULT_MAX_RETRIES");
+            Namespace = Utilities.GetEnv("VAULT_NAMESPACE");
+            SkipTlsVerify = Utilities.GetEnvBoolean("VAULT_SKIP_VERIFY");
+            Token = Utilities.GetEnv("VAULT_TOKEN");
         }
     }
 

@@ -69,49 +69,49 @@ func GetBackend(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *Backend) URN() *pulumi.URNOutput {
+func (r *Backend) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *Backend) ID() *pulumi.IDOutput {
+func (r *Backend) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
 // required.
-func (r *Backend) ClientId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["clientId"])
+func (r *Backend) ClientId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["clientId"])
 }
 
 // The client secret for credentials to query the Azure APIs
-func (r *Backend) ClientSecret() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["clientSecret"])
+func (r *Backend) ClientSecret() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["clientSecret"])
 }
 
 // Human-friendly description of the mount for the backend.
-func (r *Backend) Description() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["description"])
+func (r *Backend) Description() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["description"])
 }
 
 // The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
-func (r *Backend) Environment() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["environment"])
+func (r *Backend) Environment() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["environment"])
 }
 
 // Path to mount the backend at.
-func (r *Backend) Path() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["path"])
+func (r *Backend) Path() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["path"])
 }
 
 // The subscription id for the Azure Active Directory.
-func (r *Backend) SubscriptionId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["subscriptionId"])
+func (r *Backend) SubscriptionId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["subscriptionId"])
 }
 
 // The tenant id for the Azure Active Directory organization.
-func (r *Backend) TenantId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["tenantId"])
+func (r *Backend) TenantId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["tenantId"])
 }
 
 // Input properties used for looking up and filtering Backend resources.

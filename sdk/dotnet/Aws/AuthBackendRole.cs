@@ -157,8 +157,7 @@ namespace Pulumi.Vault.Aws
         /// If set, indicates that the
         /// token generated using this role should never expire. The token should be renewed within the
         /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. The maximum allowed lifetime of token issued using this
-        /// role. Specified as a number of seconds.
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Output("period")]
         public Output<int?> Period { get; private set; } = null!;
@@ -240,7 +239,10 @@ namespace Pulumi.Vault.Aws
         public Output<int?> TokenNumUses { get; private set; } = null!;
 
         /// <summary>
-        /// Generated Token's Period
+        /// If set, indicates that the
+        /// token generated using this role should never expire. The token should be renewed within the
+        /// duration specified by this value. At each renewal, the token's TTL will be set to the
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Output("tokenPeriod")]
         public Output<int?> TokenPeriod { get; private set; } = null!;
@@ -285,7 +287,7 @@ namespace Pulumi.Vault.Aws
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthBackendRole(string name, AuthBackendRoleArgs args, CustomResourceOptions? options = null)
-            : base("vault:aws/authBackendRole:AuthBackendRole", name, args, MakeResourceOptions(options, ""))
+            : base("vault:aws/authBackendRole:AuthBackendRole", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
@@ -515,8 +517,7 @@ namespace Pulumi.Vault.Aws
         /// If set, indicates that the
         /// token generated using this role should never expire. The token should be renewed within the
         /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. The maximum allowed lifetime of token issued using this
-        /// role. Specified as a number of seconds.
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
@@ -610,7 +611,10 @@ namespace Pulumi.Vault.Aws
         public Input<int>? TokenNumUses { get; set; }
 
         /// <summary>
-        /// Generated Token's Period
+        /// If set, indicates that the
+        /// token generated using this role should never expire. The token should be renewed within the
+        /// duration specified by this value. At each renewal, the token's TTL will be set to the
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Input("tokenPeriod")]
         public Input<int>? TokenPeriod { get; set; }
@@ -852,8 +856,7 @@ namespace Pulumi.Vault.Aws
         /// If set, indicates that the
         /// token generated using this role should never expire. The token should be renewed within the
         /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. The maximum allowed lifetime of token issued using this
-        /// role. Specified as a number of seconds.
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
@@ -947,7 +950,10 @@ namespace Pulumi.Vault.Aws
         public Input<int>? TokenNumUses { get; set; }
 
         /// <summary>
-        /// Generated Token's Period
+        /// If set, indicates that the
+        /// token generated using this role should never expire. The token should be renewed within the
+        /// duration specified by this value. At each renewal, the token's TTL will be set to the
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Input("tokenPeriod")]
         public Input<int>? TokenPeriod { get; set; }

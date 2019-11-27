@@ -57,30 +57,30 @@ func GetAuthBackendStsRole(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackendStsRole) URN() *pulumi.URNOutput {
+func (r *AuthBackendStsRole) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackendStsRole) ID() *pulumi.IDOutput {
+func (r *AuthBackendStsRole) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The AWS account ID to configure the STS role for.
-func (r *AuthBackendStsRole) AccountId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["accountId"])
+func (r *AuthBackendStsRole) AccountId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["accountId"])
 }
 
 // The path the AWS auth backend being configured was
 // mounted at.  Defaults to `aws`.
-func (r *AuthBackendStsRole) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *AuthBackendStsRole) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // The STS role to assume when verifying requests made
 // by EC2 instances in the account specified by `accountId`.
-func (r *AuthBackendStsRole) StsRole() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["stsRole"])
+func (r *AuthBackendStsRole) StsRole() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["stsRole"])
 }
 
 // Input properties used for looking up and filtering AuthBackendStsRole resources.

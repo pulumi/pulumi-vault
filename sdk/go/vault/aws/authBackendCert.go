@@ -60,12 +60,12 @@ func GetAuthBackendCert(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackendCert) URN() *pulumi.URNOutput {
+func (r *AuthBackendCert) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackendCert) ID() *pulumi.IDOutput {
+func (r *AuthBackendCert) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
@@ -73,26 +73,26 @@ func (r *AuthBackendCert) ID() *pulumi.IDOutput {
 // verify PKCS7 signature of the EC2 instance metadata. You can find this key in
 // the [AWS
 // documentation](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-identity-documents.html).
-func (r *AuthBackendCert) AwsPublicCert() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["awsPublicCert"])
+func (r *AuthBackendCert) AwsPublicCert() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["awsPublicCert"])
 }
 
 // The path the AWS auth backend being configured was
 // mounted at.  Defaults to `aws`.
-func (r *AuthBackendCert) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *AuthBackendCert) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // The name of the certificate.
-func (r *AuthBackendCert) CertName() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["certName"])
+func (r *AuthBackendCert) CertName() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["certName"])
 }
 
 // Either "pkcs7" or "identity", indicating the type of
 // document which can be verified using the given certificate. Defaults to
 // "pkcs7".
-func (r *AuthBackendCert) Type() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["type"])
+func (r *AuthBackendCert) Type() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["type"])
 }
 
 // Input properties used for looking up and filtering AuthBackendCert resources.

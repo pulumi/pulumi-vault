@@ -77,7 +77,7 @@ namespace Pulumi.Vault.Generic
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Endpoint(string name, EndpointArgs args, CustomResourceOptions? options = null)
-            : base("vault:generic/endpoint:Endpoint", name, args, MakeResourceOptions(options, ""))
+            : base("vault:generic/endpoint:Endpoint", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 

@@ -56,28 +56,28 @@ func GetSecretBackendCrlConfig(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *SecretBackendCrlConfig) URN() *pulumi.URNOutput {
+func (r *SecretBackendCrlConfig) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *SecretBackendCrlConfig) ID() *pulumi.IDOutput {
+func (r *SecretBackendCrlConfig) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
-func (r *SecretBackendCrlConfig) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *SecretBackendCrlConfig) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // Disables or enables CRL building.
-func (r *SecretBackendCrlConfig) Disable() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["disable"])
+func (r *SecretBackendCrlConfig) Disable() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["disable"])
 }
 
 // Specifies the time until expiration.
-func (r *SecretBackendCrlConfig) Expiry() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["expiry"])
+func (r *SecretBackendCrlConfig) Expiry() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["expiry"])
 }
 
 // Input properties used for looking up and filtering SecretBackendCrlConfig resources.

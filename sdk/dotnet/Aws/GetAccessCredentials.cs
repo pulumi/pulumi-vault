@@ -13,7 +13,7 @@ namespace Pulumi.Vault.Aws
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/aws_access_credentials.html.markdown.
         /// </summary>
         public static Task<GetAccessCredentialsResult> GetAccessCredentials(GetAccessCredentialsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:aws/getAccessCredentials:getAccessCredentials", args, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:aws/getAccessCredentials:getAccessCredentials", args ?? ResourceArgs.Empty, options.WithVersion());
     }
 
     public sealed class GetAccessCredentialsArgs : Pulumi.ResourceArgs

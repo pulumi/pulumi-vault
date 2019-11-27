@@ -67,33 +67,33 @@ func GetEgpPolicy(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *EgpPolicy) URN() *pulumi.URNOutput {
+func (r *EgpPolicy) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *EgpPolicy) ID() *pulumi.IDOutput {
+func (r *EgpPolicy) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
-func (r *EgpPolicy) EnforcementLevel() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["enforcementLevel"])
+func (r *EgpPolicy) EnforcementLevel() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["enforcementLevel"])
 }
 
 // The name of the policy
-func (r *EgpPolicy) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *EgpPolicy) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // List of paths to which the policy will be applied to
-func (r *EgpPolicy) Paths() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["paths"])
+func (r *EgpPolicy) Paths() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["paths"])
 }
 
 // String containing a Sentinel policy
-func (r *EgpPolicy) Policy() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["policy"])
+func (r *EgpPolicy) Policy() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["policy"])
 }
 
 // Input properties used for looking up and filtering EgpPolicy resources.

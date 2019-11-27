@@ -88,87 +88,87 @@ func GetAuthBackend(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackend) URN() *pulumi.URNOutput {
+func (r *AuthBackend) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackend) ID() *pulumi.IDOutput {
+func (r *AuthBackend) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The accessor of the JWT auth backend
-func (r *AuthBackend) Accessor() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["accessor"])
+func (r *AuthBackend) Accessor() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["accessor"])
 }
 
 // The value against which to match the iss claim in a JWT
-func (r *AuthBackend) BoundIssuer() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["boundIssuer"])
+func (r *AuthBackend) BoundIssuer() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["boundIssuer"])
 }
 
 // The default role to use if none is provided during login
-func (r *AuthBackend) DefaultRole() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["defaultRole"])
+func (r *AuthBackend) DefaultRole() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["defaultRole"])
 }
 
 // The description of the auth backend
-func (r *AuthBackend) Description() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["description"])
+func (r *AuthBackend) Description() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["description"])
 }
 
 // The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
-func (r *AuthBackend) JwksCaPem() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["jwksCaPem"])
+func (r *AuthBackend) JwksCaPem() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["jwksCaPem"])
 }
 
 // JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
-func (r *AuthBackend) JwksUrl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["jwksUrl"])
+func (r *AuthBackend) JwksUrl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["jwksUrl"])
 }
 
 // A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
-func (r *AuthBackend) JwtSupportedAlgs() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["jwtSupportedAlgs"])
+func (r *AuthBackend) JwtSupportedAlgs() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["jwtSupportedAlgs"])
 }
 
 // A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
-func (r *AuthBackend) JwtValidationPubkeys() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["jwtValidationPubkeys"])
+func (r *AuthBackend) JwtValidationPubkeys() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["jwtValidationPubkeys"])
 }
 
 // Client ID used for OIDC backends
-func (r *AuthBackend) OidcClientId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["oidcClientId"])
+func (r *AuthBackend) OidcClientId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["oidcClientId"])
 }
 
 // Client Secret used for OIDC backends
-func (r *AuthBackend) OidcClientSecret() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["oidcClientSecret"])
+func (r *AuthBackend) OidcClientSecret() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["oidcClientSecret"])
 }
 
 // The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
-func (r *AuthBackend) OidcDiscoveryCaPem() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["oidcDiscoveryCaPem"])
+func (r *AuthBackend) OidcDiscoveryCaPem() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["oidcDiscoveryCaPem"])
 }
 
 // The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
-func (r *AuthBackend) OidcDiscoveryUrl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["oidcDiscoveryUrl"])
+func (r *AuthBackend) OidcDiscoveryUrl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["oidcDiscoveryUrl"])
 }
 
 // Path to mount the JWT/OIDC auth backend
-func (r *AuthBackend) Path() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["path"])
+func (r *AuthBackend) Path() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["path"])
 }
 
-func (r *AuthBackend) Tune() *pulumi.Output {
+func (r *AuthBackend) Tune() pulumi.Output {
 	return r.s.State["tune"]
 }
 
 // Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
-func (r *AuthBackend) Type() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["type"])
+func (r *AuthBackend) Type() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["type"])
 }
 
 // Input properties used for looking up and filtering AuthBackend resources.

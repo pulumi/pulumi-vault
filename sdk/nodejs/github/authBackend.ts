@@ -66,7 +66,7 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * (Optional; Deprecated, use `tokenMaxTtl` instead) The maximum allowed lifetime of tokens
+     * (Optional; Deprecated, use `tokenMaxTtl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
      * issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
      */
     public readonly maxTtl!: pulumi.Output<string | undefined>;
@@ -109,7 +109,10 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly tokenNumUses!: pulumi.Output<number | undefined>;
     /**
-     * Generated Token's Period
+     * (Optional) If set, indicates that the
+     * token generated using this role should never expire. The token should be renewed within the
+     * duration specified by this value. At each renewal, the token's TTL will be set to the
+     * value of this field. Specified in seconds.
      */
     public readonly tokenPeriod!: pulumi.Output<number | undefined>;
     /**
@@ -131,7 +134,7 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly tokenType!: pulumi.Output<string | undefined>;
     /**
-     * (Optional; Deprecated, use `tokenTtl` isntead) The TTL period of tokens issued
+     * (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
      * using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
      */
     public readonly ttl!: pulumi.Output<string | undefined>;
@@ -219,7 +222,7 @@ export interface AuthBackendState {
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * (Optional; Deprecated, use `tokenMaxTtl` instead) The maximum allowed lifetime of tokens
+     * (Optional; Deprecated, use `tokenMaxTtl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
      * issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
      */
     readonly maxTtl?: pulumi.Input<string>;
@@ -262,7 +265,10 @@ export interface AuthBackendState {
      */
     readonly tokenNumUses?: pulumi.Input<number>;
     /**
-     * Generated Token's Period
+     * (Optional) If set, indicates that the
+     * token generated using this role should never expire. The token should be renewed within the
+     * duration specified by this value. At each renewal, the token's TTL will be set to the
+     * value of this field. Specified in seconds.
      */
     readonly tokenPeriod?: pulumi.Input<number>;
     /**
@@ -284,7 +290,7 @@ export interface AuthBackendState {
      */
     readonly tokenType?: pulumi.Input<string>;
     /**
-     * (Optional; Deprecated, use `tokenTtl` isntead) The TTL period of tokens issued
+     * (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
      * using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
      */
     readonly ttl?: pulumi.Input<string>;
@@ -306,7 +312,7 @@ export interface AuthBackendArgs {
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * (Optional; Deprecated, use `tokenMaxTtl` instead) The maximum allowed lifetime of tokens
+     * (Optional; Deprecated, use `tokenMaxTtl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
      * issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
      */
     readonly maxTtl?: pulumi.Input<string>;
@@ -349,7 +355,10 @@ export interface AuthBackendArgs {
      */
     readonly tokenNumUses?: pulumi.Input<number>;
     /**
-     * Generated Token's Period
+     * (Optional) If set, indicates that the
+     * token generated using this role should never expire. The token should be renewed within the
+     * duration specified by this value. At each renewal, the token's TTL will be set to the
+     * value of this field. Specified in seconds.
      */
     readonly tokenPeriod?: pulumi.Input<number>;
     /**
@@ -371,7 +380,7 @@ export interface AuthBackendArgs {
      */
     readonly tokenType?: pulumi.Input<string>;
     /**
-     * (Optional; Deprecated, use `tokenTtl` isntead) The TTL period of tokens issued
+     * (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
      * using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
      */
     readonly ttl?: pulumi.Input<string>;

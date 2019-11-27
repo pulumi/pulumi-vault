@@ -51,12 +51,12 @@ func GetOidc(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *Oidc) URN() *pulumi.URNOutput {
+func (r *Oidc) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *Oidc) ID() *pulumi.IDOutput {
+func (r *Oidc) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
@@ -64,8 +64,8 @@ func (r *Oidc) ID() *pulumi.IDOutput {
 // `apiAddr` will be used. The issuer is a case sensitive URL using the https scheme that contains
 // scheme, host, and optionally, port number and path components, but no query or fragment
 // components.
-func (r *Oidc) Issuer() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["issuer"])
+func (r *Oidc) Issuer() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["issuer"])
 }
 
 // Input properties used for looking up and filtering Oidc resources.

@@ -29,6 +29,7 @@ func NewNamespace(ctx *pulumi.Context,
 	} else {
 		inputs["path"] = args.Path
 	}
+	inputs["namespaceId"] = nil
 	s, err := ctx.RegisterResource("vault:index/namespace:Namespace", name, true, inputs, opts...)
 	if err != nil {
 		return nil, err
@@ -42,6 +43,7 @@ func GetNamespace(ctx *pulumi.Context,
 	name string, id pulumi.ID, state *NamespaceState, opts ...pulumi.ResourceOpt) (*Namespace, error) {
 	inputs := make(map[string]interface{})
 	if state != nil {
+		inputs["namespaceId"] = state.NamespaceId
 		inputs["path"] = state.Path
 	}
 	s, err := ctx.ReadResource("vault:index/namespace:Namespace", name, id, inputs, opts...)
@@ -52,22 +54,29 @@ func GetNamespace(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *Namespace) URN() *pulumi.URNOutput {
+func (r *Namespace) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *Namespace) ID() *pulumi.IDOutput {
+func (r *Namespace) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
+// ID of the namepsace.
+func (r *Namespace) NamespaceId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["namespaceId"])
+}
+
 // The path of the namespace. Must not have a trailing `/`
-func (r *Namespace) Path() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["path"])
+func (r *Namespace) Path() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["path"])
 }
 
 // Input properties used for looking up and filtering Namespace resources.
 type NamespaceState struct {
+	// ID of the namepsace.
+	NamespaceId interface{}
 	// The path of the namespace. Must not have a trailing `/`
 	Path interface{}
 }

@@ -78,65 +78,65 @@ func GetSecretBackendRole(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *SecretBackendRole) URN() *pulumi.URNOutput {
+func (r *SecretBackendRole) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *SecretBackendRole) ID() *pulumi.IDOutput {
+func (r *SecretBackendRole) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The unique name of the Vault mount to configure.
-func (r *SecretBackendRole) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *SecretBackendRole) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // The database statements to execute when
 // creating a user.
-func (r *SecretBackendRole) CreationStatements() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["creationStatements"])
+func (r *SecretBackendRole) CreationStatements() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["creationStatements"])
 }
 
 // The unique name of the database connection to use for
 // the role.
-func (r *SecretBackendRole) DbName() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["dbName"])
+func (r *SecretBackendRole) DbName() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["dbName"])
 }
 
 // The default number of seconds for leases for this
 // role.
-func (r *SecretBackendRole) DefaultTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["defaultTtl"])
+func (r *SecretBackendRole) DefaultTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["defaultTtl"])
 }
 
 // The maximum number of seconds for leases for this
 // role.
-func (r *SecretBackendRole) MaxTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["maxTtl"])
+func (r *SecretBackendRole) MaxTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["maxTtl"])
 }
 
 // A unique name to give the role.
-func (r *SecretBackendRole) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *SecretBackendRole) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // The database statements to execute when
 // renewing a user.
-func (r *SecretBackendRole) RenewStatements() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["renewStatements"])
+func (r *SecretBackendRole) RenewStatements() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["renewStatements"])
 }
 
 // The database statements to execute when
 // revoking a user.
-func (r *SecretBackendRole) RevocationStatements() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["revocationStatements"])
+func (r *SecretBackendRole) RevocationStatements() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["revocationStatements"])
 }
 
 // The database statements to execute when
 // rolling back creation due to an error.
-func (r *SecretBackendRole) RollbackStatements() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["rollbackStatements"])
+func (r *SecretBackendRole) RollbackStatements() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["rollbackStatements"])
 }
 
 // Input properties used for looking up and filtering SecretBackendRole resources.

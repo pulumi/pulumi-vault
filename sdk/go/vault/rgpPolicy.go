@@ -61,28 +61,28 @@ func GetRgpPolicy(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *RgpPolicy) URN() *pulumi.URNOutput {
+func (r *RgpPolicy) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *RgpPolicy) ID() *pulumi.IDOutput {
+func (r *RgpPolicy) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
-func (r *RgpPolicy) EnforcementLevel() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["enforcementLevel"])
+func (r *RgpPolicy) EnforcementLevel() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["enforcementLevel"])
 }
 
 // The name of the policy
-func (r *RgpPolicy) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *RgpPolicy) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // String containing a Sentinel policy
-func (r *RgpPolicy) Policy() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["policy"])
+func (r *RgpPolicy) Policy() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["policy"])
 }
 
 // Input properties used for looking up and filtering RgpPolicy resources.

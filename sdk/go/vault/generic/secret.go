@@ -59,12 +59,12 @@ func GetSecret(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *Secret) URN() *pulumi.URNOutput {
+func (r *Secret) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *Secret) ID() *pulumi.IDOutput {
+func (r *Secret) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
@@ -72,21 +72,21 @@ func (r *Secret) ID() *pulumi.IDOutput {
 // Vault and whose values are the corresponding values. This map can only
 // represent string data, so any non-string values returned from Vault are
 // serialized as JSON.
-func (r *Secret) Data() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["data"])
+func (r *Secret) Data() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["data"])
 }
 
 // String containing a JSON-encoded object that will be
 // written as the secret data at the given path.
-func (r *Secret) DataJson() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["dataJson"])
+func (r *Secret) DataJson() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["dataJson"])
 }
 
 // True/false. Set this to true if your vault
 // authentication is not able to read the data. Setting this to `true` will
 // break drift detection. Defaults to false.
-func (r *Secret) DisableRead() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["disableRead"])
+func (r *Secret) DisableRead() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["disableRead"])
 }
 
 // The full logical path at which to write the given data.
@@ -94,8 +94,8 @@ func (r *Secret) DisableRead() *pulumi.BoolOutput {
 // this should be prefixed with `secret/`. Writing to other backends with this
 // resource is possible; consult each backend's documentation to see which
 // endpoints support the `PUT` and `DELETE` methods.
-func (r *Secret) Path() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["path"])
+func (r *Secret) Path() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["path"])
 }
 
 // Input properties used for looking up and filtering Secret resources.

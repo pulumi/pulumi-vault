@@ -30,8 +30,7 @@ class AuthBackendRole(pulumi.CustomResource):
     If set, indicates that the
     token generated using this role should never expire. The token should be renewed within the
     duration specified by this value. At each renewal, the token's TTL will be set to the
-    value of this field. The maximum allowed lifetime of token issued using this
-    role. Specified as a number of seconds.
+    value of this field. Specified in seconds.
     """
     policies: pulumi.Output[list]
     """
@@ -93,6 +92,12 @@ class AuthBackendRole(pulumi.CustomResource):
     if any, in number of seconds to set on the token.
     """
     token_period: pulumi.Output[float]
+    """
+    If set, indicates that the
+    token generated using this role should never expire. The token should be renewed within the
+    duration specified by this value. At each renewal, the token's TTL will be set to the
+    value of this field. Specified in seconds.
+    """
     token_policies: pulumi.Output[list]
     """
     List of policies to encode onto generated tokens. Depending
@@ -128,8 +133,7 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[float] period: If set, indicates that the
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. The maximum allowed lifetime of token issued using this
-               role. Specified as a number of seconds.
+               value of this field. Specified in seconds.
         :param pulumi.Input[list] policies: An array of strings
                specifying the policies to be set on tokens issued using this role.
         :param pulumi.Input[str] role_id: The RoleID of this role. If not specified, one will be
@@ -156,6 +160,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[float] token_num_uses: The
                [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
                if any, in number of seconds to set on the token.
+        :param pulumi.Input[float] token_period: If set, indicates that the
+               token generated using this role should never expire. The token should be renewed within the
+               duration specified by this value. At each renewal, the token's TTL will be set to the
+               value of this field. Specified in seconds.
         :param pulumi.Input[list] token_policies: List of policies to encode onto generated tokens. Depending
                on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[float] token_ttl: The incremental lifetime for generated tokens in number of seconds.
@@ -230,8 +238,7 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[float] period: If set, indicates that the
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. The maximum allowed lifetime of token issued using this
-               role. Specified as a number of seconds.
+               value of this field. Specified in seconds.
         :param pulumi.Input[list] policies: An array of strings
                specifying the policies to be set on tokens issued using this role.
         :param pulumi.Input[str] role_id: The RoleID of this role. If not specified, one will be
@@ -258,6 +265,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[float] token_num_uses: The
                [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
                if any, in number of seconds to set on the token.
+        :param pulumi.Input[float] token_period: If set, indicates that the
+               token generated using this role should never expire. The token should be renewed within the
+               duration specified by this value. At each renewal, the token's TTL will be set to the
+               value of this field. Specified in seconds.
         :param pulumi.Input[list] token_policies: List of policies to encode onto generated tokens. Depending
                on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[float] token_ttl: The incremental lifetime for generated tokens in number of seconds.

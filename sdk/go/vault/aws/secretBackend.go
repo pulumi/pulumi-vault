@@ -69,53 +69,53 @@ func GetSecretBackend(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *SecretBackend) URN() *pulumi.URNOutput {
+func (r *SecretBackend) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *SecretBackend) ID() *pulumi.IDOutput {
+func (r *SecretBackend) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The AWS Access Key ID this backend should use to
 // issue new credentials.
-func (r *SecretBackend) AccessKey() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["accessKey"])
+func (r *SecretBackend) AccessKey() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["accessKey"])
 }
 
 // The default TTL for credentials
 // issued by this backend.
-func (r *SecretBackend) DefaultLeaseTtlSeconds() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["defaultLeaseTtlSeconds"])
+func (r *SecretBackend) DefaultLeaseTtlSeconds() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["defaultLeaseTtlSeconds"])
 }
 
 // A human-friendly description for this backend.
-func (r *SecretBackend) Description() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["description"])
+func (r *SecretBackend) Description() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["description"])
 }
 
 // The maximum TTL that can be requested
 // for credentials issued by this backend.
-func (r *SecretBackend) MaxLeaseTtlSeconds() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["maxLeaseTtlSeconds"])
+func (r *SecretBackend) MaxLeaseTtlSeconds() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["maxLeaseTtlSeconds"])
 }
 
 // The unique path this backend should be mounted at. Must
 // not begin or end with a `/`. Defaults to `aws`.
-func (r *SecretBackend) Path() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["path"])
+func (r *SecretBackend) Path() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["path"])
 }
 
 // The AWS region for API calls. Defaults to `us-east-1`.
-func (r *SecretBackend) Region() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["region"])
+func (r *SecretBackend) Region() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["region"])
 }
 
 // The AWS Secret Key this backend should use to
 // issue new credentials.
-func (r *SecretBackend) SecretKey() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["secretKey"])
+func (r *SecretBackend) SecretKey() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["secretKey"])
 }
 
 // Input properties used for looking up and filtering SecretBackend resources.

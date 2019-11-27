@@ -59,43 +59,43 @@ func GetOidcRole(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *OidcRole) URN() *pulumi.URNOutput {
+func (r *OidcRole) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *OidcRole) ID() *pulumi.IDOutput {
+func (r *OidcRole) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The value that will be included in the `aud` field of all the OIDC identity
 // tokens issued by this role
-func (r *OidcRole) ClientId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["clientId"])
+func (r *OidcRole) ClientId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["clientId"])
 }
 
 // A configured named key, the key must already exist
 // before tokens can be issued.
-func (r *OidcRole) Key() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["key"])
+func (r *OidcRole) Key() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["key"])
 }
 
 // Name of the OIDC Role to create.
-func (r *OidcRole) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *OidcRole) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // The template string to use for generating tokens. This may be in
 // string-ified JSON or base64 format. See the
 // [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
 // for the template format.
-func (r *OidcRole) Template() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["template"])
+func (r *OidcRole) Template() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["template"])
 }
 
 // TTL of the tokens generated against the role in number of seconds.
-func (r *OidcRole) Ttl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["ttl"])
+func (r *OidcRole) Ttl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["ttl"])
 }
 
 // Input properties used for looking up and filtering OidcRole resources.

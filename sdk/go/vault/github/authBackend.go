@@ -99,98 +99,101 @@ func GetAuthBackend(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackend) URN() *pulumi.URNOutput {
+func (r *AuthBackend) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackend) ID() *pulumi.IDOutput {
+func (r *AuthBackend) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
-func (r *AuthBackend) Accessor() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["accessor"])
+func (r *AuthBackend) Accessor() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["accessor"])
 }
 
 // The API endpoint to use. Useful if you
 // are running GitHub Enterprise or an API-compatible authentication server.
-func (r *AuthBackend) BaseUrl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["baseUrl"])
+func (r *AuthBackend) BaseUrl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["baseUrl"])
 }
 
 // Specifies the description of the mount.
 // This overrides the current stored value, if any.
-func (r *AuthBackend) Description() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["description"])
+func (r *AuthBackend) Description() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["description"])
 }
 
-// (Optional; Deprecated, use `tokenMaxTtl` instead) The maximum allowed lifetime of tokens
+// (Optional; Deprecated, use `tokenMaxTtl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
 // issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-func (r *AuthBackend) MaxTtl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["maxTtl"])
+func (r *AuthBackend) MaxTtl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["maxTtl"])
 }
 
 // The organization configured users must be part of.
-func (r *AuthBackend) Organization() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["organization"])
+func (r *AuthBackend) Organization() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["organization"])
 }
 
 // Path where the auth backend is mounted. Defaults to `auth/github`
 // if not specified.
-func (r *AuthBackend) Path() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["path"])
+func (r *AuthBackend) Path() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["path"])
 }
 
 // (Optional) List of CIDR blocks; if set, specifies blocks of IP
 // addresses which can authenticate successfully, and ties the resulting token to these blocks
 // as well.
-func (r *AuthBackend) TokenBoundCidrs() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["tokenBoundCidrs"])
+func (r *AuthBackend) TokenBoundCidrs() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["tokenBoundCidrs"])
 }
 
 // (Optional) If set, will encode an
 // [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
 // onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
 // `tokenMaxTtl` would otherwise allow a renewal.
-func (r *AuthBackend) TokenExplicitMaxTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenExplicitMaxTtl"])
+func (r *AuthBackend) TokenExplicitMaxTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenExplicitMaxTtl"])
 }
 
 // (Optional) The maximum lifetime for generated tokens in number of seconds.
 // Its current value will be referenced at renewal time.
-func (r *AuthBackend) TokenMaxTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenMaxTtl"])
+func (r *AuthBackend) TokenMaxTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenMaxTtl"])
 }
 
 // (Optional) If set, the default policy will not be set on
 // generated tokens; otherwise it will be added to the policies set in token_policies.
-func (r *AuthBackend) TokenNoDefaultPolicy() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["tokenNoDefaultPolicy"])
+func (r *AuthBackend) TokenNoDefaultPolicy() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["tokenNoDefaultPolicy"])
 }
 
 // (Optional) The
 // [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
 // if any, in number of seconds to set on the token.
-func (r *AuthBackend) TokenNumUses() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenNumUses"])
+func (r *AuthBackend) TokenNumUses() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenNumUses"])
 }
 
-// Generated Token's Period
-func (r *AuthBackend) TokenPeriod() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenPeriod"])
+// (Optional) If set, indicates that the
+// token generated using this role should never expire. The token should be renewed within the
+// duration specified by this value. At each renewal, the token's TTL will be set to the
+// value of this field. Specified in seconds.
+func (r *AuthBackend) TokenPeriod() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenPeriod"])
 }
 
 // (Optional) List of policies to encode onto generated tokens. Depending
 // on the auth method, this list may be supplemented by user/group/other values.
-func (r *AuthBackend) TokenPolicies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["tokenPolicies"])
+func (r *AuthBackend) TokenPolicies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["tokenPolicies"])
 }
 
 // (Optional) The incremental lifetime for generated tokens in number of seconds.
 // Its current value will be referenced at renewal time.
-func (r *AuthBackend) TokenTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenTtl"])
+func (r *AuthBackend) TokenTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenTtl"])
 }
 
 // (Optional) The type of token that should be generated. Can be `service`,
@@ -198,17 +201,17 @@ func (r *AuthBackend) TokenTtl() *pulumi.IntOutput {
 // `service` tokens). For token store roles, there are two additional possibilities:
 // `default-service` and `default-batch` which specify the type to return unless the client
 // requests a different type at generation time.
-func (r *AuthBackend) TokenType() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["tokenType"])
+func (r *AuthBackend) TokenType() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["tokenType"])
 }
 
-// (Optional; Deprecated, use `tokenTtl` isntead) The TTL period of tokens issued
+// (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
 // using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-func (r *AuthBackend) Ttl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["ttl"])
+func (r *AuthBackend) Ttl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["ttl"])
 }
 
-func (r *AuthBackend) Tune() *pulumi.Output {
+func (r *AuthBackend) Tune() pulumi.Output {
 	return r.s.State["tune"]
 }
 
@@ -222,7 +225,7 @@ type AuthBackendState struct {
 	// Specifies the description of the mount.
 	// This overrides the current stored value, if any.
 	Description interface{}
-	// (Optional; Deprecated, use `tokenMaxTtl` instead) The maximum allowed lifetime of tokens
+	// (Optional; Deprecated, use `tokenMaxTtl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
 	// issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
 	MaxTtl interface{}
 	// The organization configured users must be part of.
@@ -249,7 +252,10 @@ type AuthBackendState struct {
 	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
 	// if any, in number of seconds to set on the token.
 	TokenNumUses interface{}
-	// Generated Token's Period
+	// (Optional) If set, indicates that the
+	// token generated using this role should never expire. The token should be renewed within the
+	// duration specified by this value. At each renewal, the token's TTL will be set to the
+	// value of this field. Specified in seconds.
 	TokenPeriod interface{}
 	// (Optional) List of policies to encode onto generated tokens. Depending
 	// on the auth method, this list may be supplemented by user/group/other values.
@@ -263,7 +269,7 @@ type AuthBackendState struct {
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
 	TokenType interface{}
-	// (Optional; Deprecated, use `tokenTtl` isntead) The TTL period of tokens issued
+	// (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
 	// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
 	Ttl interface{}
 	Tune interface{}
@@ -277,7 +283,7 @@ type AuthBackendArgs struct {
 	// Specifies the description of the mount.
 	// This overrides the current stored value, if any.
 	Description interface{}
-	// (Optional; Deprecated, use `tokenMaxTtl` instead) The maximum allowed lifetime of tokens
+	// (Optional; Deprecated, use `tokenMaxTtl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
 	// issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
 	MaxTtl interface{}
 	// The organization configured users must be part of.
@@ -304,7 +310,10 @@ type AuthBackendArgs struct {
 	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
 	// if any, in number of seconds to set on the token.
 	TokenNumUses interface{}
-	// Generated Token's Period
+	// (Optional) If set, indicates that the
+	// token generated using this role should never expire. The token should be renewed within the
+	// duration specified by this value. At each renewal, the token's TTL will be set to the
+	// value of this field. Specified in seconds.
 	TokenPeriod interface{}
 	// (Optional) List of policies to encode onto generated tokens. Depending
 	// on the auth method, this list may be supplemented by user/group/other values.
@@ -318,7 +327,7 @@ type AuthBackendArgs struct {
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
 	TokenType interface{}
-	// (Optional; Deprecated, use `tokenTtl` isntead) The TTL period of tokens issued
+	// (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
 	// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
 	Ttl interface{}
 	Tune interface{}

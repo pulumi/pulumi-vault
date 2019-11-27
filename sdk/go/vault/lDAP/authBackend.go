@@ -133,137 +133,140 @@ func GetAuthBackend(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackend) URN() *pulumi.URNOutput {
+func (r *AuthBackend) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackend) ID() *pulumi.IDOutput {
+func (r *AuthBackend) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The accessor for this auth mount.
-func (r *AuthBackend) Accessor() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["accessor"])
+func (r *AuthBackend) Accessor() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["accessor"])
 }
 
 // DN of object to bind when performing user search
-func (r *AuthBackend) Binddn() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["binddn"])
+func (r *AuthBackend) Binddn() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["binddn"])
 }
 
 // Password to use with `binddn` when performing user search
-func (r *AuthBackend) Bindpass() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["bindpass"])
+func (r *AuthBackend) Bindpass() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["bindpass"])
 }
 
 // Trusted CA to validate TLS certificate
-func (r *AuthBackend) Certificate() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["certificate"])
+func (r *AuthBackend) Certificate() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["certificate"])
 }
 
-func (r *AuthBackend) DenyNullBind() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["denyNullBind"])
+func (r *AuthBackend) DenyNullBind() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["denyNullBind"])
 }
 
 // Description for the LDAP auth backend mount
-func (r *AuthBackend) Description() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["description"])
+func (r *AuthBackend) Description() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["description"])
 }
 
-func (r *AuthBackend) Discoverdn() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["discoverdn"])
+func (r *AuthBackend) Discoverdn() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["discoverdn"])
 }
 
 // LDAP attribute to follow on objects returned by groupfilter
-func (r *AuthBackend) Groupattr() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["groupattr"])
+func (r *AuthBackend) Groupattr() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["groupattr"])
 }
 
 // Base DN under which to perform group search
-func (r *AuthBackend) Groupdn() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["groupdn"])
+func (r *AuthBackend) Groupdn() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["groupdn"])
 }
 
 // Go template used to construct group membership query
-func (r *AuthBackend) Groupfilter() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["groupfilter"])
+func (r *AuthBackend) Groupfilter() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["groupfilter"])
 }
 
 // Control whether or TLS certificates must be validated
-func (r *AuthBackend) InsecureTls() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["insecureTls"])
+func (r *AuthBackend) InsecureTls() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["insecureTls"])
 }
 
 // Path to mount the LDAP auth backend under
-func (r *AuthBackend) Path() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["path"])
+func (r *AuthBackend) Path() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["path"])
 }
 
 // Control use of TLS when conecting to LDAP
-func (r *AuthBackend) Starttls() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["starttls"])
+func (r *AuthBackend) Starttls() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["starttls"])
 }
 
 // Maximum acceptable version of TLS
-func (r *AuthBackend) TlsMaxVersion() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["tlsMaxVersion"])
+func (r *AuthBackend) TlsMaxVersion() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["tlsMaxVersion"])
 }
 
 // Minimum acceptable version of TLS
-func (r *AuthBackend) TlsMinVersion() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["tlsMinVersion"])
+func (r *AuthBackend) TlsMinVersion() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["tlsMinVersion"])
 }
 
 // List of CIDR blocks; if set, specifies blocks of IP
 // addresses which can authenticate successfully, and ties the resulting token to these blocks
 // as well.
-func (r *AuthBackend) TokenBoundCidrs() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["tokenBoundCidrs"])
+func (r *AuthBackend) TokenBoundCidrs() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["tokenBoundCidrs"])
 }
 
 // If set, will encode an
 // [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
 // onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
 // `tokenMaxTtl` would otherwise allow a renewal.
-func (r *AuthBackend) TokenExplicitMaxTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenExplicitMaxTtl"])
+func (r *AuthBackend) TokenExplicitMaxTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenExplicitMaxTtl"])
 }
 
 // The maximum lifetime for generated tokens in number of seconds.
 // Its current value will be referenced at renewal time.
-func (r *AuthBackend) TokenMaxTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenMaxTtl"])
+func (r *AuthBackend) TokenMaxTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenMaxTtl"])
 }
 
 // If set, the default policy will not be set on
 // generated tokens; otherwise it will be added to the policies set in token_policies.
-func (r *AuthBackend) TokenNoDefaultPolicy() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["tokenNoDefaultPolicy"])
+func (r *AuthBackend) TokenNoDefaultPolicy() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["tokenNoDefaultPolicy"])
 }
 
 // The
 // [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
 // if any, in number of seconds to set on the token.
-func (r *AuthBackend) TokenNumUses() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenNumUses"])
+func (r *AuthBackend) TokenNumUses() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenNumUses"])
 }
 
-// Generated Token's Period
-func (r *AuthBackend) TokenPeriod() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenPeriod"])
+// If set, indicates that the
+// token generated using this role should never expire. The token should be renewed within the
+// duration specified by this value. At each renewal, the token's TTL will be set to the
+// value of this field. Specified in seconds.
+func (r *AuthBackend) TokenPeriod() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenPeriod"])
 }
 
 // List of policies to encode onto generated tokens. Depending
 // on the auth method, this list may be supplemented by user/group/other values.
-func (r *AuthBackend) TokenPolicies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["tokenPolicies"])
+func (r *AuthBackend) TokenPolicies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["tokenPolicies"])
 }
 
 // The incremental lifetime for generated tokens in number of seconds.
 // Its current value will be referenced at renewal time.
-func (r *AuthBackend) TokenTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenTtl"])
+func (r *AuthBackend) TokenTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenTtl"])
 }
 
 // The type of token that should be generated. Can be `service`,
@@ -271,33 +274,33 @@ func (r *AuthBackend) TokenTtl() *pulumi.IntOutput {
 // `service` tokens). For token store roles, there are two additional possibilities:
 // `default-service` and `default-batch` which specify the type to return unless the client
 // requests a different type at generation time.
-func (r *AuthBackend) TokenType() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["tokenType"])
+func (r *AuthBackend) TokenType() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["tokenType"])
 }
 
 // The userPrincipalDomain used to construct UPN string
-func (r *AuthBackend) Upndomain() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["upndomain"])
+func (r *AuthBackend) Upndomain() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["upndomain"])
 }
 
 // The URL of the LDAP server
-func (r *AuthBackend) Url() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["url"])
+func (r *AuthBackend) Url() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["url"])
 }
 
 // Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
-func (r *AuthBackend) UseTokenGroups() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["useTokenGroups"])
+func (r *AuthBackend) UseTokenGroups() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["useTokenGroups"])
 }
 
 // Attribute on user object matching username passed in
-func (r *AuthBackend) Userattr() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["userattr"])
+func (r *AuthBackend) Userattr() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["userattr"])
 }
 
 // Base DN under which to perform user search
-func (r *AuthBackend) Userdn() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["userdn"])
+func (r *AuthBackend) Userdn() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["userdn"])
 }
 
 // Input properties used for looking up and filtering AuthBackend resources.
@@ -349,7 +352,10 @@ type AuthBackendState struct {
 	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
 	// if any, in number of seconds to set on the token.
 	TokenNumUses interface{}
-	// Generated Token's Period
+	// If set, indicates that the
+	// token generated using this role should never expire. The token should be renewed within the
+	// duration specified by this value. At each renewal, the token's TTL will be set to the
+	// value of this field. Specified in seconds.
 	TokenPeriod interface{}
 	// List of policies to encode onto generated tokens. Depending
 	// on the auth method, this list may be supplemented by user/group/other values.
@@ -422,7 +428,10 @@ type AuthBackendArgs struct {
 	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
 	// if any, in number of seconds to set on the token.
 	TokenNumUses interface{}
-	// Generated Token's Period
+	// If set, indicates that the
+	// token generated using this role should never expire. The token should be renewed within the
+	// duration specified by this value. At each renewal, the token's TTL will be set to the
+	// value of this field. Specified in seconds.
 	TokenPeriod interface{}
 	// List of policies to encode onto generated tokens. Depending
 	// on the auth method, this list may be supplemented by user/group/other values.

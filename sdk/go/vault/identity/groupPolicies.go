@@ -8,6 +8,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// Manages policies for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_group_policies.html.markdown.
 type GroupPolicies struct {
 	s *pulumi.ResourceState
@@ -59,53 +61,53 @@ func GetGroupPolicies(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *GroupPolicies) URN() *pulumi.URNOutput {
+func (r *GroupPolicies) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *GroupPolicies) ID() *pulumi.IDOutput {
+func (r *GroupPolicies) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
-// Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
-func (r *GroupPolicies) Exclusive() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["exclusive"])
+// Defaults to `true`.
+func (r *GroupPolicies) Exclusive() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["exclusive"])
 }
 
-// ID of the group.
-func (r *GroupPolicies) GroupId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["groupId"])
+// Group ID to assign policies to.
+func (r *GroupPolicies) GroupId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["groupId"])
 }
 
-// Name of the group.
-func (r *GroupPolicies) GroupName() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["groupName"])
+// The name of the group that are assigned the policies.
+func (r *GroupPolicies) GroupName() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["groupName"])
 }
 
-// Policies to be tied to the group.
-func (r *GroupPolicies) Policies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["policies"])
+// List of policies to assign to the group
+func (r *GroupPolicies) Policies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
 // Input properties used for looking up and filtering GroupPolicies resources.
 type GroupPoliciesState struct {
-	// Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
+	// Defaults to `true`.
 	Exclusive interface{}
-	// ID of the group.
+	// Group ID to assign policies to.
 	GroupId interface{}
-	// Name of the group.
+	// The name of the group that are assigned the policies.
 	GroupName interface{}
-	// Policies to be tied to the group.
+	// List of policies to assign to the group
 	Policies interface{}
 }
 
 // The set of arguments for constructing a GroupPolicies resource.
 type GroupPoliciesArgs struct {
-	// Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
+	// Defaults to `true`.
 	Exclusive interface{}
-	// ID of the group.
+	// Group ID to assign policies to.
 	GroupId interface{}
-	// Policies to be tied to the group.
+	// List of policies to assign to the group
 	Policies interface{}
 }

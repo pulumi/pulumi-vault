@@ -59,33 +59,33 @@ func GetSecretBackendConfigUrls(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *SecretBackendConfigUrls) URN() *pulumi.URNOutput {
+func (r *SecretBackendConfigUrls) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *SecretBackendConfigUrls) ID() *pulumi.IDOutput {
+func (r *SecretBackendConfigUrls) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
-func (r *SecretBackendConfigUrls) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *SecretBackendConfigUrls) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // Specifies the URL values for the CRL Distribution Points field.
-func (r *SecretBackendConfigUrls) CrlDistributionPoints() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["crlDistributionPoints"])
+func (r *SecretBackendConfigUrls) CrlDistributionPoints() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["crlDistributionPoints"])
 }
 
 // Specifies the URL values for the Issuing Certificate field.
-func (r *SecretBackendConfigUrls) IssuingCertificates() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["issuingCertificates"])
+func (r *SecretBackendConfigUrls) IssuingCertificates() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["issuingCertificates"])
 }
 
 // Specifies the URL values for the OCSP Servers field.
-func (r *SecretBackendConfigUrls) OcspServers() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["ocspServers"])
+func (r *SecretBackendConfigUrls) OcspServers() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["ocspServers"])
 }
 
 // Input properties used for looking up and filtering SecretBackendConfigUrls resources.

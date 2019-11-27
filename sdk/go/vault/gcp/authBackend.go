@@ -64,46 +64,46 @@ func GetAuthBackend(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackend) URN() *pulumi.URNOutput {
+func (r *AuthBackend) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackend) ID() *pulumi.IDOutput {
+func (r *AuthBackend) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The clients email associated with the credentials
-func (r *AuthBackend) ClientEmail() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["clientEmail"])
+func (r *AuthBackend) ClientEmail() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["clientEmail"])
 }
 
 // The Client ID of the credentials
-func (r *AuthBackend) ClientId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["clientId"])
+func (r *AuthBackend) ClientId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["clientId"])
 }
 
 // A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
-func (r *AuthBackend) Credentials() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["credentials"])
+func (r *AuthBackend) Credentials() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["credentials"])
 }
 
-func (r *AuthBackend) Description() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["description"])
+func (r *AuthBackend) Description() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["description"])
 }
 
-func (r *AuthBackend) Path() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["path"])
+func (r *AuthBackend) Path() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["path"])
 }
 
 // The ID of the private key from the credentials
-func (r *AuthBackend) PrivateKeyId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["privateKeyId"])
+func (r *AuthBackend) PrivateKeyId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["privateKeyId"])
 }
 
 // The GCP Project ID
-func (r *AuthBackend) ProjectId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["projectId"])
+func (r *AuthBackend) ProjectId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["projectId"])
 }
 
 // Input properties used for looking up and filtering AuthBackend resources.

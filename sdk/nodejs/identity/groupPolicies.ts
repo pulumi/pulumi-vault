@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * Manages policies for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
+ *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_group_policies.html.markdown.
  */
 export class GroupPolicies extends pulumi.CustomResource {
@@ -35,19 +37,19 @@ export class GroupPolicies extends pulumi.CustomResource {
     }
 
     /**
-     * Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
+     * Defaults to `true`.
      */
     public readonly exclusive!: pulumi.Output<boolean | undefined>;
     /**
-     * ID of the group.
+     * Group ID to assign policies to.
      */
     public readonly groupId!: pulumi.Output<string>;
     /**
-     * Name of the group.
+     * The name of the group that are assigned the policies.
      */
     public /*out*/ readonly groupName!: pulumi.Output<string>;
     /**
-     * Policies to be tied to the group.
+     * List of policies to assign to the group
      */
     public readonly policies!: pulumi.Output<string[]>;
 
@@ -96,19 +98,19 @@ export class GroupPolicies extends pulumi.CustomResource {
  */
 export interface GroupPoliciesState {
     /**
-     * Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
+     * Defaults to `true`.
      */
     readonly exclusive?: pulumi.Input<boolean>;
     /**
-     * ID of the group.
+     * Group ID to assign policies to.
      */
     readonly groupId?: pulumi.Input<string>;
     /**
-     * Name of the group.
+     * The name of the group that are assigned the policies.
      */
     readonly groupName?: pulumi.Input<string>;
     /**
-     * Policies to be tied to the group.
+     * List of policies to assign to the group
      */
     readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -118,15 +120,15 @@ export interface GroupPoliciesState {
  */
 export interface GroupPoliciesArgs {
     /**
-     * Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
+     * Defaults to `true`.
      */
     readonly exclusive?: pulumi.Input<boolean>;
     /**
-     * ID of the group.
+     * Group ID to assign policies to.
      */
     readonly groupId: pulumi.Input<string>;
     /**
-     * Policies to be tied to the group.
+     * List of policies to assign to the group
      */
     readonly policies: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -123,138 +123,138 @@ func GetSecretBackendRootCert(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *SecretBackendRootCert) URN() *pulumi.URNOutput {
+func (r *SecretBackendRootCert) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *SecretBackendRootCert) ID() *pulumi.IDOutput {
+func (r *SecretBackendRootCert) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // List of alternative names
-func (r *SecretBackendRootCert) AltNames() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["altNames"])
+func (r *SecretBackendRootCert) AltNames() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["altNames"])
 }
 
 // The PKI secret backend the resource belongs to.
-func (r *SecretBackendRootCert) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *SecretBackendRootCert) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // The certificate
-func (r *SecretBackendRootCert) Certificate() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["certificate"])
+func (r *SecretBackendRootCert) Certificate() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["certificate"])
 }
 
 // CN of intermediate to create
-func (r *SecretBackendRootCert) CommonName() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["commonName"])
+func (r *SecretBackendRootCert) CommonName() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["commonName"])
 }
 
 // The country
-func (r *SecretBackendRootCert) Country() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["country"])
+func (r *SecretBackendRootCert) Country() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["country"])
 }
 
 // Flag to exclude CN from SANs
-func (r *SecretBackendRootCert) ExcludeCnFromSans() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["excludeCnFromSans"])
+func (r *SecretBackendRootCert) ExcludeCnFromSans() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["excludeCnFromSans"])
 }
 
 // The format of data
-func (r *SecretBackendRootCert) Format() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["format"])
+func (r *SecretBackendRootCert) Format() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["format"])
 }
 
 // List of alternative IPs
-func (r *SecretBackendRootCert) IpSans() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["ipSans"])
+func (r *SecretBackendRootCert) IpSans() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["ipSans"])
 }
 
 // The issuing CA
-func (r *SecretBackendRootCert) IssuingCa() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["issuingCa"])
+func (r *SecretBackendRootCert) IssuingCa() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["issuingCa"])
 }
 
 // The number of bits to use
-func (r *SecretBackendRootCert) KeyBits() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["keyBits"])
+func (r *SecretBackendRootCert) KeyBits() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["keyBits"])
 }
 
 // The desired key type
-func (r *SecretBackendRootCert) KeyType() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["keyType"])
+func (r *SecretBackendRootCert) KeyType() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["keyType"])
 }
 
 // The locality
-func (r *SecretBackendRootCert) Locality() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["locality"])
+func (r *SecretBackendRootCert) Locality() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["locality"])
 }
 
 // The maximum path length to encode in the generated certificate
-func (r *SecretBackendRootCert) MaxPathLength() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["maxPathLength"])
+func (r *SecretBackendRootCert) MaxPathLength() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["maxPathLength"])
 }
 
 // The organization
-func (r *SecretBackendRootCert) Organization() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["organization"])
+func (r *SecretBackendRootCert) Organization() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["organization"])
 }
 
 // List of other SANs
-func (r *SecretBackendRootCert) OtherSans() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["otherSans"])
+func (r *SecretBackendRootCert) OtherSans() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["otherSans"])
 }
 
 // The organization unit
-func (r *SecretBackendRootCert) Ou() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["ou"])
+func (r *SecretBackendRootCert) Ou() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["ou"])
 }
 
 // List of domains for which certificates are allowed to be issued
-func (r *SecretBackendRootCert) PermittedDnsDomains() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["permittedDnsDomains"])
+func (r *SecretBackendRootCert) PermittedDnsDomains() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["permittedDnsDomains"])
 }
 
 // The postal code
-func (r *SecretBackendRootCert) PostalCode() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["postalCode"])
+func (r *SecretBackendRootCert) PostalCode() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["postalCode"])
 }
 
 // The private key format
-func (r *SecretBackendRootCert) PrivateKeyFormat() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["privateKeyFormat"])
+func (r *SecretBackendRootCert) PrivateKeyFormat() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["privateKeyFormat"])
 }
 
 // The province
-func (r *SecretBackendRootCert) Province() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["province"])
+func (r *SecretBackendRootCert) Province() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["province"])
 }
 
 // The serial
-func (r *SecretBackendRootCert) Serial() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["serial"])
+func (r *SecretBackendRootCert) Serial() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["serial"])
 }
 
 // The street address
-func (r *SecretBackendRootCert) StreetAddress() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["streetAddress"])
+func (r *SecretBackendRootCert) StreetAddress() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["streetAddress"])
 }
 
 // Time to live
-func (r *SecretBackendRootCert) Ttl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["ttl"])
+func (r *SecretBackendRootCert) Ttl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["ttl"])
 }
 
 // Type of intermediate to create. Must be either \"exported\" or \"internal\"
-func (r *SecretBackendRootCert) Type() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["type"])
+func (r *SecretBackendRootCert) Type() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["type"])
 }
 
 // List of alternative URIs
-func (r *SecretBackendRootCert) UriSans() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["uriSans"])
+func (r *SecretBackendRootCert) UriSans() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["uriSans"])
 }
 
 // Input properties used for looking up and filtering SecretBackendRootCert resources.

@@ -59,33 +59,33 @@ func GetAudit(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *Audit) URN() *pulumi.URNOutput {
+func (r *Audit) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *Audit) ID() *pulumi.IDOutput {
+func (r *Audit) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Human-friendly description of the audit device.
-func (r *Audit) Description() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["description"])
+func (r *Audit) Description() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["description"])
 }
 
 // Configuration options to pass to the audit device itself.
-func (r *Audit) Options() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["options"])
+func (r *Audit) Options() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["options"])
 }
 
 // The path to mount the audit device. This defaults to the type.
-func (r *Audit) Path() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["path"])
+func (r *Audit) Path() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["path"])
 }
 
 // Type of the audit device, such as 'file'.
-func (r *Audit) Type() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["type"])
+func (r *Audit) Type() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["type"])
 }
 
 // Input properties used for looking up and filtering Audit resources.

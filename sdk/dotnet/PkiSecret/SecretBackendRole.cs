@@ -239,7 +239,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretBackendRole(string name, SecretBackendRoleArgs args, CustomResourceOptions? options = null)
-            : base("vault:pkiSecret/secretBackendRole:SecretBackendRole", name, args, MakeResourceOptions(options, ""))
+            : base("vault:pkiSecret/secretBackendRole:SecretBackendRole", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 

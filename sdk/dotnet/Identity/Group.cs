@@ -17,8 +17,7 @@ namespace Pulumi.Vault.Identity
     public partial class Group : Pulumi.CustomResource
     {
         /// <summary>
-        /// Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned
-        /// policies.
+        /// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
         /// </summary>
         [Output("externalPolicies")]
         public Output<bool?> ExternalPolicies { get; private set; } = null!;
@@ -68,7 +67,7 @@ namespace Pulumi.Vault.Identity
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Group(string name, GroupArgs? args = null, CustomResourceOptions? options = null)
-            : base("vault:identity/group:Group", name, args, MakeResourceOptions(options, ""))
+            : base("vault:identity/group:Group", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
@@ -106,8 +105,7 @@ namespace Pulumi.Vault.Identity
     public sealed class GroupArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned
-        /// policies.
+        /// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
         /// </summary>
         [Input("externalPolicies")]
         public Input<bool>? ExternalPolicies { get; set; }
@@ -180,8 +178,7 @@ namespace Pulumi.Vault.Identity
     public sealed class GroupState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned
-        /// policies.
+        /// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
         /// </summary>
         [Input("externalPolicies")]
         public Input<bool>? ExternalPolicies { get; set; }

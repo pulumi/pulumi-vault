@@ -57,28 +57,28 @@ func GetEntityAlias(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *EntityAlias) URN() *pulumi.URNOutput {
+func (r *EntityAlias) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *EntityAlias) ID() *pulumi.IDOutput {
+func (r *EntityAlias) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Entity ID to which this alias belongs to.
-func (r *EntityAlias) CanonicalId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["canonicalId"])
+func (r *EntityAlias) CanonicalId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["canonicalId"])
 }
 
 // Accessor of the mount to which the alias should belong to.
-func (r *EntityAlias) MountAccessor() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["mountAccessor"])
+func (r *EntityAlias) MountAccessor() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["mountAccessor"])
 }
 
 // Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
-func (r *EntityAlias) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *EntityAlias) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // Input properties used for looking up and filtering EntityAlias resources.

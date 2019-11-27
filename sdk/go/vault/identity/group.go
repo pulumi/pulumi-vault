@@ -66,53 +66,53 @@ func GetGroup(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *Group) URN() *pulumi.URNOutput {
+func (r *Group) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *Group) ID() *pulumi.IDOutput {
+func (r *Group) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
-// Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned policies.
-func (r *Group) ExternalPolicies() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["externalPolicies"])
+// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+func (r *Group) ExternalPolicies() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["externalPolicies"])
 }
 
 // A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
-func (r *Group) MemberEntityIds() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["memberEntityIds"])
+func (r *Group) MemberEntityIds() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["memberEntityIds"])
 }
 
 // A list of Group IDs to be assigned as group members.
-func (r *Group) MemberGroupIds() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["memberGroupIds"])
+func (r *Group) MemberGroupIds() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["memberGroupIds"])
 }
 
 // A Map of additional metadata to associate with the group.
-func (r *Group) Metadata() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["metadata"])
+func (r *Group) Metadata() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["metadata"])
 }
 
 // Name of the identity group to create.
-func (r *Group) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *Group) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // A list of policies to apply to the group.
-func (r *Group) Policies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["policies"])
+func (r *Group) Policies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
 // Type of the group, internal or external. Defaults to `internal`.
-func (r *Group) Type() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["type"])
+func (r *Group) Type() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["type"])
 }
 
 // Input properties used for looking up and filtering Group resources.
 type GroupState struct {
-	// Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned policies.
+	// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
 	ExternalPolicies interface{}
 	// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberEntityIds interface{}
@@ -130,7 +130,7 @@ type GroupState struct {
 
 // The set of arguments for constructing a Group resource.
 type GroupArgs struct {
-	// Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned policies.
+	// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
 	ExternalPolicies interface{}
 	// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberEntityIds interface{}

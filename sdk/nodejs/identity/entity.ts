@@ -39,6 +39,10 @@ export class Entity extends pulumi.CustomResource {
      */
     public readonly disabled!: pulumi.Output<boolean | undefined>;
     /**
+     * `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+     */
+    public readonly externalPolicies!: pulumi.Output<boolean | undefined>;
+    /**
      * A Map of additional metadata to associate with the user.
      */
     public readonly metadata!: pulumi.Output<{[key: string]: string} | undefined>;
@@ -64,12 +68,14 @@ export class Entity extends pulumi.CustomResource {
         if (opts && opts.id) {
             const state = argsOrState as EntityState | undefined;
             inputs["disabled"] = state ? state.disabled : undefined;
+            inputs["externalPolicies"] = state ? state.externalPolicies : undefined;
             inputs["metadata"] = state ? state.metadata : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["policies"] = state ? state.policies : undefined;
         } else {
             const args = argsOrState as EntityArgs | undefined;
             inputs["disabled"] = args ? args.disabled : undefined;
+            inputs["externalPolicies"] = args ? args.externalPolicies : undefined;
             inputs["metadata"] = args ? args.metadata : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["policies"] = args ? args.policies : undefined;
@@ -94,6 +100,10 @@ export interface EntityState {
      */
     readonly disabled?: pulumi.Input<boolean>;
     /**
+     * `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+     */
+    readonly externalPolicies?: pulumi.Input<boolean>;
+    /**
      * A Map of additional metadata to associate with the user.
      */
     readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
@@ -115,6 +125,10 @@ export interface EntityArgs {
      * True/false Is this entity currently disabled. Defaults to `false`
      */
     readonly disabled?: pulumi.Input<boolean>;
+    /**
+     * `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+     */
+    readonly externalPolicies?: pulumi.Input<boolean>;
     /**
      * A Map of additional metadata to associate with the user.
      */

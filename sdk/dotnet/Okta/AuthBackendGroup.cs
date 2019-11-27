@@ -42,7 +42,7 @@ namespace Pulumi.Vault.Okta
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthBackendGroup(string name, AuthBackendGroupArgs args, CustomResourceOptions? options = null)
-            : base("vault:okta/authBackendGroup:AuthBackendGroup", name, args, MakeResourceOptions(options, ""))
+            : base("vault:okta/authBackendGroup:AuthBackendGroup", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 

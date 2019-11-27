@@ -56,33 +56,33 @@ func GetSecretBackendCa(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *SecretBackendCa) URN() *pulumi.URNOutput {
+func (r *SecretBackendCa) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *SecretBackendCa) ID() *pulumi.IDOutput {
+func (r *SecretBackendCa) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The path where the SSH secret backend is mounted. Defaults to 'ssh'
-func (r *SecretBackendCa) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *SecretBackendCa) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // Whether Vault should generate the signing key pair internally. Defaults to true
-func (r *SecretBackendCa) GenerateSigningKey() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["generateSigningKey"])
+func (r *SecretBackendCa) GenerateSigningKey() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["generateSigningKey"])
 }
 
 // The private key part the SSH CA key pair; required if generateSigningKey is false.
-func (r *SecretBackendCa) PrivateKey() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["privateKey"])
+func (r *SecretBackendCa) PrivateKey() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["privateKey"])
 }
 
 // The public key part the SSH CA key pair; required if generateSigningKey is false.
-func (r *SecretBackendCa) PublicKey() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["publicKey"])
+func (r *SecretBackendCa) PublicKey() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["publicKey"])
 }
 
 // Input properties used for looking up and filtering SecretBackendCa resources.

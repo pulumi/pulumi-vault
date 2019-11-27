@@ -33,7 +33,7 @@ namespace Pulumi.Vault.Identity
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public OidcKeyAllowedClientID(string name, OidcKeyAllowedClientIDArgs args, CustomResourceOptions? options = null)
-            : base("vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID", name, args, MakeResourceOptions(options, ""))
+            : base("vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 

@@ -129,7 +129,7 @@ namespace Pulumi.Vault.Transit
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretBackendKey(string name, SecretBackendKeyArgs args, CustomResourceOptions? options = null)
-            : base("vault:transit/secretBackendKey:SecretBackendKey", name, args, MakeResourceOptions(options, ""))
+            : base("vault:transit/secretBackendKey:SecretBackendKey", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 

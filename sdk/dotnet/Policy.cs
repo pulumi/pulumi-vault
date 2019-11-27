@@ -19,7 +19,7 @@ namespace Pulumi.Vault
         /// String containing a Vault policy
         /// </summary>
         [Output("policy")]
-        public Output<string> Policy { get; private set; } = null!;
+        public Output<string> PolicyContents { get; private set; } = null!;
 
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Pulumi.Vault
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Policy(string name, PolicyArgs args, CustomResourceOptions? options = null)
-            : base("vault:index/policy:Policy", name, args, MakeResourceOptions(options, ""))
+            : base("vault:index/policy:Policy", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
@@ -77,7 +77,7 @@ namespace Pulumi.Vault
         /// String containing a Vault policy
         /// </summary>
         [Input("policy", required: true)]
-        public Input<string> Policy { get; set; } = null!;
+        public Input<string> PolicyContents { get; set; } = null!;
 
         public PolicyArgs()
         {
@@ -96,7 +96,7 @@ namespace Pulumi.Vault
         /// String containing a Vault policy
         /// </summary>
         [Input("policy")]
-        public Input<string>? Policy { get; set; }
+        public Input<string>? PolicyContents { get; set; }
 
         public PolicyState()
         {

@@ -15,7 +15,7 @@ namespace Pulumi.Vault.AppRole
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/approle_auth_backend_role_id.html.markdown.
         /// </summary>
         public static Task<GetAuthBackendRoleIdResult> GetAuthBackendRoleId(GetAuthBackendRoleIdArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleIdResult>("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleIdResult>("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args ?? ResourceArgs.Empty, options.WithVersion());
     }
 
     public sealed class GetAuthBackendRoleIdArgs : Pulumi.ResourceArgs

@@ -70,24 +70,24 @@ func GetEndpoint(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *Endpoint) URN() *pulumi.URNOutput {
+func (r *Endpoint) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *Endpoint) ID() *pulumi.IDOutput {
+func (r *Endpoint) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // String containing a JSON-encoded object that will be
 // written to the given path as the secret data.
-func (r *Endpoint) DataJson() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["dataJson"])
+func (r *Endpoint) DataJson() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["dataJson"])
 }
 
 // Don't attempt to delete the path from Vault if true
-func (r *Endpoint) DisableDelete() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["disableDelete"])
+func (r *Endpoint) DisableDelete() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["disableDelete"])
 }
 
 // True/false. Set this to true if your vault
@@ -95,36 +95,36 @@ func (r *Endpoint) DisableDelete() *pulumi.BoolOutput {
 // not support the `GET` method. Setting this to `true` will break drift
 // detection. You should set this to `true` for endpoints that are
 // write-only. Defaults to false.
-func (r *Endpoint) DisableRead() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["disableRead"])
+func (r *Endpoint) DisableRead() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["disableRead"])
 }
 
 // When reading, disregard fields not present in data_json
-func (r *Endpoint) IgnoreAbsentFields() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["ignoreAbsentFields"])
+func (r *Endpoint) IgnoreAbsentFields() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["ignoreAbsentFields"])
 }
 
 // The full logical path at which to write the given
 // data. Consult each backend's documentation to see which endpoints
 // support the `PUT` methods and to determine whether they also support
 // `DELETE` and `GET`.
-func (r *Endpoint) Path() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["path"])
+func (r *Endpoint) Path() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["path"])
 }
 
 // Map of strings returned by write operation
-func (r *Endpoint) WriteData() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["writeData"])
+func (r *Endpoint) WriteData() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["writeData"])
 }
 
 // JSON data returned by write operation
-func (r *Endpoint) WriteDataJson() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["writeDataJson"])
+func (r *Endpoint) WriteDataJson() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["writeDataJson"])
 }
 
 // Top-level fields returned by write to persist in state
-func (r *Endpoint) WriteFields() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["writeFields"])
+func (r *Endpoint) WriteFields() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["writeFields"])
 }
 
 // Input properties used for looking up and filtering Endpoint resources.

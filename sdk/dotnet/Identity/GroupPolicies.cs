@@ -8,31 +8,32 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Identity
 {
     /// <summary>
+    /// Manages policies for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_group_policies.html.markdown.
     /// </summary>
     public partial class GroupPolicies : Pulumi.CustomResource
     {
         /// <summary>
-        /// Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive
-        /// management
+        /// Defaults to `true`.
         /// </summary>
         [Output("exclusive")]
         public Output<bool?> Exclusive { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the group.
+        /// Group ID to assign policies to.
         /// </summary>
         [Output("groupId")]
         public Output<string> GroupId { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the group.
+        /// The name of the group that are assigned the policies.
         /// </summary>
         [Output("groupName")]
         public Output<string> GroupName { get; private set; } = null!;
 
         /// <summary>
-        /// Policies to be tied to the group.
+        /// List of policies to assign to the group
         /// </summary>
         [Output("policies")]
         public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
@@ -46,7 +47,7 @@ namespace Pulumi.Vault.Identity
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public GroupPolicies(string name, GroupPoliciesArgs args, CustomResourceOptions? options = null)
-            : base("vault:identity/groupPolicies:GroupPolicies", name, args, MakeResourceOptions(options, ""))
+            : base("vault:identity/groupPolicies:GroupPolicies", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
@@ -84,14 +85,13 @@ namespace Pulumi.Vault.Identity
     public sealed class GroupPoliciesArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive
-        /// management
+        /// Defaults to `true`.
         /// </summary>
         [Input("exclusive")]
         public Input<bool>? Exclusive { get; set; }
 
         /// <summary>
-        /// ID of the group.
+        /// Group ID to assign policies to.
         /// </summary>
         [Input("groupId", required: true)]
         public Input<string> GroupId { get; set; } = null!;
@@ -100,7 +100,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _policies;
 
         /// <summary>
-        /// Policies to be tied to the group.
+        /// List of policies to assign to the group
         /// </summary>
         public InputList<string> Policies
         {
@@ -116,20 +116,19 @@ namespace Pulumi.Vault.Identity
     public sealed class GroupPoliciesState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive
-        /// management
+        /// Defaults to `true`.
         /// </summary>
         [Input("exclusive")]
         public Input<bool>? Exclusive { get; set; }
 
         /// <summary>
-        /// ID of the group.
+        /// Group ID to assign policies to.
         /// </summary>
         [Input("groupId")]
         public Input<string>? GroupId { get; set; }
 
         /// <summary>
-        /// Name of the group.
+        /// The name of the group that are assigned the policies.
         /// </summary>
         [Input("groupName")]
         public Input<string>? GroupName { get; set; }
@@ -138,7 +137,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _policies;
 
         /// <summary>
-        /// Policies to be tied to the group.
+        /// List of policies to assign to the group
         /// </summary>
         public InputList<string> Policies
         {

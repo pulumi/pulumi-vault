@@ -85,75 +85,75 @@ func GetUser(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *User) URN() *pulumi.URNOutput {
+func (r *User) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *User) ID() *pulumi.IDOutput {
+func (r *User) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Path where the github auth backend is mounted. Defaults to `github`
 // if not specified.
-func (r *User) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *User) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // An array of strings specifying the policies to be set on tokens issued
 // using this role.
-func (r *User) Policies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["policies"])
+func (r *User) Policies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
 // Specifies the blocks of IP addresses which are allowed to use the generated token
-func (r *User) TokenBoundCidrs() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["tokenBoundCidrs"])
+func (r *User) TokenBoundCidrs() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["tokenBoundCidrs"])
 }
 
 // Generated Token's Explicit Maximum TTL in seconds
-func (r *User) TokenExplicitMaxTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenExplicitMaxTtl"])
+func (r *User) TokenExplicitMaxTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenExplicitMaxTtl"])
 }
 
 // The maximum lifetime of the generated token
-func (r *User) TokenMaxTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenMaxTtl"])
+func (r *User) TokenMaxTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenMaxTtl"])
 }
 
 // If true, the 'default' policy will not automatically be added to generated tokens
-func (r *User) TokenNoDefaultPolicy() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["tokenNoDefaultPolicy"])
+func (r *User) TokenNoDefaultPolicy() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["tokenNoDefaultPolicy"])
 }
 
 // The maximum number of times a token may be used, a value of zero means unlimited
-func (r *User) TokenNumUses() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenNumUses"])
+func (r *User) TokenNumUses() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenNumUses"])
 }
 
 // Generated Token's Period
-func (r *User) TokenPeriod() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenPeriod"])
+func (r *User) TokenPeriod() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenPeriod"])
 }
 
 // Generated Token's Policies
-func (r *User) TokenPolicies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["tokenPolicies"])
+func (r *User) TokenPolicies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["tokenPolicies"])
 }
 
 // The initial ttl of the token to generate in seconds
-func (r *User) TokenTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenTtl"])
+func (r *User) TokenTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenTtl"])
 }
 
 // The type of token to generate, service or batch
-func (r *User) TokenType() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["tokenType"])
+func (r *User) TokenType() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["tokenType"])
 }
 
 // GitHub user name.
-func (r *User) User() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["user"])
+func (r *User) User() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["user"])
 }
 
 // Input properties used for looking up and filtering User resources.

@@ -106,127 +106,129 @@ func GetAuthBackendRole(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackendRole) URN() *pulumi.URNOutput {
+func (r *AuthBackendRole) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackendRole) ID() *pulumi.IDOutput {
+func (r *AuthBackendRole) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The unique name of the auth backend to configure.
 // Defaults to `approle`.
-func (r *AuthBackendRole) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *AuthBackendRole) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // Whether or not to require `secretId` to be
 // presented when logging in using this AppRole. Defaults to `true`.
-func (r *AuthBackendRole) BindSecretId() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["bindSecretId"])
+func (r *AuthBackendRole) BindSecretId() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["bindSecretId"])
 }
 
 // If set,
 // specifies blocks of IP addresses which can perform the login operation.
-func (r *AuthBackendRole) BoundCidrLists() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["boundCidrLists"])
+func (r *AuthBackendRole) BoundCidrLists() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["boundCidrLists"])
 }
 
 // If set, indicates that the
 // token generated using this role should never expire. The token should be renewed within the
 // duration specified by this value. At each renewal, the token's TTL will be set to the
-// value of this field. The maximum allowed lifetime of token issued using this
-// role. Specified as a number of seconds.
-func (r *AuthBackendRole) Period() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["period"])
+// value of this field. Specified in seconds.
+func (r *AuthBackendRole) Period() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["period"])
 }
 
 // An array of strings
 // specifying the policies to be set on tokens issued using this role.
-func (r *AuthBackendRole) Policies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["policies"])
+func (r *AuthBackendRole) Policies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
 // The RoleID of this role. If not specified, one will be
 // auto-generated.
-func (r *AuthBackendRole) RoleId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["roleId"])
+func (r *AuthBackendRole) RoleId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["roleId"])
 }
 
 // The name of the role.
-func (r *AuthBackendRole) RoleName() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["roleName"])
+func (r *AuthBackendRole) RoleName() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["roleName"])
 }
 
 // If set,
 // specifies blocks of IP addresses which can perform the login operation.
-func (r *AuthBackendRole) SecretIdBoundCidrs() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["secretIdBoundCidrs"])
+func (r *AuthBackendRole) SecretIdBoundCidrs() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["secretIdBoundCidrs"])
 }
 
 // The number of times any particular SecretID
 // can be used to fetch a token from this AppRole, after which the SecretID will
 // expire. A value of zero will allow unlimited uses.
-func (r *AuthBackendRole) SecretIdNumUses() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["secretIdNumUses"])
+func (r *AuthBackendRole) SecretIdNumUses() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["secretIdNumUses"])
 }
 
 // The number of seconds after which any SecretID
 // expires.
-func (r *AuthBackendRole) SecretIdTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["secretIdTtl"])
+func (r *AuthBackendRole) SecretIdTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["secretIdTtl"])
 }
 
 // List of CIDR blocks; if set, specifies blocks of IP
 // addresses which can authenticate successfully, and ties the resulting token to these blocks
 // as well.
-func (r *AuthBackendRole) TokenBoundCidrs() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["tokenBoundCidrs"])
+func (r *AuthBackendRole) TokenBoundCidrs() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["tokenBoundCidrs"])
 }
 
 // If set, will encode an
 // [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
 // onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
 // `tokenMaxTtl` would otherwise allow a renewal.
-func (r *AuthBackendRole) TokenExplicitMaxTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenExplicitMaxTtl"])
+func (r *AuthBackendRole) TokenExplicitMaxTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenExplicitMaxTtl"])
 }
 
 // The maximum lifetime for generated tokens in number of seconds.
 // Its current value will be referenced at renewal time.
-func (r *AuthBackendRole) TokenMaxTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenMaxTtl"])
+func (r *AuthBackendRole) TokenMaxTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenMaxTtl"])
 }
 
 // If set, the default policy will not be set on
 // generated tokens; otherwise it will be added to the policies set in token_policies.
-func (r *AuthBackendRole) TokenNoDefaultPolicy() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["tokenNoDefaultPolicy"])
+func (r *AuthBackendRole) TokenNoDefaultPolicy() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["tokenNoDefaultPolicy"])
 }
 
 // The
 // [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
 // if any, in number of seconds to set on the token.
-func (r *AuthBackendRole) TokenNumUses() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenNumUses"])
+func (r *AuthBackendRole) TokenNumUses() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenNumUses"])
 }
 
-// Generated Token's Period
-func (r *AuthBackendRole) TokenPeriod() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenPeriod"])
+// If set, indicates that the
+// token generated using this role should never expire. The token should be renewed within the
+// duration specified by this value. At each renewal, the token's TTL will be set to the
+// value of this field. Specified in seconds.
+func (r *AuthBackendRole) TokenPeriod() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenPeriod"])
 }
 
 // List of policies to encode onto generated tokens. Depending
 // on the auth method, this list may be supplemented by user/group/other values.
-func (r *AuthBackendRole) TokenPolicies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["tokenPolicies"])
+func (r *AuthBackendRole) TokenPolicies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["tokenPolicies"])
 }
 
 // The incremental lifetime for generated tokens in number of seconds.
 // Its current value will be referenced at renewal time.
-func (r *AuthBackendRole) TokenTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenTtl"])
+func (r *AuthBackendRole) TokenTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenTtl"])
 }
 
 // The type of token that should be generated. Can be `service`,
@@ -234,8 +236,8 @@ func (r *AuthBackendRole) TokenTtl() *pulumi.IntOutput {
 // `service` tokens). For token store roles, there are two additional possibilities:
 // `default-service` and `default-batch` which specify the type to return unless the client
 // requests a different type at generation time.
-func (r *AuthBackendRole) TokenType() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["tokenType"])
+func (r *AuthBackendRole) TokenType() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["tokenType"])
 }
 
 // Input properties used for looking up and filtering AuthBackendRole resources.
@@ -252,8 +254,7 @@ type AuthBackendRoleState struct {
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. The maximum allowed lifetime of token issued using this
-	// role. Specified as a number of seconds.
+	// value of this field. Specified in seconds.
 	Period interface{}
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
@@ -292,7 +293,10 @@ type AuthBackendRoleState struct {
 	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
 	// if any, in number of seconds to set on the token.
 	TokenNumUses interface{}
-	// Generated Token's Period
+	// If set, indicates that the
+	// token generated using this role should never expire. The token should be renewed within the
+	// duration specified by this value. At each renewal, the token's TTL will be set to the
+	// value of this field. Specified in seconds.
 	TokenPeriod interface{}
 	// List of policies to encode onto generated tokens. Depending
 	// on the auth method, this list may be supplemented by user/group/other values.
@@ -322,8 +326,7 @@ type AuthBackendRoleArgs struct {
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. The maximum allowed lifetime of token issued using this
-	// role. Specified as a number of seconds.
+	// value of this field. Specified in seconds.
 	Period interface{}
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
@@ -362,7 +365,10 @@ type AuthBackendRoleArgs struct {
 	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
 	// if any, in number of seconds to set on the token.
 	TokenNumUses interface{}
-	// Generated Token's Period
+	// If set, indicates that the
+	// token generated using this role should never expire. The token should be renewed within the
+	// duration specified by this value. At each renewal, the token's TTL will be set to the
+	// value of this field. Specified in seconds.
 	TokenPeriod interface{}
 	// List of policies to encode onto generated tokens. Depending
 	// on the auth method, this list may be supplemented by user/group/other values.

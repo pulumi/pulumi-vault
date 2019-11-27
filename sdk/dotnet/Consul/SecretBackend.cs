@@ -64,7 +64,7 @@ namespace Pulumi.Vault.Consul
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretBackend(string name, SecretBackendArgs args, CustomResourceOptions? options = null)
-            : base("vault:consul/secretBackend:SecretBackend", name, args, MakeResourceOptions(options, ""))
+            : base("vault:consul/secretBackend:SecretBackend", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 

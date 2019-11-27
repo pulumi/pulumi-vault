@@ -72,60 +72,60 @@ func GetAuthBackendRoleTag(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackendRoleTag) URN() *pulumi.URNOutput {
+func (r *AuthBackendRoleTag) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackendRoleTag) ID() *pulumi.IDOutput {
+func (r *AuthBackendRoleTag) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // If set, allows migration of the underlying instances where the client resides. Use with caution.
-func (r *AuthBackendRoleTag) AllowInstanceMigration() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["allowInstanceMigration"])
+func (r *AuthBackendRoleTag) AllowInstanceMigration() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["allowInstanceMigration"])
 }
 
 // The path to the AWS auth backend to
 // read role tags from, with no leading or trailing `/`s. Defaults to "aws".
-func (r *AuthBackendRoleTag) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *AuthBackendRoleTag) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // If set, only allows a single token to be granted per instance ID.
-func (r *AuthBackendRoleTag) DisallowReauthentication() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["disallowReauthentication"])
+func (r *AuthBackendRoleTag) DisallowReauthentication() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["disallowReauthentication"])
 }
 
 // Instance ID for which this tag is intended for. If set, the created tag can only be used by the instance with the given ID.
-func (r *AuthBackendRoleTag) InstanceId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["instanceId"])
+func (r *AuthBackendRoleTag) InstanceId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["instanceId"])
 }
 
 // The maximum TTL of the tokens issued using this role.
-func (r *AuthBackendRoleTag) MaxTtl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["maxTtl"])
+func (r *AuthBackendRoleTag) MaxTtl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["maxTtl"])
 }
 
 // The policies to be associated with the tag. Must be a subset of the policies associated with the role.
-func (r *AuthBackendRoleTag) Policies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["policies"])
+func (r *AuthBackendRoleTag) Policies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
 // The name of the AWS auth backend role to read
 // role tags from, with no leading or trailing `/`s.
-func (r *AuthBackendRoleTag) Role() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["role"])
+func (r *AuthBackendRoleTag) Role() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["role"])
 }
 
 // The key of the role tag.
-func (r *AuthBackendRoleTag) TagKey() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["tagKey"])
+func (r *AuthBackendRoleTag) TagKey() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["tagKey"])
 }
 
 // The value to set the role key.
-func (r *AuthBackendRoleTag) TagValue() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["tagValue"])
+func (r *AuthBackendRoleTag) TagValue() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["tagValue"])
 }
 
 // Input properties used for looking up and filtering AuthBackendRoleTag resources.

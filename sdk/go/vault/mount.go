@@ -70,53 +70,53 @@ func GetMount(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *Mount) URN() *pulumi.URNOutput {
+func (r *Mount) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *Mount) ID() *pulumi.IDOutput {
+func (r *Mount) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The accessor for this mount.
-func (r *Mount) Accessor() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["accessor"])
+func (r *Mount) Accessor() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["accessor"])
 }
 
 // Default lease duration for tokens and secrets in seconds
-func (r *Mount) DefaultLeaseTtlSeconds() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["defaultLeaseTtlSeconds"])
+func (r *Mount) DefaultLeaseTtlSeconds() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["defaultLeaseTtlSeconds"])
 }
 
 // Human-friendly description of the mount
-func (r *Mount) Description() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["description"])
+func (r *Mount) Description() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["description"])
 }
 
 // Boolean flag that can be explicitly set to true to enforce local mount in HA environment
-func (r *Mount) Local() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["local"])
+func (r *Mount) Local() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["local"])
 }
 
 // Maximum possible lease duration for tokens and secrets in seconds
-func (r *Mount) MaxLeaseTtlSeconds() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["maxLeaseTtlSeconds"])
+func (r *Mount) MaxLeaseTtlSeconds() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["maxLeaseTtlSeconds"])
 }
 
 // Specifies mount type specific options that are passed to the backend
-func (r *Mount) Options() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["options"])
+func (r *Mount) Options() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["options"])
 }
 
 // Where the secret backend will be mounted
-func (r *Mount) Path() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["path"])
+func (r *Mount) Path() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["path"])
 }
 
 // Type of the backend, such as "aws"
-func (r *Mount) Type() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["type"])
+func (r *Mount) Type() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["type"])
 }
 
 // Input properties used for looking up and filtering Mount resources.

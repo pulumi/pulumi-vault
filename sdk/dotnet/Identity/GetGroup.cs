@@ -13,7 +13,7 @@ namespace Pulumi.Vault.Identity
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/identity_group.html.markdown.
         /// </summary>
         public static Task<GetGroupResult> GetGroup(GetGroupArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("vault:identity/getGroup:getGroup", args, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("vault:identity/getGroup:getGroup", args ?? ResourceArgs.Empty, options.WithVersion());
     }
 
     public sealed class GetGroupArgs : Pulumi.ResourceArgs

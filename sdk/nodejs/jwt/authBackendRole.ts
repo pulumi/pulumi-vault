@@ -76,6 +76,18 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly claimMappings!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
+     * The amount of leeway to add to all claims to account for clock skew, in
+     * seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * Only applicable with "jwt" roles.
+     */
+    public readonly clockSkewLeeway!: pulumi.Output<number | undefined>;
+    /**
+     * The amount of leeway to add to expiration (`exp`) claims to account for
+     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * Only applicable with "jwt" roles.
+     */
+    public readonly expirationLeeway!: pulumi.Output<number | undefined>;
+    /**
      * The claim to use to uniquely identify
      * the set of groups to which the user belongs; this will be used as the names
      * for the Identity group aliases created due to a successful login. The claim
@@ -100,6 +112,12 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly maxTtl!: pulumi.Output<number | undefined>;
     /**
+     * The amount of leeway to add to not before (`nbf`) claims to account for
+     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * Only applicable with "jwt" roles.
+     */
+    public readonly notBeforeLeeway!: pulumi.Output<number | undefined>;
+    /**
      * If set, puts a use-count
      * limitation on the issued token.
      */
@@ -113,8 +131,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. The maximum allowed lifetime of token issued using this
-     * role. Specified as a number of seconds.
+     * value of this field. Specified in seconds.
      */
     public readonly period!: pulumi.Output<number | undefined>;
     /**
@@ -160,7 +177,10 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly tokenNumUses!: pulumi.Output<number | undefined>;
     /**
-     * Generated Token's Period
+     * If set, indicates that the
+     * token generated using this role should never expire. The token should be renewed within the
+     * duration specified by this value. At each renewal, the token's TTL will be set to the
+     * value of this field. Specified in seconds.
      */
     public readonly tokenPeriod!: pulumi.Output<number | undefined>;
     /**
@@ -192,6 +212,12 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * due to a successful login.
      */
     public readonly userClaim!: pulumi.Output<string>;
+    /**
+     * Log received OIDC tokens and claims when debug-level
+     * logging is active. Not recommended in production since sensitive information may be present
+     * in OIDC responses.
+     */
+    public readonly verboseOidcLogging!: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a AuthBackendRole resource with the given unique name, arguments, and options.
@@ -212,9 +238,12 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["boundClaims"] = state ? state.boundClaims : undefined;
             inputs["boundSubject"] = state ? state.boundSubject : undefined;
             inputs["claimMappings"] = state ? state.claimMappings : undefined;
+            inputs["clockSkewLeeway"] = state ? state.clockSkewLeeway : undefined;
+            inputs["expirationLeeway"] = state ? state.expirationLeeway : undefined;
             inputs["groupsClaim"] = state ? state.groupsClaim : undefined;
             inputs["groupsClaimDelimiterPattern"] = state ? state.groupsClaimDelimiterPattern : undefined;
             inputs["maxTtl"] = state ? state.maxTtl : undefined;
+            inputs["notBeforeLeeway"] = state ? state.notBeforeLeeway : undefined;
             inputs["numUses"] = state ? state.numUses : undefined;
             inputs["oidcScopes"] = state ? state.oidcScopes : undefined;
             inputs["period"] = state ? state.period : undefined;
@@ -232,6 +261,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["tokenType"] = state ? state.tokenType : undefined;
             inputs["ttl"] = state ? state.ttl : undefined;
             inputs["userClaim"] = state ? state.userClaim : undefined;
+            inputs["verboseOidcLogging"] = state ? state.verboseOidcLogging : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
             if (!args || args.boundAudiences === undefined) {
@@ -250,9 +280,12 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["boundClaims"] = args ? args.boundClaims : undefined;
             inputs["boundSubject"] = args ? args.boundSubject : undefined;
             inputs["claimMappings"] = args ? args.claimMappings : undefined;
+            inputs["clockSkewLeeway"] = args ? args.clockSkewLeeway : undefined;
+            inputs["expirationLeeway"] = args ? args.expirationLeeway : undefined;
             inputs["groupsClaim"] = args ? args.groupsClaim : undefined;
             inputs["groupsClaimDelimiterPattern"] = args ? args.groupsClaimDelimiterPattern : undefined;
             inputs["maxTtl"] = args ? args.maxTtl : undefined;
+            inputs["notBeforeLeeway"] = args ? args.notBeforeLeeway : undefined;
             inputs["numUses"] = args ? args.numUses : undefined;
             inputs["oidcScopes"] = args ? args.oidcScopes : undefined;
             inputs["period"] = args ? args.period : undefined;
@@ -270,6 +303,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["tokenType"] = args ? args.tokenType : undefined;
             inputs["ttl"] = args ? args.ttl : undefined;
             inputs["userClaim"] = args ? args.userClaim : undefined;
+            inputs["verboseOidcLogging"] = args ? args.verboseOidcLogging : undefined;
         }
         if (!opts) {
             opts = {}
@@ -322,6 +356,18 @@ export interface AuthBackendRoleState {
      */
     readonly claimMappings?: pulumi.Input<{[key: string]: any}>;
     /**
+     * The amount of leeway to add to all claims to account for clock skew, in
+     * seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * Only applicable with "jwt" roles.
+     */
+    readonly clockSkewLeeway?: pulumi.Input<number>;
+    /**
+     * The amount of leeway to add to expiration (`exp`) claims to account for
+     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * Only applicable with "jwt" roles.
+     */
+    readonly expirationLeeway?: pulumi.Input<number>;
+    /**
      * The claim to use to uniquely identify
      * the set of groups to which the user belongs; this will be used as the names
      * for the Identity group aliases created due to a successful login. The claim
@@ -346,6 +392,12 @@ export interface AuthBackendRoleState {
      */
     readonly maxTtl?: pulumi.Input<number>;
     /**
+     * The amount of leeway to add to not before (`nbf`) claims to account for
+     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * Only applicable with "jwt" roles.
+     */
+    readonly notBeforeLeeway?: pulumi.Input<number>;
+    /**
      * If set, puts a use-count
      * limitation on the issued token.
      */
@@ -359,8 +411,7 @@ export interface AuthBackendRoleState {
      * If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. The maximum allowed lifetime of token issued using this
-     * role. Specified as a number of seconds.
+     * value of this field. Specified in seconds.
      */
     readonly period?: pulumi.Input<number>;
     /**
@@ -406,7 +457,10 @@ export interface AuthBackendRoleState {
      */
     readonly tokenNumUses?: pulumi.Input<number>;
     /**
-     * Generated Token's Period
+     * If set, indicates that the
+     * token generated using this role should never expire. The token should be renewed within the
+     * duration specified by this value. At each renewal, the token's TTL will be set to the
+     * value of this field. Specified in seconds.
      */
     readonly tokenPeriod?: pulumi.Input<number>;
     /**
@@ -438,6 +492,12 @@ export interface AuthBackendRoleState {
      * due to a successful login.
      */
     readonly userClaim?: pulumi.Input<string>;
+    /**
+     * Log received OIDC tokens and claims when debug-level
+     * logging is active. Not recommended in production since sensitive information may be present
+     * in OIDC responses.
+     */
+    readonly verboseOidcLogging?: pulumi.Input<boolean>;
 }
 
 /**
@@ -480,6 +540,18 @@ export interface AuthBackendRoleArgs {
      */
     readonly claimMappings?: pulumi.Input<{[key: string]: any}>;
     /**
+     * The amount of leeway to add to all claims to account for clock skew, in
+     * seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * Only applicable with "jwt" roles.
+     */
+    readonly clockSkewLeeway?: pulumi.Input<number>;
+    /**
+     * The amount of leeway to add to expiration (`exp`) claims to account for
+     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * Only applicable with "jwt" roles.
+     */
+    readonly expirationLeeway?: pulumi.Input<number>;
+    /**
      * The claim to use to uniquely identify
      * the set of groups to which the user belongs; this will be used as the names
      * for the Identity group aliases created due to a successful login. The claim
@@ -504,6 +576,12 @@ export interface AuthBackendRoleArgs {
      */
     readonly maxTtl?: pulumi.Input<number>;
     /**
+     * The amount of leeway to add to not before (`nbf`) claims to account for
+     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * Only applicable with "jwt" roles.
+     */
+    readonly notBeforeLeeway?: pulumi.Input<number>;
+    /**
      * If set, puts a use-count
      * limitation on the issued token.
      */
@@ -517,8 +595,7 @@ export interface AuthBackendRoleArgs {
      * If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. The maximum allowed lifetime of token issued using this
-     * role. Specified as a number of seconds.
+     * value of this field. Specified in seconds.
      */
     readonly period?: pulumi.Input<number>;
     /**
@@ -564,7 +641,10 @@ export interface AuthBackendRoleArgs {
      */
     readonly tokenNumUses?: pulumi.Input<number>;
     /**
-     * Generated Token's Period
+     * If set, indicates that the
+     * token generated using this role should never expire. The token should be renewed within the
+     * duration specified by this value. At each renewal, the token's TTL will be set to the
+     * value of this field. Specified in seconds.
      */
     readonly tokenPeriod?: pulumi.Input<number>;
     /**
@@ -596,4 +676,10 @@ export interface AuthBackendRoleArgs {
      * due to a successful login.
      */
     readonly userClaim: pulumi.Input<string>;
+    /**
+     * Log received OIDC tokens and claims when debug-level
+     * logging is active. Not recommended in production since sensitive information may be present
+     * in OIDC responses.
+     */
+    readonly verboseOidcLogging?: pulumi.Input<boolean>;
 }

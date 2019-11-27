@@ -37,7 +37,7 @@ namespace Pulumi.Vault.Github
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// (Optional; Deprecated, use `token_max_ttl` instead) The maximum allowed lifetime of tokens
+        /// (Optional; Deprecated, use `token_max_ttl` instead if you are running Vault &gt;= 1.2) The maximum allowed lifetime of tokens
         /// issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
         /// </summary>
         [Output("maxTtl")]
@@ -96,7 +96,10 @@ namespace Pulumi.Vault.Github
         public Output<int?> TokenNumUses { get; private set; } = null!;
 
         /// <summary>
-        /// Generated Token's Period
+        /// (Optional) If set, indicates that the
+        /// token generated using this role should never expire. The token should be renewed within the
+        /// duration specified by this value. At each renewal, the token's TTL will be set to the
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Output("tokenPeriod")]
         public Output<int?> TokenPeriod { get; private set; } = null!;
@@ -126,7 +129,7 @@ namespace Pulumi.Vault.Github
         public Output<string?> TokenType { get; private set; } = null!;
 
         /// <summary>
-        /// (Optional; Deprecated, use `token_ttl` isntead) The TTL period of tokens issued
+        /// (Optional; Deprecated, use `token_ttl` instead if you are running Vault &gt;= 1.2) The TTL period of tokens issued
         /// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
         /// </summary>
         [Output("ttl")]
@@ -144,7 +147,7 @@ namespace Pulumi.Vault.Github
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthBackend(string name, AuthBackendArgs args, CustomResourceOptions? options = null)
-            : base("vault:github/authBackend:AuthBackend", name, args, MakeResourceOptions(options, ""))
+            : base("vault:github/authBackend:AuthBackend", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
@@ -196,7 +199,7 @@ namespace Pulumi.Vault.Github
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// (Optional; Deprecated, use `token_max_ttl` instead) The maximum allowed lifetime of tokens
+        /// (Optional; Deprecated, use `token_max_ttl` instead if you are running Vault &gt;= 1.2) The maximum allowed lifetime of tokens
         /// issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
         /// </summary>
         [Input("maxTtl")]
@@ -261,7 +264,10 @@ namespace Pulumi.Vault.Github
         public Input<int>? TokenNumUses { get; set; }
 
         /// <summary>
-        /// Generated Token's Period
+        /// (Optional) If set, indicates that the
+        /// token generated using this role should never expire. The token should be renewed within the
+        /// duration specified by this value. At each renewal, the token's TTL will be set to the
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Input("tokenPeriod")]
         public Input<int>? TokenPeriod { get; set; }
@@ -297,7 +303,7 @@ namespace Pulumi.Vault.Github
         public Input<string>? TokenType { get; set; }
 
         /// <summary>
-        /// (Optional; Deprecated, use `token_ttl` isntead) The TTL period of tokens issued
+        /// (Optional; Deprecated, use `token_ttl` instead if you are running Vault &gt;= 1.2) The TTL period of tokens issued
         /// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
         /// </summary>
         [Input("ttl")]
@@ -334,7 +340,7 @@ namespace Pulumi.Vault.Github
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// (Optional; Deprecated, use `token_max_ttl` instead) The maximum allowed lifetime of tokens
+        /// (Optional; Deprecated, use `token_max_ttl` instead if you are running Vault &gt;= 1.2) The maximum allowed lifetime of tokens
         /// issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
         /// </summary>
         [Input("maxTtl")]
@@ -399,7 +405,10 @@ namespace Pulumi.Vault.Github
         public Input<int>? TokenNumUses { get; set; }
 
         /// <summary>
-        /// Generated Token's Period
+        /// (Optional) If set, indicates that the
+        /// token generated using this role should never expire. The token should be renewed within the
+        /// duration specified by this value. At each renewal, the token's TTL will be set to the
+        /// value of this field. Specified in seconds.
         /// </summary>
         [Input("tokenPeriod")]
         public Input<int>? TokenPeriod { get; set; }
@@ -435,7 +444,7 @@ namespace Pulumi.Vault.Github
         public Input<string>? TokenType { get; set; }
 
         /// <summary>
-        /// (Optional; Deprecated, use `token_ttl` isntead) The TTL period of tokens issued
+        /// (Optional; Deprecated, use `token_ttl` instead if you are running Vault &gt;= 1.2) The TTL period of tokens issued
         /// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
         /// </summary>
         [Input("ttl")]

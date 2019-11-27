@@ -64,38 +64,38 @@ func GetAuthBackendConfig(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackendConfig) URN() *pulumi.URNOutput {
+func (r *AuthBackendConfig) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackendConfig) ID() *pulumi.IDOutput {
+func (r *AuthBackendConfig) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Unique name of the kubernetes backend to configure.
-func (r *AuthBackendConfig) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *AuthBackendConfig) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
-func (r *AuthBackendConfig) KubernetesCaCert() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["kubernetesCaCert"])
+func (r *AuthBackendConfig) KubernetesCaCert() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["kubernetesCaCert"])
 }
 
 // Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
-func (r *AuthBackendConfig) KubernetesHost() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["kubernetesHost"])
+func (r *AuthBackendConfig) KubernetesHost() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["kubernetesHost"])
 }
 
 // List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys. 
-func (r *AuthBackendConfig) PemKeys() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["pemKeys"])
+func (r *AuthBackendConfig) PemKeys() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["pemKeys"])
 }
 
 // A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
-func (r *AuthBackendConfig) TokenReviewerJwt() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["tokenReviewerJwt"])
+func (r *AuthBackendConfig) TokenReviewerJwt() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["tokenReviewerJwt"])
 }
 
 // Input properties used for looking up and filtering AuthBackendConfig resources.

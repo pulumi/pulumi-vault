@@ -38,9 +38,12 @@ func NewAuthBackendRole(ctx *pulumi.Context,
 		inputs["boundClaims"] = nil
 		inputs["boundSubject"] = nil
 		inputs["claimMappings"] = nil
+		inputs["clockSkewLeeway"] = nil
+		inputs["expirationLeeway"] = nil
 		inputs["groupsClaim"] = nil
 		inputs["groupsClaimDelimiterPattern"] = nil
 		inputs["maxTtl"] = nil
+		inputs["notBeforeLeeway"] = nil
 		inputs["numUses"] = nil
 		inputs["oidcScopes"] = nil
 		inputs["period"] = nil
@@ -58,6 +61,7 @@ func NewAuthBackendRole(ctx *pulumi.Context,
 		inputs["tokenType"] = nil
 		inputs["ttl"] = nil
 		inputs["userClaim"] = nil
+		inputs["verboseOidcLogging"] = nil
 	} else {
 		inputs["allowedRedirectUris"] = args.AllowedRedirectUris
 		inputs["backend"] = args.Backend
@@ -66,9 +70,12 @@ func NewAuthBackendRole(ctx *pulumi.Context,
 		inputs["boundClaims"] = args.BoundClaims
 		inputs["boundSubject"] = args.BoundSubject
 		inputs["claimMappings"] = args.ClaimMappings
+		inputs["clockSkewLeeway"] = args.ClockSkewLeeway
+		inputs["expirationLeeway"] = args.ExpirationLeeway
 		inputs["groupsClaim"] = args.GroupsClaim
 		inputs["groupsClaimDelimiterPattern"] = args.GroupsClaimDelimiterPattern
 		inputs["maxTtl"] = args.MaxTtl
+		inputs["notBeforeLeeway"] = args.NotBeforeLeeway
 		inputs["numUses"] = args.NumUses
 		inputs["oidcScopes"] = args.OidcScopes
 		inputs["period"] = args.Period
@@ -86,6 +93,7 @@ func NewAuthBackendRole(ctx *pulumi.Context,
 		inputs["tokenType"] = args.TokenType
 		inputs["ttl"] = args.Ttl
 		inputs["userClaim"] = args.UserClaim
+		inputs["verboseOidcLogging"] = args.VerboseOidcLogging
 	}
 	s, err := ctx.RegisterResource("vault:jwt/authBackendRole:AuthBackendRole", name, true, inputs, opts...)
 	if err != nil {
@@ -107,9 +115,12 @@ func GetAuthBackendRole(ctx *pulumi.Context,
 		inputs["boundClaims"] = state.BoundClaims
 		inputs["boundSubject"] = state.BoundSubject
 		inputs["claimMappings"] = state.ClaimMappings
+		inputs["clockSkewLeeway"] = state.ClockSkewLeeway
+		inputs["expirationLeeway"] = state.ExpirationLeeway
 		inputs["groupsClaim"] = state.GroupsClaim
 		inputs["groupsClaimDelimiterPattern"] = state.GroupsClaimDelimiterPattern
 		inputs["maxTtl"] = state.MaxTtl
+		inputs["notBeforeLeeway"] = state.NotBeforeLeeway
 		inputs["numUses"] = state.NumUses
 		inputs["oidcScopes"] = state.OidcScopes
 		inputs["period"] = state.Period
@@ -127,6 +138,7 @@ func GetAuthBackendRole(ctx *pulumi.Context,
 		inputs["tokenType"] = state.TokenType
 		inputs["ttl"] = state.Ttl
 		inputs["userClaim"] = state.UserClaim
+		inputs["verboseOidcLogging"] = state.VerboseOidcLogging
 	}
 	s, err := ctx.ReadResource("vault:jwt/authBackendRole:AuthBackendRole", name, id, inputs, opts...)
 	if err != nil {
@@ -136,63 +148,77 @@ func GetAuthBackendRole(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackendRole) URN() *pulumi.URNOutput {
+func (r *AuthBackendRole) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackendRole) ID() *pulumi.IDOutput {
+func (r *AuthBackendRole) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The list of allowed values for redirectUri during OIDC logins.
 // Required for OIDC roles
-func (r *AuthBackendRole) AllowedRedirectUris() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["allowedRedirectUris"])
+func (r *AuthBackendRole) AllowedRedirectUris() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["allowedRedirectUris"])
 }
 
 // The unique name of the auth backend to configure.
 // Defaults to `jwt`.
-func (r *AuthBackendRole) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *AuthBackendRole) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // List of `aud` claims to match
 // against. Any match is sufficient.
-func (r *AuthBackendRole) BoundAudiences() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["boundAudiences"])
+func (r *AuthBackendRole) BoundAudiences() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["boundAudiences"])
 }
 
 // If set, a list of
 // CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-func (r *AuthBackendRole) BoundCidrs() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["boundCidrs"])
+func (r *AuthBackendRole) BoundCidrs() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["boundCidrs"])
 }
 
 // If set, a map of claims/values to match against.
 // The expected value may be a single string or a list of strings.
-func (r *AuthBackendRole) BoundClaims() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["boundClaims"])
+func (r *AuthBackendRole) BoundClaims() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["boundClaims"])
 }
 
 // If set, requires that the `sub` claim matches
 // this value.
-func (r *AuthBackendRole) BoundSubject() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["boundSubject"])
+func (r *AuthBackendRole) BoundSubject() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["boundSubject"])
 }
 
 // If set, a map of claims (keys) to be copied
 // to specified metadata fields (values).
-func (r *AuthBackendRole) ClaimMappings() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["claimMappings"])
+func (r *AuthBackendRole) ClaimMappings() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["claimMappings"])
+}
+
+// The amount of leeway to add to all claims to account for clock skew, in
+// seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+// Only applicable with "jwt" roles.
+func (r *AuthBackendRole) ClockSkewLeeway() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["clockSkewLeeway"])
+}
+
+// The amount of leeway to add to expiration (`exp`) claims to account for
+// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+// Only applicable with "jwt" roles.
+func (r *AuthBackendRole) ExpirationLeeway() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["expirationLeeway"])
 }
 
 // The claim to use to uniquely identify
 // the set of groups to which the user belongs; this will be used as the names
 // for the Identity group aliases created due to a successful login. The claim
 // value must be a list of strings.
-func (r *AuthBackendRole) GroupsClaim() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["groupsClaim"])
+func (r *AuthBackendRole) GroupsClaim() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["groupsClaim"])
 }
 
 // (Optional; Deprecated. This field has been
@@ -204,102 +230,111 @@ func (r *AuthBackendRole) GroupsClaim() *pulumi.StringOutput {
 // set to // will expect nested structures named meta, user.name, and groups.
 // If this field was set to /./ the groups information would expect to be
 // via nested structures of meta, user, name, and groups.
-func (r *AuthBackendRole) GroupsClaimDelimiterPattern() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["groupsClaimDelimiterPattern"])
+func (r *AuthBackendRole) GroupsClaimDelimiterPattern() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["groupsClaimDelimiterPattern"])
 }
 
 // The maximum allowed lifetime of tokens
 // issued using this role, provided as a number of seconds.
-func (r *AuthBackendRole) MaxTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["maxTtl"])
+func (r *AuthBackendRole) MaxTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["maxTtl"])
+}
+
+// The amount of leeway to add to not before (`nbf`) claims to account for
+// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+// Only applicable with "jwt" roles.
+func (r *AuthBackendRole) NotBeforeLeeway() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["notBeforeLeeway"])
 }
 
 // If set, puts a use-count
 // limitation on the issued token.
-func (r *AuthBackendRole) NumUses() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["numUses"])
+func (r *AuthBackendRole) NumUses() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["numUses"])
 }
 
 // If set, a list of OIDC scopes to be used with an OIDC role.
 // The standard scope "openid" is automatically included and need not be specified.
-func (r *AuthBackendRole) OidcScopes() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["oidcScopes"])
+func (r *AuthBackendRole) OidcScopes() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["oidcScopes"])
 }
 
 // If set, indicates that the
 // token generated using this role should never expire. The token should be renewed within the
 // duration specified by this value. At each renewal, the token's TTL will be set to the
-// value of this field. The maximum allowed lifetime of token issued using this
-// role. Specified as a number of seconds.
-func (r *AuthBackendRole) Period() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["period"])
+// value of this field. Specified in seconds.
+func (r *AuthBackendRole) Period() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["period"])
 }
 
 // An array of strings
 // specifying the policies to be set on tokens issued using this role.
-func (r *AuthBackendRole) Policies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["policies"])
+func (r *AuthBackendRole) Policies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
 // The name of the role.
-func (r *AuthBackendRole) RoleName() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["roleName"])
+func (r *AuthBackendRole) RoleName() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["roleName"])
 }
 
 // Type of role, either "oidc" (default) or "jwt".
-func (r *AuthBackendRole) RoleType() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["roleType"])
+func (r *AuthBackendRole) RoleType() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["roleType"])
 }
 
 // List of CIDR blocks; if set, specifies blocks of IP
 // addresses which can authenticate successfully, and ties the resulting token to these blocks
 // as well.
-func (r *AuthBackendRole) TokenBoundCidrs() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["tokenBoundCidrs"])
+func (r *AuthBackendRole) TokenBoundCidrs() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["tokenBoundCidrs"])
 }
 
 // If set, will encode an
 // [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
 // onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
 // `tokenMaxTtl` would otherwise allow a renewal.
-func (r *AuthBackendRole) TokenExplicitMaxTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenExplicitMaxTtl"])
+func (r *AuthBackendRole) TokenExplicitMaxTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenExplicitMaxTtl"])
 }
 
 // The maximum lifetime for generated tokens in number of seconds.
 // Its current value will be referenced at renewal time.
-func (r *AuthBackendRole) TokenMaxTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenMaxTtl"])
+func (r *AuthBackendRole) TokenMaxTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenMaxTtl"])
 }
 
 // If set, the default policy will not be set on
 // generated tokens; otherwise it will be added to the policies set in token_policies.
-func (r *AuthBackendRole) TokenNoDefaultPolicy() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["tokenNoDefaultPolicy"])
+func (r *AuthBackendRole) TokenNoDefaultPolicy() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["tokenNoDefaultPolicy"])
 }
 
 // The
 // [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
 // if any, in number of seconds to set on the token.
-func (r *AuthBackendRole) TokenNumUses() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenNumUses"])
+func (r *AuthBackendRole) TokenNumUses() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenNumUses"])
 }
 
-// Generated Token's Period
-func (r *AuthBackendRole) TokenPeriod() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenPeriod"])
+// If set, indicates that the
+// token generated using this role should never expire. The token should be renewed within the
+// duration specified by this value. At each renewal, the token's TTL will be set to the
+// value of this field. Specified in seconds.
+func (r *AuthBackendRole) TokenPeriod() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenPeriod"])
 }
 
 // List of policies to encode onto generated tokens. Depending
 // on the auth method, this list may be supplemented by user/group/other values.
-func (r *AuthBackendRole) TokenPolicies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["tokenPolicies"])
+func (r *AuthBackendRole) TokenPolicies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["tokenPolicies"])
 }
 
 // The incremental lifetime for generated tokens in number of seconds.
 // Its current value will be referenced at renewal time.
-func (r *AuthBackendRole) TokenTtl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["tokenTtl"])
+func (r *AuthBackendRole) TokenTtl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["tokenTtl"])
 }
 
 // The type of token that should be generated. Can be `service`,
@@ -307,21 +342,28 @@ func (r *AuthBackendRole) TokenTtl() *pulumi.IntOutput {
 // `service` tokens). For token store roles, there are two additional possibilities:
 // `default-service` and `default-batch` which specify the type to return unless the client
 // requests a different type at generation time.
-func (r *AuthBackendRole) TokenType() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["tokenType"])
+func (r *AuthBackendRole) TokenType() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["tokenType"])
 }
 
 // The TTL period of tokens issued
 // using this role, provided as a number of seconds.
-func (r *AuthBackendRole) Ttl() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["ttl"])
+func (r *AuthBackendRole) Ttl() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["ttl"])
 }
 
 // The claim to use to uniquely identify
 // the user; this will be used as the name for the Identity entity alias created
 // due to a successful login.
-func (r *AuthBackendRole) UserClaim() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["userClaim"])
+func (r *AuthBackendRole) UserClaim() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["userClaim"])
+}
+
+// Log received OIDC tokens and claims when debug-level
+// logging is active. Not recommended in production since sensitive information may be present
+// in OIDC responses.
+func (r *AuthBackendRole) VerboseOidcLogging() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["verboseOidcLogging"])
 }
 
 // Input properties used for looking up and filtering AuthBackendRole resources.
@@ -347,6 +389,14 @@ type AuthBackendRoleState struct {
 	// If set, a map of claims (keys) to be copied
 	// to specified metadata fields (values).
 	ClaimMappings interface{}
+	// The amount of leeway to add to all claims to account for clock skew, in
+	// seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+	// Only applicable with "jwt" roles.
+	ClockSkewLeeway interface{}
+	// The amount of leeway to add to expiration (`exp`) claims to account for
+	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+	// Only applicable with "jwt" roles.
+	ExpirationLeeway interface{}
 	// The claim to use to uniquely identify
 	// the set of groups to which the user belongs; this will be used as the names
 	// for the Identity group aliases created due to a successful login. The claim
@@ -365,6 +415,10 @@ type AuthBackendRoleState struct {
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
 	MaxTtl interface{}
+	// The amount of leeway to add to not before (`nbf`) claims to account for
+	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+	// Only applicable with "jwt" roles.
+	NotBeforeLeeway interface{}
 	// If set, puts a use-count
 	// limitation on the issued token.
 	NumUses interface{}
@@ -374,8 +428,7 @@ type AuthBackendRoleState struct {
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. The maximum allowed lifetime of token issued using this
-	// role. Specified as a number of seconds.
+	// value of this field. Specified in seconds.
 	Period interface{}
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
@@ -403,7 +456,10 @@ type AuthBackendRoleState struct {
 	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
 	// if any, in number of seconds to set on the token.
 	TokenNumUses interface{}
-	// Generated Token's Period
+	// If set, indicates that the
+	// token generated using this role should never expire. The token should be renewed within the
+	// duration specified by this value. At each renewal, the token's TTL will be set to the
+	// value of this field. Specified in seconds.
 	TokenPeriod interface{}
 	// List of policies to encode onto generated tokens. Depending
 	// on the auth method, this list may be supplemented by user/group/other values.
@@ -424,6 +480,10 @@ type AuthBackendRoleState struct {
 	// the user; this will be used as the name for the Identity entity alias created
 	// due to a successful login.
 	UserClaim interface{}
+	// Log received OIDC tokens and claims when debug-level
+	// logging is active. Not recommended in production since sensitive information may be present
+	// in OIDC responses.
+	VerboseOidcLogging interface{}
 }
 
 // The set of arguments for constructing a AuthBackendRole resource.
@@ -449,6 +509,14 @@ type AuthBackendRoleArgs struct {
 	// If set, a map of claims (keys) to be copied
 	// to specified metadata fields (values).
 	ClaimMappings interface{}
+	// The amount of leeway to add to all claims to account for clock skew, in
+	// seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+	// Only applicable with "jwt" roles.
+	ClockSkewLeeway interface{}
+	// The amount of leeway to add to expiration (`exp`) claims to account for
+	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+	// Only applicable with "jwt" roles.
+	ExpirationLeeway interface{}
 	// The claim to use to uniquely identify
 	// the set of groups to which the user belongs; this will be used as the names
 	// for the Identity group aliases created due to a successful login. The claim
@@ -467,6 +535,10 @@ type AuthBackendRoleArgs struct {
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
 	MaxTtl interface{}
+	// The amount of leeway to add to not before (`nbf`) claims to account for
+	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+	// Only applicable with "jwt" roles.
+	NotBeforeLeeway interface{}
 	// If set, puts a use-count
 	// limitation on the issued token.
 	NumUses interface{}
@@ -476,8 +548,7 @@ type AuthBackendRoleArgs struct {
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. The maximum allowed lifetime of token issued using this
-	// role. Specified as a number of seconds.
+	// value of this field. Specified in seconds.
 	Period interface{}
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
@@ -505,7 +576,10 @@ type AuthBackendRoleArgs struct {
 	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
 	// if any, in number of seconds to set on the token.
 	TokenNumUses interface{}
-	// Generated Token's Period
+	// If set, indicates that the
+	// token generated using this role should never expire. The token should be renewed within the
+	// duration specified by this value. At each renewal, the token's TTL will be set to the
+	// value of this field. Specified in seconds.
 	TokenPeriod interface{}
 	// List of policies to encode onto generated tokens. Depending
 	// on the auth method, this list may be supplemented by user/group/other values.
@@ -526,4 +600,8 @@ type AuthBackendRoleArgs struct {
 	// the user; this will be used as the name for the Identity entity alias created
 	// due to a successful login.
 	UserClaim interface{}
+	// Log received OIDC tokens and claims when debug-level
+	// logging is active. Not recommended in production since sensitive information may be present
+	// in OIDC responses.
+	VerboseOidcLogging interface{}
 }

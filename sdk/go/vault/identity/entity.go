@@ -18,11 +18,13 @@ func NewEntity(ctx *pulumi.Context,
 	inputs := make(map[string]interface{})
 	if args == nil {
 		inputs["disabled"] = nil
+		inputs["externalPolicies"] = nil
 		inputs["metadata"] = nil
 		inputs["name"] = nil
 		inputs["policies"] = nil
 	} else {
 		inputs["disabled"] = args.Disabled
+		inputs["externalPolicies"] = args.ExternalPolicies
 		inputs["metadata"] = args.Metadata
 		inputs["name"] = args.Name
 		inputs["policies"] = args.Policies
@@ -41,6 +43,7 @@ func GetEntity(ctx *pulumi.Context,
 	inputs := make(map[string]interface{})
 	if state != nil {
 		inputs["disabled"] = state.Disabled
+		inputs["externalPolicies"] = state.ExternalPolicies
 		inputs["metadata"] = state.Metadata
 		inputs["name"] = state.Name
 		inputs["policies"] = state.Policies
@@ -53,39 +56,46 @@ func GetEntity(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *Entity) URN() *pulumi.URNOutput {
+func (r *Entity) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *Entity) ID() *pulumi.IDOutput {
+func (r *Entity) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // True/false Is this entity currently disabled. Defaults to `false`
-func (r *Entity) Disabled() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["disabled"])
+func (r *Entity) Disabled() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["disabled"])
+}
+
+// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+func (r *Entity) ExternalPolicies() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["externalPolicies"])
 }
 
 // A Map of additional metadata to associate with the user.
-func (r *Entity) Metadata() *pulumi.MapOutput {
-	return (*pulumi.MapOutput)(r.s.State["metadata"])
+func (r *Entity) Metadata() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["metadata"])
 }
 
 // Name of the identity entity to create.
-func (r *Entity) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *Entity) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // A list of policies to apply to the entity.
-func (r *Entity) Policies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["policies"])
+func (r *Entity) Policies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
 // Input properties used for looking up and filtering Entity resources.
 type EntityState struct {
 	// True/false Is this entity currently disabled. Defaults to `false`
 	Disabled interface{}
+	// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+	ExternalPolicies interface{}
 	// A Map of additional metadata to associate with the user.
 	Metadata interface{}
 	// Name of the identity entity to create.
@@ -98,6 +108,8 @@ type EntityState struct {
 type EntityArgs struct {
 	// True/false Is this entity currently disabled. Defaults to `false`
 	Disabled interface{}
+	// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+	ExternalPolicies interface{}
 	// A Map of additional metadata to associate with the user.
 	Metadata interface{}
 	// Name of the identity entity to create.

@@ -11,15 +11,30 @@ from .. import utilities, tables
 
 class GroupPolicies(pulumi.CustomResource):
     exclusive: pulumi.Output[bool]
+    """
+    Defaults to `true`.
+    """
     group_id: pulumi.Output[str]
+    """
+    Group ID to assign policies to.
+    """
     group_name: pulumi.Output[str]
+    """
+    The name of the group that are assigned the policies.
+    """
     policies: pulumi.Output[list]
+    """
+    List of policies to assign to the group
+    """
     def __init__(__self__, resource_name, opts=None, exclusive=None, group_id=None, policies=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a GroupPolicies resource with the given unique name, props, and options.
+        Manages policies for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] exclusive: Defaults to `true`.
+        :param pulumi.Input[str] group_id: Group ID to assign policies to.
+        :param pulumi.Input[list] policies: List of policies to assign to the group
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_group_policies.html.markdown.
         """
@@ -63,6 +78,10 @@ class GroupPolicies(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] exclusive: Defaults to `true`.
+        :param pulumi.Input[str] group_id: Group ID to assign policies to.
+        :param pulumi.Input[str] group_name: The name of the group that are assigned the policies.
+        :param pulumi.Input[list] policies: List of policies to assign to the group
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_group_policies.html.markdown.
         """

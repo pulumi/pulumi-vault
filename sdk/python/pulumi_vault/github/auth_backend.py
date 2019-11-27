@@ -26,7 +26,7 @@ class AuthBackend(pulumi.CustomResource):
     """
     max_ttl: pulumi.Output[str]
     """
-    (Optional; Deprecated, use `token_max_ttl` instead) The maximum allowed lifetime of tokens
+    (Optional; Deprecated, use `token_max_ttl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
     issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
     """
     organization: pulumi.Output[str]
@@ -68,6 +68,12 @@ class AuthBackend(pulumi.CustomResource):
     if any, in number of seconds to set on the token.
     """
     token_period: pulumi.Output[float]
+    """
+    (Optional) If set, indicates that the
+    token generated using this role should never expire. The token should be renewed within the
+    duration specified by this value. At each renewal, the token's TTL will be set to the
+    value of this field. Specified in seconds.
+    """
     token_policies: pulumi.Output[list]
     """
     (Optional) List of policies to encode onto generated tokens. Depending
@@ -88,7 +94,7 @@ class AuthBackend(pulumi.CustomResource):
     """
     ttl: pulumi.Output[str]
     """
-    (Optional; Deprecated, use `token_ttl` isntead) The TTL period of tokens issued
+    (Optional; Deprecated, use `token_ttl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
     using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
     """
     tune: pulumi.Output[dict]
@@ -104,7 +110,7 @@ class AuthBackend(pulumi.CustomResource):
                are running GitHub Enterprise or an API-compatible authentication server.
         :param pulumi.Input[str] description: Specifies the description of the mount.
                This overrides the current stored value, if any.
-        :param pulumi.Input[str] max_ttl: (Optional; Deprecated, use `token_max_ttl` instead) The maximum allowed lifetime of tokens
+        :param pulumi.Input[str] max_ttl: (Optional; Deprecated, use `token_max_ttl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
                issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[str] organization: The organization configured users must be part of.
         :param pulumi.Input[str] path: Path where the auth backend is mounted. Defaults to `auth/github`
@@ -123,6 +129,10 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[float] token_num_uses: (Optional) The
                [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
                if any, in number of seconds to set on the token.
+        :param pulumi.Input[float] token_period: (Optional) If set, indicates that the
+               token generated using this role should never expire. The token should be renewed within the
+               duration specified by this value. At each renewal, the token's TTL will be set to the
+               value of this field. Specified in seconds.
         :param pulumi.Input[list] token_policies: (Optional) List of policies to encode onto generated tokens. Depending
                on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[float] token_ttl: (Optional) The incremental lifetime for generated tokens in number of seconds.
@@ -132,7 +142,7 @@ class AuthBackend(pulumi.CustomResource):
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
-        :param pulumi.Input[str] ttl: (Optional; Deprecated, use `token_ttl` isntead) The TTL period of tokens issued
+        :param pulumi.Input[str] ttl: (Optional; Deprecated, use `token_ttl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
                using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
         
         The **tune** object supports the following:
@@ -208,7 +218,7 @@ class AuthBackend(pulumi.CustomResource):
                are running GitHub Enterprise or an API-compatible authentication server.
         :param pulumi.Input[str] description: Specifies the description of the mount.
                This overrides the current stored value, if any.
-        :param pulumi.Input[str] max_ttl: (Optional; Deprecated, use `token_max_ttl` instead) The maximum allowed lifetime of tokens
+        :param pulumi.Input[str] max_ttl: (Optional; Deprecated, use `token_max_ttl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
                issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[str] organization: The organization configured users must be part of.
         :param pulumi.Input[str] path: Path where the auth backend is mounted. Defaults to `auth/github`
@@ -227,6 +237,10 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[float] token_num_uses: (Optional) The
                [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
                if any, in number of seconds to set on the token.
+        :param pulumi.Input[float] token_period: (Optional) If set, indicates that the
+               token generated using this role should never expire. The token should be renewed within the
+               duration specified by this value. At each renewal, the token's TTL will be set to the
+               value of this field. Specified in seconds.
         :param pulumi.Input[list] token_policies: (Optional) List of policies to encode onto generated tokens. Depending
                on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[float] token_ttl: (Optional) The incremental lifetime for generated tokens in number of seconds.
@@ -236,7 +250,7 @@ class AuthBackend(pulumi.CustomResource):
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
-        :param pulumi.Input[str] ttl: (Optional; Deprecated, use `token_ttl` isntead) The TTL period of tokens issued
+        :param pulumi.Input[str] ttl: (Optional; Deprecated, use `token_ttl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
                using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
         
         The **tune** object supports the following:

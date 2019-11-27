@@ -56,32 +56,32 @@ func GetAuthBackendRoletagBlacklist(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackendRoletagBlacklist) URN() *pulumi.URNOutput {
+func (r *AuthBackendRoletagBlacklist) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackendRoletagBlacklist) ID() *pulumi.IDOutput {
+func (r *AuthBackendRoletagBlacklist) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The path the AWS auth backend being configured was
 // mounted at.
-func (r *AuthBackendRoletagBlacklist) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *AuthBackendRoletagBlacklist) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // If set to true, disables the periodic
 // tidying of the roletag blacklist entries. Defaults to false.
-func (r *AuthBackendRoletagBlacklist) DisablePeriodicTidy() *pulumi.BoolOutput {
-	return (*pulumi.BoolOutput)(r.s.State["disablePeriodicTidy"])
+func (r *AuthBackendRoletagBlacklist) DisablePeriodicTidy() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["disablePeriodicTidy"])
 }
 
 // The amount of extra time that must have passed
 // beyond the roletag expiration, before it is removed from the backend storage.
 // Defaults to 259,200 seconds, or 72 hours.
-func (r *AuthBackendRoletagBlacklist) SafetyBuffer() *pulumi.IntOutput {
-	return (*pulumi.IntOutput)(r.s.State["safetyBuffer"])
+func (r *AuthBackendRoletagBlacklist) SafetyBuffer() pulumi.IntOutput {
+	return (pulumi.IntOutput)(r.s.State["safetyBuffer"])
 }
 
 // Input properties used for looking up and filtering AuthBackendRoletagBlacklist resources.

@@ -61,28 +61,28 @@ func GetGroupAlias(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *GroupAlias) URN() *pulumi.URNOutput {
+func (r *GroupAlias) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *GroupAlias) ID() *pulumi.IDOutput {
+func (r *GroupAlias) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // ID of the group to which this is an alias.
-func (r *GroupAlias) CanonicalId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["canonicalId"])
+func (r *GroupAlias) CanonicalId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["canonicalId"])
 }
 
 // Mount accessor of the authentication backend to which this alias belongs to.
-func (r *GroupAlias) MountAccessor() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["mountAccessor"])
+func (r *GroupAlias) MountAccessor() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["mountAccessor"])
 }
 
 // Name of the group alias to create.
-func (r *GroupAlias) Name() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["name"])
+func (r *GroupAlias) Name() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["name"])
 }
 
 // Input properties used for looking up and filtering GroupAlias resources.

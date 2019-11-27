@@ -17,6 +17,12 @@ namespace Pulumi.Vault
     public partial class Namespace : Pulumi.CustomResource
     {
         /// <summary>
+        /// ID of the namepsace.
+        /// </summary>
+        [Output("namespaceId")]
+        public Output<string> NamespaceId { get; private set; } = null!;
+
+        /// <summary>
         /// The path of the namespace. Must not have a trailing `/`
         /// </summary>
         [Output("path")]
@@ -31,7 +37,7 @@ namespace Pulumi.Vault
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Namespace(string name, NamespaceArgs args, CustomResourceOptions? options = null)
-            : base("vault:index/namespace:Namespace", name, args, MakeResourceOptions(options, ""))
+            : base("vault:index/namespace:Namespace", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
@@ -81,6 +87,12 @@ namespace Pulumi.Vault
 
     public sealed class NamespaceState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ID of the namepsace.
+        /// </summary>
+        [Input("namespaceId")]
+        public Input<string>? NamespaceId { get; set; }
+
         /// <summary>
         /// The path of the namespace. Must not have a trailing `/`
         /// </summary>

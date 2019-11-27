@@ -66,51 +66,51 @@ func GetBackendRole(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *BackendRole) URN() *pulumi.URNOutput {
+func (r *BackendRole) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *BackendRole) ID() *pulumi.IDOutput {
+func (r *BackendRole) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Application Object ID for an existing service principal that will
 // be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
-func (r *BackendRole) ApplicationObjectId() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["applicationObjectId"])
+func (r *BackendRole) ApplicationObjectId() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["applicationObjectId"])
 }
 
 // List of Azure roles to be assigned to the generated service principal.
-func (r *BackendRole) AzureRoles() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["azureRoles"])
+func (r *BackendRole) AzureRoles() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["azureRoles"])
 }
 
 // Path to the mounted Azure auth backend
-func (r *BackendRole) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *BackendRole) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // Human-friendly description of the mount for the backend.
-func (r *BackendRole) Description() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["description"])
+func (r *BackendRole) Description() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["description"])
 }
 
 // Specifies the maximum TTL for service principals generated using this role. Accepts time
 // suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
-func (r *BackendRole) MaxTtl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["maxTtl"])
+func (r *BackendRole) MaxTtl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["maxTtl"])
 }
 
 // Name of the Azure role
-func (r *BackendRole) Role() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["role"])
+func (r *BackendRole) Role() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["role"])
 }
 
 // Specifies the default TTL for service principals generated using this role.
 // Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
-func (r *BackendRole) Ttl() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["ttl"])
+func (r *BackendRole) Ttl() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["ttl"])
 }
 
 // Input properties used for looking up and filtering BackendRole resources.

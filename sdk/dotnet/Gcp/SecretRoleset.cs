@@ -67,7 +67,7 @@ namespace Pulumi.Vault.Gcp
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretRoleset(string name, SecretRolesetArgs args, CustomResourceOptions? options = null)
-            : base("vault:gcp/secretRoleset:SecretRoleset", name, args, MakeResourceOptions(options, ""))
+            : base("vault:gcp/secretRoleset:SecretRoleset", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 

@@ -17,7 +17,7 @@ namespace Pulumi.Vault.Kubernetes
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_role.html.markdown.
         /// </summary>
         public static Task<GetAuthBackendRoleResult> GetAuthBackendRole(GetAuthBackendRoleArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleResult>("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleResult>("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args ?? ResourceArgs.Empty, options.WithVersion());
     }
 
     public sealed class GetAuthBackendRoleArgs : Pulumi.ResourceArgs
@@ -152,6 +152,12 @@ namespace Pulumi.Vault.Kubernetes
         /// if any, in number of seconds to set on the token.
         /// </summary>
         public readonly int? TokenNumUses;
+        /// <summary>
+        /// (Optional) If set, indicates that the
+        /// token generated using this role should never expire. The token should be renewed within the
+        /// duration specified by this value. At each renewal, the token's TTL will be set to the
+        /// value of this field. Specified in seconds.
+        /// </summary>
         public readonly int? TokenPeriod;
         /// <summary>
         /// List of policies to encode onto generated tokens. Depending

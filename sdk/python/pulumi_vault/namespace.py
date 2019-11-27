@@ -10,6 +10,7 @@ from typing import Union
 from . import utilities, tables
 
 class Namespace(pulumi.CustomResource):
+    namespace_id: pulumi.Output[str]
     path: pulumi.Output[str]
     """
     The path of the namespace. Must not have a trailing `/`
@@ -46,6 +47,7 @@ class Namespace(pulumi.CustomResource):
             if path is None:
                 raise TypeError("Missing required property 'path'")
             __props__['path'] = path
+            __props__['namespace_id'] = None
         super(Namespace, __self__).__init__(
             'vault:index/namespace:Namespace',
             resource_name,
@@ -53,7 +55,7 @@ class Namespace(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, path=None):
+    def get(resource_name, id, opts=None, namespace_id=None, path=None):
         """
         Get an existing Namespace resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -68,6 +70,7 @@ class Namespace(pulumi.CustomResource):
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+        __props__["namespace_id"] = namespace_id
         __props__["path"] = path
         return Namespace(resource_name, opts=opts, __props__=__props__)
     def translate_output_property(self, prop):

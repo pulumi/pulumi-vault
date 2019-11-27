@@ -54,23 +54,23 @@ func GetSecretBackendConfigCa(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *SecretBackendConfigCa) URN() *pulumi.URNOutput {
+func (r *SecretBackendConfigCa) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *SecretBackendConfigCa) ID() *pulumi.IDOutput {
+func (r *SecretBackendConfigCa) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // The PKI secret backend the resource belongs to.
-func (r *SecretBackendConfigCa) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *SecretBackendConfigCa) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // The key and certificate PEM bundle
-func (r *SecretBackendConfigCa) PemBundle() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["pemBundle"])
+func (r *SecretBackendConfigCa) PemBundle() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["pemBundle"])
 }
 
 // Input properties used for looking up and filtering SecretBackendConfigCa resources.

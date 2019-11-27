@@ -37,17 +37,37 @@ export class SecretBackendRole extends pulumi.CustomResource {
     }
 
     /**
+     * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+     */
+    public readonly backend!: pulumi.Output<string | undefined>;
+    /**
+     * Indicates that the token should not be replicated globally and instead be local to the current datacenter.
+     */
+    public readonly local!: pulumi.Output<boolean | undefined>;
+    /**
+     * Maximum TTL for leases associated with this role, in seconds.
+     */
+    public readonly maxTtl!: pulumi.Output<number | undefined>;
+    /**
      * The name of the Consul secrets engine role to create.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`.
+     * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
      */
-    public readonly path!: pulumi.Output<string>;
+    public readonly path!: pulumi.Output<string | undefined>;
     /**
      * The list of Consul ACL policies to associate with these roles.
      */
     public readonly policies!: pulumi.Output<string[]>;
+    /**
+     * Specifies the type of token to create when using this role. Valid values are "client" or "management".
+     */
+    public readonly tokenType!: pulumi.Output<string | undefined>;
+    /**
+     * Specifies the TTL for this role.
+     */
+    public readonly ttl!: pulumi.Output<number | undefined>;
 
     /**
      * Create a SecretBackendRole resource with the given unique name, arguments, and options.
@@ -61,20 +81,27 @@ export class SecretBackendRole extends pulumi.CustomResource {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state = argsOrState as SecretBackendRoleState | undefined;
+            inputs["backend"] = state ? state.backend : undefined;
+            inputs["local"] = state ? state.local : undefined;
+            inputs["maxTtl"] = state ? state.maxTtl : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["path"] = state ? state.path : undefined;
             inputs["policies"] = state ? state.policies : undefined;
+            inputs["tokenType"] = state ? state.tokenType : undefined;
+            inputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
-            if (!args || args.path === undefined) {
-                throw new Error("Missing required property 'path'");
-            }
             if (!args || args.policies === undefined) {
                 throw new Error("Missing required property 'policies'");
             }
+            inputs["backend"] = args ? args.backend : undefined;
+            inputs["local"] = args ? args.local : undefined;
+            inputs["maxTtl"] = args ? args.maxTtl : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["path"] = args ? args.path : undefined;
             inputs["policies"] = args ? args.policies : undefined;
+            inputs["tokenType"] = args ? args.tokenType : undefined;
+            inputs["ttl"] = args ? args.ttl : undefined;
         }
         if (!opts) {
             opts = {}
@@ -92,17 +119,37 @@ export class SecretBackendRole extends pulumi.CustomResource {
  */
 export interface SecretBackendRoleState {
     /**
+     * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+     */
+    readonly backend?: pulumi.Input<string>;
+    /**
+     * Indicates that the token should not be replicated globally and instead be local to the current datacenter.
+     */
+    readonly local?: pulumi.Input<boolean>;
+    /**
+     * Maximum TTL for leases associated with this role, in seconds.
+     */
+    readonly maxTtl?: pulumi.Input<number>;
+    /**
      * The name of the Consul secrets engine role to create.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`.
+     * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
      */
     readonly path?: pulumi.Input<string>;
     /**
      * The list of Consul ACL policies to associate with these roles.
      */
     readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the type of token to create when using this role. Valid values are "client" or "management".
+     */
+    readonly tokenType?: pulumi.Input<string>;
+    /**
+     * Specifies the TTL for this role.
+     */
+    readonly ttl?: pulumi.Input<number>;
 }
 
 /**
@@ -110,15 +157,35 @@ export interface SecretBackendRoleState {
  */
 export interface SecretBackendRoleArgs {
     /**
+     * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+     */
+    readonly backend?: pulumi.Input<string>;
+    /**
+     * Indicates that the token should not be replicated globally and instead be local to the current datacenter.
+     */
+    readonly local?: pulumi.Input<boolean>;
+    /**
+     * Maximum TTL for leases associated with this role, in seconds.
+     */
+    readonly maxTtl?: pulumi.Input<number>;
+    /**
      * The name of the Consul secrets engine role to create.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`.
+     * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
      */
-    readonly path: pulumi.Input<string>;
+    readonly path?: pulumi.Input<string>;
     /**
      * The list of Consul ACL policies to associate with these roles.
      */
     readonly policies: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the type of token to create when using this role. Valid values are "client" or "management".
+     */
+    readonly tokenType?: pulumi.Input<string>;
+    /**
+     * Specifies the TTL for this role.
+     */
+    readonly ttl?: pulumi.Input<number>;
 }

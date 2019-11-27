@@ -19,6 +19,12 @@ namespace Pulumi.Vault.Identity
         public Output<bool?> Disabled { get; private set; } = null!;
 
         /// <summary>
+        /// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+        /// </summary>
+        [Output("externalPolicies")]
+        public Output<bool?> ExternalPolicies { get; private set; } = null!;
+
+        /// <summary>
         /// A Map of additional metadata to associate with the user.
         /// </summary>
         [Output("metadata")]
@@ -45,7 +51,7 @@ namespace Pulumi.Vault.Identity
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Entity(string name, EntityArgs? args = null, CustomResourceOptions? options = null)
-            : base("vault:identity/entity:Entity", name, args, MakeResourceOptions(options, ""))
+            : base("vault:identity/entity:Entity", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
@@ -87,6 +93,12 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         [Input("disabled")]
         public Input<bool>? Disabled { get; set; }
+
+        /// <summary>
+        /// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+        /// </summary>
+        [Input("externalPolicies")]
+        public Input<bool>? ExternalPolicies { get; set; }
 
         [Input("metadata")]
         private InputMap<string>? _metadata;
@@ -130,6 +142,12 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         [Input("disabled")]
         public Input<bool>? Disabled { get; set; }
+
+        /// <summary>
+        /// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+        /// </summary>
+        [Input("externalPolicies")]
+        public Input<bool>? ExternalPolicies { get; set; }
 
         [Input("metadata")]
         private InputMap<string>? _metadata;

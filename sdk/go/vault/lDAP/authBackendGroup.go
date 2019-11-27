@@ -56,28 +56,28 @@ func GetAuthBackendGroup(ctx *pulumi.Context,
 }
 
 // URN is this resource's unique name assigned by Pulumi.
-func (r *AuthBackendGroup) URN() *pulumi.URNOutput {
+func (r *AuthBackendGroup) URN() pulumi.URNOutput {
 	return r.s.URN()
 }
 
 // ID is this resource's unique identifier assigned by its provider.
-func (r *AuthBackendGroup) ID() *pulumi.IDOutput {
+func (r *AuthBackendGroup) ID() pulumi.IDOutput {
 	return r.s.ID()
 }
 
 // Path to the authentication backend
-func (r *AuthBackendGroup) Backend() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["backend"])
+func (r *AuthBackendGroup) Backend() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
 // The LDAP groupname
-func (r *AuthBackendGroup) Groupname() *pulumi.StringOutput {
-	return (*pulumi.StringOutput)(r.s.State["groupname"])
+func (r *AuthBackendGroup) Groupname() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["groupname"])
 }
 
 // Policies which should be granted to members of the group
-func (r *AuthBackendGroup) Policies() *pulumi.ArrayOutput {
-	return (*pulumi.ArrayOutput)(r.s.State["policies"])
+func (r *AuthBackendGroup) Policies() pulumi.ArrayOutput {
+	return (pulumi.ArrayOutput)(r.s.State["policies"])
 }
 
 // Input properties used for looking up and filtering AuthBackendGroup resources.

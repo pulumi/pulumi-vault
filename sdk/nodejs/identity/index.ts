@@ -4,6 +4,7 @@
 // Export members:
 export * from "./entity";
 export * from "./entityAlias";
+export * from "./entityPolicies";
 export * from "./getEntity";
 export * from "./getGroup";
 export * from "./group";

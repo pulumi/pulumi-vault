@@ -78,14 +78,89 @@ func preConfigureCallback(vars resource.PropertyMap, c *terraform.ResourceConfig
 func Provider() tfbridge.ProviderInfo {
 	p := vault.Provider().(*schema.Provider)
 	prov := tfbridge.ProviderInfo{
-		P:                    p,
-		Name:                 "vault",
-		Description:          "A Pulumi package for creating and managing vault cloud resources.",
-		Keywords:             []string{"pulumi", "vault"},
-		License:              "Apache-2.0",
-		Homepage:             "https://pulumi.io",
-		Repository:           "https://github.com/pulumi/pulumi-vault",
-		Config:               map[string]*tfbridge.SchemaInfo{},
+		P:           p,
+		Name:        "vault",
+		Description: "A Pulumi package for creating and managing vault cloud resources.",
+		Keywords:    []string{"pulumi", "vault"},
+		License:     "Apache-2.0",
+		Homepage:    "https://pulumi.io",
+		Repository:  "https://github.com/pulumi/pulumi-vault",
+		Config: map[string]*tfbridge.SchemaInfo{
+			"address": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{
+						"VAULT_ADDR",
+					},
+				},
+			},
+			"token": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{
+						"VAULT_TOKEN",
+					},
+				},
+			},
+			"ca_cert_file": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{
+						"VAULT_CACERT",
+					},
+				},
+			},
+			"ca_cert_dir": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{
+						"VAULT_CAPATH",
+					},
+				},
+			},
+			"client_auth": {
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"cert_file": {
+						Default: &tfbridge.DefaultInfo{
+							EnvVars: []string{
+								"VAULT_CLIENT_CERT",
+							},
+						},
+					},
+					"key_file": {
+						Default: &tfbridge.DefaultInfo{
+							EnvVars: []string{
+								"VAULT_CLIENT_KEY",
+							},
+						},
+					},
+				},
+			},
+			"skip_tls_verify": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{
+						"VAULT_SKIP_VERIFY",
+					},
+				},
+			},
+			"max_lease_ttl_seconds": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{
+						"TERRAFORM_VAULT_MAX_TTL",
+					},
+				},
+			},
+			"max_retries": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{
+						"VAULT_MAX_RETRIES",
+					},
+				},
+			},
+			"namespace": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{
+						"VAULT_NAMESPACE",
+					},
+				},
+			},
+		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			// Main
@@ -96,9 +171,16 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_mfa_duo":                {Tok: makeResource(mainMod, "MfaDuo")},
 			"vault_mount":                  {Tok: makeResource(mainMod, "Mount")},
 			"vault_namespace":              {Tok: makeResource(mainMod, "Namespace")},
-			"vault_policy":                 {Tok: makeResource(mainMod, "Policy")},
-			"vault_rgp_policy":             {Tok: makeResource(mainMod, "RgpPolicy")},
-			"vault_token":                  {Tok: makeResource(mainMod, "Token")},
+			"vault_policy": {
+				Tok: makeResource(mainMod, "Policy"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"policy": {
+						CSharpName: "PolicyContents",
+					},
+				},
+			},
+			"vault_rgp_policy": {Tok: makeResource(mainMod, "RgpPolicy")},
+			"vault_token":      {Tok: makeResource(mainMod, "Token")},
 
 			// AppRole
 			"vault_approle_auth_backend_role":           {Tok: makeResource(appRoleMod, "AuthBackendRole")},
@@ -140,6 +222,12 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "database_secret_backend_role.md",
 				},
 			},
+			"vault_database_secret_backend_static_role": {
+				Tok: makeResource(databaseMod, "SecretBackendStaticRole"),
+				Docs: &tfbridge.DocInfo{
+					Source: "database_secret_backend_static_role.md",
+				},
+			},
 
 			// GCP
 			"vault_gcp_auth_backend":      {Tok: makeResource(gcpMod, "AuthBackend")},
@@ -153,8 +241,22 @@ func Provider() tfbridge.ProviderInfo {
 
 			// Github
 			"vault_github_auth_backend": {Tok: makeResource(githubMod, "AuthBackend")},
-			"vault_github_team":         {Tok: makeResource(githubMod, "Team")},
-			"vault_github_user":         {Tok: makeResource(githubMod, "User")},
+			"vault_github_team": {
+				Tok: makeResource(githubMod, "Team"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"team": {
+						CSharpName: "TeamCity",
+					},
+				},
+			},
+			"vault_github_user": {
+				Tok: makeResource(githubMod, "User"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"user": {
+						CSharpName: "UserName",
+					},
+				},
+			},
 
 			// Identity
 			"vault_identity_entity":       {Tok: makeResource(identityMod, "Entity")},
@@ -171,6 +273,12 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_identity_oidc_key":                   {Tok: makeResource(identityMod, "OidcKey")},
 			"vault_identity_oidc_key_allowed_client_id": {Tok: makeResource(identityMod, "OidcKeyAllowedClientID")},
 			"vault_identity_oidc_role":                  {Tok: makeResource(identityMod, "OidcRole")},
+			"vault_identity_entity_policies": {
+				Tok: makeResource(identityMod, "EntityPolicies"),
+				Docs: &tfbridge.DocInfo{
+					Source: "identity_entity_policies.html.md",
+				},
+			},
 
 			// JWT
 			"vault_jwt_auth_backend":      {Tok: makeResource(jwtMod, "AuthBackend")},
@@ -240,6 +348,12 @@ func Provider() tfbridge.ProviderInfo {
 
 			// Transit
 			"vault_transit_secret_backend_key": {Tok: makeResource(transitMod, "SecretBackendKey")},
+			"vault_transit_secret_cache_config": {
+				Tok: makeResource(transitMod, "SecretCacheConfig"),
+				Docs: &tfbridge.DocInfo{
+					Source: "transit_secret_backend_cache_config.html.md",
+				},
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			// Main
@@ -300,6 +414,9 @@ func Provider() tfbridge.ProviderInfo {
 			PackageReferences: map[string]string{
 				"Pulumi":                       "1.5.0-*",
 				"System.Collections.Immutable": "1.6.0",
+			},
+			Namespaces: map[string]string{
+				"token": "TokenAuth",
 			},
 		},
 	}
