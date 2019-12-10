@@ -59,6 +59,8 @@ class GroupAlias(pulumi.CustomResource):
             if mount_accessor is None:
                 raise TypeError("Missing required property 'mount_accessor'")
             __props__['mount_accessor'] = mount_accessor
+            if name is None:
+                raise TypeError("Missing required property 'name'")
             __props__['name'] = name
         super(GroupAlias, __self__).__init__(
             'vault:identity/groupAlias:GroupAlias',

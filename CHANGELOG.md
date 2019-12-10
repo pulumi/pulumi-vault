@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Remove the autonaming of `vault.identify.GroupAlias`. The `name` must match that of the Github Team Name.
 
 ---
 

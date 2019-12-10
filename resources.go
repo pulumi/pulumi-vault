@@ -262,7 +262,15 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_identity_entity":       {Tok: makeResource(identityMod, "Entity")},
 			"vault_identity_entity_alias": {Tok: makeResource(identityMod, "EntityAlias")},
 			"vault_identity_group":        {Tok: makeResource(identityMod, "Group")},
-			"vault_identity_group_alias":  {Tok: makeResource(identityMod, "GroupAlias")},
+			"vault_identity_group_alias": {
+				Tok: makeResource(identityMod, "GroupAlias"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					//Fixes https://github.com/pulumi/pulumi-vault/issues/11
+					"name": {
+						Name: "name",
+					},
+				},
+			},
 			"vault_identity_group_policies": {
 				Tok: makeResource(identityMod, "GroupPolicies"),
 				Docs: &tfbridge.DocInfo{

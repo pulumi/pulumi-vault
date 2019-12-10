@@ -26,6 +26,9 @@ func NewGroupAlias(ctx *pulumi.Context,
 	if args == nil || args.MountAccessor == nil {
 		return nil, errors.New("missing required argument 'MountAccessor'")
 	}
+	if args == nil || args.Name == nil {
+		return nil, errors.New("missing required argument 'Name'")
+	}
 	inputs := make(map[string]interface{})
 	if args == nil {
 		inputs["canonicalId"] = nil
