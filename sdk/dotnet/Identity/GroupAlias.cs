@@ -95,8 +95,8 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// Name of the group alias to create.
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
 
         public GroupAliasArgs()
         {

@@ -26,6 +26,7 @@ import * as utilities from "../utilities";
  * const groupAlias = new vault.identity.GroupAlias("group-alias", {
  *     canonicalId: group.id,
  *     mountAccessor: github.accessor,
+ *     name: "Github_Team_Slug",
  * });
  * ```
  *
@@ -94,6 +95,9 @@ export class GroupAlias extends pulumi.CustomResource {
             if (!args || args.mountAccessor === undefined) {
                 throw new Error("Missing required property 'mountAccessor'");
             }
+            if (!args || args.name === undefined) {
+                throw new Error("Missing required property 'name'");
+            }
             inputs["canonicalId"] = args ? args.canonicalId : undefined;
             inputs["mountAccessor"] = args ? args.mountAccessor : undefined;
             inputs["name"] = args ? args.name : undefined;
@@ -142,5 +146,5 @@ export interface GroupAliasArgs {
     /**
      * Name of the group alias to create.
      */
-    readonly name?: pulumi.Input<string>;
+    readonly name: pulumi.Input<string>;
 }
