@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Vault.Github
+namespace Pulumi.Vault.GitHub
 {
     /// <summary>
     /// Manages policy mappings for Github Users authenticated via Github. See the [Vault

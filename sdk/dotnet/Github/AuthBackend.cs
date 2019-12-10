@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Vault.Github
+namespace Pulumi.Vault.GitHub
 {
     /// <summary>
     /// Manages a Github Auth mount in a Vault server. See the [Vault
