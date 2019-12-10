@@ -3,6 +3,8 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Remove the autonaming of `vault.identify.GroupAlias`. The `name` must match that of the Github Team Name.
+* Namespace names in .NET SDK are adjusted to PascalCase
+([#17](https://github.com/pulumi/pulumi-vault/pull/17)).
 
 ---
 

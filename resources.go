@@ -57,8 +57,7 @@ var namespaceMap = map[string]string{
 	mainPkg: "Vault",
 }
 
-// There is a bug that several resources are not in lowercase even for JS and Python.
-// We should eventually fix that and get rid of this map.
+// Override legacy name in JS and Python that were used instead of lowercase.
 var specialNamesMap = map[string]string{
 	"AppRole": "appRole",
 	"Ldap": "lDAP",
