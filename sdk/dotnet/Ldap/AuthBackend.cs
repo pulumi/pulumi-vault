@@ -209,12 +209,12 @@ namespace Pulumi.Vault.Ldap
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthBackend(string name, AuthBackendArgs args, CustomResourceOptions? options = null)
-            : base("vault:lDAP/authBackend:AuthBackend", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:ldap/authBackend:AuthBackend", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
         private AuthBackend(string name, Input<string> id, AuthBackendState? state = null, CustomResourceOptions? options = null)
-            : base("vault:lDAP/authBackend:AuthBackend", name, state, MakeResourceOptions(options, id))
+            : base("vault:ldap/authBackend:AuthBackend", name, state, MakeResourceOptions(options, id))
         {
         }
 
