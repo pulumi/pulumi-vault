@@ -4,7 +4,7 @@
 
 import importlib
 # Make subpackages available:
-__all__ = ['app_role', 'aws', 'azure', 'config', 'consul', 'database', 'gcp', 'generic', 'github', 'identity', 'jwt', 'kubernetes', 'l_dap', 'okta', 'pki_secret', 'rabbit_mq', 'ssh', 'token', 'transit']
+__all__ = ['app_role', 'aws', 'azure', 'config', 'consul', 'database', 'gcp', 'generic', 'github', 'identity', 'jwt', 'kubernetes', 'l_dap', 'okta', 'pki_secret', 'rabbit_mq', 'ssh', 'tokenauth', 'transit']
 for pkg in __all__:
     if pkg != 'config':
         importlib.import_module(f'{__name__}.{pkg}')

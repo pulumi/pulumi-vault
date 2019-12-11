@@ -183,7 +183,7 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__['token_ttl'] = token_ttl
             __props__['token_type'] = token_type
         super(AuthBackendRole, __self__).__init__(
-            'vault:token/authBackendRole:AuthBackendRole',
+            'vault:tokenauth/authBackendRole:AuthBackendRole',
             resource_name,
             __props__,
             opts)

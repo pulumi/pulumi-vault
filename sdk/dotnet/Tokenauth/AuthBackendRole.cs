@@ -154,12 +154,12 @@ namespace Pulumi.Vault.TokenAuth
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthBackendRole(string name, AuthBackendRoleArgs args, CustomResourceOptions? options = null)
-            : base("vault:token/authBackendRole:AuthBackendRole", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:tokenauth/authBackendRole:AuthBackendRole", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
         private AuthBackendRole(string name, Input<string> id, AuthBackendRoleState? state = null, CustomResourceOptions? options = null)
-            : base("vault:token/authBackendRole:AuthBackendRole", name, state, MakeResourceOptions(options, id))
+            : base("vault:tokenauth/authBackendRole:AuthBackendRole", name, state, MakeResourceOptions(options, id))
         {
         }
 

@@ -63,7 +63,6 @@ var specialNamesMap = map[string]string{
 	"Ldap":      "lDAP",
 	"PkiSecret": "pkiSecret",
 	"RabbitMQ":  "rabbitMq",
-	"TokenAuth": "token",
 }
 
 func makeMember(moduleTitle string, mem string) tokens.ModuleMember {
