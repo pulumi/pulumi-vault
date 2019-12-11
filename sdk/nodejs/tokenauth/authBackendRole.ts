@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  * 
- * const example = new vault.token.AuthBackendRole("example", {
+ * const example = new vault.tokenauth.AuthBackendRole("example", {
  *     allowedPolicies: [
  *         "dev",
  *         "test",
@@ -46,7 +46,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'vault:token/authBackendRole:AuthBackendRole';
+    public static readonly __pulumiType = 'vault:tokenauth/authBackendRole:AuthBackendRole';
 
     /**
      * Returns true if the given object is an instance of AuthBackendRole.  This is designed to work even
