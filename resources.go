@@ -15,6 +15,7 @@
 package vault
 
 import (
+	"strings"
 	"unicode"
 
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
@@ -32,28 +33,48 @@ const (
 
 	// modules:
 	mainMod       = "index"
-	appRoleMod    = "appRole"
-	awsMod        = "aws"
-	azureMod      = "azure"
-	consulMod     = "consul"
-	databaseMod   = "database"
-	gcpMod        = "gcp"
-	genericMod    = "generic"
-	githubMod     = "github"
-	identityMod   = "identity"
-	jwtMod        = "jwt"
-	kubernetesMod = "kubernetes"
-	ldapMod       = "lDAP"
-	oktaMod       = "okta"
-	pkiSecretMod  = "pkiSecret"
-	rabbitMqMod   = "rabbitMq"
-	sshMod        = "ssh"
-	tokenMod      = "token"
-	transitMod    = "transit"
+	appRoleMod    = "AppRole"
+	awsMod        = "Aws"
+	azureMod      = "Azure"
+	consulMod     = "Consul"
+	databaseMod   = "Database"
+	gcpMod        = "Gcp"
+	genericMod    = "Generic"
+	githubMod     = "GitHub"
+	identityMod   = "Identity"
+	jwtMod        = "Jwt"
+	kubernetesMod = "Kubernetes"
+	ldapMod       = "Ldap"
+	oktaMod       = "Okta"
+	pkiSecretMod  = "PkiSecret"
+	rabbitMqMod   = "RabbitMQ"
+	sshMod        = "Ssh"
+	tokenMod      = "TokenAuth"
+	transitMod    = "Transit"
 )
 
-func makeMember(mod string, mem string) tokens.ModuleMember {
-	return tokens.ModuleMember(mainPkg + ":" + mod + ":" + mem)
+var namespaceMap = map[string]string{
+	mainPkg: "Vault",
+}
+
+// Override legacy name in JS and Python that were used instead of lowercase.
+var specialNamesMap = map[string]string{
+	"AppRole":   "appRole",
+	"Ldap":      "lDAP",
+	"PkiSecret": "pkiSecret",
+	"RabbitMQ":  "rabbitMq",
+	"TokenAuth": "token",
+}
+
+func makeMember(moduleTitle string, mem string) tokens.ModuleMember {
+	moduleName := strings.ToLower(moduleTitle)
+	if value, exist := specialNamesMap[moduleTitle]; exist {
+		moduleName = value
+	}
+	namespaceMap[moduleName] = moduleTitle
+	fn := string(unicode.ToLower(rune(mem[0]))) + mem[1:]
+	token := moduleName + "/" + fn
+	return tokens.ModuleMember(mainPkg + ":" + token + ":" + mem)
 }
 
 func makeType(mod string, typ string) tokens.Type {
@@ -61,13 +82,11 @@ func makeType(mod string, typ string) tokens.Type {
 }
 
 func makeDataSource(mod string, res string) tokens.ModuleMember {
-	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
-	return makeMember(mod+"/"+fn, res)
+	return makeMember(mod, res)
 }
 
 func makeResource(mod string, res string) tokens.Type {
-	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
-	return makeType(mod+"/"+fn, res)
+	return makeType(mod, res)
 }
 
 func preConfigureCallback(vars resource.PropertyMap, c *terraform.ResourceConfig) error {
@@ -423,9 +442,7 @@ func Provider() tfbridge.ProviderInfo {
 				"Pulumi":                       "1.5.0-*",
 				"System.Collections.Immutable": "1.6.0",
 			},
-			Namespaces: map[string]string{
-				"token": "TokenAuth",
-			},
+			Namespaces: namespaceMap,
 		},
 	}
 
