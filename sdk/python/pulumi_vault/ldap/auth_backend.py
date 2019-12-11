@@ -240,7 +240,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__['userdn'] = userdn
             __props__['accessor'] = None
         super(AuthBackend, __self__).__init__(
-            'vault:lDAP/authBackend:AuthBackend',
+            'vault:ldap/authBackend:AuthBackend',
             resource_name,
             __props__,
             opts)

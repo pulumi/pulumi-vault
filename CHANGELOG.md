@@ -2,10 +2,15 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+
+### BREAKING CHANGES
+* `vault.Token` module has been renamed to `vault.TokenAuth` this is to avoid a conflict between Token class and Token module
+* `vault.lDAP` module has been renamed to `vault.ldap` 
+
+### Improvements / Bug Fixes
 * Remove the autonaming of `vault.identify.GroupAlias`. The `name` must match that of the Github Team Name.
 * Namespace names in .NET SDK are adjusted to PascalCase
 ([#17](https://github.com/pulumi/pulumi-vault/pull/17)).
-* **BREAKING CHANGE:** `vault.Token` module has been renamed to `vault.TokenAuth` this is to avoid a conflict between Token class and Token module
 
 ---
 

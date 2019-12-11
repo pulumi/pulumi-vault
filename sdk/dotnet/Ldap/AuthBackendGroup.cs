@@ -8,11 +8,11 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Ldap
 {
     /// <summary>
-    /// Provides a resource to create a user in an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
+    /// Provides a resource to create a group in an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
     /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ldap_auth_backend_user.html.markdown.
+    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ldap_auth_backend_group.html.markdown.
     /// </summary>
-    public partial class AuthBackendUser : Pulumi.CustomResource
+    public partial class AuthBackendGroup : Pulumi.CustomResource
     {
         /// <summary>
         /// Path to the authentication backend
@@ -21,38 +21,32 @@ namespace Pulumi.Vault.Ldap
         public Output<string?> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// Override LDAP groups which should be granted to user
+        /// The LDAP groupname
         /// </summary>
-        [Output("groups")]
-        public Output<ImmutableArray<string>> Groups { get; private set; } = null!;
+        [Output("groupname")]
+        public Output<string> Groupname { get; private set; } = null!;
 
         /// <summary>
-        /// Policies which should be granted to user
+        /// Policies which should be granted to members of the group
         /// </summary>
         [Output("policies")]
         public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
 
-        /// <summary>
-        /// The LDAP username
-        /// </summary>
-        [Output("username")]
-        public Output<string> Username { get; private set; } = null!;
-
 
         /// <summary>
-        /// Create a AuthBackendUser resource with the given unique name, arguments, and options.
+        /// Create a AuthBackendGroup resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AuthBackendUser(string name, AuthBackendUserArgs args, CustomResourceOptions? options = null)
-            : base("vault:lDAP/authBackendUser:AuthBackendUser", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+        public AuthBackendGroup(string name, AuthBackendGroupArgs args, CustomResourceOptions? options = null)
+            : base("vault:ldap/authBackendGroup:AuthBackendGroup", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
 
-        private AuthBackendUser(string name, Input<string> id, AuthBackendUserState? state = null, CustomResourceOptions? options = null)
-            : base("vault:lDAP/authBackendUser:AuthBackendUser", name, state, MakeResourceOptions(options, id))
+        private AuthBackendGroup(string name, Input<string> id, AuthBackendGroupState? state = null, CustomResourceOptions? options = null)
+            : base("vault:ldap/authBackendGroup:AuthBackendGroup", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -68,7 +62,7 @@ namespace Pulumi.Vault.Ldap
             return merged;
         }
         /// <summary>
-        /// Get an existing AuthBackendUser resource's state with the given name, ID, and optional extra
+        /// Get an existing AuthBackendGroup resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -76,13 +70,13 @@ namespace Pulumi.Vault.Ldap
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static AuthBackendUser Get(string name, Input<string> id, AuthBackendUserState? state = null, CustomResourceOptions? options = null)
+        public static AuthBackendGroup Get(string name, Input<string> id, AuthBackendGroupState? state = null, CustomResourceOptions? options = null)
         {
-            return new AuthBackendUser(name, id, state, options);
+            return new AuthBackendGroup(name, id, state, options);
         }
     }
 
-    public sealed class AuthBackendUserArgs : Pulumi.ResourceArgs
+    public sealed class AuthBackendGroupArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Path to the authentication backend
@@ -90,23 +84,17 @@ namespace Pulumi.Vault.Ldap
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
-        [Input("groups")]
-        private InputList<string>? _groups;
-
         /// <summary>
-        /// Override LDAP groups which should be granted to user
+        /// The LDAP groupname
         /// </summary>
-        public InputList<string> Groups
-        {
-            get => _groups ?? (_groups = new InputList<string>());
-            set => _groups = value;
-        }
+        [Input("groupname", required: true)]
+        public Input<string> Groupname { get; set; } = null!;
 
         [Input("policies")]
         private InputList<string>? _policies;
 
         /// <summary>
-        /// Policies which should be granted to user
+        /// Policies which should be granted to members of the group
         /// </summary>
         public InputList<string> Policies
         {
@@ -114,18 +102,12 @@ namespace Pulumi.Vault.Ldap
             set => _policies = value;
         }
 
-        /// <summary>
-        /// The LDAP username
-        /// </summary>
-        [Input("username", required: true)]
-        public Input<string> Username { get; set; } = null!;
-
-        public AuthBackendUserArgs()
+        public AuthBackendGroupArgs()
         {
         }
     }
 
-    public sealed class AuthBackendUserState : Pulumi.ResourceArgs
+    public sealed class AuthBackendGroupState : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Path to the authentication backend
@@ -133,23 +115,17 @@ namespace Pulumi.Vault.Ldap
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
-        [Input("groups")]
-        private InputList<string>? _groups;
-
         /// <summary>
-        /// Override LDAP groups which should be granted to user
+        /// The LDAP groupname
         /// </summary>
-        public InputList<string> Groups
-        {
-            get => _groups ?? (_groups = new InputList<string>());
-            set => _groups = value;
-        }
+        [Input("groupname")]
+        public Input<string>? Groupname { get; set; }
 
         [Input("policies")]
         private InputList<string>? _policies;
 
         /// <summary>
-        /// Policies which should be granted to user
+        /// Policies which should be granted to members of the group
         /// </summary>
         public InputList<string> Policies
         {
@@ -157,13 +133,7 @@ namespace Pulumi.Vault.Ldap
             set => _policies = value;
         }
 
-        /// <summary>
-        /// The LDAP username
-        /// </summary>
-        [Input("username")]
-        public Input<string>? Username { get; set; }
-
-        public AuthBackendUserState()
+        public AuthBackendGroupState()
         {
         }
     }

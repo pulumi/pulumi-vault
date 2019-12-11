@@ -60,7 +60,6 @@ var namespaceMap = map[string]string{
 // Override legacy name in JS and Python that were used instead of lowercase.
 var specialNamesMap = map[string]string{
 	"AppRole":   "appRole",
-	"Ldap":      "lDAP",
 	"PkiSecret": "pkiSecret",
 	"RabbitMQ":  "rabbitMq",
 }
