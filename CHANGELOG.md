@@ -2,15 +2,18 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v2.7.0 of the Vault Terraform Provider
+_(none)_
 
 ---
+
+## 1.6.0 (2019-12-18)
+* Upgrade to v2.7.0 of the Vault Terraform Provider
 
 ## 1.5.0 (2019-12-11)
 
 #### BREAKING CHANGES
 * `vault.Token` module has been renamed to `vault.TokenAuth` this is to avoid a conflict between Token class and Token module
-* `vault.lDAP` module has been renamed to `vault.ldap` 
+* `vault.lDAP` module has been renamed to `vault.ldap`
 
 #### Improvements / Bug Fixes
 * Remove the autonaming of `vault.identify.GroupAlias`. The `name` must match that of the Github Team Name.
