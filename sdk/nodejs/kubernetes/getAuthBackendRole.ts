@@ -34,6 +34,7 @@ export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.I
         opts.version = utilities.getVersion();
     }
     const promise: Promise<GetAuthBackendRoleResult> = pulumi.runtime.invoke("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", {
+        "audience": args.audience,
         "backend": args.backend,
         "boundCidrs": args.boundCidrs,
         "maxTtl": args.maxTtl,
@@ -60,6 +61,7 @@ export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.I
  * A collection of arguments for invoking getAuthBackendRole.
  */
 export interface GetAuthBackendRoleArgs {
+    readonly audience?: string;
     /**
      * The unique name for the Kubernetes backend the role to
      * retrieve Role attributes for resides in. Defaults to "kubernetes".
@@ -90,6 +92,10 @@ export interface GetAuthBackendRoleArgs {
  * A collection of values returned by getAuthBackendRole.
  */
 export interface GetAuthBackendRoleResult {
+    /**
+     * (Optional) Audience claim to verify in the JWT.
+     */
+    readonly audience?: string;
     readonly backend?: string;
     readonly boundCidrs?: string[];
     /**

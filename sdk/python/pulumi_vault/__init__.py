@@ -20,5 +20,6 @@ from .namespace import *
 from .policy import *
 from .rgp_policy import *
 from .token import *
+from .get_auth_backend import *
 from .get_policy_document import *
 from .provider import *

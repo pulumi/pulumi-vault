@@ -10,6 +10,10 @@ from typing import Union
 from .. import utilities, tables
 
 class AuthBackendRole(pulumi.CustomResource):
+    audience: pulumi.Output[str]
+    """
+    Audience claim to verify in the JWT.
+    """
     backend: pulumi.Output[str]
     """
     Unique name of the kubernetes backend to configure.
@@ -112,7 +116,7 @@ class AuthBackendRole(pulumi.CustomResource):
     The TTL period of tokens issued
     using this role, provided as a number of seconds.
     """
-    def __init__(__self__, resource_name, opts=None, backend=None, bound_cidrs=None, bound_service_account_names=None, bound_service_account_namespaces=None, max_ttl=None, num_uses=None, period=None, policies=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, audience=None, backend=None, bound_cidrs=None, bound_service_account_names=None, bound_service_account_namespaces=None, max_ttl=None, num_uses=None, period=None, policies=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None, __props__=None, __name__=None, __opts__=None):
         """
         Manages an Kubernetes auth backend role in a Vault server. See the [Vault
         documentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more
@@ -120,6 +124,7 @@ class AuthBackendRole(pulumi.CustomResource):
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] audience: Audience claim to verify in the JWT.
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
         :param pulumi.Input[list] bound_cidrs: If set, a list of
                CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
@@ -185,6 +190,7 @@ class AuthBackendRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
+            __props__['audience'] = audience
             __props__['backend'] = backend
             __props__['bound_cidrs'] = bound_cidrs
             if bound_service_account_names is None:
@@ -217,7 +223,7 @@ class AuthBackendRole(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, backend=None, bound_cidrs=None, bound_service_account_names=None, bound_service_account_namespaces=None, max_ttl=None, num_uses=None, period=None, policies=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None):
+    def get(resource_name, id, opts=None, audience=None, backend=None, bound_cidrs=None, bound_service_account_names=None, bound_service_account_namespaces=None, max_ttl=None, num_uses=None, period=None, policies=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None):
         """
         Get an existing AuthBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -225,6 +231,7 @@ class AuthBackendRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] audience: Audience claim to verify in the JWT.
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
         :param pulumi.Input[list] bound_cidrs: If set, a list of
                CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
@@ -276,6 +283,7 @@ class AuthBackendRole(pulumi.CustomResource):
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+        __props__["audience"] = audience
         __props__["backend"] = backend
         __props__["bound_cidrs"] = bound_cidrs
         __props__["bound_service_account_names"] = bound_service_account_names

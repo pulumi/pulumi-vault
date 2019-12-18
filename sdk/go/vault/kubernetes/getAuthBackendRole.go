@@ -15,6 +15,7 @@ import (
 func LookupAuthBackendRole(ctx *pulumi.Context, args *GetAuthBackendRoleArgs) (*GetAuthBackendRoleResult, error) {
 	inputs := make(map[string]interface{})
 	if args != nil {
+		inputs["audience"] = args.Audience
 		inputs["backend"] = args.Backend
 		inputs["boundCidrs"] = args.BoundCidrs
 		inputs["maxTtl"] = args.MaxTtl
@@ -38,6 +39,7 @@ func LookupAuthBackendRole(ctx *pulumi.Context, args *GetAuthBackendRoleArgs) (*
 		return nil, err
 	}
 	return &GetAuthBackendRoleResult{
+		Audience: outputs["audience"],
 		Backend: outputs["backend"],
 		BoundCidrs: outputs["boundCidrs"],
 		BoundServiceAccountNames: outputs["boundServiceAccountNames"],
@@ -63,6 +65,7 @@ func LookupAuthBackendRole(ctx *pulumi.Context, args *GetAuthBackendRoleArgs) (*
 
 // A collection of arguments for invoking getAuthBackendRole.
 type GetAuthBackendRoleArgs struct {
+	Audience interface{}
 	// The unique name for the Kubernetes backend the role to
 	// retrieve Role attributes for resides in. Defaults to "kubernetes".
 	Backend interface{}
@@ -87,6 +90,8 @@ type GetAuthBackendRoleArgs struct {
 
 // A collection of values returned by getAuthBackendRole.
 type GetAuthBackendRoleResult struct {
+	// (Optional) Audience claim to verify in the JWT.
+	Audience interface{}
 	Backend interface{}
 	BoundCidrs interface{}
 	// List of service account names able to access this role. If set to "*" all names are allowed, both this and boundServiceAccountNamespaces can not be "*".

@@ -46,3 +46,7 @@ export let skipTlsVerify: boolean | undefined = __config.getObject<boolean>("ski
  * Token to use to authenticate to Vault.
  */
 export let token: string | undefined = __config.get("token") || utilities.getEnv("VAULT_TOKEN");
+/**
+ * Token name to use for creating the Vault child token.
+ */
+export let tokenName: string | undefined = __config.get("tokenName");

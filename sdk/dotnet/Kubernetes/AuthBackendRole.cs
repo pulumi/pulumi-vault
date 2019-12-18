@@ -17,6 +17,12 @@ namespace Pulumi.Vault.Kubernetes
     public partial class AuthBackendRole : Pulumi.CustomResource
     {
         /// <summary>
+        /// Audience claim to verify in the JWT.
+        /// </summary>
+        [Output("audience")]
+        public Output<string?> Audience { get; private set; } = null!;
+
+        /// <summary>
         /// Unique name of the kubernetes backend to configure.
         /// </summary>
         [Output("backend")]
@@ -203,6 +209,12 @@ namespace Pulumi.Vault.Kubernetes
     public sealed class AuthBackendRoleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Audience claim to verify in the JWT.
+        /// </summary>
+        [Input("audience")]
+        public Input<string>? Audience { get; set; }
+
+        /// <summary>
         /// Unique name of the kubernetes backend to configure.
         /// </summary>
         [Input("backend")]
@@ -385,6 +397,12 @@ namespace Pulumi.Vault.Kubernetes
 
     public sealed class AuthBackendRoleState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Audience claim to verify in the JWT.
+        /// </summary>
+        [Input("audience")]
+        public Input<string>? Audience { get; set; }
+
         /// <summary>
         /// Unique name of the kubernetes backend to configure.
         /// </summary>

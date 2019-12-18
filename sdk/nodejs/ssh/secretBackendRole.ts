@@ -93,6 +93,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly allowedExtensions!: pulumi.Output<string | undefined>;
     /**
+     * Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+     */
+    public readonly allowedUserKeyLengths!: pulumi.Output<{[key: string]: any} | undefined>;
+    /**
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      */
     public readonly allowedUsers!: pulumi.Output<string | undefined>;
@@ -157,6 +161,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["allowedCriticalOptions"] = state ? state.allowedCriticalOptions : undefined;
             inputs["allowedDomains"] = state ? state.allowedDomains : undefined;
             inputs["allowedExtensions"] = state ? state.allowedExtensions : undefined;
+            inputs["allowedUserKeyLengths"] = state ? state.allowedUserKeyLengths : undefined;
             inputs["allowedUsers"] = state ? state.allowedUsers : undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["cidrList"] = state ? state.cidrList : undefined;
@@ -184,6 +189,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["allowedCriticalOptions"] = args ? args.allowedCriticalOptions : undefined;
             inputs["allowedDomains"] = args ? args.allowedDomains : undefined;
             inputs["allowedExtensions"] = args ? args.allowedExtensions : undefined;
+            inputs["allowedUserKeyLengths"] = args ? args.allowedUserKeyLengths : undefined;
             inputs["allowedUsers"] = args ? args.allowedUsers : undefined;
             inputs["backend"] = args ? args.backend : undefined;
             inputs["cidrList"] = args ? args.cidrList : undefined;
@@ -243,6 +249,10 @@ export interface SecretBackendRoleState {
      * Specifies a comma-separated list of extensions that certificates can have when signed.
      */
     readonly allowedExtensions?: pulumi.Input<string>;
+    /**
+     * Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+     */
+    readonly allowedUserKeyLengths?: pulumi.Input<{[key: string]: any}>;
     /**
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      */
@@ -325,6 +335,10 @@ export interface SecretBackendRoleArgs {
      * Specifies a comma-separated list of extensions that certificates can have when signed.
      */
     readonly allowedExtensions?: pulumi.Input<string>;
+    /**
+     * Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+     */
+    readonly allowedUserKeyLengths?: pulumi.Input<{[key: string]: any}>;
     /**
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      */

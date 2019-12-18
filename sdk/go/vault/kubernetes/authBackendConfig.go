@@ -26,12 +26,14 @@ func NewAuthBackendConfig(ctx *pulumi.Context,
 	inputs := make(map[string]interface{})
 	if args == nil {
 		inputs["backend"] = nil
+		inputs["issuer"] = nil
 		inputs["kubernetesCaCert"] = nil
 		inputs["kubernetesHost"] = nil
 		inputs["pemKeys"] = nil
 		inputs["tokenReviewerJwt"] = nil
 	} else {
 		inputs["backend"] = args.Backend
+		inputs["issuer"] = args.Issuer
 		inputs["kubernetesCaCert"] = args.KubernetesCaCert
 		inputs["kubernetesHost"] = args.KubernetesHost
 		inputs["pemKeys"] = args.PemKeys
@@ -51,6 +53,7 @@ func GetAuthBackendConfig(ctx *pulumi.Context,
 	inputs := make(map[string]interface{})
 	if state != nil {
 		inputs["backend"] = state.Backend
+		inputs["issuer"] = state.Issuer
 		inputs["kubernetesCaCert"] = state.KubernetesCaCert
 		inputs["kubernetesHost"] = state.KubernetesHost
 		inputs["pemKeys"] = state.PemKeys
@@ -78,6 +81,11 @@ func (r *AuthBackendConfig) Backend() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["backend"])
 }
 
+// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+func (r *AuthBackendConfig) Issuer() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["issuer"])
+}
+
 // PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
 func (r *AuthBackendConfig) KubernetesCaCert() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["kubernetesCaCert"])
@@ -88,7 +96,7 @@ func (r *AuthBackendConfig) KubernetesHost() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["kubernetesHost"])
 }
 
-// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys. 
+// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 func (r *AuthBackendConfig) PemKeys() pulumi.ArrayOutput {
 	return (pulumi.ArrayOutput)(r.s.State["pemKeys"])
 }
@@ -102,11 +110,13 @@ func (r *AuthBackendConfig) TokenReviewerJwt() pulumi.StringOutput {
 type AuthBackendConfigState struct {
 	// Unique name of the kubernetes backend to configure.
 	Backend interface{}
+	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+	Issuer interface{}
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
 	KubernetesCaCert interface{}
 	// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
 	KubernetesHost interface{}
-	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys. 
+	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys interface{}
 	// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
 	TokenReviewerJwt interface{}
@@ -116,11 +126,13 @@ type AuthBackendConfigState struct {
 type AuthBackendConfigArgs struct {
 	// Unique name of the kubernetes backend to configure.
 	Backend interface{}
+	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+	Issuer interface{}
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
 	KubernetesCaCert interface{}
 	// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
 	KubernetesHost interface{}
-	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys. 
+	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys interface{}
 	// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
 	TokenReviewerJwt interface{}

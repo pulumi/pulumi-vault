@@ -13,10 +13,16 @@ class GetAuthBackendConfigResult:
     """
     A collection of values returned by getAuthBackendConfig.
     """
-    def __init__(__self__, backend=None, kubernetes_ca_cert=None, kubernetes_host=None, pem_keys=None, id=None):
+    def __init__(__self__, backend=None, issuer=None, kubernetes_ca_cert=None, kubernetes_host=None, pem_keys=None, id=None):
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         __self__.backend = backend
+        if issuer and not isinstance(issuer, str):
+            raise TypeError("Expected argument 'issuer' to be a str")
+        __self__.issuer = issuer
+        """
+        Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+        """
         if kubernetes_ca_cert and not isinstance(kubernetes_ca_cert, str):
             raise TypeError("Expected argument 'kubernetes_ca_cert' to be a str")
         __self__.kubernetes_ca_cert = kubernetes_ca_cert
@@ -48,12 +54,13 @@ class AwaitableGetAuthBackendConfigResult(GetAuthBackendConfigResult):
             yield self
         return GetAuthBackendConfigResult(
             backend=self.backend,
+            issuer=self.issuer,
             kubernetes_ca_cert=self.kubernetes_ca_cert,
             kubernetes_host=self.kubernetes_host,
             pem_keys=self.pem_keys,
             id=self.id)
 
-def get_auth_backend_config(backend=None,kubernetes_ca_cert=None,kubernetes_host=None,pem_keys=None,opts=None):
+def get_auth_backend_config(backend=None,issuer=None,kubernetes_ca_cert=None,kubernetes_host=None,pem_keys=None,opts=None):
     """
     Reads the Role of an Kubernetes from a Vault server. See the [Vault
     documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-config) for more
@@ -67,6 +74,7 @@ def get_auth_backend_config(backend=None,kubernetes_ca_cert=None,kubernetes_host
     __args__ = dict()
 
     __args__['backend'] = backend
+    __args__['issuer'] = issuer
     __args__['kubernetesCaCert'] = kubernetes_ca_cert
     __args__['kubernetesHost'] = kubernetes_host
     __args__['pemKeys'] = pem_keys
@@ -78,6 +86,7 @@ def get_auth_backend_config(backend=None,kubernetes_ca_cert=None,kubernetes_host
 
     return AwaitableGetAuthBackendConfigResult(
         backend=__ret__.get('backend'),
+        issuer=__ret__.get('issuer'),
         kubernetes_ca_cert=__ret__.get('kubernetesCaCert'),
         kubernetes_host=__ret__.get('kubernetesHost'),
         pem_keys=__ret__.get('pemKeys'),

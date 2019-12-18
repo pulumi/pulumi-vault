@@ -16,6 +16,7 @@ func LookupAuthBackendConfig(ctx *pulumi.Context, args *GetAuthBackendConfigArgs
 	inputs := make(map[string]interface{})
 	if args != nil {
 		inputs["backend"] = args.Backend
+		inputs["issuer"] = args.Issuer
 		inputs["kubernetesCaCert"] = args.KubernetesCaCert
 		inputs["kubernetesHost"] = args.KubernetesHost
 		inputs["pemKeys"] = args.PemKeys
@@ -26,6 +27,7 @@ func LookupAuthBackendConfig(ctx *pulumi.Context, args *GetAuthBackendConfigArgs
 	}
 	return &GetAuthBackendConfigResult{
 		Backend: outputs["backend"],
+		Issuer: outputs["issuer"],
 		KubernetesCaCert: outputs["kubernetesCaCert"],
 		KubernetesHost: outputs["kubernetesHost"],
 		PemKeys: outputs["pemKeys"],
@@ -38,6 +40,7 @@ type GetAuthBackendConfigArgs struct {
 	// The unique name for the Kubernetes backend the config to
 	// retrieve Role attributes for resides in. Defaults to "kubernetes".
 	Backend interface{}
+	Issuer interface{}
 	KubernetesCaCert interface{}
 	KubernetesHost interface{}
 	PemKeys interface{}
@@ -46,6 +49,8 @@ type GetAuthBackendConfigArgs struct {
 // A collection of values returned by getAuthBackendConfig.
 type GetAuthBackendConfigResult struct {
 	Backend interface{}
+	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+	Issuer interface{}
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
 	KubernetesCaCert interface{}
 	// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.

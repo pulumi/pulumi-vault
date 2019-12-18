@@ -35,6 +35,7 @@ export function getAuthBackendConfig(args?: GetAuthBackendConfigArgs, opts?: pul
     }
     const promise: Promise<GetAuthBackendConfigResult> = pulumi.runtime.invoke("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", {
         "backend": args.backend,
+        "issuer": args.issuer,
         "kubernetesCaCert": args.kubernetesCaCert,
         "kubernetesHost": args.kubernetesHost,
         "pemKeys": args.pemKeys,
@@ -52,6 +53,7 @@ export interface GetAuthBackendConfigArgs {
      * retrieve Role attributes for resides in. Defaults to "kubernetes".
      */
     readonly backend?: string;
+    readonly issuer?: string;
     readonly kubernetesCaCert?: string;
     readonly kubernetesHost?: string;
     readonly pemKeys?: string[];
@@ -62,6 +64,10 @@ export interface GetAuthBackendConfigArgs {
  */
 export interface GetAuthBackendConfigResult {
     readonly backend?: string;
+    /**
+     * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+     */
+    readonly issuer: string;
     /**
      * PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
      */

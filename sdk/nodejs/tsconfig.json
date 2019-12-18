@@ -57,6 +57,7 @@
         "generic/getSecret.ts",
         "generic/index.ts",
         "generic/secret.ts",
+        "getAuthBackend.ts",
         "getPolicyDocument.ts",
         "github/authBackend.ts",
         "github/index.ts",

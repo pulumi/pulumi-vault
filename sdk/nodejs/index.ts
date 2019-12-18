@@ -6,6 +6,7 @@ export * from "./audit";
 export * from "./authBackend";
 export * from "./certAuthBackendRole";
 export * from "./egpPolicy";
+export * from "./getAuthBackend";
 export * from "./getPolicyDocument";
 export * from "./mfaDuo";
 export * from "./mount";

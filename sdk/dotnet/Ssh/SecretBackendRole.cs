@@ -64,6 +64,12 @@ namespace Pulumi.Vault.Ssh
         public Output<string?> AllowedExtensions { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+        /// </summary>
+        [Output("allowedUserKeyLengths")]
+        public Output<ImmutableDictionary<string, object>?> AllowedUserKeyLengths { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         /// </summary>
         [Output("allowedUsers")]
@@ -223,6 +229,18 @@ namespace Pulumi.Vault.Ssh
         [Input("allowedExtensions")]
         public Input<string>? AllowedExtensions { get; set; }
 
+        [Input("allowedUserKeyLengths")]
+        private InputMap<object>? _allowedUserKeyLengths;
+
+        /// <summary>
+        /// Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+        /// </summary>
+        public InputMap<object> AllowedUserKeyLengths
+        {
+            get => _allowedUserKeyLengths ?? (_allowedUserKeyLengths = new InputMap<object>());
+            set => _allowedUserKeyLengths = value;
+        }
+
         /// <summary>
         /// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         /// </summary>
@@ -355,6 +373,18 @@ namespace Pulumi.Vault.Ssh
         /// </summary>
         [Input("allowedExtensions")]
         public Input<string>? AllowedExtensions { get; set; }
+
+        [Input("allowedUserKeyLengths")]
+        private InputMap<object>? _allowedUserKeyLengths;
+
+        /// <summary>
+        /// Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+        /// </summary>
+        public InputMap<object> AllowedUserKeyLengths
+        {
+            get => _allowedUserKeyLengths ?? (_allowedUserKeyLengths = new InputMap<object>());
+            set => _allowedUserKeyLengths = value;
+        }
 
         /// <summary>
         /// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.

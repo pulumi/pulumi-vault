@@ -13,7 +13,13 @@ class GetAuthBackendRoleResult:
     """
     A collection of values returned by getAuthBackendRole.
     """
-    def __init__(__self__, backend=None, bound_cidrs=None, bound_service_account_names=None, bound_service_account_namespaces=None, max_ttl=None, num_uses=None, period=None, policies=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None, id=None):
+    def __init__(__self__, audience=None, backend=None, bound_cidrs=None, bound_service_account_names=None, bound_service_account_namespaces=None, max_ttl=None, num_uses=None, period=None, policies=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None, id=None):
+        if audience and not isinstance(audience, str):
+            raise TypeError("Expected argument 'audience' to be a str")
+        __self__.audience = audience
+        """
+        (Optional) Audience claim to verify in the JWT.
+        """
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         __self__.backend = backend
@@ -134,6 +140,7 @@ class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
         if False:
             yield self
         return GetAuthBackendRoleResult(
+            audience=self.audience,
             backend=self.backend,
             bound_cidrs=self.bound_cidrs,
             bound_service_account_names=self.bound_service_account_names,
@@ -155,7 +162,7 @@ class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
             ttl=self.ttl,
             id=self.id)
 
-def get_auth_backend_role(backend=None,bound_cidrs=None,max_ttl=None,num_uses=None,period=None,policies=None,role_name=None,token_bound_cidrs=None,token_explicit_max_ttl=None,token_max_ttl=None,token_no_default_policy=None,token_num_uses=None,token_period=None,token_policies=None,token_ttl=None,token_type=None,ttl=None,opts=None):
+def get_auth_backend_role(audience=None,backend=None,bound_cidrs=None,max_ttl=None,num_uses=None,period=None,policies=None,role_name=None,token_bound_cidrs=None,token_explicit_max_ttl=None,token_max_ttl=None,token_no_default_policy=None,token_num_uses=None,token_period=None,token_policies=None,token_ttl=None,token_type=None,ttl=None,opts=None):
     """
     Reads the Role of an Kubernetes from a Vault server. See the [Vault
     documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-role) for more
@@ -169,6 +176,7 @@ def get_auth_backend_role(backend=None,bound_cidrs=None,max_ttl=None,num_uses=No
     """
     __args__ = dict()
 
+    __args__['audience'] = audience
     __args__['backend'] = backend
     __args__['boundCidrs'] = bound_cidrs
     __args__['maxTtl'] = max_ttl
@@ -193,6 +201,7 @@ def get_auth_backend_role(backend=None,bound_cidrs=None,max_ttl=None,num_uses=No
     __ret__ = pulumi.runtime.invoke('vault:kubernetes/getAuthBackendRole:getAuthBackendRole', __args__, opts=opts).value
 
     return AwaitableGetAuthBackendRoleResult(
+        audience=__ret__.get('audience'),
         backend=__ret__.get('backend'),
         bound_cidrs=__ret__.get('boundCidrs'),
         bound_service_account_names=__ret__.get('boundServiceAccountNames'),

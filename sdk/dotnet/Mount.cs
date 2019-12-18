@@ -52,6 +52,12 @@ namespace Pulumi.Vault
         public Output<string> Path { get; private set; } = null!;
 
         /// <summary>
+        /// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        /// </summary>
+        [Output("sealWrap")]
+        public Output<bool> SealWrap { get; private set; } = null!;
+
+        /// <summary>
         /// Type of the backend, such as "aws"
         /// </summary>
         [Output("type")]
@@ -146,6 +152,12 @@ namespace Pulumi.Vault
         public Input<string> Path { get; set; } = null!;
 
         /// <summary>
+        /// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        /// </summary>
+        [Input("sealWrap")]
+        public Input<bool>? SealWrap { get; set; }
+
+        /// <summary>
         /// Type of the backend, such as "aws"
         /// </summary>
         [Input("type", required: true)]
@@ -205,6 +217,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
+
+        /// <summary>
+        /// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        /// </summary>
+        [Input("sealWrap")]
+        public Input<bool>? SealWrap { get; set; }
 
         /// <summary>
         /// Type of the backend, such as "aws"

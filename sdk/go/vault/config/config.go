@@ -113,3 +113,8 @@ func GetToken(ctx *pulumi.Context) string {
 	}
 	return v
 }
+
+// Token name to use for creating the Vault child token.
+func GetTokenName(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:tokenName")
+}

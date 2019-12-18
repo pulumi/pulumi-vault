@@ -29,6 +29,7 @@ func NewMount(ctx *pulumi.Context,
 		inputs["maxLeaseTtlSeconds"] = nil
 		inputs["options"] = nil
 		inputs["path"] = nil
+		inputs["sealWrap"] = nil
 		inputs["type"] = nil
 	} else {
 		inputs["defaultLeaseTtlSeconds"] = args.DefaultLeaseTtlSeconds
@@ -37,6 +38,7 @@ func NewMount(ctx *pulumi.Context,
 		inputs["maxLeaseTtlSeconds"] = args.MaxLeaseTtlSeconds
 		inputs["options"] = args.Options
 		inputs["path"] = args.Path
+		inputs["sealWrap"] = args.SealWrap
 		inputs["type"] = args.Type
 	}
 	inputs["accessor"] = nil
@@ -60,6 +62,7 @@ func GetMount(ctx *pulumi.Context,
 		inputs["maxLeaseTtlSeconds"] = state.MaxLeaseTtlSeconds
 		inputs["options"] = state.Options
 		inputs["path"] = state.Path
+		inputs["sealWrap"] = state.SealWrap
 		inputs["type"] = state.Type
 	}
 	s, err := ctx.ReadResource("vault:index/mount:Mount", name, id, inputs, opts...)
@@ -114,6 +117,11 @@ func (r *Mount) Path() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["path"])
 }
 
+// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+func (r *Mount) SealWrap() pulumi.BoolOutput {
+	return (pulumi.BoolOutput)(r.s.State["sealWrap"])
+}
+
 // Type of the backend, such as "aws"
 func (r *Mount) Type() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["type"])
@@ -135,6 +143,8 @@ type MountState struct {
 	Options interface{}
 	// Where the secret backend will be mounted
 	Path interface{}
+	// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	SealWrap interface{}
 	// Type of the backend, such as "aws"
 	Type interface{}
 }
@@ -153,6 +163,8 @@ type MountArgs struct {
 	Options interface{}
 	// Where the secret backend will be mounted
 	Path interface{}
+	// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	SealWrap interface{}
 	// Type of the backend, such as "aws"
 	Type interface{}
 }

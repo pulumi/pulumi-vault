@@ -31,6 +31,7 @@ func NewAuthBackendRole(ctx *pulumi.Context,
 	}
 	inputs := make(map[string]interface{})
 	if args == nil {
+		inputs["audience"] = nil
 		inputs["backend"] = nil
 		inputs["boundCidrs"] = nil
 		inputs["boundServiceAccountNames"] = nil
@@ -51,6 +52,7 @@ func NewAuthBackendRole(ctx *pulumi.Context,
 		inputs["tokenType"] = nil
 		inputs["ttl"] = nil
 	} else {
+		inputs["audience"] = args.Audience
 		inputs["backend"] = args.Backend
 		inputs["boundCidrs"] = args.BoundCidrs
 		inputs["boundServiceAccountNames"] = args.BoundServiceAccountNames
@@ -84,6 +86,7 @@ func GetAuthBackendRole(ctx *pulumi.Context,
 	name string, id pulumi.ID, state *AuthBackendRoleState, opts ...pulumi.ResourceOpt) (*AuthBackendRole, error) {
 	inputs := make(map[string]interface{})
 	if state != nil {
+		inputs["audience"] = state.Audience
 		inputs["backend"] = state.Backend
 		inputs["boundCidrs"] = state.BoundCidrs
 		inputs["boundServiceAccountNames"] = state.BoundServiceAccountNames
@@ -119,6 +122,11 @@ func (r *AuthBackendRole) URN() pulumi.URNOutput {
 // ID is this resource's unique identifier assigned by its provider.
 func (r *AuthBackendRole) ID() pulumi.IDOutput {
 	return r.s.ID()
+}
+
+// Audience claim to verify in the JWT.
+func (r *AuthBackendRole) Audience() pulumi.StringOutput {
+	return (pulumi.StringOutput)(r.s.State["audience"])
 }
 
 // Unique name of the kubernetes backend to configure.
@@ -244,6 +252,8 @@ func (r *AuthBackendRole) Ttl() pulumi.IntOutput {
 
 // Input properties used for looking up and filtering AuthBackendRole resources.
 type AuthBackendRoleState struct {
+	// Audience claim to verify in the JWT.
+	Audience interface{}
 	// Unique name of the kubernetes backend to configure.
 	Backend interface{}
 	// If set, a list of
@@ -312,6 +322,8 @@ type AuthBackendRoleState struct {
 
 // The set of arguments for constructing a AuthBackendRole resource.
 type AuthBackendRoleArgs struct {
+	// Audience claim to verify in the JWT.
+	Audience interface{}
 	// Unique name of the kubernetes backend to configure.
 	Backend interface{}
 	// If set, a list of

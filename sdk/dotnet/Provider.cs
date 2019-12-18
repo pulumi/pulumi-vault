@@ -116,6 +116,12 @@ namespace Pulumi.Vault
         [Input("token")]
         public Input<string>? Token { get; set; }
 
+        /// <summary>
+        /// Token name to use for creating the Vault child token.
+        /// </summary>
+        [Input("tokenName")]
+        public Input<string>? TokenName { get; set; }
+
         public ProviderArgs()
         {
             Address = Utilities.GetEnv("VAULT_ADDR");
