@@ -11,6 +11,10 @@ from .. import utilities, tables
 
 class AuthBackendConfig(pulumi.CustomResource):
     backend: pulumi.Output[str]
+    issuer: pulumi.Output[str]
+    """
+    Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+    """
     kubernetes_ca_cert: pulumi.Output[str]
     """
     PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
@@ -21,13 +25,13 @@ class AuthBackendConfig(pulumi.CustomResource):
     """
     pem_keys: pulumi.Output[list]
     """
-    List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys. 
+    List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
     """
     token_reviewer_jwt: pulumi.Output[str]
     """
     A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
     """
-    def __init__(__self__, resource_name, opts=None, backend=None, kubernetes_ca_cert=None, kubernetes_host=None, pem_keys=None, token_reviewer_jwt=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, backend=None, issuer=None, kubernetes_ca_cert=None, kubernetes_host=None, pem_keys=None, token_reviewer_jwt=None, __props__=None, __name__=None, __opts__=None):
         """
         Manages an Kubernetes auth backend config in a Vault server. See the [Vault
         documentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more
@@ -35,9 +39,10 @@ class AuthBackendConfig(pulumi.CustomResource):
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] issuer: Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
         :param pulumi.Input[str] kubernetes_ca_cert: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
         :param pulumi.Input[str] kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
-        :param pulumi.Input[list] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys. 
+        :param pulumi.Input[list] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         :param pulumi.Input[str] token_reviewer_jwt: A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/kubernetes_auth_backend_config.html.markdown.
@@ -60,6 +65,7 @@ class AuthBackendConfig(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['backend'] = backend
+            __props__['issuer'] = issuer
             __props__['kubernetes_ca_cert'] = kubernetes_ca_cert
             if kubernetes_host is None:
                 raise TypeError("Missing required property 'kubernetes_host'")
@@ -73,7 +79,7 @@ class AuthBackendConfig(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, backend=None, kubernetes_ca_cert=None, kubernetes_host=None, pem_keys=None, token_reviewer_jwt=None):
+    def get(resource_name, id, opts=None, backend=None, issuer=None, kubernetes_ca_cert=None, kubernetes_host=None, pem_keys=None, token_reviewer_jwt=None):
         """
         Get an existing AuthBackendConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -81,9 +87,10 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] issuer: Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
         :param pulumi.Input[str] kubernetes_ca_cert: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
         :param pulumi.Input[str] kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
-        :param pulumi.Input[list] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys. 
+        :param pulumi.Input[list] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         :param pulumi.Input[str] token_reviewer_jwt: A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/kubernetes_auth_backend_config.html.markdown.
@@ -92,6 +99,7 @@ class AuthBackendConfig(pulumi.CustomResource):
 
         __props__ = dict()
         __props__["backend"] = backend
+        __props__["issuer"] = issuer
         __props__["kubernetes_ca_cert"] = kubernetes_ca_cert
         __props__["kubernetes_host"] = kubernetes_host
         __props__["pem_keys"] = pem_keys

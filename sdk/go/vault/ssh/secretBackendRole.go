@@ -35,6 +35,7 @@ func NewSecretBackendRole(ctx *pulumi.Context,
 		inputs["allowedCriticalOptions"] = nil
 		inputs["allowedDomains"] = nil
 		inputs["allowedExtensions"] = nil
+		inputs["allowedUserKeyLengths"] = nil
 		inputs["allowedUsers"] = nil
 		inputs["backend"] = nil
 		inputs["cidrList"] = nil
@@ -55,6 +56,7 @@ func NewSecretBackendRole(ctx *pulumi.Context,
 		inputs["allowedCriticalOptions"] = args.AllowedCriticalOptions
 		inputs["allowedDomains"] = args.AllowedDomains
 		inputs["allowedExtensions"] = args.AllowedExtensions
+		inputs["allowedUserKeyLengths"] = args.AllowedUserKeyLengths
 		inputs["allowedUsers"] = args.AllowedUsers
 		inputs["backend"] = args.Backend
 		inputs["cidrList"] = args.CidrList
@@ -88,6 +90,7 @@ func GetSecretBackendRole(ctx *pulumi.Context,
 		inputs["allowedCriticalOptions"] = state.AllowedCriticalOptions
 		inputs["allowedDomains"] = state.AllowedDomains
 		inputs["allowedExtensions"] = state.AllowedExtensions
+		inputs["allowedUserKeyLengths"] = state.AllowedUserKeyLengths
 		inputs["allowedUsers"] = state.AllowedUsers
 		inputs["backend"] = state.Backend
 		inputs["cidrList"] = state.CidrList
@@ -155,6 +158,11 @@ func (r *SecretBackendRole) AllowedDomains() pulumi.StringOutput {
 // Specifies a comma-separated list of extensions that certificates can have when signed.
 func (r *SecretBackendRole) AllowedExtensions() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["allowedExtensions"])
+}
+
+// Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+func (r *SecretBackendRole) AllowedUserKeyLengths() pulumi.MapOutput {
+	return (pulumi.MapOutput)(r.s.State["allowedUserKeyLengths"])
 }
 
 // Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
@@ -230,6 +238,8 @@ type SecretBackendRoleState struct {
 	AllowedDomains interface{}
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions interface{}
+	// Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+	AllowedUserKeyLengths interface{}
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers interface{}
 	// The path where the SSH secret backend is mounted.
@@ -272,6 +282,8 @@ type SecretBackendRoleArgs struct {
 	AllowedDomains interface{}
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions interface{}
+	// Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+	AllowedUserKeyLengths interface{}
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers interface{}
 	// The path where the SSH secret backend is mounted.

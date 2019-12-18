@@ -29,6 +29,9 @@ namespace Pulumi.Vault.Kubernetes
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
+        [Input("issuer")]
+        public Input<string>? Issuer { get; set; }
+
         [Input("kubernetesCaCert")]
         public Input<string>? KubernetesCaCert { get; set; }
 
@@ -53,6 +56,10 @@ namespace Pulumi.Vault.Kubernetes
     {
         public readonly string? Backend;
         /// <summary>
+        /// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+        /// </summary>
+        public readonly string Issuer;
+        /// <summary>
         /// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
         /// </summary>
         public readonly string KubernetesCaCert;
@@ -72,12 +79,14 @@ namespace Pulumi.Vault.Kubernetes
         [OutputConstructor]
         private GetAuthBackendConfigResult(
             string? backend,
+            string issuer,
             string kubernetesCaCert,
             string kubernetesHost,
             ImmutableArray<string> pemKeys,
             string id)
         {
             Backend = backend;
+            Issuer = issuer;
             KubernetesCaCert = kubernetesCaCert;
             KubernetesHost = kubernetesHost;
             PemKeys = pemKeys;

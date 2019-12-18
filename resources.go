@@ -388,6 +388,12 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "policy_document.md",
 				},
 			},
+			"vault_auth_backend": {
+				Tok: makeDataSource(mainMod, "getAuthBackend"),
+				Docs: &tfbridge.DocInfo{
+					Source: "auth_backend.html.md",
+				},
+			},
 
 			// AppRole
 			"vault_approle_auth_backend_role_id": {

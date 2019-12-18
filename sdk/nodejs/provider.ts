@@ -50,6 +50,7 @@ export class Provider extends pulumi.ProviderResource {
             inputs["namespace"] = (args ? args.namespace : undefined) || utilities.getEnv("VAULT_NAMESPACE");
             inputs["skipTlsVerify"] = pulumi.output((args ? args.skipTlsVerify : undefined) || utilities.getEnvBoolean("VAULT_SKIP_VERIFY")).apply(JSON.stringify);
             inputs["token"] = (args ? args.token : undefined) || utilities.getEnv("VAULT_TOKEN");
+            inputs["tokenName"] = args ? args.tokenName : undefined;
         }
         if (!opts) {
             opts = {}
@@ -106,4 +107,8 @@ export interface ProviderArgs {
      * Token to use to authenticate to Vault.
      */
     readonly token?: pulumi.Input<string>;
+    /**
+     * Token name to use for creating the Vault child token.
+     */
+    readonly tokenName?: pulumi.Input<string>;
 }

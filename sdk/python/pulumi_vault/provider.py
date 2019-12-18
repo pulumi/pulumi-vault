@@ -10,7 +10,7 @@ from typing import Union
 from . import utilities, tables
 
 class Provider(pulumi.ProviderResource):
-    def __init__(__self__, resource_name, opts=None, address=None, auth_logins=None, ca_cert_dir=None, ca_cert_file=None, client_auths=None, max_lease_ttl_seconds=None, max_retries=None, namespace=None, skip_tls_verify=None, token=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, address=None, auth_logins=None, ca_cert_dir=None, ca_cert_file=None, client_auths=None, max_lease_ttl_seconds=None, max_retries=None, namespace=None, skip_tls_verify=None, token=None, token_name=None, __props__=None, __name__=None, __opts__=None):
         """
         The provider type for the vault package. By default, resources use package-wide configuration
         settings, however an explicit `Provider` instance may be created and passed during resource
@@ -76,6 +76,7 @@ class Provider(pulumi.ProviderResource):
             if token is None:
                 token = utilities.get_env('VAULT_TOKEN')
             __props__['token'] = token
+            __props__['token_name'] = token_name
         super(Provider, __self__).__init__(
             'vault',
             resource_name,

@@ -61,3 +61,8 @@ token = __config__.get('token') or utilities.get_env('VAULT_TOKEN')
 Token to use to authenticate to Vault.
 """
 
+token_name = __config__.get('tokenName')
+"""
+Token name to use for creating the Vault child token.
+"""
+

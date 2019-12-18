@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  * });
  * const example = new vault.kubernetes.AuthBackendConfig("example", {
  *     backend: kubernetes.path,
+ *     issuer: "api",
  *     kubernetesCaCert: `-----BEGIN CERTIFICATE-----
  * example
  * -----END CERTIFICATE-----`,
@@ -62,6 +63,10 @@ export class AuthBackendConfig extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
+     * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+     */
+    public readonly issuer!: pulumi.Output<string | undefined>;
+    /**
      * PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
      */
     public readonly kubernetesCaCert!: pulumi.Output<string | undefined>;
@@ -70,7 +75,7 @@ export class AuthBackendConfig extends pulumi.CustomResource {
      */
     public readonly kubernetesHost!: pulumi.Output<string>;
     /**
-     * List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys. 
+     * List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */
     public readonly pemKeys!: pulumi.Output<string[] | undefined>;
     /**
@@ -91,6 +96,7 @@ export class AuthBackendConfig extends pulumi.CustomResource {
         if (opts && opts.id) {
             const state = argsOrState as AuthBackendConfigState | undefined;
             inputs["backend"] = state ? state.backend : undefined;
+            inputs["issuer"] = state ? state.issuer : undefined;
             inputs["kubernetesCaCert"] = state ? state.kubernetesCaCert : undefined;
             inputs["kubernetesHost"] = state ? state.kubernetesHost : undefined;
             inputs["pemKeys"] = state ? state.pemKeys : undefined;
@@ -101,6 +107,7 @@ export class AuthBackendConfig extends pulumi.CustomResource {
                 throw new Error("Missing required property 'kubernetesHost'");
             }
             inputs["backend"] = args ? args.backend : undefined;
+            inputs["issuer"] = args ? args.issuer : undefined;
             inputs["kubernetesCaCert"] = args ? args.kubernetesCaCert : undefined;
             inputs["kubernetesHost"] = args ? args.kubernetesHost : undefined;
             inputs["pemKeys"] = args ? args.pemKeys : undefined;
@@ -126,6 +133,10 @@ export interface AuthBackendConfigState {
      */
     readonly backend?: pulumi.Input<string>;
     /**
+     * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+     */
+    readonly issuer?: pulumi.Input<string>;
+    /**
      * PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
      */
     readonly kubernetesCaCert?: pulumi.Input<string>;
@@ -134,7 +145,7 @@ export interface AuthBackendConfigState {
      */
     readonly kubernetesHost?: pulumi.Input<string>;
     /**
-     * List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys. 
+     * List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */
     readonly pemKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -152,6 +163,10 @@ export interface AuthBackendConfigArgs {
      */
     readonly backend?: pulumi.Input<string>;
     /**
+     * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+     */
+    readonly issuer?: pulumi.Input<string>;
+    /**
      * PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
      */
     readonly kubernetesCaCert?: pulumi.Input<string>;
@@ -160,7 +175,7 @@ export interface AuthBackendConfigArgs {
      */
     readonly kubernetesHost: pulumi.Input<string>;
     /**
-     * List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys. 
+     * List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */
     readonly pemKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**

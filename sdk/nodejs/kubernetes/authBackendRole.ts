@@ -39,6 +39,10 @@ export class AuthBackendRole extends pulumi.CustomResource {
     }
 
     /**
+     * Audience claim to verify in the JWT.
+     */
+    public readonly audience!: pulumi.Output<string | undefined>;
+    /**
      * Unique name of the kubernetes backend to configure.
      */
     public readonly backend!: pulumi.Output<string | undefined>;
@@ -153,6 +157,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state = argsOrState as AuthBackendRoleState | undefined;
+            inputs["audience"] = state ? state.audience : undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["boundCidrs"] = state ? state.boundCidrs : undefined;
             inputs["boundServiceAccountNames"] = state ? state.boundServiceAccountNames : undefined;
@@ -183,6 +188,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             if (!args || args.roleName === undefined) {
                 throw new Error("Missing required property 'roleName'");
             }
+            inputs["audience"] = args ? args.audience : undefined;
             inputs["backend"] = args ? args.backend : undefined;
             inputs["boundCidrs"] = args ? args.boundCidrs : undefined;
             inputs["boundServiceAccountNames"] = args ? args.boundServiceAccountNames : undefined;
@@ -218,6 +224,10 @@ export class AuthBackendRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AuthBackendRole resources.
  */
 export interface AuthBackendRoleState {
+    /**
+     * Audience claim to verify in the JWT.
+     */
+    readonly audience?: pulumi.Input<string>;
     /**
      * Unique name of the kubernetes backend to configure.
      */
@@ -326,6 +336,10 @@ export interface AuthBackendRoleState {
  * The set of arguments for constructing a AuthBackendRole resource.
  */
 export interface AuthBackendRoleArgs {
+    /**
+     * Audience claim to verify in the JWT.
+     */
+    readonly audience?: pulumi.Input<string>;
     /**
      * Unique name of the kubernetes backend to configure.
      */

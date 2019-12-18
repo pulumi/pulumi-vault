@@ -59,6 +59,11 @@ namespace Pulumi.Vault
         /// </summary>
         public static string? Token { get; set; } = __config.Get("token") ?? Utilities.GetEnv("VAULT_TOKEN");
 
+        /// <summary>
+        /// Token name to use for creating the Vault child token.
+        /// </summary>
+        public static string? TokenName { get; set; } = __config.Get("tokenName");
+
     }
     namespace ConfigTypes
     {

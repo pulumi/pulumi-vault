@@ -38,11 +38,15 @@ class Mount(pulumi.CustomResource):
     """
     Where the secret backend will be mounted
     """
+    seal_wrap: pulumi.Output[bool]
+    """
+    Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+    """
     type: pulumi.Output[str]
     """
     Type of the backend, such as "aws"
     """
-    def __init__(__self__, resource_name, opts=None, default_lease_ttl_seconds=None, description=None, local=None, max_lease_ttl_seconds=None, options=None, path=None, type=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, default_lease_ttl_seconds=None, description=None, local=None, max_lease_ttl_seconds=None, options=None, path=None, seal_wrap=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a Mount resource with the given unique name, props, and options.
         
@@ -54,6 +58,7 @@ class Mount(pulumi.CustomResource):
         :param pulumi.Input[float] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[dict] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[str] path: Where the secret backend will be mounted
+        :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[str] type: Type of the backend, such as "aws"
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/mount.html.markdown.
@@ -83,6 +88,7 @@ class Mount(pulumi.CustomResource):
             if path is None:
                 raise TypeError("Missing required property 'path'")
             __props__['path'] = path
+            __props__['seal_wrap'] = seal_wrap
             if type is None:
                 raise TypeError("Missing required property 'type'")
             __props__['type'] = type
@@ -94,7 +100,7 @@ class Mount(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, accessor=None, default_lease_ttl_seconds=None, description=None, local=None, max_lease_ttl_seconds=None, options=None, path=None, type=None):
+    def get(resource_name, id, opts=None, accessor=None, default_lease_ttl_seconds=None, description=None, local=None, max_lease_ttl_seconds=None, options=None, path=None, seal_wrap=None, type=None):
         """
         Get an existing Mount resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -109,6 +115,7 @@ class Mount(pulumi.CustomResource):
         :param pulumi.Input[float] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[dict] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[str] path: Where the secret backend will be mounted
+        :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[str] type: Type of the backend, such as "aws"
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/mount.html.markdown.
@@ -123,6 +130,7 @@ class Mount(pulumi.CustomResource):
         __props__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
         __props__["options"] = options
         __props__["path"] = path
+        __props__["seal_wrap"] = seal_wrap
         __props__["type"] = type
         return Mount(resource_name, opts=opts, __props__=__props__)
     def translate_output_property(self, prop):

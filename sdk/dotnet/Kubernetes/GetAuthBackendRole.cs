@@ -22,6 +22,9 @@ namespace Pulumi.Vault.Kubernetes
 
     public sealed class GetAuthBackendRoleArgs : Pulumi.ResourceArgs
     {
+        [Input("audience")]
+        public Input<string>? Audience { get; set; }
+
         /// <summary>
         /// The unique name for the Kubernetes backend the role to
         /// retrieve Role attributes for resides in. Defaults to "kubernetes".
@@ -108,6 +111,10 @@ namespace Pulumi.Vault.Kubernetes
     [OutputType]
     public sealed class GetAuthBackendRoleResult
     {
+        /// <summary>
+        /// (Optional) Audience claim to verify in the JWT.
+        /// </summary>
+        public readonly string? Audience;
         public readonly string? Backend;
         public readonly ImmutableArray<string> BoundCidrs;
         /// <summary>
@@ -185,6 +192,7 @@ namespace Pulumi.Vault.Kubernetes
 
         [OutputConstructor]
         private GetAuthBackendRoleResult(
+            string? audience,
             string? backend,
             ImmutableArray<string> boundCidrs,
             ImmutableArray<string> boundServiceAccountNames,
@@ -206,6 +214,7 @@ namespace Pulumi.Vault.Kubernetes
             int? ttl,
             string id)
         {
+            Audience = audience;
             Backend = backend;
             BoundCidrs = boundCidrs;
             BoundServiceAccountNames = boundServiceAccountNames;

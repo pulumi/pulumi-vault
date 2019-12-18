@@ -23,6 +23,12 @@ namespace Pulumi.Vault.Kubernetes
         public Output<string?> Backend { get; private set; } = null!;
 
         /// <summary>
+        /// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+        /// </summary>
+        [Output("issuer")]
+        public Output<string?> Issuer { get; private set; } = null!;
+
+        /// <summary>
         /// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
         /// </summary>
         [Output("kubernetesCaCert")]
@@ -35,7 +41,7 @@ namespace Pulumi.Vault.Kubernetes
         public Output<string> KubernetesHost { get; private set; } = null!;
 
         /// <summary>
-        /// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys. 
+        /// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         /// </summary>
         [Output("pemKeys")]
         public Output<ImmutableArray<string>> PemKeys { get; private set; } = null!;
@@ -99,6 +105,12 @@ namespace Pulumi.Vault.Kubernetes
         public Input<string>? Backend { get; set; }
 
         /// <summary>
+        /// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+        /// </summary>
+        [Input("issuer")]
+        public Input<string>? Issuer { get; set; }
+
+        /// <summary>
         /// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
         /// </summary>
         [Input("kubernetesCaCert")]
@@ -114,7 +126,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputList<string>? _pemKeys;
 
         /// <summary>
-        /// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys. 
+        /// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         /// </summary>
         public InputList<string> PemKeys
         {
@@ -142,6 +154,12 @@ namespace Pulumi.Vault.Kubernetes
         public Input<string>? Backend { get; set; }
 
         /// <summary>
+        /// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+        /// </summary>
+        [Input("issuer")]
+        public Input<string>? Issuer { get; set; }
+
+        /// <summary>
         /// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
         /// </summary>
         [Input("kubernetesCaCert")]
@@ -157,7 +175,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputList<string>? _pemKeys;
 
         /// <summary>
-        /// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys. 
+        /// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         /// </summary>
         public InputList<string> PemKeys
         {

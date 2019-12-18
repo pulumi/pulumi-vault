@@ -76,6 +76,10 @@ export class Mount extends pulumi.CustomResource {
      */
     public readonly path!: pulumi.Output<string>;
     /**
+     * Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+     */
+    public readonly sealWrap!: pulumi.Output<boolean>;
+    /**
      * Type of the backend, such as "aws"
      */
     public readonly type!: pulumi.Output<string>;
@@ -99,6 +103,7 @@ export class Mount extends pulumi.CustomResource {
             inputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             inputs["options"] = state ? state.options : undefined;
             inputs["path"] = state ? state.path : undefined;
+            inputs["sealWrap"] = state ? state.sealWrap : undefined;
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as MountArgs | undefined;
@@ -114,6 +119,7 @@ export class Mount extends pulumi.CustomResource {
             inputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             inputs["options"] = args ? args.options : undefined;
             inputs["path"] = args ? args.path : undefined;
+            inputs["sealWrap"] = args ? args.sealWrap : undefined;
             inputs["type"] = args ? args.type : undefined;
             inputs["accessor"] = undefined /*out*/;
         }
@@ -161,6 +167,10 @@ export interface MountState {
      */
     readonly path?: pulumi.Input<string>;
     /**
+     * Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+     */
+    readonly sealWrap?: pulumi.Input<boolean>;
+    /**
      * Type of the backend, such as "aws"
      */
     readonly type?: pulumi.Input<string>;
@@ -194,6 +204,10 @@ export interface MountArgs {
      * Where the secret backend will be mounted
      */
     readonly path: pulumi.Input<string>;
+    /**
+     * Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+     */
+    readonly sealWrap?: pulumi.Input<boolean>;
     /**
      * Type of the backend, such as "aws"
      */
