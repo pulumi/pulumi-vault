@@ -62,10 +62,10 @@ class Provider(pulumi.ProviderResource):
             __props__['ca_cert_file'] = ca_cert_file
             __props__['client_auths'] = pulumi.Output.from_input(client_auths).apply(json.dumps) if client_auths is not None else None
             if max_lease_ttl_seconds is None:
-                max_lease_ttl_seconds = utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL')
+                max_lease_ttl_seconds = (utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL') or 20)
             __props__['max_lease_ttl_seconds'] = pulumi.Output.from_input(max_lease_ttl_seconds).apply(json.dumps) if max_lease_ttl_seconds is not None else None
             if max_retries is None:
-                max_retries = utilities.get_env_int('VAULT_MAX_RETRIES')
+                max_retries = (utilities.get_env_int('VAULT_MAX_RETRIES') or 2)
             __props__['max_retries'] = pulumi.Output.from_input(max_retries).apply(json.dumps) if max_retries is not None else None
             if namespace is None:
                 namespace = utilities.get_env('VAULT_NAMESPACE')
@@ -76,6 +76,8 @@ class Provider(pulumi.ProviderResource):
             if token is None:
                 token = utilities.get_env('VAULT_TOKEN')
             __props__['token'] = token
+            if token_name is None:
+                token_name = utilities.get_env('VAULT_TOKEN_NAME')
             __props__['token_name'] = token_name
         super(Provider, __self__).__init__(
             'vault',

@@ -7,9 +7,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
-// Provides a resource to generate a vault token with its options. The token renewing is supported through optional
-// arguments.
-//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/token.html.markdown.
 type Token struct {
 	s *pulumi.ResourceState

@@ -36,12 +36,12 @@ client_auths = __config__.get('clientAuths')
 Client authentication credentials.
 """
 
-max_lease_ttl_seconds = __config__.get('maxLeaseTtlSeconds') or utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL')
+max_lease_ttl_seconds = __config__.get('maxLeaseTtlSeconds') or (utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL') or 20)
 """
 Maximum TTL for secret leases requested by this provider
 """
 
-max_retries = __config__.get('maxRetries') or utilities.get_env_int('VAULT_MAX_RETRIES')
+max_retries = __config__.get('maxRetries') or (utilities.get_env_int('VAULT_MAX_RETRIES') or 2)
 """
 Maximum number of retries when a 5xx error code is encountered.
 """
@@ -61,7 +61,7 @@ token = __config__.get('token') or utilities.get_env('VAULT_TOKEN')
 Token to use to authenticate to Vault.
 """
 
-token_name = __config__.get('tokenName')
+token_name = __config__.get('tokenName') or utilities.get_env('VAULT_TOKEN_NAME')
 """
 Token name to use for creating the Vault child token.
 """

@@ -9,9 +9,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault
 {
     /// <summary>
-    /// Provides a resource to generate a vault token with its options. The token renewing is supported through optional
-    /// arguments.
-    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/token.html.markdown.
     /// </summary>
     public partial class Token : Pulumi.CustomResource

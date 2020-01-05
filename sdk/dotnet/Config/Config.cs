@@ -37,12 +37,12 @@ namespace Pulumi.Vault
         /// <summary>
         /// Maximum TTL for secret leases requested by this provider
         /// </summary>
-        public static int? MaxLeaseTtlSeconds { get; set; } = __config.GetInt32("maxLeaseTtlSeconds") ?? Utilities.GetEnvInt32("TERRAFORM_VAULT_MAX_TTL");
+        public static int? MaxLeaseTtlSeconds { get; set; } = __config.GetInt32("maxLeaseTtlSeconds") ?? Utilities.GetEnvInt32("TERRAFORM_VAULT_MAX_TTL") ?? 20;
 
         /// <summary>
         /// Maximum number of retries when a 5xx error code is encountered.
         /// </summary>
-        public static int? MaxRetries { get; set; } = __config.GetInt32("maxRetries") ?? Utilities.GetEnvInt32("VAULT_MAX_RETRIES");
+        public static int? MaxRetries { get; set; } = __config.GetInt32("maxRetries") ?? Utilities.GetEnvInt32("VAULT_MAX_RETRIES") ?? 2;
 
         /// <summary>
         /// The namespace to use. Available only for Vault Enterprise
@@ -62,7 +62,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// Token name to use for creating the Vault child token.
         /// </summary>
-        public static string? TokenName { get; set; } = __config.Get("tokenName");
+        public static string? TokenName { get; set; } = __config.Get("tokenName") ?? Utilities.GetEnv("VAULT_TOKEN_NAME");
 
     }
     namespace ConfigTypes
