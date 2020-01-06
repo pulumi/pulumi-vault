@@ -5,28 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Provides a resource to generate a vault token with its options. The token renewing is supported through optional
- * arguments.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- * 
- * const example = new vault.Token("example", {
- *     policies: [
- *         "policy1",
- *         "policy2",
- *     ],
- *     renewIncrement: 86400,
- *     renewMinLease: 43200,
- *     renewable: true,
- *     roleName: "app",
- *     ttl: "24h",
- * });
- * ```
- *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/token.html.markdown.
  */
 export class Token extends pulumi.CustomResource {

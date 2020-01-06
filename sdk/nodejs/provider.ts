@@ -45,12 +45,12 @@ export class Provider extends pulumi.ProviderResource {
             inputs["caCertDir"] = (args ? args.caCertDir : undefined) || utilities.getEnv("VAULT_CAPATH");
             inputs["caCertFile"] = (args ? args.caCertFile : undefined) || utilities.getEnv("VAULT_CACERT");
             inputs["clientAuths"] = pulumi.output(args ? args.clientAuths : undefined).apply(JSON.stringify);
-            inputs["maxLeaseTtlSeconds"] = pulumi.output((args ? args.maxLeaseTtlSeconds : undefined) || utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL")).apply(JSON.stringify);
-            inputs["maxRetries"] = pulumi.output((args ? args.maxRetries : undefined) || utilities.getEnvNumber("VAULT_MAX_RETRIES")).apply(JSON.stringify);
+            inputs["maxLeaseTtlSeconds"] = pulumi.output((args ? args.maxLeaseTtlSeconds : undefined) || (utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 20)).apply(JSON.stringify);
+            inputs["maxRetries"] = pulumi.output((args ? args.maxRetries : undefined) || (utilities.getEnvNumber("VAULT_MAX_RETRIES") || 2)).apply(JSON.stringify);
             inputs["namespace"] = (args ? args.namespace : undefined) || utilities.getEnv("VAULT_NAMESPACE");
             inputs["skipTlsVerify"] = pulumi.output((args ? args.skipTlsVerify : undefined) || utilities.getEnvBoolean("VAULT_SKIP_VERIFY")).apply(JSON.stringify);
             inputs["token"] = (args ? args.token : undefined) || utilities.getEnv("VAULT_TOKEN");
-            inputs["tokenName"] = args ? args.tokenName : undefined;
+            inputs["tokenName"] = (args ? args.tokenName : undefined) || utilities.getEnv("VAULT_TOKEN_NAME");
         }
         if (!opts) {
             opts = {}

@@ -4,7 +4,6 @@
 package aws
 
 import (
-	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
@@ -16,12 +15,6 @@ type SecretBackend struct {
 // NewSecretBackend registers a new resource with the given unique name, arguments, and options.
 func NewSecretBackend(ctx *pulumi.Context,
 	name string, args *SecretBackendArgs, opts ...pulumi.ResourceOpt) (*SecretBackend, error) {
-	if args == nil || args.AccessKey == nil {
-		return nil, errors.New("missing required argument 'AccessKey'")
-	}
-	if args == nil || args.SecretKey == nil {
-		return nil, errors.New("missing required argument 'SecretKey'")
-	}
 	inputs := make(map[string]interface{})
 	if args == nil {
 		inputs["accessKey"] = nil
@@ -79,7 +72,7 @@ func (r *SecretBackend) ID() pulumi.IDOutput {
 }
 
 // The AWS Access Key ID this backend should use to
-// issue new credentials.
+// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
 func (r *SecretBackend) AccessKey() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["accessKey"])
 }
@@ -113,7 +106,7 @@ func (r *SecretBackend) Region() pulumi.StringOutput {
 }
 
 // The AWS Secret Key this backend should use to
-// issue new credentials.
+// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
 func (r *SecretBackend) SecretKey() pulumi.StringOutput {
 	return (pulumi.StringOutput)(r.s.State["secretKey"])
 }
@@ -121,7 +114,7 @@ func (r *SecretBackend) SecretKey() pulumi.StringOutput {
 // Input properties used for looking up and filtering SecretBackend resources.
 type SecretBackendState struct {
 	// The AWS Access Key ID this backend should use to
-	// issue new credentials.
+	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
 	AccessKey interface{}
 	// The default TTL for credentials
 	// issued by this backend.
@@ -137,14 +130,14 @@ type SecretBackendState struct {
 	// The AWS region for API calls. Defaults to `us-east-1`.
 	Region interface{}
 	// The AWS Secret Key this backend should use to
-	// issue new credentials.
+	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
 	SecretKey interface{}
 }
 
 // The set of arguments for constructing a SecretBackend resource.
 type SecretBackendArgs struct {
 	// The AWS Access Key ID this backend should use to
-	// issue new credentials.
+	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
 	AccessKey interface{}
 	// The default TTL for credentials
 	// issued by this backend.
@@ -160,6 +153,6 @@ type SecretBackendArgs struct {
 	// The AWS region for API calls. Defaults to `us-east-1`.
 	Region interface{}
 	// The AWS Secret Key this backend should use to
-	// issue new credentials.
+	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
 	SecretKey interface{}
 }

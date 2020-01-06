@@ -15,10 +15,10 @@ namespace Pulumi.Vault.Aws
     {
         /// <summary>
         /// The AWS Access Key ID this backend should use to
-        /// issue new credentials.
+        /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
         /// </summary>
         [Output("accessKey")]
-        public Output<string> AccessKey { get; private set; } = null!;
+        public Output<string?> AccessKey { get; private set; } = null!;
 
         /// <summary>
         /// The default TTL for credentials
@@ -55,10 +55,10 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The AWS Secret Key this backend should use to
-        /// issue new credentials.
+        /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
         /// </summary>
         [Output("secretKey")]
-        public Output<string> SecretKey { get; private set; } = null!;
+        public Output<string?> SecretKey { get; private set; } = null!;
 
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Pulumi.Vault.Aws
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public SecretBackend(string name, SecretBackendArgs args, CustomResourceOptions? options = null)
+        public SecretBackend(string name, SecretBackendArgs? args = null, CustomResourceOptions? options = null)
             : base("vault:aws/secretBackend:SecretBackend", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
         {
         }
@@ -108,61 +108,7 @@ namespace Pulumi.Vault.Aws
     {
         /// <summary>
         /// The AWS Access Key ID this backend should use to
-        /// issue new credentials.
-        /// </summary>
-        [Input("accessKey", required: true)]
-        public Input<string> AccessKey { get; set; } = null!;
-
-        /// <summary>
-        /// The default TTL for credentials
-        /// issued by this backend.
-        /// </summary>
-        [Input("defaultLeaseTtlSeconds")]
-        public Input<int>? DefaultLeaseTtlSeconds { get; set; }
-
-        /// <summary>
-        /// A human-friendly description for this backend.
-        /// </summary>
-        [Input("description")]
-        public Input<string>? Description { get; set; }
-
-        /// <summary>
-        /// The maximum TTL that can be requested
-        /// for credentials issued by this backend.
-        /// </summary>
-        [Input("maxLeaseTtlSeconds")]
-        public Input<int>? MaxLeaseTtlSeconds { get; set; }
-
-        /// <summary>
-        /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `aws`.
-        /// </summary>
-        [Input("path")]
-        public Input<string>? Path { get; set; }
-
-        /// <summary>
-        /// The AWS region for API calls. Defaults to `us-east-1`.
-        /// </summary>
-        [Input("region")]
-        public Input<string>? Region { get; set; }
-
-        /// <summary>
-        /// The AWS Secret Key this backend should use to
-        /// issue new credentials.
-        /// </summary>
-        [Input("secretKey", required: true)]
-        public Input<string> SecretKey { get; set; } = null!;
-
-        public SecretBackendArgs()
-        {
-        }
-    }
-
-    public sealed class SecretBackendState : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// The AWS Access Key ID this backend should use to
-        /// issue new credentials.
+        /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
         /// </summary>
         [Input("accessKey")]
         public Input<string>? AccessKey { get; set; }
@@ -202,7 +148,61 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The AWS Secret Key this backend should use to
-        /// issue new credentials.
+        /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        /// </summary>
+        [Input("secretKey")]
+        public Input<string>? SecretKey { get; set; }
+
+        public SecretBackendArgs()
+        {
+        }
+    }
+
+    public sealed class SecretBackendState : Pulumi.ResourceArgs
+    {
+        /// <summary>
+        /// The AWS Access Key ID this backend should use to
+        /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        /// </summary>
+        [Input("accessKey")]
+        public Input<string>? AccessKey { get; set; }
+
+        /// <summary>
+        /// The default TTL for credentials
+        /// issued by this backend.
+        /// </summary>
+        [Input("defaultLeaseTtlSeconds")]
+        public Input<int>? DefaultLeaseTtlSeconds { get; set; }
+
+        /// <summary>
+        /// A human-friendly description for this backend.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// The maximum TTL that can be requested
+        /// for credentials issued by this backend.
+        /// </summary>
+        [Input("maxLeaseTtlSeconds")]
+        public Input<int>? MaxLeaseTtlSeconds { get; set; }
+
+        /// <summary>
+        /// The unique path this backend should be mounted at. Must
+        /// not begin or end with a `/`. Defaults to `aws`.
+        /// </summary>
+        [Input("path")]
+        public Input<string>? Path { get; set; }
+
+        /// <summary>
+        /// The AWS region for API calls. Defaults to `us-east-1`.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// The AWS Secret Key this backend should use to
+        /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
         /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }

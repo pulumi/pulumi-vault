@@ -29,11 +29,11 @@ export let clientAuths: { certFile: string, keyFile: string }[] | undefined = __
 /**
  * Maximum TTL for secret leases requested by this provider
  */
-export let maxLeaseTtlSeconds: number | undefined = __config.getObject<number>("maxLeaseTtlSeconds") || utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL");
+export let maxLeaseTtlSeconds: number | undefined = __config.getObject<number>("maxLeaseTtlSeconds") || (utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 20);
 /**
  * Maximum number of retries when a 5xx error code is encountered.
  */
-export let maxRetries: number | undefined = __config.getObject<number>("maxRetries") || utilities.getEnvNumber("VAULT_MAX_RETRIES");
+export let maxRetries: number | undefined = __config.getObject<number>("maxRetries") || (utilities.getEnvNumber("VAULT_MAX_RETRIES") || 2);
 /**
  * The namespace to use. Available only for Vault Enterprise
  */
@@ -49,4 +49,4 @@ export let token: string | undefined = __config.get("token") || utilities.getEnv
 /**
  * Token name to use for creating the Vault child token.
  */
-export let tokenName: string | undefined = __config.get("tokenName");
+export let tokenName: string | undefined = __config.get("tokenName") || utilities.getEnv("VAULT_TOKEN_NAME");

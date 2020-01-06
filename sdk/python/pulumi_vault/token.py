@@ -75,8 +75,7 @@ class Token(pulumi.CustomResource):
     wrapping_ttl: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, display_name=None, explicit_max_ttl=None, no_default_policy=None, no_parent=None, num_uses=None, period=None, policies=None, renew_increment=None, renew_min_lease=None, renewable=None, role_name=None, ttl=None, wrapping_ttl=None, __props__=None, __name__=None, __opts__=None):
         """
-        Provides a resource to generate a vault token with its options. The token renewing is supported through optional
-        arguments.
+        Create a Token resource with the given unique name, props, and options.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

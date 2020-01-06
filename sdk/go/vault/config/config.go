@@ -60,7 +60,7 @@ func GetMaxLeaseTtlSeconds(ctx *pulumi.Context) int {
 	if err == nil {
 		return v
 	}
-	if dv, ok := getEnvOrDefault(0, parseEnvInt, "TERRAFORM_VAULT_MAX_TTL").(int); ok {
+	if dv, ok := getEnvOrDefault(20, parseEnvInt, "TERRAFORM_VAULT_MAX_TTL").(int); ok {
 		return dv
 	}
 	return v
@@ -72,7 +72,7 @@ func GetMaxRetries(ctx *pulumi.Context) int {
 	if err == nil {
 		return v
 	}
-	if dv, ok := getEnvOrDefault(0, parseEnvInt, "VAULT_MAX_RETRIES").(int); ok {
+	if dv, ok := getEnvOrDefault(2, parseEnvInt, "VAULT_MAX_RETRIES").(int); ok {
 		return dv
 	}
 	return v
@@ -116,5 +116,12 @@ func GetToken(ctx *pulumi.Context) string {
 
 // Token name to use for creating the Vault child token.
 func GetTokenName(ctx *pulumi.Context) string {
-	return config.Get(ctx, "vault:tokenName")
+	v, err := config.Try(ctx, "vault:tokenName")
+	if err == nil {
+		return v
+	}
+	if dv, ok := getEnvOrDefault("", nil, "VAULT_TOKEN_NAME").(string); ok {
+		return dv
+	}
+	return v
 }

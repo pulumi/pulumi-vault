@@ -117,6 +117,13 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
+			"token_name": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{
+						"VAULT_TOKEN_NAME",
+					},
+				},
+			},
 			"ca_cert_file": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{
@@ -161,6 +168,7 @@ func Provider() tfbridge.ProviderInfo {
 					EnvVars: []string{
 						"TERRAFORM_VAULT_MAX_TTL",
 					},
+					Value: 20,
 				},
 			},
 			"max_retries": {
@@ -168,6 +176,7 @@ func Provider() tfbridge.ProviderInfo {
 					EnvVars: []string{
 						"VAULT_MAX_RETRIES",
 					},
+					Value: 2,
 				},
 			},
 			"namespace": {

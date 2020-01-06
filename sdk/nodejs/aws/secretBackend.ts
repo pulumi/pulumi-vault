@@ -36,9 +36,9 @@ export class SecretBackend extends pulumi.CustomResource {
 
     /**
      * The AWS Access Key ID this backend should use to
-     * issue new credentials.
+     * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
      */
-    public readonly accessKey!: pulumi.Output<string>;
+    public readonly accessKey!: pulumi.Output<string | undefined>;
     /**
      * The default TTL for credentials
      * issued by this backend.
@@ -64,9 +64,9 @@ export class SecretBackend extends pulumi.CustomResource {
     public readonly region!: pulumi.Output<string>;
     /**
      * The AWS Secret Key this backend should use to
-     * issue new credentials.
+     * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
      */
-    public readonly secretKey!: pulumi.Output<string>;
+    public readonly secretKey!: pulumi.Output<string | undefined>;
 
     /**
      * Create a SecretBackend resource with the given unique name, arguments, and options.
@@ -75,7 +75,7 @@ export class SecretBackend extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: SecretBackendArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: SecretBackendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendArgs | SecretBackendState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
@@ -89,12 +89,6 @@ export class SecretBackend extends pulumi.CustomResource {
             inputs["secretKey"] = state ? state.secretKey : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
-            if (!args || args.accessKey === undefined) {
-                throw new Error("Missing required property 'accessKey'");
-            }
-            if (!args || args.secretKey === undefined) {
-                throw new Error("Missing required property 'secretKey'");
-            }
             inputs["accessKey"] = args ? args.accessKey : undefined;
             inputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
             inputs["description"] = args ? args.description : undefined;
@@ -120,7 +114,7 @@ export class SecretBackend extends pulumi.CustomResource {
 export interface SecretBackendState {
     /**
      * The AWS Access Key ID this backend should use to
-     * issue new credentials.
+     * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
      */
     readonly accessKey?: pulumi.Input<string>;
     /**
@@ -148,7 +142,7 @@ export interface SecretBackendState {
     readonly region?: pulumi.Input<string>;
     /**
      * The AWS Secret Key this backend should use to
-     * issue new credentials.
+     * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
      */
     readonly secretKey?: pulumi.Input<string>;
 }
@@ -159,9 +153,9 @@ export interface SecretBackendState {
 export interface SecretBackendArgs {
     /**
      * The AWS Access Key ID this backend should use to
-     * issue new credentials.
+     * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
      */
-    readonly accessKey: pulumi.Input<string>;
+    readonly accessKey?: pulumi.Input<string>;
     /**
      * The default TTL for credentials
      * issued by this backend.
@@ -187,7 +181,7 @@ export interface SecretBackendArgs {
     readonly region?: pulumi.Input<string>;
     /**
      * The AWS Secret Key this backend should use to
-     * issue new credentials.
+     * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
      */
-    readonly secretKey: pulumi.Input<string>;
+    readonly secretKey?: pulumi.Input<string>;
 }
