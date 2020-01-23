@@ -60,7 +60,7 @@ func GetMaxLeaseTtlSeconds(ctx *pulumi.Context) int {
 	if err == nil {
 		return v
 	}
-	if dv, ok := getEnvOrDefault(20, parseEnvInt, "TERRAFORM_VAULT_MAX_TTL").(int); ok {
+	if dv, ok := getEnvOrDefault(1200, parseEnvInt, "TERRAFORM_VAULT_MAX_TTL").(int); ok {
 		return dv
 	}
 	return v

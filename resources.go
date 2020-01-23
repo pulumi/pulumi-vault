@@ -168,7 +168,7 @@ func Provider() tfbridge.ProviderInfo {
 					EnvVars: []string{
 						"TERRAFORM_VAULT_MAX_TTL",
 					},
-					Value: 20,
+					Value: 1200,
 				},
 			},
 			"max_retries": {

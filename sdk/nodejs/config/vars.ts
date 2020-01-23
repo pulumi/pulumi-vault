@@ -29,7 +29,7 @@ export let clientAuths: { certFile: string, keyFile: string }[] | undefined = __
 /**
  * Maximum TTL for secret leases requested by this provider
  */
-export let maxLeaseTtlSeconds: number | undefined = __config.getObject<number>("maxLeaseTtlSeconds") || (utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 20);
+export let maxLeaseTtlSeconds: number | undefined = __config.getObject<number>("maxLeaseTtlSeconds") || (utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 1200);
 /**
  * Maximum number of retries when a 5xx error code is encountered.
  */

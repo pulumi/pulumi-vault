@@ -62,7 +62,7 @@ class Provider(pulumi.ProviderResource):
             __props__['ca_cert_file'] = ca_cert_file
             __props__['client_auths'] = pulumi.Output.from_input(client_auths).apply(json.dumps) if client_auths is not None else None
             if max_lease_ttl_seconds is None:
-                max_lease_ttl_seconds = (utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL') or 20)
+                max_lease_ttl_seconds = (utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL') or 1200)
             __props__['max_lease_ttl_seconds'] = pulumi.Output.from_input(max_lease_ttl_seconds).apply(json.dumps) if max_lease_ttl_seconds is not None else None
             if max_retries is None:
                 max_retries = (utilities.get_env_int('VAULT_MAX_RETRIES') or 2)

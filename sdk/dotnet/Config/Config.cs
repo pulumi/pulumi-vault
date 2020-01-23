@@ -37,7 +37,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// Maximum TTL for secret leases requested by this provider
         /// </summary>
-        public static int? MaxLeaseTtlSeconds { get; set; } = __config.GetInt32("maxLeaseTtlSeconds") ?? Utilities.GetEnvInt32("TERRAFORM_VAULT_MAX_TTL") ?? 20;
+        public static int? MaxLeaseTtlSeconds { get; set; } = __config.GetInt32("maxLeaseTtlSeconds") ?? Utilities.GetEnvInt32("TERRAFORM_VAULT_MAX_TTL") ?? 1200;
 
         /// <summary>
         /// Maximum number of retries when a 5xx error code is encountered.
