@@ -3,9 +3,11 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 _(none)_
-* Upgrade default value for `max_lease_ttl_seconds` to 1200
 
 ---
+
+## 1.7.1 (2020-01-24)
+* Upgrade default value for `max_lease_ttl_seconds` to 1200
 
 ## 1.7.0 (2020-01-06)
 * Upgrade to pulumi-terraform-bridge v1.5.2
