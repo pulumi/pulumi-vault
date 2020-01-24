@@ -128,7 +128,7 @@ namespace Pulumi.Vault
             Address = Utilities.GetEnv("VAULT_ADDR");
             CaCertDir = Utilities.GetEnv("VAULT_CAPATH");
             CaCertFile = Utilities.GetEnv("VAULT_CACERT");
-            MaxLeaseTtlSeconds = Utilities.GetEnvInt32("TERRAFORM_VAULT_MAX_TTL") ?? 20;
+            MaxLeaseTtlSeconds = Utilities.GetEnvInt32("TERRAFORM_VAULT_MAX_TTL") ?? 1200;
             MaxRetries = Utilities.GetEnvInt32("VAULT_MAX_RETRIES") ?? 2;
             Namespace = Utilities.GetEnv("VAULT_NAMESPACE");
             SkipTlsVerify = Utilities.GetEnvBoolean("VAULT_SKIP_VERIFY");

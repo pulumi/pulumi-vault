@@ -3,6 +3,7 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 _(none)_
+* Upgrade default value for `max_lease_ttl_seconds` to 1200
 
 ---
 
