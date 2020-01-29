@@ -145,7 +145,7 @@ namespace Pulumi.Vault
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
-        [Input("parameters", json: true)]
+        [Input("parameters")]
         private InputMap<string>? _parameters;
         public InputMap<string> Parameters
         {
