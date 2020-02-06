@@ -119,7 +119,7 @@ namespace Pulumi.Vault.Ssh
         public Output<string> KeyType { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the Time To Live value.
+        /// Specifies the maximum Time To Live value.
         /// </summary>
         [Output("maxTtl")]
         public Output<string> MaxTtl { get; private set; } = null!;
@@ -131,7 +131,7 @@ namespace Pulumi.Vault.Ssh
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the maximum Time To Live value.
+        /// Specifies the Time To Live value.
         /// </summary>
         [Output("ttl")]
         public Output<string> Ttl { get; private set; } = null!;
@@ -303,7 +303,7 @@ namespace Pulumi.Vault.Ssh
         public Input<string> KeyType { get; set; } = null!;
 
         /// <summary>
-        /// Specifies the Time To Live value.
+        /// Specifies the maximum Time To Live value.
         /// </summary>
         [Input("maxTtl")]
         public Input<string>? MaxTtl { get; set; }
@@ -315,7 +315,7 @@ namespace Pulumi.Vault.Ssh
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Specifies the maximum Time To Live value.
+        /// Specifies the Time To Live value.
         /// </summary>
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }
@@ -448,7 +448,7 @@ namespace Pulumi.Vault.Ssh
         public Input<string>? KeyType { get; set; }
 
         /// <summary>
-        /// Specifies the Time To Live value.
+        /// Specifies the maximum Time To Live value.
         /// </summary>
         [Input("maxTtl")]
         public Input<string>? MaxTtl { get; set; }
@@ -460,7 +460,7 @@ namespace Pulumi.Vault.Ssh
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Specifies the maximum Time To Live value.
+        /// Specifies the Time To Live value.
         /// </summary>
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }

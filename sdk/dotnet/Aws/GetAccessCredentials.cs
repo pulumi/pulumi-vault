@@ -34,6 +34,14 @@ namespace Pulumi.Vault.Aws
         public string Role { get; set; } = null!;
 
         /// <summary>
+        /// The specific AWS ARN to use
+        /// from the configured role. If the role does not have multiple ARNs, this does
+        /// not need to be specified.
+        /// </summary>
+        [Input("roleArn")]
+        public string? RoleArn { get; set; }
+
+        /// <summary>
         /// The type of credentials to read. Defaults
         /// to `"creds"`, which just returns an AWS Access Key ID and Secret
         /// Key. Can also be set to `"sts"`, which will return a security token
@@ -68,6 +76,7 @@ namespace Pulumi.Vault.Aws
         public readonly bool LeaseRenewable;
         public readonly string LeaseStartTime;
         public readonly string Role;
+        public readonly string? RoleArn;
         /// <summary>
         /// The AWS Secret Key returned by Vault.
         /// </summary>
@@ -91,6 +100,7 @@ namespace Pulumi.Vault.Aws
             bool leaseRenewable,
             string leaseStartTime,
             string role,
+            string? roleArn,
             string secretKey,
             string securityToken,
             string? type,
@@ -103,6 +113,7 @@ namespace Pulumi.Vault.Aws
             LeaseRenewable = leaseRenewable;
             LeaseStartTime = leaseStartTime;
             Role = role;
+            RoleArn = roleArn;
             SecretKey = secretKey;
             SecurityToken = securityToken;
             Type = type;

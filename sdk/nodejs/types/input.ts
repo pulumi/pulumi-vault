@@ -4,6 +4,20 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 
+export interface AuthBackendTune {
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    defaultLeaseTtl?: pulumi.Input<string>;
+    /**
+     * Speficies whether to show this mount in the UI-specific listing endpoint.
+     */
+    listingVisibility?: pulumi.Input<string>;
+    maxLeaseTtl?: pulumi.Input<string>;
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenType?: pulumi.Input<string>;
+}
+
 export interface GetPolicyDocumentRule {
     /**
      * Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
@@ -161,6 +175,21 @@ export namespace database {
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: pulumi.Input<number>;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: pulumi.Input<number>;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: pulumi.Input<number>;
     }
 
     export interface SecretBackendConnectionMssql {

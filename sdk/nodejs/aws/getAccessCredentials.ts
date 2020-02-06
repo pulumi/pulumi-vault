@@ -18,6 +18,7 @@ export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulu
     const promise: Promise<GetAccessCredentialsResult> = pulumi.runtime.invoke("vault:aws/getAccessCredentials:getAccessCredentials", {
         "backend": args.backend,
         "role": args.role,
+        "roleArn": args.roleArn,
         "type": args.type,
     }, opts);
 
@@ -38,6 +39,12 @@ export interface GetAccessCredentialsArgs {
      * credentials from, with no leading or trailing `/`s.
      */
     readonly role: string;
+    /**
+     * The specific AWS ARN to use
+     * from the configured role. If the role does not have multiple ARNs, this does
+     * not need to be specified.
+     */
+    readonly roleArn?: string;
     /**
      * The type of credentials to read. Defaults
      * to `"creds"`, which just returns an AWS Access Key ID and Secret
@@ -69,6 +76,7 @@ export interface GetAccessCredentialsResult {
     readonly leaseRenewable: boolean;
     readonly leaseStartTime: string;
     readonly role: string;
+    readonly roleArn?: string;
     /**
      * The AWS Secret Key returned by Vault.
      */

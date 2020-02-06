@@ -129,7 +129,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly keyType!: pulumi.Output<string>;
     /**
-     * Specifies the Time To Live value.
+     * Specifies the maximum Time To Live value.
      */
     public readonly maxTtl!: pulumi.Output<string>;
     /**
@@ -137,7 +137,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Specifies the maximum Time To Live value.
+     * Specifies the Time To Live value.
      */
     public readonly ttl!: pulumi.Output<string>;
 
@@ -286,7 +286,7 @@ export interface SecretBackendRoleState {
      */
     readonly keyType?: pulumi.Input<string>;
     /**
-     * Specifies the Time To Live value.
+     * Specifies the maximum Time To Live value.
      */
     readonly maxTtl?: pulumi.Input<string>;
     /**
@@ -294,7 +294,7 @@ export interface SecretBackendRoleState {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Specifies the maximum Time To Live value.
+     * Specifies the Time To Live value.
      */
     readonly ttl?: pulumi.Input<string>;
 }
@@ -372,7 +372,7 @@ export interface SecretBackendRoleArgs {
      */
     readonly keyType: pulumi.Input<string>;
     /**
-     * Specifies the Time To Live value.
+     * Specifies the maximum Time To Live value.
      */
     readonly maxTtl?: pulumi.Input<string>;
     /**
@@ -380,7 +380,7 @@ export interface SecretBackendRoleArgs {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Specifies the maximum Time To Live value.
+     * Specifies the Time To Live value.
      */
     readonly ttl?: pulumi.Input<string>;
 }

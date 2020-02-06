@@ -303,8 +303,6 @@ class AuthBackendRole(pulumi.CustomResource):
 
             __props__['allowed_redirect_uris'] = allowed_redirect_uris
             __props__['backend'] = backend
-            if bound_audiences is None:
-                raise TypeError("Missing required property 'bound_audiences'")
             __props__['bound_audiences'] = bound_audiences
             __props__['bound_cidrs'] = bound_cidrs
             __props__['bound_claims'] = bound_claims

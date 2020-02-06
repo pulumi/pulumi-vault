@@ -323,7 +323,7 @@ namespace Pulumi.Vault.Jwt
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
-        [Input("boundAudiences", required: true)]
+        [Input("boundAudiences")]
         private InputList<string>? _boundAudiences;
 
         /// <summary>

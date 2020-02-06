@@ -26,6 +26,10 @@ type GetAccessCredentialsArgs struct {
 	// The name of the AWS secret backend role to read
 	// credentials from, with no leading or trailing `/`s.
 	Role string `pulumi:"role"`
+	// The specific AWS ARN to use
+	// from the configured role. If the role does not have multiple ARNs, this does
+	// not need to be specified.
+	RoleArn *string `pulumi:"roleArn"`
 	// The type of credentials to read. Defaults
 	// to `"creds"`, which just returns an AWS Access Key ID and Secret
 	// Key. Can also be set to `"sts"`, which will return a security token
@@ -50,6 +54,7 @@ type GetAccessCredentialsResult struct {
 	LeaseRenewable bool `pulumi:"leaseRenewable"`
 	LeaseStartTime string `pulumi:"leaseStartTime"`
 	Role string `pulumi:"role"`
+	RoleArn *string `pulumi:"roleArn"`
 	// The AWS Secret Key returned by Vault.
 	SecretKey string `pulumi:"secretKey"`
 	// The STS token returned by Vault, if any.

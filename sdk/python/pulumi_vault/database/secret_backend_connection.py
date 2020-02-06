@@ -65,6 +65,12 @@ class SecretBackendConnection(pulumi.CustomResource):
         the [Vault
         docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
         for an example.
+      * `maxConnectionLifetime` (`float`) - The maximum number of seconds to keep
+        a connection alive for.
+      * `maxIdleConnections` (`float`) - The maximum number of idle connections to
+        maintain.
+      * `maxOpenConnections` (`float`) - The maximum number of open connections to
+        use.
     """
     mssql: pulumi.Output[dict]
     """
@@ -245,6 +251,12 @@ class SecretBackendConnection(pulumi.CustomResource):
             the [Vault
             docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
             for an example.
+          * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
+            a connection alive for.
+          * `maxIdleConnections` (`pulumi.Input[float]`) - The maximum number of idle connections to
+            maintain.
+          * `maxOpenConnections` (`pulumi.Input[float]`) - The maximum number of open connections to
+            use.
         
         The **mssql** object supports the following:
         
@@ -444,6 +456,12 @@ class SecretBackendConnection(pulumi.CustomResource):
             the [Vault
             docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
             for an example.
+          * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
+            a connection alive for.
+          * `maxIdleConnections` (`pulumi.Input[float]`) - The maximum number of idle connections to
+            maintain.
+          * `maxOpenConnections` (`pulumi.Input[float]`) - The maximum number of open connections to
+            use.
         
         The **mssql** object supports the following:
         

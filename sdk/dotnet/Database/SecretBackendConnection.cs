@@ -643,6 +643,27 @@ namespace Pulumi.Vault.Database
         [Input("connectionUrl")]
         public Input<string>? ConnectionUrl { get; set; }
 
+        /// <summary>
+        /// The maximum number of seconds to keep
+        /// a connection alive for.
+        /// </summary>
+        [Input("maxConnectionLifetime")]
+        public Input<int>? MaxConnectionLifetime { get; set; }
+
+        /// <summary>
+        /// The maximum number of idle connections to
+        /// maintain.
+        /// </summary>
+        [Input("maxIdleConnections")]
+        public Input<int>? MaxIdleConnections { get; set; }
+
+        /// <summary>
+        /// The maximum number of open connections to
+        /// use.
+        /// </summary>
+        [Input("maxOpenConnections")]
+        public Input<int>? MaxOpenConnections { get; set; }
+
         public SecretBackendConnectionMongodbArgs()
         {
         }
@@ -658,6 +679,27 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Input("connectionUrl")]
         public Input<string>? ConnectionUrl { get; set; }
+
+        /// <summary>
+        /// The maximum number of seconds to keep
+        /// a connection alive for.
+        /// </summary>
+        [Input("maxConnectionLifetime")]
+        public Input<int>? MaxConnectionLifetime { get; set; }
+
+        /// <summary>
+        /// The maximum number of idle connections to
+        /// maintain.
+        /// </summary>
+        [Input("maxIdleConnections")]
+        public Input<int>? MaxIdleConnections { get; set; }
+
+        /// <summary>
+        /// The maximum number of open connections to
+        /// use.
+        /// </summary>
+        [Input("maxOpenConnections")]
+        public Input<int>? MaxOpenConnections { get; set; }
 
         public SecretBackendConnectionMongodbGetArgs()
         {
@@ -1310,11 +1352,33 @@ namespace Pulumi.Vault.Database
         /// for an example.
         /// </summary>
         public readonly string? ConnectionUrl;
+        /// <summary>
+        /// The maximum number of seconds to keep
+        /// a connection alive for.
+        /// </summary>
+        public readonly int? MaxConnectionLifetime;
+        /// <summary>
+        /// The maximum number of idle connections to
+        /// maintain.
+        /// </summary>
+        public readonly int? MaxIdleConnections;
+        /// <summary>
+        /// The maximum number of open connections to
+        /// use.
+        /// </summary>
+        public readonly int? MaxOpenConnections;
 
         [OutputConstructor]
-        private SecretBackendConnectionMongodb(string? connectionUrl)
+        private SecretBackendConnectionMongodb(
+            string? connectionUrl,
+            int? maxConnectionLifetime,
+            int? maxIdleConnections,
+            int? maxOpenConnections)
         {
             ConnectionUrl = connectionUrl;
+            MaxConnectionLifetime = maxConnectionLifetime;
+            MaxIdleConnections = maxIdleConnections;
+            MaxOpenConnections = maxOpenConnections;
         }
     }
 
