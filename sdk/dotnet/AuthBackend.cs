@@ -32,7 +32,7 @@ namespace Pulumi.Vault
         /// Speficies whether to show this mount in the UI-specific listing endpoint.
         /// </summary>
         [Output("listingVisibility")]
-        public Output<string?> ListingVisibility { get; private set; } = null!;
+        public Output<string> ListingVisibility { get; private set; } = null!;
 
         /// <summary>
         /// Specifies if the auth method is local only.
@@ -51,6 +51,9 @@ namespace Pulumi.Vault
         /// </summary>
         [Output("path")]
         public Output<string> Path { get; private set; } = null!;
+
+        [Output("tune")]
+        public Output<Outputs.AuthBackendTune> Tune { get; private set; } = null!;
 
         /// <summary>
         /// The name of the auth method type
@@ -140,6 +143,9 @@ namespace Pulumi.Vault
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        [Input("tune")]
+        public Input<Inputs.AuthBackendTuneArgs>? Tune { get; set; }
+
         /// <summary>
         /// The name of the auth method type
         /// </summary>
@@ -195,6 +201,9 @@ namespace Pulumi.Vault
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        [Input("tune")]
+        public Input<Inputs.AuthBackendTuneGetArgs>? Tune { get; set; }
+
         /// <summary>
         /// The name of the auth method type
         /// </summary>
@@ -204,5 +213,158 @@ namespace Pulumi.Vault
         public AuthBackendState()
         {
         }
+    }
+
+    namespace Inputs
+    {
+
+    public sealed class AuthBackendTuneArgs : Pulumi.ResourceArgs
+    {
+        [Input("allowedResponseHeaders")]
+        private InputList<string>? _allowedResponseHeaders;
+        public InputList<string> AllowedResponseHeaders
+        {
+            get => _allowedResponseHeaders ?? (_allowedResponseHeaders = new InputList<string>());
+            set => _allowedResponseHeaders = value;
+        }
+
+        [Input("auditNonHmacRequestKeys")]
+        private InputList<string>? _auditNonHmacRequestKeys;
+        public InputList<string> AuditNonHmacRequestKeys
+        {
+            get => _auditNonHmacRequestKeys ?? (_auditNonHmacRequestKeys = new InputList<string>());
+            set => _auditNonHmacRequestKeys = value;
+        }
+
+        [Input("auditNonHmacResponseKeys")]
+        private InputList<string>? _auditNonHmacResponseKeys;
+        public InputList<string> AuditNonHmacResponseKeys
+        {
+            get => _auditNonHmacResponseKeys ?? (_auditNonHmacResponseKeys = new InputList<string>());
+            set => _auditNonHmacResponseKeys = value;
+        }
+
+        [Input("defaultLeaseTtl")]
+        public Input<string>? DefaultLeaseTtl { get; set; }
+
+        /// <summary>
+        /// Speficies whether to show this mount in the UI-specific listing endpoint.
+        /// </summary>
+        [Input("listingVisibility")]
+        public Input<string>? ListingVisibility { get; set; }
+
+        [Input("maxLeaseTtl")]
+        public Input<string>? MaxLeaseTtl { get; set; }
+
+        [Input("passthroughRequestHeaders")]
+        private InputList<string>? _passthroughRequestHeaders;
+        public InputList<string> PassthroughRequestHeaders
+        {
+            get => _passthroughRequestHeaders ?? (_passthroughRequestHeaders = new InputList<string>());
+            set => _passthroughRequestHeaders = value;
+        }
+
+        [Input("tokenType")]
+        public Input<string>? TokenType { get; set; }
+
+        public AuthBackendTuneArgs()
+        {
+        }
+    }
+
+    public sealed class AuthBackendTuneGetArgs : Pulumi.ResourceArgs
+    {
+        [Input("allowedResponseHeaders")]
+        private InputList<string>? _allowedResponseHeaders;
+        public InputList<string> AllowedResponseHeaders
+        {
+            get => _allowedResponseHeaders ?? (_allowedResponseHeaders = new InputList<string>());
+            set => _allowedResponseHeaders = value;
+        }
+
+        [Input("auditNonHmacRequestKeys")]
+        private InputList<string>? _auditNonHmacRequestKeys;
+        public InputList<string> AuditNonHmacRequestKeys
+        {
+            get => _auditNonHmacRequestKeys ?? (_auditNonHmacRequestKeys = new InputList<string>());
+            set => _auditNonHmacRequestKeys = value;
+        }
+
+        [Input("auditNonHmacResponseKeys")]
+        private InputList<string>? _auditNonHmacResponseKeys;
+        public InputList<string> AuditNonHmacResponseKeys
+        {
+            get => _auditNonHmacResponseKeys ?? (_auditNonHmacResponseKeys = new InputList<string>());
+            set => _auditNonHmacResponseKeys = value;
+        }
+
+        [Input("defaultLeaseTtl")]
+        public Input<string>? DefaultLeaseTtl { get; set; }
+
+        /// <summary>
+        /// Speficies whether to show this mount in the UI-specific listing endpoint.
+        /// </summary>
+        [Input("listingVisibility")]
+        public Input<string>? ListingVisibility { get; set; }
+
+        [Input("maxLeaseTtl")]
+        public Input<string>? MaxLeaseTtl { get; set; }
+
+        [Input("passthroughRequestHeaders")]
+        private InputList<string>? _passthroughRequestHeaders;
+        public InputList<string> PassthroughRequestHeaders
+        {
+            get => _passthroughRequestHeaders ?? (_passthroughRequestHeaders = new InputList<string>());
+            set => _passthroughRequestHeaders = value;
+        }
+
+        [Input("tokenType")]
+        public Input<string>? TokenType { get; set; }
+
+        public AuthBackendTuneGetArgs()
+        {
+        }
+    }
+    }
+
+    namespace Outputs
+    {
+
+    [OutputType]
+    public sealed class AuthBackendTune
+    {
+        public readonly ImmutableArray<string> AllowedResponseHeaders;
+        public readonly ImmutableArray<string> AuditNonHmacRequestKeys;
+        public readonly ImmutableArray<string> AuditNonHmacResponseKeys;
+        public readonly string? DefaultLeaseTtl;
+        /// <summary>
+        /// Speficies whether to show this mount in the UI-specific listing endpoint.
+        /// </summary>
+        public readonly string? ListingVisibility;
+        public readonly string? MaxLeaseTtl;
+        public readonly ImmutableArray<string> PassthroughRequestHeaders;
+        public readonly string? TokenType;
+
+        [OutputConstructor]
+        private AuthBackendTune(
+            ImmutableArray<string> allowedResponseHeaders,
+            ImmutableArray<string> auditNonHmacRequestKeys,
+            ImmutableArray<string> auditNonHmacResponseKeys,
+            string? defaultLeaseTtl,
+            string? listingVisibility,
+            string? maxLeaseTtl,
+            ImmutableArray<string> passthroughRequestHeaders,
+            string? tokenType)
+        {
+            AllowedResponseHeaders = allowedResponseHeaders;
+            AuditNonHmacRequestKeys = auditNonHmacRequestKeys;
+            AuditNonHmacResponseKeys = auditNonHmacResponseKeys;
+            DefaultLeaseTtl = defaultLeaseTtl;
+            ListingVisibility = listingVisibility;
+            MaxLeaseTtl = maxLeaseTtl;
+            PassthroughRequestHeaders = passthroughRequestHeaders;
+            TokenType = tokenType;
+        }
+    }
     }
 }

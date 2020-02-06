@@ -38,11 +38,12 @@ class AuthBackend(pulumi.CustomResource):
     """
     The path to mount the auth method — this defaults to the name of the type
     """
+    tune: pulumi.Output[dict]
     type: pulumi.Output[str]
     """
     The name of the auth method type
     """
-    def __init__(__self__, resource_name, opts=None, default_lease_ttl_seconds=None, description=None, listing_visibility=None, local=None, max_lease_ttl_seconds=None, path=None, type=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, default_lease_ttl_seconds=None, description=None, listing_visibility=None, local=None, max_lease_ttl_seconds=None, path=None, tune=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a AuthBackend resource with the given unique name, props, and options.
         
@@ -55,6 +56,17 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[float] max_lease_ttl_seconds: The maximum lease duration in seconds.
         :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type
         :param pulumi.Input[str] type: The name of the auth method type
+        
+        The **tune** object supports the following:
+        
+          * `allowedResponseHeaders` (`pulumi.Input[list]`)
+          * `auditNonHmacRequestKeys` (`pulumi.Input[list]`)
+          * `auditNonHmacResponseKeys` (`pulumi.Input[list]`)
+          * `defaultLeaseTtl` (`pulumi.Input[str]`)
+          * `listing_visibility` (`pulumi.Input[str]`) - Speficies whether to show this mount in the UI-specific listing endpoint.
+          * `maxLeaseTtl` (`pulumi.Input[str]`)
+          * `passthroughRequestHeaders` (`pulumi.Input[list]`)
+          * `token_type` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/auth_backend.html.markdown.
         """
@@ -81,6 +93,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__['local'] = local
             __props__['max_lease_ttl_seconds'] = max_lease_ttl_seconds
             __props__['path'] = path
+            __props__['tune'] = tune
             if type is None:
                 raise TypeError("Missing required property 'type'")
             __props__['type'] = type
@@ -92,7 +105,7 @@ class AuthBackend(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, accessor=None, default_lease_ttl_seconds=None, description=None, listing_visibility=None, local=None, max_lease_ttl_seconds=None, path=None, type=None):
+    def get(resource_name, id, opts=None, accessor=None, default_lease_ttl_seconds=None, description=None, listing_visibility=None, local=None, max_lease_ttl_seconds=None, path=None, tune=None, type=None):
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -108,6 +121,17 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[float] max_lease_ttl_seconds: The maximum lease duration in seconds.
         :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type
         :param pulumi.Input[str] type: The name of the auth method type
+        
+        The **tune** object supports the following:
+        
+          * `allowedResponseHeaders` (`pulumi.Input[list]`)
+          * `auditNonHmacRequestKeys` (`pulumi.Input[list]`)
+          * `auditNonHmacResponseKeys` (`pulumi.Input[list]`)
+          * `defaultLeaseTtl` (`pulumi.Input[str]`)
+          * `listing_visibility` (`pulumi.Input[str]`) - Speficies whether to show this mount in the UI-specific listing endpoint.
+          * `maxLeaseTtl` (`pulumi.Input[str]`)
+          * `passthroughRequestHeaders` (`pulumi.Input[list]`)
+          * `token_type` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/auth_backend.html.markdown.
         """
@@ -121,6 +145,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__["local"] = local
         __props__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
         __props__["path"] = path
+        __props__["tune"] = tune
         __props__["type"] = type
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
     def translate_output_property(self, prop):

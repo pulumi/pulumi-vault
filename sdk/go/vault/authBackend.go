@@ -21,13 +21,14 @@ type AuthBackend struct {
 	// A description of the auth method
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Speficies whether to show this mount in the UI-specific listing endpoint.
-	ListingVisibility pulumi.StringPtrOutput `pulumi:"listingVisibility"`
+	ListingVisibility pulumi.StringOutput `pulumi:"listingVisibility"`
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// The maximum lease duration in seconds.
 	MaxLeaseTtlSeconds pulumi.IntOutput `pulumi:"maxLeaseTtlSeconds"`
 	// The path to mount the auth method — this defaults to the name of the type
 	Path pulumi.StringOutput `pulumi:"path"`
+	Tune AuthBackendTuneOutput `pulumi:"tune"`
 	// The name of the auth method type
 	Type pulumi.StringOutput `pulumi:"type"`
 }
@@ -77,6 +78,7 @@ type authBackendState struct {
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
 	// The path to mount the auth method — this defaults to the name of the type
 	Path *string `pulumi:"path"`
+	Tune *AuthBackendTune `pulumi:"tune"`
 	// The name of the auth method type
 	Type *string `pulumi:"type"`
 }
@@ -96,6 +98,7 @@ type AuthBackendState struct {
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
 	// The path to mount the auth method — this defaults to the name of the type
 	Path pulumi.StringPtrInput
+	Tune AuthBackendTunePtrInput
 	// The name of the auth method type
 	Type pulumi.StringPtrInput
 }
@@ -117,6 +120,7 @@ type authBackendArgs struct {
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
 	// The path to mount the auth method — this defaults to the name of the type
 	Path *string `pulumi:"path"`
+	Tune *AuthBackendTune `pulumi:"tune"`
 	// The name of the auth method type
 	Type string `pulumi:"type"`
 }
@@ -135,6 +139,7 @@ type AuthBackendArgs struct {
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
 	// The path to mount the auth method — this defaults to the name of the type
 	Path pulumi.StringPtrInput
+	Tune AuthBackendTunePtrInput
 	// The name of the auth method type
 	Type pulumi.StringInput
 }

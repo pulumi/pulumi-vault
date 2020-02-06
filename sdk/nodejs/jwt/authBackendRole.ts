@@ -54,7 +54,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * List of `aud` claims to match
      * against. Any match is sufficient.
      */
-    public readonly boundAudiences!: pulumi.Output<string[]>;
+    public readonly boundAudiences!: pulumi.Output<string[] | undefined>;
     /**
      * If set, a list of
      * CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
@@ -264,9 +264,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["verboseOidcLogging"] = state ? state.verboseOidcLogging : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
-            if (!args || args.boundAudiences === undefined) {
-                throw new Error("Missing required property 'boundAudiences'");
-            }
             if (!args || args.roleName === undefined) {
                 throw new Error("Missing required property 'roleName'");
             }
@@ -518,7 +515,7 @@ export interface AuthBackendRoleArgs {
      * List of `aud` claims to match
      * against. Any match is sufficient.
      */
-    readonly boundAudiences: pulumi.Input<pulumi.Input<string>[]>;
+    readonly boundAudiences?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, a list of
      * CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.

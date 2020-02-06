@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -60,7 +62,7 @@ export class AuthBackend extends pulumi.CustomResource {
     /**
      * Speficies whether to show this mount in the UI-specific listing endpoint.
      */
-    public readonly listingVisibility!: pulumi.Output<string | undefined>;
+    public readonly listingVisibility!: pulumi.Output<string>;
     /**
      * Specifies if the auth method is local only.
      */
@@ -73,6 +75,7 @@ export class AuthBackend extends pulumi.CustomResource {
      * The path to mount the auth method — this defaults to the name of the type
      */
     public readonly path!: pulumi.Output<string>;
+    public readonly tune!: pulumi.Output<outputs.AuthBackendTune>;
     /**
      * The name of the auth method type
      */
@@ -97,6 +100,7 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["local"] = state ? state.local : undefined;
             inputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             inputs["path"] = state ? state.path : undefined;
+            inputs["tune"] = state ? state.tune : undefined;
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
@@ -109,6 +113,7 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["local"] = args ? args.local : undefined;
             inputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             inputs["path"] = args ? args.path : undefined;
+            inputs["tune"] = args ? args.tune : undefined;
             inputs["type"] = args ? args.type : undefined;
             inputs["accessor"] = undefined /*out*/;
         }
@@ -155,6 +160,7 @@ export interface AuthBackendState {
      * The path to mount the auth method — this defaults to the name of the type
      */
     readonly path?: pulumi.Input<string>;
+    readonly tune?: pulumi.Input<inputs.AuthBackendTune>;
     /**
      * The name of the auth method type
      */
@@ -189,6 +195,7 @@ export interface AuthBackendArgs {
      * The path to mount the auth method — this defaults to the name of the type
      */
     readonly path?: pulumi.Input<string>;
+    readonly tune?: pulumi.Input<inputs.AuthBackendTune>;
     /**
      * The name of the auth method type
      */

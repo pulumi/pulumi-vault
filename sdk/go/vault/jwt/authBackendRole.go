@@ -140,9 +140,6 @@ type AuthBackendRole struct {
 // NewAuthBackendRole registers a new resource with the given unique name, arguments, and options.
 func NewAuthBackendRole(ctx *pulumi.Context,
 	name string, args *AuthBackendRoleArgs, opts ...pulumi.ResourceOption) (*AuthBackendRole, error) {
-	if args == nil || args.BoundAudiences == nil {
-		return nil, errors.New("missing required argument 'BoundAudiences'")
-	}
 	if args == nil || args.RoleName == nil {
 		return nil, errors.New("missing required argument 'RoleName'")
 	}
