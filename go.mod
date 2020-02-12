@@ -3,6 +3,7 @@ module github.com/pulumi/pulumi-vault
 go 1.13
 
 require (
+	cloud.google.com/go/logging v1.0.0 // indirect
 	github.com/hashicorp/terraform-plugin-sdk v1.4.1
 	github.com/pkg/errors v0.8.1
 	github.com/pulumi/pulumi v1.9.1
