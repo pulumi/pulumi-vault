@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Ensure JavaScript dependency for pulumi/pulumi isn't pinned to latest
 
 ---
 
