@@ -3,6 +3,7 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Ensure JavaScript dependency for pulumi/pulumi isn't pinned to latest
+* Upgrade to v2.9.0 of the Vault Terraform Provider
 
 ---
 
