@@ -10,7 +10,7 @@ export interface AuthBackendTune {
     auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
     defaultLeaseTtl?: pulumi.Input<string>;
     /**
-     * Speficies whether to show this mount in the UI-specific listing endpoint.
+     * (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
      */
     listingVisibility?: pulumi.Input<string>;
     maxLeaseTtl?: pulumi.Input<string>;

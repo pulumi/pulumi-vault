@@ -110,6 +110,10 @@ class SecretBackendRole(pulumi.CustomResource):
     """
     Flag to not store certificates in the storage backend
     """
+    not_before_duration: pulumi.Output[str]
+    """
+    Specifies the duration by which to backdate the NotBefore property.
+    """
     organizations: pulumi.Output[list]
     """
     The organization of generated certificates
@@ -154,7 +158,7 @@ class SecretBackendRole(pulumi.CustomResource):
     """
     Flag to use the SANs in the CSR
     """
-    def __init__(__self__, resource_name, opts=None, allow_any_name=None, allow_bare_domains=None, allow_glob_domains=None, allow_ip_sans=None, allow_localhost=None, allow_subdomains=None, allowed_domains=None, allowed_other_sans=None, allowed_uri_sans=None, backend=None, basic_constraints_valid_for_non_ca=None, client_flag=None, code_signing_flag=None, countries=None, email_protection_flag=None, enforce_hostnames=None, ext_key_usages=None, generate_lease=None, key_bits=None, key_type=None, key_usages=None, localities=None, max_ttl=None, name=None, no_store=None, organizations=None, organization_unit=None, policy_identifiers=None, postal_codes=None, provinces=None, require_cn=None, server_flag=None, street_addresses=None, ttl=None, use_csr_common_name=None, use_csr_sans=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, allow_any_name=None, allow_bare_domains=None, allow_glob_domains=None, allow_ip_sans=None, allow_localhost=None, allow_subdomains=None, allowed_domains=None, allowed_other_sans=None, allowed_uri_sans=None, backend=None, basic_constraints_valid_for_non_ca=None, client_flag=None, code_signing_flag=None, countries=None, email_protection_flag=None, enforce_hostnames=None, ext_key_usages=None, generate_lease=None, key_bits=None, key_type=None, key_usages=None, localities=None, max_ttl=None, name=None, no_store=None, not_before_duration=None, organizations=None, organization_unit=None, policy_identifiers=None, postal_codes=None, provinces=None, require_cn=None, server_flag=None, street_addresses=None, ttl=None, use_csr_common_name=None, use_csr_sans=None, __props__=None, __name__=None, __opts__=None):
         """
         Creates a role on an PKI Secret Backend for Vault.
         
@@ -185,6 +189,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] max_ttl: The maximum TTL
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
+        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[list] organizations: The organization of generated certificates
         :param pulumi.Input[list] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[list] policy_identifiers: Specify the list of allowed policies IODs
@@ -243,6 +248,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__['max_ttl'] = max_ttl
             __props__['name'] = name
             __props__['no_store'] = no_store
+            __props__['not_before_duration'] = not_before_duration
             __props__['organizations'] = organizations
             __props__['organization_unit'] = organization_unit
             __props__['policy_identifiers'] = policy_identifiers
@@ -261,7 +267,7 @@ class SecretBackendRole(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allow_any_name=None, allow_bare_domains=None, allow_glob_domains=None, allow_ip_sans=None, allow_localhost=None, allow_subdomains=None, allowed_domains=None, allowed_other_sans=None, allowed_uri_sans=None, backend=None, basic_constraints_valid_for_non_ca=None, client_flag=None, code_signing_flag=None, countries=None, email_protection_flag=None, enforce_hostnames=None, ext_key_usages=None, generate_lease=None, key_bits=None, key_type=None, key_usages=None, localities=None, max_ttl=None, name=None, no_store=None, organizations=None, organization_unit=None, policy_identifiers=None, postal_codes=None, provinces=None, require_cn=None, server_flag=None, street_addresses=None, ttl=None, use_csr_common_name=None, use_csr_sans=None):
+    def get(resource_name, id, opts=None, allow_any_name=None, allow_bare_domains=None, allow_glob_domains=None, allow_ip_sans=None, allow_localhost=None, allow_subdomains=None, allowed_domains=None, allowed_other_sans=None, allowed_uri_sans=None, backend=None, basic_constraints_valid_for_non_ca=None, client_flag=None, code_signing_flag=None, countries=None, email_protection_flag=None, enforce_hostnames=None, ext_key_usages=None, generate_lease=None, key_bits=None, key_type=None, key_usages=None, localities=None, max_ttl=None, name=None, no_store=None, not_before_duration=None, organizations=None, organization_unit=None, policy_identifiers=None, postal_codes=None, provinces=None, require_cn=None, server_flag=None, street_addresses=None, ttl=None, use_csr_common_name=None, use_csr_sans=None):
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -294,6 +300,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] max_ttl: The maximum TTL
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
+        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[list] organizations: The organization of generated certificates
         :param pulumi.Input[list] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[list] policy_identifiers: Specify the list of allowed policies IODs
@@ -336,6 +343,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__["max_ttl"] = max_ttl
         __props__["name"] = name
         __props__["no_store"] = no_store
+        __props__["not_before_duration"] = not_before_duration
         __props__["organizations"] = organizations
         __props__["organization_unit"] = organization_unit
         __props__["policy_identifiers"] = policy_identifiers

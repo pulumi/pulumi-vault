@@ -16,7 +16,7 @@ type AuthBackendTune struct {
 	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
 	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
 	DefaultLeaseTtl *string `pulumi:"defaultLeaseTtl"`
-	// Speficies whether to show this mount in the UI-specific listing endpoint.
+	// (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
 	ListingVisibility *string `pulumi:"listingVisibility"`
 	MaxLeaseTtl *string `pulumi:"maxLeaseTtl"`
 	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
@@ -35,7 +35,7 @@ type AuthBackendTuneArgs struct {
 	AuditNonHmacRequestKeys pulumi.StringArrayInput `pulumi:"auditNonHmacRequestKeys"`
 	AuditNonHmacResponseKeys pulumi.StringArrayInput `pulumi:"auditNonHmacResponseKeys"`
 	DefaultLeaseTtl pulumi.StringPtrInput `pulumi:"defaultLeaseTtl"`
-	// Speficies whether to show this mount in the UI-specific listing endpoint.
+	// (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
 	ListingVisibility pulumi.StringPtrInput `pulumi:"listingVisibility"`
 	MaxLeaseTtl pulumi.StringPtrInput `pulumi:"maxLeaseTtl"`
 	PassthroughRequestHeaders pulumi.StringArrayInput `pulumi:"passthroughRequestHeaders"`
@@ -125,7 +125,7 @@ func (o AuthBackendTuneOutput) DefaultLeaseTtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v AuthBackendTune) *string { return v.DefaultLeaseTtl }).(pulumi.StringPtrOutput)
 }
 
-// Speficies whether to show this mount in the UI-specific listing endpoint.
+// (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
 func (o AuthBackendTuneOutput) ListingVisibility() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v AuthBackendTune) *string { return v.ListingVisibility }).(pulumi.StringPtrOutput)
 }
@@ -176,7 +176,7 @@ func (o AuthBackendTunePtrOutput) DefaultLeaseTtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v AuthBackendTune) *string { return v.DefaultLeaseTtl }).(pulumi.StringPtrOutput)
 }
 
-// Speficies whether to show this mount in the UI-specific listing endpoint.
+// (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
 func (o AuthBackendTunePtrOutput) ListingVisibility() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v AuthBackendTune) *string { return v.ListingVisibility }).(pulumi.StringPtrOutput)
 }

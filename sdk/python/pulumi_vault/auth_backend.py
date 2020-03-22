@@ -16,7 +16,7 @@ class AuthBackend(pulumi.CustomResource):
     """
     default_lease_ttl_seconds: pulumi.Output[float]
     """
-    The default lease duration in seconds.
+    (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
     """
     description: pulumi.Output[str]
     """
@@ -24,7 +24,7 @@ class AuthBackend(pulumi.CustomResource):
     """
     listing_visibility: pulumi.Output[str]
     """
-    Speficies whether to show this mount in the UI-specific listing endpoint.
+    (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
     """
     local: pulumi.Output[bool]
     """
@@ -32,13 +32,25 @@ class AuthBackend(pulumi.CustomResource):
     """
     max_lease_ttl_seconds: pulumi.Output[float]
     """
-    The maximum lease duration in seconds.
+    (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
     """
     path: pulumi.Output[str]
     """
     The path to mount the auth method — this defaults to the name of the type
     """
     tune: pulumi.Output[dict]
+    """
+    Extra configuration block. Structure is documented below.
+    
+      * `allowedResponseHeaders` (`list`)
+      * `auditNonHmacRequestKeys` (`list`)
+      * `auditNonHmacResponseKeys` (`list`)
+      * `defaultLeaseTtl` (`str`)
+      * `listing_visibility` (`str`) - (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
+      * `maxLeaseTtl` (`str`)
+      * `passthroughRequestHeaders` (`list`)
+      * `token_type` (`str`)
+    """
     type: pulumi.Output[str]
     """
     The name of the auth method type
@@ -49,12 +61,13 @@ class AuthBackend(pulumi.CustomResource):
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] default_lease_ttl_seconds: The default lease duration in seconds.
+        :param pulumi.Input[float] default_lease_ttl_seconds: (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
         :param pulumi.Input[str] description: A description of the auth method
-        :param pulumi.Input[str] listing_visibility: Speficies whether to show this mount in the UI-specific listing endpoint.
+        :param pulumi.Input[str] listing_visibility: (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
-        :param pulumi.Input[float] max_lease_ttl_seconds: The maximum lease duration in seconds.
+        :param pulumi.Input[float] max_lease_ttl_seconds: (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
         :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type
+        :param pulumi.Input[dict] tune: Extra configuration block. Structure is documented below.
         :param pulumi.Input[str] type: The name of the auth method type
         
         The **tune** object supports the following:
@@ -63,7 +76,7 @@ class AuthBackend(pulumi.CustomResource):
           * `auditNonHmacRequestKeys` (`pulumi.Input[list]`)
           * `auditNonHmacResponseKeys` (`pulumi.Input[list]`)
           * `defaultLeaseTtl` (`pulumi.Input[str]`)
-          * `listing_visibility` (`pulumi.Input[str]`) - Speficies whether to show this mount in the UI-specific listing endpoint.
+          * `listing_visibility` (`pulumi.Input[str]`) - (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
           * `maxLeaseTtl` (`pulumi.Input[str]`)
           * `passthroughRequestHeaders` (`pulumi.Input[list]`)
           * `token_type` (`pulumi.Input[str]`)
@@ -114,12 +127,13 @@ class AuthBackend(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accessor: The accessor for this auth method
-        :param pulumi.Input[float] default_lease_ttl_seconds: The default lease duration in seconds.
+        :param pulumi.Input[float] default_lease_ttl_seconds: (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
         :param pulumi.Input[str] description: A description of the auth method
-        :param pulumi.Input[str] listing_visibility: Speficies whether to show this mount in the UI-specific listing endpoint.
+        :param pulumi.Input[str] listing_visibility: (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
-        :param pulumi.Input[float] max_lease_ttl_seconds: The maximum lease duration in seconds.
+        :param pulumi.Input[float] max_lease_ttl_seconds: (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
         :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type
+        :param pulumi.Input[dict] tune: Extra configuration block. Structure is documented below.
         :param pulumi.Input[str] type: The name of the auth method type
         
         The **tune** object supports the following:
@@ -128,7 +142,7 @@ class AuthBackend(pulumi.CustomResource):
           * `auditNonHmacRequestKeys` (`pulumi.Input[list]`)
           * `auditNonHmacResponseKeys` (`pulumi.Input[list]`)
           * `defaultLeaseTtl` (`pulumi.Input[str]`)
-          * `listing_visibility` (`pulumi.Input[str]`) - Speficies whether to show this mount in the UI-specific listing endpoint.
+          * `listing_visibility` (`pulumi.Input[str]`) - (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
           * `maxLeaseTtl` (`pulumi.Input[str]`)
           * `passthroughRequestHeaders` (`pulumi.Input[list]`)
           * `token_type` (`pulumi.Input[str]`)

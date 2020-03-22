@@ -166,6 +166,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool?> NoStore { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies the duration by which to backdate the NotBefore property.
+        /// </summary>
+        [Output("notBeforeDuration")]
+        public Output<string> NotBeforeDuration { get; private set; } = null!;
+
+        /// <summary>
         /// The organization of generated certificates
         /// </summary>
         [Output("organizations")]
@@ -469,6 +475,12 @@ namespace Pulumi.Vault.PkiSecret
         [Input("noStore")]
         public Input<bool>? NoStore { get; set; }
 
+        /// <summary>
+        /// Specifies the duration by which to backdate the NotBefore property.
+        /// </summary>
+        [Input("notBeforeDuration")]
+        public Input<string>? NotBeforeDuration { get; set; }
+
         [Input("organizations")]
         private InputList<string>? _organizations;
 
@@ -769,6 +781,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("noStore")]
         public Input<bool>? NoStore { get; set; }
+
+        /// <summary>
+        /// Specifies the duration by which to backdate the NotBefore property.
+        /// </summary>
+        [Input("notBeforeDuration")]
+        public Input<string>? NotBeforeDuration { get; set; }
 
         [Input("organizations")]
         private InputList<string>? _organizations;

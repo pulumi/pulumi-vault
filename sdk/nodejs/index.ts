@@ -17,6 +17,7 @@ export * from "./rgpPolicy";
 export * from "./token";
 
 // Export sub-modules:
+import * as alicloud from "./alicloud/index";
 import * as appRole from "./appRole/index";
 import * as aws from "./aws/index";
 import * as azure from "./azure/index";
@@ -37,4 +38,4 @@ import * as ssh from "./ssh/index";
 import * as tokenauth from "./tokenauth/index";
 import * as transit from "./transit/index";
 import * as types from "./types/index";
-export {appRole, aws, azure, config, consul, database, gcp, generic, github, identity, jwt, kubernetes, ldap, okta, pkiSecret, rabbitMq, ssh, tokenauth, transit, types};
+export {alicloud, appRole, aws, azure, config, consul, database, gcp, generic, github, identity, jwt, kubernetes, ldap, okta, pkiSecret, rabbitMq, ssh, tokenauth, transit, types};
