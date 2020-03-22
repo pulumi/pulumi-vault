@@ -30,15 +30,15 @@ class SecretBackendCa(pulumi.CustomResource):
         """
         Provides a resource to manage CA information in an SSH secret backend
         [SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ssh_secret_backend_ca.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted. Defaults to 'ssh'
         :param pulumi.Input[bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
         :param pulumi.Input[str] private_key: The private key part the SSH CA key pair; required if generate_signing_key is false.
         :param pulumi.Input[str] public_key: The public key part the SSH CA key pair; required if generate_signing_key is false.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ssh_secret_backend_ca.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -72,7 +72,7 @@ class SecretBackendCa(pulumi.CustomResource):
         """
         Get an existing SecretBackendCa resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -80,12 +80,11 @@ class SecretBackendCa(pulumi.CustomResource):
         :param pulumi.Input[bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
         :param pulumi.Input[str] private_key: The private key part the SSH CA key pair; required if generate_signing_key is false.
         :param pulumi.Input[str] public_key: The public key part the SSH CA key pair; required if generate_signing_key is false.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ssh_secret_backend_ca.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["backend"] = backend
         __props__["generate_signing_key"] = generate_signing_key
         __props__["private_key"] = private_key

@@ -20,20 +20,20 @@ class Oidc(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, issuer=None, __props__=None, __name__=None, __opts__=None):
         """
         Configure the [Identity Tokens Backend](https://www.vaultproject.io/docs/secrets/identity/index.html#identity-tokens).
-        
+
         The Identity secrets engine is the identity management solution for Vault. It internally maintains
         the clients who are recognized by Vault.
-        
+
         > **NOTE:** Each Vault server may only have one Identity Tokens Backend configuration. Multiple configurations of the resource against the same Vault server will cause a perpetual difference.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_oidc.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] issuer: Issuer URL to be used in the iss claim of the token. If not set, Vault's
                `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
                scheme, host, and optionally, port number and path components, but no query or fragment
                components.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_oidc.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -64,7 +64,7 @@ class Oidc(pulumi.CustomResource):
         """
         Get an existing Oidc resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -72,12 +72,11 @@ class Oidc(pulumi.CustomResource):
                `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
                scheme, host, and optionally, port number and path components, but no query or fragment
                components.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_oidc.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["issuer"] = issuer
         return Oidc(resource_name, opts=opts, __props__=__props__)
     def translate_output_property(self, prop):

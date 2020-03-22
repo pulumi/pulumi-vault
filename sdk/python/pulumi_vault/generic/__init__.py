@@ -4,5 +4,5 @@
 
 # Export this package's modules as members:
 from .endpoint import *
-from .secret import *
 from .get_secret import *
+from .secret import *

@@ -21,7 +21,7 @@ import * as utilities from "../utilities";
  * export const roleId = role.roleId;
  * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/approle_auth_backend_role_id.html.markdown.
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/approle_auth_backend_role_id.md.
  */
 export function getAuthBackendRoleId(args: GetAuthBackendRoleIdArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendRoleIdResult> & GetAuthBackendRoleIdResult {
     if (!opts) {

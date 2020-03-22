@@ -24,6 +24,9 @@ class SecretBackendKey(pulumi.CustomResource):
     Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
     """
     deletion_allowed: pulumi.Output[bool]
+    """
+    Specifies if the key is allowed to be deleted.
+    """
     derived: pulumi.Output[bool]
     """
     Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
@@ -82,13 +85,16 @@ class SecretBackendKey(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, allow_plaintext_backup=None, backend=None, convergent_encryption=None, deletion_allowed=None, derived=None, exportable=None, min_decryption_version=None, min_encryption_version=None, name=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
         Creates an Encryption Keyring on a Transit Secret Backend for Vault.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/transit_secret_backend_key.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
                * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
+        :param pulumi.Input[bool] deletion_allowed: Specifies if the key is allowed to be deleted.
         :param pulumi.Input[bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
         :param pulumi.Input[bool] exportable: Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
         :param pulumi.Input[float] min_decryption_version: Minimum key version to use for decryption.
@@ -96,8 +102,6 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name to identify this key within the backend. Must be unique within the backend.
         :param pulumi.Input[str] type: Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
                * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/transit_secret_backend_key.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -146,7 +150,7 @@ class SecretBackendKey(pulumi.CustomResource):
         """
         Get an existing SecretBackendKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -154,6 +158,7 @@ class SecretBackendKey(pulumi.CustomResource):
                * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
+        :param pulumi.Input[bool] deletion_allowed: Specifies if the key is allowed to be deleted.
         :param pulumi.Input[bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
         :param pulumi.Input[bool] exportable: Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
         :param pulumi.Input[list] keys: List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
@@ -170,12 +175,11 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[bool] supports_signing: Whether or not the key supports signing, based on key type.
         :param pulumi.Input[str] type: Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
                * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/transit_secret_backend_key.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["allow_plaintext_backup"] = allow_plaintext_backup
         __props__["backend"] = backend
         __props__["convergent_encryption"] = convergent_encryption

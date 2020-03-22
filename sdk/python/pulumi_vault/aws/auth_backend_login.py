@@ -58,6 +58,9 @@ class AuthBackendLogin(pulumi.CustomResource):
     to the time in `lease_start_time`.
     """
     lease_start_time: pulumi.Output[str]
+    """
+    Time at which the lease was read, using the clock of the system where Terraform was running
+    """
     metadata: pulumi.Output[dict]
     """
     A map of information returned by the Vault server about the
@@ -101,7 +104,9 @@ class AuthBackendLogin(pulumi.CustomResource):
         accomplished using a signed identity request from IAM or using ec2
         instance metadata. For more information, see the [Vault
         documentation](https://www.vaultproject.io/docs/auth/aws.html).
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_login.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The unique name of the AWS auth backend. Defaults to
@@ -128,8 +133,6 @@ class AuthBackendLogin(pulumi.CustomResource):
         :param pulumi.Input[str] signature: The base64-encoded SHA256 RSA signature of the
                instance identity document to authenticate with, with all newline characters
                removed. Can be retrieved from the EC2 metadata server.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_login.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -177,7 +180,7 @@ class AuthBackendLogin(pulumi.CustomResource):
         """
         Get an existing AuthBackendLogin resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -198,6 +201,7 @@ class AuthBackendLogin(pulumi.CustomResource):
                authenticate with. Can be retrieved from the EC2 metadata server.
         :param pulumi.Input[float] lease_duration: The duration in seconds the token will be valid, relative
                to the time in `lease_start_time`.
+        :param pulumi.Input[str] lease_start_time: Time at which the lease was read, using the clock of the system where Terraform was running
         :param pulumi.Input[dict] metadata: A map of information returned by the Vault server about the
                authentication used to generate this token.
         :param pulumi.Input[str] nonce: The unique nonce to be used for login requests. Can be
@@ -214,12 +218,11 @@ class AuthBackendLogin(pulumi.CustomResource):
         :param pulumi.Input[str] signature: The base64-encoded SHA256 RSA signature of the
                instance identity document to authenticate with, with all newline characters
                removed. Can be retrieved from the EC2 metadata server.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_login.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["accessor"] = accessor
         __props__["auth_type"] = auth_type
         __props__["backend"] = backend

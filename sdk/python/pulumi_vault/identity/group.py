@@ -41,9 +41,11 @@ class Group(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, external_policies=None, member_entity_ids=None, member_group_ids=None, metadata=None, name=None, policies=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
         Creates an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
-        
+
         A group can contain multiple entities as its members. A group can also have subgroups. Policies set on the group is granted to all members of the group. During request time, when the token's entity ID is being evaluated for the policies that it has access to; along with the policies on the entity itself, policies that are inherited due to group memberships are also granted.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_group.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] external_policies: `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
@@ -53,8 +55,6 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the identity group to create.
         :param pulumi.Input[list] policies: A list of policies to apply to the group.
         :param pulumi.Input[str] type: Type of the group, internal or external. Defaults to `internal`.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_group.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -91,7 +91,7 @@ class Group(pulumi.CustomResource):
         """
         Get an existing Group resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -102,12 +102,11 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the identity group to create.
         :param pulumi.Input[list] policies: A list of policies to apply to the group.
         :param pulumi.Input[str] type: Type of the group, internal or external. Defaults to `internal`.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_group.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["external_policies"] = external_policies
         __props__["member_entity_ids"] = member_entity_ids
         __props__["member_group_ids"] = member_group_ids

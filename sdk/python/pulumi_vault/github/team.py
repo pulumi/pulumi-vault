@@ -21,29 +21,69 @@ class Team(pulumi.CustomResource):
     issued using this role.
     """
     team: pulumi.Output[str]
+    """
+    GitHub team name in "slugified" format.
+    """
     token_bound_cidrs: pulumi.Output[list]
+    """
+    Specifies the blocks of IP addresses which are allowed to use the generated token
+    """
     token_explicit_max_ttl: pulumi.Output[float]
+    """
+    Generated Token's Explicit Maximum TTL in seconds
+    """
     token_max_ttl: pulumi.Output[float]
+    """
+    The maximum lifetime of the generated token
+    """
     token_no_default_policy: pulumi.Output[bool]
+    """
+    If true, the 'default' policy will not automatically be added to generated tokens
+    """
     token_num_uses: pulumi.Output[float]
+    """
+    The maximum number of times a token may be used, a value of zero means unlimited
+    """
     token_period: pulumi.Output[float]
+    """
+    Generated Token's Period
+    """
     token_policies: pulumi.Output[list]
+    """
+    Generated Token's Policies
+    """
     token_ttl: pulumi.Output[float]
+    """
+    The initial ttl of the token to generate in seconds
+    """
     token_type: pulumi.Output[str]
+    """
+    The type of token to generate, service or batch
+    """
     def __init__(__self__, resource_name, opts=None, backend=None, policies=None, team=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, __props__=None, __name__=None, __opts__=None):
         """
         Manages policy mappings for Github Teams authenticated via Github. See the [Vault
         documentation](https://www.vaultproject.io/docs/auth/github.html) for more
         information.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/github_team.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path where the github auth backend is mounted. Defaults to `github`
                if not specified.
         :param pulumi.Input[list] policies: An array of strings specifying the policies to be set on tokens
                issued using this role.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/github_team.html.markdown.
+        :param pulumi.Input[str] team: GitHub team name in "slugified" format.
+        :param pulumi.Input[list] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[float] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[float] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
+        :param pulumi.Input[float] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[float] token_period: Generated Token's Period
+        :param pulumi.Input[list] token_policies: Generated Token's Policies
+        :param pulumi.Input[float] token_ttl: The initial ttl of the token to generate in seconds
+        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -87,7 +127,7 @@ class Team(pulumi.CustomResource):
         """
         Get an existing Team resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -95,12 +135,21 @@ class Team(pulumi.CustomResource):
                if not specified.
         :param pulumi.Input[list] policies: An array of strings specifying the policies to be set on tokens
                issued using this role.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/github_team.html.markdown.
+        :param pulumi.Input[str] team: GitHub team name in "slugified" format.
+        :param pulumi.Input[list] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[float] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[float] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
+        :param pulumi.Input[float] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[float] token_period: Generated Token's Period
+        :param pulumi.Input[list] token_policies: Generated Token's Policies
+        :param pulumi.Input[float] token_ttl: The initial ttl of the token to generate in seconds
+        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["backend"] = backend
         __props__["policies"] = policies
         __props__["team"] = team

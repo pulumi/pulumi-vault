@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/consul_secret_backend.html.markdown.
- */
 export class SecretBackend extends pulumi.CustomResource {
     /**
      * Get an existing SecretBackend resource's state with the given name, ID, and optional extra

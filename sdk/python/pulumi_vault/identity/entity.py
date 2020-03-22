@@ -33,7 +33,6 @@ class Entity(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, disabled=None, external_policies=None, metadata=None, name=None, policies=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a Entity resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] disabled: True/false Is this entity currently disabled. Defaults to `false`
@@ -41,8 +40,6 @@ class Entity(pulumi.CustomResource):
         :param pulumi.Input[dict] metadata: A Map of additional metadata to associate with the user.
         :param pulumi.Input[str] name: Name of the identity entity to create.
         :param pulumi.Input[list] policies: A list of policies to apply to the entity.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_entity.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -77,7 +74,7 @@ class Entity(pulumi.CustomResource):
         """
         Get an existing Entity resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -86,12 +83,11 @@ class Entity(pulumi.CustomResource):
         :param pulumi.Input[dict] metadata: A Map of additional metadata to associate with the user.
         :param pulumi.Input[str] name: Name of the identity entity to create.
         :param pulumi.Input[list] policies: A list of policies to apply to the entity.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_entity.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["disabled"] = disabled
         __props__["external_policies"] = external_policies
         __props__["metadata"] = metadata

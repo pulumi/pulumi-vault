@@ -11,13 +11,13 @@ import (
 )
 
 // Configure the [Identity Tokens Backend](https://www.vaultproject.io/docs/secrets/identity/index.html#identity-tokens).
-// 
+//
 // The Identity secrets engine is the identity management solution for Vault. It internally maintains
 // the clients who are recognized by Vault.
-// 
+//
 // > **NOTE:** Each Vault server may only have one Identity Tokens Backend configuration. Multiple configurations of the resource against the same Vault server will cause a perpetual difference.
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_oidc.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_oidc.html.md.
 type Oidc struct {
 	pulumi.CustomResourceState
 

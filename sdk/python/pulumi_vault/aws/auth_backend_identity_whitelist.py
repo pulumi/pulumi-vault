@@ -28,10 +28,12 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, backend=None, disable_periodic_tidy=None, safety_buffer=None, __props__=None, __name__=None, __opts__=None):
         """
         Configures the periodic tidying operation of the whitelisted identity entries.
-        
+
         For more information, see the
         [Vault docs](https://www.vaultproject.io/api/auth/aws/index.html#configure-identity-whitelist-tidy-operation).
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_identity_whitelist.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path of the AWS backend being configured.
@@ -40,8 +42,6 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
         :param pulumi.Input[float] safety_buffer: The amount of extra time, in minutes, that must
                have passed beyond the roletag expiration, before it is removed from the
                backend storage.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_identity_whitelist.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -74,7 +74,7 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
         """
         Get an existing AuthBackendIdentityWhitelist resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -84,12 +84,11 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
         :param pulumi.Input[float] safety_buffer: The amount of extra time, in minutes, that must
                have passed beyond the roletag expiration, before it is removed from the
                backend storage.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_identity_whitelist.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["backend"] = backend
         __props__["disable_periodic_tidy"] = disable_periodic_tidy
         __props__["safety_buffer"] = safety_buffer

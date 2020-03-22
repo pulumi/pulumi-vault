@@ -11,7 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_oidc_key_allowed_client_id.html.markdown.
 type OidcKeyAllowedClientID struct {
 	pulumi.CustomResourceState
 

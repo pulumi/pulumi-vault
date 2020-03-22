@@ -36,7 +36,6 @@ class SecretBackend(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, credentials=None, default_lease_ttl_seconds=None, description=None, max_lease_ttl_seconds=None, path=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a SecretBackend resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] credentials: The GCP service account credentials in JSON format.
@@ -47,8 +46,6 @@ class SecretBackend(pulumi.CustomResource):
                for credentials issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `gcp`.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/gcp_secret_backend.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -83,7 +80,7 @@ class SecretBackend(pulumi.CustomResource):
         """
         Get an existing SecretBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -95,12 +92,11 @@ class SecretBackend(pulumi.CustomResource):
                for credentials issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `gcp`.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/gcp_secret_backend.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["credentials"] = credentials
         __props__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__["description"] = description

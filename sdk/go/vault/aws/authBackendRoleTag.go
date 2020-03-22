@@ -12,8 +12,8 @@ import (
 )
 
 // Reads role tag information from an AWS auth backend in Vault. 
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_role_tag.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_role_tag.html.md.
 type AuthBackendRoleTag struct {
 	pulumi.CustomResourceState
 

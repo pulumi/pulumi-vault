@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_oidc_key.html.markdown.
- */
 export class OidcKey extends pulumi.CustomResource {
     /**
      * Get an existing OidcKey resource's state with the given name, ID, and optional extra

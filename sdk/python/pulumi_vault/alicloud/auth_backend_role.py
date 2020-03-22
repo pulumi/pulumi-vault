@@ -11,23 +11,70 @@ from .. import utilities, tables
 
 class AuthBackendRole(pulumi.CustomResource):
     arn: pulumi.Output[str]
+    """
+    The role's arn.
+    """
     backend: pulumi.Output[str]
+    """
+    Auth backend.
+    """
     role: pulumi.Output[str]
+    """
+    Name of the role. Must correspond with the name of the role reflected in the arn.
+    """
     token_bound_cidrs: pulumi.Output[list]
+    """
+    Specifies the blocks of IP addresses which are allowed to use the generated token
+    """
     token_explicit_max_ttl: pulumi.Output[float]
+    """
+    Generated Token's Explicit Maximum TTL in seconds
+    """
     token_max_ttl: pulumi.Output[float]
+    """
+    The maximum lifetime of the generated token
+    """
     token_no_default_policy: pulumi.Output[bool]
+    """
+    If true, the 'default' policy will not automatically be added to generated tokens
+    """
     token_num_uses: pulumi.Output[float]
+    """
+    The maximum number of times a token may be used, a value of zero means unlimited
+    """
     token_period: pulumi.Output[float]
+    """
+    Generated Token's Period
+    """
     token_policies: pulumi.Output[list]
+    """
+    Generated Token's Policies
+    """
     token_ttl: pulumi.Output[float]
+    """
+    The initial ttl of the token to generate in seconds
+    """
     token_type: pulumi.Output[str]
+    """
+    The type of token to generate, service or batch
+    """
     def __init__(__self__, resource_name, opts=None, arn=None, backend=None, role=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a AuthBackendRole resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] arn: The role's arn.
+        :param pulumi.Input[str] backend: Auth backend.
+        :param pulumi.Input[str] role: Name of the role. Must correspond with the name of the role reflected in the arn.
+        :param pulumi.Input[list] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[float] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[float] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
+        :param pulumi.Input[float] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[float] token_period: Generated Token's Period
+        :param pulumi.Input[list] token_policies: Generated Token's Policies
+        :param pulumi.Input[float] token_ttl: The initial ttl of the token to generate in seconds
+        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -73,14 +120,27 @@ class AuthBackendRole(pulumi.CustomResource):
         """
         Get an existing AuthBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] arn: The role's arn.
+        :param pulumi.Input[str] backend: Auth backend.
+        :param pulumi.Input[str] role: Name of the role. Must correspond with the name of the role reflected in the arn.
+        :param pulumi.Input[list] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[float] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[float] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
+        :param pulumi.Input[float] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[float] token_period: Generated Token's Period
+        :param pulumi.Input[list] token_policies: Generated Token's Policies
+        :param pulumi.Input[float] token_ttl: The initial ttl of the token to generate in seconds
+        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["arn"] = arn
         __props__["backend"] = backend
         __props__["role"] = role

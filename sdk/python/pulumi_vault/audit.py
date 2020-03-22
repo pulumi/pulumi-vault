@@ -29,15 +29,12 @@ class Audit(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, description=None, options=None, path=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a Audit resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Human-friendly description of the audit device.
         :param pulumi.Input[dict] options: Configuration options to pass to the audit device itself.
         :param pulumi.Input[str] path: The path to mount the audit device. This defaults to the type.
         :param pulumi.Input[str] type: Type of the audit device, such as 'file'.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/audit.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -75,7 +72,7 @@ class Audit(pulumi.CustomResource):
         """
         Get an existing Audit resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -83,12 +80,11 @@ class Audit(pulumi.CustomResource):
         :param pulumi.Input[dict] options: Configuration options to pass to the audit device itself.
         :param pulumi.Input[str] path: The path to mount the audit device. This defaults to the type.
         :param pulumi.Input[str] type: Type of the audit device, such as 'file'.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/audit.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["description"] = description
         __props__["options"] = options
         __props__["path"] = path

@@ -24,6 +24,9 @@ class AuthBackendRole(pulumi.CustomResource):
     List of disallowed policies for given role.
     """
     explicit_max_ttl: pulumi.Output[str]
+    """
+    Number of seconds after which issued tokens can no longer be renewed.
+    """
     orphan: pulumi.Output[bool]
     """
     If true, tokens created against this policy will be orphan tokens.
@@ -84,6 +87,9 @@ class AuthBackendRole(pulumi.CustomResource):
     value of this field. Specified in seconds.
     """
     token_policies: pulumi.Output[list]
+    """
+    Generated Token's Policies
+    """
     token_ttl: pulumi.Output[float]
     """
     The incremental lifetime for generated tokens in number of seconds.
@@ -102,13 +108,16 @@ class AuthBackendRole(pulumi.CustomResource):
         Manages Token auth backend role in a Vault server. See the [Vault
         documentation](https://www.vaultproject.io/docs/auth/token.html) for more
         information.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/token_auth_backend_role.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] allowed_policies: List of allowed policies for given role.
         :param pulumi.Input[list] bound_cidrs: If set, a list of
                CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
         :param pulumi.Input[list] disallowed_policies: List of disallowed policies for given role.
+        :param pulumi.Input[str] explicit_max_ttl: Number of seconds after which issued tokens can no longer be renewed.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
         :param pulumi.Input[str] period: If set, indicates that the
@@ -135,6 +144,7 @@ class AuthBackendRole(pulumi.CustomResource):
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
                value of this field. Specified in seconds.
+        :param pulumi.Input[list] token_policies: Generated Token's Policies
         :param pulumi.Input[float] token_ttl: The incremental lifetime for generated tokens in number of seconds.
                Its current value will be referenced at renewal time.
         :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
@@ -142,8 +152,6 @@ class AuthBackendRole(pulumi.CustomResource):
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/token_auth_backend_role.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -193,7 +201,7 @@ class AuthBackendRole(pulumi.CustomResource):
         """
         Get an existing AuthBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -201,6 +209,7 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[list] bound_cidrs: If set, a list of
                CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
         :param pulumi.Input[list] disallowed_policies: List of disallowed policies for given role.
+        :param pulumi.Input[str] explicit_max_ttl: Number of seconds after which issued tokens can no longer be renewed.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
         :param pulumi.Input[str] period: If set, indicates that the
@@ -227,6 +236,7 @@ class AuthBackendRole(pulumi.CustomResource):
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
                value of this field. Specified in seconds.
+        :param pulumi.Input[list] token_policies: Generated Token's Policies
         :param pulumi.Input[float] token_ttl: The incremental lifetime for generated tokens in number of seconds.
                Its current value will be referenced at renewal time.
         :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
@@ -234,12 +244,11 @@ class AuthBackendRole(pulumi.CustomResource):
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/token_auth_backend_role.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["allowed_policies"] = allowed_policies
         __props__["bound_cidrs"] = bound_cidrs
         __props__["disallowed_policies"] = disallowed_policies

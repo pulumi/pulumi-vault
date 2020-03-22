@@ -37,7 +37,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/approle_auth_backend_role_secret_id.html.markdown.
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/approle_auth_backend_role_secret_id.html.md.
  */
 export class AuthBackendRoleSecretID extends pulumi.CustomResource {
     /**

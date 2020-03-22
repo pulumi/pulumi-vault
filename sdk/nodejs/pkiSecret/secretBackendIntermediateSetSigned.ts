@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_intermediate_set_signed.html.markdown.
- */
 export class SecretBackendIntermediateSetSigned extends pulumi.CustomResource {
     /**
      * Get an existing SecretBackendIntermediateSetSigned resource's state with the given name, ID, and optional extra

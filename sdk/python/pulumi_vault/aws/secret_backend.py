@@ -46,7 +46,6 @@ class SecretBackend(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, access_key=None, default_lease_ttl_seconds=None, description=None, max_lease_ttl_seconds=None, path=None, region=None, secret_key=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a SecretBackend resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The AWS Access Key ID this backend should use to
@@ -61,8 +60,6 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] region: The AWS region for API calls. Defaults to `us-east-1`.
         :param pulumi.Input[str] secret_key: The AWS Secret Key this backend should use to
                issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_secret_backend.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -99,7 +96,7 @@ class SecretBackend(pulumi.CustomResource):
         """
         Get an existing SecretBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -115,12 +112,11 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] region: The AWS region for API calls. Defaults to `us-east-1`.
         :param pulumi.Input[str] secret_key: The AWS Secret Key this backend should use to
                issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_secret_backend.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["access_key"] = access_key
         __props__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__["description"] = description

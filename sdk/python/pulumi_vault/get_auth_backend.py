@@ -13,7 +13,7 @@ class GetAuthBackendResult:
     """
     A collection of values returned by getAuthBackend.
     """
-    def __init__(__self__, accessor=None, default_lease_ttl_seconds=None, description=None, listing_visibility=None, local=None, max_lease_ttl_seconds=None, path=None, type=None, id=None):
+    def __init__(__self__, accessor=None, default_lease_ttl_seconds=None, description=None, id=None, listing_visibility=None, local=None, max_lease_ttl_seconds=None, path=None, type=None):
         if accessor and not isinstance(accessor, str):
             raise TypeError("Expected argument 'accessor' to be a str")
         __self__.accessor = accessor
@@ -31,6 +31,12 @@ class GetAuthBackendResult:
         __self__.description = description
         """
         A description of the auth method.
+        """
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
         """
         if listing_visibility and not isinstance(listing_visibility, str):
             raise TypeError("Expected argument 'listing_visibility' to be a str")
@@ -59,12 +65,6 @@ class GetAuthBackendResult:
         """
         The name of the auth method type.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetAuthBackendResult(GetAuthBackendResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -74,22 +74,21 @@ class AwaitableGetAuthBackendResult(GetAuthBackendResult):
             accessor=self.accessor,
             default_lease_ttl_seconds=self.default_lease_ttl_seconds,
             description=self.description,
+            id=self.id,
             listing_visibility=self.listing_visibility,
             local=self.local,
             max_lease_ttl_seconds=self.max_lease_ttl_seconds,
             path=self.path,
-            type=self.type,
-            id=self.id)
+            type=self.type)
 
 def get_auth_backend(path=None,opts=None):
     """
     Use this data source to access information about an existing resource.
-    
-    :param str path: The auth backend mount point.
 
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/auth_backend.html.markdown.
+    :param str path: The auth backend mount point.
     """
     __args__ = dict()
+
 
     __args__['path'] = path
     if opts is None:
@@ -102,9 +101,9 @@ def get_auth_backend(path=None,opts=None):
         accessor=__ret__.get('accessor'),
         default_lease_ttl_seconds=__ret__.get('defaultLeaseTtlSeconds'),
         description=__ret__.get('description'),
+        id=__ret__.get('id'),
         listing_visibility=__ret__.get('listingVisibility'),
         local=__ret__.get('local'),
         max_lease_ttl_seconds=__ret__.get('maxLeaseTtlSeconds'),
         path=__ret__.get('path'),
-        type=__ret__.get('type'),
-        id=__ret__.get('id'))
+        type=__ret__.get('type'))

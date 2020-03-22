@@ -94,7 +94,9 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         Provides a resource to manage roles in an SSH secret backend
         [SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ssh_secret_backend_role.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_bare_domains: Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.
@@ -117,8 +119,6 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] max_ttl: Specifies the maximum Time To Live value.
         :param pulumi.Input[str] name: Specifies the name of the role to create.
         :param pulumi.Input[str] ttl: Specifies the Time To Live value.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ssh_secret_backend_role.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -172,7 +172,7 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -196,12 +196,11 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] max_ttl: Specifies the maximum Time To Live value.
         :param pulumi.Input[str] name: Specifies the name of the role to create.
         :param pulumi.Input[str] ttl: Specifies the Time To Live value.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ssh_secret_backend_role.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["allow_bare_domains"] = allow_bare_domains
         __props__["allow_host_certificates"] = allow_host_certificates
         __props__["allow_subdomains"] = allow_subdomains

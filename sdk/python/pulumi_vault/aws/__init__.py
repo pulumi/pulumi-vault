@@ -11,6 +11,6 @@ from .auth_backend_role import *
 from .auth_backend_role_tag import *
 from .auth_backend_roletag_blacklist import *
 from .auth_backend_sts_role import *
+from .get_access_credentials import *
 from .secret_backend import *
 from .secret_backend_role import *
-from .get_access_credentials import *

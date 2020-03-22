@@ -41,7 +41,7 @@ class AuthBackend(pulumi.CustomResource):
     tune: pulumi.Output[dict]
     """
     Extra configuration block. Structure is documented below.
-    
+
       * `allowedResponseHeaders` (`list`)
       * `auditNonHmacRequestKeys` (`list`)
       * `auditNonHmacResponseKeys` (`list`)
@@ -58,7 +58,6 @@ class AuthBackend(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, default_lease_ttl_seconds=None, description=None, listing_visibility=None, local=None, max_lease_ttl_seconds=None, path=None, tune=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a AuthBackend resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] default_lease_ttl_seconds: (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
@@ -69,9 +68,9 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type
         :param pulumi.Input[dict] tune: Extra configuration block. Structure is documented below.
         :param pulumi.Input[str] type: The name of the auth method type
-        
+
         The **tune** object supports the following:
-        
+
           * `allowedResponseHeaders` (`pulumi.Input[list]`)
           * `auditNonHmacRequestKeys` (`pulumi.Input[list]`)
           * `auditNonHmacResponseKeys` (`pulumi.Input[list]`)
@@ -80,8 +79,6 @@ class AuthBackend(pulumi.CustomResource):
           * `maxLeaseTtl` (`pulumi.Input[str]`)
           * `passthroughRequestHeaders` (`pulumi.Input[list]`)
           * `token_type` (`pulumi.Input[str]`)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/auth_backend.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -122,7 +119,7 @@ class AuthBackend(pulumi.CustomResource):
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -135,9 +132,9 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type
         :param pulumi.Input[dict] tune: Extra configuration block. Structure is documented below.
         :param pulumi.Input[str] type: The name of the auth method type
-        
+
         The **tune** object supports the following:
-        
+
           * `allowedResponseHeaders` (`pulumi.Input[list]`)
           * `auditNonHmacRequestKeys` (`pulumi.Input[list]`)
           * `auditNonHmacResponseKeys` (`pulumi.Input[list]`)
@@ -146,12 +143,11 @@ class AuthBackend(pulumi.CustomResource):
           * `maxLeaseTtl` (`pulumi.Input[str]`)
           * `passthroughRequestHeaders` (`pulumi.Input[list]`)
           * `token_type` (`pulumi.Input[str]`)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/auth_backend.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["accessor"] = accessor
         __props__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__["description"] = description

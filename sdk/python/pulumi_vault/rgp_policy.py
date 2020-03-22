@@ -25,16 +25,16 @@ class RgpPolicy(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, enforcement_level=None, name=None, policy=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a resource to manage Role Governing Policy (RGP) via [Sentinel](https://www.vaultproject.io/docs/enterprise/sentinel/index.html).
-        
+
         **Note** this feature is available only with Vault Enterprise.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/rgp_policy.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] enforcement_level: Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
         :param pulumi.Input[str] name: The name of the policy
         :param pulumi.Input[str] policy: String containing a Sentinel policy
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/rgp_policy.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -71,19 +71,18 @@ class RgpPolicy(pulumi.CustomResource):
         """
         Get an existing RgpPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] enforcement_level: Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
         :param pulumi.Input[str] name: The name of the policy
         :param pulumi.Input[str] policy: String containing a Sentinel policy
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/rgp_policy.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["enforcement_level"] = enforcement_level
         __props__["name"] = name
         __props__["policy"] = policy

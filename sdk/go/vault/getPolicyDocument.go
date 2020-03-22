@@ -9,8 +9,8 @@ import (
 )
 
 // This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `.Policy` resource.
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/policy_document.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/policy_document.md.
 func GetPolicyDocument(ctx *pulumi.Context, args *GetPolicyDocumentArgs, opts ...pulumi.InvokeOption) (*GetPolicyDocumentResult, error) {
 	var rv GetPolicyDocumentResult
 	err := ctx.Invoke("vault:index/getPolicyDocument:getPolicyDocument", args, &rv, opts...)

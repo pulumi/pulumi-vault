@@ -11,8 +11,8 @@ import (
 // Reads the Role of an Kubernetes from a Vault server. See the [Vault
 // documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-role) for more
 // information.
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_role.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_role.md.
 func LookupAuthBackendRole(ctx *pulumi.Context, args *LookupAuthBackendRoleArgs, opts ...pulumi.InvokeOption) (*LookupAuthBackendRoleResult, error) {
 	var rv LookupAuthBackendRoleResult
 	err := ctx.Invoke("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args, &rv, opts...)

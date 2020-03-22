@@ -103,7 +103,9 @@ class AuthBackend(pulumi.CustomResource):
         Manages a Github Auth mount in a Vault server. See the [Vault
         documentation](https://www.vaultproject.io/docs/auth/github.html) for more
         information.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/github_auth_backend.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] base_url: The API endpoint to use. Useful if you
@@ -144,14 +146,14 @@ class AuthBackend(pulumi.CustomResource):
                requests a different type at generation time.
         :param pulumi.Input[str] ttl: (Optional; Deprecated, use `token_ttl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
                using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-        
+
         The **tune** object supports the following:
-        
+
           * `allowedResponseHeaders` (`pulumi.Input[list]`)
           * `auditNonHmacRequestKeys` (`pulumi.Input[list]`)
           * `auditNonHmacResponseKeys` (`pulumi.Input[list]`)
           * `defaultLeaseTtl` (`pulumi.Input[str]`)
-          * `listingVisibility` (`pulumi.Input[str]`)
+          * `listing_visibility` (`pulumi.Input[str]`)
           * `maxLeaseTtl` (`pulumi.Input[str]`)
           * `passthroughRequestHeaders` (`pulumi.Input[list]`)
           * `token_type` (`pulumi.Input[str]`) - (Optional) The type of token that should be generated. Can be `service`,
@@ -159,8 +161,6 @@ class AuthBackend(pulumi.CustomResource):
             `service` tokens). For token store roles, there are two additional possibilities:
             `default-service` and `default-batch` which specify the type to return unless the client
             requests a different type at generation time.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/github_auth_backend.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -209,7 +209,7 @@ class AuthBackend(pulumi.CustomResource):
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -252,14 +252,14 @@ class AuthBackend(pulumi.CustomResource):
                requests a different type at generation time.
         :param pulumi.Input[str] ttl: (Optional; Deprecated, use `token_ttl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
                using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-        
+
         The **tune** object supports the following:
-        
+
           * `allowedResponseHeaders` (`pulumi.Input[list]`)
           * `auditNonHmacRequestKeys` (`pulumi.Input[list]`)
           * `auditNonHmacResponseKeys` (`pulumi.Input[list]`)
           * `defaultLeaseTtl` (`pulumi.Input[str]`)
-          * `listingVisibility` (`pulumi.Input[str]`)
+          * `listing_visibility` (`pulumi.Input[str]`)
           * `maxLeaseTtl` (`pulumi.Input[str]`)
           * `passthroughRequestHeaders` (`pulumi.Input[list]`)
           * `token_type` (`pulumi.Input[str]`) - (Optional) The type of token that should be generated. Can be `service`,
@@ -267,12 +267,11 @@ class AuthBackend(pulumi.CustomResource):
             `service` tokens). For token store roles, there are two additional possibilities:
             `default-service` and `default-batch` which specify the type to return unless the client
             requests a different type at generation time.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/github_auth_backend.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["accessor"] = accessor
         __props__["base_url"] = base_url
         __props__["description"] = description

@@ -11,7 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/generic_endpoint.html.markdown.
 type Endpoint struct {
 	pulumi.CustomResourceState
 

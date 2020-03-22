@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/token_auth_backend_role.html.markdown.
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/token_auth_backend_role.html.md.
  */
 export class AuthBackendRole extends pulumi.CustomResource {
     /**
@@ -229,6 +229,8 @@ export interface AuthBackendRoleState {
     /**
      * If set, a list of
      * CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+     * 
+     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
      */
     readonly boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -237,6 +239,8 @@ export interface AuthBackendRoleState {
     readonly disallowedPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Number of seconds after which issued tokens can no longer be renewed.
+     * 
+     * @deprecated use `token_explicit_max_ttl` instead if you are running Vault >= 1.2
      */
     readonly explicitMaxTtl?: pulumi.Input<string>;
     /**
@@ -252,6 +256,8 @@ export interface AuthBackendRoleState {
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
      * value of this field. Specified in seconds.
+     * 
+     * @deprecated use `token_period` instead if you are running Vault >= 1.2
      */
     readonly period?: pulumi.Input<string>;
     /**
@@ -328,6 +334,8 @@ export interface AuthBackendRoleArgs {
     /**
      * If set, a list of
      * CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+     * 
+     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
      */
     readonly boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -336,6 +344,8 @@ export interface AuthBackendRoleArgs {
     readonly disallowedPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Number of seconds after which issued tokens can no longer be renewed.
+     * 
+     * @deprecated use `token_explicit_max_ttl` instead if you are running Vault >= 1.2
      */
     readonly explicitMaxTtl?: pulumi.Input<string>;
     /**
@@ -351,6 +361,8 @@ export interface AuthBackendRoleArgs {
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
      * value of this field. Specified in seconds.
+     * 
+     * @deprecated use `token_period` instead if you are running Vault >= 1.2
      */
     readonly period?: pulumi.Input<string>;
     /**

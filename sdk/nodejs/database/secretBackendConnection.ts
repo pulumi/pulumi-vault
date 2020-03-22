@@ -6,9 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/database_secret_backend_connection.html.markdown.
- */
 export class SecretBackendConnection extends pulumi.CustomResource {
     /**
      * Get an existing SecretBackendConnection resource's state with the given name, ID, and optional extra

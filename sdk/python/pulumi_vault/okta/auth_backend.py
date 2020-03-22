@@ -30,7 +30,7 @@ class AuthBackend(pulumi.CustomResource):
     """
     Associate Okta groups with policies within Vault.
     See below for more details.
-    
+
       * `group_name` (`str`) - Name of the group within the Okta
       * `policies` (`list`) - List of Vault policies to associate with this user
     """
@@ -61,7 +61,7 @@ class AuthBackend(pulumi.CustomResource):
     """
     Associate Okta users with groups or policies within Vault.
     See below for more details.
-    
+
       * `groups` (`list`) - List of Okta groups to associate with this user
       * `policies` (`list`) - List of Vault policies to associate with this user
       * `username` (`str`) - Name of the user within Okta
@@ -70,7 +70,9 @@ class AuthBackend(pulumi.CustomResource):
         """
         Provides a resource for managing an
         [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/okta_auth_backend.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] base_url: The Okta url. Examples: oktapreview.com, okta.com
@@ -88,19 +90,17 @@ class AuthBackend(pulumi.CustomResource):
                [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[list] users: Associate Okta users with groups or policies within Vault.
                See below for more details.
-        
+
         The **groups** object supports the following:
-        
+
           * `group_name` (`pulumi.Input[str]`) - Name of the group within the Okta
           * `policies` (`pulumi.Input[list]`) - List of Vault policies to associate with this user
-        
+
         The **users** object supports the following:
-        
+
           * `groups` (`pulumi.Input[list]`) - List of Okta groups to associate with this user
           * `policies` (`pulumi.Input[list]`) - List of Vault policies to associate with this user
           * `username` (`pulumi.Input[str]`) - Name of the user within Okta
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/okta_auth_backend.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -143,7 +143,7 @@ class AuthBackend(pulumi.CustomResource):
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -163,23 +163,22 @@ class AuthBackend(pulumi.CustomResource):
                [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[list] users: Associate Okta users with groups or policies within Vault.
                See below for more details.
-        
+
         The **groups** object supports the following:
-        
+
           * `group_name` (`pulumi.Input[str]`) - Name of the group within the Okta
           * `policies` (`pulumi.Input[list]`) - List of Vault policies to associate with this user
-        
+
         The **users** object supports the following:
-        
+
           * `groups` (`pulumi.Input[list]`) - List of Okta groups to associate with this user
           * `policies` (`pulumi.Input[list]`) - List of Vault policies to associate with this user
           * `username` (`pulumi.Input[str]`) - Name of the user within Okta
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/okta_auth_backend.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["accessor"] = accessor
         __props__["base_url"] = base_url
         __props__["bypass_okta_mfa"] = bypass_okta_mfa

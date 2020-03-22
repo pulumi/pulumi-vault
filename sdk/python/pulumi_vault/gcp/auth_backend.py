@@ -35,7 +35,9 @@ class AuthBackend(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, client_email=None, client_id=None, credentials=None, description=None, path=None, private_key_id=None, project_id=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/gcp_auth_backend.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_email: The clients email associated with the credentials
@@ -43,8 +45,6 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
         :param pulumi.Input[str] private_key_id: The ID of the private key from the credentials
         :param pulumi.Input[str] project_id: The GCP Project ID
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/gcp_auth_backend.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -81,7 +81,7 @@ class AuthBackend(pulumi.CustomResource):
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -90,12 +90,11 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
         :param pulumi.Input[str] private_key_id: The ID of the private key from the credentials
         :param pulumi.Input[str] project_id: The GCP Project ID
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/gcp_auth_backend.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["client_email"] = client_email
         __props__["client_id"] = client_id
         __props__["credentials"] = credentials

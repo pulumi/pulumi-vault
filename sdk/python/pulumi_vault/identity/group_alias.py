@@ -25,16 +25,16 @@ class GroupAlias(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, canonical_id=None, mount_accessor=None, name=None, __props__=None, __name__=None, __opts__=None):
         """
         Creates an Identity Group Alias for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
-        
+
         Group aliases allows entity membership in external groups to be managed semi-automatically. External group serves as a mapping to a group that is outside of the identity store. External groups can have one (and only one) alias. This alias should map to a notion of group that is outside of the identity store. For example, groups in LDAP, and teams in GitHub. A username in LDAP, belonging to a group in LDAP, can get its entity ID added as a member of a group in Vault automatically during logins and token renewals. This works only if the group in Vault is an external group and has an alias that maps to the group in LDAP. If the user is removed from the group in LDAP, that change gets reflected in Vault only upon the subsequent login or renewal operation.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_group_alias.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] canonical_id: ID of the group to which this is an alias.
         :param pulumi.Input[str] mount_accessor: Mount accessor of the authentication backend to which this alias belongs to.
         :param pulumi.Input[str] name: Name of the group alias to create.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_group_alias.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -73,19 +73,18 @@ class GroupAlias(pulumi.CustomResource):
         """
         Get an existing GroupAlias resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] canonical_id: ID of the group to which this is an alias.
         :param pulumi.Input[str] mount_accessor: Mount accessor of the authentication backend to which this alias belongs to.
         :param pulumi.Input[str] name: Name of the group alias to create.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_group_alias.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["canonical_id"] = canonical_id
         __props__["mount_accessor"] = mount_accessor
         __props__["name"] = name

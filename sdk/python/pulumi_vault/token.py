@@ -71,12 +71,20 @@ class Token(pulumi.CustomResource):
     The TTL period of this token
     """
     wrapped_token: pulumi.Output[str]
+    """
+    The client wrapped token.
+    """
     wrapping_accessor: pulumi.Output[str]
+    """
+    The client wrapping accessor.
+    """
     wrapping_ttl: pulumi.Output[str]
+    """
+    The TTL period of the wrapped token.
+    """
     def __init__(__self__, resource_name, opts=None, display_name=None, explicit_max_ttl=None, no_default_policy=None, no_parent=None, num_uses=None, period=None, policies=None, renew_increment=None, renew_min_lease=None, renewable=None, role_name=None, ttl=None, wrapping_ttl=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a Token resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] display_name: String containing the token display name
@@ -91,8 +99,7 @@ class Token(pulumi.CustomResource):
         :param pulumi.Input[bool] renewable: Flag to allow to renew this token
         :param pulumi.Input[str] role_name: The token role name
         :param pulumi.Input[str] ttl: The TTL period of this token
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/token.html.markdown.
+        :param pulumi.Input[str] wrapping_ttl: The TTL period of the wrapped token.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -140,7 +147,7 @@ class Token(pulumi.CustomResource):
         """
         Get an existing Token resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -159,12 +166,14 @@ class Token(pulumi.CustomResource):
         :param pulumi.Input[bool] renewable: Flag to allow to renew this token
         :param pulumi.Input[str] role_name: The token role name
         :param pulumi.Input[str] ttl: The TTL period of this token
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/token.html.markdown.
+        :param pulumi.Input[str] wrapped_token: The client wrapped token.
+        :param pulumi.Input[str] wrapping_accessor: The client wrapping accessor.
+        :param pulumi.Input[str] wrapping_ttl: The TTL period of the wrapped token.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["client_token"] = client_token
         __props__["display_name"] = display_name
         __props__["explicit_max_ttl"] = explicit_max_ttl

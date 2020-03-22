@@ -13,8 +13,8 @@ import (
 
 // Creates an PKI Secret Backend for Vault. PKI secret backends can then issue certificates, once a role has been added to
 // the backend.
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend.html.md.
 type SecretBackend struct {
 	pulumi.CustomResourceState
 

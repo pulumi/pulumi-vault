@@ -16,8 +16,8 @@ import (
 // backend. See the [Vault
 // documentation](https://www.vaultproject.io/docs/auth/aws.html) for more
 // information.
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_role.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_role.html.md.
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
 

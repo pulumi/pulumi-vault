@@ -39,7 +39,9 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         Creates a Database Secret Backend static role in Vault. Database secret backend
         static roles can be used to manage 1-to-1 mapping of a Vault Role to a user in a
         database for the database.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/database_secret_backend_static_role.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
@@ -48,8 +50,6 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param pulumi.Input[float] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
         :param pulumi.Input[list] rotation_statements: Database statements to execute to rotate the password for the configured database user.
         :param pulumi.Input[str] username: The database username that this static role corresponds to.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/database_secret_backend_static_role.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -93,7 +93,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         """
         Get an existing SecretBackendStaticRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -103,12 +103,11 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param pulumi.Input[float] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
         :param pulumi.Input[list] rotation_statements: Database statements to execute to rotate the password for the configured database user.
         :param pulumi.Input[str] username: The database username that this static role corresponds to.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/database_secret_backend_static_role.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["backend"] = backend
         __props__["db_name"] = db_name
         __props__["name"] = name

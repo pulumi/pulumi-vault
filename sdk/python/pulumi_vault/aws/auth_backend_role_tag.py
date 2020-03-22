@@ -51,7 +51,9 @@ class AuthBackendRoleTag(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, allow_instance_migration=None, backend=None, disallow_reauthentication=None, instance_id=None, max_ttl=None, policies=None, role=None, __props__=None, __name__=None, __opts__=None):
         """
         Reads role tag information from an AWS auth backend in Vault. 
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_role_tag.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_instance_migration: If set, allows migration of the underlying instances where the client resides. Use with caution.
@@ -63,8 +65,6 @@ class AuthBackendRoleTag(pulumi.CustomResource):
         :param pulumi.Input[list] policies: The policies to be associated with the tag. Must be a subset of the policies associated with the role.
         :param pulumi.Input[str] role: The name of the AWS auth backend role to read
                role tags from, with no leading or trailing `/`s.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_role_tag.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -105,7 +105,7 @@ class AuthBackendRoleTag(pulumi.CustomResource):
         """
         Get an existing AuthBackendRoleTag resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -120,12 +120,11 @@ class AuthBackendRoleTag(pulumi.CustomResource):
                role tags from, with no leading or trailing `/`s.
         :param pulumi.Input[str] tag_key: The key of the role tag.
         :param pulumi.Input[str] tag_value: The value to set the role key.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_role_tag.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["allow_instance_migration"] = allow_instance_migration
         __props__["backend"] = backend
         __props__["disallow_reauthentication"] = disallow_reauthentication

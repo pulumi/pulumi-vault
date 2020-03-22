@@ -11,20 +11,47 @@ from .. import utilities, tables
 
 class Backend(pulumi.CustomResource):
     client_id: pulumi.Output[str]
+    """
+    The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
+    required.
+    """
     client_secret: pulumi.Output[str]
+    """
+    The client secret for credentials to query the Azure APIs
+    """
     description: pulumi.Output[str]
+    """
+    Human-friendly description of the mount for the backend.
+    """
     environment: pulumi.Output[str]
+    """
+    The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
+    """
     path: pulumi.Output[str]
+    """
+    Path to mount the backend at.
+    """
     subscription_id: pulumi.Output[str]
+    """
+    The subscription id for the Azure Active Directory.
+    """
     tenant_id: pulumi.Output[str]
+    """
+    The tenant id for the Azure Active Directory organization.
+    """
     def __init__(__self__, resource_name, opts=None, client_id=None, client_secret=None, description=None, environment=None, path=None, subscription_id=None, tenant_id=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a Backend resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/azure_secret_backend.html.markdown.
+        :param pulumi.Input[str] client_id: The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
+               required.
+        :param pulumi.Input[str] client_secret: The client secret for credentials to query the Azure APIs
+        :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
+        :param pulumi.Input[str] environment: The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
+        :param pulumi.Input[str] path: Path to mount the backend at.
+        :param pulumi.Input[str] subscription_id: The subscription id for the Azure Active Directory.
+        :param pulumi.Input[str] tenant_id: The tenant id for the Azure Active Directory organization.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -65,16 +92,23 @@ class Backend(pulumi.CustomResource):
         """
         Get an existing Backend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/azure_secret_backend.html.markdown.
+        :param pulumi.Input[str] client_id: The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
+               required.
+        :param pulumi.Input[str] client_secret: The client secret for credentials to query the Azure APIs
+        :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
+        :param pulumi.Input[str] environment: The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
+        :param pulumi.Input[str] path: Path to mount the backend at.
+        :param pulumi.Input[str] subscription_id: The subscription id for the Azure Active Directory.
+        :param pulumi.Input[str] tenant_id: The tenant id for the Azure Active Directory organization.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["client_id"] = client_id
         __props__["client_secret"] = client_secret
         __props__["description"] = description

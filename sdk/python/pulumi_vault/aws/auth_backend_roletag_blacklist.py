@@ -29,7 +29,9 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, backend=None, disable_periodic_tidy=None, safety_buffer=None, __props__=None, __name__=None, __opts__=None):
         """
         Configures the periodic tidying operation of the blacklisted role tag entries.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_roletag_blacklist.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
@@ -39,8 +41,6 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
         :param pulumi.Input[float] safety_buffer: The amount of extra time that must have passed
                beyond the roletag expiration, before it is removed from the backend storage.
                Defaults to 259,200 seconds, or 72 hours.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_roletag_blacklist.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -75,7 +75,7 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
         """
         Get an existing AuthBackendRoletagBlacklist resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -86,12 +86,11 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
         :param pulumi.Input[float] safety_buffer: The amount of extra time that must have passed
                beyond the roletag expiration, before it is removed from the backend storage.
                Defaults to 259,200 seconds, or 72 hours.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_roletag_blacklist.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["backend"] = backend
         __props__["disable_periodic_tidy"] = disable_periodic_tidy
         __props__["safety_buffer"] = safety_buffer
