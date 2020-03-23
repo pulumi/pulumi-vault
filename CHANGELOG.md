@@ -2,12 +2,15 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+_(none)_
+
+---
+
+## 1.10.0 (2020-03-23)
 * Ensure JavaScript dependency for pulumi/pulumi isn't pinned to latest
 * Upgrade to v2.9.0 of the Vault Terraform Provider
 * Upgrade to Pulumi v1.12.1
 * Upgrade to pulumi-terraform-bridge v1.8.2
-
----
 
 ## 1.9.0 (2020-02-07)
 * Upgrade to v2.8.0 of the Vault Terraform Provider
