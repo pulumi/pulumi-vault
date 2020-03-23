@@ -13,7 +13,7 @@ class GetAuthBackendRoleResult:
     """
     A collection of values returned by getAuthBackendRole.
     """
-    def __init__(__self__, audience=None, backend=None, bound_cidrs=None, bound_service_account_names=None, bound_service_account_namespaces=None, max_ttl=None, num_uses=None, period=None, policies=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None, id=None):
+    def __init__(__self__, audience=None, backend=None, bound_cidrs=None, bound_service_account_names=None, bound_service_account_namespaces=None, id=None, max_ttl=None, num_uses=None, period=None, policies=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None):
         if audience and not isinstance(audience, str):
             raise TypeError("Expected argument 'audience' to be a str")
         __self__.audience = audience
@@ -37,6 +37,12 @@ class GetAuthBackendRoleResult:
         __self__.bound_service_account_namespaces = bound_service_account_namespaces
         """
         List of namespaces allowed to access this role. If set to "*" all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
+        """
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
         """
         if max_ttl and not isinstance(max_ttl, float):
             raise TypeError("Expected argument 'max_ttl' to be a float")
@@ -128,12 +134,6 @@ class GetAuthBackendRoleResult:
         if ttl and not isinstance(ttl, float):
             raise TypeError("Expected argument 'ttl' to be a float")
         __self__.ttl = ttl
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -145,6 +145,7 @@ class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
             bound_cidrs=self.bound_cidrs,
             bound_service_account_names=self.bound_service_account_names,
             bound_service_account_namespaces=self.bound_service_account_namespaces,
+            id=self.id,
             max_ttl=self.max_ttl,
             num_uses=self.num_uses,
             period=self.period,
@@ -159,22 +160,23 @@ class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
             token_policies=self.token_policies,
             token_ttl=self.token_ttl,
             token_type=self.token_type,
-            ttl=self.ttl,
-            id=self.id)
+            ttl=self.ttl)
 
 def get_auth_backend_role(audience=None,backend=None,bound_cidrs=None,max_ttl=None,num_uses=None,period=None,policies=None,role_name=None,token_bound_cidrs=None,token_explicit_max_ttl=None,token_max_ttl=None,token_no_default_policy=None,token_num_uses=None,token_period=None,token_policies=None,token_ttl=None,token_type=None,ttl=None,opts=None):
     """
     Reads the Role of an Kubernetes from a Vault server. See the [Vault
     documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-role) for more
     information.
-    
+
+    > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_role.md.
+
+
     :param str backend: The unique name for the Kubernetes backend the role to
            retrieve Role attributes for resides in. Defaults to "kubernetes".
     :param str role_name: The name of the role to retrieve the Role attributes for.
-
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_role.html.markdown.
     """
     __args__ = dict()
+
 
     __args__['audience'] = audience
     __args__['backend'] = backend
@@ -206,6 +208,7 @@ def get_auth_backend_role(audience=None,backend=None,bound_cidrs=None,max_ttl=No
         bound_cidrs=__ret__.get('boundCidrs'),
         bound_service_account_names=__ret__.get('boundServiceAccountNames'),
         bound_service_account_namespaces=__ret__.get('boundServiceAccountNamespaces'),
+        id=__ret__.get('id'),
         max_ttl=__ret__.get('maxTtl'),
         num_uses=__ret__.get('numUses'),
         period=__ret__.get('period'),
@@ -220,5 +223,4 @@ def get_auth_backend_role(audience=None,backend=None,bound_cidrs=None,max_ttl=No
         token_policies=__ret__.get('tokenPolicies'),
         token_ttl=__ret__.get('tokenTtl'),
         token_type=__ret__.get('tokenType'),
-        ttl=__ret__.get('ttl'),
-        id=__ret__.get('id'))
+        ttl=__ret__.get('ttl'))

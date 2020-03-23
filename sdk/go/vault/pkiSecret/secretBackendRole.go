@@ -12,8 +12,8 @@ import (
 )
 
 // Creates a role on an PKI Secret Backend for Vault.
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_role.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_role.html.md.
 type SecretBackendRole struct {
 	pulumi.CustomResourceState
 
@@ -67,6 +67,8 @@ type SecretBackendRole struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Flag to not store certificates in the storage backend
 	NoStore pulumi.BoolPtrOutput `pulumi:"noStore"`
+	// Specifies the duration by which to backdate the NotBefore property.
+	NotBeforeDuration pulumi.StringOutput `pulumi:"notBeforeDuration"`
 	// The organization unit of generated certificates
 	OrganizationUnit pulumi.StringArrayOutput `pulumi:"organizationUnit"`
 	// The organization of generated certificates
@@ -172,6 +174,8 @@ type secretBackendRoleState struct {
 	Name *string `pulumi:"name"`
 	// Flag to not store certificates in the storage backend
 	NoStore *bool `pulumi:"noStore"`
+	// Specifies the duration by which to backdate the NotBefore property.
+	NotBeforeDuration *string `pulumi:"notBeforeDuration"`
 	// The organization unit of generated certificates
 	OrganizationUnit []string `pulumi:"organizationUnit"`
 	// The organization of generated certificates
@@ -247,6 +251,8 @@ type SecretBackendRoleState struct {
 	Name pulumi.StringPtrInput
 	// Flag to not store certificates in the storage backend
 	NoStore pulumi.BoolPtrInput
+	// Specifies the duration by which to backdate the NotBefore property.
+	NotBeforeDuration pulumi.StringPtrInput
 	// The organization unit of generated certificates
 	OrganizationUnit pulumi.StringArrayInput
 	// The organization of generated certificates
@@ -326,6 +332,8 @@ type secretBackendRoleArgs struct {
 	Name *string `pulumi:"name"`
 	// Flag to not store certificates in the storage backend
 	NoStore *bool `pulumi:"noStore"`
+	// Specifies the duration by which to backdate the NotBefore property.
+	NotBeforeDuration *string `pulumi:"notBeforeDuration"`
 	// The organization unit of generated certificates
 	OrganizationUnit []string `pulumi:"organizationUnit"`
 	// The organization of generated certificates
@@ -402,6 +410,8 @@ type SecretBackendRoleArgs struct {
 	Name pulumi.StringPtrInput
 	// Flag to not store certificates in the storage backend
 	NoStore pulumi.BoolPtrInput
+	// Specifies the duration by which to backdate the NotBefore property.
+	NotBeforeDuration pulumi.StringPtrInput
 	// The organization unit of generated certificates
 	OrganizationUnit pulumi.StringArrayInput
 	// The organization of generated certificates

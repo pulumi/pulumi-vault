@@ -22,7 +22,7 @@ import * as utilities from "../utilities";
  * export const tokenReviewerJwt = config.tokenReviewerJwt;
  * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_config.html.markdown.
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_config.md.
  */
 export function getAuthBackendConfig(args?: GetAuthBackendConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendConfigResult> & GetAuthBackendConfigResult {
     args = args || {};

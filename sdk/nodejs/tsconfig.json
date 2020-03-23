@@ -13,6 +13,8 @@
         "strict": true
     },
     "files": [
+        "alicloud/authBackendRole.ts",
+        "alicloud/index.ts",
         "appRole/authBackendLogin.ts",
         "appRole/authBackendRole.ts",
         "appRole/authBackendRoleSecretID.ts",

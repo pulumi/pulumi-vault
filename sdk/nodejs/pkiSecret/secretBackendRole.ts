@@ -23,7 +23,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_role.html.markdown.
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_role.html.md.
  */
 export class SecretBackendRole extends pulumi.CustomResource {
     /**
@@ -153,6 +153,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly noStore!: pulumi.Output<boolean | undefined>;
     /**
+     * Specifies the duration by which to backdate the NotBefore property.
+     */
+    public readonly notBeforeDuration!: pulumi.Output<string>;
+    /**
      * The organization of generated certificates
      */
     public readonly organizations!: pulumi.Output<string[] | undefined>;
@@ -234,6 +238,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["maxTtl"] = state ? state.maxTtl : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["noStore"] = state ? state.noStore : undefined;
+            inputs["notBeforeDuration"] = state ? state.notBeforeDuration : undefined;
             inputs["organizations"] = state ? state.organizations : undefined;
             inputs["organizationUnit"] = state ? state.organizationUnit : undefined;
             inputs["policyIdentifiers"] = state ? state.policyIdentifiers : undefined;
@@ -275,6 +280,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["maxTtl"] = args ? args.maxTtl : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["noStore"] = args ? args.noStore : undefined;
+            inputs["notBeforeDuration"] = args ? args.notBeforeDuration : undefined;
             inputs["organizations"] = args ? args.organizations : undefined;
             inputs["organizationUnit"] = args ? args.organizationUnit : undefined;
             inputs["policyIdentifiers"] = args ? args.policyIdentifiers : undefined;
@@ -402,6 +408,10 @@ export interface SecretBackendRoleState {
      * Flag to not store certificates in the storage backend
      */
     readonly noStore?: pulumi.Input<boolean>;
+    /**
+     * Specifies the duration by which to backdate the NotBefore property.
+     */
+    readonly notBeforeDuration?: pulumi.Input<string>;
     /**
      * The organization of generated certificates
      */
@@ -552,6 +562,10 @@ export interface SecretBackendRoleArgs {
      * Flag to not store certificates in the storage backend
      */
     readonly noStore?: pulumi.Input<boolean>;
+    /**
+     * Specifies the duration by which to backdate the NotBefore property.
+     */
+    readonly notBeforeDuration?: pulumi.Input<string>;
     /**
      * The organization of generated certificates
      */

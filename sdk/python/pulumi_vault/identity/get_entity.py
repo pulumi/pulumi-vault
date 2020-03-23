@@ -13,7 +13,7 @@ class GetEntityResult:
     """
     A collection of values returned by getEntity.
     """
-    def __init__(__self__, alias_id=None, alias_mount_accessor=None, alias_name=None, aliases=None, creation_time=None, data_json=None, direct_group_ids=None, disabled=None, entity_id=None, entity_name=None, group_ids=None, inherited_group_ids=None, last_update_time=None, merged_entity_ids=None, metadata=None, namespace_id=None, policies=None, id=None):
+    def __init__(__self__, alias_id=None, alias_mount_accessor=None, alias_name=None, aliases=None, creation_time=None, data_json=None, direct_group_ids=None, disabled=None, entity_id=None, entity_name=None, group_ids=None, id=None, inherited_group_ids=None, last_update_time=None, merged_entity_ids=None, metadata=None, namespace_id=None, policies=None):
         if alias_id and not isinstance(alias_id, str):
             raise TypeError("Expected argument 'alias_id' to be a str")
         __self__.alias_id = alias_id
@@ -66,6 +66,12 @@ class GetEntityResult:
         """
         List of all Group IDs of which the entity is a member of
         """
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
+        """
         if inherited_group_ids and not isinstance(inherited_group_ids, list):
             raise TypeError("Expected argument 'inherited_group_ids' to be a list")
         __self__.inherited_group_ids = inherited_group_ids
@@ -102,12 +108,6 @@ class GetEntityResult:
         """
         List of policies attached to the entity
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetEntityResult(GetEntityResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -125,18 +125,18 @@ class AwaitableGetEntityResult(GetEntityResult):
             entity_id=self.entity_id,
             entity_name=self.entity_name,
             group_ids=self.group_ids,
+            id=self.id,
             inherited_group_ids=self.inherited_group_ids,
             last_update_time=self.last_update_time,
             merged_entity_ids=self.merged_entity_ids,
             metadata=self.metadata,
             namespace_id=self.namespace_id,
-            policies=self.policies,
-            id=self.id)
+            policies=self.policies)
 
 def get_entity(alias_id=None,alias_mount_accessor=None,alias_name=None,entity_id=None,entity_name=None,opts=None):
     """
     Use this data source to access information about an existing resource.
-    
+
     :param str alias_id: ID of the alias.
     :param str alias_mount_accessor: Accessor of the mount to which the alias belongs to.
            This should be supplied in conjunction with `alias_name`.
@@ -144,10 +144,9 @@ def get_entity(alias_id=None,alias_mount_accessor=None,alias_name=None,entity_id
            `alias_mount_accessor`.
     :param str entity_id: ID of the entity.
     :param str entity_name: Name of the entity.
-
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/identity_entity.html.markdown.
     """
     __args__ = dict()
+
 
     __args__['aliasId'] = alias_id
     __args__['aliasMountAccessor'] = alias_mount_accessor
@@ -172,10 +171,10 @@ def get_entity(alias_id=None,alias_mount_accessor=None,alias_name=None,entity_id
         entity_id=__ret__.get('entityId'),
         entity_name=__ret__.get('entityName'),
         group_ids=__ret__.get('groupIds'),
+        id=__ret__.get('id'),
         inherited_group_ids=__ret__.get('inheritedGroupIds'),
         last_update_time=__ret__.get('lastUpdateTime'),
         merged_entity_ids=__ret__.get('mergedEntityIds'),
         metadata=__ret__.get('metadata'),
         namespace_id=__ret__.get('namespaceId'),
-        policies=__ret__.get('policies'),
-        id=__ret__.get('id'))
+        policies=__ret__.get('policies'))

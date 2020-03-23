@@ -49,7 +49,6 @@ class Mount(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, default_lease_ttl_seconds=None, description=None, local=None, max_lease_ttl_seconds=None, options=None, path=None, seal_wrap=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a Mount resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
@@ -60,8 +59,6 @@ class Mount(pulumi.CustomResource):
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[str] type: Type of the backend, such as "aws"
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/mount.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -104,7 +101,7 @@ class Mount(pulumi.CustomResource):
         """
         Get an existing Mount resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -117,12 +114,11 @@ class Mount(pulumi.CustomResource):
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[str] type: Type of the backend, such as "aws"
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/mount.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["accessor"] = accessor
         __props__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__["description"] = description

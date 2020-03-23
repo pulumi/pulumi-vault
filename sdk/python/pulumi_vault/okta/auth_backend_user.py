@@ -30,15 +30,15 @@ class AuthBackendUser(pulumi.CustomResource):
         """
         Provides a resource to create a user in an
         [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/okta_auth_backend_user.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] groups: List of Okta groups to associate with this user
         :param pulumi.Input[str] path: The path where the Okta auth backend is mounted
         :param pulumi.Input[list] policies: List of Vault policies to associate with this user
         :param pulumi.Input[str] username: Name of the user within Okta
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/okta_auth_backend_user.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -76,7 +76,7 @@ class AuthBackendUser(pulumi.CustomResource):
         """
         Get an existing AuthBackendUser resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -84,12 +84,11 @@ class AuthBackendUser(pulumi.CustomResource):
         :param pulumi.Input[str] path: The path where the Okta auth backend is mounted
         :param pulumi.Input[list] policies: List of Vault policies to associate with this user
         :param pulumi.Input[str] username: Name of the user within Okta
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/okta_auth_backend_user.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["groups"] = groups
         __props__["path"] = path
         __props__["policies"] = policies

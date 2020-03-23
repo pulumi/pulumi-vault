@@ -12,8 +12,8 @@ import (
 )
 
 // Creates an Encryption Keyring on a Transit Secret Backend for Vault.
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/transit_secret_backend_key.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/transit_secret_backend_key.html.md.
 type SecretBackendKey struct {
 	pulumi.CustomResourceState
 

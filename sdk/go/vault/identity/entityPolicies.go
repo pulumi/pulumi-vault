@@ -12,8 +12,8 @@ import (
 )
 
 // Manages policies for an Identity Entity for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_entity_policies.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_entity_policies.html.md.
 type EntityPolicies struct {
 	pulumi.CustomResourceState
 

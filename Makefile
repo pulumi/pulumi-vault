@@ -49,7 +49,11 @@ build:: tfgen provider
 tfgen::
 	cd provider && go install -ldflags "-X github.com/pulumi/pulumi-${PACK}/provider/pkg/version.Version=${VERSION}" ${PROJECT}/provider/cmd/${TFGEN}
 
+generate_schema:: tfgen
+	$(TFGEN) schema --out ./provider/cmd/${PROVIDER}
+
 provider::
+	go generate ${PROJECT}/provider/cmd/${PROVIDER}
 	cd provider && go install -ldflags "-X github.com/pulumi/pulumi-${PACK}/provider/pkg/version.Version=${VERSION}" ${PROJECT}/provider/cmd/${PROVIDER}
 
 lint::
@@ -65,6 +69,9 @@ install:: tfgen provider
 		(yarn unlink > /dev/null 2>&1 || true) && \
 		yarn link
 	cd ${PACKDIR}/python/bin && $(PIP) install --user -e .
+	echo "Copying NuGet packages to ${PULUMI_NUGET}"
+	[ ! -e "$(PULUMI_NUGET)" ] || rm -rf "$(PULUMI_NUGET)/*"
+	find . -name '*.nupkg' -exec cp -p {} ${PULUMI_NUGET} \;
 
 test_all::
 	cd examples && PATH=$(PULUMI_BIN):$(PATH) go test -v -count=1 -cover -timeout 1h -parallel ${TESTPARALLELISM} .

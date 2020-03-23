@@ -11,6 +11,9 @@ from .. import utilities, tables
 
 class AuthBackend(pulumi.CustomResource):
     accessor: pulumi.Output[str]
+    """
+    The accessor of the JWT auth backend
+    """
     bound_issuer: pulumi.Output[str]
     """
     The value against which to match the iss claim in a JWT
@@ -68,7 +71,9 @@ class AuthBackend(pulumi.CustomResource):
         """
         Provides a resource for managing an
         [JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/jwt_auth_backend.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bound_issuer: The value against which to match the iss claim in a JWT
@@ -84,19 +89,17 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
         :param pulumi.Input[str] path: Path to mount the JWT/OIDC auth backend
         :param pulumi.Input[str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
-        
+
         The **tune** object supports the following:
-        
+
           * `allowedResponseHeaders` (`pulumi.Input[list]`)
           * `auditNonHmacRequestKeys` (`pulumi.Input[list]`)
           * `auditNonHmacResponseKeys` (`pulumi.Input[list]`)
           * `defaultLeaseTtl` (`pulumi.Input[str]`)
-          * `listingVisibility` (`pulumi.Input[str]`)
+          * `listing_visibility` (`pulumi.Input[str]`)
           * `maxLeaseTtl` (`pulumi.Input[str]`)
           * `passthroughRequestHeaders` (`pulumi.Input[list]`)
           * `token_type` (`pulumi.Input[str]`)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/jwt_auth_backend.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -141,10 +144,11 @@ class AuthBackend(pulumi.CustomResource):
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] accessor: The accessor of the JWT auth backend
         :param pulumi.Input[str] bound_issuer: The value against which to match the iss claim in a JWT
         :param pulumi.Input[str] default_role: The default role to use if none is provided during login
         :param pulumi.Input[str] description: The description of the auth backend
@@ -158,23 +162,22 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
         :param pulumi.Input[str] path: Path to mount the JWT/OIDC auth backend
         :param pulumi.Input[str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
-        
+
         The **tune** object supports the following:
-        
+
           * `allowedResponseHeaders` (`pulumi.Input[list]`)
           * `auditNonHmacRequestKeys` (`pulumi.Input[list]`)
           * `auditNonHmacResponseKeys` (`pulumi.Input[list]`)
           * `defaultLeaseTtl` (`pulumi.Input[str]`)
-          * `listingVisibility` (`pulumi.Input[str]`)
+          * `listing_visibility` (`pulumi.Input[str]`)
           * `maxLeaseTtl` (`pulumi.Input[str]`)
           * `passthroughRequestHeaders` (`pulumi.Input[list]`)
           * `token_type` (`pulumi.Input[str]`)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/jwt_auth_backend.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["accessor"] = accessor
         __props__["bound_issuer"] = bound_issuer
         __props__["default_role"] = default_role

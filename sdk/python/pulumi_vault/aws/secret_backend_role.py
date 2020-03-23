@@ -59,7 +59,6 @@ class SecretBackendRole(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, backend=None, credential_type=None, default_sts_ttl=None, max_sts_ttl=None, name=None, policy_arns=None, policy_document=None, role_arns=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a SecretBackendRole resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path the AWS secret backend is mounted at,
@@ -84,8 +83,6 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[list] role_arns: Specifies the ARNs of the AWS roles this Vault role
                is allowed to assume. Required when `credential_type` is `assumed_role` and
                prohibited otherwise.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_secret_backend_role.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -127,7 +124,7 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -153,12 +150,11 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[list] role_arns: Specifies the ARNs of the AWS roles this Vault role
                is allowed to assume. Required when `credential_type` is `assumed_role` and
                prohibited otherwise.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_secret_backend_role.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["backend"] = backend
         __props__["credential_type"] = credential_type
         __props__["default_sts_ttl"] = default_sts_ttl

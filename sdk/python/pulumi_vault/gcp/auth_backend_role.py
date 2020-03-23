@@ -134,7 +134,9 @@ class AuthBackendRole(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, add_group_aliases=None, allow_gce_inference=None, backend=None, bound_instance_groups=None, bound_labels=None, bound_projects=None, bound_regions=None, bound_service_accounts=None, bound_zones=None, max_jwt_exp=None, max_ttl=None, period=None, policies=None, role=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a resource to create a role in an [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/gcp_auth_backend_role.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_gce_inference: A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.
@@ -185,8 +187,6 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] ttl: The TTL period of tokens issued
                using this role, provided as a number of seconds.
         :param pulumi.Input[str] type: Type of GCP authentication role (either `gce` or `iam`)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/gcp_auth_backend_role.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -245,7 +245,7 @@ class AuthBackendRole(pulumi.CustomResource):
         """
         Get an existing AuthBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -297,12 +297,11 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] ttl: The TTL period of tokens issued
                using this role, provided as a number of seconds.
         :param pulumi.Input[str] type: Type of GCP authentication role (either `gce` or `iam`)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/gcp_auth_backend_role.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["add_group_aliases"] = add_group_aliases
         __props__["allow_gce_inference"] = allow_gce_inference
         __props__["backend"] = backend

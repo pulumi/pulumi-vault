@@ -6,6 +6,8 @@
 from .entity import *
 from .entity_alias import *
 from .entity_policies import *
+from .get_entity import *
+from .get_group import *
 from .group import *
 from .group_alias import *
 from .group_policies import *
@@ -13,5 +15,3 @@ from .oidc import *
 from .oidc_key import *
 from .oidc_key_allowed_client_id import *
 from .oidc_role import *
-from .get_entity import *
-from .get_group import *

@@ -23,7 +23,7 @@ import * as utilities from "../utilities";
  * export const policies = role.policies!;
  * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_role.html.markdown.
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_role.md.
  */
 export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendRoleResult> & GetAuthBackendRoleResult {
     if (!opts) {

@@ -12,10 +12,10 @@ import (
 )
 
 // Provides a resource to manage [Namespaces](https://www.vaultproject.io/docs/enterprise/namespaces/index.html).
-// 
+//
 // **Note** this feature is available only with Vault Enterprise.
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/namespace.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/namespace.html.md.
 type Namespace struct {
 	pulumi.CustomResourceState
 

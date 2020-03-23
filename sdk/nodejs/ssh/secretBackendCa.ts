@@ -22,7 +22,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ssh_secret_backend_ca.html.markdown.
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ssh_secret_backend_ca.html.md.
  */
 export class SecretBackendCa extends pulumi.CustomResource {
     /**

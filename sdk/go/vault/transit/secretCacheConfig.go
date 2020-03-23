@@ -12,8 +12,8 @@ import (
 )
 
 // Configure the cache for the Transit Secret Backend in Vault.
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/transit_secret_cache_config.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/transit_secret_backend_cache_config.html.md.
 type SecretCacheConfig struct {
 	pulumi.CustomResourceState
 

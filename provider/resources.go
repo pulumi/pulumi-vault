@@ -34,6 +34,7 @@ const (
 	// modules:
 	mainMod       = "index"
 	appRoleMod    = "AppRole"
+	aliCloudMod   = "AliCloud"
 	awsMod        = "Aws"
 	azureMod      = "Azure"
 	consulMod     = "Consul"
@@ -212,6 +213,9 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_approle_auth_backend_role":           {Tok: makeResource(appRoleMod, "AuthBackendRole")},
 			"vault_approle_auth_backend_login":          {Tok: makeResource(appRoleMod, "AuthBackendLogin")},
 			"vault_approle_auth_backend_role_secret_id": {Tok: makeResource(appRoleMod, "AuthBackendRoleSecretID")},
+
+			// AliCloud
+			"vault_alicloud_auth_backend_role": {Tok: makeResource(aliCloudMod, "AuthBackendRole")},
 
 			// AWS
 			"vault_aws_auth_backend_cert":               {Tok: makeResource(awsMod, "AuthBackendCert")},
@@ -452,7 +456,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{
-				"Pulumi":                       "1.9.1-preview",
+				"Pulumi":                       "1.12.1-preview",
 				"System.Collections.Immutable": "1.6.0",
 			},
 			Namespaces: namespaceMap,

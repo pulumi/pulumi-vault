@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/mfa_duo.html.markdown.
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/mfa_duo.html.md.
  */
 export class MfaDuo extends pulumi.CustomResource {
     /**

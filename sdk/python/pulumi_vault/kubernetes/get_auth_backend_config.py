@@ -13,10 +13,16 @@ class GetAuthBackendConfigResult:
     """
     A collection of values returned by getAuthBackendConfig.
     """
-    def __init__(__self__, backend=None, issuer=None, kubernetes_ca_cert=None, kubernetes_host=None, pem_keys=None, id=None):
+    def __init__(__self__, backend=None, id=None, issuer=None, kubernetes_ca_cert=None, kubernetes_host=None, pem_keys=None):
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         __self__.backend = backend
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
+        """
         if issuer and not isinstance(issuer, str):
             raise TypeError("Expected argument 'issuer' to be a str")
         __self__.issuer = issuer
@@ -41,12 +47,6 @@ class GetAuthBackendConfigResult:
         """
         Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetAuthBackendConfigResult(GetAuthBackendConfigResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -54,24 +54,26 @@ class AwaitableGetAuthBackendConfigResult(GetAuthBackendConfigResult):
             yield self
         return GetAuthBackendConfigResult(
             backend=self.backend,
+            id=self.id,
             issuer=self.issuer,
             kubernetes_ca_cert=self.kubernetes_ca_cert,
             kubernetes_host=self.kubernetes_host,
-            pem_keys=self.pem_keys,
-            id=self.id)
+            pem_keys=self.pem_keys)
 
 def get_auth_backend_config(backend=None,issuer=None,kubernetes_ca_cert=None,kubernetes_host=None,pem_keys=None,opts=None):
     """
     Reads the Role of an Kubernetes from a Vault server. See the [Vault
     documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-config) for more
     information.
-    
+
+    > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_config.md.
+
+
     :param str backend: The unique name for the Kubernetes backend the config to
            retrieve Role attributes for resides in. Defaults to "kubernetes".
-
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_config.html.markdown.
     """
     __args__ = dict()
+
 
     __args__['backend'] = backend
     __args__['issuer'] = issuer
@@ -86,8 +88,8 @@ def get_auth_backend_config(backend=None,issuer=None,kubernetes_ca_cert=None,kub
 
     return AwaitableGetAuthBackendConfigResult(
         backend=__ret__.get('backend'),
+        id=__ret__.get('id'),
         issuer=__ret__.get('issuer'),
         kubernetes_ca_cert=__ret__.get('kubernetesCaCert'),
         kubernetes_host=__ret__.get('kubernetesHost'),
-        pem_keys=__ret__.get('pemKeys'),
-        id=__ret__.get('id'))
+        pem_keys=__ret__.get('pemKeys'))

@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/policy_document.html.markdown.
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/policy_document.md.
  */
 export function getPolicyDocument(args?: GetPolicyDocumentArgs, opts?: pulumi.InvokeOptions): Promise<GetPolicyDocumentResult> & GetPolicyDocumentResult {
     args = args || {};

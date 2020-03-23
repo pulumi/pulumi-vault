@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_client.html.markdown.
- */
 export class AuthBackendClient extends pulumi.CustomResource {
     /**
      * Get an existing AuthBackendClient resource's state with the given name, ID, and optional extra

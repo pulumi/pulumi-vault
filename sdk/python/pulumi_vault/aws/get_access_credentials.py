@@ -13,7 +13,7 @@ class GetAccessCredentialsResult:
     """
     A collection of values returned by getAccessCredentials.
     """
-    def __init__(__self__, access_key=None, backend=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, role=None, role_arn=None, secret_key=None, security_token=None, type=None, id=None):
+    def __init__(__self__, access_key=None, backend=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, role=None, role_arn=None, secret_key=None, security_token=None, type=None):
         if access_key and not isinstance(access_key, str):
             raise TypeError("Expected argument 'access_key' to be a str")
         __self__.access_key = access_key
@@ -23,6 +23,12 @@ class GetAccessCredentialsResult:
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         __self__.backend = backend
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
+        """
         if lease_duration and not isinstance(lease_duration, float):
             raise TypeError("Expected argument 'lease_duration' to be a float")
         __self__.lease_duration = lease_duration
@@ -64,12 +70,6 @@ class GetAccessCredentialsResult:
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         __self__.type = type
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetAccessCredentialsResult(GetAccessCredentialsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -78,6 +78,7 @@ class AwaitableGetAccessCredentialsResult(GetAccessCredentialsResult):
         return GetAccessCredentialsResult(
             access_key=self.access_key,
             backend=self.backend,
+            id=self.id,
             lease_duration=self.lease_duration,
             lease_id=self.lease_id,
             lease_renewable=self.lease_renewable,
@@ -86,13 +87,12 @@ class AwaitableGetAccessCredentialsResult(GetAccessCredentialsResult):
             role_arn=self.role_arn,
             secret_key=self.secret_key,
             security_token=self.security_token,
-            type=self.type,
-            id=self.id)
+            type=self.type)
 
 def get_access_credentials(backend=None,role=None,role_arn=None,type=None,opts=None):
     """
     Use this data source to access information about an existing resource.
-    
+
     :param str backend: The path to the AWS secret backend to
            read credentials from, with no leading or trailing `/`s.
     :param str role: The name of the AWS secret backend role to read
@@ -104,10 +104,9 @@ def get_access_credentials(backend=None,role=None,role_arn=None,type=None,opts=N
            to `"creds"`, which just returns an AWS Access Key ID and Secret
            Key. Can also be set to `"sts"`, which will return a security token
            in addition to the keys.
-
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/aws_access_credentials.html.markdown.
     """
     __args__ = dict()
+
 
     __args__['backend'] = backend
     __args__['role'] = role
@@ -122,6 +121,7 @@ def get_access_credentials(backend=None,role=None,role_arn=None,type=None,opts=N
     return AwaitableGetAccessCredentialsResult(
         access_key=__ret__.get('accessKey'),
         backend=__ret__.get('backend'),
+        id=__ret__.get('id'),
         lease_duration=__ret__.get('leaseDuration'),
         lease_id=__ret__.get('leaseId'),
         lease_renewable=__ret__.get('leaseRenewable'),
@@ -130,5 +130,4 @@ def get_access_credentials(backend=None,role=None,role_arn=None,type=None,opts=N
         role_arn=__ret__.get('roleArn'),
         secret_key=__ret__.get('secretKey'),
         security_token=__ret__.get('securityToken'),
-        type=__ret__.get('type'),
-        id=__ret__.get('id'))
+        type=__ret__.get('type'))

@@ -38,7 +38,6 @@ class OidcRole(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, key=None, name=None, template=None, ttl=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a OidcRole resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] key: A configured named key, the key must already exist
@@ -49,8 +48,6 @@ class OidcRole(pulumi.CustomResource):
                [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
                for the template format.
         :param pulumi.Input[float] ttl: TTL of the tokens generated against the role in number of seconds.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_oidc_role.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -87,7 +84,7 @@ class OidcRole(pulumi.CustomResource):
         """
         Get an existing OidcRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -101,12 +98,11 @@ class OidcRole(pulumi.CustomResource):
                [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
                for the template format.
         :param pulumi.Input[float] ttl: TTL of the tokens generated against the role in number of seconds.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_oidc_role.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["client_id"] = client_id
         __props__["key"] = key
         __props__["name"] = name

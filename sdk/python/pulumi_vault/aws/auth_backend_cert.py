@@ -35,7 +35,6 @@ class AuthBackendCert(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, aws_public_cert=None, backend=None, cert_name=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a AuthBackendCert resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] aws_public_cert: The  Base64 encoded AWS Public key required to
@@ -48,8 +47,6 @@ class AuthBackendCert(pulumi.CustomResource):
         :param pulumi.Input[str] type: Either "pkcs7" or "identity", indicating the type of
                document which can be verified using the given certificate. Defaults to
                "pkcs7".
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_cert.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -87,7 +84,7 @@ class AuthBackendCert(pulumi.CustomResource):
         """
         Get an existing AuthBackendCert resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -101,12 +98,11 @@ class AuthBackendCert(pulumi.CustomResource):
         :param pulumi.Input[str] type: Either "pkcs7" or "identity", indicating the type of
                document which can be verified using the given certificate. Defaults to
                "pkcs7".
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_cert.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["aws_public_cert"] = aws_public_cert
         __props__["backend"] = backend
         __props__["cert_name"] = cert_name

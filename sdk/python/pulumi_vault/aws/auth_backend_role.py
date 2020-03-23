@@ -21,6 +21,9 @@ class AuthBackendRole(pulumi.CustomResource):
     are `ec2` and `iam`. Defaults to `iam`.
     """
     backend: pulumi.Output[str]
+    """
+    Unique name of the auth backend to configure.
+    """
     bound_account_ids: pulumi.Output[list]
     """
     If set, defines a constraint on the EC2
@@ -36,6 +39,9 @@ class AuthBackendRole(pulumi.CustomResource):
     `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
     """
     bound_ec2_instance_ids: pulumi.Output[list]
+    """
+    Only EC2 instances that match this instance ID will be permitted to log in.
+    """
     bound_iam_instance_profile_arns: pulumi.Output[list]
     """
     If set, defines a constraint on
@@ -209,13 +215,16 @@ class AuthBackendRole(pulumi.CustomResource):
         backend. See the [Vault
         documentation](https://www.vaultproject.io/docs/auth/aws.html) for more
         information.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_role.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_instance_migration: If set to `true`, allows migration of
                the underlying instance where the client resides.
         :param pulumi.Input[str] auth_type: The auth type permitted for this role. Valid choices
                are `ec2` and `iam`. Defaults to `iam`.
+        :param pulumi.Input[str] backend: Unique name of the auth backend to configure.
         :param pulumi.Input[list] bound_account_ids: If set, defines a constraint on the EC2
                instances that can perform the login operation that they should be using the
                account ID specified by this field. `auth_type` must be set to `ec2` or
@@ -224,6 +233,7 @@ class AuthBackendRole(pulumi.CustomResource):
                that can perform the login operation that they should be using the AMI ID
                specified by this field. `auth_type` must be set to `ec2` or
                `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        :param pulumi.Input[list] bound_ec2_instance_ids: Only EC2 instances that match this instance ID will be permitted to log in.
         :param pulumi.Input[list] bound_iam_instance_profile_arns: If set, defines a constraint on
                the EC2 instances that can perform the login operation that they must be
                associated with an IAM instance profile ARN which has a prefix that matches
@@ -315,8 +325,6 @@ class AuthBackendRole(pulumi.CustomResource):
                requests a different type at generation time.
         :param pulumi.Input[float] ttl: The TTL period of tokens issued
                using this role, provided as a number of seconds.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_role.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -379,7 +387,7 @@ class AuthBackendRole(pulumi.CustomResource):
         """
         Get an existing AuthBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -387,6 +395,7 @@ class AuthBackendRole(pulumi.CustomResource):
                the underlying instance where the client resides.
         :param pulumi.Input[str] auth_type: The auth type permitted for this role. Valid choices
                are `ec2` and `iam`. Defaults to `iam`.
+        :param pulumi.Input[str] backend: Unique name of the auth backend to configure.
         :param pulumi.Input[list] bound_account_ids: If set, defines a constraint on the EC2
                instances that can perform the login operation that they should be using the
                account ID specified by this field. `auth_type` must be set to `ec2` or
@@ -395,6 +404,7 @@ class AuthBackendRole(pulumi.CustomResource):
                that can perform the login operation that they should be using the AMI ID
                specified by this field. `auth_type` must be set to `ec2` or
                `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        :param pulumi.Input[list] bound_ec2_instance_ids: Only EC2 instances that match this instance ID will be permitted to log in.
         :param pulumi.Input[list] bound_iam_instance_profile_arns: If set, defines a constraint on
                the EC2 instances that can perform the login operation that they must be
                associated with an IAM instance profile ARN which has a prefix that matches
@@ -486,12 +496,11 @@ class AuthBackendRole(pulumi.CustomResource):
                requests a different type at generation time.
         :param pulumi.Input[float] ttl: The TTL period of tokens issued
                using this role, provided as a number of seconds.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_role.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["allow_instance_migration"] = allow_instance_migration
         __props__["auth_type"] = auth_type
         __props__["backend"] = backend

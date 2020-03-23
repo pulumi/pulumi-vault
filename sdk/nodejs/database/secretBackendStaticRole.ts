@@ -37,7 +37,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/database_secret_backend_static_role.html.markdown.
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/database_secret_backend_static_role.md.
  */
 export class SecretBackendStaticRole extends pulumi.CustomResource {
     /**

@@ -39,7 +39,6 @@ class Secret(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, data_json=None, disable_read=None, path=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a Secret resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] data_json: String containing a JSON-encoded object that will be
@@ -52,8 +51,6 @@ class Secret(pulumi.CustomResource):
                this should be prefixed with `secret/`. Writing to other backends with this
                resource is possible; consult each backend's documentation to see which
                endpoints support the `PUT` and `DELETE` methods.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/generic_secret.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -91,7 +88,7 @@ class Secret(pulumi.CustomResource):
         """
         Get an existing Secret resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -109,12 +106,11 @@ class Secret(pulumi.CustomResource):
                this should be prefixed with `secret/`. Writing to other backends with this
                resource is possible; consult each backend's documentation to see which
                endpoints support the `PUT` and `DELETE` methods.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/generic_secret.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["data"] = data
         __props__["data_json"] = data_json
         __props__["disable_read"] = disable_read

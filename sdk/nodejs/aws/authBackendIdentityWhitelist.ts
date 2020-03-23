@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_identity_whitelist.html.markdown.
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_identity_whitelist.html.md.
  */
 export class AuthBackendIdentityWhitelist extends pulumi.CustomResource {
     /**

@@ -16,22 +16,33 @@ class Provider(pulumi.ProviderResource):
         settings, however an explicit `Provider` instance may be created and passed during resource
         construction to achieve fine-grained programmatic control over provider settings. See the
         [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/index.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        
+        :param pulumi.Input[str] address: URL of the root of the target Vault server.
+        :param pulumi.Input[list] auth_logins: Login to vault with an existing auth method using auth/<mount>/login
+        :param pulumi.Input[str] ca_cert_dir: Path to directory containing CA certificate files to validate the server's certificate.
+        :param pulumi.Input[str] ca_cert_file: Path to a CA certificate file to validate the server's certificate.
+        :param pulumi.Input[list] client_auths: Client authentication credentials.
+        :param pulumi.Input[float] max_lease_ttl_seconds: Maximum TTL for secret leases requested by this provider
+        :param pulumi.Input[float] max_retries: Maximum number of retries when a 5xx error code is encountered.
+        :param pulumi.Input[str] namespace: The namespace to use. Available only for Vault Enterprise
+        :param pulumi.Input[bool] skip_tls_verify: Set this to true only if the target Vault server is an insecure development instance.
+        :param pulumi.Input[str] token: Token to use to authenticate to Vault.
+        :param pulumi.Input[str] token_name: Token name to use for creating the Vault child token.
+
         The **auth_logins** object supports the following:
-        
+
           * `namespace` (`pulumi.Input[str]`)
           * `parameters` (`pulumi.Input[dict]`)
           * `path` (`pulumi.Input[str]`)
-        
+
         The **client_auths** object supports the following:
-        
+
           * `certFile` (`pulumi.Input[str]`)
           * `keyFile` (`pulumi.Input[str]`)
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/index.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -85,22 +96,6 @@ class Provider(pulumi.ProviderResource):
             __props__,
             opts)
 
-    @staticmethod
-    def get(resource_name, id, opts=None):
-        """
-        Get an existing Provider resource's state with the given name, id, and optional extra
-        properties used to qualify the lookup.
-        
-        :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
-        :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/index.html.markdown.
-        """
-        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
-
-        __props__ = dict()
-        return Provider(resource_name, opts=opts, __props__=__props__)
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 

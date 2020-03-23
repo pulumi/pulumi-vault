@@ -11,22 +11,52 @@ from . import utilities, tables
 
 class MfaDuo(pulumi.CustomResource):
     api_hostname: pulumi.Output[str]
+    """
+    API hostname for Duo.
+    """
     integration_key: pulumi.Output[str]
+    """
+    Integration key for Duo.
+    """
     mount_accessor: pulumi.Output[str]
+    """
+    The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated
+    with this mount as the username in the mapping.
+    """
     name: pulumi.Output[str]
+    """
+    Name of the MFA method.
+    """
     push_info: pulumi.Output[str]
+    """
+    Push information for Duo.
+    """
     secret_key: pulumi.Output[str]
+    """
+    Secret key for Duo.
+    """
     username_format: pulumi.Output[str]
+    """
+    A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`.
+    """
     def __init__(__self__, resource_name, opts=None, api_hostname=None, integration_key=None, mount_accessor=None, name=None, push_info=None, secret_key=None, username_format=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a resource to manage [Duo MFA](https://www.vaultproject.io/docs/enterprise/mfa/mfa-duo.html).
-        
+
         **Note** this feature is available only with Vault Enterprise.
-        
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/mfa_duo.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/mfa_duo.html.markdown.
+        :param pulumi.Input[str] api_hostname: API hostname for Duo.
+        :param pulumi.Input[str] integration_key: Integration key for Duo.
+        :param pulumi.Input[str] mount_accessor: The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated
+               with this mount as the username in the mapping.
+        :param pulumi.Input[str] name: Name of the MFA method.
+        :param pulumi.Input[str] push_info: Push information for Duo.
+        :param pulumi.Input[str] secret_key: Secret key for Duo.
+        :param pulumi.Input[str] username_format: A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -71,16 +101,23 @@ class MfaDuo(pulumi.CustomResource):
         """
         Get an existing MfaDuo resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/mfa_duo.html.markdown.
+        :param pulumi.Input[str] api_hostname: API hostname for Duo.
+        :param pulumi.Input[str] integration_key: Integration key for Duo.
+        :param pulumi.Input[str] mount_accessor: The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated
+               with this mount as the username in the mapping.
+        :param pulumi.Input[str] name: Name of the MFA method.
+        :param pulumi.Input[str] push_info: Push information for Duo.
+        :param pulumi.Input[str] secret_key: Secret key for Duo.
+        :param pulumi.Input[str] username_format: A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["api_hostname"] = api_hostname
         __props__["integration_key"] = integration_key
         __props__["mount_accessor"] = mount_accessor

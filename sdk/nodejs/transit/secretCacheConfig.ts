@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/transit_secret_cache_config.html.markdown.
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/transit_secret_backend_cache_config.html.md.
  */
 export class SecretCacheConfig extends pulumi.CustomResource {
     /**

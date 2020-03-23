@@ -16,6 +16,10 @@ class OidcKey(pulumi.CustomResource):
     Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
     """
     allowed_client_ids: pulumi.Output[list]
+    """
+    Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
+    allowed.
+    """
     name: pulumi.Output[str]
     """
     Name of the OIDC Key to create.
@@ -32,17 +36,16 @@ class OidcKey(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, algorithm=None, allowed_client_ids=None, name=None, rotation_period=None, verification_ttl=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a OidcKey resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] algorithm: Signing algorithm to use. Signing algorithm to use.
                Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+        :param pulumi.Input[list] allowed_client_ids: Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
+               allowed.
         :param pulumi.Input[str] name: Name of the OIDC Key to create.
         :param pulumi.Input[float] rotation_period: How often to generate a new signing key in number of seconds
         :param pulumi.Input[float] verification_ttl: "Controls how long the public portion of a signing key will be
                available for verification after being rotated in seconds.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_oidc_key.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -77,22 +80,23 @@ class OidcKey(pulumi.CustomResource):
         """
         Get an existing OidcKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] algorithm: Signing algorithm to use. Signing algorithm to use.
                Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+        :param pulumi.Input[list] allowed_client_ids: Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
+               allowed.
         :param pulumi.Input[str] name: Name of the OIDC Key to create.
         :param pulumi.Input[float] rotation_period: How often to generate a new signing key in number of seconds
         :param pulumi.Input[float] verification_ttl: "Controls how long the public portion of a signing key will be
                available for verification after being rotated in seconds.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_oidc_key.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["algorithm"] = algorithm
         __props__["allowed_client_ids"] = allowed_client_ids
         __props__["name"] = name

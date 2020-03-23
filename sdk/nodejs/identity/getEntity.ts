@@ -5,9 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/identity_entity.html.markdown.
- */
 export function getEntity(args?: GetEntityArgs, opts?: pulumi.InvokeOptions): Promise<GetEntityResult> & GetEntityResult {
     args = args || {};
     if (!opts) {

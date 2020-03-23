@@ -9,8 +9,8 @@ import (
 )
 
 // Reads the Role ID of an AppRole from a Vault server.
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/approle_auth_backend_role_id.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/approle_auth_backend_role_id.md.
 func GetAuthBackendRoleId(ctx *pulumi.Context, args *GetAuthBackendRoleIdArgs, opts ...pulumi.InvokeOption) (*GetAuthBackendRoleIdResult, error) {
 	var rv GetAuthBackendRoleIdResult
 	err := ctx.Invoke("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args, &rv, opts...)

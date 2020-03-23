@@ -13,7 +13,7 @@ class GetGroupResult:
     """
     A collection of values returned by getGroup.
     """
-    def __init__(__self__, alias_canonical_id=None, alias_creation_time=None, alias_id=None, alias_last_update_time=None, alias_merged_from_canonical_ids=None, alias_metadata=None, alias_mount_accessor=None, alias_mount_path=None, alias_mount_type=None, alias_name=None, creation_time=None, data_json=None, group_id=None, group_name=None, last_update_time=None, member_entity_ids=None, member_group_ids=None, metadata=None, modify_index=None, namespace_id=None, parent_group_ids=None, policies=None, type=None, id=None):
+    def __init__(__self__, alias_canonical_id=None, alias_creation_time=None, alias_id=None, alias_last_update_time=None, alias_merged_from_canonical_ids=None, alias_metadata=None, alias_mount_accessor=None, alias_mount_path=None, alias_mount_type=None, alias_name=None, creation_time=None, data_json=None, group_id=None, group_name=None, id=None, last_update_time=None, member_entity_ids=None, member_group_ids=None, metadata=None, modify_index=None, namespace_id=None, parent_group_ids=None, policies=None, type=None):
         if alias_canonical_id and not isinstance(alias_canonical_id, str):
             raise TypeError("Expected argument 'alias_canonical_id' to be a str")
         __self__.alias_canonical_id = alias_canonical_id
@@ -84,6 +84,12 @@ class GetGroupResult:
         if group_name and not isinstance(group_name, str):
             raise TypeError("Expected argument 'group_name' to be a str")
         __self__.group_name = group_name
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        id is the provider-assigned unique ID for this managed resource.
+        """
         if last_update_time and not isinstance(last_update_time, str):
             raise TypeError("Expected argument 'last_update_time' to be a str")
         __self__.last_update_time = last_update_time
@@ -138,12 +144,6 @@ class GetGroupResult:
         """
         Type of group
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetGroupResult(GetGroupResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -164,6 +164,7 @@ class AwaitableGetGroupResult(GetGroupResult):
             data_json=self.data_json,
             group_id=self.group_id,
             group_name=self.group_name,
+            id=self.id,
             last_update_time=self.last_update_time,
             member_entity_ids=self.member_entity_ids,
             member_group_ids=self.member_group_ids,
@@ -172,13 +173,12 @@ class AwaitableGetGroupResult(GetGroupResult):
             namespace_id=self.namespace_id,
             parent_group_ids=self.parent_group_ids,
             policies=self.policies,
-            type=self.type,
-            id=self.id)
+            type=self.type)
 
 def get_group(alias_id=None,alias_mount_accessor=None,alias_name=None,group_id=None,group_name=None,opts=None):
     """
     Use this data source to access information about an existing resource.
-    
+
     :param str alias_id: ID of the alias.
     :param str alias_mount_accessor: Accessor of the mount to which the alias belongs to.
            This should be supplied in conjunction with `alias_name`.
@@ -186,10 +186,9 @@ def get_group(alias_id=None,alias_mount_accessor=None,alias_name=None,group_id=N
            `alias_mount_accessor`.
     :param str group_id: ID of the group.
     :param str group_name: Name of the group.
-
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/identity_group.html.markdown.
     """
     __args__ = dict()
+
 
     __args__['aliasId'] = alias_id
     __args__['aliasMountAccessor'] = alias_mount_accessor
@@ -217,6 +216,7 @@ def get_group(alias_id=None,alias_mount_accessor=None,alias_name=None,group_id=N
         data_json=__ret__.get('dataJson'),
         group_id=__ret__.get('groupId'),
         group_name=__ret__.get('groupName'),
+        id=__ret__.get('id'),
         last_update_time=__ret__.get('lastUpdateTime'),
         member_entity_ids=__ret__.get('memberEntityIds'),
         member_group_ids=__ret__.get('memberGroupIds'),
@@ -225,5 +225,4 @@ def get_group(alias_id=None,alias_mount_accessor=None,alias_name=None,group_id=N
         namespace_id=__ret__.get('namespaceId'),
         parent_group_ids=__ret__.get('parentGroupIds'),
         policies=__ret__.get('policies'),
-        type=__ret__.get('type'),
-        id=__ret__.get('id'))
+        type=__ret__.get('type'))

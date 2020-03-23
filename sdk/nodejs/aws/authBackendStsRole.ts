@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_sts_role.html.markdown.
- */
 export class AuthBackendStsRole extends pulumi.CustomResource {
     /**
      * Get an existing AuthBackendStsRole resource's state with the given name, ID, and optional extra

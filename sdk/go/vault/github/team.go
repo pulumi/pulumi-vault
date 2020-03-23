@@ -14,8 +14,8 @@ import (
 // Manages policy mappings for Github Teams authenticated via Github. See the [Vault
 // documentation](https://www.vaultproject.io/docs/auth/github.html) for more
 // information.
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/github_team.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/github_team.html.md.
 type Team struct {
 	pulumi.CustomResourceState
 

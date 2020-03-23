@@ -8,7 +8,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/aws_access_credentials.html.markdown.
 func GetAccessCredentials(ctx *pulumi.Context, args *GetAccessCredentialsArgs, opts ...pulumi.InvokeOption) (*GetAccessCredentialsResult, error) {
 	var rv GetAccessCredentialsResult
 	err := ctx.Invoke("vault:aws/getAccessCredentials:getAccessCredentials", args, &rv, opts...)

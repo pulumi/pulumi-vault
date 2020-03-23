@@ -14,8 +14,8 @@ import (
 // Manages a Github Auth mount in a Vault server. See the [Vault
 // documentation](https://www.vaultproject.io/docs/auth/github.html) for more
 // information.
-// 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/github_auth_backend.html.markdown.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/github_auth_backend.html.md.
 type AuthBackend struct {
 	pulumi.CustomResourceState
 

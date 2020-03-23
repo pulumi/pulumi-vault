@@ -11,7 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_secret_backend_role.html.markdown.
 type SecretBackendRole struct {
 	pulumi.CustomResourceState
 

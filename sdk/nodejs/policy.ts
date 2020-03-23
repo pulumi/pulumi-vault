@@ -15,13 +15,13 @@ import * as utilities from "./utilities";
  * 
  * const example = new vault.Policy("example", {
  *     policy: `path "secret/my_app" {
- *   policy = "write"
+ *   capabilities = ["write"]
  * }
  * `,
  * });
  * ```
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/policy.html.markdown.
+ * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/policy.html.md.
  */
 export class Policy extends pulumi.CustomResource {
     /**
