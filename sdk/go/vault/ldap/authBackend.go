@@ -24,11 +24,11 @@ type AuthBackend struct {
 	// Password to use with `binddn` when performing user search
 	Bindpass pulumi.StringOutput `pulumi:"bindpass"`
 	// Trusted CA to validate TLS certificate
-	Certificate pulumi.StringOutput `pulumi:"certificate"`
-	DenyNullBind pulumi.BoolOutput `pulumi:"denyNullBind"`
+	Certificate  pulumi.StringOutput `pulumi:"certificate"`
+	DenyNullBind pulumi.BoolOutput   `pulumi:"denyNullBind"`
 	// Description for the LDAP auth backend mount
 	Description pulumi.StringOutput `pulumi:"description"`
-	Discoverdn pulumi.BoolOutput `pulumi:"discoverdn"`
+	Discoverdn  pulumi.BoolOutput   `pulumi:"discoverdn"`
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr pulumi.StringOutput `pulumi:"groupattr"`
 	// Base DN under which to perform group search
@@ -131,11 +131,11 @@ type authBackendState struct {
 	// Password to use with `binddn` when performing user search
 	Bindpass *string `pulumi:"bindpass"`
 	// Trusted CA to validate TLS certificate
-	Certificate *string `pulumi:"certificate"`
-	DenyNullBind *bool `pulumi:"denyNullBind"`
+	Certificate  *string `pulumi:"certificate"`
+	DenyNullBind *bool   `pulumi:"denyNullBind"`
 	// Description for the LDAP auth backend mount
 	Description *string `pulumi:"description"`
-	Discoverdn *bool `pulumi:"discoverdn"`
+	Discoverdn  *bool   `pulumi:"discoverdn"`
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr *string `pulumi:"groupattr"`
 	// Base DN under which to perform group search
@@ -208,11 +208,11 @@ type AuthBackendState struct {
 	// Password to use with `binddn` when performing user search
 	Bindpass pulumi.StringPtrInput
 	// Trusted CA to validate TLS certificate
-	Certificate pulumi.StringPtrInput
+	Certificate  pulumi.StringPtrInput
 	DenyNullBind pulumi.BoolPtrInput
 	// Description for the LDAP auth backend mount
 	Description pulumi.StringPtrInput
-	Discoverdn pulumi.BoolPtrInput
+	Discoverdn  pulumi.BoolPtrInput
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr pulumi.StringPtrInput
 	// Base DN under which to perform group search
@@ -287,11 +287,11 @@ type authBackendArgs struct {
 	// Password to use with `binddn` when performing user search
 	Bindpass *string `pulumi:"bindpass"`
 	// Trusted CA to validate TLS certificate
-	Certificate *string `pulumi:"certificate"`
-	DenyNullBind *bool `pulumi:"denyNullBind"`
+	Certificate  *string `pulumi:"certificate"`
+	DenyNullBind *bool   `pulumi:"denyNullBind"`
 	// Description for the LDAP auth backend mount
 	Description *string `pulumi:"description"`
-	Discoverdn *bool `pulumi:"discoverdn"`
+	Discoverdn  *bool   `pulumi:"discoverdn"`
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr *string `pulumi:"groupattr"`
 	// Base DN under which to perform group search
@@ -363,11 +363,11 @@ type AuthBackendArgs struct {
 	// Password to use with `binddn` when performing user search
 	Bindpass pulumi.StringPtrInput
 	// Trusted CA to validate TLS certificate
-	Certificate pulumi.StringPtrInput
+	Certificate  pulumi.StringPtrInput
 	DenyNullBind pulumi.BoolPtrInput
 	// Description for the LDAP auth backend mount
 	Description pulumi.StringPtrInput
-	Discoverdn pulumi.BoolPtrInput
+	Discoverdn  pulumi.BoolPtrInput
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr pulumi.StringPtrInput
 	// Base DN under which to perform group search
@@ -435,4 +435,3 @@ type AuthBackendArgs struct {
 func (AuthBackendArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendArgs)(nil)).Elem()
 }
-

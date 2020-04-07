@@ -43,7 +43,7 @@ type AuthBackend struct {
 	OidcDiscoveryUrl pulumi.StringPtrOutput `pulumi:"oidcDiscoveryUrl"`
 	// Path to mount the JWT/OIDC auth backend
 	Path pulumi.StringPtrOutput `pulumi:"path"`
-	Tune AuthBackendTuneOutput `pulumi:"tune"`
+	Tune AuthBackendTuneOutput  `pulumi:"tune"`
 	// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
 	Type pulumi.StringPtrOutput `pulumi:"type"`
 }
@@ -101,7 +101,7 @@ type authBackendState struct {
 	// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
 	OidcDiscoveryUrl *string `pulumi:"oidcDiscoveryUrl"`
 	// Path to mount the JWT/OIDC auth backend
-	Path *string `pulumi:"path"`
+	Path *string          `pulumi:"path"`
 	Tune *AuthBackendTune `pulumi:"tune"`
 	// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
 	Type *string `pulumi:"type"`
@@ -167,7 +167,7 @@ type authBackendArgs struct {
 	// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
 	OidcDiscoveryUrl *string `pulumi:"oidcDiscoveryUrl"`
 	// Path to mount the JWT/OIDC auth backend
-	Path *string `pulumi:"path"`
+	Path *string          `pulumi:"path"`
 	Tune *AuthBackendTune `pulumi:"tune"`
 	// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
 	Type *string `pulumi:"type"`
@@ -207,4 +207,3 @@ type AuthBackendArgs struct {
 func (AuthBackendArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendArgs)(nil)).Elem()
 }
-

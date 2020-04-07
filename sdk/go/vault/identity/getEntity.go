@@ -33,12 +33,11 @@ type LookupEntityArgs struct {
 	EntityName *string `pulumi:"entityName"`
 }
 
-
 // A collection of values returned by getEntity.
 type LookupEntityResult struct {
-	AliasId string `pulumi:"aliasId"`
+	AliasId            string `pulumi:"aliasId"`
 	AliasMountAccessor string `pulumi:"aliasMountAccessor"`
-	AliasName string `pulumi:"aliasName"`
+	AliasName          string `pulumi:"aliasName"`
 	// A list of entity alias. Structure is documented below.
 	Aliases []GetEntityAliasType `pulumi:"aliases"`
 	// Creation time of the Alias
@@ -49,8 +48,8 @@ type LookupEntityResult struct {
 	// List of Group IDs of which the entity is directly a member of
 	DirectGroupIds []string `pulumi:"directGroupIds"`
 	// Whether the entity is disabled
-	Disabled bool `pulumi:"disabled"`
-	EntityId string `pulumi:"entityId"`
+	Disabled   bool   `pulumi:"disabled"`
+	EntityId   string `pulumi:"entityId"`
 	EntityName string `pulumi:"entityName"`
 	// List of all Group IDs of which the entity is a member of
 	GroupIds []string `pulumi:"groupIds"`
@@ -69,4 +68,3 @@ type LookupEntityResult struct {
 	// List of policies attached to the entity
 	Policies []string `pulumi:"policies"`
 }
-

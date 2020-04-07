@@ -18,7 +18,20 @@ namespace Pulumi.Vault.Kubernetes
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_config.md.
         /// </summary>
+        [Obsolete("Use GetAuthBackendConfig.InvokeAsync() instead")]
         public static Task<GetAuthBackendConfigResult> GetAuthBackendConfig(GetAuthBackendConfigArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetAuthBackendConfig
+    {
+        /// <summary>
+        /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
+        /// documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-config) for more
+        /// information.
+        /// 
+        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_config.md.
+        /// </summary>
+        public static Task<GetAuthBackendConfigResult> InvokeAsync(GetAuthBackendConfigArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 
@@ -31,17 +44,30 @@ namespace Pulumi.Vault.Kubernetes
         [Input("backend")]
         public string? Backend { get; set; }
 
+        /// <summary>
+        /// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+        /// </summary>
         [Input("issuer")]
         public string? Issuer { get; set; }
 
+        /// <summary>
+        /// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
+        /// </summary>
         [Input("kubernetesCaCert")]
         public string? KubernetesCaCert { get; set; }
 
+        /// <summary>
+        /// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
+        /// </summary>
         [Input("kubernetesHost")]
         public string? KubernetesHost { get; set; }
 
         [Input("pemKeys")]
         private List<string>? _pemKeys;
+
+        /// <summary>
+        /// Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
+        /// </summary>
         public List<string> PemKeys
         {
             get => _pemKeys ?? (_pemKeys = new List<string>());

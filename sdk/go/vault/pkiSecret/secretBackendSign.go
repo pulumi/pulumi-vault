@@ -232,4 +232,3 @@ type SecretBackendSignArgs struct {
 func (SecretBackendSignArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendSignArgs)(nil)).Elem()
 }
-

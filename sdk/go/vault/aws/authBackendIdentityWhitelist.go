@@ -113,4 +113,3 @@ type AuthBackendIdentityWhitelistArgs struct {
 func (AuthBackendIdentityWhitelistArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendIdentityWhitelistArgs)(nil)).Elem()
 }
-

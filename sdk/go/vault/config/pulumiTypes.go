@@ -12,9 +12,9 @@ import (
 )
 
 type AuthLogins struct {
-	Namespace *string `pulumi:"namespace"`
+	Namespace  *string           `pulumi:"namespace"`
 	Parameters map[string]string `pulumi:"parameters"`
-	Path string `pulumi:"path"`
+	Path       string            `pulumi:"path"`
 }
 
 type AuthLoginsInput interface {
@@ -25,9 +25,9 @@ type AuthLoginsInput interface {
 }
 
 type AuthLoginsArgs struct {
-	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+	Namespace  pulumi.StringPtrInput `pulumi:"namespace"`
 	Parameters pulumi.StringMapInput `pulumi:"parameters"`
-	Path pulumi.StringInput `pulumi:"path"`
+	Path       pulumi.StringInput    `pulumi:"path"`
 }
 
 func (AuthLoginsArgs) ElementType() reflect.Type {
@@ -63,7 +63,7 @@ func (i AuthLoginsArray) ToAuthLoginsArrayOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(AuthLoginsArrayOutput)
 }
 
-type AuthLoginsOutput struct { *pulumi.OutputState }
+type AuthLoginsOutput struct{ *pulumi.OutputState }
 
 func (AuthLoginsOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*AuthLogins)(nil)).Elem()
@@ -78,18 +78,18 @@ func (o AuthLoginsOutput) ToAuthLoginsOutputWithContext(ctx context.Context) Aut
 }
 
 func (o AuthLoginsOutput) Namespace() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v AuthLogins) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v AuthLogins) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 func (o AuthLoginsOutput) Parameters() pulumi.StringMapOutput {
-	return o.ApplyT(func (v AuthLogins) map[string]string { return v.Parameters }).(pulumi.StringMapOutput)
+	return o.ApplyT(func(v AuthLogins) map[string]string { return v.Parameters }).(pulumi.StringMapOutput)
 }
 
 func (o AuthLoginsOutput) Path() pulumi.StringOutput {
-	return o.ApplyT(func (v AuthLogins) string { return v.Path }).(pulumi.StringOutput)
+	return o.ApplyT(func(v AuthLogins) string { return v.Path }).(pulumi.StringOutput)
 }
 
-type AuthLoginsArrayOutput struct { *pulumi.OutputState}
+type AuthLoginsArrayOutput struct{ *pulumi.OutputState }
 
 func (AuthLoginsArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]AuthLogins)(nil)).Elem()
@@ -104,14 +104,14 @@ func (o AuthLoginsArrayOutput) ToAuthLoginsArrayOutputWithContext(ctx context.Co
 }
 
 func (o AuthLoginsArrayOutput) Index(i pulumi.IntInput) AuthLoginsOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) AuthLogins {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthLogins {
 		return vs[0].([]AuthLogins)[vs[1].(int)]
 	}).(AuthLoginsOutput)
 }
 
 type ClientAuths struct {
 	CertFile string `pulumi:"certFile"`
-	KeyFile string `pulumi:"keyFile"`
+	KeyFile  string `pulumi:"keyFile"`
 }
 
 type ClientAuthsInput interface {
@@ -123,7 +123,7 @@ type ClientAuthsInput interface {
 
 type ClientAuthsArgs struct {
 	CertFile pulumi.StringInput `pulumi:"certFile"`
-	KeyFile pulumi.StringInput `pulumi:"keyFile"`
+	KeyFile  pulumi.StringInput `pulumi:"keyFile"`
 }
 
 func (ClientAuthsArgs) ElementType() reflect.Type {
@@ -159,7 +159,7 @@ func (i ClientAuthsArray) ToClientAuthsArrayOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthsArrayOutput)
 }
 
-type ClientAuthsOutput struct { *pulumi.OutputState }
+type ClientAuthsOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthsOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ClientAuths)(nil)).Elem()
@@ -174,14 +174,14 @@ func (o ClientAuthsOutput) ToClientAuthsOutputWithContext(ctx context.Context) C
 }
 
 func (o ClientAuthsOutput) CertFile() pulumi.StringOutput {
-	return o.ApplyT(func (v ClientAuths) string { return v.CertFile }).(pulumi.StringOutput)
+	return o.ApplyT(func(v ClientAuths) string { return v.CertFile }).(pulumi.StringOutput)
 }
 
 func (o ClientAuthsOutput) KeyFile() pulumi.StringOutput {
-	return o.ApplyT(func (v ClientAuths) string { return v.KeyFile }).(pulumi.StringOutput)
+	return o.ApplyT(func(v ClientAuths) string { return v.KeyFile }).(pulumi.StringOutput)
 }
 
-type ClientAuthsArrayOutput struct { *pulumi.OutputState}
+type ClientAuthsArrayOutput struct{ *pulumi.OutputState }
 
 func (ClientAuthsArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]ClientAuths)(nil)).Elem()
@@ -196,7 +196,7 @@ func (o ClientAuthsArrayOutput) ToClientAuthsArrayOutputWithContext(ctx context.
 }
 
 func (o ClientAuthsArrayOutput) Index(i pulumi.IntInput) ClientAuthsOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) ClientAuths {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClientAuths {
 		return vs[0].([]ClientAuths)[vs[1].(int)]
 	}).(ClientAuthsOutput)
 }

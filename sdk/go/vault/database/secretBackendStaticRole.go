@@ -140,4 +140,3 @@ type SecretBackendStaticRoleArgs struct {
 func (SecretBackendStaticRoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendStaticRoleArgs)(nil)).Elem()
 }
-

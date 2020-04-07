@@ -24,10 +24,9 @@ type LookupSecretArgs struct {
 	// default, this should be prefixed with `secret/`. Reading from other backends
 	// with this data source is possible; consult each backend's documentation
 	// to see which endpoints support the `GET` method.
-	Path string `pulumi:"path"`
-	Version *int `pulumi:"version"`
+	Path    string `pulumi:"path"`
+	Version *int   `pulumi:"version"`
 }
-
 
 // A collection of values returned by getSecret.
 type LookupSecretResult struct {
@@ -46,10 +45,9 @@ type LookupSecretResult struct {
 	// generated with this data may fail to apply.
 	LeaseDuration int `pulumi:"leaseDuration"`
 	// The lease identifier assigned by Vault, if any.
-	LeaseId string `pulumi:"leaseId"`
-	LeaseRenewable bool `pulumi:"leaseRenewable"`
+	LeaseId        string `pulumi:"leaseId"`
+	LeaseRenewable bool   `pulumi:"leaseRenewable"`
 	LeaseStartTime string `pulumi:"leaseStartTime"`
-	Path string `pulumi:"path"`
-	Version *int `pulumi:"version"`
+	Path           string `pulumi:"path"`
+	Version        *int   `pulumi:"version"`
 }
-

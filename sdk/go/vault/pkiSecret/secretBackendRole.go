@@ -29,7 +29,7 @@ type SecretBackendRole struct {
 	AllowLocalhost pulumi.BoolPtrOutput `pulumi:"allowLocalhost"`
 	// Flag to allow certificates matching subdomains
 	AllowSubdomains pulumi.BoolPtrOutput `pulumi:"allowSubdomains"`
-	// List of allowed domains for certificates 
+	// List of allowed domains for certificates
 	AllowedDomains pulumi.StringArrayOutput `pulumi:"allowedDomains"`
 	// Defines allowed custom SANs
 	AllowedOtherSans pulumi.StringArrayOutput `pulumi:"allowedOtherSans"`
@@ -136,7 +136,7 @@ type secretBackendRoleState struct {
 	AllowLocalhost *bool `pulumi:"allowLocalhost"`
 	// Flag to allow certificates matching subdomains
 	AllowSubdomains *bool `pulumi:"allowSubdomains"`
-	// List of allowed domains for certificates 
+	// List of allowed domains for certificates
 	AllowedDomains []string `pulumi:"allowedDomains"`
 	// Defines allowed custom SANs
 	AllowedOtherSans []string `pulumi:"allowedOtherSans"`
@@ -213,7 +213,7 @@ type SecretBackendRoleState struct {
 	AllowLocalhost pulumi.BoolPtrInput
 	// Flag to allow certificates matching subdomains
 	AllowSubdomains pulumi.BoolPtrInput
-	// List of allowed domains for certificates 
+	// List of allowed domains for certificates
 	AllowedDomains pulumi.StringArrayInput
 	// Defines allowed custom SANs
 	AllowedOtherSans pulumi.StringArrayInput
@@ -294,7 +294,7 @@ type secretBackendRoleArgs struct {
 	AllowLocalhost *bool `pulumi:"allowLocalhost"`
 	// Flag to allow certificates matching subdomains
 	AllowSubdomains *bool `pulumi:"allowSubdomains"`
-	// List of allowed domains for certificates 
+	// List of allowed domains for certificates
 	AllowedDomains []string `pulumi:"allowedDomains"`
 	// Defines allowed custom SANs
 	AllowedOtherSans []string `pulumi:"allowedOtherSans"`
@@ -372,7 +372,7 @@ type SecretBackendRoleArgs struct {
 	AllowLocalhost pulumi.BoolPtrInput
 	// Flag to allow certificates matching subdomains
 	AllowSubdomains pulumi.BoolPtrInput
-	// List of allowed domains for certificates 
+	// List of allowed domains for certificates
 	AllowedDomains pulumi.StringArrayInput
 	// Defines allowed custom SANs
 	AllowedOtherSans pulumi.StringArrayInput
@@ -439,4 +439,3 @@ type SecretBackendRoleArgs struct {
 func (SecretBackendRoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendRoleArgs)(nil)).Elem()
 }
-

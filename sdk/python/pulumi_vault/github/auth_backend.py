@@ -86,11 +86,8 @@ class AuthBackend(pulumi.CustomResource):
     """
     token_type: pulumi.Output[str]
     """
-    (Optional) The type of token that should be generated. Can be `service`,
-    `batch`, or `default` to use the mount's tuned default (which unless changed will be
-    `service` tokens). For token store roles, there are two additional possibilities:
-    `default-service` and `default-batch` which specify the type to return unless the client
-    requests a different type at generation time.
+    Specifies the type of tokens that should be returned by
+    the mount. Valid values are "default-service", "default-batch", "service", "batch".
     """
     ttl: pulumi.Output[str]
     """
@@ -139,28 +136,31 @@ class AuthBackend(pulumi.CustomResource):
                on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[float] token_ttl: (Optional) The incremental lifetime for generated tokens in number of seconds.
                Its current value will be referenced at renewal time.
-        :param pulumi.Input[str] token_type: (Optional) The type of token that should be generated. Can be `service`,
-               `batch`, or `default` to use the mount's tuned default (which unless changed will be
-               `service` tokens). For token store roles, there are two additional possibilities:
-               `default-service` and `default-batch` which specify the type to return unless the client
-               requests a different type at generation time.
+        :param pulumi.Input[str] token_type: Specifies the type of tokens that should be returned by
+               the mount. Valid values are "default-service", "default-batch", "service", "batch".
         :param pulumi.Input[str] ttl: (Optional; Deprecated, use `token_ttl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
                using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
 
         The **tune** object supports the following:
 
-          * `allowedResponseHeaders` (`pulumi.Input[list]`)
-          * `auditNonHmacRequestKeys` (`pulumi.Input[list]`)
-          * `auditNonHmacResponseKeys` (`pulumi.Input[list]`)
-          * `defaultLeaseTtl` (`pulumi.Input[str]`)
-          * `listing_visibility` (`pulumi.Input[str]`)
-          * `maxLeaseTtl` (`pulumi.Input[str]`)
-          * `passthroughRequestHeaders` (`pulumi.Input[list]`)
-          * `token_type` (`pulumi.Input[str]`) - (Optional) The type of token that should be generated. Can be `service`,
-            `batch`, or `default` to use the mount's tuned default (which unless changed will be
-            `service` tokens). For token store roles, there are two additional possibilities:
-            `default-service` and `default-batch` which specify the type to return unless the client
-            requests a different type at generation time.
+          * `allowedResponseHeaders` (`pulumi.Input[list]`) - List of headers to whitelist and allowing
+            a plugin to include them in the response.
+          * `auditNonHmacRequestKeys` (`pulumi.Input[list]`) - Specifies the list of keys that will
+            not be HMAC'd by audit devices in the request data object.
+          * `auditNonHmacResponseKeys` (`pulumi.Input[list]`) - Specifies the list of keys that will
+            not be HMAC'd by audit devices in the response data object.
+          * `defaultLeaseTtl` (`pulumi.Input[str]`) - Specifies the default time-to-live.
+            If set, this overrides the global default.
+            Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+          * `listing_visibility` (`pulumi.Input[str]`) - Specifies whether to show this mount in
+            the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+          * `maxLeaseTtl` (`pulumi.Input[str]`) - Specifies the maximum time-to-live.
+            If set, this overrides the global default.
+            Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+          * `passthroughRequestHeaders` (`pulumi.Input[list]`) - List of headers to whitelist and
+            pass from the request to the backend.
+          * `token_type` (`pulumi.Input[str]`) - Specifies the type of tokens that should be returned by
+            the mount. Valid values are "default-service", "default-batch", "service", "batch".
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -245,28 +245,31 @@ class AuthBackend(pulumi.CustomResource):
                on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[float] token_ttl: (Optional) The incremental lifetime for generated tokens in number of seconds.
                Its current value will be referenced at renewal time.
-        :param pulumi.Input[str] token_type: (Optional) The type of token that should be generated. Can be `service`,
-               `batch`, or `default` to use the mount's tuned default (which unless changed will be
-               `service` tokens). For token store roles, there are two additional possibilities:
-               `default-service` and `default-batch` which specify the type to return unless the client
-               requests a different type at generation time.
+        :param pulumi.Input[str] token_type: Specifies the type of tokens that should be returned by
+               the mount. Valid values are "default-service", "default-batch", "service", "batch".
         :param pulumi.Input[str] ttl: (Optional; Deprecated, use `token_ttl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
                using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
 
         The **tune** object supports the following:
 
-          * `allowedResponseHeaders` (`pulumi.Input[list]`)
-          * `auditNonHmacRequestKeys` (`pulumi.Input[list]`)
-          * `auditNonHmacResponseKeys` (`pulumi.Input[list]`)
-          * `defaultLeaseTtl` (`pulumi.Input[str]`)
-          * `listing_visibility` (`pulumi.Input[str]`)
-          * `maxLeaseTtl` (`pulumi.Input[str]`)
-          * `passthroughRequestHeaders` (`pulumi.Input[list]`)
-          * `token_type` (`pulumi.Input[str]`) - (Optional) The type of token that should be generated. Can be `service`,
-            `batch`, or `default` to use the mount's tuned default (which unless changed will be
-            `service` tokens). For token store roles, there are two additional possibilities:
-            `default-service` and `default-batch` which specify the type to return unless the client
-            requests a different type at generation time.
+          * `allowedResponseHeaders` (`pulumi.Input[list]`) - List of headers to whitelist and allowing
+            a plugin to include them in the response.
+          * `auditNonHmacRequestKeys` (`pulumi.Input[list]`) - Specifies the list of keys that will
+            not be HMAC'd by audit devices in the request data object.
+          * `auditNonHmacResponseKeys` (`pulumi.Input[list]`) - Specifies the list of keys that will
+            not be HMAC'd by audit devices in the response data object.
+          * `defaultLeaseTtl` (`pulumi.Input[str]`) - Specifies the default time-to-live.
+            If set, this overrides the global default.
+            Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+          * `listing_visibility` (`pulumi.Input[str]`) - Specifies whether to show this mount in
+            the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+          * `maxLeaseTtl` (`pulumi.Input[str]`) - Specifies the maximum time-to-live.
+            If set, this overrides the global default.
+            Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+          * `passthroughRequestHeaders` (`pulumi.Input[list]`) - List of headers to whitelist and
+            pass from the request to the backend.
+          * `token_type` (`pulumi.Input[str]`) - Specifies the type of tokens that should be returned by
+            the mount. Valid values are "default-service", "default-batch", "service", "batch".
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

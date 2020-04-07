@@ -23,7 +23,6 @@ type LookupAuthBackendArgs struct {
 	Path string `pulumi:"path"`
 }
 
-
 // A collection of values returned by getAuthBackend.
 type LookupAuthBackendResult struct {
 	// The accessor for this auth method
@@ -39,9 +38,8 @@ type LookupAuthBackendResult struct {
 	// Specifies if the auth method is local only.
 	Local bool `pulumi:"local"`
 	// The maximum lease duration in seconds.
-	MaxLeaseTtlSeconds int `pulumi:"maxLeaseTtlSeconds"`
-	Path string `pulumi:"path"`
+	MaxLeaseTtlSeconds int    `pulumi:"maxLeaseTtlSeconds"`
+	Path               string `pulumi:"path"`
 	// The name of the auth method type.
 	Type string `pulumi:"type"`
 }
-

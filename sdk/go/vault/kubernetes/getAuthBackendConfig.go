@@ -27,12 +27,15 @@ type LookupAuthBackendConfigArgs struct {
 	// The unique name for the Kubernetes backend the config to
 	// retrieve Role attributes for resides in. Defaults to "kubernetes".
 	Backend *string `pulumi:"backend"`
+	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
 	Issuer *string `pulumi:"issuer"`
+	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
 	KubernetesCaCert *string `pulumi:"kubernetesCaCert"`
+	// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
 	KubernetesHost *string `pulumi:"kubernetesHost"`
+	// Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys []string `pulumi:"pemKeys"`
 }
-
 
 // A collection of values returned by getAuthBackendConfig.
 type LookupAuthBackendConfigResult struct {
@@ -48,4 +51,3 @@ type LookupAuthBackendConfigResult struct {
 	// Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys []string `pulumi:"pemKeys"`
 }
-

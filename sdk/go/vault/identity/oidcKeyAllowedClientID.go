@@ -89,4 +89,3 @@ type OidcKeyAllowedClientIDArgs struct {
 func (OidcKeyAllowedClientIDArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*oidcKeyAllowedClientIDArgs)(nil)).Elem()
 }
-

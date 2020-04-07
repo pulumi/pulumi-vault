@@ -151,4 +151,3 @@ type BackendRoleArgs struct {
 func (BackendRoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*backendRoleArgs)(nil)).Elem()
 }
-

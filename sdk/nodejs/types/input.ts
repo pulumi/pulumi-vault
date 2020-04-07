@@ -5,16 +5,47 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 
 export interface AuthBackendTune {
+    /**
+     * List of headers to whitelist and allowing
+     * a plugin to include them in the response.
+     */
     allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the list of keys that will
+     * not be HMAC'd by audit devices in the request data object.
+     */
     auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the list of keys that will
+     * not be HMAC'd by audit devices in the response data object.
+     */
     auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the default time-to-live.
+     * If set, this overrides the global default.
+     * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+     */
     defaultLeaseTtl?: pulumi.Input<string>;
     /**
-     * (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
+     * Specifies whether to show this mount in
+     * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
      */
     listingVisibility?: pulumi.Input<string>;
+    /**
+     * Specifies the maximum time-to-live.
+     * If set, this overrides the global default.
+     * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+     */
     maxLeaseTtl?: pulumi.Input<string>;
+    /**
+     * List of headers to whitelist and
+     * pass from the request to the backend.
+     */
     passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the type of tokens that should be returned by
+     * the mount. Valid values are "default-service", "default-batch", "service", "batch".
+     */
     tokenType?: pulumi.Input<string>;
 }
 
@@ -370,26 +401,59 @@ export namespace database {
 
 export namespace gcp {
     export interface SecretRolesetBinding {
+        /**
+         * Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
+         */
         resource: pulumi.Input<string>;
+        /**
+         * List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
+         */
         roles: pulumi.Input<pulumi.Input<string>[]>;
     }
 }
 
 export namespace github {
     export interface AuthBackendTune {
+        /**
+         * List of headers to whitelist and allowing
+         * a plugin to include them in the response.
+         */
         allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the list of keys that will
+         * not be HMAC'd by audit devices in the request data object.
+         */
         auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the list of keys that will
+         * not be HMAC'd by audit devices in the response data object.
+         */
         auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the default time-to-live.
+         * If set, this overrides the global default.
+         * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+         */
         defaultLeaseTtl?: pulumi.Input<string>;
+        /**
+         * Specifies whether to show this mount in
+         * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+         */
         listingVisibility?: pulumi.Input<string>;
+        /**
+         * Specifies the maximum time-to-live.
+         * If set, this overrides the global default.
+         * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+         */
         maxLeaseTtl?: pulumi.Input<string>;
+        /**
+         * List of headers to whitelist and
+         * pass from the request to the backend.
+         */
         passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * (Optional) The type of token that should be generated. Can be `service`,
-         * `batch`, or `default` to use the mount's tuned default (which unless changed will be
-         * `service` tokens). For token store roles, there are two additional possibilities:
-         * `default-service` and `default-batch` which specify the type to return unless the client
-         * requests a different type at generation time.
+         * Specifies the type of tokens that should be returned by
+         * the mount. Valid values are "default-service", "default-batch", "service", "batch".
          */
         tokenType?: pulumi.Input<string>;
     }
@@ -400,13 +464,47 @@ export namespace identity {
 
 export namespace jwt {
     export interface AuthBackendTune {
+        /**
+         * List of headers to whitelist and allowing
+         * a plugin to include them in the response.
+         */
         allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the list of keys that will
+         * not be HMAC'd by audit devices in the request data object.
+         */
         auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the list of keys that will
+         * not be HMAC'd by audit devices in the response data object.
+         */
         auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the default time-to-live.
+         * If set, this overrides the global default.
+         * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+         */
         defaultLeaseTtl?: pulumi.Input<string>;
+        /**
+         * Specifies whether to show this mount in
+         * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+         */
         listingVisibility?: pulumi.Input<string>;
+        /**
+         * Specifies the maximum time-to-live.
+         * If set, this overrides the global default.
+         * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+         */
         maxLeaseTtl?: pulumi.Input<string>;
+        /**
+         * List of headers to whitelist and
+         * pass from the request to the backend.
+         */
         passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the type of tokens that should be returned by
+         * the mount. Valid values are "default-service", "default-batch", "service", "batch".
+         */
         tokenType?: pulumi.Input<string>;
     }
 }

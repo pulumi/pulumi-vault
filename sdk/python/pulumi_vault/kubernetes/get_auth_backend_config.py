@@ -71,6 +71,10 @@ def get_auth_backend_config(backend=None,issuer=None,kubernetes_ca_cert=None,kub
 
     :param str backend: The unique name for the Kubernetes backend the config to
            retrieve Role attributes for resides in. Defaults to "kubernetes".
+    :param str issuer: Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+    :param str kubernetes_ca_cert: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
+    :param str kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
+    :param list pem_keys: Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
     """
     __args__ = dict()
 

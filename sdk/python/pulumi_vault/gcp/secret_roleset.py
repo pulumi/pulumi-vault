@@ -18,8 +18,8 @@ class SecretRoleset(pulumi.CustomResource):
     """
     Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
 
-      * `resource` (`str`)
-      * `roles` (`list`)
+      * `resource` (`str`) - Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
+      * `roles` (`list`) - List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
     """
     project: pulumi.Output[str]
     """
@@ -60,8 +60,8 @@ class SecretRoleset(pulumi.CustomResource):
 
         The **bindings** object supports the following:
 
-          * `resource` (`pulumi.Input[str]`)
-          * `roles` (`pulumi.Input[list]`)
+          * `resource` (`pulumi.Input[str]`) - Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
+          * `roles` (`pulumi.Input[list]`) - List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -120,8 +120,8 @@ class SecretRoleset(pulumi.CustomResource):
 
         The **bindings** object supports the following:
 
-          * `resource` (`pulumi.Input[str]`)
-          * `roles` (`pulumi.Input[list]`)
+          * `resource` (`pulumi.Input[str]`) - Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
+          * `roles` (`pulumi.Input[list]`) - List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

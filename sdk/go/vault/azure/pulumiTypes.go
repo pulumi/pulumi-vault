@@ -12,9 +12,9 @@ import (
 )
 
 type BackendRoleAzureRole struct {
-	RoleId *string `pulumi:"roleId"`
-	RoleName string `pulumi:"roleName"`
-	Scope string `pulumi:"scope"`
+	RoleId   *string `pulumi:"roleId"`
+	RoleName string  `pulumi:"roleName"`
+	Scope    string  `pulumi:"scope"`
 }
 
 type BackendRoleAzureRoleInput interface {
@@ -25,9 +25,9 @@ type BackendRoleAzureRoleInput interface {
 }
 
 type BackendRoleAzureRoleArgs struct {
-	RoleId pulumi.StringPtrInput `pulumi:"roleId"`
-	RoleName pulumi.StringInput `pulumi:"roleName"`
-	Scope pulumi.StringInput `pulumi:"scope"`
+	RoleId   pulumi.StringPtrInput `pulumi:"roleId"`
+	RoleName pulumi.StringInput    `pulumi:"roleName"`
+	Scope    pulumi.StringInput    `pulumi:"scope"`
 }
 
 func (BackendRoleAzureRoleArgs) ElementType() reflect.Type {
@@ -63,7 +63,7 @@ func (i BackendRoleAzureRoleArray) ToBackendRoleAzureRoleArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(BackendRoleAzureRoleArrayOutput)
 }
 
-type BackendRoleAzureRoleOutput struct { *pulumi.OutputState }
+type BackendRoleAzureRoleOutput struct{ *pulumi.OutputState }
 
 func (BackendRoleAzureRoleOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*BackendRoleAzureRole)(nil)).Elem()
@@ -78,18 +78,18 @@ func (o BackendRoleAzureRoleOutput) ToBackendRoleAzureRoleOutputWithContext(ctx 
 }
 
 func (o BackendRoleAzureRoleOutput) RoleId() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v BackendRoleAzureRole) *string { return v.RoleId }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v BackendRoleAzureRole) *string { return v.RoleId }).(pulumi.StringPtrOutput)
 }
 
 func (o BackendRoleAzureRoleOutput) RoleName() pulumi.StringOutput {
-	return o.ApplyT(func (v BackendRoleAzureRole) string { return v.RoleName }).(pulumi.StringOutput)
+	return o.ApplyT(func(v BackendRoleAzureRole) string { return v.RoleName }).(pulumi.StringOutput)
 }
 
 func (o BackendRoleAzureRoleOutput) Scope() pulumi.StringOutput {
-	return o.ApplyT(func (v BackendRoleAzureRole) string { return v.Scope }).(pulumi.StringOutput)
+	return o.ApplyT(func(v BackendRoleAzureRole) string { return v.Scope }).(pulumi.StringOutput)
 }
 
-type BackendRoleAzureRoleArrayOutput struct { *pulumi.OutputState}
+type BackendRoleAzureRoleArrayOutput struct{ *pulumi.OutputState }
 
 func (BackendRoleAzureRoleArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]BackendRoleAzureRole)(nil)).Elem()
@@ -104,7 +104,7 @@ func (o BackendRoleAzureRoleArrayOutput) ToBackendRoleAzureRoleArrayOutputWithCo
 }
 
 func (o BackendRoleAzureRoleArrayOutput) Index(i pulumi.IntInput) BackendRoleAzureRoleOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) BackendRoleAzureRole {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BackendRoleAzureRole {
 		return vs[0].([]BackendRoleAzureRole)[vs[1].(int)]
 	}).(BackendRoleAzureRoleOutput)
 }

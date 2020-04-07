@@ -53,9 +53,21 @@ export interface GetAuthBackendConfigArgs {
      * retrieve Role attributes for resides in. Defaults to "kubernetes".
      */
     readonly backend?: string;
+    /**
+     * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+     */
     readonly issuer?: string;
+    /**
+     * PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
+     */
     readonly kubernetesCaCert?: string;
+    /**
+     * Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
+     */
     readonly kubernetesHost?: string;
+    /**
+     * Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
+     */
     readonly pemKeys?: string[];
 }
 

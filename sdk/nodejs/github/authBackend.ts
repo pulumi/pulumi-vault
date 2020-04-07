@@ -126,11 +126,8 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly tokenTtl!: pulumi.Output<number | undefined>;
     /**
-     * (Optional) The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount's tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
+     * Specifies the type of tokens that should be returned by
+     * the mount. Valid values are "default-service", "default-batch", "service", "batch".
      */
     public readonly tokenType!: pulumi.Output<string | undefined>;
     /**
@@ -284,11 +281,8 @@ export interface AuthBackendState {
      */
     readonly tokenTtl?: pulumi.Input<number>;
     /**
-     * (Optional) The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount's tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
+     * Specifies the type of tokens that should be returned by
+     * the mount. Valid values are "default-service", "default-batch", "service", "batch".
      */
     readonly tokenType?: pulumi.Input<string>;
     /**
@@ -378,11 +372,8 @@ export interface AuthBackendArgs {
      */
     readonly tokenTtl?: pulumi.Input<number>;
     /**
-     * (Optional) The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount's tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
+     * Specifies the type of tokens that should be returned by
+     * the mount. Valid values are "default-service", "default-batch", "service", "batch".
      */
     readonly tokenType?: pulumi.Input<string>;
     /**

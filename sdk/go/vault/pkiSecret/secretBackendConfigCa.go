@@ -89,4 +89,3 @@ type SecretBackendConfigCaArgs struct {
 func (SecretBackendConfigCaArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendConfigCaArgs)(nil)).Elem()
 }
-

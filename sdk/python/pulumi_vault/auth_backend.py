@@ -24,7 +24,8 @@ class AuthBackend(pulumi.CustomResource):
     """
     listing_visibility: pulumi.Output[str]
     """
-    (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
+    Specifies whether to show this mount in
+    the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
     """
     local: pulumi.Output[bool]
     """
@@ -42,14 +43,24 @@ class AuthBackend(pulumi.CustomResource):
     """
     Extra configuration block. Structure is documented below.
 
-      * `allowedResponseHeaders` (`list`)
-      * `auditNonHmacRequestKeys` (`list`)
-      * `auditNonHmacResponseKeys` (`list`)
-      * `defaultLeaseTtl` (`str`)
-      * `listing_visibility` (`str`) - (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
-      * `maxLeaseTtl` (`str`)
-      * `passthroughRequestHeaders` (`list`)
-      * `token_type` (`str`)
+      * `allowedResponseHeaders` (`list`) - List of headers to whitelist and allowing
+        a plugin to include them in the response.
+      * `auditNonHmacRequestKeys` (`list`) - Specifies the list of keys that will
+        not be HMAC'd by audit devices in the request data object.
+      * `auditNonHmacResponseKeys` (`list`) - Specifies the list of keys that will
+        not be HMAC'd by audit devices in the response data object.
+      * `defaultLeaseTtl` (`str`) - Specifies the default time-to-live.
+        If set, this overrides the global default.
+        Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+      * `listing_visibility` (`str`) - Specifies whether to show this mount in
+        the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+      * `maxLeaseTtl` (`str`) - Specifies the maximum time-to-live.
+        If set, this overrides the global default.
+        Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+      * `passthroughRequestHeaders` (`list`) - List of headers to whitelist and
+        pass from the request to the backend.
+      * `token_type` (`str`) - Specifies the type of tokens that should be returned by
+        the mount. Valid values are "default-service", "default-batch", "service", "batch".
     """
     type: pulumi.Output[str]
     """
@@ -62,7 +73,8 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] default_lease_ttl_seconds: (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
         :param pulumi.Input[str] description: A description of the auth method
-        :param pulumi.Input[str] listing_visibility: (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in
+               the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
         :param pulumi.Input[float] max_lease_ttl_seconds: (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
         :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type
@@ -71,14 +83,24 @@ class AuthBackend(pulumi.CustomResource):
 
         The **tune** object supports the following:
 
-          * `allowedResponseHeaders` (`pulumi.Input[list]`)
-          * `auditNonHmacRequestKeys` (`pulumi.Input[list]`)
-          * `auditNonHmacResponseKeys` (`pulumi.Input[list]`)
-          * `defaultLeaseTtl` (`pulumi.Input[str]`)
-          * `listing_visibility` (`pulumi.Input[str]`) - (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
-          * `maxLeaseTtl` (`pulumi.Input[str]`)
-          * `passthroughRequestHeaders` (`pulumi.Input[list]`)
-          * `token_type` (`pulumi.Input[str]`)
+          * `allowedResponseHeaders` (`pulumi.Input[list]`) - List of headers to whitelist and allowing
+            a plugin to include them in the response.
+          * `auditNonHmacRequestKeys` (`pulumi.Input[list]`) - Specifies the list of keys that will
+            not be HMAC'd by audit devices in the request data object.
+          * `auditNonHmacResponseKeys` (`pulumi.Input[list]`) - Specifies the list of keys that will
+            not be HMAC'd by audit devices in the response data object.
+          * `defaultLeaseTtl` (`pulumi.Input[str]`) - Specifies the default time-to-live.
+            If set, this overrides the global default.
+            Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+          * `listing_visibility` (`pulumi.Input[str]`) - Specifies whether to show this mount in
+            the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+          * `maxLeaseTtl` (`pulumi.Input[str]`) - Specifies the maximum time-to-live.
+            If set, this overrides the global default.
+            Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+          * `passthroughRequestHeaders` (`pulumi.Input[list]`) - List of headers to whitelist and
+            pass from the request to the backend.
+          * `token_type` (`pulumi.Input[str]`) - Specifies the type of tokens that should be returned by
+            the mount. Valid values are "default-service", "default-batch", "service", "batch".
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -126,7 +148,8 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] accessor: The accessor for this auth method
         :param pulumi.Input[float] default_lease_ttl_seconds: (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
         :param pulumi.Input[str] description: A description of the auth method
-        :param pulumi.Input[str] listing_visibility: (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in
+               the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
         :param pulumi.Input[float] max_lease_ttl_seconds: (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
         :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type
@@ -135,14 +158,24 @@ class AuthBackend(pulumi.CustomResource):
 
         The **tune** object supports the following:
 
-          * `allowedResponseHeaders` (`pulumi.Input[list]`)
-          * `auditNonHmacRequestKeys` (`pulumi.Input[list]`)
-          * `auditNonHmacResponseKeys` (`pulumi.Input[list]`)
-          * `defaultLeaseTtl` (`pulumi.Input[str]`)
-          * `listing_visibility` (`pulumi.Input[str]`) - (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
-          * `maxLeaseTtl` (`pulumi.Input[str]`)
-          * `passthroughRequestHeaders` (`pulumi.Input[list]`)
-          * `token_type` (`pulumi.Input[str]`)
+          * `allowedResponseHeaders` (`pulumi.Input[list]`) - List of headers to whitelist and allowing
+            a plugin to include them in the response.
+          * `auditNonHmacRequestKeys` (`pulumi.Input[list]`) - Specifies the list of keys that will
+            not be HMAC'd by audit devices in the request data object.
+          * `auditNonHmacResponseKeys` (`pulumi.Input[list]`) - Specifies the list of keys that will
+            not be HMAC'd by audit devices in the response data object.
+          * `defaultLeaseTtl` (`pulumi.Input[str]`) - Specifies the default time-to-live.
+            If set, this overrides the global default.
+            Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+          * `listing_visibility` (`pulumi.Input[str]`) - Specifies whether to show this mount in
+            the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+          * `maxLeaseTtl` (`pulumi.Input[str]`) - Specifies the maximum time-to-live.
+            If set, this overrides the global default.
+            Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+          * `passthroughRequestHeaders` (`pulumi.Input[list]`) - List of headers to whitelist and
+            pass from the request to the backend.
+          * `token_type` (`pulumi.Input[str]`) - Specifies the type of tokens that should be returned by
+            the mount. Valid values are "default-service", "default-batch", "service", "batch".
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -225,11 +225,18 @@ namespace Pulumi.Vault.Gcp
 
     public sealed class SecretRolesetBindingsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
+        /// </summary>
         [Input("resource", required: true)]
         public Input<string> Resource { get; set; } = null!;
 
         [Input("roles", required: true)]
         private InputList<string>? _roles;
+
+        /// <summary>
+        /// List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
+        /// </summary>
         public InputList<string> Roles
         {
             get => _roles ?? (_roles = new InputList<string>());
@@ -243,11 +250,18 @@ namespace Pulumi.Vault.Gcp
 
     public sealed class SecretRolesetBindingsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
+        /// </summary>
         [Input("resource", required: true)]
         public Input<string> Resource { get; set; } = null!;
 
         [Input("roles", required: true)]
         private InputList<string>? _roles;
+
+        /// <summary>
+        /// List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
+        /// </summary>
         public InputList<string> Roles
         {
             get => _roles ?? (_roles = new InputList<string>());
@@ -266,7 +280,13 @@ namespace Pulumi.Vault.Gcp
     [OutputType]
     public sealed class SecretRolesetBindings
     {
+        /// <summary>
+        /// Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
+        /// </summary>
         public readonly string Resource;
+        /// <summary>
+        /// List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
+        /// </summary>
         public readonly ImmutableArray<string> Roles;
 
         [OutputConstructor]

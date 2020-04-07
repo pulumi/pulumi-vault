@@ -11,7 +11,13 @@ namespace Pulumi.Vault.Generic
 {
     public static partial class Invokes
     {
+        [Obsolete("Use GetSecret.InvokeAsync() instead")]
         public static Task<GetSecretResult> GetSecret(GetSecretArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetSecretResult>("vault:generic/getSecret:getSecret", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetSecret
+    {
+        public static Task<GetSecretResult> InvokeAsync(GetSecretArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetSecretResult>("vault:generic/getSecret:getSecret", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

@@ -12,18 +12,31 @@ import (
 )
 
 type AuthBackendTune struct {
+	// List of headers to whitelist and allowing
+	// a plugin to include them in the response.
 	AllowedResponseHeaders []string `pulumi:"allowedResponseHeaders"`
+	// Specifies the list of keys that will
+	// not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
+	// Specifies the list of keys that will
+	// not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
+	// Specifies the default time-to-live.
+	// If set, this overrides the global default.
+	// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 	DefaultLeaseTtl *string `pulumi:"defaultLeaseTtl"`
+	// Specifies whether to show this mount in
+	// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
 	ListingVisibility *string `pulumi:"listingVisibility"`
+	// Specifies the maximum time-to-live.
+	// If set, this overrides the global default.
+	// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 	MaxLeaseTtl *string `pulumi:"maxLeaseTtl"`
+	// List of headers to whitelist and
+	// pass from the request to the backend.
 	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
-	// (Optional) The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// Specifies the type of tokens that should be returned by
+	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType *string `pulumi:"tokenType"`
 }
 
@@ -35,18 +48,31 @@ type AuthBackendTuneInput interface {
 }
 
 type AuthBackendTuneArgs struct {
+	// List of headers to whitelist and allowing
+	// a plugin to include them in the response.
 	AllowedResponseHeaders pulumi.StringArrayInput `pulumi:"allowedResponseHeaders"`
+	// Specifies the list of keys that will
+	// not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayInput `pulumi:"auditNonHmacRequestKeys"`
+	// Specifies the list of keys that will
+	// not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys pulumi.StringArrayInput `pulumi:"auditNonHmacResponseKeys"`
+	// Specifies the default time-to-live.
+	// If set, this overrides the global default.
+	// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 	DefaultLeaseTtl pulumi.StringPtrInput `pulumi:"defaultLeaseTtl"`
+	// Specifies whether to show this mount in
+	// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
 	ListingVisibility pulumi.StringPtrInput `pulumi:"listingVisibility"`
+	// Specifies the maximum time-to-live.
+	// If set, this overrides the global default.
+	// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 	MaxLeaseTtl pulumi.StringPtrInput `pulumi:"maxLeaseTtl"`
+	// List of headers to whitelist and
+	// pass from the request to the backend.
 	PassthroughRequestHeaders pulumi.StringArrayInput `pulumi:"passthroughRequestHeaders"`
-	// (Optional) The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// Specifies the type of tokens that should be returned by
+	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType pulumi.StringPtrInput `pulumi:"tokenType"`
 }
 
@@ -79,7 +105,8 @@ type AuthBackendTunePtrInput interface {
 
 type authBackendTunePtrType AuthBackendTuneArgs
 
-func AuthBackendTunePtr(v *AuthBackendTuneArgs) AuthBackendTunePtrInput {	return (*authBackendTunePtrType)(v)
+func AuthBackendTunePtr(v *AuthBackendTuneArgs) AuthBackendTunePtrInput {
+	return (*authBackendTunePtrType)(v)
 }
 
 func (*authBackendTunePtrType) ElementType() reflect.Type {
@@ -94,7 +121,7 @@ func (i *authBackendTunePtrType) ToAuthBackendTunePtrOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendTunePtrOutput)
 }
 
-type AuthBackendTuneOutput struct { *pulumi.OutputState }
+type AuthBackendTuneOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendTuneOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*AuthBackendTune)(nil)).Elem()
@@ -117,44 +144,58 @@ func (o AuthBackendTuneOutput) ToAuthBackendTunePtrOutputWithContext(ctx context
 		return &v
 	}).(AuthBackendTunePtrOutput)
 }
+
+// List of headers to whitelist and allowing
+// a plugin to include them in the response.
 func (o AuthBackendTuneOutput) AllowedResponseHeaders() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendTune) []string { return v.AllowedResponseHeaders }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendTune) []string { return v.AllowedResponseHeaders }).(pulumi.StringArrayOutput)
 }
 
+// Specifies the list of keys that will
+// not be HMAC'd by audit devices in the request data object.
 func (o AuthBackendTuneOutput) AuditNonHmacRequestKeys() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendTune) []string { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendTune) []string { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
 }
 
+// Specifies the list of keys that will
+// not be HMAC'd by audit devices in the response data object.
 func (o AuthBackendTuneOutput) AuditNonHmacResponseKeys() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendTune) []string { return v.AuditNonHmacResponseKeys }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendTune) []string { return v.AuditNonHmacResponseKeys }).(pulumi.StringArrayOutput)
 }
 
+// Specifies the default time-to-live.
+// If set, this overrides the global default.
+// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 func (o AuthBackendTuneOutput) DefaultLeaseTtl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v AuthBackendTune) *string { return v.DefaultLeaseTtl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v AuthBackendTune) *string { return v.DefaultLeaseTtl }).(pulumi.StringPtrOutput)
 }
 
+// Specifies whether to show this mount in
+// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
 func (o AuthBackendTuneOutput) ListingVisibility() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v AuthBackendTune) *string { return v.ListingVisibility }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v AuthBackendTune) *string { return v.ListingVisibility }).(pulumi.StringPtrOutput)
 }
 
+// Specifies the maximum time-to-live.
+// If set, this overrides the global default.
+// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 func (o AuthBackendTuneOutput) MaxLeaseTtl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v AuthBackendTune) *string { return v.MaxLeaseTtl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v AuthBackendTune) *string { return v.MaxLeaseTtl }).(pulumi.StringPtrOutput)
 }
 
+// List of headers to whitelist and
+// pass from the request to the backend.
 func (o AuthBackendTuneOutput) PassthroughRequestHeaders() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendTune) []string { return v.PassthroughRequestHeaders }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendTune) []string { return v.PassthroughRequestHeaders }).(pulumi.StringArrayOutput)
 }
 
-// (Optional) The type of token that should be generated. Can be `service`,
-// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-// `service` tokens). For token store roles, there are two additional possibilities:
-// `default-service` and `default-batch` which specify the type to return unless the client
-// requests a different type at generation time.
+// Specifies the type of tokens that should be returned by
+// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 func (o AuthBackendTuneOutput) TokenType() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v AuthBackendTune) *string { return v.TokenType }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v AuthBackendTune) *string { return v.TokenType }).(pulumi.StringPtrOutput)
 }
 
-type AuthBackendTunePtrOutput struct { *pulumi.OutputState}
+type AuthBackendTunePtrOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendTunePtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**AuthBackendTune)(nil)).Elem()
@@ -169,44 +210,57 @@ func (o AuthBackendTunePtrOutput) ToAuthBackendTunePtrOutputWithContext(ctx cont
 }
 
 func (o AuthBackendTunePtrOutput) Elem() AuthBackendTuneOutput {
-	return o.ApplyT(func (v *AuthBackendTune) AuthBackendTune { return *v }).(AuthBackendTuneOutput)
+	return o.ApplyT(func(v *AuthBackendTune) AuthBackendTune { return *v }).(AuthBackendTuneOutput)
 }
 
+// List of headers to whitelist and allowing
+// a plugin to include them in the response.
 func (o AuthBackendTunePtrOutput) AllowedResponseHeaders() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendTune) []string { return v.AllowedResponseHeaders }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendTune) []string { return v.AllowedResponseHeaders }).(pulumi.StringArrayOutput)
 }
 
+// Specifies the list of keys that will
+// not be HMAC'd by audit devices in the request data object.
 func (o AuthBackendTunePtrOutput) AuditNonHmacRequestKeys() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendTune) []string { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendTune) []string { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
 }
 
+// Specifies the list of keys that will
+// not be HMAC'd by audit devices in the response data object.
 func (o AuthBackendTunePtrOutput) AuditNonHmacResponseKeys() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendTune) []string { return v.AuditNonHmacResponseKeys }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendTune) []string { return v.AuditNonHmacResponseKeys }).(pulumi.StringArrayOutput)
 }
 
+// Specifies the default time-to-live.
+// If set, this overrides the global default.
+// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 func (o AuthBackendTunePtrOutput) DefaultLeaseTtl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v AuthBackendTune) *string { return v.DefaultLeaseTtl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v AuthBackendTune) *string { return v.DefaultLeaseTtl }).(pulumi.StringPtrOutput)
 }
 
+// Specifies whether to show this mount in
+// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
 func (o AuthBackendTunePtrOutput) ListingVisibility() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v AuthBackendTune) *string { return v.ListingVisibility }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v AuthBackendTune) *string { return v.ListingVisibility }).(pulumi.StringPtrOutput)
 }
 
+// Specifies the maximum time-to-live.
+// If set, this overrides the global default.
+// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 func (o AuthBackendTunePtrOutput) MaxLeaseTtl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v AuthBackendTune) *string { return v.MaxLeaseTtl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v AuthBackendTune) *string { return v.MaxLeaseTtl }).(pulumi.StringPtrOutput)
 }
 
+// List of headers to whitelist and
+// pass from the request to the backend.
 func (o AuthBackendTunePtrOutput) PassthroughRequestHeaders() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendTune) []string { return v.PassthroughRequestHeaders }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendTune) []string { return v.PassthroughRequestHeaders }).(pulumi.StringArrayOutput)
 }
 
-// (Optional) The type of token that should be generated. Can be `service`,
-// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-// `service` tokens). For token store roles, there are two additional possibilities:
-// `default-service` and `default-batch` which specify the type to return unless the client
-// requests a different type at generation time.
+// Specifies the type of tokens that should be returned by
+// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 func (o AuthBackendTunePtrOutput) TokenType() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v AuthBackendTune) *string { return v.TokenType }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v AuthBackendTune) *string { return v.TokenType }).(pulumi.StringPtrOutput)
 }
 
 func init() {

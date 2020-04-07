@@ -280,4 +280,3 @@ type SecretBackendIntermediateCertRequestArgs struct {
 func (SecretBackendIntermediateCertRequestArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendIntermediateCertRequestArgs)(nil)).Elem()
 }
-
