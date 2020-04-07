@@ -12,7 +12,9 @@ import (
 )
 
 type SecretRolesetBinding struct {
+	// Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
 	Resource string `pulumi:"resource"`
+	// List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
 	Roles []string `pulumi:"roles"`
 }
 
@@ -24,7 +26,9 @@ type SecretRolesetBindingInput interface {
 }
 
 type SecretRolesetBindingArgs struct {
+	// Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
 	Resource pulumi.StringInput `pulumi:"resource"`
+	// List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
 	Roles pulumi.StringArrayInput `pulumi:"roles"`
 }
 
@@ -61,7 +65,7 @@ func (i SecretRolesetBindingArray) ToSecretRolesetBindingArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SecretRolesetBindingArrayOutput)
 }
 
-type SecretRolesetBindingOutput struct { *pulumi.OutputState }
+type SecretRolesetBindingOutput struct{ *pulumi.OutputState }
 
 func (SecretRolesetBindingOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretRolesetBinding)(nil)).Elem()
@@ -75,15 +79,17 @@ func (o SecretRolesetBindingOutput) ToSecretRolesetBindingOutputWithContext(ctx 
 	return o
 }
 
+// Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
 func (o SecretRolesetBindingOutput) Resource() pulumi.StringOutput {
-	return o.ApplyT(func (v SecretRolesetBinding) string { return v.Resource }).(pulumi.StringOutput)
+	return o.ApplyT(func(v SecretRolesetBinding) string { return v.Resource }).(pulumi.StringOutput)
 }
 
+// List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
 func (o SecretRolesetBindingOutput) Roles() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v SecretRolesetBinding) []string { return v.Roles }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v SecretRolesetBinding) []string { return v.Roles }).(pulumi.StringArrayOutput)
 }
 
-type SecretRolesetBindingArrayOutput struct { *pulumi.OutputState}
+type SecretRolesetBindingArrayOutput struct{ *pulumi.OutputState }
 
 func (SecretRolesetBindingArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]SecretRolesetBinding)(nil)).Elem()
@@ -98,7 +104,7 @@ func (o SecretRolesetBindingArrayOutput) ToSecretRolesetBindingArrayOutputWithCo
 }
 
 func (o SecretRolesetBindingArrayOutput) Index(i pulumi.IntInput) SecretRolesetBindingOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) SecretRolesetBinding {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretRolesetBinding {
 		return vs[0].([]SecretRolesetBinding)[vs[1].(int)]
 	}).(SecretRolesetBindingOutput)
 }

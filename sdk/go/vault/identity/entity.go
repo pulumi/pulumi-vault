@@ -112,4 +112,3 @@ type EntityArgs struct {
 func (EntityArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*entityArgs)(nil)).Elem()
 }
-

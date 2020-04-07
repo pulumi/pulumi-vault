@@ -95,4 +95,3 @@ type OidcArgs struct {
 func (OidcArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*oidcArgs)(nil)).Elem()
 }
-

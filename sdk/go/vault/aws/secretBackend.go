@@ -157,4 +157,3 @@ type SecretBackendArgs struct {
 func (SecretBackendArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendArgs)(nil)).Elem()
 }
-

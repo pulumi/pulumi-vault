@@ -64,7 +64,8 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
+     * Specifies whether to show this mount in
+     * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
      */
     public readonly listingVisibility!: pulumi.Output<string>;
     /**
@@ -154,7 +155,8 @@ export interface AuthBackendState {
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
+     * Specifies whether to show this mount in
+     * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
      * 
      * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
      */
@@ -198,7 +200,8 @@ export interface AuthBackendArgs {
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
+     * Specifies whether to show this mount in
+     * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
      * 
      * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
      */

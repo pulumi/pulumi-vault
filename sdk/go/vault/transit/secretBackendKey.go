@@ -52,7 +52,7 @@ type SecretBackendKey struct {
 	SupportsEncryption pulumi.BoolOutput `pulumi:"supportsEncryption"`
 	// Whether or not the key supports signing, based on key type.
 	SupportsSigning pulumi.BoolOutput `pulumi:"supportsSigning"`
-	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
+	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`.
 	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
 	Type pulumi.StringPtrOutput `pulumi:"type"`
 }
@@ -123,7 +123,7 @@ type secretBackendKeyState struct {
 	SupportsEncryption *bool `pulumi:"supportsEncryption"`
 	// Whether or not the key supports signing, based on key type.
 	SupportsSigning *bool `pulumi:"supportsSigning"`
-	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
+	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`.
 	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
 	Type *string `pulumi:"type"`
 }
@@ -164,7 +164,7 @@ type SecretBackendKeyState struct {
 	SupportsEncryption pulumi.BoolPtrInput
 	// Whether or not the key supports signing, based on key type.
 	SupportsSigning pulumi.BoolPtrInput
-	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
+	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`.
 	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
 	Type pulumi.StringPtrInput
 }
@@ -193,7 +193,7 @@ type secretBackendKeyArgs struct {
 	MinEncryptionVersion *int `pulumi:"minEncryptionVersion"`
 	// The name to identify this key within the backend. Must be unique within the backend.
 	Name *string `pulumi:"name"`
-	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
+	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`.
 	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
 	Type *string `pulumi:"type"`
 }
@@ -219,7 +219,7 @@ type SecretBackendKeyArgs struct {
 	MinEncryptionVersion pulumi.IntPtrInput
 	// The name to identify this key within the backend. Must be unique within the backend.
 	Name pulumi.StringPtrInput
-	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
+	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`.
 	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
 	Type pulumi.StringPtrInput
 }
@@ -227,4 +227,3 @@ type SecretBackendKeyArgs struct {
 func (SecretBackendKeyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendKeyArgs)(nil)).Elem()
 }
-

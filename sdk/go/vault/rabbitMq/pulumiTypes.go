@@ -13,9 +13,9 @@ import (
 
 type SecretBackendRoleVhost struct {
 	Configure string `pulumi:"configure"`
-	Host string `pulumi:"host"`
-	Read string `pulumi:"read"`
-	Write string `pulumi:"write"`
+	Host      string `pulumi:"host"`
+	Read      string `pulumi:"read"`
+	Write     string `pulumi:"write"`
 }
 
 type SecretBackendRoleVhostInput interface {
@@ -27,9 +27,9 @@ type SecretBackendRoleVhostInput interface {
 
 type SecretBackendRoleVhostArgs struct {
 	Configure pulumi.StringInput `pulumi:"configure"`
-	Host pulumi.StringInput `pulumi:"host"`
-	Read pulumi.StringInput `pulumi:"read"`
-	Write pulumi.StringInput `pulumi:"write"`
+	Host      pulumi.StringInput `pulumi:"host"`
+	Read      pulumi.StringInput `pulumi:"read"`
+	Write     pulumi.StringInput `pulumi:"write"`
 }
 
 func (SecretBackendRoleVhostArgs) ElementType() reflect.Type {
@@ -65,7 +65,7 @@ func (i SecretBackendRoleVhostArray) ToSecretBackendRoleVhostArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleVhostArrayOutput)
 }
 
-type SecretBackendRoleVhostOutput struct { *pulumi.OutputState }
+type SecretBackendRoleVhostOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRoleVhostOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretBackendRoleVhost)(nil)).Elem()
@@ -80,22 +80,22 @@ func (o SecretBackendRoleVhostOutput) ToSecretBackendRoleVhostOutputWithContext(
 }
 
 func (o SecretBackendRoleVhostOutput) Configure() pulumi.StringOutput {
-	return o.ApplyT(func (v SecretBackendRoleVhost) string { return v.Configure }).(pulumi.StringOutput)
+	return o.ApplyT(func(v SecretBackendRoleVhost) string { return v.Configure }).(pulumi.StringOutput)
 }
 
 func (o SecretBackendRoleVhostOutput) Host() pulumi.StringOutput {
-	return o.ApplyT(func (v SecretBackendRoleVhost) string { return v.Host }).(pulumi.StringOutput)
+	return o.ApplyT(func(v SecretBackendRoleVhost) string { return v.Host }).(pulumi.StringOutput)
 }
 
 func (o SecretBackendRoleVhostOutput) Read() pulumi.StringOutput {
-	return o.ApplyT(func (v SecretBackendRoleVhost) string { return v.Read }).(pulumi.StringOutput)
+	return o.ApplyT(func(v SecretBackendRoleVhost) string { return v.Read }).(pulumi.StringOutput)
 }
 
 func (o SecretBackendRoleVhostOutput) Write() pulumi.StringOutput {
-	return o.ApplyT(func (v SecretBackendRoleVhost) string { return v.Write }).(pulumi.StringOutput)
+	return o.ApplyT(func(v SecretBackendRoleVhost) string { return v.Write }).(pulumi.StringOutput)
 }
 
-type SecretBackendRoleVhostArrayOutput struct { *pulumi.OutputState}
+type SecretBackendRoleVhostArrayOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRoleVhostArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]SecretBackendRoleVhost)(nil)).Elem()
@@ -110,7 +110,7 @@ func (o SecretBackendRoleVhostArrayOutput) ToSecretBackendRoleVhostArrayOutputWi
 }
 
 func (o SecretBackendRoleVhostArrayOutput) Index(i pulumi.IntInput) SecretBackendRoleVhostOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) SecretBackendRoleVhost {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretBackendRoleVhost {
 		return vs[0].([]SecretBackendRoleVhost)[vs[1].(int)]
 	}).(SecretBackendRoleVhostOutput)
 }

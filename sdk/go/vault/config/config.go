@@ -15,68 +15,87 @@ func GetAddress(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "VAULT_ADDR").(string)}
+	return getEnvOrDefault("", nil, "VAULT_ADDR").(string)
+}
+
 // Login to vault with an existing auth method using auth/<mount>/login
 func GetAuthLogins(ctx *pulumi.Context) string {
 	return config.Get(ctx, "vault:authLogins")
 }
+
 // Path to directory containing CA certificate files to validate the server's certificate.
 func GetCaCertDir(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "vault:caCertDir")
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "VAULT_CAPATH").(string)}
+	return getEnvOrDefault("", nil, "VAULT_CAPATH").(string)
+}
+
 // Path to a CA certificate file to validate the server's certificate.
 func GetCaCertFile(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "vault:caCertFile")
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "VAULT_CACERT").(string)}
+	return getEnvOrDefault("", nil, "VAULT_CACERT").(string)
+}
+
 // Client authentication credentials.
 func GetClientAuths(ctx *pulumi.Context) string {
 	return config.Get(ctx, "vault:clientAuths")
 }
+
 // Maximum TTL for secret leases requested by this provider
 func GetMaxLeaseTtlSeconds(ctx *pulumi.Context) int {
 	v, err := config.TryInt(ctx, "vault:maxLeaseTtlSeconds")
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault(1200, parseEnvInt, "TERRAFORM_VAULT_MAX_TTL").(int)}
+	return getEnvOrDefault(1200, parseEnvInt, "TERRAFORM_VAULT_MAX_TTL").(int)
+}
+
 // Maximum number of retries when a 5xx error code is encountered.
 func GetMaxRetries(ctx *pulumi.Context) int {
 	v, err := config.TryInt(ctx, "vault:maxRetries")
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault(2, parseEnvInt, "VAULT_MAX_RETRIES").(int)}
+	return getEnvOrDefault(2, parseEnvInt, "VAULT_MAX_RETRIES").(int)
+}
+
 // The namespace to use. Available only for Vault Enterprise
 func GetNamespace(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "vault:namespace")
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "VAULT_NAMESPACE").(string)}
+	return getEnvOrDefault("", nil, "VAULT_NAMESPACE").(string)
+}
+
 // Set this to true only if the target Vault server is an insecure development instance.
 func GetSkipTlsVerify(ctx *pulumi.Context) bool {
 	v, err := config.TryBool(ctx, "vault:skipTlsVerify")
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault(false, parseEnvBool, "VAULT_SKIP_VERIFY").(bool)}
+	return getEnvOrDefault(false, parseEnvBool, "VAULT_SKIP_VERIFY").(bool)
+}
+
 // Token to use to authenticate to Vault.
 func GetToken(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "vault:token")
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "VAULT_TOKEN").(string)}
+	return getEnvOrDefault("", nil, "VAULT_TOKEN").(string)
+}
+
 // Token name to use for creating the Vault child token.
 func GetTokenName(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "vault:tokenName")
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "VAULT_TOKEN_NAME").(string)}
+	return getEnvOrDefault("", nil, "VAULT_TOKEN_NAME").(string)
+}

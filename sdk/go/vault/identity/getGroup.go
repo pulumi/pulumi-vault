@@ -33,32 +33,31 @@ type LookupGroupArgs struct {
 	GroupName *string `pulumi:"groupName"`
 }
 
-
 // A collection of values returned by getGroup.
 type LookupGroupResult struct {
 	// Canonical ID of the Alias
 	AliasCanonicalId string `pulumi:"aliasCanonicalId"`
 	// Creation time of the Alias
 	AliasCreationTime string `pulumi:"aliasCreationTime"`
-	AliasId string `pulumi:"aliasId"`
+	AliasId           string `pulumi:"aliasId"`
 	// Last update time of the alias
 	AliasLastUpdateTime string `pulumi:"aliasLastUpdateTime"`
 	// List of canonical IDs merged with this alias
 	AliasMergedFromCanonicalIds []string `pulumi:"aliasMergedFromCanonicalIds"`
 	// Arbitrary metadata
-	AliasMetadata map[string]interface{} `pulumi:"aliasMetadata"`
-	AliasMountAccessor string `pulumi:"aliasMountAccessor"`
+	AliasMetadata      map[string]interface{} `pulumi:"aliasMetadata"`
+	AliasMountAccessor string                 `pulumi:"aliasMountAccessor"`
 	// Authentication mount path which this alias belongs to
 	AliasMountPath string `pulumi:"aliasMountPath"`
 	// Authentication mount type which this alias belongs to
 	AliasMountType string `pulumi:"aliasMountType"`
-	AliasName string `pulumi:"aliasName"`
+	AliasName      string `pulumi:"aliasName"`
 	// Creation timestamp of the group
 	CreationTime string `pulumi:"creationTime"`
 	// A string containing the full data payload retrieved from
 	// Vault, serialized in JSON format.
-	DataJson string `pulumi:"dataJson"`
-	GroupId string `pulumi:"groupId"`
+	DataJson  string `pulumi:"dataJson"`
+	GroupId   string `pulumi:"groupId"`
 	GroupName string `pulumi:"groupName"`
 	// id is the provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
@@ -81,4 +80,3 @@ type LookupGroupResult struct {
 	// Type of group
 	Type string `pulumi:"type"`
 }
-

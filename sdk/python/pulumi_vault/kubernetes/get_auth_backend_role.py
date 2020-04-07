@@ -171,9 +171,37 @@ def get_auth_backend_role(audience=None,backend=None,bound_cidrs=None,max_ttl=No
     > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_role.md.
 
 
+    :param str audience: (Optional) Audience claim to verify in the JWT.
     :param str backend: The unique name for the Kubernetes backend the role to
            retrieve Role attributes for resides in. Defaults to "kubernetes".
     :param str role_name: The name of the role to retrieve the Role attributes for.
+    :param list token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
+           addresses which can authenticate successfully, and ties the resulting token to these blocks
+           as well.
+    :param float token_explicit_max_ttl: If set, will encode an
+           [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+           onto the token in number of seconds. This is a hard cap even if `token_ttl` and
+           `token_max_ttl` would otherwise allow a renewal.
+    :param float token_max_ttl: The maximum lifetime for generated tokens in number of seconds.
+           Its current value will be referenced at renewal time.
+    :param bool token_no_default_policy: If set, the default policy will not be set on
+           generated tokens; otherwise it will be added to the policies set in token_policies.
+    :param float token_num_uses: The
+           [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+           if any, in number of seconds to set on the token.
+    :param float token_period: (Optional) If set, indicates that the
+           token generated using this role should never expire. The token should be renewed within the
+           duration specified by this value. At each renewal, the token's TTL will be set to the
+           value of this field. Specified in seconds.
+    :param list token_policies: List of policies to encode onto generated tokens. Depending
+           on the auth method, this list may be supplemented by user/group/other values.
+    :param float token_ttl: The incremental lifetime for generated tokens in number of seconds.
+           Its current value will be referenced at renewal time.
+    :param str token_type: The type of token that should be generated. Can be `service`,
+           `batch`, or `default` to use the mount's tuned default (which unless changed will be
+           `service` tokens). For token store roles, there are two additional possibilities:
+           `default-service` and `default-batch` which specify the type to return unless the client
+           requests a different type at generation time.
     """
     __args__ = dict()
 

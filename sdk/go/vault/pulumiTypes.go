@@ -12,14 +12,31 @@ import (
 )
 
 type AuthBackendTune struct {
+	// List of headers to whitelist and allowing
+	// a plugin to include them in the response.
 	AllowedResponseHeaders []string `pulumi:"allowedResponseHeaders"`
+	// Specifies the list of keys that will
+	// not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
+	// Specifies the list of keys that will
+	// not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
+	// Specifies the default time-to-live.
+	// If set, this overrides the global default.
+	// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 	DefaultLeaseTtl *string `pulumi:"defaultLeaseTtl"`
-	// (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
+	// Specifies whether to show this mount in
+	// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
 	ListingVisibility *string `pulumi:"listingVisibility"`
+	// Specifies the maximum time-to-live.
+	// If set, this overrides the global default.
+	// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 	MaxLeaseTtl *string `pulumi:"maxLeaseTtl"`
+	// List of headers to whitelist and
+	// pass from the request to the backend.
 	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
+	// Specifies the type of tokens that should be returned by
+	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType *string `pulumi:"tokenType"`
 }
 
@@ -31,14 +48,31 @@ type AuthBackendTuneInput interface {
 }
 
 type AuthBackendTuneArgs struct {
+	// List of headers to whitelist and allowing
+	// a plugin to include them in the response.
 	AllowedResponseHeaders pulumi.StringArrayInput `pulumi:"allowedResponseHeaders"`
+	// Specifies the list of keys that will
+	// not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayInput `pulumi:"auditNonHmacRequestKeys"`
+	// Specifies the list of keys that will
+	// not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys pulumi.StringArrayInput `pulumi:"auditNonHmacResponseKeys"`
+	// Specifies the default time-to-live.
+	// If set, this overrides the global default.
+	// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 	DefaultLeaseTtl pulumi.StringPtrInput `pulumi:"defaultLeaseTtl"`
-	// (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
+	// Specifies whether to show this mount in
+	// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
 	ListingVisibility pulumi.StringPtrInput `pulumi:"listingVisibility"`
+	// Specifies the maximum time-to-live.
+	// If set, this overrides the global default.
+	// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 	MaxLeaseTtl pulumi.StringPtrInput `pulumi:"maxLeaseTtl"`
+	// List of headers to whitelist and
+	// pass from the request to the backend.
 	PassthroughRequestHeaders pulumi.StringArrayInput `pulumi:"passthroughRequestHeaders"`
+	// Specifies the type of tokens that should be returned by
+	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType pulumi.StringPtrInput `pulumi:"tokenType"`
 }
 
@@ -71,7 +105,8 @@ type AuthBackendTunePtrInput interface {
 
 type authBackendTunePtrType AuthBackendTuneArgs
 
-func AuthBackendTunePtr(v *AuthBackendTuneArgs) AuthBackendTunePtrInput {	return (*authBackendTunePtrType)(v)
+func AuthBackendTunePtr(v *AuthBackendTuneArgs) AuthBackendTunePtrInput {
+	return (*authBackendTunePtrType)(v)
 }
 
 func (*authBackendTunePtrType) ElementType() reflect.Type {
@@ -86,7 +121,7 @@ func (i *authBackendTunePtrType) ToAuthBackendTunePtrOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendTunePtrOutput)
 }
 
-type AuthBackendTuneOutput struct { *pulumi.OutputState }
+type AuthBackendTuneOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendTuneOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*AuthBackendTune)(nil)).Elem()
@@ -109,40 +144,58 @@ func (o AuthBackendTuneOutput) ToAuthBackendTunePtrOutputWithContext(ctx context
 		return &v
 	}).(AuthBackendTunePtrOutput)
 }
+
+// List of headers to whitelist and allowing
+// a plugin to include them in the response.
 func (o AuthBackendTuneOutput) AllowedResponseHeaders() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendTune) []string { return v.AllowedResponseHeaders }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendTune) []string { return v.AllowedResponseHeaders }).(pulumi.StringArrayOutput)
 }
 
+// Specifies the list of keys that will
+// not be HMAC'd by audit devices in the request data object.
 func (o AuthBackendTuneOutput) AuditNonHmacRequestKeys() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendTune) []string { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendTune) []string { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
 }
 
+// Specifies the list of keys that will
+// not be HMAC'd by audit devices in the response data object.
 func (o AuthBackendTuneOutput) AuditNonHmacResponseKeys() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendTune) []string { return v.AuditNonHmacResponseKeys }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendTune) []string { return v.AuditNonHmacResponseKeys }).(pulumi.StringArrayOutput)
 }
 
+// Specifies the default time-to-live.
+// If set, this overrides the global default.
+// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 func (o AuthBackendTuneOutput) DefaultLeaseTtl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v AuthBackendTune) *string { return v.DefaultLeaseTtl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v AuthBackendTune) *string { return v.DefaultLeaseTtl }).(pulumi.StringPtrOutput)
 }
 
-// (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
+// Specifies whether to show this mount in
+// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
 func (o AuthBackendTuneOutput) ListingVisibility() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v AuthBackendTune) *string { return v.ListingVisibility }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v AuthBackendTune) *string { return v.ListingVisibility }).(pulumi.StringPtrOutput)
 }
 
+// Specifies the maximum time-to-live.
+// If set, this overrides the global default.
+// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 func (o AuthBackendTuneOutput) MaxLeaseTtl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v AuthBackendTune) *string { return v.MaxLeaseTtl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v AuthBackendTune) *string { return v.MaxLeaseTtl }).(pulumi.StringPtrOutput)
 }
 
+// List of headers to whitelist and
+// pass from the request to the backend.
 func (o AuthBackendTuneOutput) PassthroughRequestHeaders() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendTune) []string { return v.PassthroughRequestHeaders }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendTune) []string { return v.PassthroughRequestHeaders }).(pulumi.StringArrayOutput)
 }
 
+// Specifies the type of tokens that should be returned by
+// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 func (o AuthBackendTuneOutput) TokenType() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v AuthBackendTune) *string { return v.TokenType }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v AuthBackendTune) *string { return v.TokenType }).(pulumi.StringPtrOutput)
 }
 
-type AuthBackendTunePtrOutput struct { *pulumi.OutputState}
+type AuthBackendTunePtrOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendTunePtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**AuthBackendTune)(nil)).Elem()
@@ -157,40 +210,57 @@ func (o AuthBackendTunePtrOutput) ToAuthBackendTunePtrOutputWithContext(ctx cont
 }
 
 func (o AuthBackendTunePtrOutput) Elem() AuthBackendTuneOutput {
-	return o.ApplyT(func (v *AuthBackendTune) AuthBackendTune { return *v }).(AuthBackendTuneOutput)
+	return o.ApplyT(func(v *AuthBackendTune) AuthBackendTune { return *v }).(AuthBackendTuneOutput)
 }
 
+// List of headers to whitelist and allowing
+// a plugin to include them in the response.
 func (o AuthBackendTunePtrOutput) AllowedResponseHeaders() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendTune) []string { return v.AllowedResponseHeaders }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendTune) []string { return v.AllowedResponseHeaders }).(pulumi.StringArrayOutput)
 }
 
+// Specifies the list of keys that will
+// not be HMAC'd by audit devices in the request data object.
 func (o AuthBackendTunePtrOutput) AuditNonHmacRequestKeys() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendTune) []string { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendTune) []string { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
 }
 
+// Specifies the list of keys that will
+// not be HMAC'd by audit devices in the response data object.
 func (o AuthBackendTunePtrOutput) AuditNonHmacResponseKeys() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendTune) []string { return v.AuditNonHmacResponseKeys }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendTune) []string { return v.AuditNonHmacResponseKeys }).(pulumi.StringArrayOutput)
 }
 
+// Specifies the default time-to-live.
+// If set, this overrides the global default.
+// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 func (o AuthBackendTunePtrOutput) DefaultLeaseTtl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v AuthBackendTune) *string { return v.DefaultLeaseTtl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v AuthBackendTune) *string { return v.DefaultLeaseTtl }).(pulumi.StringPtrOutput)
 }
 
-// (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
+// Specifies whether to show this mount in
+// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
 func (o AuthBackendTunePtrOutput) ListingVisibility() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v AuthBackendTune) *string { return v.ListingVisibility }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v AuthBackendTune) *string { return v.ListingVisibility }).(pulumi.StringPtrOutput)
 }
 
+// Specifies the maximum time-to-live.
+// If set, this overrides the global default.
+// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 func (o AuthBackendTunePtrOutput) MaxLeaseTtl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v AuthBackendTune) *string { return v.MaxLeaseTtl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v AuthBackendTune) *string { return v.MaxLeaseTtl }).(pulumi.StringPtrOutput)
 }
 
+// List of headers to whitelist and
+// pass from the request to the backend.
 func (o AuthBackendTunePtrOutput) PassthroughRequestHeaders() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendTune) []string { return v.PassthroughRequestHeaders }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendTune) []string { return v.PassthroughRequestHeaders }).(pulumi.StringArrayOutput)
 }
 
+// Specifies the type of tokens that should be returned by
+// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 func (o AuthBackendTunePtrOutput) TokenType() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v AuthBackendTune) *string { return v.TokenType }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v AuthBackendTune) *string { return v.TokenType }).(pulumi.StringPtrOutput)
 }
 
 type GetPolicyDocumentRule struct {
@@ -271,7 +341,7 @@ func (i GetPolicyDocumentRuleArray) ToGetPolicyDocumentRuleArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyDocumentRuleArrayOutput)
 }
 
-type GetPolicyDocumentRuleOutput struct { *pulumi.OutputState }
+type GetPolicyDocumentRuleOutput struct{ *pulumi.OutputState }
 
 func (GetPolicyDocumentRuleOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetPolicyDocumentRule)(nil)).Elem()
@@ -287,45 +357,45 @@ func (o GetPolicyDocumentRuleOutput) ToGetPolicyDocumentRuleOutputWithContext(ct
 
 // Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
 func (o GetPolicyDocumentRuleOutput) AllowedParameters() GetPolicyDocumentRuleAllowedParameterArrayOutput {
-	return o.ApplyT(func (v GetPolicyDocumentRule) []GetPolicyDocumentRuleAllowedParameter { return v.AllowedParameters }).(GetPolicyDocumentRuleAllowedParameterArrayOutput)
+	return o.ApplyT(func(v GetPolicyDocumentRule) []GetPolicyDocumentRuleAllowedParameter { return v.AllowedParameters }).(GetPolicyDocumentRuleAllowedParameterArrayOutput)
 }
 
 // A list of capabilities that this rule apply to `path`. For example, ["read", "write"].
 func (o GetPolicyDocumentRuleOutput) Capabilities() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v GetPolicyDocumentRule) []string { return v.Capabilities }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v GetPolicyDocumentRule) []string { return v.Capabilities }).(pulumi.StringArrayOutput)
 }
 
 // Blacklists a list of parameter and values. Any values specified here take precedence over `allowedParameter`. See Parameters below.
 func (o GetPolicyDocumentRuleOutput) DeniedParameters() GetPolicyDocumentRuleDeniedParameterArrayOutput {
-	return o.ApplyT(func (v GetPolicyDocumentRule) []GetPolicyDocumentRuleDeniedParameter { return v.DeniedParameters }).(GetPolicyDocumentRuleDeniedParameterArrayOutput)
+	return o.ApplyT(func(v GetPolicyDocumentRule) []GetPolicyDocumentRuleDeniedParameter { return v.DeniedParameters }).(GetPolicyDocumentRuleDeniedParameterArrayOutput)
 }
 
 // Description of the rule. Will be added as a commend to rendered rule.
 func (o GetPolicyDocumentRuleOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v GetPolicyDocumentRule) *string { return v.Description }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v GetPolicyDocumentRule) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 // The maximum allowed TTL that clients can specify for a wrapped response.
 func (o GetPolicyDocumentRuleOutput) MaxWrappingTtl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v GetPolicyDocumentRule) *string { return v.MaxWrappingTtl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v GetPolicyDocumentRule) *string { return v.MaxWrappingTtl }).(pulumi.StringPtrOutput)
 }
 
 // The minimum allowed TTL that clients can specify for a wrapped response.
 func (o GetPolicyDocumentRuleOutput) MinWrappingTtl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v GetPolicyDocumentRule) *string { return v.MinWrappingTtl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v GetPolicyDocumentRule) *string { return v.MinWrappingTtl }).(pulumi.StringPtrOutput)
 }
 
 // A path in Vault that this rule applies to.
 func (o GetPolicyDocumentRuleOutput) Path() pulumi.StringOutput {
-	return o.ApplyT(func (v GetPolicyDocumentRule) string { return v.Path }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetPolicyDocumentRule) string { return v.Path }).(pulumi.StringOutput)
 }
 
 // A list of parameters that must be specified.
 func (o GetPolicyDocumentRuleOutput) RequiredParameters() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v GetPolicyDocumentRule) []string { return v.RequiredParameters }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v GetPolicyDocumentRule) []string { return v.RequiredParameters }).(pulumi.StringArrayOutput)
 }
 
-type GetPolicyDocumentRuleArrayOutput struct { *pulumi.OutputState}
+type GetPolicyDocumentRuleArrayOutput struct{ *pulumi.OutputState }
 
 func (GetPolicyDocumentRuleArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]GetPolicyDocumentRule)(nil)).Elem()
@@ -340,7 +410,7 @@ func (o GetPolicyDocumentRuleArrayOutput) ToGetPolicyDocumentRuleArrayOutputWith
 }
 
 func (o GetPolicyDocumentRuleArrayOutput) Index(i pulumi.IntInput) GetPolicyDocumentRuleOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetPolicyDocumentRule {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPolicyDocumentRule {
 		return vs[0].([]GetPolicyDocumentRule)[vs[1].(int)]
 	}).(GetPolicyDocumentRuleOutput)
 }
@@ -399,7 +469,7 @@ func (i GetPolicyDocumentRuleAllowedParameterArray) ToGetPolicyDocumentRuleAllow
 	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyDocumentRuleAllowedParameterArrayOutput)
 }
 
-type GetPolicyDocumentRuleAllowedParameterOutput struct { *pulumi.OutputState }
+type GetPolicyDocumentRuleAllowedParameterOutput struct{ *pulumi.OutputState }
 
 func (GetPolicyDocumentRuleAllowedParameterOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetPolicyDocumentRuleAllowedParameter)(nil)).Elem()
@@ -415,15 +485,15 @@ func (o GetPolicyDocumentRuleAllowedParameterOutput) ToGetPolicyDocumentRuleAllo
 
 // name of permitted or denied parameter.
 func (o GetPolicyDocumentRuleAllowedParameterOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func (v GetPolicyDocumentRuleAllowedParameter) string { return v.Key }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetPolicyDocumentRuleAllowedParameter) string { return v.Key }).(pulumi.StringOutput)
 }
 
 // list of values what are permitted or denied by policy rule.
 func (o GetPolicyDocumentRuleAllowedParameterOutput) Values() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v GetPolicyDocumentRuleAllowedParameter) []string { return v.Values }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v GetPolicyDocumentRuleAllowedParameter) []string { return v.Values }).(pulumi.StringArrayOutput)
 }
 
-type GetPolicyDocumentRuleAllowedParameterArrayOutput struct { *pulumi.OutputState}
+type GetPolicyDocumentRuleAllowedParameterArrayOutput struct{ *pulumi.OutputState }
 
 func (GetPolicyDocumentRuleAllowedParameterArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]GetPolicyDocumentRuleAllowedParameter)(nil)).Elem()
@@ -438,7 +508,7 @@ func (o GetPolicyDocumentRuleAllowedParameterArrayOutput) ToGetPolicyDocumentRul
 }
 
 func (o GetPolicyDocumentRuleAllowedParameterArrayOutput) Index(i pulumi.IntInput) GetPolicyDocumentRuleAllowedParameterOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetPolicyDocumentRuleAllowedParameter {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPolicyDocumentRuleAllowedParameter {
 		return vs[0].([]GetPolicyDocumentRuleAllowedParameter)[vs[1].(int)]
 	}).(GetPolicyDocumentRuleAllowedParameterOutput)
 }
@@ -497,7 +567,7 @@ func (i GetPolicyDocumentRuleDeniedParameterArray) ToGetPolicyDocumentRuleDenied
 	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyDocumentRuleDeniedParameterArrayOutput)
 }
 
-type GetPolicyDocumentRuleDeniedParameterOutput struct { *pulumi.OutputState }
+type GetPolicyDocumentRuleDeniedParameterOutput struct{ *pulumi.OutputState }
 
 func (GetPolicyDocumentRuleDeniedParameterOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetPolicyDocumentRuleDeniedParameter)(nil)).Elem()
@@ -513,15 +583,15 @@ func (o GetPolicyDocumentRuleDeniedParameterOutput) ToGetPolicyDocumentRuleDenie
 
 // name of permitted or denied parameter.
 func (o GetPolicyDocumentRuleDeniedParameterOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func (v GetPolicyDocumentRuleDeniedParameter) string { return v.Key }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetPolicyDocumentRuleDeniedParameter) string { return v.Key }).(pulumi.StringOutput)
 }
 
 // list of values what are permitted or denied by policy rule.
 func (o GetPolicyDocumentRuleDeniedParameterOutput) Values() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v GetPolicyDocumentRuleDeniedParameter) []string { return v.Values }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v GetPolicyDocumentRuleDeniedParameter) []string { return v.Values }).(pulumi.StringArrayOutput)
 }
 
-type GetPolicyDocumentRuleDeniedParameterArrayOutput struct { *pulumi.OutputState}
+type GetPolicyDocumentRuleDeniedParameterArrayOutput struct{ *pulumi.OutputState }
 
 func (GetPolicyDocumentRuleDeniedParameterArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]GetPolicyDocumentRuleDeniedParameter)(nil)).Elem()
@@ -536,15 +606,15 @@ func (o GetPolicyDocumentRuleDeniedParameterArrayOutput) ToGetPolicyDocumentRule
 }
 
 func (o GetPolicyDocumentRuleDeniedParameterArrayOutput) Index(i pulumi.IntInput) GetPolicyDocumentRuleDeniedParameterOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetPolicyDocumentRuleDeniedParameter {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPolicyDocumentRuleDeniedParameter {
 		return vs[0].([]GetPolicyDocumentRuleDeniedParameter)[vs[1].(int)]
 	}).(GetPolicyDocumentRuleDeniedParameterOutput)
 }
 
 type ProviderAuthLogin struct {
-	Namespace *string `pulumi:"namespace"`
+	Namespace  *string           `pulumi:"namespace"`
 	Parameters map[string]string `pulumi:"parameters"`
-	Path string `pulumi:"path"`
+	Path       string            `pulumi:"path"`
 }
 
 type ProviderAuthLoginInput interface {
@@ -555,9 +625,9 @@ type ProviderAuthLoginInput interface {
 }
 
 type ProviderAuthLoginArgs struct {
-	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+	Namespace  pulumi.StringPtrInput `pulumi:"namespace"`
 	Parameters pulumi.StringMapInput `pulumi:"parameters"`
-	Path pulumi.StringInput `pulumi:"path"`
+	Path       pulumi.StringInput    `pulumi:"path"`
 }
 
 func (ProviderAuthLoginArgs) ElementType() reflect.Type {
@@ -593,7 +663,7 @@ func (i ProviderAuthLoginArray) ToProviderAuthLoginArrayOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginArrayOutput)
 }
 
-type ProviderAuthLoginOutput struct { *pulumi.OutputState }
+type ProviderAuthLoginOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ProviderAuthLogin)(nil)).Elem()
@@ -608,18 +678,18 @@ func (o ProviderAuthLoginOutput) ToProviderAuthLoginOutputWithContext(ctx contex
 }
 
 func (o ProviderAuthLoginOutput) Namespace() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v ProviderAuthLogin) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v ProviderAuthLogin) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 func (o ProviderAuthLoginOutput) Parameters() pulumi.StringMapOutput {
-	return o.ApplyT(func (v ProviderAuthLogin) map[string]string { return v.Parameters }).(pulumi.StringMapOutput)
+	return o.ApplyT(func(v ProviderAuthLogin) map[string]string { return v.Parameters }).(pulumi.StringMapOutput)
 }
 
 func (o ProviderAuthLoginOutput) Path() pulumi.StringOutput {
-	return o.ApplyT(func (v ProviderAuthLogin) string { return v.Path }).(pulumi.StringOutput)
+	return o.ApplyT(func(v ProviderAuthLogin) string { return v.Path }).(pulumi.StringOutput)
 }
 
-type ProviderAuthLoginArrayOutput struct { *pulumi.OutputState}
+type ProviderAuthLoginArrayOutput struct{ *pulumi.OutputState }
 
 func (ProviderAuthLoginArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]ProviderAuthLogin)(nil)).Elem()
@@ -634,14 +704,14 @@ func (o ProviderAuthLoginArrayOutput) ToProviderAuthLoginArrayOutputWithContext(
 }
 
 func (o ProviderAuthLoginArrayOutput) Index(i pulumi.IntInput) ProviderAuthLoginOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) ProviderAuthLogin {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderAuthLogin {
 		return vs[0].([]ProviderAuthLogin)[vs[1].(int)]
 	}).(ProviderAuthLoginOutput)
 }
 
 type ProviderClientAuth struct {
 	CertFile string `pulumi:"certFile"`
-	KeyFile string `pulumi:"keyFile"`
+	KeyFile  string `pulumi:"keyFile"`
 }
 
 type ProviderClientAuthInput interface {
@@ -653,7 +723,7 @@ type ProviderClientAuthInput interface {
 
 type ProviderClientAuthArgs struct {
 	CertFile pulumi.StringInput `pulumi:"certFile"`
-	KeyFile pulumi.StringInput `pulumi:"keyFile"`
+	KeyFile  pulumi.StringInput `pulumi:"keyFile"`
 }
 
 func (ProviderClientAuthArgs) ElementType() reflect.Type {
@@ -689,7 +759,7 @@ func (i ProviderClientAuthArray) ToProviderClientAuthArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderClientAuthArrayOutput)
 }
 
-type ProviderClientAuthOutput struct { *pulumi.OutputState }
+type ProviderClientAuthOutput struct{ *pulumi.OutputState }
 
 func (ProviderClientAuthOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*ProviderClientAuth)(nil)).Elem()
@@ -704,14 +774,14 @@ func (o ProviderClientAuthOutput) ToProviderClientAuthOutputWithContext(ctx cont
 }
 
 func (o ProviderClientAuthOutput) CertFile() pulumi.StringOutput {
-	return o.ApplyT(func (v ProviderClientAuth) string { return v.CertFile }).(pulumi.StringOutput)
+	return o.ApplyT(func(v ProviderClientAuth) string { return v.CertFile }).(pulumi.StringOutput)
 }
 
 func (o ProviderClientAuthOutput) KeyFile() pulumi.StringOutput {
-	return o.ApplyT(func (v ProviderClientAuth) string { return v.KeyFile }).(pulumi.StringOutput)
+	return o.ApplyT(func(v ProviderClientAuth) string { return v.KeyFile }).(pulumi.StringOutput)
 }
 
-type ProviderClientAuthArrayOutput struct { *pulumi.OutputState}
+type ProviderClientAuthArrayOutput struct{ *pulumi.OutputState }
 
 func (ProviderClientAuthArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]ProviderClientAuth)(nil)).Elem()
@@ -726,7 +796,7 @@ func (o ProviderClientAuthArrayOutput) ToProviderClientAuthArrayOutputWithContex
 }
 
 func (o ProviderClientAuthArrayOutput) Index(i pulumi.IntInput) ProviderClientAuthOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) ProviderClientAuth {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderClientAuth {
 		return vs[0].([]ProviderClientAuth)[vs[1].(int)]
 	}).(ProviderClientAuthOutput)
 }

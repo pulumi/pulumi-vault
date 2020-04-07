@@ -97,7 +97,7 @@ func (i GetEntityAliasTypeArray) ToGetEntityAliasTypeArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GetEntityAliasTypeArrayOutput)
 }
 
-type GetEntityAliasTypeOutput struct { *pulumi.OutputState }
+type GetEntityAliasTypeOutput struct{ *pulumi.OutputState }
 
 func (GetEntityAliasTypeOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*GetEntityAliasType)(nil)).Elem()
@@ -113,55 +113,55 @@ func (o GetEntityAliasTypeOutput) ToGetEntityAliasTypeOutputWithContext(ctx cont
 
 // Canonical ID of the Alias
 func (o GetEntityAliasTypeOutput) CanonicalId() pulumi.StringOutput {
-	return o.ApplyT(func (v GetEntityAliasType) string { return v.CanonicalId }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetEntityAliasType) string { return v.CanonicalId }).(pulumi.StringOutput)
 }
 
 // Creation time of the Alias
 func (o GetEntityAliasTypeOutput) CreationTime() pulumi.StringOutput {
-	return o.ApplyT(func (v GetEntityAliasType) string { return v.CreationTime }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetEntityAliasType) string { return v.CreationTime }).(pulumi.StringOutput)
 }
 
 // ID of the alias
 func (o GetEntityAliasTypeOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func (v GetEntityAliasType) string { return v.Id }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetEntityAliasType) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Last update time of the alias
 func (o GetEntityAliasTypeOutput) LastUpdateTime() pulumi.StringOutput {
-	return o.ApplyT(func (v GetEntityAliasType) string { return v.LastUpdateTime }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetEntityAliasType) string { return v.LastUpdateTime }).(pulumi.StringOutput)
 }
 
 // List of canonical IDs merged with this alias
 func (o GetEntityAliasTypeOutput) MergedFromCanonicalIds() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v GetEntityAliasType) []string { return v.MergedFromCanonicalIds }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v GetEntityAliasType) []string { return v.MergedFromCanonicalIds }).(pulumi.StringArrayOutput)
 }
 
 // Arbitrary metadata
 func (o GetEntityAliasTypeOutput) Metadata() pulumi.MapOutput {
-	return o.ApplyT(func (v GetEntityAliasType) map[string]interface{} { return v.Metadata }).(pulumi.MapOutput)
+	return o.ApplyT(func(v GetEntityAliasType) map[string]interface{} { return v.Metadata }).(pulumi.MapOutput)
 }
 
 // Authentication mount acccessor which this alias belongs to
 func (o GetEntityAliasTypeOutput) MountAccessor() pulumi.StringOutput {
-	return o.ApplyT(func (v GetEntityAliasType) string { return v.MountAccessor }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetEntityAliasType) string { return v.MountAccessor }).(pulumi.StringOutput)
 }
 
 // Authentication mount path which this alias belongs to
 func (o GetEntityAliasTypeOutput) MountPath() pulumi.StringOutput {
-	return o.ApplyT(func (v GetEntityAliasType) string { return v.MountPath }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetEntityAliasType) string { return v.MountPath }).(pulumi.StringOutput)
 }
 
 // Authentication mount type which this alias belongs to
 func (o GetEntityAliasTypeOutput) MountType() pulumi.StringOutput {
-	return o.ApplyT(func (v GetEntityAliasType) string { return v.MountType }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetEntityAliasType) string { return v.MountType }).(pulumi.StringOutput)
 }
 
 // Name of the alias
 func (o GetEntityAliasTypeOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func (v GetEntityAliasType) string { return v.Name }).(pulumi.StringOutput)
+	return o.ApplyT(func(v GetEntityAliasType) string { return v.Name }).(pulumi.StringOutput)
 }
 
-type GetEntityAliasTypeArrayOutput struct { *pulumi.OutputState}
+type GetEntityAliasTypeArrayOutput struct{ *pulumi.OutputState }
 
 func (GetEntityAliasTypeArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]GetEntityAliasType)(nil)).Elem()
@@ -176,7 +176,7 @@ func (o GetEntityAliasTypeArrayOutput) ToGetEntityAliasTypeArrayOutputWithContex
 }
 
 func (o GetEntityAliasTypeArrayOutput) Index(i pulumi.IntInput) GetEntityAliasTypeOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) GetEntityAliasType {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEntityAliasType {
 		return vs[0].([]GetEntityAliasType)[vs[1].(int)]
 	}).(GetEntityAliasTypeOutput)
 }

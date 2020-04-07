@@ -92,4 +92,3 @@ type SecretCacheConfigArgs struct {
 func (SecretCacheConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretCacheConfigArgs)(nil)).Elem()
 }
-

@@ -11,7 +11,13 @@ namespace Pulumi.Vault.Aws
 {
     public static partial class Invokes
     {
+        [Obsolete("Use GetAccessCredentials.InvokeAsync() instead")]
         public static Task<GetAccessCredentialsResult> GetAccessCredentials(GetAccessCredentialsArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:aws/getAccessCredentials:getAccessCredentials", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetAccessCredentials
+    {
+        public static Task<GetAccessCredentialsResult> InvokeAsync(GetAccessCredentialsArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:aws/getAccessCredentials:getAccessCredentials", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

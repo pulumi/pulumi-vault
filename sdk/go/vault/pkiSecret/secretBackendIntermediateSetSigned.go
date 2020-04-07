@@ -89,4 +89,3 @@ type SecretBackendIntermediateSetSignedArgs struct {
 func (SecretBackendIntermediateSetSignedArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendIntermediateSetSignedArgs)(nil)).Elem()
 }
-

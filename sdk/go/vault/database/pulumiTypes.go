@@ -101,7 +101,8 @@ type SecretBackendConnectionCassandraPtrInput interface {
 
 type secretBackendConnectionCassandraPtrType SecretBackendConnectionCassandraArgs
 
-func SecretBackendConnectionCassandraPtr(v *SecretBackendConnectionCassandraArgs) SecretBackendConnectionCassandraPtrInput {	return (*secretBackendConnectionCassandraPtrType)(v)
+func SecretBackendConnectionCassandraPtr(v *SecretBackendConnectionCassandraArgs) SecretBackendConnectionCassandraPtrInput {
+	return (*secretBackendConnectionCassandraPtrType)(v)
 }
 
 func (*secretBackendConnectionCassandraPtrType) ElementType() reflect.Type {
@@ -116,7 +117,7 @@ func (i *secretBackendConnectionCassandraPtrType) ToSecretBackendConnectionCassa
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionCassandraPtrOutput)
 }
 
-type SecretBackendConnectionCassandraOutput struct { *pulumi.OutputState }
+type SecretBackendConnectionCassandraOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionCassandraOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretBackendConnectionCassandra)(nil)).Elem()
@@ -139,61 +140,62 @@ func (o SecretBackendConnectionCassandraOutput) ToSecretBackendConnectionCassand
 		return &v
 	}).(SecretBackendConnectionCassandraPtrOutput)
 }
+
 // The number of seconds to use as a connection
 // timeout.
 func (o SecretBackendConnectionCassandraOutput) ConnectTimeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
 }
 
 // The hosts to connect to.
 func (o SecretBackendConnectionCassandraOutput) Hosts() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) []string { return v.Hosts }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) []string { return v.Hosts }).(pulumi.StringArrayOutput)
 }
 
 // Whether to skip verification of the server
 // certificate when using TLS.
 func (o SecretBackendConnectionCassandraOutput) InsecureTls() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
 
 // The password to authenticate with.
 func (o SecretBackendConnectionCassandraOutput) Password() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) *string { return v.Password }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
 // Concatenated PEM blocks configuring the certificate
 // chain.
 func (o SecretBackendConnectionCassandraOutput) PemBundle() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) *string { return v.PemBundle }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.PemBundle }).(pulumi.StringPtrOutput)
 }
 
 // A JSON structure configuring the certificate chain.
 func (o SecretBackendConnectionCassandraOutput) PemJson() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) *string { return v.PemJson }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.PemJson }).(pulumi.StringPtrOutput)
 }
 
 // The default port to connect to if no port is specified as
 // part of the host.
 func (o SecretBackendConnectionCassandraOutput) Port() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) *int { return v.Port }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
 // The CQL protocol version to use.
 func (o SecretBackendConnectionCassandraOutput) ProtocolVersion() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) *int { return v.ProtocolVersion }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *int { return v.ProtocolVersion }).(pulumi.IntPtrOutput)
 }
 
 // Whether to use TLS when connecting to Cassandra.
 func (o SecretBackendConnectionCassandraOutput) Tls() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
 
 // The username to authenticate with.
 func (o SecretBackendConnectionCassandraOutput) Username() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) *string { return v.Username }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-type SecretBackendConnectionCassandraPtrOutput struct { *pulumi.OutputState}
+type SecretBackendConnectionCassandraPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionCassandraPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretBackendConnectionCassandra)(nil)).Elem()
@@ -208,61 +210,61 @@ func (o SecretBackendConnectionCassandraPtrOutput) ToSecretBackendConnectionCass
 }
 
 func (o SecretBackendConnectionCassandraPtrOutput) Elem() SecretBackendConnectionCassandraOutput {
-	return o.ApplyT(func (v *SecretBackendConnectionCassandra) SecretBackendConnectionCassandra { return *v }).(SecretBackendConnectionCassandraOutput)
+	return o.ApplyT(func(v *SecretBackendConnectionCassandra) SecretBackendConnectionCassandra { return *v }).(SecretBackendConnectionCassandraOutput)
 }
 
 // The number of seconds to use as a connection
 // timeout.
 func (o SecretBackendConnectionCassandraPtrOutput) ConnectTimeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
 }
 
 // The hosts to connect to.
 func (o SecretBackendConnectionCassandraPtrOutput) Hosts() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) []string { return v.Hosts }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) []string { return v.Hosts }).(pulumi.StringArrayOutput)
 }
 
 // Whether to skip verification of the server
 // certificate when using TLS.
 func (o SecretBackendConnectionCassandraPtrOutput) InsecureTls() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
 
 // The password to authenticate with.
 func (o SecretBackendConnectionCassandraPtrOutput) Password() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) *string { return v.Password }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
 // Concatenated PEM blocks configuring the certificate
 // chain.
 func (o SecretBackendConnectionCassandraPtrOutput) PemBundle() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) *string { return v.PemBundle }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.PemBundle }).(pulumi.StringPtrOutput)
 }
 
 // A JSON structure configuring the certificate chain.
 func (o SecretBackendConnectionCassandraPtrOutput) PemJson() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) *string { return v.PemJson }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.PemJson }).(pulumi.StringPtrOutput)
 }
 
 // The default port to connect to if no port is specified as
 // part of the host.
 func (o SecretBackendConnectionCassandraPtrOutput) Port() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) *int { return v.Port }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
 // The CQL protocol version to use.
 func (o SecretBackendConnectionCassandraPtrOutput) ProtocolVersion() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) *int { return v.ProtocolVersion }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *int { return v.ProtocolVersion }).(pulumi.IntPtrOutput)
 }
 
 // Whether to use TLS when connecting to Cassandra.
 func (o SecretBackendConnectionCassandraPtrOutput) Tls() pulumi.BoolPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
 
 // The username to authenticate with.
 func (o SecretBackendConnectionCassandraPtrOutput) Username() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionCassandra) *string { return v.Username }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
 type SecretBackendConnectionHana struct {
@@ -335,7 +337,8 @@ type SecretBackendConnectionHanaPtrInput interface {
 
 type secretBackendConnectionHanaPtrType SecretBackendConnectionHanaArgs
 
-func SecretBackendConnectionHanaPtr(v *SecretBackendConnectionHanaArgs) SecretBackendConnectionHanaPtrInput {	return (*secretBackendConnectionHanaPtrType)(v)
+func SecretBackendConnectionHanaPtr(v *SecretBackendConnectionHanaArgs) SecretBackendConnectionHanaPtrInput {
+	return (*secretBackendConnectionHanaPtrType)(v)
 }
 
 func (*secretBackendConnectionHanaPtrType) ElementType() reflect.Type {
@@ -350,7 +353,7 @@ func (i *secretBackendConnectionHanaPtrType) ToSecretBackendConnectionHanaPtrOut
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionHanaPtrOutput)
 }
 
-type SecretBackendConnectionHanaOutput struct { *pulumi.OutputState }
+type SecretBackendConnectionHanaOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionHanaOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretBackendConnectionHana)(nil)).Elem()
@@ -373,33 +376,34 @@ func (o SecretBackendConnectionHanaOutput) ToSecretBackendConnectionHanaPtrOutpu
 		return &v
 	}).(SecretBackendConnectionHanaPtrOutput)
 }
+
 // A URL containing connection information. See
 // the [Vault
 // docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
 // for an example.
 func (o SecretBackendConnectionHanaOutput) ConnectionUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionHana) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionHana) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionHanaOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionHana) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionHana) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of idle connections to
 // maintain.
 func (o SecretBackendConnectionHanaOutput) MaxIdleConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionHana) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionHana) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of open connections to
 // use.
 func (o SecretBackendConnectionHanaOutput) MaxOpenConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionHana) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionHana) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-type SecretBackendConnectionHanaPtrOutput struct { *pulumi.OutputState}
+type SecretBackendConnectionHanaPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionHanaPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretBackendConnectionHana)(nil)).Elem()
@@ -414,7 +418,7 @@ func (o SecretBackendConnectionHanaPtrOutput) ToSecretBackendConnectionHanaPtrOu
 }
 
 func (o SecretBackendConnectionHanaPtrOutput) Elem() SecretBackendConnectionHanaOutput {
-	return o.ApplyT(func (v *SecretBackendConnectionHana) SecretBackendConnectionHana { return *v }).(SecretBackendConnectionHanaOutput)
+	return o.ApplyT(func(v *SecretBackendConnectionHana) SecretBackendConnectionHana { return *v }).(SecretBackendConnectionHanaOutput)
 }
 
 // A URL containing connection information. See
@@ -422,25 +426,25 @@ func (o SecretBackendConnectionHanaPtrOutput) Elem() SecretBackendConnectionHana
 // docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
 // for an example.
 func (o SecretBackendConnectionHanaPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionHana) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionHana) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionHanaPtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionHana) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionHana) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of idle connections to
 // maintain.
 func (o SecretBackendConnectionHanaPtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionHana) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionHana) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of open connections to
 // use.
 func (o SecretBackendConnectionHanaPtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionHana) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionHana) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
 type SecretBackendConnectionMongodb struct {
@@ -513,7 +517,8 @@ type SecretBackendConnectionMongodbPtrInput interface {
 
 type secretBackendConnectionMongodbPtrType SecretBackendConnectionMongodbArgs
 
-func SecretBackendConnectionMongodbPtr(v *SecretBackendConnectionMongodbArgs) SecretBackendConnectionMongodbPtrInput {	return (*secretBackendConnectionMongodbPtrType)(v)
+func SecretBackendConnectionMongodbPtr(v *SecretBackendConnectionMongodbArgs) SecretBackendConnectionMongodbPtrInput {
+	return (*secretBackendConnectionMongodbPtrType)(v)
 }
 
 func (*secretBackendConnectionMongodbPtrType) ElementType() reflect.Type {
@@ -528,7 +533,7 @@ func (i *secretBackendConnectionMongodbPtrType) ToSecretBackendConnectionMongodb
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMongodbPtrOutput)
 }
 
-type SecretBackendConnectionMongodbOutput struct { *pulumi.OutputState }
+type SecretBackendConnectionMongodbOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMongodbOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretBackendConnectionMongodb)(nil)).Elem()
@@ -551,33 +556,34 @@ func (o SecretBackendConnectionMongodbOutput) ToSecretBackendConnectionMongodbPt
 		return &v
 	}).(SecretBackendConnectionMongodbPtrOutput)
 }
+
 // A URL containing connection information. See
 // the [Vault
 // docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMongodbOutput) ConnectionUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMongodb) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionMongodbOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMongodb) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMongodb) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of idle connections to
 // maintain.
 func (o SecretBackendConnectionMongodbOutput) MaxIdleConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMongodb) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMongodb) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of open connections to
 // use.
 func (o SecretBackendConnectionMongodbOutput) MaxOpenConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMongodb) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMongodb) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-type SecretBackendConnectionMongodbPtrOutput struct { *pulumi.OutputState}
+type SecretBackendConnectionMongodbPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMongodbPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretBackendConnectionMongodb)(nil)).Elem()
@@ -592,7 +598,7 @@ func (o SecretBackendConnectionMongodbPtrOutput) ToSecretBackendConnectionMongod
 }
 
 func (o SecretBackendConnectionMongodbPtrOutput) Elem() SecretBackendConnectionMongodbOutput {
-	return o.ApplyT(func (v *SecretBackendConnectionMongodb) SecretBackendConnectionMongodb { return *v }).(SecretBackendConnectionMongodbOutput)
+	return o.ApplyT(func(v *SecretBackendConnectionMongodb) SecretBackendConnectionMongodb { return *v }).(SecretBackendConnectionMongodbOutput)
 }
 
 // A URL containing connection information. See
@@ -600,25 +606,25 @@ func (o SecretBackendConnectionMongodbPtrOutput) Elem() SecretBackendConnectionM
 // docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMongodbPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMongodb) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionMongodbPtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMongodb) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMongodb) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of idle connections to
 // maintain.
 func (o SecretBackendConnectionMongodbPtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMongodb) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMongodb) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of open connections to
 // use.
 func (o SecretBackendConnectionMongodbPtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMongodb) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMongodb) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
 type SecretBackendConnectionMssql struct {
@@ -691,7 +697,8 @@ type SecretBackendConnectionMssqlPtrInput interface {
 
 type secretBackendConnectionMssqlPtrType SecretBackendConnectionMssqlArgs
 
-func SecretBackendConnectionMssqlPtr(v *SecretBackendConnectionMssqlArgs) SecretBackendConnectionMssqlPtrInput {	return (*secretBackendConnectionMssqlPtrType)(v)
+func SecretBackendConnectionMssqlPtr(v *SecretBackendConnectionMssqlArgs) SecretBackendConnectionMssqlPtrInput {
+	return (*secretBackendConnectionMssqlPtrType)(v)
 }
 
 func (*secretBackendConnectionMssqlPtrType) ElementType() reflect.Type {
@@ -706,7 +713,7 @@ func (i *secretBackendConnectionMssqlPtrType) ToSecretBackendConnectionMssqlPtrO
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMssqlPtrOutput)
 }
 
-type SecretBackendConnectionMssqlOutput struct { *pulumi.OutputState }
+type SecretBackendConnectionMssqlOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMssqlOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretBackendConnectionMssql)(nil)).Elem()
@@ -729,33 +736,34 @@ func (o SecretBackendConnectionMssqlOutput) ToSecretBackendConnectionMssqlPtrOut
 		return &v
 	}).(SecretBackendConnectionMssqlPtrOutput)
 }
+
 // A URL containing connection information. See
 // the [Vault
 // docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMssqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMssql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMssql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionMssqlOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMssql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMssql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of idle connections to
 // maintain.
 func (o SecretBackendConnectionMssqlOutput) MaxIdleConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMssql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMssql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of open connections to
 // use.
 func (o SecretBackendConnectionMssqlOutput) MaxOpenConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMssql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMssql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-type SecretBackendConnectionMssqlPtrOutput struct { *pulumi.OutputState}
+type SecretBackendConnectionMssqlPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMssqlPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretBackendConnectionMssql)(nil)).Elem()
@@ -770,7 +778,7 @@ func (o SecretBackendConnectionMssqlPtrOutput) ToSecretBackendConnectionMssqlPtr
 }
 
 func (o SecretBackendConnectionMssqlPtrOutput) Elem() SecretBackendConnectionMssqlOutput {
-	return o.ApplyT(func (v *SecretBackendConnectionMssql) SecretBackendConnectionMssql { return *v }).(SecretBackendConnectionMssqlOutput)
+	return o.ApplyT(func(v *SecretBackendConnectionMssql) SecretBackendConnectionMssql { return *v }).(SecretBackendConnectionMssqlOutput)
 }
 
 // A URL containing connection information. See
@@ -778,25 +786,25 @@ func (o SecretBackendConnectionMssqlPtrOutput) Elem() SecretBackendConnectionMss
 // docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMssqlPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMssql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMssql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionMssqlPtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMssql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMssql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of idle connections to
 // maintain.
 func (o SecretBackendConnectionMssqlPtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMssql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMssql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of open connections to
 // use.
 func (o SecretBackendConnectionMssqlPtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMssql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMssql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
 type SecretBackendConnectionMysql struct {
@@ -869,7 +877,8 @@ type SecretBackendConnectionMysqlPtrInput interface {
 
 type secretBackendConnectionMysqlPtrType SecretBackendConnectionMysqlArgs
 
-func SecretBackendConnectionMysqlPtr(v *SecretBackendConnectionMysqlArgs) SecretBackendConnectionMysqlPtrInput {	return (*secretBackendConnectionMysqlPtrType)(v)
+func SecretBackendConnectionMysqlPtr(v *SecretBackendConnectionMysqlArgs) SecretBackendConnectionMysqlPtrInput {
+	return (*secretBackendConnectionMysqlPtrType)(v)
 }
 
 func (*secretBackendConnectionMysqlPtrType) ElementType() reflect.Type {
@@ -884,7 +893,7 @@ func (i *secretBackendConnectionMysqlPtrType) ToSecretBackendConnectionMysqlPtrO
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMysqlPtrOutput)
 }
 
-type SecretBackendConnectionMysqlOutput struct { *pulumi.OutputState }
+type SecretBackendConnectionMysqlOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMysqlOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretBackendConnectionMysql)(nil)).Elem()
@@ -907,33 +916,34 @@ func (o SecretBackendConnectionMysqlOutput) ToSecretBackendConnectionMysqlPtrOut
 		return &v
 	}).(SecretBackendConnectionMysqlPtrOutput)
 }
+
 // A URL containing connection information. See
 // the [Vault
 // docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMysqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionMysqlOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of idle connections to
 // maintain.
 func (o SecretBackendConnectionMysqlOutput) MaxIdleConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of open connections to
 // use.
 func (o SecretBackendConnectionMysqlOutput) MaxOpenConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-type SecretBackendConnectionMysqlPtrOutput struct { *pulumi.OutputState}
+type SecretBackendConnectionMysqlPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMysqlPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretBackendConnectionMysql)(nil)).Elem()
@@ -948,7 +958,7 @@ func (o SecretBackendConnectionMysqlPtrOutput) ToSecretBackendConnectionMysqlPtr
 }
 
 func (o SecretBackendConnectionMysqlPtrOutput) Elem() SecretBackendConnectionMysqlOutput {
-	return o.ApplyT(func (v *SecretBackendConnectionMysql) SecretBackendConnectionMysql { return *v }).(SecretBackendConnectionMysqlOutput)
+	return o.ApplyT(func(v *SecretBackendConnectionMysql) SecretBackendConnectionMysql { return *v }).(SecretBackendConnectionMysqlOutput)
 }
 
 // A URL containing connection information. See
@@ -956,25 +966,25 @@ func (o SecretBackendConnectionMysqlPtrOutput) Elem() SecretBackendConnectionMys
 // docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMysqlPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionMysqlPtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of idle connections to
 // maintain.
 func (o SecretBackendConnectionMysqlPtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of open connections to
 // use.
 func (o SecretBackendConnectionMysqlPtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
 type SecretBackendConnectionMysqlAurora struct {
@@ -1047,7 +1057,8 @@ type SecretBackendConnectionMysqlAuroraPtrInput interface {
 
 type secretBackendConnectionMysqlAuroraPtrType SecretBackendConnectionMysqlAuroraArgs
 
-func SecretBackendConnectionMysqlAuroraPtr(v *SecretBackendConnectionMysqlAuroraArgs) SecretBackendConnectionMysqlAuroraPtrInput {	return (*secretBackendConnectionMysqlAuroraPtrType)(v)
+func SecretBackendConnectionMysqlAuroraPtr(v *SecretBackendConnectionMysqlAuroraArgs) SecretBackendConnectionMysqlAuroraPtrInput {
+	return (*secretBackendConnectionMysqlAuroraPtrType)(v)
 }
 
 func (*secretBackendConnectionMysqlAuroraPtrType) ElementType() reflect.Type {
@@ -1062,7 +1073,7 @@ func (i *secretBackendConnectionMysqlAuroraPtrType) ToSecretBackendConnectionMys
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMysqlAuroraPtrOutput)
 }
 
-type SecretBackendConnectionMysqlAuroraOutput struct { *pulumi.OutputState }
+type SecretBackendConnectionMysqlAuroraOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMysqlAuroraOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretBackendConnectionMysqlAurora)(nil)).Elem()
@@ -1085,33 +1096,34 @@ func (o SecretBackendConnectionMysqlAuroraOutput) ToSecretBackendConnectionMysql
 		return &v
 	}).(SecretBackendConnectionMysqlAuroraPtrOutput)
 }
+
 // A URL containing connection information. See
 // the [Vault
 // docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMysqlAuroraOutput) ConnectionUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlAurora) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionMysqlAuroraOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlAurora) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of idle connections to
 // maintain.
 func (o SecretBackendConnectionMysqlAuroraOutput) MaxIdleConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlAurora) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of open connections to
 // use.
 func (o SecretBackendConnectionMysqlAuroraOutput) MaxOpenConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlAurora) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-type SecretBackendConnectionMysqlAuroraPtrOutput struct { *pulumi.OutputState}
+type SecretBackendConnectionMysqlAuroraPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMysqlAuroraPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretBackendConnectionMysqlAurora)(nil)).Elem()
@@ -1126,7 +1138,7 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) ToSecretBackendConnectionMy
 }
 
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) Elem() SecretBackendConnectionMysqlAuroraOutput {
-	return o.ApplyT(func (v *SecretBackendConnectionMysqlAurora) SecretBackendConnectionMysqlAurora { return *v }).(SecretBackendConnectionMysqlAuroraOutput)
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) SecretBackendConnectionMysqlAurora { return *v }).(SecretBackendConnectionMysqlAuroraOutput)
 }
 
 // A URL containing connection information. See
@@ -1134,25 +1146,25 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) Elem() SecretBackendConnect
 // docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlAurora) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlAurora) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of idle connections to
 // maintain.
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlAurora) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of open connections to
 // use.
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlAurora) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
 type SecretBackendConnectionMysqlLegacy struct {
@@ -1225,7 +1237,8 @@ type SecretBackendConnectionMysqlLegacyPtrInput interface {
 
 type secretBackendConnectionMysqlLegacyPtrType SecretBackendConnectionMysqlLegacyArgs
 
-func SecretBackendConnectionMysqlLegacyPtr(v *SecretBackendConnectionMysqlLegacyArgs) SecretBackendConnectionMysqlLegacyPtrInput {	return (*secretBackendConnectionMysqlLegacyPtrType)(v)
+func SecretBackendConnectionMysqlLegacyPtr(v *SecretBackendConnectionMysqlLegacyArgs) SecretBackendConnectionMysqlLegacyPtrInput {
+	return (*secretBackendConnectionMysqlLegacyPtrType)(v)
 }
 
 func (*secretBackendConnectionMysqlLegacyPtrType) ElementType() reflect.Type {
@@ -1240,7 +1253,7 @@ func (i *secretBackendConnectionMysqlLegacyPtrType) ToSecretBackendConnectionMys
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMysqlLegacyPtrOutput)
 }
 
-type SecretBackendConnectionMysqlLegacyOutput struct { *pulumi.OutputState }
+type SecretBackendConnectionMysqlLegacyOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMysqlLegacyOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretBackendConnectionMysqlLegacy)(nil)).Elem()
@@ -1263,33 +1276,34 @@ func (o SecretBackendConnectionMysqlLegacyOutput) ToSecretBackendConnectionMysql
 		return &v
 	}).(SecretBackendConnectionMysqlLegacyPtrOutput)
 }
+
 // A URL containing connection information. See
 // the [Vault
 // docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMysqlLegacyOutput) ConnectionUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlLegacy) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionMysqlLegacyOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlLegacy) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of idle connections to
 // maintain.
 func (o SecretBackendConnectionMysqlLegacyOutput) MaxIdleConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlLegacy) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of open connections to
 // use.
 func (o SecretBackendConnectionMysqlLegacyOutput) MaxOpenConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlLegacy) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-type SecretBackendConnectionMysqlLegacyPtrOutput struct { *pulumi.OutputState}
+type SecretBackendConnectionMysqlLegacyPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMysqlLegacyPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretBackendConnectionMysqlLegacy)(nil)).Elem()
@@ -1304,7 +1318,7 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) ToSecretBackendConnectionMy
 }
 
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) Elem() SecretBackendConnectionMysqlLegacyOutput {
-	return o.ApplyT(func (v *SecretBackendConnectionMysqlLegacy) SecretBackendConnectionMysqlLegacy { return *v }).(SecretBackendConnectionMysqlLegacyOutput)
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) SecretBackendConnectionMysqlLegacy { return *v }).(SecretBackendConnectionMysqlLegacyOutput)
 }
 
 // A URL containing connection information. See
@@ -1312,25 +1326,25 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) Elem() SecretBackendConnect
 // docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlLegacy) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlLegacy) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of idle connections to
 // maintain.
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlLegacy) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of open connections to
 // use.
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlLegacy) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
 type SecretBackendConnectionMysqlRds struct {
@@ -1403,7 +1417,8 @@ type SecretBackendConnectionMysqlRdsPtrInput interface {
 
 type secretBackendConnectionMysqlRdsPtrType SecretBackendConnectionMysqlRdsArgs
 
-func SecretBackendConnectionMysqlRdsPtr(v *SecretBackendConnectionMysqlRdsArgs) SecretBackendConnectionMysqlRdsPtrInput {	return (*secretBackendConnectionMysqlRdsPtrType)(v)
+func SecretBackendConnectionMysqlRdsPtr(v *SecretBackendConnectionMysqlRdsArgs) SecretBackendConnectionMysqlRdsPtrInput {
+	return (*secretBackendConnectionMysqlRdsPtrType)(v)
 }
 
 func (*secretBackendConnectionMysqlRdsPtrType) ElementType() reflect.Type {
@@ -1418,7 +1433,7 @@ func (i *secretBackendConnectionMysqlRdsPtrType) ToSecretBackendConnectionMysqlR
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMysqlRdsPtrOutput)
 }
 
-type SecretBackendConnectionMysqlRdsOutput struct { *pulumi.OutputState }
+type SecretBackendConnectionMysqlRdsOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMysqlRdsOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretBackendConnectionMysqlRds)(nil)).Elem()
@@ -1441,33 +1456,34 @@ func (o SecretBackendConnectionMysqlRdsOutput) ToSecretBackendConnectionMysqlRds
 		return &v
 	}).(SecretBackendConnectionMysqlRdsPtrOutput)
 }
+
 // A URL containing connection information. See
 // the [Vault
 // docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMysqlRdsOutput) ConnectionUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlRds) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionMysqlRdsOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlRds) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of idle connections to
 // maintain.
 func (o SecretBackendConnectionMysqlRdsOutput) MaxIdleConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlRds) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of open connections to
 // use.
 func (o SecretBackendConnectionMysqlRdsOutput) MaxOpenConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlRds) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-type SecretBackendConnectionMysqlRdsPtrOutput struct { *pulumi.OutputState}
+type SecretBackendConnectionMysqlRdsPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMysqlRdsPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretBackendConnectionMysqlRds)(nil)).Elem()
@@ -1482,7 +1498,7 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) ToSecretBackendConnectionMysql
 }
 
 func (o SecretBackendConnectionMysqlRdsPtrOutput) Elem() SecretBackendConnectionMysqlRdsOutput {
-	return o.ApplyT(func (v *SecretBackendConnectionMysqlRds) SecretBackendConnectionMysqlRds { return *v }).(SecretBackendConnectionMysqlRdsOutput)
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) SecretBackendConnectionMysqlRds { return *v }).(SecretBackendConnectionMysqlRdsOutput)
 }
 
 // A URL containing connection information. See
@@ -1490,25 +1506,25 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) Elem() SecretBackendConnection
 // docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMysqlRdsPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlRds) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionMysqlRdsPtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlRds) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of idle connections to
 // maintain.
 func (o SecretBackendConnectionMysqlRdsPtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlRds) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of open connections to
 // use.
 func (o SecretBackendConnectionMysqlRdsPtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionMysqlRds) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
 type SecretBackendConnectionOracle struct {
@@ -1581,7 +1597,8 @@ type SecretBackendConnectionOraclePtrInput interface {
 
 type secretBackendConnectionOraclePtrType SecretBackendConnectionOracleArgs
 
-func SecretBackendConnectionOraclePtr(v *SecretBackendConnectionOracleArgs) SecretBackendConnectionOraclePtrInput {	return (*secretBackendConnectionOraclePtrType)(v)
+func SecretBackendConnectionOraclePtr(v *SecretBackendConnectionOracleArgs) SecretBackendConnectionOraclePtrInput {
+	return (*secretBackendConnectionOraclePtrType)(v)
 }
 
 func (*secretBackendConnectionOraclePtrType) ElementType() reflect.Type {
@@ -1596,7 +1613,7 @@ func (i *secretBackendConnectionOraclePtrType) ToSecretBackendConnectionOraclePt
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionOraclePtrOutput)
 }
 
-type SecretBackendConnectionOracleOutput struct { *pulumi.OutputState }
+type SecretBackendConnectionOracleOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionOracleOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretBackendConnectionOracle)(nil)).Elem()
@@ -1619,33 +1636,34 @@ func (o SecretBackendConnectionOracleOutput) ToSecretBackendConnectionOraclePtrO
 		return &v
 	}).(SecretBackendConnectionOraclePtrOutput)
 }
+
 // A URL containing connection information. See
 // the [Vault
 // docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
 // for an example.
 func (o SecretBackendConnectionOracleOutput) ConnectionUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionOracle) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionOracle) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionOracleOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionOracle) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionOracle) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of idle connections to
 // maintain.
 func (o SecretBackendConnectionOracleOutput) MaxIdleConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionOracle) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionOracle) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of open connections to
 // use.
 func (o SecretBackendConnectionOracleOutput) MaxOpenConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionOracle) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionOracle) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-type SecretBackendConnectionOraclePtrOutput struct { *pulumi.OutputState}
+type SecretBackendConnectionOraclePtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionOraclePtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretBackendConnectionOracle)(nil)).Elem()
@@ -1660,7 +1678,7 @@ func (o SecretBackendConnectionOraclePtrOutput) ToSecretBackendConnectionOracleP
 }
 
 func (o SecretBackendConnectionOraclePtrOutput) Elem() SecretBackendConnectionOracleOutput {
-	return o.ApplyT(func (v *SecretBackendConnectionOracle) SecretBackendConnectionOracle { return *v }).(SecretBackendConnectionOracleOutput)
+	return o.ApplyT(func(v *SecretBackendConnectionOracle) SecretBackendConnectionOracle { return *v }).(SecretBackendConnectionOracleOutput)
 }
 
 // A URL containing connection information. See
@@ -1668,25 +1686,25 @@ func (o SecretBackendConnectionOraclePtrOutput) Elem() SecretBackendConnectionOr
 // docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
 // for an example.
 func (o SecretBackendConnectionOraclePtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionOracle) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionOracle) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionOraclePtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionOracle) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionOracle) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of idle connections to
 // maintain.
 func (o SecretBackendConnectionOraclePtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionOracle) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionOracle) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of open connections to
 // use.
 func (o SecretBackendConnectionOraclePtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionOracle) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionOracle) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
 type SecretBackendConnectionPostgresql struct {
@@ -1759,7 +1777,8 @@ type SecretBackendConnectionPostgresqlPtrInput interface {
 
 type secretBackendConnectionPostgresqlPtrType SecretBackendConnectionPostgresqlArgs
 
-func SecretBackendConnectionPostgresqlPtr(v *SecretBackendConnectionPostgresqlArgs) SecretBackendConnectionPostgresqlPtrInput {	return (*secretBackendConnectionPostgresqlPtrType)(v)
+func SecretBackendConnectionPostgresqlPtr(v *SecretBackendConnectionPostgresqlArgs) SecretBackendConnectionPostgresqlPtrInput {
+	return (*secretBackendConnectionPostgresqlPtrType)(v)
 }
 
 func (*secretBackendConnectionPostgresqlPtrType) ElementType() reflect.Type {
@@ -1774,7 +1793,7 @@ func (i *secretBackendConnectionPostgresqlPtrType) ToSecretBackendConnectionPost
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionPostgresqlPtrOutput)
 }
 
-type SecretBackendConnectionPostgresqlOutput struct { *pulumi.OutputState }
+type SecretBackendConnectionPostgresqlOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionPostgresqlOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretBackendConnectionPostgresql)(nil)).Elem()
@@ -1797,33 +1816,34 @@ func (o SecretBackendConnectionPostgresqlOutput) ToSecretBackendConnectionPostgr
 		return &v
 	}).(SecretBackendConnectionPostgresqlPtrOutput)
 }
+
 // A URL containing connection information. See
 // the [Vault
 // docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
 // for an example.
 func (o SecretBackendConnectionPostgresqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionPostgresql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionPostgresqlOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionPostgresql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of idle connections to
 // maintain.
 func (o SecretBackendConnectionPostgresqlOutput) MaxIdleConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionPostgresql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of open connections to
 // use.
 func (o SecretBackendConnectionPostgresqlOutput) MaxOpenConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionPostgresql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-type SecretBackendConnectionPostgresqlPtrOutput struct { *pulumi.OutputState}
+type SecretBackendConnectionPostgresqlPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionPostgresqlPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretBackendConnectionPostgresql)(nil)).Elem()
@@ -1838,7 +1858,7 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) ToSecretBackendConnectionPos
 }
 
 func (o SecretBackendConnectionPostgresqlPtrOutput) Elem() SecretBackendConnectionPostgresqlOutput {
-	return o.ApplyT(func (v *SecretBackendConnectionPostgresql) SecretBackendConnectionPostgresql { return *v }).(SecretBackendConnectionPostgresqlOutput)
+	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) SecretBackendConnectionPostgresql { return *v }).(SecretBackendConnectionPostgresqlOutput)
 }
 
 // A URL containing connection information. See
@@ -1846,25 +1866,25 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) Elem() SecretBackendConnecti
 // docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
 // for an example.
 func (o SecretBackendConnectionPostgresqlPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionPostgresql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionPostgresqlPtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionPostgresql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of idle connections to
 // maintain.
 func (o SecretBackendConnectionPostgresqlPtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionPostgresql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
 // The maximum number of open connections to
 // use.
 func (o SecretBackendConnectionPostgresqlPtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
-	return o.ApplyT(func (v SecretBackendConnectionPostgresql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
 func init() {

@@ -155,4 +155,3 @@ type MfaDuoArgs struct {
 func (MfaDuoArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*mfaDuoArgs)(nil)).Elem()
 }
-

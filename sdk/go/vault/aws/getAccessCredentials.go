@@ -36,12 +36,11 @@ type GetAccessCredentialsArgs struct {
 	Type *string `pulumi:"type"`
 }
 
-
 // A collection of values returned by getAccessCredentials.
 type GetAccessCredentialsResult struct {
 	// The AWS Access Key ID returned by Vault.
 	AccessKey string `pulumi:"accessKey"`
-	Backend string `pulumi:"backend"`
+	Backend   string `pulumi:"backend"`
 	// id is the provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The duration of the secret lease, in seconds relative
@@ -49,15 +48,14 @@ type GetAccessCredentialsResult struct {
 	// generated with this data may fail to apply.
 	LeaseDuration int `pulumi:"leaseDuration"`
 	// The lease identifier assigned by Vault.
-	LeaseId string `pulumi:"leaseId"`
-	LeaseRenewable bool `pulumi:"leaseRenewable"`
-	LeaseStartTime string `pulumi:"leaseStartTime"`
-	Role string `pulumi:"role"`
-	RoleArn *string `pulumi:"roleArn"`
+	LeaseId        string  `pulumi:"leaseId"`
+	LeaseRenewable bool    `pulumi:"leaseRenewable"`
+	LeaseStartTime string  `pulumi:"leaseStartTime"`
+	Role           string  `pulumi:"role"`
+	RoleArn        *string `pulumi:"roleArn"`
 	// The AWS Secret Key returned by Vault.
 	SecretKey string `pulumi:"secretKey"`
 	// The STS token returned by Vault, if any.
-	SecurityToken string `pulumi:"securityToken"`
-	Type *string `pulumi:"type"`
+	SecurityToken string  `pulumi:"securityToken"`
+	Type          *string `pulumi:"type"`
 }
-

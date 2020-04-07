@@ -236,4 +236,3 @@ type SecretBackendConnectionArgs struct {
 func (SecretBackendConnectionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendConnectionArgs)(nil)).Elem()
 }
-

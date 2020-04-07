@@ -119,4 +119,3 @@ type AuthBackendRoletagBlacklistArgs struct {
 func (AuthBackendRoletagBlacklistArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendRoletagBlacklistArgs)(nil)).Elem()
 }
-

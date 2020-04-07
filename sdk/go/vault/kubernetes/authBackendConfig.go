@@ -21,7 +21,7 @@ type AuthBackendConfig struct {
 
 	// Unique name of the kubernetes backend to configure.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
-	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
 	Issuer pulumi.StringPtrOutput `pulumi:"issuer"`
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
 	KubernetesCaCert pulumi.StringPtrOutput `pulumi:"kubernetesCaCert"`
@@ -66,7 +66,7 @@ func GetAuthBackendConfig(ctx *pulumi.Context,
 type authBackendConfigState struct {
 	// Unique name of the kubernetes backend to configure.
 	Backend *string `pulumi:"backend"`
-	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
 	Issuer *string `pulumi:"issuer"`
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
 	KubernetesCaCert *string `pulumi:"kubernetesCaCert"`
@@ -81,7 +81,7 @@ type authBackendConfigState struct {
 type AuthBackendConfigState struct {
 	// Unique name of the kubernetes backend to configure.
 	Backend pulumi.StringPtrInput
-	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
 	Issuer pulumi.StringPtrInput
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
 	KubernetesCaCert pulumi.StringPtrInput
@@ -100,7 +100,7 @@ func (AuthBackendConfigState) ElementType() reflect.Type {
 type authBackendConfigArgs struct {
 	// Unique name of the kubernetes backend to configure.
 	Backend *string `pulumi:"backend"`
-	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
 	Issuer *string `pulumi:"issuer"`
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
 	KubernetesCaCert *string `pulumi:"kubernetesCaCert"`
@@ -116,7 +116,7 @@ type authBackendConfigArgs struct {
 type AuthBackendConfigArgs struct {
 	// Unique name of the kubernetes backend to configure.
 	Backend pulumi.StringPtrInput
-	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
 	Issuer pulumi.StringPtrInput
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
 	KubernetesCaCert pulumi.StringPtrInput
@@ -131,4 +131,3 @@ type AuthBackendConfigArgs struct {
 func (AuthBackendConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendConfigArgs)(nil)).Elem()
 }
-

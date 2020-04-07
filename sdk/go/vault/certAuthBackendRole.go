@@ -444,4 +444,3 @@ type CertAuthBackendRoleArgs struct {
 func (CertAuthBackendRoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*certAuthBackendRoleArgs)(nil)).Elem()
 }
-

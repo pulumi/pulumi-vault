@@ -99,4 +99,3 @@ type EntityAliasArgs struct {
 func (EntityAliasArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*entityAliasArgs)(nil)).Elem()
 }
-

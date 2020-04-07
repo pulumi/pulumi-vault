@@ -310,4 +310,3 @@ type SecretBackendRootCertArgs struct {
 func (SecretBackendRootCertArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendRootCertArgs)(nil)).Elem()
 }
-

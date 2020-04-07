@@ -99,4 +99,3 @@ type SecretBackendCrlConfigArgs struct {
 func (SecretBackendCrlConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendCrlConfigArgs)(nil)).Elem()
 }
-

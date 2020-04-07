@@ -11,7 +11,13 @@ namespace Pulumi.Vault.Identity
 {
     public static partial class Invokes
     {
+        [Obsolete("Use GetGroup.InvokeAsync() instead")]
         public static Task<GetGroupResult> GetGroup(GetGroupArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("vault:identity/getGroup:getGroup", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetGroup
+    {
+        public static Task<GetGroupResult> InvokeAsync(GetGroupArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("vault:identity/getGroup:getGroup", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

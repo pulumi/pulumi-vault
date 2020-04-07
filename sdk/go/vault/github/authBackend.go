@@ -65,16 +65,13 @@ type AuthBackend struct {
 	// (Optional) The incremental lifetime for generated tokens in number of seconds.
 	// Its current value will be referenced at renewal time.
 	TokenTtl pulumi.IntPtrOutput `pulumi:"tokenTtl"`
-	// (Optional) The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// Specifies the type of tokens that should be returned by
+	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType pulumi.StringPtrOutput `pulumi:"tokenType"`
 	// (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
 	// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-	Ttl pulumi.StringPtrOutput `pulumi:"ttl"`
-	Tune AuthBackendTuneOutput `pulumi:"tune"`
+	Ttl  pulumi.StringPtrOutput `pulumi:"ttl"`
+	Tune AuthBackendTuneOutput  `pulumi:"tune"`
 }
 
 // NewAuthBackend registers a new resource with the given unique name, arguments, and options.
@@ -154,15 +151,12 @@ type authBackendState struct {
 	// (Optional) The incremental lifetime for generated tokens in number of seconds.
 	// Its current value will be referenced at renewal time.
 	TokenTtl *int `pulumi:"tokenTtl"`
-	// (Optional) The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// Specifies the type of tokens that should be returned by
+	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType *string `pulumi:"tokenType"`
 	// (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
 	// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-	Ttl *string `pulumi:"ttl"`
+	Ttl  *string          `pulumi:"ttl"`
 	Tune *AuthBackendTune `pulumi:"tune"`
 }
 
@@ -213,15 +207,12 @@ type AuthBackendState struct {
 	// (Optional) The incremental lifetime for generated tokens in number of seconds.
 	// Its current value will be referenced at renewal time.
 	TokenTtl pulumi.IntPtrInput
-	// (Optional) The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// Specifies the type of tokens that should be returned by
+	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType pulumi.StringPtrInput
 	// (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
 	// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-	Ttl pulumi.StringPtrInput
+	Ttl  pulumi.StringPtrInput
 	Tune AuthBackendTunePtrInput
 }
 
@@ -274,15 +265,12 @@ type authBackendArgs struct {
 	// (Optional) The incremental lifetime for generated tokens in number of seconds.
 	// Its current value will be referenced at renewal time.
 	TokenTtl *int `pulumi:"tokenTtl"`
-	// (Optional) The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// Specifies the type of tokens that should be returned by
+	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType *string `pulumi:"tokenType"`
 	// (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
 	// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-	Ttl *string `pulumi:"ttl"`
+	Ttl  *string          `pulumi:"ttl"`
 	Tune *AuthBackendTune `pulumi:"tune"`
 }
 
@@ -332,19 +320,15 @@ type AuthBackendArgs struct {
 	// (Optional) The incremental lifetime for generated tokens in number of seconds.
 	// Its current value will be referenced at renewal time.
 	TokenTtl pulumi.IntPtrInput
-	// (Optional) The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// Specifies the type of tokens that should be returned by
+	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType pulumi.StringPtrInput
 	// (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
 	// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-	Ttl pulumi.StringPtrInput
+	Ttl  pulumi.StringPtrInput
 	Tune AuthBackendTunePtrInput
 }
 
 func (AuthBackendArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendArgs)(nil)).Elem()
 }
-

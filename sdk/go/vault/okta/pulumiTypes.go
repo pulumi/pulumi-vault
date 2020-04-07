@@ -65,7 +65,7 @@ func (i AuthBackendGroupTypeArray) ToAuthBackendGroupTypeArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupTypeArrayOutput)
 }
 
-type AuthBackendGroupTypeOutput struct { *pulumi.OutputState }
+type AuthBackendGroupTypeOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendGroupTypeOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*AuthBackendGroupType)(nil)).Elem()
@@ -81,15 +81,15 @@ func (o AuthBackendGroupTypeOutput) ToAuthBackendGroupTypeOutputWithContext(ctx 
 
 // Name of the group within the Okta
 func (o AuthBackendGroupTypeOutput) GroupName() pulumi.StringOutput {
-	return o.ApplyT(func (v AuthBackendGroupType) string { return v.GroupName }).(pulumi.StringOutput)
+	return o.ApplyT(func(v AuthBackendGroupType) string { return v.GroupName }).(pulumi.StringOutput)
 }
 
 // List of Vault policies to associate with this user
 func (o AuthBackendGroupTypeOutput) Policies() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendGroupType) []string { return v.Policies }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendGroupType) []string { return v.Policies }).(pulumi.StringArrayOutput)
 }
 
-type AuthBackendGroupTypeArrayOutput struct { *pulumi.OutputState}
+type AuthBackendGroupTypeArrayOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendGroupTypeArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]AuthBackendGroupType)(nil)).Elem()
@@ -104,7 +104,7 @@ func (o AuthBackendGroupTypeArrayOutput) ToAuthBackendGroupTypeArrayOutputWithCo
 }
 
 func (o AuthBackendGroupTypeArrayOutput) Index(i pulumi.IntInput) AuthBackendGroupTypeOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) AuthBackendGroupType {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthBackendGroupType {
 		return vs[0].([]AuthBackendGroupType)[vs[1].(int)]
 	}).(AuthBackendGroupTypeOutput)
 }
@@ -167,7 +167,7 @@ func (i AuthBackendUserTypeArray) ToAuthBackendUserTypeArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendUserTypeArrayOutput)
 }
 
-type AuthBackendUserTypeOutput struct { *pulumi.OutputState }
+type AuthBackendUserTypeOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendUserTypeOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*AuthBackendUserType)(nil)).Elem()
@@ -183,20 +183,20 @@ func (o AuthBackendUserTypeOutput) ToAuthBackendUserTypeOutputWithContext(ctx co
 
 // List of Okta groups to associate with this user
 func (o AuthBackendUserTypeOutput) Groups() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendUserType) []string { return v.Groups }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendUserType) []string { return v.Groups }).(pulumi.StringArrayOutput)
 }
 
 // List of Vault policies to associate with this user
 func (o AuthBackendUserTypeOutput) Policies() pulumi.StringArrayOutput {
-	return o.ApplyT(func (v AuthBackendUserType) []string { return v.Policies }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v AuthBackendUserType) []string { return v.Policies }).(pulumi.StringArrayOutput)
 }
 
 // Name of the user within Okta
 func (o AuthBackendUserTypeOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func (v AuthBackendUserType) string { return v.Username }).(pulumi.StringOutput)
+	return o.ApplyT(func(v AuthBackendUserType) string { return v.Username }).(pulumi.StringOutput)
 }
 
-type AuthBackendUserTypeArrayOutput struct { *pulumi.OutputState}
+type AuthBackendUserTypeArrayOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendUserTypeArrayOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*[]AuthBackendUserType)(nil)).Elem()
@@ -211,7 +211,7 @@ func (o AuthBackendUserTypeArrayOutput) ToAuthBackendUserTypeArrayOutputWithCont
 }
 
 func (o AuthBackendUserTypeArrayOutput) Index(i pulumi.IntInput) AuthBackendUserTypeOutput {
-	return pulumi.All(o, i).ApplyT(func (vs []interface{}) AuthBackendUserType {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthBackendUserType {
 		return vs[0].([]AuthBackendUserType)[vs[1].(int)]
 	}).(AuthBackendUserTypeOutput)
 }

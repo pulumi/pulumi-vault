@@ -20,7 +20,8 @@ type AuthBackend struct {
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// A description of the auth method
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
+	// Specifies whether to show this mount in
+	// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
 	ListingVisibility pulumi.StringOutput `pulumi:"listingVisibility"`
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
@@ -71,7 +72,8 @@ type authBackendState struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A description of the auth method
 	Description *string `pulumi:"description"`
-	// (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
+	// Specifies whether to show this mount in
+	// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
 	ListingVisibility *string `pulumi:"listingVisibility"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
@@ -92,7 +94,8 @@ type AuthBackendState struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A description of the auth method
 	Description pulumi.StringPtrInput
-	// (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
+	// Specifies whether to show this mount in
+	// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
 	ListingVisibility pulumi.StringPtrInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
@@ -115,7 +118,8 @@ type authBackendArgs struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A description of the auth method
 	Description *string `pulumi:"description"`
-	// (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
+	// Specifies whether to show this mount in
+	// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
 	ListingVisibility *string `pulumi:"listingVisibility"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
@@ -135,7 +139,8 @@ type AuthBackendArgs struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A description of the auth method
 	Description pulumi.StringPtrInput
-	// (Optional; Deprecated, use `tune.listing_visibility` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint.
+	// Specifies whether to show this mount in
+	// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
 	ListingVisibility pulumi.StringPtrInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
@@ -152,4 +157,3 @@ type AuthBackendArgs struct {
 func (AuthBackendArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendArgs)(nil)).Elem()
 }
-

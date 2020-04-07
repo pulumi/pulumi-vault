@@ -107,4 +107,3 @@ type GroupAliasArgs struct {
 func (GroupAliasArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupAliasArgs)(nil)).Elem()
 }
-

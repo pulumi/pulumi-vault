@@ -104,4 +104,3 @@ type RgpPolicyArgs struct {
 func (RgpPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*rgpPolicyArgs)(nil)).Elem()
 }
-

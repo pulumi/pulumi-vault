@@ -108,4 +108,3 @@ type GroupPoliciesArgs struct {
 func (GroupPoliciesArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupPoliciesArgs)(nil)).Elem()
 }
-

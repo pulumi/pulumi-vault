@@ -11,7 +11,13 @@ namespace Pulumi.Vault
 {
     public static partial class Invokes
     {
+        [Obsolete("Use GetAuthBackend.InvokeAsync() instead")]
         public static Task<GetAuthBackendResult> GetAuthBackend(GetAuthBackendArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendResult>("vault:index/getAuthBackend:getAuthBackend", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetAuthBackend
+    {
+        public static Task<GetAuthBackendResult> InvokeAsync(GetAuthBackendArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendResult>("vault:index/getAuthBackend:getAuthBackend", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

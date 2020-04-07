@@ -437,4 +437,3 @@ type AuthBackendRoleArgs struct {
 func (AuthBackendRoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendRoleArgs)(nil)).Elem()
 }
-

@@ -127,4 +127,3 @@ type OidcKeyArgs struct {
 func (OidcKeyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*oidcKeyArgs)(nil)).Elem()
 }
-

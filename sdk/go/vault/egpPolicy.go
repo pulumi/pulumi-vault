@@ -117,4 +117,3 @@ type EgpPolicyArgs struct {
 func (EgpPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*egpPolicyArgs)(nil)).Elem()
 }
-

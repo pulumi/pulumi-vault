@@ -25,13 +25,11 @@ type GetPolicyDocumentArgs struct {
 	Rules []GetPolicyDocumentRule `pulumi:"rules"`
 }
 
-
 // A collection of values returned by getPolicyDocument.
 type GetPolicyDocumentResult struct {
 	// The above arguments serialized as a standard Vault HCL policy document.
 	Hcl string `pulumi:"hcl"`
 	// id is the provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
+	Id    string                  `pulumi:"id"`
 	Rules []GetPolicyDocumentRule `pulumi:"rules"`
 }
-

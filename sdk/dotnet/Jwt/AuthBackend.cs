@@ -361,6 +361,11 @@ namespace Pulumi.Vault.Jwt
     {
         [Input("allowedResponseHeaders")]
         private InputList<string>? _allowedResponseHeaders;
+
+        /// <summary>
+        /// List of headers to whitelist and allowing
+        /// a plugin to include them in the response.
+        /// </summary>
         public InputList<string> AllowedResponseHeaders
         {
             get => _allowedResponseHeaders ?? (_allowedResponseHeaders = new InputList<string>());
@@ -369,6 +374,11 @@ namespace Pulumi.Vault.Jwt
 
         [Input("auditNonHmacRequestKeys")]
         private InputList<string>? _auditNonHmacRequestKeys;
+
+        /// <summary>
+        /// Specifies the list of keys that will
+        /// not be HMAC'd by audit devices in the request data object.
+        /// </summary>
         public InputList<string> AuditNonHmacRequestKeys
         {
             get => _auditNonHmacRequestKeys ?? (_auditNonHmacRequestKeys = new InputList<string>());
@@ -377,29 +387,57 @@ namespace Pulumi.Vault.Jwt
 
         [Input("auditNonHmacResponseKeys")]
         private InputList<string>? _auditNonHmacResponseKeys;
+
+        /// <summary>
+        /// Specifies the list of keys that will
+        /// not be HMAC'd by audit devices in the response data object.
+        /// </summary>
         public InputList<string> AuditNonHmacResponseKeys
         {
             get => _auditNonHmacResponseKeys ?? (_auditNonHmacResponseKeys = new InputList<string>());
             set => _auditNonHmacResponseKeys = value;
         }
 
+        /// <summary>
+        /// Specifies the default time-to-live.
+        /// If set, this overrides the global default.
+        /// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+        /// </summary>
         [Input("defaultLeaseTtl")]
         public Input<string>? DefaultLeaseTtl { get; set; }
 
+        /// <summary>
+        /// Specifies whether to show this mount in
+        /// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+        /// </summary>
         [Input("listingVisibility")]
         public Input<string>? ListingVisibility { get; set; }
 
+        /// <summary>
+        /// Specifies the maximum time-to-live.
+        /// If set, this overrides the global default.
+        /// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+        /// </summary>
         [Input("maxLeaseTtl")]
         public Input<string>? MaxLeaseTtl { get; set; }
 
         [Input("passthroughRequestHeaders")]
         private InputList<string>? _passthroughRequestHeaders;
+
+        /// <summary>
+        /// List of headers to whitelist and
+        /// pass from the request to the backend.
+        /// </summary>
         public InputList<string> PassthroughRequestHeaders
         {
             get => _passthroughRequestHeaders ?? (_passthroughRequestHeaders = new InputList<string>());
             set => _passthroughRequestHeaders = value;
         }
 
+        /// <summary>
+        /// Specifies the type of tokens that should be returned by
+        /// the mount. Valid values are "default-service", "default-batch", "service", "batch".
+        /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
 
@@ -412,6 +450,11 @@ namespace Pulumi.Vault.Jwt
     {
         [Input("allowedResponseHeaders")]
         private InputList<string>? _allowedResponseHeaders;
+
+        /// <summary>
+        /// List of headers to whitelist and allowing
+        /// a plugin to include them in the response.
+        /// </summary>
         public InputList<string> AllowedResponseHeaders
         {
             get => _allowedResponseHeaders ?? (_allowedResponseHeaders = new InputList<string>());
@@ -420,6 +463,11 @@ namespace Pulumi.Vault.Jwt
 
         [Input("auditNonHmacRequestKeys")]
         private InputList<string>? _auditNonHmacRequestKeys;
+
+        /// <summary>
+        /// Specifies the list of keys that will
+        /// not be HMAC'd by audit devices in the request data object.
+        /// </summary>
         public InputList<string> AuditNonHmacRequestKeys
         {
             get => _auditNonHmacRequestKeys ?? (_auditNonHmacRequestKeys = new InputList<string>());
@@ -428,29 +476,57 @@ namespace Pulumi.Vault.Jwt
 
         [Input("auditNonHmacResponseKeys")]
         private InputList<string>? _auditNonHmacResponseKeys;
+
+        /// <summary>
+        /// Specifies the list of keys that will
+        /// not be HMAC'd by audit devices in the response data object.
+        /// </summary>
         public InputList<string> AuditNonHmacResponseKeys
         {
             get => _auditNonHmacResponseKeys ?? (_auditNonHmacResponseKeys = new InputList<string>());
             set => _auditNonHmacResponseKeys = value;
         }
 
+        /// <summary>
+        /// Specifies the default time-to-live.
+        /// If set, this overrides the global default.
+        /// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+        /// </summary>
         [Input("defaultLeaseTtl")]
         public Input<string>? DefaultLeaseTtl { get; set; }
 
+        /// <summary>
+        /// Specifies whether to show this mount in
+        /// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+        /// </summary>
         [Input("listingVisibility")]
         public Input<string>? ListingVisibility { get; set; }
 
+        /// <summary>
+        /// Specifies the maximum time-to-live.
+        /// If set, this overrides the global default.
+        /// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+        /// </summary>
         [Input("maxLeaseTtl")]
         public Input<string>? MaxLeaseTtl { get; set; }
 
         [Input("passthroughRequestHeaders")]
         private InputList<string>? _passthroughRequestHeaders;
+
+        /// <summary>
+        /// List of headers to whitelist and
+        /// pass from the request to the backend.
+        /// </summary>
         public InputList<string> PassthroughRequestHeaders
         {
             get => _passthroughRequestHeaders ?? (_passthroughRequestHeaders = new InputList<string>());
             set => _passthroughRequestHeaders = value;
         }
 
+        /// <summary>
+        /// Specifies the type of tokens that should be returned by
+        /// the mount. Valid values are "default-service", "default-batch", "service", "batch".
+        /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
 
@@ -466,13 +542,47 @@ namespace Pulumi.Vault.Jwt
     [OutputType]
     public sealed class AuthBackendTune
     {
+        /// <summary>
+        /// List of headers to whitelist and allowing
+        /// a plugin to include them in the response.
+        /// </summary>
         public readonly ImmutableArray<string> AllowedResponseHeaders;
+        /// <summary>
+        /// Specifies the list of keys that will
+        /// not be HMAC'd by audit devices in the request data object.
+        /// </summary>
         public readonly ImmutableArray<string> AuditNonHmacRequestKeys;
+        /// <summary>
+        /// Specifies the list of keys that will
+        /// not be HMAC'd by audit devices in the response data object.
+        /// </summary>
         public readonly ImmutableArray<string> AuditNonHmacResponseKeys;
+        /// <summary>
+        /// Specifies the default time-to-live.
+        /// If set, this overrides the global default.
+        /// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+        /// </summary>
         public readonly string? DefaultLeaseTtl;
+        /// <summary>
+        /// Specifies whether to show this mount in
+        /// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+        /// </summary>
         public readonly string? ListingVisibility;
+        /// <summary>
+        /// Specifies the maximum time-to-live.
+        /// If set, this overrides the global default.
+        /// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+        /// </summary>
         public readonly string? MaxLeaseTtl;
+        /// <summary>
+        /// List of headers to whitelist and
+        /// pass from the request to the backend.
+        /// </summary>
         public readonly ImmutableArray<string> PassthroughRequestHeaders;
+        /// <summary>
+        /// Specifies the type of tokens that should be returned by
+        /// the mount. Valid values are "default-service", "default-batch", "service", "batch".
+        /// </summary>
         public readonly string? TokenType;
 
         [OutputConstructor]

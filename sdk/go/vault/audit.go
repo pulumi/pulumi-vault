@@ -109,4 +109,3 @@ type AuditArgs struct {
 func (AuditArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*auditArgs)(nil)).Elem()
 }
-

@@ -11,7 +11,13 @@ namespace Pulumi.Vault.Identity
 {
     public static partial class Invokes
     {
+        [Obsolete("Use GetEntity.InvokeAsync() instead")]
         public static Task<GetEntityResult> GetEntity(GetEntityArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetEntity
+    {
+        public static Task<GetEntityResult> InvokeAsync(GetEntityArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 
