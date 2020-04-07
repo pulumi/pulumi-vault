@@ -52,8 +52,8 @@ tfgen::
 generate_schema:: tfgen
 	$(TFGEN) schema --out ./provider/cmd/${PROVIDER}
 
-provider::
-	go generate ${PROJECT}/provider/cmd/${PROVIDER}
+provider:: generate_schema
+	cd provider && go generate cmd/${PROVIDER}/main.go
 	cd provider && go install -ldflags "-X github.com/pulumi/pulumi-${PACK}/provider/pkg/version.Version=${VERSION}" ${PROJECT}/provider/cmd/${PROVIDER}
 
 lint::

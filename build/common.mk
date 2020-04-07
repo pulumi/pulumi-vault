@@ -149,6 +149,25 @@ all:: build install lint test_all
 
 ensure::
 	$(call STEP_MESSAGE)
+ifeq ($(NOPROXY), true)
+	@echo "cd provider && GO111MODULE=on go mod tidy"; cd provider && GO111MODULE=on go mod tidy
+	@echo "cd provider && GO111MODULE=on go mod download"; cd provider && GO111MODULE=on go mod download
+	@echo "cd sdk && GO111MODULE=on go mod tidy"; cd sdk && GO111MODULE=on go mod tidy
+	@echo "cd sdk && GO111MODULE=on go mod download"; cd sdk && GO111MODULE=on go mod download
+	@echo "cd examples && GO111MODULE=on go mod tidy"; cd examples && GO111MODULE=on go mod tidy
+	@echo "cd examples && GO111MODULE=on go mod download"; cd examples && GO111MODULE=on go mod download
+	@echo "cd scripts && GO111MODULE=on go mod tidy"; cd scritps && GO111MODULE=on go mod tidy
+	@echo "cd scripts && GO111MODULE=on go mod download"; cd scripts && GO111MODULE=on go mod download
+else
+	@echo "cd provider && GO111MODULE=on GOPROXY=$(GOPROXY) go mod tidy"; cd provider && GO111MODULE=on GOPROXY=$(GOPROXY) go mod tidy
+	@echo "cd provider && GO111MODULE=on GOPROXY=$(GOPROXY) go mod download"; cd provider && GO111MODULE=on GOPROXY=$(GOPROXY) go mod download
+	@echo "cd sdk && GO111MODULE=on GOPROXY=$(GOPROXY) go mod tidy"; cd sdk && GO111MODULE=on GOPROXY=$(GOPROXY) go mod tidy
+	@echo "cd sdk && GO111MODULE=on GOPROXY=$(GOPROXY) go mod download"; cd sdk && GO111MODULE=on GOPROXY=$(GOPROXY) go mod download
+	@echo "cd examples && GO111MODULE=on GOPROXY=$(GOPROXY) go mod tidy"; cd examples && GO111MODULE=on GOPROXY=$(GOPROXY) go mod tidy
+	@echo "cd examples && GO111MODULE=on GOPROXY=$(GOPROXY) go mod download"; cd examples && GO111MODULE=on GOPROXY=$(GOPROXY) go mod download
+	@echo "cd scripts && GO111MODULE=on GOPROXY=$(GOPROXY) go mod tidy"; cd scripts && GO111MODULE=on GOPROXY=$(GOPROXY) go mod tidy
+	@echo "cd scripts && GO111MODULE=on GOPROXY=$(GOPROXY) go mod download"; cd scripts && GO111MODULE=on GOPROXY=$(GOPROXY) go mod download
+endif
 	@if [ -e 'package.json' ]; then echo "yarn install"; yarn install; fi
 
 build::
