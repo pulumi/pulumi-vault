@@ -7,3 +7,4 @@ from .auth_backend_config import *
 from .auth_backend_role import *
 from .backend import *
 from .backend_role import *
+from .get_access_credentials import *

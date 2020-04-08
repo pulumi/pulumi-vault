@@ -37,6 +37,12 @@ namespace Pulumi.Vault.Database
         public Output<ImmutableDictionary<string, object>?> Data { get; private set; } = null!;
 
         /// <summary>
+        /// A nested block containing configuration options for Elasticsearch connections.
+        /// </summary>
+        [Output("elasticsearch")]
+        public Output<Outputs.SecretBackendConnectionElasticsearch?> Elasticsearch { get; private set; } = null!;
+
+        /// <summary>
         /// A nested block containing configuration options for SAP HanaDB connections.
         /// </summary>
         [Output("hana")]
@@ -193,6 +199,12 @@ namespace Pulumi.Vault.Database
         }
 
         /// <summary>
+        /// A nested block containing configuration options for Elasticsearch connections.
+        /// </summary>
+        [Input("elasticsearch")]
+        public Input<Inputs.SecretBackendConnectionElasticsearchArgs>? Elasticsearch { get; set; }
+
+        /// <summary>
         /// A nested block containing configuration options for SAP HanaDB connections.
         /// </summary>
         [Input("hana")]
@@ -316,6 +328,12 @@ namespace Pulumi.Vault.Database
         }
 
         /// <summary>
+        /// A nested block containing configuration options for Elasticsearch connections.
+        /// </summary>
+        [Input("elasticsearch")]
+        public Input<Inputs.SecretBackendConnectionElasticsearchGetArgs>? Elasticsearch { get; set; }
+
+        /// <summary>
         /// A nested block containing configuration options for SAP HanaDB connections.
         /// </summary>
         [Input("hana")]
@@ -431,7 +449,7 @@ namespace Pulumi.Vault.Database
         public Input<bool>? InsecureTls { get; set; }
 
         /// <summary>
-        /// The password to authenticate with.
+        /// The password to be used in the connection.
         /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }
@@ -469,7 +487,7 @@ namespace Pulumi.Vault.Database
         public Input<bool>? Tls { get; set; }
 
         /// <summary>
-        /// The username to authenticate with.
+        /// The username to be used in the connection.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
@@ -508,7 +526,7 @@ namespace Pulumi.Vault.Database
         public Input<bool>? InsecureTls { get; set; }
 
         /// <summary>
-        /// The password to authenticate with.
+        /// The password to be used in the connection.
         /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }
@@ -546,12 +564,64 @@ namespace Pulumi.Vault.Database
         public Input<bool>? Tls { get; set; }
 
         /// <summary>
-        /// The username to authenticate with.
+        /// The username to be used in the connection.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
 
         public SecretBackendConnectionCassandraGetArgs()
+        {
+        }
+    }
+
+    public sealed class SecretBackendConnectionElasticsearchArgs : Pulumi.ResourceArgs
+    {
+        /// <summary>
+        /// The password to be used in the connection.
+        /// </summary>
+        [Input("password", required: true)]
+        public Input<string> Password { get; set; } = null!;
+
+        /// <summary>
+        /// The URL for Elasticsearch's API. https requires certificate
+        /// by trusted CA if used.
+        /// </summary>
+        [Input("url", required: true)]
+        public Input<string> Url { get; set; } = null!;
+
+        /// <summary>
+        /// The username to be used in the connection.
+        /// </summary>
+        [Input("username", required: true)]
+        public Input<string> Username { get; set; } = null!;
+
+        public SecretBackendConnectionElasticsearchArgs()
+        {
+        }
+    }
+
+    public sealed class SecretBackendConnectionElasticsearchGetArgs : Pulumi.ResourceArgs
+    {
+        /// <summary>
+        /// The password to be used in the connection.
+        /// </summary>
+        [Input("password", required: true)]
+        public Input<string> Password { get; set; } = null!;
+
+        /// <summary>
+        /// The URL for Elasticsearch's API. https requires certificate
+        /// by trusted CA if used.
+        /// </summary>
+        [Input("url", required: true)]
+        public Input<string> Url { get; set; } = null!;
+
+        /// <summary>
+        /// The username to be used in the connection.
+        /// </summary>
+        [Input("username", required: true)]
+        public Input<string> Username { get; set; } = null!;
+
+        public SecretBackendConnectionElasticsearchGetArgs()
         {
         }
     }
@@ -1244,7 +1314,7 @@ namespace Pulumi.Vault.Database
         /// </summary>
         public readonly bool? InsecureTls;
         /// <summary>
-        /// The password to authenticate with.
+        /// The password to be used in the connection.
         /// </summary>
         public readonly string? Password;
         /// <summary>
@@ -1270,7 +1340,7 @@ namespace Pulumi.Vault.Database
         /// </summary>
         public readonly bool? Tls;
         /// <summary>
-        /// The username to authenticate with.
+        /// The username to be used in the connection.
         /// </summary>
         public readonly string? Username;
 
@@ -1296,6 +1366,35 @@ namespace Pulumi.Vault.Database
             Port = port;
             ProtocolVersion = protocolVersion;
             Tls = tls;
+            Username = username;
+        }
+    }
+
+    [OutputType]
+    public sealed class SecretBackendConnectionElasticsearch
+    {
+        /// <summary>
+        /// The password to be used in the connection.
+        /// </summary>
+        public readonly string Password;
+        /// <summary>
+        /// The URL for Elasticsearch's API. https requires certificate
+        /// by trusted CA if used.
+        /// </summary>
+        public readonly string Url;
+        /// <summary>
+        /// The username to be used in the connection.
+        /// </summary>
+        public readonly string Username;
+
+        [OutputConstructor]
+        private SecretBackendConnectionElasticsearch(
+            string password,
+            string url,
+            string username)
+        {
+            Password = password;
+            Url = url;
             Username = username;
         }
     }

@@ -10,6 +10,11 @@ namespace Pulumi.Vault
         private static readonly Pulumi.Config __config = new Pulumi.Config("vault");
 
         /// <summary>
+        /// If true, adds the value of the `address` argument to the Terraform process environment.
+        /// </summary>
+        public static string? AddAddressToEnv { get; set; } = __config.Get("addAddressToEnv");
+
+        /// <summary>
         /// URL of the root of the target Vault server.
         /// </summary>
         public static string? Address { get; set; } = __config.Get("address") ?? Utilities.GetEnv("VAULT_ADDR");

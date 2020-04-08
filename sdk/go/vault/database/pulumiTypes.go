@@ -20,7 +20,7 @@ type SecretBackendConnectionCassandra struct {
 	// Whether to skip verification of the server
 	// certificate when using TLS.
 	InsecureTls *bool `pulumi:"insecureTls"`
-	// The password to authenticate with.
+	// The password to be used in the connection.
 	Password *string `pulumi:"password"`
 	// Concatenated PEM blocks configuring the certificate
 	// chain.
@@ -34,7 +34,7 @@ type SecretBackendConnectionCassandra struct {
 	ProtocolVersion *int `pulumi:"protocolVersion"`
 	// Whether to use TLS when connecting to Cassandra.
 	Tls *bool `pulumi:"tls"`
-	// The username to authenticate with.
+	// The username to be used in the connection.
 	Username *string `pulumi:"username"`
 }
 
@@ -54,7 +54,7 @@ type SecretBackendConnectionCassandraArgs struct {
 	// Whether to skip verification of the server
 	// certificate when using TLS.
 	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
-	// The password to authenticate with.
+	// The password to be used in the connection.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Concatenated PEM blocks configuring the certificate
 	// chain.
@@ -68,7 +68,7 @@ type SecretBackendConnectionCassandraArgs struct {
 	ProtocolVersion pulumi.IntPtrInput `pulumi:"protocolVersion"`
 	// Whether to use TLS when connecting to Cassandra.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
-	// The username to authenticate with.
+	// The username to be used in the connection.
 	Username pulumi.StringPtrInput `pulumi:"username"`
 }
 
@@ -158,7 +158,7 @@ func (o SecretBackendConnectionCassandraOutput) InsecureTls() pulumi.BoolPtrOutp
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
 
-// The password to authenticate with.
+// The password to be used in the connection.
 func (o SecretBackendConnectionCassandraOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -190,7 +190,7 @@ func (o SecretBackendConnectionCassandraOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
 
-// The username to authenticate with.
+// The username to be used in the connection.
 func (o SecretBackendConnectionCassandraOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
@@ -230,7 +230,7 @@ func (o SecretBackendConnectionCassandraPtrOutput) InsecureTls() pulumi.BoolPtrO
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
 
-// The password to authenticate with.
+// The password to be used in the connection.
 func (o SecretBackendConnectionCassandraPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -262,9 +262,155 @@ func (o SecretBackendConnectionCassandraPtrOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
 
-// The username to authenticate with.
+// The username to be used in the connection.
 func (o SecretBackendConnectionCassandraPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type SecretBackendConnectionElasticsearch struct {
+	// The password to be used in the connection.
+	Password string `pulumi:"password"`
+	// The URL for Elasticsearch's API. https requires certificate
+	// by trusted CA if used.
+	Url string `pulumi:"url"`
+	// The username to be used in the connection.
+	Username string `pulumi:"username"`
+}
+
+type SecretBackendConnectionElasticsearchInput interface {
+	pulumi.Input
+
+	ToSecretBackendConnectionElasticsearchOutput() SecretBackendConnectionElasticsearchOutput
+	ToSecretBackendConnectionElasticsearchOutputWithContext(context.Context) SecretBackendConnectionElasticsearchOutput
+}
+
+type SecretBackendConnectionElasticsearchArgs struct {
+	// The password to be used in the connection.
+	Password pulumi.StringInput `pulumi:"password"`
+	// The URL for Elasticsearch's API. https requires certificate
+	// by trusted CA if used.
+	Url pulumi.StringInput `pulumi:"url"`
+	// The username to be used in the connection.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (SecretBackendConnectionElasticsearchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConnectionElasticsearch)(nil)).Elem()
+}
+
+func (i SecretBackendConnectionElasticsearchArgs) ToSecretBackendConnectionElasticsearchOutput() SecretBackendConnectionElasticsearchOutput {
+	return i.ToSecretBackendConnectionElasticsearchOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConnectionElasticsearchArgs) ToSecretBackendConnectionElasticsearchOutputWithContext(ctx context.Context) SecretBackendConnectionElasticsearchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionElasticsearchOutput)
+}
+
+func (i SecretBackendConnectionElasticsearchArgs) ToSecretBackendConnectionElasticsearchPtrOutput() SecretBackendConnectionElasticsearchPtrOutput {
+	return i.ToSecretBackendConnectionElasticsearchPtrOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConnectionElasticsearchArgs) ToSecretBackendConnectionElasticsearchPtrOutputWithContext(ctx context.Context) SecretBackendConnectionElasticsearchPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionElasticsearchOutput).ToSecretBackendConnectionElasticsearchPtrOutputWithContext(ctx)
+}
+
+type SecretBackendConnectionElasticsearchPtrInput interface {
+	pulumi.Input
+
+	ToSecretBackendConnectionElasticsearchPtrOutput() SecretBackendConnectionElasticsearchPtrOutput
+	ToSecretBackendConnectionElasticsearchPtrOutputWithContext(context.Context) SecretBackendConnectionElasticsearchPtrOutput
+}
+
+type secretBackendConnectionElasticsearchPtrType SecretBackendConnectionElasticsearchArgs
+
+func SecretBackendConnectionElasticsearchPtr(v *SecretBackendConnectionElasticsearchArgs) SecretBackendConnectionElasticsearchPtrInput {
+	return (*secretBackendConnectionElasticsearchPtrType)(v)
+}
+
+func (*secretBackendConnectionElasticsearchPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendConnectionElasticsearch)(nil)).Elem()
+}
+
+func (i *secretBackendConnectionElasticsearchPtrType) ToSecretBackendConnectionElasticsearchPtrOutput() SecretBackendConnectionElasticsearchPtrOutput {
+	return i.ToSecretBackendConnectionElasticsearchPtrOutputWithContext(context.Background())
+}
+
+func (i *secretBackendConnectionElasticsearchPtrType) ToSecretBackendConnectionElasticsearchPtrOutputWithContext(ctx context.Context) SecretBackendConnectionElasticsearchPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionElasticsearchPtrOutput)
+}
+
+type SecretBackendConnectionElasticsearchOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendConnectionElasticsearchOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConnectionElasticsearch)(nil)).Elem()
+}
+
+func (o SecretBackendConnectionElasticsearchOutput) ToSecretBackendConnectionElasticsearchOutput() SecretBackendConnectionElasticsearchOutput {
+	return o
+}
+
+func (o SecretBackendConnectionElasticsearchOutput) ToSecretBackendConnectionElasticsearchOutputWithContext(ctx context.Context) SecretBackendConnectionElasticsearchOutput {
+	return o
+}
+
+func (o SecretBackendConnectionElasticsearchOutput) ToSecretBackendConnectionElasticsearchPtrOutput() SecretBackendConnectionElasticsearchPtrOutput {
+	return o.ToSecretBackendConnectionElasticsearchPtrOutputWithContext(context.Background())
+}
+
+func (o SecretBackendConnectionElasticsearchOutput) ToSecretBackendConnectionElasticsearchPtrOutputWithContext(ctx context.Context) SecretBackendConnectionElasticsearchPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) *SecretBackendConnectionElasticsearch {
+		return &v
+	}).(SecretBackendConnectionElasticsearchPtrOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretBackendConnectionElasticsearchOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// The URL for Elasticsearch's API. https requires certificate
+// by trusted CA if used.
+func (o SecretBackendConnectionElasticsearchOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) string { return v.Url }).(pulumi.StringOutput)
+}
+
+// The username to be used in the connection.
+func (o SecretBackendConnectionElasticsearchOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type SecretBackendConnectionElasticsearchPtrOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendConnectionElasticsearchPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendConnectionElasticsearch)(nil)).Elem()
+}
+
+func (o SecretBackendConnectionElasticsearchPtrOutput) ToSecretBackendConnectionElasticsearchPtrOutput() SecretBackendConnectionElasticsearchPtrOutput {
+	return o
+}
+
+func (o SecretBackendConnectionElasticsearchPtrOutput) ToSecretBackendConnectionElasticsearchPtrOutputWithContext(ctx context.Context) SecretBackendConnectionElasticsearchPtrOutput {
+	return o
+}
+
+func (o SecretBackendConnectionElasticsearchPtrOutput) Elem() SecretBackendConnectionElasticsearchOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) SecretBackendConnectionElasticsearch { return *v }).(SecretBackendConnectionElasticsearchOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretBackendConnectionElasticsearchPtrOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// The URL for Elasticsearch's API. https requires certificate
+// by trusted CA if used.
+func (o SecretBackendConnectionElasticsearchPtrOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) string { return v.Url }).(pulumi.StringOutput)
+}
+
+// The username to be used in the connection.
+func (o SecretBackendConnectionElasticsearchPtrOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) string { return v.Username }).(pulumi.StringOutput)
 }
 
 type SecretBackendConnectionHana struct {
@@ -1890,6 +2036,8 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) MaxOpenConnections() pulumi.
 func init() {
 	pulumi.RegisterOutputType(SecretBackendConnectionCassandraOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionCassandraPtrOutput{})
+	pulumi.RegisterOutputType(SecretBackendConnectionElasticsearchOutput{})
+	pulumi.RegisterOutputType(SecretBackendConnectionElasticsearchPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionHanaOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionHanaPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionMongodbOutput{})

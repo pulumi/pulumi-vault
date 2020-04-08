@@ -131,7 +131,7 @@ export namespace database {
          */
         insecureTls?: boolean;
         /**
-         * The password to authenticate with.
+         * The password to be used in the connection.
          */
         password?: string;
         /**
@@ -157,9 +157,25 @@ export namespace database {
          */
         tls?: boolean;
         /**
-         * The username to authenticate with.
+         * The username to be used in the connection.
          */
         username?: string;
+    }
+
+    export interface SecretBackendConnectionElasticsearch {
+        /**
+         * The password to be used in the connection.
+         */
+        password: string;
+        /**
+         * The URL for Elasticsearch's API. https requires certificate
+         * by trusted CA if used.
+         */
+        url: string;
+        /**
+         * The username to be used in the connection.
+         */
+        username: string;
     }
 
     export interface SecretBackendConnectionHana {

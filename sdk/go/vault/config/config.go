@@ -9,6 +9,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi/config"
 )
 
+// If true, adds the value of the `address` argument to the Terraform process environment.
+func GetAddAddressToEnv(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:addAddressToEnv")
+}
+
 // URL of the root of the target Vault server.
 func GetAddress(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "vault:address")

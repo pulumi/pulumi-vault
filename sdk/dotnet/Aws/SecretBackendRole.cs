@@ -52,15 +52,23 @@ namespace Pulumi.Vault.Aws
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The ARN for a pre-existing policy to associate
-        /// with this role. Either `policy_document` or `policy_arns` must be specified.
+        /// Specifies a list of AWS managed policy ARNs. The
+        /// behavior depends on the credential type. With `iam_user`, the policies will be
+        /// attached to IAM users when they are requested. With `assumed_role` and
+        /// `federation_token`, the policy ARNs will act as a filter on what the credentials
+        /// can do, similar to `policy_document`. When `credential_type` is `iam_user` or
+        /// `federation_token`, at least one of `policy_document` or `policy_arns` must
+        /// be specified.
         /// </summary>
         [Output("policyArns")]
         public Output<ImmutableArray<string>> PolicyArns { get; private set; } = null!;
 
         /// <summary>
-        /// The JSON-formatted policy to associate with this
-        /// role. Either `policy_document` or `policy_arns` must be specified.
+        /// The IAM policy document for the role. The
+        /// behavior depends on the credential type. With `iam_user`, the policy document
+        /// will be attached to the IAM user generated and augment the permissions the IAM
+        /// user has. With `assumed_role` and `federation_token`, the policy document will
+        /// act as a filter on what the credentials can do, similar to `policy_arns`.
         /// </summary>
         [Output("policyDocument")]
         public Output<string?> PolicyDocument { get; private set; } = null!;
@@ -163,8 +171,13 @@ namespace Pulumi.Vault.Aws
         private InputList<string>? _policyArns;
 
         /// <summary>
-        /// The ARN for a pre-existing policy to associate
-        /// with this role. Either `policy_document` or `policy_arns` must be specified.
+        /// Specifies a list of AWS managed policy ARNs. The
+        /// behavior depends on the credential type. With `iam_user`, the policies will be
+        /// attached to IAM users when they are requested. With `assumed_role` and
+        /// `federation_token`, the policy ARNs will act as a filter on what the credentials
+        /// can do, similar to `policy_document`. When `credential_type` is `iam_user` or
+        /// `federation_token`, at least one of `policy_document` or `policy_arns` must
+        /// be specified.
         /// </summary>
         public InputList<string> PolicyArns
         {
@@ -173,8 +186,11 @@ namespace Pulumi.Vault.Aws
         }
 
         /// <summary>
-        /// The JSON-formatted policy to associate with this
-        /// role. Either `policy_document` or `policy_arns` must be specified.
+        /// The IAM policy document for the role. The
+        /// behavior depends on the credential type. With `iam_user`, the policy document
+        /// will be attached to the IAM user generated and augment the permissions the IAM
+        /// user has. With `assumed_role` and `federation_token`, the policy document will
+        /// act as a filter on what the credentials can do, similar to `policy_arns`.
         /// </summary>
         [Input("policyDocument")]
         public Input<string>? PolicyDocument { get; set; }
@@ -244,8 +260,13 @@ namespace Pulumi.Vault.Aws
         private InputList<string>? _policyArns;
 
         /// <summary>
-        /// The ARN for a pre-existing policy to associate
-        /// with this role. Either `policy_document` or `policy_arns` must be specified.
+        /// Specifies a list of AWS managed policy ARNs. The
+        /// behavior depends on the credential type. With `iam_user`, the policies will be
+        /// attached to IAM users when they are requested. With `assumed_role` and
+        /// `federation_token`, the policy ARNs will act as a filter on what the credentials
+        /// can do, similar to `policy_document`. When `credential_type` is `iam_user` or
+        /// `federation_token`, at least one of `policy_document` or `policy_arns` must
+        /// be specified.
         /// </summary>
         public InputList<string> PolicyArns
         {
@@ -254,8 +275,11 @@ namespace Pulumi.Vault.Aws
         }
 
         /// <summary>
-        /// The JSON-formatted policy to associate with this
-        /// role. Either `policy_document` or `policy_arns` must be specified.
+        /// The IAM policy document for the role. The
+        /// behavior depends on the credential type. With `iam_user`, the policy document
+        /// will be attached to the IAM user generated and augment the permissions the IAM
+        /// user has. With `assumed_role` and `federation_token`, the policy document will
+        /// act as a filter on what the credentials can do, similar to `policy_arns`.
         /// </summary>
         [Input("policyDocument")]
         public Input<string>? PolicyDocument { get; set; }

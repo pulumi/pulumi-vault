@@ -28,7 +28,7 @@ class SecretBackendConnection(pulumi.CustomResource):
       * `hosts` (`list`) - The hosts to connect to.
       * `insecure_tls` (`bool`) - Whether to skip verification of the server
         certificate when using TLS.
-      * `password` (`str`) - The password to authenticate with.
+      * `password` (`str`) - The password to be used in the connection.
       * `pem_bundle` (`str`) - Concatenated PEM blocks configuring the certificate
         chain.
       * `pemJson` (`str`) - A JSON structure configuring the certificate chain.
@@ -36,11 +36,20 @@ class SecretBackendConnection(pulumi.CustomResource):
         part of the host.
       * `protocolVersion` (`float`) - The CQL protocol version to use.
       * `tls` (`bool`) - Whether to use TLS when connecting to Cassandra.
-      * `username` (`str`) - The username to authenticate with.
+      * `username` (`str`) - The username to be used in the connection.
     """
     data: pulumi.Output[dict]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    elasticsearch: pulumi.Output[dict]
+    """
+    A nested block containing configuration options for Elasticsearch connections.
+
+      * `password` (`str`) - The password to be used in the connection.
+      * `url` (`str`) - The URL for Elasticsearch's API. https requires certificate
+        by trusted CA if used.
+      * `username` (`str`) - The username to be used in the connection.
     """
     hana: pulumi.Output[dict]
     """
@@ -190,7 +199,7 @@ class SecretBackendConnection(pulumi.CustomResource):
     Whether the connection should be verified on
     initial configuration or not.
     """
-    def __init__(__self__, resource_name, opts=None, allowed_roles=None, backend=None, cassandra=None, data=None, hana=None, mongodb=None, mssql=None, mysql=None, mysql_aurora=None, mysql_legacy=None, mysql_rds=None, name=None, oracle=None, postgresql=None, root_rotation_statements=None, verify_connection=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, allowed_roles=None, backend=None, cassandra=None, data=None, elasticsearch=None, hana=None, mongodb=None, mssql=None, mysql=None, mysql_aurora=None, mysql_legacy=None, mysql_rds=None, name=None, oracle=None, postgresql=None, root_rotation_statements=None, verify_connection=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a SecretBackendConnection resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -200,6 +209,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[dict] cassandra: A nested block containing configuration options for Cassandra connections.
         :param pulumi.Input[dict] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[dict] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input[dict] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input[dict] mongodb: A nested block containing configuration options for MongoDB connections.
         :param pulumi.Input[dict] mssql: A nested block containing configuration options for MSSQL connections.
@@ -221,7 +231,7 @@ class SecretBackendConnection(pulumi.CustomResource):
           * `hosts` (`pulumi.Input[list]`) - The hosts to connect to.
           * `insecure_tls` (`pulumi.Input[bool]`) - Whether to skip verification of the server
             certificate when using TLS.
-          * `password` (`pulumi.Input[str]`) - The password to authenticate with.
+          * `password` (`pulumi.Input[str]`) - The password to be used in the connection.
           * `pem_bundle` (`pulumi.Input[str]`) - Concatenated PEM blocks configuring the certificate
             chain.
           * `pemJson` (`pulumi.Input[str]`) - A JSON structure configuring the certificate chain.
@@ -229,7 +239,14 @@ class SecretBackendConnection(pulumi.CustomResource):
             part of the host.
           * `protocolVersion` (`pulumi.Input[float]`) - The CQL protocol version to use.
           * `tls` (`pulumi.Input[bool]`) - Whether to use TLS when connecting to Cassandra.
-          * `username` (`pulumi.Input[str]`) - The username to authenticate with.
+          * `username` (`pulumi.Input[str]`) - The username to be used in the connection.
+
+        The **elasticsearch** object supports the following:
+
+          * `password` (`pulumi.Input[str]`) - The password to be used in the connection.
+          * `url` (`pulumi.Input[str]`) - The URL for Elasticsearch's API. https requires certificate
+            by trusted CA if used.
+          * `username` (`pulumi.Input[str]`) - The username to be used in the connection.
 
         The **hana** object supports the following:
 
@@ -371,6 +388,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             __props__['backend'] = backend
             __props__['cassandra'] = cassandra
             __props__['data'] = data
+            __props__['elasticsearch'] = elasticsearch
             __props__['hana'] = hana
             __props__['mongodb'] = mongodb
             __props__['mssql'] = mssql
@@ -390,7 +408,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allowed_roles=None, backend=None, cassandra=None, data=None, hana=None, mongodb=None, mssql=None, mysql=None, mysql_aurora=None, mysql_legacy=None, mysql_rds=None, name=None, oracle=None, postgresql=None, root_rotation_statements=None, verify_connection=None):
+    def get(resource_name, id, opts=None, allowed_roles=None, backend=None, cassandra=None, data=None, elasticsearch=None, hana=None, mongodb=None, mssql=None, mysql=None, mysql_aurora=None, mysql_legacy=None, mysql_rds=None, name=None, oracle=None, postgresql=None, root_rotation_statements=None, verify_connection=None):
         """
         Get an existing SecretBackendConnection resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -403,6 +421,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[dict] cassandra: A nested block containing configuration options for Cassandra connections.
         :param pulumi.Input[dict] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[dict] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input[dict] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input[dict] mongodb: A nested block containing configuration options for MongoDB connections.
         :param pulumi.Input[dict] mssql: A nested block containing configuration options for MSSQL connections.
@@ -424,7 +443,7 @@ class SecretBackendConnection(pulumi.CustomResource):
           * `hosts` (`pulumi.Input[list]`) - The hosts to connect to.
           * `insecure_tls` (`pulumi.Input[bool]`) - Whether to skip verification of the server
             certificate when using TLS.
-          * `password` (`pulumi.Input[str]`) - The password to authenticate with.
+          * `password` (`pulumi.Input[str]`) - The password to be used in the connection.
           * `pem_bundle` (`pulumi.Input[str]`) - Concatenated PEM blocks configuring the certificate
             chain.
           * `pemJson` (`pulumi.Input[str]`) - A JSON structure configuring the certificate chain.
@@ -432,7 +451,14 @@ class SecretBackendConnection(pulumi.CustomResource):
             part of the host.
           * `protocolVersion` (`pulumi.Input[float]`) - The CQL protocol version to use.
           * `tls` (`pulumi.Input[bool]`) - Whether to use TLS when connecting to Cassandra.
-          * `username` (`pulumi.Input[str]`) - The username to authenticate with.
+          * `username` (`pulumi.Input[str]`) - The username to be used in the connection.
+
+        The **elasticsearch** object supports the following:
+
+          * `password` (`pulumi.Input[str]`) - The password to be used in the connection.
+          * `url` (`pulumi.Input[str]`) - The URL for Elasticsearch's API. https requires certificate
+            by trusted CA if used.
+          * `username` (`pulumi.Input[str]`) - The username to be used in the connection.
 
         The **hana** object supports the following:
 
@@ -559,6 +585,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         __props__["backend"] = backend
         __props__["cassandra"] = cassandra
         __props__["data"] = data
+        __props__["elasticsearch"] = elasticsearch
         __props__["hana"] = hana
         __props__["mongodb"] = mongodb
         __props__["mssql"] = mssql

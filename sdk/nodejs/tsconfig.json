@@ -38,6 +38,7 @@
         "azure/authBackendRole.ts",
         "azure/backend.ts",
         "azure/backendRole.ts",
+        "azure/getAccessCredentials.ts",
         "azure/index.ts",
         "certAuthBackendRole.ts",
         "config/index.ts",

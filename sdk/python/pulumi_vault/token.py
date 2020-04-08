@@ -18,6 +18,10 @@ class Token(pulumi.CustomResource):
     """
     String containing the token display name
     """
+    encrypted_client_token: pulumi.Output[str]
+    """
+    String containing the client token encrypted with the given `pgp_key` if stored in present file
+    """
     explicit_max_ttl: pulumi.Output[str]
     """
     The explicit max TTL of this token
@@ -45,6 +49,10 @@ class Token(pulumi.CustomResource):
     period: pulumi.Output[str]
     """
     The period of this token
+    """
+    pgp_key: pulumi.Output[str]
+    """
+    The PGP key (base64 encoded) to encrypt the token.
     """
     policies: pulumi.Output[list]
     """
@@ -82,7 +90,7 @@ class Token(pulumi.CustomResource):
     """
     The TTL period of the wrapped token.
     """
-    def __init__(__self__, resource_name, opts=None, display_name=None, explicit_max_ttl=None, no_default_policy=None, no_parent=None, num_uses=None, period=None, policies=None, renew_increment=None, renew_min_lease=None, renewable=None, role_name=None, ttl=None, wrapping_ttl=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, display_name=None, explicit_max_ttl=None, no_default_policy=None, no_parent=None, num_uses=None, period=None, pgp_key=None, policies=None, renew_increment=None, renew_min_lease=None, renewable=None, role_name=None, ttl=None, wrapping_ttl=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a Token resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -93,6 +101,7 @@ class Token(pulumi.CustomResource):
         :param pulumi.Input[bool] no_parent: Flag to create a token without parent
         :param pulumi.Input[float] num_uses: The number of allowed uses of this token
         :param pulumi.Input[str] period: The period of this token
+        :param pulumi.Input[str] pgp_key: The PGP key (base64 encoded) to encrypt the token.
         :param pulumi.Input[list] policies: List of policies to attach to this token
         :param pulumi.Input[float] renew_increment: The renew increment
         :param pulumi.Input[float] renew_min_lease: The minimal lease to renew this token
@@ -124,6 +133,7 @@ class Token(pulumi.CustomResource):
             __props__['no_parent'] = no_parent
             __props__['num_uses'] = num_uses
             __props__['period'] = period
+            __props__['pgp_key'] = pgp_key
             __props__['policies'] = policies
             __props__['renew_increment'] = renew_increment
             __props__['renew_min_lease'] = renew_min_lease
@@ -132,6 +142,7 @@ class Token(pulumi.CustomResource):
             __props__['ttl'] = ttl
             __props__['wrapping_ttl'] = wrapping_ttl
             __props__['client_token'] = None
+            __props__['encrypted_client_token'] = None
             __props__['lease_duration'] = None
             __props__['lease_started'] = None
             __props__['wrapped_token'] = None
@@ -143,7 +154,7 @@ class Token(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, client_token=None, display_name=None, explicit_max_ttl=None, lease_duration=None, lease_started=None, no_default_policy=None, no_parent=None, num_uses=None, period=None, policies=None, renew_increment=None, renew_min_lease=None, renewable=None, role_name=None, ttl=None, wrapped_token=None, wrapping_accessor=None, wrapping_ttl=None):
+    def get(resource_name, id, opts=None, client_token=None, display_name=None, encrypted_client_token=None, explicit_max_ttl=None, lease_duration=None, lease_started=None, no_default_policy=None, no_parent=None, num_uses=None, period=None, pgp_key=None, policies=None, renew_increment=None, renew_min_lease=None, renewable=None, role_name=None, ttl=None, wrapped_token=None, wrapping_accessor=None, wrapping_ttl=None):
         """
         Get an existing Token resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -153,6 +164,7 @@ class Token(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_token: String containing the client token if stored in present file
         :param pulumi.Input[str] display_name: String containing the token display name
+        :param pulumi.Input[str] encrypted_client_token: String containing the client token encrypted with the given `pgp_key` if stored in present file
         :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token
         :param pulumi.Input[float] lease_duration: String containing the token lease duration if present in state file
         :param pulumi.Input[str] lease_started: String containing the token lease started time if present in state file
@@ -160,6 +172,7 @@ class Token(pulumi.CustomResource):
         :param pulumi.Input[bool] no_parent: Flag to create a token without parent
         :param pulumi.Input[float] num_uses: The number of allowed uses of this token
         :param pulumi.Input[str] period: The period of this token
+        :param pulumi.Input[str] pgp_key: The PGP key (base64 encoded) to encrypt the token.
         :param pulumi.Input[list] policies: List of policies to attach to this token
         :param pulumi.Input[float] renew_increment: The renew increment
         :param pulumi.Input[float] renew_min_lease: The minimal lease to renew this token
@@ -176,6 +189,7 @@ class Token(pulumi.CustomResource):
 
         __props__["client_token"] = client_token
         __props__["display_name"] = display_name
+        __props__["encrypted_client_token"] = encrypted_client_token
         __props__["explicit_max_ttl"] = explicit_max_ttl
         __props__["lease_duration"] = lease_duration
         __props__["lease_started"] = lease_started
@@ -183,6 +197,7 @@ class Token(pulumi.CustomResource):
         __props__["no_parent"] = no_parent
         __props__["num_uses"] = num_uses
         __props__["period"] = period
+        __props__["pgp_key"] = pgp_key
         __props__["policies"] = policies
         __props__["renew_increment"] = renew_increment
         __props__["renew_min_lease"] = renew_min_lease

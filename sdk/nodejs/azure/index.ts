@@ -6,3 +6,4 @@ export * from "./authBackendConfig";
 export * from "./authBackendRole";
 export * from "./backend";
 export * from "./backendRole";
+export * from "./getAccessCredentials";
