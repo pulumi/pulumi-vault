@@ -42,13 +42,21 @@ class SecretBackendRole(pulumi.CustomResource):
     """
     policy_arns: pulumi.Output[list]
     """
-    The ARN for a pre-existing policy to associate
-    with this role. Either `policy_document` or `policy_arns` must be specified.
+    Specifies a list of AWS managed policy ARNs. The
+    behavior depends on the credential type. With `iam_user`, the policies will be
+    attached to IAM users when they are requested. With `assumed_role` and
+    `federation_token`, the policy ARNs will act as a filter on what the credentials
+    can do, similar to `policy_document`. When `credential_type` is `iam_user` or
+    `federation_token`, at least one of `policy_document` or `policy_arns` must
+    be specified.
     """
     policy_document: pulumi.Output[str]
     """
-    The JSON-formatted policy to associate with this
-    role. Either `policy_document` or `policy_arns` must be specified.
+    The IAM policy document for the role. The
+    behavior depends on the credential type. With `iam_user`, the policy document
+    will be attached to the IAM user generated and augment the permissions the IAM
+    user has. With `assumed_role` and `federation_token`, the policy document will
+    act as a filter on what the credentials can do, similar to `policy_arns`.
     """
     role_arns: pulumi.Output[list]
     """
@@ -76,10 +84,18 @@ class SecretBackendRole(pulumi.CustomResource):
                one of `assumed_role` or `federation_token`.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
-        :param pulumi.Input[list] policy_arns: The ARN for a pre-existing policy to associate
-               with this role. Either `policy_document` or `policy_arns` must be specified.
-        :param pulumi.Input[str] policy_document: The JSON-formatted policy to associate with this
-               role. Either `policy_document` or `policy_arns` must be specified.
+        :param pulumi.Input[list] policy_arns: Specifies a list of AWS managed policy ARNs. The
+               behavior depends on the credential type. With `iam_user`, the policies will be
+               attached to IAM users when they are requested. With `assumed_role` and
+               `federation_token`, the policy ARNs will act as a filter on what the credentials
+               can do, similar to `policy_document`. When `credential_type` is `iam_user` or
+               `federation_token`, at least one of `policy_document` or `policy_arns` must
+               be specified.
+        :param pulumi.Input[str] policy_document: The IAM policy document for the role. The
+               behavior depends on the credential type. With `iam_user`, the policy document
+               will be attached to the IAM user generated and augment the permissions the IAM
+               user has. With `assumed_role` and `federation_token`, the policy document will
+               act as a filter on what the credentials can do, similar to `policy_arns`.
         :param pulumi.Input[list] role_arns: Specifies the ARNs of the AWS roles this Vault role
                is allowed to assume. Required when `credential_type` is `assumed_role` and
                prohibited otherwise.
@@ -143,10 +159,18 @@ class SecretBackendRole(pulumi.CustomResource):
                one of `assumed_role` or `federation_token`.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
-        :param pulumi.Input[list] policy_arns: The ARN for a pre-existing policy to associate
-               with this role. Either `policy_document` or `policy_arns` must be specified.
-        :param pulumi.Input[str] policy_document: The JSON-formatted policy to associate with this
-               role. Either `policy_document` or `policy_arns` must be specified.
+        :param pulumi.Input[list] policy_arns: Specifies a list of AWS managed policy ARNs. The
+               behavior depends on the credential type. With `iam_user`, the policies will be
+               attached to IAM users when they are requested. With `assumed_role` and
+               `federation_token`, the policy ARNs will act as a filter on what the credentials
+               can do, similar to `policy_document`. When `credential_type` is `iam_user` or
+               `federation_token`, at least one of `policy_document` or `policy_arns` must
+               be specified.
+        :param pulumi.Input[str] policy_document: The IAM policy document for the role. The
+               behavior depends on the credential type. With `iam_user`, the policy document
+               will be attached to the IAM user generated and augment the permissions the IAM
+               user has. With `assumed_role` and `federation_token`, the policy document will
+               act as a filter on what the credentials can do, similar to `policy_arns`.
         :param pulumi.Input[list] role_arns: Specifies the ARNs of the AWS roles this Vault role
                is allowed to assume. Required when `credential_type` is `assumed_role` and
                prohibited otherwise.

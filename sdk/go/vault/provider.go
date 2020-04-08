@@ -62,6 +62,8 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
+	// If true, adds the value of the `address` argument to the Terraform process environment.
+	AddAddressToEnv *string `pulumi:"addAddressToEnv"`
 	// URL of the root of the target Vault server.
 	Address *string `pulumi:"address"`
 	// Login to vault with an existing auth method using auth/<mount>/login
@@ -88,6 +90,8 @@ type providerArgs struct {
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
+	// If true, adds the value of the `address` argument to the Terraform process environment.
+	AddAddressToEnv pulumi.StringPtrInput
 	// URL of the root of the target Vault server.
 	Address pulumi.StringPtrInput
 	// Login to vault with an existing auth method using auth/<mount>/login

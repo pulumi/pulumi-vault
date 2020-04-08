@@ -47,6 +47,12 @@ namespace Pulumi.Vault
     public sealed class ProviderArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// If true, adds the value of the `address` argument to the Terraform process environment.
+        /// </summary>
+        [Input("addAddressToEnv")]
+        public Input<string>? AddAddressToEnv { get; set; }
+
+        /// <summary>
         /// URL of the root of the target Vault server.
         /// </summary>
         [Input("address")]

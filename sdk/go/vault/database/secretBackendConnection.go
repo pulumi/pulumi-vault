@@ -23,6 +23,8 @@ type SecretBackendConnection struct {
 	Cassandra SecretBackendConnectionCassandraPtrOutput `pulumi:"cassandra"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data pulumi.MapOutput `pulumi:"data"`
+	// A nested block containing configuration options for Elasticsearch connections.
+	Elasticsearch SecretBackendConnectionElasticsearchPtrOutput `pulumi:"elasticsearch"`
 	// A nested block containing configuration options for SAP HanaDB connections.
 	Hana SecretBackendConnectionHanaPtrOutput `pulumi:"hana"`
 	// A nested block containing configuration options for MongoDB connections.
@@ -90,6 +92,8 @@ type secretBackendConnectionState struct {
 	Cassandra *SecretBackendConnectionCassandra `pulumi:"cassandra"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data map[string]interface{} `pulumi:"data"`
+	// A nested block containing configuration options for Elasticsearch connections.
+	Elasticsearch *SecretBackendConnectionElasticsearch `pulumi:"elasticsearch"`
 	// A nested block containing configuration options for SAP HanaDB connections.
 	Hana *SecretBackendConnectionHana `pulumi:"hana"`
 	// A nested block containing configuration options for MongoDB connections.
@@ -127,6 +131,8 @@ type SecretBackendConnectionState struct {
 	Cassandra SecretBackendConnectionCassandraPtrInput
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data pulumi.MapInput
+	// A nested block containing configuration options for Elasticsearch connections.
+	Elasticsearch SecretBackendConnectionElasticsearchPtrInput
 	// A nested block containing configuration options for SAP HanaDB connections.
 	Hana SecretBackendConnectionHanaPtrInput
 	// A nested block containing configuration options for MongoDB connections.
@@ -168,6 +174,8 @@ type secretBackendConnectionArgs struct {
 	Cassandra *SecretBackendConnectionCassandra `pulumi:"cassandra"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data map[string]interface{} `pulumi:"data"`
+	// A nested block containing configuration options for Elasticsearch connections.
+	Elasticsearch *SecretBackendConnectionElasticsearch `pulumi:"elasticsearch"`
 	// A nested block containing configuration options for SAP HanaDB connections.
 	Hana *SecretBackendConnectionHana `pulumi:"hana"`
 	// A nested block containing configuration options for MongoDB connections.
@@ -206,6 +214,8 @@ type SecretBackendConnectionArgs struct {
 	Cassandra SecretBackendConnectionCassandraPtrInput
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data pulumi.MapInput
+	// A nested block containing configuration options for Elasticsearch connections.
+	Elasticsearch SecretBackendConnectionElasticsearchPtrInput
 	// A nested block containing configuration options for SAP HanaDB connections.
 	Hana SecretBackendConnectionHanaPtrInput
 	// A nested block containing configuration options for MongoDB connections.

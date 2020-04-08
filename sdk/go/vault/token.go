@@ -17,6 +17,8 @@ type Token struct {
 	ClientToken pulumi.StringOutput `pulumi:"clientToken"`
 	// String containing the token display name
 	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
+	// String containing the client token encrypted with the given `pgpKey` if stored in present file
+	EncryptedClientToken pulumi.StringOutput `pulumi:"encryptedClientToken"`
 	// The explicit max TTL of this token
 	ExplicitMaxTtl pulumi.StringPtrOutput `pulumi:"explicitMaxTtl"`
 	// String containing the token lease duration if present in state file
@@ -31,6 +33,8 @@ type Token struct {
 	NumUses pulumi.IntOutput `pulumi:"numUses"`
 	// The period of this token
 	Period pulumi.StringPtrOutput `pulumi:"period"`
+	// The PGP key (base64 encoded) to encrypt the token.
+	PgpKey pulumi.StringPtrOutput `pulumi:"pgpKey"`
 	// List of policies to attach to this token
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// The renew increment
@@ -83,6 +87,8 @@ type tokenState struct {
 	ClientToken *string `pulumi:"clientToken"`
 	// String containing the token display name
 	DisplayName *string `pulumi:"displayName"`
+	// String containing the client token encrypted with the given `pgpKey` if stored in present file
+	EncryptedClientToken *string `pulumi:"encryptedClientToken"`
 	// The explicit max TTL of this token
 	ExplicitMaxTtl *string `pulumi:"explicitMaxTtl"`
 	// String containing the token lease duration if present in state file
@@ -97,6 +103,8 @@ type tokenState struct {
 	NumUses *int `pulumi:"numUses"`
 	// The period of this token
 	Period *string `pulumi:"period"`
+	// The PGP key (base64 encoded) to encrypt the token.
+	PgpKey *string `pulumi:"pgpKey"`
 	// List of policies to attach to this token
 	Policies []string `pulumi:"policies"`
 	// The renew increment
@@ -122,6 +130,8 @@ type TokenState struct {
 	ClientToken pulumi.StringPtrInput
 	// String containing the token display name
 	DisplayName pulumi.StringPtrInput
+	// String containing the client token encrypted with the given `pgpKey` if stored in present file
+	EncryptedClientToken pulumi.StringPtrInput
 	// The explicit max TTL of this token
 	ExplicitMaxTtl pulumi.StringPtrInput
 	// String containing the token lease duration if present in state file
@@ -136,6 +146,8 @@ type TokenState struct {
 	NumUses pulumi.IntPtrInput
 	// The period of this token
 	Period pulumi.StringPtrInput
+	// The PGP key (base64 encoded) to encrypt the token.
+	PgpKey pulumi.StringPtrInput
 	// List of policies to attach to this token
 	Policies pulumi.StringArrayInput
 	// The renew increment
@@ -173,6 +185,8 @@ type tokenArgs struct {
 	NumUses *int `pulumi:"numUses"`
 	// The period of this token
 	Period *string `pulumi:"period"`
+	// The PGP key (base64 encoded) to encrypt the token.
+	PgpKey *string `pulumi:"pgpKey"`
 	// List of policies to attach to this token
 	Policies []string `pulumi:"policies"`
 	// The renew increment
@@ -203,6 +217,8 @@ type TokenArgs struct {
 	NumUses pulumi.IntPtrInput
 	// The period of this token
 	Period pulumi.StringPtrInput
+	// The PGP key (base64 encoded) to encrypt the token.
+	PgpKey pulumi.StringPtrInput
 	// List of policies to attach to this token
 	Policies pulumi.StringArrayInput
 	// The renew increment

@@ -62,13 +62,21 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The ARN for a pre-existing policy to associate
-     * with this role. Either `policyDocument` or `policyArns` must be specified.
+     * Specifies a list of AWS managed policy ARNs. The
+     * behavior depends on the credential type. With `iamUser`, the policies will be
+     * attached to IAM users when they are requested. With `assumedRole` and
+     * `federationToken`, the policy ARNs will act as a filter on what the credentials
+     * can do, similar to `policyDocument`. When `credentialType` is `iamUser` or
+     * `federationToken`, at least one of `policyDocument` or `policyArns` must
+     * be specified.
      */
     public readonly policyArns!: pulumi.Output<string[] | undefined>;
     /**
-     * The JSON-formatted policy to associate with this
-     * role. Either `policyDocument` or `policyArns` must be specified.
+     * The IAM policy document for the role. The
+     * behavior depends on the credential type. With `iamUser`, the policy document
+     * will be attached to the IAM user generated and augment the permissions the IAM
+     * user has. With `assumedRole` and `federationToken`, the policy document will
+     * act as a filter on what the credentials can do, similar to `policyArns`.
      */
     public readonly policyDocument!: pulumi.Output<string | undefined>;
     /**
@@ -161,13 +169,21 @@ export interface SecretBackendRoleState {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The ARN for a pre-existing policy to associate
-     * with this role. Either `policyDocument` or `policyArns` must be specified.
+     * Specifies a list of AWS managed policy ARNs. The
+     * behavior depends on the credential type. With `iamUser`, the policies will be
+     * attached to IAM users when they are requested. With `assumedRole` and
+     * `federationToken`, the policy ARNs will act as a filter on what the credentials
+     * can do, similar to `policyDocument`. When `credentialType` is `iamUser` or
+     * `federationToken`, at least one of `policyDocument` or `policyArns` must
+     * be specified.
      */
     readonly policyArns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The JSON-formatted policy to associate with this
-     * role. Either `policyDocument` or `policyArns` must be specified.
+     * The IAM policy document for the role. The
+     * behavior depends on the credential type. With `iamUser`, the policy document
+     * will be attached to the IAM user generated and augment the permissions the IAM
+     * user has. With `assumedRole` and `federationToken`, the policy document will
+     * act as a filter on what the credentials can do, similar to `policyArns`.
      */
     readonly policyDocument?: pulumi.Input<string>;
     /**
@@ -213,13 +229,21 @@ export interface SecretBackendRoleArgs {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The ARN for a pre-existing policy to associate
-     * with this role. Either `policyDocument` or `policyArns` must be specified.
+     * Specifies a list of AWS managed policy ARNs. The
+     * behavior depends on the credential type. With `iamUser`, the policies will be
+     * attached to IAM users when they are requested. With `assumedRole` and
+     * `federationToken`, the policy ARNs will act as a filter on what the credentials
+     * can do, similar to `policyDocument`. When `credentialType` is `iamUser` or
+     * `federationToken`, at least one of `policyDocument` or `policyArns` must
+     * be specified.
      */
     readonly policyArns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The JSON-formatted policy to associate with this
-     * role. Either `policyDocument` or `policyArns` must be specified.
+     * The IAM policy document for the role. The
+     * behavior depends on the credential type. With `iamUser`, the policy document
+     * will be attached to the IAM user generated and augment the permissions the IAM
+     * user has. With `assumedRole` and `federationToken`, the policy document will
+     * act as a filter on what the credentials can do, similar to `policyArns`.
      */
     readonly policyDocument?: pulumi.Input<string>;
     /**

@@ -11,6 +11,11 @@ from .. import utilities, tables
 
 __config__ = pulumi.Config('vault')
 
+add_address_to_env = __config__.get('addAddressToEnv')
+"""
+If true, adds the value of the `address` argument to the Terraform process environment.
+"""
+
 address = __config__.get('address') or utilities.get_env('VAULT_ADDR')
 """
 URL of the root of the target Vault server.

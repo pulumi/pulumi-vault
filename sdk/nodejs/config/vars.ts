@@ -7,6 +7,10 @@ import * as utilities from "../utilities";
 let __config = new pulumi.Config("vault");
 
 /**
+ * If true, adds the value of the `address` argument to the Terraform process environment.
+ */
+export let addAddressToEnv: string | undefined = __config.get("addAddressToEnv");
+/**
  * URL of the root of the target Vault server.
  */
 export let address: string | undefined = __config.get("address") || utilities.getEnv("VAULT_ADDR");

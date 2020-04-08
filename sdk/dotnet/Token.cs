@@ -24,6 +24,12 @@ namespace Pulumi.Vault
         public Output<string?> DisplayName { get; private set; } = null!;
 
         /// <summary>
+        /// String containing the client token encrypted with the given `pgp_key` if stored in present file
+        /// </summary>
+        [Output("encryptedClientToken")]
+        public Output<string> EncryptedClientToken { get; private set; } = null!;
+
+        /// <summary>
         /// The explicit max TTL of this token
         /// </summary>
         [Output("explicitMaxTtl")]
@@ -64,6 +70,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Output("period")]
         public Output<string?> Period { get; private set; } = null!;
+
+        /// <summary>
+        /// The PGP key (base64 encoded) to encrypt the token.
+        /// </summary>
+        [Output("pgpKey")]
+        public Output<string?> PgpKey { get; private set; } = null!;
 
         /// <summary>
         /// List of policies to attach to this token
@@ -201,6 +213,12 @@ namespace Pulumi.Vault
         [Input("period")]
         public Input<string>? Period { get; set; }
 
+        /// <summary>
+        /// The PGP key (base64 encoded) to encrypt the token.
+        /// </summary>
+        [Input("pgpKey")]
+        public Input<string>? PgpKey { get; set; }
+
         [Input("policies")]
         private InputList<string>? _policies;
 
@@ -269,6 +287,12 @@ namespace Pulumi.Vault
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
+        /// String containing the client token encrypted with the given `pgp_key` if stored in present file
+        /// </summary>
+        [Input("encryptedClientToken")]
+        public Input<string>? EncryptedClientToken { get; set; }
+
+        /// <summary>
         /// The explicit max TTL of this token
         /// </summary>
         [Input("explicitMaxTtl")]
@@ -309,6 +333,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("period")]
         public Input<string>? Period { get; set; }
+
+        /// <summary>
+        /// The PGP key (base64 encoded) to encrypt the token.
+        /// </summary>
+        [Input("pgpKey")]
+        public Input<string>? PgpKey { get; set; }
 
         [Input("policies")]
         private InputList<string>? _policies;

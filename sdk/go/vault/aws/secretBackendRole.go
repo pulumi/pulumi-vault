@@ -34,11 +34,19 @@ type SecretBackendRole struct {
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The ARN for a pre-existing policy to associate
-	// with this role. Either `policyDocument` or `policyArns` must be specified.
+	// Specifies a list of AWS managed policy ARNs. The
+	// behavior depends on the credential type. With `iamUser`, the policies will be
+	// attached to IAM users when they are requested. With `assumedRole` and
+	// `federationToken`, the policy ARNs will act as a filter on what the credentials
+	// can do, similar to `policyDocument`. When `credentialType` is `iamUser` or
+	// `federationToken`, at least one of `policyDocument` or `policyArns` must
+	// be specified.
 	PolicyArns pulumi.StringArrayOutput `pulumi:"policyArns"`
-	// The JSON-formatted policy to associate with this
-	// role. Either `policyDocument` or `policyArns` must be specified.
+	// The IAM policy document for the role. The
+	// behavior depends on the credential type. With `iamUser`, the policy document
+	// will be attached to the IAM user generated and augment the permissions the IAM
+	// user has. With `assumedRole` and `federationToken`, the policy document will
+	// act as a filter on what the credentials can do, similar to `policyArns`.
 	PolicyDocument pulumi.StringPtrOutput `pulumi:"policyDocument"`
 	// Specifies the ARNs of the AWS roles this Vault role
 	// is allowed to assume. Required when `credentialType` is `assumedRole` and
@@ -100,11 +108,19 @@ type secretBackendRoleState struct {
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name *string `pulumi:"name"`
-	// The ARN for a pre-existing policy to associate
-	// with this role. Either `policyDocument` or `policyArns` must be specified.
+	// Specifies a list of AWS managed policy ARNs. The
+	// behavior depends on the credential type. With `iamUser`, the policies will be
+	// attached to IAM users when they are requested. With `assumedRole` and
+	// `federationToken`, the policy ARNs will act as a filter on what the credentials
+	// can do, similar to `policyDocument`. When `credentialType` is `iamUser` or
+	// `federationToken`, at least one of `policyDocument` or `policyArns` must
+	// be specified.
 	PolicyArns []string `pulumi:"policyArns"`
-	// The JSON-formatted policy to associate with this
-	// role. Either `policyDocument` or `policyArns` must be specified.
+	// The IAM policy document for the role. The
+	// behavior depends on the credential type. With `iamUser`, the policy document
+	// will be attached to the IAM user generated and augment the permissions the IAM
+	// user has. With `assumedRole` and `federationToken`, the policy document will
+	// act as a filter on what the credentials can do, similar to `policyArns`.
 	PolicyDocument *string `pulumi:"policyDocument"`
 	// Specifies the ARNs of the AWS roles this Vault role
 	// is allowed to assume. Required when `credentialType` is `assumedRole` and
@@ -133,11 +149,19 @@ type SecretBackendRoleState struct {
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name pulumi.StringPtrInput
-	// The ARN for a pre-existing policy to associate
-	// with this role. Either `policyDocument` or `policyArns` must be specified.
+	// Specifies a list of AWS managed policy ARNs. The
+	// behavior depends on the credential type. With `iamUser`, the policies will be
+	// attached to IAM users when they are requested. With `assumedRole` and
+	// `federationToken`, the policy ARNs will act as a filter on what the credentials
+	// can do, similar to `policyDocument`. When `credentialType` is `iamUser` or
+	// `federationToken`, at least one of `policyDocument` or `policyArns` must
+	// be specified.
 	PolicyArns pulumi.StringArrayInput
-	// The JSON-formatted policy to associate with this
-	// role. Either `policyDocument` or `policyArns` must be specified.
+	// The IAM policy document for the role. The
+	// behavior depends on the credential type. With `iamUser`, the policy document
+	// will be attached to the IAM user generated and augment the permissions the IAM
+	// user has. With `assumedRole` and `federationToken`, the policy document will
+	// act as a filter on what the credentials can do, similar to `policyArns`.
 	PolicyDocument pulumi.StringPtrInput
 	// Specifies the ARNs of the AWS roles this Vault role
 	// is allowed to assume. Required when `credentialType` is `assumedRole` and
@@ -170,11 +194,19 @@ type secretBackendRoleArgs struct {
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name *string `pulumi:"name"`
-	// The ARN for a pre-existing policy to associate
-	// with this role. Either `policyDocument` or `policyArns` must be specified.
+	// Specifies a list of AWS managed policy ARNs. The
+	// behavior depends on the credential type. With `iamUser`, the policies will be
+	// attached to IAM users when they are requested. With `assumedRole` and
+	// `federationToken`, the policy ARNs will act as a filter on what the credentials
+	// can do, similar to `policyDocument`. When `credentialType` is `iamUser` or
+	// `federationToken`, at least one of `policyDocument` or `policyArns` must
+	// be specified.
 	PolicyArns []string `pulumi:"policyArns"`
-	// The JSON-formatted policy to associate with this
-	// role. Either `policyDocument` or `policyArns` must be specified.
+	// The IAM policy document for the role. The
+	// behavior depends on the credential type. With `iamUser`, the policy document
+	// will be attached to the IAM user generated and augment the permissions the IAM
+	// user has. With `assumedRole` and `federationToken`, the policy document will
+	// act as a filter on what the credentials can do, similar to `policyArns`.
 	PolicyDocument *string `pulumi:"policyDocument"`
 	// Specifies the ARNs of the AWS roles this Vault role
 	// is allowed to assume. Required when `credentialType` is `assumedRole` and
@@ -204,11 +236,19 @@ type SecretBackendRoleArgs struct {
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name pulumi.StringPtrInput
-	// The ARN for a pre-existing policy to associate
-	// with this role. Either `policyDocument` or `policyArns` must be specified.
+	// Specifies a list of AWS managed policy ARNs. The
+	// behavior depends on the credential type. With `iamUser`, the policies will be
+	// attached to IAM users when they are requested. With `assumedRole` and
+	// `federationToken`, the policy ARNs will act as a filter on what the credentials
+	// can do, similar to `policyDocument`. When `credentialType` is `iamUser` or
+	// `federationToken`, at least one of `policyDocument` or `policyArns` must
+	// be specified.
 	PolicyArns pulumi.StringArrayInput
-	// The JSON-formatted policy to associate with this
-	// role. Either `policyDocument` or `policyArns` must be specified.
+	// The IAM policy document for the role. The
+	// behavior depends on the credential type. With `iamUser`, the policy document
+	// will be attached to the IAM user generated and augment the permissions the IAM
+	// user has. With `assumedRole` and `federationToken`, the policy document will
+	// act as a filter on what the credentials can do, similar to `policyArns`.
 	PolicyDocument pulumi.StringPtrInput
 	// Specifies the ARNs of the AWS roles this Vault role
 	// is allowed to assume. Required when `credentialType` is `assumedRole` and

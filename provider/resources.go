@@ -419,6 +419,9 @@ func Provider() tfbridge.ProviderInfo {
 			// AWS
 			"vault_aws_access_credentials": {Tok: makeDataSource(awsMod, "getAccessCredentials")},
 
+			// Azure
+			"vault_azure_access_credentials": {Tok: makeDataSource(azureMod, "getAccessCredentials")},
+
 			// Generic
 			"vault_generic_secret": {Tok: makeDataSource(genericMod, "getSecret")},
 

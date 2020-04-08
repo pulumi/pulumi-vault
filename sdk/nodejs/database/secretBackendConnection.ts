@@ -51,6 +51,10 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      */
     public readonly data!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
+     * A nested block containing configuration options for Elasticsearch connections.
+     */
+    public readonly elasticsearch!: pulumi.Output<outputs.database.SecretBackendConnectionElasticsearch | undefined>;
+    /**
      * A nested block containing configuration options for SAP HanaDB connections.
      */
     public readonly hana!: pulumi.Output<outputs.database.SecretBackendConnectionHana | undefined>;
@@ -116,6 +120,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             inputs["backend"] = state ? state.backend : undefined;
             inputs["cassandra"] = state ? state.cassandra : undefined;
             inputs["data"] = state ? state.data : undefined;
+            inputs["elasticsearch"] = state ? state.elasticsearch : undefined;
             inputs["hana"] = state ? state.hana : undefined;
             inputs["mongodb"] = state ? state.mongodb : undefined;
             inputs["mssql"] = state ? state.mssql : undefined;
@@ -137,6 +142,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             inputs["backend"] = args ? args.backend : undefined;
             inputs["cassandra"] = args ? args.cassandra : undefined;
             inputs["data"] = args ? args.data : undefined;
+            inputs["elasticsearch"] = args ? args.elasticsearch : undefined;
             inputs["hana"] = args ? args.hana : undefined;
             inputs["mongodb"] = args ? args.mongodb : undefined;
             inputs["mssql"] = args ? args.mssql : undefined;
@@ -182,6 +188,10 @@ export interface SecretBackendConnectionState {
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      */
     readonly data?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * A nested block containing configuration options for Elasticsearch connections.
+     */
+    readonly elasticsearch?: pulumi.Input<inputs.database.SecretBackendConnectionElasticsearch>;
     /**
      * A nested block containing configuration options for SAP HanaDB connections.
      */
@@ -254,6 +264,10 @@ export interface SecretBackendConnectionArgs {
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      */
     readonly data?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * A nested block containing configuration options for Elasticsearch connections.
+     */
+    readonly elasticsearch?: pulumi.Input<inputs.database.SecretBackendConnectionElasticsearch>;
     /**
      * A nested block containing configuration options for SAP HanaDB connections.
      */

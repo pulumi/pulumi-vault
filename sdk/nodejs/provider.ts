@@ -40,6 +40,7 @@ export class Provider extends pulumi.ProviderResource {
     constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
         {
+            inputs["addAddressToEnv"] = args ? args.addAddressToEnv : undefined;
             inputs["address"] = (args ? args.address : undefined) || utilities.getEnv("VAULT_ADDR");
             inputs["authLogins"] = pulumi.output(args ? args.authLogins : undefined).apply(JSON.stringify);
             inputs["caCertDir"] = (args ? args.caCertDir : undefined) || utilities.getEnv("VAULT_CAPATH");
@@ -67,6 +68,10 @@ export class Provider extends pulumi.ProviderResource {
  * The set of arguments for constructing a Provider resource.
  */
 export interface ProviderArgs {
+    /**
+     * If true, adds the value of the `address` argument to the Terraform process environment.
+     */
+    readonly addAddressToEnv?: pulumi.Input<string>;
     /**
      * URL of the root of the target Vault server.
      */

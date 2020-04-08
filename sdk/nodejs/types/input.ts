@@ -142,7 +142,7 @@ export namespace database {
          */
         insecureTls?: pulumi.Input<boolean>;
         /**
-         * The password to authenticate with.
+         * The password to be used in the connection.
          */
         password?: pulumi.Input<string>;
         /**
@@ -168,9 +168,25 @@ export namespace database {
          */
         tls?: pulumi.Input<boolean>;
         /**
-         * The username to authenticate with.
+         * The username to be used in the connection.
          */
         username?: pulumi.Input<string>;
+    }
+
+    export interface SecretBackendConnectionElasticsearch {
+        /**
+         * The password to be used in the connection.
+         */
+        password: pulumi.Input<string>;
+        /**
+         * The URL for Elasticsearch's API. https requires certificate
+         * by trusted CA if used.
+         */
+        url: pulumi.Input<string>;
+        /**
+         * The username to be used in the connection.
+         */
+        username: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionHana {
