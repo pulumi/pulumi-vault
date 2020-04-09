@@ -16,6 +16,8 @@ namespace Pulumi.Vault.Kubernetes
         /// documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-role) for more
         /// information.
         /// 
+        /// 
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_role.md.
         /// </summary>
         [Obsolete("Use GetAuthBackendRole.InvokeAsync() instead")]
@@ -28,6 +30,8 @@ namespace Pulumi.Vault.Kubernetes
         /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
         /// documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-role) for more
         /// information.
+        /// 
+        /// 
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_role.md.
         /// </summary>

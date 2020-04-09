@@ -13,6 +13,8 @@ namespace Pulumi.Vault.Okta
     /// Provides a resource for managing an
     /// [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/okta_auth_backend.html.md.
     /// </summary>
     public partial class AuthBackend : Pulumi.CustomResource

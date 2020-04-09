@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 // Manages an Azure auth backend role in a Vault server. Roles constrain the
@@ -16,6 +16,8 @@ import (
 // backend. See the [Vault
 // documentation](https://www.vaultproject.io/docs/auth/azure.html) for more
 // information.
+//
+//
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/azure_auth_backend_role.html.md.
 type AuthBackendRole struct {

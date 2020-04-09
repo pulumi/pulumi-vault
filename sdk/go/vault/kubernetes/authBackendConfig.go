@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 // Manages an Kubernetes auth backend config in a Vault server. See the [Vault
 // documentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more
 // information.
+//
+//
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/kubernetes_auth_backend_config.md.
 type AuthBackendConfig struct {

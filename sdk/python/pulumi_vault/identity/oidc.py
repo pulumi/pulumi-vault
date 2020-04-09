@@ -26,6 +26,8 @@ class Oidc(pulumi.CustomResource):
 
         > **NOTE:** Each Vault server may only have one Identity Tokens Backend configuration. Multiple configurations of the resource against the same Vault server will cause a perpetual difference.
 
+
+
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_oidc.html.md.
 
         :param str resource_name: The name of the resource.

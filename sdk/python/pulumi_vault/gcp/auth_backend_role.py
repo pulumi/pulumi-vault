@@ -135,6 +135,8 @@ class AuthBackendRole(pulumi.CustomResource):
         """
         Provides a resource to create a role in an [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
 
+
+
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/gcp_auth_backend_role.html.md.
 
         :param str resource_name: The name of the resource.

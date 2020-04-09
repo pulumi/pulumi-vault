@@ -5,9 +5,12 @@
 package vault
 
 import (
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+//
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/auth_backend.html.md.
 func LookupAuthBackend(ctx *pulumi.Context, args *LookupAuthBackendArgs, opts ...pulumi.InvokeOption) (*LookupAuthBackendResult, error) {
 	var rv LookupAuthBackendResult
 	err := ctx.Invoke("vault:index/getAuthBackend:getAuthBackend", args, &rv, opts...)

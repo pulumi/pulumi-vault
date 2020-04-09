@@ -8,11 +8,13 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 // Provides a resource to manage roles in an SSH secret backend
 // [SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).
+//
+//
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ssh_secret_backend_role.html.md.
 type SecretBackendRole struct {

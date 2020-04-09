@@ -4,7 +4,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessCredentialsResult> & GetAccessCredentialsResult {
+export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessCredentialsResult> {
     if (!opts) {
         opts = {}
     }
@@ -12,14 +12,12 @@ export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulu
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetAccessCredentialsResult> = pulumi.runtime.invoke("vault:aws/getAccessCredentials:getAccessCredentials", {
+    return pulumi.runtime.invoke("vault:aws/getAccessCredentials:getAccessCredentials", {
         "backend": args.backend,
         "role": args.role,
         "roleArn": args.roleArn,
         "type": args.type,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

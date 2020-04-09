@@ -32,6 +32,9 @@ class EgpPolicy(pulumi.CustomResource):
 
         **Note** this feature is available only with Vault Enterprise.
 
+
+
+
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/egp_policy.html.md.
 
         :param str resource_name: The name of the resource.

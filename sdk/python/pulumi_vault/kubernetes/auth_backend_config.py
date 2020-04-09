@@ -40,6 +40,8 @@ class AuthBackendConfig(pulumi.CustomResource):
         documentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more
         information.
 
+
+
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/kubernetes_auth_backend_config.md.
 
         :param str resource_name: The name of the resource.

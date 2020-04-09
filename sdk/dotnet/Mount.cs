@@ -9,6 +9,11 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault
 {
+    /// <summary>
+    /// 
+    /// 
+    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/mount.html.md.
+    /// </summary>
     public partial class Mount : Pulumi.CustomResource
     {
         /// <summary>

@@ -68,7 +68,10 @@ class AuthBackend(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, default_lease_ttl_seconds=None, description=None, listing_visibility=None, local=None, max_lease_ttl_seconds=None, path=None, tune=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a AuthBackend resource with the given unique name, props, and options.
+
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/auth_backend.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] default_lease_ttl_seconds: (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.

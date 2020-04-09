@@ -12,6 +12,8 @@ namespace Pulumi.Vault.PkiSecret
     /// <summary>
     /// Creates a role on an PKI Secret Backend for Vault.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_role.html.md.
     /// </summary>
     public partial class SecretBackendRole : Pulumi.CustomResource

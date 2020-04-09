@@ -15,10 +15,9 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/pkg/tfgen"
-
-	vault "github.com/pulumi/pulumi-vault/provider"
-	"github.com/pulumi/pulumi-vault/provider/pkg/version"
+	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfgen"
+	vault "github.com/pulumi/pulumi-vault/provider/v2"
+	"github.com/pulumi/pulumi-vault/provider/v2/pkg/version"
 )
 
 func main() {

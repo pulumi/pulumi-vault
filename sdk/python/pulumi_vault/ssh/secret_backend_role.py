@@ -95,6 +95,8 @@ class SecretBackendRole(pulumi.CustomResource):
         Provides a resource to manage roles in an SSH secret backend
         [SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).
 
+
+
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ssh_secret_backend_role.html.md.
 
         :param str resource_name: The name of the resource.

@@ -12,6 +12,8 @@ namespace Pulumi.Vault.Aws
     /// <summary>
     /// Reads role tag information from an AWS auth backend in Vault. 
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_role_tag.html.md.
     /// </summary>
     public partial class AuthBackendRoleTag : Pulumi.CustomResource

@@ -14,6 +14,8 @@ namespace Pulumi.Vault.AppRole
         /// <summary>
         /// Reads the Role ID of an AppRole from a Vault server.
         /// 
+        /// 
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/approle_auth_backend_role_id.md.
         /// </summary>
         [Obsolete("Use GetAuthBackendRoleId.InvokeAsync() instead")]
@@ -24,6 +26,8 @@ namespace Pulumi.Vault.AppRole
     {
         /// <summary>
         /// Reads the Role ID of an AppRole from a Vault server.
+        /// 
+        /// 
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/approle_auth_backend_role_id.md.
         /// </summary>

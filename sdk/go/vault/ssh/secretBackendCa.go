@@ -7,11 +7,13 @@ package ssh
 import (
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 // Provides a resource to manage CA information in an SSH secret backend
 // [SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).
+//
+//
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ssh_secret_backend_ca.html.md.
 type SecretBackendCa struct {

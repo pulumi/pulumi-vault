@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-export function getEntity(args?: GetEntityArgs, opts?: pulumi.InvokeOptions): Promise<GetEntityResult> & GetEntityResult {
+export function getEntity(args?: GetEntityArgs, opts?: pulumi.InvokeOptions): Promise<GetEntityResult> {
     args = args || {};
     if (!opts) {
         opts = {}
@@ -14,15 +14,13 @@ export function getEntity(args?: GetEntityArgs, opts?: pulumi.InvokeOptions): Pr
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetEntityResult> = pulumi.runtime.invoke("vault:identity/getEntity:getEntity", {
+    return pulumi.runtime.invoke("vault:identity/getEntity:getEntity", {
         "aliasId": args.aliasId,
         "aliasMountAccessor": args.aliasMountAccessor,
         "aliasName": args.aliasName,
         "entityId": args.entityId,
         "entityName": args.entityName,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

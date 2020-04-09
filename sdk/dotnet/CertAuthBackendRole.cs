@@ -12,6 +12,8 @@ namespace Pulumi.Vault
     /// <summary>
     /// Provides a resource to create a role in an [Cert auth backend within Vault](https://www.vaultproject.io/docs/auth/cert.html).
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/cert_auth_backend_role.html.md.
     /// </summary>
     public partial class CertAuthBackendRole : Pulumi.CustomResource

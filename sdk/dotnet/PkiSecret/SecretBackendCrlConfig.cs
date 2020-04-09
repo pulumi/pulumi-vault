@@ -12,6 +12,8 @@ namespace Pulumi.Vault.PkiSecret
     /// <summary>
     /// Allows setting the duration for which the generated CRL should be marked valid. If the CRL is disabled, it will return a signed but zero-length CRL for any request. If enabled, it will re-build the CRL.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_crl_config.html.md.
     /// </summary>
     public partial class SecretBackendCrlConfig : Pulumi.CustomResource

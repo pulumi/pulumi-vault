@@ -12,6 +12,8 @@ namespace Pulumi.Vault.Transit
     /// <summary>
     /// Configure the cache for the Transit Secret Backend in Vault.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/transit_secret_backend_cache_config.html.md.
     /// </summary>
     public partial class SecretCacheConfig : Pulumi.CustomResource

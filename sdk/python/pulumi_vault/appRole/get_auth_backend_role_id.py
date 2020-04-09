@@ -47,6 +47,8 @@ def get_auth_backend_role_id(backend=None,role_name=None,opts=None):
     """
     Reads the Role ID of an AppRole from a Vault server.
 
+
+
     > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/approle_auth_backend_role_id.md.
 
 

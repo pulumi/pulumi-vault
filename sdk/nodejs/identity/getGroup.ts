@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-export function getGroup(args?: GetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetGroupResult> & GetGroupResult {
+export function getGroup(args?: GetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetGroupResult> {
     args = args || {};
     if (!opts) {
         opts = {}
@@ -14,15 +14,13 @@ export function getGroup(args?: GetGroupArgs, opts?: pulumi.InvokeOptions): Prom
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetGroupResult> = pulumi.runtime.invoke("vault:identity/getGroup:getGroup", {
+    return pulumi.runtime.invoke("vault:identity/getGroup:getGroup", {
         "aliasId": args.aliasId,
         "aliasMountAccessor": args.aliasMountAccessor,
         "aliasName": args.aliasName,
         "groupId": args.groupId,
         "groupName": args.groupName,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

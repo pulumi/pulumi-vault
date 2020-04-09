@@ -11,6 +11,8 @@ import * as utilities from "../utilities";
  * 
  * ## Example Usage
  * 
+ * 
+ * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -25,7 +27,7 @@ import * as utilities from "../utilities";
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_role.md.
  */
-export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendRoleResult> & GetAuthBackendRoleResult {
+export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendRoleResult> {
     if (!opts) {
         opts = {}
     }
@@ -33,7 +35,7 @@ export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.I
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetAuthBackendRoleResult> = pulumi.runtime.invoke("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", {
+    return pulumi.runtime.invoke("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", {
         "audience": args.audience,
         "backend": args.backend,
         "boundCidrs": args.boundCidrs,
@@ -53,8 +55,6 @@ export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.I
         "tokenType": args.tokenType,
         "ttl": args.ttl,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

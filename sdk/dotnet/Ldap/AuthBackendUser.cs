@@ -12,6 +12,8 @@ namespace Pulumi.Vault.Ldap
     /// <summary>
     /// Provides a resource to create a user in an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ldap_auth_backend_user.html.md.
     /// </summary>
     public partial class AuthBackendUser : Pulumi.CustomResource

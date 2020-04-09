@@ -20,7 +20,10 @@ class Policy(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, name=None, policy=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a Policy resource with the given unique name, props, and options.
+
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/policy.html.md.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the policy

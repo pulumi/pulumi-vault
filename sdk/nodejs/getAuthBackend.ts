@@ -9,6 +9,8 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  * 
+ * 
+ * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -20,7 +22,7 @@ import * as utilities from "./utilities";
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/auth_backend.html.md.
  */
-export function getAuthBackend(args: GetAuthBackendArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendResult> & GetAuthBackendResult {
+export function getAuthBackend(args: GetAuthBackendArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendResult> {
     if (!opts) {
         opts = {}
     }
@@ -28,11 +30,9 @@ export function getAuthBackend(args: GetAuthBackendArgs, opts?: pulumi.InvokeOpt
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetAuthBackendResult> = pulumi.runtime.invoke("vault:index/getAuthBackend:getAuthBackend", {
+    return pulumi.runtime.invoke("vault:index/getAuthBackend:getAuthBackend", {
         "path": args.path,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

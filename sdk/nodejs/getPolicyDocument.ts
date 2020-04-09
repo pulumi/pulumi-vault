@@ -11,6 +11,8 @@ import * as utilities from "./utilities";
  * 
  * ## Example Usage
  * 
+ * 
+ * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -35,7 +37,7 @@ import * as utilities from "./utilities";
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/policy_document.md.
  */
-export function getPolicyDocument(args?: GetPolicyDocumentArgs, opts?: pulumi.InvokeOptions): Promise<GetPolicyDocumentResult> & GetPolicyDocumentResult {
+export function getPolicyDocument(args?: GetPolicyDocumentArgs, opts?: pulumi.InvokeOptions): Promise<GetPolicyDocumentResult> {
     args = args || {};
     if (!opts) {
         opts = {}
@@ -44,11 +46,9 @@ export function getPolicyDocument(args?: GetPolicyDocumentArgs, opts?: pulumi.In
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetPolicyDocumentResult> = pulumi.runtime.invoke("vault:index/getPolicyDocument:getPolicyDocument", {
+    return pulumi.runtime.invoke("vault:index/getPolicyDocument:getPolicyDocument", {
         "rules": args.rules,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

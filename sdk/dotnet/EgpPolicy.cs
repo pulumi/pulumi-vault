@@ -14,6 +14,9 @@ namespace Pulumi.Vault
     /// 
     /// **Note** this feature is available only with Vault Enterprise.
     /// 
+    /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/egp_policy.html.md.
     /// </summary>
     public partial class EgpPolicy : Pulumi.CustomResource

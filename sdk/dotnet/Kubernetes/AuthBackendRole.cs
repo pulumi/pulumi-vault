@@ -14,6 +14,8 @@ namespace Pulumi.Vault.Kubernetes
     /// documentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more
     /// information.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/kubernetes_auth_backend_role.html.md.
     /// </summary>
     public partial class AuthBackendRole : Pulumi.CustomResource

@@ -8,12 +8,14 @@ import (
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 // Manages an AppRole auth backend SecretID in a Vault server. See the [Vault
 // documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
 // information.
+//
+//
 //
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/approle_auth_backend_role_secret_id.html.md.
 type AuthBackendRoleSecretID struct {

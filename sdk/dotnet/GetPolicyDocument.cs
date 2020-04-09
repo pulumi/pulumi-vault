@@ -14,6 +14,8 @@ namespace Pulumi.Vault
         /// <summary>
         /// This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `vault..Policy` resource.
         /// 
+        /// 
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/policy_document.md.
         /// </summary>
         [Obsolete("Use GetPolicyDocument.InvokeAsync() instead")]
@@ -24,6 +26,8 @@ namespace Pulumi.Vault
     {
         /// <summary>
         /// This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `vault..Policy` resource.
+        /// 
+        /// 
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/policy_document.md.
         /// </summary>

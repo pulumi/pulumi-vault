@@ -12,6 +12,8 @@ namespace Pulumi.Vault.Aws
     /// <summary>
     /// Configures the periodic tidying operation of the blacklisted role tag entries.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_roletag_blacklist.html.md.
     /// </summary>
     public partial class AuthBackendRoletagBlacklist : Pulumi.CustomResource

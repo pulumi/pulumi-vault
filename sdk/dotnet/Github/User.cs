@@ -14,6 +14,8 @@ namespace Pulumi.Vault.GitHub
     /// documentation](https://www.vaultproject.io/docs/auth/github.html) for more
     /// information.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/github_user.html.md.
     /// </summary>
     public partial class User : Pulumi.CustomResource

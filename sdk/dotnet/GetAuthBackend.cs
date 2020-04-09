@@ -11,12 +11,22 @@ namespace Pulumi.Vault
 {
     public static partial class Invokes
     {
+        /// <summary>
+        /// 
+        /// 
+        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/auth_backend.html.md.
+        /// </summary>
         [Obsolete("Use GetAuthBackend.InvokeAsync() instead")]
         public static Task<GetAuthBackendResult> GetAuthBackend(GetAuthBackendArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendResult>("vault:index/getAuthBackend:getAuthBackend", args ?? InvokeArgs.Empty, options.WithVersion());
     }
     public static class GetAuthBackend
     {
+        /// <summary>
+        /// 
+        /// 
+        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/auth_backend.html.md.
+        /// </summary>
         public static Task<GetAuthBackendResult> InvokeAsync(GetAuthBackendArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendResult>("vault:index/getAuthBackend:getAuthBackend", args ?? InvokeArgs.Empty, options.WithVersion());
     }

@@ -110,6 +110,8 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         """
         Creates an PKI certificate.
 
+
+
         > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_root_sign_intermediate.html.md.
 
         :param str resource_name: The name of the resource.

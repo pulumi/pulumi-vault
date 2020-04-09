@@ -12,6 +12,8 @@ namespace Pulumi.Vault.Identity
     /// <summary>
     /// Manages policies for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_group_policies.html.md.
     /// </summary>
     public partial class GroupPolicies : Pulumi.CustomResource

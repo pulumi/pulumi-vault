@@ -15,6 +15,8 @@ namespace Pulumi.Vault.Aws
     /// instance metadata. For more information, see the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/aws.html).
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_login.html.md.
     /// </summary>
     public partial class AuthBackendLogin : Pulumi.CustomResource

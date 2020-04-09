@@ -6,7 +6,7 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessCredentialsResult> & GetAccessCredentialsResult {
+export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessCredentialsResult> {
     if (!opts) {
         opts = {}
     }
@@ -14,7 +14,7 @@ export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulu
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetAccessCredentialsResult> = pulumi.runtime.invoke("vault:azure/getAccessCredentials:getAccessCredentials", {
+    return pulumi.runtime.invoke("vault:azure/getAccessCredentials:getAccessCredentials", {
         "backend": args.backend,
         "maxCredValidationSeconds": args.maxCredValidationSeconds,
         "numSecondsBetweenTests": args.numSecondsBetweenTests,
@@ -22,8 +22,6 @@ export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulu
         "role": args.role,
         "validateCreds": args.validateCreds,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

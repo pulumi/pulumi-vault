@@ -12,6 +12,8 @@ namespace Pulumi.Vault.PkiSecret
     /// <summary>
     /// Creates an PKI certificate.
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_root_sign_intermediate.html.md.
     /// </summary>
     public partial class SecretBackendRootSignIntermediate : Pulumi.CustomResource
