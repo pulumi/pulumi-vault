@@ -85,8 +85,6 @@ def get_auth_backend(path=None,opts=None):
     """
 
 
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/auth_backend.html.md.
-
 
     :param str path: The auth backend mount point.
     """

@@ -137,8 +137,6 @@ class AuthBackendRole(pulumi.CustomResource):
 
 
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/gcp_auth_backend_role.html.md.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_gce_inference: A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.

@@ -97,8 +97,6 @@ class SecretBackendRole(pulumi.CustomResource):
 
 
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ssh_secret_backend_role.html.md.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_bare_domains: Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.

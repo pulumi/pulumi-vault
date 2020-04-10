@@ -141,8 +141,6 @@ class CertAuthBackendRole(pulumi.CustomResource):
 
 
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/cert_auth_backend_role.html.md.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] allowed_common_names: Allowed the common names for authenticated client certificates

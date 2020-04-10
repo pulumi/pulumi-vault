@@ -45,8 +45,6 @@ def get_policy_document(rules=None,opts=None):
 
 
 
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/policy_document.md.
-
 
 
     The **rules** object supports the following:

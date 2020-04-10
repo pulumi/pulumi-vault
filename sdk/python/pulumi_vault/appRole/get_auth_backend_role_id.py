@@ -49,8 +49,6 @@ def get_auth_backend_role_id(backend=None,role_name=None,opts=None):
 
 
 
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/approle_auth_backend_role_id.md.
-
 
     :param str backend: The unique name for the AppRole backend the role to
            retrieve a RoleID for resides in. Defaults to "approle".

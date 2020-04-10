@@ -54,8 +54,6 @@ class AuthBackendRoleTag(pulumi.CustomResource):
 
 
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_role_tag.html.md.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_instance_migration: If set, allows migration of the underlying instances where the client resides. Use with caution.

@@ -170,8 +170,6 @@ def get_auth_backend_role(audience=None,backend=None,bound_cidrs=None,max_ttl=No
 
 
 
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_role.md.
-
 
     :param str audience: (Optional) Audience claim to verify in the JWT.
     :param str backend: The unique name for the Kubernetes backend the role to
