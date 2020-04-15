@@ -11,8 +11,6 @@ namespace Pulumi.Vault.Aws
 {
     /// <summary>
     /// Reads role tag information from an AWS auth backend in Vault. 
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_role_tag.html.md.
     /// </summary>
     public partial class AuthBackendRoleTag : Pulumi.CustomResource
     {
@@ -81,7 +79,7 @@ namespace Pulumi.Vault.Aws
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthBackendRoleTag(string name, AuthBackendRoleTagArgs args, CustomResourceOptions? options = null)
-            : base("vault:aws/authBackendRoleTag:AuthBackendRoleTag", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:aws/authBackendRoleTag:AuthBackendRoleTag", name, args ?? new AuthBackendRoleTagArgs(), MakeResourceOptions(options, ""))
         {
         }
 

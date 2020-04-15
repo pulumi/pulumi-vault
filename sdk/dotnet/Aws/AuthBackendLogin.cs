@@ -14,8 +14,6 @@ namespace Pulumi.Vault.Aws
     /// accomplished using a signed identity request from IAM or using ec2
     /// instance metadata. For more information, see the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/aws.html).
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_login.html.md.
     /// </summary>
     public partial class AuthBackendLogin : Pulumi.CustomResource
     {
@@ -152,7 +150,7 @@ namespace Pulumi.Vault.Aws
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthBackendLogin(string name, AuthBackendLoginArgs? args = null, CustomResourceOptions? options = null)
-            : base("vault:aws/authBackendLogin:AuthBackendLogin", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:aws/authBackendLogin:AuthBackendLogin", name, args ?? new AuthBackendLoginArgs(), MakeResourceOptions(options, ""))
         {
         }
 

@@ -128,7 +128,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretBackendSign(string name, SecretBackendSignArgs args, CustomResourceOptions? options = null)
-            : base("vault:pkiSecret/secretBackendSign:SecretBackendSign", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:pkiSecret/secretBackendSign:SecretBackendSign", name, args ?? new SecretBackendSignArgs(), MakeResourceOptions(options, ""))
         {
         }
 

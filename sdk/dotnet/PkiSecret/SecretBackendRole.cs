@@ -11,8 +11,6 @@ namespace Pulumi.Vault.PkiSecret
 {
     /// <summary>
     /// Creates a role on an PKI Secret Backend for Vault.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_role.html.md.
     /// </summary>
     public partial class SecretBackendRole : Pulumi.CustomResource
     {
@@ -173,16 +171,16 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> NotBeforeDuration { get; private set; } = null!;
 
         /// <summary>
-        /// The organization of generated certificates
-        /// </summary>
-        [Output("organizations")]
-        public Output<ImmutableArray<string>> Organizations { get; private set; } = null!;
-
-        /// <summary>
         /// The organization unit of generated certificates
         /// </summary>
         [Output("organizationUnit")]
         public Output<ImmutableArray<string>> OrganizationUnit { get; private set; } = null!;
+
+        /// <summary>
+        /// The organization of generated certificates
+        /// </summary>
+        [Output("organizations")]
+        public Output<ImmutableArray<string>> Organizations { get; private set; } = null!;
 
         /// <summary>
         /// Specify the list of allowed policies IODs
@@ -247,7 +245,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretBackendRole(string name, SecretBackendRoleArgs args, CustomResourceOptions? options = null)
-            : base("vault:pkiSecret/secretBackendRole:SecretBackendRole", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:pkiSecret/secretBackendRole:SecretBackendRole", name, args ?? new SecretBackendRoleArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -482,18 +480,6 @@ namespace Pulumi.Vault.PkiSecret
         [Input("notBeforeDuration")]
         public Input<string>? NotBeforeDuration { get; set; }
 
-        [Input("organizations")]
-        private InputList<string>? _organizations;
-
-        /// <summary>
-        /// The organization of generated certificates
-        /// </summary>
-        public InputList<string> Organizations
-        {
-            get => _organizations ?? (_organizations = new InputList<string>());
-            set => _organizations = value;
-        }
-
         [Input("organizationUnit")]
         private InputList<string>? _organizationUnit;
 
@@ -504,6 +490,18 @@ namespace Pulumi.Vault.PkiSecret
         {
             get => _organizationUnit ?? (_organizationUnit = new InputList<string>());
             set => _organizationUnit = value;
+        }
+
+        [Input("organizations")]
+        private InputList<string>? _organizations;
+
+        /// <summary>
+        /// The organization of generated certificates
+        /// </summary>
+        public InputList<string> Organizations
+        {
+            get => _organizations ?? (_organizations = new InputList<string>());
+            set => _organizations = value;
         }
 
         [Input("policyIdentifiers")]
@@ -789,18 +787,6 @@ namespace Pulumi.Vault.PkiSecret
         [Input("notBeforeDuration")]
         public Input<string>? NotBeforeDuration { get; set; }
 
-        [Input("organizations")]
-        private InputList<string>? _organizations;
-
-        /// <summary>
-        /// The organization of generated certificates
-        /// </summary>
-        public InputList<string> Organizations
-        {
-            get => _organizations ?? (_organizations = new InputList<string>());
-            set => _organizations = value;
-        }
-
         [Input("organizationUnit")]
         private InputList<string>? _organizationUnit;
 
@@ -811,6 +797,18 @@ namespace Pulumi.Vault.PkiSecret
         {
             get => _organizationUnit ?? (_organizationUnit = new InputList<string>());
             set => _organizationUnit = value;
+        }
+
+        [Input("organizations")]
+        private InputList<string>? _organizations;
+
+        /// <summary>
+        /// The organization of generated certificates
+        /// </summary>
+        public InputList<string> Organizations
+        {
+            get => _organizations ?? (_organizations = new InputList<string>());
+            set => _organizations = value;
         }
 
         [Input("policyIdentifiers")]

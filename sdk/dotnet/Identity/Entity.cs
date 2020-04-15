@@ -50,7 +50,7 @@ namespace Pulumi.Vault.Identity
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Entity(string name, EntityArgs? args = null, CustomResourceOptions? options = null)
-            : base("vault:identity/entity:Entity", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:identity/entity:Entity", name, args ?? new EntityArgs(), MakeResourceOptions(options, ""))
         {
         }
 

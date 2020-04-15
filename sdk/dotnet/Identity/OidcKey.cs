@@ -19,8 +19,8 @@ namespace Pulumi.Vault.Identity
         public Output<string?> Algorithm { get; private set; } = null!;
 
         /// <summary>
-        /// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all
-        /// roles are allowed.
+        /// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
+        /// allowed.
         /// </summary>
         [Output("allowedClientIds")]
         public Output<ImmutableArray<string>> AllowedClientIds { get; private set; } = null!;
@@ -53,7 +53,7 @@ namespace Pulumi.Vault.Identity
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public OidcKey(string name, OidcKeyArgs? args = null, CustomResourceOptions? options = null)
-            : base("vault:identity/oidcKey:OidcKey", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:identity/oidcKey:OidcKey", name, args ?? new OidcKeyArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -101,8 +101,8 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _allowedClientIds;
 
         /// <summary>
-        /// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all
-        /// roles are allowed.
+        /// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
+        /// allowed.
         /// </summary>
         public InputList<string> AllowedClientIds
         {
@@ -147,8 +147,8 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _allowedClientIds;
 
         /// <summary>
-        /// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all
-        /// roles are allowed.
+        /// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
+        /// allowed.
         /// </summary>
         public InputList<string> AllowedClientIds
         {

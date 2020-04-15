@@ -9,17 +9,16 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault
 {
-    public static partial class Invokes
-    {
-        [Obsolete("Use GetAuthBackend.InvokeAsync() instead")]
-        public static Task<GetAuthBackendResult> GetAuthBackend(GetAuthBackendArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendResult>("vault:index/getAuthBackend:getAuthBackend", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetAuthBackend
     {
+        /// <summary>
+        /// {{% examples %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetAuthBackendResult> InvokeAsync(GetAuthBackendArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendResult>("vault:index/getAuthBackend:getAuthBackend", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendResult>("vault:index/getAuthBackend:getAuthBackend", args ?? new GetAuthBackendArgs(), options.WithVersion());
     }
+
 
     public sealed class GetAuthBackendArgs : Pulumi.InvokeArgs
     {
@@ -33,6 +32,7 @@ namespace Pulumi.Vault
         {
         }
     }
+
 
     [OutputType]
     public sealed class GetAuthBackendResult
@@ -50,6 +50,10 @@ namespace Pulumi.Vault
         /// </summary>
         public readonly string Description;
         /// <summary>
+        /// id is the provider-assigned unique ID for this managed resource.
+        /// </summary>
+        public readonly string Id;
+        /// <summary>
         /// Speficies whether to show this mount in the UI-specific listing endpoint.
         /// </summary>
         public readonly string ListingVisibility;
@@ -66,32 +70,36 @@ namespace Pulumi.Vault
         /// The name of the auth method type.
         /// </summary>
         public readonly string Type;
-        /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
         private GetAuthBackendResult(
             string accessor,
+
             int defaultLeaseTtlSeconds,
+
             string description,
+
+            string id,
+
             string listingVisibility,
+
             bool local,
+
             int maxLeaseTtlSeconds,
+
             string path,
-            string type,
-            string id)
+
+            string type)
         {
             Accessor = accessor;
             DefaultLeaseTtlSeconds = defaultLeaseTtlSeconds;
             Description = description;
+            Id = id;
             ListingVisibility = listingVisibility;
             Local = local;
             MaxLeaseTtlSeconds = maxLeaseTtlSeconds;
             Path = path;
             Type = type;
-            Id = id;
         }
     }
 }

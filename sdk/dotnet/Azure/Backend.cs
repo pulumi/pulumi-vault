@@ -12,8 +12,8 @@ namespace Pulumi.Vault.Azure
     public partial class Backend : Pulumi.CustomResource
     {
         /// <summary>
-        /// The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources
-        /// are required.
+        /// The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
+        /// required.
         /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
@@ -31,8 +31,7 @@ namespace Pulumi.Vault.Azure
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
-        /// AzureGermanCloud.
+        /// The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
         /// </summary>
         [Output("environment")]
         public Output<string?> Environment { get; private set; } = null!;
@@ -64,7 +63,7 @@ namespace Pulumi.Vault.Azure
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Backend(string name, BackendArgs args, CustomResourceOptions? options = null)
-            : base("vault:azure/backend:Backend", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:azure/backend:Backend", name, args ?? new BackendArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -102,8 +101,8 @@ namespace Pulumi.Vault.Azure
     public sealed class BackendArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources
-        /// are required.
+        /// The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
+        /// required.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
@@ -121,8 +120,7 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
-        /// AzureGermanCloud.
+        /// The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
         /// </summary>
         [Input("environment")]
         public Input<string>? Environment { get; set; }
@@ -153,8 +151,8 @@ namespace Pulumi.Vault.Azure
     public sealed class BackendState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources
-        /// are required.
+        /// The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
+        /// required.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
@@ -172,8 +170,7 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
-        /// AzureGermanCloud.
+        /// The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
         /// </summary>
         [Input("environment")]
         public Input<string>? Environment { get; set; }

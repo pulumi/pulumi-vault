@@ -13,8 +13,6 @@ namespace Pulumi.Vault.Gcp
     /// Creates a Roleset in the [GCP Secrets Engine](https://www.vaultproject.io/docs/secrets/gcp/index.html) for Vault.
     /// 
     /// Each Roleset is [tied](https://www.vaultproject.io/docs/secrets/gcp/index.html#service-accounts-are-tied-to-rolesets) to a Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings) associated with it.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/gcp_secret_roleset.html.md.
     /// </summary>
     public partial class SecretRoleset : Pulumi.CustomResource
     {
@@ -28,7 +26,7 @@ namespace Pulumi.Vault.Gcp
         /// Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
         /// </summary>
         [Output("bindings")]
-        public Output<ImmutableArray<Outputs.SecretRolesetBindings>> Bindings { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.SecretRolesetBinding>> Bindings { get; private set; } = null!;
 
         /// <summary>
         /// Name of the GCP project that this roleset's service account will belong to.
@@ -69,7 +67,7 @@ namespace Pulumi.Vault.Gcp
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretRoleset(string name, SecretRolesetArgs args, CustomResourceOptions? options = null)
-            : base("vault:gcp/secretRoleset:SecretRoleset", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:gcp/secretRoleset:SecretRoleset", name, args ?? new SecretRolesetArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -113,14 +111,14 @@ namespace Pulumi.Vault.Gcp
         public Input<string> Backend { get; set; } = null!;
 
         [Input("bindings", required: true)]
-        private InputList<Inputs.SecretRolesetBindingsArgs>? _bindings;
+        private InputList<Inputs.SecretRolesetBindingArgs>? _bindings;
 
         /// <summary>
         /// Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
         /// </summary>
-        public InputList<Inputs.SecretRolesetBindingsArgs> Bindings
+        public InputList<Inputs.SecretRolesetBindingArgs> Bindings
         {
-            get => _bindings ?? (_bindings = new InputList<Inputs.SecretRolesetBindingsArgs>());
+            get => _bindings ?? (_bindings = new InputList<Inputs.SecretRolesetBindingArgs>());
             set => _bindings = value;
         }
 
@@ -168,14 +166,14 @@ namespace Pulumi.Vault.Gcp
         public Input<string>? Backend { get; set; }
 
         [Input("bindings")]
-        private InputList<Inputs.SecretRolesetBindingsGetArgs>? _bindings;
+        private InputList<Inputs.SecretRolesetBindingGetArgs>? _bindings;
 
         /// <summary>
         /// Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
         /// </summary>
-        public InputList<Inputs.SecretRolesetBindingsGetArgs> Bindings
+        public InputList<Inputs.SecretRolesetBindingGetArgs> Bindings
         {
-            get => _bindings ?? (_bindings = new InputList<Inputs.SecretRolesetBindingsGetArgs>());
+            get => _bindings ?? (_bindings = new InputList<Inputs.SecretRolesetBindingGetArgs>());
             set => _bindings = value;
         }
 
@@ -218,85 +216,5 @@ namespace Pulumi.Vault.Gcp
         public SecretRolesetState()
         {
         }
-    }
-
-    namespace Inputs
-    {
-
-    public sealed class SecretRolesetBindingsArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
-        /// </summary>
-        [Input("resource", required: true)]
-        public Input<string> Resource { get; set; } = null!;
-
-        [Input("roles", required: true)]
-        private InputList<string>? _roles;
-
-        /// <summary>
-        /// List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
-        /// </summary>
-        public InputList<string> Roles
-        {
-            get => _roles ?? (_roles = new InputList<string>());
-            set => _roles = value;
-        }
-
-        public SecretRolesetBindingsArgs()
-        {
-        }
-    }
-
-    public sealed class SecretRolesetBindingsGetArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
-        /// </summary>
-        [Input("resource", required: true)]
-        public Input<string> Resource { get; set; } = null!;
-
-        [Input("roles", required: true)]
-        private InputList<string>? _roles;
-
-        /// <summary>
-        /// List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
-        /// </summary>
-        public InputList<string> Roles
-        {
-            get => _roles ?? (_roles = new InputList<string>());
-            set => _roles = value;
-        }
-
-        public SecretRolesetBindingsGetArgs()
-        {
-        }
-    }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class SecretRolesetBindings
-    {
-        /// <summary>
-        /// Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
-        /// </summary>
-        public readonly string Resource;
-        /// <summary>
-        /// List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
-        /// </summary>
-        public readonly ImmutableArray<string> Roles;
-
-        [OutputConstructor]
-        private SecretRolesetBindings(
-            string resource,
-            ImmutableArray<string> roles)
-        {
-            Resource = resource;
-            Roles = roles;
-        }
-    }
     }
 }

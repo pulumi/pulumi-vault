@@ -11,8 +11,6 @@ namespace Pulumi.Vault.Gcp
 {
     /// <summary>
     /// Provides a resource to create a role in an [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/gcp_auth_backend_role.html.md.
     /// </summary>
     public partial class AuthBackendRole : Pulumi.CustomResource
     {
@@ -196,7 +194,7 @@ namespace Pulumi.Vault.Gcp
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthBackendRole(string name, AuthBackendRoleArgs args, CustomResourceOptions? options = null)
-            : base("vault:gcp/authBackendRole:AuthBackendRole", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:gcp/authBackendRole:AuthBackendRole", name, args ?? new AuthBackendRoleArgs(), MakeResourceOptions(options, ""))
         {
         }
 

@@ -83,7 +83,8 @@ class AwaitableGetAuthBackendResult(GetAuthBackendResult):
 
 def get_auth_backend(path=None,opts=None):
     """
-    Use this data source to access information about an existing resource.
+
+
 
     :param str path: The auth backend mount point.
     """

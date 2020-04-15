@@ -13,8 +13,6 @@ namespace Pulumi.Vault.Identity
     /// Creates an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
     /// 
     /// A group can contain multiple entities as its members. A group can also have subgroups. Policies set on the group is granted to all members of the group. During request time, when the token's entity ID is being evaluated for the policies that it has access to; along with the policies on the entity itself, policies that are inherited due to group memberships are also granted.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_group.html.md.
     /// </summary>
     public partial class Group : Pulumi.CustomResource
     {
@@ -69,7 +67,7 @@ namespace Pulumi.Vault.Identity
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Group(string name, GroupArgs? args = null, CustomResourceOptions? options = null)
-            : base("vault:identity/group:Group", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:identity/group:Group", name, args ?? new GroupArgs(), MakeResourceOptions(options, ""))
         {
         }
 

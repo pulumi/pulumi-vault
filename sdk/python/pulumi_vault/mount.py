@@ -48,7 +48,8 @@ class Mount(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, default_lease_ttl_seconds=None, description=None, local=None, max_lease_ttl_seconds=None, options=None, path=None, seal_wrap=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a Mount resource with the given unique name, props, and options.
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds

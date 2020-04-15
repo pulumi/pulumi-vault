@@ -9,17 +9,12 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Aws
 {
-    public static partial class Invokes
-    {
-        [Obsolete("Use GetAccessCredentials.InvokeAsync() instead")]
-        public static Task<GetAccessCredentialsResult> GetAccessCredentials(GetAccessCredentialsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:aws/getAccessCredentials:getAccessCredentials", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetAccessCredentials
     {
         public static Task<GetAccessCredentialsResult> InvokeAsync(GetAccessCredentialsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:aws/getAccessCredentials:getAccessCredentials", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:aws/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsArgs(), options.WithVersion());
     }
+
 
     public sealed class GetAccessCredentialsArgs : Pulumi.InvokeArgs
     {
@@ -59,6 +54,7 @@ namespace Pulumi.Vault.Aws
         }
     }
 
+
     [OutputType]
     public sealed class GetAccessCredentialsResult
     {
@@ -67,6 +63,10 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         public readonly string AccessKey;
         public readonly string Backend;
+        /// <summary>
+        /// id is the provider-assigned unique ID for this managed resource.
+        /// </summary>
+        public readonly string Id;
         /// <summary>
         /// The duration of the secret lease, in seconds relative
         /// to the time the data was requested. Once this time has passed any plan
@@ -90,28 +90,36 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         public readonly string SecurityToken;
         public readonly string? Type;
-        /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
         private GetAccessCredentialsResult(
             string accessKey,
+
             string backend,
+
+            string id,
+
             int leaseDuration,
+
             string leaseId,
+
             bool leaseRenewable,
+
             string leaseStartTime,
+
             string role,
+
             string? roleArn,
+
             string secretKey,
+
             string securityToken,
-            string? type,
-            string id)
+
+            string? type)
         {
             AccessKey = accessKey;
             Backend = backend;
+            Id = id;
             LeaseDuration = leaseDuration;
             LeaseId = leaseId;
             LeaseRenewable = leaseRenewable;
@@ -121,7 +129,6 @@ namespace Pulumi.Vault.Aws
             SecretKey = secretKey;
             SecurityToken = securityToken;
             Type = type;
-            Id = id;
         }
     }
 }

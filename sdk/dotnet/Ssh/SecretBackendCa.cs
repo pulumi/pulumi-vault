@@ -12,8 +12,6 @@ namespace Pulumi.Vault.Ssh
     /// <summary>
     /// Provides a resource to manage CA information in an SSH secret backend
     /// [SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ssh_secret_backend_ca.html.md.
     /// </summary>
     public partial class SecretBackendCa : Pulumi.CustomResource
     {
@@ -50,7 +48,7 @@ namespace Pulumi.Vault.Ssh
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretBackendCa(string name, SecretBackendCaArgs? args = null, CustomResourceOptions? options = null)
-            : base("vault:ssh/secretBackendCa:SecretBackendCa", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:ssh/secretBackendCa:SecretBackendCa", name, args ?? new SecretBackendCaArgs(), MakeResourceOptions(options, ""))
         {
         }
 

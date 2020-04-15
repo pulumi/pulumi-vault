@@ -9,19 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Kubernetes
 {
-    public static partial class Invokes
-    {
-        /// <summary>
-        /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
-        /// documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-role) for more
-        /// information.
-        /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_role.md.
-        /// </summary>
-        [Obsolete("Use GetAuthBackendRole.InvokeAsync() instead")]
-        public static Task<GetAuthBackendRoleResult> GetAuthBackendRole(GetAuthBackendRoleArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleResult>("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetAuthBackendRole
     {
         /// <summary>
@@ -29,11 +16,13 @@ namespace Pulumi.Vault.Kubernetes
         /// documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-role) for more
         /// information.
         /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_role.md.
+        /// {{% examples %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetAuthBackendRoleResult> InvokeAsync(GetAuthBackendRoleArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleResult>("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleResult>("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleArgs(), options.WithVersion());
     }
+
 
     public sealed class GetAuthBackendRoleArgs : Pulumi.InvokeArgs
     {
@@ -175,6 +164,7 @@ namespace Pulumi.Vault.Kubernetes
         }
     }
 
+
     [OutputType]
     public sealed class GetAuthBackendRoleResult
     {
@@ -192,6 +182,10 @@ namespace Pulumi.Vault.Kubernetes
         /// List of namespaces allowed to access this role. If set to "*" all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
         /// </summary>
         public readonly ImmutableArray<string> BoundServiceAccountNamespaces;
+        /// <summary>
+        /// id is the provider-assigned unique ID for this managed resource.
+        /// </summary>
+        public readonly string Id;
         public readonly int? MaxTtl;
         public readonly int? NumUses;
         public readonly int? Period;
@@ -252,40 +246,57 @@ namespace Pulumi.Vault.Kubernetes
         /// </summary>
         public readonly string? TokenType;
         public readonly int? Ttl;
-        /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
         private GetAuthBackendRoleResult(
             string? audience,
+
             string? backend,
+
             ImmutableArray<string> boundCidrs,
+
             ImmutableArray<string> boundServiceAccountNames,
+
             ImmutableArray<string> boundServiceAccountNamespaces,
+
+            string id,
+
             int? maxTtl,
+
             int? numUses,
+
             int? period,
+
             ImmutableArray<string> policies,
+
             string roleName,
+
             ImmutableArray<string> tokenBoundCidrs,
+
             int? tokenExplicitMaxTtl,
+
             int? tokenMaxTtl,
+
             bool? tokenNoDefaultPolicy,
+
             int? tokenNumUses,
+
             int? tokenPeriod,
+
             ImmutableArray<string> tokenPolicies,
+
             int? tokenTtl,
+
             string? tokenType,
-            int? ttl,
-            string id)
+
+            int? ttl)
         {
             Audience = audience;
             Backend = backend;
             BoundCidrs = boundCidrs;
             BoundServiceAccountNames = boundServiceAccountNames;
             BoundServiceAccountNamespaces = boundServiceAccountNamespaces;
+            Id = id;
             MaxTtl = maxTtl;
             NumUses = numUses;
             Period = period;
@@ -301,7 +312,6 @@ namespace Pulumi.Vault.Kubernetes
             TokenTtl = tokenTtl;
             TokenType = tokenType;
             Ttl = ttl;
-            Id = id;
         }
     }
 }

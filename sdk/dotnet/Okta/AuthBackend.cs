@@ -12,8 +12,6 @@ namespace Pulumi.Vault.Okta
     /// <summary>
     /// Provides a resource for managing an
     /// [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/okta_auth_backend.html.md.
     /// </summary>
     public partial class AuthBackend : Pulumi.CustomResource
     {
@@ -46,7 +44,7 @@ namespace Pulumi.Vault.Okta
         /// See below for more details.
         /// </summary>
         [Output("groups")]
-        public Output<ImmutableArray<Outputs.AuthBackendGroups>> Groups { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.AuthBackendGroup>> Groups { get; private set; } = null!;
 
         /// <summary>
         /// Maximum duration after which authentication will be expired
@@ -86,7 +84,7 @@ namespace Pulumi.Vault.Okta
         /// See below for more details.
         /// </summary>
         [Output("users")]
-        public Output<ImmutableArray<Outputs.AuthBackendUsers>> Users { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.AuthBackendUser>> Users { get; private set; } = null!;
 
 
         /// <summary>
@@ -97,7 +95,7 @@ namespace Pulumi.Vault.Okta
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthBackend(string name, AuthBackendArgs args, CustomResourceOptions? options = null)
-            : base("vault:okta/authBackend:AuthBackend", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:okta/authBackend:AuthBackend", name, args ?? new AuthBackendArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -153,15 +151,15 @@ namespace Pulumi.Vault.Okta
         public Input<string>? Description { get; set; }
 
         [Input("groups")]
-        private InputList<Inputs.AuthBackendGroupsArgs>? _groups;
+        private InputList<Inputs.AuthBackendGroupArgs>? _groups;
 
         /// <summary>
         /// Associate Okta groups with policies within Vault.
         /// See below for more details.
         /// </summary>
-        public InputList<Inputs.AuthBackendGroupsArgs> Groups
+        public InputList<Inputs.AuthBackendGroupArgs> Groups
         {
-            get => _groups ?? (_groups = new InputList<Inputs.AuthBackendGroupsArgs>());
+            get => _groups ?? (_groups = new InputList<Inputs.AuthBackendGroupArgs>());
             set => _groups = value;
         }
 
@@ -199,15 +197,15 @@ namespace Pulumi.Vault.Okta
         public Input<string>? Ttl { get; set; }
 
         [Input("users")]
-        private InputList<Inputs.AuthBackendUsersArgs>? _users;
+        private InputList<Inputs.AuthBackendUserArgs>? _users;
 
         /// <summary>
         /// Associate Okta users with groups or policies within Vault.
         /// See below for more details.
         /// </summary>
-        public InputList<Inputs.AuthBackendUsersArgs> Users
+        public InputList<Inputs.AuthBackendUserArgs> Users
         {
-            get => _users ?? (_users = new InputList<Inputs.AuthBackendUsersArgs>());
+            get => _users ?? (_users = new InputList<Inputs.AuthBackendUserArgs>());
             set => _users = value;
         }
 
@@ -243,15 +241,15 @@ namespace Pulumi.Vault.Okta
         public Input<string>? Description { get; set; }
 
         [Input("groups")]
-        private InputList<Inputs.AuthBackendGroupsGetArgs>? _groups;
+        private InputList<Inputs.AuthBackendGroupGetArgs>? _groups;
 
         /// <summary>
         /// Associate Okta groups with policies within Vault.
         /// See below for more details.
         /// </summary>
-        public InputList<Inputs.AuthBackendGroupsGetArgs> Groups
+        public InputList<Inputs.AuthBackendGroupGetArgs> Groups
         {
-            get => _groups ?? (_groups = new InputList<Inputs.AuthBackendGroupsGetArgs>());
+            get => _groups ?? (_groups = new InputList<Inputs.AuthBackendGroupGetArgs>());
             set => _groups = value;
         }
 
@@ -289,202 +287,20 @@ namespace Pulumi.Vault.Okta
         public Input<string>? Ttl { get; set; }
 
         [Input("users")]
-        private InputList<Inputs.AuthBackendUsersGetArgs>? _users;
+        private InputList<Inputs.AuthBackendUserGetArgs>? _users;
 
         /// <summary>
         /// Associate Okta users with groups or policies within Vault.
         /// See below for more details.
         /// </summary>
-        public InputList<Inputs.AuthBackendUsersGetArgs> Users
+        public InputList<Inputs.AuthBackendUserGetArgs> Users
         {
-            get => _users ?? (_users = new InputList<Inputs.AuthBackendUsersGetArgs>());
+            get => _users ?? (_users = new InputList<Inputs.AuthBackendUserGetArgs>());
             set => _users = value;
         }
 
         public AuthBackendState()
         {
         }
-    }
-
-    namespace Inputs
-    {
-
-    public sealed class AuthBackendGroupsArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// Name of the group within the Okta
-        /// </summary>
-        [Input("groupName", required: true)]
-        public Input<string> GroupName { get; set; } = null!;
-
-        [Input("policies", required: true)]
-        private InputList<string>? _policies;
-
-        /// <summary>
-        /// List of Vault policies to associate with this user
-        /// </summary>
-        public InputList<string> Policies
-        {
-            get => _policies ?? (_policies = new InputList<string>());
-            set => _policies = value;
-        }
-
-        public AuthBackendGroupsArgs()
-        {
-        }
-    }
-
-    public sealed class AuthBackendGroupsGetArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// Name of the group within the Okta
-        /// </summary>
-        [Input("groupName", required: true)]
-        public Input<string> GroupName { get; set; } = null!;
-
-        [Input("policies", required: true)]
-        private InputList<string>? _policies;
-
-        /// <summary>
-        /// List of Vault policies to associate with this user
-        /// </summary>
-        public InputList<string> Policies
-        {
-            get => _policies ?? (_policies = new InputList<string>());
-            set => _policies = value;
-        }
-
-        public AuthBackendGroupsGetArgs()
-        {
-        }
-    }
-
-    public sealed class AuthBackendUsersArgs : Pulumi.ResourceArgs
-    {
-        [Input("groups", required: true)]
-        private InputList<string>? _groups;
-
-        /// <summary>
-        /// List of Okta groups to associate with this user
-        /// </summary>
-        public InputList<string> Groups
-        {
-            get => _groups ?? (_groups = new InputList<string>());
-            set => _groups = value;
-        }
-
-        [Input("policies")]
-        private InputList<string>? _policies;
-
-        /// <summary>
-        /// List of Vault policies to associate with this user
-        /// </summary>
-        public InputList<string> Policies
-        {
-            get => _policies ?? (_policies = new InputList<string>());
-            set => _policies = value;
-        }
-
-        /// <summary>
-        /// Name of the user within Okta
-        /// </summary>
-        [Input("username", required: true)]
-        public Input<string> Username { get; set; } = null!;
-
-        public AuthBackendUsersArgs()
-        {
-        }
-    }
-
-    public sealed class AuthBackendUsersGetArgs : Pulumi.ResourceArgs
-    {
-        [Input("groups", required: true)]
-        private InputList<string>? _groups;
-
-        /// <summary>
-        /// List of Okta groups to associate with this user
-        /// </summary>
-        public InputList<string> Groups
-        {
-            get => _groups ?? (_groups = new InputList<string>());
-            set => _groups = value;
-        }
-
-        [Input("policies")]
-        private InputList<string>? _policies;
-
-        /// <summary>
-        /// List of Vault policies to associate with this user
-        /// </summary>
-        public InputList<string> Policies
-        {
-            get => _policies ?? (_policies = new InputList<string>());
-            set => _policies = value;
-        }
-
-        /// <summary>
-        /// Name of the user within Okta
-        /// </summary>
-        [Input("username", required: true)]
-        public Input<string> Username { get; set; } = null!;
-
-        public AuthBackendUsersGetArgs()
-        {
-        }
-    }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class AuthBackendGroups
-    {
-        /// <summary>
-        /// Name of the group within the Okta
-        /// </summary>
-        public readonly string GroupName;
-        /// <summary>
-        /// List of Vault policies to associate with this user
-        /// </summary>
-        public readonly ImmutableArray<string> Policies;
-
-        [OutputConstructor]
-        private AuthBackendGroups(
-            string groupName,
-            ImmutableArray<string> policies)
-        {
-            GroupName = groupName;
-            Policies = policies;
-        }
-    }
-
-    [OutputType]
-    public sealed class AuthBackendUsers
-    {
-        /// <summary>
-        /// List of Okta groups to associate with this user
-        /// </summary>
-        public readonly ImmutableArray<string> Groups;
-        /// <summary>
-        /// List of Vault policies to associate with this user
-        /// </summary>
-        public readonly ImmutableArray<string> Policies;
-        /// <summary>
-        /// Name of the user within Okta
-        /// </summary>
-        public readonly string Username;
-
-        [OutputConstructor]
-        private AuthBackendUsers(
-            ImmutableArray<string> groups,
-            ImmutableArray<string> policies,
-            string username)
-        {
-            Groups = groups;
-            Policies = policies;
-            Username = username;
-        }
-    }
     }
 }

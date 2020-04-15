@@ -168,7 +168,7 @@ def get_auth_backend_role(audience=None,backend=None,bound_cidrs=None,max_ttl=No
     documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-role) for more
     information.
 
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_role.md.
+
 
 
     :param str audience: (Optional) Audience claim to verify in the JWT.

@@ -9,19 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Kubernetes
 {
-    public static partial class Invokes
-    {
-        /// <summary>
-        /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
-        /// documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-config) for more
-        /// information.
-        /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_config.md.
-        /// </summary>
-        [Obsolete("Use GetAuthBackendConfig.InvokeAsync() instead")]
-        public static Task<GetAuthBackendConfigResult> GetAuthBackendConfig(GetAuthBackendConfigArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetAuthBackendConfig
     {
         /// <summary>
@@ -29,11 +16,13 @@ namespace Pulumi.Vault.Kubernetes
         /// documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-config) for more
         /// information.
         /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_config.md.
+        /// {{% examples %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetAuthBackendConfigResult> InvokeAsync(GetAuthBackendConfigArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? new GetAuthBackendConfigArgs(), options.WithVersion());
     }
+
 
     public sealed class GetAuthBackendConfigArgs : Pulumi.InvokeArgs
     {
@@ -79,10 +68,15 @@ namespace Pulumi.Vault.Kubernetes
         }
     }
 
+
     [OutputType]
     public sealed class GetAuthBackendConfigResult
     {
         public readonly string? Backend;
+        /// <summary>
+        /// id is the provider-assigned unique ID for this managed resource.
+        /// </summary>
+        public readonly string Id;
         /// <summary>
         /// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         /// </summary>
@@ -99,26 +93,27 @@ namespace Pulumi.Vault.Kubernetes
         /// Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         /// </summary>
         public readonly ImmutableArray<string> PemKeys;
-        /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
         private GetAuthBackendConfigResult(
             string? backend,
+
+            string id,
+
             string issuer,
+
             string kubernetesCaCert,
+
             string kubernetesHost,
-            ImmutableArray<string> pemKeys,
-            string id)
+
+            ImmutableArray<string> pemKeys)
         {
             Backend = backend;
+            Id = id;
             Issuer = issuer;
             KubernetesCaCert = kubernetesCaCert;
             KubernetesHost = kubernetesHost;
             PemKeys = pemKeys;
-            Id = id;
         }
     }
 }

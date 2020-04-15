@@ -8,7 +8,6 @@ namespace Pulumi.Vault
     public static class Config
     {
         private static readonly Pulumi.Config __config = new Pulumi.Config("vault");
-
         /// <summary>
         /// If true, adds the value of the `address` argument to the Terraform process environment.
         /// </summary>
@@ -22,7 +21,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// Login to vault with an existing auth method using auth/&lt;mount&gt;/login
         /// </summary>
-        public static ImmutableArray<ConfigTypes.AuthLogins> AuthLogins { get; set; } = __config.GetObject<ImmutableArray<ConfigTypes.AuthLogins>>("authLogins");
+        public static ImmutableArray<Pulumi.Vault.Config.Types.AuthLogins> AuthLogins { get; set; } = __config.GetObject<ImmutableArray<Pulumi.Vault.Config.Types.AuthLogins>>("authLogins");
 
         /// <summary>
         /// Path to directory containing CA certificate files to validate the server's certificate.
@@ -37,7 +36,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// Client authentication credentials.
         /// </summary>
-        public static ImmutableArray<ConfigTypes.ClientAuths> ClientAuths { get; set; } = __config.GetObject<ImmutableArray<ConfigTypes.ClientAuths>>("clientAuths");
+        public static ImmutableArray<Pulumi.Vault.Config.Types.ClientAuths> ClientAuths { get; set; } = __config.GetObject<ImmutableArray<Pulumi.Vault.Config.Types.ClientAuths>>("clientAuths");
 
         /// <summary>
         /// Maximum TTL for secret leases requested by this provider
@@ -69,21 +68,21 @@ namespace Pulumi.Vault
         /// </summary>
         public static string? TokenName { get; set; } = __config.Get("tokenName") ?? Utilities.GetEnv("VAULT_TOKEN_NAME");
 
-    }
-    namespace ConfigTypes
-    {
+        public static class Types
+        {
 
-    public class AuthLogins
-    {
-        public string? Namespace { get; set; }
-        public ImmutableDictionary<string, string>? Parameters { get; set; }
-        public string Path { get; set; } = null!;
-    }
+             public class AuthLogins
+             {
+                public string? Namespace { get; set; } = null!;
+                public ImmutableDictionary<string, string>? Parameters { get; set; } = null!;
+                public string Path { get; set; }
+            }
 
-    public class ClientAuths
-    {
-        public string CertFile { get; set; } = null!;
-        public string KeyFile { get; set; } = null!;
-    }
+             public class ClientAuths
+             {
+                public string CertFile { get; set; }
+                public string KeyFile { get; set; }
+            }
+        }
     }
 }

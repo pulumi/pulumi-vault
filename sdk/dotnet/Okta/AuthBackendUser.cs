@@ -12,8 +12,6 @@ namespace Pulumi.Vault.Okta
     /// <summary>
     /// Provides a resource to create a user in an
     /// [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/okta_auth_backend_user.html.md.
     /// </summary>
     public partial class AuthBackendUser : Pulumi.CustomResource
     {
@@ -50,7 +48,7 @@ namespace Pulumi.Vault.Okta
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthBackendUser(string name, AuthBackendUserArgs args, CustomResourceOptions? options = null)
-            : base("vault:okta/authBackendUser:AuthBackendUser", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:okta/authBackendUser:AuthBackendUser", name, args ?? new AuthBackendUserArgs(), MakeResourceOptions(options, ""))
         {
         }
 

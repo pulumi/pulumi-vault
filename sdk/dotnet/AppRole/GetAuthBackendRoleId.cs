@@ -9,27 +9,18 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.AppRole
 {
-    public static partial class Invokes
-    {
-        /// <summary>
-        /// Reads the Role ID of an AppRole from a Vault server.
-        /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/approle_auth_backend_role_id.md.
-        /// </summary>
-        [Obsolete("Use GetAuthBackendRoleId.InvokeAsync() instead")]
-        public static Task<GetAuthBackendRoleIdResult> GetAuthBackendRoleId(GetAuthBackendRoleIdArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleIdResult>("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetAuthBackendRoleId
     {
         /// <summary>
         /// Reads the Role ID of an AppRole from a Vault server.
         /// 
-        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/approle_auth_backend_role_id.md.
+        /// {{% examples %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetAuthBackendRoleIdResult> InvokeAsync(GetAuthBackendRoleIdArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleIdResult>("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleIdResult>("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args ?? new GetAuthBackendRoleIdArgs(), options.WithVersion());
     }
+
 
     public sealed class GetAuthBackendRoleIdArgs : Pulumi.InvokeArgs
     {
@@ -51,31 +42,35 @@ namespace Pulumi.Vault.AppRole
         }
     }
 
+
     [OutputType]
     public sealed class GetAuthBackendRoleIdResult
     {
         public readonly string? Backend;
         /// <summary>
+        /// id is the provider-assigned unique ID for this managed resource.
+        /// </summary>
+        public readonly string Id;
+        /// <summary>
         /// The RoleID of the role.
         /// </summary>
         public readonly string RoleId;
         public readonly string RoleName;
-        /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
         private GetAuthBackendRoleIdResult(
             string? backend,
+
+            string id,
+
             string roleId,
-            string roleName,
-            string id)
+
+            string roleName)
         {
             Backend = backend;
+            Id = id;
             RoleId = roleId;
             RoleName = roleName;
-            Id = id;
         }
     }
 }

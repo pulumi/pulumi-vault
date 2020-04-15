@@ -54,7 +54,7 @@ namespace Pulumi.Vault.Generic
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Secret(string name, SecretArgs args, CustomResourceOptions? options = null)
-            : base("vault:generic/secret:Secret", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:generic/secret:Secret", name, args ?? new SecretArgs(), MakeResourceOptions(options, ""))
         {
         }
 

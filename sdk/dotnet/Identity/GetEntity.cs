@@ -9,17 +9,12 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Identity
 {
-    public static partial class Invokes
-    {
-        [Obsolete("Use GetEntity.InvokeAsync() instead")]
-        public static Task<GetEntityResult> GetEntity(GetEntityArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetEntity
     {
         public static Task<GetEntityResult> InvokeAsync(GetEntityArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? new GetEntityArgs(), options.WithVersion());
     }
+
 
     public sealed class GetEntityArgs : Pulumi.InvokeArgs
     {
@@ -60,6 +55,7 @@ namespace Pulumi.Vault.Identity
         }
     }
 
+
     [OutputType]
     public sealed class GetEntityResult
     {
@@ -69,7 +65,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// A list of entity alias. Structure is documented below.
         /// </summary>
-        public readonly ImmutableArray<Outputs.GetEntityAliasesResult> Aliases;
+        public readonly ImmutableArray<Outputs.GetEntityAliasResult> Aliases;
         /// <summary>
         /// Creation time of the Alias
         /// </summary>
@@ -94,6 +90,10 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         public readonly ImmutableArray<string> GroupIds;
         /// <summary>
+        /// id is the provider-assigned unique ID for this managed resource.
+        /// </summary>
+        public readonly string Id;
+        /// <summary>
         /// List of all Group IDs of which the entity is a member of transitively
         /// </summary>
         public readonly ImmutableArray<string> InheritedGroupIds;
@@ -117,31 +117,44 @@ namespace Pulumi.Vault.Identity
         /// List of policies attached to the entity
         /// </summary>
         public readonly ImmutableArray<string> Policies;
-        /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
         private GetEntityResult(
             string aliasId,
+
             string aliasMountAccessor,
+
             string aliasName,
-            ImmutableArray<Outputs.GetEntityAliasesResult> aliases,
+
+            ImmutableArray<Outputs.GetEntityAliasResult> aliases,
+
             string creationTime,
+
             string dataJson,
+
             ImmutableArray<string> directGroupIds,
+
             bool disabled,
+
             string entityId,
+
             string entityName,
+
             ImmutableArray<string> groupIds,
+
+            string id,
+
             ImmutableArray<string> inheritedGroupIds,
+
             string lastUpdateTime,
+
             ImmutableArray<string> mergedEntityIds,
+
             ImmutableDictionary<string, object> metadata,
+
             string namespaceId,
-            ImmutableArray<string> policies,
-            string id)
+
+            ImmutableArray<string> policies)
         {
             AliasId = aliasId;
             AliasMountAccessor = aliasMountAccessor;
@@ -154,87 +167,13 @@ namespace Pulumi.Vault.Identity
             EntityId = entityId;
             EntityName = entityName;
             GroupIds = groupIds;
+            Id = id;
             InheritedGroupIds = inheritedGroupIds;
             LastUpdateTime = lastUpdateTime;
             MergedEntityIds = mergedEntityIds;
             Metadata = metadata;
             NamespaceId = namespaceId;
             Policies = policies;
-            Id = id;
         }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class GetEntityAliasesResult
-    {
-        /// <summary>
-        /// Canonical ID of the Alias
-        /// </summary>
-        public readonly string CanonicalId;
-        /// <summary>
-        /// Creation time of the Alias
-        /// </summary>
-        public readonly string CreationTime;
-        /// <summary>
-        /// ID of the alias
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
-        /// Last update time of the alias
-        /// </summary>
-        public readonly string LastUpdateTime;
-        /// <summary>
-        /// List of canonical IDs merged with this alias
-        /// </summary>
-        public readonly ImmutableArray<string> MergedFromCanonicalIds;
-        /// <summary>
-        /// Arbitrary metadata
-        /// </summary>
-        public readonly ImmutableDictionary<string, object> Metadata;
-        /// <summary>
-        /// Authentication mount acccessor which this alias belongs to
-        /// </summary>
-        public readonly string MountAccessor;
-        /// <summary>
-        /// Authentication mount path which this alias belongs to
-        /// </summary>
-        public readonly string MountPath;
-        /// <summary>
-        /// Authentication mount type which this alias belongs to
-        /// </summary>
-        public readonly string MountType;
-        /// <summary>
-        /// Name of the alias
-        /// </summary>
-        public readonly string Name;
-
-        [OutputConstructor]
-        private GetEntityAliasesResult(
-            string canonicalId,
-            string creationTime,
-            string id,
-            string lastUpdateTime,
-            ImmutableArray<string> mergedFromCanonicalIds,
-            ImmutableDictionary<string, object> metadata,
-            string mountAccessor,
-            string mountPath,
-            string mountType,
-            string name)
-        {
-            CanonicalId = canonicalId;
-            CreationTime = creationTime;
-            Id = id;
-            LastUpdateTime = lastUpdateTime;
-            MergedFromCanonicalIds = mergedFromCanonicalIds;
-            Metadata = metadata;
-            MountAccessor = mountAccessor;
-            MountPath = mountPath;
-            MountType = mountType;
-            Name = name;
-        }
-    }
     }
 }

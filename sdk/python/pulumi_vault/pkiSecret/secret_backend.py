@@ -31,7 +31,7 @@ class SecretBackend(pulumi.CustomResource):
         Creates an PKI Secret Backend for Vault. PKI secret backends can then issue certificates, once a role has been added to
         the backend.
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend.html.md.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

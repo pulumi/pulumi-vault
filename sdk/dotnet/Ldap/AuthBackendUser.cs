@@ -11,8 +11,6 @@ namespace Pulumi.Vault.Ldap
 {
     /// <summary>
     /// Provides a resource to create a user in an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ldap_auth_backend_user.html.md.
     /// </summary>
     public partial class AuthBackendUser : Pulumi.CustomResource
     {
@@ -49,7 +47,7 @@ namespace Pulumi.Vault.Ldap
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthBackendUser(string name, AuthBackendUserArgs args, CustomResourceOptions? options = null)
-            : base("vault:ldap/authBackendUser:AuthBackendUser", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:ldap/authBackendUser:AuthBackendUser", name, args ?? new AuthBackendUserArgs(), MakeResourceOptions(options, ""))
         {
         }
 

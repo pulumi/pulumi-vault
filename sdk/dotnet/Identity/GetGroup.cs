@@ -9,17 +9,12 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Identity
 {
-    public static partial class Invokes
-    {
-        [Obsolete("Use GetGroup.InvokeAsync() instead")]
-        public static Task<GetGroupResult> GetGroup(GetGroupArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("vault:identity/getGroup:getGroup", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetGroup
     {
         public static Task<GetGroupResult> InvokeAsync(GetGroupArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("vault:identity/getGroup:getGroup", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("vault:identity/getGroup:getGroup", args ?? new GetGroupArgs(), options.WithVersion());
     }
+
 
     public sealed class GetGroupArgs : Pulumi.InvokeArgs
     {
@@ -59,6 +54,7 @@ namespace Pulumi.Vault.Identity
         {
         }
     }
+
 
     [OutputType]
     public sealed class GetGroupResult
@@ -106,6 +102,10 @@ namespace Pulumi.Vault.Identity
         public readonly string GroupId;
         public readonly string GroupName;
         /// <summary>
+        /// id is the provider-assigned unique ID for this managed resource.
+        /// </summary>
+        public readonly string Id;
+        /// <summary>
         /// Last updated time of the group
         /// </summary>
         public readonly string LastUpdateTime;
@@ -141,37 +141,56 @@ namespace Pulumi.Vault.Identity
         /// Type of group
         /// </summary>
         public readonly string Type;
-        /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
         private GetGroupResult(
             string aliasCanonicalId,
+
             string aliasCreationTime,
+
             string aliasId,
+
             string aliasLastUpdateTime,
+
             ImmutableArray<string> aliasMergedFromCanonicalIds,
+
             ImmutableDictionary<string, object> aliasMetadata,
+
             string aliasMountAccessor,
+
             string aliasMountPath,
+
             string aliasMountType,
+
             string aliasName,
+
             string creationTime,
+
             string dataJson,
+
             string groupId,
+
             string groupName,
+
+            string id,
+
             string lastUpdateTime,
+
             ImmutableArray<string> memberEntityIds,
+
             ImmutableArray<string> memberGroupIds,
+
             ImmutableDictionary<string, object> metadata,
+
             int modifyIndex,
+
             string namespaceId,
+
             ImmutableArray<string> parentGroupIds,
+
             ImmutableArray<string> policies,
-            string type,
-            string id)
+
+            string type)
         {
             AliasCanonicalId = aliasCanonicalId;
             AliasCreationTime = aliasCreationTime;
@@ -187,6 +206,7 @@ namespace Pulumi.Vault.Identity
             DataJson = dataJson;
             GroupId = groupId;
             GroupName = groupName;
+            Id = id;
             LastUpdateTime = lastUpdateTime;
             MemberEntityIds = memberEntityIds;
             MemberGroupIds = memberGroupIds;
@@ -196,7 +216,6 @@ namespace Pulumi.Vault.Identity
             ParentGroupIds = parentGroupIds;
             Policies = policies;
             Type = type;
-            Id = id;
         }
     }
 }

@@ -11,8 +11,6 @@ namespace Pulumi.Vault.Transit
 {
     /// <summary>
     /// Creates an Encryption Keyring on a Transit Secret Backend for Vault.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/transit_secret_backend_key.html.md.
     /// </summary>
     public partial class SecretBackendKey : Pulumi.CustomResource
     {
@@ -131,7 +129,7 @@ namespace Pulumi.Vault.Transit
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretBackendKey(string name, SecretBackendKeyArgs args, CustomResourceOptions? options = null)
-            : base("vault:transit/secretBackendKey:SecretBackendKey", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:transit/secretBackendKey:SecretBackendKey", name, args ?? new SecretBackendKeyArgs(), MakeResourceOptions(options, ""))
         {
         }
 

@@ -13,8 +13,6 @@ namespace Pulumi.Vault.Database
     /// Creates a Database Secret Backend static role in Vault. Database secret backend
     /// static roles can be used to manage 1-to-1 mapping of a Vault Role to a user in a
     /// database for the database.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/database_secret_backend_static_role.md.
     /// </summary>
     public partial class SecretBackendStaticRole : Pulumi.CustomResource
     {
@@ -63,7 +61,7 @@ namespace Pulumi.Vault.Database
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretBackendStaticRole(string name, SecretBackendStaticRoleArgs args, CustomResourceOptions? options = null)
-            : base("vault:database/secretBackendStaticRole:SecretBackendStaticRole", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:database/secretBackendStaticRole:SecretBackendStaticRole", name, args ?? new SecretBackendStaticRoleArgs(), MakeResourceOptions(options, ""))
         {
         }
 

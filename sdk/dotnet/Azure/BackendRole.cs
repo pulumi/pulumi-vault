@@ -22,7 +22,7 @@ namespace Pulumi.Vault.Azure
         /// List of Azure roles to be assigned to the generated service principal.
         /// </summary>
         [Output("azureRoles")]
-        public Output<ImmutableArray<Outputs.BackendRoleAzureRoles>> AzureRoles { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.BackendRoleAzureRole>> AzureRoles { get; private set; } = null!;
 
         /// <summary>
         /// Path to the mounted Azure auth backend
@@ -65,7 +65,7 @@ namespace Pulumi.Vault.Azure
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public BackendRole(string name, BackendRoleArgs args, CustomResourceOptions? options = null)
-            : base("vault:azure/backendRole:BackendRole", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:azure/backendRole:BackendRole", name, args ?? new BackendRoleArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -110,14 +110,14 @@ namespace Pulumi.Vault.Azure
         public Input<string>? ApplicationObjectId { get; set; }
 
         [Input("azureRoles")]
-        private InputList<Inputs.BackendRoleAzureRolesArgs>? _azureRoles;
+        private InputList<Inputs.BackendRoleAzureRoleArgs>? _azureRoles;
 
         /// <summary>
         /// List of Azure roles to be assigned to the generated service principal.
         /// </summary>
-        public InputList<Inputs.BackendRoleAzureRolesArgs> AzureRoles
+        public InputList<Inputs.BackendRoleAzureRoleArgs> AzureRoles
         {
-            get => _azureRoles ?? (_azureRoles = new InputList<Inputs.BackendRoleAzureRolesArgs>());
+            get => _azureRoles ?? (_azureRoles = new InputList<Inputs.BackendRoleAzureRoleArgs>());
             set => _azureRoles = value;
         }
 
@@ -168,14 +168,14 @@ namespace Pulumi.Vault.Azure
         public Input<string>? ApplicationObjectId { get; set; }
 
         [Input("azureRoles")]
-        private InputList<Inputs.BackendRoleAzureRolesGetArgs>? _azureRoles;
+        private InputList<Inputs.BackendRoleAzureRoleGetArgs>? _azureRoles;
 
         /// <summary>
         /// List of Azure roles to be assigned to the generated service principal.
         /// </summary>
-        public InputList<Inputs.BackendRoleAzureRolesGetArgs> AzureRoles
+        public InputList<Inputs.BackendRoleAzureRoleGetArgs> AzureRoles
         {
-            get => _azureRoles ?? (_azureRoles = new InputList<Inputs.BackendRoleAzureRolesGetArgs>());
+            get => _azureRoles ?? (_azureRoles = new InputList<Inputs.BackendRoleAzureRoleGetArgs>());
             set => _azureRoles = value;
         }
 
@@ -214,64 +214,5 @@ namespace Pulumi.Vault.Azure
         public BackendRoleState()
         {
         }
-    }
-
-    namespace Inputs
-    {
-
-    public sealed class BackendRoleAzureRolesArgs : Pulumi.ResourceArgs
-    {
-        [Input("roleId")]
-        public Input<string>? RoleId { get; set; }
-
-        [Input("roleName", required: true)]
-        public Input<string> RoleName { get; set; } = null!;
-
-        [Input("scope", required: true)]
-        public Input<string> Scope { get; set; } = null!;
-
-        public BackendRoleAzureRolesArgs()
-        {
-        }
-    }
-
-    public sealed class BackendRoleAzureRolesGetArgs : Pulumi.ResourceArgs
-    {
-        [Input("roleId")]
-        public Input<string>? RoleId { get; set; }
-
-        [Input("roleName", required: true)]
-        public Input<string> RoleName { get; set; } = null!;
-
-        [Input("scope", required: true)]
-        public Input<string> Scope { get; set; } = null!;
-
-        public BackendRoleAzureRolesGetArgs()
-        {
-        }
-    }
-    }
-
-    namespace Outputs
-    {
-
-    [OutputType]
-    public sealed class BackendRoleAzureRoles
-    {
-        public readonly string RoleId;
-        public readonly string RoleName;
-        public readonly string Scope;
-
-        [OutputConstructor]
-        private BackendRoleAzureRoles(
-            string roleId,
-            string roleName,
-            string scope)
-        {
-            RoleId = roleId;
-            RoleName = roleName;
-            Scope = scope;
-        }
-    }
     }
 }

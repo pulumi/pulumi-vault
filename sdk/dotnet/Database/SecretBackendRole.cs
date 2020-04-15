@@ -81,7 +81,7 @@ namespace Pulumi.Vault.Database
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretBackendRole(string name, SecretBackendRoleArgs args, CustomResourceOptions? options = null)
-            : base("vault:database/secretBackendRole:SecretBackendRole", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:database/secretBackendRole:SecretBackendRole", name, args ?? new SecretBackendRoleArgs(), MakeResourceOptions(options, ""))
         {
         }
 

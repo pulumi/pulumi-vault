@@ -66,7 +66,7 @@ def get_auth_backend_config(backend=None,issuer=None,kubernetes_ca_cert=None,kub
     documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-config) for more
     information.
 
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_config.md.
+
 
 
     :param str backend: The unique name for the Kubernetes backend the config to

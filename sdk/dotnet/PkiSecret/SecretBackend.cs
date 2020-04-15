@@ -12,8 +12,6 @@ namespace Pulumi.Vault.PkiSecret
     /// <summary>
     /// Creates an PKI Secret Backend for Vault. PKI secret backends can then issue certificates, once a role has been added to
     /// the backend.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend.html.md.
     /// </summary>
     public partial class SecretBackend : Pulumi.CustomResource
     {
@@ -50,7 +48,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretBackend(string name, SecretBackendArgs args, CustomResourceOptions? options = null)
-            : base("vault:pkiSecret/secretBackend:SecretBackend", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:pkiSecret/secretBackend:SecretBackend", name, args ?? new SecretBackendArgs(), MakeResourceOptions(options, ""))
         {
         }
 

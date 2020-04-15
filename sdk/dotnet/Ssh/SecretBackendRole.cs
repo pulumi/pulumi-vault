@@ -12,8 +12,6 @@ namespace Pulumi.Vault.Ssh
     /// <summary>
     /// Provides a resource to manage roles in an SSH secret backend
     /// [SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ssh_secret_backend_role.html.md.
     /// </summary>
     public partial class SecretBackendRole : Pulumi.CustomResource
     {
@@ -146,7 +144,7 @@ namespace Pulumi.Vault.Ssh
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretBackendRole(string name, SecretBackendRoleArgs args, CustomResourceOptions? options = null)
-            : base("vault:ssh/secretBackendRole:SecretBackendRole", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:ssh/secretBackendRole:SecretBackendRole", name, args ?? new SecretBackendRoleArgs(), MakeResourceOptions(options, ""))
         {
         }
 

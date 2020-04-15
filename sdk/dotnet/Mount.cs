@@ -74,7 +74,7 @@ namespace Pulumi.Vault
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Mount(string name, MountArgs args, CustomResourceOptions? options = null)
-            : base("vault:index/mount:Mount", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:index/mount:Mount", name, args ?? new MountArgs(), MakeResourceOptions(options, ""))
         {
         }
 

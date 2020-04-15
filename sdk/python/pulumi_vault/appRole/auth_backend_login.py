@@ -57,7 +57,7 @@ class AuthBackendLogin(pulumi.CustomResource):
         documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
         information.
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/approle_auth_backend_login.html.md.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

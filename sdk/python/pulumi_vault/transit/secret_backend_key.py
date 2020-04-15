@@ -86,7 +86,7 @@ class SecretBackendKey(pulumi.CustomResource):
         """
         Creates an Encryption Keyring on a Transit Secret Backend for Vault.
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/transit_secret_backend_key.html.md.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

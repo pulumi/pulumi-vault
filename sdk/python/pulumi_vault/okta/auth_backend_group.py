@@ -27,7 +27,7 @@ class AuthBackendGroup(pulumi.CustomResource):
         Provides a resource to create a group in an
         [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/okta_auth_backend_group.html.md.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -16,8 +16,6 @@ namespace Pulumi.Vault.Identity
     /// the clients who are recognized by Vault.
     /// 
     /// &gt; **NOTE:** Each Vault server may only have one Identity Tokens Backend configuration. Multiple configurations of the resource against the same Vault server will cause a perpetual difference.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_oidc.html.md.
     /// </summary>
     public partial class Oidc : Pulumi.CustomResource
     {
@@ -39,7 +37,7 @@ namespace Pulumi.Vault.Identity
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Oidc(string name, OidcArgs? args = null, CustomResourceOptions? options = null)
-            : base("vault:identity/oidc:Oidc", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:identity/oidc:Oidc", name, args ?? new OidcArgs(), MakeResourceOptions(options, ""))
         {
         }
 

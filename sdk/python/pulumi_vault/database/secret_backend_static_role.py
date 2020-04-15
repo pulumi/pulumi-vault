@@ -40,7 +40,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         static roles can be used to manage 1-to-1 mapping of a Vault Role to a user in a
         database for the database.
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/database_secret_backend_static_role.md.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

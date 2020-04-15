@@ -13,8 +13,6 @@ namespace Pulumi.Vault.AppRole
     /// Logs into Vault using the AppRole auth backend. See the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
     /// information.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/approle_auth_backend_login.html.md.
     /// </summary>
     public partial class AuthBackendLogin : Pulumi.CustomResource
     {
@@ -88,7 +86,7 @@ namespace Pulumi.Vault.AppRole
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthBackendLogin(string name, AuthBackendLoginArgs args, CustomResourceOptions? options = null)
-            : base("vault:appRole/authBackendLogin:AuthBackendLogin", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:appRole/authBackendLogin:AuthBackendLogin", name, args ?? new AuthBackendLoginArgs(), MakeResourceOptions(options, ""))
         {
         }
 

@@ -14,8 +14,6 @@ namespace Pulumi.Vault
     /// settings, however an explicit `Provider` instance may be created and passed during resource
     /// construction to achieve fine-grained programmatic control over provider settings. See the
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/index.html.markdown.
     /// </summary>
     public partial class Provider : Pulumi.ProviderResource
     {
@@ -27,7 +25,7 @@ namespace Pulumi.Vault
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Provider(string name, ProviderArgs? args = null, CustomResourceOptions? options = null)
-            : base("vault", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -59,14 +57,14 @@ namespace Pulumi.Vault
         public Input<string>? Address { get; set; }
 
         [Input("authLogins", json: true)]
-        private InputList<Inputs.ProviderAuthLoginsArgs>? _authLogins;
+        private InputList<Inputs.ProviderAuthLoginArgs>? _authLogins;
 
         /// <summary>
         /// Login to vault with an existing auth method using auth/&lt;mount&gt;/login
         /// </summary>
-        public InputList<Inputs.ProviderAuthLoginsArgs> AuthLogins
+        public InputList<Inputs.ProviderAuthLoginArgs> AuthLogins
         {
-            get => _authLogins ?? (_authLogins = new InputList<Inputs.ProviderAuthLoginsArgs>());
+            get => _authLogins ?? (_authLogins = new InputList<Inputs.ProviderAuthLoginArgs>());
             set => _authLogins = value;
         }
 
@@ -83,14 +81,14 @@ namespace Pulumi.Vault
         public Input<string>? CaCertFile { get; set; }
 
         [Input("clientAuths", json: true)]
-        private InputList<Inputs.ProviderClientAuthsArgs>? _clientAuths;
+        private InputList<Inputs.ProviderClientAuthArgs>? _clientAuths;
 
         /// <summary>
         /// Client authentication credentials.
         /// </summary>
-        public InputList<Inputs.ProviderClientAuthsArgs> ClientAuths
+        public InputList<Inputs.ProviderClientAuthArgs> ClientAuths
         {
-            get => _clientAuths ?? (_clientAuths = new InputList<Inputs.ProviderClientAuthsArgs>());
+            get => _clientAuths ?? (_clientAuths = new InputList<Inputs.ProviderClientAuthArgs>());
             set => _clientAuths = value;
         }
 
@@ -142,43 +140,5 @@ namespace Pulumi.Vault
             Token = Utilities.GetEnv("VAULT_TOKEN");
             TokenName = Utilities.GetEnv("VAULT_TOKEN_NAME");
         }
-    }
-
-    namespace Inputs
-    {
-
-    public sealed class ProviderAuthLoginsArgs : Pulumi.ResourceArgs
-    {
-        [Input("namespace")]
-        public Input<string>? Namespace { get; set; }
-
-        [Input("parameters")]
-        private InputMap<string>? _parameters;
-        public InputMap<string> Parameters
-        {
-            get => _parameters ?? (_parameters = new InputMap<string>());
-            set => _parameters = value;
-        }
-
-        [Input("path", required: true)]
-        public Input<string> Path { get; set; } = null!;
-
-        public ProviderAuthLoginsArgs()
-        {
-        }
-    }
-
-    public sealed class ProviderClientAuthsArgs : Pulumi.ResourceArgs
-    {
-        [Input("certFile", required: true)]
-        public Input<string> CertFile { get; set; } = null!;
-
-        [Input("keyFile", required: true)]
-        public Input<string> KeyFile { get; set; } = null!;
-
-        public ProviderClientAuthsArgs()
-        {
-        }
-    }
     }
 }

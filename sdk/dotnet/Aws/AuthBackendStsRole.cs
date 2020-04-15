@@ -40,7 +40,7 @@ namespace Pulumi.Vault.Aws
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthBackendStsRole(string name, AuthBackendStsRoleArgs args, CustomResourceOptions? options = null)
-            : base("vault:aws/authBackendStsRole:AuthBackendStsRole", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:aws/authBackendStsRole:AuthBackendStsRole", name, args ?? new AuthBackendStsRoleArgs(), MakeResourceOptions(options, ""))
         {
         }
 

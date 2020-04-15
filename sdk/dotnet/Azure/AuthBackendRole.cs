@@ -15,8 +15,6 @@ namespace Pulumi.Vault.Azure
     /// backend. See the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/azure.html) for more
     /// information.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/azure_auth_backend_role.html.md.
     /// </summary>
     public partial class AuthBackendRole : Pulumi.CustomResource
     {
@@ -191,7 +189,7 @@ namespace Pulumi.Vault.Azure
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthBackendRole(string name, AuthBackendRoleArgs args, CustomResourceOptions? options = null)
-            : base("vault:azure/authBackendRole:AuthBackendRole", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:azure/authBackendRole:AuthBackendRole", name, args ?? new AuthBackendRoleArgs(), MakeResourceOptions(options, ""))
         {
         }
 

@@ -50,7 +50,7 @@ namespace Pulumi.Vault.Aws
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthBackendCert(string name, AuthBackendCertArgs args, CustomResourceOptions? options = null)
-            : base("vault:aws/authBackendCert:AuthBackendCert", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:aws/authBackendCert:AuthBackendCert", name, args ?? new AuthBackendCertArgs(), MakeResourceOptions(options, ""))
         {
         }
 

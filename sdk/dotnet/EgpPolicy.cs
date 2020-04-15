@@ -13,8 +13,6 @@ namespace Pulumi.Vault
     /// Provides a resource to manage Endpoint Governing Policy (EGP) via [Sentinel](https://www.vaultproject.io/docs/enterprise/sentinel/index.html).
     /// 
     /// **Note** this feature is available only with Vault Enterprise.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/egp_policy.html.md.
     /// </summary>
     public partial class EgpPolicy : Pulumi.CustomResource
     {
@@ -51,7 +49,7 @@ namespace Pulumi.Vault
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public EgpPolicy(string name, EgpPolicyArgs args, CustomResourceOptions? options = null)
-            : base("vault:index/egpPolicy:EgpPolicy", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:index/egpPolicy:EgpPolicy", name, args ?? new EgpPolicyArgs(), MakeResourceOptions(options, ""))
         {
         }
 

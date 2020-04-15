@@ -30,7 +30,7 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
         """
         Configures the periodic tidying operation of the blacklisted role tag entries.
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_roletag_blacklist.html.md.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

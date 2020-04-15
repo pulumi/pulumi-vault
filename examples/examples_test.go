@@ -7,7 +7,7 @@ import (
 	"path"
 	"testing"
 
-	"github.com/pulumi/pulumi/pkg/testing/integration"
+	"github.com/pulumi/pulumi/pkg/v2/testing/integration"
 )
 
 func TestAccPolicy(t *testing.T) {
@@ -47,7 +47,7 @@ func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	baseJS := base.With(integration.ProgramTestOptions{
 		Config: map[string]string{
 			"vault:address": "http://127.0.0.1:8200",
-			"vault:token": token,
+			"vault:token":   token,
 		},
 		Dependencies: []string{
 			"@pulumi/vault",

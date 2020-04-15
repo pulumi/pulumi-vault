@@ -22,7 +22,7 @@ class SecretCacheConfig(pulumi.CustomResource):
         """
         Configure the cache for the Transit Secret Backend in Vault.
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/transit_secret_backend_cache_config.html.md.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -9,17 +9,12 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Azure
 {
-    public static partial class Invokes
-    {
-        [Obsolete("Use GetAccessCredentials.InvokeAsync() instead")]
-        public static Task<GetAccessCredentialsResult> GetAccessCredentials(GetAccessCredentialsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:azure/getAccessCredentials:getAccessCredentials", args ?? InvokeArgs.Empty, options.WithVersion());
-    }
     public static class GetAccessCredentials
     {
         public static Task<GetAccessCredentialsResult> InvokeAsync(GetAccessCredentialsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:azure/getAccessCredentials:getAccessCredentials", args ?? InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:azure/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsArgs(), options.WithVersion());
     }
+
 
     public sealed class GetAccessCredentialsArgs : Pulumi.InvokeArgs
     {
@@ -75,6 +70,7 @@ namespace Pulumi.Vault.Azure
         }
     }
 
+
     [OutputType]
     public sealed class GetAccessCredentialsResult
     {
@@ -87,6 +83,10 @@ namespace Pulumi.Vault.Azure
         /// The client secret for credentials to query the Azure APIs.
         /// </summary>
         public readonly string ClientSecret;
+        /// <summary>
+        /// id is the provider-assigned unique ID for this managed resource.
+        /// </summary>
+        public readonly string Id;
         /// <summary>
         /// The duration of the secret lease, in seconds relative
         /// to the time the data was requested. Once this time has passed any plan
@@ -104,30 +104,39 @@ namespace Pulumi.Vault.Azure
         public readonly int? NumSequentialSuccesses;
         public readonly string Role;
         public readonly bool? ValidateCreds;
-        /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
         private GetAccessCredentialsResult(
             string backend,
+
             string clientId,
+
             string clientSecret,
+
+            string id,
+
             int leaseDuration,
+
             string leaseId,
+
             bool leaseRenewable,
+
             string leaseStartTime,
+
             int? maxCredValidationSeconds,
+
             int? numSecondsBetweenTests,
+
             int? numSequentialSuccesses,
+
             string role,
-            bool? validateCreds,
-            string id)
+
+            bool? validateCreds)
         {
             Backend = backend;
             ClientId = clientId;
             ClientSecret = clientSecret;
+            Id = id;
             LeaseDuration = leaseDuration;
             LeaseId = leaseId;
             LeaseRenewable = leaseRenewable;
@@ -137,7 +146,6 @@ namespace Pulumi.Vault.Azure
             NumSequentialSuccesses = numSequentialSuccesses;
             Role = role;
             ValidateCreds = validateCreds;
-            Id = id;
         }
     }
 }

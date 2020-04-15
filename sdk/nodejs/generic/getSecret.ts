@@ -4,7 +4,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-export function getSecret(args: GetSecretArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretResult> & GetSecretResult {
+export function getSecret(args: GetSecretArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretResult> {
     if (!opts) {
         opts = {}
     }
@@ -12,12 +12,10 @@ export function getSecret(args: GetSecretArgs, opts?: pulumi.InvokeOptions): Pro
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetSecretResult> = pulumi.runtime.invoke("vault:generic/getSecret:getSecret", {
+    return pulumi.runtime.invoke("vault:generic/getSecret:getSecret", {
         "path": args.path,
         "version": args.version,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

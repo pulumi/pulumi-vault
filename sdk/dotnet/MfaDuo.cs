@@ -13,8 +13,6 @@ namespace Pulumi.Vault
     /// Provides a resource to manage [Duo MFA](https://www.vaultproject.io/docs/enterprise/mfa/mfa-duo.html).
     /// 
     /// **Note** this feature is available only with Vault Enterprise.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/mfa_duo.html.md.
     /// </summary>
     public partial class MfaDuo : Pulumi.CustomResource
     {
@@ -31,8 +29,8 @@ namespace Pulumi.Vault
         public Output<string> IntegrationKey { get; private set; } = null!;
 
         /// <summary>
-        /// The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of
-        /// Aliases associated with this mount as the username in the mapping.
+        /// The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated
+        /// with this mount as the username in the mapping.
         /// </summary>
         [Output("mountAccessor")]
         public Output<string> MountAccessor { get; private set; } = null!;
@@ -56,8 +54,7 @@ namespace Pulumi.Vault
         public Output<string> SecretKey { get; private set; } = null!;
 
         /// <summary>
-        /// A format string for mapping Identity names to MFA method names. Values to substitute should be placed in
-        /// `{{}}`.
+        /// A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`.
         /// </summary>
         [Output("usernameFormat")]
         public Output<string?> UsernameFormat { get; private set; } = null!;
@@ -71,7 +68,7 @@ namespace Pulumi.Vault
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public MfaDuo(string name, MfaDuoArgs args, CustomResourceOptions? options = null)
-            : base("vault:index/mfaDuo:MfaDuo", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:index/mfaDuo:MfaDuo", name, args ?? new MfaDuoArgs(), MakeResourceOptions(options, ""))
         {
         }
 
@@ -121,8 +118,8 @@ namespace Pulumi.Vault
         public Input<string> IntegrationKey { get; set; } = null!;
 
         /// <summary>
-        /// The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of
-        /// Aliases associated with this mount as the username in the mapping.
+        /// The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated
+        /// with this mount as the username in the mapping.
         /// </summary>
         [Input("mountAccessor", required: true)]
         public Input<string> MountAccessor { get; set; } = null!;
@@ -146,8 +143,7 @@ namespace Pulumi.Vault
         public Input<string> SecretKey { get; set; } = null!;
 
         /// <summary>
-        /// A format string for mapping Identity names to MFA method names. Values to substitute should be placed in
-        /// `{{}}`.
+        /// A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`.
         /// </summary>
         [Input("usernameFormat")]
         public Input<string>? UsernameFormat { get; set; }
@@ -172,8 +168,8 @@ namespace Pulumi.Vault
         public Input<string>? IntegrationKey { get; set; }
 
         /// <summary>
-        /// The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of
-        /// Aliases associated with this mount as the username in the mapping.
+        /// The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated
+        /// with this mount as the username in the mapping.
         /// </summary>
         [Input("mountAccessor")]
         public Input<string>? MountAccessor { get; set; }
@@ -197,8 +193,7 @@ namespace Pulumi.Vault
         public Input<string>? SecretKey { get; set; }
 
         /// <summary>
-        /// A format string for mapping Identity names to MFA method names. Values to substitute should be placed in
-        /// `{{}}`.
+        /// A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`.
         /// </summary>
         [Input("usernameFormat")]
         public Input<string>? UsernameFormat { get; set; }

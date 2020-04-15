@@ -11,8 +11,6 @@ namespace Pulumi.Vault.Consul
 {
     /// <summary>
     /// Manages a Consul secrets role for a Consul secrets engine in Vault. Consul secret backends can then issue Consul tokens.
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/consul_secret_backend_role.html.md.
     /// </summary>
     public partial class SecretBackendRole : Pulumi.CustomResource
     {
@@ -73,7 +71,7 @@ namespace Pulumi.Vault.Consul
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretBackendRole(string name, SecretBackendRoleArgs args, CustomResourceOptions? options = null)
-            : base("vault:consul/secretBackendRole:SecretBackendRole", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:consul/secretBackendRole:SecretBackendRole", name, args ?? new SecretBackendRoleArgs(), MakeResourceOptions(options, ""))
         {
         }
 

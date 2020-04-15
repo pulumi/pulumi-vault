@@ -14,8 +14,6 @@ namespace Pulumi.Vault.Aws
     /// 
     /// For more information, see the
     /// [Vault docs](https://www.vaultproject.io/api/auth/aws/index.html#configure-identity-whitelist-tidy-operation).
-    /// 
-    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_identity_whitelist.html.md.
     /// </summary>
     public partial class AuthBackendIdentityWhitelist : Pulumi.CustomResource
     {
@@ -49,7 +47,7 @@ namespace Pulumi.Vault.Aws
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthBackendIdentityWhitelist(string name, AuthBackendIdentityWhitelistArgs? args = null, CustomResourceOptions? options = null)
-            : base("vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist", name, args ?? ResourceArgs.Empty, MakeResourceOptions(options, ""))
+            : base("vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist", name, args ?? new AuthBackendIdentityWhitelistArgs(), MakeResourceOptions(options, ""))
         {
         }
 
