@@ -1,0 +1,3 @@
+name: vault
+description: A Pulumi resource provider for vault.
+language: go
