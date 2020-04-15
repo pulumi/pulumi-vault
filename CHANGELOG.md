@@ -7,6 +7,9 @@ CHANGELOG
 
 ---
 
+## 1.11.0 (2020-04-14)
+* Upgrade to v2.10.0 of the Vault Terraform Provider
+
 ## 1.10.0 (2020-03-23)
 * Ensure JavaScript dependency for pulumi/pulumi isn't pinned to latest
 * Upgrade to v2.9.0 of the Vault Terraform Provider
