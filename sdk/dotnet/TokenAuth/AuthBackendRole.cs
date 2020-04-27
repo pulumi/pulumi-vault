@@ -36,7 +36,8 @@ namespace Pulumi.Vault.TokenAuth
         public Output<ImmutableArray<string>> DisallowedPolicies { get; private set; } = null!;
 
         /// <summary>
-        /// Number of seconds after which issued tokens can no longer be renewed.
+        /// If set, the
+        /// token will have an explicit max TTL set upon it.
         /// </summary>
         [Output("explicitMaxTtl")]
         public Output<string?> ExplicitMaxTtl { get; private set; } = null!;
@@ -230,7 +231,8 @@ namespace Pulumi.Vault.TokenAuth
         }
 
         /// <summary>
-        /// Number of seconds after which issued tokens can no longer be renewed.
+        /// If set, the
+        /// token will have an explicit max TTL set upon it.
         /// </summary>
         [Input("explicitMaxTtl")]
         public Input<string>? ExplicitMaxTtl { get; set; }
@@ -397,7 +399,8 @@ namespace Pulumi.Vault.TokenAuth
         }
 
         /// <summary>
-        /// Number of seconds after which issued tokens can no longer be renewed.
+        /// If set, the
+        /// token will have an explicit max TTL set upon it.
         /// </summary>
         [Input("explicitMaxTtl")]
         public Input<string>? ExplicitMaxTtl { get; set; }

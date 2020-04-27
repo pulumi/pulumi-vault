@@ -40,7 +40,7 @@ type GetAccessCredentialsResult struct {
 	// The AWS Access Key ID returned by Vault.
 	AccessKey string `pulumi:"accessKey"`
 	Backend   string `pulumi:"backend"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The duration of the secret lease, in seconds relative
 	// to the time the data was requested. Once this time has passed any plan

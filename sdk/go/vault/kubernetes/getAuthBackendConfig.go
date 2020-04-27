@@ -37,7 +37,7 @@ type LookupAuthBackendConfigArgs struct {
 // A collection of values returned by getAuthBackendConfig.
 type LookupAuthBackendConfigResult struct {
 	Backend *string `pulumi:"backend"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
 	Issuer string `pulumi:"issuer"`

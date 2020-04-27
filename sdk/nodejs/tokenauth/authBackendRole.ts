@@ -75,7 +75,8 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly disallowedPolicies!: pulumi.Output<string[] | undefined>;
     /**
-     * Number of seconds after which issued tokens can no longer be renewed.
+     * If set, the
+     * token will have an explicit max TTL set upon it.
      */
     public readonly explicitMaxTtl!: pulumi.Output<string | undefined>;
     /**
@@ -240,7 +241,8 @@ export interface AuthBackendRoleState {
      */
     readonly disallowedPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Number of seconds after which issued tokens can no longer be renewed.
+     * If set, the
+     * token will have an explicit max TTL set upon it.
      * 
      * @deprecated use `token_explicit_max_ttl` instead if you are running Vault >= 1.2
      */
@@ -345,7 +347,8 @@ export interface AuthBackendRoleArgs {
      */
     readonly disallowedPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Number of seconds after which issued tokens can no longer be renewed.
+     * If set, the
+     * token will have an explicit max TTL set upon it.
      * 
      * @deprecated use `token_explicit_max_ttl` instead if you are running Vault >= 1.2
      */

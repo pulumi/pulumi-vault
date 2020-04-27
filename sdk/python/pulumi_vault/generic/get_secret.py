@@ -34,7 +34,7 @@ class GetSecretResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if lease_duration and not isinstance(lease_duration, float):
             raise TypeError("Expected argument 'lease_duration' to be a float")

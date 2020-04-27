@@ -29,7 +29,7 @@ type GetAuthBackendRoleIdArgs struct {
 // A collection of values returned by getAuthBackendRoleId.
 type GetAuthBackendRoleIdResult struct {
 	Backend *string `pulumi:"backend"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The RoleID of the role.
 	RoleId   string `pulumi:"roleId"`

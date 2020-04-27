@@ -23,7 +23,8 @@ type AuthBackendRole struct {
 	BoundCidrs pulumi.StringArrayOutput `pulumi:"boundCidrs"`
 	// List of disallowed policies for given role.
 	DisallowedPolicies pulumi.StringArrayOutput `pulumi:"disallowedPolicies"`
-	// Number of seconds after which issued tokens can no longer be renewed.
+	// If set, the
+	// token will have an explicit max TTL set upon it.
 	ExplicitMaxTtl pulumi.StringPtrOutput `pulumi:"explicitMaxTtl"`
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan pulumi.BoolPtrOutput `pulumi:"orphan"`
@@ -113,7 +114,8 @@ type authBackendRoleState struct {
 	BoundCidrs []string `pulumi:"boundCidrs"`
 	// List of disallowed policies for given role.
 	DisallowedPolicies []string `pulumi:"disallowedPolicies"`
-	// Number of seconds after which issued tokens can no longer be renewed.
+	// If set, the
+	// token will have an explicit max TTL set upon it.
 	ExplicitMaxTtl *string `pulumi:"explicitMaxTtl"`
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan *bool `pulumi:"orphan"`
@@ -173,7 +175,8 @@ type AuthBackendRoleState struct {
 	BoundCidrs pulumi.StringArrayInput
 	// List of disallowed policies for given role.
 	DisallowedPolicies pulumi.StringArrayInput
-	// Number of seconds after which issued tokens can no longer be renewed.
+	// If set, the
+	// token will have an explicit max TTL set upon it.
 	ExplicitMaxTtl pulumi.StringPtrInput
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan pulumi.BoolPtrInput
@@ -237,7 +240,8 @@ type authBackendRoleArgs struct {
 	BoundCidrs []string `pulumi:"boundCidrs"`
 	// List of disallowed policies for given role.
 	DisallowedPolicies []string `pulumi:"disallowedPolicies"`
-	// Number of seconds after which issued tokens can no longer be renewed.
+	// If set, the
+	// token will have an explicit max TTL set upon it.
 	ExplicitMaxTtl *string `pulumi:"explicitMaxTtl"`
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan *bool `pulumi:"orphan"`
@@ -298,7 +302,8 @@ type AuthBackendRoleArgs struct {
 	BoundCidrs pulumi.StringArrayInput
 	// List of disallowed policies for given role.
 	DisallowedPolicies pulumi.StringArrayInput
-	// Number of seconds after which issued tokens can no longer be renewed.
+	// If set, the
+	// token will have an explicit max TTL set upon it.
 	ExplicitMaxTtl pulumi.StringPtrInput
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan pulumi.BoolPtrInput

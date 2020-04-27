@@ -25,7 +25,8 @@ class AuthBackendRole(pulumi.CustomResource):
     """
     explicit_max_ttl: pulumi.Output[str]
     """
-    Number of seconds after which issued tokens can no longer be renewed.
+    If set, the
+    token will have an explicit max TTL set upon it.
     """
     orphan: pulumi.Output[bool]
     """
@@ -117,7 +118,8 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[list] bound_cidrs: If set, a list of
                CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
         :param pulumi.Input[list] disallowed_policies: List of disallowed policies for given role.
-        :param pulumi.Input[str] explicit_max_ttl: Number of seconds after which issued tokens can no longer be renewed.
+        :param pulumi.Input[str] explicit_max_ttl: If set, the
+               token will have an explicit max TTL set upon it.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
         :param pulumi.Input[str] period: If set, indicates that the
@@ -209,7 +211,8 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[list] bound_cidrs: If set, a list of
                CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
         :param pulumi.Input[list] disallowed_policies: List of disallowed policies for given role.
-        :param pulumi.Input[str] explicit_max_ttl: Number of seconds after which issued tokens can no longer be renewed.
+        :param pulumi.Input[str] explicit_max_ttl: If set, the
+               token will have an explicit max TTL set upon it.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
         :param pulumi.Input[str] period: If set, indicates that the

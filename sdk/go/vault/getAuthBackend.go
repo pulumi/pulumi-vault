@@ -30,7 +30,7 @@ type LookupAuthBackendResult struct {
 	DefaultLeaseTtlSeconds int `pulumi:"defaultLeaseTtlSeconds"`
 	// A description of the auth method.
 	Description string `pulumi:"description"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Speficies whether to show this mount in the UI-specific listing endpoint.
 	ListingVisibility string `pulumi:"listingVisibility"`
