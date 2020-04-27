@@ -21,7 +21,7 @@ class GetAuthBackendConfigResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if issuer and not isinstance(issuer, str):
             raise TypeError("Expected argument 'issuer' to be a str")

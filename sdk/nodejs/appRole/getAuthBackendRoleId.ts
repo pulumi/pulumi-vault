@@ -15,10 +15,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  * 
- * const role = vault.appRole.getAuthBackendRoleId({
+ * const role = pulumi.output(vault.appRole.getAuthBackendRoleId({
  *     backend: "my-approle-backend",
  *     roleName: "my-role",
- * });
+ * }, { async: true }));
  * 
  * export const roleId = role.roleId;
  * ```
@@ -65,7 +65,7 @@ export interface GetAuthBackendRoleIdResult {
     readonly roleId: string;
     readonly roleName: string;
     /**
-     * id is the provider-assigned unique ID for this managed resource.
+     * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
 }

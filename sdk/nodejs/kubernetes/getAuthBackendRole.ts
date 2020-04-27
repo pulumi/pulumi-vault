@@ -17,10 +17,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  * 
- * const role = vault.kubernetes.getAuthBackendRole({
+ * const role = pulumi.output(vault.kubernetes.getAuthBackendRole({
  *     backend: "my-kubernetes-backend",
  *     roleName: "my-role",
- * });
+ * }, { async: true }));
  * 
  * export const policies = role.policies!;
  * ```
@@ -215,7 +215,7 @@ export interface GetAuthBackendRoleResult {
     readonly tokenType?: string;
     readonly ttl?: number;
     /**
-     * id is the provider-assigned unique ID for this managed resource.
+     * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
 }

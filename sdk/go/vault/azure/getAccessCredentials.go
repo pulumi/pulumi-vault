@@ -50,7 +50,7 @@ type GetAccessCredentialsResult struct {
 	ClientId string `pulumi:"clientId"`
 	// The client secret for credentials to query the Azure APIs.
 	ClientSecret string `pulumi:"clientSecret"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The duration of the secret lease, in seconds relative
 	// to the time the data was requested. Once this time has passed any plan

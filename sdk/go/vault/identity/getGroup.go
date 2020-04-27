@@ -58,7 +58,7 @@ type LookupGroupResult struct {
 	DataJson  string `pulumi:"dataJson"`
 	GroupId   string `pulumi:"groupId"`
 	GroupName string `pulumi:"groupName"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Last updated time of the group
 	LastUpdateTime string `pulumi:"lastUpdateTime"`

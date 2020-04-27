@@ -37,7 +37,7 @@ type LookupSecretResult struct {
 	// A string containing the full data payload retrieved from
 	// Vault, serialized in JSON format.
 	DataJson string `pulumi:"dataJson"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The duration of the secret lease, in seconds relative
 	// to the time the data was requested. Once this time has passed any plan

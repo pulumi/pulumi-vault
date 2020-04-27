@@ -82,7 +82,7 @@ type LookupAuthBackendRoleResult struct {
 	BoundServiceAccountNames []string `pulumi:"boundServiceAccountNames"`
 	// List of namespaces allowed to access this role. If set to "*" all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
 	BoundServiceAccountNamespaces []string `pulumi:"boundServiceAccountNamespaces"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id       string   `pulumi:"id"`
 	MaxTtl   *int     `pulumi:"maxTtl"`
 	NumUses  *int     `pulumi:"numUses"`

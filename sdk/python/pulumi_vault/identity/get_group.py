@@ -88,7 +88,7 @@ class GetGroupResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if last_update_time and not isinstance(last_update_time, str):
             raise TypeError("Expected argument 'last_update_time' to be a str")

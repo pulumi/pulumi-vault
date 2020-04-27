@@ -183,7 +183,7 @@ namespace Pulumi.Vault.Kubernetes
         /// </summary>
         public readonly ImmutableArray<string> BoundServiceAccountNamespaces;
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly int? MaxTtl;

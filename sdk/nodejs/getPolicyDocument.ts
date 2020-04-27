@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  * 
- * const examplePolicyDocument = vault.getPolicyDocument({
+ * const examplePolicyDocument = pulumi.output(vault.getPolicyDocument({
  *     rules: [{
  *         capabilities: [
  *             "create",
@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  *         description: "allow all on secrets",
  *         path: "secret/*",
  *     }],
- * });
+ * }, { async: true }));
  * const examplePolicy = new vault.Policy("example", {
  *     policy: examplePolicyDocument.hcl,
  * });
@@ -68,7 +68,7 @@ export interface GetPolicyDocumentResult {
     readonly hcl: string;
     readonly rules: outputs.GetPolicyDocumentRule[];
     /**
-     * id is the provider-assigned unique ID for this managed resource.
+     * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
 }
