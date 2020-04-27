@@ -42,7 +42,7 @@ import * as utilities from "../utilities";
  *         "prod",
  *     ],
  *     ttl: 60,
- * }, {dependsOn: [exampleAuthBackendClient]});
+ * }, { dependsOn: [exampleAuthBackendClient] });
  * const exampleAuthBackendLogin = new vault.aws.AuthBackendLogin("example", {
  *     backend: vault_auth_backend_example.path,
  *     identity: "BASE64ENCODEDIDENTITYDOCUMENT",
