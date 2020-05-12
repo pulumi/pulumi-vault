@@ -121,7 +121,27 @@ class AuthBackendRole(pulumi.CustomResource):
         Manages an AppRole auth backend role in a Vault server. See the [Vault
         documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
         information.
-        
+
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        approle = vault.AuthBackend("approle", type="approle")
+        example = vault.app_role.AuthBackendRole("example",
+            backend=approle.path,
+            role_name="test-role",
+            token_policies=[
+                "default",
+                "dev",
+                "prod",
+            ])
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The unique name of the auth backend to configure.
@@ -173,8 +193,6 @@ class AuthBackendRole(pulumi.CustomResource):
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/approle_auth_backend_role.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -225,7 +243,7 @@ class AuthBackendRole(pulumi.CustomResource):
         """
         Get an existing AuthBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -278,12 +296,11 @@ class AuthBackendRole(pulumi.CustomResource):
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/approle_auth_backend_role.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["backend"] = backend
         __props__["bind_secret_id"] = bind_secret_id
         __props__["bound_cidr_lists"] = bound_cidr_lists

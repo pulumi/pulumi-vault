@@ -7,6 +7,25 @@ import * as utilities from "../utilities";
 /**
  * Manages a Consul secrets role for a Consul secrets engine in Vault. Consul secret backends can then issue Consul tokens.
  * 
+ * ## Example Usage
+ * 
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ * 
+ * const test = new vault.consul.SecretBackend("test", {
+ *     path: "consul",
+ *     description: "Manages the Consul backend",
+ *     address: "127.0.0.1:8500",
+ *     token: "4240861b-ce3d-8530-115a-521ff070dd29",
+ * });
+ * const example = new vault.consul.SecretBackendRole("example", {
+ *     backend: test.path,
+ *     policies: ["example-policy"],
+ * });
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/consul_secret_backend_role.html.md.
  */

@@ -31,6 +31,25 @@ class AuthBackendUser(pulumi.CustomResource):
         Provides a resource to create a user in an
         [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.okta.AuthBackend("example",
+            organization="dummy",
+            path="user_okta")
+        foo = vault.okta.AuthBackendUser("foo",
+            groups=[
+                "one",
+                "two",
+            ],
+            path=example.path,
+            username="foo")
+        ```
 
 
         :param str resource_name: The name of the resource.

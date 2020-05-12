@@ -27,6 +27,25 @@ class AuthBackendGroup(pulumi.CustomResource):
         Provides a resource to create a group in an
         [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.okta.AuthBackend("example",
+            organization="dummy",
+            path="group_okta")
+        foo = vault.okta.AuthBackendGroup("foo",
+            group_name="foo",
+            path=example.path,
+            policies=[
+                "one",
+                "two",
+            ])
+        ```
 
 
         :param str resource_name: The name of the resource.

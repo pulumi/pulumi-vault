@@ -101,6 +101,16 @@ class AuthBackend(pulumi.CustomResource):
         documentation](https://www.vaultproject.io/docs/auth/github.html) for more
         information.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.github.AuthBackend("example", organization="myorg")
+        ```
 
 
         :param str resource_name: The name of the resource.

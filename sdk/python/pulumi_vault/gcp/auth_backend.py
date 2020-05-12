@@ -36,6 +36,16 @@ class AuthBackend(pulumi.CustomResource):
         """
         Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        gcp = vault.gcp.AuthBackend("gcp", credentials=(lambda path: open(path).read())("vault-gcp-credentials.json"))
+        ```
 
 
         :param str resource_name: The name of the resource.

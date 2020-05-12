@@ -20,6 +20,20 @@ class Policy(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, name=None, policy=None, __props__=None, __name__=None, __opts__=None):
         """
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.Policy("example", policy=\"\"\"path "secret/my_app" {
+          capabilities = ["write"]
+        }
+
+        \"\"\")
+        ```
 
 
         :param str resource_name: The name of the resource.

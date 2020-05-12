@@ -56,15 +56,40 @@ class AuthBackendLogin(pulumi.CustomResource):
         Logs into Vault using the AppRole auth backend. See the [Vault
         documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
         information.
-        
+
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        approle = vault.AuthBackend("approle", type="approle")
+        example = vault.app_role.AuthBackendRole("example",
+            backend=approle.path,
+            policies=[
+                "default",
+                "dev",
+                "prod",
+            ],
+            role_name="test-role")
+        id = vault.app_role.AuthBackendRoleSecretID("id",
+            backend=approle.path,
+            role_name=example.role_name)
+        login = vault.app_role.AuthBackendLogin("login",
+            backend=approle.path,
+            role_id=example.role_id,
+            secret_id=id.secret_id)
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The unique path of the Vault backend to log in with.
         :param pulumi.Input[str] role_id: The ID of the role to log in with.
         :param pulumi.Input[str] secret_id: The secret ID of the role to log in with. Required
                unless `bind_secret_id` is set to false on the role.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/approle_auth_backend_login.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -106,7 +131,7 @@ class AuthBackendLogin(pulumi.CustomResource):
         """
         Get an existing AuthBackendLogin resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -121,12 +146,11 @@ class AuthBackendLogin(pulumi.CustomResource):
         :param pulumi.Input[str] role_id: The ID of the role to log in with.
         :param pulumi.Input[str] secret_id: The secret ID of the role to log in with. Required
                unless `bind_secret_id` is set to false on the role.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/approle_auth_backend_login.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["accessor"] = accessor
         __props__["backend"] = backend
         __props__["client_token"] = client_token

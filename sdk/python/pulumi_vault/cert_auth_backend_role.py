@@ -139,6 +139,28 @@ class CertAuthBackendRole(pulumi.CustomResource):
         """
         Provides a resource to create a role in an [Cert auth backend within Vault](https://www.vaultproject.io/docs/auth/cert.html).
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        cert_auth_backend = vault.AuthBackend("certAuthBackend",
+            path="cert",
+            type="cert")
+        cert_cert_auth_backend_role = vault.CertAuthBackendRole("certCertAuthBackendRole",
+            certificate=(lambda path: open(path).read())("/path/to/certs/ca-cert.pem"),
+            backend=cert_auth_backend.path,
+            allowed_names=[
+                "foo.example.org",
+                "baz.example.org",
+            ],
+            token_ttl=300,
+            token_max_ttl=600,
+            token_policies=["foo"])
+        ```
 
 
         :param str resource_name: The name of the resource.

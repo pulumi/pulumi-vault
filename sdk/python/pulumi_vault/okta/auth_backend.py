@@ -68,11 +68,7 @@ class AuthBackend(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, base_url=None, bypass_okta_mfa=None, description=None, groups=None, max_ttl=None, organization=None, path=None, token=None, ttl=None, users=None, __props__=None, __name__=None, __opts__=None):
         """
-        Provides a resource for managing an
-        [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
-
-
-
+        Create a AuthBackend resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] base_url: The Okta url. Examples: oktapreview.com, okta.com

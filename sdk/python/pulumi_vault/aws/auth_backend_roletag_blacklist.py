@@ -30,6 +30,19 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
         """
         Configures the periodic tidying operation of the blacklisted role tag entries.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example_auth_backend = vault.AuthBackend("exampleAuthBackend", type="aws")
+        example_auth_backend_roletag_blacklist = vault.aws.AuthBackendRoletagBlacklist("exampleAuthBackendRoletagBlacklist",
+            backend=example_auth_backend.path,
+            safety_buffer=360)
+        ```
 
 
         :param str resource_name: The name of the resource.

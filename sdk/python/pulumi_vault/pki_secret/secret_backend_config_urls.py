@@ -29,15 +29,31 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, backend=None, crl_distribution_points=None, issuing_certificates=None, ocsp_servers=None, __props__=None, __name__=None, __opts__=None):
         """
         Allows setting the issuing certificate endpoints, CRL distribution points, and OCSP server endpoints that will be encoded into issued certificates.
-        
+
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        pki = vault.pki_secret.SecretBackend("pki",
+            default_lease_ttl_seconds=3600,
+            max_lease_ttl_seconds=86400,
+            path="%s")
+        config_urls = vault.pki_secret.SecretBackendConfigUrls("configUrls",
+            backend=pki.path,
+            issuing_certificates=["http://127.0.0.1:8200/v1/pki/ca"])
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[list] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
         :param pulumi.Input[list] issuing_certificates: Specifies the URL values for the Issuing Certificate field.
         :param pulumi.Input[list] ocsp_servers: Specifies the URL values for the OCSP Servers field.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_config_urls.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -73,7 +89,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         """
         Get an existing SecretBackendConfigUrls resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -81,12 +97,11 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         :param pulumi.Input[list] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
         :param pulumi.Input[list] issuing_certificates: Specifies the URL values for the Issuing Certificate field.
         :param pulumi.Input[list] ocsp_servers: Specifies the URL values for the OCSP Servers field.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_config_urls.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["backend"] = backend
         __props__["crl_distribution_points"] = crl_distribution_points
         __props__["issuing_certificates"] = issuing_certificates

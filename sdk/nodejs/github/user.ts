@@ -11,6 +11,24 @@ import * as utilities from "../utilities";
  * documentation](https://www.vaultproject.io/docs/auth/github.html) for more
  * information.
  * 
+ * ## Example Usage
+ * 
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ * 
+ * const example = new vault.github.AuthBackend("example", {organization: "myorg"});
+ * const tfUser = new vault.github.User("tfUser", {
+ *     backend: example.id,
+ *     user: "john.doe",
+ *     tokenPolicies: [
+ *         "developer",
+ *         "read-only",
+ *     ],
+ * });
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/github_user.html.md.
  */

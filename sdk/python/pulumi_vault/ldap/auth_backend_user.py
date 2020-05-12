@@ -30,6 +30,31 @@ class AuthBackendUser(pulumi.CustomResource):
         """
         Provides a resource to create a user in an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        ldap = vault.ldap.AuthBackend("ldap",
+            discoverdn=False,
+            groupdn="OU=Groups,DC=example,DC=org",
+            groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
+            path="ldap",
+            upndomain="EXAMPLE.ORG",
+            url="ldaps://dc-01.example.org",
+            userattr="sAMAccountName",
+            userdn="OU=Users,OU=Accounts,DC=example,DC=org")
+        user = vault.ldap.AuthBackendUser("user",
+            backend=ldap.path,
+            policies=[
+                "dba",
+                "sysops",
+            ],
+            username="test-user")
+        ```
 
 
         :param str resource_name: The name of the resource.

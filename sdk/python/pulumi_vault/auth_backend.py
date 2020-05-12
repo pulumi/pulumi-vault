@@ -68,6 +68,21 @@ class AuthBackend(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, default_lease_ttl_seconds=None, description=None, listing_visibility=None, local=None, max_lease_ttl_seconds=None, path=None, tune=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example",
+            tune={
+                "listingVisibility": "unauth",
+                "maxLeaseTtl": "90000s",
+            },
+            type="github")
+        ```
 
 
         :param str resource_name: The name of the resource.

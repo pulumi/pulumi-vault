@@ -45,6 +45,23 @@ class MfaDuo(pulumi.CustomResource):
 
         **Note** this feature is available only with Vault Enterprise.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        userpass = vault.AuthBackend("userpass",
+            path="userpass",
+            type="userpass")
+        my_duo = vault.MfaDuo("myDuo",
+            api_hostname="api-2b5c39f5.duosecurity.com",
+            integration_key="BIACEUEAXI20BNWTEYXT",
+            mount_accessor=userpass.accessor,
+            secret_key="8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz")
+        ```
 
 
         :param str resource_name: The name of the resource.

@@ -40,6 +40,25 @@ class AuthBackendConfig(pulumi.CustomResource):
         documentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more
         information.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        kubernetes = vault.AuthBackend("kubernetes", type="kubernetes")
+        example = vault.kubernetes.AuthBackendConfig("example",
+            backend=kubernetes.path,
+            issuer="api",
+            kubernetes_ca_cert=\"\"\"-----BEGIN CERTIFICATE-----
+        example
+        -----END CERTIFICATE-----
+        \"\"\",
+            kubernetes_host="http://example.com:443",
+            token_reviewer_jwt="ZXhhbXBsZQo=")
+        ```
 
 
         :param str resource_name: The name of the resource.

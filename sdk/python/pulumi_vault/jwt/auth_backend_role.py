@@ -194,6 +194,27 @@ class AuthBackendRole(pulumi.CustomResource):
         documentation](https://www.vaultproject.io/docs/auth/jwt.html) for more
         information.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        jwt = vault.jwt.AuthBackend("jwt", path="jwt")
+        example = vault.jwt.AuthBackendRole("example",
+            backend=jwt.path,
+            role_name="test-role",
+            token_policies=[
+                "default",
+                "dev",
+                "prod",
+            ],
+            bound_audiences=["https://myco.test"],
+            user_claim="https://vault/user",
+            role_type="jwt")
+        ```
 
 
         :param str resource_name: The name of the resource.

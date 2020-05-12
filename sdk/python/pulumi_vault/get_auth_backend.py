@@ -83,6 +83,16 @@ class AwaitableGetAuthBackendResult(GetAuthBackendResult):
 
 def get_auth_backend(path=None,opts=None):
     """
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    example = vault.get_auth_backend(path="userpass")
+    ```
 
 
 

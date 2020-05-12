@@ -13,10 +13,16 @@ class GetAuthBackendRoleIdResult:
     """
     A collection of values returned by getAuthBackendRoleId.
     """
-    def __init__(__self__, backend=None, role_id=None, role_name=None, id=None):
+    def __init__(__self__, backend=None, id=None, role_id=None, role_name=None):
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         __self__.backend = backend
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        __self__.id = id
+        """
+        The provider-assigned unique ID for this managed resource.
+        """
         if role_id and not isinstance(role_id, str):
             raise TypeError("Expected argument 'role_id' to be a str")
         __self__.role_id = role_id
@@ -26,12 +32,6 @@ class GetAuthBackendRoleIdResult:
         if role_name and not isinstance(role_name, str):
             raise TypeError("Expected argument 'role_name' to be a str")
         __self__.role_name = role_name
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        id is the provider-assigned unique ID for this managed resource.
-        """
 class AwaitableGetAuthBackendRoleIdResult(GetAuthBackendRoleIdResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -39,21 +39,35 @@ class AwaitableGetAuthBackendRoleIdResult(GetAuthBackendRoleIdResult):
             yield self
         return GetAuthBackendRoleIdResult(
             backend=self.backend,
+            id=self.id,
             role_id=self.role_id,
-            role_name=self.role_name,
-            id=self.id)
+            role_name=self.role_name)
 
 def get_auth_backend_role_id(backend=None,role_name=None,opts=None):
     """
     Reads the Role ID of an AppRole from a Vault server.
-    
+
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    role = vault.appRole.get_auth_backend_role_id(backend="my-approle-backend",
+        role_name="my-role")
+    pulumi.export("role-id", role.role_id)
+    ```
+
+
+
     :param str backend: The unique name for the AppRole backend the role to
            retrieve a RoleID for resides in. Defaults to "approle".
     :param str role_name: The name of the role to retrieve the Role ID for.
-
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/approle_auth_backend_role_id.html.markdown.
     """
     __args__ = dict()
+
 
     __args__['backend'] = backend
     __args__['roleName'] = role_name
@@ -65,6 +79,6 @@ def get_auth_backend_role_id(backend=None,role_name=None,opts=None):
 
     return AwaitableGetAuthBackendRoleIdResult(
         backend=__ret__.get('backend'),
+        id=__ret__.get('id'),
         role_id=__ret__.get('roleId'),
-        role_name=__ret__.get('roleName'),
-        id=__ret__.get('id'))
+        role_name=__ret__.get('roleName'))

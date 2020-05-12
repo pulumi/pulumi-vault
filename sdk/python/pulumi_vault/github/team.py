@@ -62,12 +62,7 @@ class Team(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, backend=None, policies=None, team=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, __props__=None, __name__=None, __opts__=None):
         """
-        Manages policy mappings for Github Teams authenticated via Github. See the [Vault
-        documentation](https://www.vaultproject.io/docs/auth/github.html) for more
-        information.
-
-
-
+        Create a Team resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path where the github auth backend is mounted. Defaults to `github`

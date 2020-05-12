@@ -66,6 +66,23 @@ class User(pulumi.CustomResource):
         documentation](https://www.vaultproject.io/docs/auth/github.html) for more
         information.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.github.AuthBackend("example", organization="myorg")
+        tf_user = vault.github.User("tfUser",
+            backend=example.id,
+            user="john.doe",
+            token_policies=[
+                "developer",
+                "read-only",
+            ])
+        ```
 
 
         :param str resource_name: The name of the resource.

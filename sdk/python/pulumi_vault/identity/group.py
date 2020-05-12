@@ -44,6 +44,38 @@ class Group(pulumi.CustomResource):
 
         A group can contain multiple entities as its members. A group can also have subgroups. Policies set on the group is granted to all members of the group. During request time, when the token's entity ID is being evaluated for the policies that it has access to; along with the policies on the entity itself, policies that are inherited due to group memberships are also granted.
 
+        ## Example Usage
+
+        ### Internal Group
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        internal = vault.identity.Group("internal",
+            metadata={
+                "version": "2",
+            },
+            policies=[
+                "dev",
+                "test",
+            ],
+            type="internal")
+        ```
+
+        ### External Group
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        group = vault.identity.Group("group",
+            metadata={
+                "version": "1",
+            },
+            policies=["test"],
+            type="external")
+        ```
 
 
         :param str resource_name: The name of the resource.

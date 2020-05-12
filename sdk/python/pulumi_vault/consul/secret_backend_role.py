@@ -46,6 +46,23 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         Manages a Consul secrets role for a Consul secrets engine in Vault. Consul secret backends can then issue Consul tokens.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.consul.SecretBackend("test",
+            path="consul",
+            description="Manages the Consul backend",
+            address="127.0.0.1:8500",
+            token="4240861b-ce3d-8530-115a-521ff070dd29")
+        example = vault.consul.SecretBackendRole("example",
+            backend=test.path,
+            policies=["example-policy"])
+        ```
 
 
         :param str resource_name: The name of the resource.

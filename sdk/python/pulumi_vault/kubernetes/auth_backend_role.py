@@ -122,6 +122,28 @@ class AuthBackendRole(pulumi.CustomResource):
         documentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more
         information.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        kubernetes = vault.AuthBackend("kubernetes", type="kubernetes")
+        example = vault.kubernetes.AuthBackendRole("example",
+            backend=kubernetes.path,
+            role_name="example-role",
+            bound_service_account_names=["example"],
+            bound_service_account_namespaces=["example"],
+            token_ttl=3600,
+            token_policies=[
+                "default",
+                "dev",
+                "prod",
+            ],
+            audience="vault")
+        ```
 
 
         :param str resource_name: The name of the resource.
