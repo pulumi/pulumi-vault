@@ -40,6 +40,30 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         static roles can be used to manage 1-to-1 mapping of a Vault Role to a user in a
         database for the database.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        db = vault.Mount("db",
+            path="postgres",
+            type="database")
+        postgres = vault.database.SecretBackendConnection("postgres",
+            allowed_roles=["*"],
+            backend=db.path,
+            postgresql={
+                "connectionUrl": "postgres://username:password@host:port/database",
+            })
+        static_role = vault.database.SecretBackendStaticRole("staticRole",
+            backend=db.path,
+            db_name=postgres.name,
+            rotation_period="3600",
+            rotation_statements=["ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"],
+            username="example")
+        ```
 
 
         :param str resource_name: The name of the resource.

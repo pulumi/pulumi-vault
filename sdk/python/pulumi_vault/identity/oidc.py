@@ -26,6 +26,16 @@ class Oidc(pulumi.CustomResource):
 
         > **NOTE:** Each Vault server may only have one Identity Tokens Backend configuration. Multiple configurations of the resource against the same Vault server will cause a perpetual difference.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        server = vault.identity.Oidc("server", issuer="https://www.acme.com")
+        ```
 
 
         :param str resource_name: The name of the resource.

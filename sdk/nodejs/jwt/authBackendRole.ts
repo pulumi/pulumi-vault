@@ -11,6 +11,28 @@ import * as utilities from "../utilities";
  * documentation](https://www.vaultproject.io/docs/auth/jwt.html) for more
  * information.
  * 
+ * ## Example Usage
+ * 
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ * 
+ * const jwt = new vault.jwt.AuthBackend("jwt", {path: "jwt"});
+ * const example = new vault.jwt.AuthBackendRole("example", {
+ *     backend: jwt.path,
+ *     roleName: "test-role",
+ *     tokenPolicies: [
+ *         "default",
+ *         "dev",
+ *         "prod",
+ *     ],
+ *     boundAudiences: ["https://myco.test"],
+ *     userClaim: "https://vault/user",
+ *     roleType: "jwt",
+ * });
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/jwt_auth_backend_role.html.md.
  */

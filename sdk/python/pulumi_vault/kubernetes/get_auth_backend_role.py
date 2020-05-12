@@ -168,6 +168,18 @@ def get_auth_backend_role(audience=None,backend=None,bound_cidrs=None,max_ttl=No
     documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-role) for more
     information.
 
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    role = vault.kubernetes.get_auth_backend_role(backend="my-kubernetes-backend",
+        role_name="my-role")
+    pulumi.export("policies", role.policies)
+    ```
 
 
 

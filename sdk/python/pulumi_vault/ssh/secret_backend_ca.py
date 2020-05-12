@@ -31,6 +31,17 @@ class SecretBackendCa(pulumi.CustomResource):
         Provides a resource to manage CA information in an SSH secret backend
         [SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.Mount("example", type="ssh")
+        foo = vault.ssh.SecretBackendCa("foo", backend=example.path)
+        ```
 
 
         :param str resource_name: The name of the resource.

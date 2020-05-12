@@ -30,15 +30,28 @@ class SecretBackend(pulumi.CustomResource):
         """
         Creates an PKI Secret Backend for Vault. PKI secret backends can then issue certificates, once a role has been added to
         the backend.
-        
+
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        pki = vault.pki_secret.SecretBackend("pki",
+            default_lease_ttl_seconds=3600,
+            max_lease_ttl_seconds=86400,
+            path="pki")
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] default_lease_ttl_seconds: The default TTL for credentials issued by this backend.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
         :param pulumi.Input[float] max_lease_ttl_seconds: The maximum TTL that can be requested for credentials issued by this backend.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must not begin or end with a `/`.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -74,7 +87,7 @@ class SecretBackend(pulumi.CustomResource):
         """
         Get an existing SecretBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -82,12 +95,11 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] description: A human-friendly description for this backend.
         :param pulumi.Input[float] max_lease_ttl_seconds: The maximum TTL that can be requested for credentials issued by this backend.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must not begin or end with a `/`.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__["description"] = description
         __props__["max_lease_ttl_seconds"] = max_lease_ttl_seconds

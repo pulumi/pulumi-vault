@@ -7,6 +7,46 @@ import * as utilities from "../utilities";
 /**
  * Manages policies for an Identity Entity for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
  * 
+ * ## Example Usage
+ * 
+ * ### Exclusive Policies
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ * 
+ * const entity = new vault.identity.Entity("entity", {externalPolicies: true});
+ * const policies = new vault.identity.EntityPolicies("policies", {
+ *     policies: [
+ *         "default",
+ *         "test",
+ *     ],
+ *     exclusive: true,
+ *     entityId: entity.id,
+ * });
+ * ```
+ * 
+ * ### Non-exclusive Policies
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ * 
+ * const entity = new vault.identity.Entity("entity", {externalPolicies: true});
+ * const default = new vault.identity.EntityPolicies("default", {
+ *     policies: [
+ *         "default",
+ *         "test",
+ *     ],
+ *     exclusive: false,
+ *     entityId: entity.id,
+ * });
+ * const others = new vault.identity.EntityPolicies("others", {
+ *     policies: ["others"],
+ *     exclusive: false,
+ *     entityId: entity.id,
+ * });
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_entity_policies.html.md.
  */

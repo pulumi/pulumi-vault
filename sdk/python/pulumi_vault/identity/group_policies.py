@@ -30,6 +30,53 @@ class GroupPolicies(pulumi.CustomResource):
         """
         Manages policies for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
 
+        ## Example Usage
+
+        ### Exclusive Policies
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        internal = vault.identity.Group("internal",
+            type="internal",
+            external_policies=True,
+            metadata={
+                "version": "2",
+            })
+        policies = vault.identity.GroupPolicies("policies",
+            policies=[
+                "default",
+                "test",
+            ],
+            exclusive=True,
+            group_id=internal.id)
+        ```
+
+        ### Non-exclusive Policies
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        internal = vault.identity.Group("internal",
+            type="internal",
+            external_policies=True,
+            metadata={
+                "version": "2",
+            })
+        default = vault.identity.GroupPolicies("default",
+            policies=[
+                "default",
+                "test",
+            ],
+            exclusive=False,
+            group_id=internal.id)
+        others = vault.identity.GroupPolicies("others",
+            policies=["others"],
+            exclusive=False,
+            group_id=internal.id)
+        ```
 
 
         :param str resource_name: The name of the resource.

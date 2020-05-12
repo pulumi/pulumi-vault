@@ -9,6 +9,31 @@ import * as utilities from "./utilities";
 /**
  * Provides a resource to create a role in an [Cert auth backend within Vault](https://www.vaultproject.io/docs/auth/cert.html).
  * 
+ * ## Example Usage
+ * 
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ * import * from "fs";
+ * 
+ * const certAuthBackend = new vault.AuthBackend("certAuthBackend", {
+ *     path: "cert",
+ *     type: "cert",
+ * });
+ * const certCertAuthBackendRole = new vault.CertAuthBackendRole("certCertAuthBackendRole", {
+ *     certificate: fs.readFileSync("/path/to/certs/ca-cert.pem"),
+ *     backend: certAuthBackend.path,
+ *     allowedNames: [
+ *         "foo.example.org",
+ *         "baz.example.org",
+ *     ],
+ *     tokenTtl: 300,
+ *     tokenMaxTtl: 600,
+ *     tokenPolicies: ["foo"],
+ * });
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/cert_auth_backend_role.html.md.
  */

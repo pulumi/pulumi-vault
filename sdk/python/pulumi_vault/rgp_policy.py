@@ -28,6 +28,22 @@ class RgpPolicy(pulumi.CustomResource):
 
         **Note** this feature is available only with Vault Enterprise.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        allow_all = vault.RgpPolicy("allow-all",
+            enforcement_level="soft-mandatory",
+            policy=\"\"\"main = rule {
+          true
+        }
+
+        \"\"\")
+        ```
 
 
         :param str resource_name: The name of the resource.

@@ -110,6 +110,27 @@ class AuthBackendRole(pulumi.CustomResource):
         documentation](https://www.vaultproject.io/docs/auth/token.html) for more
         information.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.tokenauth.AuthBackendRole("example",
+            allowed_policies=[
+                "dev",
+                "test",
+            ],
+            disallowed_policies=["default"],
+            explicit_max_ttl="115200",
+            orphan=True,
+            path_suffix="path-suffix",
+            period="86400",
+            renewable=True,
+            role_name="my-role")
+        ```
 
 
         :param str resource_name: The name of the resource.

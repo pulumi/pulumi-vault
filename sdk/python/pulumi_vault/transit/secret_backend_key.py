@@ -86,6 +86,22 @@ class SecretBackendKey(pulumi.CustomResource):
         """
         Creates an Encryption Keyring on a Transit Secret Backend for Vault.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        transit = vault.Mount("transit",
+            default_lease_ttl_seconds=3600,
+            description="Example description",
+            max_lease_ttl_seconds=86400,
+            path="transit",
+            type="transit")
+        key = vault.transit.SecretBackendKey("key", backend=transit.path)
+        ```
 
 
         :param str resource_name: The name of the resource.

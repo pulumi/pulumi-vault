@@ -109,7 +109,25 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, alt_names=None, backend=None, common_name=None, country=None, csr=None, exclude_cn_from_sans=None, format=None, ip_sans=None, locality=None, max_path_length=None, organization=None, other_sans=None, ou=None, permitted_dns_domains=None, postal_code=None, province=None, street_address=None, ttl=None, uri_sans=None, use_csr_values=None, __props__=None, __name__=None, __opts__=None):
         """
         Creates an PKI certificate.
-        
+
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        root = vault.pki_secret.SecretBackendRootSignIntermediate("root",
+            backend=vault_pki_secret_backend["root"]["path"],
+            csr=vault_pki_secret_backend_intermediate_cert_request["intermediate"]["csr"],
+            common_name="Intermediate CA",
+            exclude_cn_from_sans=True,
+            ou="My OU",
+            organization="My organization")
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] alt_names: List of alternative names
@@ -132,8 +150,6 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[list] uri_sans: List of alternative URIs
         :param pulumi.Input[bool] use_csr_values: Preserve CSR values
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_root_sign_intermediate.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -193,7 +209,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         """
         Get an existing SecretBackendRootSignIntermediate resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -221,12 +237,11 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[list] uri_sans: List of alternative URIs
         :param pulumi.Input[bool] use_csr_values: Preserve CSR values
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_root_sign_intermediate.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["alt_names"] = alt_names
         __props__["backend"] = backend
         __props__["ca_chain"] = ca_chain

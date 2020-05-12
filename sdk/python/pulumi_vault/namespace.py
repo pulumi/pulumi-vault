@@ -24,6 +24,16 @@ class Namespace(pulumi.CustomResource):
 
         **Note** this feature is available only with Vault Enterprise.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        ns1 = vault.Namespace("ns1", path="ns1")
+        ```
 
 
         :param str resource_name: The name of the resource.

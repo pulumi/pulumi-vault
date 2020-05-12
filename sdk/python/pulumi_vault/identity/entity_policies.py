@@ -30,6 +30,43 @@ class EntityPolicies(pulumi.CustomResource):
         """
         Manages policies for an Identity Entity for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
 
+        ## Example Usage
+
+        ### Exclusive Policies
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        entity = vault.identity.Entity("entity", external_policies=True)
+        policies = vault.identity.EntityPolicies("policies",
+            policies=[
+                "default",
+                "test",
+            ],
+            exclusive=True,
+            entity_id=entity.id)
+        ```
+
+        ### Non-exclusive Policies
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        entity = vault.identity.Entity("entity", external_policies=True)
+        default = vault.identity.EntityPolicies("default",
+            policies=[
+                "default",
+                "test",
+            ],
+            exclusive=False,
+            entity_id=entity.id)
+        others = vault.identity.EntityPolicies("others",
+            policies=["others"],
+            exclusive=False,
+            entity_id=entity.id)
+        ```
 
 
         :param str resource_name: The name of the resource.

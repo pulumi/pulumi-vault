@@ -28,7 +28,35 @@ class Audit(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, description=None, options=None, path=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a Audit resource with the given unique name, props, and options.
+        ## Example Usage (file audit device)
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.Audit("test",
+            options={
+                "file_path": "C:/temp/audit.txt",
+            },
+            type="file")
+        ```
+
+        ## Example Usage (socket audit device)
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.Audit("test",
+            options={
+                "address": "127.0.0.1:8000",
+                "description": "application x socket",
+                "socket_type": "tcp",
+            },
+            path="app_socket",
+            type="socket")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Human-friendly description of the audit device.

@@ -21,13 +21,10 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, backend=None, certificate=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a SecretBackendIntermediateSetSigned resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] certificate: The certificate
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_intermediate_set_signed.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -63,18 +60,17 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
         """
         Get an existing SecretBackendIntermediateSetSigned resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] certificate: The certificate
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_intermediate_set_signed.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["backend"] = backend
         __props__["certificate"] = certificate
         return SecretBackendIntermediateSetSigned(resource_name, opts=opts, __props__=__props__)

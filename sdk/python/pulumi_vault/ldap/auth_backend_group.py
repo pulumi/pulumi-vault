@@ -26,6 +26,28 @@ class AuthBackendGroup(pulumi.CustomResource):
         """
         Provides a resource to create a group in an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        ldap = vault.ldap.AuthBackend("ldap",
+            discoverdn=False,
+            groupdn="OU=Groups,DC=example,DC=org",
+            groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
+            path="ldap",
+            upndomain="EXAMPLE.ORG",
+            url="ldaps://dc-01.example.org",
+            userattr="sAMAccountName",
+            userdn="OU=Users,OU=Accounts,DC=example,DC=org")
+        group = vault.ldap.AuthBackendGroup("group",
+            backend=ldap.path,
+            groupname="dba",
+            policies=["dba"])
+        ```
 
 
         :param str resource_name: The name of the resource.

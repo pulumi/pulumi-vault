@@ -43,6 +43,27 @@ def get_policy_document(rules=None,opts=None):
     """
     This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `.Policy` resource.
 
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    example_policy_document = vault.get_policy_document(rules=[{
+        "capabilities": [
+            "create",
+            "read",
+            "update",
+            "delete",
+            "list",
+        ],
+        "description": "allow all on secrets",
+        "path": "secret/*",
+    }])
+    example_policy = vault.Policy("examplePolicy", policy=example_policy_document.hcl)
+    ```
 
 
 

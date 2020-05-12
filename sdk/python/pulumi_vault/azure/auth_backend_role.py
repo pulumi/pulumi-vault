@@ -138,6 +138,28 @@ class AuthBackendRole(pulumi.CustomResource):
         documentation](https://www.vaultproject.io/docs/auth/azure.html) for more
         information.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        azure = vault.AuthBackend("azure", type="azure")
+        example = vault.azure.AuthBackendRole("example",
+            backend=azure.path,
+            bound_resource_groups=["123456789012"],
+            bound_subscription_ids=["11111111-2222-3333-4444-555555555555"],
+            role="test-role",
+            token_max_ttl=120,
+            token_policies=[
+                "default",
+                "dev",
+                "prod",
+            ],
+            token_ttl=60)
+        ```
 
 
         :param str resource_name: The name of the resource.

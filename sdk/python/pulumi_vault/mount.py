@@ -48,6 +48,19 @@ class Mount(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, default_lease_ttl_seconds=None, description=None, local=None, max_lease_ttl_seconds=None, options=None, path=None, seal_wrap=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.Mount("example",
+            description="This is an example mount",
+            path="dummy",
+            type="generic")
+        ```
 
 
         :param str resource_name: The name of the resource.

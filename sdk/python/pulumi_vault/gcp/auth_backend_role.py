@@ -135,6 +135,23 @@ class AuthBackendRole(pulumi.CustomResource):
         """
         Provides a resource to create a role in an [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        gcp_auth_backend = vault.AuthBackend("gcpAuthBackend",
+            path="gcp",
+            type="gcp")
+        gcp_auth_backend_role = vault.gcp.AuthBackendRole("gcpAuthBackendRole",
+            backend=gcp_auth_backend.path,
+            project_id="foo-bar-baz",
+            bound_service_accounts=["database-server@foo-bar-baz.iam.gserviceaccount.com"],
+            token_policies=["database-server"])
+        ```
 
 
         :param str resource_name: The name of the resource.

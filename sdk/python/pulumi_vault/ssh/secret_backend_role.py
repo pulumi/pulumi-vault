@@ -95,6 +95,26 @@ class SecretBackendRole(pulumi.CustomResource):
         Provides a resource to manage roles in an SSH secret backend
         [SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.Mount("example", type="ssh")
+        foo = vault.ssh.SecretBackendRole("foo",
+            allow_user_certificates=True,
+            backend=example.path,
+            key_type="ca")
+        bar = vault.ssh.SecretBackendRole("bar",
+            allowed_users="default,baz",
+            backend=example.path,
+            cidr_list="0.0.0.0/0",
+            default_user="default",
+            key_type="otp")
+        ```
 
 
         :param str resource_name: The name of the resource.

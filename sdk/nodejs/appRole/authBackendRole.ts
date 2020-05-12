@@ -9,6 +9,25 @@ import * as utilities from "../utilities";
  * documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
  * information.
  * 
+ * ## Example Usage
+ * 
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ * 
+ * const approle = new vault.AuthBackend("approle", {type: "approle"});
+ * const example = new vault.appRole.AuthBackendRole("example", {
+ *     backend: approle.path,
+ *     roleName: "test-role",
+ *     tokenPolicies: [
+ *         "default",
+ *         "dev",
+ *         "prod",
+ *     ],
+ * });
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/approle_auth_backend_role.html.md.
  */

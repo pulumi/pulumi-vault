@@ -101,7 +101,6 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, alt_names=None, backend=None, common_name=None, country=None, exclude_cn_from_sans=None, format=None, ip_sans=None, key_bits=None, key_type=None, locality=None, organization=None, other_sans=None, ou=None, postal_code=None, private_key_format=None, province=None, street_address=None, type=None, uri_sans=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a SecretBackendIntermediateCertRequest resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] alt_names: List of alternative names
@@ -123,8 +122,6 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] type: Type of intermediate to create. Must be either \"exported\" or \"internal\"
         :param pulumi.Input[list] uri_sans: List of alternative URIs
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_intermediate_cert_request.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -182,7 +179,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         """
         Get an existing SecretBackendIntermediateCertRequest resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -208,12 +205,11 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] type: Type of intermediate to create. Must be either \"exported\" or \"internal\"
         :param pulumi.Input[list] uri_sans: List of alternative URIs
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_intermediate_cert_request.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["alt_names"] = alt_names
         __props__["backend"] = backend
         __props__["common_name"] = common_name

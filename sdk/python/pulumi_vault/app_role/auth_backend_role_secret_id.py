@@ -15,6 +15,9 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
     The unique ID for this SecretID that can be safely logged.
     """
     backend: pulumi.Output[str]
+    """
+    Unique name of the auth backend to configure.
+    """
     cidr_lists: pulumi.Output[list]
     """
     If set, specifies blocks of IP addresses which can
@@ -55,9 +58,38 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
         Manages an AppRole auth backend SecretID in a Vault server. See the [Vault
         documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
         information.
-        
+
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        approle = vault.AuthBackend("approle", type="approle")
+        example = vault.app_role.AuthBackendRole("example",
+            backend=approle.path,
+            policies=[
+                "default",
+                "dev",
+                "prod",
+            ],
+            role_name="test-role")
+        id = vault.app_role.AuthBackendRoleSecretID("id",
+            backend=approle.path,
+            metadata=\"\"\"{
+          "hello": "world"
+        }
+
+        \"\"\",
+            role_name=example.role_name)
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] backend: Unique name of the auth backend to configure.
         :param pulumi.Input[list] cidr_lists: If set, specifies blocks of IP addresses which can
                perform the login operation using this SecretID.
         :param pulumi.Input[str] metadata: A JSON-encoded string containing metadata in
@@ -69,8 +101,6 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
                [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)
                and available for the duration specified. Only a single unwrapping of the
                token is allowed.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/approle_auth_backend_role_secret_id.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -111,11 +141,12 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
         """
         Get an existing AuthBackendRoleSecretID resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accessor: The unique ID for this SecretID that can be safely logged.
+        :param pulumi.Input[str] backend: Unique name of the auth backend to configure.
         :param pulumi.Input[list] cidr_lists: If set, specifies blocks of IP addresses which can
                perform the login operation using this SecretID.
         :param pulumi.Input[str] metadata: A JSON-encoded string containing metadata in
@@ -130,12 +161,11 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
                [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)
                and available for the duration specified. Only a single unwrapping of the
                token is allowed.
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/approle_auth_backend_role_secret_id.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["accessor"] = accessor
         __props__["backend"] = backend
         __props__["cidr_lists"] = cidr_lists

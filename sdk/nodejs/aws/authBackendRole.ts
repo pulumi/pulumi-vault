@@ -11,6 +11,36 @@ import * as utilities from "../utilities";
  * documentation](https://www.vaultproject.io/docs/auth/aws.html) for more
  * information.
  * 
+ * ## Example Usage
+ * 
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ * 
+ * const aws = new vault.AuthBackend("aws", {type: "aws"});
+ * const example = new vault.aws.AuthBackendRole("example", {
+ *     backend: aws.path,
+ *     role: "test-role",
+ *     authType: "iam",
+ *     boundAmiIds: ["ami-8c1be5f6"],
+ *     boundAccountIds: ["123456789012"],
+ *     boundVpcIds: ["vpc-b61106d4"],
+ *     boundSubnetIds: ["vpc-133128f1"],
+ *     boundIamRoleArns: ["arn:aws:iam::123456789012:role/MyRole"],
+ *     boundIamInstanceProfileArns: ["arn:aws:iam::123456789012:instance-profile/MyProfile"],
+ *     inferredEntityType: "ec2Instance",
+ *     inferredAwsRegion: "us-east-1",
+ *     tokenTtl: 60,
+ *     tokenMaxTtl: 120,
+ *     tokenPolicies: [
+ *         "default",
+ *         "dev",
+ *         "prod",
+ *     ],
+ * });
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_role.html.md.
  */

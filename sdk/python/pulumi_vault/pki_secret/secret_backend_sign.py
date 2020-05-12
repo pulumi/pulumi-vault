@@ -85,7 +85,6 @@ class SecretBackendSign(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, alt_names=None, auto_renew=None, backend=None, common_name=None, csr=None, exclude_cn_from_sans=None, format=None, ip_sans=None, min_seconds_remaining=None, name=None, other_sans=None, ttl=None, uri_sans=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a SecretBackendSign resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] alt_names: List of alternative names
@@ -101,8 +100,6 @@ class SecretBackendSign(pulumi.CustomResource):
         :param pulumi.Input[list] other_sans: List of other SANs
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[list] uri_sans: List of alterative URIs
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_sign.html.markdown.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -156,7 +153,7 @@ class SecretBackendSign(pulumi.CustomResource):
         """
         Get an existing SecretBackendSign resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -178,12 +175,11 @@ class SecretBackendSign(pulumi.CustomResource):
         :param pulumi.Input[str] serial: The serial
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[list] uri_sans: List of alterative URIs
-
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_sign.html.markdown.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["alt_names"] = alt_names
         __props__["auto_renew"] = auto_renew
         __props__["backend"] = backend

@@ -69,11 +69,7 @@ class AuthBackend(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, bound_issuer=None, default_role=None, description=None, jwks_ca_pem=None, jwks_url=None, jwt_supported_algs=None, jwt_validation_pubkeys=None, oidc_client_id=None, oidc_client_secret=None, oidc_discovery_ca_pem=None, oidc_discovery_url=None, path=None, tune=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
-        Provides a resource for managing an
-        [JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).
-
-
-
+        Create a AuthBackend resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bound_issuer: The value against which to match the iss claim in a JWT

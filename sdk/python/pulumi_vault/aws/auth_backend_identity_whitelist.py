@@ -32,6 +32,19 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
         For more information, see the
         [Vault docs](https://www.vaultproject.io/api/auth/aws/index.html#configure-identity-whitelist-tidy-operation).
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example_auth_backend = vault.AuthBackend("exampleAuthBackend", type="aws")
+        example_auth_backend_identity_whitelist = vault.aws.AuthBackendIdentityWhitelist("exampleAuthBackendIdentityWhitelist",
+            backend=example_auth_backend.path,
+            safety_buffer=3600)
+        ```
 
 
         :param str resource_name: The name of the resource.
