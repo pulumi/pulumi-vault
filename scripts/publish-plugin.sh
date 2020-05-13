@@ -42,5 +42,21 @@ echo "Uploading ${PLUGIN_PACKAGE_NAME}..."
 
 aws s3 cp --only-show-errors "${PLUGIN_PACKAGE_PATH}" "s3://rel.pulumi.com/releases/plugins/${PLUGIN_PACKAGE_NAME}"
 
+# Assume the role to publish plugins to s3://get.pulumi.com. We upload the plugins to two buckets while
+# we transition to only publishing/serving them from get.pulumi.com.
+echo "Uploading ${PLUGIN_PACKAGE_NAME} to s3://get.pulumi.com..."
+
+CREDS_JSON=$(aws sts assume-role \
+                 --role-arn "arn:aws:iam::058607598222:role/PulumiUploadRelease" \
+                 --role-session-name "upload-plugin-pulumi-resource-vault" \
+                 --external-id "upload-pulumi-release")
+export AWS_ACCESS_KEY_ID=$(echo ${CREDS_JSON}     | jq ".Credentials.AccessKeyId" --raw-output)
+export AWS_SECRET_ACCESS_KEY=$(echo ${CREDS_JSON} | jq ".Credentials.SecretAccessKey" --raw-output)
+export AWS_SECURITY_TOKEN=$(echo ${CREDS_JSON}    | jq ".Credentials.SessionToken" --raw-output)
+
+aws s3 cp \
+    --only-show-errors --acl public-read \
+    "${PLUGIN_PACKAGE_PATH}" "s3://get.pulumi.com/releases/plugins/${PLUGIN_PACKAGE_NAME}"
+
 rm -rf "${PLUGIN_PACKAGE_DIR}"
 rm -rf "${WORK_PATH}"
