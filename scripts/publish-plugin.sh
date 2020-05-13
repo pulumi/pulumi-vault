@@ -52,9 +52,9 @@ echo "Uploading ${PLUGIN_PACKAGE_NAME} to s3://get.pulumi.com..."
 
 # Restore the initial AWS credentials we had, since the assumed role doesn't have the
 # ability to assume this other role to publish into a different bucket.
+unset {AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_SECURITY_TOKEN}
 export AWS_ACCESS_KEY_ID="${INITIAL_AWS_ACCESS_KEY_ID}"
 export AWS_SECRET_ACCESS_KEY="${INITIAL_AWS_SECRET_ACCESS_KEY}"
-unset {AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_SECURITY_TOKEN}
 
 CREDS_JSON=$(aws sts assume-role \
                  --role-arn "arn:aws:iam::058607598222:role/PulumiUploadRelease" \
