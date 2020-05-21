@@ -31,6 +31,12 @@ To use from Go, use `go get` to grab the latest version of the library
 
     $ go get github.com/pulumi/pulumi-vault/sdk/go/...
 
+### .NET
+
+To use from .NET, install using `dotnet add package`:
+
+    $ dotnet add package Pulumi.Vault
+
 ## Configuration
 
 The following configuration points are available:
@@ -68,4 +74,4 @@ The following configuration points are available:
 
 ## Reference
 
-For detailed reference documentation, please visit [the API docs](https://pulumi.io/reference/pkg/nodejs/@pulumi/vault/index.html).
+For further information, please visit [the Vault provider docs](https://www.pulumi.com/docs/intro/cloud-providers/vault) or for detailed reference documentation, please visit [the API docs](https://www.pulumi.com/docs/reference/pkg/vault).
