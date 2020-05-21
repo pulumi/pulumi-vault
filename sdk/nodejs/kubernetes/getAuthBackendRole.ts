@@ -8,24 +8,22 @@ import * as utilities from "../utilities";
  * Reads the Role of an Kubernetes from a Vault server. See the [Vault
  * documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-role) for more
  * information.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const role = pulumi.output(vault.kubernetes.getAuthBackendRole({
  *     backend: "my-kubernetes-backend",
  *     roleName: "my-role",
  * }, { async: true }));
- * 
+ *
  * export const policies = role.policies!;
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/kubernetes_auth_backend_role.md.
  */
 export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendRoleResult> {
     if (!opts) {

@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Creates an Encryption Keyring on a Transit Secret Backend for Vault.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const transit = new vault.Mount("transit", {
  *     defaultLeaseTtlSeconds: 3600,
  *     description: "Example description",
@@ -26,8 +26,6 @@ import * as utilities from "../utilities";
  *     backend: transit.path,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/transit_secret_backend_key.html.md.
  */
 export class SecretBackendKey extends pulumi.CustomResource {
     /**

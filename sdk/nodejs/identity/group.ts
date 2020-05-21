@@ -6,17 +6,17 @@ import * as utilities from "../utilities";
 
 /**
  * Creates an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
- * 
+ *
  * A group can contain multiple entities as its members. A group can also have subgroups. Policies set on the group is granted to all members of the group. During request time, when the token's entity ID is being evaluated for the policies that it has access to; along with the policies on the entity itself, policies that are inherited due to group memberships are also granted.
- * 
+ *
  * ## Example Usage
- * 
+ *
  * ### Internal Group
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const internal = new vault.identity.Group("internal", {
  *     metadata: {
  *         version: "2",
@@ -28,13 +28,13 @@ import * as utilities from "../utilities";
  *     type: "internal",
  * });
  * ```
- * 
+ *
  * ### External Group
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const group = new vault.identity.Group("group", {
  *     metadata: {
  *         version: "1",
@@ -43,8 +43,6 @@ import * as utilities from "../utilities";
  *     type: "external",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/identity_group.html.md.
  */
 export class Group extends pulumi.CustomResource {
     /**

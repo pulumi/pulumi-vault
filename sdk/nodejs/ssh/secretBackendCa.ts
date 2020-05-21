@@ -7,15 +7,15 @@ import * as utilities from "../utilities";
 /**
  * Provides a resource to manage CA information in an SSH secret backend
  * [SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const example = new vault.Mount("example", {
  *     type: "ssh",
  * });
@@ -23,8 +23,6 @@ import * as utilities from "../utilities";
  *     backend: example.path,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ssh_secret_backend_ca.html.md.
  */
 export class SecretBackendCa extends pulumi.CustomResource {
     /**

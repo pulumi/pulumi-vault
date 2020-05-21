@@ -9,15 +9,15 @@ import * as utilities from "../utilities";
 /**
  * Provides a resource to create a group in an
  * [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const example = new vault.okta.AuthBackend("example", {
  *     organization: "dummy",
  *     path: "groupOkta",
@@ -31,8 +31,6 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/okta_auth_backend_group.html.md.
  */
 export class AuthBackendGroup extends pulumi.CustomResource {
     /**

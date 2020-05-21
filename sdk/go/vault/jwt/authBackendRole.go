@@ -27,6 +27,8 @@ type AuthBackendRole struct {
 	BoundAudiences pulumi.StringArrayOutput `pulumi:"boundAudiences"`
 	// If set, a list of
 	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+	//
+	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs pulumi.StringArrayOutput `pulumi:"boundCidrs"`
 	// If set, a map of claims/values to match against.
 	// The expected value may be a single string or a list of strings.
@@ -59,9 +61,13 @@ type AuthBackendRole struct {
 	// set to // will expect nested structures named meta, user.name, and groups.
 	// If this field was set to /./ the groups information would expect to be
 	// via nested structures of meta, user, name, and groups.
+	//
+	// Deprecated: `groups_claim_delimiter_pattern` has been removed since Vault 1.1. If the groups claim is not at the top level, it can now be specified as a JSONPointer.
 	GroupsClaimDelimiterPattern pulumi.StringPtrOutput `pulumi:"groupsClaimDelimiterPattern"`
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl pulumi.IntPtrOutput `pulumi:"maxTtl"`
 	// The amount of leeway to add to not before (`nbf`) claims to account for
 	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -69,6 +75,8 @@ type AuthBackendRole struct {
 	NotBeforeLeeway pulumi.IntPtrOutput `pulumi:"notBeforeLeeway"`
 	// If set, puts a use-count
 	// limitation on the issued token.
+	//
+	// Deprecated: use `token_num_uses` instead if you are running Vault >= 1.2
 	NumUses pulumi.IntPtrOutput `pulumi:"numUses"`
 	// If set, a list of OIDC scopes to be used with an OIDC role.
 	// The standard scope "openid" is automatically included and need not be specified.
@@ -77,9 +85,13 @@ type AuthBackendRole struct {
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period pulumi.IntPtrOutput `pulumi:"period"`
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// The name of the role.
 	RoleName pulumi.StringOutput `pulumi:"roleName"`
@@ -123,6 +135,8 @@ type AuthBackendRole struct {
 	TokenType pulumi.StringPtrOutput `pulumi:"tokenType"`
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl pulumi.IntPtrOutput `pulumi:"ttl"`
 	// The claim to use to uniquely identify
 	// the user; this will be used as the name for the Identity entity alias created
@@ -179,6 +193,8 @@ type authBackendRoleState struct {
 	BoundAudiences []string `pulumi:"boundAudiences"`
 	// If set, a list of
 	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+	//
+	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs []string `pulumi:"boundCidrs"`
 	// If set, a map of claims/values to match against.
 	// The expected value may be a single string or a list of strings.
@@ -211,9 +227,13 @@ type authBackendRoleState struct {
 	// set to // will expect nested structures named meta, user.name, and groups.
 	// If this field was set to /./ the groups information would expect to be
 	// via nested structures of meta, user, name, and groups.
+	//
+	// Deprecated: `groups_claim_delimiter_pattern` has been removed since Vault 1.1. If the groups claim is not at the top level, it can now be specified as a JSONPointer.
 	GroupsClaimDelimiterPattern *string `pulumi:"groupsClaimDelimiterPattern"`
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl *int `pulumi:"maxTtl"`
 	// The amount of leeway to add to not before (`nbf`) claims to account for
 	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -221,6 +241,8 @@ type authBackendRoleState struct {
 	NotBeforeLeeway *int `pulumi:"notBeforeLeeway"`
 	// If set, puts a use-count
 	// limitation on the issued token.
+	//
+	// Deprecated: use `token_num_uses` instead if you are running Vault >= 1.2
 	NumUses *int `pulumi:"numUses"`
 	// If set, a list of OIDC scopes to be used with an OIDC role.
 	// The standard scope "openid" is automatically included and need not be specified.
@@ -229,9 +251,13 @@ type authBackendRoleState struct {
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period *int `pulumi:"period"`
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies []string `pulumi:"policies"`
 	// The name of the role.
 	RoleName *string `pulumi:"roleName"`
@@ -275,6 +301,8 @@ type authBackendRoleState struct {
 	TokenType *string `pulumi:"tokenType"`
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl *int `pulumi:"ttl"`
 	// The claim to use to uniquely identify
 	// the user; this will be used as the name for the Identity entity alias created
@@ -298,6 +326,8 @@ type AuthBackendRoleState struct {
 	BoundAudiences pulumi.StringArrayInput
 	// If set, a list of
 	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+	//
+	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs pulumi.StringArrayInput
 	// If set, a map of claims/values to match against.
 	// The expected value may be a single string or a list of strings.
@@ -330,9 +360,13 @@ type AuthBackendRoleState struct {
 	// set to // will expect nested structures named meta, user.name, and groups.
 	// If this field was set to /./ the groups information would expect to be
 	// via nested structures of meta, user, name, and groups.
+	//
+	// Deprecated: `groups_claim_delimiter_pattern` has been removed since Vault 1.1. If the groups claim is not at the top level, it can now be specified as a JSONPointer.
 	GroupsClaimDelimiterPattern pulumi.StringPtrInput
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl pulumi.IntPtrInput
 	// The amount of leeway to add to not before (`nbf`) claims to account for
 	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -340,6 +374,8 @@ type AuthBackendRoleState struct {
 	NotBeforeLeeway pulumi.IntPtrInput
 	// If set, puts a use-count
 	// limitation on the issued token.
+	//
+	// Deprecated: use `token_num_uses` instead if you are running Vault >= 1.2
 	NumUses pulumi.IntPtrInput
 	// If set, a list of OIDC scopes to be used with an OIDC role.
 	// The standard scope "openid" is automatically included and need not be specified.
@@ -348,9 +384,13 @@ type AuthBackendRoleState struct {
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period pulumi.IntPtrInput
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies pulumi.StringArrayInput
 	// The name of the role.
 	RoleName pulumi.StringPtrInput
@@ -394,6 +434,8 @@ type AuthBackendRoleState struct {
 	TokenType pulumi.StringPtrInput
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl pulumi.IntPtrInput
 	// The claim to use to uniquely identify
 	// the user; this will be used as the name for the Identity entity alias created
@@ -421,6 +463,8 @@ type authBackendRoleArgs struct {
 	BoundAudiences []string `pulumi:"boundAudiences"`
 	// If set, a list of
 	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+	//
+	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs []string `pulumi:"boundCidrs"`
 	// If set, a map of claims/values to match against.
 	// The expected value may be a single string or a list of strings.
@@ -453,9 +497,13 @@ type authBackendRoleArgs struct {
 	// set to // will expect nested structures named meta, user.name, and groups.
 	// If this field was set to /./ the groups information would expect to be
 	// via nested structures of meta, user, name, and groups.
+	//
+	// Deprecated: `groups_claim_delimiter_pattern` has been removed since Vault 1.1. If the groups claim is not at the top level, it can now be specified as a JSONPointer.
 	GroupsClaimDelimiterPattern *string `pulumi:"groupsClaimDelimiterPattern"`
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl *int `pulumi:"maxTtl"`
 	// The amount of leeway to add to not before (`nbf`) claims to account for
 	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -463,6 +511,8 @@ type authBackendRoleArgs struct {
 	NotBeforeLeeway *int `pulumi:"notBeforeLeeway"`
 	// If set, puts a use-count
 	// limitation on the issued token.
+	//
+	// Deprecated: use `token_num_uses` instead if you are running Vault >= 1.2
 	NumUses *int `pulumi:"numUses"`
 	// If set, a list of OIDC scopes to be used with an OIDC role.
 	// The standard scope "openid" is automatically included and need not be specified.
@@ -471,9 +521,13 @@ type authBackendRoleArgs struct {
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period *int `pulumi:"period"`
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies []string `pulumi:"policies"`
 	// The name of the role.
 	RoleName string `pulumi:"roleName"`
@@ -517,6 +571,8 @@ type authBackendRoleArgs struct {
 	TokenType *string `pulumi:"tokenType"`
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl *int `pulumi:"ttl"`
 	// The claim to use to uniquely identify
 	// the user; this will be used as the name for the Identity entity alias created
@@ -541,6 +597,8 @@ type AuthBackendRoleArgs struct {
 	BoundAudiences pulumi.StringArrayInput
 	// If set, a list of
 	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+	//
+	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs pulumi.StringArrayInput
 	// If set, a map of claims/values to match against.
 	// The expected value may be a single string or a list of strings.
@@ -573,9 +631,13 @@ type AuthBackendRoleArgs struct {
 	// set to // will expect nested structures named meta, user.name, and groups.
 	// If this field was set to /./ the groups information would expect to be
 	// via nested structures of meta, user, name, and groups.
+	//
+	// Deprecated: `groups_claim_delimiter_pattern` has been removed since Vault 1.1. If the groups claim is not at the top level, it can now be specified as a JSONPointer.
 	GroupsClaimDelimiterPattern pulumi.StringPtrInput
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl pulumi.IntPtrInput
 	// The amount of leeway to add to not before (`nbf`) claims to account for
 	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -583,6 +645,8 @@ type AuthBackendRoleArgs struct {
 	NotBeforeLeeway pulumi.IntPtrInput
 	// If set, puts a use-count
 	// limitation on the issued token.
+	//
+	// Deprecated: use `token_num_uses` instead if you are running Vault >= 1.2
 	NumUses pulumi.IntPtrInput
 	// If set, a list of OIDC scopes to be used with an OIDC role.
 	// The standard scope "openid" is automatically included and need not be specified.
@@ -591,9 +655,13 @@ type AuthBackendRoleArgs struct {
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period pulumi.IntPtrInput
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies pulumi.StringArrayInput
 	// The name of the role.
 	RoleName pulumi.StringInput
@@ -637,6 +705,8 @@ type AuthBackendRoleArgs struct {
 	TokenType pulumi.StringPtrInput
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl pulumi.IntPtrInput
 	// The claim to use to uniquely identify
 	// the user; this will be used as the name for the Identity entity alias created

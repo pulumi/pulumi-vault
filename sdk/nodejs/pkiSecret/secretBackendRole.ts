@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Creates a role on an PKI Secret Backend for Vault.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const pki = new vault.pkiSecret.SecretBackend("pki", {
  *     defaultLeaseTtlSeconds: 3600,
  *     maxLeaseTtlSeconds: 86400,
@@ -24,8 +24,6 @@ import * as utilities from "../utilities";
  *     backend: pki.path,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_role.html.md.
  */
 export class SecretBackendRole extends pulumi.CustomResource {
     /**

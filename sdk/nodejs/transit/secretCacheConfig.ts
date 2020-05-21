@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Configure the cache for the Transit Secret Backend in Vault.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const transit = new vault.Mount("transit", {
  *     defaultLeaseTtlSeconds: 3600,
  *     description: "Example description",
@@ -27,8 +27,6 @@ import * as utilities from "../utilities";
  *     size: 500,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/transit_secret_backend_cache_config.html.md.
  */
 export class SecretCacheConfig extends pulumi.CustomResource {
     /**

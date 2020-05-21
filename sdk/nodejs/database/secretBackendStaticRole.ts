@@ -10,15 +10,15 @@ import * as utilities from "../utilities";
  * Creates a Database Secret Backend static role in Vault. Database secret backend
  * static roles can be used to manage 1-to-1 mapping of a Vault Role to a user in a
  * database for the database.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const db = new vault.Mount("db", {
  *     path: "postgres",
  *     type: "database",
@@ -38,8 +38,6 @@ import * as utilities from "../utilities";
  *     username: "example",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/database_secret_backend_static_role.md.
  */
 export class SecretBackendStaticRole extends pulumi.CustomResource {
     /**

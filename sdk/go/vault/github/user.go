@@ -23,22 +23,40 @@ type User struct {
 	// using this role.
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// Specifies the blocks of IP addresses which are allowed to use the generated token
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenBoundCidrs pulumi.StringArrayOutput `pulumi:"tokenBoundCidrs"`
 	// Generated Token's Explicit Maximum TTL in seconds
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenExplicitMaxTtl pulumi.IntPtrOutput `pulumi:"tokenExplicitMaxTtl"`
 	// The maximum lifetime of the generated token
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenMaxTtl pulumi.IntPtrOutput `pulumi:"tokenMaxTtl"`
 	// If true, the 'default' policy will not automatically be added to generated tokens
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenNoDefaultPolicy pulumi.BoolPtrOutput `pulumi:"tokenNoDefaultPolicy"`
 	// The maximum number of times a token may be used, a value of zero means unlimited
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenNumUses pulumi.IntPtrOutput `pulumi:"tokenNumUses"`
 	// Generated Token's Period
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenPeriod pulumi.IntPtrOutput `pulumi:"tokenPeriod"`
 	// Generated Token's Policies
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenPolicies pulumi.StringArrayOutput `pulumi:"tokenPolicies"`
 	// The initial ttl of the token to generate in seconds
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenTtl pulumi.IntPtrOutput `pulumi:"tokenTtl"`
 	// The type of token to generate, service or batch
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenType pulumi.StringPtrOutput `pulumi:"tokenType"`
 	// GitHub user name.
 	User pulumi.StringOutput `pulumi:"user"`
@@ -82,22 +100,40 @@ type userState struct {
 	// using this role.
 	Policies []string `pulumi:"policies"`
 	// Specifies the blocks of IP addresses which are allowed to use the generated token
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenBoundCidrs []string `pulumi:"tokenBoundCidrs"`
 	// Generated Token's Explicit Maximum TTL in seconds
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenExplicitMaxTtl *int `pulumi:"tokenExplicitMaxTtl"`
 	// The maximum lifetime of the generated token
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenMaxTtl *int `pulumi:"tokenMaxTtl"`
 	// If true, the 'default' policy will not automatically be added to generated tokens
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenNoDefaultPolicy *bool `pulumi:"tokenNoDefaultPolicy"`
 	// The maximum number of times a token may be used, a value of zero means unlimited
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenNumUses *int `pulumi:"tokenNumUses"`
 	// Generated Token's Period
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenPeriod *int `pulumi:"tokenPeriod"`
 	// Generated Token's Policies
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenPolicies []string `pulumi:"tokenPolicies"`
 	// The initial ttl of the token to generate in seconds
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenTtl *int `pulumi:"tokenTtl"`
 	// The type of token to generate, service or batch
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenType *string `pulumi:"tokenType"`
 	// GitHub user name.
 	User *string `pulumi:"user"`
@@ -111,22 +147,40 @@ type UserState struct {
 	// using this role.
 	Policies pulumi.StringArrayInput
 	// Specifies the blocks of IP addresses which are allowed to use the generated token
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenBoundCidrs pulumi.StringArrayInput
 	// Generated Token's Explicit Maximum TTL in seconds
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenExplicitMaxTtl pulumi.IntPtrInput
 	// The maximum lifetime of the generated token
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenMaxTtl pulumi.IntPtrInput
 	// If true, the 'default' policy will not automatically be added to generated tokens
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenNoDefaultPolicy pulumi.BoolPtrInput
 	// The maximum number of times a token may be used, a value of zero means unlimited
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenNumUses pulumi.IntPtrInput
 	// Generated Token's Period
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenPeriod pulumi.IntPtrInput
 	// Generated Token's Policies
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenPolicies pulumi.StringArrayInput
 	// The initial ttl of the token to generate in seconds
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenTtl pulumi.IntPtrInput
 	// The type of token to generate, service or batch
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenType pulumi.StringPtrInput
 	// GitHub user name.
 	User pulumi.StringPtrInput
@@ -144,22 +198,40 @@ type userArgs struct {
 	// using this role.
 	Policies []string `pulumi:"policies"`
 	// Specifies the blocks of IP addresses which are allowed to use the generated token
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenBoundCidrs []string `pulumi:"tokenBoundCidrs"`
 	// Generated Token's Explicit Maximum TTL in seconds
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenExplicitMaxTtl *int `pulumi:"tokenExplicitMaxTtl"`
 	// The maximum lifetime of the generated token
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenMaxTtl *int `pulumi:"tokenMaxTtl"`
 	// If true, the 'default' policy will not automatically be added to generated tokens
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenNoDefaultPolicy *bool `pulumi:"tokenNoDefaultPolicy"`
 	// The maximum number of times a token may be used, a value of zero means unlimited
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenNumUses *int `pulumi:"tokenNumUses"`
 	// Generated Token's Period
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenPeriod *int `pulumi:"tokenPeriod"`
 	// Generated Token's Policies
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenPolicies []string `pulumi:"tokenPolicies"`
 	// The initial ttl of the token to generate in seconds
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenTtl *int `pulumi:"tokenTtl"`
 	// The type of token to generate, service or batch
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenType *string `pulumi:"tokenType"`
 	// GitHub user name.
 	User string `pulumi:"user"`
@@ -174,22 +246,40 @@ type UserArgs struct {
 	// using this role.
 	Policies pulumi.StringArrayInput
 	// Specifies the blocks of IP addresses which are allowed to use the generated token
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenBoundCidrs pulumi.StringArrayInput
 	// Generated Token's Explicit Maximum TTL in seconds
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenExplicitMaxTtl pulumi.IntPtrInput
 	// The maximum lifetime of the generated token
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenMaxTtl pulumi.IntPtrInput
 	// If true, the 'default' policy will not automatically be added to generated tokens
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenNoDefaultPolicy pulumi.BoolPtrInput
 	// The maximum number of times a token may be used, a value of zero means unlimited
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenNumUses pulumi.IntPtrInput
 	// Generated Token's Period
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenPeriod pulumi.IntPtrInput
 	// Generated Token's Policies
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenPolicies pulumi.StringArrayInput
 	// The initial ttl of the token to generate in seconds
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenTtl pulumi.IntPtrInput
 	// The type of token to generate, service or batch
+	//
+	// Deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
 	TokenType pulumi.StringPtrInput
 	// GitHub user name.
 	User pulumi.StringInput
