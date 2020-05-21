@@ -63,7 +63,7 @@ class AwaitableGetAuthBackendConfigResult(GetAuthBackendConfigResult):
 def get_auth_backend_config(backend=None,issuer=None,kubernetes_ca_cert=None,kubernetes_host=None,pem_keys=None,opts=None):
     """
     Reads the Role of an Kubernetes from a Vault server. See the [Vault
-    documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-config) for more
+    documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
     information.
 
 

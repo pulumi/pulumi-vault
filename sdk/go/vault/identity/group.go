@@ -19,7 +19,7 @@ type Group struct {
 	ExternalPolicies pulumi.BoolPtrOutput `pulumi:"externalPolicies"`
 	// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberEntityIds pulumi.StringArrayOutput `pulumi:"memberEntityIds"`
-	// A list of Group IDs to be assigned as group members.
+	// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberGroupIds pulumi.StringArrayOutput `pulumi:"memberGroupIds"`
 	// A Map of additional metadata to associate with the group.
 	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
@@ -63,7 +63,7 @@ type groupState struct {
 	ExternalPolicies *bool `pulumi:"externalPolicies"`
 	// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberEntityIds []string `pulumi:"memberEntityIds"`
-	// A list of Group IDs to be assigned as group members.
+	// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberGroupIds []string `pulumi:"memberGroupIds"`
 	// A Map of additional metadata to associate with the group.
 	Metadata map[string]string `pulumi:"metadata"`
@@ -80,7 +80,7 @@ type GroupState struct {
 	ExternalPolicies pulumi.BoolPtrInput
 	// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberEntityIds pulumi.StringArrayInput
-	// A list of Group IDs to be assigned as group members.
+	// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberGroupIds pulumi.StringArrayInput
 	// A Map of additional metadata to associate with the group.
 	Metadata pulumi.StringMapInput
@@ -101,7 +101,7 @@ type groupArgs struct {
 	ExternalPolicies *bool `pulumi:"externalPolicies"`
 	// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberEntityIds []string `pulumi:"memberEntityIds"`
-	// A list of Group IDs to be assigned as group members.
+	// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberGroupIds []string `pulumi:"memberGroupIds"`
 	// A Map of additional metadata to associate with the group.
 	Metadata map[string]string `pulumi:"metadata"`
@@ -119,7 +119,7 @@ type GroupArgs struct {
 	ExternalPolicies pulumi.BoolPtrInput
 	// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberEntityIds pulumi.StringArrayInput
-	// A list of Group IDs to be assigned as group members.
+	// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberGroupIds pulumi.StringArrayInput
 	// A Map of additional metadata to associate with the group.
 	Metadata pulumi.StringMapInput

@@ -8,7 +8,7 @@ import (
 )
 
 // Reads the Role of an Kubernetes from a Vault server. See the [Vault
-// documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-config) for more
+// documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
 // information.
 func LookupAuthBackendConfig(ctx *pulumi.Context, args *LookupAuthBackendConfigArgs, opts ...pulumi.InvokeOption) (*LookupAuthBackendConfigResult, error) {
 	var rv LookupAuthBackendConfigResult

@@ -56,7 +56,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
 
     /**
      * Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
-     * * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)
+     * * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
      */
     public readonly allowPlaintextBackup!: pulumi.Output<boolean | undefined>;
     /**
@@ -123,7 +123,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
     public /*out*/ readonly supportsSigning!: pulumi.Output<boolean>;
     /**
      * Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
-     * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
+     * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
      */
     public readonly type!: pulumi.Output<string | undefined>;
 
@@ -196,7 +196,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
 export interface SecretBackendKeyState {
     /**
      * Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
-     * * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)
+     * * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
      */
     readonly allowPlaintextBackup?: pulumi.Input<boolean>;
     /**
@@ -263,7 +263,7 @@ export interface SecretBackendKeyState {
     readonly supportsSigning?: pulumi.Input<boolean>;
     /**
      * Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
-     * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
+     * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
      */
     readonly type?: pulumi.Input<string>;
 }
@@ -274,7 +274,7 @@ export interface SecretBackendKeyState {
 export interface SecretBackendKeyArgs {
     /**
      * Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
-     * * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)
+     * * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
      */
     readonly allowPlaintextBackup?: pulumi.Input<boolean>;
     /**
@@ -311,7 +311,7 @@ export interface SecretBackendKeyArgs {
     readonly name?: pulumi.Input<string>;
     /**
      * Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
-     * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
+     * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
      */
     readonly type?: pulumi.Input<string>;
 }

@@ -6,7 +6,7 @@ import * as utilities from "../utilities";
 
 /**
  * Manages an AppRole auth backend SecretID in a Vault server. See the [Vault
- * documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
+ * documentation](https://www.vaultproject.io/docs/auth/approle) for more
  * information.
  *
  * ## Example Usage
@@ -104,7 +104,7 @@ export class AuthBackendRoleSecretID extends pulumi.CustomResource {
     public /*out*/ readonly wrappingToken!: pulumi.Output<string>;
     /**
      * If set, the SecretID response will be
-     * [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)
+     * [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
      * and available for the duration specified. Only a single unwrapping of the
      * token is allowed.
      */
@@ -199,7 +199,7 @@ export interface AuthBackendRoleSecretIDState {
     readonly wrappingToken?: pulumi.Input<string>;
     /**
      * If set, the SecretID response will be
-     * [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)
+     * [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
      * and available for the duration specified. Only a single unwrapping of the
      * token is allowed.
      */
@@ -235,7 +235,7 @@ export interface AuthBackendRoleSecretIDArgs {
     readonly secretId?: pulumi.Input<string>;
     /**
      * If set, the SecretID response will be
-     * [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)
+     * [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
      * and available for the duration specified. Only a single unwrapping of the
      * token is allowed.
      */

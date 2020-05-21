@@ -57,7 +57,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
       * `connectionUrl` (`str`) - A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
         for an example.
       * `maxConnectionLifetime` (`float`) - The maximum number of seconds to keep
         a connection alive for.
@@ -72,7 +72,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
       * `connectionUrl` (`str`) - A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
         for an example.
       * `maxConnectionLifetime` (`float`) - The maximum number of seconds to keep
         a connection alive for.
@@ -87,7 +87,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
       * `connectionUrl` (`str`) - A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
         for an example.
       * `maxConnectionLifetime` (`float`) - The maximum number of seconds to keep
         a connection alive for.
@@ -102,7 +102,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
       * `connectionUrl` (`str`) - A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
         for an example.
       * `maxConnectionLifetime` (`float`) - The maximum number of seconds to keep
         a connection alive for.
@@ -117,7 +117,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
       * `connectionUrl` (`str`) - A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
         for an example.
       * `maxConnectionLifetime` (`float`) - The maximum number of seconds to keep
         a connection alive for.
@@ -132,7 +132,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
       * `connectionUrl` (`str`) - A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
         for an example.
       * `maxConnectionLifetime` (`float`) - The maximum number of seconds to keep
         a connection alive for.
@@ -147,7 +147,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
       * `connectionUrl` (`str`) - A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
         for an example.
       * `maxConnectionLifetime` (`float`) - The maximum number of seconds to keep
         a connection alive for.
@@ -166,7 +166,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
       * `connectionUrl` (`str`) - A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
         for an example.
       * `maxConnectionLifetime` (`float`) - The maximum number of seconds to keep
         a connection alive for.
@@ -181,7 +181,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
       * `connectionUrl` (`str`) - A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
         for an example.
       * `maxConnectionLifetime` (`float`) - The maximum number of seconds to keep
         a connection alive for.
@@ -252,7 +252,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
           * `connectionUrl` (`pulumi.Input[str]`) - A URL containing connection information. See
             the [Vault
-            docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+            docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
             for an example.
           * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
             a connection alive for.
@@ -265,7 +265,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
           * `connectionUrl` (`pulumi.Input[str]`) - A URL containing connection information. See
             the [Vault
-            docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+            docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
             for an example.
           * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
             a connection alive for.
@@ -278,7 +278,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
           * `connectionUrl` (`pulumi.Input[str]`) - A URL containing connection information. See
             the [Vault
-            docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+            docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
             for an example.
           * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
             a connection alive for.
@@ -291,7 +291,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
           * `connectionUrl` (`pulumi.Input[str]`) - A URL containing connection information. See
             the [Vault
-            docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+            docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
             for an example.
           * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
             a connection alive for.
@@ -304,7 +304,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
           * `connectionUrl` (`pulumi.Input[str]`) - A URL containing connection information. See
             the [Vault
-            docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+            docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
             for an example.
           * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
             a connection alive for.
@@ -317,7 +317,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
           * `connectionUrl` (`pulumi.Input[str]`) - A URL containing connection information. See
             the [Vault
-            docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+            docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
             for an example.
           * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
             a connection alive for.
@@ -330,7 +330,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
           * `connectionUrl` (`pulumi.Input[str]`) - A URL containing connection information. See
             the [Vault
-            docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+            docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
             for an example.
           * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
             a connection alive for.
@@ -343,7 +343,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
           * `connectionUrl` (`pulumi.Input[str]`) - A URL containing connection information. See
             the [Vault
-            docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+            docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
             for an example.
           * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
             a connection alive for.
@@ -356,7 +356,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
           * `connectionUrl` (`pulumi.Input[str]`) - A URL containing connection information. See
             the [Vault
-            docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+            docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
             for an example.
           * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
             a connection alive for.
@@ -464,7 +464,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
           * `connectionUrl` (`pulumi.Input[str]`) - A URL containing connection information. See
             the [Vault
-            docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+            docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
             for an example.
           * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
             a connection alive for.
@@ -477,7 +477,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
           * `connectionUrl` (`pulumi.Input[str]`) - A URL containing connection information. See
             the [Vault
-            docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+            docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
             for an example.
           * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
             a connection alive for.
@@ -490,7 +490,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
           * `connectionUrl` (`pulumi.Input[str]`) - A URL containing connection information. See
             the [Vault
-            docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+            docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
             for an example.
           * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
             a connection alive for.
@@ -503,7 +503,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
           * `connectionUrl` (`pulumi.Input[str]`) - A URL containing connection information. See
             the [Vault
-            docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+            docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
             for an example.
           * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
             a connection alive for.
@@ -516,7 +516,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
           * `connectionUrl` (`pulumi.Input[str]`) - A URL containing connection information. See
             the [Vault
-            docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+            docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
             for an example.
           * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
             a connection alive for.
@@ -529,7 +529,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
           * `connectionUrl` (`pulumi.Input[str]`) - A URL containing connection information. See
             the [Vault
-            docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+            docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
             for an example.
           * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
             a connection alive for.
@@ -542,7 +542,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
           * `connectionUrl` (`pulumi.Input[str]`) - A URL containing connection information. See
             the [Vault
-            docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+            docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
             for an example.
           * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
             a connection alive for.
@@ -555,7 +555,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
           * `connectionUrl` (`pulumi.Input[str]`) - A URL containing connection information. See
             the [Vault
-            docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+            docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
             for an example.
           * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
             a connection alive for.
@@ -568,7 +568,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
           * `connectionUrl` (`pulumi.Input[str]`) - A URL containing connection information. See
             the [Vault
-            docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+            docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
             for an example.
           * `maxConnectionLifetime` (`pulumi.Input[float]`) - The maximum number of seconds to keep
             a connection alive for.

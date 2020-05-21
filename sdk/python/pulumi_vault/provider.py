@@ -10,7 +10,7 @@ from typing import Union
 from . import utilities, tables
 
 class Provider(pulumi.ProviderResource):
-    def __init__(__self__, resource_name, opts=None, add_address_to_env=None, address=None, auth_logins=None, ca_cert_dir=None, ca_cert_file=None, client_auths=None, max_lease_ttl_seconds=None, max_retries=None, namespace=None, skip_tls_verify=None, token=None, token_name=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, add_address_to_env=None, address=None, auth_logins=None, ca_cert_dir=None, ca_cert_file=None, client_auths=None, headers=None, max_lease_ttl_seconds=None, max_retries=None, namespace=None, skip_tls_verify=None, token=None, token_name=None, __props__=None, __name__=None, __opts__=None):
         """
         The provider type for the vault package. By default, resources use package-wide configuration
         settings, however an explicit `Provider` instance may be created and passed during resource
@@ -25,6 +25,7 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[str] ca_cert_dir: Path to directory containing CA certificate files to validate the server's certificate.
         :param pulumi.Input[str] ca_cert_file: Path to a CA certificate file to validate the server's certificate.
         :param pulumi.Input[list] client_auths: Client authentication credentials.
+        :param pulumi.Input[list] headers: The headers to send with each Vault request.
         :param pulumi.Input[float] max_lease_ttl_seconds: Maximum TTL for secret leases requested by this provider
         :param pulumi.Input[float] max_retries: Maximum number of retries when a 5xx error code is encountered.
         :param pulumi.Input[str] namespace: The namespace to use. Available only for Vault Enterprise
@@ -42,6 +43,11 @@ class Provider(pulumi.ProviderResource):
 
           * `certFile` (`pulumi.Input[str]`)
           * `keyFile` (`pulumi.Input[str]`)
+
+        The **headers** object supports the following:
+
+          * `name` (`pulumi.Input[str]`)
+          * `value` (`pulumi.Input[str]`)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -72,6 +78,7 @@ class Provider(pulumi.ProviderResource):
                 ca_cert_file = utilities.get_env('VAULT_CACERT')
             __props__['ca_cert_file'] = ca_cert_file
             __props__['client_auths'] = pulumi.Output.from_input(client_auths).apply(json.dumps) if client_auths is not None else None
+            __props__['headers'] = pulumi.Output.from_input(headers).apply(json.dumps) if headers is not None else None
             if max_lease_ttl_seconds is None:
                 max_lease_ttl_seconds = (utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL') or 1200)
             __props__['max_lease_ttl_seconds'] = pulumi.Output.from_input(max_lease_ttl_seconds).apply(json.dumps) if max_lease_ttl_seconds is not None else None

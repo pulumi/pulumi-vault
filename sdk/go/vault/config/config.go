@@ -50,6 +50,11 @@ func GetClientAuths(ctx *pulumi.Context) string {
 	return config.Get(ctx, "vault:clientAuths")
 }
 
+// The headers to send with each Vault request.
+func GetHeaders(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:headers")
+}
+
 // Maximum TTL for secret leases requested by this provider
 func GetMaxLeaseTtlSeconds(ctx *pulumi.Context) int {
 	v, err := config.TryInt(ctx, "vault:maxLeaseTtlSeconds")

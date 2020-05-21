@@ -44,6 +44,7 @@ export class Provider extends pulumi.ProviderResource {
             inputs["caCertDir"] = (args ? args.caCertDir : undefined) || utilities.getEnv("VAULT_CAPATH");
             inputs["caCertFile"] = (args ? args.caCertFile : undefined) || utilities.getEnv("VAULT_CACERT");
             inputs["clientAuths"] = pulumi.output(args ? args.clientAuths : undefined).apply(JSON.stringify);
+            inputs["headers"] = pulumi.output(args ? args.headers : undefined).apply(JSON.stringify);
             inputs["maxLeaseTtlSeconds"] = pulumi.output((args ? args.maxLeaseTtlSeconds : undefined) || (utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 1200)).apply(JSON.stringify);
             inputs["maxRetries"] = pulumi.output((args ? args.maxRetries : undefined) || (utilities.getEnvNumber("VAULT_MAX_RETRIES") || 2)).apply(JSON.stringify);
             inputs["namespace"] = (args ? args.namespace : undefined) || utilities.getEnv("VAULT_NAMESPACE");
@@ -90,6 +91,10 @@ export interface ProviderArgs {
      * Client authentication credentials.
      */
     readonly clientAuths?: pulumi.Input<pulumi.Input<inputs.ProviderClientAuth>[]>;
+    /**
+     * The headers to send with each Vault request.
+     */
+    readonly headers?: pulumi.Input<pulumi.Input<inputs.ProviderHeader>[]>;
     /**
      * Maximum TTL for secret leases requested by this provider
      */

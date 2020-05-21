@@ -117,6 +117,11 @@ export interface ProviderClientAuth {
     keyFile: pulumi.Input<string>;
 }
 
+export interface ProviderHeader {
+    name: pulumi.Input<string>;
+    value: pulumi.Input<string>;
+}
+
 export namespace azure {
     export interface BackendRoleAzureRole {
         roleId?: pulumi.Input<string>;
@@ -193,7 +198,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -218,7 +223,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -243,7 +248,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -268,7 +273,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -293,7 +298,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -318,7 +323,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -343,7 +348,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -368,7 +373,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -393,7 +398,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;

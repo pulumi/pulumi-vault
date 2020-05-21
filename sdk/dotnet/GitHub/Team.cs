@@ -11,7 +11,7 @@ namespace Pulumi.Vault.GitHub
 {
     /// <summary>
     /// Manages policy mappings for Github Teams authenticated via Github. See the [Vault
-    /// documentation](https://www.vaultproject.io/docs/auth/github.html) for more
+    /// documentation](https://www.vaultproject.io/docs/auth/github/) for more
     /// information.
     /// </summary>
     public partial class Team : Pulumi.CustomResource

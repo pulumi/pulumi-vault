@@ -11,7 +11,7 @@ namespace Pulumi.Vault.AppRole
 {
     /// <summary>
     /// Logs into Vault using the AppRole auth backend. See the [Vault
-    /// documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
+    /// documentation](https://www.vaultproject.io/docs/auth/approle) for more
     /// information.
     /// </summary>
     public partial class AuthBackendLogin : Pulumi.CustomResource

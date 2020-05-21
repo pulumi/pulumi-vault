@@ -11,7 +11,7 @@ namespace Pulumi.Vault.AppRole
 {
     /// <summary>
     /// Manages an AppRole auth backend SecretID in a Vault server. See the [Vault
-    /// documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
+    /// documentation](https://www.vaultproject.io/docs/auth/approle) for more
     /// information.
     /// </summary>
     public partial class AuthBackendRoleSecretID : Pulumi.CustomResource
@@ -70,7 +70,7 @@ namespace Pulumi.Vault.AppRole
 
         /// <summary>
         /// If set, the SecretID response will be
-        /// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)
+        /// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
         /// and available for the duration specified. Only a single unwrapping of the
         /// token is allowed.
         /// </summary>
@@ -164,7 +164,7 @@ namespace Pulumi.Vault.AppRole
 
         /// <summary>
         /// If set, the SecretID response will be
-        /// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)
+        /// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
         /// and available for the duration specified. Only a single unwrapping of the
         /// token is allowed.
         /// </summary>
@@ -238,7 +238,7 @@ namespace Pulumi.Vault.AppRole
 
         /// <summary>
         /// If set, the SecretID response will be
-        /// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)
+        /// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
         /// and available for the duration specified. Only a single unwrapping of the
         /// token is allowed.
         /// </summary>

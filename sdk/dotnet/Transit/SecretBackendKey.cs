@@ -16,7 +16,7 @@ namespace Pulumi.Vault.Transit
     {
         /// <summary>
         /// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
-        /// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)
+        /// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
         /// </summary>
         [Output("allowPlaintextBackup")]
         public Output<bool?> AllowPlaintextBackup { get; private set; } = null!;
@@ -115,7 +115,7 @@ namespace Pulumi.Vault.Transit
 
         /// <summary>
         /// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
-        /// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
+        /// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         /// </summary>
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
@@ -168,7 +168,7 @@ namespace Pulumi.Vault.Transit
     {
         /// <summary>
         /// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
-        /// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)
+        /// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
         /// </summary>
         [Input("allowPlaintextBackup")]
         public Input<bool>? AllowPlaintextBackup { get; set; }
@@ -223,7 +223,7 @@ namespace Pulumi.Vault.Transit
 
         /// <summary>
         /// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
-        /// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
+        /// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -237,7 +237,7 @@ namespace Pulumi.Vault.Transit
     {
         /// <summary>
         /// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
-        /// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)
+        /// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
         /// </summary>
         [Input("allowPlaintextBackup")]
         public Input<bool>? AllowPlaintextBackup { get; set; }
@@ -342,7 +342,7 @@ namespace Pulumi.Vault.Transit
 
         /// <summary>
         /// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
-        /// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
+        /// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

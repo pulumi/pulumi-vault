@@ -22,8 +22,8 @@ class AuthBackendRole(pulumi.CustomResource):
     """
     bound_audiences: pulumi.Output[list]
     """
-    List of `aud` claims to match
-    against. Any match is sufficient.
+    (Required for roles of type `jwt`, optional for roles of
+    type `oidc`) List of `aud` claims to match against. Any match is sufficient.
     """
     bound_cidrs: pulumi.Output[list]
     """
@@ -223,8 +223,8 @@ class AuthBackendRole(pulumi.CustomResource):
                Required for OIDC roles
         :param pulumi.Input[str] backend: The unique name of the auth backend to configure.
                Defaults to `jwt`.
-        :param pulumi.Input[list] bound_audiences: List of `aud` claims to match
-               against. Any match is sufficient.
+        :param pulumi.Input[list] bound_audiences: (Required for roles of type `jwt`, optional for roles of
+               type `oidc`) List of `aud` claims to match against. Any match is sufficient.
         :param pulumi.Input[list] bound_cidrs: If set, a list of
                CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
         :param pulumi.Input[dict] bound_claims: If set, a map of claims/values to match against.
@@ -376,8 +376,8 @@ class AuthBackendRole(pulumi.CustomResource):
                Required for OIDC roles
         :param pulumi.Input[str] backend: The unique name of the auth backend to configure.
                Defaults to `jwt`.
-        :param pulumi.Input[list] bound_audiences: List of `aud` claims to match
-               against. Any match is sufficient.
+        :param pulumi.Input[list] bound_audiences: (Required for roles of type `jwt`, optional for roles of
+               type `oidc`) List of `aud` claims to match against. Any match is sufficient.
         :param pulumi.Input[list] bound_cidrs: If set, a list of
                CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
         :param pulumi.Input[dict] bound_claims: If set, a map of claims/values to match against.

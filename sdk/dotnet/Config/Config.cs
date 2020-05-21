@@ -39,6 +39,11 @@ namespace Pulumi.Vault
         public static ImmutableArray<Pulumi.Vault.Config.Types.ClientAuths> ClientAuths { get; set; } = __config.GetObject<ImmutableArray<Pulumi.Vault.Config.Types.ClientAuths>>("clientAuths");
 
         /// <summary>
+        /// The headers to send with each Vault request.
+        /// </summary>
+        public static ImmutableArray<Pulumi.Vault.Config.Types.Headers> Headers { get; set; } = __config.GetObject<ImmutableArray<Pulumi.Vault.Config.Types.Headers>>("headers");
+
+        /// <summary>
         /// Maximum TTL for secret leases requested by this provider
         /// </summary>
         public static int? MaxLeaseTtlSeconds { get; set; } = __config.GetInt32("maxLeaseTtlSeconds") ?? Utilities.GetEnvInt32("TERRAFORM_VAULT_MAX_TTL") ?? 1200;
@@ -82,6 +87,12 @@ namespace Pulumi.Vault
              {
                 public string CertFile { get; set; }
                 public string KeyFile { get; set; }
+            }
+
+             public class Headers
+             {
+                public string Name { get; set; }
+                public string Value { get; set; }
             }
         }
     }

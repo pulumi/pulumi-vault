@@ -31,6 +31,10 @@ export let caCertFile: string | undefined = __config.get("caCertFile") || utilit
  */
 export let clientAuths: { certFile: string, keyFile: string }[] | undefined = __config.getObject<{ certFile: string, keyFile: string }[]>("clientAuths");
 /**
+ * The headers to send with each Vault request.
+ */
+export let headers: { name: string, value: string }[] | undefined = __config.getObject<{ name: string, value: string }[]>("headers");
+/**
  * Maximum TTL for secret leases requested by this provider
  */
 export let maxLeaseTtlSeconds: number | undefined = __config.getObject<number>("maxLeaseTtlSeconds") || (utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 1200);

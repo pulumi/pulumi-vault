@@ -92,6 +92,18 @@ namespace Pulumi.Vault
             set => _clientAuths = value;
         }
 
+        [Input("headers", json: true)]
+        private InputList<Inputs.ProviderHeaderArgs>? _headers;
+
+        /// <summary>
+        /// The headers to send with each Vault request.
+        /// </summary>
+        public InputList<Inputs.ProviderHeaderArgs> Headers
+        {
+            get => _headers ?? (_headers = new InputList<Inputs.ProviderHeaderArgs>());
+            set => _headers = value;
+        }
+
         /// <summary>
         /// Maximum TTL for secret leases requested by this provider
         /// </summary>
