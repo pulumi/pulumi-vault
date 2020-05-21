@@ -41,6 +41,11 @@ client_auths = __config__.get('clientAuths')
 Client authentication credentials.
 """
 
+headers = __config__.get('headers')
+"""
+The headers to send with each Vault request.
+"""
+
 max_lease_ttl_seconds = __config__.get('maxLeaseTtlSeconds') or (utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL') or 1200)
 """
 Maximum TTL for secret leases requested by this provider

@@ -11,7 +11,7 @@ import (
 )
 
 // Manages an AppRole auth backend SecretID in a Vault server. See the [Vault
-// documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
+// documentation](https://www.vaultproject.io/docs/auth/approle) for more
 // information.
 type AuthBackendRoleSecretID struct {
 	pulumi.CustomResourceState
@@ -37,7 +37,7 @@ type AuthBackendRoleSecretID struct {
 	// The token used to retrieve a response-wrapped SecretID.
 	WrappingToken pulumi.StringOutput `pulumi:"wrappingToken"`
 	// If set, the SecretID response will be
-	// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)
+	// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
 	// and available for the duration specified. Only a single unwrapping of the
 	// token is allowed.
 	WrappingTtl pulumi.StringPtrOutput `pulumi:"wrappingTtl"`
@@ -95,7 +95,7 @@ type authBackendRoleSecretIDState struct {
 	// The token used to retrieve a response-wrapped SecretID.
 	WrappingToken *string `pulumi:"wrappingToken"`
 	// If set, the SecretID response will be
-	// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)
+	// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
 	// and available for the duration specified. Only a single unwrapping of the
 	// token is allowed.
 	WrappingTtl *string `pulumi:"wrappingTtl"`
@@ -123,7 +123,7 @@ type AuthBackendRoleSecretIDState struct {
 	// The token used to retrieve a response-wrapped SecretID.
 	WrappingToken pulumi.StringPtrInput
 	// If set, the SecretID response will be
-	// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)
+	// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
 	// and available for the duration specified. Only a single unwrapping of the
 	// token is allowed.
 	WrappingTtl pulumi.StringPtrInput
@@ -148,7 +148,7 @@ type authBackendRoleSecretIDArgs struct {
 	// mode.  Defaults to Vault auto-generating SecretIDs.
 	SecretId *string `pulumi:"secretId"`
 	// If set, the SecretID response will be
-	// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)
+	// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
 	// and available for the duration specified. Only a single unwrapping of the
 	// token is allowed.
 	WrappingTtl *string `pulumi:"wrappingTtl"`
@@ -170,7 +170,7 @@ type AuthBackendRoleSecretIDArgs struct {
 	// mode.  Defaults to Vault auto-generating SecretIDs.
 	SecretId pulumi.StringPtrInput
 	// If set, the SecretID response will be
-	// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)
+	// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
 	// and available for the duration specified. Only a single unwrapping of the
 	// token is allowed.
 	WrappingTtl pulumi.StringPtrInput

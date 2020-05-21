@@ -80,7 +80,7 @@ export class Group extends pulumi.CustomResource {
      */
     public readonly memberEntityIds!: pulumi.Output<string[]>;
     /**
-     * A list of Group IDs to be assigned as group members.
+     * A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
      */
     public readonly memberGroupIds!: pulumi.Output<string[] | undefined>;
     /**
@@ -153,7 +153,7 @@ export interface GroupState {
      */
     readonly memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * A list of Group IDs to be assigned as group members.
+     * A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
      */
     readonly memberGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -187,7 +187,7 @@ export interface GroupArgs {
      */
     readonly memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * A list of Group IDs to be assigned as group members.
+     * A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
      */
     readonly memberGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**

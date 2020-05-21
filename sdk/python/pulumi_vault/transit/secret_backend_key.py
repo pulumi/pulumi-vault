@@ -13,7 +13,7 @@ class SecretBackendKey(pulumi.CustomResource):
     allow_plaintext_backup: pulumi.Output[bool]
     """
     Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
-    * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)
+    * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
     """
     backend: pulumi.Output[str]
     """
@@ -80,7 +80,7 @@ class SecretBackendKey(pulumi.CustomResource):
     type: pulumi.Output[str]
     """
     Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
-    * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
+    * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
     """
     def __init__(__self__, resource_name, opts=None, allow_plaintext_backup=None, backend=None, convergent_encryption=None, deletion_allowed=None, derived=None, exportable=None, min_decryption_version=None, min_encryption_version=None, name=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -107,7 +107,7 @@ class SecretBackendKey(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
-               * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)
+               * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
         :param pulumi.Input[bool] deletion_allowed: Specifies if the key is allowed to be deleted.
@@ -117,7 +117,7 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[float] min_encryption_version: Minimum key version to use for encryption
         :param pulumi.Input[str] name: The name to identify this key within the backend. Must be unique within the backend.
         :param pulumi.Input[str] type: Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
-               * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
+               * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -171,7 +171,7 @@ class SecretBackendKey(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
-               * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)
+               * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
         :param pulumi.Input[bool] deletion_allowed: Specifies if the key is allowed to be deleted.
@@ -190,7 +190,7 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[bool] supports_encryption: Whether or not the key supports encryption, based on key type.
         :param pulumi.Input[bool] supports_signing: Whether or not the key supports signing, based on key type.
         :param pulumi.Input[str] type: Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
-               * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
+               * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

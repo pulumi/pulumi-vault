@@ -165,7 +165,7 @@ class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
 def get_auth_backend_role(audience=None,backend=None,bound_cidrs=None,max_ttl=None,num_uses=None,period=None,policies=None,role_name=None,token_bound_cidrs=None,token_explicit_max_ttl=None,token_max_ttl=None,token_no_default_policy=None,token_num_uses=None,token_period=None,token_policies=None,token_ttl=None,token_type=None,ttl=None,opts=None):
     """
     Reads the Role of an Kubernetes from a Vault server. See the [Vault
-    documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-role) for more
+    documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
     information.
 
     ## Example Usage

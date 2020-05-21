@@ -49,14 +49,14 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
     wrapping_ttl: pulumi.Output[str]
     """
     If set, the SecretID response will be
-    [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)
+    [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
     and available for the duration specified. Only a single unwrapping of the
     token is allowed.
     """
     def __init__(__self__, resource_name, opts=None, backend=None, cidr_lists=None, metadata=None, role_name=None, secret_id=None, wrapping_ttl=None, __props__=None, __name__=None, __opts__=None):
         """
         Manages an AppRole auth backend SecretID in a Vault server. See the [Vault
-        documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
+        documentation](https://www.vaultproject.io/docs/auth/approle) for more
         information.
 
         ## Example Usage
@@ -98,7 +98,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
         :param pulumi.Input[str] secret_id: The SecretID to be created. If set, uses "Push"
                mode.  Defaults to Vault auto-generating SecretIDs.
         :param pulumi.Input[str] wrapping_ttl: If set, the SecretID response will be
-               [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)
+               [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
                and available for the duration specified. Only a single unwrapping of the
                token is allowed.
         """
@@ -158,7 +158,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
                be safely logged.
         :param pulumi.Input[str] wrapping_token: The token used to retrieve a response-wrapped SecretID.
         :param pulumi.Input[str] wrapping_ttl: If set, the SecretID response will be
-               [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)
+               [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
                and available for the duration specified. Only a single unwrapping of the
                token is allowed.
         """

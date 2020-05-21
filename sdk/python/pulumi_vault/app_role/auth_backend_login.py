@@ -54,7 +54,7 @@ class AuthBackendLogin(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, backend=None, role_id=None, secret_id=None, __props__=None, __name__=None, __opts__=None):
         """
         Logs into Vault using the AppRole auth backend. See the [Vault
-        documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
+        documentation](https://www.vaultproject.io/docs/auth/approle) for more
         information.
 
         ## Example Usage

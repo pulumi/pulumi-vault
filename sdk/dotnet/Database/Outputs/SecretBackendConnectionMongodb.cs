@@ -16,7 +16,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// <summary>
         /// A URL containing connection information. See
         /// the [Vault
-        /// docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
+        /// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
         /// for an example.
         /// </summary>
         public readonly string? ConnectionUrl;

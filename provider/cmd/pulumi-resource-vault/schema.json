@@ -59,6 +59,13 @@
                 },
                 "description": "Client authentication credentials.\n"
             },
+            "headers": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/types/vault:config/headers:headers"
+                },
+                "description": "The headers to send with each Vault request.\n"
+            },
             "maxLeaseTtlSeconds": {
                 "type": "integer",
                 "description": "Maximum TTL for secret leases requested by this provider\n",
@@ -432,6 +439,21 @@
                 "keyFile"
             ]
         },
+        "vault:config/headers:headers": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "value"
+            ]
+        },
         "vault:database/SecretBackendConnectionCassandra:SecretBackendConnectionCassandra": {
             "properties": {
                 "connectTimeout": {
@@ -571,7 +593,7 @@
             "properties": {
                 "connectionUrl": {
                     "type": "string",
-                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -612,7 +634,7 @@
             "properties": {
                 "connectionUrl": {
                     "type": "string",
-                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -653,7 +675,7 @@
             "properties": {
                 "connectionUrl": {
                     "type": "string",
-                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -694,7 +716,7 @@
             "properties": {
                 "connectionUrl": {
                     "type": "string",
-                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -735,7 +757,7 @@
             "properties": {
                 "connectionUrl": {
                     "type": "string",
-                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -776,7 +798,7 @@
             "properties": {
                 "connectionUrl": {
                     "type": "string",
-                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -817,7 +839,7 @@
             "properties": {
                 "connectionUrl": {
                     "type": "string",
-                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -858,7 +880,7 @@
             "properties": {
                 "connectionUrl": {
                     "type": "string",
-                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -899,7 +921,7 @@
             "properties": {
                 "connectionUrl": {
                     "type": "string",
-                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1228,6 +1250,31 @@
                 "keyFile"
             ]
         },
+        "vault:index/ProviderHeader:ProviderHeader": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "value": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "value"
+            ]
+        },
         "vault:jwt/AuthBackendTune:AuthBackendTune": {
             "properties": {
                 "allowedResponseHeaders": {
@@ -1481,6 +1528,13 @@
                 },
                 "description": "Client authentication credentials.\n"
             },
+            "headers": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/types/vault:index/ProviderHeader:ProviderHeader"
+                },
+                "description": "The headers to send with each Vault request.\n"
+            },
             "maxLeaseTtlSeconds": {
                 "type": "integer",
                 "description": "Maximum TTL for secret leases requested by this provider\n",
@@ -1723,7 +1777,7 @@
             }
         },
         "vault:appRole/authBackendLogin:AuthBackendLogin": {
-            "description": "Logs into Vault using the AppRole auth backend. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/approle.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst approle = new vault.AuthBackend(\"approle\", {\n    type: \"approle\",\n});\nconst example = new vault.appRole.AuthBackendRole(\"example\", {\n    backend: approle.path,\n    policies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    roleName: \"test-role\",\n});\nconst id = new vault.appRole.AuthBackendRoleSecretID(\"id\", {\n    backend: approle.path,\n    roleName: example.roleName,\n});\nconst login = new vault.appRole.AuthBackendLogin(\"login\", {\n    backend: approle.path,\n    roleId: example.roleId,\n    secretId: id.secretId,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\napprole = vault.AuthBackend(\"approle\", type=\"approle\")\nexample = vault.app_role.AuthBackendRole(\"example\",\n    backend=approle.path,\n    policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    role_name=\"test-role\")\nid = vault.app_role.AuthBackendRoleSecretID(\"id\",\n    backend=approle.path,\n    role_name=example.role_name)\nlogin = vault.app_role.AuthBackendLogin(\"login\",\n    backend=approle.path,\n    role_id=example.role_id,\n    secret_id=id.secret_id)\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "description": "Logs into Vault using the AppRole auth backend. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/approle) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst approle = new vault.AuthBackend(\"approle\", {\n    type: \"approle\",\n});\nconst example = new vault.appRole.AuthBackendRole(\"example\", {\n    backend: approle.path,\n    policies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    roleName: \"test-role\",\n});\nconst id = new vault.appRole.AuthBackendRoleSecretID(\"id\", {\n    backend: approle.path,\n    roleName: example.roleName,\n});\nconst login = new vault.appRole.AuthBackendLogin(\"login\", {\n    backend: approle.path,\n    roleId: example.roleId,\n    secretId: id.secretId,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\napprole = vault.AuthBackend(\"approle\", type=\"approle\")\nexample = vault.app_role.AuthBackendRole(\"example\",\n    backend=approle.path,\n    policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    role_name=\"test-role\")\nid = vault.app_role.AuthBackendRoleSecretID(\"id\",\n    backend=approle.path,\n    role_name=example.role_name)\nlogin = vault.app_role.AuthBackendLogin(\"login\",\n    backend=approle.path,\n    role_id=example.role_id,\n    secret_id=id.secret_id)\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "accessor": {
                     "type": "string",
@@ -1853,7 +1907,7 @@
             }
         },
         "vault:appRole/authBackendRole:AuthBackendRole": {
-            "description": "Manages an AppRole auth backend role in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/approle.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst approle = new vault.AuthBackend(\"approle\", {type: \"approle\"});\nconst example = new vault.appRole.AuthBackendRole(\"example\", {\n    backend: approle.path,\n    roleName: \"test-role\",\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\napprole = vault.AuthBackend(\"approle\", type=\"approle\")\nexample = vault.app_role.AuthBackendRole(\"example\",\n    backend=approle.path,\n    role_name=\"test-role\",\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ])\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "description": "Manages an AppRole auth backend role in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/approle) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst approle = new vault.AuthBackend(\"approle\", {type: \"approle\"});\nconst example = new vault.appRole.AuthBackendRole(\"example\", {\n    backend: approle.path,\n    roleName: \"test-role\",\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\napprole = vault.AuthBackend(\"approle\", type=\"approle\")\nexample = vault.app_role.AuthBackendRole(\"example\",\n    backend=approle.path,\n    role_name=\"test-role\",\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ])\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "backend": {
                     "type": "string",
@@ -2155,7 +2209,7 @@
             }
         },
         "vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID": {
-            "description": "Manages an AppRole auth backend SecretID in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/approle.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst approle = new vault.AuthBackend(\"approle\", {\n    type: \"approle\",\n});\nconst example = new vault.appRole.AuthBackendRole(\"example\", {\n    backend: approle.path,\n    policies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    roleName: \"test-role\",\n});\nconst id = new vault.appRole.AuthBackendRoleSecretID(\"id\", {\n    backend: approle.path,\n    metadata: `{\n  \"hello\": \"world\"\n}\n`,\n    roleName: example.roleName,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\napprole = vault.AuthBackend(\"approle\", type=\"approle\")\nexample = vault.app_role.AuthBackendRole(\"example\",\n    backend=approle.path,\n    policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    role_name=\"test-role\")\nid = vault.app_role.AuthBackendRoleSecretID(\"id\",\n    backend=approle.path,\n    metadata=\"\"\"{\n  \"hello\": \"world\"\n}\n\n\"\"\",\n    role_name=example.role_name)\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "description": "Manages an AppRole auth backend SecretID in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/approle) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst approle = new vault.AuthBackend(\"approle\", {\n    type: \"approle\",\n});\nconst example = new vault.appRole.AuthBackendRole(\"example\", {\n    backend: approle.path,\n    policies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    roleName: \"test-role\",\n});\nconst id = new vault.appRole.AuthBackendRoleSecretID(\"id\", {\n    backend: approle.path,\n    metadata: `{\n  \"hello\": \"world\"\n}\n`,\n    roleName: example.roleName,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\napprole = vault.AuthBackend(\"approle\", type=\"approle\")\nexample = vault.app_role.AuthBackendRole(\"example\",\n    backend=approle.path,\n    policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    role_name=\"test-role\")\nid = vault.app_role.AuthBackendRoleSecretID(\"id\",\n    backend=approle.path,\n    metadata=\"\"\"{\n  \"hello\": \"world\"\n}\n\n\"\"\",\n    role_name=example.role_name)\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "accessor": {
                     "type": "string",
@@ -2194,7 +2248,7 @@
                 },
                 "wrappingTtl": {
                     "type": "string",
-                    "description": "If set, the SecretID response will be\n[response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)\nand available for the duration specified. Only a single unwrapping of the\ntoken is allowed.\n"
+                    "description": "If set, the SecretID response will be\n[response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)\nand available for the duration specified. Only a single unwrapping of the\ntoken is allowed.\n"
                 }
             },
             "required": [
@@ -2230,7 +2284,7 @@
                 },
                 "wrappingTtl": {
                     "type": "string",
-                    "description": "If set, the SecretID response will be\n[response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)\nand available for the duration specified. Only a single unwrapping of the\ntoken is allowed.\n"
+                    "description": "If set, the SecretID response will be\n[response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)\nand available for the duration specified. Only a single unwrapping of the\ntoken is allowed.\n"
                 }
             },
             "requiredInputs": [
@@ -2276,7 +2330,7 @@
                     },
                     "wrappingTtl": {
                         "type": "string",
-                        "description": "If set, the SecretID response will be\n[response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping.html)\nand available for the duration specified. Only a single unwrapping of the\ntoken is allowed.\n"
+                        "description": "If set, the SecretID response will be\n[response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)\nand available for the duration specified. Only a single unwrapping of the\ntoken is allowed.\n"
                     }
                 },
                 "type": "object"
@@ -2447,7 +2501,7 @@
             }
         },
         "vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist": {
-            "description": "Configures the periodic tidying operation of the whitelisted identity entries.\n\nFor more information, see the\n[Vault docs](https://www.vaultproject.io/api/auth/aws/index.html#configure-identity-whitelist-tidy-operation).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst exampleAuthBackend = new vault.AuthBackend(\"example\", {\n    type: \"aws\",\n});\nconst exampleAuthBackendIdentityWhitelist = new vault.aws.AuthBackendIdentityWhitelist(\"example\", {\n    backend: exampleAuthBackend.path,\n    safetyBuffer: 3600,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample_auth_backend = vault.AuthBackend(\"exampleAuthBackend\", type=\"aws\")\nexample_auth_backend_identity_whitelist = vault.aws.AuthBackendIdentityWhitelist(\"exampleAuthBackendIdentityWhitelist\",\n    backend=example_auth_backend.path,\n    safety_buffer=3600)\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "description": "Configures the periodic tidying operation of the whitelisted identity entries.\n\nFor more information, see the\n[Vault docs](https://www.vaultproject.io/api-docs/auth/aws#configure-identity-whitelist-tidy-operation).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst exampleAuthBackend = new vault.AuthBackend(\"example\", {\n    type: \"aws\",\n});\nconst exampleAuthBackendIdentityWhitelist = new vault.aws.AuthBackendIdentityWhitelist(\"example\", {\n    backend: exampleAuthBackend.path,\n    safetyBuffer: 3600,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample_auth_backend = vault.AuthBackend(\"exampleAuthBackend\", type=\"aws\")\nexample_auth_backend_identity_whitelist = vault.aws.AuthBackendIdentityWhitelist(\"exampleAuthBackendIdentityWhitelist\",\n    backend=example_auth_backend.path,\n    safety_buffer=3600)\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "backend": {
                     "type": "string",
@@ -6047,7 +6101,7 @@
             }
         },
         "vault:github/authBackend:AuthBackend": {
-            "description": "Manages a Github Auth mount in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/github.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.github.AuthBackend(\"example\", {\n    organization: \"myorg\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.github.AuthBackend(\"example\", organization=\"myorg\")\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "description": "Manages a Github Auth mount in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/github/) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.github.AuthBackend(\"example\", {\n    organization: \"myorg\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.github.AuthBackend(\"example\", organization=\"myorg\")\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "accessor": {
                     "type": "string",
@@ -6520,7 +6574,7 @@
             }
         },
         "vault:github/user:User": {
-            "description": "Manages policy mappings for Github Users authenticated via Github. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/github.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.github.AuthBackend(\"example\", {organization: \"myorg\"});\nconst tfUser = new vault.github.User(\"tfUser\", {\n    backend: example.id,\n    user: \"john.doe\",\n    tokenPolicies: [\n        \"developer\",\n        \"read-only\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.github.AuthBackend(\"example\", organization=\"myorg\")\ntf_user = vault.github.User(\"tfUser\",\n    backend=example.id,\n    user=\"john.doe\",\n    token_policies=[\n        \"developer\",\n        \"read-only\",\n    ])\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "description": "Manages policy mappings for Github Users authenticated via Github. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/github/) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.github.AuthBackend(\"example\", {organization: \"myorg\"});\nconst tfUser = new vault.github.User(\"tfUser\", {\n    backend: example.id,\n    user: \"john.doe\",\n    tokenPolicies: [\n        \"developer\",\n        \"read-only\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.github.AuthBackend(\"example\", organization=\"myorg\")\ntf_user = vault.github.User(\"tfUser\",\n    backend=example.id,\n    user=\"john.doe\",\n    token_policies=[\n        \"developer\",\n        \"read-only\",\n    ])\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "backend": {
                     "type": "string",
@@ -6995,7 +7049,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "A list of Group IDs to be assigned as group members.\n"
+                    "description": "A list of Group IDs to be assigned as group members. Not allowed on `external` groups.\n"
                 },
                 "metadata": {
                     "type": "object",
@@ -7041,7 +7095,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "A list of Group IDs to be assigned as group members.\n"
+                    "description": "A list of Group IDs to be assigned as group members. Not allowed on `external` groups.\n"
                 },
                 "metadata": {
                     "type": "object",
@@ -7085,7 +7139,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "A list of Group IDs to be assigned as group members.\n"
+                        "description": "A list of Group IDs to be assigned as group members. Not allowed on `external` groups.\n"
                     },
                     "metadata": {
                         "type": "object",
@@ -9086,7 +9140,7 @@
             }
         },
         "vault:jwt/authBackendRole:AuthBackendRole": {
-            "description": "Manages an JWT/OIDC auth backend role in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/jwt.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nRole for JWT backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst jwt = new vault.jwt.AuthBackend(\"jwt\", {path: \"jwt\"});\nconst example = new vault.jwt.AuthBackendRole(\"example\", {\n    backend: jwt.path,\n    roleName: \"test-role\",\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    boundAudiences: [\"https://myco.test\"],\n    userClaim: \"https://vault/user\",\n    roleType: \"jwt\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\njwt = vault.jwt.AuthBackend(\"jwt\", path=\"jwt\")\nexample = vault.jwt.AuthBackendRole(\"example\",\n    backend=jwt.path,\n    role_name=\"test-role\",\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    bound_audiences=[\"https://myco.test\"],\n    user_claim=\"https://vault/user\",\n    role_type=\"jwt\")\n```\n\nRole for OIDC backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst oidc = new vault.jwt.AuthBackend(\"oidc\", {\n    path: \"oidc\",\n    defaultRole: \"test-role\",\n});\nconst example = new vault.jwt.AuthBackendRole(\"example\", {\n    backend: oidc.path,\n    roleName: \"test-role\",\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    boundAudiences: [\"https://myco.test\"],\n    userClaim: \"https://vault/user\",\n    roleType: \"oidc\",\n    allowedRedirectUris: [\"http://localhost:8200/ui/vault/auth/oidc/oidc/callback\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\noidc = vault.jwt.AuthBackend(\"oidc\",\n    path=\"oidc\",\n    default_role=\"test-role\")\nexample = vault.jwt.AuthBackendRole(\"example\",\n    backend=oidc.path,\n    role_name=\"test-role\",\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    bound_audiences=[\"https://myco.test\"],\n    user_claim=\"https://vault/user\",\n    role_type=\"oidc\",\n    allowed_redirect_uris=[\"http://localhost:8200/ui/vault/auth/oidc/oidc/callback\"])\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "description": "Manages an JWT/OIDC auth backend role in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/jwt.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nRole for JWT backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst jwt = new vault.jwt.AuthBackend(\"jwt\", {path: \"jwt\"});\nconst example = new vault.jwt.AuthBackendRole(\"example\", {\n    backend: jwt.path,\n    roleName: \"test-role\",\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    boundAudiences: [\"https://myco.test\"],\n    userClaim: \"https://vault/user\",\n    roleType: \"jwt\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\njwt = vault.jwt.AuthBackend(\"jwt\", path=\"jwt\")\nexample = vault.jwt.AuthBackendRole(\"example\",\n    backend=jwt.path,\n    role_name=\"test-role\",\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    bound_audiences=[\"https://myco.test\"],\n    user_claim=\"https://vault/user\",\n    role_type=\"jwt\")\n```\n\nRole for OIDC backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst oidc = new vault.jwt.AuthBackend(\"oidc\", {\n    path: \"oidc\",\n    defaultRole: \"test-role\",\n});\nconst example = new vault.jwt.AuthBackendRole(\"example\", {\n    backend: oidc.path,\n    roleName: \"test-role\",\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    userClaim: \"https://vault/user\",\n    roleType: \"oidc\",\n    allowedRedirectUris: [\"http://localhost:8200/ui/vault/auth/oidc/oidc/callback\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\noidc = vault.jwt.AuthBackend(\"oidc\",\n    path=\"oidc\",\n    default_role=\"test-role\")\nexample = vault.jwt.AuthBackendRole(\"example\",\n    backend=oidc.path,\n    role_name=\"test-role\",\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    user_claim=\"https://vault/user\",\n    role_type=\"oidc\",\n    allowed_redirect_uris=[\"http://localhost:8200/ui/vault/auth/oidc/oidc/callback\"])\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "allowedRedirectUris": {
                     "type": "array",
@@ -9104,7 +9158,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of `aud` claims to match\nagainst. Any match is sufficient.\n"
+                    "description": "(Required for roles of type `jwt`, optional for roles of\ntype `oidc`) List of `aud` claims to match against. Any match is sufficient.\n"
                 },
                 "boundCidrs": {
                     "type": "array",
@@ -9269,7 +9323,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of `aud` claims to match\nagainst. Any match is sufficient.\n"
+                    "description": "(Required for roles of type `jwt`, optional for roles of\ntype `oidc`) List of `aud` claims to match against. Any match is sufficient.\n"
                 },
                 "boundCidrs": {
                     "type": "array",
@@ -9435,7 +9489,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "List of `aud` claims to match\nagainst. Any match is sufficient.\n"
+                        "description": "(Required for roles of type `jwt`, optional for roles of\ntype `oidc`) List of `aud` claims to match against. Any match is sufficient.\n"
                     },
                     "boundCidrs": {
                         "type": "array",
@@ -14151,7 +14205,7 @@
             "properties": {
                 "allowPlaintextBackup": {
                     "type": "boolean",
-                    "description": "Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.\n* Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)\n"
+                    "description": "Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.\n* Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)\n"
                 },
                 "backend": {
                     "type": "string",
@@ -14221,7 +14275,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. \n* Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)\n"
+                    "description": "Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. \n* Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)\n"
                 }
             },
             "required": [
@@ -14238,7 +14292,7 @@
             "inputProperties": {
                 "allowPlaintextBackup": {
                     "type": "boolean",
-                    "description": "Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.\n* Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)\n"
+                    "description": "Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.\n* Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)\n"
                 },
                 "backend": {
                     "type": "string",
@@ -14274,7 +14328,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. \n* Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)\n"
+                    "description": "Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. \n* Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)\n"
                 }
             },
             "requiredInputs": [
@@ -14285,7 +14339,7 @@
                 "properties": {
                     "allowPlaintextBackup": {
                         "type": "boolean",
-                        "description": "Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.\n* Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)\n"
+                        "description": "Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.\n* Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)\n"
                     },
                     "backend": {
                         "type": "string",
@@ -14355,7 +14409,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. \n* Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)\n"
+                        "description": "Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. \n* Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)\n"
                     }
                 },
                 "type": "object"
@@ -15130,7 +15184,7 @@
             }
         },
         "vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig": {
-            "description": "Reads the Role of an Kubernetes from a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-config) for more\ninformation.\n\n{{% examples %}}\n{{% /examples %}}\n",
+            "description": "Reads the Role of an Kubernetes from a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more\ninformation.\n\n{{% examples %}}\n{{% /examples %}}\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getAuthBackendConfig.\n",
                 "properties": {
@@ -15201,7 +15255,7 @@
             }
         },
         "vault:kubernetes/getAuthBackendRole:getAuthBackendRole": {
-            "description": "Reads the Role of an Kubernetes from a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-role) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst role = pulumi.output(vault.kubernetes.getAuthBackendRole({\n    backend: \"my-kubernetes-backend\",\n    roleName: \"my-role\",\n}, { async: true }));\n\nexport const policies = role.policies!;\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nrole = vault.kubernetes.get_auth_backend_role(backend=\"my-kubernetes-backend\",\n    role_name=\"my-role\")\npulumi.export(\"policies\", role.policies)\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "description": "Reads the Role of an Kubernetes from a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst role = pulumi.output(vault.kubernetes.getAuthBackendRole({\n    backend: \"my-kubernetes-backend\",\n    roleName: \"my-role\",\n}, { async: true }));\n\nexport const policies = role.policies!;\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nrole = vault.kubernetes.get_auth_backend_role(backend=\"my-kubernetes-backend\",\n    role_name=\"my-role\")\npulumi.export(\"policies\", role.policies)\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getAuthBackendRole.\n",
                 "properties": {

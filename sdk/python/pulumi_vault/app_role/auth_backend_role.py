@@ -119,7 +119,7 @@ class AuthBackendRole(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, backend=None, bind_secret_id=None, bound_cidr_lists=None, period=None, policies=None, role_id=None, role_name=None, secret_id_bound_cidrs=None, secret_id_num_uses=None, secret_id_ttl=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, __props__=None, __name__=None, __opts__=None):
         """
         Manages an AppRole auth backend role in a Vault server. See the [Vault
-        documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
+        documentation](https://www.vaultproject.io/docs/auth/approle) for more
         information.
 
         ## Example Usage

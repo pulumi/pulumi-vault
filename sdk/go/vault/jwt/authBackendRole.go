@@ -22,8 +22,8 @@ type AuthBackendRole struct {
 	// The unique name of the auth backend to configure.
 	// Defaults to `jwt`.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
-	// List of `aud` claims to match
-	// against. Any match is sufficient.
+	// (Required for roles of type `jwt`, optional for roles of
+	// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
 	BoundAudiences pulumi.StringArrayOutput `pulumi:"boundAudiences"`
 	// If set, a list of
 	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
@@ -188,8 +188,8 @@ type authBackendRoleState struct {
 	// The unique name of the auth backend to configure.
 	// Defaults to `jwt`.
 	Backend *string `pulumi:"backend"`
-	// List of `aud` claims to match
-	// against. Any match is sufficient.
+	// (Required for roles of type `jwt`, optional for roles of
+	// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
 	BoundAudiences []string `pulumi:"boundAudiences"`
 	// If set, a list of
 	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
@@ -321,8 +321,8 @@ type AuthBackendRoleState struct {
 	// The unique name of the auth backend to configure.
 	// Defaults to `jwt`.
 	Backend pulumi.StringPtrInput
-	// List of `aud` claims to match
-	// against. Any match is sufficient.
+	// (Required for roles of type `jwt`, optional for roles of
+	// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
 	BoundAudiences pulumi.StringArrayInput
 	// If set, a list of
 	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
@@ -458,8 +458,8 @@ type authBackendRoleArgs struct {
 	// The unique name of the auth backend to configure.
 	// Defaults to `jwt`.
 	Backend *string `pulumi:"backend"`
-	// List of `aud` claims to match
-	// against. Any match is sufficient.
+	// (Required for roles of type `jwt`, optional for roles of
+	// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
 	BoundAudiences []string `pulumi:"boundAudiences"`
 	// If set, a list of
 	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
@@ -592,8 +592,8 @@ type AuthBackendRoleArgs struct {
 	// The unique name of the auth backend to configure.
 	// Defaults to `jwt`.
 	Backend pulumi.StringPtrInput
-	// List of `aud` claims to match
-	// against. Any match is sufficient.
+	// (Required for roles of type `jwt`, optional for roles of
+	// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
 	BoundAudiences pulumi.StringArrayInput
 	// If set, a list of
 	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.

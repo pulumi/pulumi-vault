@@ -11,7 +11,7 @@ import (
 )
 
 // Manages policy mappings for Github Teams authenticated via Github. See the [Vault
-// documentation](https://www.vaultproject.io/docs/auth/github.html) for more
+// documentation](https://www.vaultproject.io/docs/auth/github/) for more
 // information.
 type Team struct {
 	pulumi.CustomResourceState

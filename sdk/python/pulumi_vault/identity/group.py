@@ -20,7 +20,7 @@ class Group(pulumi.CustomResource):
     """
     member_group_ids: pulumi.Output[list]
     """
-    A list of Group IDs to be assigned as group members.
+    A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
     """
     metadata: pulumi.Output[dict]
     """
@@ -82,7 +82,7 @@ class Group(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] external_policies: `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
         :param pulumi.Input[list] member_entity_ids: A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
-        :param pulumi.Input[list] member_group_ids: A list of Group IDs to be assigned as group members.
+        :param pulumi.Input[list] member_group_ids: A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
         :param pulumi.Input[dict] metadata: A Map of additional metadata to associate with the group.
         :param pulumi.Input[str] name: Name of the identity group to create.
         :param pulumi.Input[list] policies: A list of policies to apply to the group.
@@ -129,7 +129,7 @@ class Group(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] external_policies: `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
         :param pulumi.Input[list] member_entity_ids: A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
-        :param pulumi.Input[list] member_group_ids: A list of Group IDs to be assigned as group members.
+        :param pulumi.Input[list] member_group_ids: A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
         :param pulumi.Input[dict] metadata: A Map of additional metadata to associate with the group.
         :param pulumi.Input[str] name: Name of the identity group to create.
         :param pulumi.Input[list] policies: A list of policies to apply to the group.

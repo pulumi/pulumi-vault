@@ -29,7 +29,7 @@ namespace Pulumi.Vault.Identity
         public Output<ImmutableArray<string>> MemberEntityIds { get; private set; } = null!;
 
         /// <summary>
-        /// A list of Group IDs to be assigned as group members.
+        /// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
         /// </summary>
         [Output("memberGroupIds")]
         public Output<ImmutableArray<string>> MemberGroupIds { get; private set; } = null!;
@@ -126,7 +126,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _memberGroupIds;
 
         /// <summary>
-        /// A list of Group IDs to be assigned as group members.
+        /// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
         /// </summary>
         public InputList<string> MemberGroupIds
         {
@@ -199,7 +199,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _memberGroupIds;
 
         /// <summary>
-        /// A list of Group IDs to be assigned as group members.
+        /// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
         /// </summary>
         public InputList<string> MemberGroupIds
         {

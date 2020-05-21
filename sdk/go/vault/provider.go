@@ -71,6 +71,8 @@ type providerArgs struct {
 	CaCertFile *string `pulumi:"caCertFile"`
 	// Client authentication credentials.
 	ClientAuths []ProviderClientAuth `pulumi:"clientAuths"`
+	// The headers to send with each Vault request.
+	Headers []ProviderHeader `pulumi:"headers"`
 	// Maximum TTL for secret leases requested by this provider
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
 	// Maximum number of retries when a 5xx error code is encountered.
@@ -99,6 +101,8 @@ type ProviderArgs struct {
 	CaCertFile pulumi.StringPtrInput
 	// Client authentication credentials.
 	ClientAuths ProviderClientAuthArrayInput
+	// The headers to send with each Vault request.
+	Headers ProviderHeaderArrayInput
 	// Maximum TTL for secret leases requested by this provider
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
 	// Maximum number of retries when a 5xx error code is encountered.

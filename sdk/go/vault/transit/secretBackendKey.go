@@ -15,7 +15,7 @@ type SecretBackendKey struct {
 	pulumi.CustomResourceState
 
 	// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
-	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)
+	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
 	AllowPlaintextBackup pulumi.BoolPtrOutput `pulumi:"allowPlaintextBackup"`
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringOutput `pulumi:"backend"`
@@ -50,7 +50,7 @@ type SecretBackendKey struct {
 	// Whether or not the key supports signing, based on key type.
 	SupportsSigning pulumi.BoolOutput `pulumi:"supportsSigning"`
 	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`.
-	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
+	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
 	Type pulumi.StringPtrOutput `pulumi:"type"`
 }
 
@@ -86,7 +86,7 @@ func GetSecretBackendKey(ctx *pulumi.Context,
 // Input properties used for looking up and filtering SecretBackendKey resources.
 type secretBackendKeyState struct {
 	// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
-	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)
+	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
 	AllowPlaintextBackup *bool `pulumi:"allowPlaintextBackup"`
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend *string `pulumi:"backend"`
@@ -121,13 +121,13 @@ type secretBackendKeyState struct {
 	// Whether or not the key supports signing, based on key type.
 	SupportsSigning *bool `pulumi:"supportsSigning"`
 	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`.
-	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
+	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
 	Type *string `pulumi:"type"`
 }
 
 type SecretBackendKeyState struct {
 	// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
-	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)
+	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
 	AllowPlaintextBackup pulumi.BoolPtrInput
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringPtrInput
@@ -162,7 +162,7 @@ type SecretBackendKeyState struct {
 	// Whether or not the key supports signing, based on key type.
 	SupportsSigning pulumi.BoolPtrInput
 	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`.
-	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
+	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
 	Type pulumi.StringPtrInput
 }
 
@@ -172,7 +172,7 @@ func (SecretBackendKeyState) ElementType() reflect.Type {
 
 type secretBackendKeyArgs struct {
 	// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
-	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)
+	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
 	AllowPlaintextBackup *bool `pulumi:"allowPlaintextBackup"`
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
@@ -191,14 +191,14 @@ type secretBackendKeyArgs struct {
 	// The name to identify this key within the backend. Must be unique within the backend.
 	Name *string `pulumi:"name"`
 	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`.
-	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
+	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
 	Type *string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a SecretBackendKey resource.
 type SecretBackendKeyArgs struct {
 	// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
-	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api/secret/transit/index.html#backup-key)
+	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
 	AllowPlaintextBackup pulumi.BoolPtrInput
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringInput
@@ -217,7 +217,7 @@ type SecretBackendKeyArgs struct {
 	// The name to identify this key within the backend. Must be unique within the backend.
 	Name pulumi.StringPtrInput
 	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`.
-	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit/index.html#key-types)
+	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
 	Type pulumi.StringPtrInput
 }
 

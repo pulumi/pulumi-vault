@@ -72,8 +72,8 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
-     * List of `aud` claims to match
-     * against. Any match is sufficient.
+     * (Required for roles of type `jwt`, optional for roles of
+     * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
      */
     public readonly boundAudiences!: pulumi.Output<string[] | undefined>;
     /**
@@ -349,8 +349,8 @@ export interface AuthBackendRoleState {
      */
     readonly backend?: pulumi.Input<string>;
     /**
-     * List of `aud` claims to match
-     * against. Any match is sufficient.
+     * (Required for roles of type `jwt`, optional for roles of
+     * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
      */
     readonly boundAudiences?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -540,8 +540,8 @@ export interface AuthBackendRoleArgs {
      */
     readonly backend?: pulumi.Input<string>;
     /**
-     * List of `aud` claims to match
-     * against. Any match is sufficient.
+     * (Required for roles of type `jwt`, optional for roles of
+     * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
      */
     readonly boundAudiences?: pulumi.Input<pulumi.Input<string>[]>;
     /**

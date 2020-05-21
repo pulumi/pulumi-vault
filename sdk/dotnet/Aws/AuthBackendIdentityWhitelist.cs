@@ -13,7 +13,7 @@ namespace Pulumi.Vault.Aws
     /// Configures the periodic tidying operation of the whitelisted identity entries.
     /// 
     /// For more information, see the
-    /// [Vault docs](https://www.vaultproject.io/api/auth/aws/index.html#configure-identity-whitelist-tidy-operation).
+    /// [Vault docs](https://www.vaultproject.io/api-docs/auth/aws#configure-identity-whitelist-tidy-operation).
     /// </summary>
     public partial class AuthBackendIdentityWhitelist : Pulumi.CustomResource
     {

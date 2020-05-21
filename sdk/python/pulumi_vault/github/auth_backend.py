@@ -98,7 +98,7 @@ class AuthBackend(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, base_url=None, description=None, max_ttl=None, organization=None, path=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None, tune=None, __props__=None, __name__=None, __opts__=None):
         """
         Manages a Github Auth mount in a Vault server. See the [Vault
-        documentation](https://www.vaultproject.io/docs/auth/github.html) for more
+        documentation](https://www.vaultproject.io/docs/auth/github/) for more
         information.
 
         ## Example Usage
