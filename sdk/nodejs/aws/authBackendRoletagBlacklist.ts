@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Configures the periodic tidying operation of the blacklisted role tag entries.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const exampleAuthBackend = new vault.AuthBackend("example", {
  *     type: "aws",
  * });
@@ -23,8 +23,6 @@ import * as utilities from "../utilities";
  *     safetyBuffer: 360,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_roletag_blacklist.html.md.
  */
 export class AuthBackendRoletagBlacklist extends pulumi.CustomResource {
     /**

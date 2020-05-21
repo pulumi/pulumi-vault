@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Reads role tag information from an AWS auth backend in Vault. 
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const aws = new vault.AuthBackend("aws", {
  *     path: "%s",
  *     type: "aws",
@@ -44,8 +44,6 @@ import * as utilities from "../utilities";
  *     role: role.role,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_role_tag.html.md.
  */
 export class AuthBackendRoleTag extends pulumi.CustomResource {
     /**

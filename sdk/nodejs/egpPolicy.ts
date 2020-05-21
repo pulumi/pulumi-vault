@@ -8,18 +8,18 @@ import * as utilities from "./utilities";
 
 /**
  * Provides a resource to manage Endpoint Governing Policy (EGP) via [Sentinel](https://www.vaultproject.io/docs/enterprise/sentinel/index.html).
- * 
+ *
  * **Note** this feature is available only with Vault Enterprise.
- * 
- * 
+ *
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const allowAll = new vault.EgpPolicy("allow-all", {
  *     enforcementLevel: "soft-mandatory",
  *     paths: ["*"],
@@ -29,8 +29,6 @@ import * as utilities from "./utilities";
  * `,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/egp_policy.html.md.
  */
 export class EgpPolicy extends pulumi.CustomResource {
     /**

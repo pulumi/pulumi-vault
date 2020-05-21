@@ -6,22 +6,20 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fs from "fs";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const gcp = new vault.gcp.AuthBackend("gcp", {
  *     credentials: fs.readFileSync("vault-gcp-credentials.json", "utf-8"),
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/gcp_auth_backend.html.md.
  */
 export class AuthBackend extends pulumi.CustomResource {
     /**

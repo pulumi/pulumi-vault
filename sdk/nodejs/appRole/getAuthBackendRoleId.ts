@@ -6,24 +6,22 @@ import * as utilities from "../utilities";
 
 /**
  * Reads the Role ID of an AppRole from a Vault server.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const role = pulumi.output(vault.appRole.getAuthBackendRoleId({
  *     backend: "my-approle-backend",
  *     roleName: "my-role",
  * }, { async: true }));
- * 
+ *
  * export const roleId = role.roleId;
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/d/approle_auth_backend_role_id.md.
  */
 export function getAuthBackendRoleId(args: GetAuthBackendRoleIdArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendRoleIdResult> {
     if (!opts) {

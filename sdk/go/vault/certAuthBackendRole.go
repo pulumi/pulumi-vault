@@ -30,6 +30,8 @@ type CertAuthBackendRole struct {
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
 	// Restriction usage of the
 	// certificates to client IPs falling within the range of the specified CIDRs
+	//
+	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs pulumi.StringArrayOutput `pulumi:"boundCidrs"`
 	// CA certificate used to validate client certificates
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
@@ -37,6 +39,8 @@ type CertAuthBackendRole struct {
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl pulumi.StringOutput `pulumi:"maxTtl"`
 	// Name of the role
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -44,9 +48,13 @@ type CertAuthBackendRole struct {
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period pulumi.StringOutput `pulumi:"period"`
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// TLS extensions required on client certificates
 	RequiredExtensions pulumi.StringArrayOutput `pulumi:"requiredExtensions"`
@@ -88,6 +96,8 @@ type CertAuthBackendRole struct {
 	TokenType pulumi.StringPtrOutput `pulumi:"tokenType"`
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl pulumi.StringOutput `pulumi:"ttl"`
 }
 
@@ -138,6 +148,8 @@ type certAuthBackendRoleState struct {
 	Backend *string `pulumi:"backend"`
 	// Restriction usage of the
 	// certificates to client IPs falling within the range of the specified CIDRs
+	//
+	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs []string `pulumi:"boundCidrs"`
 	// CA certificate used to validate client certificates
 	Certificate *string `pulumi:"certificate"`
@@ -145,6 +157,8 @@ type certAuthBackendRoleState struct {
 	DisplayName *string `pulumi:"displayName"`
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl *string `pulumi:"maxTtl"`
 	// Name of the role
 	Name *string `pulumi:"name"`
@@ -152,9 +166,13 @@ type certAuthBackendRoleState struct {
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period *string `pulumi:"period"`
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies []string `pulumi:"policies"`
 	// TLS extensions required on client certificates
 	RequiredExtensions []string `pulumi:"requiredExtensions"`
@@ -196,6 +214,8 @@ type certAuthBackendRoleState struct {
 	TokenType *string `pulumi:"tokenType"`
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl *string `pulumi:"ttl"`
 }
 
@@ -216,6 +236,8 @@ type CertAuthBackendRoleState struct {
 	Backend pulumi.StringPtrInput
 	// Restriction usage of the
 	// certificates to client IPs falling within the range of the specified CIDRs
+	//
+	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs pulumi.StringArrayInput
 	// CA certificate used to validate client certificates
 	Certificate pulumi.StringPtrInput
@@ -223,6 +245,8 @@ type CertAuthBackendRoleState struct {
 	DisplayName pulumi.StringPtrInput
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl pulumi.StringPtrInput
 	// Name of the role
 	Name pulumi.StringPtrInput
@@ -230,9 +254,13 @@ type CertAuthBackendRoleState struct {
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period pulumi.StringPtrInput
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies pulumi.StringArrayInput
 	// TLS extensions required on client certificates
 	RequiredExtensions pulumi.StringArrayInput
@@ -274,6 +302,8 @@ type CertAuthBackendRoleState struct {
 	TokenType pulumi.StringPtrInput
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl pulumi.StringPtrInput
 }
 
@@ -298,6 +328,8 @@ type certAuthBackendRoleArgs struct {
 	Backend *string `pulumi:"backend"`
 	// Restriction usage of the
 	// certificates to client IPs falling within the range of the specified CIDRs
+	//
+	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs []string `pulumi:"boundCidrs"`
 	// CA certificate used to validate client certificates
 	Certificate string `pulumi:"certificate"`
@@ -305,6 +337,8 @@ type certAuthBackendRoleArgs struct {
 	DisplayName *string `pulumi:"displayName"`
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl *string `pulumi:"maxTtl"`
 	// Name of the role
 	Name *string `pulumi:"name"`
@@ -312,9 +346,13 @@ type certAuthBackendRoleArgs struct {
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period *string `pulumi:"period"`
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies []string `pulumi:"policies"`
 	// TLS extensions required on client certificates
 	RequiredExtensions []string `pulumi:"requiredExtensions"`
@@ -356,6 +394,8 @@ type certAuthBackendRoleArgs struct {
 	TokenType *string `pulumi:"tokenType"`
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl *string `pulumi:"ttl"`
 }
 
@@ -377,6 +417,8 @@ type CertAuthBackendRoleArgs struct {
 	Backend pulumi.StringPtrInput
 	// Restriction usage of the
 	// certificates to client IPs falling within the range of the specified CIDRs
+	//
+	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs pulumi.StringArrayInput
 	// CA certificate used to validate client certificates
 	Certificate pulumi.StringInput
@@ -384,6 +426,8 @@ type CertAuthBackendRoleArgs struct {
 	DisplayName pulumi.StringPtrInput
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl pulumi.StringPtrInput
 	// Name of the role
 	Name pulumi.StringPtrInput
@@ -391,9 +435,13 @@ type CertAuthBackendRoleArgs struct {
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period pulumi.StringPtrInput
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies pulumi.StringArrayInput
 	// TLS extensions required on client certificates
 	RequiredExtensions pulumi.StringArrayInput
@@ -435,6 +483,8 @@ type CertAuthBackendRoleArgs struct {
 	TokenType pulumi.StringPtrInput
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl pulumi.StringPtrInput
 }
 

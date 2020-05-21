@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
  * Logs into Vault using the AppRole auth backend. See the [Vault
  * documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
  * information.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const approle = new vault.AuthBackend("approle", {
  *     type: "approle",
  * });
@@ -39,8 +39,6 @@ import * as utilities from "../utilities";
  *     secretId: id.secretId,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/approle_auth_backend_login.html.md.
  */
 export class AuthBackendLogin extends pulumi.CustomResource {
     /**

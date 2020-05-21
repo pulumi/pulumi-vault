@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Allows setting the duration for which the generated CRL should be marked valid. If the CRL is disabled, it will return a signed but zero-length CRL for any request. If enabled, it will re-build the CRL.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const pki = new vault.Mount("pki", {
  *     defaultLeaseTtlSeconds: 3600,
  *     maxLeaseTtlSeconds: 86400,
@@ -27,8 +27,6 @@ import * as utilities from "../utilities";
  *     expiry: "72h",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_crl_config.html.md.
  */
 export class SecretBackendCrlConfig extends pulumi.CustomResource {
     /**

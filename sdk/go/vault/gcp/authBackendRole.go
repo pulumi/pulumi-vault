@@ -35,14 +35,20 @@ type AuthBackendRole struct {
 	MaxJwtExp pulumi.StringOutput `pulumi:"maxJwtExp"`
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl pulumi.StringOutput `pulumi:"maxTtl"`
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period pulumi.StringOutput `pulumi:"period"`
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// Name of the GCP role
 	Role pulumi.StringOutput `pulumi:"role"`
@@ -84,6 +90,8 @@ type AuthBackendRole struct {
 	TokenType pulumi.StringPtrOutput `pulumi:"tokenType"`
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl pulumi.StringOutput `pulumi:"ttl"`
 	// Type of GCP authentication role (either `gce` or `iam`)
 	Type pulumi.StringOutput `pulumi:"type"`
@@ -144,14 +152,20 @@ type authBackendRoleState struct {
 	MaxJwtExp *string `pulumi:"maxJwtExp"`
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl *string `pulumi:"maxTtl"`
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period *string `pulumi:"period"`
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies []string `pulumi:"policies"`
 	// Name of the GCP role
 	Role *string `pulumi:"role"`
@@ -193,6 +207,8 @@ type authBackendRoleState struct {
 	TokenType *string `pulumi:"tokenType"`
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl *string `pulumi:"ttl"`
 	// Type of GCP authentication role (either `gce` or `iam`)
 	Type *string `pulumi:"type"`
@@ -220,14 +236,20 @@ type AuthBackendRoleState struct {
 	MaxJwtExp pulumi.StringPtrInput
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl pulumi.StringPtrInput
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period pulumi.StringPtrInput
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies pulumi.StringArrayInput
 	// Name of the GCP role
 	Role pulumi.StringPtrInput
@@ -269,6 +291,8 @@ type AuthBackendRoleState struct {
 	TokenType pulumi.StringPtrInput
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl pulumi.StringPtrInput
 	// Type of GCP authentication role (either `gce` or `iam`)
 	Type pulumi.StringPtrInput
@@ -300,14 +324,20 @@ type authBackendRoleArgs struct {
 	MaxJwtExp *string `pulumi:"maxJwtExp"`
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl *string `pulumi:"maxTtl"`
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period *string `pulumi:"period"`
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies []string `pulumi:"policies"`
 	// Name of the GCP role
 	Role string `pulumi:"role"`
@@ -349,6 +379,8 @@ type authBackendRoleArgs struct {
 	TokenType *string `pulumi:"tokenType"`
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl *string `pulumi:"ttl"`
 	// Type of GCP authentication role (either `gce` or `iam`)
 	Type string `pulumi:"type"`
@@ -377,14 +409,20 @@ type AuthBackendRoleArgs struct {
 	MaxJwtExp pulumi.StringPtrInput
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl pulumi.StringPtrInput
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period pulumi.StringPtrInput
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies pulumi.StringArrayInput
 	// Name of the GCP role
 	Role pulumi.StringInput
@@ -426,6 +464,8 @@ type AuthBackendRoleArgs struct {
 	TokenType pulumi.StringPtrInput
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl pulumi.StringPtrInput
 	// Type of GCP authentication role (either `gce` or `iam`)
 	Type pulumi.StringInput

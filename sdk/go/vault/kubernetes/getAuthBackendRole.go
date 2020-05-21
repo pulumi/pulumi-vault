@@ -25,12 +25,17 @@ type LookupAuthBackendRoleArgs struct {
 	Audience *string `pulumi:"audience"`
 	// The unique name for the Kubernetes backend the role to
 	// retrieve Role attributes for resides in. Defaults to "kubernetes".
-	Backend    *string  `pulumi:"backend"`
+	Backend *string `pulumi:"backend"`
+	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs []string `pulumi:"boundCidrs"`
-	MaxTtl     *int     `pulumi:"maxTtl"`
-	NumUses    *int     `pulumi:"numUses"`
-	Period     *int     `pulumi:"period"`
-	Policies   []string `pulumi:"policies"`
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
+	MaxTtl *int `pulumi:"maxTtl"`
+	// Deprecated: use `token_num_uses` instead if you are running Vault >= 1.2
+	NumUses *int `pulumi:"numUses"`
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
+	Period *int `pulumi:"period"`
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
+	Policies []string `pulumi:"policies"`
 	// The name of the role to retrieve the Role attributes for.
 	RoleName string `pulumi:"roleName"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -69,24 +74,30 @@ type LookupAuthBackendRoleArgs struct {
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
 	TokenType *string `pulumi:"tokenType"`
-	Ttl       *int    `pulumi:"ttl"`
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
+	Ttl *int `pulumi:"ttl"`
 }
 
 // A collection of values returned by getAuthBackendRole.
 type LookupAuthBackendRoleResult struct {
 	// (Optional) Audience claim to verify in the JWT.
-	Audience   *string  `pulumi:"audience"`
-	Backend    *string  `pulumi:"backend"`
+	Audience *string `pulumi:"audience"`
+	Backend  *string `pulumi:"backend"`
+	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs []string `pulumi:"boundCidrs"`
 	// List of service account names able to access this role. If set to "*" all names are allowed, both this and boundServiceAccountNamespaces can not be "*".
 	BoundServiceAccountNames []string `pulumi:"boundServiceAccountNames"`
 	// List of namespaces allowed to access this role. If set to "*" all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
 	BoundServiceAccountNamespaces []string `pulumi:"boundServiceAccountNamespaces"`
 	// The provider-assigned unique ID for this managed resource.
-	Id       string   `pulumi:"id"`
-	MaxTtl   *int     `pulumi:"maxTtl"`
-	NumUses  *int     `pulumi:"numUses"`
-	Period   *int     `pulumi:"period"`
+	Id string `pulumi:"id"`
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
+	MaxTtl *int `pulumi:"maxTtl"`
+	// Deprecated: use `token_num_uses` instead if you are running Vault >= 1.2
+	NumUses *int `pulumi:"numUses"`
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
+	Period *int `pulumi:"period"`
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies []string `pulumi:"policies"`
 	RoleName string   `pulumi:"roleName"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -125,5 +136,6 @@ type LookupAuthBackendRoleResult struct {
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
 	TokenType *string `pulumi:"tokenType"`
-	Ttl       *int    `pulumi:"ttl"`
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
+	Ttl *int `pulumi:"ttl"`
 }

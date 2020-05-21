@@ -88,14 +88,20 @@ type AuthBackendRole struct {
 	InferredEntityType pulumi.StringPtrOutput `pulumi:"inferredEntityType"`
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl pulumi.IntPtrOutput `pulumi:"maxTtl"`
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period pulumi.IntPtrOutput `pulumi:"period"`
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// If set to `true`, the
 	// `boundIamPrincipalArns` are resolved to [AWS Unique
@@ -153,6 +159,8 @@ type AuthBackendRole struct {
 	TokenType pulumi.StringPtrOutput `pulumi:"tokenType"`
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl pulumi.IntPtrOutput `pulumi:"ttl"`
 }
 
@@ -257,14 +265,20 @@ type authBackendRoleState struct {
 	InferredEntityType *string `pulumi:"inferredEntityType"`
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl *int `pulumi:"maxTtl"`
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period *int `pulumi:"period"`
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies []string `pulumi:"policies"`
 	// If set to `true`, the
 	// `boundIamPrincipalArns` are resolved to [AWS Unique
@@ -322,6 +336,8 @@ type authBackendRoleState struct {
 	TokenType *string `pulumi:"tokenType"`
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl *int `pulumi:"ttl"`
 }
 
@@ -396,14 +412,20 @@ type AuthBackendRoleState struct {
 	InferredEntityType pulumi.StringPtrInput
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl pulumi.IntPtrInput
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period pulumi.IntPtrInput
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies pulumi.StringArrayInput
 	// If set to `true`, the
 	// `boundIamPrincipalArns` are resolved to [AWS Unique
@@ -461,6 +483,8 @@ type AuthBackendRoleState struct {
 	TokenType pulumi.StringPtrInput
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl pulumi.IntPtrInput
 }
 
@@ -539,14 +563,20 @@ type authBackendRoleArgs struct {
 	InferredEntityType *string `pulumi:"inferredEntityType"`
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl *int `pulumi:"maxTtl"`
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period *int `pulumi:"period"`
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies []string `pulumi:"policies"`
 	// If set to `true`, the
 	// `boundIamPrincipalArns` are resolved to [AWS Unique
@@ -604,6 +634,8 @@ type authBackendRoleArgs struct {
 	TokenType *string `pulumi:"tokenType"`
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl *int `pulumi:"ttl"`
 }
 
@@ -679,14 +711,20 @@ type AuthBackendRoleArgs struct {
 	InferredEntityType pulumi.StringPtrInput
 	// The maximum allowed lifetime of tokens
 	// issued using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl pulumi.IntPtrInput
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
 	// duration specified by this value. At each renewal, the token's TTL will be set to the
 	// value of this field. Specified in seconds.
+	//
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period pulumi.IntPtrInput
 	// An array of strings
 	// specifying the policies to be set on tokens issued using this role.
+	//
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies pulumi.StringArrayInput
 	// If set to `true`, the
 	// `boundIamPrincipalArns` are resolved to [AWS Unique
@@ -744,6 +782,8 @@ type AuthBackendRoleArgs struct {
 	TokenType pulumi.StringPtrInput
 	// The TTL period of tokens issued
 	// using this role, provided as a number of seconds.
+	//
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl pulumi.IntPtrInput
 }
 

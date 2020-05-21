@@ -6,11 +6,11 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage (file audit device)
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const test = new vault.Audit("test", {
  *     options: {
  *         file_path: "C:/temp/audit.txt",
@@ -18,13 +18,13 @@ import * as utilities from "./utilities";
  *     type: "file",
  * });
  * ```
- * 
+ *
  * ## Example Usage (socket audit device)
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const test = new vault.Audit("test", {
  *     options: {
  *         address: "127.0.0.1:8000",
@@ -35,8 +35,6 @@ import * as utilities from "./utilities";
  *     type: "socket",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/audit.html.md.
  */
 export class Audit extends pulumi.CustomResource {
     /**

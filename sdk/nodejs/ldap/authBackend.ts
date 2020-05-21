@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource for managing an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const ldap = new vault.ldap.AuthBackend("ldap", {
  *     discoverdn: false,
  *     groupdn: "OU=Groups,DC=example,DC=org",
@@ -26,8 +26,6 @@ import * as utilities from "../utilities";
  *     userdn: "OU=Users,OU=Accounts,DC=example,DC=org",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/ldap_auth_backend.html.md.
  */
 export class AuthBackend extends pulumi.CustomResource {
     /**

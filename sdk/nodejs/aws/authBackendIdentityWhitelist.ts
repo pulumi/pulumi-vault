@@ -6,18 +6,18 @@ import * as utilities from "../utilities";
 
 /**
  * Configures the periodic tidying operation of the whitelisted identity entries.
- * 
+ *
  * For more information, see the
  * [Vault docs](https://www.vaultproject.io/api/auth/aws/index.html#configure-identity-whitelist-tidy-operation).
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const exampleAuthBackend = new vault.AuthBackend("example", {
  *     type: "aws",
  * });
@@ -26,8 +26,6 @@ import * as utilities from "../utilities";
  *     safetyBuffer: 3600,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/aws_auth_backend_identity_whitelist.html.md.
  */
 export class AuthBackendIdentityWhitelist extends pulumi.CustomResource {
     /**

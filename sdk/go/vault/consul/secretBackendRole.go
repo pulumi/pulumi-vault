@@ -23,6 +23,8 @@ type SecretBackendRole struct {
 	// The name of the Consul secrets engine role to create.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
+	//
+	// Deprecated: use `backend` instead
 	Path pulumi.StringPtrOutput `pulumi:"path"`
 	// The list of Consul ACL policies to associate with these roles.
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
@@ -72,6 +74,8 @@ type secretBackendRoleState struct {
 	// The name of the Consul secrets engine role to create.
 	Name *string `pulumi:"name"`
 	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
+	//
+	// Deprecated: use `backend` instead
 	Path *string `pulumi:"path"`
 	// The list of Consul ACL policies to associate with these roles.
 	Policies []string `pulumi:"policies"`
@@ -91,6 +95,8 @@ type SecretBackendRoleState struct {
 	// The name of the Consul secrets engine role to create.
 	Name pulumi.StringPtrInput
 	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
+	//
+	// Deprecated: use `backend` instead
 	Path pulumi.StringPtrInput
 	// The list of Consul ACL policies to associate with these roles.
 	Policies pulumi.StringArrayInput
@@ -114,6 +120,8 @@ type secretBackendRoleArgs struct {
 	// The name of the Consul secrets engine role to create.
 	Name *string `pulumi:"name"`
 	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
+	//
+	// Deprecated: use `backend` instead
 	Path *string `pulumi:"path"`
 	// The list of Consul ACL policies to associate with these roles.
 	Policies []string `pulumi:"policies"`
@@ -134,6 +142,8 @@ type SecretBackendRoleArgs struct {
 	// The name of the Consul secrets engine role to create.
 	Name pulumi.StringPtrInput
 	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
+	//
+	// Deprecated: use `backend` instead
 	Path pulumi.StringPtrInput
 	// The list of Consul ACL policies to associate with these roles.
 	Policies pulumi.StringArrayInput

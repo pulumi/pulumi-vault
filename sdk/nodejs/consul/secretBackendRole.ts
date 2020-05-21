@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Manages a Consul secrets role for a Consul secrets engine in Vault. Consul secret backends can then issue Consul tokens.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const test = new vault.consul.SecretBackend("test", {
  *     path: "consul",
  *     description: "Manages the Consul backend",
@@ -26,8 +26,6 @@ import * as utilities from "../utilities";
  *     policies: ["example-policy"],
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/consul_secret_backend_role.html.md.
  */
 export class SecretBackendRole extends pulumi.CustomResource {
     /**
@@ -156,7 +154,6 @@ export interface SecretBackendRoleState {
     readonly name?: pulumi.Input<string>;
     /**
      * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
-     * 
      * @deprecated use `backend` instead
      */
     readonly path?: pulumi.Input<string>;
@@ -196,7 +193,6 @@ export interface SecretBackendRoleArgs {
     readonly name?: pulumi.Input<string>;
     /**
      * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
-     * 
      * @deprecated use `backend` instead
      */
     readonly path?: pulumi.Input<string>;

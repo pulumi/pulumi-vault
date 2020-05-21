@@ -6,15 +6,15 @@ import * as utilities from "../utilities";
 
 /**
  * Creates an PKI certificate.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
- * 
+ *
  * const root = new vault.pkiSecret.SecretBackendRootSignIntermediate("root", {
  *     backend: vault_pki_secret_backend.root.path,
  *     csr: vault_pki_secret_backend_intermediate_cert_request.intermediate.csr,
@@ -24,8 +24,6 @@ import * as utilities from "../utilities";
  *     organization: "My organization",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-vault/blob/master/website/docs/r/pki_secret_backend_root_sign_intermediate.html.md.
  */
 export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
     /**
