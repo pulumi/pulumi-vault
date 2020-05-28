@@ -12,6 +12,41 @@ namespace Pulumi.Vault.Ssh
     /// <summary>
     /// Provides a resource to manage roles in an SSH secret backend
     /// [SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Vault.Mount("example", new Vault.MountArgs
+    ///         {
+    ///             Type = "ssh",
+    ///         });
+    ///         var foo = new Vault.Ssh.SecretBackendRole("foo", new Vault.Ssh.SecretBackendRoleArgs
+    ///         {
+    ///             AllowUserCertificates = true,
+    ///             Backend = example.Path,
+    ///             KeyType = "ca",
+    ///         });
+    ///         var bar = new Vault.Ssh.SecretBackendRole("bar", new Vault.Ssh.SecretBackendRoleArgs
+    ///         {
+    ///             AllowedUsers = "default,baz",
+    ///             Backend = example.Path,
+    ///             CidrList = "0.0.0.0/0",
+    ///             DefaultUser = "default",
+    ///             KeyType = "otp",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class SecretBackendRole : Pulumi.CustomResource
     {

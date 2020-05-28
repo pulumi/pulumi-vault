@@ -11,6 +11,37 @@ namespace Pulumi.Vault.PkiSecret
 {
     /// <summary>
     /// Allows setting the issuing certificate endpoints, CRL distribution points, and OCSP server endpoints that will be encoded into issued certificates.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var pki = new Vault.PkiSecret.SecretBackend("pki", new Vault.PkiSecret.SecretBackendArgs
+    ///         {
+    ///             DefaultLeaseTtlSeconds = 3600,
+    ///             MaxLeaseTtlSeconds = 86400,
+    ///             Path = "%s",
+    ///         });
+    ///         var configUrls = new Vault.PkiSecret.SecretBackendConfigUrls("configUrls", new Vault.PkiSecret.SecretBackendConfigUrlsArgs
+    ///         {
+    ///             Backend = pki.Path,
+    ///             IssuingCertificates = 
+    ///             {
+    ///                 "http://127.0.0.1:8200/v1/pki/ca",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class SecretBackendConfigUrls : Pulumi.CustomResource
     {

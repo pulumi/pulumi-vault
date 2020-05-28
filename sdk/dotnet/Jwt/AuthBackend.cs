@@ -9,10 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Jwt
 {
-    /// <summary>
-    /// Provides a resource for managing an
-    /// [JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).
-    /// </summary>
     public partial class AuthBackend : Pulumi.CustomResource
     {
         /// <summary>

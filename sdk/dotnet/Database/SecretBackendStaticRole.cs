@@ -13,6 +13,51 @@ namespace Pulumi.Vault.Database
     /// Creates a Database Secret Backend static role in Vault. Database secret backend
     /// static roles can be used to manage 1-to-1 mapping of a Vault Role to a user in a
     /// database for the database.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var db = new Vault.Mount("db", new Vault.MountArgs
+    ///         {
+    ///             Path = "postgres",
+    ///             Type = "database",
+    ///         });
+    ///         var postgres = new Vault.Database.SecretBackendConnection("postgres", new Vault.Database.SecretBackendConnectionArgs
+    ///         {
+    ///             AllowedRoles = 
+    ///             {
+    ///                 "*",
+    ///             },
+    ///             Backend = db.Path,
+    ///             Postgresql = new Vault.Database.Inputs.SecretBackendConnectionPostgresqlArgs
+    ///             {
+    ///                 ConnectionUrl = "postgres://username:password@host:port/database",
+    ///             },
+    ///         });
+    ///         var staticRole = new Vault.Database.SecretBackendStaticRole("staticRole", new Vault.Database.SecretBackendStaticRoleArgs
+    ///         {
+    ///             Backend = db.Path,
+    ///             DbName = postgres.Name,
+    ///             RotationPeriod = "3600",
+    ///             RotationStatements = 
+    ///             {
+    ///                 "ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';",
+    ///             },
+    ///             Username = "example",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class SecretBackendStaticRole : Pulumi.CustomResource
     {

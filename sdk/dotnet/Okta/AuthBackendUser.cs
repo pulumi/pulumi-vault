@@ -12,6 +12,38 @@ namespace Pulumi.Vault.Okta
     /// <summary>
     /// Provides a resource to create a user in an
     /// [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Vault.Okta.AuthBackend("example", new Vault.Okta.AuthBackendArgs
+    ///         {
+    ///             Organization = "dummy",
+    ///             Path = "user_okta",
+    ///         });
+    ///         var foo = new Vault.Okta.AuthBackendUser("foo", new Vault.Okta.AuthBackendUserArgs
+    ///         {
+    ///             Groups = 
+    ///             {
+    ///                 "one",
+    ///                 "two",
+    ///             },
+    ///             Path = example.Path,
+    ///             Username = "foo",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class AuthBackendUser : Pulumi.CustomResource
     {

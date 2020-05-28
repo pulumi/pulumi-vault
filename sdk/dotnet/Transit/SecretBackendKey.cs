@@ -11,6 +11,35 @@ namespace Pulumi.Vault.Transit
 {
     /// <summary>
     /// Creates an Encryption Keyring on a Transit Secret Backend for Vault.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var transit = new Vault.Mount("transit", new Vault.MountArgs
+    ///         {
+    ///             DefaultLeaseTtlSeconds = 3600,
+    ///             Description = "Example description",
+    ///             MaxLeaseTtlSeconds = 86400,
+    ///             Path = "transit",
+    ///             Type = "transit",
+    ///         });
+    ///         var key = new Vault.Transit.SecretBackendKey("key", new Vault.Transit.SecretBackendKeyArgs
+    ///         {
+    ///             Backend = transit.Path,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class SecretBackendKey : Pulumi.CustomResource
     {

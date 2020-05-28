@@ -13,6 +13,48 @@ namespace Pulumi.Vault.Kubernetes
     /// Manages an Kubernetes auth backend role in a Vault server. See the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more
     /// information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var kubernetes = new Vault.AuthBackend("kubernetes", new Vault.AuthBackendArgs
+    ///         {
+    ///             Type = "kubernetes",
+    ///         });
+    ///         var example = new Vault.Kubernetes.AuthBackendRole("example", new Vault.Kubernetes.AuthBackendRoleArgs
+    ///         {
+    ///             Backend = kubernetes.Path,
+    ///             RoleName = "example-role",
+    ///             BoundServiceAccountNames = 
+    ///             {
+    ///                 "example",
+    ///             },
+    ///             BoundServiceAccountNamespaces = 
+    ///             {
+    ///                 "example",
+    ///             },
+    ///             TokenTtl = 3600,
+    ///             TokenPolicies = 
+    ///             {
+    ///                 "default",
+    ///                 "dev",
+    ///                 "prod",
+    ///             },
+    ///             Audience = "vault",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class AuthBackendRole : Pulumi.CustomResource
     {

@@ -13,6 +13,52 @@ namespace Pulumi.Vault.Gcp
     /// Creates a Roleset in the [GCP Secrets Engine](https://www.vaultproject.io/docs/secrets/gcp/index.html) for Vault.
     /// 
     /// Each Roleset is [tied](https://www.vaultproject.io/docs/secrets/gcp/index.html#service-accounts-are-tied-to-rolesets) to a Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings) associated with it.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using System.IO;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var project = "my-awesome-project";
+    ///         var gcp = new Vault.Gcp.SecretBackend("gcp", new Vault.Gcp.SecretBackendArgs
+    ///         {
+    ///             Credentials = File.ReadAllText("credentials.json"),
+    ///             Path = "gcp",
+    ///         });
+    ///         var roleset = new Vault.Gcp.SecretRoleset("roleset", new Vault.Gcp.SecretRolesetArgs
+    ///         {
+    ///             Backend = gcp.Path,
+    ///             Bindings = 
+    ///             {
+    ///                 new Vault.Gcp.Inputs.SecretRolesetBindingArgs
+    ///                 {
+    ///                     Resource = $"//cloudresourcemanager.googleapis.com/projects/{project}",
+    ///                     Roles = 
+    ///                     {
+    ///                         "roles/viewer",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             Project = project,
+    ///             Roleset = "project_viewer",
+    ///             SecretType = "access_token",
+    ///             TokenScopes = 
+    ///             {
+    ///                 "https://www.googleapis.com/auth/cloud-platform",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class SecretRoleset : Pulumi.CustomResource
     {

@@ -13,6 +13,37 @@ namespace Pulumi.Vault.GitHub
     /// Manages policy mappings for Github Users authenticated via Github. See the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/github/) for more
     /// information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Vault.GitHub.AuthBackend("example", new Vault.GitHub.AuthBackendArgs
+    ///         {
+    ///             Organization = "myorg",
+    ///         });
+    ///         var tfUser = new Vault.GitHub.User("tfUser", new Vault.GitHub.UserArgs
+    ///         {
+    ///             Backend = example.Id,
+    ///             User = "john.doe",
+    ///             TokenPolicies = 
+    ///             {
+    ///                 "developer",
+    ///                 "read-only",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class User : Pulumi.CustomResource
     {

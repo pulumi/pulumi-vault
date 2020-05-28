@@ -9,10 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Okta
 {
-    /// <summary>
-    /// Provides a resource for managing an
-    /// [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
-    /// </summary>
     public partial class AuthBackend : Pulumi.CustomResource
     {
         /// <summary>

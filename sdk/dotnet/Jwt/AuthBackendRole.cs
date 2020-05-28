@@ -13,6 +13,44 @@ namespace Pulumi.Vault.Jwt
     /// Manages an JWT/OIDC auth backend role in a Vault server. See the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/jwt.html) for more
     /// information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var jwt = new Vault.Jwt.AuthBackend("jwt", new Vault.Jwt.AuthBackendArgs
+    ///         {
+    ///             Path = "jwt",
+    ///         });
+    ///         var example = new Vault.Jwt.AuthBackendRole("example", new Vault.Jwt.AuthBackendRoleArgs
+    ///         {
+    ///             Backend = jwt.Path,
+    ///             RoleName = "test-role",
+    ///             TokenPolicies = 
+    ///             {
+    ///                 "default",
+    ///                 "dev",
+    ///                 "prod",
+    ///             },
+    ///             BoundAudiences = 
+    ///             {
+    ///                 "https://myco.test",
+    ///             },
+    ///             UserClaim = "https://vault/user",
+    ///             RoleType = "jwt",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class AuthBackendRole : Pulumi.CustomResource
     {

@@ -15,6 +15,67 @@ namespace Pulumi.Vault.Aws
     /// backend. See the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/aws.html) for more
     /// information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var aws = new Vault.AuthBackend("aws", new Vault.AuthBackendArgs
+    ///         {
+    ///             Type = "aws",
+    ///         });
+    ///         var example = new Vault.Aws.AuthBackendRole("example", new Vault.Aws.AuthBackendRoleArgs
+    ///         {
+    ///             Backend = aws.Path,
+    ///             Role = "test-role",
+    ///             AuthType = "iam",
+    ///             BoundAmiIds = 
+    ///             {
+    ///                 "ami-8c1be5f6",
+    ///             },
+    ///             BoundAccountIds = 
+    ///             {
+    ///                 "123456789012",
+    ///             },
+    ///             BoundVpcIds = 
+    ///             {
+    ///                 "vpc-b61106d4",
+    ///             },
+    ///             BoundSubnetIds = 
+    ///             {
+    ///                 "vpc-133128f1",
+    ///             },
+    ///             BoundIamRoleArns = 
+    ///             {
+    ///                 "arn:aws:iam::123456789012:role/MyRole",
+    ///             },
+    ///             BoundIamInstanceProfileArns = 
+    ///             {
+    ///                 "arn:aws:iam::123456789012:instance-profile/MyProfile",
+    ///             },
+    ///             InferredEntityType = "ec2_instance",
+    ///             InferredAwsRegion = "us-east-1",
+    ///             TokenTtl = 60,
+    ///             TokenMaxTtl = 120,
+    ///             TokenPolicies = 
+    ///             {
+    ///                 "default",
+    ///                 "dev",
+    ///                 "prod",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class AuthBackendRole : Pulumi.CustomResource
     {

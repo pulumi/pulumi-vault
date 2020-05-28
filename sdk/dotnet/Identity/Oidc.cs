@@ -16,6 +16,27 @@ namespace Pulumi.Vault.Identity
     /// the clients who are recognized by Vault.
     /// 
     /// &gt; **NOTE:** Each Vault server may only have one Identity Tokens Backend configuration. Multiple configurations of the resource against the same Vault server will cause a perpetual difference.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var server = new Vault.Identity.Oidc("server", new Vault.Identity.OidcArgs
+    ///         {
+    ///             Issuer = "https://www.acme.com",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Oidc : Pulumi.CustomResource
     {

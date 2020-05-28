@@ -12,6 +12,31 @@ namespace Pulumi.Vault.Ssh
     /// <summary>
     /// Provides a resource to manage CA information in an SSH secret backend
     /// [SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Vault.Mount("example", new Vault.MountArgs
+    ///         {
+    ///             Type = "ssh",
+    ///         });
+    ///         var foo = new Vault.Ssh.SecretBackendCa("foo", new Vault.Ssh.SecretBackendCaArgs
+    ///         {
+    ///             Backend = example.Path,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class SecretBackendCa : Pulumi.CustomResource
     {

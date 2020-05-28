@@ -15,6 +15,46 @@ namespace Pulumi.Vault
         /// This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `vault..Policy` resource.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var examplePolicyDocument = Output.Create(Vault.GetPolicyDocument.InvokeAsync(new Vault.GetPolicyDocumentArgs
+        ///         {
+        ///             Rules = 
+        ///             {
+        ///                 new Vault.Inputs.GetPolicyDocumentRuleArgs
+        ///                 {
+        ///                     Capabilities = 
+        ///                     {
+        ///                         "create",
+        ///                         "read",
+        ///                         "update",
+        ///                         "delete",
+        ///                         "list",
+        ///                     },
+        ///                     Description = "allow all on secrets",
+        ///                     Path = "secret/*",
+        ///                 },
+        ///             },
+        ///         }));
+        ///         var examplePolicy = new Vault.Policy("examplePolicy", new Vault.PolicyArgs
+        ///         {
+        ///             Policy = examplePolicyDocument.Apply(examplePolicyDocument =&gt; examplePolicyDocument.Hcl),
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// 
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetPolicyDocumentResult> InvokeAsync(GetPolicyDocumentArgs? args = null, InvokeOptions? options = null)

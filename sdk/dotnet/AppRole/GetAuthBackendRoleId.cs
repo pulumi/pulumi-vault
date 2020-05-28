@@ -15,6 +15,31 @@ namespace Pulumi.Vault.AppRole
         /// Reads the Role ID of an AppRole from a Vault server.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var role = Output.Create(Vault.AppRole.GetAuthBackendRoleId.InvokeAsync(new Vault.AppRole.GetAuthBackendRoleIdArgs
+        ///         {
+        ///             Backend = "my-approle-backend",
+        ///             RoleName = "my-role",
+        ///         }));
+        ///         this.Role_id = role.Apply(role =&gt; role.RoleId);
+        ///     }
+        /// 
+        ///     [Output("role-id")]
+        ///     public Output&lt;string&gt; Role_id { get; set; }
+        /// }
+        /// ```
+        /// 
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAuthBackendRoleIdResult> InvokeAsync(GetAuthBackendRoleIdArgs args, InvokeOptions? options = null)
