@@ -13,6 +13,63 @@ namespace Pulumi.Vault.Identity
     /// Creates an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
     /// 
     /// A group can contain multiple entities as its members. A group can also have subgroups. Policies set on the group is granted to all members of the group. During request time, when the token's entity ID is being evaluated for the policies that it has access to; along with the policies on the entity itself, policies that are inherited due to group memberships are also granted.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Internal Group
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var @internal = new Vault.Identity.Group("internal", new Vault.Identity.GroupArgs
+    ///         {
+    ///             Metadata = 
+    ///             {
+    ///                 { "version", "2" },
+    ///             },
+    ///             Policies = 
+    ///             {
+    ///                 "dev",
+    ///                 "test",
+    ///             },
+    ///             Type = "internal",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### External Group
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var @group = new Vault.Identity.Group("group", new Vault.Identity.GroupArgs
+    ///         {
+    ///             Metadata = 
+    ///             {
+    ///                 { "version", "1" },
+    ///             },
+    ///             Policies = 
+    ///             {
+    ///                 "test",
+    ///             },
+    ///             Type = "external",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Group : Pulumi.CustomResource
     {

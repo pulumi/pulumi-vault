@@ -13,6 +13,32 @@ namespace Pulumi.Vault
     /// Provides a resource to manage Role Governing Policy (RGP) via [Sentinel](https://www.vaultproject.io/docs/enterprise/sentinel/index.html).
     /// 
     /// **Note** this feature is available only with Vault Enterprise.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var allow_all = new Vault.RgpPolicy("allow-all", new Vault.RgpPolicyArgs
+    ///         {
+    ///             EnforcementLevel = "soft-mandatory",
+    ///             Policy = @"main = rule {
+    ///   true
+    /// }
+    /// 
+    /// ",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class RgpPolicy : Pulumi.CustomResource
     {

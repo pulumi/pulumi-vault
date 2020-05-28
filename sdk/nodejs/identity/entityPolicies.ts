@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const entity = new vault.identity.Entity("entity", {externalPolicies: true});
- * const default = new vault.identity.EntityPolicies("default", {
+ * const _default = new vault.identity.EntityPolicies("default", {
  *     policies: [
  *         "default",
  *         "test",

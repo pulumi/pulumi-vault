@@ -14,6 +14,32 @@ namespace Pulumi.Vault.Aws
     /// 
     /// For more information, see the
     /// [Vault docs](https://www.vaultproject.io/api-docs/auth/aws#configure-identity-whitelist-tidy-operation).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var exampleAuthBackend = new Vault.AuthBackend("exampleAuthBackend", new Vault.AuthBackendArgs
+    ///         {
+    ///             Type = "aws",
+    ///         });
+    ///         var exampleAuthBackendIdentityWhitelist = new Vault.Aws.AuthBackendIdentityWhitelist("exampleAuthBackendIdentityWhitelist", new Vault.Aws.AuthBackendIdentityWhitelistArgs
+    ///         {
+    ///             Backend = exampleAuthBackend.Path,
+    ///             SafetyBuffer = 3600,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class AuthBackendIdentityWhitelist : Pulumi.CustomResource
     {

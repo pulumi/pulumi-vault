@@ -12,6 +12,38 @@ namespace Pulumi.Vault.Okta
     /// <summary>
     /// Provides a resource to create a group in an
     /// [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Vault.Okta.AuthBackend("example", new Vault.Okta.AuthBackendArgs
+    ///         {
+    ///             Organization = "dummy",
+    ///             Path = "group_okta",
+    ///         });
+    ///         var foo = new Vault.Okta.AuthBackendGroup("foo", new Vault.Okta.AuthBackendGroupArgs
+    ///         {
+    ///             GroupName = "foo",
+    ///             Path = example.Path,
+    ///             Policies = 
+    ///             {
+    ///                 "one",
+    ///                 "two",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class AuthBackendGroup : Pulumi.CustomResource
     {

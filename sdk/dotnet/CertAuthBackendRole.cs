@@ -11,6 +11,45 @@ namespace Pulumi.Vault
 {
     /// <summary>
     /// Provides a resource to create a role in an [Cert auth backend within Vault](https://www.vaultproject.io/docs/auth/cert.html).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using System.IO;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var certAuthBackend = new Vault.AuthBackend("certAuthBackend", new Vault.AuthBackendArgs
+    ///         {
+    ///             Path = "cert",
+    ///             Type = "cert",
+    ///         });
+    ///         var certCertAuthBackendRole = new Vault.CertAuthBackendRole("certCertAuthBackendRole", new Vault.CertAuthBackendRoleArgs
+    ///         {
+    ///             Certificate = File.ReadAllText("/path/to/certs/ca-cert.pem"),
+    ///             Backend = certAuthBackend.Path,
+    ///             AllowedNames = 
+    ///             {
+    ///                 "foo.example.org",
+    ///                 "baz.example.org",
+    ///             },
+    ///             TokenTtl = 300,
+    ///             TokenMaxTtl = 600,
+    ///             TokenPolicies = 
+    ///             {
+    ///                 "foo",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class CertAuthBackendRole : Pulumi.CustomResource
     {

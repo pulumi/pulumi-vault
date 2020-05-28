@@ -11,6 +11,32 @@ namespace Pulumi.Vault.Aws
 {
     /// <summary>
     /// Configures the periodic tidying operation of the blacklisted role tag entries.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var exampleAuthBackend = new Vault.AuthBackend("exampleAuthBackend", new Vault.AuthBackendArgs
+    ///         {
+    ///             Type = "aws",
+    ///         });
+    ///         var exampleAuthBackendRoletagBlacklist = new Vault.Aws.AuthBackendRoletagBlacklist("exampleAuthBackendRoletagBlacklist", new Vault.Aws.AuthBackendRoletagBlacklistArgs
+    ///         {
+    ///             Backend = exampleAuthBackend.Path,
+    ///             SafetyBuffer = 360,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class AuthBackendRoletagBlacklist : Pulumi.CustomResource
     {

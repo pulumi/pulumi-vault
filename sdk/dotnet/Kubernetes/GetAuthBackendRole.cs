@@ -17,6 +17,31 @@ namespace Pulumi.Vault.Kubernetes
         /// information.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var role = Output.Create(Vault.Kubernetes.GetAuthBackendRole.InvokeAsync(new Vault.Kubernetes.GetAuthBackendRoleArgs
+        ///         {
+        ///             Backend = "my-kubernetes-backend",
+        ///             RoleName = "my-role",
+        ///         }));
+        ///         this.Policies = role.Apply(role =&gt; role.Policies);
+        ///     }
+        /// 
+        ///     [Output("policies")]
+        ///     public Output&lt;string&gt; Policies { get; set; }
+        /// }
+        /// ```
+        /// 
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAuthBackendRoleResult> InvokeAsync(GetAuthBackendRoleArgs args, InvokeOptions? options = null)

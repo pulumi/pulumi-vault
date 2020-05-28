@@ -13,6 +13,38 @@ namespace Pulumi.Vault.Kubernetes
     /// Manages an Kubernetes auth backend config in a Vault server. See the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more
     /// information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var kubernetes = new Vault.AuthBackend("kubernetes", new Vault.AuthBackendArgs
+    ///         {
+    ///             Type = "kubernetes",
+    ///         });
+    ///         var example = new Vault.Kubernetes.AuthBackendConfig("example", new Vault.Kubernetes.AuthBackendConfigArgs
+    ///         {
+    ///             Backend = kubernetes.Path,
+    ///             Issuer = "api",
+    ///             KubernetesCaCert = @"-----BEGIN CERTIFICATE-----
+    /// example
+    /// -----END CERTIFICATE-----
+    /// ",
+    ///             KubernetesHost = "http://example.com:443",
+    ///             TokenReviewerJwt = "ZXhhbXBsZQo=",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class AuthBackendConfig : Pulumi.CustomResource
     {

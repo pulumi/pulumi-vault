@@ -9,6 +9,56 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault
 {
+    /// <summary>
+    /// ## Example Usage (file audit device)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Vault.Audit("test", new Vault.AuditArgs
+    ///         {
+    ///             Options = 
+    ///             {
+    ///                 { "file_path", "C:/temp/audit.txt" },
+    ///             },
+    ///             Type = "file",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ## Example Usage (socket audit device)
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Vault.Audit("test", new Vault.AuditArgs
+    ///         {
+    ///             Options = 
+    ///             {
+    ///                 { "address", "127.0.0.1:8000" },
+    ///                 { "description", "application x socket" },
+    ///                 { "socket_type", "tcp" },
+    ///             },
+    ///             Path = "app_socket",
+    ///             Type = "socket",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     public partial class Audit : Pulumi.CustomResource
     {
         /// <summary>

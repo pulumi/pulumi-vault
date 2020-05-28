@@ -11,6 +11,36 @@ namespace Pulumi.Vault.PkiSecret
 {
     /// <summary>
     /// Allows setting the duration for which the generated CRL should be marked valid. If the CRL is disabled, it will return a signed but zero-length CRL for any request. If enabled, it will re-build the CRL.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var pki = new Vault.Mount("pki", new Vault.MountArgs
+    ///         {
+    ///             DefaultLeaseTtlSeconds = 3600,
+    ///             MaxLeaseTtlSeconds = 86400,
+    ///             Path = "%s",
+    ///             Type = "pki",
+    ///         });
+    ///         var crlConfig = new Vault.PkiSecret.SecretBackendCrlConfig("crlConfig", new Vault.PkiSecret.SecretBackendCrlConfigArgs
+    ///         {
+    ///             Backend = pki.Path,
+    ///             Disable = false,
+    ///             Expiry = "72h",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class SecretBackendCrlConfig : Pulumi.CustomResource
     {

@@ -78,7 +78,7 @@ class AuthBackend(pulumi.CustomResource):
 
         example = vault.AuthBackend("example",
             tune={
-                "listingVisibility": "unauth",
+                "listing_visibility": "unauth",
                 "maxLeaseTtl": "90000s",
             },
             type="github")

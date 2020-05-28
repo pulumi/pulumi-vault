@@ -11,6 +11,75 @@ namespace Pulumi.Vault.Identity
 {
     /// <summary>
     /// Manages policies for an Identity Entity for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Exclusive Policies
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var entity = new Vault.Identity.Entity("entity", new Vault.Identity.EntityArgs
+    ///         {
+    ///             ExternalPolicies = true,
+    ///         });
+    ///         var policies = new Vault.Identity.EntityPolicies("policies", new Vault.Identity.EntityPoliciesArgs
+    ///         {
+    ///             Policies = 
+    ///             {
+    ///                 "default",
+    ///                 "test",
+    ///             },
+    ///             Exclusive = true,
+    ///             EntityId = entity.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Non-exclusive Policies
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var entity = new Vault.Identity.Entity("entity", new Vault.Identity.EntityArgs
+    ///         {
+    ///             ExternalPolicies = true,
+    ///         });
+    ///         var @default = new Vault.Identity.EntityPolicies("default", new Vault.Identity.EntityPoliciesArgs
+    ///         {
+    ///             Policies = 
+    ///             {
+    ///                 "default",
+    ///                 "test",
+    ///             },
+    ///             Exclusive = false,
+    ///             EntityId = entity.Id,
+    ///         });
+    ///         var others = new Vault.Identity.EntityPolicies("others", new Vault.Identity.EntityPoliciesArgs
+    ///         {
+    ///             Policies = 
+    ///             {
+    ///                 "others",
+    ///             },
+    ///             Exclusive = false,
+    ///             EntityId = entity.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class EntityPolicies : Pulumi.CustomResource
     {

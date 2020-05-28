@@ -11,6 +11,85 @@ namespace Pulumi.Vault.Identity
 {
     /// <summary>
     /// Manages policies for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Exclusive Policies
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var @internal = new Vault.Identity.Group("internal", new Vault.Identity.GroupArgs
+    ///         {
+    ///             Type = "internal",
+    ///             ExternalPolicies = true,
+    ///             Metadata = 
+    ///             {
+    ///                 { "version", "2" },
+    ///             },
+    ///         });
+    ///         var policies = new Vault.Identity.GroupPolicies("policies", new Vault.Identity.GroupPoliciesArgs
+    ///         {
+    ///             Policies = 
+    ///             {
+    ///                 "default",
+    ///                 "test",
+    ///             },
+    ///             Exclusive = true,
+    ///             GroupId = @internal.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Non-exclusive Policies
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var @internal = new Vault.Identity.Group("internal", new Vault.Identity.GroupArgs
+    ///         {
+    ///             Type = "internal",
+    ///             ExternalPolicies = true,
+    ///             Metadata = 
+    ///             {
+    ///                 { "version", "2" },
+    ///             },
+    ///         });
+    ///         var @default = new Vault.Identity.GroupPolicies("default", new Vault.Identity.GroupPoliciesArgs
+    ///         {
+    ///             Policies = 
+    ///             {
+    ///                 "default",
+    ///                 "test",
+    ///             },
+    ///             Exclusive = false,
+    ///             GroupId = @internal.Id,
+    ///         });
+    ///         var others = new Vault.Identity.GroupPolicies("others", new Vault.Identity.GroupPoliciesArgs
+    ///         {
+    ///             Policies = 
+    ///             {
+    ///                 "others",
+    ///             },
+    ///             Exclusive = false,
+    ///             GroupId = @internal.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class GroupPolicies : Pulumi.CustomResource
     {

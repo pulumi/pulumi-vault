@@ -11,6 +11,44 @@ namespace Pulumi.Vault.Ldap
 {
     /// <summary>
     /// Provides a resource to create a user in an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var ldap = new Vault.Ldap.AuthBackend("ldap", new Vault.Ldap.AuthBackendArgs
+    ///         {
+    ///             Discoverdn = false,
+    ///             Groupdn = "OU=Groups,DC=example,DC=org",
+    ///             Groupfilter = "(&amp;(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
+    ///             Path = "ldap",
+    ///             Upndomain = "EXAMPLE.ORG",
+    ///             Url = "ldaps://dc-01.example.org",
+    ///             Userattr = "sAMAccountName",
+    ///             Userdn = "OU=Users,OU=Accounts,DC=example,DC=org",
+    ///         });
+    ///         var user = new Vault.Ldap.AuthBackendUser("user", new Vault.Ldap.AuthBackendUserArgs
+    ///         {
+    ///             Backend = ldap.Path,
+    ///             Policies = 
+    ///             {
+    ///                 "dba",
+    ///                 "sysops",
+    ///             },
+    ///             Username = "test-user",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class AuthBackendUser : Pulumi.CustomResource
     {

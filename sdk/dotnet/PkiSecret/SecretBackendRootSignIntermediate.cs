@@ -11,6 +11,32 @@ namespace Pulumi.Vault.PkiSecret
 {
     /// <summary>
     /// Creates an PKI certificate.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var root = new Vault.PkiSecret.SecretBackendRootSignIntermediate("root", new Vault.PkiSecret.SecretBackendRootSignIntermediateArgs
+    ///         {
+    ///             Backend = vault_pki_secret_backend.Root.Path,
+    ///             Csr = vault_pki_secret_backend_intermediate_cert_request.Intermediate.Csr,
+    ///             CommonName = "Intermediate CA",
+    ///             ExcludeCnFromSans = true,
+    ///             Ou = "My OU",
+    ///             Organization = "My organization",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class SecretBackendRootSignIntermediate : Pulumi.CustomResource
     {

@@ -13,6 +13,27 @@ namespace Pulumi.Vault
     /// Provides a resource to manage [Namespaces](https://www.vaultproject.io/docs/enterprise/namespaces/index.html).
     /// 
     /// **Note** this feature is available only with Vault Enterprise.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var ns1 = new Vault.Namespace("ns1", new Vault.NamespaceArgs
+    ///         {
+    ///             Path = "ns1",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Namespace : Pulumi.CustomResource
     {

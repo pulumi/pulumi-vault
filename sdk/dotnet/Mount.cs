@@ -9,6 +9,30 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault
 {
+    /// <summary>
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Vault.Mount("example", new Vault.MountArgs
+    ///         {
+    ///             Description = "This is an example mount",
+    ///             Path = "dummy",
+    ///             Type = "generic",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     public partial class Mount : Pulumi.CustomResource
     {
         /// <summary>

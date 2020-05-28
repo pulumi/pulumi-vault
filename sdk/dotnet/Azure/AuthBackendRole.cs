@@ -15,6 +15,48 @@ namespace Pulumi.Vault.Azure
     /// backend. See the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/azure.html) for more
     /// information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var azure = new Vault.AuthBackend("azure", new Vault.AuthBackendArgs
+    ///         {
+    ///             Type = "azure",
+    ///         });
+    ///         var example = new Vault.Azure.AuthBackendRole("example", new Vault.Azure.AuthBackendRoleArgs
+    ///         {
+    ///             Backend = azure.Path,
+    ///             BoundResourceGroups = 
+    ///             {
+    ///                 "123456789012",
+    ///             },
+    ///             BoundSubscriptionIds = 
+    ///             {
+    ///                 "11111111-2222-3333-4444-555555555555",
+    ///             },
+    ///             Role = "test-role",
+    ///             TokenMaxTtl = 120,
+    ///             TokenPolicies = 
+    ///             {
+    ///                 "default",
+    ///                 "dev",
+    ///                 "prod",
+    ///             },
+    ///             TokenTtl = 60,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class AuthBackendRole : Pulumi.CustomResource
     {

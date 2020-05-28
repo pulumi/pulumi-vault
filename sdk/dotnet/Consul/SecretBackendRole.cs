@@ -11,6 +11,38 @@ namespace Pulumi.Vault.Consul
 {
     /// <summary>
     /// Manages a Consul secrets role for a Consul secrets engine in Vault. Consul secret backends can then issue Consul tokens.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Vault.Consul.SecretBackend("test", new Vault.Consul.SecretBackendArgs
+    ///         {
+    ///             Path = "consul",
+    ///             Description = "Manages the Consul backend",
+    ///             Address = "127.0.0.1:8500",
+    ///             Token = "4240861b-ce3d-8530-115a-521ff070dd29",
+    ///         });
+    ///         var example = new Vault.Consul.SecretBackendRole("example", new Vault.Consul.SecretBackendRoleArgs
+    ///         {
+    ///             Backend = test.Path,
+    ///             Policies = 
+    ///             {
+    ///                 "example-policy",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class SecretBackendRole : Pulumi.CustomResource
     {

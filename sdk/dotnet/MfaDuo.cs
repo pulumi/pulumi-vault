@@ -13,6 +13,35 @@ namespace Pulumi.Vault
     /// Provides a resource to manage [Duo MFA](https://www.vaultproject.io/docs/enterprise/mfa/mfa-duo.html).
     /// 
     /// **Note** this feature is available only with Vault Enterprise.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var userpass = new Vault.AuthBackend("userpass", new Vault.AuthBackendArgs
+    ///         {
+    ///             Path = "userpass",
+    ///             Type = "userpass",
+    ///         });
+    ///         var myDuo = new Vault.MfaDuo("myDuo", new Vault.MfaDuoArgs
+    ///         {
+    ///             ApiHostname = "api-2b5c39f5.duosecurity.com",
+    ///             IntegrationKey = "BIACEUEAXI20BNWTEYXT",
+    ///             MountAccessor = userpass.Accessor,
+    ///             SecretKey = "8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class MfaDuo : Pulumi.CustomResource
     {

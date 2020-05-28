@@ -13,6 +13,41 @@ namespace Pulumi.Vault.TokenAuth
     /// Manages Token auth backend role in a Vault server. See the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/token.html) for more
     /// information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Vault.TokenAuth.AuthBackendRole("example", new Vault.TokenAuth.AuthBackendRoleArgs
+    ///         {
+    ///             AllowedPolicies = 
+    ///             {
+    ///                 "dev",
+    ///                 "test",
+    ///             },
+    ///             DisallowedPolicies = 
+    ///             {
+    ///                 "default",
+    ///             },
+    ///             ExplicitMaxTtl = "115200",
+    ///             Orphan = true,
+    ///             PathSuffix = "path-suffix",
+    ///             Period = "86400",
+    ///             Renewable = true,
+    ///             RoleName = "my-role",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class AuthBackendRole : Pulumi.CustomResource
     {

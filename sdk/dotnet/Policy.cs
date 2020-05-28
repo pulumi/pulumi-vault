@@ -9,6 +9,32 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault
 {
+    /// <summary>
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Vault.Policy("example", new Vault.PolicyArgs
+    ///         {
+    ///             Policy = @"path ""secret/my_app"" {
+    ///   capabilities = [""write""]
+    /// }
+    /// 
+    /// ",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     public partial class Policy : Pulumi.CustomResource
     {
         /// <summary>

@@ -13,6 +13,37 @@ namespace Pulumi.Vault
     /// Provides a resource to manage Endpoint Governing Policy (EGP) via [Sentinel](https://www.vaultproject.io/docs/enterprise/sentinel/index.html).
     /// 
     /// **Note** this feature is available only with Vault Enterprise.
+    /// 
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var allow_all = new Vault.EgpPolicy("allow-all", new Vault.EgpPolicyArgs
+    ///         {
+    ///             EnforcementLevel = "soft-mandatory",
+    ///             Paths = 
+    ///             {
+    ///                 "*",
+    ///             },
+    ///             Policy = @"main = rule {
+    ///   true
+    /// }
+    /// 
+    /// ",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class EgpPolicy : Pulumi.CustomResource
     {

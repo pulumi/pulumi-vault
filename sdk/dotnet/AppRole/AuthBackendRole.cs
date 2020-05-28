@@ -13,6 +13,38 @@ namespace Pulumi.Vault.AppRole
     /// Manages an AppRole auth backend role in a Vault server. See the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/approle) for more
     /// information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var approle = new Vault.AuthBackend("approle", new Vault.AuthBackendArgs
+    ///         {
+    ///             Type = "approle",
+    ///         });
+    ///         var example = new Vault.AppRole.AuthBackendRole("example", new Vault.AppRole.AuthBackendRoleArgs
+    ///         {
+    ///             Backend = approle.Path,
+    ///             RoleName = "test-role",
+    ///             TokenPolicies = 
+    ///             {
+    ///                 "default",
+    ///                 "dev",
+    ///                 "prod",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class AuthBackendRole : Pulumi.CustomResource
     {

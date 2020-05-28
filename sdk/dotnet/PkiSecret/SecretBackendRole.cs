@@ -11,6 +11,33 @@ namespace Pulumi.Vault.PkiSecret
 {
     /// <summary>
     /// Creates a role on an PKI Secret Backend for Vault.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var pki = new Vault.PkiSecret.SecretBackend("pki", new Vault.PkiSecret.SecretBackendArgs
+    ///         {
+    ///             DefaultLeaseTtlSeconds = 3600,
+    ///             MaxLeaseTtlSeconds = 86400,
+    ///             Path = "%s",
+    ///         });
+    ///         var role = new Vault.PkiSecret.SecretBackendRole("role", new Vault.PkiSecret.SecretBackendRoleArgs
+    ///         {
+    ///             Backend = pki.Path,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class SecretBackendRole : Pulumi.CustomResource
     {

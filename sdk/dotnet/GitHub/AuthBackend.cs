@@ -13,6 +13,27 @@ namespace Pulumi.Vault.GitHub
     /// Manages a Github Auth mount in a Vault server. See the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/github/) for more
     /// information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Vault.GitHub.AuthBackend("example", new Vault.GitHub.AuthBackendArgs
+    ///         {
+    ///             Organization = "myorg",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class AuthBackend : Pulumi.CustomResource
     {

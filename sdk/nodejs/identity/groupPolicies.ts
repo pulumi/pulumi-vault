@@ -45,7 +45,7 @@ import * as utilities from "../utilities";
  *         version: "2",
  *     },
  * });
- * const default = new vault.identity.GroupPolicies("default", {
+ * const _default = new vault.identity.GroupPolicies("default", {
  *     policies: [
  *         "default",
  *         "test",
