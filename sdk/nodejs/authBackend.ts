@@ -32,6 +32,7 @@ export class AuthBackend extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AuthBackendState, opts?: pulumi.CustomResourceOptions): AuthBackend {
         return new AuthBackend(name, <any>state, { ...opts, id: id });
@@ -57,6 +58,8 @@ export class AuthBackend extends pulumi.CustomResource {
     public /*out*/ readonly accessor!: pulumi.Output<string>;
     /**
      * (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
+     *
+     * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
      */
     public readonly defaultLeaseTtlSeconds!: pulumi.Output<number>;
     /**
@@ -66,6 +69,8 @@ export class AuthBackend extends pulumi.CustomResource {
     /**
      * Specifies whether to show this mount in
      * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+     *
+     * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
      */
     public readonly listingVisibility!: pulumi.Output<string>;
     /**
@@ -74,6 +79,8 @@ export class AuthBackend extends pulumi.CustomResource {
     public readonly local!: pulumi.Output<boolean | undefined>;
     /**
      * (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
+     *
+     * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
      */
     public readonly maxLeaseTtlSeconds!: pulumi.Output<number>;
     /**
@@ -146,6 +153,7 @@ export interface AuthBackendState {
     readonly accessor?: pulumi.Input<string>;
     /**
      * (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
+     *
      * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
      */
     readonly defaultLeaseTtlSeconds?: pulumi.Input<number>;
@@ -156,6 +164,7 @@ export interface AuthBackendState {
     /**
      * Specifies whether to show this mount in
      * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+     *
      * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
      */
     readonly listingVisibility?: pulumi.Input<string>;
@@ -165,6 +174,7 @@ export interface AuthBackendState {
     readonly local?: pulumi.Input<boolean>;
     /**
      * (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
+     *
      * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
      */
     readonly maxLeaseTtlSeconds?: pulumi.Input<number>;
@@ -188,6 +198,7 @@ export interface AuthBackendState {
 export interface AuthBackendArgs {
     /**
      * (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
+     *
      * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
      */
     readonly defaultLeaseTtlSeconds?: pulumi.Input<number>;
@@ -198,6 +209,7 @@ export interface AuthBackendArgs {
     /**
      * Specifies whether to show this mount in
      * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+     *
      * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
      */
     readonly listingVisibility?: pulumi.Input<string>;
@@ -207,6 +219,7 @@ export interface AuthBackendArgs {
     readonly local?: pulumi.Input<boolean>;
     /**
      * (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
+     *
      * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
      */
     readonly maxLeaseTtlSeconds?: pulumi.Input<number>;

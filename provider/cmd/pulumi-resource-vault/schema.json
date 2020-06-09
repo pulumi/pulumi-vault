@@ -402,7 +402,16 @@
             "required": [
                 "roleName",
                 "scope"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "roleId",
+                        "roleName",
+                        "scope"
+                    ]
+                }
+            }
         },
         "vault:config/authLogins:authLogins": {
             "properties": {
@@ -422,7 +431,12 @@
             "type": "object",
             "required": [
                 "path"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "vault:config/clientAuths:clientAuths": {
             "properties": {
@@ -437,7 +451,12 @@
             "required": [
                 "certFile",
                 "keyFile"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "vault:config/headers:headers": {
             "properties": {
@@ -452,7 +471,12 @@
             "required": [
                 "name",
                 "value"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "vault:database/SecretBackendConnectionCassandra:SecretBackendConnectionCassandra": {
             "properties": {
@@ -1188,7 +1212,12 @@
                 "mountPath",
                 "mountType",
                 "name"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "vault:index/ProviderAuthLogin:ProviderAuthLogin": {
             "properties": {
@@ -1223,7 +1252,12 @@
             "type": "object",
             "required": [
                 "path"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": []
+                }
+            }
         },
         "vault:index/ProviderClientAuth:ProviderClientAuth": {
             "properties": {
@@ -1248,7 +1282,12 @@
             "required": [
                 "certFile",
                 "keyFile"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": []
+                }
+            }
         },
         "vault:index/ProviderHeader:ProviderHeader": {
             "properties": {
@@ -1273,7 +1312,12 @@
             "required": [
                 "name",
                 "value"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": []
+                }
+            }
         },
         "vault:jwt/AuthBackendTune:AuthBackendTune": {
             "properties": {
@@ -5081,7 +5125,7 @@
             }
         },
         "vault:database/secretBackendStaticRole:SecretBackendStaticRole": {
-            "description": "Creates a Database Secret Backend static role in Vault. Database secret backend\nstatic roles can be used to manage 1-to-1 mapping of a Vault Role to a user in a\ndatabase for the database.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst db = new vault.Mount(\"db\", {\n    path: \"postgres\",\n    type: \"database\",\n});\nconst postgres = new vault.database.SecretBackendConnection(\"postgres\", {\n    allowedRoles: [\"*\"],\n    backend: db.path,\n    postgresql: {\n        connectionUrl: \"postgres://username:password@host:port/database\",\n    },\n});\nconst staticRole = new vault.database.SecretBackendStaticRole(\"static_role\", {\n    backend: db.path,\n    dbName: postgres.name,\n    rotationPeriod: 3600,\n    rotationStatements: [\"ALTER USER \\\"{{name}}\\\" WITH PASSWORD '{{password}}';\"],\n    username: \"example\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ndb = vault.Mount(\"db\",\n    path=\"postgres\",\n    type=\"database\")\npostgres = vault.database.SecretBackendConnection(\"postgres\",\n    allowed_roles=[\"*\"],\n    backend=db.path,\n    postgresql={\n        \"connectionUrl\": \"postgres://username:password@host:port/database\",\n    })\nstatic_role = vault.database.SecretBackendStaticRole(\"staticRole\",\n    backend=db.path,\n    db_name=postgres.name,\n    rotation_period=\"3600\",\n    rotation_statements=[\"ALTER USER \\\"{{name}}\\\" WITH PASSWORD '{{password}}';\"],\n    username=\"example\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var db = new Vault.Mount(\"db\", new Vault.MountArgs\n        {\n            Path = \"postgres\",\n            Type = \"database\",\n        });\n        var postgres = new Vault.Database.SecretBackendConnection(\"postgres\", new Vault.Database.SecretBackendConnectionArgs\n        {\n            AllowedRoles = \n            {\n                \"*\",\n            },\n            Backend = db.Path,\n            Postgresql = new Vault.Database.Inputs.SecretBackendConnectionPostgresqlArgs\n            {\n                ConnectionUrl = \"postgres://username:password@host:port/database\",\n            },\n        });\n        var staticRole = new Vault.Database.SecretBackendStaticRole(\"staticRole\", new Vault.Database.SecretBackendStaticRoleArgs\n        {\n            Backend = db.Path,\n            DbName = postgres.Name,\n            RotationPeriod = \"3600\",\n            RotationStatements = \n            {\n                \"ALTER USER \\\"{{name}}\\\" WITH PASSWORD '{{password}}';\",\n            },\n            Username = \"example\",\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "description": "Creates a Database Secret Backend static role in Vault. Database secret backend\nstatic roles can be used to manage 1-to-1 mapping of a Vault Role to a user in a\ndatabase for the database.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst db = new vault.Mount(\"db\", {\n    path: \"postgres\",\n    type: \"database\",\n});\nconst postgres = new vault.database.SecretBackendConnection(\"postgres\", {\n    allowedRoles: [\"*\"],\n    backend: db.path,\n    postgresql: {\n        connectionUrl: \"postgres://username:password@host:port/database\",\n    },\n});\nconst staticRole = new vault.database.SecretBackendStaticRole(\"static_role\", {\n    backend: db.path,\n    dbName: postgres.name,\n    rotationPeriod: 3600,\n    rotationStatements: [\"ALTER USER \\\"{{name}}\\\" WITH PASSWORD '{{password}}';\"],\n    username: \"example\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ndb = vault.Mount(\"db\",\n    path=\"postgres\",\n    type=\"database\")\npostgres = vault.database.SecretBackendConnection(\"postgres\",\n    allowed_roles=[\"*\"],\n    backend=db.path,\n    postgresql={\n        \"connectionUrl\": \"postgres://username:password@host:port/database\",\n    })\nstatic_role = vault.database.SecretBackendStaticRole(\"staticRole\",\n    backend=db.path,\n    db_name=postgres.name,\n    rotation_period=\"3600\",\n    rotation_statements=[\"ALTER USER \\\"{{name}}\\\" WITH PASSWORD '{{password}}';\"],\n    username=\"example\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var db = new Vault.Mount(\"db\", new Vault.MountArgs\n        {\n            Path = \"postgres\",\n            Type = \"database\",\n        });\n        var postgres = new Vault.Database.SecretBackendConnection(\"postgres\", new Vault.Database.SecretBackendConnectionArgs\n        {\n            AllowedRoles = \n            {\n                \"*\",\n            },\n            Backend = db.Path,\n            Postgresql = new Vault.Database.Inputs.SecretBackendConnectionPostgresqlArgs\n            {\n                ConnectionUrl = \"postgres://username:password@host:port/database\",\n            },\n        });\n        var staticRole = new Vault.Database.SecretBackendStaticRole(\"staticRole\", new Vault.Database.SecretBackendStaticRoleArgs\n        {\n            Backend = db.Path,\n            DbName = postgres.Name,\n            RotationPeriod = 3600,\n            RotationStatements = \n            {\n                \"ALTER USER \\\"{{name}}\\\" WITH PASSWORD '{{password}}';\",\n            },\n            Username = \"example\",\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "backend": {
                     "type": "string",
@@ -15501,8 +15545,10 @@
                 "@types/mime": "^2.0.0",
                 "@types/node": "^8.0.25"
             },
+            "disableUnionOutputTypes": true,
             "packageDescription": "A Pulumi package for creating and managing vault cloud resources.",
             "packageName": "",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-vault)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-vault` repo](https://github.com/pulumi/pulumi-vault/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-providers/terraform-provider-vault` repo](https://github.com/terraform-providers/terraform-provider-vault/issues).",
             "typescriptVersion": ""
         },
         "python": {

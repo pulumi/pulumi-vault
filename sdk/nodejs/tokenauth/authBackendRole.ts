@@ -40,6 +40,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AuthBackendRoleState, opts?: pulumi.CustomResourceOptions): AuthBackendRole {
         return new AuthBackendRole(name, <any>state, { ...opts, id: id });
@@ -66,6 +67,8 @@ export class AuthBackendRole extends pulumi.CustomResource {
     /**
      * If set, a list of
      * CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+     *
+     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
      */
     public readonly boundCidrs!: pulumi.Output<string[] | undefined>;
     /**
@@ -75,6 +78,8 @@ export class AuthBackendRole extends pulumi.CustomResource {
     /**
      * If set, the
      * token will have an explicit max TTL set upon it.
+     *
+     * @deprecated use `token_explicit_max_ttl` instead if you are running Vault >= 1.2
      */
     public readonly explicitMaxTtl!: pulumi.Output<string | undefined>;
     /**
@@ -90,6 +95,8 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
      * value of this field. Specified in seconds.
+     *
+     * @deprecated use `token_period` instead if you are running Vault >= 1.2
      */
     public readonly period!: pulumi.Output<string | undefined>;
     /**
@@ -230,6 +237,7 @@ export interface AuthBackendRoleState {
     /**
      * If set, a list of
      * CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+     *
      * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
      */
     readonly boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
@@ -240,6 +248,7 @@ export interface AuthBackendRoleState {
     /**
      * If set, the
      * token will have an explicit max TTL set upon it.
+     *
      * @deprecated use `token_explicit_max_ttl` instead if you are running Vault >= 1.2
      */
     readonly explicitMaxTtl?: pulumi.Input<string>;
@@ -256,6 +265,7 @@ export interface AuthBackendRoleState {
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
      * value of this field. Specified in seconds.
+     *
      * @deprecated use `token_period` instead if you are running Vault >= 1.2
      */
     readonly period?: pulumi.Input<string>;
@@ -333,6 +343,7 @@ export interface AuthBackendRoleArgs {
     /**
      * If set, a list of
      * CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+     *
      * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
      */
     readonly boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
@@ -343,6 +354,7 @@ export interface AuthBackendRoleArgs {
     /**
      * If set, the
      * token will have an explicit max TTL set upon it.
+     *
      * @deprecated use `token_explicit_max_ttl` instead if you are running Vault >= 1.2
      */
     readonly explicitMaxTtl?: pulumi.Input<string>;
@@ -359,6 +371,7 @@ export interface AuthBackendRoleArgs {
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
      * value of this field. Specified in seconds.
+     *
      * @deprecated use `token_period` instead if you are running Vault >= 1.2
      */
     readonly period?: pulumi.Input<string>;

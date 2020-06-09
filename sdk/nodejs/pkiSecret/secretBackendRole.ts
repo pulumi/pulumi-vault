@@ -33,6 +33,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SecretBackendRoleState, opts?: pulumi.CustomResourceOptions): SecretBackendRole {
         return new SecretBackendRole(name, <any>state, { ...opts, id: id });
@@ -157,13 +158,13 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly notBeforeDuration!: pulumi.Output<string>;
     /**
-     * The organization of generated certificates
-     */
-    public readonly organizations!: pulumi.Output<string[] | undefined>;
-    /**
      * The organization unit of generated certificates
      */
     public readonly organizationUnit!: pulumi.Output<string[] | undefined>;
+    /**
+     * The organization of generated certificates
+     */
+    public readonly organizations!: pulumi.Output<string[] | undefined>;
     /**
      * Specify the list of allowed policies IODs
      */
@@ -239,8 +240,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["name"] = state ? state.name : undefined;
             inputs["noStore"] = state ? state.noStore : undefined;
             inputs["notBeforeDuration"] = state ? state.notBeforeDuration : undefined;
-            inputs["organizations"] = state ? state.organizations : undefined;
             inputs["organizationUnit"] = state ? state.organizationUnit : undefined;
+            inputs["organizations"] = state ? state.organizations : undefined;
             inputs["policyIdentifiers"] = state ? state.policyIdentifiers : undefined;
             inputs["postalCodes"] = state ? state.postalCodes : undefined;
             inputs["provinces"] = state ? state.provinces : undefined;
@@ -281,8 +282,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["noStore"] = args ? args.noStore : undefined;
             inputs["notBeforeDuration"] = args ? args.notBeforeDuration : undefined;
-            inputs["organizations"] = args ? args.organizations : undefined;
             inputs["organizationUnit"] = args ? args.organizationUnit : undefined;
+            inputs["organizations"] = args ? args.organizations : undefined;
             inputs["policyIdentifiers"] = args ? args.policyIdentifiers : undefined;
             inputs["postalCodes"] = args ? args.postalCodes : undefined;
             inputs["provinces"] = args ? args.provinces : undefined;
@@ -413,13 +414,13 @@ export interface SecretBackendRoleState {
      */
     readonly notBeforeDuration?: pulumi.Input<string>;
     /**
-     * The organization of generated certificates
-     */
-    readonly organizations?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
      * The organization unit of generated certificates
      */
     readonly organizationUnit?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The organization of generated certificates
+     */
+    readonly organizations?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specify the list of allowed policies IODs
      */
@@ -567,13 +568,13 @@ export interface SecretBackendRoleArgs {
      */
     readonly notBeforeDuration?: pulumi.Input<string>;
     /**
-     * The organization of generated certificates
-     */
-    readonly organizations?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
      * The organization unit of generated certificates
      */
     readonly organizationUnit?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The organization of generated certificates
+     */
+    readonly organizations?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specify the list of allowed policies IODs
      */

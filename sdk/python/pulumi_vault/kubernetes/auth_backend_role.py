@@ -214,6 +214,9 @@ class AuthBackendRole(pulumi.CustomResource):
 
             __props__['audience'] = audience
             __props__['backend'] = backend
+            if bound_cidrs is not None:
+                warnings.warn("use `token_bound_cidrs` instead if you are running Vault >= 1.2", DeprecationWarning)
+                pulumi.log.warn("bound_cidrs is deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2")
             __props__['bound_cidrs'] = bound_cidrs
             if bound_service_account_names is None:
                 raise TypeError("Missing required property 'bound_service_account_names'")
@@ -221,9 +224,21 @@ class AuthBackendRole(pulumi.CustomResource):
             if bound_service_account_namespaces is None:
                 raise TypeError("Missing required property 'bound_service_account_namespaces'")
             __props__['bound_service_account_namespaces'] = bound_service_account_namespaces
+            if max_ttl is not None:
+                warnings.warn("use `token_max_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
+                pulumi.log.warn("max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2")
             __props__['max_ttl'] = max_ttl
+            if num_uses is not None:
+                warnings.warn("use `token_num_uses` instead if you are running Vault >= 1.2", DeprecationWarning)
+                pulumi.log.warn("num_uses is deprecated: use `token_num_uses` instead if you are running Vault >= 1.2")
             __props__['num_uses'] = num_uses
+            if period is not None:
+                warnings.warn("use `token_period` instead if you are running Vault >= 1.2", DeprecationWarning)
+                pulumi.log.warn("period is deprecated: use `token_period` instead if you are running Vault >= 1.2")
             __props__['period'] = period
+            if policies is not None:
+                warnings.warn("use `token_policies` instead if you are running Vault >= 1.2", DeprecationWarning)
+                pulumi.log.warn("policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2")
             __props__['policies'] = policies
             if role_name is None:
                 raise TypeError("Missing required property 'role_name'")
@@ -237,6 +252,9 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__['token_policies'] = token_policies
             __props__['token_ttl'] = token_ttl
             __props__['token_type'] = token_type
+            if ttl is not None:
+                warnings.warn("use `token_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
+                pulumi.log.warn("ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2")
             __props__['ttl'] = ttl
         super(AuthBackendRole, __self__).__init__(
             'vault:kubernetes/authBackendRole:AuthBackendRole',

@@ -213,8 +213,17 @@ class AuthBackendRole(pulumi.CustomResource):
 
             __props__['backend'] = backend
             __props__['bind_secret_id'] = bind_secret_id
+            if bound_cidr_lists is not None:
+                warnings.warn("use `secret_id_bound_cidrs` instead", DeprecationWarning)
+                pulumi.log.warn("bound_cidr_lists is deprecated: use `secret_id_bound_cidrs` instead")
             __props__['bound_cidr_lists'] = bound_cidr_lists
+            if period is not None:
+                warnings.warn("use `token_period` instead if you are running Vault >= 1.2", DeprecationWarning)
+                pulumi.log.warn("period is deprecated: use `token_period` instead if you are running Vault >= 1.2")
             __props__['period'] = period
+            if policies is not None:
+                warnings.warn("use `token_policies` instead if you are running Vault >= 1.2", DeprecationWarning)
+                pulumi.log.warn("policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2")
             __props__['policies'] = policies
             __props__['role_id'] = role_id
             if role_name is None:

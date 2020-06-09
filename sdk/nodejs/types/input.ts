@@ -3,6 +3,7 @@
 
 import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface AuthBackendTune {
     /**
@@ -121,13 +122,15 @@ export interface ProviderHeader {
     name: pulumi.Input<string>;
     value: pulumi.Input<string>;
 }
-
 export namespace azure {
     export interface BackendRoleAzureRole {
         roleId?: pulumi.Input<string>;
         roleName: pulumi.Input<string>;
         scope: pulumi.Input<string>;
     }
+}
+
+export namespace config {
 }
 
 export namespace database {
@@ -566,3 +569,4 @@ export namespace rabbitMq {
         write: pulumi.Input<string>;
     }
 }
+

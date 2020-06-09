@@ -32,6 +32,7 @@ export class AuthBackend extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AuthBackendState, opts?: pulumi.CustomResourceOptions): AuthBackend {
         return new AuthBackend(name, <any>state, { ...opts, id: id });
@@ -68,6 +69,8 @@ export class AuthBackend extends pulumi.CustomResource {
     /**
      * (Optional; Deprecated, use `tokenMaxTtl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
      * issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
+     *
+     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
      */
     public readonly maxTtl!: pulumi.Output<string | undefined>;
     /**
@@ -133,6 +136,8 @@ export class AuthBackend extends pulumi.CustomResource {
     /**
      * (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
      * using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
+     *
+     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
      */
     public readonly ttl!: pulumi.Output<string | undefined>;
     public readonly tune!: pulumi.Output<outputs.github.AuthBackendTune>;
@@ -221,6 +226,7 @@ export interface AuthBackendState {
     /**
      * (Optional; Deprecated, use `tokenMaxTtl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
      * issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
+     *
      * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
      */
     readonly maxTtl?: pulumi.Input<string>;
@@ -287,6 +293,7 @@ export interface AuthBackendState {
     /**
      * (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
      * using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
+     *
      * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
      */
     readonly ttl?: pulumi.Input<string>;
@@ -310,6 +317,7 @@ export interface AuthBackendArgs {
     /**
      * (Optional; Deprecated, use `tokenMaxTtl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
      * issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
+     *
      * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
      */
     readonly maxTtl?: pulumi.Input<string>;
@@ -376,6 +384,7 @@ export interface AuthBackendArgs {
     /**
      * (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
      * using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
+     *
      * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
      */
     readonly ttl?: pulumi.Input<string>;

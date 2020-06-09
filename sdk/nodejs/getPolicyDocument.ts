@@ -64,9 +64,9 @@ export interface GetPolicyDocumentResult {
      * The above arguments serialized as a standard Vault HCL policy document.
      */
     readonly hcl: string;
-    readonly rules: outputs.GetPolicyDocumentRule[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly rules: outputs.GetPolicyDocumentRule[];
 }

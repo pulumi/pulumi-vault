@@ -60,6 +60,10 @@ export interface GetAuthBackendResult {
      */
     readonly description: string;
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * Speficies whether to show this mount in the UI-specific listing endpoint.
      */
     readonly listingVisibility: string;
@@ -76,8 +80,4 @@ export interface GetAuthBackendResult {
      * The name of the auth method type.
      */
     readonly type: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

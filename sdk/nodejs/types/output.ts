@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
 export interface AuthBackendTune {
@@ -106,11 +107,44 @@ export interface GetPolicyDocumentRuleDeniedParameter {
     values: string[];
 }
 
+export interface ProviderAuthLogin {
+    namespace?: string;
+    parameters?: {[key: string]: string};
+    path?: string;
+}
+
+export interface ProviderClientAuth {
+    certFile?: string;
+    keyFile?: string;
+}
+
+export interface ProviderHeader {
+    name?: string;
+    value?: string;
+}
 export namespace azure {
     export interface BackendRoleAzureRole {
         roleId: string;
         roleName: string;
         scope: string;
+    }
+}
+
+export namespace config {
+    export interface AuthLogins {
+        namespace?: string;
+        parameters?: {[key: string]: string};
+        path: string;
+    }
+
+    export interface ClientAuths {
+        certFile: string;
+        keyFile: string;
+    }
+
+    export interface Headers {
+        name: string;
+        value: string;
     }
 }
 
@@ -592,3 +626,4 @@ export namespace rabbitMq {
         write: string;
     }
 }
+

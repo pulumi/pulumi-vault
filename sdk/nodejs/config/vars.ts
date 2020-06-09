@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 let __config = new pulumi.Config("vault");
@@ -17,7 +19,7 @@ export let address: string | undefined = __config.get("address") || utilities.ge
 /**
  * Login to vault with an existing auth method using auth/<mount>/login
  */
-export let authLogins: { namespace?: string, parameters?: {[key: string]: string}, path: string }[] | undefined = __config.getObject<{ namespace?: string, parameters?: {[key: string]: string}, path: string }[]>("authLogins");
+export let authLogins: outputs.config.AuthLogins[] | undefined = __config.getObject<outputs.config.AuthLogins[]>("authLogins");
 /**
  * Path to directory containing CA certificate files to validate the server's certificate.
  */
@@ -29,19 +31,19 @@ export let caCertFile: string | undefined = __config.get("caCertFile") || utilit
 /**
  * Client authentication credentials.
  */
-export let clientAuths: { certFile: string, keyFile: string }[] | undefined = __config.getObject<{ certFile: string, keyFile: string }[]>("clientAuths");
+export let clientAuths: outputs.config.ClientAuths[] | undefined = __config.getObject<outputs.config.ClientAuths[]>("clientAuths");
 /**
  * The headers to send with each Vault request.
  */
-export let headers: { name: string, value: string }[] | undefined = __config.getObject<{ name: string, value: string }[]>("headers");
+export let headers: outputs.config.Headers[] | undefined = __config.getObject<outputs.config.Headers[]>("headers");
 /**
  * Maximum TTL for secret leases requested by this provider
  */
-export let maxLeaseTtlSeconds: number | undefined = __config.getObject<number>("maxLeaseTtlSeconds") || (utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 1200);
+export let maxLeaseTtlSeconds: number | undefined = __config.getObject<number>("maxLeaseTtlSeconds") || (<any>utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 1200);
 /**
  * Maximum number of retries when a 5xx error code is encountered.
  */
-export let maxRetries: number | undefined = __config.getObject<number>("maxRetries") || (utilities.getEnvNumber("VAULT_MAX_RETRIES") || 2);
+export let maxRetries: number | undefined = __config.getObject<number>("maxRetries") || (<any>utilities.getEnvNumber("VAULT_MAX_RETRIES") || 2);
 /**
  * The namespace to use. Available only for Vault Enterprise
  */
@@ -49,7 +51,7 @@ export let namespace: string | undefined = __config.get("namespace") || utilitie
 /**
  * Set this to true only if the target Vault server is an insecure development instance.
  */
-export let skipTlsVerify: boolean | undefined = __config.getObject<boolean>("skipTlsVerify") || utilities.getEnvBoolean("VAULT_SKIP_VERIFY");
+export let skipTlsVerify: boolean | undefined = __config.getObject<boolean>("skipTlsVerify") || <any>utilities.getEnvBoolean("VAULT_SKIP_VERIFY");
 /**
  * Token to use to authenticate to Vault.
  */
