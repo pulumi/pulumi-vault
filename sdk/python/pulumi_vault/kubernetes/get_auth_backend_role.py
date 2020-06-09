@@ -25,6 +25,9 @@ class GetAuthBackendRoleResult:
         __self__.backend = backend
         if bound_cidrs and not isinstance(bound_cidrs, list):
             raise TypeError("Expected argument 'bound_cidrs' to be a list")
+        if bound_cidrs is not None:
+            warnings.warn("use `token_bound_cidrs` instead if you are running Vault >= 1.2", DeprecationWarning)
+            pulumi.log.warn("bound_cidrs is deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2")
         __self__.bound_cidrs = bound_cidrs
         if bound_service_account_names and not isinstance(bound_service_account_names, list):
             raise TypeError("Expected argument 'bound_service_account_names' to be a list")
@@ -46,15 +49,27 @@ class GetAuthBackendRoleResult:
         """
         if max_ttl and not isinstance(max_ttl, float):
             raise TypeError("Expected argument 'max_ttl' to be a float")
+        if max_ttl is not None:
+            warnings.warn("use `token_max_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
+            pulumi.log.warn("max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2")
         __self__.max_ttl = max_ttl
         if num_uses and not isinstance(num_uses, float):
             raise TypeError("Expected argument 'num_uses' to be a float")
+        if num_uses is not None:
+            warnings.warn("use `token_num_uses` instead if you are running Vault >= 1.2", DeprecationWarning)
+            pulumi.log.warn("num_uses is deprecated: use `token_num_uses` instead if you are running Vault >= 1.2")
         __self__.num_uses = num_uses
         if period and not isinstance(period, float):
             raise TypeError("Expected argument 'period' to be a float")
+        if period is not None:
+            warnings.warn("use `token_period` instead if you are running Vault >= 1.2", DeprecationWarning)
+            pulumi.log.warn("period is deprecated: use `token_period` instead if you are running Vault >= 1.2")
         __self__.period = period
         if policies and not isinstance(policies, list):
             raise TypeError("Expected argument 'policies' to be a list")
+        if policies is not None:
+            warnings.warn("use `token_policies` instead if you are running Vault >= 1.2", DeprecationWarning)
+            pulumi.log.warn("policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2")
         __self__.policies = policies
         if role_name and not isinstance(role_name, str):
             raise TypeError("Expected argument 'role_name' to be a str")
@@ -133,6 +148,9 @@ class GetAuthBackendRoleResult:
         """
         if ttl and not isinstance(ttl, float):
             raise TypeError("Expected argument 'ttl' to be a float")
+        if ttl is not None:
+            warnings.warn("use `token_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
+            pulumi.log.warn("ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2")
         __self__.ttl = ttl
 class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
     # pylint: disable=using-constant-test

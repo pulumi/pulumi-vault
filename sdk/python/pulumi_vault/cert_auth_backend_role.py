@@ -240,14 +240,26 @@ class CertAuthBackendRole(pulumi.CustomResource):
             __props__['allowed_organization_units'] = allowed_organization_units
             __props__['allowed_uri_sans'] = allowed_uri_sans
             __props__['backend'] = backend
+            if bound_cidrs is not None:
+                warnings.warn("use `token_bound_cidrs` instead if you are running Vault >= 1.2", DeprecationWarning)
+                pulumi.log.warn("bound_cidrs is deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2")
             __props__['bound_cidrs'] = bound_cidrs
             if certificate is None:
                 raise TypeError("Missing required property 'certificate'")
             __props__['certificate'] = certificate
             __props__['display_name'] = display_name
+            if max_ttl is not None:
+                warnings.warn("use `token_max_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
+                pulumi.log.warn("max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2")
             __props__['max_ttl'] = max_ttl
             __props__['name'] = name
+            if period is not None:
+                warnings.warn("use `token_period` instead if you are running Vault >= 1.2", DeprecationWarning)
+                pulumi.log.warn("period is deprecated: use `token_period` instead if you are running Vault >= 1.2")
             __props__['period'] = period
+            if policies is not None:
+                warnings.warn("use `token_policies` instead if you are running Vault >= 1.2", DeprecationWarning)
+                pulumi.log.warn("policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2")
             __props__['policies'] = policies
             __props__['required_extensions'] = required_extensions
             __props__['token_bound_cidrs'] = token_bound_cidrs
@@ -259,6 +271,9 @@ class CertAuthBackendRole(pulumi.CustomResource):
             __props__['token_policies'] = token_policies
             __props__['token_ttl'] = token_ttl
             __props__['token_type'] = token_type
+            if ttl is not None:
+                warnings.warn("use `token_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
+                pulumi.log.warn("ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2")
             __props__['ttl'] = ttl
         super(CertAuthBackendRole, __self__).__init__(
             'vault:index/certAuthBackendRole:CertAuthBackendRole',

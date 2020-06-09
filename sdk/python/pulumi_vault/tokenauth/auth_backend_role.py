@@ -194,11 +194,20 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['allowed_policies'] = allowed_policies
+            if bound_cidrs is not None:
+                warnings.warn("use `token_bound_cidrs` instead if you are running Vault >= 1.2", DeprecationWarning)
+                pulumi.log.warn("bound_cidrs is deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2")
             __props__['bound_cidrs'] = bound_cidrs
             __props__['disallowed_policies'] = disallowed_policies
+            if explicit_max_ttl is not None:
+                warnings.warn("use `token_explicit_max_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
+                pulumi.log.warn("explicit_max_ttl is deprecated: use `token_explicit_max_ttl` instead if you are running Vault >= 1.2")
             __props__['explicit_max_ttl'] = explicit_max_ttl
             __props__['orphan'] = orphan
             __props__['path_suffix'] = path_suffix
+            if period is not None:
+                warnings.warn("use `token_period` instead if you are running Vault >= 1.2", DeprecationWarning)
+                pulumi.log.warn("period is deprecated: use `token_period` instead if you are running Vault >= 1.2")
             __props__['period'] = period
             __props__['renewable'] = renewable
             if role_name is None:

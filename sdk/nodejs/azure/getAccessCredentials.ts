@@ -79,6 +79,10 @@ export interface GetAccessCredentialsResult {
      */
     readonly clientSecret: string;
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * The duration of the secret lease, in seconds relative
      * to the time the data was requested. Once this time has passed any plan
      * generated with this data may fail to apply.
@@ -95,8 +99,4 @@ export interface GetAccessCredentialsResult {
     readonly numSequentialSuccesses?: number;
     readonly role: string;
     readonly validateCreds?: boolean;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

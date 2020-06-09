@@ -37,6 +37,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AuthBackendRoleState, opts?: pulumi.CustomResourceOptions): AuthBackendRole {
         return new AuthBackendRole(name, <any>state, { ...opts, id: id });
@@ -69,6 +70,8 @@ export class AuthBackendRole extends pulumi.CustomResource {
     /**
      * If set,
      * specifies blocks of IP addresses which can perform the login operation.
+     *
+     * @deprecated use `secret_id_bound_cidrs` instead
      */
     public readonly boundCidrLists!: pulumi.Output<string[] | undefined>;
     /**
@@ -76,11 +79,15 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
      * value of this field. Specified in seconds.
+     *
+     * @deprecated use `token_period` instead if you are running Vault >= 1.2
      */
     public readonly period!: pulumi.Output<number | undefined>;
     /**
      * An array of strings
      * specifying the policies to be set on tokens issued using this role.
+     *
+     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
      */
     public readonly policies!: pulumi.Output<string[] | undefined>;
     /**
@@ -247,6 +254,7 @@ export interface AuthBackendRoleState {
     /**
      * If set,
      * specifies blocks of IP addresses which can perform the login operation.
+     *
      * @deprecated use `secret_id_bound_cidrs` instead
      */
     readonly boundCidrLists?: pulumi.Input<pulumi.Input<string>[]>;
@@ -255,12 +263,14 @@ export interface AuthBackendRoleState {
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
      * value of this field. Specified in seconds.
+     *
      * @deprecated use `token_period` instead if you are running Vault >= 1.2
      */
     readonly period?: pulumi.Input<number>;
     /**
      * An array of strings
      * specifying the policies to be set on tokens issued using this role.
+     *
      * @deprecated use `token_policies` instead if you are running Vault >= 1.2
      */
     readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
@@ -362,6 +372,7 @@ export interface AuthBackendRoleArgs {
     /**
      * If set,
      * specifies blocks of IP addresses which can perform the login operation.
+     *
      * @deprecated use `secret_id_bound_cidrs` instead
      */
     readonly boundCidrLists?: pulumi.Input<pulumi.Input<string>[]>;
@@ -370,12 +381,14 @@ export interface AuthBackendRoleArgs {
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
      * value of this field. Specified in seconds.
+     *
      * @deprecated use `token_period` instead if you are running Vault >= 1.2
      */
     readonly period?: pulumi.Input<number>;
     /**
      * An array of strings
      * specifying the policies to be set on tokens issued using this role.
+     *
      * @deprecated use `token_policies` instead if you are running Vault >= 1.2
      */
     readonly policies?: pulumi.Input<pulumi.Input<string>[]>;

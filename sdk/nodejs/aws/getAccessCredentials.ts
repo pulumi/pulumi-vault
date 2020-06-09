@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessCredentialsResult> {
@@ -59,6 +61,10 @@ export interface GetAccessCredentialsResult {
     readonly accessKey: string;
     readonly backend: string;
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * The duration of the secret lease, in seconds relative
      * to the time the data was requested. Once this time has passed any plan
      * generated with this data may fail to apply.
@@ -81,8 +87,4 @@ export interface GetAccessCredentialsResult {
      */
     readonly securityToken: string;
     readonly type?: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

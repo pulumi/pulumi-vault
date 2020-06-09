@@ -35,6 +35,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SecretBackendRoleState, opts?: pulumi.CustomResourceOptions): SecretBackendRole {
         return new SecretBackendRole(name, <any>state, { ...opts, id: id });
@@ -72,6 +73,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
     public readonly name!: pulumi.Output<string>;
     /**
      * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
+     *
+     * @deprecated use `backend` instead
      */
     public readonly path!: pulumi.Output<string | undefined>;
     /**
@@ -154,6 +157,7 @@ export interface SecretBackendRoleState {
     readonly name?: pulumi.Input<string>;
     /**
      * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
+     *
      * @deprecated use `backend` instead
      */
     readonly path?: pulumi.Input<string>;
@@ -193,6 +197,7 @@ export interface SecretBackendRoleArgs {
     readonly name?: pulumi.Input<string>;
     /**
      * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
+     *
      * @deprecated use `backend` instead
      */
     readonly path?: pulumi.Input<string>;
