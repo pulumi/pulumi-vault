@@ -4,20 +4,10 @@ package examples
 
 import (
 	"os"
-	"path"
 	"testing"
 
 	"github.com/pulumi/pulumi/pkg/v2/testing/integration"
 )
-
-func TestAccPolicy(t *testing.T) {
-	test := getJSBaseOptions(t).
-		With(integration.ProgramTestOptions{
-			Dir: path.Join(getCwd(t), "policy"),
-		})
-
-	integration.ProgramTest(t, &test)
-}
 
 func getToken(t *testing.T) string {
 	token := os.Getenv("VAULT_DEV_ROOT_TOKEN_ID")
@@ -39,20 +29,4 @@ func getCwd(t *testing.T) string {
 
 func getBaseOptions() integration.ProgramTestOptions {
 	return integration.ProgramTestOptions{}
-}
-
-func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
-	token := getToken(t)
-	base := getBaseOptions()
-	baseJS := base.With(integration.ProgramTestOptions{
-		Config: map[string]string{
-			"vault:address": "http://127.0.0.1:8200",
-			"vault:token":   token,
-		},
-		Dependencies: []string{
-			"@pulumi/vault",
-		},
-	})
-
-	return baseJS
 }

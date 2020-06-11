@@ -1,0 +1,11 @@
+version: "3"
+services:
+  vault:
+    image: vault:latest
+    cap_add:
+      - IPC_LOCK
+    environment:
+      - VAULT_DEV_ROOT_TOKEN_ID=root
+    ports:
+      - 8200:8200
+    command: vault server -dev
