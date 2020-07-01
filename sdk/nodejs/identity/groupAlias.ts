@@ -11,8 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -25,7 +23,7 @@ import * as utilities from "../utilities";
  *     path: "github",
  *     type: "github",
  * });
- * const groupAlias = new vault.identity.GroupAlias("group-alias", {
+ * const group_alias = new vault.identity.GroupAlias("group-alias", {
  *     canonicalId: group.id,
  *     mountAccessor: github.accessor,
  *     name: "Github_Team_Slug",

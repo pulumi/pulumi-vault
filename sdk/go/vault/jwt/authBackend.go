@@ -11,6 +11,66 @@ import (
 
 // Provides a resource for managing an
 // [JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).
+//
+// ## Example Usage
+//
+// Manage JWT auth backend:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/jwt"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := jwt.NewAuthBackend(ctx, "example", &jwt.AuthBackendArgs{
+// 			BoundIssuer:      pulumi.String("https://myco.auth0.com/"),
+// 			Description:      pulumi.String("Demonstration of the Terraform JWT auth backend"),
+// 			OidcDiscoveryUrl: pulumi.String("https://myco.auth0.com/"),
+// 			Path:             pulumi.String("jwt"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// Manage OIDC auth backend:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/jwt"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := jwt.NewAuthBackend(ctx, "example", &jwt.AuthBackendArgs{
+// 			BoundIssuer:      pulumi.String("https://myco.auth0.com/"),
+// 			Description:      pulumi.String("Demonstration of the Terraform JWT auth backend"),
+// 			OidcClientId:     pulumi.String("1234567890"),
+// 			OidcClientSecret: pulumi.String("secret123456"),
+// 			OidcDiscoveryUrl: pulumi.String("https://myco.auth0.com/"),
+// 			Path:             pulumi.String("oidc"),
+// 			Tune: &jwt.AuthBackendTuneArgs{
+// 				ListingVisibility: pulumi.String("unauth"),
+// 			},
+// 			Type: pulumi.String("oidc"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AuthBackend struct {
 	pulumi.CustomResourceState
 

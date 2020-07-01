@@ -10,6 +10,60 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Example Usage
+// ### File Audit Device)
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := vault.NewAudit(ctx, "test", &vault.AuditArgs{
+// 			Options: pulumi.StringMap{
+// 				"file_path": pulumi.String("C:/temp/audit.txt"),
+// 			},
+// 			Type: pulumi.String("file"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Socket Audit Device)
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := vault.NewAudit(ctx, "test", &vault.AuditArgs{
+// 			Options: pulumi.StringMap{
+// 				"address":     pulumi.String("127.0.0.1:8000"),
+// 				"description": pulumi.String("application x socket"),
+// 				"socket_type": pulumi.String("tcp"),
+// 			},
+// 			Path: pulumi.String("app_socket"),
+// 			Type: pulumi.String("socket"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Audit struct {
 	pulumi.CustomResourceState
 

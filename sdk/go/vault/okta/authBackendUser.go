@@ -12,6 +12,41 @@ import (
 
 // Provides a resource to create a user in an
 // [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/okta"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		example, err := okta.NewAuthBackend(ctx, "example", &okta.AuthBackendArgs{
+// 			Organization: pulumi.String("dummy"),
+// 			Path:         pulumi.String("user_okta"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = okta.NewAuthBackendUser(ctx, "foo", &okta.AuthBackendUserArgs{
+// 			Groups: pulumi.StringArray{
+// 				pulumi.String("one"),
+// 				pulumi.String("two"),
+// 			},
+// 			Path:     example.Path,
+// 			Username: pulumi.String("foo"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AuthBackendUser struct {
 	pulumi.CustomResourceState
 

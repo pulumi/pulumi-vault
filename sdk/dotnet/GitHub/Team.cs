@@ -9,6 +9,40 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.GitHub
 {
+    /// <summary>
+    /// Manages policy mappings for Github Teams authenticated via Github. See the [Vault
+    /// documentation](https://www.vaultproject.io/docs/auth/github/) for more
+    /// information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Vault.GitHub.AuthBackend("example", new Vault.GitHub.AuthBackendArgs
+    ///         {
+    ///             Organization = "myorg",
+    ///         });
+    ///         var tfDevs = new Vault.GitHub.Team("tfDevs", new Vault.GitHub.TeamArgs
+    ///         {
+    ///             Backend = example.Id,
+    ///             Team = "terraform-developers",
+    ///             Policies = 
+    ///             {
+    ///                 "developer",
+    ///                 "read-only",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     public partial class Team : Pulumi.CustomResource
     {
         /// <summary>

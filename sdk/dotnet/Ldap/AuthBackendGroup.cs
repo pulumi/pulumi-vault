@@ -14,8 +14,6 @@ namespace Pulumi.Vault.Ldap
     /// 
     /// ## Example Usage
     /// 
-    /// 
-    /// 
     /// ```csharp
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;

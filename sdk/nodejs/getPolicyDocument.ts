@@ -7,11 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `vault..Policy` resource.
+ * This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `vault.Policy` resource.
  *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

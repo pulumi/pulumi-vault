@@ -40,8 +40,7 @@ type SecretBackendConnectionCassandra struct {
 // SecretBackendConnectionCassandraInput is an input type that accepts SecretBackendConnectionCassandraArgs and SecretBackendConnectionCassandraOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionCassandraInput` via:
 //
-// 		 SecretBackendConnectionCassandraArgs{...}
-//
+//          SecretBackendConnectionCassandraArgs{...}
 type SecretBackendConnectionCassandraInput interface {
 	pulumi.Input
 
@@ -99,12 +98,11 @@ func (i SecretBackendConnectionCassandraArgs) ToSecretBackendConnectionCassandra
 // SecretBackendConnectionCassandraPtrInput is an input type that accepts SecretBackendConnectionCassandraArgs, SecretBackendConnectionCassandraPtr and SecretBackendConnectionCassandraPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionCassandraPtrInput` via:
 //
-// 		 SecretBackendConnectionCassandraArgs{...}
+//          SecretBackendConnectionCassandraArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type SecretBackendConnectionCassandraPtrInput interface {
 	pulumi.Input
 
@@ -343,8 +341,7 @@ type SecretBackendConnectionElasticsearch struct {
 // SecretBackendConnectionElasticsearchInput is an input type that accepts SecretBackendConnectionElasticsearchArgs and SecretBackendConnectionElasticsearchOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionElasticsearchInput` via:
 //
-// 		 SecretBackendConnectionElasticsearchArgs{...}
-//
+//          SecretBackendConnectionElasticsearchArgs{...}
 type SecretBackendConnectionElasticsearchInput interface {
 	pulumi.Input
 
@@ -385,12 +382,11 @@ func (i SecretBackendConnectionElasticsearchArgs) ToSecretBackendConnectionElast
 // SecretBackendConnectionElasticsearchPtrInput is an input type that accepts SecretBackendConnectionElasticsearchArgs, SecretBackendConnectionElasticsearchPtr and SecretBackendConnectionElasticsearchPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionElasticsearchPtrInput` via:
 //
-// 		 SecretBackendConnectionElasticsearchArgs{...}
+//          SecretBackendConnectionElasticsearchArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type SecretBackendConnectionElasticsearchPtrInput interface {
 	pulumi.Input
 
@@ -525,8 +521,7 @@ type SecretBackendConnectionHana struct {
 // SecretBackendConnectionHanaInput is an input type that accepts SecretBackendConnectionHanaArgs and SecretBackendConnectionHanaOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionHanaInput` via:
 //
-// 		 SecretBackendConnectionHanaArgs{...}
-//
+//          SecretBackendConnectionHanaArgs{...}
 type SecretBackendConnectionHanaInput interface {
 	pulumi.Input
 
@@ -574,12 +569,11 @@ func (i SecretBackendConnectionHanaArgs) ToSecretBackendConnectionHanaPtrOutputW
 // SecretBackendConnectionHanaPtrInput is an input type that accepts SecretBackendConnectionHanaArgs, SecretBackendConnectionHanaPtr and SecretBackendConnectionHanaPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionHanaPtrInput` via:
 //
-// 		 SecretBackendConnectionHanaArgs{...}
+//          SecretBackendConnectionHanaArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type SecretBackendConnectionHanaPtrInput interface {
 	pulumi.Input
 
@@ -739,8 +733,7 @@ type SecretBackendConnectionMongodb struct {
 // SecretBackendConnectionMongodbInput is an input type that accepts SecretBackendConnectionMongodbArgs and SecretBackendConnectionMongodbOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMongodbInput` via:
 //
-// 		 SecretBackendConnectionMongodbArgs{...}
-//
+//          SecretBackendConnectionMongodbArgs{...}
 type SecretBackendConnectionMongodbInput interface {
 	pulumi.Input
 
@@ -788,12 +781,11 @@ func (i SecretBackendConnectionMongodbArgs) ToSecretBackendConnectionMongodbPtrO
 // SecretBackendConnectionMongodbPtrInput is an input type that accepts SecretBackendConnectionMongodbArgs, SecretBackendConnectionMongodbPtr and SecretBackendConnectionMongodbPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMongodbPtrInput` via:
 //
-// 		 SecretBackendConnectionMongodbArgs{...}
+//          SecretBackendConnectionMongodbArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type SecretBackendConnectionMongodbPtrInput interface {
 	pulumi.Input
 
@@ -953,8 +945,7 @@ type SecretBackendConnectionMssql struct {
 // SecretBackendConnectionMssqlInput is an input type that accepts SecretBackendConnectionMssqlArgs and SecretBackendConnectionMssqlOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMssqlInput` via:
 //
-// 		 SecretBackendConnectionMssqlArgs{...}
-//
+//          SecretBackendConnectionMssqlArgs{...}
 type SecretBackendConnectionMssqlInput interface {
 	pulumi.Input
 
@@ -1002,12 +993,11 @@ func (i SecretBackendConnectionMssqlArgs) ToSecretBackendConnectionMssqlPtrOutpu
 // SecretBackendConnectionMssqlPtrInput is an input type that accepts SecretBackendConnectionMssqlArgs, SecretBackendConnectionMssqlPtr and SecretBackendConnectionMssqlPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMssqlPtrInput` via:
 //
-// 		 SecretBackendConnectionMssqlArgs{...}
+//          SecretBackendConnectionMssqlArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type SecretBackendConnectionMssqlPtrInput interface {
 	pulumi.Input
 
@@ -1167,8 +1157,7 @@ type SecretBackendConnectionMysql struct {
 // SecretBackendConnectionMysqlInput is an input type that accepts SecretBackendConnectionMysqlArgs and SecretBackendConnectionMysqlOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMysqlInput` via:
 //
-// 		 SecretBackendConnectionMysqlArgs{...}
-//
+//          SecretBackendConnectionMysqlArgs{...}
 type SecretBackendConnectionMysqlInput interface {
 	pulumi.Input
 
@@ -1216,12 +1205,11 @@ func (i SecretBackendConnectionMysqlArgs) ToSecretBackendConnectionMysqlPtrOutpu
 // SecretBackendConnectionMysqlPtrInput is an input type that accepts SecretBackendConnectionMysqlArgs, SecretBackendConnectionMysqlPtr and SecretBackendConnectionMysqlPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMysqlPtrInput` via:
 //
-// 		 SecretBackendConnectionMysqlArgs{...}
+//          SecretBackendConnectionMysqlArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type SecretBackendConnectionMysqlPtrInput interface {
 	pulumi.Input
 
@@ -1381,8 +1369,7 @@ type SecretBackendConnectionMysqlAurora struct {
 // SecretBackendConnectionMysqlAuroraInput is an input type that accepts SecretBackendConnectionMysqlAuroraArgs and SecretBackendConnectionMysqlAuroraOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMysqlAuroraInput` via:
 //
-// 		 SecretBackendConnectionMysqlAuroraArgs{...}
-//
+//          SecretBackendConnectionMysqlAuroraArgs{...}
 type SecretBackendConnectionMysqlAuroraInput interface {
 	pulumi.Input
 
@@ -1430,12 +1417,11 @@ func (i SecretBackendConnectionMysqlAuroraArgs) ToSecretBackendConnectionMysqlAu
 // SecretBackendConnectionMysqlAuroraPtrInput is an input type that accepts SecretBackendConnectionMysqlAuroraArgs, SecretBackendConnectionMysqlAuroraPtr and SecretBackendConnectionMysqlAuroraPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMysqlAuroraPtrInput` via:
 //
-// 		 SecretBackendConnectionMysqlAuroraArgs{...}
+//          SecretBackendConnectionMysqlAuroraArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type SecretBackendConnectionMysqlAuroraPtrInput interface {
 	pulumi.Input
 
@@ -1595,8 +1581,7 @@ type SecretBackendConnectionMysqlLegacy struct {
 // SecretBackendConnectionMysqlLegacyInput is an input type that accepts SecretBackendConnectionMysqlLegacyArgs and SecretBackendConnectionMysqlLegacyOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMysqlLegacyInput` via:
 //
-// 		 SecretBackendConnectionMysqlLegacyArgs{...}
-//
+//          SecretBackendConnectionMysqlLegacyArgs{...}
 type SecretBackendConnectionMysqlLegacyInput interface {
 	pulumi.Input
 
@@ -1644,12 +1629,11 @@ func (i SecretBackendConnectionMysqlLegacyArgs) ToSecretBackendConnectionMysqlLe
 // SecretBackendConnectionMysqlLegacyPtrInput is an input type that accepts SecretBackendConnectionMysqlLegacyArgs, SecretBackendConnectionMysqlLegacyPtr and SecretBackendConnectionMysqlLegacyPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMysqlLegacyPtrInput` via:
 //
-// 		 SecretBackendConnectionMysqlLegacyArgs{...}
+//          SecretBackendConnectionMysqlLegacyArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type SecretBackendConnectionMysqlLegacyPtrInput interface {
 	pulumi.Input
 
@@ -1809,8 +1793,7 @@ type SecretBackendConnectionMysqlRds struct {
 // SecretBackendConnectionMysqlRdsInput is an input type that accepts SecretBackendConnectionMysqlRdsArgs and SecretBackendConnectionMysqlRdsOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMysqlRdsInput` via:
 //
-// 		 SecretBackendConnectionMysqlRdsArgs{...}
-//
+//          SecretBackendConnectionMysqlRdsArgs{...}
 type SecretBackendConnectionMysqlRdsInput interface {
 	pulumi.Input
 
@@ -1858,12 +1841,11 @@ func (i SecretBackendConnectionMysqlRdsArgs) ToSecretBackendConnectionMysqlRdsPt
 // SecretBackendConnectionMysqlRdsPtrInput is an input type that accepts SecretBackendConnectionMysqlRdsArgs, SecretBackendConnectionMysqlRdsPtr and SecretBackendConnectionMysqlRdsPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionMysqlRdsPtrInput` via:
 //
-// 		 SecretBackendConnectionMysqlRdsArgs{...}
+//          SecretBackendConnectionMysqlRdsArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type SecretBackendConnectionMysqlRdsPtrInput interface {
 	pulumi.Input
 
@@ -2023,8 +2005,7 @@ type SecretBackendConnectionOracle struct {
 // SecretBackendConnectionOracleInput is an input type that accepts SecretBackendConnectionOracleArgs and SecretBackendConnectionOracleOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionOracleInput` via:
 //
-// 		 SecretBackendConnectionOracleArgs{...}
-//
+//          SecretBackendConnectionOracleArgs{...}
 type SecretBackendConnectionOracleInput interface {
 	pulumi.Input
 
@@ -2072,12 +2053,11 @@ func (i SecretBackendConnectionOracleArgs) ToSecretBackendConnectionOraclePtrOut
 // SecretBackendConnectionOraclePtrInput is an input type that accepts SecretBackendConnectionOracleArgs, SecretBackendConnectionOraclePtr and SecretBackendConnectionOraclePtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionOraclePtrInput` via:
 //
-// 		 SecretBackendConnectionOracleArgs{...}
+//          SecretBackendConnectionOracleArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type SecretBackendConnectionOraclePtrInput interface {
 	pulumi.Input
 
@@ -2237,8 +2217,7 @@ type SecretBackendConnectionPostgresql struct {
 // SecretBackendConnectionPostgresqlInput is an input type that accepts SecretBackendConnectionPostgresqlArgs and SecretBackendConnectionPostgresqlOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionPostgresqlInput` via:
 //
-// 		 SecretBackendConnectionPostgresqlArgs{...}
-//
+//          SecretBackendConnectionPostgresqlArgs{...}
 type SecretBackendConnectionPostgresqlInput interface {
 	pulumi.Input
 
@@ -2286,12 +2265,11 @@ func (i SecretBackendConnectionPostgresqlArgs) ToSecretBackendConnectionPostgres
 // SecretBackendConnectionPostgresqlPtrInput is an input type that accepts SecretBackendConnectionPostgresqlArgs, SecretBackendConnectionPostgresqlPtr and SecretBackendConnectionPostgresqlPtrOutput values.
 // You can construct a concrete instance of `SecretBackendConnectionPostgresqlPtrInput` via:
 //
-// 		 SecretBackendConnectionPostgresqlArgs{...}
+//          SecretBackendConnectionPostgresqlArgs{...}
 //
 //  or:
 //
-// 		 nil
-//
+//          nil
 type SecretBackendConnectionPostgresqlPtrInput interface {
 	pulumi.Input
 

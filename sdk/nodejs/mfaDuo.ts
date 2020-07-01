@@ -11,8 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -21,7 +19,7 @@ import * as utilities from "./utilities";
  *     path: "userpass",
  *     type: "userpass",
  * });
- * const myDuo = new vault.MfaDuo("myDuo", {
+ * const myDuo = new vault.MfaDuo("my_duo", {
  *     apiHostname: "api-2b5c39f5.duosecurity.com",
  *     integrationKey: "BIACEUEAXI20BNWTEYXT",
  *     mountAccessor: userpass.accessor,

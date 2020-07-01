@@ -16,8 +16,6 @@ namespace Pulumi.Vault.Kubernetes
     /// 
     /// ## Example Usage
     /// 
-    /// 
-    /// 
     /// ```csharp
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;

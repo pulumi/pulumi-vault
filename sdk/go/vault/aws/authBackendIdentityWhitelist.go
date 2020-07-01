@@ -13,6 +13,37 @@ import (
 //
 // For more information, see the
 // [Vault docs](https://www.vaultproject.io/api-docs/auth/aws#configure-identity-whitelist-tidy-operation).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/aws"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		exampleAuthBackend, err := vault.NewAuthBackend(ctx, "exampleAuthBackend", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("aws"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = aws.NewAuthBackendIdentityWhitelist(ctx, "exampleAuthBackendIdentityWhitelist", &aws.AuthBackendIdentityWhitelistArgs{
+// 			Backend:      exampleAuthBackend.Path,
+// 			SafetyBuffer: pulumi.Int(3600),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AuthBackendIdentityWhitelist struct {
 	pulumi.CustomResourceState
 

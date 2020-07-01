@@ -11,6 +11,39 @@ import (
 )
 
 // Creates a role on an PKI Secret Backend for Vault.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/pkiSecret"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		pki, err := pkiSecret.NewSecretBackend(ctx, "pki", &pkiSecret.SecretBackendArgs{
+// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
+// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
+// 			Path:                   pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = pkiSecret.NewSecretBackendRole(ctx, "role", &pkiSecret.SecretBackendRoleArgs{
+// 			Backend: pki.Path,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type SecretBackendRole struct {
 	pulumi.CustomResourceState
 

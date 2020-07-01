@@ -32,7 +32,6 @@ namespace Pulumi.Vault
         /// 
         /// }
         /// ```
-        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

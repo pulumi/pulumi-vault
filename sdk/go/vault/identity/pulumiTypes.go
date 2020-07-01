@@ -36,8 +36,7 @@ type GetEntityAliasType struct {
 // GetEntityAliasTypeInput is an input type that accepts GetEntityAliasTypeArgs and GetEntityAliasTypeOutput values.
 // You can construct a concrete instance of `GetEntityAliasTypeInput` via:
 //
-// 		 GetEntityAliasTypeArgs{...}
-//
+//          GetEntityAliasTypeArgs{...}
 type GetEntityAliasTypeInput interface {
 	pulumi.Input
 
@@ -83,8 +82,7 @@ func (i GetEntityAliasTypeArgs) ToGetEntityAliasTypeOutputWithContext(ctx contex
 // GetEntityAliasTypeArrayInput is an input type that accepts GetEntityAliasTypeArray and GetEntityAliasTypeArrayOutput values.
 // You can construct a concrete instance of `GetEntityAliasTypeArrayInput` via:
 //
-// 		 GetEntityAliasTypeArray{ GetEntityAliasTypeArgs{...} }
-//
+//          GetEntityAliasTypeArray{ GetEntityAliasTypeArgs{...} }
 type GetEntityAliasTypeArrayInput interface {
 	pulumi.Input
 

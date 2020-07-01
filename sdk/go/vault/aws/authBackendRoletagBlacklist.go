@@ -11,6 +11,37 @@ import (
 )
 
 // Configures the periodic tidying operation of the blacklisted role tag entries.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/aws"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		exampleAuthBackend, err := vault.NewAuthBackend(ctx, "exampleAuthBackend", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("aws"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = aws.NewAuthBackendRoletagBlacklist(ctx, "exampleAuthBackendRoletagBlacklist", &aws.AuthBackendRoletagBlacklistArgs{
+// 			Backend:      exampleAuthBackend.Path,
+// 			SafetyBuffer: pulumi.Int(360),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AuthBackendRoletagBlacklist struct {
 	pulumi.CustomResourceState
 

@@ -40,7 +40,6 @@ namespace Pulumi.Vault.Kubernetes
         ///     public Output&lt;string&gt; Policies { get; set; }
         /// }
         /// ```
-        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

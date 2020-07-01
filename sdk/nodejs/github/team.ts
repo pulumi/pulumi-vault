@@ -4,6 +4,28 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * Manages policy mappings for Github Teams authenticated via Github. See the [Vault
+ * documentation](https://www.vaultproject.io/docs/auth/github/) for more
+ * information.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const example = new vault.github.AuthBackend("example", {organization: "myorg"});
+ * const tfDevs = new vault.github.Team("tfDevs", {
+ *     backend: example.id,
+ *     team: "terraform-developers",
+ *     policies: [
+ *         "developer",
+ *         "read-only",
+ *     ],
+ * });
+ * ```
+ */
 export class Team extends pulumi.CustomResource {
     /**
      * Get an existing Team resource's state with the given name, ID, and optional extra

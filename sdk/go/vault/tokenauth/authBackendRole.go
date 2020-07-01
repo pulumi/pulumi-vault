@@ -13,6 +13,41 @@ import (
 // Manages Token auth backend role in a Vault server. See the [Vault
 // documentation](https://www.vaultproject.io/docs/auth/token.html) for more
 // information.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/tokenauth"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := tokenauth.NewAuthBackendRole(ctx, "example", &tokenauth.AuthBackendRoleArgs{
+// 			AllowedPolicies: pulumi.StringArray{
+// 				pulumi.String("dev"),
+// 				pulumi.String("test"),
+// 			},
+// 			DisallowedPolicies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 			},
+// 			ExplicitMaxTtl: pulumi.String("115200"),
+// 			Orphan:         pulumi.Bool(true),
+// 			PathSuffix:     pulumi.String("path-suffix"),
+// 			Period:         pulumi.String("86400"),
+// 			Renewable:      pulumi.Bool(true),
+// 			RoleName:       pulumi.String("my-role"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
 

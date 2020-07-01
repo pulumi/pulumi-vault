@@ -13,6 +13,39 @@ import (
 // Provides a resource to manage [Duo MFA](https://www.vaultproject.io/docs/enterprise/mfa/mfa-duo.html).
 //
 // **Note** this feature is available only with Vault Enterprise.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		userpass, err := vault.NewAuthBackend(ctx, "userpass", &vault.AuthBackendArgs{
+// 			Path: pulumi.String("userpass"),
+// 			Type: pulumi.String("userpass"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = vault.NewMfaDuo(ctx, "myDuo", &vault.MfaDuoArgs{
+// 			ApiHostname:    pulumi.String("api-2b5c39f5.duosecurity.com"),
+// 			IntegrationKey: pulumi.String("BIACEUEAXI20BNWTEYXT"),
+// 			MountAccessor:  userpass.Accessor,
+// 			SecretKey:      pulumi.String("8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type MfaDuo struct {
 	pulumi.CustomResourceState
 

@@ -38,7 +38,6 @@ namespace Pulumi.Vault.AppRole
         ///     public Output&lt;string&gt; Role_id { get; set; }
         /// }
         /// ```
-        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

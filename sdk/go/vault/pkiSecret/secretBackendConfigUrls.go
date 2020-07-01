@@ -11,6 +11,42 @@ import (
 )
 
 // Allows setting the issuing certificate endpoints, CRL distribution points, and OCSP server endpoints that will be encoded into issued certificates.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/pkiSecret"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		pki, err := pkiSecret.NewSecretBackend(ctx, "pki", &pkiSecret.SecretBackendArgs{
+// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
+// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
+// 			Path:                   pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = pkiSecret.NewSecretBackendConfigUrls(ctx, "configUrls", &pkiSecret.SecretBackendConfigUrlsArgs{
+// 			Backend: pki.Path,
+// 			IssuingCertificates: pulumi.StringArray{
+// 				pulumi.String("http://127.0.0.1:8200/v1/pki/ca"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type SecretBackendConfigUrls struct {
 	pulumi.CustomResourceState
 

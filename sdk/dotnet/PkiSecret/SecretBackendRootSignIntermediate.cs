@@ -14,8 +14,6 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// ## Example Usage
     /// 
-    /// 
-    /// 
     /// ```csharp
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
@@ -32,6 +30,12 @@ namespace Pulumi.Vault.PkiSecret
     ///             ExcludeCnFromSans = true,
     ///             Ou = "My OU",
     ///             Organization = "My organization",
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn = 
+    ///             {
+    ///                 "vault_pki_secret_backend_intermediate_cert_request.intermediate",
+    ///             },
     ///         });
     ///     }
     /// 

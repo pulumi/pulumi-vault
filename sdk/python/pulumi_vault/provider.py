@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from . import utilities, tables
 
+
 class Provider(pulumi.ProviderResource):
     def __init__(__self__, resource_name, opts=None, add_address_to_env=None, address=None, auth_logins=None, ca_cert_dir=None, ca_cert_file=None, client_auths=None, headers=None, max_lease_ttl_seconds=None, max_retries=None, namespace=None, skip_tls_verify=None, token=None, token_name=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -41,8 +42,8 @@ class Provider(pulumi.ProviderResource):
 
         The **client_auths** object supports the following:
 
-          * `certFile` (`pulumi.Input[str]`)
-          * `keyFile` (`pulumi.Input[str]`)
+          * `cert_file` (`pulumi.Input[str]`)
+          * `key_file` (`pulumi.Input[str]`)
 
         The **headers** object supports the following:
 
@@ -108,4 +109,3 @@ class Provider(pulumi.ProviderResource):
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

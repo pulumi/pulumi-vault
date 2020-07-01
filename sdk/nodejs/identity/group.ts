@@ -10,7 +10,6 @@ import * as utilities from "../utilities";
  * A group can contain multiple entities as its members. A group can also have subgroups. Policies set on the group is granted to all members of the group. During request time, when the token's entity ID is being evaluated for the policies that it has access to; along with the policies on the entity itself, policies that are inherited due to group memberships are also granted.
  *
  * ## Example Usage
- *
  * ### Internal Group
  *
  * ```typescript
@@ -28,7 +27,6 @@ import * as utilities from "../utilities";
  *     type: "internal",
  * });
  * ```
- *
  * ### External Group
  *
  * ```typescript

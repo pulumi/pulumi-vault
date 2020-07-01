@@ -15,6 +15,65 @@ import (
 // backend. See the [Vault
 // documentation](https://www.vaultproject.io/docs/auth/aws.html) for more
 // information.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/aws"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		aws, err := vault.NewAuthBackend(ctx, "aws", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("aws"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = aws.NewAuthBackendRole(ctx, "example", &aws.AuthBackendRoleArgs{
+// 			Backend:  aws.Path,
+// 			Role:     pulumi.String("test-role"),
+// 			AuthType: pulumi.String("iam"),
+// 			BoundAmiIds: pulumi.StringArray{
+// 				pulumi.String("ami-8c1be5f6"),
+// 			},
+// 			BoundAccountIds: pulumi.StringArray{
+// 				pulumi.String("123456789012"),
+// 			},
+// 			BoundVpcIds: pulumi.StringArray{
+// 				pulumi.String("vpc-b61106d4"),
+// 			},
+// 			BoundSubnetIds: pulumi.StringArray{
+// 				pulumi.String("vpc-133128f1"),
+// 			},
+// 			BoundIamRoleArns: pulumi.StringArray{
+// 				pulumi.String("arn:aws:iam::123456789012:role/MyRole"),
+// 			},
+// 			BoundIamInstanceProfileArns: pulumi.StringArray{
+// 				pulumi.String("arn:aws:iam::123456789012:instance-profile/MyProfile"),
+// 			},
+// 			InferredEntityType: pulumi.String("ec2_instance"),
+// 			InferredAwsRegion:  pulumi.String("us-east-1"),
+// 			TokenTtl:           pulumi.Int(60),
+// 			TokenMaxTtl:        pulumi.Int(120),
+// 			TokenPolicies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 				pulumi.String("dev"),
+// 				pulumi.String("prod"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
 

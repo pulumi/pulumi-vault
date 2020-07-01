@@ -11,7 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- *
+ * Role for JWT backend:
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -29,6 +29,30 @@ import * as utilities from "../utilities";
  *     boundAudiences: ["https://myco.test"],
  *     userClaim: "https://vault/user",
  *     roleType: "jwt",
+ * });
+ * ```
+ *
+ * Role for OIDC backend:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const oidc = new vault.jwt.AuthBackend("oidc", {
+ *     path: "oidc",
+ *     defaultRole: "test-role",
+ * });
+ * const example = new vault.jwt.AuthBackendRole("example", {
+ *     backend: oidc.path,
+ *     roleName: "test-role",
+ *     tokenPolicies: [
+ *         "default",
+ *         "dev",
+ *         "prod",
+ *     ],
+ *     userClaim: "https://vault/user",
+ *     roleType: "oidc",
+ *     allowedRedirectUris: ["http://localhost:8200/ui/vault/auth/oidc/oidc/callback"],
  * });
  * ```
  */

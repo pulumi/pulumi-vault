@@ -9,6 +9,63 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Jwt
 {
+    /// <summary>
+    /// Provides a resource for managing an
+    /// [JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// Manage JWT auth backend:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Vault.Jwt.AuthBackend("example", new Vault.Jwt.AuthBackendArgs
+    ///         {
+    ///             BoundIssuer = "https://myco.auth0.com/",
+    ///             Description = "Demonstration of the Terraform JWT auth backend",
+    ///             OidcDiscoveryUrl = "https://myco.auth0.com/",
+    ///             Path = "jwt",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// Manage OIDC auth backend:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Vault.Jwt.AuthBackend("example", new Vault.Jwt.AuthBackendArgs
+    ///         {
+    ///             BoundIssuer = "https://myco.auth0.com/",
+    ///             Description = "Demonstration of the Terraform JWT auth backend",
+    ///             OidcClientId = "1234567890",
+    ///             OidcClientSecret = "secret123456",
+    ///             OidcDiscoveryUrl = "https://myco.auth0.com/",
+    ///             Path = "oidc",
+    ///             Tune = new Vault.Jwt.Inputs.AuthBackendTuneArgs
+    ///             {
+    ///                 ListingVisibility = "unauth",
+    ///             },
+    ///             Type = "oidc",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     public partial class AuthBackend : Pulumi.CustomResource
     {
         /// <summary>

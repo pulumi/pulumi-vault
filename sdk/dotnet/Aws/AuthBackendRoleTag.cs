@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Aws
 {
     /// <summary>
-    /// Reads role tag information from an AWS auth backend in Vault. 
+    /// Reads role tag information from an AWS auth backend in Vault.
     /// </summary>
     public partial class AuthBackendRoleTag : Pulumi.CustomResource
     {

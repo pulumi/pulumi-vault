@@ -14,8 +14,6 @@ namespace Pulumi.Vault
     /// 
     /// ## Example Usage
     /// 
-    /// 
-    /// 
     /// ```csharp
     /// using System.IO;
     /// using Pulumi;

@@ -12,6 +12,41 @@ import (
 
 // Provides a resource to create a group in an
 // [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/okta"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		example, err := okta.NewAuthBackend(ctx, "example", &okta.AuthBackendArgs{
+// 			Organization: pulumi.String("dummy"),
+// 			Path:         pulumi.String("group_okta"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = okta.NewAuthBackendGroup(ctx, "foo", &okta.AuthBackendGroupArgs{
+// 			GroupName: pulumi.String("foo"),
+// 			Path:      example.Path,
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("one"),
+// 				pulumi.String("two"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AuthBackendGroup struct {
 	pulumi.CustomResourceState
 

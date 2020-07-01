@@ -9,8 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -22,6 +20,8 @@ import * as utilities from "../utilities";
  *     excludeCnFromSans: true,
  *     ou: "My OU",
  *     organization: "My organization",
+ * }, {
+ *     dependsOn: ["vault_pki_secret_backend_intermediate_cert_request.intermediate"],
  * });
  * ```
  */

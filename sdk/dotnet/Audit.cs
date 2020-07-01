@@ -10,7 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault
 {
     /// <summary>
-    /// ## Example Usage (file audit device)
+    /// ## Example Usage
+    /// ### File Audit Device)
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -32,8 +33,7 @@ namespace Pulumi.Vault
     /// 
     /// }
     /// ```
-    /// 
-    /// ## Example Usage (socket audit device)
+    /// ### Socket Audit Device)
     /// 
     /// ```csharp
     /// using Pulumi;

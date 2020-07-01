@@ -12,6 +12,48 @@ import (
 
 // Provides a resource to manage roles in an SSH secret backend
 // [SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/ssh"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		example, err := vault.NewMount(ctx, "example", &vault.MountArgs{
+// 			Type: pulumi.String("ssh"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = ssh.NewSecretBackendRole(ctx, "foo", &ssh.SecretBackendRoleArgs{
+// 			AllowUserCertificates: pulumi.Bool(true),
+// 			Backend:               example.Path,
+// 			KeyType:               pulumi.String("ca"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = ssh.NewSecretBackendRole(ctx, "bar", &ssh.SecretBackendRoleArgs{
+// 			AllowedUsers: pulumi.String("default,baz"),
+// 			Backend:      example.Path,
+// 			CidrList:     pulumi.String("0.0.0.0/0"),
+// 			DefaultUser:  pulumi.String("default"),
+// 			KeyType:      pulumi.String("otp"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type SecretBackendRole struct {
 	pulumi.CustomResourceState
 

@@ -11,13 +11,11 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const allowAll = new vault.RgpPolicy("allow-all", {
+ * const allow_all = new vault.RgpPolicy("allow-all", {
  *     enforcementLevel: "soft-mandatory",
  *     policy: `main = rule {
  *   true

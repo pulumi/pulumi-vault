@@ -12,7 +12,7 @@ namespace Pulumi.Vault
     public static class GetPolicyDocument
     {
         /// <summary>
-        /// This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `vault..Policy` resource.
+        /// This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `vault.Policy` resource.
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -53,7 +53,6 @@ namespace Pulumi.Vault
         /// 
         /// }
         /// ```
-        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

@@ -11,6 +11,47 @@ import (
 )
 
 // Provides a resource to create a user in an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/ldap"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		ldap, err := ldap.NewAuthBackend(ctx, "ldap", &ldap.AuthBackendArgs{
+// 			Discoverdn:  pulumi.Bool(false),
+// 			Groupdn:     pulumi.String("OU=Groups,DC=example,DC=org"),
+// 			Groupfilter: pulumi.String("(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))"),
+// 			Path:        pulumi.String("ldap"),
+// 			Upndomain:   pulumi.String("EXAMPLE.ORG"),
+// 			Url:         pulumi.String("ldaps://dc-01.example.org"),
+// 			Userattr:    pulumi.String("sAMAccountName"),
+// 			Userdn:      pulumi.String("OU=Users,OU=Accounts,DC=example,DC=org"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = ldap.NewAuthBackendUser(ctx, "user", &ldap.AuthBackendUserArgs{
+// 			Backend: ldap.Path,
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("dba"),
+// 				pulumi.String("sysops"),
+// 			},
+// 			Username: pulumi.String("test-user"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AuthBackendUser struct {
 	pulumi.CustomResourceState
 
