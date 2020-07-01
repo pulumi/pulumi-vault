@@ -11,6 +11,36 @@ import (
 
 // Provides a resource to manage CA information in an SSH secret backend
 // [SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/ssh"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		example, err := vault.NewMount(ctx, "example", &vault.MountArgs{
+// 			Type: pulumi.String("ssh"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = ssh.NewSecretBackendCa(ctx, "foo", &ssh.SecretBackendCaArgs{
+// 			Backend: example.Path,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type SecretBackendCa struct {
 	pulumi.CustomResourceState
 

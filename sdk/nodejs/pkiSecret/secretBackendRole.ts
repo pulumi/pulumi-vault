@@ -9,8 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -78,7 +76,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly allowSubdomains!: pulumi.Output<boolean | undefined>;
     /**
-     * List of allowed domains for certificates 
+     * List of allowed domains for certificates
      */
     public readonly allowedDomains!: pulumi.Output<string[] | undefined>;
     /**
@@ -334,7 +332,7 @@ export interface SecretBackendRoleState {
      */
     readonly allowSubdomains?: pulumi.Input<boolean>;
     /**
-     * List of allowed domains for certificates 
+     * List of allowed domains for certificates
      */
     readonly allowedDomains?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -488,7 +486,7 @@ export interface SecretBackendRoleArgs {
      */
     readonly allowSubdomains?: pulumi.Input<boolean>;
     /**
-     * List of allowed domains for certificates 
+     * List of allowed domains for certificates
      */
     readonly allowedDomains?: pulumi.Input<pulumi.Input<string>[]>;
     /**

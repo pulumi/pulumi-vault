@@ -12,6 +12,48 @@ import (
 
 // Provides a resource for managing an
 // [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/okta"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := okta.NewAuthBackend(ctx, "example", &okta.AuthBackendArgs{
+// 			Description: pulumi.String("Demonstration of the Terraform Okta auth backend"),
+// 			Groups: okta.AuthBackendGroupArray{
+// 				&okta.AuthBackendGroupArgs{
+// 					GroupName: pulumi.String("foo"),
+// 					Policies: pulumi.StringArray{
+// 						pulumi.String("one"),
+// 						pulumi.String("two"),
+// 					},
+// 				},
+// 			},
+// 			Organization: pulumi.String("example"),
+// 			Token:        pulumi.String("something that should be kept secret"),
+// 			Users: okta.AuthBackendUserArray{
+// 				&okta.AuthBackendUserArgs{
+// 					Groups: pulumi.StringArray{
+// 						pulumi.String("foo"),
+// 					},
+// 					Username: pulumi.String("bar"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AuthBackend struct {
 	pulumi.CustomResourceState
 

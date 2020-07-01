@@ -19,8 +19,7 @@ type AuthLogins struct {
 // AuthLoginsInput is an input type that accepts AuthLoginsArgs and AuthLoginsOutput values.
 // You can construct a concrete instance of `AuthLoginsInput` via:
 //
-// 		 AuthLoginsArgs{...}
-//
+//          AuthLoginsArgs{...}
 type AuthLoginsInput interface {
 	pulumi.Input
 
@@ -49,8 +48,7 @@ func (i AuthLoginsArgs) ToAuthLoginsOutputWithContext(ctx context.Context) AuthL
 // AuthLoginsArrayInput is an input type that accepts AuthLoginsArray and AuthLoginsArrayOutput values.
 // You can construct a concrete instance of `AuthLoginsArrayInput` via:
 //
-// 		 AuthLoginsArray{ AuthLoginsArgs{...} }
-//
+//          AuthLoginsArray{ AuthLoginsArgs{...} }
 type AuthLoginsArrayInput interface {
 	pulumi.Input
 
@@ -126,8 +124,7 @@ type ClientAuths struct {
 // ClientAuthsInput is an input type that accepts ClientAuthsArgs and ClientAuthsOutput values.
 // You can construct a concrete instance of `ClientAuthsInput` via:
 //
-// 		 ClientAuthsArgs{...}
-//
+//          ClientAuthsArgs{...}
 type ClientAuthsInput interface {
 	pulumi.Input
 
@@ -155,8 +152,7 @@ func (i ClientAuthsArgs) ToClientAuthsOutputWithContext(ctx context.Context) Cli
 // ClientAuthsArrayInput is an input type that accepts ClientAuthsArray and ClientAuthsArrayOutput values.
 // You can construct a concrete instance of `ClientAuthsArrayInput` via:
 //
-// 		 ClientAuthsArray{ ClientAuthsArgs{...} }
-//
+//          ClientAuthsArray{ ClientAuthsArgs{...} }
 type ClientAuthsArrayInput interface {
 	pulumi.Input
 
@@ -228,8 +224,7 @@ type Headers struct {
 // HeadersInput is an input type that accepts HeadersArgs and HeadersOutput values.
 // You can construct a concrete instance of `HeadersInput` via:
 //
-// 		 HeadersArgs{...}
-//
+//          HeadersArgs{...}
 type HeadersInput interface {
 	pulumi.Input
 
@@ -257,8 +252,7 @@ func (i HeadersArgs) ToHeadersOutputWithContext(ctx context.Context) HeadersOutp
 // HeadersArrayInput is an input type that accepts HeadersArray and HeadersArrayOutput values.
 // You can construct a concrete instance of `HeadersArrayInput` via:
 //
-// 		 HeadersArray{ HeadersArgs{...} }
-//
+//          HeadersArray{ HeadersArgs{...} }
 type HeadersArrayInput interface {
 	pulumi.Input
 

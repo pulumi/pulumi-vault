@@ -13,6 +13,89 @@ import (
 // Manages an JWT/OIDC auth backend role in a Vault server. See the [Vault
 // documentation](https://www.vaultproject.io/docs/auth/jwt.html) for more
 // information.
+//
+// ## Example Usage
+//
+// Role for JWT backend:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/jwt"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		jwt, err := jwt.NewAuthBackend(ctx, "jwt", &jwt.AuthBackendArgs{
+// 			Path: pulumi.String("jwt"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = jwt.NewAuthBackendRole(ctx, "example", &jwt.AuthBackendRoleArgs{
+// 			Backend:  jwt.Path,
+// 			RoleName: pulumi.String("test-role"),
+// 			TokenPolicies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 				pulumi.String("dev"),
+// 				pulumi.String("prod"),
+// 			},
+// 			BoundAudiences: pulumi.StringArray{
+// 				pulumi.String("https://myco.test"),
+// 			},
+// 			UserClaim: pulumi.String("https://vault/user"),
+// 			RoleType:  pulumi.String("jwt"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// Role for OIDC backend:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/jwt"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		oidc, err := jwt.NewAuthBackend(ctx, "oidc", &jwt.AuthBackendArgs{
+// 			Path:        pulumi.String("oidc"),
+// 			DefaultRole: pulumi.String("test-role"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = jwt.NewAuthBackendRole(ctx, "example", &jwt.AuthBackendRoleArgs{
+// 			Backend:  oidc.Path,
+// 			RoleName: pulumi.String("test-role"),
+// 			TokenPolicies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 				pulumi.String("dev"),
+// 				pulumi.String("prod"),
+// 			},
+// 			UserClaim: pulumi.String("https://vault/user"),
+// 			RoleType:  pulumi.String("oidc"),
+// 			AllowedRedirectUris: pulumi.StringArray{
+// 				pulumi.String("http://localhost:8200/ui/vault/auth/oidc/oidc/callback"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
 

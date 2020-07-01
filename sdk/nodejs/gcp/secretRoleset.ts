@@ -13,8 +13,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fs from "fs";
@@ -32,8 +30,8 @@ import * as utilities from "../utilities";
  *         roles: ["roles/viewer"],
  *     }],
  *     project: project,
- *     roleset: "projectViewer",
- *     secretType: "accessToken",
+ *     roleset: "project_viewer",
+ *     secretType: "access_token",
  *     tokenScopes: ["https://www.googleapis.com/auth/cloud-platform"],
  * });
  * ```

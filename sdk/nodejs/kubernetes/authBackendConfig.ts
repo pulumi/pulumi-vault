@@ -11,8 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -64,7 +62,7 @@ export class AuthBackendConfig extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
-     * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+     * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
      */
     public readonly issuer!: pulumi.Output<string | undefined>;
     /**
@@ -134,7 +132,7 @@ export interface AuthBackendConfigState {
      */
     readonly backend?: pulumi.Input<string>;
     /**
-     * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+     * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
      */
     readonly issuer?: pulumi.Input<string>;
     /**
@@ -164,7 +162,7 @@ export interface AuthBackendConfigArgs {
      */
     readonly backend?: pulumi.Input<string>;
     /**
-     * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+     * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
      */
     readonly issuer?: pulumi.Input<string>;
     /**

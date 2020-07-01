@@ -16,7 +16,7 @@ namespace Pulumi.Vault.Jwt
     /// 
     /// ## Example Usage
     /// 
-    /// 
+    /// Role for JWT backend:
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -46,6 +46,43 @@ namespace Pulumi.Vault.Jwt
     ///             },
     ///             UserClaim = "https://vault/user",
     ///             RoleType = "jwt",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// Role for OIDC backend:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var oidc = new Vault.Jwt.AuthBackend("oidc", new Vault.Jwt.AuthBackendArgs
+    ///         {
+    ///             Path = "oidc",
+    ///             DefaultRole = "test-role",
+    ///         });
+    ///         var example = new Vault.Jwt.AuthBackendRole("example", new Vault.Jwt.AuthBackendRoleArgs
+    ///         {
+    ///             Backend = oidc.Path,
+    ///             RoleName = "test-role",
+    ///             TokenPolicies = 
+    ///             {
+    ///                 "default",
+    ///                 "dev",
+    ///                 "prod",
+    ///             },
+    ///             UserClaim = "https://vault/user",
+    ///             RoleType = "oidc",
+    ///             AllowedRedirectUris = 
+    ///             {
+    ///                 "http://localhost:8200/ui/vault/auth/oidc/oidc/callback",
+    ///             },
     ///         });
     ///     }
     /// 

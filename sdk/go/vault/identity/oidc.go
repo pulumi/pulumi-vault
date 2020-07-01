@@ -15,6 +15,29 @@ import (
 // the clients who are recognized by Vault.
 //
 // > **NOTE:** Each Vault server may only have one Identity Tokens Backend configuration. Multiple configurations of the resource against the same Vault server will cause a perpetual difference.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := identity.NewOidc(ctx, "server", &identity.OidcArgs{
+// 			Issuer: pulumi.String("https://www.acme.com"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Oidc struct {
 	pulumi.CustomResourceState
 

@@ -13,6 +13,50 @@ import (
 // Manages an Kubernetes auth backend role in a Vault server. See the [Vault
 // documentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more
 // information.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/kubernetes"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		kubernetes, err := vault.NewAuthBackend(ctx, "kubernetes", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("kubernetes"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = kubernetes.NewAuthBackendRole(ctx, "example", &kubernetes.AuthBackendRoleArgs{
+// 			Backend:  kubernetes.Path,
+// 			RoleName: pulumi.String("example-role"),
+// 			BoundServiceAccountNames: pulumi.StringArray{
+// 				pulumi.String("example"),
+// 			},
+// 			BoundServiceAccountNamespaces: pulumi.StringArray{
+// 				pulumi.String("example"),
+// 			},
+// 			TokenTtl: pulumi.Int(3600),
+// 			TokenPolicies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 				pulumi.String("dev"),
+// 				pulumi.String("prod"),
+// 			},
+// 			Audience: pulumi.String("vault"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
 

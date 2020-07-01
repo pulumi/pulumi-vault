@@ -5,11 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Reads role tag information from an AWS auth backend in Vault. 
+ * Reads role tag information from an AWS auth backend in Vault.
  *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

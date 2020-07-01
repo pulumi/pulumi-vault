@@ -10,15 +10,13 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.okta.AuthBackend("example", {
  *     organization: "dummy",
- *     path: "groupOkta",
+ *     path: "group_okta",
  * });
  * const foo = new vault.okta.AuthBackendGroup("foo", {
  *     groupName: "foo",

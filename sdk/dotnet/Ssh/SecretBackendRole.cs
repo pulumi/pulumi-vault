@@ -15,8 +15,6 @@ namespace Pulumi.Vault.Ssh
     /// 
     /// ## Example Usage
     /// 
-    /// 
-    /// 
     /// ```csharp
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;

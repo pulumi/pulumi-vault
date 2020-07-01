@@ -11,8 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -22,7 +20,7 @@ import * as utilities from "../utilities";
  *     roleName: "my-role",
  * }, { async: true }));
  *
- * export const roleId = role.roleId;
+ * export const role_id = role.roleId;
  * ```
  */
 export function getAuthBackendRoleId(args: GetAuthBackendRoleIdArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendRoleIdResult> {

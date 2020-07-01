@@ -5,7 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## Example Usage (file audit device)
+ * ## Example Usage
+ * ### File Audit Device)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -18,8 +19,7 @@ import * as utilities from "./utilities";
  *     type: "file",
  * });
  * ```
- *
- * ## Example Usage (socket audit device)
+ * ### Socket Audit Device)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -31,7 +31,7 @@ import * as utilities from "./utilities";
  *         description: "application x socket",
  *         socket_type: "tcp",
  *     },
- *     path: "appSocket",
+ *     path: "app_socket",
  *     type: "socket",
  * });
  * ```

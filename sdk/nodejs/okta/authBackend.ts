@@ -6,6 +6,34 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Provides a resource for managing an
+ * [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const example = new vault.okta.AuthBackend("example", {
+ *     description: "Demonstration of the Terraform Okta auth backend",
+ *     groups: [{
+ *         groupName: "foo",
+ *         policies: [
+ *             "one",
+ *             "two",
+ *         ],
+ *     }],
+ *     organization: "example",
+ *     token: "something that should be kept secret",
+ *     users: [{
+ *         groups: ["foo"],
+ *         username: "bar",
+ *     }],
+ * });
+ * ```
+ */
 export class AuthBackend extends pulumi.CustomResource {
     /**
      * Get an existing AuthBackend resource's state with the given name, ID, and optional extra

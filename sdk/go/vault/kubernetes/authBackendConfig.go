@@ -13,6 +13,42 @@ import (
 // Manages an Kubernetes auth backend config in a Vault server. See the [Vault
 // documentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more
 // information.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/kubernetes"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		kubernetes, err := vault.NewAuthBackend(ctx, "kubernetes", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("kubernetes"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = kubernetes.NewAuthBackendConfig(ctx, "example", &kubernetes.AuthBackendConfigArgs{
+// 			Backend:          kubernetes.Path,
+// 			Issuer:           pulumi.String("api"),
+// 			KubernetesCaCert: pulumi.String(fmt.Sprintf("%v%v%v", "-----BEGIN CERTIFICATE-----\n", "example\n", "-----END CERTIFICATE-----\n")),
+// 			KubernetesHost:   pulumi.String("http://example.com:443"),
+// 			TokenReviewerJwt: pulumi.String("ZXhhbXBsZQo="),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AuthBackendConfig struct {
 	pulumi.CustomResourceState
 

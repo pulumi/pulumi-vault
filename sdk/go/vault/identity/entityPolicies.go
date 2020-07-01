@@ -11,6 +11,84 @@ import (
 )
 
 // Manages policies for an Identity Entity for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
+//
+// ## Example Usage
+// ### Exclusive Policies
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		entity, err := identity.NewEntity(ctx, "entity", &identity.EntityArgs{
+// 			ExternalPolicies: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewEntityPolicies(ctx, "policies", &identity.EntityPoliciesArgs{
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 				pulumi.String("test"),
+// 			},
+// 			Exclusive: pulumi.Bool(true),
+// 			EntityId:  entity.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Non-exclusive Policies
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		entity, err := identity.NewEntity(ctx, "entity", &identity.EntityArgs{
+// 			ExternalPolicies: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewEntityPolicies(ctx, "_default", &identity.EntityPoliciesArgs{
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 				pulumi.String("test"),
+// 			},
+// 			Exclusive: pulumi.Bool(false),
+// 			EntityId:  entity.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewEntityPolicies(ctx, "others", &identity.EntityPoliciesArgs{
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("others"),
+// 			},
+// 			Exclusive: pulumi.Bool(false),
+// 			EntityId:  entity.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type EntityPolicies struct {
 	pulumi.CustomResourceState
 

@@ -9,8 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -21,7 +19,7 @@ import * as utilities from "../utilities";
  *     path: "%s",
  *     type: "pki",
  * });
- * const crlConfig = new vault.pkiSecret.SecretBackendCrlConfig("crlConfig", {
+ * const crlConfig = new vault.pkiSecret.SecretBackendCrlConfig("crl_config", {
  *     backend: pki.path,
  *     disable: false,
  *     expiry: "72h",

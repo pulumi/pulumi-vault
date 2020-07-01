@@ -14,8 +14,6 @@ namespace Pulumi.Vault.Transit
     /// 
     /// ## Example Usage
     /// 
-    /// 
-    /// 
     /// ```csharp
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;

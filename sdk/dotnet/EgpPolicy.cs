@@ -14,10 +14,7 @@ namespace Pulumi.Vault
     /// 
     /// **Note** this feature is available only with Vault Enterprise.
     /// 
-    /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;

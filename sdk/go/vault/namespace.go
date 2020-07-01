@@ -13,6 +13,29 @@ import (
 // Provides a resource to manage [Namespaces](https://www.vaultproject.io/docs/enterprise/namespaces/index.html).
 //
 // **Note** this feature is available only with Vault Enterprise.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := vault.NewNamespace(ctx, "ns1", &vault.NamespaceArgs{
+// 			Path: pulumi.String("ns1"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Namespace struct {
 	pulumi.CustomResourceState
 

@@ -10,6 +10,30 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := vault.NewMount(ctx, "example", &vault.MountArgs{
+// 			Description: pulumi.String("This is an example mount"),
+// 			Path:        pulumi.String("dummy"),
+// 			Type:        pulumi.String("generic"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Mount struct {
 	pulumi.CustomResourceState
 

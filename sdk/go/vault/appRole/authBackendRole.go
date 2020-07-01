@@ -13,6 +13,42 @@ import (
 // Manages an AppRole auth backend role in a Vault server. See the [Vault
 // documentation](https://www.vaultproject.io/docs/auth/approle) for more
 // information.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/appRole"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		approle, err := vault.NewAuthBackend(ctx, "approle", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("approle"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = appRole.NewAuthBackendRole(ctx, "example", &appRole.AuthBackendRoleArgs{
+// 			Backend:  approle.Path,
+// 			RoleName: pulumi.String("test-role"),
+// 			TokenPolicies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 				pulumi.String("dev"),
+// 				pulumi.String("prod"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
 

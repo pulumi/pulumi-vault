@@ -13,6 +13,32 @@ import (
 // Provides a resource to manage Role Governing Policy (RGP) via [Sentinel](https://www.vaultproject.io/docs/enterprise/sentinel/index.html).
 //
 // **Note** this feature is available only with Vault Enterprise.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := vault.NewRgpPolicy(ctx, "allow_all", &vault.RgpPolicyArgs{
+// 			EnforcementLevel: pulumi.String("soft-mandatory"),
+// 			Policy:           pulumi.String(fmt.Sprintf("%v%v%v%v", "main = rule {\n", "  true\n", "}\n", "\n")),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type RgpPolicy struct {
 	pulumi.CustomResourceState
 

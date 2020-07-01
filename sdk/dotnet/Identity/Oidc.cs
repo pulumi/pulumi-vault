@@ -19,8 +19,6 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Example Usage
     /// 
-    /// 
-    /// 
     /// ```csharp
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;

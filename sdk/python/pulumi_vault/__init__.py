@@ -3,12 +3,6 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import importlib
-# Make subpackages available:
-__all__ = ['alicloud', 'app_role', 'aws', 'azure', 'config', 'consul', 'database', 'gcp', 'generic', 'github', 'identity', 'jwt', 'kubernetes', 'ldap', 'okta', 'pki_secret', 'rabbit_mq', 'ssh', 'tokenauth', 'transit']
-for pkg in __all__:
-    if pkg != 'config':
-        importlib.import_module(f'{__name__}.{pkg}')
-
 # Export this package's modules as members:
 from .audit import *
 from .auth_backend import *
@@ -23,3 +17,30 @@ from .policy import *
 from .provider import *
 from .rgp_policy import *
 from .token import *
+
+# Make subpackages available:
+_submodules = [
+    'alicloud',
+    'app_role',
+    'aws',
+    'azure',
+    'config',
+    'consul',
+    'database',
+    'gcp',
+    'generic',
+    'github',
+    'identity',
+    'jwt',
+    'kubernetes',
+    'ldap',
+    'okta',
+    'pki_secret',
+    'rabbit_mq',
+    'ssh',
+    'tokenauth',
+    'transit',
+]
+for pkg in _submodules:
+    if pkg != 'config':
+        importlib.import_module(f'{__name__}.{pkg}')

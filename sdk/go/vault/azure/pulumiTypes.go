@@ -19,8 +19,7 @@ type BackendRoleAzureRole struct {
 // BackendRoleAzureRoleInput is an input type that accepts BackendRoleAzureRoleArgs and BackendRoleAzureRoleOutput values.
 // You can construct a concrete instance of `BackendRoleAzureRoleInput` via:
 //
-// 		 BackendRoleAzureRoleArgs{...}
-//
+//          BackendRoleAzureRoleArgs{...}
 type BackendRoleAzureRoleInput interface {
 	pulumi.Input
 
@@ -49,8 +48,7 @@ func (i BackendRoleAzureRoleArgs) ToBackendRoleAzureRoleOutputWithContext(ctx co
 // BackendRoleAzureRoleArrayInput is an input type that accepts BackendRoleAzureRoleArray and BackendRoleAzureRoleArrayOutput values.
 // You can construct a concrete instance of `BackendRoleAzureRoleArrayInput` via:
 //
-// 		 BackendRoleAzureRoleArray{ BackendRoleAzureRoleArgs{...} }
-//
+//          BackendRoleAzureRoleArray{ BackendRoleAzureRoleArgs{...} }
 type BackendRoleAzureRoleArrayInput interface {
 	pulumi.Input
 

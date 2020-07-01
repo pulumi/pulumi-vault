@@ -13,6 +13,55 @@ import (
 // Creates a Database Secret Backend static role in Vault. Database secret backend
 // static roles can be used to manage 1-to-1 mapping of a Vault Role to a user in a
 // database for the database.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/database"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		db, err := vault.NewMount(ctx, "db", &vault.MountArgs{
+// 			Path: pulumi.String("postgres"),
+// 			Type: pulumi.String("database"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		postgres, err := database.NewSecretBackendConnection(ctx, "postgres", &database.SecretBackendConnectionArgs{
+// 			AllowedRoles: pulumi.StringArray{
+// 				pulumi.String("*"),
+// 			},
+// 			Backend: db.Path,
+// 			Postgresql: &database.SecretBackendConnectionPostgresqlArgs{
+// 				ConnectionUrl: pulumi.String("postgres://username:password@host:port/database"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = database.NewSecretBackendStaticRole(ctx, "staticRole", &database.SecretBackendStaticRoleArgs{
+// 			Backend:        db.Path,
+// 			DbName:         postgres.Name,
+// 			RotationPeriod: pulumi.Int(3600),
+// 			RotationStatements: pulumi.StringArray{
+// 				pulumi.String("ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"),
+// 			},
+// 			Username: pulumi.String("example"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type SecretBackendStaticRole struct {
 	pulumi.CustomResourceState
 

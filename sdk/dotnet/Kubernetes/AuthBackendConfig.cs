@@ -16,8 +16,6 @@ namespace Pulumi.Vault.Kubernetes
     /// 
     /// ## Example Usage
     /// 
-    /// 
-    /// 
     /// ```csharp
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
@@ -55,7 +53,7 @@ namespace Pulumi.Vault.Kubernetes
         public Output<string?> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+        /// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         /// </summary>
         [Output("issuer")]
         public Output<string?> Issuer { get; private set; } = null!;
@@ -137,7 +135,7 @@ namespace Pulumi.Vault.Kubernetes
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+        /// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         /// </summary>
         [Input("issuer")]
         public Input<string>? Issuer { get; set; }
@@ -186,7 +184,7 @@ namespace Pulumi.Vault.Kubernetes
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer. 
+        /// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         /// </summary>
         [Input("issuer")]
         public Input<string>? Issuer { get; set; }

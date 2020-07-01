@@ -15,6 +15,50 @@ import (
 // backend. See the [Vault
 // documentation](https://www.vaultproject.io/docs/auth/azure.html) for more
 // information.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/azure"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		azure, err := vault.NewAuthBackend(ctx, "azure", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("azure"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = azure.NewAuthBackendRole(ctx, "example", &azure.AuthBackendRoleArgs{
+// 			Backend: azure.Path,
+// 			BoundResourceGroups: pulumi.StringArray{
+// 				pulumi.String("123456789012"),
+// 			},
+// 			BoundSubscriptionIds: pulumi.StringArray{
+// 				pulumi.String("11111111-2222-3333-4444-555555555555"),
+// 			},
+// 			Role:        pulumi.String("test-role"),
+// 			TokenMaxTtl: pulumi.Int(120),
+// 			TokenPolicies: pulumi.StringArray{
+// 				pulumi.String("default"),
+// 				pulumi.String("dev"),
+// 				pulumi.String("prod"),
+// 			},
+// 			TokenTtl: pulumi.Int(60),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
 

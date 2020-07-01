@@ -11,6 +11,36 @@ import (
 )
 
 // Provides a resource for managing an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/ldap"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := ldap.NewAuthBackend(ctx, "ldap", &ldap.AuthBackendArgs{
+// 			Discoverdn:  pulumi.Bool(false),
+// 			Groupdn:     pulumi.String("OU=Groups,DC=example,DC=org"),
+// 			Groupfilter: pulumi.String("(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))"),
+// 			Path:        pulumi.String("ldap"),
+// 			Upndomain:   pulumi.String("EXAMPLE.ORG"),
+// 			Url:         pulumi.String("ldaps://dc-01.example.org"),
+// 			Userattr:    pulumi.String("sAMAccountName"),
+// 			Userdn:      pulumi.String("OU=Users,OU=Accounts,DC=example,DC=org"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AuthBackend struct {
 	pulumi.CustomResourceState
 

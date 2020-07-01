@@ -11,6 +11,41 @@ import (
 )
 
 // Manages a Consul secrets role for a Consul secrets engine in Vault. Consul secret backends can then issue Consul tokens.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/consul"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		test, err := consul.NewSecretBackend(ctx, "test", &consul.SecretBackendArgs{
+// 			Path:        pulumi.String("consul"),
+// 			Description: pulumi.String("Manages the Consul backend"),
+// 			Address:     pulumi.String("127.0.0.1:8500"),
+// 			Token:       pulumi.String("4240861b-ce3d-8530-115a-521ff070dd29"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = consul.NewSecretBackendRole(ctx, "example", &consul.SecretBackendRoleArgs{
+// 			Backend: test.Path,
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("example-policy"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type SecretBackendRole struct {
 	pulumi.CustomResourceState
 

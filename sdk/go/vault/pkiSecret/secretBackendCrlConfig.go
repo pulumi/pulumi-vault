@@ -11,6 +11,43 @@ import (
 )
 
 // Allows setting the duration for which the generated CRL should be marked valid. If the CRL is disabled, it will return a signed but zero-length CRL for any request. If enabled, it will re-build the CRL.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/pkiSecret"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		pki, err := vault.NewMount(ctx, "pki", &vault.MountArgs{
+// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
+// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
+// 			Path:                   pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
+// 			Type:                   pulumi.String("pki"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = pkiSecret.NewSecretBackendCrlConfig(ctx, "crlConfig", &pkiSecret.SecretBackendCrlConfigArgs{
+// 			Backend: pki.Path,
+// 			Disable: pulumi.Bool(false),
+// 			Expiry:  pulumi.String("72h"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type SecretBackendCrlConfig struct {
 	pulumi.CustomResourceState
 

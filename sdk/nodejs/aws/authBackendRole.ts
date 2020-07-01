@@ -13,8 +13,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -30,7 +28,7 @@ import * as utilities from "../utilities";
  *     boundSubnetIds: ["vpc-133128f1"],
  *     boundIamRoleArns: ["arn:aws:iam::123456789012:role/MyRole"],
  *     boundIamInstanceProfileArns: ["arn:aws:iam::123456789012:instance-profile/MyProfile"],
- *     inferredEntityType: "ec2Instance",
+ *     inferredEntityType: "ec2_instance",
  *     inferredAwsRegion: "us-east-1",
  *     tokenTtl: 60,
  *     tokenMaxTtl: 120,

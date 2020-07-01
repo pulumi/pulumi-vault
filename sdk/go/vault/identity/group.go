@@ -12,6 +12,65 @@ import (
 // Creates an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
 //
 // A group can contain multiple entities as its members. A group can also have subgroups. Policies set on the group is granted to all members of the group. During request time, when the token's entity ID is being evaluated for the policies that it has access to; along with the policies on the entity itself, policies that are inherited due to group memberships are also granted.
+//
+// ## Example Usage
+// ### Internal Group
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
+// 			Metadata: pulumi.StringMap{
+// 				"version": pulumi.String("2"),
+// 			},
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("dev"),
+// 				pulumi.String("test"),
+// 			},
+// 			Type: pulumi.String("internal"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### External Group
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := identity.NewGroup(ctx, "group", &identity.GroupArgs{
+// 			Metadata: pulumi.StringMap{
+// 				"version": pulumi.String("1"),
+// 			},
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("test"),
+// 			},
+// 			Type: pulumi.String("external"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Group struct {
 	pulumi.CustomResourceState
 

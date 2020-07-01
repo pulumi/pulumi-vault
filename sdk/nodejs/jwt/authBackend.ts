@@ -6,6 +6,46 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Provides a resource for managing an
+ * [JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).
+ *
+ * ## Example Usage
+ *
+ * Manage JWT auth backend:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const example = new vault.jwt.AuthBackend("example", {
+ *     boundIssuer: "https://myco.auth0.com/",
+ *     description: "Demonstration of the Terraform JWT auth backend",
+ *     oidcDiscoveryUrl: "https://myco.auth0.com/",
+ *     path: "jwt",
+ * });
+ * ```
+ *
+ * Manage OIDC auth backend:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const example = new vault.jwt.AuthBackend("example", {
+ *     boundIssuer: "https://myco.auth0.com/",
+ *     description: "Demonstration of the Terraform JWT auth backend",
+ *     oidcClientId: "1234567890",
+ *     oidcClientSecret: "secret123456",
+ *     oidcDiscoveryUrl: "https://myco.auth0.com/",
+ *     path: "oidc",
+ *     tune: {
+ *         listingVisibility: "unauth",
+ *     },
+ *     type: "oidc",
+ * });
+ * ```
+ */
 export class AuthBackend extends pulumi.CustomResource {
     /**
      * Get an existing AuthBackend resource's state with the given name, ID, and optional extra

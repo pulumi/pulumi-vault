@@ -14,8 +14,6 @@ namespace Pulumi.Vault.Consul
     /// 
     /// ## Example Usage
     /// 
-    /// 
-    /// 
     /// ```csharp
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;

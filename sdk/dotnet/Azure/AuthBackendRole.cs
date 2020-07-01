@@ -18,8 +18,6 @@ namespace Pulumi.Vault.Azure
     /// 
     /// ## Example Usage
     /// 
-    /// 
-    /// 
     /// ```csharp
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;

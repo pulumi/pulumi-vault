@@ -16,8 +16,6 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// ## Example Usage
     /// 
-    /// 
-    /// 
     /// ```csharp
     /// using System.IO;
     /// using Pulumi;

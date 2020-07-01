@@ -9,8 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -20,7 +18,7 @@ import * as utilities from "../utilities";
  *     maxLeaseTtlSeconds: 86400,
  *     path: "%s",
  * });
- * const configUrls = new vault.pkiSecret.SecretBackendConfigUrls("configUrls", {
+ * const configUrls = new vault.pkiSecret.SecretBackendConfigUrls("config_urls", {
  *     backend: pki.path,
  *     issuingCertificates: ["http://127.0.0.1:8200/v1/pki/ca"],
  * });

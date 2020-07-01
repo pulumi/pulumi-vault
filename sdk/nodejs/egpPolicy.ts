@@ -9,16 +9,13 @@ import * as utilities from "./utilities";
  *
  * **Note** this feature is available only with Vault Enterprise.
  *
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const allowAll = new vault.EgpPolicy("allow-all", {
+ * const allow_all = new vault.EgpPolicy("allow-all", {
  *     enforcementLevel: "soft-mandatory",
  *     paths: ["*"],
  *     policy: `main = rule {

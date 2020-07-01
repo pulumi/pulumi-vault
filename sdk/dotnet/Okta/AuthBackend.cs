@@ -9,6 +9,54 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Okta
 {
+    /// <summary>
+    /// Provides a resource for managing an
+    /// [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Vault.Okta.AuthBackend("example", new Vault.Okta.AuthBackendArgs
+    ///         {
+    ///             Description = "Demonstration of the Terraform Okta auth backend",
+    ///             Groups = 
+    ///             {
+    ///                 new Vault.Okta.Inputs.AuthBackendGroupArgs
+    ///                 {
+    ///                     GroupName = "foo",
+    ///                     Policies = 
+    ///                     {
+    ///                         "one",
+    ///                         "two",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             Organization = "example",
+    ///             Token = "something that should be kept secret",
+    ///             Users = 
+    ///             {
+    ///                 new Vault.Okta.Inputs.AuthBackendUserArgs
+    ///                 {
+    ///                     Groups = 
+    ///                     {
+    ///                         "foo",
+    ///                     },
+    ///                     Username = "bar",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     public partial class AuthBackend : Pulumi.CustomResource
     {
         /// <summary>

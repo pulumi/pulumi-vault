@@ -11,6 +11,36 @@ import (
 )
 
 // Creates an PKI certificate.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/pkiSecret"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := pkiSecret.NewSecretBackendRootSignIntermediate(ctx, "root", &pkiSecret.SecretBackendRootSignIntermediateArgs{
+// 			Backend:           pulumi.String(vault_pki_secret_backend.Root.Path),
+// 			Csr:               pulumi.String(vault_pki_secret_backend_intermediate_cert_request.Intermediate.Csr),
+// 			CommonName:        pulumi.String("Intermediate CA"),
+// 			ExcludeCnFromSans: pulumi.Bool(true),
+// 			Ou:                pulumi.String("My OU"),
+// 			Organization:      pulumi.String("My organization"),
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			"vault_pki_secret_backend_intermediate_cert_request.intermediate",
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type SecretBackendRootSignIntermediate struct {
 	pulumi.CustomResourceState
 

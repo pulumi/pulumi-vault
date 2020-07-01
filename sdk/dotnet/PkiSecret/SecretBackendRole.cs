@@ -14,8 +14,6 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// ## Example Usage
     /// 
-    /// 
-    /// 
     /// ```csharp
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
@@ -78,7 +76,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool?> AllowSubdomains { get; private set; } = null!;
 
         /// <summary>
-        /// List of allowed domains for certificates 
+        /// List of allowed domains for certificates
         /// </summary>
         [Output("allowedDomains")]
         public Output<ImmutableArray<string>> AllowedDomains { get; private set; } = null!;
@@ -349,7 +347,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _allowedDomains;
 
         /// <summary>
-        /// List of allowed domains for certificates 
+        /// List of allowed domains for certificates
         /// </summary>
         public InputList<string> AllowedDomains
         {
@@ -656,7 +654,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _allowedDomains;
 
         /// <summary>
-        /// List of allowed domains for certificates 
+        /// List of allowed domains for certificates
         /// </summary>
         public InputList<string> AllowedDomains
         {

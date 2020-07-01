@@ -20,8 +20,7 @@ type SecretRolesetBinding struct {
 // SecretRolesetBindingInput is an input type that accepts SecretRolesetBindingArgs and SecretRolesetBindingOutput values.
 // You can construct a concrete instance of `SecretRolesetBindingInput` via:
 //
-// 		 SecretRolesetBindingArgs{...}
-//
+//          SecretRolesetBindingArgs{...}
 type SecretRolesetBindingInput interface {
 	pulumi.Input
 
@@ -51,8 +50,7 @@ func (i SecretRolesetBindingArgs) ToSecretRolesetBindingOutputWithContext(ctx co
 // SecretRolesetBindingArrayInput is an input type that accepts SecretRolesetBindingArray and SecretRolesetBindingArrayOutput values.
 // You can construct a concrete instance of `SecretRolesetBindingArrayInput` via:
 //
-// 		 SecretRolesetBindingArray{ SecretRolesetBindingArgs{...} }
-//
+//          SecretRolesetBindingArray{ SecretRolesetBindingArgs{...} }
 type SecretRolesetBindingArrayInput interface {
 	pulumi.Input
 
