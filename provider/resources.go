@@ -24,6 +24,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
 	"github.com/terraform-providers/terraform-provider-vault/vault"
+	"github.com/terraform-providers/terraform-provider-vault/generated"
 )
 
 // all of the token components used below.
@@ -95,6 +96,12 @@ func preConfigureCallback(vars resource.PropertyMap, c *terraform.ResourceConfig
 // Provider returns additional overlaid schema and metadata associated with the provider.
 func Provider() tfbridge.ProviderInfo {
 	p := vault.Provider().(*schema.Provider)
+	for name, resource := range generated.DataSourceRegistry {
+		p.RegisterDataSource(name, resource)
+	}
+	for name, resource := range generated.ResourceRegistry {
+		p.RegisterResource(name, resource)
+	}
 	prov := tfbridge.ProviderInfo{
 		P:           p,
 		Name:        "vault",
