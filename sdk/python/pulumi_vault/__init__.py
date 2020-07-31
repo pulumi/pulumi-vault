@@ -39,6 +39,7 @@ _submodules = [
     'rabbit_mq',
     'ssh',
     'tokenauth',
+    'transform',
     'transit',
 ]
 for pkg in _submodules:

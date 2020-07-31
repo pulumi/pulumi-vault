@@ -18,11 +18,12 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/terraform"
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
+	"github.com/terraform-providers/terraform-provider-vault/generated"
+	"github.com/terraform-providers/terraform-provider-vault/schema"
 	"github.com/terraform-providers/terraform-provider-vault/vault"
 )
 
@@ -51,6 +52,7 @@ const (
 	rabbitMqMod   = "RabbitMQ"
 	sshMod        = "Ssh"
 	tokenMod      = "TokenAuth"
+	transformMod  = "Transform"
 	transitMod    = "Transit"
 )
 
@@ -94,7 +96,16 @@ func preConfigureCallback(vars resource.PropertyMap, c *terraform.ResourceConfig
 
 // Provider returns additional overlaid schema and metadata associated with the provider.
 func Provider() tfbridge.ProviderInfo {
-	p := vault.Provider().(*schema.Provider)
+	provider := vault.Provider()
+	generatedProvider := schema.NewProvider(provider)
+	for name, resource := range generated.DataSourceRegistry {
+		generatedProvider.RegisterDataSource(name, resource)
+	}
+	for name, resource := range generated.ResourceRegistry {
+		generatedProvider.RegisterResource(name, resource)
+	}
+	p := generatedProvider.SchemaProvider()
+
 	prov := tfbridge.ProviderInfo{
 		P:           p,
 		Name:        "vault",
@@ -317,6 +328,7 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "identity_entity_policies.html.md",
 				},
 			},
+			"vault_identity_group_member_entity_ids": {Tok: makeResource(identityMod, "GroupMemberEntityIds")},
 
 			// JWT
 			"vault_jwt_auth_backend":      {Tok: makeResource(jwtMod, "AuthBackend")},
@@ -384,6 +396,19 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_rabbitmq_secret_backend":      {Tok: makeResource(rabbitMqMod, "SecretBackend")},
 			"vault_rabbitmq_secret_backend_role": {Tok: makeResource(rabbitMqMod, "SecretBackendRole")},
 
+			// Transform
+			"vault_transform_alphabet": {
+				Tok: makeResource(transformMod, "Alphabet"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"alphabet": {
+						CSharpName: "AlphabetSet",
+					},
+				},
+			},
+			"vault_transform_role":           {Tok: makeResource(transformMod, "Role")},
+			"vault_transform_template":       {Tok: makeResource(transformMod, "Template")},
+			"vault_transform_transformation": {Tok: makeResource(transformMod, "Transformation")},
+
 			// Transit
 			"vault_transit_secret_backend_key": {Tok: makeResource(transitMod, "SecretBackendKey")},
 			"vault_transit_secret_cache_config": {
@@ -442,6 +467,10 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "kubernetes_auth_backend_role.md",
 				},
 			},
+
+			// Transform
+			"vault_transform_encode": {Tok: makeDataSource(transformMod, "getEncode")},
+			"vault_transform_decode": {Tok: makeDataSource(transformMod, "getDecode")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{

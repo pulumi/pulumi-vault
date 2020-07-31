@@ -35,7 +35,7 @@ import (
 // 		_, err = github.NewUser(ctx, "tfUser", &github.UserArgs{
 // 			Backend: example.ID(),
 // 			User:    pulumi.String("john.doe"),
-// 			TokenPolicies: pulumi.StringArray{
+// 			Policies: pulumi.StringArray{
 // 				pulumi.String("developer"),
 // 				pulumi.String("read-only"),
 // 			},

@@ -52,6 +52,12 @@ namespace Pulumi.Vault
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+        /// </summary>
+        [Output("externalEntropyAccess")]
+        public Output<bool?> ExternalEntropyAccess { get; private set; } = null!;
+
+        /// <summary>
         /// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         /// </summary>
         [Output("local")]
@@ -146,6 +152,12 @@ namespace Pulumi.Vault
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+        /// </summary>
+        [Input("externalEntropyAccess")]
+        public Input<bool>? ExternalEntropyAccess { get; set; }
+
+        /// <summary>
         /// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         /// </summary>
         [Input("local")]
@@ -211,6 +223,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+        /// </summary>
+        [Input("externalEntropyAccess")]
+        public Input<bool>? ExternalEntropyAccess { get; set; }
 
         /// <summary>
         /// Boolean flag that can be explicitly set to true to enforce local mount in HA environment

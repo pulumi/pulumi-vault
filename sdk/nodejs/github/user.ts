@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  * const tfUser = new vault.github.User("tfUser", {
  *     backend: example.id,
  *     user: "john.doe",
- *     tokenPolicies: [
+ *     policies: [
  *         "developer",
  *         "read-only",
  *     ],

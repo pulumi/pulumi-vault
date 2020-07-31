@@ -59,6 +59,10 @@ export class Mount extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+     */
+    public readonly externalEntropyAccess!: pulumi.Output<boolean | undefined>;
+    /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */
     public readonly local!: pulumi.Output<boolean | undefined>;
@@ -98,6 +102,7 @@ export class Mount extends pulumi.CustomResource {
             inputs["accessor"] = state ? state.accessor : undefined;
             inputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
             inputs["description"] = state ? state.description : undefined;
+            inputs["externalEntropyAccess"] = state ? state.externalEntropyAccess : undefined;
             inputs["local"] = state ? state.local : undefined;
             inputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             inputs["options"] = state ? state.options : undefined;
@@ -114,6 +119,7 @@ export class Mount extends pulumi.CustomResource {
             }
             inputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
             inputs["description"] = args ? args.description : undefined;
+            inputs["externalEntropyAccess"] = args ? args.externalEntropyAccess : undefined;
             inputs["local"] = args ? args.local : undefined;
             inputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             inputs["options"] = args ? args.options : undefined;
@@ -149,6 +155,10 @@ export interface MountState {
      * Human-friendly description of the mount
      */
     readonly description?: pulumi.Input<string>;
+    /**
+     * Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+     */
+    readonly externalEntropyAccess?: pulumi.Input<boolean>;
     /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */
@@ -187,6 +197,10 @@ export interface MountArgs {
      * Human-friendly description of the mount
      */
     readonly description?: pulumi.Input<string>;
+    /**
+     * Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+     */
+    readonly externalEntropyAccess?: pulumi.Input<boolean>;
     /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */

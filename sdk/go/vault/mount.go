@@ -43,6 +43,8 @@ type Mount struct {
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// Human-friendly description of the mount
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess pulumi.BoolPtrOutput `pulumi:"externalEntropyAccess"`
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -97,6 +99,8 @@ type mountState struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// Human-friendly description of the mount
 	Description *string `pulumi:"description"`
+	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -118,6 +122,8 @@ type MountState struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// Human-friendly description of the mount
 	Description pulumi.StringPtrInput
+	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess pulumi.BoolPtrInput
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -141,6 +147,8 @@ type mountArgs struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// Human-friendly description of the mount
 	Description *string `pulumi:"description"`
+	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -161,6 +169,8 @@ type MountArgs struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// Human-friendly description of the mount
 	Description pulumi.StringPtrInput
+	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess pulumi.BoolPtrInput
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for tokens and secrets in seconds

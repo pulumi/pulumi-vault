@@ -71,13 +71,17 @@ export class Group extends pulumi.CustomResource {
     }
 
     /**
-     * `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+     * `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+     */
+    public readonly externalMemberEntityIds!: pulumi.Output<boolean | undefined>;
+    /**
+     * `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
      */
     public readonly externalPolicies!: pulumi.Output<boolean | undefined>;
     /**
      * A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
      */
-    public readonly memberEntityIds!: pulumi.Output<string[]>;
+    public readonly memberEntityIds!: pulumi.Output<string[] | undefined>;
     /**
      * A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
      */
@@ -111,6 +115,7 @@ export class Group extends pulumi.CustomResource {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state = argsOrState as GroupState | undefined;
+            inputs["externalMemberEntityIds"] = state ? state.externalMemberEntityIds : undefined;
             inputs["externalPolicies"] = state ? state.externalPolicies : undefined;
             inputs["memberEntityIds"] = state ? state.memberEntityIds : undefined;
             inputs["memberGroupIds"] = state ? state.memberGroupIds : undefined;
@@ -120,6 +125,7 @@ export class Group extends pulumi.CustomResource {
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as GroupArgs | undefined;
+            inputs["externalMemberEntityIds"] = args ? args.externalMemberEntityIds : undefined;
             inputs["externalPolicies"] = args ? args.externalPolicies : undefined;
             inputs["memberEntityIds"] = args ? args.memberEntityIds : undefined;
             inputs["memberGroupIds"] = args ? args.memberGroupIds : undefined;
@@ -144,7 +150,11 @@ export class Group extends pulumi.CustomResource {
  */
 export interface GroupState {
     /**
-     * `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+     * `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+     */
+    readonly externalMemberEntityIds?: pulumi.Input<boolean>;
+    /**
+     * `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
      */
     readonly externalPolicies?: pulumi.Input<boolean>;
     /**
@@ -178,7 +188,11 @@ export interface GroupState {
  */
 export interface GroupArgs {
     /**
-     * `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+     * `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+     */
+    readonly externalMemberEntityIds?: pulumi.Input<boolean>;
+    /**
+     * `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
      */
     readonly externalPolicies?: pulumi.Input<boolean>;
     /**

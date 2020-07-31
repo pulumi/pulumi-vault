@@ -32,7 +32,7 @@ namespace Pulumi.Vault.GitHub
     ///         {
     ///             Backend = example.Id,
     ///             User = "john.doe",
-    ///             TokenPolicies = 
+    ///             Policies = 
     ///             {
     ///                 "developer",
     ///                 "read-only",

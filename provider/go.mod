@@ -6,7 +6,7 @@ require (
 	github.com/hashicorp/terraform-plugin-sdk v1.7.0
 	github.com/pulumi/pulumi-terraform-bridge/v2 v2.5.2
 	github.com/pulumi/pulumi/sdk/v2 v2.5.1-0.20200630091945-bb358c4d2173
-	github.com/terraform-providers/terraform-provider-vault v1.9.1-0.20200521205104-f25d9294c62d
+	github.com/terraform-providers/terraform-provider-vault v1.9.1-0.20200731142559-29ea3d57dad9
 )
 
 replace github.com/Azure/go-autorest => github.com/Azure/go-autorest v12.4.3+incompatible

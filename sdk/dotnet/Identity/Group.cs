@@ -72,7 +72,13 @@ namespace Pulumi.Vault.Identity
     public partial class Group : Pulumi.CustomResource
     {
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+        /// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+        /// </summary>
+        [Output("externalMemberEntityIds")]
+        public Output<bool?> ExternalMemberEntityIds { get; private set; } = null!;
+
+        /// <summary>
+        /// `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
         /// </summary>
         [Output("externalPolicies")]
         public Output<bool?> ExternalPolicies { get; private set; } = null!;
@@ -160,7 +166,13 @@ namespace Pulumi.Vault.Identity
     public sealed class GroupArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+        /// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+        /// </summary>
+        [Input("externalMemberEntityIds")]
+        public Input<bool>? ExternalMemberEntityIds { get; set; }
+
+        /// <summary>
+        /// `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
         /// </summary>
         [Input("externalPolicies")]
         public Input<bool>? ExternalPolicies { get; set; }
@@ -233,7 +245,13 @@ namespace Pulumi.Vault.Identity
     public sealed class GroupState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+        /// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+        /// </summary>
+        [Input("externalMemberEntityIds")]
+        public Input<bool>? ExternalMemberEntityIds { get; set; }
+
+        /// <summary>
+        /// `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
         /// </summary>
         [Input("externalPolicies")]
         public Input<bool>? ExternalPolicies { get; set; }
