@@ -36,6 +36,7 @@ import * as pkiSecret from "./pkiSecret";
 import * as rabbitMq from "./rabbitMq";
 import * as ssh from "./ssh";
 import * as tokenauth from "./tokenauth";
+import * as transform from "./transform";
 import * as transit from "./transit";
 import * as types from "./types";
-export {alicloud, appRole, aws, azure, config, consul, database, gcp, generic, github, identity, jwt, kubernetes, ldap, okta, pkiSecret, rabbitMq, ssh, tokenauth, transit, types};
+export {alicloud, appRole, aws, azure, config, consul, database, gcp, generic, github, identity, jwt, kubernetes, ldap, okta, pkiSecret, rabbitMq, ssh, tokenauth, transform, transit, types};

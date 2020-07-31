@@ -76,7 +76,7 @@ class User(pulumi.CustomResource):
         tf_user = vault.github.User("tfUser",
             backend=example.id,
             user="john.doe",
-            token_policies=[
+            policies=[
                 "developer",
                 "read-only",
             ])

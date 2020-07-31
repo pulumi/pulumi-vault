@@ -10,9 +10,13 @@ from .. import utilities, tables
 
 
 class Group(pulumi.CustomResource):
+    external_member_entity_ids: pulumi.Output[bool]
+    """
+    `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+    """
     external_policies: pulumi.Output[bool]
     """
-    `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+    `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
     """
     member_entity_ids: pulumi.Output[list]
     """
@@ -38,7 +42,7 @@ class Group(pulumi.CustomResource):
     """
     Type of the group, internal or external. Defaults to `internal`.
     """
-    def __init__(__self__, resource_name, opts=None, external_policies=None, member_entity_ids=None, member_group_ids=None, metadata=None, name=None, policies=None, type=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, external_member_entity_ids=None, external_policies=None, member_entity_ids=None, member_group_ids=None, metadata=None, name=None, policies=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
         Creates an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
 
@@ -77,7 +81,8 @@ class Group(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] external_policies: `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+        :param pulumi.Input[bool] external_member_entity_ids: `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+        :param pulumi.Input[bool] external_policies: `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
         :param pulumi.Input[list] member_entity_ids: A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
         :param pulumi.Input[list] member_group_ids: A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
         :param pulumi.Input[dict] metadata: A Map of additional metadata to associate with the group.
@@ -102,6 +107,7 @@ class Group(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
+            __props__['external_member_entity_ids'] = external_member_entity_ids
             __props__['external_policies'] = external_policies
             __props__['member_entity_ids'] = member_entity_ids
             __props__['member_group_ids'] = member_group_ids
@@ -116,7 +122,7 @@ class Group(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, external_policies=None, member_entity_ids=None, member_group_ids=None, metadata=None, name=None, policies=None, type=None):
+    def get(resource_name, id, opts=None, external_member_entity_ids=None, external_policies=None, member_entity_ids=None, member_group_ids=None, metadata=None, name=None, policies=None, type=None):
         """
         Get an existing Group resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -124,7 +130,8 @@ class Group(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] external_policies: `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+        :param pulumi.Input[bool] external_member_entity_ids: `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+        :param pulumi.Input[bool] external_policies: `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
         :param pulumi.Input[list] member_entity_ids: A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
         :param pulumi.Input[list] member_group_ids: A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
         :param pulumi.Input[dict] metadata: A Map of additional metadata to associate with the group.
@@ -136,6 +143,7 @@ class Group(pulumi.CustomResource):
 
         __props__ = dict()
 
+        __props__["external_member_entity_ids"] = external_member_entity_ids
         __props__["external_policies"] = external_policies
         __props__["member_entity_ids"] = member_entity_ids
         __props__["member_group_ids"] = member_group_ids

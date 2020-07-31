@@ -9,6 +9,7 @@ export * from "./getEntity";
 export * from "./getGroup";
 export * from "./group";
 export * from "./groupAlias";
+export * from "./groupMemberEntityIds";
 export * from "./groupPolicies";
 export * from "./oidc";
 export * from "./oidcKey";

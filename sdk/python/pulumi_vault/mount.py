@@ -22,6 +22,10 @@ class Mount(pulumi.CustomResource):
     """
     Human-friendly description of the mount
     """
+    external_entropy_access: pulumi.Output[bool]
+    """
+    Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+    """
     local: pulumi.Output[bool]
     """
     Boolean flag that can be explicitly set to true to enforce local mount in HA environment
@@ -46,7 +50,7 @@ class Mount(pulumi.CustomResource):
     """
     Type of the backend, such as "aws"
     """
-    def __init__(__self__, resource_name, opts=None, default_lease_ttl_seconds=None, description=None, local=None, max_lease_ttl_seconds=None, options=None, path=None, seal_wrap=None, type=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, default_lease_ttl_seconds=None, description=None, external_entropy_access=None, local=None, max_lease_ttl_seconds=None, options=None, path=None, seal_wrap=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
         ## Example Usage
 
@@ -64,6 +68,7 @@ class Mount(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[str] description: Human-friendly description of the mount
+        :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[float] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[dict] options: Specifies mount type specific options that are passed to the backend
@@ -90,6 +95,7 @@ class Mount(pulumi.CustomResource):
 
             __props__['default_lease_ttl_seconds'] = default_lease_ttl_seconds
             __props__['description'] = description
+            __props__['external_entropy_access'] = external_entropy_access
             __props__['local'] = local
             __props__['max_lease_ttl_seconds'] = max_lease_ttl_seconds
             __props__['options'] = options
@@ -108,7 +114,7 @@ class Mount(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, accessor=None, default_lease_ttl_seconds=None, description=None, local=None, max_lease_ttl_seconds=None, options=None, path=None, seal_wrap=None, type=None):
+    def get(resource_name, id, opts=None, accessor=None, default_lease_ttl_seconds=None, description=None, external_entropy_access=None, local=None, max_lease_ttl_seconds=None, options=None, path=None, seal_wrap=None, type=None):
         """
         Get an existing Mount resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -119,6 +125,7 @@ class Mount(pulumi.CustomResource):
         :param pulumi.Input[str] accessor: The accessor for this mount.
         :param pulumi.Input[float] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[str] description: Human-friendly description of the mount
+        :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[float] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[dict] options: Specifies mount type specific options that are passed to the backend
@@ -133,6 +140,7 @@ class Mount(pulumi.CustomResource):
         __props__["accessor"] = accessor
         __props__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__["description"] = description
+        __props__["external_entropy_access"] = external_entropy_access
         __props__["local"] = local
         __props__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
         __props__["options"] = options

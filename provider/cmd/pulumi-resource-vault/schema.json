@@ -6619,7 +6619,7 @@
             }
         },
         "vault:github/user:User": {
-            "description": "Manages policy mappings for Github Users authenticated via Github. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/github/) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.github.AuthBackend(\"example\", {organization: \"myorg\"});\nconst tfUser = new vault.github.User(\"tfUser\", {\n    backend: example.id,\n    user: \"john.doe\",\n    tokenPolicies: [\n        \"developer\",\n        \"read-only\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.github.AuthBackend(\"example\", organization=\"myorg\")\ntf_user = vault.github.User(\"tfUser\",\n    backend=example.id,\n    user=\"john.doe\",\n    token_policies=[\n        \"developer\",\n        \"read-only\",\n    ])\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.GitHub.AuthBackend(\"example\", new Vault.GitHub.AuthBackendArgs\n        {\n            Organization = \"myorg\",\n        });\n        var tfUser = new Vault.GitHub.User(\"tfUser\", new Vault.GitHub.UserArgs\n        {\n            Backend = example.Id,\n            User = \"john.doe\",\n            TokenPolicies = \n            {\n                \"developer\",\n                \"read-only\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/github\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := github.NewAuthBackend(ctx, \"example\", \u0026github.AuthBackendArgs{\n\t\t\tOrganization: pulumi.String(\"myorg\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = github.NewUser(ctx, \"tfUser\", \u0026github.UserArgs{\n\t\t\tBackend: example.ID(),\n\t\t\tUser:    pulumi.String(\"john.doe\"),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"developer\"),\n\t\t\t\tpulumi.String(\"read-only\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages policy mappings for Github Users authenticated via Github. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/github/) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.github.AuthBackend(\"example\", {organization: \"myorg\"});\nconst tfUser = new vault.github.User(\"tfUser\", {\n    backend: example.id,\n    user: \"john.doe\",\n    policies: [\n        \"developer\",\n        \"read-only\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.github.AuthBackend(\"example\", organization=\"myorg\")\ntf_user = vault.github.User(\"tfUser\",\n    backend=example.id,\n    user=\"john.doe\",\n    policies=[\n        \"developer\",\n        \"read-only\",\n    ])\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.GitHub.AuthBackend(\"example\", new Vault.GitHub.AuthBackendArgs\n        {\n            Organization = \"myorg\",\n        });\n        var tfUser = new Vault.GitHub.User(\"tfUser\", new Vault.GitHub.UserArgs\n        {\n            Backend = example.Id,\n            User = \"john.doe\",\n            Policies = \n            {\n                \"developer\",\n                \"read-only\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/github\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := github.NewAuthBackend(ctx, \"example\", \u0026github.AuthBackendArgs{\n\t\t\tOrganization: pulumi.String(\"myorg\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = github.NewUser(ctx, \"tfUser\", \u0026github.UserArgs{\n\t\t\tBackend: example.ID(),\n\t\t\tUser:    pulumi.String(\"john.doe\"),\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"developer\"),\n\t\t\t\tpulumi.String(\"read-only\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "backend": {
                     "type": "string",
@@ -7078,9 +7078,13 @@
         "vault:identity/group:Group": {
             "description": "Creates an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.\n\nA group can contain multiple entities as its members. A group can also have subgroups. Policies set on the group is granted to all members of the group. During request time, when the token's entity ID is being evaluated for the policies that it has access to; along with the policies on the entity itself, policies that are inherited due to group memberships are also granted.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Internal Group\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst internal = new vault.identity.Group(\"internal\", {\n    metadata: {\n        version: \"2\",\n    },\n    policies: [\n        \"dev\",\n        \"test\",\n    ],\n    type: \"internal\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ninternal = vault.identity.Group(\"internal\",\n    metadata={\n        \"version\": \"2\",\n    },\n    policies=[\n        \"dev\",\n        \"test\",\n    ],\n    type=\"internal\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @internal = new Vault.Identity.Group(\"internal\", new Vault.Identity.GroupArgs\n        {\n            Metadata = \n            {\n                { \"version\", \"2\" },\n            },\n            Policies = \n            {\n                \"dev\",\n                \"test\",\n            },\n            Type = \"internal\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/identity\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := identity.NewGroup(ctx, \"internal\", \u0026identity.GroupArgs{\n\t\t\tMetadata: pulumi.StringMap{\n\t\t\t\t\"version\": pulumi.String(\"2\"),\n\t\t\t},\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"test\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"internal\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### External Group\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst group = new vault.identity.Group(\"group\", {\n    metadata: {\n        version: \"1\",\n    },\n    policies: [\"test\"],\n    type: \"external\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ngroup = vault.identity.Group(\"group\",\n    metadata={\n        \"version\": \"1\",\n    },\n    policies=[\"test\"],\n    type=\"external\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @group = new Vault.Identity.Group(\"group\", new Vault.Identity.GroupArgs\n        {\n            Metadata = \n            {\n                { \"version\", \"1\" },\n            },\n            Policies = \n            {\n                \"test\",\n            },\n            Type = \"external\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/identity\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := identity.NewGroup(ctx, \"group\", \u0026identity.GroupArgs{\n\t\t\tMetadata: pulumi.StringMap{\n\t\t\t\t\"version\": pulumi.String(\"1\"),\n\t\t\t},\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"test\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"external\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
+                "externalMemberEntityIds": {
+                    "type": "boolean",
+                    "description": "`false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.\n"
+                },
                 "externalPolicies": {
                     "type": "boolean",
-                    "description": "`false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.\n"
+                    "description": "`false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.\n"
                 },
                 "memberEntityIds": {
                     "type": "array",
@@ -7120,13 +7124,16 @@
                 }
             },
             "required": [
-                "memberEntityIds",
                 "name"
             ],
             "inputProperties": {
+                "externalMemberEntityIds": {
+                    "type": "boolean",
+                    "description": "`false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.\n"
+                },
                 "externalPolicies": {
                     "type": "boolean",
-                    "description": "`false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.\n"
+                    "description": "`false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.\n"
                 },
                 "memberEntityIds": {
                     "type": "array",
@@ -7168,9 +7175,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Group resources.\n",
                 "properties": {
+                    "externalMemberEntityIds": {
+                        "type": "boolean",
+                        "description": "`false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.\n"
+                    },
                     "externalPolicies": {
                         "type": "boolean",
-                        "description": "`false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.\n"
+                        "description": "`false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.\n"
                     },
                     "memberEntityIds": {
                         "type": "array",
@@ -7266,6 +7277,79 @@
                     "name": {
                         "type": "string",
                         "description": "Name of the group alias to create.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:identity/groupMemberEntityIds:GroupMemberEntityIds": {
+            "description": "Manages member entities for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Exclusive Member Entities\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst internal = new vault.identity.Group(\"internal\", {\n    type: \"internal\",\n    externalMemberEntityIds: true,\n    metadata: {\n        version: \"2\",\n    },\n});\nconst user = new vault.identity.Entity(\"user\", {});\nconst members = new vault.identity.GroupMemberEntityIds(\"members\", {\n    exclusive: true,\n    memberEntityIds: [user.id],\n    groupId: internal.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ninternal = vault.identity.Group(\"internal\",\n    type=\"internal\",\n    external_member_entity_ids=True,\n    metadata={\n        \"version\": \"2\",\n    })\nuser = vault.identity.Entity(\"user\")\nmembers = vault.identity.GroupMemberEntityIds(\"members\",\n    exclusive=True,\n    member_entity_ids=[user.id],\n    group_id=internal.id)\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @internal = new Vault.Identity.Group(\"internal\", new Vault.Identity.GroupArgs\n        {\n            Type = \"internal\",\n            ExternalMemberEntityIds = true,\n            Metadata = \n            {\n                { \"version\", \"2\" },\n            },\n        });\n        var user = new Vault.Identity.Entity(\"user\", new Vault.Identity.EntityArgs\n        {\n        });\n        var members = new Vault.Identity.GroupMemberEntityIds(\"members\", new Vault.Identity.GroupMemberEntityIdsArgs\n        {\n            Exclusive = true,\n            MemberEntityIds = \n            {\n                user.Id,\n            },\n            GroupId = @internal.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/identity\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tinternal, err := identity.NewGroup(ctx, \"internal\", \u0026identity.GroupArgs{\n\t\t\tType:                    pulumi.String(\"internal\"),\n\t\t\tExternalMemberEntityIds: pulumi.Bool(true),\n\t\t\tMetadata: pulumi.StringMap{\n\t\t\t\t\"version\": pulumi.String(\"2\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tuser, err := identity.NewEntity(ctx, \"user\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = identity.NewGroupMemberEntityIds(ctx, \"members\", \u0026identity.GroupMemberEntityIdsArgs{\n\t\t\tExclusive: pulumi.Bool(true),\n\t\t\tMemberEntityIds: pulumi.StringArray{\n\t\t\t\tuser.ID(),\n\t\t\t},\n\t\t\tGroupId: internal.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Non-exclusive Member Entities\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst internal = new vault.identity.Group(\"internal\", {\n    type: \"internal\",\n    externalMemberEntityIds: true,\n    metadata: {\n        version: \"2\",\n    },\n});\nconst testUser = new vault.identity.Entity(\"testUser\", {});\nconst secondTestUser = new vault.identity.Entity(\"secondTestUser\", {});\nconst devUser = new vault.identity.Entity(\"devUser\", {});\nconst test = new vault.identity.GroupMemberEntityIds(\"test\", {\n    memberEntityIds: [\n        testUser.id,\n        secondTestUser.id,\n    ],\n    exclusive: false,\n    groupId: internal.id,\n});\nconst others = new vault.identity.GroupMemberEntityIds(\"others\", {\n    memberEntityIds: [devUser.id],\n    exclusive: false,\n    groupId: internal.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ninternal = vault.identity.Group(\"internal\",\n    type=\"internal\",\n    external_member_entity_ids=True,\n    metadata={\n        \"version\": \"2\",\n    })\ntest_user = vault.identity.Entity(\"testUser\")\nsecond_test_user = vault.identity.Entity(\"secondTestUser\")\ndev_user = vault.identity.Entity(\"devUser\")\ntest = vault.identity.GroupMemberEntityIds(\"test\",\n    member_entity_ids=[\n        test_user.id,\n        second_test_user.id,\n    ],\n    exclusive=False,\n    group_id=internal.id)\nothers = vault.identity.GroupMemberEntityIds(\"others\",\n    member_entity_ids=[dev_user.id],\n    exclusive=False,\n    group_id=internal.id)\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @internal = new Vault.Identity.Group(\"internal\", new Vault.Identity.GroupArgs\n        {\n            Type = \"internal\",\n            ExternalMemberEntityIds = true,\n            Metadata = \n            {\n                { \"version\", \"2\" },\n            },\n        });\n        var testUser = new Vault.Identity.Entity(\"testUser\", new Vault.Identity.EntityArgs\n        {\n        });\n        var secondTestUser = new Vault.Identity.Entity(\"secondTestUser\", new Vault.Identity.EntityArgs\n        {\n        });\n        var devUser = new Vault.Identity.Entity(\"devUser\", new Vault.Identity.EntityArgs\n        {\n        });\n        var test = new Vault.Identity.GroupMemberEntityIds(\"test\", new Vault.Identity.GroupMemberEntityIdsArgs\n        {\n            MemberEntityIds = \n            {\n                testUser.Id,\n                secondTestUser.Id,\n            },\n            Exclusive = false,\n            GroupId = @internal.Id,\n        });\n        var others = new Vault.Identity.GroupMemberEntityIds(\"others\", new Vault.Identity.GroupMemberEntityIdsArgs\n        {\n            MemberEntityIds = \n            {\n                devUser.Id,\n            },\n            Exclusive = false,\n            GroupId = @internal.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/identity\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tinternal, err := identity.NewGroup(ctx, \"internal\", \u0026identity.GroupArgs{\n\t\t\tType:                    pulumi.String(\"internal\"),\n\t\t\tExternalMemberEntityIds: pulumi.Bool(true),\n\t\t\tMetadata: pulumi.StringMap{\n\t\t\t\t\"version\": pulumi.String(\"2\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestUser, err := identity.NewEntity(ctx, \"testUser\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tsecondTestUser, err := identity.NewEntity(ctx, \"secondTestUser\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tdevUser, err := identity.NewEntity(ctx, \"devUser\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = identity.NewGroupMemberEntityIds(ctx, \"test\", \u0026identity.GroupMemberEntityIdsArgs{\n\t\t\tMemberEntityIds: pulumi.StringArray{\n\t\t\t\ttestUser.ID(),\n\t\t\t\tsecondTestUser.ID(),\n\t\t\t},\n\t\t\tExclusive: pulumi.Bool(false),\n\t\t\tGroupId:   internal.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = identity.NewGroupMemberEntityIds(ctx, \"others\", \u0026identity.GroupMemberEntityIdsArgs{\n\t\t\tMemberEntityIds: pulumi.StringArray{\n\t\t\t\tdevUser.ID(),\n\t\t\t},\n\t\t\tExclusive: pulumi.Bool(false),\n\t\t\tGroupId:   internal.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "exclusive": {
+                    "type": "boolean",
+                    "description": "Defaults to `true`.\n"
+                },
+                "groupId": {
+                    "type": "string",
+                    "description": "Group ID to assign member entities to.\n"
+                },
+                "groupName": {
+                    "type": "string",
+                    "description": "The name of the group that are assigned the member entities.\n"
+                },
+                "memberEntityIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of member entities that belong to the group\n"
+                }
+            },
+            "required": [
+                "groupId",
+                "groupName"
+            ],
+            "inputProperties": {
+                "exclusive": {
+                    "type": "boolean",
+                    "description": "Defaults to `true`.\n"
+                },
+                "groupId": {
+                    "type": "string",
+                    "description": "Group ID to assign member entities to.\n"
+                },
+                "memberEntityIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of member entities that belong to the group\n"
+                }
+            },
+            "requiredInputs": [
+                "groupId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering GroupMemberEntityIds resources.\n",
+                "properties": {
+                    "exclusive": {
+                        "type": "boolean",
+                        "description": "Defaults to `true`.\n"
+                    },
+                    "groupId": {
+                        "type": "string",
+                        "description": "Group ID to assign member entities to.\n"
+                    },
+                    "groupName": {
+                        "type": "string",
+                        "description": "The name of the group that are assigned the member entities.\n"
+                    },
+                    "memberEntityIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of member entities that belong to the group\n"
                     }
                 },
                 "type": "object"
@@ -8449,6 +8533,10 @@
                     "type": "string",
                     "description": "Human-friendly description of the mount\n"
                 },
+                "externalEntropyAccess": {
+                    "type": "boolean",
+                    "description": "Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source\n"
+                },
                 "local": {
                     "type": "boolean",
                     "description": "Boolean flag that can be explicitly set to true to enforce local mount in HA environment\n"
@@ -8493,6 +8581,10 @@
                 "description": {
                     "type": "string",
                     "description": "Human-friendly description of the mount\n"
+                },
+                "externalEntropyAccess": {
+                    "type": "boolean",
+                    "description": "Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source\n"
                 },
                 "local": {
                     "type": "boolean",
@@ -8540,6 +8632,10 @@
                     "description": {
                         "type": "string",
                         "description": "Human-friendly description of the mount\n"
+                    },
+                    "externalEntropyAccess": {
+                        "type": "boolean",
+                        "description": "Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source\n"
                     },
                     "local": {
                         "type": "boolean",
@@ -14247,6 +14343,353 @@
                 "type": "object"
             }
         },
+        "vault:transform/alphabet:Alphabet": {
+            "properties": {
+                "alphabet": {
+                    "type": "string",
+                    "description": "A string of characters that contains the alphabet set.\n",
+                    "language": {
+                        "csharp": {
+                            "name": "AlphabetSet"
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the alphabet.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                }
+            },
+            "required": [
+                "name",
+                "path"
+            ],
+            "inputProperties": {
+                "alphabet": {
+                    "type": "string",
+                    "description": "A string of characters that contains the alphabet set.\n",
+                    "language": {
+                        "csharp": {
+                            "name": "AlphabetSet"
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the alphabet.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                }
+            },
+            "requiredInputs": [
+                "path"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Alphabet resources.\n",
+                "properties": {
+                    "alphabet": {
+                        "type": "string",
+                        "description": "A string of characters that contains the alphabet set.\n",
+                        "language": {
+                            "csharp": {
+                                "name": "AlphabetSet"
+                            }
+                        }
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the alphabet.\n"
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:transform/role:Role": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the role.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                },
+                "transformations": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A comma separated string or slice of transformations to use.\n"
+                }
+            },
+            "required": [
+                "name",
+                "path"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the role.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                },
+                "transformations": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A comma separated string or slice of transformations to use.\n"
+                }
+            },
+            "requiredInputs": [
+                "path"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Role resources.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the role.\n"
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                    },
+                    "transformations": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A comma separated string or slice of transformations to use.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:transform/template:Template": {
+            "properties": {
+                "alphabet": {
+                    "type": "string",
+                    "description": "The alphabet to use for this template. This is only used during FPE transformations.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the template.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                },
+                "pattern": {
+                    "type": "string",
+                    "description": "The pattern used for matching. Currently, only regular expression pattern is supported.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The pattern type to use for match detection. Currently, only regex is supported.\n"
+                }
+            },
+            "required": [
+                "name",
+                "path"
+            ],
+            "inputProperties": {
+                "alphabet": {
+                    "type": "string",
+                    "description": "The alphabet to use for this template. This is only used during FPE transformations.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the template.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                },
+                "pattern": {
+                    "type": "string",
+                    "description": "The pattern used for matching. Currently, only regular expression pattern is supported.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The pattern type to use for match detection. Currently, only regex is supported.\n"
+                }
+            },
+            "requiredInputs": [
+                "path"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Template resources.\n",
+                "properties": {
+                    "alphabet": {
+                        "type": "string",
+                        "description": "The alphabet to use for this template. This is only used during FPE transformations.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the template.\n"
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                    },
+                    "pattern": {
+                        "type": "string",
+                        "description": "The pattern used for matching. Currently, only regular expression pattern is supported.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The pattern type to use for match detection. Currently, only regex is supported.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:transform/transformation:Transformation": {
+            "properties": {
+                "allowedRoles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The set of roles allowed to perform this transformation.\n"
+                },
+                "maskingCharacter": {
+                    "type": "string",
+                    "description": "The character used to replace data when in masking mode\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the transformation.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                },
+                "template": {
+                    "type": "string",
+                    "description": "The name of the template to use.\n"
+                },
+                "templates": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Templates configured for transformation.\n"
+                },
+                "tweakSource": {
+                    "type": "string",
+                    "description": "The source of where the tweak value comes from. Only valid when in FPE mode.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of transformation to perform.\n"
+                }
+            },
+            "required": [
+                "name",
+                "path",
+                "templates"
+            ],
+            "inputProperties": {
+                "allowedRoles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The set of roles allowed to perform this transformation.\n"
+                },
+                "maskingCharacter": {
+                    "type": "string",
+                    "description": "The character used to replace data when in masking mode\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the transformation.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                },
+                "template": {
+                    "type": "string",
+                    "description": "The name of the template to use.\n"
+                },
+                "templates": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Templates configured for transformation.\n"
+                },
+                "tweakSource": {
+                    "type": "string",
+                    "description": "The source of where the tweak value comes from. Only valid when in FPE mode.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of transformation to perform.\n"
+                }
+            },
+            "requiredInputs": [
+                "path"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Transformation resources.\n",
+                "properties": {
+                    "allowedRoles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The set of roles allowed to perform this transformation.\n"
+                    },
+                    "maskingCharacter": {
+                        "type": "string",
+                        "description": "The character used to replace data when in masking mode\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the transformation.\n"
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                    },
+                    "template": {
+                        "type": "string",
+                        "description": "The name of the template to use.\n"
+                    },
+                    "templates": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Templates configured for transformation.\n"
+                    },
+                    "tweakSource": {
+                        "type": "string",
+                        "description": "The source of where the tweak value comes from. Only valid when in FPE mode.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of transformation to perform.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "vault:transit/secretBackendKey:SecretBackendKey": {
             "description": "Creates an Encryption Keyring on a Transit Secret Backend for Vault.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst transit = new vault.Mount(\"transit\", {\n    defaultLeaseTtlSeconds: 3600,\n    description: \"Example description\",\n    maxLeaseTtlSeconds: 86400,\n    path: \"transit\",\n    type: \"transit\",\n});\nconst key = new vault.transit.SecretBackendKey(\"key\", {\n    backend: transit.path,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntransit = vault.Mount(\"transit\",\n    default_lease_ttl_seconds=3600,\n    description=\"Example description\",\n    max_lease_ttl_seconds=86400,\n    path=\"transit\",\n    type=\"transit\")\nkey = vault.transit.SecretBackendKey(\"key\", backend=transit.path)\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var transit = new Vault.Mount(\"transit\", new Vault.MountArgs\n        {\n            DefaultLeaseTtlSeconds = 3600,\n            Description = \"Example description\",\n            MaxLeaseTtlSeconds = 86400,\n            Path = \"transit\",\n            Type = \"transit\",\n        });\n        var key = new Vault.Transit.SecretBackendKey(\"key\", new Vault.Transit.SecretBackendKeyArgs\n        {\n            Backend = transit.Path,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/transit\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttransit, err := vault.NewMount(ctx, \"transit\", \u0026vault.MountArgs{\n\t\t\tDefaultLeaseTtlSeconds: pulumi.Int(3600),\n\t\t\tDescription:            pulumi.String(\"Example description\"),\n\t\t\tMaxLeaseTtlSeconds:     pulumi.Int(86400),\n\t\t\tPath:                   pulumi.String(\"transit\"),\n\t\t\tType:                   pulumi.String(\"transit\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = transit.NewSecretBackendKey(ctx, \"key\", \u0026transit.SecretBackendKeyArgs{\n\t\t\tBackend: transit.Path,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
@@ -15508,6 +15951,208 @@
                     "id"
                 ]
             }
+        },
+        "vault:transform/getDecode:getDecode": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getDecode.\n",
+                "properties": {
+                    "batchInputs": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "pulumi.json#/Any"
+                            }
+                        }
+                    },
+                    "batchResults": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "pulumi.json#/Any"
+                            }
+                        }
+                    },
+                    "decodedValue": {
+                        "type": "string"
+                    },
+                    "path": {
+                        "type": "string"
+                    },
+                    "roleName": {
+                        "type": "string"
+                    },
+                    "transformation": {
+                        "type": "string"
+                    },
+                    "tweak": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "path",
+                    "roleName"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDecode.\n",
+                "properties": {
+                    "batchInputs": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "pulumi.json#/Any"
+                            }
+                        }
+                    },
+                    "batchResults": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "pulumi.json#/Any"
+                            }
+                        }
+                    },
+                    "decodedValue": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "path": {
+                        "type": "string"
+                    },
+                    "roleName": {
+                        "type": "string"
+                    },
+                    "transformation": {
+                        "type": "string"
+                    },
+                    "tweak": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "batchResults",
+                    "decodedValue",
+                    "path",
+                    "roleName",
+                    "id"
+                ]
+            }
+        },
+        "vault:transform/getEncode:getEncode": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getEncode.\n",
+                "properties": {
+                    "batchInputs": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "pulumi.json#/Any"
+                            }
+                        }
+                    },
+                    "batchResults": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "pulumi.json#/Any"
+                            }
+                        }
+                    },
+                    "encodedValue": {
+                        "type": "string"
+                    },
+                    "path": {
+                        "type": "string"
+                    },
+                    "roleName": {
+                        "type": "string"
+                    },
+                    "transformation": {
+                        "type": "string"
+                    },
+                    "tweak": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "path",
+                    "roleName"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getEncode.\n",
+                "properties": {
+                    "batchInputs": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "pulumi.json#/Any"
+                            }
+                        }
+                    },
+                    "batchResults": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "pulumi.json#/Any"
+                            }
+                        }
+                    },
+                    "encodedValue": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "path": {
+                        "type": "string"
+                    },
+                    "roleName": {
+                        "type": "string"
+                    },
+                    "transformation": {
+                        "type": "string"
+                    },
+                    "tweak": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "batchResults",
+                    "encodedValue",
+                    "path",
+                    "roleName",
+                    "id"
+                ]
+            }
         }
     },
     "language": {
@@ -15532,6 +16177,7 @@
                 "rabbitMq": "RabbitMQ",
                 "ssh": "Ssh",
                 "tokenauth": "TokenAuth",
+                "transform": "Transform",
                 "transit": "Transit",
                 "vault": "Vault"
             },
