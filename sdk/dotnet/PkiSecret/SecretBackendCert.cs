@@ -125,6 +125,12 @@ namespace Pulumi.Vault.PkiSecret
         [Output("ttl")]
         public Output<string?> Ttl { get; private set; } = null!;
 
+        /// <summary>
+        /// List of alternative URIs
+        /// </summary>
+        [Output("uriSans")]
+        public Output<ImmutableArray<string>> UriSans { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a SecretBackendCert resource with the given unique name, arguments, and options.
@@ -260,6 +266,18 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }
+
+        [Input("uriSans")]
+        private InputList<string>? _uriSans;
+
+        /// <summary>
+        /// List of alternative URIs
+        /// </summary>
+        public InputList<string> UriSans
+        {
+            get => _uriSans ?? (_uriSans = new InputList<string>());
+            set => _uriSans = value;
+        }
 
         public SecretBackendCertArgs()
         {
@@ -399,6 +417,18 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }
+
+        [Input("uriSans")]
+        private InputList<string>? _uriSans;
+
+        /// <summary>
+        /// List of alternative URIs
+        /// </summary>
+        public InputList<string> UriSans
+        {
+            get => _uriSans ?? (_uriSans = new InputList<string>());
+            set => _uriSans = value;
+        }
 
         public SecretBackendCertState()
         {

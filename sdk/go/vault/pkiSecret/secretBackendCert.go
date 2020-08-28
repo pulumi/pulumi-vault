@@ -51,6 +51,8 @@ type SecretBackendCert struct {
 	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
 	// Time to live
 	Ttl pulumi.StringPtrOutput `pulumi:"ttl"`
+	// List of alternative URIs
+	UriSans pulumi.StringArrayOutput `pulumi:"uriSans"`
 }
 
 // NewSecretBackendCert registers a new resource with the given unique name, arguments, and options.
@@ -125,6 +127,8 @@ type secretBackendCertState struct {
 	SerialNumber *string `pulumi:"serialNumber"`
 	// Time to live
 	Ttl *string `pulumi:"ttl"`
+	// List of alternative URIs
+	UriSans []string `pulumi:"uriSans"`
 }
 
 type SecretBackendCertState struct {
@@ -166,6 +170,8 @@ type SecretBackendCertState struct {
 	SerialNumber pulumi.StringPtrInput
 	// Time to live
 	Ttl pulumi.StringPtrInput
+	// List of alternative URIs
+	UriSans pulumi.StringArrayInput
 }
 
 func (SecretBackendCertState) ElementType() reflect.Type {
@@ -197,6 +203,8 @@ type secretBackendCertArgs struct {
 	PrivateKeyFormat *string `pulumi:"privateKeyFormat"`
 	// Time to live
 	Ttl *string `pulumi:"ttl"`
+	// List of alternative URIs
+	UriSans []string `pulumi:"uriSans"`
 }
 
 // The set of arguments for constructing a SecretBackendCert resource.
@@ -225,6 +233,8 @@ type SecretBackendCertArgs struct {
 	PrivateKeyFormat pulumi.StringPtrInput
 	// Time to live
 	Ttl pulumi.StringPtrInput
+	// List of alternative URIs
+	UriSans pulumi.StringArrayInput
 }
 
 func (SecretBackendCertArgs) ElementType() reflect.Type {

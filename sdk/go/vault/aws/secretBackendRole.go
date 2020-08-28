@@ -26,6 +26,13 @@ type SecretBackendRole struct {
 	// then this default TTL will be used. Valid only when `credentialType` is one of
 	// `assumedRole` or `federationToken`.
 	DefaultStsTtl pulumi.IntOutput `pulumi:"defaultStsTtl"`
+	// A list of IAM group names. IAM users generated
+	// against this vault role will be added to these IAM Groups. For a credential
+	// type of `assumedRole` or `federationToken`, the policies sent to the
+	// corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
+	// policies from each group in `iamGroups` combined with the `policyDocument`
+	// and `policyArns` parameters.
+	IamGroups pulumi.StringArrayOutput `pulumi:"iamGroups"`
 	// The max allowed TTL in seconds for STS credentials
 	// (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
 	// one of `assumedRole` or `federationToken`.
@@ -100,6 +107,13 @@ type secretBackendRoleState struct {
 	// then this default TTL will be used. Valid only when `credentialType` is one of
 	// `assumedRole` or `federationToken`.
 	DefaultStsTtl *int `pulumi:"defaultStsTtl"`
+	// A list of IAM group names. IAM users generated
+	// against this vault role will be added to these IAM Groups. For a credential
+	// type of `assumedRole` or `federationToken`, the policies sent to the
+	// corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
+	// policies from each group in `iamGroups` combined with the `policyDocument`
+	// and `policyArns` parameters.
+	IamGroups []string `pulumi:"iamGroups"`
 	// The max allowed TTL in seconds for STS credentials
 	// (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
 	// one of `assumedRole` or `federationToken`.
@@ -141,6 +155,13 @@ type SecretBackendRoleState struct {
 	// then this default TTL will be used. Valid only when `credentialType` is one of
 	// `assumedRole` or `federationToken`.
 	DefaultStsTtl pulumi.IntPtrInput
+	// A list of IAM group names. IAM users generated
+	// against this vault role will be added to these IAM Groups. For a credential
+	// type of `assumedRole` or `federationToken`, the policies sent to the
+	// corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
+	// policies from each group in `iamGroups` combined with the `policyDocument`
+	// and `policyArns` parameters.
+	IamGroups pulumi.StringArrayInput
 	// The max allowed TTL in seconds for STS credentials
 	// (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
 	// one of `assumedRole` or `federationToken`.
@@ -186,6 +207,13 @@ type secretBackendRoleArgs struct {
 	// then this default TTL will be used. Valid only when `credentialType` is one of
 	// `assumedRole` or `federationToken`.
 	DefaultStsTtl *int `pulumi:"defaultStsTtl"`
+	// A list of IAM group names. IAM users generated
+	// against this vault role will be added to these IAM Groups. For a credential
+	// type of `assumedRole` or `federationToken`, the policies sent to the
+	// corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
+	// policies from each group in `iamGroups` combined with the `policyDocument`
+	// and `policyArns` parameters.
+	IamGroups []string `pulumi:"iamGroups"`
 	// The max allowed TTL in seconds for STS credentials
 	// (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
 	// one of `assumedRole` or `federationToken`.
@@ -228,6 +256,13 @@ type SecretBackendRoleArgs struct {
 	// then this default TTL will be used. Valid only when `credentialType` is one of
 	// `assumedRole` or `federationToken`.
 	DefaultStsTtl pulumi.IntPtrInput
+	// A list of IAM group names. IAM users generated
+	// against this vault role will be added to these IAM Groups. For a credential
+	// type of `assumedRole` or `federationToken`, the policies sent to the
+	// corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
+	// policies from each group in `iamGroups` combined with the `policyDocument`
+	// and `policyArns` parameters.
+	IamGroups pulumi.StringArrayInput
 	// The max allowed TTL in seconds for STS credentials
 	// (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
 	// one of `assumedRole` or `federationToken`.

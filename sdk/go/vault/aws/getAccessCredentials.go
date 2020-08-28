@@ -20,7 +20,8 @@ func GetAccessCredentials(ctx *pulumi.Context, args *GetAccessCredentialsArgs, o
 type GetAccessCredentialsArgs struct {
 	// The path to the AWS secret backend to
 	// read credentials from, with no leading or trailing `/`s.
-	Backend string `pulumi:"backend"`
+	Backend string  `pulumi:"backend"`
+	Region  *string `pulumi:"region"`
 	// The name of the AWS secret backend role to read
 	// credentials from, with no leading or trailing `/`s.
 	Role string `pulumi:"role"`
@@ -50,6 +51,7 @@ type GetAccessCredentialsResult struct {
 	LeaseId        string  `pulumi:"leaseId"`
 	LeaseRenewable bool    `pulumi:"leaseRenewable"`
 	LeaseStartTime string  `pulumi:"leaseStartTime"`
+	Region         *string `pulumi:"region"`
 	Role           string  `pulumi:"role"`
 	RoleArn        *string `pulumi:"roleArn"`
 	// The AWS Secret Key returned by Vault.

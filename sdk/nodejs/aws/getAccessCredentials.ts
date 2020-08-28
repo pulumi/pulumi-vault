@@ -16,6 +16,7 @@ export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulu
     }
     return pulumi.runtime.invoke("vault:aws/getAccessCredentials:getAccessCredentials", {
         "backend": args.backend,
+        "region": args.region,
         "role": args.role,
         "roleArn": args.roleArn,
         "type": args.type,
@@ -31,6 +32,7 @@ export interface GetAccessCredentialsArgs {
      * read credentials from, with no leading or trailing `/`s.
      */
     readonly backend: string;
+    readonly region?: string;
     /**
      * The name of the AWS secret backend role to read
      * credentials from, with no leading or trailing `/`s.
@@ -76,6 +78,7 @@ export interface GetAccessCredentialsResult {
     readonly leaseId: string;
     readonly leaseRenewable: boolean;
     readonly leaseStartTime: string;
+    readonly region?: string;
     readonly role: string;
     readonly roleArn?: string;
     /**

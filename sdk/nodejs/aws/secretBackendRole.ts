@@ -52,6 +52,15 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly defaultStsTtl!: pulumi.Output<number>;
     /**
+     * A list of IAM group names. IAM users generated
+     * against this vault role will be added to these IAM Groups. For a credential
+     * type of `assumedRole` or `federationToken`, the policies sent to the
+     * corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
+     * policies from each group in `iamGroups` combined with the `policyDocument`
+     * and `policyArns` parameters.
+     */
+    public readonly iamGroups!: pulumi.Output<string[] | undefined>;
+    /**
      * The max allowed TTL in seconds for STS credentials
      * (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
      * one of `assumedRole` or `federationToken`.
@@ -102,6 +111,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["backend"] = state ? state.backend : undefined;
             inputs["credentialType"] = state ? state.credentialType : undefined;
             inputs["defaultStsTtl"] = state ? state.defaultStsTtl : undefined;
+            inputs["iamGroups"] = state ? state.iamGroups : undefined;
             inputs["maxStsTtl"] = state ? state.maxStsTtl : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["policyArns"] = state ? state.policyArns : undefined;
@@ -118,6 +128,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["backend"] = args ? args.backend : undefined;
             inputs["credentialType"] = args ? args.credentialType : undefined;
             inputs["defaultStsTtl"] = args ? args.defaultStsTtl : undefined;
+            inputs["iamGroups"] = args ? args.iamGroups : undefined;
             inputs["maxStsTtl"] = args ? args.maxStsTtl : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["policyArns"] = args ? args.policyArns : undefined;
@@ -158,6 +169,15 @@ export interface SecretBackendRoleState {
      * `assumedRole` or `federationToken`.
      */
     readonly defaultStsTtl?: pulumi.Input<number>;
+    /**
+     * A list of IAM group names. IAM users generated
+     * against this vault role will be added to these IAM Groups. For a credential
+     * type of `assumedRole` or `federationToken`, the policies sent to the
+     * corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
+     * policies from each group in `iamGroups` combined with the `policyDocument`
+     * and `policyArns` parameters.
+     */
+    readonly iamGroups?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The max allowed TTL in seconds for STS credentials
      * (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
@@ -218,6 +238,15 @@ export interface SecretBackendRoleArgs {
      * `assumedRole` or `federationToken`.
      */
     readonly defaultStsTtl?: pulumi.Input<number>;
+    /**
+     * A list of IAM group names. IAM users generated
+     * against this vault role will be added to these IAM Groups. For a credential
+     * type of `assumedRole` or `federationToken`, the policies sent to the
+     * corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
+     * policies from each group in `iamGroups` combined with the `policyDocument`
+     * and `policyArns` parameters.
+     */
+    readonly iamGroups?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The max allowed TTL in seconds for STS credentials
      * (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is

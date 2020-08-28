@@ -64,6 +64,10 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      */
     public readonly mongodb!: pulumi.Output<outputs.database.SecretBackendConnectionMongodb | undefined>;
     /**
+     * Connection parameters for the mongodbatlas-database-plugin plugin.
+     */
+    public readonly mongodbatlas!: pulumi.Output<outputs.database.SecretBackendConnectionMongodbatlas | undefined>;
+    /**
      * A nested block containing configuration options for MSSQL connections.
      */
     public readonly mssql!: pulumi.Output<outputs.database.SecretBackendConnectionMssql | undefined>;
@@ -124,6 +128,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             inputs["elasticsearch"] = state ? state.elasticsearch : undefined;
             inputs["hana"] = state ? state.hana : undefined;
             inputs["mongodb"] = state ? state.mongodb : undefined;
+            inputs["mongodbatlas"] = state ? state.mongodbatlas : undefined;
             inputs["mssql"] = state ? state.mssql : undefined;
             inputs["mysql"] = state ? state.mysql : undefined;
             inputs["mysqlAurora"] = state ? state.mysqlAurora : undefined;
@@ -146,6 +151,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             inputs["elasticsearch"] = args ? args.elasticsearch : undefined;
             inputs["hana"] = args ? args.hana : undefined;
             inputs["mongodb"] = args ? args.mongodb : undefined;
+            inputs["mongodbatlas"] = args ? args.mongodbatlas : undefined;
             inputs["mssql"] = args ? args.mssql : undefined;
             inputs["mysql"] = args ? args.mysql : undefined;
             inputs["mysqlAurora"] = args ? args.mysqlAurora : undefined;
@@ -201,6 +207,10 @@ export interface SecretBackendConnectionState {
      * A nested block containing configuration options for MongoDB connections.
      */
     readonly mongodb?: pulumi.Input<inputs.database.SecretBackendConnectionMongodb>;
+    /**
+     * Connection parameters for the mongodbatlas-database-plugin plugin.
+     */
+    readonly mongodbatlas?: pulumi.Input<inputs.database.SecretBackendConnectionMongodbatlas>;
     /**
      * A nested block containing configuration options for MSSQL connections.
      */
@@ -277,6 +287,10 @@ export interface SecretBackendConnectionArgs {
      * A nested block containing configuration options for MongoDB connections.
      */
     readonly mongodb?: pulumi.Input<inputs.database.SecretBackendConnectionMongodb>;
+    /**
+     * Connection parameters for the mongodbatlas-database-plugin plugin.
+     */
+    readonly mongodbatlas?: pulumi.Input<inputs.database.SecretBackendConnectionMongodbatlas>;
     /**
      * A nested block containing configuration options for MSSQL connections.
      */

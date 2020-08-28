@@ -12,7 +12,7 @@ class GetAccessCredentialsResult:
     """
     A collection of values returned by getAccessCredentials.
     """
-    def __init__(__self__, access_key=None, backend=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, role=None, role_arn=None, secret_key=None, security_token=None, type=None):
+    def __init__(__self__, access_key=None, backend=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, region=None, role=None, role_arn=None, secret_key=None, security_token=None, type=None):
         if access_key and not isinstance(access_key, str):
             raise TypeError("Expected argument 'access_key' to be a str")
         __self__.access_key = access_key
@@ -48,6 +48,9 @@ class GetAccessCredentialsResult:
         if lease_start_time and not isinstance(lease_start_time, str):
             raise TypeError("Expected argument 'lease_start_time' to be a str")
         __self__.lease_start_time = lease_start_time
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        __self__.region = region
         if role and not isinstance(role, str):
             raise TypeError("Expected argument 'role' to be a str")
         __self__.role = role
@@ -82,13 +85,14 @@ class AwaitableGetAccessCredentialsResult(GetAccessCredentialsResult):
             lease_id=self.lease_id,
             lease_renewable=self.lease_renewable,
             lease_start_time=self.lease_start_time,
+            region=self.region,
             role=self.role,
             role_arn=self.role_arn,
             secret_key=self.secret_key,
             security_token=self.security_token,
             type=self.type)
 
-def get_access_credentials(backend=None,role=None,role_arn=None,type=None,opts=None):
+def get_access_credentials(backend=None,region=None,role=None,role_arn=None,type=None,opts=None):
     """
     Use this data source to access information about an existing resource.
 
@@ -108,6 +112,7 @@ def get_access_credentials(backend=None,role=None,role_arn=None,type=None,opts=N
 
 
     __args__['backend'] = backend
+    __args__['region'] = region
     __args__['role'] = role
     __args__['roleArn'] = role_arn
     __args__['type'] = type
@@ -125,6 +130,7 @@ def get_access_credentials(backend=None,role=None,role_arn=None,type=None,opts=N
         lease_id=__ret__.get('leaseId'),
         lease_renewable=__ret__.get('leaseRenewable'),
         lease_start_time=__ret__.get('leaseStartTime'),
+        region=__ret__.get('region'),
         role=__ret__.get('role'),
         role_arn=__ret__.get('roleArn'),
         secret_key=__ret__.get('secretKey'),

@@ -108,6 +108,10 @@ export class SecretBackendCert extends pulumi.CustomResource {
      * Time to live
      */
     public readonly ttl!: pulumi.Output<string | undefined>;
+    /**
+     * List of alternative URIs
+     */
+    public readonly uriSans!: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a SecretBackendCert resource with the given unique name, arguments, and options.
@@ -140,6 +144,7 @@ export class SecretBackendCert extends pulumi.CustomResource {
             inputs["privateKeyType"] = state ? state.privateKeyType : undefined;
             inputs["serialNumber"] = state ? state.serialNumber : undefined;
             inputs["ttl"] = state ? state.ttl : undefined;
+            inputs["uriSans"] = state ? state.uriSans : undefined;
         } else {
             const args = argsOrState as SecretBackendCertArgs | undefined;
             if (!args || args.backend === undefined) {
@@ -160,6 +165,7 @@ export class SecretBackendCert extends pulumi.CustomResource {
             inputs["otherSans"] = args ? args.otherSans : undefined;
             inputs["privateKeyFormat"] = args ? args.privateKeyFormat : undefined;
             inputs["ttl"] = args ? args.ttl : undefined;
+            inputs["uriSans"] = args ? args.uriSans : undefined;
             inputs["caChain"] = undefined /*out*/;
             inputs["certificate"] = undefined /*out*/;
             inputs["expiration"] = undefined /*out*/;
@@ -259,6 +265,10 @@ export interface SecretBackendCertState {
      * Time to live
      */
     readonly ttl?: pulumi.Input<string>;
+    /**
+     * List of alternative URIs
+     */
+    readonly uriSans?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -313,4 +323,8 @@ export interface SecretBackendCertArgs {
      * Time to live
      */
     readonly ttl?: pulumi.Input<string>;
+    /**
+     * List of alternative URIs
+     */
+    readonly uriSans?: pulumi.Input<pulumi.Input<string>[]>;
 }

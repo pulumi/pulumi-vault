@@ -86,7 +86,11 @@ class SecretBackendCert(pulumi.CustomResource):
     """
     Time to live
     """
-    def __init__(__self__, resource_name, opts=None, alt_names=None, auto_renew=None, backend=None, common_name=None, exclude_cn_from_sans=None, format=None, ip_sans=None, min_seconds_remaining=None, name=None, other_sans=None, private_key_format=None, ttl=None, __props__=None, __name__=None, __opts__=None):
+    uri_sans: pulumi.Output[list]
+    """
+    List of alternative URIs
+    """
+    def __init__(__self__, resource_name, opts=None, alt_names=None, auto_renew=None, backend=None, common_name=None, exclude_cn_from_sans=None, format=None, ip_sans=None, min_seconds_remaining=None, name=None, other_sans=None, private_key_format=None, ttl=None, uri_sans=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a SecretBackendCert resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -103,6 +107,7 @@ class SecretBackendCert(pulumi.CustomResource):
         :param pulumi.Input[list] other_sans: List of other SANs
         :param pulumi.Input[str] private_key_format: The private key format
         :param pulumi.Input[str] ttl: Time to live
+        :param pulumi.Input[list] uri_sans: List of alternative URIs
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -137,6 +142,7 @@ class SecretBackendCert(pulumi.CustomResource):
             __props__['other_sans'] = other_sans
             __props__['private_key_format'] = private_key_format
             __props__['ttl'] = ttl
+            __props__['uri_sans'] = uri_sans
             __props__['ca_chain'] = None
             __props__['certificate'] = None
             __props__['expiration'] = None
@@ -151,7 +157,7 @@ class SecretBackendCert(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, alt_names=None, auto_renew=None, backend=None, ca_chain=None, certificate=None, common_name=None, exclude_cn_from_sans=None, expiration=None, format=None, ip_sans=None, issuing_ca=None, min_seconds_remaining=None, name=None, other_sans=None, private_key=None, private_key_format=None, private_key_type=None, serial_number=None, ttl=None):
+    def get(resource_name, id, opts=None, alt_names=None, auto_renew=None, backend=None, ca_chain=None, certificate=None, common_name=None, exclude_cn_from_sans=None, expiration=None, format=None, ip_sans=None, issuing_ca=None, min_seconds_remaining=None, name=None, other_sans=None, private_key=None, private_key_format=None, private_key_type=None, serial_number=None, ttl=None, uri_sans=None):
         """
         Get an existing SecretBackendCert resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -178,6 +184,7 @@ class SecretBackendCert(pulumi.CustomResource):
         :param pulumi.Input[str] private_key_type: The private key type
         :param pulumi.Input[str] serial_number: The serial number
         :param pulumi.Input[str] ttl: Time to live
+        :param pulumi.Input[list] uri_sans: List of alternative URIs
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -202,6 +209,7 @@ class SecretBackendCert(pulumi.CustomResource):
         __props__["private_key_type"] = private_key_type
         __props__["serial_number"] = serial_number
         __props__["ttl"] = ttl
+        __props__["uri_sans"] = uri_sans
         return SecretBackendCert(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
