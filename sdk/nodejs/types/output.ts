@@ -262,6 +262,12 @@ export namespace database {
         maxOpenConnections?: number;
     }
 
+    export interface SecretBackendConnectionMongodbatlas {
+        privateKey: string;
+        projectId: string;
+        publicKey: string;
+    }
+
     export interface SecretBackendConnectionMssql {
         /**
          * A URL containing connection information. See

@@ -925,6 +925,162 @@ func (o SecretBackendConnectionMongodbPtrOutput) MaxOpenConnections() pulumi.Int
 	}).(pulumi.IntPtrOutput)
 }
 
+type SecretBackendConnectionMongodbatlas struct {
+	PrivateKey string `pulumi:"privateKey"`
+	ProjectId  string `pulumi:"projectId"`
+	PublicKey  string `pulumi:"publicKey"`
+}
+
+// SecretBackendConnectionMongodbatlasInput is an input type that accepts SecretBackendConnectionMongodbatlasArgs and SecretBackendConnectionMongodbatlasOutput values.
+// You can construct a concrete instance of `SecretBackendConnectionMongodbatlasInput` via:
+//
+//          SecretBackendConnectionMongodbatlasArgs{...}
+type SecretBackendConnectionMongodbatlasInput interface {
+	pulumi.Input
+
+	ToSecretBackendConnectionMongodbatlasOutput() SecretBackendConnectionMongodbatlasOutput
+	ToSecretBackendConnectionMongodbatlasOutputWithContext(context.Context) SecretBackendConnectionMongodbatlasOutput
+}
+
+type SecretBackendConnectionMongodbatlasArgs struct {
+	PrivateKey pulumi.StringInput `pulumi:"privateKey"`
+	ProjectId  pulumi.StringInput `pulumi:"projectId"`
+	PublicKey  pulumi.StringInput `pulumi:"publicKey"`
+}
+
+func (SecretBackendConnectionMongodbatlasArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConnectionMongodbatlas)(nil)).Elem()
+}
+
+func (i SecretBackendConnectionMongodbatlasArgs) ToSecretBackendConnectionMongodbatlasOutput() SecretBackendConnectionMongodbatlasOutput {
+	return i.ToSecretBackendConnectionMongodbatlasOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConnectionMongodbatlasArgs) ToSecretBackendConnectionMongodbatlasOutputWithContext(ctx context.Context) SecretBackendConnectionMongodbatlasOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMongodbatlasOutput)
+}
+
+func (i SecretBackendConnectionMongodbatlasArgs) ToSecretBackendConnectionMongodbatlasPtrOutput() SecretBackendConnectionMongodbatlasPtrOutput {
+	return i.ToSecretBackendConnectionMongodbatlasPtrOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConnectionMongodbatlasArgs) ToSecretBackendConnectionMongodbatlasPtrOutputWithContext(ctx context.Context) SecretBackendConnectionMongodbatlasPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMongodbatlasOutput).ToSecretBackendConnectionMongodbatlasPtrOutputWithContext(ctx)
+}
+
+// SecretBackendConnectionMongodbatlasPtrInput is an input type that accepts SecretBackendConnectionMongodbatlasArgs, SecretBackendConnectionMongodbatlasPtr and SecretBackendConnectionMongodbatlasPtrOutput values.
+// You can construct a concrete instance of `SecretBackendConnectionMongodbatlasPtrInput` via:
+//
+//          SecretBackendConnectionMongodbatlasArgs{...}
+//
+//  or:
+//
+//          nil
+type SecretBackendConnectionMongodbatlasPtrInput interface {
+	pulumi.Input
+
+	ToSecretBackendConnectionMongodbatlasPtrOutput() SecretBackendConnectionMongodbatlasPtrOutput
+	ToSecretBackendConnectionMongodbatlasPtrOutputWithContext(context.Context) SecretBackendConnectionMongodbatlasPtrOutput
+}
+
+type secretBackendConnectionMongodbatlasPtrType SecretBackendConnectionMongodbatlasArgs
+
+func SecretBackendConnectionMongodbatlasPtr(v *SecretBackendConnectionMongodbatlasArgs) SecretBackendConnectionMongodbatlasPtrInput {
+	return (*secretBackendConnectionMongodbatlasPtrType)(v)
+}
+
+func (*secretBackendConnectionMongodbatlasPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendConnectionMongodbatlas)(nil)).Elem()
+}
+
+func (i *secretBackendConnectionMongodbatlasPtrType) ToSecretBackendConnectionMongodbatlasPtrOutput() SecretBackendConnectionMongodbatlasPtrOutput {
+	return i.ToSecretBackendConnectionMongodbatlasPtrOutputWithContext(context.Background())
+}
+
+func (i *secretBackendConnectionMongodbatlasPtrType) ToSecretBackendConnectionMongodbatlasPtrOutputWithContext(ctx context.Context) SecretBackendConnectionMongodbatlasPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMongodbatlasPtrOutput)
+}
+
+type SecretBackendConnectionMongodbatlasOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendConnectionMongodbatlasOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConnectionMongodbatlas)(nil)).Elem()
+}
+
+func (o SecretBackendConnectionMongodbatlasOutput) ToSecretBackendConnectionMongodbatlasOutput() SecretBackendConnectionMongodbatlasOutput {
+	return o
+}
+
+func (o SecretBackendConnectionMongodbatlasOutput) ToSecretBackendConnectionMongodbatlasOutputWithContext(ctx context.Context) SecretBackendConnectionMongodbatlasOutput {
+	return o
+}
+
+func (o SecretBackendConnectionMongodbatlasOutput) ToSecretBackendConnectionMongodbatlasPtrOutput() SecretBackendConnectionMongodbatlasPtrOutput {
+	return o.ToSecretBackendConnectionMongodbatlasPtrOutputWithContext(context.Background())
+}
+
+func (o SecretBackendConnectionMongodbatlasOutput) ToSecretBackendConnectionMongodbatlasPtrOutputWithContext(ctx context.Context) SecretBackendConnectionMongodbatlasPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMongodbatlas) *SecretBackendConnectionMongodbatlas {
+		return &v
+	}).(SecretBackendConnectionMongodbatlasPtrOutput)
+}
+func (o SecretBackendConnectionMongodbatlasOutput) PrivateKey() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMongodbatlas) string { return v.PrivateKey }).(pulumi.StringOutput)
+}
+
+func (o SecretBackendConnectionMongodbatlasOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMongodbatlas) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o SecretBackendConnectionMongodbatlasOutput) PublicKey() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMongodbatlas) string { return v.PublicKey }).(pulumi.StringOutput)
+}
+
+type SecretBackendConnectionMongodbatlasPtrOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendConnectionMongodbatlasPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendConnectionMongodbatlas)(nil)).Elem()
+}
+
+func (o SecretBackendConnectionMongodbatlasPtrOutput) ToSecretBackendConnectionMongodbatlasPtrOutput() SecretBackendConnectionMongodbatlasPtrOutput {
+	return o
+}
+
+func (o SecretBackendConnectionMongodbatlasPtrOutput) ToSecretBackendConnectionMongodbatlasPtrOutputWithContext(ctx context.Context) SecretBackendConnectionMongodbatlasPtrOutput {
+	return o
+}
+
+func (o SecretBackendConnectionMongodbatlasPtrOutput) Elem() SecretBackendConnectionMongodbatlasOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMongodbatlas) SecretBackendConnectionMongodbatlas { return *v }).(SecretBackendConnectionMongodbatlasOutput)
+}
+
+func (o SecretBackendConnectionMongodbatlasPtrOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMongodbatlas) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PrivateKey
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o SecretBackendConnectionMongodbatlasPtrOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMongodbatlas) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ProjectId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o SecretBackendConnectionMongodbatlasPtrOutput) PublicKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMongodbatlas) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PublicKey
+	}).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionMssql struct {
 	// A URL containing connection information. See
 	// the [Vault
@@ -2418,6 +2574,8 @@ func init() {
 	pulumi.RegisterOutputType(SecretBackendConnectionHanaPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionMongodbOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionMongodbPtrOutput{})
+	pulumi.RegisterOutputType(SecretBackendConnectionMongodbatlasOutput{})
+	pulumi.RegisterOutputType(SecretBackendConnectionMongodbatlasPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionMssqlOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionMssqlPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionMysqlOutput{})

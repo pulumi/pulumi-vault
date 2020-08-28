@@ -37,6 +37,17 @@ namespace Pulumi.Vault.Aws
         public Output<int> DefaultStsTtl { get; private set; } = null!;
 
         /// <summary>
+        /// A list of IAM group names. IAM users generated
+        /// against this vault role will be added to these IAM Groups. For a credential
+        /// type of `assumed_role` or `federation_token`, the policies sent to the
+        /// corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
+        /// policies from each group in `iam_groups` combined with the `policy_document`
+        /// and `policy_arns` parameters.
+        /// </summary>
+        [Output("iamGroups")]
+        public Output<ImmutableArray<string>> IamGroups { get; private set; } = null!;
+
+        /// <summary>
         /// The max allowed TTL in seconds for STS credentials
         /// (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
         /// one of `assumed_role` or `federation_token`.
@@ -152,6 +163,23 @@ namespace Pulumi.Vault.Aws
         [Input("defaultStsTtl")]
         public Input<int>? DefaultStsTtl { get; set; }
 
+        [Input("iamGroups")]
+        private InputList<string>? _iamGroups;
+
+        /// <summary>
+        /// A list of IAM group names. IAM users generated
+        /// against this vault role will be added to these IAM Groups. For a credential
+        /// type of `assumed_role` or `federation_token`, the policies sent to the
+        /// corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
+        /// policies from each group in `iam_groups` combined with the `policy_document`
+        /// and `policy_arns` parameters.
+        /// </summary>
+        public InputList<string> IamGroups
+        {
+            get => _iamGroups ?? (_iamGroups = new InputList<string>());
+            set => _iamGroups = value;
+        }
+
         /// <summary>
         /// The max allowed TTL in seconds for STS credentials
         /// (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
@@ -240,6 +268,23 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("defaultStsTtl")]
         public Input<int>? DefaultStsTtl { get; set; }
+
+        [Input("iamGroups")]
+        private InputList<string>? _iamGroups;
+
+        /// <summary>
+        /// A list of IAM group names. IAM users generated
+        /// against this vault role will be added to these IAM Groups. For a credential
+        /// type of `assumed_role` or `federation_token`, the policies sent to the
+        /// corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
+        /// policies from each group in `iam_groups` combined with the `policy_document`
+        /// and `policy_arns` parameters.
+        /// </summary>
+        public InputList<string> IamGroups
+        {
+            get => _iamGroups ?? (_iamGroups = new InputList<string>());
+            set => _iamGroups = value;
+        }
 
         /// <summary>
         /// The max allowed TTL in seconds for STS credentials

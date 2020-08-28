@@ -25,7 +25,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := vault.NewPolicy(ctx, "example", &vault.PolicyArgs{
-// 			Policy: pulumi.String(fmt.Sprintf("%v%v%v%v", "path \"secret/my_app\" {\n", "  capabilities = [\"write\"]\n", "}\n", "\n")),
+// 			Policy: pulumi.String(fmt.Sprintf("%v%v%v%v", "path \"secret/my_app\" {\n", "  capabilities = [\"update\"]\n", "}\n", "\n")),
 // 		})
 // 		if err != nil {
 // 			return err

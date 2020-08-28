@@ -81,6 +81,14 @@ class SecretBackendConnection(pulumi.CustomResource):
       * `maxOpenConnections` (`float`) - The maximum number of open connections to
         use.
     """
+    mongodbatlas: pulumi.Output[dict]
+    """
+    Connection parameters for the mongodbatlas-database-plugin plugin.
+
+      * `private_key` (`str`)
+      * `project_id` (`str`)
+      * `public_key` (`str`)
+    """
     mssql: pulumi.Output[dict]
     """
     A nested block containing configuration options for MSSQL connections.
@@ -199,7 +207,7 @@ class SecretBackendConnection(pulumi.CustomResource):
     Whether the connection should be verified on
     initial configuration or not.
     """
-    def __init__(__self__, resource_name, opts=None, allowed_roles=None, backend=None, cassandra=None, data=None, elasticsearch=None, hana=None, mongodb=None, mssql=None, mysql=None, mysql_aurora=None, mysql_legacy=None, mysql_rds=None, name=None, oracle=None, postgresql=None, root_rotation_statements=None, verify_connection=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, allowed_roles=None, backend=None, cassandra=None, data=None, elasticsearch=None, hana=None, mongodb=None, mongodbatlas=None, mssql=None, mysql=None, mysql_aurora=None, mysql_legacy=None, mysql_rds=None, name=None, oracle=None, postgresql=None, root_rotation_statements=None, verify_connection=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a SecretBackendConnection resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -212,6 +220,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[dict] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input[dict] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input[dict] mongodb: A nested block containing configuration options for MongoDB connections.
+        :param pulumi.Input[dict] mongodbatlas: Connection parameters for the mongodbatlas-database-plugin plugin.
         :param pulumi.Input[dict] mssql: A nested block containing configuration options for MSSQL connections.
         :param pulumi.Input[dict] mysql: A nested block containing configuration options for MySQL connections.
         :param pulumi.Input[dict] mysql_aurora: A nested block containing configuration options for Aurora MySQL connections.
@@ -273,6 +282,12 @@ class SecretBackendConnection(pulumi.CustomResource):
             maintain.
           * `maxOpenConnections` (`pulumi.Input[float]`) - The maximum number of open connections to
             use.
+
+        The **mongodbatlas** object supports the following:
+
+          * `private_key` (`pulumi.Input[str]`)
+          * `project_id` (`pulumi.Input[str]`)
+          * `public_key` (`pulumi.Input[str]`)
 
         The **mssql** object supports the following:
 
@@ -391,6 +406,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             __props__['elasticsearch'] = elasticsearch
             __props__['hana'] = hana
             __props__['mongodb'] = mongodb
+            __props__['mongodbatlas'] = mongodbatlas
             __props__['mssql'] = mssql
             __props__['mysql'] = mysql
             __props__['mysql_aurora'] = mysql_aurora
@@ -408,7 +424,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allowed_roles=None, backend=None, cassandra=None, data=None, elasticsearch=None, hana=None, mongodb=None, mssql=None, mysql=None, mysql_aurora=None, mysql_legacy=None, mysql_rds=None, name=None, oracle=None, postgresql=None, root_rotation_statements=None, verify_connection=None):
+    def get(resource_name, id, opts=None, allowed_roles=None, backend=None, cassandra=None, data=None, elasticsearch=None, hana=None, mongodb=None, mongodbatlas=None, mssql=None, mysql=None, mysql_aurora=None, mysql_legacy=None, mysql_rds=None, name=None, oracle=None, postgresql=None, root_rotation_statements=None, verify_connection=None):
         """
         Get an existing SecretBackendConnection resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -424,6 +440,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[dict] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input[dict] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input[dict] mongodb: A nested block containing configuration options for MongoDB connections.
+        :param pulumi.Input[dict] mongodbatlas: Connection parameters for the mongodbatlas-database-plugin plugin.
         :param pulumi.Input[dict] mssql: A nested block containing configuration options for MSSQL connections.
         :param pulumi.Input[dict] mysql: A nested block containing configuration options for MySQL connections.
         :param pulumi.Input[dict] mysql_aurora: A nested block containing configuration options for Aurora MySQL connections.
@@ -485,6 +502,12 @@ class SecretBackendConnection(pulumi.CustomResource):
             maintain.
           * `maxOpenConnections` (`pulumi.Input[float]`) - The maximum number of open connections to
             use.
+
+        The **mongodbatlas** object supports the following:
+
+          * `private_key` (`pulumi.Input[str]`)
+          * `project_id` (`pulumi.Input[str]`)
+          * `public_key` (`pulumi.Input[str]`)
 
         The **mssql** object supports the following:
 
@@ -588,6 +611,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         __props__["elasticsearch"] = elasticsearch
         __props__["hana"] = hana
         __props__["mongodb"] = mongodb
+        __props__["mongodbatlas"] = mongodbatlas
         __props__["mssql"] = mssql
         __props__["mysql"] = mysql
         __props__["mysql_aurora"] = mysql_aurora

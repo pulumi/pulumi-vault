@@ -23,7 +23,7 @@ namespace Pulumi.Vault
     ///         var example = new Vault.Policy("example", new Vault.PolicyArgs
     ///         {
     ///             Policy = @"path ""secret/my_app"" {
-    ///   capabilities = [""write""]
+    ///   capabilities = [""update""]
     /// }
     /// 
     /// ",

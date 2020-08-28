@@ -247,6 +247,12 @@ export namespace database {
         maxOpenConnections?: pulumi.Input<number>;
     }
 
+    export interface SecretBackendConnectionMongodbatlas {
+        privateKey: pulumi.Input<string>;
+        projectId: pulumi.Input<string>;
+        publicKey: pulumi.Input<string>;
+    }
+
     export interface SecretBackendConnectionMssql {
         /**
          * A URL containing connection information. See

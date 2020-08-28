@@ -62,8 +62,8 @@ type SecretBackendKey struct {
 	// Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
 	Exportable pulumi.BoolPtrOutput `pulumi:"exportable"`
 	// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
-	// * for key types `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
-	// * for key types `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`, each key version will be a map of the following:
+	// * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
+	// * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
 	Keys pulumi.MapArrayOutput `pulumi:"keys"`
 	// Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
 	LatestVersion pulumi.IntOutput `pulumi:"latestVersion"`
@@ -83,7 +83,7 @@ type SecretBackendKey struct {
 	SupportsEncryption pulumi.BoolOutput `pulumi:"supportsEncryption"`
 	// Whether or not the key supports signing, based on key type.
 	SupportsSigning pulumi.BoolOutput `pulumi:"supportsSigning"`
-	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`.
+	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
 	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
 	Type pulumi.StringPtrOutput `pulumi:"type"`
 }
@@ -133,8 +133,8 @@ type secretBackendKeyState struct {
 	// Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
 	Exportable *bool `pulumi:"exportable"`
 	// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
-	// * for key types `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
-	// * for key types `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`, each key version will be a map of the following:
+	// * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
+	// * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
 	Keys []map[string]interface{} `pulumi:"keys"`
 	// Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
 	LatestVersion *int `pulumi:"latestVersion"`
@@ -154,7 +154,7 @@ type secretBackendKeyState struct {
 	SupportsEncryption *bool `pulumi:"supportsEncryption"`
 	// Whether or not the key supports signing, based on key type.
 	SupportsSigning *bool `pulumi:"supportsSigning"`
-	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`.
+	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
 	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
 	Type *string `pulumi:"type"`
 }
@@ -174,8 +174,8 @@ type SecretBackendKeyState struct {
 	// Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
 	Exportable pulumi.BoolPtrInput
 	// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
-	// * for key types `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
-	// * for key types `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`, each key version will be a map of the following:
+	// * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
+	// * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
 	Keys pulumi.MapArrayInput
 	// Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
 	LatestVersion pulumi.IntPtrInput
@@ -195,7 +195,7 @@ type SecretBackendKeyState struct {
 	SupportsEncryption pulumi.BoolPtrInput
 	// Whether or not the key supports signing, based on key type.
 	SupportsSigning pulumi.BoolPtrInput
-	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`.
+	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
 	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
 	Type pulumi.StringPtrInput
 }
@@ -224,7 +224,7 @@ type secretBackendKeyArgs struct {
 	MinEncryptionVersion *int `pulumi:"minEncryptionVersion"`
 	// The name to identify this key within the backend. Must be unique within the backend.
 	Name *string `pulumi:"name"`
-	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`.
+	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
 	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
 	Type *string `pulumi:"type"`
 }
@@ -250,7 +250,7 @@ type SecretBackendKeyArgs struct {
 	MinEncryptionVersion pulumi.IntPtrInput
 	// The name to identify this key within the backend. Must be unique within the backend.
 	Name pulumi.StringPtrInput
-	// Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`.
+	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
 	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
 	Type pulumi.StringPtrInput
 }

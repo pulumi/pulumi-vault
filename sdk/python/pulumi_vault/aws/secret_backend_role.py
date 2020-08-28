@@ -29,6 +29,15 @@ class SecretBackendRole(pulumi.CustomResource):
     then this default TTL will be used. Valid only when `credential_type` is one of
     `assumed_role` or `federation_token`.
     """
+    iam_groups: pulumi.Output[list]
+    """
+    A list of IAM group names. IAM users generated
+    against this vault role will be added to these IAM Groups. For a credential
+    type of `assumed_role` or `federation_token`, the policies sent to the
+    corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
+    policies from each group in `iam_groups` combined with the `policy_document`
+    and `policy_arns` parameters.
+    """
     max_sts_ttl: pulumi.Output[float]
     """
     The max allowed TTL in seconds for STS credentials
@@ -64,7 +73,7 @@ class SecretBackendRole(pulumi.CustomResource):
     is allowed to assume. Required when `credential_type` is `assumed_role` and
     prohibited otherwise.
     """
-    def __init__(__self__, resource_name, opts=None, backend=None, credential_type=None, default_sts_ttl=None, max_sts_ttl=None, name=None, policy_arns=None, policy_document=None, role_arns=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, backend=None, credential_type=None, default_sts_ttl=None, iam_groups=None, max_sts_ttl=None, name=None, policy_arns=None, policy_document=None, role_arns=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a SecretBackendRole resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -79,6 +88,12 @@ class SecretBackendRole(pulumi.CustomResource):
                and a default TTL is specified on the role,
                then this default TTL will be used. Valid only when `credential_type` is one of
                `assumed_role` or `federation_token`.
+        :param pulumi.Input[list] iam_groups: A list of IAM group names. IAM users generated
+               against this vault role will be added to these IAM Groups. For a credential
+               type of `assumed_role` or `federation_token`, the policies sent to the
+               corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
+               policies from each group in `iam_groups` combined with the `policy_document`
+               and `policy_arns` parameters.
         :param pulumi.Input[float] max_sts_ttl: The max allowed TTL in seconds for STS credentials
                (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
                one of `assumed_role` or `federation_token`.
@@ -124,6 +139,7 @@ class SecretBackendRole(pulumi.CustomResource):
                 raise TypeError("Missing required property 'credential_type'")
             __props__['credential_type'] = credential_type
             __props__['default_sts_ttl'] = default_sts_ttl
+            __props__['iam_groups'] = iam_groups
             __props__['max_sts_ttl'] = max_sts_ttl
             __props__['name'] = name
             __props__['policy_arns'] = policy_arns
@@ -136,7 +152,7 @@ class SecretBackendRole(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, backend=None, credential_type=None, default_sts_ttl=None, max_sts_ttl=None, name=None, policy_arns=None, policy_document=None, role_arns=None):
+    def get(resource_name, id, opts=None, backend=None, credential_type=None, default_sts_ttl=None, iam_groups=None, max_sts_ttl=None, name=None, policy_arns=None, policy_document=None, role_arns=None):
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -154,6 +170,12 @@ class SecretBackendRole(pulumi.CustomResource):
                and a default TTL is specified on the role,
                then this default TTL will be used. Valid only when `credential_type` is one of
                `assumed_role` or `federation_token`.
+        :param pulumi.Input[list] iam_groups: A list of IAM group names. IAM users generated
+               against this vault role will be added to these IAM Groups. For a credential
+               type of `assumed_role` or `federation_token`, the policies sent to the
+               corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
+               policies from each group in `iam_groups` combined with the `policy_document`
+               and `policy_arns` parameters.
         :param pulumi.Input[float] max_sts_ttl: The max allowed TTL in seconds for STS credentials
                (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
                one of `assumed_role` or `federation_token`.
@@ -182,6 +204,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__["backend"] = backend
         __props__["credential_type"] = credential_type
         __props__["default_sts_ttl"] = default_sts_ttl
+        __props__["iam_groups"] = iam_groups
         __props__["max_sts_ttl"] = max_sts_ttl
         __props__["name"] = name
         __props__["policy_arns"] = policy_arns

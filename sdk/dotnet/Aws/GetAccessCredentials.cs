@@ -25,6 +25,9 @@ namespace Pulumi.Vault.Aws
         [Input("backend", required: true)]
         public string Backend { get; set; } = null!;
 
+        [Input("region")]
+        public string? Region { get; set; }
+
         /// <summary>
         /// The name of the AWS secret backend role to read
         /// credentials from, with no leading or trailing `/`s.
@@ -79,6 +82,7 @@ namespace Pulumi.Vault.Aws
         public readonly string LeaseId;
         public readonly bool LeaseRenewable;
         public readonly string LeaseStartTime;
+        public readonly string? Region;
         public readonly string Role;
         public readonly string? RoleArn;
         /// <summary>
@@ -107,6 +111,8 @@ namespace Pulumi.Vault.Aws
 
             string leaseStartTime,
 
+            string? region,
+
             string role,
 
             string? roleArn,
@@ -124,6 +130,7 @@ namespace Pulumi.Vault.Aws
             LeaseId = leaseId;
             LeaseRenewable = leaseRenewable;
             LeaseStartTime = leaseStartTime;
+            Region = region;
             Role = role;
             RoleArn = roleArn;
             SecretKey = secretKey;

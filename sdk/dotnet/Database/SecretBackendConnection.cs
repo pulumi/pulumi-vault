@@ -55,6 +55,12 @@ namespace Pulumi.Vault.Database
         public Output<Outputs.SecretBackendConnectionMongodb?> Mongodb { get; private set; } = null!;
 
         /// <summary>
+        /// Connection parameters for the mongodbatlas-database-plugin plugin.
+        /// </summary>
+        [Output("mongodbatlas")]
+        public Output<Outputs.SecretBackendConnectionMongodbatlas?> Mongodbatlas { get; private set; } = null!;
+
+        /// <summary>
         /// A nested block containing configuration options for MSSQL connections.
         /// </summary>
         [Output("mssql")]
@@ -217,6 +223,12 @@ namespace Pulumi.Vault.Database
         public Input<Inputs.SecretBackendConnectionMongodbArgs>? Mongodb { get; set; }
 
         /// <summary>
+        /// Connection parameters for the mongodbatlas-database-plugin plugin.
+        /// </summary>
+        [Input("mongodbatlas")]
+        public Input<Inputs.SecretBackendConnectionMongodbatlasArgs>? Mongodbatlas { get; set; }
+
+        /// <summary>
         /// A nested block containing configuration options for MSSQL connections.
         /// </summary>
         [Input("mssql")]
@@ -344,6 +356,12 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Input("mongodb")]
         public Input<Inputs.SecretBackendConnectionMongodbGetArgs>? Mongodb { get; set; }
+
+        /// <summary>
+        /// Connection parameters for the mongodbatlas-database-plugin plugin.
+        /// </summary>
+        [Input("mongodbatlas")]
+        public Input<Inputs.SecretBackendConnectionMongodbatlasGetArgs>? Mongodbatlas { get; set; }
 
         /// <summary>
         /// A nested block containing configuration options for MSSQL connections.

@@ -695,6 +695,40 @@
             },
             "type": "object"
         },
+        "vault:database/SecretBackendConnectionMongodbatlas:SecretBackendConnectionMongodbatlas": {
+            "properties": {
+                "privateKey": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "projectId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "publicKey": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "privateKey",
+                "projectId",
+                "publicKey"
+            ]
+        },
         "vault:database/SecretBackendConnectionMssql:SecretBackendConnectionMssql": {
             "properties": {
                 "connectionUrl": {
@@ -3681,6 +3715,13 @@
                     "type": "integer",
                     "description": "The default TTL in seconds for STS credentials.\nWhen a TTL is not specified when STS credentials are requested,\nand a default TTL is specified on the role,\nthen this default TTL will be used. Valid only when `credential_type` is one of\n`assumed_role` or `federation_token`.\n"
                 },
+                "iamGroups": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of IAM group names. IAM users generated\nagainst this vault role will be added to these IAM Groups. For a credential\ntype of `assumed_role` or `federation_token`, the policies sent to the\ncorresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the\npolicies from each group in `iam_groups` combined with the `policy_document`\nand `policy_arns` parameters.\n"
+                },
                 "maxStsTtl": {
                     "type": "integer",
                     "description": "The max allowed TTL in seconds for STS credentials\n(credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is\none of `assumed_role` or `federation_token`.\n"
@@ -3728,6 +3769,13 @@
                     "type": "integer",
                     "description": "The default TTL in seconds for STS credentials.\nWhen a TTL is not specified when STS credentials are requested,\nand a default TTL is specified on the role,\nthen this default TTL will be used. Valid only when `credential_type` is one of\n`assumed_role` or `federation_token`.\n"
                 },
+                "iamGroups": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of IAM group names. IAM users generated\nagainst this vault role will be added to these IAM Groups. For a credential\ntype of `assumed_role` or `federation_token`, the policies sent to the\ncorresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the\npolicies from each group in `iam_groups` combined with the `policy_document`\nand `policy_arns` parameters.\n"
+                },
                 "maxStsTtl": {
                     "type": "integer",
                     "description": "The max allowed TTL in seconds for STS credentials\n(credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is\none of `assumed_role` or `federation_token`.\n"
@@ -3773,6 +3821,13 @@
                     "defaultStsTtl": {
                         "type": "integer",
                         "description": "The default TTL in seconds for STS credentials.\nWhen a TTL is not specified when STS credentials are requested,\nand a default TTL is specified on the role,\nthen this default TTL will be used. Valid only when `credential_type` is one of\n`assumed_role` or `federation_token`.\n"
+                    },
+                    "iamGroups": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A list of IAM group names. IAM users generated\nagainst this vault role will be added to these IAM Groups. For a credential\ntype of `assumed_role` or `federation_token`, the policies sent to the\ncorresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the\npolicies from each group in `iam_groups` combined with the `policy_document`\nand `policy_arns` parameters.\n"
                     },
                     "maxStsTtl": {
                         "type": "integer",
@@ -4743,6 +4798,10 @@
                     "$ref": "#/types/vault:database/SecretBackendConnectionMongodb:SecretBackendConnectionMongodb",
                     "description": "A nested block containing configuration options for MongoDB connections.\n"
                 },
+                "mongodbatlas": {
+                    "$ref": "#/types/vault:database/SecretBackendConnectionMongodbatlas:SecretBackendConnectionMongodbatlas",
+                    "description": "Connection parameters for the mongodbatlas-database-plugin plugin.\n"
+                },
                 "mssql": {
                     "$ref": "#/types/vault:database/SecretBackendConnectionMssql:SecretBackendConnectionMssql",
                     "description": "A nested block containing configuration options for MSSQL connections.\n"
@@ -4825,6 +4884,10 @@
                 "mongodb": {
                     "$ref": "#/types/vault:database/SecretBackendConnectionMongodb:SecretBackendConnectionMongodb",
                     "description": "A nested block containing configuration options for MongoDB connections.\n"
+                },
+                "mongodbatlas": {
+                    "$ref": "#/types/vault:database/SecretBackendConnectionMongodbatlas:SecretBackendConnectionMongodbatlas",
+                    "description": "Connection parameters for the mongodbatlas-database-plugin plugin.\n"
                 },
                 "mssql": {
                     "$ref": "#/types/vault:database/SecretBackendConnectionMssql:SecretBackendConnectionMssql",
@@ -4909,6 +4972,10 @@
                     "mongodb": {
                         "$ref": "#/types/vault:database/SecretBackendConnectionMongodb:SecretBackendConnectionMongodb",
                         "description": "A nested block containing configuration options for MongoDB connections.\n"
+                    },
+                    "mongodbatlas": {
+                        "$ref": "#/types/vault:database/SecretBackendConnectionMongodbatlas:SecretBackendConnectionMongodbatlas",
+                        "description": "Connection parameters for the mongodbatlas-database-plugin plugin.\n"
                     },
                     "mssql": {
                         "$ref": "#/types/vault:database/SecretBackendConnectionMssql:SecretBackendConnectionMssql",
@@ -8709,7 +8776,7 @@
             }
         },
         "vault:index/policy:Policy": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.Policy(\"example\", {\n    policy: `path \"secret/my_app\" {\n  capabilities = [\"write\"]\n}\n`,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.Policy(\"example\", policy=\"\"\"path \"secret/my_app\" {\n  capabilities = [\"write\"]\n}\n\n\"\"\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.Policy(\"example\", new Vault.PolicyArgs\n        {\n            Policy = @\"path \"\"secret/my_app\"\" {\n  capabilities = [\"\"write\"\"]\n}\n\n\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewPolicy(ctx, \"example\", \u0026vault.PolicyArgs{\n\t\t\tPolicy: pulumi.String(fmt.Sprintf(\"%v%v%v%v\", \"path \\\"secret/my_app\\\" {\\n\", \"  capabilities = [\\\"write\\\"]\\n\", \"}\\n\", \"\\n\")),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.Policy(\"example\", {\n    policy: `path \"secret/my_app\" {\n  capabilities = [\"update\"]\n}\n`,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.Policy(\"example\", policy=\"\"\"path \"secret/my_app\" {\n  capabilities = [\"update\"]\n}\n\n\"\"\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.Policy(\"example\", new Vault.PolicyArgs\n        {\n            Policy = @\"path \"\"secret/my_app\"\" {\n  capabilities = [\"\"update\"\"]\n}\n\n\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewPolicy(ctx, \"example\", \u0026vault.PolicyArgs{\n\t\t\tPolicy: pulumi.String(fmt.Sprintf(\"%v%v%v%v\", \"path \\\"secret/my_app\\\" {\\n\", \"  capabilities = [\\\"update\\\"]\\n\", \"}\\n\", \"\\n\")),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "name": {
                     "type": "string",
@@ -11233,6 +11300,13 @@
                 "ttl": {
                     "type": "string",
                     "description": "Time to live\n"
+                },
+                "uriSans": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of alternative URIs\n"
                 }
             },
             "required": [
@@ -11304,6 +11378,13 @@
                 "ttl": {
                     "type": "string",
                     "description": "Time to live\n"
+                },
+                "uriSans": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of alternative URIs\n"
                 }
             },
             "requiredInputs": [
@@ -11397,6 +11478,13 @@
                     "ttl": {
                         "type": "string",
                         "description": "Time to live\n"
+                    },
+                    "uriSans": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of alternative URIs\n"
                     }
                 },
                 "type": "object"
@@ -14725,7 +14813,7 @@
                             "$ref": "pulumi.json#/Any"
                         }
                     },
-                    "description": "List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.\n* for key types `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.\n* for key types `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`, each key version will be a map of the following:\n"
+                    "description": "List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.\n* for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.\n* for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:\n"
                 },
                 "latestVersion": {
                     "type": "integer",
@@ -14765,7 +14853,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. \n* Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)\n"
+                    "description": "Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. \n* Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)\n"
                 }
             },
             "required": [
@@ -14818,7 +14906,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. \n* Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)\n"
+                    "description": "Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. \n* Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)\n"
                 }
             },
             "requiredInputs": [
@@ -14859,7 +14947,7 @@
                                 "$ref": "pulumi.json#/Any"
                             }
                         },
-                        "description": "List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.\n* for key types `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.\n* for key types `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`, each key version will be a map of the following:\n"
+                        "description": "List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.\n* for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.\n* for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:\n"
                     },
                     "latestVersion": {
                         "type": "integer",
@@ -14899,7 +14987,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. \n* Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)\n"
+                        "description": "Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. \n* Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)\n"
                     }
                 },
                 "type": "object"
@@ -15005,6 +15093,9 @@
                         "type": "string",
                         "description": "The path to the AWS secret backend to\nread credentials from, with no leading or trailing `/`s.\n"
                     },
+                    "region": {
+                        "type": "string"
+                    },
                     "role": {
                         "type": "string",
                         "description": "The name of the AWS secret backend role to read\ncredentials from, with no leading or trailing `/`s.\n"
@@ -15050,6 +15141,9 @@
                         "type": "boolean"
                     },
                     "leaseStartTime": {
+                        "type": "string"
+                    },
+                    "region": {
                         "type": "string"
                     },
                     "role": {

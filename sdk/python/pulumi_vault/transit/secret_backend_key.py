@@ -38,8 +38,8 @@ class SecretBackendKey(pulumi.CustomResource):
     keys: pulumi.Output[list]
     """
     List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
-    * for key types `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
-    * for key types `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`, each key version will be a map of the following:
+    * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
+    * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
     """
     latest_version: pulumi.Output[float]
     """
@@ -79,7 +79,7 @@ class SecretBackendKey(pulumi.CustomResource):
     """
     type: pulumi.Output[str]
     """
-    Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
+    Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
     * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
     """
     def __init__(__self__, resource_name, opts=None, allow_plaintext_backup=None, backend=None, convergent_encryption=None, deletion_allowed=None, derived=None, exportable=None, min_decryption_version=None, min_encryption_version=None, name=None, type=None, __props__=None, __name__=None, __opts__=None):
@@ -113,7 +113,7 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[float] min_decryption_version: Minimum key version to use for decryption.
         :param pulumi.Input[float] min_encryption_version: Minimum key version to use for encryption
         :param pulumi.Input[str] name: The name to identify this key within the backend. Must be unique within the backend.
-        :param pulumi.Input[str] type: Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
+        :param pulumi.Input[str] type: Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
                * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         """
         if __name__ is not None:
@@ -175,8 +175,8 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
         :param pulumi.Input[bool] exportable: Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
         :param pulumi.Input[list] keys: List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
-               * for key types `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
-               * for key types `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`, each key version will be a map of the following:
+               * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
+               * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
         :param pulumi.Input[float] latest_version: Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
         :param pulumi.Input[float] min_available_version: Minimum key version available for use. If keys have been archived by increasing `min_decryption_version`, this attribute will reflect that change.
         :param pulumi.Input[float] min_decryption_version: Minimum key version to use for decryption.
@@ -186,7 +186,7 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[bool] supports_derivation: Whether or not the key supports derivation, based on key type.
         :param pulumi.Input[bool] supports_encryption: Whether or not the key supports encryption, based on key type.
         :param pulumi.Input[bool] supports_signing: Whether or not the key supports signing, based on key type.
-        :param pulumi.Input[str] type: Specifies the type of key to create. The currently-supported types are: `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `rsa-2048` and `rsa-4096`. 
+        :param pulumi.Input[str] type: Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
                * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
