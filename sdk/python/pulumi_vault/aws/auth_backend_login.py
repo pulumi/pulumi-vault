@@ -5,140 +5,34 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['AuthBackendLogin']
 
 
 class AuthBackendLogin(pulumi.CustomResource):
-    accessor: pulumi.Output[str]
-    """
-    The token's accessor.
-    """
-    auth_type: pulumi.Output[str]
-    """
-    The authentication type used to generate this token.
-    """
-    backend: pulumi.Output[str]
-    """
-    The unique name of the AWS auth backend. Defaults to
-    'aws'.
-    """
-    client_token: pulumi.Output[str]
-    """
-    The token returned by Vault.
-    """
-    iam_http_request_method: pulumi.Output[str]
-    """
-    The HTTP method used in the signed IAM
-    request.
-    """
-    iam_request_body: pulumi.Output[str]
-    """
-    The base64-encoded body of the signed
-    request.
-    """
-    iam_request_headers: pulumi.Output[str]
-    """
-    The base64-encoded, JSON serialized
-    representation of the GetCallerIdentity HTTP request headers.
-    """
-    iam_request_url: pulumi.Output[str]
-    """
-    The base64-encoded HTTP URL used in the signed
-    request.
-    """
-    identity: pulumi.Output[str]
-    """
-    The base64-encoded EC2 instance identity document to
-    authenticate with. Can be retrieved from the EC2 metadata server.
-    """
-    lease_duration: pulumi.Output[float]
-    """
-    The duration in seconds the token will be valid, relative
-    to the time in `lease_start_time`.
-    """
-    lease_start_time: pulumi.Output[str]
-    """
-    Time at which the lease was read, using the clock of the system where Terraform was running
-    """
-    metadata: pulumi.Output[dict]
-    """
-    A map of information returned by the Vault server about the
-    authentication used to generate this token.
-    """
-    nonce: pulumi.Output[str]
-    """
-    The unique nonce to be used for login requests. Can be
-    set to a user-specified value, or will contain the server-generated value
-    once a token is issued. EC2 instances can only acquire a single token until
-    the whitelist is tidied again unless they keep track of this nonce.
-    """
-    pkcs7: pulumi.Output[str]
-    """
-    The PKCS#7 signature of the identity document to
-    authenticate with, with all newline characters removed. Can be retrieved from
-    the EC2 metadata server.
-    """
-    policies: pulumi.Output[list]
-    """
-    The Vault policies assigned to this token.
-    """
-    renewable: pulumi.Output[bool]
-    """
-    Set to true if the token can be extended through renewal.
-    """
-    role: pulumi.Output[str]
-    """
-    The name of the AWS auth backend role to create tokens
-    against.
-    """
-    signature: pulumi.Output[str]
-    """
-    The base64-encoded SHA256 RSA signature of the
-    instance identity document to authenticate with, with all newline characters
-    removed. Can be retrieved from the EC2 metadata server.
-    """
-    def __init__(__self__, resource_name, opts=None, backend=None, iam_http_request_method=None, iam_request_body=None, iam_request_headers=None, iam_request_url=None, identity=None, nonce=None, pkcs7=None, role=None, signature=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 iam_http_request_method: Optional[pulumi.Input[str]] = None,
+                 iam_request_body: Optional[pulumi.Input[str]] = None,
+                 iam_request_headers: Optional[pulumi.Input[str]] = None,
+                 iam_request_url: Optional[pulumi.Input[str]] = None,
+                 identity: Optional[pulumi.Input[str]] = None,
+                 nonce: Optional[pulumi.Input[str]] = None,
+                 pkcs7: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 signature: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Logs into a Vault server using an AWS auth backend. Login can be
         accomplished using a signed identity request from IAM or using ec2
         instance metadata. For more information, see the [Vault
         documentation](https://www.vaultproject.io/docs/auth/aws.html).
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        aws = vault.AuthBackend("aws", type="aws")
-        example_auth_backend_client = vault.aws.AuthBackendClient("exampleAuthBackendClient",
-            access_key="123456789012",
-            backend=aws.path,
-            secret_key="AWSSECRETKEYGOESHERE")
-        example_auth_backend_role = vault.aws.AuthBackendRole("exampleAuthBackendRole",
-            auth_type="ec2",
-            backend=aws.path,
-            bound_account_id="123456789012",
-            bound_ami_id="ami-8c1be5f6",
-            bound_iam_instance_profile_arn="arn:aws:iam::123456789012:instance-profile/MyProfile",
-            bound_subnet_id="vpc-133128f1",
-            bound_vpc_id="vpc-b61106d4",
-            max_ttl=120,
-            role="test-role",
-            token_policies=[
-                "default",
-                "dev",
-                "prod",
-            ],
-            ttl=60,
-            opts=ResourceOptions(depends_on=["vault_aws_auth_backend_client.example"]))
-        example_auth_backend_login = vault.aws.AuthBackendLogin("exampleAuthBackendLogin",
-            backend=vault_auth_backend["example"]["path"],
-            identity="BASE64ENCODEDIDENTITYDOCUMENT",
-            role=example_auth_backend_role.role,
-            signature="BASE64ENCODEDSHA256IDENTITYDOCUMENTSIGNATURE")
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -178,7 +72,7 @@ class AuthBackendLogin(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -209,13 +103,33 @@ class AuthBackendLogin(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, accessor=None, auth_type=None, backend=None, client_token=None, iam_http_request_method=None, iam_request_body=None, iam_request_headers=None, iam_request_url=None, identity=None, lease_duration=None, lease_start_time=None, metadata=None, nonce=None, pkcs7=None, policies=None, renewable=None, role=None, signature=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accessor: Optional[pulumi.Input[str]] = None,
+            auth_type: Optional[pulumi.Input[str]] = None,
+            backend: Optional[pulumi.Input[str]] = None,
+            client_token: Optional[pulumi.Input[str]] = None,
+            iam_http_request_method: Optional[pulumi.Input[str]] = None,
+            iam_request_body: Optional[pulumi.Input[str]] = None,
+            iam_request_headers: Optional[pulumi.Input[str]] = None,
+            iam_request_url: Optional[pulumi.Input[str]] = None,
+            identity: Optional[pulumi.Input[str]] = None,
+            lease_duration: Optional[pulumi.Input[float]] = None,
+            lease_start_time: Optional[pulumi.Input[str]] = None,
+            metadata: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            nonce: Optional[pulumi.Input[str]] = None,
+            pkcs7: Optional[pulumi.Input[str]] = None,
+            policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            renewable: Optional[pulumi.Input[bool]] = None,
+            role: Optional[pulumi.Input[str]] = None,
+            signature: Optional[pulumi.Input[str]] = None) -> 'AuthBackendLogin':
         """
         Get an existing AuthBackendLogin resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accessor: The token's accessor.
         :param pulumi.Input[str] auth_type: The authentication type used to generate this token.
@@ -235,7 +149,7 @@ class AuthBackendLogin(pulumi.CustomResource):
         :param pulumi.Input[float] lease_duration: The duration in seconds the token will be valid, relative
                to the time in `lease_start_time`.
         :param pulumi.Input[str] lease_start_time: Time at which the lease was read, using the clock of the system where Terraform was running
-        :param pulumi.Input[dict] metadata: A map of information returned by the Vault server about the
+        :param pulumi.Input[Mapping[str, Any]] metadata: A map of information returned by the Vault server about the
                authentication used to generate this token.
         :param pulumi.Input[str] nonce: The unique nonce to be used for login requests. Can be
                set to a user-specified value, or will contain the server-generated value
@@ -244,7 +158,7 @@ class AuthBackendLogin(pulumi.CustomResource):
         :param pulumi.Input[str] pkcs7: The PKCS#7 signature of the identity document to
                authenticate with, with all newline characters removed. Can be retrieved from
                the EC2 metadata server.
-        :param pulumi.Input[list] policies: The Vault policies assigned to this token.
+        :param pulumi.Input[List[pulumi.Input[str]]] policies: The Vault policies assigned to this token.
         :param pulumi.Input[bool] renewable: Set to true if the token can be extended through renewal.
         :param pulumi.Input[str] role: The name of the AWS auth backend role to create tokens
                against.
@@ -276,8 +190,169 @@ class AuthBackendLogin(pulumi.CustomResource):
         __props__["signature"] = signature
         return AuthBackendLogin(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def accessor(self) -> pulumi.Output[str]:
+        """
+        The token's accessor.
+        """
+        return pulumi.get(self, "accessor")
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> pulumi.Output[str]:
+        """
+        The authentication type used to generate this token.
+        """
+        return pulumi.get(self, "auth_type")
+
+    @property
+    @pulumi.getter
+    def backend(self) -> pulumi.Output[Optional[str]]:
+        """
+        The unique name of the AWS auth backend. Defaults to
+        'aws'.
+        """
+        return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter(name="clientToken")
+    def client_token(self) -> pulumi.Output[str]:
+        """
+        The token returned by Vault.
+        """
+        return pulumi.get(self, "client_token")
+
+    @property
+    @pulumi.getter(name="iamHttpRequestMethod")
+    def iam_http_request_method(self) -> pulumi.Output[Optional[str]]:
+        """
+        The HTTP method used in the signed IAM
+        request.
+        """
+        return pulumi.get(self, "iam_http_request_method")
+
+    @property
+    @pulumi.getter(name="iamRequestBody")
+    def iam_request_body(self) -> pulumi.Output[Optional[str]]:
+        """
+        The base64-encoded body of the signed
+        request.
+        """
+        return pulumi.get(self, "iam_request_body")
+
+    @property
+    @pulumi.getter(name="iamRequestHeaders")
+    def iam_request_headers(self) -> pulumi.Output[Optional[str]]:
+        """
+        The base64-encoded, JSON serialized
+        representation of the GetCallerIdentity HTTP request headers.
+        """
+        return pulumi.get(self, "iam_request_headers")
+
+    @property
+    @pulumi.getter(name="iamRequestUrl")
+    def iam_request_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        The base64-encoded HTTP URL used in the signed
+        request.
+        """
+        return pulumi.get(self, "iam_request_url")
+
+    @property
+    @pulumi.getter
+    def identity(self) -> pulumi.Output[Optional[str]]:
+        """
+        The base64-encoded EC2 instance identity document to
+        authenticate with. Can be retrieved from the EC2 metadata server.
+        """
+        return pulumi.get(self, "identity")
+
+    @property
+    @pulumi.getter(name="leaseDuration")
+    def lease_duration(self) -> pulumi.Output[float]:
+        """
+        The duration in seconds the token will be valid, relative
+        to the time in `lease_start_time`.
+        """
+        return pulumi.get(self, "lease_duration")
+
+    @property
+    @pulumi.getter(name="leaseStartTime")
+    def lease_start_time(self) -> pulumi.Output[str]:
+        """
+        Time at which the lease was read, using the clock of the system where Terraform was running
+        """
+        return pulumi.get(self, "lease_start_time")
+
+    @property
+    @pulumi.getter
+    def metadata(self) -> pulumi.Output[Mapping[str, Any]]:
+        """
+        A map of information returned by the Vault server about the
+        authentication used to generate this token.
+        """
+        return pulumi.get(self, "metadata")
+
+    @property
+    @pulumi.getter
+    def nonce(self) -> pulumi.Output[str]:
+        """
+        The unique nonce to be used for login requests. Can be
+        set to a user-specified value, or will contain the server-generated value
+        once a token is issued. EC2 instances can only acquire a single token until
+        the whitelist is tidied again unless they keep track of this nonce.
+        """
+        return pulumi.get(self, "nonce")
+
+    @property
+    @pulumi.getter
+    def pkcs7(self) -> pulumi.Output[Optional[str]]:
+        """
+        The PKCS#7 signature of the identity document to
+        authenticate with, with all newline characters removed. Can be retrieved from
+        the EC2 metadata server.
+        """
+        return pulumi.get(self, "pkcs7")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> pulumi.Output[List[str]]:
+        """
+        The Vault policies assigned to this token.
+        """
+        return pulumi.get(self, "policies")
+
+    @property
+    @pulumi.getter
+    def renewable(self) -> pulumi.Output[bool]:
+        """
+        Set to true if the token can be extended through renewal.
+        """
+        return pulumi.get(self, "renewable")
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Output[str]:
+        """
+        The name of the AWS auth backend role to create tokens
+        against.
+        """
+        return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter
+    def signature(self) -> pulumi.Output[Optional[str]]:
+        """
+        The base64-encoded SHA256 RSA signature of the
+        instance identity document to authenticate with, with all newline characters
+        removed. Can be retrieved from the EC2 metadata server.
+        """
+        return pulumi.get(self, "signature")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

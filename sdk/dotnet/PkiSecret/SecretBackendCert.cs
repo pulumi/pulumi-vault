@@ -140,12 +140,12 @@ namespace Pulumi.Vault.PkiSecret
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretBackendCert(string name, SecretBackendCertArgs args, CustomResourceOptions? options = null)
-            : base("vault:pkiSecret/secretBackendCert:SecretBackendCert", name, args ?? new SecretBackendCertArgs(), MakeResourceOptions(options, ""))
+            : base("vault:pkisecret/secretBackendCert:SecretBackendCert", name, args ?? new SecretBackendCertArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private SecretBackendCert(string name, Input<string> id, SecretBackendCertState? state = null, CustomResourceOptions? options = null)
-            : base("vault:pkiSecret/secretBackendCert:SecretBackendCert", name, state, MakeResourceOptions(options, id))
+            : base("vault:pkisecret/secretBackendCert:SecretBackendCert", name, state, MakeResourceOptions(options, id))
         {
         }
 

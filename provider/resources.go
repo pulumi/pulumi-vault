@@ -60,18 +60,8 @@ var namespaceMap = map[string]string{
 	mainPkg: "Vault",
 }
 
-// Override legacy name in JS and Python that were used instead of lowercase.
-var specialNamesMap = map[string]string{
-	"AppRole":   "appRole",
-	"PkiSecret": "pkiSecret",
-	"RabbitMQ":  "rabbitMq",
-}
-
 func makeMember(moduleTitle string, mem string) tokens.ModuleMember {
 	moduleName := strings.ToLower(moduleTitle)
-	if value, exist := specialNamesMap[moduleTitle]; exist {
-		moduleName = value
-	}
 	namespaceMap[moduleName] = moduleTitle
 	fn := string(unicode.ToLower(rune(mem[0]))) + mem[1:]
 	token := moduleName + "/" + fn
@@ -483,8 +473,9 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Python: &tfbridge.PythonInfo{
 			Requires: map[string]string{
-				"pulumi": ">=2.0.0,<3.0.0",
+				"pulumi": ">=2.9.0,<3.0.0",
 			},
+			UsesIOClasses: true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{

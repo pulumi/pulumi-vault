@@ -3,6 +3,12 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Upgrade to v2.13.0 of the Vault Terraform Provider
+* Upgrade to pulumi-terraform-bridge v2.7.0
+* Upgrade to Pulumi v2.9.0, which adds type annotations and input/output classes to Python  
+  **Please Note:**  
+  `vault.appSecret` has been renamed to `vault.appsecret` in Go, NodeJS and Python SDKs  
+  `vault.appRole` has been renamed to `vault.approle` in Go, NodeJS and Python SDKs  
+  `vault.rabbitMq` has been renamed to `vault.rabbitmq` in Go, NodeJS and Python SDKs  
 
 ---
 

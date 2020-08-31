@@ -5,9 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
 
+__all__ = [
+    'GetAccessCredentialsResult',
+    'AwaitableGetAccessCredentialsResult',
+    'get_access_credentials',
+]
+
+@pulumi.output_type
 class GetAccessCredentialsResult:
     """
     A collection of values returned by getAccessCredentials.
@@ -15,63 +22,130 @@ class GetAccessCredentialsResult:
     def __init__(__self__, access_key=None, backend=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, region=None, role=None, role_arn=None, secret_key=None, security_token=None, type=None):
         if access_key and not isinstance(access_key, str):
             raise TypeError("Expected argument 'access_key' to be a str")
-        __self__.access_key = access_key
+        pulumi.set(__self__, "access_key", access_key)
+        if backend and not isinstance(backend, str):
+            raise TypeError("Expected argument 'backend' to be a str")
+        pulumi.set(__self__, "backend", backend)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if lease_duration and not isinstance(lease_duration, float):
+            raise TypeError("Expected argument 'lease_duration' to be a float")
+        pulumi.set(__self__, "lease_duration", lease_duration)
+        if lease_id and not isinstance(lease_id, str):
+            raise TypeError("Expected argument 'lease_id' to be a str")
+        pulumi.set(__self__, "lease_id", lease_id)
+        if lease_renewable and not isinstance(lease_renewable, bool):
+            raise TypeError("Expected argument 'lease_renewable' to be a bool")
+        pulumi.set(__self__, "lease_renewable", lease_renewable)
+        if lease_start_time and not isinstance(lease_start_time, str):
+            raise TypeError("Expected argument 'lease_start_time' to be a str")
+        pulumi.set(__self__, "lease_start_time", lease_start_time)
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        pulumi.set(__self__, "region", region)
+        if role and not isinstance(role, str):
+            raise TypeError("Expected argument 'role' to be a str")
+        pulumi.set(__self__, "role", role)
+        if role_arn and not isinstance(role_arn, str):
+            raise TypeError("Expected argument 'role_arn' to be a str")
+        pulumi.set(__self__, "role_arn", role_arn)
+        if secret_key and not isinstance(secret_key, str):
+            raise TypeError("Expected argument 'secret_key' to be a str")
+        pulumi.set(__self__, "secret_key", secret_key)
+        if security_token and not isinstance(security_token, str):
+            raise TypeError("Expected argument 'security_token' to be a str")
+        pulumi.set(__self__, "security_token", security_token)
+        if type and not isinstance(type, str):
+            raise TypeError("Expected argument 'type' to be a str")
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="accessKey")
+    def access_key(self) -> str:
         """
         The AWS Access Key ID returned by Vault.
         """
-        if backend and not isinstance(backend, str):
-            raise TypeError("Expected argument 'backend' to be a str")
-        __self__.backend = backend
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "access_key")
+
+    @property
+    @pulumi.getter
+    def backend(self) -> str:
+        return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if lease_duration and not isinstance(lease_duration, float):
-            raise TypeError("Expected argument 'lease_duration' to be a float")
-        __self__.lease_duration = lease_duration
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="leaseDuration")
+    def lease_duration(self) -> float:
         """
         The duration of the secret lease, in seconds relative
         to the time the data was requested. Once this time has passed any plan
         generated with this data may fail to apply.
         """
-        if lease_id and not isinstance(lease_id, str):
-            raise TypeError("Expected argument 'lease_id' to be a str")
-        __self__.lease_id = lease_id
+        return pulumi.get(self, "lease_duration")
+
+    @property
+    @pulumi.getter(name="leaseId")
+    def lease_id(self) -> str:
         """
         The lease identifier assigned by Vault.
         """
-        if lease_renewable and not isinstance(lease_renewable, bool):
-            raise TypeError("Expected argument 'lease_renewable' to be a bool")
-        __self__.lease_renewable = lease_renewable
-        if lease_start_time and not isinstance(lease_start_time, str):
-            raise TypeError("Expected argument 'lease_start_time' to be a str")
-        __self__.lease_start_time = lease_start_time
-        if region and not isinstance(region, str):
-            raise TypeError("Expected argument 'region' to be a str")
-        __self__.region = region
-        if role and not isinstance(role, str):
-            raise TypeError("Expected argument 'role' to be a str")
-        __self__.role = role
-        if role_arn and not isinstance(role_arn, str):
-            raise TypeError("Expected argument 'role_arn' to be a str")
-        __self__.role_arn = role_arn
-        if secret_key and not isinstance(secret_key, str):
-            raise TypeError("Expected argument 'secret_key' to be a str")
-        __self__.secret_key = secret_key
+        return pulumi.get(self, "lease_id")
+
+    @property
+    @pulumi.getter(name="leaseRenewable")
+    def lease_renewable(self) -> bool:
+        return pulumi.get(self, "lease_renewable")
+
+    @property
+    @pulumi.getter(name="leaseStartTime")
+    def lease_start_time(self) -> str:
+        return pulumi.get(self, "lease_start_time")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> Optional[str]:
+        return pulumi.get(self, "role_arn")
+
+    @property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> str:
         """
         The AWS Secret Key returned by Vault.
         """
-        if security_token and not isinstance(security_token, str):
-            raise TypeError("Expected argument 'security_token' to be a str")
-        __self__.security_token = security_token
+        return pulumi.get(self, "secret_key")
+
+    @property
+    @pulumi.getter(name="securityToken")
+    def security_token(self) -> str:
         """
         The STS token returned by Vault, if any.
         """
-        if type and not isinstance(type, str):
-            raise TypeError("Expected argument 'type' to be a str")
-        __self__.type = type
+        return pulumi.get(self, "security_token")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
+
+
 class AwaitableGetAccessCredentialsResult(GetAccessCredentialsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -92,7 +166,13 @@ class AwaitableGetAccessCredentialsResult(GetAccessCredentialsResult):
             security_token=self.security_token,
             type=self.type)
 
-def get_access_credentials(backend=None,region=None,role=None,role_arn=None,type=None,opts=None):
+
+def get_access_credentials(backend: Optional[str] = None,
+                           region: Optional[str] = None,
+                           role: Optional[str] = None,
+                           role_arn: Optional[str] = None,
+                           type: Optional[str] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccessCredentialsResult:
     """
     Use this data source to access information about an existing resource.
 
@@ -109,8 +189,6 @@ def get_access_credentials(backend=None,region=None,role=None,role_arn=None,type
            in addition to the keys.
     """
     __args__ = dict()
-
-
     __args__['backend'] = backend
     __args__['region'] = region
     __args__['role'] = role
@@ -119,20 +197,20 @@ def get_access_credentials(backend=None,region=None,role=None,role_arn=None,type
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('vault:aws/getAccessCredentials:getAccessCredentials', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('vault:aws/getAccessCredentials:getAccessCredentials', __args__, opts=opts, typ=GetAccessCredentialsResult).value
 
     return AwaitableGetAccessCredentialsResult(
-        access_key=__ret__.get('accessKey'),
-        backend=__ret__.get('backend'),
-        id=__ret__.get('id'),
-        lease_duration=__ret__.get('leaseDuration'),
-        lease_id=__ret__.get('leaseId'),
-        lease_renewable=__ret__.get('leaseRenewable'),
-        lease_start_time=__ret__.get('leaseStartTime'),
-        region=__ret__.get('region'),
-        role=__ret__.get('role'),
-        role_arn=__ret__.get('roleArn'),
-        secret_key=__ret__.get('secretKey'),
-        security_token=__ret__.get('securityToken'),
-        type=__ret__.get('type'))
+        access_key=__ret__.access_key,
+        backend=__ret__.backend,
+        id=__ret__.id,
+        lease_duration=__ret__.lease_duration,
+        lease_id=__ret__.lease_id,
+        lease_renewable=__ret__.lease_renewable,
+        lease_start_time=__ret__.lease_start_time,
+        region=__ret__.region,
+        role=__ret__.role,
+        role_arn=__ret__.role_arn,
+        secret_key=__ret__.secret_key,
+        security_token=__ret__.security_token,
+        type=__ret__.type)

@@ -69,12 +69,12 @@ namespace Pulumi.Vault.PkiSecret
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretBackendCrlConfig(string name, SecretBackendCrlConfigArgs args, CustomResourceOptions? options = null)
-            : base("vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig", name, args ?? new SecretBackendCrlConfigArgs(), MakeResourceOptions(options, ""))
+            : base("vault:pkisecret/secretBackendCrlConfig:SecretBackendCrlConfig", name, args ?? new SecretBackendCrlConfigArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private SecretBackendCrlConfig(string name, Input<string> id, SecretBackendCrlConfigState? state = null, CustomResourceOptions? options = null)
-            : base("vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig", name, state, MakeResourceOptions(options, id))
+            : base("vault:pkisecret/secretBackendCrlConfig:SecretBackendCrlConfig", name, state, MakeResourceOptions(options, id))
         {
         }
 

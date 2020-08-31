@@ -5,28 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['GroupMemberEntityIds']
 
 
 class GroupMemberEntityIds(pulumi.CustomResource):
-    exclusive: pulumi.Output[bool]
-    """
-    Defaults to `true`.
-    """
-    group_id: pulumi.Output[str]
-    """
-    Group ID to assign member entities to.
-    """
-    group_name: pulumi.Output[str]
-    """
-    The name of the group that are assigned the member entities.
-    """
-    member_entity_ids: pulumi.Output[list]
-    """
-    List of member entities that belong to the group
-    """
-    def __init__(__self__, resource_name, opts=None, exclusive=None, group_id=None, member_entity_ids=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 exclusive: Optional[pulumi.Input[bool]] = None,
+                 group_id: Optional[pulumi.Input[str]] = None,
+                 member_entity_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Manages member entities for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
 
@@ -81,7 +75,7 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
-        :param pulumi.Input[list] member_entity_ids: List of member entities that belong to the group
+        :param pulumi.Input[List[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -94,7 +88,7 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -113,18 +107,24 @@ class GroupMemberEntityIds(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, exclusive=None, group_id=None, group_name=None, member_entity_ids=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            exclusive: Optional[pulumi.Input[bool]] = None,
+            group_id: Optional[pulumi.Input[str]] = None,
+            group_name: Optional[pulumi.Input[str]] = None,
+            member_entity_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'GroupMemberEntityIds':
         """
         Get an existing GroupMemberEntityIds resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
         :param pulumi.Input[str] group_name: The name of the group that are assigned the member entities.
-        :param pulumi.Input[list] member_entity_ids: List of member entities that belong to the group
+        :param pulumi.Input[List[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -136,8 +136,41 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         __props__["member_entity_ids"] = member_entity_ids
         return GroupMemberEntityIds(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def exclusive(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Defaults to `true`.
+        """
+        return pulumi.get(self, "exclusive")
+
+    @property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> pulumi.Output[str]:
+        """
+        Group ID to assign member entities to.
+        """
+        return pulumi.get(self, "group_id")
+
+    @property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> pulumi.Output[str]:
+        """
+        The name of the group that are assigned the member entities.
+        """
+        return pulumi.get(self, "group_name")
+
+    @property
+    @pulumi.getter(name="memberEntityIds")
+    def member_entity_ids(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        List of member entities that belong to the group
+        """
+        return pulumi.get(self, "member_entity_ids")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

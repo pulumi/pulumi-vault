@@ -42,7 +42,7 @@ namespace Pulumi.Vault.AppRole
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAuthBackendRoleIdResult> InvokeAsync(GetAuthBackendRoleIdArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleIdResult>("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args ?? new GetAuthBackendRoleIdArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleIdResult>("vault:approle/getAuthBackendRoleId:getAuthBackendRoleId", args ?? new GetAuthBackendRoleIdArgs(), options.WithVersion());
     }
 
 

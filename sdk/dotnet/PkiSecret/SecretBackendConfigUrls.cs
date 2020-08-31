@@ -76,12 +76,12 @@ namespace Pulumi.Vault.PkiSecret
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretBackendConfigUrls(string name, SecretBackendConfigUrlsArgs args, CustomResourceOptions? options = null)
-            : base("vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls", name, args ?? new SecretBackendConfigUrlsArgs(), MakeResourceOptions(options, ""))
+            : base("vault:pkisecret/secretBackendConfigUrls:SecretBackendConfigUrls", name, args ?? new SecretBackendConfigUrlsArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private SecretBackendConfigUrls(string name, Input<string> id, SecretBackendConfigUrlsState? state = null, CustomResourceOptions? options = null)
-            : base("vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls", name, state, MakeResourceOptions(options, id))
+            : base("vault:pkisecret/secretBackendConfigUrls:SecretBackendConfigUrls", name, state, MakeResourceOptions(options, id))
         {
         }
 

@@ -5,140 +5,47 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['AuthBackend']
 
 
 class AuthBackend(pulumi.CustomResource):
-    accessor: pulumi.Output[str]
-    """
-    The accessor for this auth mount.
-    """
-    binddn: pulumi.Output[str]
-    """
-    DN of object to bind when performing user search
-    """
-    bindpass: pulumi.Output[str]
-    """
-    Password to use with `binddn` when performing user search
-    """
-    certificate: pulumi.Output[str]
-    """
-    Trusted CA to validate TLS certificate
-    """
-    deny_null_bind: pulumi.Output[bool]
-    description: pulumi.Output[str]
-    """
-    Description for the LDAP auth backend mount
-    """
-    discoverdn: pulumi.Output[bool]
-    groupattr: pulumi.Output[str]
-    """
-    LDAP attribute to follow on objects returned by groupfilter
-    """
-    groupdn: pulumi.Output[str]
-    """
-    Base DN under which to perform group search
-    """
-    groupfilter: pulumi.Output[str]
-    """
-    Go template used to construct group membership query
-    """
-    insecure_tls: pulumi.Output[bool]
-    """
-    Control whether or TLS certificates must be validated
-    """
-    path: pulumi.Output[str]
-    """
-    Path to mount the LDAP auth backend under
-    """
-    starttls: pulumi.Output[bool]
-    """
-    Control use of TLS when conecting to LDAP
-    """
-    tls_max_version: pulumi.Output[str]
-    """
-    Maximum acceptable version of TLS
-    """
-    tls_min_version: pulumi.Output[str]
-    """
-    Minimum acceptable version of TLS
-    """
-    token_bound_cidrs: pulumi.Output[list]
-    """
-    List of CIDR blocks; if set, specifies blocks of IP
-    addresses which can authenticate successfully, and ties the resulting token to these blocks
-    as well.
-    """
-    token_explicit_max_ttl: pulumi.Output[float]
-    """
-    If set, will encode an
-    [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-    onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-    `token_max_ttl` would otherwise allow a renewal.
-    """
-    token_max_ttl: pulumi.Output[float]
-    """
-    The maximum lifetime for generated tokens in number of seconds.
-    Its current value will be referenced at renewal time.
-    """
-    token_no_default_policy: pulumi.Output[bool]
-    """
-    If set, the default policy will not be set on
-    generated tokens; otherwise it will be added to the policies set in token_policies.
-    """
-    token_num_uses: pulumi.Output[float]
-    """
-    The
-    [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-    if any, in number of seconds to set on the token.
-    """
-    token_period: pulumi.Output[float]
-    """
-    If set, indicates that the
-    token generated using this role should never expire. The token should be renewed within the
-    duration specified by this value. At each renewal, the token's TTL will be set to the
-    value of this field. Specified in seconds.
-    """
-    token_policies: pulumi.Output[list]
-    """
-    List of policies to encode onto generated tokens. Depending
-    on the auth method, this list may be supplemented by user/group/other values.
-    """
-    token_ttl: pulumi.Output[float]
-    """
-    The incremental lifetime for generated tokens in number of seconds.
-    Its current value will be referenced at renewal time.
-    """
-    token_type: pulumi.Output[str]
-    """
-    The type of token that should be generated. Can be `service`,
-    `batch`, or `default` to use the mount's tuned default (which unless changed will be
-    `service` tokens). For token store roles, there are two additional possibilities:
-    `default-service` and `default-batch` which specify the type to return unless the client
-    requests a different type at generation time.
-    """
-    upndomain: pulumi.Output[str]
-    """
-    The userPrincipalDomain used to construct UPN string
-    """
-    url: pulumi.Output[str]
-    """
-    The URL of the LDAP server
-    """
-    use_token_groups: pulumi.Output[bool]
-    """
-    Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
-    """
-    userattr: pulumi.Output[str]
-    """
-    Attribute on user object matching username passed in
-    """
-    userdn: pulumi.Output[str]
-    """
-    Base DN under which to perform user search
-    """
-    def __init__(__self__, resource_name, opts=None, binddn=None, bindpass=None, certificate=None, deny_null_bind=None, description=None, discoverdn=None, groupattr=None, groupdn=None, groupfilter=None, insecure_tls=None, path=None, starttls=None, tls_max_version=None, tls_min_version=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, upndomain=None, url=None, use_token_groups=None, userattr=None, userdn=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 binddn: Optional[pulumi.Input[str]] = None,
+                 bindpass: Optional[pulumi.Input[str]] = None,
+                 certificate: Optional[pulumi.Input[str]] = None,
+                 deny_null_bind: Optional[pulumi.Input[bool]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 discoverdn: Optional[pulumi.Input[bool]] = None,
+                 groupattr: Optional[pulumi.Input[str]] = None,
+                 groupdn: Optional[pulumi.Input[str]] = None,
+                 groupfilter: Optional[pulumi.Input[str]] = None,
+                 insecure_tls: Optional[pulumi.Input[bool]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 starttls: Optional[pulumi.Input[bool]] = None,
+                 tls_max_version: Optional[pulumi.Input[str]] = None,
+                 tls_min_version: Optional[pulumi.Input[str]] = None,
+                 token_bound_cidrs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 token_explicit_max_ttl: Optional[pulumi.Input[float]] = None,
+                 token_max_ttl: Optional[pulumi.Input[float]] = None,
+                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+                 token_num_uses: Optional[pulumi.Input[float]] = None,
+                 token_period: Optional[pulumi.Input[float]] = None,
+                 token_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 token_ttl: Optional[pulumi.Input[float]] = None,
+                 token_type: Optional[pulumi.Input[str]] = None,
+                 upndomain: Optional[pulumi.Input[str]] = None,
+                 url: Optional[pulumi.Input[str]] = None,
+                 use_token_groups: Optional[pulumi.Input[bool]] = None,
+                 userattr: Optional[pulumi.Input[str]] = None,
+                 userdn: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a resource for managing an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
 
@@ -173,7 +80,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] starttls: Control use of TLS when conecting to LDAP
         :param pulumi.Input[str] tls_max_version: Maximum acceptable version of TLS
         :param pulumi.Input[str] tls_min_version: Minimum acceptable version of TLS
-        :param pulumi.Input[list] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
+        :param pulumi.Input[List[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
                as well.
         :param pulumi.Input[float] token_explicit_max_ttl: If set, will encode an
@@ -191,7 +98,7 @@ class AuthBackend(pulumi.CustomResource):
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
                value of this field. Specified in seconds.
-        :param pulumi.Input[list] token_policies: List of policies to encode onto generated tokens. Depending
+        :param pulumi.Input[List[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
                on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[float] token_ttl: The incremental lifetime for generated tokens in number of seconds.
                Its current value will be referenced at renewal time.
@@ -217,7 +124,7 @@ class AuthBackend(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -261,13 +168,44 @@ class AuthBackend(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, accessor=None, binddn=None, bindpass=None, certificate=None, deny_null_bind=None, description=None, discoverdn=None, groupattr=None, groupdn=None, groupfilter=None, insecure_tls=None, path=None, starttls=None, tls_max_version=None, tls_min_version=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, upndomain=None, url=None, use_token_groups=None, userattr=None, userdn=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accessor: Optional[pulumi.Input[str]] = None,
+            binddn: Optional[pulumi.Input[str]] = None,
+            bindpass: Optional[pulumi.Input[str]] = None,
+            certificate: Optional[pulumi.Input[str]] = None,
+            deny_null_bind: Optional[pulumi.Input[bool]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            discoverdn: Optional[pulumi.Input[bool]] = None,
+            groupattr: Optional[pulumi.Input[str]] = None,
+            groupdn: Optional[pulumi.Input[str]] = None,
+            groupfilter: Optional[pulumi.Input[str]] = None,
+            insecure_tls: Optional[pulumi.Input[bool]] = None,
+            path: Optional[pulumi.Input[str]] = None,
+            starttls: Optional[pulumi.Input[bool]] = None,
+            tls_max_version: Optional[pulumi.Input[str]] = None,
+            tls_min_version: Optional[pulumi.Input[str]] = None,
+            token_bound_cidrs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            token_explicit_max_ttl: Optional[pulumi.Input[float]] = None,
+            token_max_ttl: Optional[pulumi.Input[float]] = None,
+            token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+            token_num_uses: Optional[pulumi.Input[float]] = None,
+            token_period: Optional[pulumi.Input[float]] = None,
+            token_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            token_ttl: Optional[pulumi.Input[float]] = None,
+            token_type: Optional[pulumi.Input[str]] = None,
+            upndomain: Optional[pulumi.Input[str]] = None,
+            url: Optional[pulumi.Input[str]] = None,
+            use_token_groups: Optional[pulumi.Input[bool]] = None,
+            userattr: Optional[pulumi.Input[str]] = None,
+            userdn: Optional[pulumi.Input[str]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accessor: The accessor for this auth mount.
         :param pulumi.Input[str] binddn: DN of object to bind when performing user search
@@ -282,7 +220,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] starttls: Control use of TLS when conecting to LDAP
         :param pulumi.Input[str] tls_max_version: Maximum acceptable version of TLS
         :param pulumi.Input[str] tls_min_version: Minimum acceptable version of TLS
-        :param pulumi.Input[list] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
+        :param pulumi.Input[List[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
                as well.
         :param pulumi.Input[float] token_explicit_max_ttl: If set, will encode an
@@ -300,7 +238,7 @@ class AuthBackend(pulumi.CustomResource):
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
                value of this field. Specified in seconds.
-        :param pulumi.Input[list] token_policies: List of policies to encode onto generated tokens. Depending
+        :param pulumi.Input[List[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
                on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[float] token_ttl: The incremental lifetime for generated tokens in number of seconds.
                Its current value will be referenced at renewal time.
@@ -350,8 +288,253 @@ class AuthBackend(pulumi.CustomResource):
         __props__["userdn"] = userdn
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def accessor(self) -> pulumi.Output[str]:
+        """
+        The accessor for this auth mount.
+        """
+        return pulumi.get(self, "accessor")
+
+    @property
+    @pulumi.getter
+    def binddn(self) -> pulumi.Output[str]:
+        """
+        DN of object to bind when performing user search
+        """
+        return pulumi.get(self, "binddn")
+
+    @property
+    @pulumi.getter
+    def bindpass(self) -> pulumi.Output[str]:
+        """
+        Password to use with `binddn` when performing user search
+        """
+        return pulumi.get(self, "bindpass")
+
+    @property
+    @pulumi.getter
+    def certificate(self) -> pulumi.Output[str]:
+        """
+        Trusted CA to validate TLS certificate
+        """
+        return pulumi.get(self, "certificate")
+
+    @property
+    @pulumi.getter(name="denyNullBind")
+    def deny_null_bind(self) -> pulumi.Output[bool]:
+        return pulumi.get(self, "deny_null_bind")
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[str]:
+        """
+        Description for the LDAP auth backend mount
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def discoverdn(self) -> pulumi.Output[bool]:
+        return pulumi.get(self, "discoverdn")
+
+    @property
+    @pulumi.getter
+    def groupattr(self) -> pulumi.Output[str]:
+        """
+        LDAP attribute to follow on objects returned by groupfilter
+        """
+        return pulumi.get(self, "groupattr")
+
+    @property
+    @pulumi.getter
+    def groupdn(self) -> pulumi.Output[str]:
+        """
+        Base DN under which to perform group search
+        """
+        return pulumi.get(self, "groupdn")
+
+    @property
+    @pulumi.getter
+    def groupfilter(self) -> pulumi.Output[str]:
+        """
+        Go template used to construct group membership query
+        """
+        return pulumi.get(self, "groupfilter")
+
+    @property
+    @pulumi.getter(name="insecureTls")
+    def insecure_tls(self) -> pulumi.Output[bool]:
+        """
+        Control whether or TLS certificates must be validated
+        """
+        return pulumi.get(self, "insecure_tls")
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Output[Optional[str]]:
+        """
+        Path to mount the LDAP auth backend under
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def starttls(self) -> pulumi.Output[bool]:
+        """
+        Control use of TLS when conecting to LDAP
+        """
+        return pulumi.get(self, "starttls")
+
+    @property
+    @pulumi.getter(name="tlsMaxVersion")
+    def tls_max_version(self) -> pulumi.Output[str]:
+        """
+        Maximum acceptable version of TLS
+        """
+        return pulumi.get(self, "tls_max_version")
+
+    @property
+    @pulumi.getter(name="tlsMinVersion")
+    def tls_min_version(self) -> pulumi.Output[str]:
+        """
+        Minimum acceptable version of TLS
+        """
+        return pulumi.get(self, "tls_min_version")
+
+    @property
+    @pulumi.getter(name="tokenBoundCidrs")
+    def token_bound_cidrs(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        List of CIDR blocks; if set, specifies blocks of IP
+        addresses which can authenticate successfully, and ties the resulting token to these blocks
+        as well.
+        """
+        return pulumi.get(self, "token_bound_cidrs")
+
+    @property
+    @pulumi.getter(name="tokenExplicitMaxTtl")
+    def token_explicit_max_ttl(self) -> pulumi.Output[Optional[float]]:
+        """
+        If set, will encode an
+        [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+        onto the token in number of seconds. This is a hard cap even if `token_ttl` and
+        `token_max_ttl` would otherwise allow a renewal.
+        """
+        return pulumi.get(self, "token_explicit_max_ttl")
+
+    @property
+    @pulumi.getter(name="tokenMaxTtl")
+    def token_max_ttl(self) -> pulumi.Output[Optional[float]]:
+        """
+        The maximum lifetime for generated tokens in number of seconds.
+        Its current value will be referenced at renewal time.
+        """
+        return pulumi.get(self, "token_max_ttl")
+
+    @property
+    @pulumi.getter(name="tokenNoDefaultPolicy")
+    def token_no_default_policy(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set, the default policy will not be set on
+        generated tokens; otherwise it will be added to the policies set in token_policies.
+        """
+        return pulumi.get(self, "token_no_default_policy")
+
+    @property
+    @pulumi.getter(name="tokenNumUses")
+    def token_num_uses(self) -> pulumi.Output[Optional[float]]:
+        """
+        The
+        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+        if any, in number of seconds to set on the token.
+        """
+        return pulumi.get(self, "token_num_uses")
+
+    @property
+    @pulumi.getter(name="tokenPeriod")
+    def token_period(self) -> pulumi.Output[Optional[float]]:
+        """
+        If set, indicates that the
+        token generated using this role should never expire. The token should be renewed within the
+        duration specified by this value. At each renewal, the token's TTL will be set to the
+        value of this field. Specified in seconds.
+        """
+        return pulumi.get(self, "token_period")
+
+    @property
+    @pulumi.getter(name="tokenPolicies")
+    def token_policies(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        List of policies to encode onto generated tokens. Depending
+        on the auth method, this list may be supplemented by user/group/other values.
+        """
+        return pulumi.get(self, "token_policies")
+
+    @property
+    @pulumi.getter(name="tokenTtl")
+    def token_ttl(self) -> pulumi.Output[Optional[float]]:
+        """
+        The incremental lifetime for generated tokens in number of seconds.
+        Its current value will be referenced at renewal time.
+        """
+        return pulumi.get(self, "token_ttl")
+
+    @property
+    @pulumi.getter(name="tokenType")
+    def token_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        The type of token that should be generated. Can be `service`,
+        `batch`, or `default` to use the mount's tuned default (which unless changed will be
+        `service` tokens). For token store roles, there are two additional possibilities:
+        `default-service` and `default-batch` which specify the type to return unless the client
+        requests a different type at generation time.
+        """
+        return pulumi.get(self, "token_type")
+
+    @property
+    @pulumi.getter
+    def upndomain(self) -> pulumi.Output[str]:
+        """
+        The userPrincipalDomain used to construct UPN string
+        """
+        return pulumi.get(self, "upndomain")
+
+    @property
+    @pulumi.getter
+    def url(self) -> pulumi.Output[str]:
+        """
+        The URL of the LDAP server
+        """
+        return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter(name="useTokenGroups")
+    def use_token_groups(self) -> pulumi.Output[bool]:
+        """
+        Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
+        """
+        return pulumi.get(self, "use_token_groups")
+
+    @property
+    @pulumi.getter
+    def userattr(self) -> pulumi.Output[str]:
+        """
+        Attribute on user object matching username passed in
+        """
+        return pulumi.get(self, "userattr")
+
+    @property
+    @pulumi.getter
+    def userdn(self) -> pulumi.Output[str]:
+        """
+        Base DN under which to perform user search
+        """
+        return pulumi.get(self, "userdn")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

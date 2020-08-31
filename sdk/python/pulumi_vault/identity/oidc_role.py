@@ -5,37 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['OidcRole']
 
 
 class OidcRole(pulumi.CustomResource):
-    client_id: pulumi.Output[str]
-    """
-    The value that will be included in the `aud` field of all the OIDC identity
-    tokens issued by this role
-    """
-    key: pulumi.Output[str]
-    """
-    A configured named key, the key must already exist
-    before tokens can be issued.
-    """
-    name: pulumi.Output[str]
-    """
-    Name of the OIDC Role to create.
-    """
-    template: pulumi.Output[str]
-    """
-    The template string to use for generating tokens. This may be in
-    string-ified JSON or base64 format. See the
-    [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
-    for the template format.
-    """
-    ttl: pulumi.Output[float]
-    """
-    TTL of the tokens generated against the role in number of seconds.
-    """
-    def __init__(__self__, resource_name, opts=None, key=None, name=None, template=None, ttl=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 template: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[float]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a OidcRole resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -60,7 +46,7 @@ class OidcRole(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -80,13 +66,20 @@ class OidcRole(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, client_id=None, key=None, name=None, template=None, ttl=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            client_id: Optional[pulumi.Input[str]] = None,
+            key: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            template: Optional[pulumi.Input[str]] = None,
+            ttl: Optional[pulumi.Input[float]] = None) -> 'OidcRole':
         """
         Get an existing OidcRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_id: The value that will be included in the `aud` field of all the OIDC identity
                tokens issued by this role
@@ -110,8 +103,54 @@ class OidcRole(pulumi.CustomResource):
         __props__["ttl"] = ttl
         return OidcRole(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> pulumi.Output[str]:
+        """
+        The value that will be included in the `aud` field of all the OIDC identity
+        tokens issued by this role
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Output[str]:
+        """
+        A configured named key, the key must already exist
+        before tokens can be issued.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Output[str]:
+        """
+        Name of the OIDC Role to create.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def template(self) -> pulumi.Output[Optional[str]]:
+        """
+        The template string to use for generating tokens. This may be in
+        string-ified JSON or base64 format. See the
+        [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
+        for the template format.
+        """
+        return pulumi.get(self, "template")
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> pulumi.Output[Optional[float]]:
+        """
+        TTL of the tokens generated against the role in number of seconds.
+        """
+        return pulumi.get(self, "ttl")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,9 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
+__all__ = [
+    'GetPolicyDocumentResult',
+    'AwaitableGetPolicyDocumentResult',
+    'get_policy_document',
+]
+
+@pulumi.output_type
 class GetPolicyDocumentResult:
     """
     A collection of values returned by getPolicyDocument.
@@ -15,19 +24,36 @@ class GetPolicyDocumentResult:
     def __init__(__self__, hcl=None, id=None, rules=None):
         if hcl and not isinstance(hcl, str):
             raise TypeError("Expected argument 'hcl' to be a str")
-        __self__.hcl = hcl
+        pulumi.set(__self__, "hcl", hcl)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if rules and not isinstance(rules, list):
+            raise TypeError("Expected argument 'rules' to be a list")
+        pulumi.set(__self__, "rules", rules)
+
+    @property
+    @pulumi.getter
+    def hcl(self) -> str:
         """
         The above arguments serialized as a standard Vault HCL policy document.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "hcl")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if rules and not isinstance(rules, list):
-            raise TypeError("Expected argument 'rules' to be a list")
-        __self__.rules = rules
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def rules(self) -> List['outputs.GetPolicyDocumentRuleResult']:
+        return pulumi.get(self, "rules")
+
+
 class AwaitableGetPolicyDocumentResult(GetPolicyDocumentResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -38,7 +64,9 @@ class AwaitableGetPolicyDocumentResult(GetPolicyDocumentResult):
             id=self.id,
             rules=self.rules)
 
-def get_policy_document(rules=None,opts=None):
+
+def get_policy_document(rules: Optional[List[pulumi.InputType['GetPolicyDocumentRuleArgs']]] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPolicyDocumentResult:
     """
     This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `Policy` resource.
 
@@ -48,50 +76,29 @@ def get_policy_document(rules=None,opts=None):
     import pulumi
     import pulumi_vault as vault
 
-    example_policy_document = vault.get_policy_document(rules=[{
-        "capabilities": [
+    example_policy_document = vault.get_policy_document(rules=[vault.GetPolicyDocumentRuleArgs(
+        capabilities=[
             "create",
             "read",
             "update",
             "delete",
             "list",
         ],
-        "description": "allow all on secrets",
-        "path": "secret/*",
-    }])
+        description="allow all on secrets",
+        path="secret/*",
+    )])
     example_policy = vault.Policy("examplePolicy", policy=example_policy_document.hcl)
     ```
-
-
-
-    The **rules** object supports the following:
-
-      * `allowedParameters` (`list`) - Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
-        * `key` (`str`) - name of permitted or denied parameter.
-        * `values` (`list`) - list of values what are permitted or denied by policy rule.
-
-      * `capabilities` (`list`) - A list of capabilities that this rule apply to `path`. For example, ["read", "write"].
-      * `deniedParameters` (`list`) - Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.
-        * `key` (`str`) - name of permitted or denied parameter.
-        * `values` (`list`) - list of values what are permitted or denied by policy rule.
-
-      * `description` (`str`) - Description of the rule. Will be added as a commend to rendered rule.
-      * `maxWrappingTtl` (`str`) - The maximum allowed TTL that clients can specify for a wrapped response.
-      * `minWrappingTtl` (`str`) - The minimum allowed TTL that clients can specify for a wrapped response.
-      * `path` (`str`) - A path in Vault that this rule applies to.
-      * `requiredParameters` (`list`) - A list of parameters that must be specified.
     """
     __args__ = dict()
-
-
     __args__['rules'] = rules
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('vault:index/getPolicyDocument:getPolicyDocument', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('vault:index/getPolicyDocument:getPolicyDocument', __args__, opts=opts, typ=GetPolicyDocumentResult).value
 
     return AwaitableGetPolicyDocumentResult(
-        hcl=__ret__.get('hcl'),
-        id=__ret__.get('id'),
-        rules=__ret__.get('rules'))
+        hcl=__ret__.hcl,
+        id=__ret__.id,
+        rules=__ret__.rules)

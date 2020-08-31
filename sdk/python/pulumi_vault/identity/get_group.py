@@ -5,9 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
 
+__all__ = [
+    'GetGroupResult',
+    'AwaitableGetGroupResult',
+    'get_group',
+]
+
+@pulumi.output_type
 class GetGroupResult:
     """
     A collection of values returned by getGroup.
@@ -15,134 +22,256 @@ class GetGroupResult:
     def __init__(__self__, alias_canonical_id=None, alias_creation_time=None, alias_id=None, alias_last_update_time=None, alias_merged_from_canonical_ids=None, alias_metadata=None, alias_mount_accessor=None, alias_mount_path=None, alias_mount_type=None, alias_name=None, creation_time=None, data_json=None, group_id=None, group_name=None, id=None, last_update_time=None, member_entity_ids=None, member_group_ids=None, metadata=None, modify_index=None, namespace_id=None, parent_group_ids=None, policies=None, type=None):
         if alias_canonical_id and not isinstance(alias_canonical_id, str):
             raise TypeError("Expected argument 'alias_canonical_id' to be a str")
-        __self__.alias_canonical_id = alias_canonical_id
+        pulumi.set(__self__, "alias_canonical_id", alias_canonical_id)
+        if alias_creation_time and not isinstance(alias_creation_time, str):
+            raise TypeError("Expected argument 'alias_creation_time' to be a str")
+        pulumi.set(__self__, "alias_creation_time", alias_creation_time)
+        if alias_id and not isinstance(alias_id, str):
+            raise TypeError("Expected argument 'alias_id' to be a str")
+        pulumi.set(__self__, "alias_id", alias_id)
+        if alias_last_update_time and not isinstance(alias_last_update_time, str):
+            raise TypeError("Expected argument 'alias_last_update_time' to be a str")
+        pulumi.set(__self__, "alias_last_update_time", alias_last_update_time)
+        if alias_merged_from_canonical_ids and not isinstance(alias_merged_from_canonical_ids, list):
+            raise TypeError("Expected argument 'alias_merged_from_canonical_ids' to be a list")
+        pulumi.set(__self__, "alias_merged_from_canonical_ids", alias_merged_from_canonical_ids)
+        if alias_metadata and not isinstance(alias_metadata, dict):
+            raise TypeError("Expected argument 'alias_metadata' to be a dict")
+        pulumi.set(__self__, "alias_metadata", alias_metadata)
+        if alias_mount_accessor and not isinstance(alias_mount_accessor, str):
+            raise TypeError("Expected argument 'alias_mount_accessor' to be a str")
+        pulumi.set(__self__, "alias_mount_accessor", alias_mount_accessor)
+        if alias_mount_path and not isinstance(alias_mount_path, str):
+            raise TypeError("Expected argument 'alias_mount_path' to be a str")
+        pulumi.set(__self__, "alias_mount_path", alias_mount_path)
+        if alias_mount_type and not isinstance(alias_mount_type, str):
+            raise TypeError("Expected argument 'alias_mount_type' to be a str")
+        pulumi.set(__self__, "alias_mount_type", alias_mount_type)
+        if alias_name and not isinstance(alias_name, str):
+            raise TypeError("Expected argument 'alias_name' to be a str")
+        pulumi.set(__self__, "alias_name", alias_name)
+        if creation_time and not isinstance(creation_time, str):
+            raise TypeError("Expected argument 'creation_time' to be a str")
+        pulumi.set(__self__, "creation_time", creation_time)
+        if data_json and not isinstance(data_json, str):
+            raise TypeError("Expected argument 'data_json' to be a str")
+        pulumi.set(__self__, "data_json", data_json)
+        if group_id and not isinstance(group_id, str):
+            raise TypeError("Expected argument 'group_id' to be a str")
+        pulumi.set(__self__, "group_id", group_id)
+        if group_name and not isinstance(group_name, str):
+            raise TypeError("Expected argument 'group_name' to be a str")
+        pulumi.set(__self__, "group_name", group_name)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if last_update_time and not isinstance(last_update_time, str):
+            raise TypeError("Expected argument 'last_update_time' to be a str")
+        pulumi.set(__self__, "last_update_time", last_update_time)
+        if member_entity_ids and not isinstance(member_entity_ids, list):
+            raise TypeError("Expected argument 'member_entity_ids' to be a list")
+        pulumi.set(__self__, "member_entity_ids", member_entity_ids)
+        if member_group_ids and not isinstance(member_group_ids, list):
+            raise TypeError("Expected argument 'member_group_ids' to be a list")
+        pulumi.set(__self__, "member_group_ids", member_group_ids)
+        if metadata and not isinstance(metadata, dict):
+            raise TypeError("Expected argument 'metadata' to be a dict")
+        pulumi.set(__self__, "metadata", metadata)
+        if modify_index and not isinstance(modify_index, float):
+            raise TypeError("Expected argument 'modify_index' to be a float")
+        pulumi.set(__self__, "modify_index", modify_index)
+        if namespace_id and not isinstance(namespace_id, str):
+            raise TypeError("Expected argument 'namespace_id' to be a str")
+        pulumi.set(__self__, "namespace_id", namespace_id)
+        if parent_group_ids and not isinstance(parent_group_ids, list):
+            raise TypeError("Expected argument 'parent_group_ids' to be a list")
+        pulumi.set(__self__, "parent_group_ids", parent_group_ids)
+        if policies and not isinstance(policies, list):
+            raise TypeError("Expected argument 'policies' to be a list")
+        pulumi.set(__self__, "policies", policies)
+        if type and not isinstance(type, str):
+            raise TypeError("Expected argument 'type' to be a str")
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="aliasCanonicalId")
+    def alias_canonical_id(self) -> str:
         """
         Canonical ID of the Alias
         """
-        if alias_creation_time and not isinstance(alias_creation_time, str):
-            raise TypeError("Expected argument 'alias_creation_time' to be a str")
-        __self__.alias_creation_time = alias_creation_time
+        return pulumi.get(self, "alias_canonical_id")
+
+    @property
+    @pulumi.getter(name="aliasCreationTime")
+    def alias_creation_time(self) -> str:
         """
         Creation time of the Alias
         """
-        if alias_id and not isinstance(alias_id, str):
-            raise TypeError("Expected argument 'alias_id' to be a str")
-        __self__.alias_id = alias_id
-        if alias_last_update_time and not isinstance(alias_last_update_time, str):
-            raise TypeError("Expected argument 'alias_last_update_time' to be a str")
-        __self__.alias_last_update_time = alias_last_update_time
+        return pulumi.get(self, "alias_creation_time")
+
+    @property
+    @pulumi.getter(name="aliasId")
+    def alias_id(self) -> str:
+        return pulumi.get(self, "alias_id")
+
+    @property
+    @pulumi.getter(name="aliasLastUpdateTime")
+    def alias_last_update_time(self) -> str:
         """
         Last update time of the alias
         """
-        if alias_merged_from_canonical_ids and not isinstance(alias_merged_from_canonical_ids, list):
-            raise TypeError("Expected argument 'alias_merged_from_canonical_ids' to be a list")
-        __self__.alias_merged_from_canonical_ids = alias_merged_from_canonical_ids
+        return pulumi.get(self, "alias_last_update_time")
+
+    @property
+    @pulumi.getter(name="aliasMergedFromCanonicalIds")
+    def alias_merged_from_canonical_ids(self) -> List[str]:
         """
         List of canonical IDs merged with this alias
         """
-        if alias_metadata and not isinstance(alias_metadata, dict):
-            raise TypeError("Expected argument 'alias_metadata' to be a dict")
-        __self__.alias_metadata = alias_metadata
+        return pulumi.get(self, "alias_merged_from_canonical_ids")
+
+    @property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> Mapping[str, Any]:
         """
         Arbitrary metadata
         """
-        if alias_mount_accessor and not isinstance(alias_mount_accessor, str):
-            raise TypeError("Expected argument 'alias_mount_accessor' to be a str")
-        __self__.alias_mount_accessor = alias_mount_accessor
-        if alias_mount_path and not isinstance(alias_mount_path, str):
-            raise TypeError("Expected argument 'alias_mount_path' to be a str")
-        __self__.alias_mount_path = alias_mount_path
+        return pulumi.get(self, "alias_metadata")
+
+    @property
+    @pulumi.getter(name="aliasMountAccessor")
+    def alias_mount_accessor(self) -> str:
+        return pulumi.get(self, "alias_mount_accessor")
+
+    @property
+    @pulumi.getter(name="aliasMountPath")
+    def alias_mount_path(self) -> str:
         """
         Authentication mount path which this alias belongs to
         """
-        if alias_mount_type and not isinstance(alias_mount_type, str):
-            raise TypeError("Expected argument 'alias_mount_type' to be a str")
-        __self__.alias_mount_type = alias_mount_type
+        return pulumi.get(self, "alias_mount_path")
+
+    @property
+    @pulumi.getter(name="aliasMountType")
+    def alias_mount_type(self) -> str:
         """
         Authentication mount type which this alias belongs to
         """
-        if alias_name and not isinstance(alias_name, str):
-            raise TypeError("Expected argument 'alias_name' to be a str")
-        __self__.alias_name = alias_name
-        if creation_time and not isinstance(creation_time, str):
-            raise TypeError("Expected argument 'creation_time' to be a str")
-        __self__.creation_time = creation_time
+        return pulumi.get(self, "alias_mount_type")
+
+    @property
+    @pulumi.getter(name="aliasName")
+    def alias_name(self) -> str:
+        return pulumi.get(self, "alias_name")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
         """
         Creation timestamp of the group
         """
-        if data_json and not isinstance(data_json, str):
-            raise TypeError("Expected argument 'data_json' to be a str")
-        __self__.data_json = data_json
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter(name="dataJson")
+    def data_json(self) -> str:
         """
         A string containing the full data payload retrieved from
         Vault, serialized in JSON format.
         """
-        if group_id and not isinstance(group_id, str):
-            raise TypeError("Expected argument 'group_id' to be a str")
-        __self__.group_id = group_id
-        if group_name and not isinstance(group_name, str):
-            raise TypeError("Expected argument 'group_name' to be a str")
-        __self__.group_name = group_name
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "data_json")
+
+    @property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> str:
+        return pulumi.get(self, "group_id")
+
+    @property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> str:
+        return pulumi.get(self, "group_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if last_update_time and not isinstance(last_update_time, str):
-            raise TypeError("Expected argument 'last_update_time' to be a str")
-        __self__.last_update_time = last_update_time
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="lastUpdateTime")
+    def last_update_time(self) -> str:
         """
         Last updated time of the group
         """
-        if member_entity_ids and not isinstance(member_entity_ids, list):
-            raise TypeError("Expected argument 'member_entity_ids' to be a list")
-        __self__.member_entity_ids = member_entity_ids
+        return pulumi.get(self, "last_update_time")
+
+    @property
+    @pulumi.getter(name="memberEntityIds")
+    def member_entity_ids(self) -> List[str]:
         """
         List of Entity IDs which are members of this group
         """
-        if member_group_ids and not isinstance(member_group_ids, list):
-            raise TypeError("Expected argument 'member_group_ids' to be a list")
-        __self__.member_group_ids = member_group_ids
+        return pulumi.get(self, "member_entity_ids")
+
+    @property
+    @pulumi.getter(name="memberGroupIds")
+    def member_group_ids(self) -> List[str]:
         """
         List of Group IDs which are members of this group
         """
-        if metadata and not isinstance(metadata, dict):
-            raise TypeError("Expected argument 'metadata' to be a dict")
-        __self__.metadata = metadata
+        return pulumi.get(self, "member_group_ids")
+
+    @property
+    @pulumi.getter
+    def metadata(self) -> Mapping[str, Any]:
         """
         Arbitrary metadata
         """
-        if modify_index and not isinstance(modify_index, float):
-            raise TypeError("Expected argument 'modify_index' to be a float")
-        __self__.modify_index = modify_index
+        return pulumi.get(self, "metadata")
+
+    @property
+    @pulumi.getter(name="modifyIndex")
+    def modify_index(self) -> float:
         """
         Modify index of the group
         """
-        if namespace_id and not isinstance(namespace_id, str):
-            raise TypeError("Expected argument 'namespace_id' to be a str")
-        __self__.namespace_id = namespace_id
+        return pulumi.get(self, "modify_index")
+
+    @property
+    @pulumi.getter(name="namespaceId")
+    def namespace_id(self) -> str:
         """
         Namespace of which the group is part of
         """
-        if parent_group_ids and not isinstance(parent_group_ids, list):
-            raise TypeError("Expected argument 'parent_group_ids' to be a list")
-        __self__.parent_group_ids = parent_group_ids
+        return pulumi.get(self, "namespace_id")
+
+    @property
+    @pulumi.getter(name="parentGroupIds")
+    def parent_group_ids(self) -> List[str]:
         """
         List of Group IDs which are parents of this group.
         """
-        if policies and not isinstance(policies, list):
-            raise TypeError("Expected argument 'policies' to be a list")
-        __self__.policies = policies
+        return pulumi.get(self, "parent_group_ids")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> List[str]:
         """
         List of policies attached to the group
         """
-        if type and not isinstance(type, str):
-            raise TypeError("Expected argument 'type' to be a str")
-        __self__.type = type
+        return pulumi.get(self, "policies")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
         """
         Type of group
         """
+        return pulumi.get(self, "type")
+
+
 class AwaitableGetGroupResult(GetGroupResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -174,7 +303,13 @@ class AwaitableGetGroupResult(GetGroupResult):
             policies=self.policies,
             type=self.type)
 
-def get_group(alias_id=None,alias_mount_accessor=None,alias_name=None,group_id=None,group_name=None,opts=None):
+
+def get_group(alias_id: Optional[str] = None,
+              alias_mount_accessor: Optional[str] = None,
+              alias_name: Optional[str] = None,
+              group_id: Optional[str] = None,
+              group_name: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupResult:
     """
     Use this data source to access information about an existing resource.
 
@@ -187,8 +322,6 @@ def get_group(alias_id=None,alias_mount_accessor=None,alias_name=None,group_id=N
     :param str group_name: Name of the group.
     """
     __args__ = dict()
-
-
     __args__['aliasId'] = alias_id
     __args__['aliasMountAccessor'] = alias_mount_accessor
     __args__['aliasName'] = alias_name
@@ -197,31 +330,31 @@ def get_group(alias_id=None,alias_mount_accessor=None,alias_name=None,group_id=N
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('vault:identity/getGroup:getGroup', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('vault:identity/getGroup:getGroup', __args__, opts=opts, typ=GetGroupResult).value
 
     return AwaitableGetGroupResult(
-        alias_canonical_id=__ret__.get('aliasCanonicalId'),
-        alias_creation_time=__ret__.get('aliasCreationTime'),
-        alias_id=__ret__.get('aliasId'),
-        alias_last_update_time=__ret__.get('aliasLastUpdateTime'),
-        alias_merged_from_canonical_ids=__ret__.get('aliasMergedFromCanonicalIds'),
-        alias_metadata=__ret__.get('aliasMetadata'),
-        alias_mount_accessor=__ret__.get('aliasMountAccessor'),
-        alias_mount_path=__ret__.get('aliasMountPath'),
-        alias_mount_type=__ret__.get('aliasMountType'),
-        alias_name=__ret__.get('aliasName'),
-        creation_time=__ret__.get('creationTime'),
-        data_json=__ret__.get('dataJson'),
-        group_id=__ret__.get('groupId'),
-        group_name=__ret__.get('groupName'),
-        id=__ret__.get('id'),
-        last_update_time=__ret__.get('lastUpdateTime'),
-        member_entity_ids=__ret__.get('memberEntityIds'),
-        member_group_ids=__ret__.get('memberGroupIds'),
-        metadata=__ret__.get('metadata'),
-        modify_index=__ret__.get('modifyIndex'),
-        namespace_id=__ret__.get('namespaceId'),
-        parent_group_ids=__ret__.get('parentGroupIds'),
-        policies=__ret__.get('policies'),
-        type=__ret__.get('type'))
+        alias_canonical_id=__ret__.alias_canonical_id,
+        alias_creation_time=__ret__.alias_creation_time,
+        alias_id=__ret__.alias_id,
+        alias_last_update_time=__ret__.alias_last_update_time,
+        alias_merged_from_canonical_ids=__ret__.alias_merged_from_canonical_ids,
+        alias_metadata=__ret__.alias_metadata,
+        alias_mount_accessor=__ret__.alias_mount_accessor,
+        alias_mount_path=__ret__.alias_mount_path,
+        alias_mount_type=__ret__.alias_mount_type,
+        alias_name=__ret__.alias_name,
+        creation_time=__ret__.creation_time,
+        data_json=__ret__.data_json,
+        group_id=__ret__.group_id,
+        group_name=__ret__.group_name,
+        id=__ret__.id,
+        last_update_time=__ret__.last_update_time,
+        member_entity_ids=__ret__.member_entity_ids,
+        member_group_ids=__ret__.member_group_ids,
+        metadata=__ret__.metadata,
+        modify_index=__ret__.modify_index,
+        namespace_id=__ret__.namespace_id,
+        parent_group_ids=__ret__.parent_group_ids,
+        policies=__ret__.policies,
+        type=__ret__.type)

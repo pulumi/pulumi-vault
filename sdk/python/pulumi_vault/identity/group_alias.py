@@ -5,24 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['GroupAlias']
 
 
 class GroupAlias(pulumi.CustomResource):
-    canonical_id: pulumi.Output[str]
-    """
-    ID of the group to which this is an alias.
-    """
-    mount_accessor: pulumi.Output[str]
-    """
-    Mount accessor of the authentication backend to which this alias belongs to.
-    """
-    name: pulumi.Output[str]
-    """
-    Name of the group alias to create.
-    """
-    def __init__(__self__, resource_name, opts=None, canonical_id=None, mount_accessor=None, name=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 canonical_id: Optional[pulumi.Input[str]] = None,
+                 mount_accessor: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Creates an Identity Group Alias for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
 
@@ -63,7 +61,7 @@ class GroupAlias(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -85,13 +83,18 @@ class GroupAlias(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, canonical_id=None, mount_accessor=None, name=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            canonical_id: Optional[pulumi.Input[str]] = None,
+            mount_accessor: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None) -> 'GroupAlias':
         """
         Get an existing GroupAlias resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] canonical_id: ID of the group to which this is an alias.
         :param pulumi.Input[str] mount_accessor: Mount accessor of the authentication backend to which this alias belongs to.
@@ -106,8 +109,33 @@ class GroupAlias(pulumi.CustomResource):
         __props__["name"] = name
         return GroupAlias(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="canonicalId")
+    def canonical_id(self) -> pulumi.Output[str]:
+        """
+        ID of the group to which this is an alias.
+        """
+        return pulumi.get(self, "canonical_id")
+
+    @property
+    @pulumi.getter(name="mountAccessor")
+    def mount_accessor(self) -> pulumi.Output[str]:
+        """
+        Mount accessor of the authentication backend to which this alias belongs to.
+        """
+        return pulumi.get(self, "mount_accessor")
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Output[str]:
+        """
+        Name of the group alias to create.
+        """
+        return pulumi.get(self, "name")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,54 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['Transformation']
 
 
 class Transformation(pulumi.CustomResource):
-    allowed_roles: pulumi.Output[list]
-    """
-    The set of roles allowed to perform this transformation.
-    """
-    masking_character: pulumi.Output[str]
-    """
-    The character used to replace data when in masking mode
-    """
-    name: pulumi.Output[str]
-    """
-    The name of the transformation.
-    """
-    path: pulumi.Output[str]
-    """
-    The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
-    """
-    template: pulumi.Output[str]
-    """
-    The name of the template to use.
-    """
-    templates: pulumi.Output[list]
-    """
-    Templates configured for transformation.
-    """
-    tweak_source: pulumi.Output[str]
-    """
-    The source of where the tweak value comes from. Only valid when in FPE mode.
-    """
-    type: pulumi.Output[str]
-    """
-    The type of transformation to perform.
-    """
-    def __init__(__self__, resource_name, opts=None, allowed_roles=None, masking_character=None, name=None, path=None, template=None, templates=None, tweak_source=None, type=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_roles: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 masking_character: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 template: Optional[pulumi.Input[str]] = None,
+                 templates: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 tweak_source: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a Transformation resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] allowed_roles: The set of roles allowed to perform this transformation.
+        :param pulumi.Input[List[pulumi.Input[str]]] allowed_roles: The set of roles allowed to perform this transformation.
         :param pulumi.Input[str] masking_character: The character used to replace data when in masking mode
         :param pulumi.Input[str] name: The name of the transformation.
         :param pulumi.Input[str] path: The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
         :param pulumi.Input[str] template: The name of the template to use.
-        :param pulumi.Input[list] templates: Templates configured for transformation.
+        :param pulumi.Input[List[pulumi.Input[str]]] templates: Templates configured for transformation.
         :param pulumi.Input[str] tweak_source: The source of where the tweak value comes from. Only valid when in FPE mode.
         :param pulumi.Input[str] type: The type of transformation to perform.
         """
@@ -67,7 +50,7 @@ class Transformation(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -90,20 +73,30 @@ class Transformation(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allowed_roles=None, masking_character=None, name=None, path=None, template=None, templates=None, tweak_source=None, type=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allowed_roles: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            masking_character: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            path: Optional[pulumi.Input[str]] = None,
+            template: Optional[pulumi.Input[str]] = None,
+            templates: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            tweak_source: Optional[pulumi.Input[str]] = None,
+            type: Optional[pulumi.Input[str]] = None) -> 'Transformation':
         """
         Get an existing Transformation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] allowed_roles: The set of roles allowed to perform this transformation.
+        :param pulumi.Input[List[pulumi.Input[str]]] allowed_roles: The set of roles allowed to perform this transformation.
         :param pulumi.Input[str] masking_character: The character used to replace data when in masking mode
         :param pulumi.Input[str] name: The name of the transformation.
         :param pulumi.Input[str] path: The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
         :param pulumi.Input[str] template: The name of the template to use.
-        :param pulumi.Input[list] templates: Templates configured for transformation.
+        :param pulumi.Input[List[pulumi.Input[str]]] templates: Templates configured for transformation.
         :param pulumi.Input[str] tweak_source: The source of where the tweak value comes from. Only valid when in FPE mode.
         :param pulumi.Input[str] type: The type of transformation to perform.
         """
@@ -121,8 +114,73 @@ class Transformation(pulumi.CustomResource):
         __props__["type"] = type
         return Transformation(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        The set of roles allowed to perform this transformation.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="maskingCharacter")
+    def masking_character(self) -> pulumi.Output[Optional[str]]:
+        """
+        The character used to replace data when in masking mode
+        """
+        return pulumi.get(self, "masking_character")
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Output[str]:
+        """
+        The name of the transformation.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Output[str]:
+        """
+        The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def template(self) -> pulumi.Output[Optional[str]]:
+        """
+        The name of the template to use.
+        """
+        return pulumi.get(self, "template")
+
+    @property
+    @pulumi.getter
+    def templates(self) -> pulumi.Output[List[str]]:
+        """
+        Templates configured for transformation.
+        """
+        return pulumi.get(self, "templates")
+
+    @property
+    @pulumi.getter(name="tweakSource")
+    def tweak_source(self) -> pulumi.Output[Optional[str]]:
+        """
+        The source of where the tweak value comes from. Only valid when in FPE mode.
+        """
+        return pulumi.get(self, "tweak_source")
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Output[Optional[str]]:
+        """
+        The type of transformation to perform.
+        """
+        return pulumi.get(self, "type")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

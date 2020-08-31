@@ -567,7 +567,7 @@ export namespace okta {
     }
 }
 
-export namespace rabbitMq {
+export namespace rabbitmq {
     export interface SecretBackendRoleVhost {
         configure: pulumi.Input<string>;
         host: pulumi.Input<string>;

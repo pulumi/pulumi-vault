@@ -72,12 +72,12 @@ namespace Pulumi.Vault.RabbitMQ
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecretBackend(string name, SecretBackendArgs args, CustomResourceOptions? options = null)
-            : base("vault:rabbitMq/secretBackend:SecretBackend", name, args ?? new SecretBackendArgs(), MakeResourceOptions(options, ""))
+            : base("vault:rabbitmq/secretBackend:SecretBackend", name, args ?? new SecretBackendArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private SecretBackend(string name, Input<string> id, SecretBackendState? state = null, CustomResourceOptions? options = null)
-            : base("vault:rabbitMq/secretBackend:SecretBackend", name, state, MakeResourceOptions(options, id))
+            : base("vault:rabbitmq/secretBackend:SecretBackend", name, state, MakeResourceOptions(options, id))
         {
         }
 

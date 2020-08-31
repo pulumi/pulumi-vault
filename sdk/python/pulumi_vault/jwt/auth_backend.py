@@ -5,69 +5,35 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['AuthBackend']
 
 
 class AuthBackend(pulumi.CustomResource):
-    accessor: pulumi.Output[str]
-    """
-    The accessor of the JWT auth backend
-    """
-    bound_issuer: pulumi.Output[str]
-    """
-    The value against which to match the iss claim in a JWT
-    """
-    default_role: pulumi.Output[str]
-    """
-    The default role to use if none is provided during login
-    """
-    description: pulumi.Output[str]
-    """
-    The description of the auth backend
-    """
-    jwks_ca_pem: pulumi.Output[str]
-    """
-    The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
-    """
-    jwks_url: pulumi.Output[str]
-    """
-    JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
-    """
-    jwt_supported_algs: pulumi.Output[list]
-    """
-    A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
-    """
-    jwt_validation_pubkeys: pulumi.Output[list]
-    """
-    A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
-    """
-    oidc_client_id: pulumi.Output[str]
-    """
-    Client ID used for OIDC backends
-    """
-    oidc_client_secret: pulumi.Output[str]
-    """
-    Client Secret used for OIDC backends
-    """
-    oidc_discovery_ca_pem: pulumi.Output[str]
-    """
-    The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
-    """
-    oidc_discovery_url: pulumi.Output[str]
-    """
-    The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
-    """
-    path: pulumi.Output[str]
-    """
-    Path to mount the JWT/OIDC auth backend
-    """
-    tune: pulumi.Output[dict]
-    type: pulumi.Output[str]
-    """
-    Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
-    """
-    def __init__(__self__, resource_name, opts=None, bound_issuer=None, default_role=None, description=None, jwks_ca_pem=None, jwks_url=None, jwt_supported_algs=None, jwt_validation_pubkeys=None, oidc_client_id=None, oidc_client_secret=None, oidc_discovery_ca_pem=None, oidc_discovery_url=None, path=None, tune=None, type=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 bound_issuer: Optional[pulumi.Input[str]] = None,
+                 default_role: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 jwks_ca_pem: Optional[pulumi.Input[str]] = None,
+                 jwks_url: Optional[pulumi.Input[str]] = None,
+                 jwt_supported_algs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 jwt_validation_pubkeys: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 oidc_client_id: Optional[pulumi.Input[str]] = None,
+                 oidc_client_secret: Optional[pulumi.Input[str]] = None,
+                 oidc_discovery_ca_pem: Optional[pulumi.Input[str]] = None,
+                 oidc_discovery_url: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a resource for managing an
         [JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).
@@ -100,9 +66,9 @@ class AuthBackend(pulumi.CustomResource):
             oidc_client_secret="secret123456",
             oidc_discovery_url="https://myco.auth0.com/",
             path="oidc",
-            tune={
-                "listing_visibility": "unauth",
-            },
+            tune=vault.jwt.AuthBackendTuneArgs(
+                listing_visibility="unauth",
+            ),
             type="oidc")
         ```
 
@@ -113,35 +79,14 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the auth backend
         :param pulumi.Input[str] jwks_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
         :param pulumi.Input[str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
-        :param pulumi.Input[list] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
-        :param pulumi.Input[list] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+        :param pulumi.Input[List[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
+        :param pulumi.Input[List[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
         :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
         :param pulumi.Input[str] oidc_client_secret: Client Secret used for OIDC backends
         :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
         :param pulumi.Input[str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
         :param pulumi.Input[str] path: Path to mount the JWT/OIDC auth backend
         :param pulumi.Input[str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
-
-        The **tune** object supports the following:
-
-          * `allowedResponseHeaders` (`pulumi.Input[list]`) - List of headers to whitelist and allowing
-            a plugin to include them in the response.
-          * `auditNonHmacRequestKeys` (`pulumi.Input[list]`) - Specifies the list of keys that will
-            not be HMAC'd by audit devices in the request data object.
-          * `auditNonHmacResponseKeys` (`pulumi.Input[list]`) - Specifies the list of keys that will
-            not be HMAC'd by audit devices in the response data object.
-          * `defaultLeaseTtl` (`pulumi.Input[str]`) - Specifies the default time-to-live.
-            If set, this overrides the global default.
-            Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-          * `listing_visibility` (`pulumi.Input[str]`) - Specifies whether to show this mount in
-            the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
-          * `maxLeaseTtl` (`pulumi.Input[str]`) - Specifies the maximum time-to-live.
-            If set, this overrides the global default.
-            Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-          * `passthroughRequestHeaders` (`pulumi.Input[list]`) - List of headers to whitelist and
-            pass from the request to the backend.
-          * `token_type` (`pulumi.Input[str]`) - Specifies the type of tokens that should be returned by
-            the mount. Valid values are "default-service", "default-batch", "service", "batch".
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -154,7 +99,7 @@ class AuthBackend(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -182,13 +127,30 @@ class AuthBackend(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, accessor=None, bound_issuer=None, default_role=None, description=None, jwks_ca_pem=None, jwks_url=None, jwt_supported_algs=None, jwt_validation_pubkeys=None, oidc_client_id=None, oidc_client_secret=None, oidc_discovery_ca_pem=None, oidc_discovery_url=None, path=None, tune=None, type=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accessor: Optional[pulumi.Input[str]] = None,
+            bound_issuer: Optional[pulumi.Input[str]] = None,
+            default_role: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            jwks_ca_pem: Optional[pulumi.Input[str]] = None,
+            jwks_url: Optional[pulumi.Input[str]] = None,
+            jwt_supported_algs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            jwt_validation_pubkeys: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            oidc_client_id: Optional[pulumi.Input[str]] = None,
+            oidc_client_secret: Optional[pulumi.Input[str]] = None,
+            oidc_discovery_ca_pem: Optional[pulumi.Input[str]] = None,
+            oidc_discovery_url: Optional[pulumi.Input[str]] = None,
+            path: Optional[pulumi.Input[str]] = None,
+            tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
+            type: Optional[pulumi.Input[str]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accessor: The accessor of the JWT auth backend
         :param pulumi.Input[str] bound_issuer: The value against which to match the iss claim in a JWT
@@ -196,35 +158,14 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the auth backend
         :param pulumi.Input[str] jwks_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
         :param pulumi.Input[str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
-        :param pulumi.Input[list] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
-        :param pulumi.Input[list] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+        :param pulumi.Input[List[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
+        :param pulumi.Input[List[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
         :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
         :param pulumi.Input[str] oidc_client_secret: Client Secret used for OIDC backends
         :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
         :param pulumi.Input[str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
         :param pulumi.Input[str] path: Path to mount the JWT/OIDC auth backend
         :param pulumi.Input[str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
-
-        The **tune** object supports the following:
-
-          * `allowedResponseHeaders` (`pulumi.Input[list]`) - List of headers to whitelist and allowing
-            a plugin to include them in the response.
-          * `auditNonHmacRequestKeys` (`pulumi.Input[list]`) - Specifies the list of keys that will
-            not be HMAC'd by audit devices in the request data object.
-          * `auditNonHmacResponseKeys` (`pulumi.Input[list]`) - Specifies the list of keys that will
-            not be HMAC'd by audit devices in the response data object.
-          * `defaultLeaseTtl` (`pulumi.Input[str]`) - Specifies the default time-to-live.
-            If set, this overrides the global default.
-            Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-          * `listing_visibility` (`pulumi.Input[str]`) - Specifies whether to show this mount in
-            the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
-          * `maxLeaseTtl` (`pulumi.Input[str]`) - Specifies the maximum time-to-live.
-            If set, this overrides the global default.
-            Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-          * `passthroughRequestHeaders` (`pulumi.Input[list]`) - List of headers to whitelist and
-            pass from the request to the backend.
-          * `token_type` (`pulumi.Input[str]`) - Specifies the type of tokens that should be returned by
-            the mount. Valid values are "default-service", "default-batch", "service", "batch".
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -247,8 +188,126 @@ class AuthBackend(pulumi.CustomResource):
         __props__["type"] = type
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def accessor(self) -> pulumi.Output[str]:
+        """
+        The accessor of the JWT auth backend
+        """
+        return pulumi.get(self, "accessor")
+
+    @property
+    @pulumi.getter(name="boundIssuer")
+    def bound_issuer(self) -> pulumi.Output[Optional[str]]:
+        """
+        The value against which to match the iss claim in a JWT
+        """
+        return pulumi.get(self, "bound_issuer")
+
+    @property
+    @pulumi.getter(name="defaultRole")
+    def default_role(self) -> pulumi.Output[Optional[str]]:
+        """
+        The default role to use if none is provided during login
+        """
+        return pulumi.get(self, "default_role")
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        The description of the auth backend
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="jwksCaPem")
+    def jwks_ca_pem(self) -> pulumi.Output[Optional[str]]:
+        """
+        The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+        """
+        return pulumi.get(self, "jwks_ca_pem")
+
+    @property
+    @pulumi.getter(name="jwksUrl")
+    def jwks_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
+        """
+        return pulumi.get(self, "jwks_url")
+
+    @property
+    @pulumi.getter(name="jwtSupportedAlgs")
+    def jwt_supported_algs(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
+        """
+        return pulumi.get(self, "jwt_supported_algs")
+
+    @property
+    @pulumi.getter(name="jwtValidationPubkeys")
+    def jwt_validation_pubkeys(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+        """
+        return pulumi.get(self, "jwt_validation_pubkeys")
+
+    @property
+    @pulumi.getter(name="oidcClientId")
+    def oidc_client_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        Client ID used for OIDC backends
+        """
+        return pulumi.get(self, "oidc_client_id")
+
+    @property
+    @pulumi.getter(name="oidcClientSecret")
+    def oidc_client_secret(self) -> pulumi.Output[Optional[str]]:
+        """
+        Client Secret used for OIDC backends
+        """
+        return pulumi.get(self, "oidc_client_secret")
+
+    @property
+    @pulumi.getter(name="oidcDiscoveryCaPem")
+    def oidc_discovery_ca_pem(self) -> pulumi.Output[Optional[str]]:
+        """
+        The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
+        """
+        return pulumi.get(self, "oidc_discovery_ca_pem")
+
+    @property
+    @pulumi.getter(name="oidcDiscoveryUrl")
+    def oidc_discovery_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
+        """
+        return pulumi.get(self, "oidc_discovery_url")
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Output[Optional[str]]:
+        """
+        Path to mount the JWT/OIDC auth backend
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def tune(self) -> pulumi.Output['outputs.AuthBackendTune']:
+        return pulumi.get(self, "tune")
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Output[Optional[str]]:
+        """
+        Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
+        """
+        return pulumi.get(self, "type")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

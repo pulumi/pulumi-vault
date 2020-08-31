@@ -126,12 +126,12 @@ namespace Pulumi.Vault.AppRole
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AuthBackendRoleSecretID(string name, AuthBackendRoleSecretIDArgs args, CustomResourceOptions? options = null)
-            : base("vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID", name, args ?? new AuthBackendRoleSecretIDArgs(), MakeResourceOptions(options, ""))
+            : base("vault:approle/authBackendRoleSecretID:AuthBackendRoleSecretID", name, args ?? new AuthBackendRoleSecretIDArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private AuthBackendRoleSecretID(string name, Input<string> id, AuthBackendRoleSecretIDState? state = null, CustomResourceOptions? options = null)
-            : base("vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID", name, state, MakeResourceOptions(options, id))
+            : base("vault:approle/authBackendRoleSecretID:AuthBackendRoleSecretID", name, state, MakeResourceOptions(options, id))
         {
         }
 

@@ -56,32 +56,35 @@ export class MfaDuo extends pulumi.CustomResource {
     }
 
     /**
-     * API hostname for Duo.
+     * `(string: <required>)` - API hostname for Duo.
      */
     public readonly apiHostname!: pulumi.Output<string>;
     /**
-     * Integration key for Duo.
+     * `(string: <required>)` - Integration key for Duo.
      */
     public readonly integrationKey!: pulumi.Output<string>;
     /**
-     * The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated
-     * with this mount as the username in the mapping.
+     * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      */
     public readonly mountAccessor!: pulumi.Output<string>;
     /**
-     * Name of the MFA method.
+     * `(string: <required>)` – Name of the MFA method.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Push information for Duo.
+     * `(string)` - Push information for Duo.
      */
     public readonly pushInfo!: pulumi.Output<string | undefined>;
     /**
-     * Secret key for Duo.
+     * `(string: <required>)` - Secret key for Duo.
      */
     public readonly secretKey!: pulumi.Output<string>;
     /**
-     * A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`.
+     * `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
+     * - alias.name: The name returned by the mount configured via the `mountAccessor` parameter
+     * - entity.name: The name configured for the Entity
+     * - alias.metadata.`<key>`: The value of the Alias's metadata parameter
+     * - entity.metadata.`<key>`: The value of the Entity's metadata parameter
      */
     public readonly usernameFormat!: pulumi.Output<string | undefined>;
 
@@ -142,32 +145,35 @@ export class MfaDuo extends pulumi.CustomResource {
  */
 export interface MfaDuoState {
     /**
-     * API hostname for Duo.
+     * `(string: <required>)` - API hostname for Duo.
      */
     readonly apiHostname?: pulumi.Input<string>;
     /**
-     * Integration key for Duo.
+     * `(string: <required>)` - Integration key for Duo.
      */
     readonly integrationKey?: pulumi.Input<string>;
     /**
-     * The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated
-     * with this mount as the username in the mapping.
+     * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      */
     readonly mountAccessor?: pulumi.Input<string>;
     /**
-     * Name of the MFA method.
+     * `(string: <required>)` – Name of the MFA method.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Push information for Duo.
+     * `(string)` - Push information for Duo.
      */
     readonly pushInfo?: pulumi.Input<string>;
     /**
-     * Secret key for Duo.
+     * `(string: <required>)` - Secret key for Duo.
      */
     readonly secretKey?: pulumi.Input<string>;
     /**
-     * A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`.
+     * `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
+     * - alias.name: The name returned by the mount configured via the `mountAccessor` parameter
+     * - entity.name: The name configured for the Entity
+     * - alias.metadata.`<key>`: The value of the Alias's metadata parameter
+     * - entity.metadata.`<key>`: The value of the Entity's metadata parameter
      */
     readonly usernameFormat?: pulumi.Input<string>;
 }
@@ -177,32 +183,35 @@ export interface MfaDuoState {
  */
 export interface MfaDuoArgs {
     /**
-     * API hostname for Duo.
+     * `(string: <required>)` - API hostname for Duo.
      */
     readonly apiHostname: pulumi.Input<string>;
     /**
-     * Integration key for Duo.
+     * `(string: <required>)` - Integration key for Duo.
      */
     readonly integrationKey: pulumi.Input<string>;
     /**
-     * The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated
-     * with this mount as the username in the mapping.
+     * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      */
     readonly mountAccessor: pulumi.Input<string>;
     /**
-     * Name of the MFA method.
+     * `(string: <required>)` – Name of the MFA method.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Push information for Duo.
+     * `(string)` - Push information for Duo.
      */
     readonly pushInfo?: pulumi.Input<string>;
     /**
-     * Secret key for Duo.
+     * `(string: <required>)` - Secret key for Duo.
      */
     readonly secretKey: pulumi.Input<string>;
     /**
-     * A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`.
+     * `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
+     * - alias.name: The name returned by the mount configured via the `mountAccessor` parameter
+     * - entity.name: The name configured for the Entity
+     * - alias.metadata.`<key>`: The value of the Alias's metadata parameter
+     * - entity.metadata.`<key>`: The value of the Entity's metadata parameter
      */
     readonly usernameFormat?: pulumi.Input<string>;
 }
