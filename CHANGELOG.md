@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v2.13.0 of the Vault Terraform Provider
+* Upgrade to v2.14.0 of the Vault Terraform Provider
 
 ---
 

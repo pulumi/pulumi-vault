@@ -162,8 +162,9 @@ type AuthBackendRole struct {
 	//
 	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
-	// If set to `true`, the
-	// `boundIamPrincipalArns` are resolved to [AWS Unique
+	// Only valid when
+	// `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
+	// resolved to [AWS Unique
 	// IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
 	// for the bound principal ARN. This field is ignored when a
 	// `boundIamPrincipalArn` ends in a wildcard. Resolving to unique IDs more
@@ -339,8 +340,9 @@ type authBackendRoleState struct {
 	//
 	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies []string `pulumi:"policies"`
-	// If set to `true`, the
-	// `boundIamPrincipalArns` are resolved to [AWS Unique
+	// Only valid when
+	// `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
+	// resolved to [AWS Unique
 	// IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
 	// for the bound principal ARN. This field is ignored when a
 	// `boundIamPrincipalArn` ends in a wildcard. Resolving to unique IDs more
@@ -486,8 +488,9 @@ type AuthBackendRoleState struct {
 	//
 	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies pulumi.StringArrayInput
-	// If set to `true`, the
-	// `boundIamPrincipalArns` are resolved to [AWS Unique
+	// Only valid when
+	// `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
+	// resolved to [AWS Unique
 	// IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
 	// for the bound principal ARN. This field is ignored when a
 	// `boundIamPrincipalArn` ends in a wildcard. Resolving to unique IDs more
@@ -637,8 +640,9 @@ type authBackendRoleArgs struct {
 	//
 	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies []string `pulumi:"policies"`
-	// If set to `true`, the
-	// `boundIamPrincipalArns` are resolved to [AWS Unique
+	// Only valid when
+	// `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
+	// resolved to [AWS Unique
 	// IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
 	// for the bound principal ARN. This field is ignored when a
 	// `boundIamPrincipalArn` ends in a wildcard. Resolving to unique IDs more
@@ -785,8 +789,9 @@ type AuthBackendRoleArgs struct {
 	//
 	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies pulumi.StringArrayInput
-	// If set to `true`, the
-	// `boundIamPrincipalArns` are resolved to [AWS Unique
+	// Only valid when
+	// `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
+	// resolved to [AWS Unique
 	// IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
 	// for the bound principal ARN. This field is ignored when a
 	// `boundIamPrincipalArn` ends in a wildcard. Resolving to unique IDs more

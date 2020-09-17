@@ -15,6 +15,7 @@ from .mount import *
 from .namespace import *
 from .policy import *
 from .provider import *
+from .quota_rate_limit import *
 from .rgp_policy import *
 from .token import *
 

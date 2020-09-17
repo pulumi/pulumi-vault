@@ -127,8 +127,9 @@ class AuthBackendRole(pulumi.CustomResource):
     """
     resolve_aws_unique_ids: pulumi.Output[bool]
     """
-    If set to `true`, the
-    `bound_iam_principal_arns` are resolved to [AWS Unique
+    Only valid when
+    `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
+    resolved to [AWS Unique
     IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
     for the bound principal ARN. This field is ignored when a
     `bound_iam_principal_arn` ends in a wildcard. Resolving to unique IDs more
@@ -307,8 +308,9 @@ class AuthBackendRole(pulumi.CustomResource):
                value of this field. Specified in seconds.
         :param pulumi.Input[list] policies: An array of strings
                specifying the policies to be set on tokens issued using this role.
-        :param pulumi.Input[bool] resolve_aws_unique_ids: If set to `true`, the
-               `bound_iam_principal_arns` are resolved to [AWS Unique
+        :param pulumi.Input[bool] resolve_aws_unique_ids: Only valid when
+               `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
+               resolved to [AWS Unique
                IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
                for the bound principal ARN. This field is ignored when a
                `bound_iam_principal_arn` ends in a wildcard. Resolving to unique IDs more
@@ -490,8 +492,9 @@ class AuthBackendRole(pulumi.CustomResource):
                value of this field. Specified in seconds.
         :param pulumi.Input[list] policies: An array of strings
                specifying the policies to be set on tokens issued using this role.
-        :param pulumi.Input[bool] resolve_aws_unique_ids: If set to `true`, the
-               `bound_iam_principal_arns` are resolved to [AWS Unique
+        :param pulumi.Input[bool] resolve_aws_unique_ids: Only valid when
+               `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
+               resolved to [AWS Unique
                IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
                for the bound principal ARN. This field is ignored when a
                `bound_iam_principal_arn` ends in a wildcard. Resolving to unique IDs more

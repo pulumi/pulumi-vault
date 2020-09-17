@@ -190,8 +190,9 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly policies!: pulumi.Output<string[] | undefined>;
     /**
-     * If set to `true`, the
-     * `boundIamPrincipalArns` are resolved to [AWS Unique
+     * Only valid when
+     * `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
+     * resolved to [AWS Unique
      * IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
      * for the bound principal ARN. This field is ignored when a
      * `boundIamPrincipalArn` ends in a wildcard. Resolving to unique IDs more
@@ -492,8 +493,9 @@ export interface AuthBackendRoleState {
      */
     readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * If set to `true`, the
-     * `boundIamPrincipalArns` are resolved to [AWS Unique
+     * Only valid when
+     * `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
+     * resolved to [AWS Unique
      * IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
      * for the bound principal ARN. This field is ignored when a
      * `boundIamPrincipalArn` ends in a wildcard. Resolving to unique IDs more
@@ -704,8 +706,9 @@ export interface AuthBackendRoleArgs {
      */
     readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * If set to `true`, the
-     * `boundIamPrincipalArns` are resolved to [AWS Unique
+     * Only valid when
+     * `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
+     * resolved to [AWS Unique
      * IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
      * for the bound principal ARN. This field is ignored when a
      * `boundIamPrincipalArn` ends in a wildcard. Resolving to unique IDs more
