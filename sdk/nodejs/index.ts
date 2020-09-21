@@ -13,6 +13,7 @@ export * from "./mount";
 export * from "./namespace";
 export * from "./policy";
 export * from "./provider";
+export * from "./quotaRateLimit";
 export * from "./rgpPolicy";
 export * from "./token";
 

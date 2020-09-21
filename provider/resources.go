@@ -217,8 +217,9 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			"vault_rgp_policy": {Tok: makeResource(mainMod, "RgpPolicy")},
-			"vault_token":      {Tok: makeResource(mainMod, "Token")},
+			"vault_rgp_policy":       {Tok: makeResource(mainMod, "RgpPolicy")},
+			"vault_token":            {Tok: makeResource(mainMod, "Token")},
+			"vault_quota_rate_limit": {Tok: makeResource(mainMod, "QuotaRateLimit")},
 
 			// AppRole
 			"vault_approle_auth_backend_role":           {Tok: makeResource(appRoleMod, "AuthBackendRole")},

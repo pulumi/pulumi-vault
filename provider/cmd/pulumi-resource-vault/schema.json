@@ -2958,7 +2958,7 @@
                 },
                 "resolveAwsUniqueIds": {
                     "type": "boolean",
-                    "description": "If set to `true`, the\n`bound_iam_principal_arns` are resolved to [AWS Unique\nIDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)\nfor the bound principal ARN. This field is ignored when a\n`bound_iam_principal_arn` ends in a wildcard. Resolving to unique IDs more\nclosely mimics the behavior of AWS services in that if an IAM user or role is\ndeleted and a new one is recreated with the same name, those new users or\nroles won't get access to roles in Vault that were permissioned to the prior\nprincipals of the same name. Defaults to `true`.\nOnce set to `true`, this cannot be changed to `false` without recreating the role.\n"
+                    "description": "Only valid when\n`auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are\nresolved to [AWS Unique\nIDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)\nfor the bound principal ARN. This field is ignored when a\n`bound_iam_principal_arn` ends in a wildcard. Resolving to unique IDs more\nclosely mimics the behavior of AWS services in that if an IAM user or role is\ndeleted and a new one is recreated with the same name, those new users or\nroles won't get access to roles in Vault that were permissioned to the prior\nprincipals of the same name. Defaults to `true`.\nOnce set to `true`, this cannot be changed to `false` without recreating the role.\n"
                 },
                 "role": {
                     "type": "string",
@@ -3127,7 +3127,7 @@
                 },
                 "resolveAwsUniqueIds": {
                     "type": "boolean",
-                    "description": "If set to `true`, the\n`bound_iam_principal_arns` are resolved to [AWS Unique\nIDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)\nfor the bound principal ARN. This field is ignored when a\n`bound_iam_principal_arn` ends in a wildcard. Resolving to unique IDs more\nclosely mimics the behavior of AWS services in that if an IAM user or role is\ndeleted and a new one is recreated with the same name, those new users or\nroles won't get access to roles in Vault that were permissioned to the prior\nprincipals of the same name. Defaults to `true`.\nOnce set to `true`, this cannot be changed to `false` without recreating the role.\n"
+                    "description": "Only valid when\n`auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are\nresolved to [AWS Unique\nIDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)\nfor the bound principal ARN. This field is ignored when a\n`bound_iam_principal_arn` ends in a wildcard. Resolving to unique IDs more\nclosely mimics the behavior of AWS services in that if an IAM user or role is\ndeleted and a new one is recreated with the same name, those new users or\nroles won't get access to roles in Vault that were permissioned to the prior\nprincipals of the same name. Defaults to `true`.\nOnce set to `true`, this cannot be changed to `false` without recreating the role.\n"
                 },
                 "role": {
                     "type": "string",
@@ -3298,7 +3298,7 @@
                     },
                     "resolveAwsUniqueIds": {
                         "type": "boolean",
-                        "description": "If set to `true`, the\n`bound_iam_principal_arns` are resolved to [AWS Unique\nIDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)\nfor the bound principal ARN. This field is ignored when a\n`bound_iam_principal_arn` ends in a wildcard. Resolving to unique IDs more\nclosely mimics the behavior of AWS services in that if an IAM user or role is\ndeleted and a new one is recreated with the same name, those new users or\nroles won't get access to roles in Vault that were permissioned to the prior\nprincipals of the same name. Defaults to `true`.\nOnce set to `true`, this cannot be changed to `false` without recreating the role.\n"
+                        "description": "Only valid when\n`auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are\nresolved to [AWS Unique\nIDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)\nfor the bound principal ARN. This field is ignored when a\n`bound_iam_principal_arn` ends in a wildcard. Resolving to unique IDs more\nclosely mimics the behavior of AWS services in that if an IAM user or role is\ndeleted and a new one is recreated with the same name, those new users or\nroles won't get access to roles in Vault that were permissioned to the prior\nprincipals of the same name. Defaults to `true`.\nOnce set to `true`, this cannot be changed to `false` without recreating the role.\n"
                     },
                     "role": {
                         "type": "string",
@@ -8829,6 +8829,61 @@
                                 "name": "PolicyContents"
                             }
                         }
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:index/quotaRateLimit:QuotaRateLimit": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the quota.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota.\n"
+                },
+                "rate": {
+                    "type": "number",
+                    "description": "The maximum number of requests at any given second to be allowed by the quota rule. The rate must be positive.\n"
+                }
+            },
+            "required": [
+                "name",
+                "rate"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the quota.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota.\n"
+                },
+                "rate": {
+                    "type": "number",
+                    "description": "The maximum number of requests at any given second to be allowed by the quota rule. The rate must be positive.\n"
+                }
+            },
+            "requiredInputs": [
+                "rate"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering QuotaRateLimit resources.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the quota.\n"
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota.\n"
+                    },
+                    "rate": {
+                        "type": "number",
+                        "description": "The maximum number of requests at any given second to be allowed by the quota rule. The rate must be positive.\n"
                     }
                 },
                 "type": "object"

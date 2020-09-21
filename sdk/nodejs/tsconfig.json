@@ -114,6 +114,7 @@
         "pkiSecret/secretBackendSign.ts",
         "policy.ts",
         "provider.ts",
+        "quotaRateLimit.ts",
         "rabbitMq/index.ts",
         "rabbitMq/secretBackend.ts",
         "rabbitMq/secretBackendRole.ts",
