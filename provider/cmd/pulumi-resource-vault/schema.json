@@ -1673,6 +1673,7 @@
     },
     "resources": {
         "vault:alicloud/authBackendRole:AuthBackendRole": {
+            "description": "Provides a resource to create a role in an [AliCloud auth backend within Vault](https://www.vaultproject.io/docs/auth/alicloud.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst alicloudAuthBackend = new vault.AuthBackend(\"alicloudAuthBackend\", {\n    type: \"alicloud\",\n    path: \"alicloud\",\n});\nconst alicloudAuthBackendRole = new vault.alicloud.AuthBackendRole(\"alicloudAuthBackendRole\", {\n    backend: alicloudAuthBackend.path,\n    role: \"example\",\n    arn: \"acs:ram:123456:tf:role/foobar\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nalicloud_auth_backend = vault.AuthBackend(\"alicloudAuthBackend\",\n    type=\"alicloud\",\n    path=\"alicloud\")\nalicloud_auth_backend_role = vault.alicloud.AuthBackendRole(\"alicloudAuthBackendRole\",\n    backend=alicloud_auth_backend.path,\n    role=\"example\",\n    arn=\"acs:ram:123456:tf:role/foobar\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var alicloudAuthBackend = new Vault.AuthBackend(\"alicloudAuthBackend\", new Vault.AuthBackendArgs\n        {\n            Type = \"alicloud\",\n            Path = \"alicloud\",\n        });\n        var alicloudAuthBackendRole = new Vault.AliCloud.AuthBackendRole(\"alicloudAuthBackendRole\", new Vault.AliCloud.AuthBackendRoleArgs\n        {\n            Backend = alicloudAuthBackend.Path,\n            Role = \"example\",\n            Arn = \"acs:ram:123456:tf:role/foobar\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/alicloud\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\talicloudAuthBackend, err := vault.NewAuthBackend(ctx, \"alicloudAuthBackend\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"alicloud\"),\n\t\t\tPath: pulumi.String(\"alicloud\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = alicloud.NewAuthBackendRole(ctx, \"alicloudAuthBackendRole\", \u0026alicloud.AuthBackendRoleArgs{\n\t\t\tBackend: alicloudAuthBackend.Path,\n\t\t\tRole:    pulumi.String(\"example\"),\n\t\t\tArn:     pulumi.String(\"acs:ram:123456:tf:role/foobar\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "arn": {
                     "type": "string",
@@ -1680,53 +1681,53 @@
                 },
                 "backend": {
                     "type": "string",
-                    "description": "Auth backend.\n"
+                    "description": "Path to the mounted AliCloud auth backend.\nDefaults to `alicloud`\n"
                 },
                 "role": {
                     "type": "string",
-                    "description": "Name of the role. Must correspond with the name of the role reflected in the arn.\n"
+                    "description": "Name of the role. Must correspond with the name of\nthe role reflected in the arn.\n"
                 },
                 "tokenBoundCidrs": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Specifies the blocks of IP addresses which are allowed to use the generated token\n"
+                    "description": "List of CIDR blocks; if set, specifies blocks of IP\naddresses which can authenticate successfully, and ties the resulting token to these blocks\nas well.\n"
                 },
                 "tokenExplicitMaxTtl": {
                     "type": "integer",
-                    "description": "Generated Token's Explicit Maximum TTL in seconds\n"
+                    "description": "If set, will encode an\n[explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)\nonto the token in number of seconds. This is a hard cap even if `token_ttl` and\n`token_max_ttl` would otherwise allow a renewal.\n"
                 },
                 "tokenMaxTtl": {
                     "type": "integer",
-                    "description": "The maximum lifetime of the generated token\n"
+                    "description": "The maximum lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\n"
                 },
                 "tokenNoDefaultPolicy": {
                     "type": "boolean",
-                    "description": "If true, the 'default' policy will not automatically be added to generated tokens\n"
+                    "description": "If set, the default policy will not be set on\ngenerated tokens; otherwise it will be added to the policies set in token_policies.\n"
                 },
                 "tokenNumUses": {
                     "type": "integer",
-                    "description": "The maximum number of times a token may be used, a value of zero means unlimited\n"
+                    "description": "The\n[period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),\nif any, in number of seconds to set on the token.\n"
                 },
                 "tokenPeriod": {
                     "type": "integer",
-                    "description": "Generated Token's Period\n"
+                    "description": "If set, indicates that the\ntoken generated using this role should never expire. The token should be renewed within the\nduration specified by this value. At each renewal, the token's TTL will be set to the\nvalue of this field. Specified in seconds.\n"
                 },
                 "tokenPolicies": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Generated Token's Policies\n"
+                    "description": "List of policies to encode onto generated tokens. Depending\non the auth method, this list may be supplemented by user/group/other values.\n"
                 },
                 "tokenTtl": {
                     "type": "integer",
-                    "description": "The initial ttl of the token to generate in seconds\n"
+                    "description": "The incremental lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\n"
                 },
                 "tokenType": {
                     "type": "string",
-                    "description": "The type of token to generate, service or batch\n"
+                    "description": "The type of token that should be generated. Can be `service`,\n`batch`, or `default` to use the mount's tuned default (which unless changed will be\n`service` tokens). For token store roles, there are two additional possibilities:\n`default-service` and `default-batch` which specify the type to return unless the client\nrequests a different type at generation time.\n"
                 }
             },
             "required": [
@@ -1740,53 +1741,53 @@
                 },
                 "backend": {
                     "type": "string",
-                    "description": "Auth backend.\n"
+                    "description": "Path to the mounted AliCloud auth backend.\nDefaults to `alicloud`\n"
                 },
                 "role": {
                     "type": "string",
-                    "description": "Name of the role. Must correspond with the name of the role reflected in the arn.\n"
+                    "description": "Name of the role. Must correspond with the name of\nthe role reflected in the arn.\n"
                 },
                 "tokenBoundCidrs": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Specifies the blocks of IP addresses which are allowed to use the generated token\n"
+                    "description": "List of CIDR blocks; if set, specifies blocks of IP\naddresses which can authenticate successfully, and ties the resulting token to these blocks\nas well.\n"
                 },
                 "tokenExplicitMaxTtl": {
                     "type": "integer",
-                    "description": "Generated Token's Explicit Maximum TTL in seconds\n"
+                    "description": "If set, will encode an\n[explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)\nonto the token in number of seconds. This is a hard cap even if `token_ttl` and\n`token_max_ttl` would otherwise allow a renewal.\n"
                 },
                 "tokenMaxTtl": {
                     "type": "integer",
-                    "description": "The maximum lifetime of the generated token\n"
+                    "description": "The maximum lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\n"
                 },
                 "tokenNoDefaultPolicy": {
                     "type": "boolean",
-                    "description": "If true, the 'default' policy will not automatically be added to generated tokens\n"
+                    "description": "If set, the default policy will not be set on\ngenerated tokens; otherwise it will be added to the policies set in token_policies.\n"
                 },
                 "tokenNumUses": {
                     "type": "integer",
-                    "description": "The maximum number of times a token may be used, a value of zero means unlimited\n"
+                    "description": "The\n[period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),\nif any, in number of seconds to set on the token.\n"
                 },
                 "tokenPeriod": {
                     "type": "integer",
-                    "description": "Generated Token's Period\n"
+                    "description": "If set, indicates that the\ntoken generated using this role should never expire. The token should be renewed within the\nduration specified by this value. At each renewal, the token's TTL will be set to the\nvalue of this field. Specified in seconds.\n"
                 },
                 "tokenPolicies": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Generated Token's Policies\n"
+                    "description": "List of policies to encode onto generated tokens. Depending\non the auth method, this list may be supplemented by user/group/other values.\n"
                 },
                 "tokenTtl": {
                     "type": "integer",
-                    "description": "The initial ttl of the token to generate in seconds\n"
+                    "description": "The incremental lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\n"
                 },
                 "tokenType": {
                     "type": "string",
-                    "description": "The type of token to generate, service or batch\n"
+                    "description": "The type of token that should be generated. Can be `service`,\n`batch`, or `default` to use the mount's tuned default (which unless changed will be\n`service` tokens). For token store roles, there are two additional possibilities:\n`default-service` and `default-batch` which specify the type to return unless the client\nrequests a different type at generation time.\n"
                 }
             },
             "requiredInputs": [
@@ -1802,53 +1803,53 @@
                     },
                     "backend": {
                         "type": "string",
-                        "description": "Auth backend.\n"
+                        "description": "Path to the mounted AliCloud auth backend.\nDefaults to `alicloud`\n"
                     },
                     "role": {
                         "type": "string",
-                        "description": "Name of the role. Must correspond with the name of the role reflected in the arn.\n"
+                        "description": "Name of the role. Must correspond with the name of\nthe role reflected in the arn.\n"
                     },
                     "tokenBoundCidrs": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "Specifies the blocks of IP addresses which are allowed to use the generated token\n"
+                        "description": "List of CIDR blocks; if set, specifies blocks of IP\naddresses which can authenticate successfully, and ties the resulting token to these blocks\nas well.\n"
                     },
                     "tokenExplicitMaxTtl": {
                         "type": "integer",
-                        "description": "Generated Token's Explicit Maximum TTL in seconds\n"
+                        "description": "If set, will encode an\n[explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)\nonto the token in number of seconds. This is a hard cap even if `token_ttl` and\n`token_max_ttl` would otherwise allow a renewal.\n"
                     },
                     "tokenMaxTtl": {
                         "type": "integer",
-                        "description": "The maximum lifetime of the generated token\n"
+                        "description": "The maximum lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\n"
                     },
                     "tokenNoDefaultPolicy": {
                         "type": "boolean",
-                        "description": "If true, the 'default' policy will not automatically be added to generated tokens\n"
+                        "description": "If set, the default policy will not be set on\ngenerated tokens; otherwise it will be added to the policies set in token_policies.\n"
                     },
                     "tokenNumUses": {
                         "type": "integer",
-                        "description": "The maximum number of times a token may be used, a value of zero means unlimited\n"
+                        "description": "The\n[period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),\nif any, in number of seconds to set on the token.\n"
                     },
                     "tokenPeriod": {
                         "type": "integer",
-                        "description": "Generated Token's Period\n"
+                        "description": "If set, indicates that the\ntoken generated using this role should never expire. The token should be renewed within the\nduration specified by this value. At each renewal, the token's TTL will be set to the\nvalue of this field. Specified in seconds.\n"
                     },
                     "tokenPolicies": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "Generated Token's Policies\n"
+                        "description": "List of policies to encode onto generated tokens. Depending\non the auth method, this list may be supplemented by user/group/other values.\n"
                     },
                     "tokenTtl": {
                         "type": "integer",
-                        "description": "The initial ttl of the token to generate in seconds\n"
+                        "description": "The incremental lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\n"
                     },
                     "tokenType": {
                         "type": "string",
-                        "description": "The type of token to generate, service or batch\n"
+                        "description": "The type of token that should be generated. Can be `service`,\n`batch`, or `default` to use the mount's tuned default (which unless changed will be\n`service` tokens). For token store roles, there are two additional possibilities:\n`default-service` and `default-batch` which specify the type to return unless the client\nrequests a different type at generation time.\n"
                     }
                 },
                 "type": "object"
@@ -8847,18 +8848,19 @@
             }
         },
         "vault:index/quotaRateLimit:QuotaRateLimit": {
+            "description": "Manage rate limit quotas which enforce API rate limiting using a token bucket algorithm.\nA rate limit quota can be created at the root level or defined on a namespace or mount by\nspecifying a path when creating the quota.\n\nSee [Vault's Documentation](https://www.vaultproject.io/docs/concepts/resource-quotas) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst global = new vault.QuotaRateLimit(\"global\", {\n    path: \"\",\n    rate: 100,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nglobal_ = vault.QuotaRateLimit(\"global\",\n    path=\"\",\n    rate=100)\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @global = new Vault.QuotaRateLimit(\"global\", new Vault.QuotaRateLimitArgs\n        {\n            Path = \"\",\n            Rate = 100,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewQuotaRateLimit(ctx, \"global\", \u0026vault.QuotaRateLimitArgs{\n\t\t\tPath: pulumi.String(\"\"),\n\t\t\tRate: pulumi.Float64(100),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "name": {
                     "type": "string",
-                    "description": "The name of the quota.\n"
+                    "description": "Name of the rate limit quota\n"
                 },
                 "path": {
                     "type": "string",
-                    "description": "Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota.\n"
+                    "description": "Path of the mount or namespace to apply the quota. A blank path configures a\nglobal rate limit quota. For example `namespace1/` adds a quota to a full namespace,\n`namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.\nUpdating this field on an existing quota can have \"moving\" effects. For example, updating\n`auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to\na namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**\n"
                 },
                 "rate": {
                     "type": "number",
-                    "description": "The maximum number of requests at any given second to be allowed by the quota rule. The rate must be positive.\n"
+                    "description": "The maximum number of requests at any given second to be allowed by the quota\nrule. The `rate` must be positive.\n"
                 }
             },
             "required": [
@@ -8868,15 +8870,15 @@
             "inputProperties": {
                 "name": {
                     "type": "string",
-                    "description": "The name of the quota.\n"
+                    "description": "Name of the rate limit quota\n"
                 },
                 "path": {
                     "type": "string",
-                    "description": "Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota.\n"
+                    "description": "Path of the mount or namespace to apply the quota. A blank path configures a\nglobal rate limit quota. For example `namespace1/` adds a quota to a full namespace,\n`namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.\nUpdating this field on an existing quota can have \"moving\" effects. For example, updating\n`auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to\na namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**\n"
                 },
                 "rate": {
                     "type": "number",
-                    "description": "The maximum number of requests at any given second to be allowed by the quota rule. The rate must be positive.\n"
+                    "description": "The maximum number of requests at any given second to be allowed by the quota\nrule. The `rate` must be positive.\n"
                 }
             },
             "requiredInputs": [
@@ -8887,15 +8889,15 @@
                 "properties": {
                     "name": {
                         "type": "string",
-                        "description": "The name of the quota.\n"
+                        "description": "Name of the rate limit quota\n"
                     },
                     "path": {
                         "type": "string",
-                        "description": "Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota.\n"
+                        "description": "Path of the mount or namespace to apply the quota. A blank path configures a\nglobal rate limit quota. For example `namespace1/` adds a quota to a full namespace,\n`namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.\nUpdating this field on an existing quota can have \"moving\" effects. For example, updating\n`auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to\na namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**\n"
                     },
                     "rate": {
                         "type": "number",
-                        "description": "The maximum number of requests at any given second to be allowed by the quota rule. The rate must be positive.\n"
+                        "description": "The maximum number of requests at any given second to be allowed by the quota\nrule. The `rate` must be positive.\n"
                     }
                 },
                 "type": "object"
@@ -15162,7 +15164,7 @@
     },
     "functions": {
         "vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId": {
-            "description": "Reads the Role ID of an AppRole from a Vault server.\n",
+            "description": "Reads the Role ID of an AppRole from a Vault server.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst role = pulumi.output(vault.appRole.getAuthBackendRoleId({\n    backend: \"my-approle-backend\",\n    roleName: \"my-role\",\n}, { async: true }));\n\nexport const role_id = role.roleId;\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nrole = vault.appRole.get_auth_backend_role_id(backend=\"my-approle-backend\",\n    role_name=\"my-role\")\npulumi.export(\"role-id\", role.role_id)\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var role = Output.Create(Vault.AppRole.GetAuthBackendRoleId.InvokeAsync(new Vault.AppRole.GetAuthBackendRoleIdArgs\n        {\n            Backend = \"my-approle-backend\",\n            RoleName = \"my-role\",\n        }));\n        this.Role_id = role.Apply(role =\u003e role.RoleId);\n    }\n\n    [Output(\"role-id\")]\n    public Output\u003cstring\u003e Role_id { get; set; }\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getAuthBackendRoleId.\n",
                 "properties": {
@@ -16402,20 +16404,25 @@
             }
         },
         "vault:transit/getDecrypt:getDecrypt": {
+            "description": "This is a data source which can be used to decrypt ciphertext using a Vault Transit key.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst test = pulumi.output(vault.transit.getDecrypt({\n    backend: \"transit\",\n    ciphertext: \"vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==\",\n    key: \"test\",\n}, { async: true }));\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntest = vault.transit.get_decrypt(backend=\"transit\",\n    ciphertext=\"vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==\",\n    key=\"test\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = Output.Create(Vault.Transit.GetDecrypt.InvokeAsync(new Vault.Transit.GetDecryptArgs\n        {\n            Backend = \"transit\",\n            Ciphertext = \"vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==\",\n            Key = \"test\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/transit\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := transit.GetDecrypt(ctx, \u0026transit.GetDecryptArgs{\n\t\t\tBackend:    \"transit\",\n\t\t\tCiphertext: \"vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==\",\n\t\t\tKey:        \"test\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getDecrypt.\n",
                 "properties": {
                     "backend": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The path the transit secret backend is mounted at, with no leading or trailing `/`.\n"
                     },
                     "ciphertext": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Ciphertext to be decoded.\n"
                     },
                     "context": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Context for key derivation. This is required if key derivation is enabled for this key.\n"
                     },
                     "key": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Specifies the name of the transit key to decrypt against.\n"
                     }
                 },
                 "type": "object",
@@ -16445,7 +16452,8 @@
                         "type": "string"
                     },
                     "plaintext": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Decrypted plaintext returned from Vault\n"
                     }
                 },
                 "type": "object",
@@ -16459,23 +16467,29 @@
             }
         },
         "vault:transit/getEncrypt:getEncrypt": {
+            "description": "This is a data source which can be used to encrypt plaintext using a Vault Transit key.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst testMount = new vault.Mount(\"test\", {\n    description: \"This is an example mount\",\n    path: \"transit\",\n    type: \"transit\",\n});\nconst testSecretBackendKey = new vault.transit.SecretBackendKey(\"test\", {\n    backend: testMount.path,\n});\nconst testEncrypt = pulumi.all([testMount.path, testSecretBackendKey.name]).apply(([path, name]) =\u003e vault.transit.getEncrypt({\n    backend: path,\n    key: name,\n    plaintext: \"foobar\",\n}, { async: true }));\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntest_mount = vault.Mount(\"testMount\",\n    description=\"This is an example mount\",\n    path=\"transit\",\n    type=\"transit\")\ntest_secret_backend_key = vault.transit.SecretBackendKey(\"testSecretBackendKey\", backend=test_mount.path)\ntest_encrypt = pulumi.Output.all(test_mount.path, test_secret_backend_key.name).apply(lambda path, name: vault.transit.get_encrypt(backend=path,\n    key=name,\n    plaintext=\"foobar\"))\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testMount = new Vault.Mount(\"testMount\", new Vault.MountArgs\n        {\n            Description = \"This is an example mount\",\n            Path = \"transit\",\n            Type = \"transit\",\n        });\n        var testSecretBackendKey = new Vault.Transit.SecretBackendKey(\"testSecretBackendKey\", new Vault.Transit.SecretBackendKeyArgs\n        {\n            Backend = testMount.Path,\n        });\n        var testEncrypt = Output.Tuple(testMount.Path, testSecretBackendKey.Name).Apply(values =\u003e\n        {\n            var path = values.Item1;\n            var name = values.Item2;\n            return Vault.Transit.GetEncrypt.InvokeAsync(new Vault.Transit.GetEncryptArgs\n            {\n                Backend = path,\n                Key = name,\n                Plaintext = \"foobar\",\n            });\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/transit\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestMount, err := vault.NewMount(ctx, \"testMount\", \u0026vault.MountArgs{\n\t\t\tDescription: pulumi.String(\"This is an example mount\"),\n\t\t\tPath:        pulumi.String(\"transit\"),\n\t\t\tType:        pulumi.String(\"transit\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestSecretBackendKey, err := transit.NewSecretBackendKey(ctx, \"testSecretBackendKey\", \u0026transit.SecretBackendKeyArgs{\n\t\t\tBackend: testMount.Path,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getEncrypt.\n",
                 "properties": {
                     "backend": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The path the transit secret backend is mounted at, with no leading or trailing `/`.\n"
                     },
                     "context": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Context for key derivation. This is required if key derivation is enabled for this key.\n"
                     },
                     "key": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Specifies the name of the transit key to encrypt against.\n"
                     },
                     "keyVersion": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `min_encryption_version`, if set.\n"
                     },
                     "plaintext": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Plaintext to be encoded.\n"
                     }
                 },
                 "type": "object",
@@ -16492,7 +16506,8 @@
                         "type": "string"
                     },
                     "ciphertext": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Encrypted ciphertext returned from Vault\n"
                     },
                     "context": {
                         "type": "string"

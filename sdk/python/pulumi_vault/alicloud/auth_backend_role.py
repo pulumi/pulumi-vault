@@ -31,21 +31,57 @@ class AuthBackendRole(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a AuthBackendRole resource with the given unique name, props, and options.
+        Provides a resource to create a role in an [AliCloud auth backend within Vault](https://www.vaultproject.io/docs/auth/alicloud.html).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        alicloud_auth_backend = vault.AuthBackend("alicloudAuthBackend",
+            type="alicloud",
+            path="alicloud")
+        alicloud_auth_backend_role = vault.alicloud.AuthBackendRole("alicloudAuthBackendRole",
+            backend=alicloud_auth_backend.path,
+            role="example",
+            arn="acs:ram:123456:tf:role/foobar")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] arn: The role's arn.
-        :param pulumi.Input[str] backend: Auth backend.
-        :param pulumi.Input[str] role: Name of the role. Must correspond with the name of the role reflected in the arn.
-        :param pulumi.Input[List[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
-        :param pulumi.Input[float] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
-        :param pulumi.Input[float] token_max_ttl: The maximum lifetime of the generated token
-        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
-        :param pulumi.Input[float] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
-        :param pulumi.Input[float] token_period: Generated Token's Period
-        :param pulumi.Input[List[pulumi.Input[str]]] token_policies: Generated Token's Policies
-        :param pulumi.Input[float] token_ttl: The initial ttl of the token to generate in seconds
-        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
+        :param pulumi.Input[str] backend: Path to the mounted AliCloud auth backend.
+               Defaults to `alicloud`
+        :param pulumi.Input[str] role: Name of the role. Must correspond with the name of
+               the role reflected in the arn.
+        :param pulumi.Input[List[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
+               addresses which can authenticate successfully, and ties the resulting token to these blocks
+               as well.
+        :param pulumi.Input[float] token_explicit_max_ttl: If set, will encode an
+               [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+               onto the token in number of seconds. This is a hard cap even if `token_ttl` and
+               `token_max_ttl` would otherwise allow a renewal.
+        :param pulumi.Input[float] token_max_ttl: The maximum lifetime for generated tokens in number of seconds.
+               Its current value will be referenced at renewal time.
+        :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
+               generated tokens; otherwise it will be added to the policies set in token_policies.
+        :param pulumi.Input[float] token_num_uses: The
+               [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+               if any, in number of seconds to set on the token.
+        :param pulumi.Input[float] token_period: If set, indicates that the
+               token generated using this role should never expire. The token should be renewed within the
+               duration specified by this value. At each renewal, the token's TTL will be set to the
+               value of this field. Specified in seconds.
+        :param pulumi.Input[List[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
+               on the auth method, this list may be supplemented by user/group/other values.
+        :param pulumi.Input[float] token_ttl: The incremental lifetime for generated tokens in number of seconds.
+               Its current value will be referenced at renewal time.
+        :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
+               `batch`, or `default` to use the mount's tuned default (which unless changed will be
+               `service` tokens). For token store roles, there are two additional possibilities:
+               `default-service` and `default-batch` which specify the type to return unless the client
+               requests a different type at generation time.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -110,17 +146,37 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] arn: The role's arn.
-        :param pulumi.Input[str] backend: Auth backend.
-        :param pulumi.Input[str] role: Name of the role. Must correspond with the name of the role reflected in the arn.
-        :param pulumi.Input[List[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
-        :param pulumi.Input[float] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
-        :param pulumi.Input[float] token_max_ttl: The maximum lifetime of the generated token
-        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
-        :param pulumi.Input[float] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
-        :param pulumi.Input[float] token_period: Generated Token's Period
-        :param pulumi.Input[List[pulumi.Input[str]]] token_policies: Generated Token's Policies
-        :param pulumi.Input[float] token_ttl: The initial ttl of the token to generate in seconds
-        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
+        :param pulumi.Input[str] backend: Path to the mounted AliCloud auth backend.
+               Defaults to `alicloud`
+        :param pulumi.Input[str] role: Name of the role. Must correspond with the name of
+               the role reflected in the arn.
+        :param pulumi.Input[List[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
+               addresses which can authenticate successfully, and ties the resulting token to these blocks
+               as well.
+        :param pulumi.Input[float] token_explicit_max_ttl: If set, will encode an
+               [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+               onto the token in number of seconds. This is a hard cap even if `token_ttl` and
+               `token_max_ttl` would otherwise allow a renewal.
+        :param pulumi.Input[float] token_max_ttl: The maximum lifetime for generated tokens in number of seconds.
+               Its current value will be referenced at renewal time.
+        :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
+               generated tokens; otherwise it will be added to the policies set in token_policies.
+        :param pulumi.Input[float] token_num_uses: The
+               [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+               if any, in number of seconds to set on the token.
+        :param pulumi.Input[float] token_period: If set, indicates that the
+               token generated using this role should never expire. The token should be renewed within the
+               duration specified by this value. At each renewal, the token's TTL will be set to the
+               value of this field. Specified in seconds.
+        :param pulumi.Input[List[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
+               on the auth method, this list may be supplemented by user/group/other values.
+        :param pulumi.Input[float] token_ttl: The incremental lifetime for generated tokens in number of seconds.
+               Its current value will be referenced at renewal time.
+        :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
+               `batch`, or `default` to use the mount's tuned default (which unless changed will be
+               `service` tokens). For token store roles, there are two additional possibilities:
+               `default-service` and `default-batch` which specify the type to return unless the client
+               requests a different type at generation time.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -152,7 +208,8 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter
     def backend(self) -> pulumi.Output[Optional[str]]:
         """
-        Auth backend.
+        Path to the mounted AliCloud auth backend.
+        Defaults to `alicloud`
         """
         return pulumi.get(self, "backend")
 
@@ -160,7 +217,8 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter
     def role(self) -> pulumi.Output[str]:
         """
-        Name of the role. Must correspond with the name of the role reflected in the arn.
+        Name of the role. Must correspond with the name of
+        the role reflected in the arn.
         """
         return pulumi.get(self, "role")
 
@@ -168,7 +226,9 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenBoundCidrs")
     def token_bound_cidrs(self) -> pulumi.Output[Optional[List[str]]]:
         """
-        Specifies the blocks of IP addresses which are allowed to use the generated token
+        List of CIDR blocks; if set, specifies blocks of IP
+        addresses which can authenticate successfully, and ties the resulting token to these blocks
+        as well.
         """
         return pulumi.get(self, "token_bound_cidrs")
 
@@ -176,7 +236,10 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenExplicitMaxTtl")
     def token_explicit_max_ttl(self) -> pulumi.Output[Optional[float]]:
         """
-        Generated Token's Explicit Maximum TTL in seconds
+        If set, will encode an
+        [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+        onto the token in number of seconds. This is a hard cap even if `token_ttl` and
+        `token_max_ttl` would otherwise allow a renewal.
         """
         return pulumi.get(self, "token_explicit_max_ttl")
 
@@ -184,7 +247,8 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenMaxTtl")
     def token_max_ttl(self) -> pulumi.Output[Optional[float]]:
         """
-        The maximum lifetime of the generated token
+        The maximum lifetime for generated tokens in number of seconds.
+        Its current value will be referenced at renewal time.
         """
         return pulumi.get(self, "token_max_ttl")
 
@@ -192,7 +256,8 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenNoDefaultPolicy")
     def token_no_default_policy(self) -> pulumi.Output[Optional[bool]]:
         """
-        If true, the 'default' policy will not automatically be added to generated tokens
+        If set, the default policy will not be set on
+        generated tokens; otherwise it will be added to the policies set in token_policies.
         """
         return pulumi.get(self, "token_no_default_policy")
 
@@ -200,7 +265,9 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenNumUses")
     def token_num_uses(self) -> pulumi.Output[Optional[float]]:
         """
-        The maximum number of times a token may be used, a value of zero means unlimited
+        The
+        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+        if any, in number of seconds to set on the token.
         """
         return pulumi.get(self, "token_num_uses")
 
@@ -208,7 +275,10 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenPeriod")
     def token_period(self) -> pulumi.Output[Optional[float]]:
         """
-        Generated Token's Period
+        If set, indicates that the
+        token generated using this role should never expire. The token should be renewed within the
+        duration specified by this value. At each renewal, the token's TTL will be set to the
+        value of this field. Specified in seconds.
         """
         return pulumi.get(self, "token_period")
 
@@ -216,7 +286,8 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenPolicies")
     def token_policies(self) -> pulumi.Output[Optional[List[str]]]:
         """
-        Generated Token's Policies
+        List of policies to encode onto generated tokens. Depending
+        on the auth method, this list may be supplemented by user/group/other values.
         """
         return pulumi.get(self, "token_policies")
 
@@ -224,7 +295,8 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenTtl")
     def token_ttl(self) -> pulumi.Output[Optional[float]]:
         """
-        The initial ttl of the token to generate in seconds
+        The incremental lifetime for generated tokens in number of seconds.
+        Its current value will be referenced at renewal time.
         """
         return pulumi.get(self, "token_ttl")
 
@@ -232,7 +304,11 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenType")
     def token_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The type of token to generate, service or batch
+        The type of token that should be generated. Can be `service`,
+        `batch`, or `default` to use the mount's tuned default (which unless changed will be
+        `service` tokens). For token store roles, there are two additional possibilities:
+        `default-service` and `default-batch` which specify the type to return unless the client
+        requests a different type at generation time.
         """
         return pulumi.get(self, "token_type")
 

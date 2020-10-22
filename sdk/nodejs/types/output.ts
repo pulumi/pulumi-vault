@@ -632,4 +632,3 @@ export namespace rabbitMq {
         write: string;
     }
 }
-

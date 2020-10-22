@@ -6,6 +6,22 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * This is a data source which can be used to decrypt ciphertext using a Vault Transit key.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const test = pulumi.output(vault.transit.getDecrypt({
+ *     backend: "transit",
+ *     ciphertext: "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
+ *     key: "test",
+ * }, { async: true }));
+ * ```
+ */
 export function getDecrypt(args: GetDecryptArgs, opts?: pulumi.InvokeOptions): Promise<GetDecryptResult> {
     if (!opts) {
         opts = {}
@@ -26,9 +42,21 @@ export function getDecrypt(args: GetDecryptArgs, opts?: pulumi.InvokeOptions): P
  * A collection of arguments for invoking getDecrypt.
  */
 export interface GetDecryptArgs {
+    /**
+     * The path the transit secret backend is mounted at, with no leading or trailing `/`.
+     */
     readonly backend: string;
+    /**
+     * Ciphertext to be decoded.
+     */
     readonly ciphertext: string;
+    /**
+     * Context for key derivation. This is required if key derivation is enabled for this key.
+     */
     readonly context?: string;
+    /**
+     * Specifies the name of the transit key to decrypt against.
+     */
     readonly key: string;
 }
 
@@ -44,5 +72,8 @@ export interface GetDecryptResult {
      */
     readonly id: string;
     readonly key: string;
+    /**
+     * Decrypted plaintext returned from Vault
+     */
     readonly plaintext: string;
 }

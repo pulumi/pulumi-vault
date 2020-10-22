@@ -50,6 +50,9 @@ class GetEncryptResult:
     @property
     @pulumi.getter
     def ciphertext(self) -> str:
+        """
+        Encrypted ciphertext returned from Vault
+        """
         return pulumi.get(self, "ciphertext")
 
     @property
@@ -103,7 +106,30 @@ def get_encrypt(backend: Optional[str] = None,
                 plaintext: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEncryptResult:
     """
-    Use this data source to access information about an existing resource.
+    This is a data source which can be used to encrypt plaintext using a Vault Transit key.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    test_mount = vault.Mount("testMount",
+        description="This is an example mount",
+        path="transit",
+        type="transit")
+    test_secret_backend_key = vault.transit.SecretBackendKey("testSecretBackendKey", backend=test_mount.path)
+    test_encrypt = pulumi.Output.all(test_mount.path, test_secret_backend_key.name).apply(lambda path, name: vault.transit.get_encrypt(backend=path,
+        key=name,
+        plaintext="foobar"))
+    ```
+
+
+    :param str backend: The path the transit secret backend is mounted at, with no leading or trailing `/`.
+    :param str context: Context for key derivation. This is required if key derivation is enabled for this key.
+    :param str key: Specifies the name of the transit key to encrypt against.
+    :param float key_version: The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `min_encryption_version`, if set.
+    :param str plaintext: Plaintext to be encoded.
     """
     __args__ = dict()
     __args__['backend'] = backend
