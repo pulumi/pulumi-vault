@@ -5,52 +5,28 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['Mount']
 
 
 class Mount(pulumi.CustomResource):
-    accessor: pulumi.Output[str]
-    """
-    The accessor for this mount.
-    """
-    default_lease_ttl_seconds: pulumi.Output[float]
-    """
-    Default lease duration for tokens and secrets in seconds
-    """
-    description: pulumi.Output[str]
-    """
-    Human-friendly description of the mount
-    """
-    external_entropy_access: pulumi.Output[bool]
-    """
-    Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
-    """
-    local: pulumi.Output[bool]
-    """
-    Boolean flag that can be explicitly set to true to enforce local mount in HA environment
-    """
-    max_lease_ttl_seconds: pulumi.Output[float]
-    """
-    Maximum possible lease duration for tokens and secrets in seconds
-    """
-    options: pulumi.Output[dict]
-    """
-    Specifies mount type specific options that are passed to the backend
-    """
-    path: pulumi.Output[str]
-    """
-    Where the secret backend will be mounted
-    """
-    seal_wrap: pulumi.Output[bool]
-    """
-    Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-    """
-    type: pulumi.Output[str]
-    """
-    Type of the backend, such as "aws"
-    """
-    def __init__(__self__, resource_name, opts=None, default_lease_ttl_seconds=None, description=None, external_entropy_access=None, local=None, max_lease_ttl_seconds=None, options=None, path=None, seal_wrap=None, type=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 external_entropy_access: Optional[pulumi.Input[bool]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 seal_wrap: Optional[pulumi.Input[bool]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         ## Example Usage
 
@@ -71,7 +47,7 @@ class Mount(pulumi.CustomResource):
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[float] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
-        :param pulumi.Input[dict] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[str] type: Type of the backend, such as "aws"
@@ -87,7 +63,7 @@ class Mount(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -114,13 +90,25 @@ class Mount(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, accessor=None, default_lease_ttl_seconds=None, description=None, external_entropy_access=None, local=None, max_lease_ttl_seconds=None, options=None, path=None, seal_wrap=None, type=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accessor: Optional[pulumi.Input[str]] = None,
+            default_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            external_entropy_access: Optional[pulumi.Input[bool]] = None,
+            local: Optional[pulumi.Input[bool]] = None,
+            max_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+            options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            path: Optional[pulumi.Input[str]] = None,
+            seal_wrap: Optional[pulumi.Input[bool]] = None,
+            type: Optional[pulumi.Input[str]] = None) -> 'Mount':
         """
         Get an existing Mount resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accessor: The accessor for this mount.
         :param pulumi.Input[float] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
@@ -128,7 +116,7 @@ class Mount(pulumi.CustomResource):
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[float] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
-        :param pulumi.Input[dict] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[str] type: Type of the backend, such as "aws"
@@ -149,8 +137,89 @@ class Mount(pulumi.CustomResource):
         __props__["type"] = type
         return Mount(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def accessor(self) -> pulumi.Output[str]:
+        """
+        The accessor for this mount.
+        """
+        return pulumi.get(self, "accessor")
+
+    @property
+    @pulumi.getter(name="defaultLeaseTtlSeconds")
+    def default_lease_ttl_seconds(self) -> pulumi.Output[float]:
+        """
+        Default lease duration for tokens and secrets in seconds
+        """
+        return pulumi.get(self, "default_lease_ttl_seconds")
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Human-friendly description of the mount
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="externalEntropyAccess")
+    def external_entropy_access(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+        """
+        return pulumi.get(self, "external_entropy_access")
+
+    @property
+    @pulumi.getter
+    def local(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+        """
+        return pulumi.get(self, "local")
+
+    @property
+    @pulumi.getter(name="maxLeaseTtlSeconds")
+    def max_lease_ttl_seconds(self) -> pulumi.Output[float]:
+        """
+        Maximum possible lease duration for tokens and secrets in seconds
+        """
+        return pulumi.get(self, "max_lease_ttl_seconds")
+
+    @property
+    @pulumi.getter
+    def options(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+        """
+        Specifies mount type specific options that are passed to the backend
+        """
+        return pulumi.get(self, "options")
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Output[str]:
+        """
+        Where the secret backend will be mounted
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="sealWrap")
+    def seal_wrap(self) -> pulumi.Output[bool]:
+        """
+        Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        """
+        return pulumi.get(self, "seal_wrap")
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Output[str]:
+        """
+        Type of the backend, such as "aws"
+        """
+        return pulumi.get(self, "type")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

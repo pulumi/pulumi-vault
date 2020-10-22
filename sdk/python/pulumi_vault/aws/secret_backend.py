@@ -5,45 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['SecretBackend']
 
 
 class SecretBackend(pulumi.CustomResource):
-    access_key: pulumi.Output[str]
-    """
-    The AWS Access Key ID this backend should use to
-    issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
-    """
-    default_lease_ttl_seconds: pulumi.Output[float]
-    """
-    The default TTL for credentials
-    issued by this backend.
-    """
-    description: pulumi.Output[str]
-    """
-    A human-friendly description for this backend.
-    """
-    max_lease_ttl_seconds: pulumi.Output[float]
-    """
-    The maximum TTL that can be requested
-    for credentials issued by this backend.
-    """
-    path: pulumi.Output[str]
-    """
-    The unique path this backend should be mounted at. Must
-    not begin or end with a `/`. Defaults to `aws`.
-    """
-    region: pulumi.Output[str]
-    """
-    The AWS region for API calls. Defaults to `us-east-1`.
-    """
-    secret_key: pulumi.Output[str]
-    """
-    The AWS Secret Key this backend should use to
-    issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
-    """
-    def __init__(__self__, resource_name, opts=None, access_key=None, default_lease_ttl_seconds=None, description=None, max_lease_ttl_seconds=None, path=None, region=None, secret_key=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 access_key: Optional[pulumi.Input[str]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 secret_key: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a SecretBackend resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -72,7 +53,7 @@ class SecretBackend(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -92,13 +73,22 @@ class SecretBackend(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, access_key=None, default_lease_ttl_seconds=None, description=None, max_lease_ttl_seconds=None, path=None, region=None, secret_key=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_key: Optional[pulumi.Input[str]] = None,
+            default_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            max_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+            path: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None,
+            secret_key: Optional[pulumi.Input[str]] = None) -> 'SecretBackend':
         """
         Get an existing SecretBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The AWS Access Key ID this backend should use to
                issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
@@ -126,8 +116,70 @@ class SecretBackend(pulumi.CustomResource):
         __props__["secret_key"] = secret_key
         return SecretBackend(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="accessKey")
+    def access_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        The AWS Access Key ID this backend should use to
+        issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        """
+        return pulumi.get(self, "access_key")
+
+    @property
+    @pulumi.getter(name="defaultLeaseTtlSeconds")
+    def default_lease_ttl_seconds(self) -> pulumi.Output[float]:
+        """
+        The default TTL for credentials
+        issued by this backend.
+        """
+        return pulumi.get(self, "default_lease_ttl_seconds")
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        A human-friendly description for this backend.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="maxLeaseTtlSeconds")
+    def max_lease_ttl_seconds(self) -> pulumi.Output[float]:
+        """
+        The maximum TTL that can be requested
+        for credentials issued by this backend.
+        """
+        return pulumi.get(self, "max_lease_ttl_seconds")
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Output[Optional[str]]:
+        """
+        The unique path this backend should be mounted at. Must
+        not begin or end with a `/`. Defaults to `aws`.
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Output[str]:
+        """
+        The AWS region for API calls. Defaults to `us-east-1`.
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        The AWS Secret Key this backend should use to
+        issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        """
+        return pulumi.get(self, "secret_key")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

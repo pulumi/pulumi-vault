@@ -5,61 +5,34 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['SecretBackendRole']
 
 
 class SecretBackendRole(pulumi.CustomResource):
-    backend: pulumi.Output[str]
-    """
-    The unique name of the Vault mount to configure.
-    """
-    creation_statements: pulumi.Output[list]
-    """
-    The database statements to execute when
-    creating a user.
-    """
-    db_name: pulumi.Output[str]
-    """
-    The unique name of the database connection to use for
-    the role.
-    """
-    default_ttl: pulumi.Output[float]
-    """
-    The default number of seconds for leases for this
-    role.
-    """
-    max_ttl: pulumi.Output[float]
-    """
-    The maximum number of seconds for leases for this
-    role.
-    """
-    name: pulumi.Output[str]
-    """
-    A unique name to give the role.
-    """
-    renew_statements: pulumi.Output[list]
-    """
-    The database statements to execute when
-    renewing a user.
-    """
-    revocation_statements: pulumi.Output[list]
-    """
-    The database statements to execute when
-    revoking a user.
-    """
-    rollback_statements: pulumi.Output[list]
-    """
-    The database statements to execute when
-    rolling back creation due to an error.
-    """
-    def __init__(__self__, resource_name, opts=None, backend=None, creation_statements=None, db_name=None, default_ttl=None, max_ttl=None, name=None, renew_statements=None, revocation_statements=None, rollback_statements=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 creation_statements: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 db_name: Optional[pulumi.Input[str]] = None,
+                 default_ttl: Optional[pulumi.Input[float]] = None,
+                 max_ttl: Optional[pulumi.Input[float]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 renew_statements: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 revocation_statements: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 rollback_statements: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a SecretBackendRole resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
-        :param pulumi.Input[list] creation_statements: The database statements to execute when
+        :param pulumi.Input[List[pulumi.Input[str]]] creation_statements: The database statements to execute when
                creating a user.
         :param pulumi.Input[str] db_name: The unique name of the database connection to use for
                the role.
@@ -68,11 +41,11 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[float] max_ttl: The maximum number of seconds for leases for this
                role.
         :param pulumi.Input[str] name: A unique name to give the role.
-        :param pulumi.Input[list] renew_statements: The database statements to execute when
+        :param pulumi.Input[List[pulumi.Input[str]]] renew_statements: The database statements to execute when
                renewing a user.
-        :param pulumi.Input[list] revocation_statements: The database statements to execute when
+        :param pulumi.Input[List[pulumi.Input[str]]] revocation_statements: The database statements to execute when
                revoking a user.
-        :param pulumi.Input[list] rollback_statements: The database statements to execute when
+        :param pulumi.Input[List[pulumi.Input[str]]] rollback_statements: The database statements to execute when
                rolling back creation due to an error.
         """
         if __name__ is not None:
@@ -86,7 +59,7 @@ class SecretBackendRole(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -114,16 +87,27 @@ class SecretBackendRole(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, backend=None, creation_statements=None, db_name=None, default_ttl=None, max_ttl=None, name=None, renew_statements=None, revocation_statements=None, rollback_statements=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend: Optional[pulumi.Input[str]] = None,
+            creation_statements: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            db_name: Optional[pulumi.Input[str]] = None,
+            default_ttl: Optional[pulumi.Input[float]] = None,
+            max_ttl: Optional[pulumi.Input[float]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            renew_statements: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            revocation_statements: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            rollback_statements: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'SecretBackendRole':
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
-        :param pulumi.Input[list] creation_statements: The database statements to execute when
+        :param pulumi.Input[List[pulumi.Input[str]]] creation_statements: The database statements to execute when
                creating a user.
         :param pulumi.Input[str] db_name: The unique name of the database connection to use for
                the role.
@@ -132,11 +116,11 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[float] max_ttl: The maximum number of seconds for leases for this
                role.
         :param pulumi.Input[str] name: A unique name to give the role.
-        :param pulumi.Input[list] renew_statements: The database statements to execute when
+        :param pulumi.Input[List[pulumi.Input[str]]] renew_statements: The database statements to execute when
                renewing a user.
-        :param pulumi.Input[list] revocation_statements: The database statements to execute when
+        :param pulumi.Input[List[pulumi.Input[str]]] revocation_statements: The database statements to execute when
                revoking a user.
-        :param pulumi.Input[list] rollback_statements: The database statements to execute when
+        :param pulumi.Input[List[pulumi.Input[str]]] rollback_statements: The database statements to execute when
                rolling back creation due to an error.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -154,8 +138,88 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__["rollback_statements"] = rollback_statements
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def backend(self) -> pulumi.Output[str]:
+        """
+        The unique name of the Vault mount to configure.
+        """
+        return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter(name="creationStatements")
+    def creation_statements(self) -> pulumi.Output[List[str]]:
+        """
+        The database statements to execute when
+        creating a user.
+        """
+        return pulumi.get(self, "creation_statements")
+
+    @property
+    @pulumi.getter(name="dbName")
+    def db_name(self) -> pulumi.Output[str]:
+        """
+        The unique name of the database connection to use for
+        the role.
+        """
+        return pulumi.get(self, "db_name")
+
+    @property
+    @pulumi.getter(name="defaultTtl")
+    def default_ttl(self) -> pulumi.Output[Optional[float]]:
+        """
+        The default number of seconds for leases for this
+        role.
+        """
+        return pulumi.get(self, "default_ttl")
+
+    @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> pulumi.Output[Optional[float]]:
+        """
+        The maximum number of seconds for leases for this
+        role.
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Output[str]:
+        """
+        A unique name to give the role.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="renewStatements")
+    def renew_statements(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        The database statements to execute when
+        renewing a user.
+        """
+        return pulumi.get(self, "renew_statements")
+
+    @property
+    @pulumi.getter(name="revocationStatements")
+    def revocation_statements(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        The database statements to execute when
+        revoking a user.
+        """
+        return pulumi.get(self, "revocation_statements")
+
+    @property
+    @pulumi.getter(name="rollbackStatements")
+    def rollback_statements(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        The database statements to execute when
+        rolling back creation due to an error.
+        """
+        return pulumi.get(self, "rollback_statements")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

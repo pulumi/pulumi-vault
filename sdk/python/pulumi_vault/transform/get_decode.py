@@ -5,9 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
 
+__all__ = [
+    'GetDecodeResult',
+    'AwaitableGetDecodeResult',
+    'get_decode',
+]
+
+@pulumi.output_type
 class GetDecodeResult:
     """
     A collection of values returned by getDecode.
@@ -15,34 +22,81 @@ class GetDecodeResult:
     def __init__(__self__, batch_inputs=None, batch_results=None, decoded_value=None, id=None, path=None, role_name=None, transformation=None, tweak=None, value=None):
         if batch_inputs and not isinstance(batch_inputs, list):
             raise TypeError("Expected argument 'batch_inputs' to be a list")
-        __self__.batch_inputs = batch_inputs
+        pulumi.set(__self__, "batch_inputs", batch_inputs)
         if batch_results and not isinstance(batch_results, list):
             raise TypeError("Expected argument 'batch_results' to be a list")
-        __self__.batch_results = batch_results
+        pulumi.set(__self__, "batch_results", batch_results)
         if decoded_value and not isinstance(decoded_value, str):
             raise TypeError("Expected argument 'decoded_value' to be a str")
-        __self__.decoded_value = decoded_value
+        pulumi.set(__self__, "decoded_value", decoded_value)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if path and not isinstance(path, str):
+            raise TypeError("Expected argument 'path' to be a str")
+        pulumi.set(__self__, "path", path)
+        if role_name and not isinstance(role_name, str):
+            raise TypeError("Expected argument 'role_name' to be a str")
+        pulumi.set(__self__, "role_name", role_name)
+        if transformation and not isinstance(transformation, str):
+            raise TypeError("Expected argument 'transformation' to be a str")
+        pulumi.set(__self__, "transformation", transformation)
+        if tweak and not isinstance(tweak, str):
+            raise TypeError("Expected argument 'tweak' to be a str")
+        pulumi.set(__self__, "tweak", tweak)
+        if value and not isinstance(value, str):
+            raise TypeError("Expected argument 'value' to be a str")
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="batchInputs")
+    def batch_inputs(self) -> Optional[List[Mapping[str, Any]]]:
+        return pulumi.get(self, "batch_inputs")
+
+    @property
+    @pulumi.getter(name="batchResults")
+    def batch_results(self) -> List[Mapping[str, Any]]:
+        return pulumi.get(self, "batch_results")
+
+    @property
+    @pulumi.getter(name="decodedValue")
+    def decoded_value(self) -> str:
+        return pulumi.get(self, "decoded_value")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if path and not isinstance(path, str):
-            raise TypeError("Expected argument 'path' to be a str")
-        __self__.path = path
-        if role_name and not isinstance(role_name, str):
-            raise TypeError("Expected argument 'role_name' to be a str")
-        __self__.role_name = role_name
-        if transformation and not isinstance(transformation, str):
-            raise TypeError("Expected argument 'transformation' to be a str")
-        __self__.transformation = transformation
-        if tweak and not isinstance(tweak, str):
-            raise TypeError("Expected argument 'tweak' to be a str")
-        __self__.tweak = tweak
-        if value and not isinstance(value, str):
-            raise TypeError("Expected argument 'value' to be a str")
-        __self__.value = value
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> str:
+        return pulumi.get(self, "role_name")
+
+    @property
+    @pulumi.getter
+    def transformation(self) -> Optional[str]:
+        return pulumi.get(self, "transformation")
+
+    @property
+    @pulumi.getter
+    def tweak(self) -> Optional[str]:
+        return pulumi.get(self, "tweak")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
 class AwaitableGetDecodeResult(GetDecodeResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -59,15 +113,24 @@ class AwaitableGetDecodeResult(GetDecodeResult):
             tweak=self.tweak,
             value=self.value)
 
-def get_decode(batch_inputs=None,batch_results=None,decoded_value=None,path=None,role_name=None,transformation=None,tweak=None,value=None,opts=None):
+
+def get_decode(batch_inputs: Optional[List[Mapping[str, Any]]] = None,
+               batch_results: Optional[List[Mapping[str, Any]]] = None,
+               decoded_value: Optional[str] = None,
+               path: Optional[str] = None,
+               role_name: Optional[str] = None,
+               transformation: Optional[str] = None,
+               tweak: Optional[str] = None,
+               value: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDecodeResult:
     """
     This data source supports the "/transform/decode/{role_name}" Vault endpoint.
 
     It decodes the provided value using a named role.
 
 
-    :param list batch_inputs: Specifies a list of items to be decoded in a single batch. If this parameter is set, the top-level parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
-    :param list batch_results: The result of decoding a batch.
+    :param List[Mapping[str, Any]] batch_inputs: Specifies a list of items to be decoded in a single batch. If this parameter is set, the top-level parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
+    :param List[Mapping[str, Any]] batch_results: The result of decoding a batch.
     :param str decoded_value: The result of decoding a value.
     :param str path: Path to where the back-end is mounted within Vault.
     :param str role_name: The name of the role.
@@ -76,8 +139,6 @@ def get_decode(batch_inputs=None,batch_results=None,decoded_value=None,path=None
     :param str value: The value in which to decode.
     """
     __args__ = dict()
-
-
     __args__['batchInputs'] = batch_inputs
     __args__['batchResults'] = batch_results
     __args__['decodedValue'] = decoded_value
@@ -89,16 +150,16 @@ def get_decode(batch_inputs=None,batch_results=None,decoded_value=None,path=None
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('vault:transform/getDecode:getDecode', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('vault:transform/getDecode:getDecode', __args__, opts=opts, typ=GetDecodeResult).value
 
     return AwaitableGetDecodeResult(
-        batch_inputs=__ret__.get('batchInputs'),
-        batch_results=__ret__.get('batchResults'),
-        decoded_value=__ret__.get('decodedValue'),
-        id=__ret__.get('id'),
-        path=__ret__.get('path'),
-        role_name=__ret__.get('roleName'),
-        transformation=__ret__.get('transformation'),
-        tweak=__ret__.get('tweak'),
-        value=__ret__.get('value'))
+        batch_inputs=__ret__.batch_inputs,
+        batch_results=__ret__.batch_results,
+        decoded_value=__ret__.decoded_value,
+        id=__ret__.id,
+        path=__ret__.path,
+        role_name=__ret__.role_name,
+        transformation=__ret__.transformation,
+        tweak=__ret__.tweak,
+        value=__ret__.value)

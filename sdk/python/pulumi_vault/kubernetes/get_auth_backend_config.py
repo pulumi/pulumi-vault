@@ -5,9 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
 
+__all__ = [
+    'GetAuthBackendConfigResult',
+    'AwaitableGetAuthBackendConfigResult',
+    'get_auth_backend_config',
+]
+
+@pulumi.output_type
 class GetAuthBackendConfigResult:
     """
     A collection of values returned by getAuthBackendConfig.
@@ -15,43 +22,85 @@ class GetAuthBackendConfigResult:
     def __init__(__self__, backend=None, disable_iss_validation=None, disable_local_ca_jwt=None, id=None, issuer=None, kubernetes_ca_cert=None, kubernetes_host=None, pem_keys=None):
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
-        __self__.backend = backend
+        pulumi.set(__self__, "backend", backend)
         if disable_iss_validation and not isinstance(disable_iss_validation, bool):
             raise TypeError("Expected argument 'disable_iss_validation' to be a bool")
-        __self__.disable_iss_validation = disable_iss_validation
+        pulumi.set(__self__, "disable_iss_validation", disable_iss_validation)
         if disable_local_ca_jwt and not isinstance(disable_local_ca_jwt, bool):
             raise TypeError("Expected argument 'disable_local_ca_jwt' to be a bool")
-        __self__.disable_local_ca_jwt = disable_local_ca_jwt
+        pulumi.set(__self__, "disable_local_ca_jwt", disable_local_ca_jwt)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if issuer and not isinstance(issuer, str):
+            raise TypeError("Expected argument 'issuer' to be a str")
+        pulumi.set(__self__, "issuer", issuer)
+        if kubernetes_ca_cert and not isinstance(kubernetes_ca_cert, str):
+            raise TypeError("Expected argument 'kubernetes_ca_cert' to be a str")
+        pulumi.set(__self__, "kubernetes_ca_cert", kubernetes_ca_cert)
+        if kubernetes_host and not isinstance(kubernetes_host, str):
+            raise TypeError("Expected argument 'kubernetes_host' to be a str")
+        pulumi.set(__self__, "kubernetes_host", kubernetes_host)
+        if pem_keys and not isinstance(pem_keys, list):
+            raise TypeError("Expected argument 'pem_keys' to be a list")
+        pulumi.set(__self__, "pem_keys", pem_keys)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[str]:
+        return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter(name="disableIssValidation")
+    def disable_iss_validation(self) -> bool:
+        return pulumi.get(self, "disable_iss_validation")
+
+    @property
+    @pulumi.getter(name="disableLocalCaJwt")
+    def disable_local_ca_jwt(self) -> bool:
+        return pulumi.get(self, "disable_local_ca_jwt")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if issuer and not isinstance(issuer, str):
-            raise TypeError("Expected argument 'issuer' to be a str")
-        __self__.issuer = issuer
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def issuer(self) -> str:
         """
         Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         """
-        if kubernetes_ca_cert and not isinstance(kubernetes_ca_cert, str):
-            raise TypeError("Expected argument 'kubernetes_ca_cert' to be a str")
-        __self__.kubernetes_ca_cert = kubernetes_ca_cert
+        return pulumi.get(self, "issuer")
+
+    @property
+    @pulumi.getter(name="kubernetesCaCert")
+    def kubernetes_ca_cert(self) -> str:
         """
         PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
         """
-        if kubernetes_host and not isinstance(kubernetes_host, str):
-            raise TypeError("Expected argument 'kubernetes_host' to be a str")
-        __self__.kubernetes_host = kubernetes_host
+        return pulumi.get(self, "kubernetes_ca_cert")
+
+    @property
+    @pulumi.getter(name="kubernetesHost")
+    def kubernetes_host(self) -> str:
         """
         Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
         """
-        if pem_keys and not isinstance(pem_keys, list):
-            raise TypeError("Expected argument 'pem_keys' to be a list")
-        __self__.pem_keys = pem_keys
+        return pulumi.get(self, "kubernetes_host")
+
+    @property
+    @pulumi.getter(name="pemKeys")
+    def pem_keys(self) -> List[str]:
         """
         Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         """
+        return pulumi.get(self, "pem_keys")
+
+
 class AwaitableGetAuthBackendConfigResult(GetAuthBackendConfigResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -67,7 +116,15 @@ class AwaitableGetAuthBackendConfigResult(GetAuthBackendConfigResult):
             kubernetes_host=self.kubernetes_host,
             pem_keys=self.pem_keys)
 
-def get_auth_backend_config(backend=None,disable_iss_validation=None,disable_local_ca_jwt=None,issuer=None,kubernetes_ca_cert=None,kubernetes_host=None,pem_keys=None,opts=None):
+
+def get_auth_backend_config(backend: Optional[str] = None,
+                            disable_iss_validation: Optional[bool] = None,
+                            disable_local_ca_jwt: Optional[bool] = None,
+                            issuer: Optional[str] = None,
+                            kubernetes_ca_cert: Optional[str] = None,
+                            kubernetes_host: Optional[str] = None,
+                            pem_keys: Optional[List[str]] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuthBackendConfigResult:
     """
     Reads the Role of an Kubernetes from a Vault server. See the [Vault
     documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
@@ -79,11 +136,9 @@ def get_auth_backend_config(backend=None,disable_iss_validation=None,disable_loc
     :param str issuer: Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
     :param str kubernetes_ca_cert: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
     :param str kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
-    :param list pem_keys: Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
+    :param List[str] pem_keys: Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
     """
     __args__ = dict()
-
-
     __args__['backend'] = backend
     __args__['disableIssValidation'] = disable_iss_validation
     __args__['disableLocalCaJwt'] = disable_local_ca_jwt
@@ -94,15 +149,15 @@ def get_auth_backend_config(backend=None,disable_iss_validation=None,disable_loc
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig', __args__, opts=opts, typ=GetAuthBackendConfigResult).value
 
     return AwaitableGetAuthBackendConfigResult(
-        backend=__ret__.get('backend'),
-        disable_iss_validation=__ret__.get('disableIssValidation'),
-        disable_local_ca_jwt=__ret__.get('disableLocalCaJwt'),
-        id=__ret__.get('id'),
-        issuer=__ret__.get('issuer'),
-        kubernetes_ca_cert=__ret__.get('kubernetesCaCert'),
-        kubernetes_host=__ret__.get('kubernetesHost'),
-        pem_keys=__ret__.get('pemKeys'))
+        backend=__ret__.backend,
+        disable_iss_validation=__ret__.disable_iss_validation,
+        disable_local_ca_jwt=__ret__.disable_local_ca_jwt,
+        id=__ret__.id,
+        issuer=__ret__.issuer,
+        kubernetes_ca_cert=__ret__.kubernetes_ca_cert,
+        kubernetes_host=__ret__.kubernetes_host,
+        pem_keys=__ret__.pem_keys)

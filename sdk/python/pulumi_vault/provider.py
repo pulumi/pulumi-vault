@@ -6,12 +6,33 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
+
+__all__ = ['Provider']
 
 
 class Provider(pulumi.ProviderResource):
-    def __init__(__self__, resource_name, opts=None, add_address_to_env=None, address=None, auth_logins=None, ca_cert_dir=None, ca_cert_file=None, client_auths=None, headers=None, max_lease_ttl_seconds=None, max_retries=None, namespace=None, skip_tls_verify=None, token=None, token_name=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 add_address_to_env: Optional[pulumi.Input[str]] = None,
+                 address: Optional[pulumi.Input[str]] = None,
+                 auth_logins: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ProviderAuthLoginArgs']]]]] = None,
+                 ca_cert_dir: Optional[pulumi.Input[str]] = None,
+                 ca_cert_file: Optional[pulumi.Input[str]] = None,
+                 client_auths: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ProviderClientAuthArgs']]]]] = None,
+                 headers: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ProviderHeaderArgs']]]]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+                 max_retries: Optional[pulumi.Input[float]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 skip_tls_verify: Optional[pulumi.Input[bool]] = None,
+                 token: Optional[pulumi.Input[str]] = None,
+                 token_name: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         The provider type for the vault package. By default, resources use package-wide configuration
         settings, however an explicit `Provider` instance may be created and passed during resource
@@ -22,33 +43,17 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] add_address_to_env: If true, adds the value of the `address` argument to the Terraform process environment.
         :param pulumi.Input[str] address: URL of the root of the target Vault server.
-        :param pulumi.Input[list] auth_logins: Login to vault with an existing auth method using auth/<mount>/login
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ProviderAuthLoginArgs']]]] auth_logins: Login to vault with an existing auth method using auth/<mount>/login
         :param pulumi.Input[str] ca_cert_dir: Path to directory containing CA certificate files to validate the server's certificate.
         :param pulumi.Input[str] ca_cert_file: Path to a CA certificate file to validate the server's certificate.
-        :param pulumi.Input[list] client_auths: Client authentication credentials.
-        :param pulumi.Input[list] headers: The headers to send with each Vault request.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ProviderClientAuthArgs']]]] client_auths: Client authentication credentials.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ProviderHeaderArgs']]]] headers: The headers to send with each Vault request.
         :param pulumi.Input[float] max_lease_ttl_seconds: Maximum TTL for secret leases requested by this provider
         :param pulumi.Input[float] max_retries: Maximum number of retries when a 5xx error code is encountered.
         :param pulumi.Input[str] namespace: The namespace to use. Available only for Vault Enterprise
         :param pulumi.Input[bool] skip_tls_verify: Set this to true only if the target Vault server is an insecure development instance.
         :param pulumi.Input[str] token: Token to use to authenticate to Vault.
         :param pulumi.Input[str] token_name: Token name to use for creating the Vault child token.
-
-        The **auth_logins** object supports the following:
-
-          * `namespace` (`pulumi.Input[str]`)
-          * `parameters` (`pulumi.Input[dict]`)
-          * `path` (`pulumi.Input[str]`)
-
-        The **client_auths** object supports the following:
-
-          * `cert_file` (`pulumi.Input[str]`)
-          * `key_file` (`pulumi.Input[str]`)
-
-        The **headers** object supports the following:
-
-          * `name` (`pulumi.Input[str]`)
-          * `value` (`pulumi.Input[str]`)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -61,7 +66,7 @@ class Provider(pulumi.ProviderResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -69,34 +74,34 @@ class Provider(pulumi.ProviderResource):
 
             __props__['add_address_to_env'] = add_address_to_env
             if address is None:
-                address = utilities.get_env('VAULT_ADDR')
+                address = _utilities.get_env('VAULT_ADDR')
             __props__['address'] = address
             __props__['auth_logins'] = pulumi.Output.from_input(auth_logins).apply(json.dumps) if auth_logins is not None else None
             if ca_cert_dir is None:
-                ca_cert_dir = utilities.get_env('VAULT_CAPATH')
+                ca_cert_dir = _utilities.get_env('VAULT_CAPATH')
             __props__['ca_cert_dir'] = ca_cert_dir
             if ca_cert_file is None:
-                ca_cert_file = utilities.get_env('VAULT_CACERT')
+                ca_cert_file = _utilities.get_env('VAULT_CACERT')
             __props__['ca_cert_file'] = ca_cert_file
             __props__['client_auths'] = pulumi.Output.from_input(client_auths).apply(json.dumps) if client_auths is not None else None
             __props__['headers'] = pulumi.Output.from_input(headers).apply(json.dumps) if headers is not None else None
             if max_lease_ttl_seconds is None:
-                max_lease_ttl_seconds = (utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL') or 1200)
+                max_lease_ttl_seconds = (_utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL') or 1200)
             __props__['max_lease_ttl_seconds'] = pulumi.Output.from_input(max_lease_ttl_seconds).apply(json.dumps) if max_lease_ttl_seconds is not None else None
             if max_retries is None:
-                max_retries = (utilities.get_env_int('VAULT_MAX_RETRIES') or 2)
+                max_retries = (_utilities.get_env_int('VAULT_MAX_RETRIES') or 2)
             __props__['max_retries'] = pulumi.Output.from_input(max_retries).apply(json.dumps) if max_retries is not None else None
             if namespace is None:
-                namespace = utilities.get_env('VAULT_NAMESPACE')
+                namespace = _utilities.get_env('VAULT_NAMESPACE')
             __props__['namespace'] = namespace
             if skip_tls_verify is None:
-                skip_tls_verify = utilities.get_env_bool('VAULT_SKIP_VERIFY')
+                skip_tls_verify = _utilities.get_env_bool('VAULT_SKIP_VERIFY')
             __props__['skip_tls_verify'] = pulumi.Output.from_input(skip_tls_verify).apply(json.dumps) if skip_tls_verify is not None else None
             if token is None:
-                token = utilities.get_env('VAULT_TOKEN')
+                token = _utilities.get_env('VAULT_TOKEN')
             __props__['token'] = token
             if token_name is None:
-                token_name = utilities.get_env('VAULT_TOKEN_NAME')
+                token_name = _utilities.get_env('VAULT_TOKEN_NAME')
             __props__['token_name'] = token_name
         super(Provider, __self__).__init__(
             'vault',
@@ -105,7 +110,8 @@ class Provider(pulumi.ProviderResource):
             opts)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

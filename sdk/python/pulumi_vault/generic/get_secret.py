@@ -5,9 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
 
+__all__ = [
+    'GetSecretResult',
+    'AwaitableGetSecretResult',
+    'get_secret',
+]
+
+@pulumi.output_type
 class GetSecretResult:
     """
     A collection of values returned by getSecret.
@@ -15,52 +22,99 @@ class GetSecretResult:
     def __init__(__self__, data=None, data_json=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, path=None, version=None):
         if data and not isinstance(data, dict):
             raise TypeError("Expected argument 'data' to be a dict")
-        __self__.data = data
+        pulumi.set(__self__, "data", data)
+        if data_json and not isinstance(data_json, str):
+            raise TypeError("Expected argument 'data_json' to be a str")
+        pulumi.set(__self__, "data_json", data_json)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if lease_duration and not isinstance(lease_duration, float):
+            raise TypeError("Expected argument 'lease_duration' to be a float")
+        pulumi.set(__self__, "lease_duration", lease_duration)
+        if lease_id and not isinstance(lease_id, str):
+            raise TypeError("Expected argument 'lease_id' to be a str")
+        pulumi.set(__self__, "lease_id", lease_id)
+        if lease_renewable and not isinstance(lease_renewable, bool):
+            raise TypeError("Expected argument 'lease_renewable' to be a bool")
+        pulumi.set(__self__, "lease_renewable", lease_renewable)
+        if lease_start_time and not isinstance(lease_start_time, str):
+            raise TypeError("Expected argument 'lease_start_time' to be a str")
+        pulumi.set(__self__, "lease_start_time", lease_start_time)
+        if path and not isinstance(path, str):
+            raise TypeError("Expected argument 'path' to be a str")
+        pulumi.set(__self__, "path", path)
+        if version and not isinstance(version, float):
+            raise TypeError("Expected argument 'version' to be a float")
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def data(self) -> Mapping[str, Any]:
         """
         A mapping whose keys are the top-level data keys returned from
         Vault and whose values are the corresponding values. This map can only
         represent string data, so any non-string values returned from Vault are
         serialized as JSON.
         """
-        if data_json and not isinstance(data_json, str):
-            raise TypeError("Expected argument 'data_json' to be a str")
-        __self__.data_json = data_json
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter(name="dataJson")
+    def data_json(self) -> str:
         """
         A string containing the full data payload retrieved from
         Vault, serialized in JSON format.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "data_json")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if lease_duration and not isinstance(lease_duration, float):
-            raise TypeError("Expected argument 'lease_duration' to be a float")
-        __self__.lease_duration = lease_duration
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="leaseDuration")
+    def lease_duration(self) -> float:
         """
         The duration of the secret lease, in seconds relative
         to the time the data was requested. Once this time has passed any plan
         generated with this data may fail to apply.
         """
-        if lease_id and not isinstance(lease_id, str):
-            raise TypeError("Expected argument 'lease_id' to be a str")
-        __self__.lease_id = lease_id
+        return pulumi.get(self, "lease_duration")
+
+    @property
+    @pulumi.getter(name="leaseId")
+    def lease_id(self) -> str:
         """
         The lease identifier assigned by Vault, if any.
         """
-        if lease_renewable and not isinstance(lease_renewable, bool):
-            raise TypeError("Expected argument 'lease_renewable' to be a bool")
-        __self__.lease_renewable = lease_renewable
-        if lease_start_time and not isinstance(lease_start_time, str):
-            raise TypeError("Expected argument 'lease_start_time' to be a str")
-        __self__.lease_start_time = lease_start_time
-        if path and not isinstance(path, str):
-            raise TypeError("Expected argument 'path' to be a str")
-        __self__.path = path
-        if version and not isinstance(version, float):
-            raise TypeError("Expected argument 'version' to be a float")
-        __self__.version = version
+        return pulumi.get(self, "lease_id")
+
+    @property
+    @pulumi.getter(name="leaseRenewable")
+    def lease_renewable(self) -> bool:
+        return pulumi.get(self, "lease_renewable")
+
+    @property
+    @pulumi.getter(name="leaseStartTime")
+    def lease_start_time(self) -> str:
+        return pulumi.get(self, "lease_start_time")
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[float]:
+        return pulumi.get(self, "version")
+
+
 class AwaitableGetSecretResult(GetSecretResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -77,7 +131,10 @@ class AwaitableGetSecretResult(GetSecretResult):
             path=self.path,
             version=self.version)
 
-def get_secret(path=None,version=None,opts=None):
+
+def get_secret(path: Optional[str] = None,
+               version: Optional[float] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretResult:
     """
     Use this data source to access information about an existing resource.
 
@@ -88,23 +145,21 @@ def get_secret(path=None,version=None,opts=None):
            to see which endpoints support the `GET` method.
     """
     __args__ = dict()
-
-
     __args__['path'] = path
     __args__['version'] = version
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('vault:generic/getSecret:getSecret', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('vault:generic/getSecret:getSecret', __args__, opts=opts, typ=GetSecretResult).value
 
     return AwaitableGetSecretResult(
-        data=__ret__.get('data'),
-        data_json=__ret__.get('dataJson'),
-        id=__ret__.get('id'),
-        lease_duration=__ret__.get('leaseDuration'),
-        lease_id=__ret__.get('leaseId'),
-        lease_renewable=__ret__.get('leaseRenewable'),
-        lease_start_time=__ret__.get('leaseStartTime'),
-        path=__ret__.get('path'),
-        version=__ret__.get('version'))
+        data=__ret__.data,
+        data_json=__ret__.data_json,
+        id=__ret__.id,
+        lease_duration=__ret__.lease_duration,
+        lease_id=__ret__.lease_id,
+        lease_renewable=__ret__.lease_renewable,
+        lease_start_time=__ret__.lease_start_time,
+        path=__ret__.path,
+        version=__ret__.version)

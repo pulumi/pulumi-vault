@@ -5,32 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['Template']
 
 
 class Template(pulumi.CustomResource):
-    alphabet: pulumi.Output[str]
-    """
-    The alphabet to use for this template. This is only used during FPE transformations.
-    """
-    name: pulumi.Output[str]
-    """
-    The name of the template.
-    """
-    path: pulumi.Output[str]
-    """
-    Path to where the back-end is mounted within Vault.
-    """
-    pattern: pulumi.Output[str]
-    """
-    The pattern used for matching. Currently, only regular expression pattern is supported.
-    """
-    type: pulumi.Output[str]
-    """
-    The pattern type to use for match detection. Currently, only regex is supported.
-    """
-    def __init__(__self__, resource_name, opts=None, alphabet=None, name=None, path=None, pattern=None, type=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 alphabet: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 pattern: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a Template resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -52,7 +44,7 @@ class Template(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -72,13 +64,20 @@ class Template(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, alphabet=None, name=None, path=None, pattern=None, type=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            alphabet: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            path: Optional[pulumi.Input[str]] = None,
+            pattern: Optional[pulumi.Input[str]] = None,
+            type: Optional[pulumi.Input[str]] = None) -> 'Template':
         """
         Get an existing Template resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alphabet: The alphabet to use for this template. This is only used during FPE transformations.
         :param pulumi.Input[str] name: The name of the template.
@@ -97,8 +96,49 @@ class Template(pulumi.CustomResource):
         __props__["type"] = type
         return Template(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def alphabet(self) -> pulumi.Output[Optional[str]]:
+        """
+        The alphabet to use for this template. This is only used during FPE transformations.
+        """
+        return pulumi.get(self, "alphabet")
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Output[str]:
+        """
+        The name of the template.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Output[str]:
+        """
+        Path to where the back-end is mounted within Vault.
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def pattern(self) -> pulumi.Output[Optional[str]]:
+        """
+        The pattern used for matching. Currently, only regular expression pattern is supported.
+        """
+        return pulumi.get(self, "pattern")
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Output[Optional[str]]:
+        """
+        The pattern type to use for match detection. Currently, only regex is supported.
+        """
+        return pulumi.get(self, "type")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

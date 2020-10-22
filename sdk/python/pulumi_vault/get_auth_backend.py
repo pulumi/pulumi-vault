@@ -5,9 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
 
+__all__ = [
+    'GetAuthBackendResult',
+    'AwaitableGetAuthBackendResult',
+    'get_auth_backend',
+]
+
+@pulumi.output_type
 class GetAuthBackendResult:
     """
     A collection of values returned by getAuthBackend.
@@ -15,55 +22,102 @@ class GetAuthBackendResult:
     def __init__(__self__, accessor=None, default_lease_ttl_seconds=None, description=None, id=None, listing_visibility=None, local=None, max_lease_ttl_seconds=None, path=None, type=None):
         if accessor and not isinstance(accessor, str):
             raise TypeError("Expected argument 'accessor' to be a str")
-        __self__.accessor = accessor
+        pulumi.set(__self__, "accessor", accessor)
+        if default_lease_ttl_seconds and not isinstance(default_lease_ttl_seconds, float):
+            raise TypeError("Expected argument 'default_lease_ttl_seconds' to be a float")
+        pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if listing_visibility and not isinstance(listing_visibility, str):
+            raise TypeError("Expected argument 'listing_visibility' to be a str")
+        pulumi.set(__self__, "listing_visibility", listing_visibility)
+        if local and not isinstance(local, bool):
+            raise TypeError("Expected argument 'local' to be a bool")
+        pulumi.set(__self__, "local", local)
+        if max_lease_ttl_seconds and not isinstance(max_lease_ttl_seconds, float):
+            raise TypeError("Expected argument 'max_lease_ttl_seconds' to be a float")
+        pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
+        if path and not isinstance(path, str):
+            raise TypeError("Expected argument 'path' to be a str")
+        pulumi.set(__self__, "path", path)
+        if type and not isinstance(type, str):
+            raise TypeError("Expected argument 'type' to be a str")
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def accessor(self) -> str:
         """
         The accessor for this auth method
         """
-        if default_lease_ttl_seconds and not isinstance(default_lease_ttl_seconds, float):
-            raise TypeError("Expected argument 'default_lease_ttl_seconds' to be a float")
-        __self__.default_lease_ttl_seconds = default_lease_ttl_seconds
+        return pulumi.get(self, "accessor")
+
+    @property
+    @pulumi.getter(name="defaultLeaseTtlSeconds")
+    def default_lease_ttl_seconds(self) -> float:
         """
         The default lease duration in seconds.
         """
-        if description and not isinstance(description, str):
-            raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        return pulumi.get(self, "default_lease_ttl_seconds")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         A description of the auth method.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if listing_visibility and not isinstance(listing_visibility, str):
-            raise TypeError("Expected argument 'listing_visibility' to be a str")
-        __self__.listing_visibility = listing_visibility
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="listingVisibility")
+    def listing_visibility(self) -> str:
         """
         Speficies whether to show this mount in the UI-specific listing endpoint.
         """
-        if local and not isinstance(local, bool):
-            raise TypeError("Expected argument 'local' to be a bool")
-        __self__.local = local
+        return pulumi.get(self, "listing_visibility")
+
+    @property
+    @pulumi.getter
+    def local(self) -> bool:
         """
         Specifies if the auth method is local only.
         """
-        if max_lease_ttl_seconds and not isinstance(max_lease_ttl_seconds, float):
-            raise TypeError("Expected argument 'max_lease_ttl_seconds' to be a float")
-        __self__.max_lease_ttl_seconds = max_lease_ttl_seconds
+        return pulumi.get(self, "local")
+
+    @property
+    @pulumi.getter(name="maxLeaseTtlSeconds")
+    def max_lease_ttl_seconds(self) -> float:
         """
         The maximum lease duration in seconds.
         """
-        if path and not isinstance(path, str):
-            raise TypeError("Expected argument 'path' to be a str")
-        __self__.path = path
-        if type and not isinstance(type, str):
-            raise TypeError("Expected argument 'type' to be a str")
-        __self__.type = type
+        return pulumi.get(self, "max_lease_ttl_seconds")
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
         """
         The name of the auth method type.
         """
+        return pulumi.get(self, "type")
+
+
 class AwaitableGetAuthBackendResult(GetAuthBackendResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -80,7 +134,9 @@ class AwaitableGetAuthBackendResult(GetAuthBackendResult):
             path=self.path,
             type=self.type)
 
-def get_auth_backend(path=None,opts=None):
+
+def get_auth_backend(path: Optional[str] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuthBackendResult:
     """
     ## Example Usage
 
@@ -95,22 +151,20 @@ def get_auth_backend(path=None,opts=None):
     :param str path: The auth backend mount point.
     """
     __args__ = dict()
-
-
     __args__['path'] = path
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('vault:index/getAuthBackend:getAuthBackend', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('vault:index/getAuthBackend:getAuthBackend', __args__, opts=opts, typ=GetAuthBackendResult).value
 
     return AwaitableGetAuthBackendResult(
-        accessor=__ret__.get('accessor'),
-        default_lease_ttl_seconds=__ret__.get('defaultLeaseTtlSeconds'),
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        listing_visibility=__ret__.get('listingVisibility'),
-        local=__ret__.get('local'),
-        max_lease_ttl_seconds=__ret__.get('maxLeaseTtlSeconds'),
-        path=__ret__.get('path'),
-        type=__ret__.get('type'))
+        accessor=__ret__.accessor,
+        default_lease_ttl_seconds=__ret__.default_lease_ttl_seconds,
+        description=__ret__.description,
+        id=__ret__.id,
+        listing_visibility=__ret__.listing_visibility,
+        local=__ret__.local,
+        max_lease_ttl_seconds=__ret__.max_lease_ttl_seconds,
+        path=__ret__.path,
+        type=__ret__.type)

@@ -5,34 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['AuthBackend']
 
 
 class AuthBackend(pulumi.CustomResource):
-    client_email: pulumi.Output[str]
-    """
-    The clients email associated with the credentials
-    """
-    client_id: pulumi.Output[str]
-    """
-    The Client ID of the credentials
-    """
-    credentials: pulumi.Output[str]
-    """
-    A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
-    """
-    description: pulumi.Output[str]
-    path: pulumi.Output[str]
-    private_key_id: pulumi.Output[str]
-    """
-    The ID of the private key from the credentials
-    """
-    project_id: pulumi.Output[str]
-    """
-    The GCP Project ID
-    """
-    def __init__(__self__, resource_name, opts=None, client_email=None, client_id=None, credentials=None, description=None, path=None, private_key_id=None, project_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 client_email: Optional[pulumi.Input[str]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 credentials: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 private_key_id: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
 
@@ -64,7 +56,7 @@ class AuthBackend(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -84,13 +76,22 @@ class AuthBackend(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, client_email=None, client_id=None, credentials=None, description=None, path=None, private_key_id=None, project_id=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            client_email: Optional[pulumi.Input[str]] = None,
+            client_id: Optional[pulumi.Input[str]] = None,
+            credentials: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            path: Optional[pulumi.Input[str]] = None,
+            private_key_id: Optional[pulumi.Input[str]] = None,
+            project_id: Optional[pulumi.Input[str]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_email: The clients email associated with the credentials
         :param pulumi.Input[str] client_id: The Client ID of the credentials
@@ -111,8 +112,59 @@ class AuthBackend(pulumi.CustomResource):
         __props__["project_id"] = project_id
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="clientEmail")
+    def client_email(self) -> pulumi.Output[str]:
+        """
+        The clients email associated with the credentials
+        """
+        return pulumi.get(self, "client_email")
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> pulumi.Output[str]:
+        """
+        The Client ID of the credentials
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter
+    def credentials(self) -> pulumi.Output[Optional[str]]:
+        """
+        A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+        """
+        return pulumi.get(self, "credentials")
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="privateKeyId")
+    def private_key_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the private key from the credentials
+        """
+        return pulumi.get(self, "private_key_id")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Output[str]:
+        """
+        The GCP Project ID
+        """
+        return pulumi.get(self, "project_id")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

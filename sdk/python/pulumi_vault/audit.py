@@ -5,28 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['Audit']
 
 
 class Audit(pulumi.CustomResource):
-    description: pulumi.Output[str]
-    """
-    Human-friendly description of the audit device.
-    """
-    options: pulumi.Output[dict]
-    """
-    Configuration options to pass to the audit device itself.
-    """
-    path: pulumi.Output[str]
-    """
-    The path to mount the audit device. This defaults to the type.
-    """
-    type: pulumi.Output[str]
-    """
-    Type of the audit device, such as 'file'.
-    """
-    def __init__(__self__, resource_name, opts=None, description=None, options=None, path=None, type=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         ## Example Usage
         ### File Audit Device)
@@ -60,7 +55,7 @@ class Audit(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Human-friendly description of the audit device.
-        :param pulumi.Input[dict] options: Configuration options to pass to the audit device itself.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Configuration options to pass to the audit device itself.
         :param pulumi.Input[str] path: The path to mount the audit device. This defaults to the type.
         :param pulumi.Input[str] type: Type of the audit device, such as 'file'.
         """
@@ -75,7 +70,7 @@ class Audit(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -96,16 +91,22 @@ class Audit(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, description=None, options=None, path=None, type=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            path: Optional[pulumi.Input[str]] = None,
+            type: Optional[pulumi.Input[str]] = None) -> 'Audit':
         """
         Get an existing Audit resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Human-friendly description of the audit device.
-        :param pulumi.Input[dict] options: Configuration options to pass to the audit device itself.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Configuration options to pass to the audit device itself.
         :param pulumi.Input[str] path: The path to mount the audit device. This defaults to the type.
         :param pulumi.Input[str] type: Type of the audit device, such as 'file'.
         """
@@ -119,8 +120,41 @@ class Audit(pulumi.CustomResource):
         __props__["type"] = type
         return Audit(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Human-friendly description of the audit device.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def options(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        Configuration options to pass to the audit device itself.
+        """
+        return pulumi.get(self, "options")
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Output[str]:
+        """
+        The path to mount the audit device. This defaults to the type.
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Output[str]:
+        """
+        Type of the audit device, such as 'file'.
+        """
+        return pulumi.get(self, "type")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

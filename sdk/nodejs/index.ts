@@ -19,7 +19,7 @@ export * from "./token";
 
 // Export sub-modules:
 import * as alicloud from "./alicloud";
-import * as appRole from "./appRole";
+import * as approle from "./approle";
 import * as aws from "./aws";
 import * as azure from "./azure";
 import * as config from "./config";
@@ -33,11 +33,11 @@ import * as jwt from "./jwt";
 import * as kubernetes from "./kubernetes";
 import * as ldap from "./ldap";
 import * as okta from "./okta";
-import * as pkiSecret from "./pkiSecret";
-import * as rabbitMq from "./rabbitMq";
+import * as pkisecret from "./pkisecret";
+import * as rabbitmq from "./rabbitmq";
 import * as ssh from "./ssh";
 import * as tokenauth from "./tokenauth";
 import * as transform from "./transform";
 import * as transit from "./transit";
 import * as types from "./types";
-export {alicloud, appRole, aws, azure, config, consul, database, gcp, generic, github, identity, jwt, kubernetes, ldap, okta, pkiSecret, rabbitMq, ssh, tokenauth, transform, transit, types};
+export {alicloud, approle, aws, azure, config, consul, database, gcp, generic, github, identity, jwt, kubernetes, ldap, okta, pkisecret, rabbitmq, ssh, tokenauth, transform, transit, types};

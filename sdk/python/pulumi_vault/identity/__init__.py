@@ -16,3 +16,4 @@ from .oidc import *
 from .oidc_key import *
 from .oidc_key_allowed_client_id import *
 from .oidc_role import *
+from . import outputs

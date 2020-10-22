@@ -5,118 +5,39 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['AuthBackendRole']
 
 
 class AuthBackendRole(pulumi.CustomResource):
-    audience: pulumi.Output[str]
-    """
-    Audience claim to verify in the JWT.
-    """
-    backend: pulumi.Output[str]
-    """
-    Unique name of the kubernetes backend to configure.
-    """
-    bound_cidrs: pulumi.Output[list]
-    """
-    If set, a list of
-    CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-    """
-    bound_service_account_names: pulumi.Output[list]
-    """
-    List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
-    """
-    bound_service_account_namespaces: pulumi.Output[list]
-    """
-    List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
-    """
-    max_ttl: pulumi.Output[float]
-    """
-    The maximum allowed lifetime of tokens
-    issued using this role, provided as a number of seconds.
-    """
-    num_uses: pulumi.Output[float]
-    """
-    If set, puts a use-count
-    limitation on the issued token.
-    """
-    period: pulumi.Output[float]
-    """
-    If set, indicates that the
-    token generated using this role should never expire. The token should be renewed within the
-    duration specified by this value. At each renewal, the token's TTL will be set to the
-    value of this field. Specified in seconds.
-    """
-    policies: pulumi.Output[list]
-    """
-    An array of strings
-    specifying the policies to be set on tokens issued using this role.
-    """
-    role_name: pulumi.Output[str]
-    """
-    Name of the role.
-    """
-    token_bound_cidrs: pulumi.Output[list]
-    """
-    List of CIDR blocks; if set, specifies blocks of IP
-    addresses which can authenticate successfully, and ties the resulting token to these blocks
-    as well.
-    """
-    token_explicit_max_ttl: pulumi.Output[float]
-    """
-    If set, will encode an
-    [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-    onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-    `token_max_ttl` would otherwise allow a renewal.
-    """
-    token_max_ttl: pulumi.Output[float]
-    """
-    The maximum lifetime for generated tokens in number of seconds.
-    Its current value will be referenced at renewal time.
-    """
-    token_no_default_policy: pulumi.Output[bool]
-    """
-    If set, the default policy will not be set on
-    generated tokens; otherwise it will be added to the policies set in token_policies.
-    """
-    token_num_uses: pulumi.Output[float]
-    """
-    The
-    [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-    if any, in number of seconds to set on the token.
-    """
-    token_period: pulumi.Output[float]
-    """
-    If set, indicates that the
-    token generated using this role should never expire. The token should be renewed within the
-    duration specified by this value. At each renewal, the token's TTL will be set to the
-    value of this field. Specified in seconds.
-    """
-    token_policies: pulumi.Output[list]
-    """
-    List of policies to encode onto generated tokens. Depending
-    on the auth method, this list may be supplemented by user/group/other values.
-    """
-    token_ttl: pulumi.Output[float]
-    """
-    The incremental lifetime for generated tokens in number of seconds.
-    Its current value will be referenced at renewal time.
-    """
-    token_type: pulumi.Output[str]
-    """
-    The type of token that should be generated. Can be `service`,
-    `batch`, or `default` to use the mount's tuned default (which unless changed will be
-    `service` tokens). For token store roles, there are two additional possibilities:
-    `default-service` and `default-batch` which specify the type to return unless the client
-    requests a different type at generation time.
-    """
-    ttl: pulumi.Output[float]
-    """
-    The TTL period of tokens issued
-    using this role, provided as a number of seconds.
-    """
-    def __init__(__self__, resource_name, opts=None, audience=None, backend=None, bound_cidrs=None, bound_service_account_names=None, bound_service_account_namespaces=None, max_ttl=None, num_uses=None, period=None, policies=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 audience: Optional[pulumi.Input[str]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 bound_cidrs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 bound_service_account_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 bound_service_account_namespaces: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 max_ttl: Optional[pulumi.Input[float]] = None,
+                 num_uses: Optional[pulumi.Input[float]] = None,
+                 period: Optional[pulumi.Input[float]] = None,
+                 policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 role_name: Optional[pulumi.Input[str]] = None,
+                 token_bound_cidrs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 token_explicit_max_ttl: Optional[pulumi.Input[float]] = None,
+                 token_max_ttl: Optional[pulumi.Input[float]] = None,
+                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+                 token_num_uses: Optional[pulumi.Input[float]] = None,
+                 token_period: Optional[pulumi.Input[float]] = None,
+                 token_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 token_ttl: Optional[pulumi.Input[float]] = None,
+                 token_type: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[float]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Manages an Kubernetes auth backend role in a Vault server. See the [Vault
         documentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more
@@ -147,10 +68,10 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] audience: Audience claim to verify in the JWT.
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
-        :param pulumi.Input[list] bound_cidrs: If set, a list of
+        :param pulumi.Input[List[pulumi.Input[str]]] bound_cidrs: If set, a list of
                CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-        :param pulumi.Input[list] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
-        :param pulumi.Input[list] bound_service_account_namespaces: List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
+        :param pulumi.Input[List[pulumi.Input[str]]] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
+        :param pulumi.Input[List[pulumi.Input[str]]] bound_service_account_namespaces: List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
         :param pulumi.Input[float] max_ttl: The maximum allowed lifetime of tokens
                issued using this role, provided as a number of seconds.
         :param pulumi.Input[float] num_uses: If set, puts a use-count
@@ -159,10 +80,10 @@ class AuthBackendRole(pulumi.CustomResource):
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
                value of this field. Specified in seconds.
-        :param pulumi.Input[list] policies: An array of strings
+        :param pulumi.Input[List[pulumi.Input[str]]] policies: An array of strings
                specifying the policies to be set on tokens issued using this role.
         :param pulumi.Input[str] role_name: Name of the role.
-        :param pulumi.Input[list] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
+        :param pulumi.Input[List[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
                as well.
         :param pulumi.Input[float] token_explicit_max_ttl: If set, will encode an
@@ -180,7 +101,7 @@ class AuthBackendRole(pulumi.CustomResource):
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
                value of this field. Specified in seconds.
-        :param pulumi.Input[list] token_policies: List of policies to encode onto generated tokens. Depending
+        :param pulumi.Input[List[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
                on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[float] token_ttl: The incremental lifetime for generated tokens in number of seconds.
                Its current value will be referenced at renewal time.
@@ -203,7 +124,7 @@ class AuthBackendRole(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -260,20 +181,42 @@ class AuthBackendRole(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, audience=None, backend=None, bound_cidrs=None, bound_service_account_names=None, bound_service_account_namespaces=None, max_ttl=None, num_uses=None, period=None, policies=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            audience: Optional[pulumi.Input[str]] = None,
+            backend: Optional[pulumi.Input[str]] = None,
+            bound_cidrs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            bound_service_account_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            bound_service_account_namespaces: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            max_ttl: Optional[pulumi.Input[float]] = None,
+            num_uses: Optional[pulumi.Input[float]] = None,
+            period: Optional[pulumi.Input[float]] = None,
+            policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            role_name: Optional[pulumi.Input[str]] = None,
+            token_bound_cidrs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            token_explicit_max_ttl: Optional[pulumi.Input[float]] = None,
+            token_max_ttl: Optional[pulumi.Input[float]] = None,
+            token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+            token_num_uses: Optional[pulumi.Input[float]] = None,
+            token_period: Optional[pulumi.Input[float]] = None,
+            token_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            token_ttl: Optional[pulumi.Input[float]] = None,
+            token_type: Optional[pulumi.Input[str]] = None,
+            ttl: Optional[pulumi.Input[float]] = None) -> 'AuthBackendRole':
         """
         Get an existing AuthBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] audience: Audience claim to verify in the JWT.
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
-        :param pulumi.Input[list] bound_cidrs: If set, a list of
+        :param pulumi.Input[List[pulumi.Input[str]]] bound_cidrs: If set, a list of
                CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-        :param pulumi.Input[list] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
-        :param pulumi.Input[list] bound_service_account_namespaces: List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
+        :param pulumi.Input[List[pulumi.Input[str]]] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
+        :param pulumi.Input[List[pulumi.Input[str]]] bound_service_account_namespaces: List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
         :param pulumi.Input[float] max_ttl: The maximum allowed lifetime of tokens
                issued using this role, provided as a number of seconds.
         :param pulumi.Input[float] num_uses: If set, puts a use-count
@@ -282,10 +225,10 @@ class AuthBackendRole(pulumi.CustomResource):
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
                value of this field. Specified in seconds.
-        :param pulumi.Input[list] policies: An array of strings
+        :param pulumi.Input[List[pulumi.Input[str]]] policies: An array of strings
                specifying the policies to be set on tokens issued using this role.
         :param pulumi.Input[str] role_name: Name of the role.
-        :param pulumi.Input[list] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
+        :param pulumi.Input[List[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
                as well.
         :param pulumi.Input[float] token_explicit_max_ttl: If set, will encode an
@@ -303,7 +246,7 @@ class AuthBackendRole(pulumi.CustomResource):
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
                value of this field. Specified in seconds.
-        :param pulumi.Input[list] token_policies: List of policies to encode onto generated tokens. Depending
+        :param pulumi.Input[List[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
                on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[float] token_ttl: The incremental lifetime for generated tokens in number of seconds.
                Its current value will be referenced at renewal time.
@@ -341,8 +284,195 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__["ttl"] = ttl
         return AuthBackendRole(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def audience(self) -> pulumi.Output[Optional[str]]:
+        """
+        Audience claim to verify in the JWT.
+        """
+        return pulumi.get(self, "audience")
+
+    @property
+    @pulumi.getter
+    def backend(self) -> pulumi.Output[Optional[str]]:
+        """
+        Unique name of the kubernetes backend to configure.
+        """
+        return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter(name="boundCidrs")
+    def bound_cidrs(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        If set, a list of
+        CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+        """
+        return pulumi.get(self, "bound_cidrs")
+
+    @property
+    @pulumi.getter(name="boundServiceAccountNames")
+    def bound_service_account_names(self) -> pulumi.Output[List[str]]:
+        """
+        List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
+        """
+        return pulumi.get(self, "bound_service_account_names")
+
+    @property
+    @pulumi.getter(name="boundServiceAccountNamespaces")
+    def bound_service_account_namespaces(self) -> pulumi.Output[List[str]]:
+        """
+        List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
+        """
+        return pulumi.get(self, "bound_service_account_namespaces")
+
+    @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> pulumi.Output[Optional[float]]:
+        """
+        The maximum allowed lifetime of tokens
+        issued using this role, provided as a number of seconds.
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @property
+    @pulumi.getter(name="numUses")
+    def num_uses(self) -> pulumi.Output[Optional[float]]:
+        """
+        If set, puts a use-count
+        limitation on the issued token.
+        """
+        return pulumi.get(self, "num_uses")
+
+    @property
+    @pulumi.getter
+    def period(self) -> pulumi.Output[Optional[float]]:
+        """
+        If set, indicates that the
+        token generated using this role should never expire. The token should be renewed within the
+        duration specified by this value. At each renewal, the token's TTL will be set to the
+        value of this field. Specified in seconds.
+        """
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        An array of strings
+        specifying the policies to be set on tokens issued using this role.
+        """
+        return pulumi.get(self, "policies")
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> pulumi.Output[str]:
+        """
+        Name of the role.
+        """
+        return pulumi.get(self, "role_name")
+
+    @property
+    @pulumi.getter(name="tokenBoundCidrs")
+    def token_bound_cidrs(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        List of CIDR blocks; if set, specifies blocks of IP
+        addresses which can authenticate successfully, and ties the resulting token to these blocks
+        as well.
+        """
+        return pulumi.get(self, "token_bound_cidrs")
+
+    @property
+    @pulumi.getter(name="tokenExplicitMaxTtl")
+    def token_explicit_max_ttl(self) -> pulumi.Output[Optional[float]]:
+        """
+        If set, will encode an
+        [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+        onto the token in number of seconds. This is a hard cap even if `token_ttl` and
+        `token_max_ttl` would otherwise allow a renewal.
+        """
+        return pulumi.get(self, "token_explicit_max_ttl")
+
+    @property
+    @pulumi.getter(name="tokenMaxTtl")
+    def token_max_ttl(self) -> pulumi.Output[Optional[float]]:
+        """
+        The maximum lifetime for generated tokens in number of seconds.
+        Its current value will be referenced at renewal time.
+        """
+        return pulumi.get(self, "token_max_ttl")
+
+    @property
+    @pulumi.getter(name="tokenNoDefaultPolicy")
+    def token_no_default_policy(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set, the default policy will not be set on
+        generated tokens; otherwise it will be added to the policies set in token_policies.
+        """
+        return pulumi.get(self, "token_no_default_policy")
+
+    @property
+    @pulumi.getter(name="tokenNumUses")
+    def token_num_uses(self) -> pulumi.Output[Optional[float]]:
+        """
+        The
+        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+        if any, in number of seconds to set on the token.
+        """
+        return pulumi.get(self, "token_num_uses")
+
+    @property
+    @pulumi.getter(name="tokenPeriod")
+    def token_period(self) -> pulumi.Output[Optional[float]]:
+        """
+        If set, indicates that the
+        token generated using this role should never expire. The token should be renewed within the
+        duration specified by this value. At each renewal, the token's TTL will be set to the
+        value of this field. Specified in seconds.
+        """
+        return pulumi.get(self, "token_period")
+
+    @property
+    @pulumi.getter(name="tokenPolicies")
+    def token_policies(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        List of policies to encode onto generated tokens. Depending
+        on the auth method, this list may be supplemented by user/group/other values.
+        """
+        return pulumi.get(self, "token_policies")
+
+    @property
+    @pulumi.getter(name="tokenTtl")
+    def token_ttl(self) -> pulumi.Output[Optional[float]]:
+        """
+        The incremental lifetime for generated tokens in number of seconds.
+        Its current value will be referenced at renewal time.
+        """
+        return pulumi.get(self, "token_ttl")
+
+    @property
+    @pulumi.getter(name="tokenType")
+    def token_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        The type of token that should be generated. Can be `service`,
+        `batch`, or `default` to use the mount's tuned default (which unless changed will be
+        `service` tokens). For token store roles, there are two additional possibilities:
+        `default-service` and `default-batch` which specify the type to return unless the client
+        requests a different type at generation time.
+        """
+        return pulumi.get(self, "token_type")
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> pulumi.Output[Optional[float]]:
+        """
+        The TTL period of tokens issued
+        using this role, provided as a number of seconds.
+        """
+        return pulumi.get(self, "ttl")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

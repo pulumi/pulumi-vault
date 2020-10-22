@@ -5,137 +5,44 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['CertAuthBackendRole']
 
 
 class CertAuthBackendRole(pulumi.CustomResource):
-    allowed_common_names: pulumi.Output[list]
-    """
-    Allowed the common names for authenticated client certificates
-    """
-    allowed_dns_sans: pulumi.Output[list]
-    """
-    Allowed alternative dns names for authenticated client certificates
-    """
-    allowed_email_sans: pulumi.Output[list]
-    """
-    Allowed emails for authenticated client certificates
-    """
-    allowed_names: pulumi.Output[list]
-    """
-    Allowed subject names for authenticated client certificates
-    """
-    allowed_organization_units: pulumi.Output[list]
-    """
-    Allowed organization units for authenticated client certificates
-    """
-    allowed_uri_sans: pulumi.Output[list]
-    """
-    Allowed URIs for authenticated client certificates
-    """
-    backend: pulumi.Output[str]
-    """
-    Path to the mounted Cert auth backend
-    """
-    bound_cidrs: pulumi.Output[list]
-    """
-    Restriction usage of the
-    certificates to client IPs falling within the range of the specified CIDRs
-    """
-    certificate: pulumi.Output[str]
-    """
-    CA certificate used to validate client certificates
-    """
-    display_name: pulumi.Output[str]
-    """
-    The name to display on tokens issued under this role.
-    """
-    max_ttl: pulumi.Output[str]
-    """
-    The maximum allowed lifetime of tokens
-    issued using this role, provided as a number of seconds.
-    """
-    name: pulumi.Output[str]
-    """
-    Name of the role
-    """
-    period: pulumi.Output[str]
-    """
-    If set, indicates that the
-    token generated using this role should never expire. The token should be renewed within the
-    duration specified by this value. At each renewal, the token's TTL will be set to the
-    value of this field. Specified in seconds.
-    """
-    policies: pulumi.Output[list]
-    """
-    An array of strings
-    specifying the policies to be set on tokens issued using this role.
-    """
-    required_extensions: pulumi.Output[list]
-    """
-    TLS extensions required on client certificates
-    """
-    token_bound_cidrs: pulumi.Output[list]
-    """
-    List of CIDR blocks; if set, specifies blocks of IP
-    addresses which can authenticate successfully, and ties the resulting token to these blocks
-    as well.
-    """
-    token_explicit_max_ttl: pulumi.Output[float]
-    """
-    If set, will encode an
-    [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-    onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-    `token_max_ttl` would otherwise allow a renewal.
-    """
-    token_max_ttl: pulumi.Output[float]
-    """
-    The maximum lifetime for generated tokens in number of seconds.
-    Its current value will be referenced at renewal time.
-    """
-    token_no_default_policy: pulumi.Output[bool]
-    """
-    If set, the default policy will not be set on
-    generated tokens; otherwise it will be added to the policies set in token_policies.
-    """
-    token_num_uses: pulumi.Output[float]
-    """
-    The
-    [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-    if any, in number of seconds to set on the token.
-    """
-    token_period: pulumi.Output[float]
-    """
-    If set, indicates that the
-    token generated using this role should never expire. The token should be renewed within the
-    duration specified by this value. At each renewal, the token's TTL will be set to the
-    value of this field. Specified in seconds.
-    """
-    token_policies: pulumi.Output[list]
-    """
-    List of policies to encode onto generated tokens. Depending
-    on the auth method, this list may be supplemented by user/group/other values.
-    """
-    token_ttl: pulumi.Output[float]
-    """
-    The incremental lifetime for generated tokens in number of seconds.
-    Its current value will be referenced at renewal time.
-    """
-    token_type: pulumi.Output[str]
-    """
-    The type of token that should be generated. Can be `service`,
-    `batch`, or `default` to use the mount's tuned default (which unless changed will be
-    `service` tokens). For token store roles, there are two additional possibilities:
-    `default-service` and `default-batch` which specify the type to return unless the client
-    requests a different type at generation time.
-    """
-    ttl: pulumi.Output[str]
-    """
-    The TTL period of tokens issued
-    using this role, provided as a number of seconds.
-    """
-    def __init__(__self__, resource_name, opts=None, allowed_common_names=None, allowed_dns_sans=None, allowed_email_sans=None, allowed_names=None, allowed_organization_units=None, allowed_uri_sans=None, backend=None, bound_cidrs=None, certificate=None, display_name=None, max_ttl=None, name=None, period=None, policies=None, required_extensions=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_common_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allowed_dns_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allowed_email_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allowed_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allowed_organization_units: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allowed_uri_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 bound_cidrs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 certificate: Optional[pulumi.Input[str]] = None,
+                 display_name: Optional[pulumi.Input[str]] = None,
+                 max_ttl: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 period: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 required_extensions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 token_bound_cidrs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 token_explicit_max_ttl: Optional[pulumi.Input[float]] = None,
+                 token_max_ttl: Optional[pulumi.Input[float]] = None,
+                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+                 token_num_uses: Optional[pulumi.Input[float]] = None,
+                 token_period: Optional[pulumi.Input[float]] = None,
+                 token_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 token_ttl: Optional[pulumi.Input[float]] = None,
+                 token_type: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a resource to create a role in an [Cert auth backend within Vault](https://www.vaultproject.io/docs/auth/cert.html).
 
@@ -162,14 +69,14 @@ class CertAuthBackendRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] allowed_common_names: Allowed the common names for authenticated client certificates
-        :param pulumi.Input[list] allowed_dns_sans: Allowed alternative dns names for authenticated client certificates
-        :param pulumi.Input[list] allowed_email_sans: Allowed emails for authenticated client certificates
-        :param pulumi.Input[list] allowed_names: Allowed subject names for authenticated client certificates
-        :param pulumi.Input[list] allowed_organization_units: Allowed organization units for authenticated client certificates
-        :param pulumi.Input[list] allowed_uri_sans: Allowed URIs for authenticated client certificates
+        :param pulumi.Input[List[pulumi.Input[str]]] allowed_common_names: Allowed the common names for authenticated client certificates
+        :param pulumi.Input[List[pulumi.Input[str]]] allowed_dns_sans: Allowed alternative dns names for authenticated client certificates
+        :param pulumi.Input[List[pulumi.Input[str]]] allowed_email_sans: Allowed emails for authenticated client certificates
+        :param pulumi.Input[List[pulumi.Input[str]]] allowed_names: Allowed subject names for authenticated client certificates
+        :param pulumi.Input[List[pulumi.Input[str]]] allowed_organization_units: Allowed organization units for authenticated client certificates
+        :param pulumi.Input[List[pulumi.Input[str]]] allowed_uri_sans: Allowed URIs for authenticated client certificates
         :param pulumi.Input[str] backend: Path to the mounted Cert auth backend
-        :param pulumi.Input[list] bound_cidrs: Restriction usage of the
+        :param pulumi.Input[List[pulumi.Input[str]]] bound_cidrs: Restriction usage of the
                certificates to client IPs falling within the range of the specified CIDRs
         :param pulumi.Input[str] certificate: CA certificate used to validate client certificates
         :param pulumi.Input[str] display_name: The name to display on tokens issued under this role.
@@ -180,10 +87,10 @@ class CertAuthBackendRole(pulumi.CustomResource):
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
                value of this field. Specified in seconds.
-        :param pulumi.Input[list] policies: An array of strings
+        :param pulumi.Input[List[pulumi.Input[str]]] policies: An array of strings
                specifying the policies to be set on tokens issued using this role.
-        :param pulumi.Input[list] required_extensions: TLS extensions required on client certificates
-        :param pulumi.Input[list] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
+        :param pulumi.Input[List[pulumi.Input[str]]] required_extensions: TLS extensions required on client certificates
+        :param pulumi.Input[List[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
                as well.
         :param pulumi.Input[float] token_explicit_max_ttl: If set, will encode an
@@ -201,7 +108,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
                value of this field. Specified in seconds.
-        :param pulumi.Input[list] token_policies: List of policies to encode onto generated tokens. Depending
+        :param pulumi.Input[List[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
                on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[float] token_ttl: The incremental lifetime for generated tokens in number of seconds.
                Its current value will be referenced at renewal time.
@@ -224,7 +131,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -279,22 +186,49 @@ class CertAuthBackendRole(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allowed_common_names=None, allowed_dns_sans=None, allowed_email_sans=None, allowed_names=None, allowed_organization_units=None, allowed_uri_sans=None, backend=None, bound_cidrs=None, certificate=None, display_name=None, max_ttl=None, name=None, period=None, policies=None, required_extensions=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allowed_common_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            allowed_dns_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            allowed_email_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            allowed_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            allowed_organization_units: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            allowed_uri_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            backend: Optional[pulumi.Input[str]] = None,
+            bound_cidrs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            certificate: Optional[pulumi.Input[str]] = None,
+            display_name: Optional[pulumi.Input[str]] = None,
+            max_ttl: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            period: Optional[pulumi.Input[str]] = None,
+            policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            required_extensions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            token_bound_cidrs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            token_explicit_max_ttl: Optional[pulumi.Input[float]] = None,
+            token_max_ttl: Optional[pulumi.Input[float]] = None,
+            token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+            token_num_uses: Optional[pulumi.Input[float]] = None,
+            token_period: Optional[pulumi.Input[float]] = None,
+            token_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            token_ttl: Optional[pulumi.Input[float]] = None,
+            token_type: Optional[pulumi.Input[str]] = None,
+            ttl: Optional[pulumi.Input[str]] = None) -> 'CertAuthBackendRole':
         """
         Get an existing CertAuthBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] allowed_common_names: Allowed the common names for authenticated client certificates
-        :param pulumi.Input[list] allowed_dns_sans: Allowed alternative dns names for authenticated client certificates
-        :param pulumi.Input[list] allowed_email_sans: Allowed emails for authenticated client certificates
-        :param pulumi.Input[list] allowed_names: Allowed subject names for authenticated client certificates
-        :param pulumi.Input[list] allowed_organization_units: Allowed organization units for authenticated client certificates
-        :param pulumi.Input[list] allowed_uri_sans: Allowed URIs for authenticated client certificates
+        :param pulumi.Input[List[pulumi.Input[str]]] allowed_common_names: Allowed the common names for authenticated client certificates
+        :param pulumi.Input[List[pulumi.Input[str]]] allowed_dns_sans: Allowed alternative dns names for authenticated client certificates
+        :param pulumi.Input[List[pulumi.Input[str]]] allowed_email_sans: Allowed emails for authenticated client certificates
+        :param pulumi.Input[List[pulumi.Input[str]]] allowed_names: Allowed subject names for authenticated client certificates
+        :param pulumi.Input[List[pulumi.Input[str]]] allowed_organization_units: Allowed organization units for authenticated client certificates
+        :param pulumi.Input[List[pulumi.Input[str]]] allowed_uri_sans: Allowed URIs for authenticated client certificates
         :param pulumi.Input[str] backend: Path to the mounted Cert auth backend
-        :param pulumi.Input[list] bound_cidrs: Restriction usage of the
+        :param pulumi.Input[List[pulumi.Input[str]]] bound_cidrs: Restriction usage of the
                certificates to client IPs falling within the range of the specified CIDRs
         :param pulumi.Input[str] certificate: CA certificate used to validate client certificates
         :param pulumi.Input[str] display_name: The name to display on tokens issued under this role.
@@ -305,10 +239,10 @@ class CertAuthBackendRole(pulumi.CustomResource):
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
                value of this field. Specified in seconds.
-        :param pulumi.Input[list] policies: An array of strings
+        :param pulumi.Input[List[pulumi.Input[str]]] policies: An array of strings
                specifying the policies to be set on tokens issued using this role.
-        :param pulumi.Input[list] required_extensions: TLS extensions required on client certificates
-        :param pulumi.Input[list] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
+        :param pulumi.Input[List[pulumi.Input[str]]] required_extensions: TLS extensions required on client certificates
+        :param pulumi.Input[List[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
                as well.
         :param pulumi.Input[float] token_explicit_max_ttl: If set, will encode an
@@ -326,7 +260,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
                value of this field. Specified in seconds.
-        :param pulumi.Input[list] token_policies: List of policies to encode onto generated tokens. Depending
+        :param pulumi.Input[List[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
                on the auth method, this list may be supplemented by user/group/other values.
         :param pulumi.Input[float] token_ttl: The incremental lifetime for generated tokens in number of seconds.
                Its current value will be referenced at renewal time.
@@ -369,8 +303,234 @@ class CertAuthBackendRole(pulumi.CustomResource):
         __props__["ttl"] = ttl
         return CertAuthBackendRole(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="allowedCommonNames")
+    def allowed_common_names(self) -> pulumi.Output[List[str]]:
+        """
+        Allowed the common names for authenticated client certificates
+        """
+        return pulumi.get(self, "allowed_common_names")
+
+    @property
+    @pulumi.getter(name="allowedDnsSans")
+    def allowed_dns_sans(self) -> pulumi.Output[List[str]]:
+        """
+        Allowed alternative dns names for authenticated client certificates
+        """
+        return pulumi.get(self, "allowed_dns_sans")
+
+    @property
+    @pulumi.getter(name="allowedEmailSans")
+    def allowed_email_sans(self) -> pulumi.Output[List[str]]:
+        """
+        Allowed emails for authenticated client certificates
+        """
+        return pulumi.get(self, "allowed_email_sans")
+
+    @property
+    @pulumi.getter(name="allowedNames")
+    def allowed_names(self) -> pulumi.Output[List[str]]:
+        """
+        Allowed subject names for authenticated client certificates
+        """
+        return pulumi.get(self, "allowed_names")
+
+    @property
+    @pulumi.getter(name="allowedOrganizationUnits")
+    def allowed_organization_units(self) -> pulumi.Output[List[str]]:
+        """
+        Allowed organization units for authenticated client certificates
+        """
+        return pulumi.get(self, "allowed_organization_units")
+
+    @property
+    @pulumi.getter(name="allowedUriSans")
+    def allowed_uri_sans(self) -> pulumi.Output[List[str]]:
+        """
+        Allowed URIs for authenticated client certificates
+        """
+        return pulumi.get(self, "allowed_uri_sans")
+
+    @property
+    @pulumi.getter
+    def backend(self) -> pulumi.Output[Optional[str]]:
+        """
+        Path to the mounted Cert auth backend
+        """
+        return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter(name="boundCidrs")
+    def bound_cidrs(self) -> pulumi.Output[List[str]]:
+        """
+        Restriction usage of the
+        certificates to client IPs falling within the range of the specified CIDRs
+        """
+        return pulumi.get(self, "bound_cidrs")
+
+    @property
+    @pulumi.getter
+    def certificate(self) -> pulumi.Output[str]:
+        """
+        CA certificate used to validate client certificates
+        """
+        return pulumi.get(self, "certificate")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> pulumi.Output[str]:
+        """
+        The name to display on tokens issued under this role.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> pulumi.Output[str]:
+        """
+        The maximum allowed lifetime of tokens
+        issued using this role, provided as a number of seconds.
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Output[str]:
+        """
+        Name of the role
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def period(self) -> pulumi.Output[str]:
+        """
+        If set, indicates that the
+        token generated using this role should never expire. The token should be renewed within the
+        duration specified by this value. At each renewal, the token's TTL will be set to the
+        value of this field. Specified in seconds.
+        """
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> pulumi.Output[List[str]]:
+        """
+        An array of strings
+        specifying the policies to be set on tokens issued using this role.
+        """
+        return pulumi.get(self, "policies")
+
+    @property
+    @pulumi.getter(name="requiredExtensions")
+    def required_extensions(self) -> pulumi.Output[List[str]]:
+        """
+        TLS extensions required on client certificates
+        """
+        return pulumi.get(self, "required_extensions")
+
+    @property
+    @pulumi.getter(name="tokenBoundCidrs")
+    def token_bound_cidrs(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        List of CIDR blocks; if set, specifies blocks of IP
+        addresses which can authenticate successfully, and ties the resulting token to these blocks
+        as well.
+        """
+        return pulumi.get(self, "token_bound_cidrs")
+
+    @property
+    @pulumi.getter(name="tokenExplicitMaxTtl")
+    def token_explicit_max_ttl(self) -> pulumi.Output[Optional[float]]:
+        """
+        If set, will encode an
+        [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+        onto the token in number of seconds. This is a hard cap even if `token_ttl` and
+        `token_max_ttl` would otherwise allow a renewal.
+        """
+        return pulumi.get(self, "token_explicit_max_ttl")
+
+    @property
+    @pulumi.getter(name="tokenMaxTtl")
+    def token_max_ttl(self) -> pulumi.Output[Optional[float]]:
+        """
+        The maximum lifetime for generated tokens in number of seconds.
+        Its current value will be referenced at renewal time.
+        """
+        return pulumi.get(self, "token_max_ttl")
+
+    @property
+    @pulumi.getter(name="tokenNoDefaultPolicy")
+    def token_no_default_policy(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set, the default policy will not be set on
+        generated tokens; otherwise it will be added to the policies set in token_policies.
+        """
+        return pulumi.get(self, "token_no_default_policy")
+
+    @property
+    @pulumi.getter(name="tokenNumUses")
+    def token_num_uses(self) -> pulumi.Output[Optional[float]]:
+        """
+        The
+        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+        if any, in number of seconds to set on the token.
+        """
+        return pulumi.get(self, "token_num_uses")
+
+    @property
+    @pulumi.getter(name="tokenPeriod")
+    def token_period(self) -> pulumi.Output[Optional[float]]:
+        """
+        If set, indicates that the
+        token generated using this role should never expire. The token should be renewed within the
+        duration specified by this value. At each renewal, the token's TTL will be set to the
+        value of this field. Specified in seconds.
+        """
+        return pulumi.get(self, "token_period")
+
+    @property
+    @pulumi.getter(name="tokenPolicies")
+    def token_policies(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        List of policies to encode onto generated tokens. Depending
+        on the auth method, this list may be supplemented by user/group/other values.
+        """
+        return pulumi.get(self, "token_policies")
+
+    @property
+    @pulumi.getter(name="tokenTtl")
+    def token_ttl(self) -> pulumi.Output[Optional[float]]:
+        """
+        The incremental lifetime for generated tokens in number of seconds.
+        Its current value will be referenced at renewal time.
+        """
+        return pulumi.get(self, "token_ttl")
+
+    @property
+    @pulumi.getter(name="tokenType")
+    def token_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        The type of token that should be generated. Can be `service`,
+        `batch`, or `default` to use the mount's tuned default (which unless changed will be
+        `service` tokens). For token store roles, there are two additional possibilities:
+        `default-service` and `default-batch` which specify the type to return unless the client
+        requests a different type at generation time.
+        """
+        return pulumi.get(self, "token_type")
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> pulumi.Output[str]:
+        """
+        The TTL period of tokens issued
+        using this role, provided as a number of seconds.
+        """
+        return pulumi.get(self, "ttl")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
