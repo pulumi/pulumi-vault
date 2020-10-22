@@ -4,6 +4,27 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * This resource supports the "/transform/alphabet/{name}" Vault endpoint.
+ *
+ * It queries an existing alphabet by the given name.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const mountTransform = new vault.Mount("mountTransform", {
+ *     path: "transform",
+ *     type: "transform",
+ * });
+ * const test = new vault.transform.Alphabet("test", {
+ *     path: mountTransform.path,
+ *     alphabet: "0123456789",
+ * });
+ * ```
+ */
 export class Alphabet extends pulumi.CustomResource {
     /**
      * Get an existing Alphabet resource's state with the given name, ID, and optional extra
@@ -41,7 +62,7 @@ export class Alphabet extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+     * Path to where the back-end is mounted within Vault.
      */
     public readonly path!: pulumi.Output<string>;
 
@@ -93,7 +114,7 @@ export interface AlphabetState {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+     * Path to where the back-end is mounted within Vault.
      */
     readonly path?: pulumi.Input<string>;
 }
@@ -111,7 +132,7 @@ export interface AlphabetArgs {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+     * Path to where the back-end is mounted within Vault.
      */
     readonly path: pulumi.Input<string>;
 }

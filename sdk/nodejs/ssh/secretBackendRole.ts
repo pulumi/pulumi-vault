@@ -60,6 +60,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
     }
 
     /**
+     * When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
+     */
+    public readonly algorithmSigner!: pulumi.Output<string>;
+    /**
      * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
      */
     public readonly allowBareDomains!: pulumi.Output<boolean | undefined>;
@@ -99,6 +103,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      */
     public readonly allowedUsers!: pulumi.Output<string | undefined>;
+    /**
+     * Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
+     */
+    public readonly allowedUsersTemplate!: pulumi.Output<boolean | undefined>;
     /**
      * The path where the SSH secret backend is mounted.
      */
@@ -152,6 +160,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state = argsOrState as SecretBackendRoleState | undefined;
+            inputs["algorithmSigner"] = state ? state.algorithmSigner : undefined;
             inputs["allowBareDomains"] = state ? state.allowBareDomains : undefined;
             inputs["allowHostCertificates"] = state ? state.allowHostCertificates : undefined;
             inputs["allowSubdomains"] = state ? state.allowSubdomains : undefined;
@@ -162,6 +171,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["allowedExtensions"] = state ? state.allowedExtensions : undefined;
             inputs["allowedUserKeyLengths"] = state ? state.allowedUserKeyLengths : undefined;
             inputs["allowedUsers"] = state ? state.allowedUsers : undefined;
+            inputs["allowedUsersTemplate"] = state ? state.allowedUsersTemplate : undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["cidrList"] = state ? state.cidrList : undefined;
             inputs["defaultCriticalOptions"] = state ? state.defaultCriticalOptions : undefined;
@@ -180,6 +190,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             if (!args || args.keyType === undefined) {
                 throw new Error("Missing required property 'keyType'");
             }
+            inputs["algorithmSigner"] = args ? args.algorithmSigner : undefined;
             inputs["allowBareDomains"] = args ? args.allowBareDomains : undefined;
             inputs["allowHostCertificates"] = args ? args.allowHostCertificates : undefined;
             inputs["allowSubdomains"] = args ? args.allowSubdomains : undefined;
@@ -190,6 +201,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["allowedExtensions"] = args ? args.allowedExtensions : undefined;
             inputs["allowedUserKeyLengths"] = args ? args.allowedUserKeyLengths : undefined;
             inputs["allowedUsers"] = args ? args.allowedUsers : undefined;
+            inputs["allowedUsersTemplate"] = args ? args.allowedUsersTemplate : undefined;
             inputs["backend"] = args ? args.backend : undefined;
             inputs["cidrList"] = args ? args.cidrList : undefined;
             inputs["defaultCriticalOptions"] = args ? args.defaultCriticalOptions : undefined;
@@ -216,6 +228,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SecretBackendRole resources.
  */
 export interface SecretBackendRoleState {
+    /**
+     * When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
+     */
+    readonly algorithmSigner?: pulumi.Input<string>;
     /**
      * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
      */
@@ -256,6 +272,10 @@ export interface SecretBackendRoleState {
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      */
     readonly allowedUsers?: pulumi.Input<string>;
+    /**
+     * Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
+     */
+    readonly allowedUsersTemplate?: pulumi.Input<boolean>;
     /**
      * The path where the SSH secret backend is mounted.
      */
@@ -303,6 +323,10 @@ export interface SecretBackendRoleState {
  */
 export interface SecretBackendRoleArgs {
     /**
+     * When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
+     */
+    readonly algorithmSigner?: pulumi.Input<string>;
+    /**
      * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
      */
     readonly allowBareDomains?: pulumi.Input<boolean>;
@@ -342,6 +366,10 @@ export interface SecretBackendRoleArgs {
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      */
     readonly allowedUsers?: pulumi.Input<string>;
+    /**
+     * Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
+     */
+    readonly allowedUsersTemplate?: pulumi.Input<boolean>;
     /**
      * The path where the SSH secret backend is mounted.
      */

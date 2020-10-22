@@ -4,6 +4,31 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * This resource supports the "/transform/transformation/{name}" Vault endpoint.
+ *
+ * It creates or updates a transformation with the given name. If a transformation with the name does not exist,
+ * it will be created. If the transformation exists, it will be updated with the new attributes.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const mountTransform = new vault.Mount("mountTransform", {
+ *     path: "transform",
+ *     type: "transform",
+ * });
+ * const test = new vault.transform.Transformation("test", {
+ *     path: mountTransform.path,
+ *     type: "fpe",
+ *     template: "ccn",
+ *     tweakSource: "internal",
+ *     allowedRoles: ["payments"],
+ * });
+ * ```
+ */
 export class Transformation extends pulumi.CustomResource {
     /**
      * Get an existing Transformation resource's state with the given name, ID, and optional extra
@@ -45,7 +70,7 @@ export class Transformation extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+     * Path to where the back-end is mounted within Vault.
      */
     public readonly path!: pulumi.Output<string>;
     /**
@@ -127,7 +152,7 @@ export interface TransformationState {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+     * Path to where the back-end is mounted within Vault.
      */
     readonly path?: pulumi.Input<string>;
     /**
@@ -165,7 +190,7 @@ export interface TransformationArgs {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+     * Path to where the back-end is mounted within Vault.
      */
     readonly path: pulumi.Input<string>;
     /**

@@ -49,6 +49,12 @@ namespace Pulumi.Vault.Ssh
     public partial class SecretBackendRole : Pulumi.CustomResource
     {
         /// <summary>
+        /// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
+        /// </summary>
+        [Output("algorithmSigner")]
+        public Output<string> AlgorithmSigner { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.
         /// </summary>
         [Output("allowBareDomains")]
@@ -107,6 +113,12 @@ namespace Pulumi.Vault.Ssh
         /// </summary>
         [Output("allowedUsers")]
         public Output<string?> AllowedUsers { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
+        /// </summary>
+        [Output("allowedUsersTemplate")]
+        public Output<bool?> AllowedUsersTemplate { get; private set; } = null!;
 
         /// <summary>
         /// The path where the SSH secret backend is mounted.
@@ -215,6 +227,12 @@ namespace Pulumi.Vault.Ssh
     public sealed class SecretBackendRoleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
+        /// </summary>
+        [Input("algorithmSigner")]
+        public Input<string>? AlgorithmSigner { get; set; }
+
+        /// <summary>
         /// Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.
         /// </summary>
         [Input("allowBareDomains")]
@@ -279,6 +297,12 @@ namespace Pulumi.Vault.Ssh
         /// </summary>
         [Input("allowedUsers")]
         public Input<string>? AllowedUsers { get; set; }
+
+        /// <summary>
+        /// Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
+        /// </summary>
+        [Input("allowedUsersTemplate")]
+        public Input<bool>? AllowedUsersTemplate { get; set; }
 
         /// <summary>
         /// The path where the SSH secret backend is mounted.
@@ -360,6 +384,12 @@ namespace Pulumi.Vault.Ssh
     public sealed class SecretBackendRoleState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
+        /// </summary>
+        [Input("algorithmSigner")]
+        public Input<string>? AlgorithmSigner { get; set; }
+
+        /// <summary>
         /// Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.
         /// </summary>
         [Input("allowBareDomains")]
@@ -424,6 +454,12 @@ namespace Pulumi.Vault.Ssh
         /// </summary>
         [Input("allowedUsers")]
         public Input<string>? AllowedUsers { get; set; }
+
+        /// <summary>
+        /// Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
+        /// </summary>
+        [Input("allowedUsersTemplate")]
+        public Input<bool>? AllowedUsersTemplate { get; set; }
 
         /// <summary>
         /// The path where the SSH secret backend is mounted.

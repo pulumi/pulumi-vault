@@ -3,5 +3,7 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 # Export this package's modules as members:
+from .get_decrypt import *
+from .get_encrypt import *
 from .secret_backend_key import *
 from .secret_cache_config import *

@@ -41,7 +41,7 @@ export class Template extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+     * Path to where the back-end is mounted within Vault.
      */
     public readonly path!: pulumi.Output<string>;
     /**
@@ -105,7 +105,7 @@ export interface TemplateState {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+     * Path to where the back-end is mounted within Vault.
      */
     readonly path?: pulumi.Input<string>;
     /**
@@ -131,7 +131,7 @@ export interface TemplateArgs {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+     * Path to where the back-end is mounted within Vault.
      */
     readonly path: pulumi.Input<string>;
     /**

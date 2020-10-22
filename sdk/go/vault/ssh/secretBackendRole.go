@@ -57,6 +57,8 @@ import (
 type SecretBackendRole struct {
 	pulumi.CustomResourceState
 
+	// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
+	AlgorithmSigner pulumi.StringOutput `pulumi:"algorithmSigner"`
 	// Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
 	AllowBareDomains pulumi.BoolPtrOutput `pulumi:"allowBareDomains"`
 	// Specifies if certificates are allowed to be signed for use as a 'host'.
@@ -77,6 +79,8 @@ type SecretBackendRole struct {
 	AllowedUserKeyLengths pulumi.MapOutput `pulumi:"allowedUserKeyLengths"`
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers pulumi.StringPtrOutput `pulumi:"allowedUsers"`
+	// Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
+	AllowedUsersTemplate pulumi.BoolPtrOutput `pulumi:"allowedUsersTemplate"`
 	// The path where the SSH secret backend is mounted.
 	Backend pulumi.StringOutput `pulumi:"backend"`
 	// The comma-separated string of CIDR blocks for which this role is applicable.
@@ -133,6 +137,8 @@ func GetSecretBackendRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretBackendRole resources.
 type secretBackendRoleState struct {
+	// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
+	AlgorithmSigner *string `pulumi:"algorithmSigner"`
 	// Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
 	AllowBareDomains *bool `pulumi:"allowBareDomains"`
 	// Specifies if certificates are allowed to be signed for use as a 'host'.
@@ -153,6 +159,8 @@ type secretBackendRoleState struct {
 	AllowedUserKeyLengths map[string]interface{} `pulumi:"allowedUserKeyLengths"`
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers *string `pulumi:"allowedUsers"`
+	// Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
+	AllowedUsersTemplate *bool `pulumi:"allowedUsersTemplate"`
 	// The path where the SSH secret backend is mounted.
 	Backend *string `pulumi:"backend"`
 	// The comma-separated string of CIDR blocks for which this role is applicable.
@@ -176,6 +184,8 @@ type secretBackendRoleState struct {
 }
 
 type SecretBackendRoleState struct {
+	// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
+	AlgorithmSigner pulumi.StringPtrInput
 	// Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
 	AllowBareDomains pulumi.BoolPtrInput
 	// Specifies if certificates are allowed to be signed for use as a 'host'.
@@ -196,6 +206,8 @@ type SecretBackendRoleState struct {
 	AllowedUserKeyLengths pulumi.MapInput
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers pulumi.StringPtrInput
+	// Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
+	AllowedUsersTemplate pulumi.BoolPtrInput
 	// The path where the SSH secret backend is mounted.
 	Backend pulumi.StringPtrInput
 	// The comma-separated string of CIDR blocks for which this role is applicable.
@@ -223,6 +235,8 @@ func (SecretBackendRoleState) ElementType() reflect.Type {
 }
 
 type secretBackendRoleArgs struct {
+	// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
+	AlgorithmSigner *string `pulumi:"algorithmSigner"`
 	// Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
 	AllowBareDomains *bool `pulumi:"allowBareDomains"`
 	// Specifies if certificates are allowed to be signed for use as a 'host'.
@@ -243,6 +257,8 @@ type secretBackendRoleArgs struct {
 	AllowedUserKeyLengths map[string]interface{} `pulumi:"allowedUserKeyLengths"`
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers *string `pulumi:"allowedUsers"`
+	// Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
+	AllowedUsersTemplate *bool `pulumi:"allowedUsersTemplate"`
 	// The path where the SSH secret backend is mounted.
 	Backend string `pulumi:"backend"`
 	// The comma-separated string of CIDR blocks for which this role is applicable.
@@ -267,6 +283,8 @@ type secretBackendRoleArgs struct {
 
 // The set of arguments for constructing a SecretBackendRole resource.
 type SecretBackendRoleArgs struct {
+	// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
+	AlgorithmSigner pulumi.StringPtrInput
 	// Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
 	AllowBareDomains pulumi.BoolPtrInput
 	// Specifies if certificates are allowed to be signed for use as a 'host'.
@@ -287,6 +305,8 @@ type SecretBackendRoleArgs struct {
 	AllowedUserKeyLengths pulumi.MapInput
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers pulumi.StringPtrInput
+	// Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
+	AllowedUsersTemplate pulumi.BoolPtrInput
 	// The path where the SSH secret backend is mounted.
 	Backend pulumi.StringInput
 	// The comma-separated string of CIDR blocks for which this role is applicable.

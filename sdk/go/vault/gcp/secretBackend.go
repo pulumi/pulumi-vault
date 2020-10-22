@@ -19,6 +19,8 @@ type SecretBackend struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend. Defaults to '0'.
 	MaxLeaseTtlSeconds pulumi.IntPtrOutput `pulumi:"maxLeaseTtlSeconds"`
@@ -62,6 +64,8 @@ type secretBackendState struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
+	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+	Local *bool `pulumi:"local"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend. Defaults to '0'.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
@@ -78,6 +82,8 @@ type SecretBackendState struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
+	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+	Local pulumi.BoolPtrInput
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend. Defaults to '0'.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
@@ -98,6 +104,8 @@ type secretBackendArgs struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
+	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+	Local *bool `pulumi:"local"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend. Defaults to '0'.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
@@ -115,6 +123,8 @@ type SecretBackendArgs struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
+	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+	Local pulumi.BoolPtrInput
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend. Defaults to '0'.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput

@@ -7,6 +7,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// This data source supports the "/transform/decode/{role_name}" Vault endpoint.
+//
+// It decodes the provided value using a named role.
 func GetDecode(ctx *pulumi.Context, args *GetDecodeArgs, opts ...pulumi.InvokeOption) (*GetDecodeResult, error) {
 	var rv GetDecodeResult
 	err := ctx.Invoke("vault:transform/getDecode:getDecode", args, &rv, opts...)
@@ -18,14 +21,22 @@ func GetDecode(ctx *pulumi.Context, args *GetDecodeArgs, opts ...pulumi.InvokeOp
 
 // A collection of arguments for invoking getDecode.
 type GetDecodeArgs struct {
-	BatchInputs    []map[string]interface{} `pulumi:"batchInputs"`
-	BatchResults   []map[string]interface{} `pulumi:"batchResults"`
-	DecodedValue   *string                  `pulumi:"decodedValue"`
-	Path           string                   `pulumi:"path"`
-	RoleName       string                   `pulumi:"roleName"`
-	Transformation *string                  `pulumi:"transformation"`
-	Tweak          *string                  `pulumi:"tweak"`
-	Value          *string                  `pulumi:"value"`
+	// Specifies a list of items to be decoded in a single batch. If this parameter is set, the top-level parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
+	BatchInputs []map[string]interface{} `pulumi:"batchInputs"`
+	// The result of decoding a batch.
+	BatchResults []map[string]interface{} `pulumi:"batchResults"`
+	// The result of decoding a value.
+	DecodedValue *string `pulumi:"decodedValue"`
+	// Path to where the back-end is mounted within Vault.
+	Path string `pulumi:"path"`
+	// The name of the role.
+	RoleName string `pulumi:"roleName"`
+	// The transformation to perform. If no value is provided and the role contains a single transformation, this value will be inferred from the role.
+	Transformation *string `pulumi:"transformation"`
+	// The tweak value to use. Only applicable for FPE transformations
+	Tweak *string `pulumi:"tweak"`
+	// The value in which to decode.
+	Value *string `pulumi:"value"`
 }
 
 // A collection of values returned by getDecode.

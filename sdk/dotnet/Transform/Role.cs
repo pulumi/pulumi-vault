@@ -9,6 +9,40 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Transform
 {
+    /// <summary>
+    /// This resource supports the "/transform/role/{name}" Vault endpoint.
+    /// 
+    /// It creates or updates the role with the given name. If a role with the name does not exist, it will be created.
+    /// If the role exists, it will be updated with the new attributes.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var mountTransform = new Vault.Mount("mountTransform", new Vault.MountArgs
+    ///         {
+    ///             Path = "transform",
+    ///             Type = "transform",
+    ///         });
+    ///         var test = new Vault.Transform.Role("test", new Vault.Transform.RoleArgs
+    ///         {
+    ///             Path = mountTransform.Path,
+    ///             Transformations = 
+    ///             {
+    ///                 "ccn-fpe",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     public partial class Role : Pulumi.CustomResource
     {
         /// <summary>
@@ -18,7 +52,7 @@ namespace Pulumi.Vault.Transform
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+        /// Path to where the back-end is mounted within Vault.
         /// </summary>
         [Output("path")]
         public Output<string> Path { get; private set; } = null!;
@@ -82,7 +116,7 @@ namespace Pulumi.Vault.Transform
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+        /// Path to where the back-end is mounted within Vault.
         /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
@@ -113,7 +147,7 @@ namespace Pulumi.Vault.Transform
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+        /// Path to where the back-end is mounted within Vault.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }

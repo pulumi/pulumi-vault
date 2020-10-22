@@ -472,6 +472,10 @@ func Provider() tfbridge.ProviderInfo {
 			// Transform
 			"vault_transform_encode": {Tok: makeDataSource(transformMod, "getEncode")},
 			"vault_transform_decode": {Tok: makeDataSource(transformMod, "getDecode")},
+
+			// Transit
+			"vault_transit_decrypt": {Tok: makeDataSource(transitMod, "getDecrypt")},
+			"vault_transit_encrypt": {Tok: makeDataSource(transitMod, "getEncrypt")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{

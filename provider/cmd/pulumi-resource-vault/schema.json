@@ -5832,6 +5832,10 @@
                     "type": "string",
                     "description": "A human-friendly description for this backend.\n"
                 },
+                "local": {
+                    "type": "boolean",
+                    "description": "Boolean flag that can be explicitly set to true to enforce local mount in HA environment\n"
+                },
                 "maxLeaseTtlSeconds": {
                     "type": "integer",
                     "description": "The maximum TTL that can be requested\nfor credentials issued by this backend. Defaults to '0'.\n"
@@ -5853,6 +5857,10 @@
                 "description": {
                     "type": "string",
                     "description": "A human-friendly description for this backend.\n"
+                },
+                "local": {
+                    "type": "boolean",
+                    "description": "Boolean flag that can be explicitly set to true to enforce local mount in HA environment\n"
                 },
                 "maxLeaseTtlSeconds": {
                     "type": "integer",
@@ -5877,6 +5885,10 @@
                     "description": {
                         "type": "string",
                         "description": "A human-friendly description for this backend.\n"
+                    },
+                    "local": {
+                        "type": "boolean",
+                        "description": "Boolean flag that can be explicitly set to true to enforce local mount in HA environment\n"
                     },
                     "maxLeaseTtlSeconds": {
                         "type": "integer",
@@ -9900,11 +9912,19 @@
             }
         },
         "vault:kubernetes/authBackendConfig:AuthBackendConfig": {
-            "description": "Manages an Kubernetes auth backend config in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst kubernetes = new vault.AuthBackend(\"kubernetes\", {\n    type: \"kubernetes\",\n});\nconst example = new vault.kubernetes.AuthBackendConfig(\"example\", {\n    backend: kubernetes.path,\n    issuer: \"api\",\n    kubernetesCaCert: `-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----`,\n    kubernetesHost: \"http://example.com:443\",\n    tokenReviewerJwt: \"ZXhhbXBsZQo=\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nkubernetes = vault.AuthBackend(\"kubernetes\", type=\"kubernetes\")\nexample = vault.kubernetes.AuthBackendConfig(\"example\",\n    backend=kubernetes.path,\n    issuer=\"api\",\n    kubernetes_ca_cert=\"\"\"-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----\n\"\"\",\n    kubernetes_host=\"http://example.com:443\",\n    token_reviewer_jwt=\"ZXhhbXBsZQo=\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var kubernetes = new Vault.AuthBackend(\"kubernetes\", new Vault.AuthBackendArgs\n        {\n            Type = \"kubernetes\",\n        });\n        var example = new Vault.Kubernetes.AuthBackendConfig(\"example\", new Vault.Kubernetes.AuthBackendConfigArgs\n        {\n            Backend = kubernetes.Path,\n            Issuer = \"api\",\n            KubernetesCaCert = @\"-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----\n\",\n            KubernetesHost = \"http://example.com:443\",\n            TokenReviewerJwt = \"ZXhhbXBsZQo=\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/kubernetes\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tkubernetes, err := vault.NewAuthBackend(ctx, \"kubernetes\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"kubernetes\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kubernetes.NewAuthBackendConfig(ctx, \"example\", \u0026kubernetes.AuthBackendConfigArgs{\n\t\t\tBackend:          kubernetes.Path,\n\t\t\tIssuer:           pulumi.String(\"api\"),\n\t\t\tKubernetesCaCert: pulumi.String(fmt.Sprintf(\"%v%v%v\", \"-----BEGIN CERTIFICATE-----\\n\", \"example\\n\", \"-----END CERTIFICATE-----\\n\")),\n\t\t\tKubernetesHost:   pulumi.String(\"http://example.com:443\"),\n\t\t\tTokenReviewerJwt: pulumi.String(\"ZXhhbXBsZQo=\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages an Kubernetes auth backend config in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst kubernetes = new vault.AuthBackend(\"kubernetes\", {\n    type: \"kubernetes\",\n});\nconst example = new vault.kubernetes.AuthBackendConfig(\"example\", {\n    backend: kubernetes.path,\n    disableIssValidation: true,\n    issuer: \"api\",\n    kubernetesCaCert: `-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----`,\n    kubernetesHost: \"http://example.com:443\",\n    tokenReviewerJwt: \"ZXhhbXBsZQo=\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nkubernetes = vault.AuthBackend(\"kubernetes\", type=\"kubernetes\")\nexample = vault.kubernetes.AuthBackendConfig(\"example\",\n    backend=kubernetes.path,\n    disable_iss_validation=\"true\",\n    issuer=\"api\",\n    kubernetes_ca_cert=\"\"\"-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----\n\"\"\",\n    kubernetes_host=\"http://example.com:443\",\n    token_reviewer_jwt=\"ZXhhbXBsZQo=\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var kubernetes = new Vault.AuthBackend(\"kubernetes\", new Vault.AuthBackendArgs\n        {\n            Type = \"kubernetes\",\n        });\n        var example = new Vault.Kubernetes.AuthBackendConfig(\"example\", new Vault.Kubernetes.AuthBackendConfigArgs\n        {\n            Backend = kubernetes.Path,\n            DisableIssValidation = true,\n            Issuer = \"api\",\n            KubernetesCaCert = @\"-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----\n\",\n            KubernetesHost = \"http://example.com:443\",\n            TokenReviewerJwt = \"ZXhhbXBsZQo=\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/kubernetes\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tkubernetes, err := vault.NewAuthBackend(ctx, \"kubernetes\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"kubernetes\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kubernetes.NewAuthBackendConfig(ctx, \"example\", \u0026kubernetes.AuthBackendConfigArgs{\n\t\t\tBackend:              kubernetes.Path,\n\t\t\tDisableIssValidation: pulumi.Bool(true),\n\t\t\tIssuer:               pulumi.String(\"api\"),\n\t\t\tKubernetesCaCert:     pulumi.String(fmt.Sprintf(\"%v%v%v\", \"-----BEGIN CERTIFICATE-----\\n\", \"example\\n\", \"-----END CERTIFICATE-----\\n\")),\n\t\t\tKubernetesHost:       pulumi.String(\"http://example.com:443\"),\n\t\t\tTokenReviewerJwt:     pulumi.String(\"ZXhhbXBsZQo=\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "backend": {
                     "type": "string",
                     "description": "Unique name of the kubernetes backend to configure.\n"
+                },
+                "disableIssValidation": {
+                    "type": "boolean",
+                    "description": "Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`\n"
+                },
+                "disableLocalCaJwt": {
+                    "type": "boolean",
+                    "description": "Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`\n"
                 },
                 "issuer": {
                     "type": "string",
@@ -9931,12 +9951,22 @@
                 }
             },
             "required": [
+                "disableIssValidation",
+                "disableLocalCaJwt",
                 "kubernetesHost"
             ],
             "inputProperties": {
                 "backend": {
                     "type": "string",
                     "description": "Unique name of the kubernetes backend to configure.\n"
+                },
+                "disableIssValidation": {
+                    "type": "boolean",
+                    "description": "Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`\n"
+                },
+                "disableLocalCaJwt": {
+                    "type": "boolean",
+                    "description": "Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`\n"
                 },
                 "issuer": {
                     "type": "string",
@@ -9971,6 +10001,14 @@
                     "backend": {
                         "type": "string",
                         "description": "Unique name of the kubernetes backend to configure.\n"
+                    },
+                    "disableIssValidation": {
+                        "type": "boolean",
+                        "description": "Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`\n"
+                    },
+                    "disableLocalCaJwt": {
+                        "type": "boolean",
+                        "description": "Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`\n"
                     },
                     "issuer": {
                         "type": "string",
@@ -13909,6 +13947,10 @@
         "vault:ssh/secretBackendRole:SecretBackendRole": {
             "description": "Provides a resource to manage roles in an SSH secret backend\n[SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.Mount(\"example\", {\n    type: \"ssh\",\n});\nconst foo = new vault.ssh.SecretBackendRole(\"foo\", {\n    allowUserCertificates: true,\n    backend: example.path,\n    keyType: \"ca\",\n});\nconst bar = new vault.ssh.SecretBackendRole(\"bar\", {\n    allowedUsers: \"default,baz\",\n    backend: example.path,\n    cidrList: \"0.0.0.0/0\",\n    defaultUser: \"default\",\n    keyType: \"otp\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.Mount(\"example\", type=\"ssh\")\nfoo = vault.ssh.SecretBackendRole(\"foo\",\n    allow_user_certificates=True,\n    backend=example.path,\n    key_type=\"ca\")\nbar = vault.ssh.SecretBackendRole(\"bar\",\n    allowed_users=\"default,baz\",\n    backend=example.path,\n    cidr_list=\"0.0.0.0/0\",\n    default_user=\"default\",\n    key_type=\"otp\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.Mount(\"example\", new Vault.MountArgs\n        {\n            Type = \"ssh\",\n        });\n        var foo = new Vault.Ssh.SecretBackendRole(\"foo\", new Vault.Ssh.SecretBackendRoleArgs\n        {\n            AllowUserCertificates = true,\n            Backend = example.Path,\n            KeyType = \"ca\",\n        });\n        var bar = new Vault.Ssh.SecretBackendRole(\"bar\", new Vault.Ssh.SecretBackendRoleArgs\n        {\n            AllowedUsers = \"default,baz\",\n            Backend = example.Path,\n            CidrList = \"0.0.0.0/0\",\n            DefaultUser = \"default\",\n            KeyType = \"otp\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/ssh\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := vault.NewMount(ctx, \"example\", \u0026vault.MountArgs{\n\t\t\tType: pulumi.String(\"ssh\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ssh.NewSecretBackendRole(ctx, \"foo\", \u0026ssh.SecretBackendRoleArgs{\n\t\t\tAllowUserCertificates: pulumi.Bool(true),\n\t\t\tBackend:               example.Path,\n\t\t\tKeyType:               pulumi.String(\"ca\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ssh.NewSecretBackendRole(ctx, \"bar\", \u0026ssh.SecretBackendRoleArgs{\n\t\t\tAllowedUsers: pulumi.String(\"default,baz\"),\n\t\t\tBackend:      example.Path,\n\t\t\tCidrList:     pulumi.String(\"0.0.0.0/0\"),\n\t\t\tDefaultUser:  pulumi.String(\"default\"),\n\t\t\tKeyType:      pulumi.String(\"otp\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
+                "algorithmSigner": {
+                    "type": "string",
+                    "description": "When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.\n"
+                },
                 "allowBareDomains": {
                     "type": "boolean",
                     "description": "Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.\n"
@@ -13951,6 +13993,10 @@
                 "allowedUsers": {
                     "type": "string",
                     "description": "Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.\n"
+                },
+                "allowedUsersTemplate": {
+                    "type": "boolean",
+                    "description": "Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.\n"
                 },
                 "backend": {
                     "type": "string",
@@ -14000,6 +14046,7 @@
                 }
             },
             "required": [
+                "algorithmSigner",
                 "backend",
                 "keyType",
                 "maxTtl",
@@ -14007,6 +14054,10 @@
                 "ttl"
             ],
             "inputProperties": {
+                "algorithmSigner": {
+                    "type": "string",
+                    "description": "When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.\n"
+                },
                 "allowBareDomains": {
                     "type": "boolean",
                     "description": "Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.\n"
@@ -14049,6 +14100,10 @@
                 "allowedUsers": {
                     "type": "string",
                     "description": "Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.\n"
+                },
+                "allowedUsersTemplate": {
+                    "type": "boolean",
+                    "description": "Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.\n"
                 },
                 "backend": {
                     "type": "string",
@@ -14104,6 +14159,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering SecretBackendRole resources.\n",
                 "properties": {
+                    "algorithmSigner": {
+                        "type": "string",
+                        "description": "When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.\n"
+                    },
                     "allowBareDomains": {
                         "type": "boolean",
                         "description": "Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.\n"
@@ -14146,6 +14205,10 @@
                     "allowedUsers": {
                         "type": "string",
                         "description": "Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.\n"
+                    },
+                    "allowedUsersTemplate": {
+                        "type": "boolean",
+                        "description": "Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.\n"
                     },
                     "backend": {
                         "type": "string",
@@ -14487,6 +14550,7 @@
             }
         },
         "vault:transform/alphabet:Alphabet": {
+            "description": "This resource supports the \"/transform/alphabet/{name}\" Vault endpoint.\n\nIt queries an existing alphabet by the given name.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst mountTransform = new vault.Mount(\"mountTransform\", {\n    path: \"transform\",\n    type: \"transform\",\n});\nconst test = new vault.transform.Alphabet(\"test\", {\n    path: mountTransform.path,\n    alphabet: \"0123456789\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nmount_transform = vault.Mount(\"mountTransform\",\n    path=\"transform\",\n    type=\"transform\")\ntest = vault.transform.Alphabet(\"test\",\n    path=mount_transform.path,\n    alphabet=\"0123456789\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var mountTransform = new Vault.Mount(\"mountTransform\", new Vault.MountArgs\n        {\n            Path = \"transform\",\n            Type = \"transform\",\n        });\n        var test = new Vault.Transform.Alphabet(\"test\", new Vault.Transform.AlphabetArgs\n        {\n            Path = mountTransform.Path,\n            Alphabet = \"0123456789\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/transform\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmountTransform, err := vault.NewMount(ctx, \"mountTransform\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"transform\"),\n\t\t\tType: pulumi.String(\"transform\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = transform.NewAlphabet(ctx, \"test\", \u0026transform.AlphabetArgs{\n\t\t\tPath:     mountTransform.Path,\n\t\t\tAlphabet: pulumi.String(\"0123456789\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "alphabet": {
                     "type": "string",
@@ -14503,7 +14567,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                    "description": "Path to where the back-end is mounted within Vault.\n"
                 }
             },
             "required": [
@@ -14526,7 +14590,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                    "description": "Path to where the back-end is mounted within Vault.\n"
                 }
             },
             "requiredInputs": [
@@ -14550,13 +14614,14 @@
                     },
                     "path": {
                         "type": "string",
-                        "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                        "description": "Path to where the back-end is mounted within Vault.\n"
                     }
                 },
                 "type": "object"
             }
         },
         "vault:transform/role:Role": {
+            "description": "This resource supports the \"/transform/role/{name}\" Vault endpoint.\n\nIt creates or updates the role with the given name. If a role with the name does not exist, it will be created. \nIf the role exists, it will be updated with the new attributes.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst mountTransform = new vault.Mount(\"mountTransform\", {\n    path: \"transform\",\n    type: \"transform\",\n});\nconst test = new vault.transform.Role(\"test\", {\n    path: mountTransform.path,\n    transformations: [\"ccn-fpe\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nmount_transform = vault.Mount(\"mountTransform\",\n    path=\"transform\",\n    type=\"transform\")\ntest = vault.transform.Role(\"test\",\n    path=mount_transform.path,\n    transformations=[\"ccn-fpe\"])\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var mountTransform = new Vault.Mount(\"mountTransform\", new Vault.MountArgs\n        {\n            Path = \"transform\",\n            Type = \"transform\",\n        });\n        var test = new Vault.Transform.Role(\"test\", new Vault.Transform.RoleArgs\n        {\n            Path = mountTransform.Path,\n            Transformations = \n            {\n                \"ccn-fpe\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/transform\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmountTransform, err := vault.NewMount(ctx, \"mountTransform\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"transform\"),\n\t\t\tType: pulumi.String(\"transform\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = transform.NewRole(ctx, \"test\", \u0026transform.RoleArgs{\n\t\t\tPath: mountTransform.Path,\n\t\t\tTransformations: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ccn-fpe\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "name": {
                     "type": "string",
@@ -14564,7 +14629,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                    "description": "Path to where the back-end is mounted within Vault.\n"
                 },
                 "transformations": {
                     "type": "array",
@@ -14585,7 +14650,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                    "description": "Path to where the back-end is mounted within Vault.\n"
                 },
                 "transformations": {
                     "type": "array",
@@ -14607,7 +14672,7 @@
                     },
                     "path": {
                         "type": "string",
-                        "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                        "description": "Path to where the back-end is mounted within Vault.\n"
                     },
                     "transformations": {
                         "type": "array",
@@ -14632,7 +14697,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                    "description": "Path to where the back-end is mounted within Vault.\n"
                 },
                 "pattern": {
                     "type": "string",
@@ -14658,7 +14723,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                    "description": "Path to where the back-end is mounted within Vault.\n"
                 },
                 "pattern": {
                     "type": "string",
@@ -14685,7 +14750,7 @@
                     },
                     "path": {
                         "type": "string",
-                        "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                        "description": "Path to where the back-end is mounted within Vault.\n"
                     },
                     "pattern": {
                         "type": "string",
@@ -14700,6 +14765,7 @@
             }
         },
         "vault:transform/transformation:Transformation": {
+            "description": "This resource supports the \"/transform/transformation/{name}\" Vault endpoint.\n\nIt creates or updates a transformation with the given name. If a transformation with the name does not exist, \nit will be created. If the transformation exists, it will be updated with the new attributes.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst mountTransform = new vault.Mount(\"mountTransform\", {\n    path: \"transform\",\n    type: \"transform\",\n});\nconst test = new vault.transform.Transformation(\"test\", {\n    path: mountTransform.path,\n    type: \"fpe\",\n    template: \"ccn\",\n    tweakSource: \"internal\",\n    allowedRoles: [\"payments\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nmount_transform = vault.Mount(\"mountTransform\",\n    path=\"transform\",\n    type=\"transform\")\ntest = vault.transform.Transformation(\"test\",\n    path=mount_transform.path,\n    type=\"fpe\",\n    template=\"ccn\",\n    tweak_source=\"internal\",\n    allowed_roles=[\"payments\"])\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var mountTransform = new Vault.Mount(\"mountTransform\", new Vault.MountArgs\n        {\n            Path = \"transform\",\n            Type = \"transform\",\n        });\n        var test = new Vault.Transform.Transformation(\"test\", new Vault.Transform.TransformationArgs\n        {\n            Path = mountTransform.Path,\n            Type = \"fpe\",\n            Template = \"ccn\",\n            TweakSource = \"internal\",\n            AllowedRoles = \n            {\n                \"payments\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/transform\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmountTransform, err := vault.NewMount(ctx, \"mountTransform\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"transform\"),\n\t\t\tType: pulumi.String(\"transform\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = transform.NewTransformation(ctx, \"test\", \u0026transform.TransformationArgs{\n\t\t\tPath:        mountTransform.Path,\n\t\t\tType:        pulumi.String(\"fpe\"),\n\t\t\tTemplate:    pulumi.String(\"ccn\"),\n\t\t\tTweakSource: pulumi.String(\"internal\"),\n\t\t\tAllowedRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"payments\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "allowedRoles": {
                     "type": "array",
@@ -14718,7 +14784,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                    "description": "Path to where the back-end is mounted within Vault.\n"
                 },
                 "template": {
                     "type": "string",
@@ -14763,7 +14829,7 @@
                 },
                 "path": {
                     "type": "string",
-                    "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                    "description": "Path to where the back-end is mounted within Vault.\n"
                 },
                 "template": {
                     "type": "string",
@@ -14808,7 +14874,7 @@
                     },
                     "path": {
                         "type": "string",
-                        "description": "The mount path for a back-end, for example, the path given in \"$ vault auth enable -path=my-aws aws\".\n"
+                        "description": "Path to where the back-end is mounted within Vault.\n"
                     },
                     "template": {
                         "type": "string",
@@ -15831,6 +15897,12 @@
                         "type": "string",
                         "description": "The unique name for the Kubernetes backend the config to\nretrieve Role attributes for resides in. Defaults to \"kubernetes\".\n"
                     },
+                    "disableIssValidation": {
+                        "type": "boolean"
+                    },
+                    "disableLocalCaJwt": {
+                        "type": "boolean"
+                    },
                     "issuer": {
                         "type": "string",
                         "description": "Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.\n"
@@ -15859,6 +15931,12 @@
                     "backend": {
                         "type": "string"
                     },
+                    "disableIssValidation": {
+                        "type": "boolean"
+                    },
+                    "disableLocalCaJwt": {
+                        "type": "boolean"
+                    },
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
@@ -15885,6 +15963,8 @@
                 },
                 "type": "object",
                 "required": [
+                    "disableIssValidation",
+                    "disableLocalCaJwt",
                     "issuer",
                     "kubernetesCaCert",
                     "kubernetesHost",
@@ -16102,6 +16182,7 @@
             }
         },
         "vault:transform/getDecode:getDecode": {
+            "description": "This data source supports the \"/transform/decode/{role_name}\" Vault endpoint.\n\nIt decodes the provided value using a named role.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getDecode.\n",
                 "properties": {
@@ -16112,7 +16193,8 @@
                             "additionalProperties": {
                                 "$ref": "pulumi.json#/Any"
                             }
-                        }
+                        },
+                        "description": "Specifies a list of items to be decoded in a single batch. If this parameter is set, the top-level parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.\n"
                     },
                     "batchResults": {
                         "type": "array",
@@ -16121,25 +16203,32 @@
                             "additionalProperties": {
                                 "$ref": "pulumi.json#/Any"
                             }
-                        }
+                        },
+                        "description": "The result of decoding a batch.\n"
                     },
                     "decodedValue": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The result of decoding a value.\n"
                     },
                     "path": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Path to where the back-end is mounted within Vault.\n"
                     },
                     "roleName": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the role.\n"
                     },
                     "transformation": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The transformation to perform. If no value is provided and the role contains a single transformation, this value will be inferred from the role.\n"
                     },
                     "tweak": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The tweak value to use. Only applicable for FPE transformations\n"
                     },
                     "value": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The value in which to decode.\n"
                     }
                 },
                 "type": "object",
@@ -16203,6 +16292,7 @@
             }
         },
         "vault:transform/getEncode:getEncode": {
+            "description": "This data source supports the \"/transform/encode/{role_name}\" Vault endpoint.\n\nIt encodes the provided value using a named role.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getEncode.\n",
                 "properties": {
@@ -16213,7 +16303,8 @@
                             "additionalProperties": {
                                 "$ref": "pulumi.json#/Any"
                             }
-                        }
+                        },
+                        "description": "Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.\n"
                     },
                     "batchResults": {
                         "type": "array",
@@ -16222,25 +16313,32 @@
                             "additionalProperties": {
                                 "$ref": "pulumi.json#/Any"
                             }
-                        }
+                        },
+                        "description": "The result of encoding a batch.\n"
                     },
                     "encodedValue": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The result of encoding a value.\n"
                     },
                     "path": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Path to where the back-end is mounted within Vault.\n"
                     },
                     "roleName": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the role.\n"
                     },
                     "transformation": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The transformation to perform. If no value is provided and the role contains a single transformation, this value will be inferred from the role.\n"
                     },
                     "tweak": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The tweak value to use. Only applicable for FPE transformations\n"
                     },
                     "value": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The value in which to encode.\n"
                     }
                 },
                 "type": "object",
@@ -16299,6 +16397,126 @@
                     "encodedValue",
                     "path",
                     "roleName",
+                    "id"
+                ]
+            }
+        },
+        "vault:transit/getDecrypt:getDecrypt": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getDecrypt.\n",
+                "properties": {
+                    "backend": {
+                        "type": "string"
+                    },
+                    "ciphertext": {
+                        "type": "string"
+                    },
+                    "context": {
+                        "type": "string"
+                    },
+                    "key": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "backend",
+                    "ciphertext",
+                    "key"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDecrypt.\n",
+                "properties": {
+                    "backend": {
+                        "type": "string"
+                    },
+                    "ciphertext": {
+                        "type": "string"
+                    },
+                    "context": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "plaintext": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "backend",
+                    "ciphertext",
+                    "key",
+                    "plaintext",
+                    "id"
+                ]
+            }
+        },
+        "vault:transit/getEncrypt:getEncrypt": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getEncrypt.\n",
+                "properties": {
+                    "backend": {
+                        "type": "string"
+                    },
+                    "context": {
+                        "type": "string"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "keyVersion": {
+                        "type": "integer"
+                    },
+                    "plaintext": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "backend",
+                    "key",
+                    "plaintext"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getEncrypt.\n",
+                "properties": {
+                    "backend": {
+                        "type": "string"
+                    },
+                    "ciphertext": {
+                        "type": "string"
+                    },
+                    "context": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "keyVersion": {
+                        "type": "integer"
+                    },
+                    "plaintext": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "backend",
+                    "ciphertext",
+                    "key",
+                    "plaintext",
                     "id"
                 ]
             }

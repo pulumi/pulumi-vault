@@ -35,6 +35,8 @@ export function getAuthBackendConfig(args?: GetAuthBackendConfigArgs, opts?: pul
     }
     return pulumi.runtime.invoke("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", {
         "backend": args.backend,
+        "disableIssValidation": args.disableIssValidation,
+        "disableLocalCaJwt": args.disableLocalCaJwt,
         "issuer": args.issuer,
         "kubernetesCaCert": args.kubernetesCaCert,
         "kubernetesHost": args.kubernetesHost,
@@ -51,6 +53,8 @@ export interface GetAuthBackendConfigArgs {
      * retrieve Role attributes for resides in. Defaults to "kubernetes".
      */
     readonly backend?: string;
+    readonly disableIssValidation?: boolean;
+    readonly disableLocalCaJwt?: boolean;
     /**
      * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
      */
@@ -74,6 +78,8 @@ export interface GetAuthBackendConfigArgs {
  */
 export interface GetAuthBackendConfigResult {
     readonly backend?: string;
+    readonly disableIssValidation: boolean;
+    readonly disableLocalCaJwt: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.
      */

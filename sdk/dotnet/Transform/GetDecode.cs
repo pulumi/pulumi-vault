@@ -11,6 +11,11 @@ namespace Pulumi.Vault.Transform
 {
     public static class GetDecode
     {
+        /// <summary>
+        /// This data source supports the "/transform/decode/{role_name}" Vault endpoint.
+        /// 
+        /// It decodes the provided value using a named role.
+        /// </summary>
         public static Task<GetDecodeResult> InvokeAsync(GetDecodeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDecodeResult>("vault:transform/getDecode:getDecode", args ?? new GetDecodeArgs(), options.WithVersion());
     }
@@ -20,6 +25,10 @@ namespace Pulumi.Vault.Transform
     {
         [Input("batchInputs")]
         private List<ImmutableDictionary<string, object>>? _batchInputs;
+
+        /// <summary>
+        /// Specifies a list of items to be decoded in a single batch. If this parameter is set, the top-level parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
+        /// </summary>
         public List<ImmutableDictionary<string, object>> BatchInputs
         {
             get => _batchInputs ?? (_batchInputs = new List<ImmutableDictionary<string, object>>());
@@ -28,27 +37,49 @@ namespace Pulumi.Vault.Transform
 
         [Input("batchResults")]
         private List<ImmutableDictionary<string, object>>? _batchResults;
+
+        /// <summary>
+        /// The result of decoding a batch.
+        /// </summary>
         public List<ImmutableDictionary<string, object>> BatchResults
         {
             get => _batchResults ?? (_batchResults = new List<ImmutableDictionary<string, object>>());
             set => _batchResults = value;
         }
 
+        /// <summary>
+        /// The result of decoding a value.
+        /// </summary>
         [Input("decodedValue")]
         public string? DecodedValue { get; set; }
 
+        /// <summary>
+        /// Path to where the back-end is mounted within Vault.
+        /// </summary>
         [Input("path", required: true)]
         public string Path { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the role.
+        /// </summary>
         [Input("roleName", required: true)]
         public string RoleName { get; set; } = null!;
 
+        /// <summary>
+        /// The transformation to perform. If no value is provided and the role contains a single transformation, this value will be inferred from the role.
+        /// </summary>
         [Input("transformation")]
         public string? Transformation { get; set; }
 
+        /// <summary>
+        /// The tweak value to use. Only applicable for FPE transformations
+        /// </summary>
         [Input("tweak")]
         public string? Tweak { get; set; }
 
+        /// <summary>
+        /// The value in which to decode.
+        /// </summary>
         [Input("value")]
         public string? Value { get; set; }
 
