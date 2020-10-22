@@ -5,106 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['AuthBackendRole']
 
 
 class AuthBackendRole(pulumi.CustomResource):
-    allowed_policies: pulumi.Output[list]
-    """
-    List of allowed policies for given role.
-    """
-    bound_cidrs: pulumi.Output[list]
-    """
-    If set, a list of
-    CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-    """
-    disallowed_policies: pulumi.Output[list]
-    """
-    List of disallowed policies for given role.
-    """
-    explicit_max_ttl: pulumi.Output[str]
-    """
-    If set, the
-    token will have an explicit max TTL set upon it.
-    """
-    orphan: pulumi.Output[bool]
-    """
-    If true, tokens created against this policy will be orphan tokens.
-    """
-    path_suffix: pulumi.Output[str]
-    """
-    Tokens created against this role will have the given suffix as part of their path in addition to the role name.
-    """
-    period: pulumi.Output[str]
-    """
-    If set, indicates that the
-    token generated using this role should never expire. The token should be renewed within the
-    duration specified by this value. At each renewal, the token's TTL will be set to the
-    value of this field. Specified in seconds.
-    """
-    renewable: pulumi.Output[bool]
-    """
-    Wether to disable the ability of the token to be renewed past its initial TTL.
-    """
-    role_name: pulumi.Output[str]
-    """
-    The name of the role.
-    """
-    token_bound_cidrs: pulumi.Output[list]
-    """
-    List of CIDR blocks; if set, specifies blocks of IP
-    addresses which can authenticate successfully, and ties the resulting token to these blocks
-    as well.
-    """
-    token_explicit_max_ttl: pulumi.Output[float]
-    """
-    If set, will encode an
-    [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-    onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-    `token_max_ttl` would otherwise allow a renewal.
-    """
-    token_max_ttl: pulumi.Output[float]
-    """
-    The maximum lifetime for generated tokens in number of seconds.
-    Its current value will be referenced at renewal time.
-    """
-    token_no_default_policy: pulumi.Output[bool]
-    """
-    If set, the default policy will not be set on
-    generated tokens; otherwise it will be added to the policies set in token_policies.
-    """
-    token_num_uses: pulumi.Output[float]
-    """
-    The
-    [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-    if any, in number of seconds to set on the token.
-    """
-    token_period: pulumi.Output[float]
-    """
-    If set, indicates that the
-    token generated using this role should never expire. The token should be renewed within the
-    duration specified by this value. At each renewal, the token's TTL will be set to the
-    value of this field. Specified in seconds.
-    """
-    token_policies: pulumi.Output[list]
-    """
-    Generated Token's Policies
-    """
-    token_ttl: pulumi.Output[float]
-    """
-    The incremental lifetime for generated tokens in number of seconds.
-    Its current value will be referenced at renewal time.
-    """
-    token_type: pulumi.Output[str]
-    """
-    The type of token that should be generated. Can be `service`,
-    `batch`, or `default` to use the mount's tuned default (which unless changed will be
-    `service` tokens). For token store roles, there are two additional possibilities:
-    `default-service` and `default-batch` which specify the type to return unless the client
-    requests a different type at generation time.
-    """
-    def __init__(__self__, resource_name, opts=None, allowed_policies=None, bound_cidrs=None, disallowed_policies=None, explicit_max_ttl=None, orphan=None, path_suffix=None, period=None, renewable=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 bound_cidrs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 disallowed_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 explicit_max_ttl: Optional[pulumi.Input[str]] = None,
+                 orphan: Optional[pulumi.Input[bool]] = None,
+                 path_suffix: Optional[pulumi.Input[str]] = None,
+                 period: Optional[pulumi.Input[str]] = None,
+                 renewable: Optional[pulumi.Input[bool]] = None,
+                 role_name: Optional[pulumi.Input[str]] = None,
+                 token_bound_cidrs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 token_explicit_max_ttl: Optional[pulumi.Input[float]] = None,
+                 token_max_ttl: Optional[pulumi.Input[float]] = None,
+                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+                 token_num_uses: Optional[pulumi.Input[float]] = None,
+                 token_period: Optional[pulumi.Input[float]] = None,
+                 token_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 token_ttl: Optional[pulumi.Input[float]] = None,
+                 token_type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Manages Token auth backend role in a Vault server. See the [Vault
         documentation](https://www.vaultproject.io/docs/auth/token.html) for more
@@ -132,10 +63,10 @@ class AuthBackendRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] allowed_policies: List of allowed policies for given role.
-        :param pulumi.Input[list] bound_cidrs: If set, a list of
+        :param pulumi.Input[List[pulumi.Input[str]]] allowed_policies: List of allowed policies for given role.
+        :param pulumi.Input[List[pulumi.Input[str]]] bound_cidrs: If set, a list of
                CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-        :param pulumi.Input[list] disallowed_policies: List of disallowed policies for given role.
+        :param pulumi.Input[List[pulumi.Input[str]]] disallowed_policies: List of disallowed policies for given role.
         :param pulumi.Input[str] explicit_max_ttl: If set, the
                token will have an explicit max TTL set upon it.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
@@ -146,7 +77,7 @@ class AuthBackendRole(pulumi.CustomResource):
                value of this field. Specified in seconds.
         :param pulumi.Input[bool] renewable: Wether to disable the ability of the token to be renewed past its initial TTL.
         :param pulumi.Input[str] role_name: The name of the role.
-        :param pulumi.Input[list] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
+        :param pulumi.Input[List[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
                as well.
         :param pulumi.Input[float] token_explicit_max_ttl: If set, will encode an
@@ -164,7 +95,7 @@ class AuthBackendRole(pulumi.CustomResource):
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
                value of this field. Specified in seconds.
-        :param pulumi.Input[list] token_policies: Generated Token's Policies
+        :param pulumi.Input[List[pulumi.Input[str]]] token_policies: Generated Token's Policies
         :param pulumi.Input[float] token_ttl: The incremental lifetime for generated tokens in number of seconds.
                Its current value will be referenced at renewal time.
         :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
@@ -184,7 +115,7 @@ class AuthBackendRole(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -226,18 +157,38 @@ class AuthBackendRole(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allowed_policies=None, bound_cidrs=None, disallowed_policies=None, explicit_max_ttl=None, orphan=None, path_suffix=None, period=None, renewable=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allowed_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            bound_cidrs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            disallowed_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            explicit_max_ttl: Optional[pulumi.Input[str]] = None,
+            orphan: Optional[pulumi.Input[bool]] = None,
+            path_suffix: Optional[pulumi.Input[str]] = None,
+            period: Optional[pulumi.Input[str]] = None,
+            renewable: Optional[pulumi.Input[bool]] = None,
+            role_name: Optional[pulumi.Input[str]] = None,
+            token_bound_cidrs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            token_explicit_max_ttl: Optional[pulumi.Input[float]] = None,
+            token_max_ttl: Optional[pulumi.Input[float]] = None,
+            token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+            token_num_uses: Optional[pulumi.Input[float]] = None,
+            token_period: Optional[pulumi.Input[float]] = None,
+            token_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            token_ttl: Optional[pulumi.Input[float]] = None,
+            token_type: Optional[pulumi.Input[str]] = None) -> 'AuthBackendRole':
         """
         Get an existing AuthBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] allowed_policies: List of allowed policies for given role.
-        :param pulumi.Input[list] bound_cidrs: If set, a list of
+        :param pulumi.Input[List[pulumi.Input[str]]] allowed_policies: List of allowed policies for given role.
+        :param pulumi.Input[List[pulumi.Input[str]]] bound_cidrs: If set, a list of
                CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-        :param pulumi.Input[list] disallowed_policies: List of disallowed policies for given role.
+        :param pulumi.Input[List[pulumi.Input[str]]] disallowed_policies: List of disallowed policies for given role.
         :param pulumi.Input[str] explicit_max_ttl: If set, the
                token will have an explicit max TTL set upon it.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
@@ -248,7 +199,7 @@ class AuthBackendRole(pulumi.CustomResource):
                value of this field. Specified in seconds.
         :param pulumi.Input[bool] renewable: Wether to disable the ability of the token to be renewed past its initial TTL.
         :param pulumi.Input[str] role_name: The name of the role.
-        :param pulumi.Input[list] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
+        :param pulumi.Input[List[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
                as well.
         :param pulumi.Input[float] token_explicit_max_ttl: If set, will encode an
@@ -266,7 +217,7 @@ class AuthBackendRole(pulumi.CustomResource):
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
                value of this field. Specified in seconds.
-        :param pulumi.Input[list] token_policies: Generated Token's Policies
+        :param pulumi.Input[List[pulumi.Input[str]]] token_policies: Generated Token's Policies
         :param pulumi.Input[float] token_ttl: The incremental lifetime for generated tokens in number of seconds.
                Its current value will be referenced at renewal time.
         :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
@@ -299,8 +250,175 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__["token_type"] = token_type
         return AuthBackendRole(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="allowedPolicies")
+    def allowed_policies(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        List of allowed policies for given role.
+        """
+        return pulumi.get(self, "allowed_policies")
+
+    @property
+    @pulumi.getter(name="boundCidrs")
+    def bound_cidrs(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        If set, a list of
+        CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+        """
+        return pulumi.get(self, "bound_cidrs")
+
+    @property
+    @pulumi.getter(name="disallowedPolicies")
+    def disallowed_policies(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        List of disallowed policies for given role.
+        """
+        return pulumi.get(self, "disallowed_policies")
+
+    @property
+    @pulumi.getter(name="explicitMaxTtl")
+    def explicit_max_ttl(self) -> pulumi.Output[Optional[str]]:
+        """
+        If set, the
+        token will have an explicit max TTL set upon it.
+        """
+        return pulumi.get(self, "explicit_max_ttl")
+
+    @property
+    @pulumi.getter
+    def orphan(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, tokens created against this policy will be orphan tokens.
+        """
+        return pulumi.get(self, "orphan")
+
+    @property
+    @pulumi.getter(name="pathSuffix")
+    def path_suffix(self) -> pulumi.Output[Optional[str]]:
+        """
+        Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+        """
+        return pulumi.get(self, "path_suffix")
+
+    @property
+    @pulumi.getter
+    def period(self) -> pulumi.Output[Optional[str]]:
+        """
+        If set, indicates that the
+        token generated using this role should never expire. The token should be renewed within the
+        duration specified by this value. At each renewal, the token's TTL will be set to the
+        value of this field. Specified in seconds.
+        """
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter
+    def renewable(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Wether to disable the ability of the token to be renewed past its initial TTL.
+        """
+        return pulumi.get(self, "renewable")
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> pulumi.Output[str]:
+        """
+        The name of the role.
+        """
+        return pulumi.get(self, "role_name")
+
+    @property
+    @pulumi.getter(name="tokenBoundCidrs")
+    def token_bound_cidrs(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        List of CIDR blocks; if set, specifies blocks of IP
+        addresses which can authenticate successfully, and ties the resulting token to these blocks
+        as well.
+        """
+        return pulumi.get(self, "token_bound_cidrs")
+
+    @property
+    @pulumi.getter(name="tokenExplicitMaxTtl")
+    def token_explicit_max_ttl(self) -> pulumi.Output[Optional[float]]:
+        """
+        If set, will encode an
+        [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+        onto the token in number of seconds. This is a hard cap even if `token_ttl` and
+        `token_max_ttl` would otherwise allow a renewal.
+        """
+        return pulumi.get(self, "token_explicit_max_ttl")
+
+    @property
+    @pulumi.getter(name="tokenMaxTtl")
+    def token_max_ttl(self) -> pulumi.Output[Optional[float]]:
+        """
+        The maximum lifetime for generated tokens in number of seconds.
+        Its current value will be referenced at renewal time.
+        """
+        return pulumi.get(self, "token_max_ttl")
+
+    @property
+    @pulumi.getter(name="tokenNoDefaultPolicy")
+    def token_no_default_policy(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set, the default policy will not be set on
+        generated tokens; otherwise it will be added to the policies set in token_policies.
+        """
+        return pulumi.get(self, "token_no_default_policy")
+
+    @property
+    @pulumi.getter(name="tokenNumUses")
+    def token_num_uses(self) -> pulumi.Output[Optional[float]]:
+        """
+        The
+        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+        if any, in number of seconds to set on the token.
+        """
+        return pulumi.get(self, "token_num_uses")
+
+    @property
+    @pulumi.getter(name="tokenPeriod")
+    def token_period(self) -> pulumi.Output[Optional[float]]:
+        """
+        If set, indicates that the
+        token generated using this role should never expire. The token should be renewed within the
+        duration specified by this value. At each renewal, the token's TTL will be set to the
+        value of this field. Specified in seconds.
+        """
+        return pulumi.get(self, "token_period")
+
+    @property
+    @pulumi.getter(name="tokenPolicies")
+    def token_policies(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        Generated Token's Policies
+        """
+        return pulumi.get(self, "token_policies")
+
+    @property
+    @pulumi.getter(name="tokenTtl")
+    def token_ttl(self) -> pulumi.Output[Optional[float]]:
+        """
+        The incremental lifetime for generated tokens in number of seconds.
+        Its current value will be referenced at renewal time.
+        """
+        return pulumi.get(self, "token_ttl")
+
+    @property
+    @pulumi.getter(name="tokenType")
+    def token_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        The type of token that should be generated. Can be `service`,
+        `batch`, or `default` to use the mount's tuned default (which unless changed will be
+        `service` tokens). For token store roles, there are two additional possibilities:
+        `default-service` and `default-batch` which specify the type to return unless the client
+        requests a different type at generation time.
+        """
+        return pulumi.get(self, "token_type")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

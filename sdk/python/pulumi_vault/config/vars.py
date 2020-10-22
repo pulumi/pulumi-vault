@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'add_address_to_env',
+    'address',
+    'auth_logins',
+    'ca_cert_dir',
+    'ca_cert_file',
+    'client_auths',
+    'headers',
+    'max_lease_ttl_seconds',
+    'max_retries',
+    'namespace',
+    'skip_tls_verify',
+    'token',
+    'token_name',
+]
 
 __config__ = pulumi.Config('vault')
 
@@ -15,7 +32,7 @@ add_address_to_env = __config__.get('addAddressToEnv')
 If true, adds the value of the `address` argument to the Terraform process environment.
 """
 
-address = __config__.get('address') or utilities.get_env('VAULT_ADDR')
+address = __config__.get('address') or _utilities.get_env('VAULT_ADDR')
 """
 URL of the root of the target Vault server.
 """
@@ -25,12 +42,12 @@ auth_logins = __config__.get('authLogins')
 Login to vault with an existing auth method using auth/<mount>/login
 """
 
-ca_cert_dir = __config__.get('caCertDir') or utilities.get_env('VAULT_CAPATH')
+ca_cert_dir = __config__.get('caCertDir') or _utilities.get_env('VAULT_CAPATH')
 """
 Path to directory containing CA certificate files to validate the server's certificate.
 """
 
-ca_cert_file = __config__.get('caCertFile') or utilities.get_env('VAULT_CACERT')
+ca_cert_file = __config__.get('caCertFile') or _utilities.get_env('VAULT_CACERT')
 """
 Path to a CA certificate file to validate the server's certificate.
 """
@@ -45,32 +62,32 @@ headers = __config__.get('headers')
 The headers to send with each Vault request.
 """
 
-max_lease_ttl_seconds = __config__.get('maxLeaseTtlSeconds') or (utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL') or 1200)
+max_lease_ttl_seconds = __config__.get('maxLeaseTtlSeconds') or (_utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL') or 1200)
 """
 Maximum TTL for secret leases requested by this provider
 """
 
-max_retries = __config__.get('maxRetries') or (utilities.get_env_int('VAULT_MAX_RETRIES') or 2)
+max_retries = __config__.get('maxRetries') or (_utilities.get_env_int('VAULT_MAX_RETRIES') or 2)
 """
 Maximum number of retries when a 5xx error code is encountered.
 """
 
-namespace = __config__.get('namespace') or utilities.get_env('VAULT_NAMESPACE')
+namespace = __config__.get('namespace') or _utilities.get_env('VAULT_NAMESPACE')
 """
 The namespace to use. Available only for Vault Enterprise
 """
 
-skip_tls_verify = __config__.get('skipTlsVerify') or utilities.get_env_bool('VAULT_SKIP_VERIFY')
+skip_tls_verify = __config__.get('skipTlsVerify') or _utilities.get_env_bool('VAULT_SKIP_VERIFY')
 """
 Set this to true only if the target Vault server is an insecure development instance.
 """
 
-token = __config__.get('token') or utilities.get_env('VAULT_TOKEN')
+token = __config__.get('token') or _utilities.get_env('VAULT_TOKEN')
 """
 Token to use to authenticate to Vault.
 """
 
-token_name = __config__.get('tokenName') or utilities.get_env('VAULT_TOKEN_NAME')
+token_name = __config__.get('tokenName') or _utilities.get_env('VAULT_TOKEN_NAME')
 """
 Token name to use for creating the Vault child token.
 """

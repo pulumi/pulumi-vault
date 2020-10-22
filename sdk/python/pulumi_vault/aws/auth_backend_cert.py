@@ -5,34 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['AuthBackendCert']
 
 
 class AuthBackendCert(pulumi.CustomResource):
-    aws_public_cert: pulumi.Output[str]
-    """
-    The  Base64 encoded AWS Public key required to
-    verify PKCS7 signature of the EC2 instance metadata. You can find this key in
-    the [AWS
-    documentation](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-identity-documents.html).
-    """
-    backend: pulumi.Output[str]
-    """
-    The path the AWS auth backend being configured was
-    mounted at.  Defaults to `aws`.
-    """
-    cert_name: pulumi.Output[str]
-    """
-    The name of the certificate.
-    """
-    type: pulumi.Output[str]
-    """
-    Either "pkcs7" or "identity", indicating the type of
-    document which can be verified using the given certificate. Defaults to
-    "pkcs7".
-    """
-    def __init__(__self__, resource_name, opts=None, aws_public_cert=None, backend=None, cert_name=None, type=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 aws_public_cert: Optional[pulumi.Input[str]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 cert_name: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a AuthBackendCert resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -59,7 +48,7 @@ class AuthBackendCert(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -80,13 +69,19 @@ class AuthBackendCert(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, aws_public_cert=None, backend=None, cert_name=None, type=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            aws_public_cert: Optional[pulumi.Input[str]] = None,
+            backend: Optional[pulumi.Input[str]] = None,
+            cert_name: Optional[pulumi.Input[str]] = None,
+            type: Optional[pulumi.Input[str]] = None) -> 'AuthBackendCert':
         """
         Get an existing AuthBackendCert resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] aws_public_cert: The  Base64 encoded AWS Public key required to
                verify PKCS7 signature of the EC2 instance metadata. You can find this key in
@@ -109,8 +104,47 @@ class AuthBackendCert(pulumi.CustomResource):
         __props__["type"] = type
         return AuthBackendCert(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="awsPublicCert")
+    def aws_public_cert(self) -> pulumi.Output[str]:
+        """
+        The  Base64 encoded AWS Public key required to
+        verify PKCS7 signature of the EC2 instance metadata. You can find this key in
+        the [AWS
+        documentation](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-identity-documents.html).
+        """
+        return pulumi.get(self, "aws_public_cert")
+
+    @property
+    @pulumi.getter
+    def backend(self) -> pulumi.Output[Optional[str]]:
+        """
+        The path the AWS auth backend being configured was
+        mounted at.  Defaults to `aws`.
+        """
+        return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter(name="certName")
+    def cert_name(self) -> pulumi.Output[str]:
+        """
+        The name of the certificate.
+        """
+        return pulumi.get(self, "cert_name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Output[Optional[str]]:
+        """
+        Either "pkcs7" or "identity", indicating the type of
+        document which can be verified using the given certificate. Defaults to
+        "pkcs7".
+        """
+        return pulumi.get(self, "type")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

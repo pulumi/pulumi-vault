@@ -5,20 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['SecretCacheConfig']
 
 
 class SecretCacheConfig(pulumi.CustomResource):
-    backend: pulumi.Output[str]
-    """
-    The path the transit secret backend is mounted at, with no leading or trailing `/`s.
-    """
-    size: pulumi.Output[float]
-    """
-    The number of cache entries. 0 means unlimited.
-    """
-    def __init__(__self__, resource_name, opts=None, backend=None, size=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 size: Optional[pulumi.Input[float]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Configure the cache for the Transit Secret Backend in Vault.
 
@@ -38,7 +39,7 @@ class SecretCacheConfig(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -57,13 +58,17 @@ class SecretCacheConfig(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, backend=None, size=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend: Optional[pulumi.Input[str]] = None,
+            size: Optional[pulumi.Input[float]] = None) -> 'SecretCacheConfig':
         """
         Get an existing SecretCacheConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[float] size: The number of cache entries. 0 means unlimited.
@@ -76,8 +81,25 @@ class SecretCacheConfig(pulumi.CustomResource):
         __props__["size"] = size
         return SecretCacheConfig(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def backend(self) -> pulumi.Output[str]:
+        """
+        The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        """
+        return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter
+    def size(self) -> pulumi.Output[float]:
+        """
+        The number of cache entries. 0 means unlimited.
+        """
+        return pulumi.get(self, "size")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

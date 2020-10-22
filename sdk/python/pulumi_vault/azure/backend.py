@@ -5,53 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['Backend']
 
 
 class Backend(pulumi.CustomResource):
-    client_id: pulumi.Output[str]
-    """
-    The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
-    required.
-    """
-    client_secret: pulumi.Output[str]
-    """
-    The client secret for credentials to query the Azure APIs
-    """
-    description: pulumi.Output[str]
-    """
-    Human-friendly description of the mount for the backend.
-    """
-    environment: pulumi.Output[str]
-    """
-    The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
-    """
-    path: pulumi.Output[str]
-    """
-    Path to mount the backend at.
-    """
-    subscription_id: pulumi.Output[str]
-    """
-    The subscription id for the Azure Active Directory.
-    """
-    tenant_id: pulumi.Output[str]
-    """
-    The tenant id for the Azure Active Directory organization.
-    """
-    def __init__(__self__, resource_name, opts=None, client_id=None, client_secret=None, description=None, environment=None, path=None, subscription_id=None, tenant_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_secret: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 environment: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 subscription_id: Optional[pulumi.Input[str]] = None,
+                 tenant_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a Backend resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_id: The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
-               required.
-        :param pulumi.Input[str] client_secret: The client secret for credentials to query the Azure APIs
+        :param pulumi.Input[str] client_id: - The OAuth2 client id to connect to Azure.
+        :param pulumi.Input[str] client_secret: - The OAuth2 client secret to connect to Azure.
         :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
-        :param pulumi.Input[str] environment: The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
-        :param pulumi.Input[str] path: Path to mount the backend at.
-        :param pulumi.Input[str] subscription_id: The subscription id for the Azure Active Directory.
-        :param pulumi.Input[str] tenant_id: The tenant id for the Azure Active Directory organization.
+        :param pulumi.Input[str] environment: - The Azure environment.
+        :param pulumi.Input[str] path: - The unique path this backend should be mounted at. Defaults to `azure`.
+        :param pulumi.Input[str] subscription_id: - The subscription id for the Azure Active Directory.
+        :param pulumi.Input[str] tenant_id: - The tenant id for the Azure Active Directory.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -64,7 +48,7 @@ class Backend(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -88,22 +72,30 @@ class Backend(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, client_id=None, client_secret=None, description=None, environment=None, path=None, subscription_id=None, tenant_id=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            client_id: Optional[pulumi.Input[str]] = None,
+            client_secret: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            environment: Optional[pulumi.Input[str]] = None,
+            path: Optional[pulumi.Input[str]] = None,
+            subscription_id: Optional[pulumi.Input[str]] = None,
+            tenant_id: Optional[pulumi.Input[str]] = None) -> 'Backend':
         """
         Get an existing Backend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_id: The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
-               required.
-        :param pulumi.Input[str] client_secret: The client secret for credentials to query the Azure APIs
+        :param pulumi.Input[str] client_id: - The OAuth2 client id to connect to Azure.
+        :param pulumi.Input[str] client_secret: - The OAuth2 client secret to connect to Azure.
         :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
-        :param pulumi.Input[str] environment: The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
-        :param pulumi.Input[str] path: Path to mount the backend at.
-        :param pulumi.Input[str] subscription_id: The subscription id for the Azure Active Directory.
-        :param pulumi.Input[str] tenant_id: The tenant id for the Azure Active Directory organization.
+        :param pulumi.Input[str] environment: - The Azure environment.
+        :param pulumi.Input[str] path: - The unique path this backend should be mounted at. Defaults to `azure`.
+        :param pulumi.Input[str] subscription_id: - The subscription id for the Azure Active Directory.
+        :param pulumi.Input[str] tenant_id: - The tenant id for the Azure Active Directory.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -118,8 +110,65 @@ class Backend(pulumi.CustomResource):
         __props__["tenant_id"] = tenant_id
         return Backend(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        - The OAuth2 client id to connect to Azure.
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> pulumi.Output[Optional[str]]:
+        """
+        - The OAuth2 client secret to connect to Azure.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Human-friendly description of the mount for the backend.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def environment(self) -> pulumi.Output[Optional[str]]:
+        """
+        - The Azure environment.
+        """
+        return pulumi.get(self, "environment")
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Output[Optional[str]]:
+        """
+        - The unique path this backend should be mounted at. Defaults to `azure`.
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="subscriptionId")
+    def subscription_id(self) -> pulumi.Output[str]:
+        """
+        - The subscription id for the Azure Active Directory.
+        """
+        return pulumi.get(self, "subscription_id")
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> pulumi.Output[str]:
+        """
+        - The tenant id for the Azure Active Directory.
+        """
+        return pulumi.get(self, "tenant_id")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

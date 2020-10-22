@@ -5,9 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
 
+__all__ = [
+    'GetEncryptResult',
+    'AwaitableGetEncryptResult',
+    'get_encrypt',
+]
+
+@pulumi.output_type
 class GetEncryptResult:
     """
     A collection of values returned by getEncrypt.
@@ -15,28 +22,65 @@ class GetEncryptResult:
     def __init__(__self__, backend=None, ciphertext=None, context=None, id=None, key=None, key_version=None, plaintext=None):
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
-        __self__.backend = backend
+        pulumi.set(__self__, "backend", backend)
         if ciphertext and not isinstance(ciphertext, str):
             raise TypeError("Expected argument 'ciphertext' to be a str")
-        __self__.ciphertext = ciphertext
+        pulumi.set(__self__, "ciphertext", ciphertext)
         if context and not isinstance(context, str):
             raise TypeError("Expected argument 'context' to be a str")
-        __self__.context = context
+        pulumi.set(__self__, "context", context)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if key and not isinstance(key, str):
+            raise TypeError("Expected argument 'key' to be a str")
+        pulumi.set(__self__, "key", key)
+        if key_version and not isinstance(key_version, float):
+            raise TypeError("Expected argument 'key_version' to be a float")
+        pulumi.set(__self__, "key_version", key_version)
+        if plaintext and not isinstance(plaintext, str):
+            raise TypeError("Expected argument 'plaintext' to be a str")
+        pulumi.set(__self__, "plaintext", plaintext)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> str:
+        return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter
+    def ciphertext(self) -> str:
+        return pulumi.get(self, "ciphertext")
+
+    @property
+    @pulumi.getter
+    def context(self) -> Optional[str]:
+        return pulumi.get(self, "context")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if key and not isinstance(key, str):
-            raise TypeError("Expected argument 'key' to be a str")
-        __self__.key = key
-        if key_version and not isinstance(key_version, float):
-            raise TypeError("Expected argument 'key_version' to be a float")
-        __self__.key_version = key_version
-        if plaintext and not isinstance(plaintext, str):
-            raise TypeError("Expected argument 'plaintext' to be a str")
-        __self__.plaintext = plaintext
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter(name="keyVersion")
+    def key_version(self) -> Optional[float]:
+        return pulumi.get(self, "key_version")
+
+    @property
+    @pulumi.getter
+    def plaintext(self) -> str:
+        return pulumi.get(self, "plaintext")
+
+
 class AwaitableGetEncryptResult(GetEncryptResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -51,13 +95,17 @@ class AwaitableGetEncryptResult(GetEncryptResult):
             key_version=self.key_version,
             plaintext=self.plaintext)
 
-def get_encrypt(backend=None,context=None,key=None,key_version=None,plaintext=None,opts=None):
+
+def get_encrypt(backend: Optional[str] = None,
+                context: Optional[str] = None,
+                key: Optional[str] = None,
+                key_version: Optional[float] = None,
+                plaintext: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEncryptResult:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-
-
     __args__['backend'] = backend
     __args__['context'] = context
     __args__['key'] = key
@@ -66,14 +114,14 @@ def get_encrypt(backend=None,context=None,key=None,key_version=None,plaintext=No
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('vault:transit/getEncrypt:getEncrypt', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('vault:transit/getEncrypt:getEncrypt', __args__, opts=opts, typ=GetEncryptResult).value
 
     return AwaitableGetEncryptResult(
-        backend=__ret__.get('backend'),
-        ciphertext=__ret__.get('ciphertext'),
-        context=__ret__.get('context'),
-        id=__ret__.get('id'),
-        key=__ret__.get('key'),
-        key_version=__ret__.get('keyVersion'),
-        plaintext=__ret__.get('plaintext'))
+        backend=__ret__.backend,
+        ciphertext=__ret__.ciphertext,
+        context=__ret__.context,
+        id=__ret__.id,
+        key=__ret__.key,
+        key_version=__ret__.key_version,
+        plaintext=__ret__.plaintext)

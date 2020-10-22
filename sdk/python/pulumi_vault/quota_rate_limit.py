@@ -5,24 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['QuotaRateLimit']
 
 
 class QuotaRateLimit(pulumi.CustomResource):
-    name: pulumi.Output[str]
-    """
-    The name of the quota.
-    """
-    path: pulumi.Output[str]
-    """
-    Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota.
-    """
-    rate: pulumi.Output[float]
-    """
-    The maximum number of requests at any given second to be allowed by the quota rule. The rate must be positive.
-    """
-    def __init__(__self__, resource_name, opts=None, name=None, path=None, rate=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 rate: Optional[pulumi.Input[float]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a QuotaRateLimit resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -42,7 +40,7 @@ class QuotaRateLimit(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -60,13 +58,18 @@ class QuotaRateLimit(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, name=None, path=None, rate=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            path: Optional[pulumi.Input[str]] = None,
+            rate: Optional[pulumi.Input[float]] = None) -> 'QuotaRateLimit':
         """
         Get an existing QuotaRateLimit resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the quota.
         :param pulumi.Input[str] path: Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota.
@@ -81,8 +84,33 @@ class QuotaRateLimit(pulumi.CustomResource):
         __props__["rate"] = rate
         return QuotaRateLimit(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Output[str]:
+        """
+        The name of the quota.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Output[Optional[str]]:
+        """
+        Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota.
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def rate(self) -> pulumi.Output[float]:
+        """
+        The maximum number of requests at any given second to be allowed by the quota rule. The rate must be positive.
+        """
+        return pulumi.get(self, "rate")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

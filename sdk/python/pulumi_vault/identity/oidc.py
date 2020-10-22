@@ -5,19 +5,20 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['Oidc']
 
 
 class Oidc(pulumi.CustomResource):
-    issuer: pulumi.Output[str]
-    """
-    Issuer URL to be used in the iss claim of the token. If not set, Vault's
-    `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
-    scheme, host, and optionally, port number and path components, but no query or fragment
-    components.
-    """
-    def __init__(__self__, resource_name, opts=None, issuer=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 issuer: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Configure the [Identity Tokens Backend](https://www.vaultproject.io/docs/secrets/identity/index.html#identity-tokens).
 
@@ -53,7 +54,7 @@ class Oidc(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -67,13 +68,16 @@ class Oidc(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, issuer=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            issuer: Optional[pulumi.Input[str]] = None) -> 'Oidc':
         """
         Get an existing Oidc resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] issuer: Issuer URL to be used in the iss claim of the token. If not set, Vault's
                `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
@@ -87,8 +91,20 @@ class Oidc(pulumi.CustomResource):
         __props__["issuer"] = issuer
         return Oidc(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def issuer(self) -> pulumi.Output[str]:
+        """
+        Issuer URL to be used in the iss claim of the token. If not set, Vault's
+        `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
+        scheme, host, and optionally, port number and path components, but no query or fragment
+        components.
+        """
+        return pulumi.get(self, "issuer")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

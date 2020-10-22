@@ -5,24 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['Role']
 
 
 class Role(pulumi.CustomResource):
-    name: pulumi.Output[str]
-    """
-    The name of the role.
-    """
-    path: pulumi.Output[str]
-    """
-    Path to where the back-end is mounted within Vault.
-    """
-    transformations: pulumi.Output[list]
-    """
-    A comma separated string or slice of transformations to use.
-    """
-    def __init__(__self__, resource_name, opts=None, name=None, path=None, transformations=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 transformations: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         This resource supports the "/transform/role/{name}" Vault endpoint.
 
@@ -47,7 +45,7 @@ class Role(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the role.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
-        :param pulumi.Input[list] transformations: A comma separated string or slice of transformations to use.
+        :param pulumi.Input[List[pulumi.Input[str]]] transformations: A comma separated string or slice of transformations to use.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -60,7 +58,7 @@ class Role(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -78,17 +76,22 @@ class Role(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, name=None, path=None, transformations=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            path: Optional[pulumi.Input[str]] = None,
+            transformations: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'Role':
         """
         Get an existing Role resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the role.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
-        :param pulumi.Input[list] transformations: A comma separated string or slice of transformations to use.
+        :param pulumi.Input[List[pulumi.Input[str]]] transformations: A comma separated string or slice of transformations to use.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -99,8 +102,33 @@ class Role(pulumi.CustomResource):
         __props__["transformations"] = transformations
         return Role(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Output[str]:
+        """
+        The name of the role.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Output[str]:
+        """
+        Path to where the back-end is mounted within Vault.
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def transformations(self) -> pulumi.Output[Optional[List[str]]]:
+        """
+        A comma separated string or slice of transformations to use.
+        """
+        return pulumi.get(self, "transformations")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

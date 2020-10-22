@@ -5,39 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['SecretBackend']
 
 
 class SecretBackend(pulumi.CustomResource):
-    credentials: pulumi.Output[str]
-    """
-    The GCP service account credentials in JSON format.
-    """
-    default_lease_ttl_seconds: pulumi.Output[float]
-    """
-    The default TTL for credentials
-    issued by this backend. Defaults to '0'.
-    """
-    description: pulumi.Output[str]
-    """
-    A human-friendly description for this backend.
-    """
-    local: pulumi.Output[bool]
-    """
-    Boolean flag that can be explicitly set to true to enforce local mount in HA environment
-    """
-    max_lease_ttl_seconds: pulumi.Output[float]
-    """
-    The maximum TTL that can be requested
-    for credentials issued by this backend. Defaults to '0'.
-    """
-    path: pulumi.Output[str]
-    """
-    The unique path this backend should be mounted at. Must
-    not begin or end with a `/`. Defaults to `gcp`.
-    """
-    def __init__(__self__, resource_name, opts=None, credentials=None, default_lease_ttl_seconds=None, description=None, local=None, max_lease_ttl_seconds=None, path=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 credentials: Optional[pulumi.Input[str]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a SecretBackend resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -63,7 +49,7 @@ class SecretBackend(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -82,13 +68,21 @@ class SecretBackend(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, credentials=None, default_lease_ttl_seconds=None, description=None, local=None, max_lease_ttl_seconds=None, path=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            credentials: Optional[pulumi.Input[str]] = None,
+            default_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            local: Optional[pulumi.Input[bool]] = None,
+            max_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+            path: Optional[pulumi.Input[str]] = None) -> 'SecretBackend':
         """
         Get an existing SecretBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] credentials: The GCP service account credentials in JSON format.
         :param pulumi.Input[float] default_lease_ttl_seconds: The default TTL for credentials
@@ -112,8 +106,60 @@ class SecretBackend(pulumi.CustomResource):
         __props__["path"] = path
         return SecretBackend(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def credentials(self) -> pulumi.Output[Optional[str]]:
+        """
+        The GCP service account credentials in JSON format.
+        """
+        return pulumi.get(self, "credentials")
+
+    @property
+    @pulumi.getter(name="defaultLeaseTtlSeconds")
+    def default_lease_ttl_seconds(self) -> pulumi.Output[Optional[float]]:
+        """
+        The default TTL for credentials
+        issued by this backend. Defaults to '0'.
+        """
+        return pulumi.get(self, "default_lease_ttl_seconds")
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        A human-friendly description for this backend.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def local(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+        """
+        return pulumi.get(self, "local")
+
+    @property
+    @pulumi.getter(name="maxLeaseTtlSeconds")
+    def max_lease_ttl_seconds(self) -> pulumi.Output[Optional[float]]:
+        """
+        The maximum TTL that can be requested
+        for credentials issued by this backend. Defaults to '0'.
+        """
+        return pulumi.get(self, "max_lease_ttl_seconds")
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Output[Optional[str]]:
+        """
+        The unique path this backend should be mounted at. Must
+        not begin or end with a `/`. Defaults to `gcp`.
+        """
+        return pulumi.get(self, "path")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

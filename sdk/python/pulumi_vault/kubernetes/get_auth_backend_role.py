@@ -5,9 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
 
+__all__ = [
+    'GetAuthBackendRoleResult',
+    'AwaitableGetAuthBackendRoleResult',
+    'get_auth_backend_role',
+]
+
+@pulumi.output_type
 class GetAuthBackendRoleResult:
     """
     A collection of values returned by getAuthBackendRole.
@@ -15,134 +22,240 @@ class GetAuthBackendRoleResult:
     def __init__(__self__, audience=None, backend=None, bound_cidrs=None, bound_service_account_names=None, bound_service_account_namespaces=None, id=None, max_ttl=None, num_uses=None, period=None, policies=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None):
         if audience and not isinstance(audience, str):
             raise TypeError("Expected argument 'audience' to be a str")
-        __self__.audience = audience
-        """
-        (Optional) Audience claim to verify in the JWT.
-        """
+        pulumi.set(__self__, "audience", audience)
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
-        __self__.backend = backend
+        pulumi.set(__self__, "backend", backend)
         if bound_cidrs and not isinstance(bound_cidrs, list):
             raise TypeError("Expected argument 'bound_cidrs' to be a list")
         if bound_cidrs is not None:
             warnings.warn("use `token_bound_cidrs` instead if you are running Vault >= 1.2", DeprecationWarning)
             pulumi.log.warn("bound_cidrs is deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2")
 
-        __self__.bound_cidrs = bound_cidrs
+        pulumi.set(__self__, "bound_cidrs", bound_cidrs)
         if bound_service_account_names and not isinstance(bound_service_account_names, list):
             raise TypeError("Expected argument 'bound_service_account_names' to be a list")
-        __self__.bound_service_account_names = bound_service_account_names
-        """
-        List of service account names able to access this role. If set to "*" all names are allowed, both this and bound_service_account_namespaces can not be "*".
-        """
+        pulumi.set(__self__, "bound_service_account_names", bound_service_account_names)
         if bound_service_account_namespaces and not isinstance(bound_service_account_namespaces, list):
             raise TypeError("Expected argument 'bound_service_account_namespaces' to be a list")
-        __self__.bound_service_account_namespaces = bound_service_account_namespaces
-        """
-        List of namespaces allowed to access this role. If set to "*" all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
-        """
+        pulumi.set(__self__, "bound_service_account_namespaces", bound_service_account_namespaces)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
+        pulumi.set(__self__, "id", id)
         if max_ttl and not isinstance(max_ttl, float):
             raise TypeError("Expected argument 'max_ttl' to be a float")
         if max_ttl is not None:
             warnings.warn("use `token_max_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
             pulumi.log.warn("max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2")
 
-        __self__.max_ttl = max_ttl
+        pulumi.set(__self__, "max_ttl", max_ttl)
         if num_uses and not isinstance(num_uses, float):
             raise TypeError("Expected argument 'num_uses' to be a float")
         if num_uses is not None:
             warnings.warn("use `token_num_uses` instead if you are running Vault >= 1.2", DeprecationWarning)
             pulumi.log.warn("num_uses is deprecated: use `token_num_uses` instead if you are running Vault >= 1.2")
 
-        __self__.num_uses = num_uses
+        pulumi.set(__self__, "num_uses", num_uses)
         if period and not isinstance(period, float):
             raise TypeError("Expected argument 'period' to be a float")
         if period is not None:
             warnings.warn("use `token_period` instead if you are running Vault >= 1.2", DeprecationWarning)
             pulumi.log.warn("period is deprecated: use `token_period` instead if you are running Vault >= 1.2")
 
-        __self__.period = period
+        pulumi.set(__self__, "period", period)
         if policies and not isinstance(policies, list):
             raise TypeError("Expected argument 'policies' to be a list")
         if policies is not None:
             warnings.warn("use `token_policies` instead if you are running Vault >= 1.2", DeprecationWarning)
             pulumi.log.warn("policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2")
 
-        __self__.policies = policies
+        pulumi.set(__self__, "policies", policies)
         if role_name and not isinstance(role_name, str):
             raise TypeError("Expected argument 'role_name' to be a str")
-        __self__.role_name = role_name
+        pulumi.set(__self__, "role_name", role_name)
         if token_bound_cidrs and not isinstance(token_bound_cidrs, list):
             raise TypeError("Expected argument 'token_bound_cidrs' to be a list")
-        __self__.token_bound_cidrs = token_bound_cidrs
+        pulumi.set(__self__, "token_bound_cidrs", token_bound_cidrs)
+        if token_explicit_max_ttl and not isinstance(token_explicit_max_ttl, float):
+            raise TypeError("Expected argument 'token_explicit_max_ttl' to be a float")
+        pulumi.set(__self__, "token_explicit_max_ttl", token_explicit_max_ttl)
+        if token_max_ttl and not isinstance(token_max_ttl, float):
+            raise TypeError("Expected argument 'token_max_ttl' to be a float")
+        pulumi.set(__self__, "token_max_ttl", token_max_ttl)
+        if token_no_default_policy and not isinstance(token_no_default_policy, bool):
+            raise TypeError("Expected argument 'token_no_default_policy' to be a bool")
+        pulumi.set(__self__, "token_no_default_policy", token_no_default_policy)
+        if token_num_uses and not isinstance(token_num_uses, float):
+            raise TypeError("Expected argument 'token_num_uses' to be a float")
+        pulumi.set(__self__, "token_num_uses", token_num_uses)
+        if token_period and not isinstance(token_period, float):
+            raise TypeError("Expected argument 'token_period' to be a float")
+        pulumi.set(__self__, "token_period", token_period)
+        if token_policies and not isinstance(token_policies, list):
+            raise TypeError("Expected argument 'token_policies' to be a list")
+        pulumi.set(__self__, "token_policies", token_policies)
+        if token_ttl and not isinstance(token_ttl, float):
+            raise TypeError("Expected argument 'token_ttl' to be a float")
+        pulumi.set(__self__, "token_ttl", token_ttl)
+        if token_type and not isinstance(token_type, str):
+            raise TypeError("Expected argument 'token_type' to be a str")
+        pulumi.set(__self__, "token_type", token_type)
+        if ttl and not isinstance(ttl, float):
+            raise TypeError("Expected argument 'ttl' to be a float")
+        if ttl is not None:
+            warnings.warn("use `token_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
+            pulumi.log.warn("ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2")
+
+        pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter
+    def audience(self) -> Optional[str]:
+        """
+        (Optional) Audience claim to verify in the JWT.
+        """
+        return pulumi.get(self, "audience")
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[str]:
+        return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter(name="boundCidrs")
+    def bound_cidrs(self) -> Optional[List[str]]:
+        return pulumi.get(self, "bound_cidrs")
+
+    @property
+    @pulumi.getter(name="boundServiceAccountNames")
+    def bound_service_account_names(self) -> List[str]:
+        """
+        List of service account names able to access this role. If set to "*" all names are allowed, both this and bound_service_account_namespaces can not be "*".
+        """
+        return pulumi.get(self, "bound_service_account_names")
+
+    @property
+    @pulumi.getter(name="boundServiceAccountNamespaces")
+    def bound_service_account_namespaces(self) -> List[str]:
+        """
+        List of namespaces allowed to access this role. If set to "*" all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
+        """
+        return pulumi.get(self, "bound_service_account_namespaces")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The provider-assigned unique ID for this managed resource.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> Optional[float]:
+        return pulumi.get(self, "max_ttl")
+
+    @property
+    @pulumi.getter(name="numUses")
+    def num_uses(self) -> Optional[float]:
+        return pulumi.get(self, "num_uses")
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[float]:
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[List[str]]:
+        return pulumi.get(self, "policies")
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> str:
+        return pulumi.get(self, "role_name")
+
+    @property
+    @pulumi.getter(name="tokenBoundCidrs")
+    def token_bound_cidrs(self) -> Optional[List[str]]:
         """
         List of CIDR blocks; if set, specifies blocks of IP
         addresses which can authenticate successfully, and ties the resulting token to these blocks
         as well.
         """
-        if token_explicit_max_ttl and not isinstance(token_explicit_max_ttl, float):
-            raise TypeError("Expected argument 'token_explicit_max_ttl' to be a float")
-        __self__.token_explicit_max_ttl = token_explicit_max_ttl
+        return pulumi.get(self, "token_bound_cidrs")
+
+    @property
+    @pulumi.getter(name="tokenExplicitMaxTtl")
+    def token_explicit_max_ttl(self) -> Optional[float]:
         """
         If set, will encode an
         [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
         onto the token in number of seconds. This is a hard cap even if `token_ttl` and
         `token_max_ttl` would otherwise allow a renewal.
         """
-        if token_max_ttl and not isinstance(token_max_ttl, float):
-            raise TypeError("Expected argument 'token_max_ttl' to be a float")
-        __self__.token_max_ttl = token_max_ttl
+        return pulumi.get(self, "token_explicit_max_ttl")
+
+    @property
+    @pulumi.getter(name="tokenMaxTtl")
+    def token_max_ttl(self) -> Optional[float]:
         """
         The maximum lifetime for generated tokens in number of seconds.
         Its current value will be referenced at renewal time.
         """
-        if token_no_default_policy and not isinstance(token_no_default_policy, bool):
-            raise TypeError("Expected argument 'token_no_default_policy' to be a bool")
-        __self__.token_no_default_policy = token_no_default_policy
+        return pulumi.get(self, "token_max_ttl")
+
+    @property
+    @pulumi.getter(name="tokenNoDefaultPolicy")
+    def token_no_default_policy(self) -> Optional[bool]:
         """
         If set, the default policy will not be set on
         generated tokens; otherwise it will be added to the policies set in token_policies.
         """
-        if token_num_uses and not isinstance(token_num_uses, float):
-            raise TypeError("Expected argument 'token_num_uses' to be a float")
-        __self__.token_num_uses = token_num_uses
+        return pulumi.get(self, "token_no_default_policy")
+
+    @property
+    @pulumi.getter(name="tokenNumUses")
+    def token_num_uses(self) -> Optional[float]:
         """
         The
         [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
         if any, in number of seconds to set on the token.
         """
-        if token_period and not isinstance(token_period, float):
-            raise TypeError("Expected argument 'token_period' to be a float")
-        __self__.token_period = token_period
+        return pulumi.get(self, "token_num_uses")
+
+    @property
+    @pulumi.getter(name="tokenPeriod")
+    def token_period(self) -> Optional[float]:
         """
         (Optional) If set, indicates that the
         token generated using this role should never expire. The token should be renewed within the
         duration specified by this value. At each renewal, the token's TTL will be set to the
         value of this field. Specified in seconds.
         """
-        if token_policies and not isinstance(token_policies, list):
-            raise TypeError("Expected argument 'token_policies' to be a list")
-        __self__.token_policies = token_policies
+        return pulumi.get(self, "token_period")
+
+    @property
+    @pulumi.getter(name="tokenPolicies")
+    def token_policies(self) -> Optional[List[str]]:
         """
         List of policies to encode onto generated tokens. Depending
         on the auth method, this list may be supplemented by user/group/other values.
         """
-        if token_ttl and not isinstance(token_ttl, float):
-            raise TypeError("Expected argument 'token_ttl' to be a float")
-        __self__.token_ttl = token_ttl
+        return pulumi.get(self, "token_policies")
+
+    @property
+    @pulumi.getter(name="tokenTtl")
+    def token_ttl(self) -> Optional[float]:
         """
         The incremental lifetime for generated tokens in number of seconds.
         Its current value will be referenced at renewal time.
         """
-        if token_type and not isinstance(token_type, str):
-            raise TypeError("Expected argument 'token_type' to be a str")
-        __self__.token_type = token_type
+        return pulumi.get(self, "token_ttl")
+
+    @property
+    @pulumi.getter(name="tokenType")
+    def token_type(self) -> Optional[str]:
         """
         The type of token that should be generated. Can be `service`,
         `batch`, or `default` to use the mount's tuned default (which unless changed will be
@@ -150,13 +263,14 @@ class GetAuthBackendRoleResult:
         `default-service` and `default-batch` which specify the type to return unless the client
         requests a different type at generation time.
         """
-        if ttl and not isinstance(ttl, float):
-            raise TypeError("Expected argument 'ttl' to be a float")
-        if ttl is not None:
-            warnings.warn("use `token_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
-            pulumi.log.warn("ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2")
+        return pulumi.get(self, "token_type")
 
-        __self__.ttl = ttl
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[float]:
+        return pulumi.get(self, "ttl")
+
+
 class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -185,7 +299,26 @@ class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
             token_type=self.token_type,
             ttl=self.ttl)
 
-def get_auth_backend_role(audience=None,backend=None,bound_cidrs=None,max_ttl=None,num_uses=None,period=None,policies=None,role_name=None,token_bound_cidrs=None,token_explicit_max_ttl=None,token_max_ttl=None,token_no_default_policy=None,token_num_uses=None,token_period=None,token_policies=None,token_ttl=None,token_type=None,ttl=None,opts=None):
+
+def get_auth_backend_role(audience: Optional[str] = None,
+                          backend: Optional[str] = None,
+                          bound_cidrs: Optional[List[str]] = None,
+                          max_ttl: Optional[float] = None,
+                          num_uses: Optional[float] = None,
+                          period: Optional[float] = None,
+                          policies: Optional[List[str]] = None,
+                          role_name: Optional[str] = None,
+                          token_bound_cidrs: Optional[List[str]] = None,
+                          token_explicit_max_ttl: Optional[float] = None,
+                          token_max_ttl: Optional[float] = None,
+                          token_no_default_policy: Optional[bool] = None,
+                          token_num_uses: Optional[float] = None,
+                          token_period: Optional[float] = None,
+                          token_policies: Optional[List[str]] = None,
+                          token_ttl: Optional[float] = None,
+                          token_type: Optional[str] = None,
+                          ttl: Optional[float] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuthBackendRoleResult:
     """
     Reads the Role of an Kubernetes from a Vault server. See the [Vault
     documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
@@ -207,7 +340,7 @@ def get_auth_backend_role(audience=None,backend=None,bound_cidrs=None,max_ttl=No
     :param str backend: The unique name for the Kubernetes backend the role to
            retrieve Role attributes for resides in. Defaults to "kubernetes".
     :param str role_name: The name of the role to retrieve the Role attributes for.
-    :param list token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
+    :param List[str] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
            addresses which can authenticate successfully, and ties the resulting token to these blocks
            as well.
     :param float token_explicit_max_ttl: If set, will encode an
@@ -225,7 +358,7 @@ def get_auth_backend_role(audience=None,backend=None,bound_cidrs=None,max_ttl=No
            token generated using this role should never expire. The token should be renewed within the
            duration specified by this value. At each renewal, the token's TTL will be set to the
            value of this field. Specified in seconds.
-    :param list token_policies: List of policies to encode onto generated tokens. Depending
+    :param List[str] token_policies: List of policies to encode onto generated tokens. Depending
            on the auth method, this list may be supplemented by user/group/other values.
     :param float token_ttl: The incremental lifetime for generated tokens in number of seconds.
            Its current value will be referenced at renewal time.
@@ -236,8 +369,6 @@ def get_auth_backend_role(audience=None,backend=None,bound_cidrs=None,max_ttl=No
            requests a different type at generation time.
     """
     __args__ = dict()
-
-
     __args__['audience'] = audience
     __args__['backend'] = backend
     __args__['boundCidrs'] = bound_cidrs
@@ -259,28 +390,28 @@ def get_auth_backend_role(audience=None,backend=None,bound_cidrs=None,max_ttl=No
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('vault:kubernetes/getAuthBackendRole:getAuthBackendRole', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('vault:kubernetes/getAuthBackendRole:getAuthBackendRole', __args__, opts=opts, typ=GetAuthBackendRoleResult).value
 
     return AwaitableGetAuthBackendRoleResult(
-        audience=__ret__.get('audience'),
-        backend=__ret__.get('backend'),
-        bound_cidrs=__ret__.get('boundCidrs'),
-        bound_service_account_names=__ret__.get('boundServiceAccountNames'),
-        bound_service_account_namespaces=__ret__.get('boundServiceAccountNamespaces'),
-        id=__ret__.get('id'),
-        max_ttl=__ret__.get('maxTtl'),
-        num_uses=__ret__.get('numUses'),
-        period=__ret__.get('period'),
-        policies=__ret__.get('policies'),
-        role_name=__ret__.get('roleName'),
-        token_bound_cidrs=__ret__.get('tokenBoundCidrs'),
-        token_explicit_max_ttl=__ret__.get('tokenExplicitMaxTtl'),
-        token_max_ttl=__ret__.get('tokenMaxTtl'),
-        token_no_default_policy=__ret__.get('tokenNoDefaultPolicy'),
-        token_num_uses=__ret__.get('tokenNumUses'),
-        token_period=__ret__.get('tokenPeriod'),
-        token_policies=__ret__.get('tokenPolicies'),
-        token_ttl=__ret__.get('tokenTtl'),
-        token_type=__ret__.get('tokenType'),
-        ttl=__ret__.get('ttl'))
+        audience=__ret__.audience,
+        backend=__ret__.backend,
+        bound_cidrs=__ret__.bound_cidrs,
+        bound_service_account_names=__ret__.bound_service_account_names,
+        bound_service_account_namespaces=__ret__.bound_service_account_namespaces,
+        id=__ret__.id,
+        max_ttl=__ret__.max_ttl,
+        num_uses=__ret__.num_uses,
+        period=__ret__.period,
+        policies=__ret__.policies,
+        role_name=__ret__.role_name,
+        token_bound_cidrs=__ret__.token_bound_cidrs,
+        token_explicit_max_ttl=__ret__.token_explicit_max_ttl,
+        token_max_ttl=__ret__.token_max_ttl,
+        token_no_default_policy=__ret__.token_no_default_policy,
+        token_num_uses=__ret__.token_num_uses,
+        token_period=__ret__.token_period,
+        token_policies=__ret__.token_policies,
+        token_ttl=__ret__.token_ttl,
+        token_type=__ret__.token_type,
+        ttl=__ret__.ttl)
