@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['Role']
@@ -17,7 +17,7 @@ class Role(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
-                 transformations: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 transformations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -45,7 +45,7 @@ class Role(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the role.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
-        :param pulumi.Input[List[pulumi.Input[str]]] transformations: A comma separated string or slice of transformations to use.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] transformations: A comma separated string or slice of transformations to use.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -81,7 +81,7 @@ class Role(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             name: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
-            transformations: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'Role':
+            transformations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Role':
         """
         Get an existing Role resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -91,7 +91,7 @@ class Role(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the role.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
-        :param pulumi.Input[List[pulumi.Input[str]]] transformations: A comma separated string or slice of transformations to use.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] transformations: A comma separated string or slice of transformations to use.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -120,7 +120,7 @@ class Role(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def transformations(self) -> pulumi.Output[Optional[List[str]]]:
+    def transformations(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         A comma separated string or slice of transformations to use.
         """

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -23,8 +23,8 @@ class GetAuthBackendResult:
         if accessor and not isinstance(accessor, str):
             raise TypeError("Expected argument 'accessor' to be a str")
         pulumi.set(__self__, "accessor", accessor)
-        if default_lease_ttl_seconds and not isinstance(default_lease_ttl_seconds, float):
-            raise TypeError("Expected argument 'default_lease_ttl_seconds' to be a float")
+        if default_lease_ttl_seconds and not isinstance(default_lease_ttl_seconds, int):
+            raise TypeError("Expected argument 'default_lease_ttl_seconds' to be a int")
         pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
@@ -38,8 +38,8 @@ class GetAuthBackendResult:
         if local and not isinstance(local, bool):
             raise TypeError("Expected argument 'local' to be a bool")
         pulumi.set(__self__, "local", local)
-        if max_lease_ttl_seconds and not isinstance(max_lease_ttl_seconds, float):
-            raise TypeError("Expected argument 'max_lease_ttl_seconds' to be a float")
+        if max_lease_ttl_seconds and not isinstance(max_lease_ttl_seconds, int):
+            raise TypeError("Expected argument 'max_lease_ttl_seconds' to be a int")
         pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
         if path and not isinstance(path, str):
             raise TypeError("Expected argument 'path' to be a str")
@@ -58,7 +58,7 @@ class GetAuthBackendResult:
 
     @property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
-    def default_lease_ttl_seconds(self) -> float:
+    def default_lease_ttl_seconds(self) -> int:
         """
         The default lease duration in seconds.
         """
@@ -98,7 +98,7 @@ class GetAuthBackendResult:
 
     @property
     @pulumi.getter(name="maxLeaseTtlSeconds")
-    def max_lease_ttl_seconds(self) -> float:
+    def max_lease_ttl_seconds(self) -> int:
         """
         The maximum lease duration in seconds.
         """

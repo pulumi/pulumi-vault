@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['EntityPolicies']
@@ -17,7 +17,7 @@ class EntityPolicies(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  entity_id: Optional[pulumi.Input[str]] = None,
                  exclusive: Optional[pulumi.Input[bool]] = None,
-                 policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -64,7 +64,7 @@ class EntityPolicies(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] entity_id: Entity ID to assign policies to.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
-        :param pulumi.Input[List[pulumi.Input[str]]] policies: List of policies to assign to the entity
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the entity
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -104,7 +104,7 @@ class EntityPolicies(pulumi.CustomResource):
             entity_id: Optional[pulumi.Input[str]] = None,
             entity_name: Optional[pulumi.Input[str]] = None,
             exclusive: Optional[pulumi.Input[bool]] = None,
-            policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'EntityPolicies':
+            policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'EntityPolicies':
         """
         Get an existing EntityPolicies resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -115,7 +115,7 @@ class EntityPolicies(pulumi.CustomResource):
         :param pulumi.Input[str] entity_id: Entity ID to assign policies to.
         :param pulumi.Input[str] entity_name: The name of the entity that are assigned the policies.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
-        :param pulumi.Input[List[pulumi.Input[str]]] policies: List of policies to assign to the entity
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the entity
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -153,7 +153,7 @@ class EntityPolicies(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def policies(self) -> pulumi.Output[List[str]]:
+    def policies(self) -> pulumi.Output[Sequence[str]]:
         """
         List of policies to assign to the entity
         """

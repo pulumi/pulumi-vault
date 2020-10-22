@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -35,8 +35,8 @@ class GetEncryptResult:
         if key and not isinstance(key, str):
             raise TypeError("Expected argument 'key' to be a str")
         pulumi.set(__self__, "key", key)
-        if key_version and not isinstance(key_version, float):
-            raise TypeError("Expected argument 'key_version' to be a float")
+        if key_version and not isinstance(key_version, int):
+            raise TypeError("Expected argument 'key_version' to be a int")
         pulumi.set(__self__, "key_version", key_version)
         if plaintext and not isinstance(plaintext, str):
             raise TypeError("Expected argument 'plaintext' to be a str")
@@ -75,7 +75,7 @@ class GetEncryptResult:
 
     @property
     @pulumi.getter(name="keyVersion")
-    def key_version(self) -> Optional[float]:
+    def key_version(self) -> Optional[int]:
         return pulumi.get(self, "key_version")
 
     @property
@@ -102,7 +102,7 @@ class AwaitableGetEncryptResult(GetEncryptResult):
 def get_encrypt(backend: Optional[str] = None,
                 context: Optional[str] = None,
                 key: Optional[str] = None,
-                key_version: Optional[float] = None,
+                key_version: Optional[int] = None,
                 plaintext: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEncryptResult:
     """
@@ -128,7 +128,7 @@ def get_encrypt(backend: Optional[str] = None,
     :param str backend: The path the transit secret backend is mounted at, with no leading or trailing `/`.
     :param str context: Context for key derivation. This is required if key derivation is enabled for this key.
     :param str key: Specifies the name of the transit key to encrypt against.
-    :param float key_version: The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `min_encryption_version`, if set.
+    :param int key_version: The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `min_encryption_version`, if set.
     :param str plaintext: Plaintext to be encoded.
     """
     __args__ = dict()

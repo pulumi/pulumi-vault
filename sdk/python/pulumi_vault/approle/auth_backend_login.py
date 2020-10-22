@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['AuthBackendLogin']
@@ -99,10 +99,10 @@ class AuthBackendLogin(pulumi.CustomResource):
             accessor: Optional[pulumi.Input[str]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             client_token: Optional[pulumi.Input[str]] = None,
-            lease_duration: Optional[pulumi.Input[float]] = None,
+            lease_duration: Optional[pulumi.Input[int]] = None,
             lease_started: Optional[pulumi.Input[str]] = None,
             metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-            policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             renewable: Optional[pulumi.Input[bool]] = None,
             role_id: Optional[pulumi.Input[str]] = None,
             secret_id: Optional[pulumi.Input[str]] = None) -> 'AuthBackendLogin':
@@ -116,10 +116,10 @@ class AuthBackendLogin(pulumi.CustomResource):
         :param pulumi.Input[str] accessor: The accessor for the token.
         :param pulumi.Input[str] backend: The unique path of the Vault backend to log in with.
         :param pulumi.Input[str] client_token: The Vault token created.
-        :param pulumi.Input[float] lease_duration: How long the token is valid for, in seconds.
+        :param pulumi.Input[int] lease_duration: How long the token is valid for, in seconds.
         :param pulumi.Input[str] lease_started: The date and time the lease started, in RFC 3339 format.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: The metadata associated with the token.
-        :param pulumi.Input[List[pulumi.Input[str]]] policies: A list of policies applied to the token.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: A list of policies applied to the token.
         :param pulumi.Input[bool] renewable: Whether the token is renewable or not.
         :param pulumi.Input[str] role_id: The ID of the role to log in with.
         :param pulumi.Input[str] secret_id: The secret ID of the role to log in with. Required
@@ -167,7 +167,7 @@ class AuthBackendLogin(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="leaseDuration")
-    def lease_duration(self) -> pulumi.Output[float]:
+    def lease_duration(self) -> pulumi.Output[int]:
         """
         How long the token is valid for, in seconds.
         """
@@ -191,7 +191,7 @@ class AuthBackendLogin(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def policies(self) -> pulumi.Output[List[str]]:
+    def policies(self) -> pulumi.Output[Sequence[str]]:
         """
         A list of policies applied to the token.
         """

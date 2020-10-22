@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -50,7 +50,7 @@ class GetPolicyDocumentResult:
 
     @property
     @pulumi.getter
-    def rules(self) -> List['outputs.GetPolicyDocumentRuleResult']:
+    def rules(self) -> Sequence['outputs.GetPolicyDocumentRuleResult']:
         return pulumi.get(self, "rules")
 
 
@@ -65,7 +65,7 @@ class AwaitableGetPolicyDocumentResult(GetPolicyDocumentResult):
             rules=self.rules)
 
 
-def get_policy_document(rules: Optional[List[pulumi.InputType['GetPolicyDocumentRuleArgs']]] = None,
+def get_policy_document(rules: Optional[Sequence[pulumi.InputType['GetPolicyDocumentRuleArgs']]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPolicyDocumentResult:
     """
     This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `Policy` resource.

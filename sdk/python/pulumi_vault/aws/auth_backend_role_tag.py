@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['AuthBackendRoleTag']
@@ -20,7 +20,7 @@ class AuthBackendRoleTag(pulumi.CustomResource):
                  disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
-                 policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
@@ -36,7 +36,7 @@ class AuthBackendRoleTag(pulumi.CustomResource):
         :param pulumi.Input[bool] disallow_reauthentication: If set, only allows a single token to be granted per instance ID.
         :param pulumi.Input[str] instance_id: Instance ID for which this tag is intended for. If set, the created tag can only be used by the instance with the given ID.
         :param pulumi.Input[str] max_ttl: The maximum TTL of the tokens issued using this role.
-        :param pulumi.Input[List[pulumi.Input[str]]] policies: The policies to be associated with the tag. Must be a subset of the policies associated with the role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: The policies to be associated with the tag. Must be a subset of the policies associated with the role.
         :param pulumi.Input[str] role: The name of the AWS auth backend role to read
                role tags from, with no leading or trailing `/`s.
         """
@@ -83,7 +83,7 @@ class AuthBackendRoleTag(pulumi.CustomResource):
             disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
             max_ttl: Optional[pulumi.Input[str]] = None,
-            policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             role: Optional[pulumi.Input[str]] = None,
             tag_key: Optional[pulumi.Input[str]] = None,
             tag_value: Optional[pulumi.Input[str]] = None) -> 'AuthBackendRoleTag':
@@ -100,7 +100,7 @@ class AuthBackendRoleTag(pulumi.CustomResource):
         :param pulumi.Input[bool] disallow_reauthentication: If set, only allows a single token to be granted per instance ID.
         :param pulumi.Input[str] instance_id: Instance ID for which this tag is intended for. If set, the created tag can only be used by the instance with the given ID.
         :param pulumi.Input[str] max_ttl: The maximum TTL of the tokens issued using this role.
-        :param pulumi.Input[List[pulumi.Input[str]]] policies: The policies to be associated with the tag. Must be a subset of the policies associated with the role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: The policies to be associated with the tag. Must be a subset of the policies associated with the role.
         :param pulumi.Input[str] role: The name of the AWS auth backend role to read
                role tags from, with no leading or trailing `/`s.
         :param pulumi.Input[str] tag_key: The key of the role tag.
@@ -164,7 +164,7 @@ class AuthBackendRoleTag(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def policies(self) -> pulumi.Output[Optional[List[str]]]:
+    def policies(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         The policies to be associated with the tag. Must be a subset of the policies associated with the role.
         """

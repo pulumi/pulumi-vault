@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -20,7 +20,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
-                 vhosts: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]]] = None,
+                 vhosts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -33,7 +33,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
         :param pulumi.Input[str] tags: Specifies a comma-separated RabbitMQ management tags.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]] vhosts: Specifies a map of virtual hosts to permissions.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]] vhosts: Specifies a map of virtual hosts to permissions.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -71,7 +71,7 @@ class SecretBackendRole(pulumi.CustomResource):
             backend: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[str]] = None,
-            vhosts: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]]] = None) -> 'SecretBackendRole':
+            vhosts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]]] = None) -> 'SecretBackendRole':
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -84,7 +84,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
         :param pulumi.Input[str] tags: Specifies a comma-separated RabbitMQ management tags.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]] vhosts: Specifies a map of virtual hosts to permissions.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]] vhosts: Specifies a map of virtual hosts to permissions.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -124,7 +124,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vhosts(self) -> pulumi.Output[Optional[List['outputs.SecretBackendRoleVhost']]]:
+    def vhosts(self) -> pulumi.Output[Optional[Sequence['outputs.SecretBackendRoleVhost']]]:
         """
         Specifies a map of virtual hosts to permissions.
         """

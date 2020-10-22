@@ -5,37 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
 __all__ = [
     'AuthBackendTune',
-    'GetPolicyDocumentRuleResult',
-    'GetPolicyDocumentRuleAllowedParameterResult',
-    'GetPolicyDocumentRuleDeniedParameterResult',
     'ProviderAuthLogin',
     'ProviderClientAuth',
     'ProviderHeader',
+    'GetPolicyDocumentRuleResult',
+    'GetPolicyDocumentRuleAllowedParameterResult',
+    'GetPolicyDocumentRuleDeniedParameterResult',
 ]
 
 @pulumi.output_type
 class AuthBackendTune(dict):
     def __init__(__self__, *,
-                 allowed_response_headers: Optional[List[str]] = None,
-                 audit_non_hmac_request_keys: Optional[List[str]] = None,
-                 audit_non_hmac_response_keys: Optional[List[str]] = None,
+                 allowed_response_headers: Optional[Sequence[str]] = None,
+                 audit_non_hmac_request_keys: Optional[Sequence[str]] = None,
+                 audit_non_hmac_response_keys: Optional[Sequence[str]] = None,
                  default_lease_ttl: Optional[str] = None,
                  listing_visibility: Optional[str] = None,
                  max_lease_ttl: Optional[str] = None,
-                 passthrough_request_headers: Optional[List[str]] = None,
+                 passthrough_request_headers: Optional[Sequence[str]] = None,
                  token_type: Optional[str] = None):
         """
-        :param List[str] allowed_response_headers: List of headers to whitelist and allowing
+        :param Sequence[str] allowed_response_headers: List of headers to whitelist and allowing
                a plugin to include them in the response.
-        :param List[str] audit_non_hmac_request_keys: Specifies the list of keys that will
+        :param Sequence[str] audit_non_hmac_request_keys: Specifies the list of keys that will
                not be HMAC'd by audit devices in the request data object.
-        :param List[str] audit_non_hmac_response_keys: Specifies the list of keys that will
+        :param Sequence[str] audit_non_hmac_response_keys: Specifies the list of keys that will
                not be HMAC'd by audit devices in the response data object.
         :param str default_lease_ttl: Specifies the default time-to-live.
                If set, this overrides the global default.
@@ -45,7 +45,7 @@ class AuthBackendTune(dict):
         :param str max_lease_ttl: Specifies the maximum time-to-live.
                If set, this overrides the global default.
                Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-        :param List[str] passthrough_request_headers: List of headers to whitelist and
+        :param Sequence[str] passthrough_request_headers: List of headers to whitelist and
                pass from the request to the backend.
         :param str token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
@@ -69,7 +69,7 @@ class AuthBackendTune(dict):
 
     @property
     @pulumi.getter(name="allowedResponseHeaders")
-    def allowed_response_headers(self) -> Optional[List[str]]:
+    def allowed_response_headers(self) -> Optional[Sequence[str]]:
         """
         List of headers to whitelist and allowing
         a plugin to include them in the response.
@@ -78,7 +78,7 @@ class AuthBackendTune(dict):
 
     @property
     @pulumi.getter(name="auditNonHmacRequestKeys")
-    def audit_non_hmac_request_keys(self) -> Optional[List[str]]:
+    def audit_non_hmac_request_keys(self) -> Optional[Sequence[str]]:
         """
         Specifies the list of keys that will
         not be HMAC'd by audit devices in the request data object.
@@ -87,7 +87,7 @@ class AuthBackendTune(dict):
 
     @property
     @pulumi.getter(name="auditNonHmacResponseKeys")
-    def audit_non_hmac_response_keys(self) -> Optional[List[str]]:
+    def audit_non_hmac_response_keys(self) -> Optional[Sequence[str]]:
         """
         Specifies the list of keys that will
         not be HMAC'd by audit devices in the response data object.
@@ -125,7 +125,7 @@ class AuthBackendTune(dict):
 
     @property
     @pulumi.getter(name="passthroughRequestHeaders")
-    def passthrough_request_headers(self) -> Optional[List[str]]:
+    def passthrough_request_headers(self) -> Optional[Sequence[str]]:
         """
         List of headers to whitelist and
         pass from the request to the backend.
@@ -143,165 +143,6 @@ class AuthBackendTune(dict):
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-
-@pulumi.output_type
-class GetPolicyDocumentRuleResult(dict):
-    def __init__(__self__, *,
-                 capabilities: List[str],
-                 path: str,
-                 allowed_parameters: Optional[List['outputs.GetPolicyDocumentRuleAllowedParameterResult']] = None,
-                 denied_parameters: Optional[List['outputs.GetPolicyDocumentRuleDeniedParameterResult']] = None,
-                 description: Optional[str] = None,
-                 max_wrapping_ttl: Optional[str] = None,
-                 min_wrapping_ttl: Optional[str] = None,
-                 required_parameters: Optional[List[str]] = None):
-        """
-        :param List[str] capabilities: A list of capabilities that this rule apply to `path`. For example, ["read", "write"].
-        :param str path: A path in Vault that this rule applies to.
-        :param List['GetPolicyDocumentRuleAllowedParameterArgs'] allowed_parameters: Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
-        :param List['GetPolicyDocumentRuleDeniedParameterArgs'] denied_parameters: Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.
-        :param str description: Description of the rule. Will be added as a commend to rendered rule.
-        :param str max_wrapping_ttl: The maximum allowed TTL that clients can specify for a wrapped response.
-        :param str min_wrapping_ttl: The minimum allowed TTL that clients can specify for a wrapped response.
-        :param List[str] required_parameters: A list of parameters that must be specified.
-        """
-        pulumi.set(__self__, "capabilities", capabilities)
-        pulumi.set(__self__, "path", path)
-        if allowed_parameters is not None:
-            pulumi.set(__self__, "allowed_parameters", allowed_parameters)
-        if denied_parameters is not None:
-            pulumi.set(__self__, "denied_parameters", denied_parameters)
-        if description is not None:
-            pulumi.set(__self__, "description", description)
-        if max_wrapping_ttl is not None:
-            pulumi.set(__self__, "max_wrapping_ttl", max_wrapping_ttl)
-        if min_wrapping_ttl is not None:
-            pulumi.set(__self__, "min_wrapping_ttl", min_wrapping_ttl)
-        if required_parameters is not None:
-            pulumi.set(__self__, "required_parameters", required_parameters)
-
-    @property
-    @pulumi.getter
-    def capabilities(self) -> List[str]:
-        """
-        A list of capabilities that this rule apply to `path`. For example, ["read", "write"].
-        """
-        return pulumi.get(self, "capabilities")
-
-    @property
-    @pulumi.getter
-    def path(self) -> str:
-        """
-        A path in Vault that this rule applies to.
-        """
-        return pulumi.get(self, "path")
-
-    @property
-    @pulumi.getter(name="allowedParameters")
-    def allowed_parameters(self) -> Optional[List['outputs.GetPolicyDocumentRuleAllowedParameterResult']]:
-        """
-        Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
-        """
-        return pulumi.get(self, "allowed_parameters")
-
-    @property
-    @pulumi.getter(name="deniedParameters")
-    def denied_parameters(self) -> Optional[List['outputs.GetPolicyDocumentRuleDeniedParameterResult']]:
-        """
-        Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.
-        """
-        return pulumi.get(self, "denied_parameters")
-
-    @property
-    @pulumi.getter
-    def description(self) -> Optional[str]:
-        """
-        Description of the rule. Will be added as a commend to rendered rule.
-        """
-        return pulumi.get(self, "description")
-
-    @property
-    @pulumi.getter(name="maxWrappingTtl")
-    def max_wrapping_ttl(self) -> Optional[str]:
-        """
-        The maximum allowed TTL that clients can specify for a wrapped response.
-        """
-        return pulumi.get(self, "max_wrapping_ttl")
-
-    @property
-    @pulumi.getter(name="minWrappingTtl")
-    def min_wrapping_ttl(self) -> Optional[str]:
-        """
-        The minimum allowed TTL that clients can specify for a wrapped response.
-        """
-        return pulumi.get(self, "min_wrapping_ttl")
-
-    @property
-    @pulumi.getter(name="requiredParameters")
-    def required_parameters(self) -> Optional[List[str]]:
-        """
-        A list of parameters that must be specified.
-        """
-        return pulumi.get(self, "required_parameters")
-
-
-@pulumi.output_type
-class GetPolicyDocumentRuleAllowedParameterResult(dict):
-    def __init__(__self__, *,
-                 key: str,
-                 values: List[str]):
-        """
-        :param str key: name of permitted or denied parameter.
-        :param List[str] values: list of values what are permitted or denied by policy rule.
-        """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "values", values)
-
-    @property
-    @pulumi.getter
-    def key(self) -> str:
-        """
-        name of permitted or denied parameter.
-        """
-        return pulumi.get(self, "key")
-
-    @property
-    @pulumi.getter
-    def values(self) -> List[str]:
-        """
-        list of values what are permitted or denied by policy rule.
-        """
-        return pulumi.get(self, "values")
-
-
-@pulumi.output_type
-class GetPolicyDocumentRuleDeniedParameterResult(dict):
-    def __init__(__self__, *,
-                 key: str,
-                 values: List[str]):
-        """
-        :param str key: name of permitted or denied parameter.
-        :param List[str] values: list of values what are permitted or denied by policy rule.
-        """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "values", values)
-
-    @property
-    @pulumi.getter
-    def key(self) -> str:
-        """
-        name of permitted or denied parameter.
-        """
-        return pulumi.get(self, "key")
-
-    @property
-    @pulumi.getter
-    def values(self) -> List[str]:
-        """
-        list of values what are permitted or denied by policy rule.
-        """
-        return pulumi.get(self, "values")
 
 
 @pulumi.output_type
@@ -377,5 +218,164 @@ class ProviderHeader(dict):
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class GetPolicyDocumentRuleResult(dict):
+    def __init__(__self__, *,
+                 capabilities: Sequence[str],
+                 path: str,
+                 allowed_parameters: Optional[Sequence['outputs.GetPolicyDocumentRuleAllowedParameterResult']] = None,
+                 denied_parameters: Optional[Sequence['outputs.GetPolicyDocumentRuleDeniedParameterResult']] = None,
+                 description: Optional[str] = None,
+                 max_wrapping_ttl: Optional[str] = None,
+                 min_wrapping_ttl: Optional[str] = None,
+                 required_parameters: Optional[Sequence[str]] = None):
+        """
+        :param Sequence[str] capabilities: A list of capabilities that this rule apply to `path`. For example, ["read", "write"].
+        :param str path: A path in Vault that this rule applies to.
+        :param Sequence['GetPolicyDocumentRuleAllowedParameterArgs'] allowed_parameters: Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
+        :param Sequence['GetPolicyDocumentRuleDeniedParameterArgs'] denied_parameters: Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.
+        :param str description: Description of the rule. Will be added as a commend to rendered rule.
+        :param str max_wrapping_ttl: The maximum allowed TTL that clients can specify for a wrapped response.
+        :param str min_wrapping_ttl: The minimum allowed TTL that clients can specify for a wrapped response.
+        :param Sequence[str] required_parameters: A list of parameters that must be specified.
+        """
+        pulumi.set(__self__, "capabilities", capabilities)
+        pulumi.set(__self__, "path", path)
+        if allowed_parameters is not None:
+            pulumi.set(__self__, "allowed_parameters", allowed_parameters)
+        if denied_parameters is not None:
+            pulumi.set(__self__, "denied_parameters", denied_parameters)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if max_wrapping_ttl is not None:
+            pulumi.set(__self__, "max_wrapping_ttl", max_wrapping_ttl)
+        if min_wrapping_ttl is not None:
+            pulumi.set(__self__, "min_wrapping_ttl", min_wrapping_ttl)
+        if required_parameters is not None:
+            pulumi.set(__self__, "required_parameters", required_parameters)
+
+    @property
+    @pulumi.getter
+    def capabilities(self) -> Sequence[str]:
+        """
+        A list of capabilities that this rule apply to `path`. For example, ["read", "write"].
+        """
+        return pulumi.get(self, "capabilities")
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
+        """
+        A path in Vault that this rule applies to.
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="allowedParameters")
+    def allowed_parameters(self) -> Optional[Sequence['outputs.GetPolicyDocumentRuleAllowedParameterResult']]:
+        """
+        Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
+        """
+        return pulumi.get(self, "allowed_parameters")
+
+    @property
+    @pulumi.getter(name="deniedParameters")
+    def denied_parameters(self) -> Optional[Sequence['outputs.GetPolicyDocumentRuleDeniedParameterResult']]:
+        """
+        Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.
+        """
+        return pulumi.get(self, "denied_parameters")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the rule. Will be added as a commend to rendered rule.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="maxWrappingTtl")
+    def max_wrapping_ttl(self) -> Optional[str]:
+        """
+        The maximum allowed TTL that clients can specify for a wrapped response.
+        """
+        return pulumi.get(self, "max_wrapping_ttl")
+
+    @property
+    @pulumi.getter(name="minWrappingTtl")
+    def min_wrapping_ttl(self) -> Optional[str]:
+        """
+        The minimum allowed TTL that clients can specify for a wrapped response.
+        """
+        return pulumi.get(self, "min_wrapping_ttl")
+
+    @property
+    @pulumi.getter(name="requiredParameters")
+    def required_parameters(self) -> Optional[Sequence[str]]:
+        """
+        A list of parameters that must be specified.
+        """
+        return pulumi.get(self, "required_parameters")
+
+
+@pulumi.output_type
+class GetPolicyDocumentRuleAllowedParameterResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: name of permitted or denied parameter.
+        :param Sequence[str] values: list of values what are permitted or denied by policy rule.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        name of permitted or denied parameter.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        list of values what are permitted or denied by policy rule.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetPolicyDocumentRuleDeniedParameterResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str]):
+        """
+        :param str key: name of permitted or denied parameter.
+        :param Sequence[str] values: list of values what are permitted or denied by policy rule.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        name of permitted or denied parameter.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        list of values what are permitted or denied by policy rule.
+        """
+        return pulumi.get(self, "values")
 
 

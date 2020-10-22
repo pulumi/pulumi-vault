@@ -314,6 +314,312 @@ func (o AuthBackendTunePtrOutput) TokenType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type ProviderAuthLogin struct {
+	Namespace  *string           `pulumi:"namespace"`
+	Parameters map[string]string `pulumi:"parameters"`
+	Path       string            `pulumi:"path"`
+}
+
+// ProviderAuthLoginInput is an input type that accepts ProviderAuthLoginArgs and ProviderAuthLoginOutput values.
+// You can construct a concrete instance of `ProviderAuthLoginInput` via:
+//
+//          ProviderAuthLoginArgs{...}
+type ProviderAuthLoginInput interface {
+	pulumi.Input
+
+	ToProviderAuthLoginOutput() ProviderAuthLoginOutput
+	ToProviderAuthLoginOutputWithContext(context.Context) ProviderAuthLoginOutput
+}
+
+type ProviderAuthLoginArgs struct {
+	Namespace  pulumi.StringPtrInput `pulumi:"namespace"`
+	Parameters pulumi.StringMapInput `pulumi:"parameters"`
+	Path       pulumi.StringInput    `pulumi:"path"`
+}
+
+func (ProviderAuthLoginArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAuthLogin)(nil)).Elem()
+}
+
+func (i ProviderAuthLoginArgs) ToProviderAuthLoginOutput() ProviderAuthLoginOutput {
+	return i.ToProviderAuthLoginOutputWithContext(context.Background())
+}
+
+func (i ProviderAuthLoginArgs) ToProviderAuthLoginOutputWithContext(ctx context.Context) ProviderAuthLoginOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginOutput)
+}
+
+// ProviderAuthLoginArrayInput is an input type that accepts ProviderAuthLoginArray and ProviderAuthLoginArrayOutput values.
+// You can construct a concrete instance of `ProviderAuthLoginArrayInput` via:
+//
+//          ProviderAuthLoginArray{ ProviderAuthLoginArgs{...} }
+type ProviderAuthLoginArrayInput interface {
+	pulumi.Input
+
+	ToProviderAuthLoginArrayOutput() ProviderAuthLoginArrayOutput
+	ToProviderAuthLoginArrayOutputWithContext(context.Context) ProviderAuthLoginArrayOutput
+}
+
+type ProviderAuthLoginArray []ProviderAuthLoginInput
+
+func (ProviderAuthLoginArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAuthLogin)(nil)).Elem()
+}
+
+func (i ProviderAuthLoginArray) ToProviderAuthLoginArrayOutput() ProviderAuthLoginArrayOutput {
+	return i.ToProviderAuthLoginArrayOutputWithContext(context.Background())
+}
+
+func (i ProviderAuthLoginArray) ToProviderAuthLoginArrayOutputWithContext(ctx context.Context) ProviderAuthLoginArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginArrayOutput)
+}
+
+type ProviderAuthLoginOutput struct{ *pulumi.OutputState }
+
+func (ProviderAuthLoginOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAuthLogin)(nil)).Elem()
+}
+
+func (o ProviderAuthLoginOutput) ToProviderAuthLoginOutput() ProviderAuthLoginOutput {
+	return o
+}
+
+func (o ProviderAuthLoginOutput) ToProviderAuthLoginOutputWithContext(ctx context.Context) ProviderAuthLoginOutput {
+	return o
+}
+
+func (o ProviderAuthLoginOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLogin) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderAuthLoginOutput) Parameters() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ProviderAuthLogin) map[string]string { return v.Parameters }).(pulumi.StringMapOutput)
+}
+
+func (o ProviderAuthLoginOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderAuthLogin) string { return v.Path }).(pulumi.StringOutput)
+}
+
+type ProviderAuthLoginArrayOutput struct{ *pulumi.OutputState }
+
+func (ProviderAuthLoginArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderAuthLogin)(nil)).Elem()
+}
+
+func (o ProviderAuthLoginArrayOutput) ToProviderAuthLoginArrayOutput() ProviderAuthLoginArrayOutput {
+	return o
+}
+
+func (o ProviderAuthLoginArrayOutput) ToProviderAuthLoginArrayOutputWithContext(ctx context.Context) ProviderAuthLoginArrayOutput {
+	return o
+}
+
+func (o ProviderAuthLoginArrayOutput) Index(i pulumi.IntInput) ProviderAuthLoginOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderAuthLogin {
+		return vs[0].([]ProviderAuthLogin)[vs[1].(int)]
+	}).(ProviderAuthLoginOutput)
+}
+
+type ProviderClientAuth struct {
+	CertFile string `pulumi:"certFile"`
+	KeyFile  string `pulumi:"keyFile"`
+}
+
+// ProviderClientAuthInput is an input type that accepts ProviderClientAuthArgs and ProviderClientAuthOutput values.
+// You can construct a concrete instance of `ProviderClientAuthInput` via:
+//
+//          ProviderClientAuthArgs{...}
+type ProviderClientAuthInput interface {
+	pulumi.Input
+
+	ToProviderClientAuthOutput() ProviderClientAuthOutput
+	ToProviderClientAuthOutputWithContext(context.Context) ProviderClientAuthOutput
+}
+
+type ProviderClientAuthArgs struct {
+	CertFile pulumi.StringInput `pulumi:"certFile"`
+	KeyFile  pulumi.StringInput `pulumi:"keyFile"`
+}
+
+func (ProviderClientAuthArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderClientAuth)(nil)).Elem()
+}
+
+func (i ProviderClientAuthArgs) ToProviderClientAuthOutput() ProviderClientAuthOutput {
+	return i.ToProviderClientAuthOutputWithContext(context.Background())
+}
+
+func (i ProviderClientAuthArgs) ToProviderClientAuthOutputWithContext(ctx context.Context) ProviderClientAuthOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderClientAuthOutput)
+}
+
+// ProviderClientAuthArrayInput is an input type that accepts ProviderClientAuthArray and ProviderClientAuthArrayOutput values.
+// You can construct a concrete instance of `ProviderClientAuthArrayInput` via:
+//
+//          ProviderClientAuthArray{ ProviderClientAuthArgs{...} }
+type ProviderClientAuthArrayInput interface {
+	pulumi.Input
+
+	ToProviderClientAuthArrayOutput() ProviderClientAuthArrayOutput
+	ToProviderClientAuthArrayOutputWithContext(context.Context) ProviderClientAuthArrayOutput
+}
+
+type ProviderClientAuthArray []ProviderClientAuthInput
+
+func (ProviderClientAuthArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderClientAuth)(nil)).Elem()
+}
+
+func (i ProviderClientAuthArray) ToProviderClientAuthArrayOutput() ProviderClientAuthArrayOutput {
+	return i.ToProviderClientAuthArrayOutputWithContext(context.Background())
+}
+
+func (i ProviderClientAuthArray) ToProviderClientAuthArrayOutputWithContext(ctx context.Context) ProviderClientAuthArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderClientAuthArrayOutput)
+}
+
+type ProviderClientAuthOutput struct{ *pulumi.OutputState }
+
+func (ProviderClientAuthOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderClientAuth)(nil)).Elem()
+}
+
+func (o ProviderClientAuthOutput) ToProviderClientAuthOutput() ProviderClientAuthOutput {
+	return o
+}
+
+func (o ProviderClientAuthOutput) ToProviderClientAuthOutputWithContext(ctx context.Context) ProviderClientAuthOutput {
+	return o
+}
+
+func (o ProviderClientAuthOutput) CertFile() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderClientAuth) string { return v.CertFile }).(pulumi.StringOutput)
+}
+
+func (o ProviderClientAuthOutput) KeyFile() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderClientAuth) string { return v.KeyFile }).(pulumi.StringOutput)
+}
+
+type ProviderClientAuthArrayOutput struct{ *pulumi.OutputState }
+
+func (ProviderClientAuthArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderClientAuth)(nil)).Elem()
+}
+
+func (o ProviderClientAuthArrayOutput) ToProviderClientAuthArrayOutput() ProviderClientAuthArrayOutput {
+	return o
+}
+
+func (o ProviderClientAuthArrayOutput) ToProviderClientAuthArrayOutputWithContext(ctx context.Context) ProviderClientAuthArrayOutput {
+	return o
+}
+
+func (o ProviderClientAuthArrayOutput) Index(i pulumi.IntInput) ProviderClientAuthOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderClientAuth {
+		return vs[0].([]ProviderClientAuth)[vs[1].(int)]
+	}).(ProviderClientAuthOutput)
+}
+
+type ProviderHeader struct {
+	Name  string `pulumi:"name"`
+	Value string `pulumi:"value"`
+}
+
+// ProviderHeaderInput is an input type that accepts ProviderHeaderArgs and ProviderHeaderOutput values.
+// You can construct a concrete instance of `ProviderHeaderInput` via:
+//
+//          ProviderHeaderArgs{...}
+type ProviderHeaderInput interface {
+	pulumi.Input
+
+	ToProviderHeaderOutput() ProviderHeaderOutput
+	ToProviderHeaderOutputWithContext(context.Context) ProviderHeaderOutput
+}
+
+type ProviderHeaderArgs struct {
+	Name  pulumi.StringInput `pulumi:"name"`
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ProviderHeaderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderHeader)(nil)).Elem()
+}
+
+func (i ProviderHeaderArgs) ToProviderHeaderOutput() ProviderHeaderOutput {
+	return i.ToProviderHeaderOutputWithContext(context.Background())
+}
+
+func (i ProviderHeaderArgs) ToProviderHeaderOutputWithContext(ctx context.Context) ProviderHeaderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderHeaderOutput)
+}
+
+// ProviderHeaderArrayInput is an input type that accepts ProviderHeaderArray and ProviderHeaderArrayOutput values.
+// You can construct a concrete instance of `ProviderHeaderArrayInput` via:
+//
+//          ProviderHeaderArray{ ProviderHeaderArgs{...} }
+type ProviderHeaderArrayInput interface {
+	pulumi.Input
+
+	ToProviderHeaderArrayOutput() ProviderHeaderArrayOutput
+	ToProviderHeaderArrayOutputWithContext(context.Context) ProviderHeaderArrayOutput
+}
+
+type ProviderHeaderArray []ProviderHeaderInput
+
+func (ProviderHeaderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderHeader)(nil)).Elem()
+}
+
+func (i ProviderHeaderArray) ToProviderHeaderArrayOutput() ProviderHeaderArrayOutput {
+	return i.ToProviderHeaderArrayOutputWithContext(context.Background())
+}
+
+func (i ProviderHeaderArray) ToProviderHeaderArrayOutputWithContext(ctx context.Context) ProviderHeaderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderHeaderArrayOutput)
+}
+
+type ProviderHeaderOutput struct{ *pulumi.OutputState }
+
+func (ProviderHeaderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderHeader)(nil)).Elem()
+}
+
+func (o ProviderHeaderOutput) ToProviderHeaderOutput() ProviderHeaderOutput {
+	return o
+}
+
+func (o ProviderHeaderOutput) ToProviderHeaderOutputWithContext(ctx context.Context) ProviderHeaderOutput {
+	return o
+}
+
+func (o ProviderHeaderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderHeader) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o ProviderHeaderOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderHeader) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ProviderHeaderArrayOutput struct{ *pulumi.OutputState }
+
+func (ProviderHeaderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProviderHeader)(nil)).Elem()
+}
+
+func (o ProviderHeaderArrayOutput) ToProviderHeaderArrayOutput() ProviderHeaderArrayOutput {
+	return o
+}
+
+func (o ProviderHeaderArrayOutput) ToProviderHeaderArrayOutputWithContext(ctx context.Context) ProviderHeaderArrayOutput {
+	return o
+}
+
+func (o ProviderHeaderArrayOutput) Index(i pulumi.IntInput) ProviderHeaderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderHeader {
+		return vs[0].([]ProviderHeader)[vs[1].(int)]
+	}).(ProviderHeaderOutput)
+}
+
 type GetPolicyDocumentRule struct {
 	// Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
 	AllowedParameters []GetPolicyDocumentRuleAllowedParameter `pulumi:"allowedParameters"`
@@ -686,325 +992,19 @@ func (o GetPolicyDocumentRuleDeniedParameterArrayOutput) Index(i pulumi.IntInput
 	}).(GetPolicyDocumentRuleDeniedParameterOutput)
 }
 
-type ProviderAuthLogin struct {
-	Namespace  *string           `pulumi:"namespace"`
-	Parameters map[string]string `pulumi:"parameters"`
-	Path       string            `pulumi:"path"`
-}
-
-// ProviderAuthLoginInput is an input type that accepts ProviderAuthLoginArgs and ProviderAuthLoginOutput values.
-// You can construct a concrete instance of `ProviderAuthLoginInput` via:
-//
-//          ProviderAuthLoginArgs{...}
-type ProviderAuthLoginInput interface {
-	pulumi.Input
-
-	ToProviderAuthLoginOutput() ProviderAuthLoginOutput
-	ToProviderAuthLoginOutputWithContext(context.Context) ProviderAuthLoginOutput
-}
-
-type ProviderAuthLoginArgs struct {
-	Namespace  pulumi.StringPtrInput `pulumi:"namespace"`
-	Parameters pulumi.StringMapInput `pulumi:"parameters"`
-	Path       pulumi.StringInput    `pulumi:"path"`
-}
-
-func (ProviderAuthLoginArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProviderAuthLogin)(nil)).Elem()
-}
-
-func (i ProviderAuthLoginArgs) ToProviderAuthLoginOutput() ProviderAuthLoginOutput {
-	return i.ToProviderAuthLoginOutputWithContext(context.Background())
-}
-
-func (i ProviderAuthLoginArgs) ToProviderAuthLoginOutputWithContext(ctx context.Context) ProviderAuthLoginOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginOutput)
-}
-
-// ProviderAuthLoginArrayInput is an input type that accepts ProviderAuthLoginArray and ProviderAuthLoginArrayOutput values.
-// You can construct a concrete instance of `ProviderAuthLoginArrayInput` via:
-//
-//          ProviderAuthLoginArray{ ProviderAuthLoginArgs{...} }
-type ProviderAuthLoginArrayInput interface {
-	pulumi.Input
-
-	ToProviderAuthLoginArrayOutput() ProviderAuthLoginArrayOutput
-	ToProviderAuthLoginArrayOutputWithContext(context.Context) ProviderAuthLoginArrayOutput
-}
-
-type ProviderAuthLoginArray []ProviderAuthLoginInput
-
-func (ProviderAuthLoginArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ProviderAuthLogin)(nil)).Elem()
-}
-
-func (i ProviderAuthLoginArray) ToProviderAuthLoginArrayOutput() ProviderAuthLoginArrayOutput {
-	return i.ToProviderAuthLoginArrayOutputWithContext(context.Background())
-}
-
-func (i ProviderAuthLoginArray) ToProviderAuthLoginArrayOutputWithContext(ctx context.Context) ProviderAuthLoginArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthLoginArrayOutput)
-}
-
-type ProviderAuthLoginOutput struct{ *pulumi.OutputState }
-
-func (ProviderAuthLoginOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProviderAuthLogin)(nil)).Elem()
-}
-
-func (o ProviderAuthLoginOutput) ToProviderAuthLoginOutput() ProviderAuthLoginOutput {
-	return o
-}
-
-func (o ProviderAuthLoginOutput) ToProviderAuthLoginOutputWithContext(ctx context.Context) ProviderAuthLoginOutput {
-	return o
-}
-
-func (o ProviderAuthLoginOutput) Namespace() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ProviderAuthLogin) *string { return v.Namespace }).(pulumi.StringPtrOutput)
-}
-
-func (o ProviderAuthLoginOutput) Parameters() pulumi.StringMapOutput {
-	return o.ApplyT(func(v ProviderAuthLogin) map[string]string { return v.Parameters }).(pulumi.StringMapOutput)
-}
-
-func (o ProviderAuthLoginOutput) Path() pulumi.StringOutput {
-	return o.ApplyT(func(v ProviderAuthLogin) string { return v.Path }).(pulumi.StringOutput)
-}
-
-type ProviderAuthLoginArrayOutput struct{ *pulumi.OutputState }
-
-func (ProviderAuthLoginArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ProviderAuthLogin)(nil)).Elem()
-}
-
-func (o ProviderAuthLoginArrayOutput) ToProviderAuthLoginArrayOutput() ProviderAuthLoginArrayOutput {
-	return o
-}
-
-func (o ProviderAuthLoginArrayOutput) ToProviderAuthLoginArrayOutputWithContext(ctx context.Context) ProviderAuthLoginArrayOutput {
-	return o
-}
-
-func (o ProviderAuthLoginArrayOutput) Index(i pulumi.IntInput) ProviderAuthLoginOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderAuthLogin {
-		return vs[0].([]ProviderAuthLogin)[vs[1].(int)]
-	}).(ProviderAuthLoginOutput)
-}
-
-type ProviderClientAuth struct {
-	CertFile string `pulumi:"certFile"`
-	KeyFile  string `pulumi:"keyFile"`
-}
-
-// ProviderClientAuthInput is an input type that accepts ProviderClientAuthArgs and ProviderClientAuthOutput values.
-// You can construct a concrete instance of `ProviderClientAuthInput` via:
-//
-//          ProviderClientAuthArgs{...}
-type ProviderClientAuthInput interface {
-	pulumi.Input
-
-	ToProviderClientAuthOutput() ProviderClientAuthOutput
-	ToProviderClientAuthOutputWithContext(context.Context) ProviderClientAuthOutput
-}
-
-type ProviderClientAuthArgs struct {
-	CertFile pulumi.StringInput `pulumi:"certFile"`
-	KeyFile  pulumi.StringInput `pulumi:"keyFile"`
-}
-
-func (ProviderClientAuthArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProviderClientAuth)(nil)).Elem()
-}
-
-func (i ProviderClientAuthArgs) ToProviderClientAuthOutput() ProviderClientAuthOutput {
-	return i.ToProviderClientAuthOutputWithContext(context.Background())
-}
-
-func (i ProviderClientAuthArgs) ToProviderClientAuthOutputWithContext(ctx context.Context) ProviderClientAuthOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProviderClientAuthOutput)
-}
-
-// ProviderClientAuthArrayInput is an input type that accepts ProviderClientAuthArray and ProviderClientAuthArrayOutput values.
-// You can construct a concrete instance of `ProviderClientAuthArrayInput` via:
-//
-//          ProviderClientAuthArray{ ProviderClientAuthArgs{...} }
-type ProviderClientAuthArrayInput interface {
-	pulumi.Input
-
-	ToProviderClientAuthArrayOutput() ProviderClientAuthArrayOutput
-	ToProviderClientAuthArrayOutputWithContext(context.Context) ProviderClientAuthArrayOutput
-}
-
-type ProviderClientAuthArray []ProviderClientAuthInput
-
-func (ProviderClientAuthArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ProviderClientAuth)(nil)).Elem()
-}
-
-func (i ProviderClientAuthArray) ToProviderClientAuthArrayOutput() ProviderClientAuthArrayOutput {
-	return i.ToProviderClientAuthArrayOutputWithContext(context.Background())
-}
-
-func (i ProviderClientAuthArray) ToProviderClientAuthArrayOutputWithContext(ctx context.Context) ProviderClientAuthArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProviderClientAuthArrayOutput)
-}
-
-type ProviderClientAuthOutput struct{ *pulumi.OutputState }
-
-func (ProviderClientAuthOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProviderClientAuth)(nil)).Elem()
-}
-
-func (o ProviderClientAuthOutput) ToProviderClientAuthOutput() ProviderClientAuthOutput {
-	return o
-}
-
-func (o ProviderClientAuthOutput) ToProviderClientAuthOutputWithContext(ctx context.Context) ProviderClientAuthOutput {
-	return o
-}
-
-func (o ProviderClientAuthOutput) CertFile() pulumi.StringOutput {
-	return o.ApplyT(func(v ProviderClientAuth) string { return v.CertFile }).(pulumi.StringOutput)
-}
-
-func (o ProviderClientAuthOutput) KeyFile() pulumi.StringOutput {
-	return o.ApplyT(func(v ProviderClientAuth) string { return v.KeyFile }).(pulumi.StringOutput)
-}
-
-type ProviderClientAuthArrayOutput struct{ *pulumi.OutputState }
-
-func (ProviderClientAuthArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ProviderClientAuth)(nil)).Elem()
-}
-
-func (o ProviderClientAuthArrayOutput) ToProviderClientAuthArrayOutput() ProviderClientAuthArrayOutput {
-	return o
-}
-
-func (o ProviderClientAuthArrayOutput) ToProviderClientAuthArrayOutputWithContext(ctx context.Context) ProviderClientAuthArrayOutput {
-	return o
-}
-
-func (o ProviderClientAuthArrayOutput) Index(i pulumi.IntInput) ProviderClientAuthOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderClientAuth {
-		return vs[0].([]ProviderClientAuth)[vs[1].(int)]
-	}).(ProviderClientAuthOutput)
-}
-
-type ProviderHeader struct {
-	Name  string `pulumi:"name"`
-	Value string `pulumi:"value"`
-}
-
-// ProviderHeaderInput is an input type that accepts ProviderHeaderArgs and ProviderHeaderOutput values.
-// You can construct a concrete instance of `ProviderHeaderInput` via:
-//
-//          ProviderHeaderArgs{...}
-type ProviderHeaderInput interface {
-	pulumi.Input
-
-	ToProviderHeaderOutput() ProviderHeaderOutput
-	ToProviderHeaderOutputWithContext(context.Context) ProviderHeaderOutput
-}
-
-type ProviderHeaderArgs struct {
-	Name  pulumi.StringInput `pulumi:"name"`
-	Value pulumi.StringInput `pulumi:"value"`
-}
-
-func (ProviderHeaderArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProviderHeader)(nil)).Elem()
-}
-
-func (i ProviderHeaderArgs) ToProviderHeaderOutput() ProviderHeaderOutput {
-	return i.ToProviderHeaderOutputWithContext(context.Background())
-}
-
-func (i ProviderHeaderArgs) ToProviderHeaderOutputWithContext(ctx context.Context) ProviderHeaderOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProviderHeaderOutput)
-}
-
-// ProviderHeaderArrayInput is an input type that accepts ProviderHeaderArray and ProviderHeaderArrayOutput values.
-// You can construct a concrete instance of `ProviderHeaderArrayInput` via:
-//
-//          ProviderHeaderArray{ ProviderHeaderArgs{...} }
-type ProviderHeaderArrayInput interface {
-	pulumi.Input
-
-	ToProviderHeaderArrayOutput() ProviderHeaderArrayOutput
-	ToProviderHeaderArrayOutputWithContext(context.Context) ProviderHeaderArrayOutput
-}
-
-type ProviderHeaderArray []ProviderHeaderInput
-
-func (ProviderHeaderArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ProviderHeader)(nil)).Elem()
-}
-
-func (i ProviderHeaderArray) ToProviderHeaderArrayOutput() ProviderHeaderArrayOutput {
-	return i.ToProviderHeaderArrayOutputWithContext(context.Background())
-}
-
-func (i ProviderHeaderArray) ToProviderHeaderArrayOutputWithContext(ctx context.Context) ProviderHeaderArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProviderHeaderArrayOutput)
-}
-
-type ProviderHeaderOutput struct{ *pulumi.OutputState }
-
-func (ProviderHeaderOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProviderHeader)(nil)).Elem()
-}
-
-func (o ProviderHeaderOutput) ToProviderHeaderOutput() ProviderHeaderOutput {
-	return o
-}
-
-func (o ProviderHeaderOutput) ToProviderHeaderOutputWithContext(ctx context.Context) ProviderHeaderOutput {
-	return o
-}
-
-func (o ProviderHeaderOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v ProviderHeader) string { return v.Name }).(pulumi.StringOutput)
-}
-
-func (o ProviderHeaderOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v ProviderHeader) string { return v.Value }).(pulumi.StringOutput)
-}
-
-type ProviderHeaderArrayOutput struct{ *pulumi.OutputState }
-
-func (ProviderHeaderArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ProviderHeader)(nil)).Elem()
-}
-
-func (o ProviderHeaderArrayOutput) ToProviderHeaderArrayOutput() ProviderHeaderArrayOutput {
-	return o
-}
-
-func (o ProviderHeaderArrayOutput) ToProviderHeaderArrayOutputWithContext(ctx context.Context) ProviderHeaderArrayOutput {
-	return o
-}
-
-func (o ProviderHeaderArrayOutput) Index(i pulumi.IntInput) ProviderHeaderOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProviderHeader {
-		return vs[0].([]ProviderHeader)[vs[1].(int)]
-	}).(ProviderHeaderOutput)
-}
-
 func init() {
 	pulumi.RegisterOutputType(AuthBackendTuneOutput{})
 	pulumi.RegisterOutputType(AuthBackendTunePtrOutput{})
-	pulumi.RegisterOutputType(GetPolicyDocumentRuleOutput{})
-	pulumi.RegisterOutputType(GetPolicyDocumentRuleArrayOutput{})
-	pulumi.RegisterOutputType(GetPolicyDocumentRuleAllowedParameterOutput{})
-	pulumi.RegisterOutputType(GetPolicyDocumentRuleAllowedParameterArrayOutput{})
-	pulumi.RegisterOutputType(GetPolicyDocumentRuleDeniedParameterOutput{})
-	pulumi.RegisterOutputType(GetPolicyDocumentRuleDeniedParameterArrayOutput{})
 	pulumi.RegisterOutputType(ProviderAuthLoginOutput{})
 	pulumi.RegisterOutputType(ProviderAuthLoginArrayOutput{})
 	pulumi.RegisterOutputType(ProviderClientAuthOutput{})
 	pulumi.RegisterOutputType(ProviderClientAuthArrayOutput{})
 	pulumi.RegisterOutputType(ProviderHeaderOutput{})
 	pulumi.RegisterOutputType(ProviderHeaderArrayOutput{})
+	pulumi.RegisterOutputType(GetPolicyDocumentRuleOutput{})
+	pulumi.RegisterOutputType(GetPolicyDocumentRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetPolicyDocumentRuleAllowedParameterOutput{})
+	pulumi.RegisterOutputType(GetPolicyDocumentRuleAllowedParameterArrayOutput{})
+	pulumi.RegisterOutputType(GetPolicyDocumentRuleDeniedParameterOutput{})
+	pulumi.RegisterOutputType(GetPolicyDocumentRuleDeniedParameterArrayOutput{})
 }

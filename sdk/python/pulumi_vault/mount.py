@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['Mount']
@@ -15,11 +15,11 @@ class Mount(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 default_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
-                 max_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
@@ -42,11 +42,11 @@ class Mount(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
+        :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[str] description: Human-friendly description of the mount
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
-        :param pulumi.Input[float] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
+        :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
@@ -94,11 +94,11 @@ class Mount(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             accessor: Optional[pulumi.Input[str]] = None,
-            default_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+            default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
             external_entropy_access: Optional[pulumi.Input[bool]] = None,
             local: Optional[pulumi.Input[bool]] = None,
-            max_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+            max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             path: Optional[pulumi.Input[str]] = None,
             seal_wrap: Optional[pulumi.Input[bool]] = None,
@@ -111,11 +111,11 @@ class Mount(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accessor: The accessor for this mount.
-        :param pulumi.Input[float] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
+        :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[str] description: Human-friendly description of the mount
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
-        :param pulumi.Input[float] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
+        :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
@@ -147,7 +147,7 @@ class Mount(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
-    def default_lease_ttl_seconds(self) -> pulumi.Output[float]:
+    def default_lease_ttl_seconds(self) -> pulumi.Output[int]:
         """
         Default lease duration for tokens and secrets in seconds
         """
@@ -179,7 +179,7 @@ class Mount(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxLeaseTtlSeconds")
-    def max_lease_ttl_seconds(self) -> pulumi.Output[float]:
+    def max_lease_ttl_seconds(self) -> pulumi.Output[int]:
         """
         Maximum possible lease duration for tokens and secrets in seconds
         """

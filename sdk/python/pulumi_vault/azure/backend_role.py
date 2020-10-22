@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -18,7 +18,7 @@ class BackendRole(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  application_object_id: Optional[pulumi.Input[str]] = None,
-                 azure_roles: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]]] = None,
+                 azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
@@ -33,7 +33,7 @@ class BackendRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] application_object_id: Application Object ID for an existing service principal that will
                be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]] azure_roles: List of Azure roles to be assigned to the generated service principal.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]] azure_roles: List of Azure roles to be assigned to the generated service principal.
         :param pulumi.Input[str] backend: Path to the mounted Azure auth backend
         :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
         :param pulumi.Input[str] max_ttl: Specifies the maximum TTL for service principals generated using this role. Accepts time
@@ -79,7 +79,7 @@ class BackendRole(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             application_object_id: Optional[pulumi.Input[str]] = None,
-            azure_roles: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]]] = None,
+            azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             max_ttl: Optional[pulumi.Input[str]] = None,
@@ -94,7 +94,7 @@ class BackendRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] application_object_id: Application Object ID for an existing service principal that will
                be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]] azure_roles: List of Azure roles to be assigned to the generated service principal.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]] azure_roles: List of Azure roles to be assigned to the generated service principal.
         :param pulumi.Input[str] backend: Path to the mounted Azure auth backend
         :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
         :param pulumi.Input[str] max_ttl: Specifies the maximum TTL for service principals generated using this role. Accepts time
@@ -127,7 +127,7 @@ class BackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="azureRoles")
-    def azure_roles(self) -> pulumi.Output[Optional[List['outputs.BackendRoleAzureRole']]]:
+    def azure_roles(self) -> pulumi.Output[Optional[Sequence['outputs.BackendRoleAzureRole']]]:
         """
         List of Azure roles to be assigned to the generated service principal.
         """

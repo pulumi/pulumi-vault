@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['SecretBackendRole']
@@ -17,13 +17,13 @@ class SecretBackendRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  credential_type: Optional[pulumi.Input[str]] = None,
-                 default_sts_ttl: Optional[pulumi.Input[float]] = None,
-                 iam_groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 max_sts_ttl: Optional[pulumi.Input[float]] = None,
+                 default_sts_ttl: Optional[pulumi.Input[int]] = None,
+                 iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 max_sts_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 policy_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  policy_document: Optional[pulumi.Input[str]] = None,
-                 role_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -36,23 +36,23 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] credential_type: Specifies the type of credential to be used when
                retrieving credentials from the role. Must be one of `iam_user`, `assumed_role`, or
                `federation_token`.
-        :param pulumi.Input[float] default_sts_ttl: The default TTL in seconds for STS credentials.
+        :param pulumi.Input[int] default_sts_ttl: The default TTL in seconds for STS credentials.
                When a TTL is not specified when STS credentials are requested,
                and a default TTL is specified on the role,
                then this default TTL will be used. Valid only when `credential_type` is one of
                `assumed_role` or `federation_token`.
-        :param pulumi.Input[List[pulumi.Input[str]]] iam_groups: A list of IAM group names. IAM users generated
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] iam_groups: A list of IAM group names. IAM users generated
                against this vault role will be added to these IAM Groups. For a credential
                type of `assumed_role` or `federation_token`, the policies sent to the
                corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
                policies from each group in `iam_groups` combined with the `policy_document`
                and `policy_arns` parameters.
-        :param pulumi.Input[float] max_sts_ttl: The max allowed TTL in seconds for STS credentials
+        :param pulumi.Input[int] max_sts_ttl: The max allowed TTL in seconds for STS credentials
                (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
                one of `assumed_role` or `federation_token`.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
-        :param pulumi.Input[List[pulumi.Input[str]]] policy_arns: Specifies a list of AWS managed policy ARNs. The
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_arns: Specifies a list of AWS managed policy ARNs. The
                behavior depends on the credential type. With `iam_user`, the policies will be
                attached to IAM users when they are requested. With `assumed_role` and
                `federation_token`, the policy ARNs will act as a filter on what the credentials
@@ -64,7 +64,7 @@ class SecretBackendRole(pulumi.CustomResource):
                will be attached to the IAM user generated and augment the permissions the IAM
                user has. With `assumed_role` and `federation_token`, the policy document will
                act as a filter on what the credentials can do, similar to `policy_arns`.
-        :param pulumi.Input[List[pulumi.Input[str]]] role_arns: Specifies the ARNs of the AWS roles this Vault role
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_arns: Specifies the ARNs of the AWS roles this Vault role
                is allowed to assume. Required when `credential_type` is `assumed_role` and
                prohibited otherwise.
         """
@@ -110,13 +110,13 @@ class SecretBackendRole(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             credential_type: Optional[pulumi.Input[str]] = None,
-            default_sts_ttl: Optional[pulumi.Input[float]] = None,
-            iam_groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            max_sts_ttl: Optional[pulumi.Input[float]] = None,
+            default_sts_ttl: Optional[pulumi.Input[int]] = None,
+            iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            max_sts_ttl: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            policy_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             policy_document: Optional[pulumi.Input[str]] = None,
-            role_arns: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'SecretBackendRole':
+            role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'SecretBackendRole':
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -129,23 +129,23 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] credential_type: Specifies the type of credential to be used when
                retrieving credentials from the role. Must be one of `iam_user`, `assumed_role`, or
                `federation_token`.
-        :param pulumi.Input[float] default_sts_ttl: The default TTL in seconds for STS credentials.
+        :param pulumi.Input[int] default_sts_ttl: The default TTL in seconds for STS credentials.
                When a TTL is not specified when STS credentials are requested,
                and a default TTL is specified on the role,
                then this default TTL will be used. Valid only when `credential_type` is one of
                `assumed_role` or `federation_token`.
-        :param pulumi.Input[List[pulumi.Input[str]]] iam_groups: A list of IAM group names. IAM users generated
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] iam_groups: A list of IAM group names. IAM users generated
                against this vault role will be added to these IAM Groups. For a credential
                type of `assumed_role` or `federation_token`, the policies sent to the
                corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
                policies from each group in `iam_groups` combined with the `policy_document`
                and `policy_arns` parameters.
-        :param pulumi.Input[float] max_sts_ttl: The max allowed TTL in seconds for STS credentials
+        :param pulumi.Input[int] max_sts_ttl: The max allowed TTL in seconds for STS credentials
                (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
                one of `assumed_role` or `federation_token`.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
-        :param pulumi.Input[List[pulumi.Input[str]]] policy_arns: Specifies a list of AWS managed policy ARNs. The
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_arns: Specifies a list of AWS managed policy ARNs. The
                behavior depends on the credential type. With `iam_user`, the policies will be
                attached to IAM users when they are requested. With `assumed_role` and
                `federation_token`, the policy ARNs will act as a filter on what the credentials
@@ -157,7 +157,7 @@ class SecretBackendRole(pulumi.CustomResource):
                will be attached to the IAM user generated and augment the permissions the IAM
                user has. With `assumed_role` and `federation_token`, the policy document will
                act as a filter on what the credentials can do, similar to `policy_arns`.
-        :param pulumi.Input[List[pulumi.Input[str]]] role_arns: Specifies the ARNs of the AWS roles this Vault role
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_arns: Specifies the ARNs of the AWS roles this Vault role
                is allowed to assume. Required when `credential_type` is `assumed_role` and
                prohibited otherwise.
         """
@@ -197,7 +197,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="defaultStsTtl")
-    def default_sts_ttl(self) -> pulumi.Output[float]:
+    def default_sts_ttl(self) -> pulumi.Output[int]:
         """
         The default TTL in seconds for STS credentials.
         When a TTL is not specified when STS credentials are requested,
@@ -209,7 +209,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="iamGroups")
-    def iam_groups(self) -> pulumi.Output[Optional[List[str]]]:
+    def iam_groups(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         A list of IAM group names. IAM users generated
         against this vault role will be added to these IAM Groups. For a credential
@@ -222,7 +222,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxStsTtl")
-    def max_sts_ttl(self) -> pulumi.Output[float]:
+    def max_sts_ttl(self) -> pulumi.Output[int]:
         """
         The max allowed TTL in seconds for STS credentials
         (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
@@ -241,7 +241,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="policyArns")
-    def policy_arns(self) -> pulumi.Output[Optional[List[str]]]:
+    def policy_arns(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Specifies a list of AWS managed policy ARNs. The
         behavior depends on the credential type. With `iam_user`, the policies will be
@@ -267,7 +267,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="roleArns")
-    def role_arns(self) -> pulumi.Output[Optional[List[str]]]:
+    def role_arns(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Specifies the ARNs of the AWS roles this Vault role
         is allowed to assume. Required when `credential_type` is `assumed_role` and

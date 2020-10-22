@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['Entity']
@@ -19,7 +19,7 @@ class Entity(pulumi.CustomResource):
                  external_policies: Optional[pulumi.Input[bool]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -31,7 +31,7 @@ class Entity(pulumi.CustomResource):
         :param pulumi.Input[bool] external_policies: `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: A Map of additional metadata to associate with the user.
         :param pulumi.Input[str] name: Name of the identity entity to create.
-        :param pulumi.Input[List[pulumi.Input[str]]] policies: A list of policies to apply to the entity.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: A list of policies to apply to the entity.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -69,7 +69,7 @@ class Entity(pulumi.CustomResource):
             external_policies: Optional[pulumi.Input[bool]] = None,
             metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'Entity':
+            policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Entity':
         """
         Get an existing Entity resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -81,7 +81,7 @@ class Entity(pulumi.CustomResource):
         :param pulumi.Input[bool] external_policies: `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: A Map of additional metadata to associate with the user.
         :param pulumi.Input[str] name: Name of the identity entity to create.
-        :param pulumi.Input[List[pulumi.Input[str]]] policies: A list of policies to apply to the entity.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: A list of policies to apply to the entity.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -128,7 +128,7 @@ class Entity(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def policies(self) -> pulumi.Output[Optional[List[str]]]:
+    def policies(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         A list of policies to apply to the entity.
         """

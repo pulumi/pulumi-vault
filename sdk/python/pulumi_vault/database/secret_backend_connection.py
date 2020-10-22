@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -17,7 +17,7 @@ class SecretBackendConnection(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allowed_roles: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  cassandra: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionCassandraArgs']]] = None,
                  data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
@@ -33,7 +33,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
                  postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None,
                  __props__=None,
                  __name__=None,
@@ -42,7 +42,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         Create a SecretBackendConnection resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionCassandraArgs']] cassandra: A nested block containing configuration options for Cassandra connections.
@@ -59,7 +59,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[str] name: A unique name to give the database connection.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']] postgresql: A nested block containing configuration options for PostgreSQL connections.
-        :param pulumi.Input[List[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -110,7 +110,7 @@ class SecretBackendConnection(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            allowed_roles: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             cassandra: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionCassandraArgs']]] = None,
             data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
@@ -126,7 +126,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
             postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
-            root_rotation_statements: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             verify_connection: Optional[pulumi.Input[bool]] = None) -> 'SecretBackendConnection':
         """
         Get an existing SecretBackendConnection resource's state with the given name, id, and optional extra
@@ -135,7 +135,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionCassandraArgs']] cassandra: A nested block containing configuration options for Cassandra connections.
@@ -152,7 +152,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[str] name: A unique name to give the database connection.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']] postgresql: A nested block containing configuration options for PostgreSQL connections.
-        :param pulumi.Input[List[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -182,7 +182,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> pulumi.Output[Optional[List[str]]]:
+    def allowed_roles(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -311,7 +311,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> pulumi.Output[Optional[List[str]]]:
+    def root_rotation_statements(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """

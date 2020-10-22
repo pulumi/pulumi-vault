@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['Token']
@@ -19,12 +19,12 @@ class Token(pulumi.CustomResource):
                  explicit_max_ttl: Optional[pulumi.Input[str]] = None,
                  no_default_policy: Optional[pulumi.Input[bool]] = None,
                  no_parent: Optional[pulumi.Input[bool]] = None,
-                 num_uses: Optional[pulumi.Input[float]] = None,
+                 num_uses: Optional[pulumi.Input[int]] = None,
                  period: Optional[pulumi.Input[str]] = None,
                  pgp_key: Optional[pulumi.Input[str]] = None,
-                 policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 renew_increment: Optional[pulumi.Input[float]] = None,
-                 renew_min_lease: Optional[pulumi.Input[float]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 renew_increment: Optional[pulumi.Input[int]] = None,
+                 renew_min_lease: Optional[pulumi.Input[int]] = None,
                  renewable: Optional[pulumi.Input[bool]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
@@ -40,12 +40,12 @@ class Token(pulumi.CustomResource):
         :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token
         :param pulumi.Input[bool] no_default_policy: Flag to not attach the default policy to this token
         :param pulumi.Input[bool] no_parent: Flag to create a token without parent
-        :param pulumi.Input[float] num_uses: The number of allowed uses of this token
+        :param pulumi.Input[int] num_uses: The number of allowed uses of this token
         :param pulumi.Input[str] period: The period of this token
         :param pulumi.Input[str] pgp_key: The PGP key (base64 encoded) to encrypt the token.
-        :param pulumi.Input[List[pulumi.Input[str]]] policies: List of policies to attach to this token
-        :param pulumi.Input[float] renew_increment: The renew increment
-        :param pulumi.Input[float] renew_min_lease: The minimal lease to renew this token
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to attach to this token
+        :param pulumi.Input[int] renew_increment: The renew increment
+        :param pulumi.Input[int] renew_min_lease: The minimal lease to renew this token
         :param pulumi.Input[bool] renewable: Flag to allow to renew this token
         :param pulumi.Input[str] role_name: The token role name
         :param pulumi.Input[str] ttl: The TTL period of this token
@@ -102,16 +102,16 @@ class Token(pulumi.CustomResource):
             display_name: Optional[pulumi.Input[str]] = None,
             encrypted_client_token: Optional[pulumi.Input[str]] = None,
             explicit_max_ttl: Optional[pulumi.Input[str]] = None,
-            lease_duration: Optional[pulumi.Input[float]] = None,
+            lease_duration: Optional[pulumi.Input[int]] = None,
             lease_started: Optional[pulumi.Input[str]] = None,
             no_default_policy: Optional[pulumi.Input[bool]] = None,
             no_parent: Optional[pulumi.Input[bool]] = None,
-            num_uses: Optional[pulumi.Input[float]] = None,
+            num_uses: Optional[pulumi.Input[int]] = None,
             period: Optional[pulumi.Input[str]] = None,
             pgp_key: Optional[pulumi.Input[str]] = None,
-            policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            renew_increment: Optional[pulumi.Input[float]] = None,
-            renew_min_lease: Optional[pulumi.Input[float]] = None,
+            policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            renew_increment: Optional[pulumi.Input[int]] = None,
+            renew_min_lease: Optional[pulumi.Input[int]] = None,
             renewable: Optional[pulumi.Input[bool]] = None,
             role_name: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[str]] = None,
@@ -129,16 +129,16 @@ class Token(pulumi.CustomResource):
         :param pulumi.Input[str] display_name: String containing the token display name
         :param pulumi.Input[str] encrypted_client_token: String containing the client token encrypted with the given `pgp_key` if stored in present file
         :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token
-        :param pulumi.Input[float] lease_duration: String containing the token lease duration if present in state file
+        :param pulumi.Input[int] lease_duration: String containing the token lease duration if present in state file
         :param pulumi.Input[str] lease_started: String containing the token lease started time if present in state file
         :param pulumi.Input[bool] no_default_policy: Flag to not attach the default policy to this token
         :param pulumi.Input[bool] no_parent: Flag to create a token without parent
-        :param pulumi.Input[float] num_uses: The number of allowed uses of this token
+        :param pulumi.Input[int] num_uses: The number of allowed uses of this token
         :param pulumi.Input[str] period: The period of this token
         :param pulumi.Input[str] pgp_key: The PGP key (base64 encoded) to encrypt the token.
-        :param pulumi.Input[List[pulumi.Input[str]]] policies: List of policies to attach to this token
-        :param pulumi.Input[float] renew_increment: The renew increment
-        :param pulumi.Input[float] renew_min_lease: The minimal lease to renew this token
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to attach to this token
+        :param pulumi.Input[int] renew_increment: The renew increment
+        :param pulumi.Input[int] renew_min_lease: The minimal lease to renew this token
         :param pulumi.Input[bool] renewable: Flag to allow to renew this token
         :param pulumi.Input[str] role_name: The token role name
         :param pulumi.Input[str] ttl: The TTL period of this token
@@ -206,7 +206,7 @@ class Token(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="leaseDuration")
-    def lease_duration(self) -> pulumi.Output[float]:
+    def lease_duration(self) -> pulumi.Output[int]:
         """
         String containing the token lease duration if present in state file
         """
@@ -238,7 +238,7 @@ class Token(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="numUses")
-    def num_uses(self) -> pulumi.Output[float]:
+    def num_uses(self) -> pulumi.Output[int]:
         """
         The number of allowed uses of this token
         """
@@ -262,7 +262,7 @@ class Token(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def policies(self) -> pulumi.Output[Optional[List[str]]]:
+    def policies(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of policies to attach to this token
         """
@@ -270,7 +270,7 @@ class Token(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="renewIncrement")
-    def renew_increment(self) -> pulumi.Output[Optional[float]]:
+    def renew_increment(self) -> pulumi.Output[Optional[int]]:
         """
         The renew increment
         """
@@ -278,7 +278,7 @@ class Token(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="renewMinLease")
-    def renew_min_lease(self) -> pulumi.Output[Optional[float]]:
+    def renew_min_lease(self) -> pulumi.Output[Optional[int]]:
         """
         The minimal lease to renew this token
         """

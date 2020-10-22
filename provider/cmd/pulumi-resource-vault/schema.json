@@ -129,248 +129,6 @@
         ]
     },
     "types": {
-        "vault:/AuthBackendTune:AuthBackendTune": {
-            "properties": {
-                "allowedResponseHeaders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "List of headers to whitelist and allowing\na plugin to include them in the response.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "auditNonHmacRequestKeys": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "Specifies the list of keys that will\nnot be HMAC'd by audit devices in the request data object.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "auditNonHmacResponseKeys": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "Specifies the list of keys that will\nnot be HMAC'd by audit devices in the response data object.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "defaultLeaseTtl": {
-                    "type": "string",
-                    "description": "Specifies the default time-to-live.\nIf set, this overrides the global default.\nMust be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "listingVisibility": {
-                    "type": "string",
-                    "description": "Specifies whether to show this mount in\nthe UI-specific listing endpoint. Valid values are \"unauth\" or \"hidden\".\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "maxLeaseTtl": {
-                    "type": "string",
-                    "description": "Specifies the maximum time-to-live.\nIf set, this overrides the global default.\nMust be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "passthroughRequestHeaders": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "List of headers to whitelist and\npass from the request to the backend.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "tokenType": {
-                    "type": "string",
-                    "description": "Specifies the type of tokens that should be returned by\nthe mount. Valid values are \"default-service\", \"default-batch\", \"service\", \"batch\".\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                }
-            },
-            "type": "object"
-        },
-        "vault:/getPolicyDocumentRule:getPolicyDocumentRule": {
-            "properties": {
-                "allowedParameters": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/vault:/getPolicyDocumentRuleAllowedParameter:getPolicyDocumentRuleAllowedParameter"
-                    },
-                    "description": "Whitelists a list of keys and values that are permitted on the given path. See Parameters below.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "capabilities": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "A list of capabilities that this rule apply to `path`. For example, [\"read\", \"write\"].\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "deniedParameters": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/vault:/getPolicyDocumentRuleDeniedParameter:getPolicyDocumentRuleDeniedParameter"
-                    },
-                    "description": "Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "description": {
-                    "type": "string",
-                    "description": "Description of the rule. Will be added as a commend to rendered rule.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "maxWrappingTtl": {
-                    "type": "string",
-                    "description": "The maximum allowed TTL that clients can specify for a wrapped response.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "minWrappingTtl": {
-                    "type": "string",
-                    "description": "The minimum allowed TTL that clients can specify for a wrapped response.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "path": {
-                    "type": "string",
-                    "description": "A path in Vault that this rule applies to.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "requiredParameters": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "A list of parameters that must be specified.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                }
-            },
-            "type": "object",
-            "required": [
-                "capabilities",
-                "path"
-            ]
-        },
-        "vault:/getPolicyDocumentRuleAllowedParameter:getPolicyDocumentRuleAllowedParameter": {
-            "properties": {
-                "key": {
-                    "type": "string",
-                    "description": "name of permitted or denied parameter.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "values": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "list of values what are permitted or denied by policy rule.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                }
-            },
-            "type": "object",
-            "required": [
-                "key",
-                "values"
-            ]
-        },
-        "vault:/getPolicyDocumentRuleDeniedParameter:getPolicyDocumentRuleDeniedParameter": {
-            "properties": {
-                "key": {
-                    "type": "string",
-                    "description": "name of permitted or denied parameter.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "values": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "list of values what are permitted or denied by policy rule.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                }
-            },
-            "type": "object",
-            "required": [
-                "key",
-                "values"
-            ]
-        },
         "vault:azure/BackendRoleAzureRole:BackendRoleAzureRole": {
             "properties": {
                 "roleId": {
@@ -1253,6 +1011,95 @@
                 }
             }
         },
+        "vault:index/AuthBackendTune:AuthBackendTune": {
+            "properties": {
+                "allowedResponseHeaders": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of headers to whitelist and allowing\na plugin to include them in the response.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "auditNonHmacRequestKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies the list of keys that will\nnot be HMAC'd by audit devices in the request data object.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "auditNonHmacResponseKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies the list of keys that will\nnot be HMAC'd by audit devices in the response data object.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "defaultLeaseTtl": {
+                    "type": "string",
+                    "description": "Specifies the default time-to-live.\nIf set, this overrides the global default.\nMust be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "listingVisibility": {
+                    "type": "string",
+                    "description": "Specifies whether to show this mount in\nthe UI-specific listing endpoint. Valid values are \"unauth\" or \"hidden\".\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maxLeaseTtl": {
+                    "type": "string",
+                    "description": "Specifies the maximum time-to-live.\nIf set, this overrides the global default.\nMust be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "passthroughRequestHeaders": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of headers to whitelist and\npass from the request to the backend.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tokenType": {
+                    "type": "string",
+                    "description": "Specifies the type of tokens that should be returned by\nthe mount. Valid values are \"default-service\", \"default-batch\", \"service\", \"batch\".\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
         "vault:index/ProviderAuthLogin:ProviderAuthLogin": {
             "properties": {
                 "namespace": {
@@ -1352,6 +1199,159 @@
                     "requiredOutputs": []
                 }
             }
+        },
+        "vault:index/getPolicyDocumentRule:getPolicyDocumentRule": {
+            "properties": {
+                "allowedParameters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/vault:index/getPolicyDocumentRuleAllowedParameter:getPolicyDocumentRuleAllowedParameter"
+                    },
+                    "description": "Whitelists a list of keys and values that are permitted on the given path. See Parameters below.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "capabilities": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of capabilities that this rule apply to `path`. For example, [\"read\", \"write\"].\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "deniedParameters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/vault:index/getPolicyDocumentRuleDeniedParameter:getPolicyDocumentRuleDeniedParameter"
+                    },
+                    "description": "Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Description of the rule. Will be added as a commend to rendered rule.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maxWrappingTtl": {
+                    "type": "string",
+                    "description": "The maximum allowed TTL that clients can specify for a wrapped response.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "minWrappingTtl": {
+                    "type": "string",
+                    "description": "The minimum allowed TTL that clients can specify for a wrapped response.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "description": "A path in Vault that this rule applies to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "requiredParameters": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of parameters that must be specified.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "capabilities",
+                "path"
+            ]
+        },
+        "vault:index/getPolicyDocumentRuleAllowedParameter:getPolicyDocumentRuleAllowedParameter": {
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "description": "name of permitted or denied parameter.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "list of values what are permitted or denied by policy rule.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "values"
+            ]
+        },
+        "vault:index/getPolicyDocumentRuleDeniedParameter:getPolicyDocumentRuleDeniedParameter": {
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "description": "name of permitted or denied parameter.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "list of values what are permitted or denied by policy rule.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "values"
+            ]
         },
         "vault:jwt/AuthBackendTune:AuthBackendTune": {
             "properties": {
@@ -7857,7 +7857,7 @@
                     "description": "The path to mount the auth method — this defaults to the name of the type\n"
                 },
                 "tune": {
-                    "$ref": "#/types/vault:/AuthBackendTune:AuthBackendTune",
+                    "$ref": "#/types/vault:index/AuthBackendTune:AuthBackendTune",
                     "description": "Extra configuration block. Structure is documented below.\n"
                 },
                 "type": {
@@ -7903,7 +7903,7 @@
                     "description": "The path to mount the auth method — this defaults to the name of the type\n"
                 },
                 "tune": {
-                    "$ref": "#/types/vault:/AuthBackendTune:AuthBackendTune",
+                    "$ref": "#/types/vault:index/AuthBackendTune:AuthBackendTune",
                     "description": "Extra configuration block. Structure is documented below.\n"
                 },
                 "type": {
@@ -7949,7 +7949,7 @@
                         "description": "The path to mount the auth method — this defaults to the name of the type\n"
                     },
                     "tune": {
-                        "$ref": "#/types/vault:/AuthBackendTune:AuthBackendTune",
+                        "$ref": "#/types/vault:index/AuthBackendTune:AuthBackendTune",
                         "description": "Extra configuration block. Structure is documented below.\n"
                     },
                     "type": {
@@ -15164,7 +15164,7 @@
     },
     "functions": {
         "vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId": {
-            "description": "Reads the Role ID of an AppRole from a Vault server.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst role = pulumi.output(vault.appRole.getAuthBackendRoleId({\n    backend: \"my-approle-backend\",\n    roleName: \"my-role\",\n}, { async: true }));\n\nexport const role_id = role.roleId;\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nrole = vault.appRole.get_auth_backend_role_id(backend=\"my-approle-backend\",\n    role_name=\"my-role\")\npulumi.export(\"role-id\", role.role_id)\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var role = Output.Create(Vault.AppRole.GetAuthBackendRoleId.InvokeAsync(new Vault.AppRole.GetAuthBackendRoleIdArgs\n        {\n            Backend = \"my-approle-backend\",\n            RoleName = \"my-role\",\n        }));\n        this.Role_id = role.Apply(role =\u003e role.RoleId);\n    }\n\n    [Output(\"role-id\")]\n    public Output\u003cstring\u003e Role_id { get; set; }\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Reads the Role ID of an AppRole from a Vault server.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst role = pulumi.output(vault.appRole.getAuthBackendRoleId({\n    backend: \"my-approle-backend\",\n    roleName: \"my-role\",\n}, { async: true }));\n\nexport const role_id = role.roleId;\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nrole = vault.appRole.get_auth_backend_role_id(backend=\"my-approle-backend\",\n    role_name=\"my-role\")\npulumi.export(\"role-id\", role.role_id)\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var role = Output.Create(Vault.AppRole.GetAuthBackendRoleId.InvokeAsync(new Vault.AppRole.GetAuthBackendRoleIdArgs\n        {\n            Backend = \"my-approle-backend\",\n            RoleName = \"my-role\",\n        }));\n        this.Role_id = role.Apply(role =\u003e role.RoleId);\n    }\n\n    [Output(\"role-id\")]\n    public Output\u003cstring\u003e Role_id { get; set; }\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/appRole\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"my-approle-backend\"\n\t\trole, err := appRole.GetAuthBackendRoleId(ctx, \u0026appRole.GetAuthBackendRoleIdArgs{\n\t\t\tBackend:  \u0026opt0,\n\t\t\tRoleName: \"my-role\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"role-id\", role.RoleId)\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getAuthBackendRoleId.\n",
                 "properties": {
@@ -15858,7 +15858,7 @@
                     "rules": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/vault:/getPolicyDocumentRule:getPolicyDocumentRule"
+                            "$ref": "#/types/vault:index/getPolicyDocumentRule:getPolicyDocumentRule"
                         }
                     }
                 },
@@ -15878,7 +15878,7 @@
                     "rules": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/vault:/getPolicyDocumentRule:getPolicyDocumentRule"
+                            "$ref": "#/types/vault:index/getPolicyDocumentRule:getPolicyDocumentRule"
                         }
                     }
                 },

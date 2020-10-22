@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['SecretBackendStaticRole']
@@ -18,8 +18,8 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 rotation_period: Optional[pulumi.Input[float]] = None,
-                 rotation_statements: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
@@ -57,8 +57,8 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[str] db_name: The unique name of the database connection to use for the static role.
         :param pulumi.Input[str] name: A unique name to give the static role.
-        :param pulumi.Input[float] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
-        :param pulumi.Input[List[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
+        :param pulumi.Input[int] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
         :param pulumi.Input[str] username: The database username that this static role corresponds to.
         """
         if __name__ is not None:
@@ -105,8 +105,8 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             backend: Optional[pulumi.Input[str]] = None,
             db_name: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            rotation_period: Optional[pulumi.Input[float]] = None,
-            rotation_statements: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            rotation_period: Optional[pulumi.Input[int]] = None,
+            rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             username: Optional[pulumi.Input[str]] = None) -> 'SecretBackendStaticRole':
         """
         Get an existing SecretBackendStaticRole resource's state with the given name, id, and optional extra
@@ -118,8 +118,8 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[str] db_name: The unique name of the database connection to use for the static role.
         :param pulumi.Input[str] name: A unique name to give the static role.
-        :param pulumi.Input[float] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
-        :param pulumi.Input[List[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
+        :param pulumi.Input[int] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
         :param pulumi.Input[str] username: The database username that this static role corresponds to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -160,7 +160,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> pulumi.Output[float]:
+    def rotation_period(self) -> pulumi.Output[int]:
         """
         The amount of time Vault should wait before rotating the password, in seconds.
         """
@@ -168,7 +168,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="rotationStatements")
-    def rotation_statements(self) -> pulumi.Output[Optional[List[str]]]:
+    def rotation_statements(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Database statements to execute to rotate the password for the configured database user.
         """

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -50,12 +50,12 @@ class GetEncodeResult:
 
     @property
     @pulumi.getter(name="batchInputs")
-    def batch_inputs(self) -> Optional[List[Mapping[str, Any]]]:
+    def batch_inputs(self) -> Optional[Sequence[Mapping[str, Any]]]:
         return pulumi.get(self, "batch_inputs")
 
     @property
     @pulumi.getter(name="batchResults")
-    def batch_results(self) -> List[Mapping[str, Any]]:
+    def batch_results(self) -> Sequence[Mapping[str, Any]]:
         return pulumi.get(self, "batch_results")
 
     @property
@@ -114,8 +114,8 @@ class AwaitableGetEncodeResult(GetEncodeResult):
             value=self.value)
 
 
-def get_encode(batch_inputs: Optional[List[Mapping[str, Any]]] = None,
-               batch_results: Optional[List[Mapping[str, Any]]] = None,
+def get_encode(batch_inputs: Optional[Sequence[Mapping[str, Any]]] = None,
+               batch_results: Optional[Sequence[Mapping[str, Any]]] = None,
                encoded_value: Optional[str] = None,
                path: Optional[str] = None,
                role_name: Optional[str] = None,
@@ -129,8 +129,8 @@ def get_encode(batch_inputs: Optional[List[Mapping[str, Any]]] = None,
     It encodes the provided value using a named role.
 
 
-    :param List[Mapping[str, Any]] batch_inputs: Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
-    :param List[Mapping[str, Any]] batch_results: The result of encoding a batch.
+    :param Sequence[Mapping[str, Any]] batch_inputs: Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
+    :param Sequence[Mapping[str, Any]] batch_results: The result of encoding a batch.
     :param str encoded_value: The result of encoding a value.
     :param str path: Path to where the back-end is mounted within Vault.
     :param str role_name: The name of the role.

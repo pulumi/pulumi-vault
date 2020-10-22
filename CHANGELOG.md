@@ -3,8 +3,8 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Upgrade to v2.15.0 of the Vault Terraform Provider
-* Upgrade to Pulumi v2.10.0. This includes a change which adds type annotations and input/output classes to Python
-* Upgrade to pulumi-terraform-bridge v2.9.1  
+* Upgrade to Pulumi v2.12.0. This includes a change which adds type annotations and input/output classes to Python
+* Upgrade to pulumi-terraform-bridge v2.11.0  
   ** Please Note: **  
   This upgrade contains breaking changes to some the module names as follows:
   * `vault.appRole` is now `vault.approle` in Go, NodeJS and Python

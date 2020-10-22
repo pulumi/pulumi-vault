@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -29,8 +29,8 @@ class GetSecretResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if lease_duration and not isinstance(lease_duration, float):
-            raise TypeError("Expected argument 'lease_duration' to be a float")
+        if lease_duration and not isinstance(lease_duration, int):
+            raise TypeError("Expected argument 'lease_duration' to be a int")
         pulumi.set(__self__, "lease_duration", lease_duration)
         if lease_id and not isinstance(lease_id, str):
             raise TypeError("Expected argument 'lease_id' to be a str")
@@ -44,8 +44,8 @@ class GetSecretResult:
         if path and not isinstance(path, str):
             raise TypeError("Expected argument 'path' to be a str")
         pulumi.set(__self__, "path", path)
-        if version and not isinstance(version, float):
-            raise TypeError("Expected argument 'version' to be a float")
+        if version and not isinstance(version, int):
+            raise TypeError("Expected argument 'version' to be a int")
         pulumi.set(__self__, "version", version)
 
     @property
@@ -78,7 +78,7 @@ class GetSecretResult:
 
     @property
     @pulumi.getter(name="leaseDuration")
-    def lease_duration(self) -> float:
+    def lease_duration(self) -> int:
         """
         The duration of the secret lease, in seconds relative
         to the time the data was requested. Once this time has passed any plan
@@ -111,7 +111,7 @@ class GetSecretResult:
 
     @property
     @pulumi.getter
-    def version(self) -> Optional[float]:
+    def version(self) -> Optional[int]:
         return pulumi.get(self, "version")
 
 
@@ -133,7 +133,7 @@ class AwaitableGetSecretResult(GetSecretResult):
 
 
 def get_secret(path: Optional[str] = None,
-               version: Optional[float] = None,
+               version: Optional[int] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretResult:
     """
     Use this data source to access information about an existing resource.

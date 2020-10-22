@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['OidcKey']
@@ -16,10 +16,10 @@ class OidcKey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  algorithm: Optional[pulumi.Input[str]] = None,
-                 allowed_client_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 rotation_period: Optional[pulumi.Input[float]] = None,
-                 verification_ttl: Optional[pulumi.Input[float]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 verification_ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -29,11 +29,11 @@ class OidcKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] algorithm: Signing algorithm to use. Signing algorithm to use.
                Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
-        :param pulumi.Input[List[pulumi.Input[str]]] allowed_client_ids: Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
                allowed.
         :param pulumi.Input[str] name: Name of the OIDC Key to create.
-        :param pulumi.Input[float] rotation_period: How often to generate a new signing key in number of seconds
-        :param pulumi.Input[float] verification_ttl: "Controls how long the public portion of a signing key will be
+        :param pulumi.Input[int] rotation_period: How often to generate a new signing key in number of seconds
+        :param pulumi.Input[int] verification_ttl: "Controls how long the public portion of a signing key will be
                available for verification after being rotated in seconds.
         """
         if __name__ is not None:
@@ -69,10 +69,10 @@ class OidcKey(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             algorithm: Optional[pulumi.Input[str]] = None,
-            allowed_client_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            rotation_period: Optional[pulumi.Input[float]] = None,
-            verification_ttl: Optional[pulumi.Input[float]] = None) -> 'OidcKey':
+            rotation_period: Optional[pulumi.Input[int]] = None,
+            verification_ttl: Optional[pulumi.Input[int]] = None) -> 'OidcKey':
         """
         Get an existing OidcKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -82,11 +82,11 @@ class OidcKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] algorithm: Signing algorithm to use. Signing algorithm to use.
                Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
-        :param pulumi.Input[List[pulumi.Input[str]]] allowed_client_ids: Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
                allowed.
         :param pulumi.Input[str] name: Name of the OIDC Key to create.
-        :param pulumi.Input[float] rotation_period: How often to generate a new signing key in number of seconds
-        :param pulumi.Input[float] verification_ttl: "Controls how long the public portion of a signing key will be
+        :param pulumi.Input[int] rotation_period: How often to generate a new signing key in number of seconds
+        :param pulumi.Input[int] verification_ttl: "Controls how long the public portion of a signing key will be
                available for verification after being rotated in seconds.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -111,7 +111,7 @@ class OidcKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="allowedClientIds")
-    def allowed_client_ids(self) -> pulumi.Output[List[str]]:
+    def allowed_client_ids(self) -> pulumi.Output[Sequence[str]]:
         """
         Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
         allowed.
@@ -128,7 +128,7 @@ class OidcKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> pulumi.Output[Optional[float]]:
+    def rotation_period(self) -> pulumi.Output[Optional[int]]:
         """
         How often to generate a new signing key in number of seconds
         """
@@ -136,7 +136,7 @@ class OidcKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="verificationTtl")
-    def verification_ttl(self) -> pulumi.Output[Optional[float]]:
+    def verification_ttl(self) -> pulumi.Output[Optional[int]]:
         """
         "Controls how long the public portion of a signing key will be
         available for verification after being rotated in seconds.

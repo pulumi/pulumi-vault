@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -18,11 +18,11 @@ class SecretRoleset(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
-                 bindings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['SecretRolesetBindingArgs']]]]] = None,
+                 bindings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretRolesetBindingArgs']]]]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  roleset: Optional[pulumi.Input[str]] = None,
                  secret_type: Optional[pulumi.Input[str]] = None,
-                 token_scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -56,11 +56,11 @@ class SecretRoleset(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path where the GCP Secrets Engine is mounted
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['SecretRolesetBindingArgs']]]] bindings: Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretRolesetBindingArgs']]]] bindings: Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
         :param pulumi.Input[str] project: Name of the GCP project that this roleset's service account will belong to.
         :param pulumi.Input[str] roleset: Name of the Roleset to create
         :param pulumi.Input[str] secret_type: Type of secret generated for this role set. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
-        :param pulumi.Input[List[pulumi.Input[str]]] token_scopes: List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_scopes: List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -105,12 +105,12 @@ class SecretRoleset(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
-            bindings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['SecretRolesetBindingArgs']]]]] = None,
+            bindings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretRolesetBindingArgs']]]]] = None,
             project: Optional[pulumi.Input[str]] = None,
             roleset: Optional[pulumi.Input[str]] = None,
             secret_type: Optional[pulumi.Input[str]] = None,
             service_account_email: Optional[pulumi.Input[str]] = None,
-            token_scopes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'SecretRoleset':
+            token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'SecretRoleset':
         """
         Get an existing SecretRoleset resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -119,12 +119,12 @@ class SecretRoleset(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path where the GCP Secrets Engine is mounted
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['SecretRolesetBindingArgs']]]] bindings: Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretRolesetBindingArgs']]]] bindings: Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
         :param pulumi.Input[str] project: Name of the GCP project that this roleset's service account will belong to.
         :param pulumi.Input[str] roleset: Name of the Roleset to create
         :param pulumi.Input[str] secret_type: Type of secret generated for this role set. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
         :param pulumi.Input[str] service_account_email: Email of the service account created by Vault for this Roleset
-        :param pulumi.Input[List[pulumi.Input[str]]] token_scopes: List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_scopes: List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -149,7 +149,7 @@ class SecretRoleset(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def bindings(self) -> pulumi.Output[List['outputs.SecretRolesetBinding']]:
+    def bindings(self) -> pulumi.Output[Sequence['outputs.SecretRolesetBinding']]:
         """
         Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
         """
@@ -189,7 +189,7 @@ class SecretRoleset(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="tokenScopes")
-    def token_scopes(self) -> pulumi.Output[Optional[List[str]]]:
+    def token_scopes(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
         """

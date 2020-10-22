@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -29,8 +29,8 @@ class GetAccessCredentialsResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if lease_duration and not isinstance(lease_duration, float):
-            raise TypeError("Expected argument 'lease_duration' to be a float")
+        if lease_duration and not isinstance(lease_duration, int):
+            raise TypeError("Expected argument 'lease_duration' to be a int")
         pulumi.set(__self__, "lease_duration", lease_duration)
         if lease_id and not isinstance(lease_id, str):
             raise TypeError("Expected argument 'lease_id' to be a str")
@@ -83,7 +83,7 @@ class GetAccessCredentialsResult:
 
     @property
     @pulumi.getter(name="leaseDuration")
-    def lease_duration(self) -> float:
+    def lease_duration(self) -> int:
         """
         The duration of the secret lease, in seconds relative
         to the time the data was requested. Once this time has passed any plan

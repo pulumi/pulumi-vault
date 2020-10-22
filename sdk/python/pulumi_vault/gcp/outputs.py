@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -16,10 +16,10 @@ __all__ = [
 class SecretRolesetBinding(dict):
     def __init__(__self__, *,
                  resource: str,
-                 roles: List[str]):
+                 roles: Sequence[str]):
         """
         :param str resource: Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
-        :param List[str] roles: List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
+        :param Sequence[str] roles: List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
         """
         pulumi.set(__self__, "resource", resource)
         pulumi.set(__self__, "roles", roles)
@@ -34,7 +34,7 @@ class SecretRolesetBinding(dict):
 
     @property
     @pulumi.getter
-    def roles(self) -> List[str]:
+    def roles(self) -> Sequence[str]:
         """
         List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
         """
