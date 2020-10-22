@@ -10,12 +10,50 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// This resource supports the "/transform/role/{name}" Vault endpoint.
+//
+// It creates or updates the role with the given name. If a role with the name does not exist, it will be created.
+// If the role exists, it will be updated with the new attributes.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/transform"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		mountTransform, err := vault.NewMount(ctx, "mountTransform", &vault.MountArgs{
+// 			Path: pulumi.String("transform"),
+// 			Type: pulumi.String("transform"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = transform.NewRole(ctx, "test", &transform.RoleArgs{
+// 			Path: mountTransform.Path,
+// 			Transformations: pulumi.StringArray{
+// 				pulumi.String("ccn-fpe"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Role struct {
 	pulumi.CustomResourceState
 
 	// The name of the role.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringOutput `pulumi:"path"`
 	// A comma separated string or slice of transformations to use.
 	Transformations pulumi.StringArrayOutput `pulumi:"transformations"`
@@ -54,7 +92,7 @@ func GetRole(ctx *pulumi.Context,
 type roleState struct {
 	// The name of the role.
 	Name *string `pulumi:"name"`
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path *string `pulumi:"path"`
 	// A comma separated string or slice of transformations to use.
 	Transformations []string `pulumi:"transformations"`
@@ -63,7 +101,7 @@ type roleState struct {
 type RoleState struct {
 	// The name of the role.
 	Name pulumi.StringPtrInput
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringPtrInput
 	// A comma separated string or slice of transformations to use.
 	Transformations pulumi.StringArrayInput
@@ -76,7 +114,7 @@ func (RoleState) ElementType() reflect.Type {
 type roleArgs struct {
 	// The name of the role.
 	Name *string `pulumi:"name"`
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path string `pulumi:"path"`
 	// A comma separated string or slice of transformations to use.
 	Transformations []string `pulumi:"transformations"`
@@ -86,7 +124,7 @@ type roleArgs struct {
 type RoleArgs struct {
 	// The name of the role.
 	Name pulumi.StringPtrInput
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringInput
 	// A comma separated string or slice of transformations to use.
 	Transformations pulumi.StringArrayInput

@@ -61,7 +61,19 @@ class AwaitableGetDecodeResult(GetDecodeResult):
 
 def get_decode(batch_inputs=None,batch_results=None,decoded_value=None,path=None,role_name=None,transformation=None,tweak=None,value=None,opts=None):
     """
-    Use this data source to access information about an existing resource.
+    This data source supports the "/transform/decode/{role_name}" Vault endpoint.
+
+    It decodes the provided value using a named role.
+
+
+    :param list batch_inputs: Specifies a list of items to be decoded in a single batch. If this parameter is set, the top-level parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
+    :param list batch_results: The result of decoding a batch.
+    :param str decoded_value: The result of decoding a value.
+    :param str path: Path to where the back-end is mounted within Vault.
+    :param str role_name: The name of the role.
+    :param str transformation: The transformation to perform. If no value is provided and the role contains a single transformation, this value will be inferred from the role.
+    :param str tweak: The tweak value to use. Only applicable for FPE transformations
+    :param str value: The value in which to decode.
     """
     __args__ = dict()
 

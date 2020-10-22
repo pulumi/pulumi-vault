@@ -132,6 +132,8 @@
         "transform/role.ts",
         "transform/template.ts",
         "transform/transformation.ts",
+        "transit/getDecrypt.ts",
+        "transit/getEncrypt.ts",
         "transit/index.ts",
         "transit/secretBackendKey.ts",
         "transit/secretCacheConfig.ts",

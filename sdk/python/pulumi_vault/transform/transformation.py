@@ -24,7 +24,7 @@ class Transformation(pulumi.CustomResource):
     """
     path: pulumi.Output[str]
     """
-    The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+    Path to where the back-end is mounted within Vault.
     """
     template: pulumi.Output[str]
     """
@@ -44,13 +44,34 @@ class Transformation(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, allowed_roles=None, masking_character=None, name=None, path=None, template=None, templates=None, tweak_source=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a Transformation resource with the given unique name, props, and options.
+        This resource supports the "/transform/transformation/{name}" Vault endpoint.
+
+        It creates or updates a transformation with the given name. If a transformation with the name does not exist,
+        it will be created. If the transformation exists, it will be updated with the new attributes.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        mount_transform = vault.Mount("mountTransform",
+            path="transform",
+            type="transform")
+        test = vault.transform.Transformation("test",
+            path=mount_transform.path,
+            type="fpe",
+            template="ccn",
+            tweak_source="internal",
+            allowed_roles=["payments"])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] allowed_roles: The set of roles allowed to perform this transformation.
         :param pulumi.Input[str] masking_character: The character used to replace data when in masking mode
         :param pulumi.Input[str] name: The name of the transformation.
-        :param pulumi.Input[str] path: The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+        :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[str] template: The name of the template to use.
         :param pulumi.Input[list] templates: Templates configured for transformation.
         :param pulumi.Input[str] tweak_source: The source of where the tweak value comes from. Only valid when in FPE mode.
@@ -101,7 +122,7 @@ class Transformation(pulumi.CustomResource):
         :param pulumi.Input[list] allowed_roles: The set of roles allowed to perform this transformation.
         :param pulumi.Input[str] masking_character: The character used to replace data when in masking mode
         :param pulumi.Input[str] name: The name of the transformation.
-        :param pulumi.Input[str] path: The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+        :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[str] template: The name of the template to use.
         :param pulumi.Input[list] templates: Templates configured for transformation.
         :param pulumi.Input[str] tweak_source: The source of where the tweak value comes from. Only valid when in FPE mode.

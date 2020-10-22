@@ -10,6 +10,47 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// This resource supports the "/transform/transformation/{name}" Vault endpoint.
+//
+// It creates or updates a transformation with the given name. If a transformation with the name does not exist,
+// it will be created. If the transformation exists, it will be updated with the new attributes.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/transform"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		mountTransform, err := vault.NewMount(ctx, "mountTransform", &vault.MountArgs{
+// 			Path: pulumi.String("transform"),
+// 			Type: pulumi.String("transform"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = transform.NewTransformation(ctx, "test", &transform.TransformationArgs{
+// 			Path:        mountTransform.Path,
+// 			Type:        pulumi.String("fpe"),
+// 			Template:    pulumi.String("ccn"),
+// 			TweakSource: pulumi.String("internal"),
+// 			AllowedRoles: pulumi.StringArray{
+// 				pulumi.String("payments"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Transformation struct {
 	pulumi.CustomResourceState
 
@@ -19,7 +60,7 @@ type Transformation struct {
 	MaskingCharacter pulumi.StringPtrOutput `pulumi:"maskingCharacter"`
 	// The name of the transformation.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringOutput `pulumi:"path"`
 	// The name of the template to use.
 	Template pulumi.StringPtrOutput `pulumi:"template"`
@@ -68,7 +109,7 @@ type transformationState struct {
 	MaskingCharacter *string `pulumi:"maskingCharacter"`
 	// The name of the transformation.
 	Name *string `pulumi:"name"`
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path *string `pulumi:"path"`
 	// The name of the template to use.
 	Template *string `pulumi:"template"`
@@ -87,7 +128,7 @@ type TransformationState struct {
 	MaskingCharacter pulumi.StringPtrInput
 	// The name of the transformation.
 	Name pulumi.StringPtrInput
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringPtrInput
 	// The name of the template to use.
 	Template pulumi.StringPtrInput
@@ -110,7 +151,7 @@ type transformationArgs struct {
 	MaskingCharacter *string `pulumi:"maskingCharacter"`
 	// The name of the transformation.
 	Name *string `pulumi:"name"`
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path string `pulumi:"path"`
 	// The name of the template to use.
 	Template *string `pulumi:"template"`
@@ -130,7 +171,7 @@ type TransformationArgs struct {
 	MaskingCharacter pulumi.StringPtrInput
 	// The name of the transformation.
 	Name pulumi.StringPtrInput
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringInput
 	// The name of the template to use.
 	Template pulumi.StringPtrInput

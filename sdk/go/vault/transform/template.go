@@ -17,7 +17,7 @@ type Template struct {
 	Alphabet pulumi.StringPtrOutput `pulumi:"alphabet"`
 	// The name of the template.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringOutput `pulumi:"path"`
 	// The pattern used for matching. Currently, only regular expression pattern is supported.
 	Pattern pulumi.StringPtrOutput `pulumi:"pattern"`
@@ -60,7 +60,7 @@ type templateState struct {
 	Alphabet *string `pulumi:"alphabet"`
 	// The name of the template.
 	Name *string `pulumi:"name"`
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path *string `pulumi:"path"`
 	// The pattern used for matching. Currently, only regular expression pattern is supported.
 	Pattern *string `pulumi:"pattern"`
@@ -73,7 +73,7 @@ type TemplateState struct {
 	Alphabet pulumi.StringPtrInput
 	// The name of the template.
 	Name pulumi.StringPtrInput
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringPtrInput
 	// The pattern used for matching. Currently, only regular expression pattern is supported.
 	Pattern pulumi.StringPtrInput
@@ -90,7 +90,7 @@ type templateArgs struct {
 	Alphabet *string `pulumi:"alphabet"`
 	// The name of the template.
 	Name *string `pulumi:"name"`
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path string `pulumi:"path"`
 	// The pattern used for matching. Currently, only regular expression pattern is supported.
 	Pattern *string `pulumi:"pattern"`
@@ -104,7 +104,7 @@ type TemplateArgs struct {
 	Alphabet pulumi.StringPtrInput
 	// The name of the template.
 	Name pulumi.StringPtrInput
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringInput
 	// The pattern used for matching. Currently, only regular expression pattern is supported.
 	Pattern pulumi.StringPtrInput

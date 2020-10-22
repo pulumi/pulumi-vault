@@ -23,6 +23,10 @@ class SecretBackend(pulumi.CustomResource):
     """
     A human-friendly description for this backend.
     """
+    local: pulumi.Output[bool]
+    """
+    Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+    """
     max_lease_ttl_seconds: pulumi.Output[float]
     """
     The maximum TTL that can be requested
@@ -33,7 +37,7 @@ class SecretBackend(pulumi.CustomResource):
     The unique path this backend should be mounted at. Must
     not begin or end with a `/`. Defaults to `gcp`.
     """
-    def __init__(__self__, resource_name, opts=None, credentials=None, default_lease_ttl_seconds=None, description=None, max_lease_ttl_seconds=None, path=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, credentials=None, default_lease_ttl_seconds=None, description=None, local=None, max_lease_ttl_seconds=None, path=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a SecretBackend resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -42,6 +46,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[float] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[float] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
@@ -67,6 +72,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__['credentials'] = credentials
             __props__['default_lease_ttl_seconds'] = default_lease_ttl_seconds
             __props__['description'] = description
+            __props__['local'] = local
             __props__['max_lease_ttl_seconds'] = max_lease_ttl_seconds
             __props__['path'] = path
         super(SecretBackend, __self__).__init__(
@@ -76,7 +82,7 @@ class SecretBackend(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, credentials=None, default_lease_ttl_seconds=None, description=None, max_lease_ttl_seconds=None, path=None):
+    def get(resource_name, id, opts=None, credentials=None, default_lease_ttl_seconds=None, description=None, local=None, max_lease_ttl_seconds=None, path=None):
         """
         Get an existing SecretBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -88,6 +94,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[float] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[float] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
@@ -100,6 +107,7 @@ class SecretBackend(pulumi.CustomResource):
         __props__["credentials"] = credentials
         __props__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__["description"] = description
+        __props__["local"] = local
         __props__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
         __props__["path"] = path
         return SecretBackend(resource_name, opts=opts, __props__=__props__)

@@ -10,6 +10,10 @@ from .. import utilities, tables
 
 
 class SecretBackendRole(pulumi.CustomResource):
+    algorithm_signer: pulumi.Output[str]
+    """
+    When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
+    """
     allow_bare_domains: pulumi.Output[bool]
     """
     Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.
@@ -49,6 +53,10 @@ class SecretBackendRole(pulumi.CustomResource):
     allowed_users: pulumi.Output[str]
     """
     Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
+    """
+    allowed_users_template: pulumi.Output[bool]
+    """
+    Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
     """
     backend: pulumi.Output[str]
     """
@@ -90,7 +98,7 @@ class SecretBackendRole(pulumi.CustomResource):
     """
     Specifies the Time To Live value.
     """
-    def __init__(__self__, resource_name, opts=None, allow_bare_domains=None, allow_host_certificates=None, allow_subdomains=None, allow_user_certificates=None, allow_user_key_ids=None, allowed_critical_options=None, allowed_domains=None, allowed_extensions=None, allowed_user_key_lengths=None, allowed_users=None, backend=None, cidr_list=None, default_critical_options=None, default_extensions=None, default_user=None, key_id_format=None, key_type=None, max_ttl=None, name=None, ttl=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, algorithm_signer=None, allow_bare_domains=None, allow_host_certificates=None, allow_subdomains=None, allow_user_certificates=None, allow_user_key_ids=None, allowed_critical_options=None, allowed_domains=None, allowed_extensions=None, allowed_user_key_lengths=None, allowed_users=None, allowed_users_template=None, backend=None, cidr_list=None, default_critical_options=None, default_extensions=None, default_user=None, key_id_format=None, key_type=None, max_ttl=None, name=None, ttl=None, __props__=None, __name__=None, __opts__=None):
         """
         Provides a resource to manage roles in an SSH secret backend
         [SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).
@@ -116,6 +124,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] algorithm_signer: When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
         :param pulumi.Input[bool] allow_bare_domains: Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.
         :param pulumi.Input[bool] allow_host_certificates: Specifies if certificates are allowed to be signed for use as a 'host'.
         :param pulumi.Input[bool] allow_subdomains: Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowed_domains`.
@@ -126,6 +135,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] allowed_extensions: Specifies a comma-separated list of extensions that certificates can have when signed.
         :param pulumi.Input[dict] allowed_user_key_lengths: Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
         :param pulumi.Input[str] allowed_users: Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
+        :param pulumi.Input[bool] allowed_users_template: Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted.
         :param pulumi.Input[str] cidr_list: The comma-separated string of CIDR blocks for which this role is applicable.
         :param pulumi.Input[dict] default_critical_options: Specifies a map of critical options that certificates have when signed.
@@ -154,6 +164,7 @@ class SecretBackendRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
+            __props__['algorithm_signer'] = algorithm_signer
             __props__['allow_bare_domains'] = allow_bare_domains
             __props__['allow_host_certificates'] = allow_host_certificates
             __props__['allow_subdomains'] = allow_subdomains
@@ -164,6 +175,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__['allowed_extensions'] = allowed_extensions
             __props__['allowed_user_key_lengths'] = allowed_user_key_lengths
             __props__['allowed_users'] = allowed_users
+            __props__['allowed_users_template'] = allowed_users_template
             if backend is None:
                 raise TypeError("Missing required property 'backend'")
             __props__['backend'] = backend
@@ -185,7 +197,7 @@ class SecretBackendRole(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allow_bare_domains=None, allow_host_certificates=None, allow_subdomains=None, allow_user_certificates=None, allow_user_key_ids=None, allowed_critical_options=None, allowed_domains=None, allowed_extensions=None, allowed_user_key_lengths=None, allowed_users=None, backend=None, cidr_list=None, default_critical_options=None, default_extensions=None, default_user=None, key_id_format=None, key_type=None, max_ttl=None, name=None, ttl=None):
+    def get(resource_name, id, opts=None, algorithm_signer=None, allow_bare_domains=None, allow_host_certificates=None, allow_subdomains=None, allow_user_certificates=None, allow_user_key_ids=None, allowed_critical_options=None, allowed_domains=None, allowed_extensions=None, allowed_user_key_lengths=None, allowed_users=None, allowed_users_template=None, backend=None, cidr_list=None, default_critical_options=None, default_extensions=None, default_user=None, key_id_format=None, key_type=None, max_ttl=None, name=None, ttl=None):
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -193,6 +205,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] algorithm_signer: When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
         :param pulumi.Input[bool] allow_bare_domains: Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.
         :param pulumi.Input[bool] allow_host_certificates: Specifies if certificates are allowed to be signed for use as a 'host'.
         :param pulumi.Input[bool] allow_subdomains: Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowed_domains`.
@@ -203,6 +216,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] allowed_extensions: Specifies a comma-separated list of extensions that certificates can have when signed.
         :param pulumi.Input[dict] allowed_user_key_lengths: Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
         :param pulumi.Input[str] allowed_users: Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
+        :param pulumi.Input[bool] allowed_users_template: Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted.
         :param pulumi.Input[str] cidr_list: The comma-separated string of CIDR blocks for which this role is applicable.
         :param pulumi.Input[dict] default_critical_options: Specifies a map of critical options that certificates have when signed.
@@ -218,6 +232,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
         __props__ = dict()
 
+        __props__["algorithm_signer"] = algorithm_signer
         __props__["allow_bare_domains"] = allow_bare_domains
         __props__["allow_host_certificates"] = allow_host_certificates
         __props__["allow_subdomains"] = allow_subdomains
@@ -228,6 +243,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__["allowed_extensions"] = allowed_extensions
         __props__["allowed_user_key_lengths"] = allowed_user_key_lengths
         __props__["allowed_users"] = allowed_users
+        __props__["allowed_users_template"] = allowed_users_template
         __props__["backend"] = backend
         __props__["cidr_list"] = cidr_list
         __props__["default_critical_options"] = default_critical_options

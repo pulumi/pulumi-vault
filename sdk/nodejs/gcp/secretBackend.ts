@@ -46,6 +46,10 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+     */
+    public readonly local!: pulumi.Output<boolean | undefined>;
+    /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend. Defaults to '0'.
      */
@@ -71,6 +75,7 @@ export class SecretBackend extends pulumi.CustomResource {
             inputs["credentials"] = state ? state.credentials : undefined;
             inputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
             inputs["description"] = state ? state.description : undefined;
+            inputs["local"] = state ? state.local : undefined;
             inputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             inputs["path"] = state ? state.path : undefined;
         } else {
@@ -78,6 +83,7 @@ export class SecretBackend extends pulumi.CustomResource {
             inputs["credentials"] = args ? args.credentials : undefined;
             inputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
             inputs["description"] = args ? args.description : undefined;
+            inputs["local"] = args ? args.local : undefined;
             inputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             inputs["path"] = args ? args.path : undefined;
         }
@@ -110,6 +116,10 @@ export interface SecretBackendState {
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+     */
+    readonly local?: pulumi.Input<boolean>;
+    /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend. Defaults to '0'.
      */
@@ -138,6 +148,10 @@ export interface SecretBackendArgs {
      * A human-friendly description for this backend.
      */
     readonly description?: pulumi.Input<string>;
+    /**
+     * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+     */
+    readonly local?: pulumi.Input<boolean>;
     /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend. Defaults to '0'.

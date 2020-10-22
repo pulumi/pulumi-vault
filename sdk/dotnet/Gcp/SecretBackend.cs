@@ -31,6 +31,12 @@ namespace Pulumi.Vault.Gcp
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+        /// </summary>
+        [Output("local")]
+        public Output<bool?> Local { get; private set; } = null!;
+
+        /// <summary>
         /// The maximum TTL that can be requested
         /// for credentials issued by this backend. Defaults to '0'.
         /// </summary>
@@ -110,6 +116,12 @@ namespace Pulumi.Vault.Gcp
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+        /// </summary>
+        [Input("local")]
+        public Input<bool>? Local { get; set; }
+
+        /// <summary>
         /// The maximum TTL that can be requested
         /// for credentials issued by this backend. Defaults to '0'.
         /// </summary>
@@ -148,6 +160,12 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+        /// </summary>
+        [Input("local")]
+        public Input<bool>? Local { get; set; }
 
         /// <summary>
         /// The maximum TTL that can be requested

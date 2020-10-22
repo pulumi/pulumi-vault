@@ -30,6 +30,12 @@ namespace Pulumi.Vault.Kubernetes
         [Input("backend")]
         public string? Backend { get; set; }
 
+        [Input("disableIssValidation")]
+        public bool? DisableIssValidation { get; set; }
+
+        [Input("disableLocalCaJwt")]
+        public bool? DisableLocalCaJwt { get; set; }
+
         /// <summary>
         /// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         /// </summary>
@@ -70,6 +76,8 @@ namespace Pulumi.Vault.Kubernetes
     public sealed class GetAuthBackendConfigResult
     {
         public readonly string? Backend;
+        public readonly bool DisableIssValidation;
+        public readonly bool DisableLocalCaJwt;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -95,6 +103,10 @@ namespace Pulumi.Vault.Kubernetes
         private GetAuthBackendConfigResult(
             string? backend,
 
+            bool disableIssValidation,
+
+            bool disableLocalCaJwt,
+
             string id,
 
             string issuer,
@@ -106,6 +118,8 @@ namespace Pulumi.Vault.Kubernetes
             ImmutableArray<string> pemKeys)
         {
             Backend = backend;
+            DisableIssValidation = disableIssValidation;
+            DisableLocalCaJwt = disableLocalCaJwt;
             Id = id;
             Issuer = issuer;
             KubernetesCaCert = kubernetesCaCert;

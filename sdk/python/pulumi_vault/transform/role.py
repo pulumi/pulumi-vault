@@ -16,7 +16,7 @@ class Role(pulumi.CustomResource):
     """
     path: pulumi.Output[str]
     """
-    The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+    Path to where the back-end is mounted within Vault.
     """
     transformations: pulumi.Output[list]
     """
@@ -24,11 +24,29 @@ class Role(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, name=None, path=None, transformations=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a Role resource with the given unique name, props, and options.
+        This resource supports the "/transform/role/{name}" Vault endpoint.
+
+        It creates or updates the role with the given name. If a role with the name does not exist, it will be created.
+        If the role exists, it will be updated with the new attributes.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        mount_transform = vault.Mount("mountTransform",
+            path="transform",
+            type="transform")
+        test = vault.transform.Role("test",
+            path=mount_transform.path,
+            transformations=["ccn-fpe"])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the role.
-        :param pulumi.Input[str] path: The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+        :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[list] transformations: A comma separated string or slice of transformations to use.
         """
         if __name__ is not None:
@@ -69,7 +87,7 @@ class Role(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the role.
-        :param pulumi.Input[str] path: The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+        :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[list] transformations: A comma separated string or slice of transformations to use.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

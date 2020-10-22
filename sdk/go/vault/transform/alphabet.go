@@ -10,6 +10,41 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// This resource supports the "/transform/alphabet/{name}" Vault endpoint.
+//
+// It queries an existing alphabet by the given name.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/transform"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		mountTransform, err := vault.NewMount(ctx, "mountTransform", &vault.MountArgs{
+// 			Path: pulumi.String("transform"),
+// 			Type: pulumi.String("transform"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = transform.NewAlphabet(ctx, "test", &transform.AlphabetArgs{
+// 			Path:     mountTransform.Path,
+// 			Alphabet: pulumi.String("0123456789"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Alphabet struct {
 	pulumi.CustomResourceState
 
@@ -17,7 +52,7 @@ type Alphabet struct {
 	Alphabet pulumi.StringPtrOutput `pulumi:"alphabet"`
 	// The name of the alphabet.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringOutput `pulumi:"path"`
 }
 
@@ -56,7 +91,7 @@ type alphabetState struct {
 	Alphabet *string `pulumi:"alphabet"`
 	// The name of the alphabet.
 	Name *string `pulumi:"name"`
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path *string `pulumi:"path"`
 }
 
@@ -65,7 +100,7 @@ type AlphabetState struct {
 	Alphabet pulumi.StringPtrInput
 	// The name of the alphabet.
 	Name pulumi.StringPtrInput
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringPtrInput
 }
 
@@ -78,7 +113,7 @@ type alphabetArgs struct {
 	Alphabet *string `pulumi:"alphabet"`
 	// The name of the alphabet.
 	Name *string `pulumi:"name"`
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path string `pulumi:"path"`
 }
 
@@ -88,7 +123,7 @@ type AlphabetArgs struct {
 	Alphabet pulumi.StringPtrInput
 	// The name of the alphabet.
 	Name pulumi.StringPtrInput
-	// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringInput
 }
 

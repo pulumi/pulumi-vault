@@ -14,6 +14,14 @@ class AuthBackendConfig(pulumi.CustomResource):
     """
     Unique name of the kubernetes backend to configure.
     """
+    disable_iss_validation: pulumi.Output[bool]
+    """
+    Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+    """
+    disable_local_ca_jwt: pulumi.Output[bool]
+    """
+    Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+    """
     issuer: pulumi.Output[str]
     """
     Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
@@ -34,7 +42,7 @@ class AuthBackendConfig(pulumi.CustomResource):
     """
     A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
     """
-    def __init__(__self__, resource_name, opts=None, backend=None, issuer=None, kubernetes_ca_cert=None, kubernetes_host=None, pem_keys=None, token_reviewer_jwt=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, backend=None, disable_iss_validation=None, disable_local_ca_jwt=None, issuer=None, kubernetes_ca_cert=None, kubernetes_host=None, pem_keys=None, token_reviewer_jwt=None, __props__=None, __name__=None, __opts__=None):
         """
         Manages an Kubernetes auth backend config in a Vault server. See the [Vault
         documentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more
@@ -49,6 +57,7 @@ class AuthBackendConfig(pulumi.CustomResource):
         kubernetes = vault.AuthBackend("kubernetes", type="kubernetes")
         example = vault.kubernetes.AuthBackendConfig("example",
             backend=kubernetes.path,
+            disable_iss_validation="true",
             issuer="api",
             kubernetes_ca_cert=\"\"\"-----BEGIN CERTIFICATE-----
         example
@@ -61,6 +70,8 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
+        :param pulumi.Input[bool] disable_iss_validation: Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+        :param pulumi.Input[bool] disable_local_ca_jwt: Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
         :param pulumi.Input[str] issuer: Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         :param pulumi.Input[str] kubernetes_ca_cert: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
         :param pulumi.Input[str] kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
@@ -85,6 +96,8 @@ class AuthBackendConfig(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['backend'] = backend
+            __props__['disable_iss_validation'] = disable_iss_validation
+            __props__['disable_local_ca_jwt'] = disable_local_ca_jwt
             __props__['issuer'] = issuer
             __props__['kubernetes_ca_cert'] = kubernetes_ca_cert
             if kubernetes_host is None:
@@ -99,7 +112,7 @@ class AuthBackendConfig(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, backend=None, issuer=None, kubernetes_ca_cert=None, kubernetes_host=None, pem_keys=None, token_reviewer_jwt=None):
+    def get(resource_name, id, opts=None, backend=None, disable_iss_validation=None, disable_local_ca_jwt=None, issuer=None, kubernetes_ca_cert=None, kubernetes_host=None, pem_keys=None, token_reviewer_jwt=None):
         """
         Get an existing AuthBackendConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -108,6 +121,8 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
+        :param pulumi.Input[bool] disable_iss_validation: Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+        :param pulumi.Input[bool] disable_local_ca_jwt: Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
         :param pulumi.Input[str] issuer: Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         :param pulumi.Input[str] kubernetes_ca_cert: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
         :param pulumi.Input[str] kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
@@ -119,6 +134,8 @@ class AuthBackendConfig(pulumi.CustomResource):
         __props__ = dict()
 
         __props__["backend"] = backend
+        __props__["disable_iss_validation"] = disable_iss_validation
+        __props__["disable_local_ca_jwt"] = disable_local_ca_jwt
         __props__["issuer"] = issuer
         __props__["kubernetes_ca_cert"] = kubernetes_ca_cert
         __props__["kubernetes_host"] = kubernetes_host

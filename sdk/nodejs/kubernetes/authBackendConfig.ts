@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  * });
  * const example = new vault.kubernetes.AuthBackendConfig("example", {
  *     backend: kubernetes.path,
+ *     disableIssValidation: true,
  *     issuer: "api",
  *     kubernetesCaCert: `-----BEGIN CERTIFICATE-----
  * example
@@ -62,6 +63,14 @@ export class AuthBackendConfig extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
+     * Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     */
+    public readonly disableIssValidation!: pulumi.Output<boolean>;
+    /**
+     * Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     */
+    public readonly disableLocalCaJwt!: pulumi.Output<boolean>;
+    /**
      * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
      */
     public readonly issuer!: pulumi.Output<string | undefined>;
@@ -95,6 +104,8 @@ export class AuthBackendConfig extends pulumi.CustomResource {
         if (opts && opts.id) {
             const state = argsOrState as AuthBackendConfigState | undefined;
             inputs["backend"] = state ? state.backend : undefined;
+            inputs["disableIssValidation"] = state ? state.disableIssValidation : undefined;
+            inputs["disableLocalCaJwt"] = state ? state.disableLocalCaJwt : undefined;
             inputs["issuer"] = state ? state.issuer : undefined;
             inputs["kubernetesCaCert"] = state ? state.kubernetesCaCert : undefined;
             inputs["kubernetesHost"] = state ? state.kubernetesHost : undefined;
@@ -106,6 +117,8 @@ export class AuthBackendConfig extends pulumi.CustomResource {
                 throw new Error("Missing required property 'kubernetesHost'");
             }
             inputs["backend"] = args ? args.backend : undefined;
+            inputs["disableIssValidation"] = args ? args.disableIssValidation : undefined;
+            inputs["disableLocalCaJwt"] = args ? args.disableLocalCaJwt : undefined;
             inputs["issuer"] = args ? args.issuer : undefined;
             inputs["kubernetesCaCert"] = args ? args.kubernetesCaCert : undefined;
             inputs["kubernetesHost"] = args ? args.kubernetesHost : undefined;
@@ -131,6 +144,14 @@ export interface AuthBackendConfigState {
      * Unique name of the kubernetes backend to configure.
      */
     readonly backend?: pulumi.Input<string>;
+    /**
+     * Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     */
+    readonly disableIssValidation?: pulumi.Input<boolean>;
+    /**
+     * Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     */
+    readonly disableLocalCaJwt?: pulumi.Input<boolean>;
     /**
      * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
      */
@@ -161,6 +182,14 @@ export interface AuthBackendConfigArgs {
      * Unique name of the kubernetes backend to configure.
      */
     readonly backend?: pulumi.Input<string>;
+    /**
+     * Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     */
+    readonly disableIssValidation?: pulumi.Input<boolean>;
+    /**
+     * Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     */
+    readonly disableLocalCaJwt?: pulumi.Input<boolean>;
     /**
      * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
      */

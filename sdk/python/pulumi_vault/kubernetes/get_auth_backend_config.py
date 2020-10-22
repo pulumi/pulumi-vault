@@ -12,10 +12,16 @@ class GetAuthBackendConfigResult:
     """
     A collection of values returned by getAuthBackendConfig.
     """
-    def __init__(__self__, backend=None, id=None, issuer=None, kubernetes_ca_cert=None, kubernetes_host=None, pem_keys=None):
+    def __init__(__self__, backend=None, disable_iss_validation=None, disable_local_ca_jwt=None, id=None, issuer=None, kubernetes_ca_cert=None, kubernetes_host=None, pem_keys=None):
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         __self__.backend = backend
+        if disable_iss_validation and not isinstance(disable_iss_validation, bool):
+            raise TypeError("Expected argument 'disable_iss_validation' to be a bool")
+        __self__.disable_iss_validation = disable_iss_validation
+        if disable_local_ca_jwt and not isinstance(disable_local_ca_jwt, bool):
+            raise TypeError("Expected argument 'disable_local_ca_jwt' to be a bool")
+        __self__.disable_local_ca_jwt = disable_local_ca_jwt
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
@@ -53,13 +59,15 @@ class AwaitableGetAuthBackendConfigResult(GetAuthBackendConfigResult):
             yield self
         return GetAuthBackendConfigResult(
             backend=self.backend,
+            disable_iss_validation=self.disable_iss_validation,
+            disable_local_ca_jwt=self.disable_local_ca_jwt,
             id=self.id,
             issuer=self.issuer,
             kubernetes_ca_cert=self.kubernetes_ca_cert,
             kubernetes_host=self.kubernetes_host,
             pem_keys=self.pem_keys)
 
-def get_auth_backend_config(backend=None,issuer=None,kubernetes_ca_cert=None,kubernetes_host=None,pem_keys=None,opts=None):
+def get_auth_backend_config(backend=None,disable_iss_validation=None,disable_local_ca_jwt=None,issuer=None,kubernetes_ca_cert=None,kubernetes_host=None,pem_keys=None,opts=None):
     """
     Reads the Role of an Kubernetes from a Vault server. See the [Vault
     documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
@@ -77,6 +85,8 @@ def get_auth_backend_config(backend=None,issuer=None,kubernetes_ca_cert=None,kub
 
 
     __args__['backend'] = backend
+    __args__['disableIssValidation'] = disable_iss_validation
+    __args__['disableLocalCaJwt'] = disable_local_ca_jwt
     __args__['issuer'] = issuer
     __args__['kubernetesCaCert'] = kubernetes_ca_cert
     __args__['kubernetesHost'] = kubernetes_host
@@ -89,6 +99,8 @@ def get_auth_backend_config(backend=None,issuer=None,kubernetes_ca_cert=None,kub
 
     return AwaitableGetAuthBackendConfigResult(
         backend=__ret__.get('backend'),
+        disable_iss_validation=__ret__.get('disableIssValidation'),
+        disable_local_ca_jwt=__ret__.get('disableLocalCaJwt'),
         id=__ret__.get('id'),
         issuer=__ret__.get('issuer'),
         kubernetes_ca_cert=__ret__.get('kubernetesCaCert'),

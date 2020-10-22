@@ -23,7 +23,9 @@ func LookupAuthBackendConfig(ctx *pulumi.Context, args *LookupAuthBackendConfigA
 type LookupAuthBackendConfigArgs struct {
 	// The unique name for the Kubernetes backend the config to
 	// retrieve Role attributes for resides in. Defaults to "kubernetes".
-	Backend *string `pulumi:"backend"`
+	Backend              *string `pulumi:"backend"`
+	DisableIssValidation *bool   `pulumi:"disableIssValidation"`
+	DisableLocalCaJwt    *bool   `pulumi:"disableLocalCaJwt"`
 	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
 	Issuer *string `pulumi:"issuer"`
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
@@ -36,7 +38,9 @@ type LookupAuthBackendConfigArgs struct {
 
 // A collection of values returned by getAuthBackendConfig.
 type LookupAuthBackendConfigResult struct {
-	Backend *string `pulumi:"backend"`
+	Backend              *string `pulumi:"backend"`
+	DisableIssValidation bool    `pulumi:"disableIssValidation"`
+	DisableLocalCaJwt    bool    `pulumi:"disableLocalCaJwt"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.

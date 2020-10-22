@@ -20,16 +20,33 @@ class Alphabet(pulumi.CustomResource):
     """
     path: pulumi.Output[str]
     """
-    The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+    Path to where the back-end is mounted within Vault.
     """
     def __init__(__self__, resource_name, opts=None, alphabet=None, name=None, path=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a Alphabet resource with the given unique name, props, and options.
+        This resource supports the "/transform/alphabet/{name}" Vault endpoint.
+
+        It queries an existing alphabet by the given name.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        mount_transform = vault.Mount("mountTransform",
+            path="transform",
+            type="transform")
+        test = vault.transform.Alphabet("test",
+            path=mount_transform.path,
+            alphabet="0123456789")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alphabet: A string of characters that contains the alphabet set.
         :param pulumi.Input[str] name: The name of the alphabet.
-        :param pulumi.Input[str] path: The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+        :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -70,7 +87,7 @@ class Alphabet(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alphabet: A string of characters that contains the alphabet set.
         :param pulumi.Input[str] name: The name of the alphabet.
-        :param pulumi.Input[str] path: The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
+        :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
