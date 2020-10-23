@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['AuthBackendRoleSecretID']
@@ -16,7 +16,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
-                 cidr_lists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  secret_id: Optional[pulumi.Input[str]] = None,
@@ -57,7 +57,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Unique name of the auth backend to configure.
-        :param pulumi.Input[List[pulumi.Input[str]]] cidr_lists: If set, specifies blocks of IP addresses which can
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidr_lists: If set, specifies blocks of IP addresses which can
                perform the login operation using this SecretID.
         :param pulumi.Input[str] metadata: A JSON-encoded string containing metadata in
                key-value pairs to be set on tokens issued with this SecretID.
@@ -109,7 +109,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             accessor: Optional[pulumi.Input[str]] = None,
             backend: Optional[pulumi.Input[str]] = None,
-            cidr_lists: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             metadata: Optional[pulumi.Input[str]] = None,
             role_name: Optional[pulumi.Input[str]] = None,
             secret_id: Optional[pulumi.Input[str]] = None,
@@ -125,7 +125,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accessor: The unique ID for this SecretID that can be safely logged.
         :param pulumi.Input[str] backend: Unique name of the auth backend to configure.
-        :param pulumi.Input[List[pulumi.Input[str]]] cidr_lists: If set, specifies blocks of IP addresses which can
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidr_lists: If set, specifies blocks of IP addresses which can
                perform the login operation using this SecretID.
         :param pulumi.Input[str] metadata: A JSON-encoded string containing metadata in
                key-value pairs to be set on tokens issued with this SecretID.
@@ -173,7 +173,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="cidrLists")
-    def cidr_lists(self) -> pulumi.Output[Optional[List[str]]]:
+    def cidr_lists(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         If set, specifies blocks of IP addresses which can
         perform the login operation using this SecretID.

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -70,6 +70,9 @@ class GetDecryptResult:
     @property
     @pulumi.getter
     def plaintext(self) -> str:
+        """
+        Decrypted plaintext returned from Vault
+        """
         return pulumi.get(self, "plaintext")
 
 
@@ -93,7 +96,24 @@ def get_decrypt(backend: Optional[str] = None,
                 key: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDecryptResult:
     """
-    Use this data source to access information about an existing resource.
+    This is a data source which can be used to decrypt ciphertext using a Vault Transit key.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    test = vault.transit.get_decrypt(backend="transit",
+        ciphertext="vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
+        key="test")
+    ```
+
+
+    :param str backend: The path the transit secret backend is mounted at, with no leading or trailing `/`.
+    :param str ciphertext: Ciphertext to be decoded.
+    :param str context: Context for key derivation. This is required if key derivation is enabled for this key.
+    :param str key: Specifies the name of the transit key to decrypt against.
     """
     __args__ = dict()
     __args__['backend'] = backend

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['User']
@@ -16,15 +16,15 @@ class User(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
-                 policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[float]] = None,
-                 token_max_ttl: Optional[pulumi.Input[float]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_max_ttl: Optional[pulumi.Input[int]] = None,
                  token_no_default_policy: Optional[pulumi.Input[bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[float]] = None,
-                 token_period: Optional[pulumi.Input[float]] = None,
-                 token_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[float]] = None,
+                 token_num_uses: Optional[pulumi.Input[int]] = None,
+                 token_period: Optional[pulumi.Input[int]] = None,
+                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_ttl: Optional[pulumi.Input[int]] = None,
                  token_type: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None,
                  __props__=None,
@@ -55,16 +55,16 @@ class User(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path where the github auth backend is mounted. Defaults to `github`
                if not specified.
-        :param pulumi.Input[List[pulumi.Input[str]]] policies: An array of strings specifying the policies to be set on tokens issued
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings specifying the policies to be set on tokens issued
                using this role.
-        :param pulumi.Input[List[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
-        :param pulumi.Input[float] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
-        :param pulumi.Input[float] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
         :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
-        :param pulumi.Input[float] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
-        :param pulumi.Input[float] token_period: Generated Token's Period
-        :param pulumi.Input[List[pulumi.Input[str]]] token_policies: Generated Token's Policies
-        :param pulumi.Input[float] token_ttl: The initial ttl of the token to generate in seconds
+        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[int] token_period: Generated Token's Period
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         :param pulumi.Input[str] user: GitHub user name.
         """
@@ -137,15 +137,15 @@ class User(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
-            policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            token_bound_cidrs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            token_explicit_max_ttl: Optional[pulumi.Input[float]] = None,
-            token_max_ttl: Optional[pulumi.Input[float]] = None,
+            policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
+            token_max_ttl: Optional[pulumi.Input[int]] = None,
             token_no_default_policy: Optional[pulumi.Input[bool]] = None,
-            token_num_uses: Optional[pulumi.Input[float]] = None,
-            token_period: Optional[pulumi.Input[float]] = None,
-            token_policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            token_ttl: Optional[pulumi.Input[float]] = None,
+            token_num_uses: Optional[pulumi.Input[int]] = None,
+            token_period: Optional[pulumi.Input[int]] = None,
+            token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            token_ttl: Optional[pulumi.Input[int]] = None,
             token_type: Optional[pulumi.Input[str]] = None,
             user: Optional[pulumi.Input[str]] = None) -> 'User':
         """
@@ -157,16 +157,16 @@ class User(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path where the github auth backend is mounted. Defaults to `github`
                if not specified.
-        :param pulumi.Input[List[pulumi.Input[str]]] policies: An array of strings specifying the policies to be set on tokens issued
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings specifying the policies to be set on tokens issued
                using this role.
-        :param pulumi.Input[List[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
-        :param pulumi.Input[float] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
-        :param pulumi.Input[float] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
         :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
-        :param pulumi.Input[float] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
-        :param pulumi.Input[float] token_period: Generated Token's Period
-        :param pulumi.Input[List[pulumi.Input[str]]] token_policies: Generated Token's Policies
-        :param pulumi.Input[float] token_ttl: The initial ttl of the token to generate in seconds
+        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[int] token_period: Generated Token's Period
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         :param pulumi.Input[str] user: GitHub user name.
         """
@@ -199,7 +199,7 @@ class User(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def policies(self) -> pulumi.Output[Optional[List[str]]]:
+    def policies(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         An array of strings specifying the policies to be set on tokens issued
         using this role.
@@ -208,7 +208,7 @@ class User(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="tokenBoundCidrs")
-    def token_bound_cidrs(self) -> pulumi.Output[Optional[List[str]]]:
+    def token_bound_cidrs(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Specifies the blocks of IP addresses which are allowed to use the generated token
         """
@@ -216,7 +216,7 @@ class User(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="tokenExplicitMaxTtl")
-    def token_explicit_max_ttl(self) -> pulumi.Output[Optional[float]]:
+    def token_explicit_max_ttl(self) -> pulumi.Output[Optional[int]]:
         """
         Generated Token's Explicit Maximum TTL in seconds
         """
@@ -224,7 +224,7 @@ class User(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="tokenMaxTtl")
-    def token_max_ttl(self) -> pulumi.Output[Optional[float]]:
+    def token_max_ttl(self) -> pulumi.Output[Optional[int]]:
         """
         The maximum lifetime of the generated token
         """
@@ -240,7 +240,7 @@ class User(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="tokenNumUses")
-    def token_num_uses(self) -> pulumi.Output[Optional[float]]:
+    def token_num_uses(self) -> pulumi.Output[Optional[int]]:
         """
         The maximum number of times a token may be used, a value of zero means unlimited
         """
@@ -248,7 +248,7 @@ class User(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="tokenPeriod")
-    def token_period(self) -> pulumi.Output[Optional[float]]:
+    def token_period(self) -> pulumi.Output[Optional[int]]:
         """
         Generated Token's Period
         """
@@ -256,7 +256,7 @@ class User(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="tokenPolicies")
-    def token_policies(self) -> pulumi.Output[Optional[List[str]]]:
+    def token_policies(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Generated Token's Policies
         """
@@ -264,7 +264,7 @@ class User(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="tokenTtl")
-    def token_ttl(self) -> pulumi.Output[Optional[float]]:
+    def token_ttl(self) -> pulumi.Output[Optional[int]]:
         """
         The initial ttl of the token to generate in seconds
         """

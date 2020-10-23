@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['SecretBackendRootSignIntermediate']
@@ -15,25 +15,25 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alt_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  common_name: Optional[pulumi.Input[str]] = None,
                  country: Optional[pulumi.Input[str]] = None,
                  csr: Optional[pulumi.Input[str]] = None,
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
                  format: Optional[pulumi.Input[str]] = None,
-                 ip_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
-                 max_path_length: Optional[pulumi.Input[float]] = None,
+                 max_path_length: Optional[pulumi.Input[int]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
-                 other_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ou: Optional[pulumi.Input[str]] = None,
-                 permitted_dns_domains: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  postal_code: Optional[pulumi.Input[str]] = None,
                  province: Optional[pulumi.Input[str]] = None,
                  street_address: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
-                 uri_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  use_csr_values: Optional[pulumi.Input[bool]] = None,
                  __props__=None,
                  __name__=None,
@@ -59,25 +59,25 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] alt_names: List of alternative names
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] common_name: CN of intermediate to create
         :param pulumi.Input[str] country: The country
         :param pulumi.Input[str] csr: The CSR
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[str] format: The format of data
-        :param pulumi.Input[List[pulumi.Input[str]]] ip_sans: List of alternative IPs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[str] locality: The locality
-        :param pulumi.Input[float] max_path_length: The maximum path length to encode in the generated certificate
+        :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[str] organization: The organization
-        :param pulumi.Input[List[pulumi.Input[str]]] other_sans: List of other SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
-        :param pulumi.Input[List[pulumi.Input[str]]] permitted_dns_domains: List of domains for which certificates are allowed to be issued
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_dns_domains: List of domains for which certificates are allowed to be issued
         :param pulumi.Input[str] postal_code: The postal code
         :param pulumi.Input[str] province: The province
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] ttl: Time to live
-        :param pulumi.Input[List[pulumi.Input[str]]] uri_sans: List of alternative URIs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         :param pulumi.Input[bool] use_csr_values: Preserve CSR values
         """
         if __name__ is not None:
@@ -137,7 +137,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alt_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             ca_chain: Optional[pulumi.Input[str]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
@@ -146,20 +146,20 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             csr: Optional[pulumi.Input[str]] = None,
             exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
             format: Optional[pulumi.Input[str]] = None,
-            ip_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             issuing_ca: Optional[pulumi.Input[str]] = None,
             locality: Optional[pulumi.Input[str]] = None,
-            max_path_length: Optional[pulumi.Input[float]] = None,
+            max_path_length: Optional[pulumi.Input[int]] = None,
             organization: Optional[pulumi.Input[str]] = None,
-            other_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ou: Optional[pulumi.Input[str]] = None,
-            permitted_dns_domains: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             postal_code: Optional[pulumi.Input[str]] = None,
             province: Optional[pulumi.Input[str]] = None,
             serial: Optional[pulumi.Input[str]] = None,
             street_address: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[str]] = None,
-            uri_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             use_csr_values: Optional[pulumi.Input[bool]] = None) -> 'SecretBackendRootSignIntermediate':
         """
         Get an existing SecretBackendRootSignIntermediate resource's state with the given name, id, and optional extra
@@ -168,7 +168,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] alt_names: List of alternative names
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] ca_chain: The CA chain
         :param pulumi.Input[str] certificate: The certificate
@@ -177,20 +177,20 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[str] csr: The CSR
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[str] format: The format of data
-        :param pulumi.Input[List[pulumi.Input[str]]] ip_sans: List of alternative IPs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[str] issuing_ca: The issuing CA
         :param pulumi.Input[str] locality: The locality
-        :param pulumi.Input[float] max_path_length: The maximum path length to encode in the generated certificate
+        :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[str] organization: The organization
-        :param pulumi.Input[List[pulumi.Input[str]]] other_sans: List of other SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
-        :param pulumi.Input[List[pulumi.Input[str]]] permitted_dns_domains: List of domains for which certificates are allowed to be issued
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_dns_domains: List of domains for which certificates are allowed to be issued
         :param pulumi.Input[str] postal_code: The postal code
         :param pulumi.Input[str] province: The province
         :param pulumi.Input[str] serial: The serial
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] ttl: Time to live
-        :param pulumi.Input[List[pulumi.Input[str]]] uri_sans: List of alternative URIs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         :param pulumi.Input[bool] use_csr_values: Preserve CSR values
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -225,7 +225,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="altNames")
-    def alt_names(self) -> pulumi.Output[Optional[List[str]]]:
+    def alt_names(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of alternative names
         """
@@ -297,7 +297,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ipSans")
-    def ip_sans(self) -> pulumi.Output[Optional[List[str]]]:
+    def ip_sans(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of alternative IPs
         """
@@ -321,7 +321,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxPathLength")
-    def max_path_length(self) -> pulumi.Output[Optional[float]]:
+    def max_path_length(self) -> pulumi.Output[Optional[int]]:
         """
         The maximum path length to encode in the generated certificate
         """
@@ -337,7 +337,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="otherSans")
-    def other_sans(self) -> pulumi.Output[Optional[List[str]]]:
+    def other_sans(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of other SANs
         """
@@ -353,7 +353,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="permittedDnsDomains")
-    def permitted_dns_domains(self) -> pulumi.Output[Optional[List[str]]]:
+    def permitted_dns_domains(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of domains for which certificates are allowed to be issued
         """
@@ -401,7 +401,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="uriSans")
-    def uri_sans(self) -> pulumi.Output[Optional[List[str]]]:
+    def uri_sans(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of alternative URIs
         """

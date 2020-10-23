@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 
@@ -93,7 +93,7 @@ class GetEntityResult:
 
     @property
     @pulumi.getter
-    def aliases(self) -> List['outputs.GetEntityAliasResult']:
+    def aliases(self) -> Sequence['outputs.GetEntityAliasResult']:
         """
         A list of entity alias. Structure is documented below.
         """
@@ -118,7 +118,7 @@ class GetEntityResult:
 
     @property
     @pulumi.getter(name="directGroupIds")
-    def direct_group_ids(self) -> List[str]:
+    def direct_group_ids(self) -> Sequence[str]:
         """
         List of Group IDs of which the entity is directly a member of
         """
@@ -144,7 +144,7 @@ class GetEntityResult:
 
     @property
     @pulumi.getter(name="groupIds")
-    def group_ids(self) -> List[str]:
+    def group_ids(self) -> Sequence[str]:
         """
         List of all Group IDs of which the entity is a member of
         """
@@ -160,7 +160,7 @@ class GetEntityResult:
 
     @property
     @pulumi.getter(name="inheritedGroupIds")
-    def inherited_group_ids(self) -> List[str]:
+    def inherited_group_ids(self) -> Sequence[str]:
         """
         List of all Group IDs of which the entity is a member of transitively
         """
@@ -176,7 +176,7 @@ class GetEntityResult:
 
     @property
     @pulumi.getter(name="mergedEntityIds")
-    def merged_entity_ids(self) -> List[str]:
+    def merged_entity_ids(self) -> Sequence[str]:
         """
         Other entity IDs which is merged with this entity
         """
@@ -200,7 +200,7 @@ class GetEntityResult:
 
     @property
     @pulumi.getter
-    def policies(self) -> List[str]:
+    def policies(self) -> Sequence[str]:
         """
         List of policies attached to the entity
         """

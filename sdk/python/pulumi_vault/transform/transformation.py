@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['Transformation']
@@ -15,12 +15,12 @@ class Transformation(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allowed_roles: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  masking_character: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None,
-                 templates: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 templates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tweak_source: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None,
@@ -51,12 +51,12 @@ class Transformation(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] allowed_roles: The set of roles allowed to perform this transformation.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: The set of roles allowed to perform this transformation.
         :param pulumi.Input[str] masking_character: The character used to replace data when in masking mode
         :param pulumi.Input[str] name: The name of the transformation.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[str] template: The name of the template to use.
-        :param pulumi.Input[List[pulumi.Input[str]]] templates: Templates configured for transformation.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] templates: Templates configured for transformation.
         :param pulumi.Input[str] tweak_source: The source of where the tweak value comes from. Only valid when in FPE mode.
         :param pulumi.Input[str] type: The type of transformation to perform.
         """
@@ -97,12 +97,12 @@ class Transformation(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            allowed_roles: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             masking_character: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             template: Optional[pulumi.Input[str]] = None,
-            templates: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            templates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             tweak_source: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'Transformation':
         """
@@ -112,12 +112,12 @@ class Transformation(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] allowed_roles: The set of roles allowed to perform this transformation.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: The set of roles allowed to perform this transformation.
         :param pulumi.Input[str] masking_character: The character used to replace data when in masking mode
         :param pulumi.Input[str] name: The name of the transformation.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[str] template: The name of the template to use.
-        :param pulumi.Input[List[pulumi.Input[str]]] templates: Templates configured for transformation.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] templates: Templates configured for transformation.
         :param pulumi.Input[str] tweak_source: The source of where the tweak value comes from. Only valid when in FPE mode.
         :param pulumi.Input[str] type: The type of transformation to perform.
         """
@@ -137,7 +137,7 @@ class Transformation(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> pulumi.Output[Optional[List[str]]]:
+    def allowed_roles(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         The set of roles allowed to perform this transformation.
         """
@@ -177,7 +177,7 @@ class Transformation(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def templates(self) -> pulumi.Output[List[str]]:
+    def templates(self) -> pulumi.Output[Sequence[str]]:
         """
         Templates configured for transformation.
         """

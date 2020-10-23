@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['AuthBackendConfig']
@@ -21,7 +21,7 @@ class AuthBackendConfig(pulumi.CustomResource):
                  issuer: Optional[pulumi.Input[str]] = None,
                  kubernetes_ca_cert: Optional[pulumi.Input[str]] = None,
                  kubernetes_host: Optional[pulumi.Input[str]] = None,
-                 pem_keys: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_reviewer_jwt: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
@@ -58,7 +58,7 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param pulumi.Input[str] issuer: Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         :param pulumi.Input[str] kubernetes_ca_cert: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
         :param pulumi.Input[str] kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
-        :param pulumi.Input[List[pulumi.Input[str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         :param pulumi.Input[str] token_reviewer_jwt: A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         """
         if __name__ is not None:
@@ -104,7 +104,7 @@ class AuthBackendConfig(pulumi.CustomResource):
             issuer: Optional[pulumi.Input[str]] = None,
             kubernetes_ca_cert: Optional[pulumi.Input[str]] = None,
             kubernetes_host: Optional[pulumi.Input[str]] = None,
-            pem_keys: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             token_reviewer_jwt: Optional[pulumi.Input[str]] = None) -> 'AuthBackendConfig':
         """
         Get an existing AuthBackendConfig resource's state with the given name, id, and optional extra
@@ -119,7 +119,7 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param pulumi.Input[str] issuer: Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         :param pulumi.Input[str] kubernetes_ca_cert: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
         :param pulumi.Input[str] kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
-        :param pulumi.Input[List[pulumi.Input[str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         :param pulumi.Input[str] token_reviewer_jwt: A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -186,7 +186,7 @@ class AuthBackendConfig(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="pemKeys")
-    def pem_keys(self) -> pulumi.Output[Optional[List[str]]]:
+    def pem_keys(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         """

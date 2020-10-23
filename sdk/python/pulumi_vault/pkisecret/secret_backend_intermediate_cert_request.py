@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['SecretBackendIntermediateCertRequest']
@@ -15,25 +15,25 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alt_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  common_name: Optional[pulumi.Input[str]] = None,
                  country: Optional[pulumi.Input[str]] = None,
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
                  format: Optional[pulumi.Input[str]] = None,
-                 ip_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 key_bits: Optional[pulumi.Input[float]] = None,
+                 ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 key_bits: Optional[pulumi.Input[int]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
-                 other_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ou: Optional[pulumi.Input[str]] = None,
                  postal_code: Optional[pulumi.Input[str]] = None,
                  private_key_format: Optional[pulumi.Input[str]] = None,
                  province: Optional[pulumi.Input[str]] = None,
                  street_address: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
-                 uri_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -41,25 +41,25 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         Create a SecretBackendIntermediateCertRequest resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] alt_names: List of alternative names
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] common_name: CN of intermediate to create
         :param pulumi.Input[str] country: The country
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[str] format: The format of data
-        :param pulumi.Input[List[pulumi.Input[str]]] ip_sans: List of alternative IPs
-        :param pulumi.Input[float] key_bits: The number of bits to use
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
+        :param pulumi.Input[int] key_bits: The number of bits to use
         :param pulumi.Input[str] key_type: The desired key type
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[str] organization: The organization
-        :param pulumi.Input[List[pulumi.Input[str]]] other_sans: List of other SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
         :param pulumi.Input[str] postal_code: The postal code
         :param pulumi.Input[str] private_key_format: The private key format
         :param pulumi.Input[str] province: The province
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] type: Type of intermediate to create. Must be either \"exported\" or \"internal\"
-        :param pulumi.Input[List[pulumi.Input[str]]] uri_sans: List of alternative URIs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -116,19 +116,19 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alt_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             common_name: Optional[pulumi.Input[str]] = None,
             country: Optional[pulumi.Input[str]] = None,
             csr: Optional[pulumi.Input[str]] = None,
             exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
             format: Optional[pulumi.Input[str]] = None,
-            ip_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            key_bits: Optional[pulumi.Input[float]] = None,
+            ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            key_bits: Optional[pulumi.Input[int]] = None,
             key_type: Optional[pulumi.Input[str]] = None,
             locality: Optional[pulumi.Input[str]] = None,
             organization: Optional[pulumi.Input[str]] = None,
-            other_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ou: Optional[pulumi.Input[str]] = None,
             postal_code: Optional[pulumi.Input[str]] = None,
             private_key: Optional[pulumi.Input[str]] = None,
@@ -137,7 +137,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
             province: Optional[pulumi.Input[str]] = None,
             street_address: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
-            uri_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'SecretBackendIntermediateCertRequest':
+            uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'SecretBackendIntermediateCertRequest':
         """
         Get an existing SecretBackendIntermediateCertRequest resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -145,19 +145,19 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] alt_names: List of alternative names
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] common_name: CN of intermediate to create
         :param pulumi.Input[str] country: The country
         :param pulumi.Input[str] csr: The CSR
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[str] format: The format of data
-        :param pulumi.Input[List[pulumi.Input[str]]] ip_sans: List of alternative IPs
-        :param pulumi.Input[float] key_bits: The number of bits to use
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
+        :param pulumi.Input[int] key_bits: The number of bits to use
         :param pulumi.Input[str] key_type: The desired key type
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[str] organization: The organization
-        :param pulumi.Input[List[pulumi.Input[str]]] other_sans: List of other SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
         :param pulumi.Input[str] postal_code: The postal code
         :param pulumi.Input[str] private_key: The private key
@@ -166,7 +166,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[str] province: The province
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] type: Type of intermediate to create. Must be either \"exported\" or \"internal\"
-        :param pulumi.Input[List[pulumi.Input[str]]] uri_sans: List of alternative URIs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -198,7 +198,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="altNames")
-    def alt_names(self) -> pulumi.Output[Optional[List[str]]]:
+    def alt_names(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of alternative names
         """
@@ -254,7 +254,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ipSans")
-    def ip_sans(self) -> pulumi.Output[Optional[List[str]]]:
+    def ip_sans(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of alternative IPs
         """
@@ -262,7 +262,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="keyBits")
-    def key_bits(self) -> pulumi.Output[Optional[float]]:
+    def key_bits(self) -> pulumi.Output[Optional[int]]:
         """
         The number of bits to use
         """
@@ -294,7 +294,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="otherSans")
-    def other_sans(self) -> pulumi.Output[Optional[List[str]]]:
+    def other_sans(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of other SANs
         """
@@ -366,7 +366,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="uriSans")
-    def uri_sans(self) -> pulumi.Output[Optional[List[str]]]:
+    def uri_sans(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of alternative URIs
         """

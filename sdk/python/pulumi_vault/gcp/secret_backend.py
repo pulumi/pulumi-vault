@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['SecretBackend']
@@ -16,10 +16,10 @@ class SecretBackend(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  credentials: Optional[pulumi.Input[str]] = None,
-                 default_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
-                 max_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
@@ -29,11 +29,11 @@ class SecretBackend(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] credentials: The GCP service account credentials in JSON format.
-        :param pulumi.Input[float] default_lease_ttl_seconds: The default TTL for credentials
+        :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
-        :param pulumi.Input[float] max_lease_ttl_seconds: The maximum TTL that can be requested
+        :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `gcp`.
@@ -72,10 +72,10 @@ class SecretBackend(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             credentials: Optional[pulumi.Input[str]] = None,
-            default_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+            default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
             local: Optional[pulumi.Input[bool]] = None,
-            max_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+            max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             path: Optional[pulumi.Input[str]] = None) -> 'SecretBackend':
         """
         Get an existing SecretBackend resource's state with the given name, id, and optional extra
@@ -85,11 +85,11 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] credentials: The GCP service account credentials in JSON format.
-        :param pulumi.Input[float] default_lease_ttl_seconds: The default TTL for credentials
+        :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
-        :param pulumi.Input[float] max_lease_ttl_seconds: The maximum TTL that can be requested
+        :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `gcp`.
@@ -116,7 +116,7 @@ class SecretBackend(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
-    def default_lease_ttl_seconds(self) -> pulumi.Output[Optional[float]]:
+    def default_lease_ttl_seconds(self) -> pulumi.Output[Optional[int]]:
         """
         The default TTL for credentials
         issued by this backend. Defaults to '0'.
@@ -141,7 +141,7 @@ class SecretBackend(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxLeaseTtlSeconds")
-    def max_lease_ttl_seconds(self) -> pulumi.Output[Optional[float]]:
+    def max_lease_ttl_seconds(self) -> pulumi.Output[Optional[int]]:
         """
         The maximum TTL that can be requested
         for credentials issued by this backend. Defaults to '0'.

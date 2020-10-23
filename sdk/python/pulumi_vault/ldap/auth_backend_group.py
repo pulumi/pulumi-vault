@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['AuthBackendGroup']
@@ -17,7 +17,7 @@ class AuthBackendGroup(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  groupname: Optional[pulumi.Input[str]] = None,
-                 policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -49,7 +49,7 @@ class AuthBackendGroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path to the authentication backend
         :param pulumi.Input[str] groupname: The LDAP groupname
-        :param pulumi.Input[List[pulumi.Input[str]]] policies: Policies which should be granted to members of the group
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Policies which should be granted to members of the group
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -85,7 +85,7 @@ class AuthBackendGroup(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             groupname: Optional[pulumi.Input[str]] = None,
-            policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'AuthBackendGroup':
+            policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'AuthBackendGroup':
         """
         Get an existing AuthBackendGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -95,7 +95,7 @@ class AuthBackendGroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path to the authentication backend
         :param pulumi.Input[str] groupname: The LDAP groupname
-        :param pulumi.Input[List[pulumi.Input[str]]] policies: Policies which should be granted to members of the group
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Policies which should be granted to members of the group
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -124,7 +124,7 @@ class AuthBackendGroup(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def policies(self) -> pulumi.Output[List[str]]:
+    def policies(self) -> pulumi.Output[Sequence[str]]:
         """
         Policies which should be granted to members of the group
         """

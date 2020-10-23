@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['SecretBackend']
@@ -16,9 +16,9 @@ class SecretBackend(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[str]] = None,
-                 default_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 max_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
@@ -31,10 +31,10 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The AWS Access Key ID this backend should use to
                issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
-        :param pulumi.Input[float] default_lease_ttl_seconds: The default TTL for credentials
+        :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
-        :param pulumi.Input[float] max_lease_ttl_seconds: The maximum TTL that can be requested
+        :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `aws`.
@@ -77,9 +77,9 @@ class SecretBackend(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             access_key: Optional[pulumi.Input[str]] = None,
-            default_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+            default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
-            max_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+            max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             path: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             secret_key: Optional[pulumi.Input[str]] = None) -> 'SecretBackend':
@@ -92,10 +92,10 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The AWS Access Key ID this backend should use to
                issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
-        :param pulumi.Input[float] default_lease_ttl_seconds: The default TTL for credentials
+        :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
-        :param pulumi.Input[float] max_lease_ttl_seconds: The maximum TTL that can be requested
+        :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `aws`.
@@ -127,7 +127,7 @@ class SecretBackend(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
-    def default_lease_ttl_seconds(self) -> pulumi.Output[float]:
+    def default_lease_ttl_seconds(self) -> pulumi.Output[int]:
         """
         The default TTL for credentials
         issued by this backend.
@@ -144,7 +144,7 @@ class SecretBackend(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxLeaseTtlSeconds")
-    def max_lease_ttl_seconds(self) -> pulumi.Output[float]:
+    def max_lease_ttl_seconds(self) -> pulumi.Output[int]:
         """
         The maximum TTL that can be requested
         for credentials issued by this backend.

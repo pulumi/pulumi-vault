@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['AuthBackendRoletagBlacklist']
@@ -17,7 +17,7 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  disable_periodic_tidy: Optional[pulumi.Input[bool]] = None,
-                 safety_buffer: Optional[pulumi.Input[float]] = None,
+                 safety_buffer: Optional[pulumi.Input[int]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -42,7 +42,7 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
                mounted at.
         :param pulumi.Input[bool] disable_periodic_tidy: If set to true, disables the periodic
                tidying of the roletag blacklist entries. Defaults to false.
-        :param pulumi.Input[float] safety_buffer: The amount of extra time that must have passed
+        :param pulumi.Input[int] safety_buffer: The amount of extra time that must have passed
                beyond the roletag expiration, before it is removed from the backend storage.
                Defaults to 259,200 seconds, or 72 hours.
         """
@@ -80,7 +80,7 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             disable_periodic_tidy: Optional[pulumi.Input[bool]] = None,
-            safety_buffer: Optional[pulumi.Input[float]] = None) -> 'AuthBackendRoletagBlacklist':
+            safety_buffer: Optional[pulumi.Input[int]] = None) -> 'AuthBackendRoletagBlacklist':
         """
         Get an existing AuthBackendRoletagBlacklist resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -92,7 +92,7 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
                mounted at.
         :param pulumi.Input[bool] disable_periodic_tidy: If set to true, disables the periodic
                tidying of the roletag blacklist entries. Defaults to false.
-        :param pulumi.Input[float] safety_buffer: The amount of extra time that must have passed
+        :param pulumi.Input[int] safety_buffer: The amount of extra time that must have passed
                beyond the roletag expiration, before it is removed from the backend storage.
                Defaults to 259,200 seconds, or 72 hours.
         """
@@ -125,7 +125,7 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="safetyBuffer")
-    def safety_buffer(self) -> pulumi.Output[Optional[float]]:
+    def safety_buffer(self) -> pulumi.Output[Optional[int]]:
         """
         The amount of extra time that must have passed
         beyond the roletag expiration, before it is removed from the backend storage.

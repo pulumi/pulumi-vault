@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['SecretBackend']
@@ -16,9 +16,9 @@ class SecretBackend(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  address: Optional[pulumi.Input[str]] = None,
-                 default_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 max_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  scheme: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
@@ -30,9 +30,9 @@ class SecretBackend(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address: Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
-        :param pulumi.Input[float] default_lease_ttl_seconds: The default TTL for credentials issued by this backend.
+        :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials issued by this backend.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
-        :param pulumi.Input[float] max_lease_ttl_seconds: The maximum TTL that can be requested
+        :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
         :param pulumi.Input[str] path: The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
         :param pulumi.Input[str] scheme: Specifies the URL scheme to use. Defaults to `http`.
@@ -77,9 +77,9 @@ class SecretBackend(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             address: Optional[pulumi.Input[str]] = None,
-            default_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+            default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
-            max_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+            max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             path: Optional[pulumi.Input[str]] = None,
             scheme: Optional[pulumi.Input[str]] = None,
             token: Optional[pulumi.Input[str]] = None) -> 'SecretBackend':
@@ -91,9 +91,9 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address: Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
-        :param pulumi.Input[float] default_lease_ttl_seconds: The default TTL for credentials issued by this backend.
+        :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials issued by this backend.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
-        :param pulumi.Input[float] max_lease_ttl_seconds: The maximum TTL that can be requested
+        :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
         :param pulumi.Input[str] path: The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
         :param pulumi.Input[str] scheme: Specifies the URL scheme to use. Defaults to `http`.
@@ -122,7 +122,7 @@ class SecretBackend(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
-    def default_lease_ttl_seconds(self) -> pulumi.Output[Optional[float]]:
+    def default_lease_ttl_seconds(self) -> pulumi.Output[Optional[int]]:
         """
         The default TTL for credentials issued by this backend.
         """
@@ -138,7 +138,7 @@ class SecretBackend(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxLeaseTtlSeconds")
-    def max_lease_ttl_seconds(self) -> pulumi.Output[Optional[float]]:
+    def max_lease_ttl_seconds(self) -> pulumi.Output[Optional[int]]:
         """
         The maximum TTL that can be requested
         for credentials issued by this backend.

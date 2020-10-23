@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -19,7 +19,7 @@ class GetEntityAliasResult(dict):
                  creation_time: str,
                  id: str,
                  last_update_time: str,
-                 merged_from_canonical_ids: List[str],
+                 merged_from_canonical_ids: Sequence[str],
                  metadata: Mapping[str, Any],
                  mount_accessor: str,
                  mount_path: str,
@@ -30,7 +30,7 @@ class GetEntityAliasResult(dict):
         :param str creation_time: Creation time of the Alias
         :param str id: ID of the alias
         :param str last_update_time: Last update time of the alias
-        :param List[str] merged_from_canonical_ids: List of canonical IDs merged with this alias
+        :param Sequence[str] merged_from_canonical_ids: List of canonical IDs merged with this alias
         :param Mapping[str, Any] metadata: Arbitrary metadata
         :param str mount_accessor: Authentication mount acccessor which this alias belongs to
         :param str mount_path: Authentication mount path which this alias belongs to
@@ -82,7 +82,7 @@ class GetEntityAliasResult(dict):
 
     @property
     @pulumi.getter(name="mergedFromCanonicalIds")
-    def merged_from_canonical_ids(self) -> List[str]:
+    def merged_from_canonical_ids(self) -> Sequence[str]:
         """
         List of canonical IDs merged with this alias
         """

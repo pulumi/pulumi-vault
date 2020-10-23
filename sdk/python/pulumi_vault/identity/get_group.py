@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -77,8 +77,8 @@ class GetGroupResult:
         if metadata and not isinstance(metadata, dict):
             raise TypeError("Expected argument 'metadata' to be a dict")
         pulumi.set(__self__, "metadata", metadata)
-        if modify_index and not isinstance(modify_index, float):
-            raise TypeError("Expected argument 'modify_index' to be a float")
+        if modify_index and not isinstance(modify_index, int):
+            raise TypeError("Expected argument 'modify_index' to be a int")
         pulumi.set(__self__, "modify_index", modify_index)
         if namespace_id and not isinstance(namespace_id, str):
             raise TypeError("Expected argument 'namespace_id' to be a str")
@@ -124,7 +124,7 @@ class GetGroupResult:
 
     @property
     @pulumi.getter(name="aliasMergedFromCanonicalIds")
-    def alias_merged_from_canonical_ids(self) -> List[str]:
+    def alias_merged_from_canonical_ids(self) -> Sequence[str]:
         """
         List of canonical IDs merged with this alias
         """
@@ -209,7 +209,7 @@ class GetGroupResult:
 
     @property
     @pulumi.getter(name="memberEntityIds")
-    def member_entity_ids(self) -> List[str]:
+    def member_entity_ids(self) -> Sequence[str]:
         """
         List of Entity IDs which are members of this group
         """
@@ -217,7 +217,7 @@ class GetGroupResult:
 
     @property
     @pulumi.getter(name="memberGroupIds")
-    def member_group_ids(self) -> List[str]:
+    def member_group_ids(self) -> Sequence[str]:
         """
         List of Group IDs which are members of this group
         """
@@ -233,7 +233,7 @@ class GetGroupResult:
 
     @property
     @pulumi.getter(name="modifyIndex")
-    def modify_index(self) -> float:
+    def modify_index(self) -> int:
         """
         Modify index of the group
         """
@@ -249,7 +249,7 @@ class GetGroupResult:
 
     @property
     @pulumi.getter(name="parentGroupIds")
-    def parent_group_ids(self) -> List[str]:
+    def parent_group_ids(self) -> Sequence[str]:
         """
         List of Group IDs which are parents of this group.
         """
@@ -257,7 +257,7 @@ class GetGroupResult:
 
     @property
     @pulumi.getter
-    def policies(self) -> List[str]:
+    def policies(self) -> Sequence[str]:
         """
         List of policies attached to the group
         """

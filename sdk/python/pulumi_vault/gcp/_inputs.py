@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -16,10 +16,10 @@ __all__ = [
 class SecretRolesetBindingArgs:
     def __init__(__self__, *,
                  resource: pulumi.Input[str],
-                 roles: pulumi.Input[List[pulumi.Input[str]]]):
+                 roles: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
         :param pulumi.Input[str] resource: Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
-        :param pulumi.Input[List[pulumi.Input[str]]] roles: List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
         """
         pulumi.set(__self__, "resource", resource)
         pulumi.set(__self__, "roles", roles)
@@ -38,14 +38,14 @@ class SecretRolesetBindingArgs:
 
     @property
     @pulumi.getter
-    def roles(self) -> pulumi.Input[List[pulumi.Input[str]]]:
+    def roles(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
         """
         return pulumi.get(self, "roles")
 
     @roles.setter
-    def roles(self, value: pulumi.Input[List[pulumi.Input[str]]]):
+    def roles(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "roles", value)
 
 

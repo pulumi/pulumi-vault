@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['Endpoint']
@@ -20,7 +20,7 @@ class Endpoint(pulumi.CustomResource):
                  disable_read: Optional[pulumi.Input[bool]] = None,
                  ignore_absent_fields: Optional[pulumi.Input[bool]] = None,
                  path: Optional[pulumi.Input[str]] = None,
-                 write_fields: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 write_fields: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -41,7 +41,7 @@ class Endpoint(pulumi.CustomResource):
                data. Consult each backend's documentation to see which endpoints
                support the `PUT` methods and to determine whether they also support
                `DELETE` and `GET`.
-        :param pulumi.Input[List[pulumi.Input[str]]] write_fields: Top-level fields returned by write to persist in state
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] write_fields: Top-level fields returned by write to persist in state
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -89,7 +89,7 @@ class Endpoint(pulumi.CustomResource):
             path: Optional[pulumi.Input[str]] = None,
             write_data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             write_data_json: Optional[pulumi.Input[str]] = None,
-            write_fields: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'Endpoint':
+            write_fields: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Endpoint':
         """
         Get an existing Endpoint resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -112,7 +112,7 @@ class Endpoint(pulumi.CustomResource):
                `DELETE` and `GET`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] write_data: Map of strings returned by write operation
         :param pulumi.Input[str] write_data_json: JSON data returned by write operation
-        :param pulumi.Input[List[pulumi.Input[str]]] write_fields: Top-level fields returned by write to persist in state
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] write_fields: Top-level fields returned by write to persist in state
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -194,7 +194,7 @@ class Endpoint(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="writeFields")
-    def write_fields(self) -> pulumi.Output[Optional[List[str]]]:
+    def write_fields(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Top-level fields returned by write to persist in state
         """

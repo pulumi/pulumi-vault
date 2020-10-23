@@ -6,6 +6,30 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * This is a data source which can be used to encrypt plaintext using a Vault Transit key.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const testMount = new vault.Mount("test", {
+ *     description: "This is an example mount",
+ *     path: "transit",
+ *     type: "transit",
+ * });
+ * const testSecretBackendKey = new vault.transit.SecretBackendKey("test", {
+ *     backend: testMount.path,
+ * });
+ * const testEncrypt = pulumi.all([testMount.path, testSecretBackendKey.name]).apply(([path, name]) => vault.transit.getEncrypt({
+ *     backend: path,
+ *     key: name,
+ *     plaintext: "foobar",
+ * }, { async: true }));
+ * ```
+ */
 export function getEncrypt(args: GetEncryptArgs, opts?: pulumi.InvokeOptions): Promise<GetEncryptResult> {
     if (!opts) {
         opts = {}
@@ -27,10 +51,25 @@ export function getEncrypt(args: GetEncryptArgs, opts?: pulumi.InvokeOptions): P
  * A collection of arguments for invoking getEncrypt.
  */
 export interface GetEncryptArgs {
+    /**
+     * The path the transit secret backend is mounted at, with no leading or trailing `/`.
+     */
     readonly backend: string;
+    /**
+     * Context for key derivation. This is required if key derivation is enabled for this key.
+     */
     readonly context?: string;
+    /**
+     * Specifies the name of the transit key to encrypt against.
+     */
     readonly key: string;
+    /**
+     * The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `minEncryptionVersion`, if set.
+     */
     readonly keyVersion?: number;
+    /**
+     * Plaintext to be encoded.
+     */
     readonly plaintext: string;
 }
 
@@ -39,6 +78,9 @@ export interface GetEncryptArgs {
  */
 export interface GetEncryptResult {
     readonly backend: string;
+    /**
+     * Encrypted ciphertext returned from Vault
+     */
     readonly ciphertext: string;
     readonly context?: string;
     /**

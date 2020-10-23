@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['SecretBackendConfigUrls']
@@ -16,9 +16,9 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
-                 crl_distribution_points: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 issuing_certificates: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 ocsp_servers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -43,9 +43,9 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
-        :param pulumi.Input[List[pulumi.Input[str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
-        :param pulumi.Input[List[pulumi.Input[str]]] issuing_certificates: Specifies the URL values for the Issuing Certificate field.
-        :param pulumi.Input[List[pulumi.Input[str]]] ocsp_servers: Specifies the URL values for the OCSP Servers field.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] issuing_certificates: Specifies the URL values for the Issuing Certificate field.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers: Specifies the URL values for the OCSP Servers field.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -81,9 +81,9 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
-            crl_distribution_points: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            issuing_certificates: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            ocsp_servers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'SecretBackendConfigUrls':
+            crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'SecretBackendConfigUrls':
         """
         Get an existing SecretBackendConfigUrls resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -92,9 +92,9 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
-        :param pulumi.Input[List[pulumi.Input[str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
-        :param pulumi.Input[List[pulumi.Input[str]]] issuing_certificates: Specifies the URL values for the Issuing Certificate field.
-        :param pulumi.Input[List[pulumi.Input[str]]] ocsp_servers: Specifies the URL values for the OCSP Servers field.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] issuing_certificates: Specifies the URL values for the Issuing Certificate field.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers: Specifies the URL values for the OCSP Servers field.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -116,7 +116,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="crlDistributionPoints")
-    def crl_distribution_points(self) -> pulumi.Output[Optional[List[str]]]:
+    def crl_distribution_points(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Specifies the URL values for the CRL Distribution Points field.
         """
@@ -124,7 +124,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="issuingCertificates")
-    def issuing_certificates(self) -> pulumi.Output[Optional[List[str]]]:
+    def issuing_certificates(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Specifies the URL values for the Issuing Certificate field.
         """
@@ -132,7 +132,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ocspServers")
-    def ocsp_servers(self) -> pulumi.Output[Optional[List[str]]]:
+    def ocsp_servers(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Specifies the URL values for the OCSP Servers field.
         """

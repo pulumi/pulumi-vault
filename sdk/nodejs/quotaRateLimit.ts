@@ -4,6 +4,26 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Manage rate limit quotas which enforce API rate limiting using a token bucket algorithm.
+ * A rate limit quota can be created at the root level or defined on a namespace or mount by
+ * specifying a path when creating the quota.
+ *
+ * See [Vault's Documentation](https://www.vaultproject.io/docs/concepts/resource-quotas) for more
+ * information.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const global = new vault.QuotaRateLimit("global", {
+ *     path: "",
+ *     rate: 100,
+ * });
+ * ```
+ */
 export class QuotaRateLimit extends pulumi.CustomResource {
     /**
      * Get an existing QuotaRateLimit resource's state with the given name, ID, and optional extra
@@ -33,15 +53,21 @@ export class QuotaRateLimit extends pulumi.CustomResource {
     }
 
     /**
-     * The name of the quota.
+     * Name of the rate limit quota
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota.
+     * Path of the mount or namespace to apply the quota. A blank path configures a
+     * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
+     * `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
+     * Updating this field on an existing quota can have "moving" effects. For example, updating
+     * `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
+     * a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
      */
     public readonly path!: pulumi.Output<string | undefined>;
     /**
-     * The maximum number of requests at any given second to be allowed by the quota rule. The rate must be positive.
+     * The maximum number of requests at any given second to be allowed by the quota
+     * rule. The `rate` must be positive.
      */
     public readonly rate!: pulumi.Output<number>;
 
@@ -85,15 +111,21 @@ export class QuotaRateLimit extends pulumi.CustomResource {
  */
 export interface QuotaRateLimitState {
     /**
-     * The name of the quota.
+     * Name of the rate limit quota
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota.
+     * Path of the mount or namespace to apply the quota. A blank path configures a
+     * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
+     * `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
+     * Updating this field on an existing quota can have "moving" effects. For example, updating
+     * `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
+     * a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
      */
     readonly path?: pulumi.Input<string>;
     /**
-     * The maximum number of requests at any given second to be allowed by the quota rule. The rate must be positive.
+     * The maximum number of requests at any given second to be allowed by the quota
+     * rule. The `rate` must be positive.
      */
     readonly rate?: pulumi.Input<number>;
 }
@@ -103,15 +135,21 @@ export interface QuotaRateLimitState {
  */
 export interface QuotaRateLimitArgs {
     /**
-     * The name of the quota.
+     * Name of the rate limit quota
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota.
+     * Path of the mount or namespace to apply the quota. A blank path configures a
+     * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
+     * `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
+     * Updating this field on an existing quota can have "moving" effects. For example, updating
+     * `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
+     * a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
      */
     readonly path?: pulumi.Input<string>;
     /**
-     * The maximum number of requests at any given second to be allowed by the quota rule. The rate must be positive.
+     * The maximum number of requests at any given second to be allowed by the quota
+     * rule. The `rate` must be positive.
      */
     readonly rate: pulumi.Input<number>;
 }

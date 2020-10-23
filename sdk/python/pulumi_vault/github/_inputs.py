@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -15,20 +15,20 @@ __all__ = [
 @pulumi.input_type
 class AuthBackendTuneArgs:
     def __init__(__self__, *,
-                 allowed_response_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 audit_non_hmac_request_keys: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 audit_non_hmac_response_keys: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_lease_ttl: Optional[pulumi.Input[str]] = None,
                  listing_visibility: Optional[pulumi.Input[str]] = None,
                  max_lease_ttl: Optional[pulumi.Input[str]] = None,
-                 passthrough_request_headers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_type: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[List[pulumi.Input[str]]] allowed_response_headers: List of headers to whitelist and allowing
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_response_headers: List of headers to whitelist and allowing
                a plugin to include them in the response.
-        :param pulumi.Input[List[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will
                not be HMAC'd by audit devices in the request data object.
-        :param pulumi.Input[List[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will
                not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[str] default_lease_ttl: Specifies the default time-to-live.
                If set, this overrides the global default.
@@ -38,7 +38,7 @@ class AuthBackendTuneArgs:
         :param pulumi.Input[str] max_lease_ttl: Specifies the maximum time-to-live.
                If set, this overrides the global default.
                Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-        :param pulumi.Input[List[pulumi.Input[str]]] passthrough_request_headers: List of headers to whitelist and
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to whitelist and
                pass from the request to the backend.
         :param pulumi.Input[str] token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
@@ -62,7 +62,7 @@ class AuthBackendTuneArgs:
 
     @property
     @pulumi.getter(name="allowedResponseHeaders")
-    def allowed_response_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def allowed_response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of headers to whitelist and allowing
         a plugin to include them in the response.
@@ -70,12 +70,12 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "allowed_response_headers")
 
     @allowed_response_headers.setter
-    def allowed_response_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def allowed_response_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allowed_response_headers", value)
 
     @property
     @pulumi.getter(name="auditNonHmacRequestKeys")
-    def audit_non_hmac_request_keys(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def audit_non_hmac_request_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the list of keys that will
         not be HMAC'd by audit devices in the request data object.
@@ -83,12 +83,12 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "audit_non_hmac_request_keys")
 
     @audit_non_hmac_request_keys.setter
-    def audit_non_hmac_request_keys(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def audit_non_hmac_request_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "audit_non_hmac_request_keys", value)
 
     @property
     @pulumi.getter(name="auditNonHmacResponseKeys")
-    def audit_non_hmac_response_keys(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def audit_non_hmac_response_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Specifies the list of keys that will
         not be HMAC'd by audit devices in the response data object.
@@ -96,7 +96,7 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "audit_non_hmac_response_keys")
 
     @audit_non_hmac_response_keys.setter
-    def audit_non_hmac_response_keys(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def audit_non_hmac_response_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "audit_non_hmac_response_keys", value)
 
     @property
@@ -142,7 +142,7 @@ class AuthBackendTuneArgs:
 
     @property
     @pulumi.getter(name="passthroughRequestHeaders")
-    def passthrough_request_headers(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def passthrough_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of headers to whitelist and
         pass from the request to the backend.
@@ -150,7 +150,7 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "passthrough_request_headers")
 
     @passthrough_request_headers.setter
-    def passthrough_request_headers(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def passthrough_request_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "passthrough_request_headers", value)
 
     @property

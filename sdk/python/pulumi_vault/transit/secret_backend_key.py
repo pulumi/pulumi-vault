@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['SecretBackendKey']
@@ -21,8 +21,8 @@ class SecretBackendKey(pulumi.CustomResource):
                  deletion_allowed: Optional[pulumi.Input[bool]] = None,
                  derived: Optional[pulumi.Input[bool]] = None,
                  exportable: Optional[pulumi.Input[bool]] = None,
-                 min_decryption_version: Optional[pulumi.Input[float]] = None,
-                 min_encryption_version: Optional[pulumi.Input[float]] = None,
+                 min_decryption_version: Optional[pulumi.Input[int]] = None,
+                 min_encryption_version: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None,
@@ -55,8 +55,8 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[bool] deletion_allowed: Specifies if the key is allowed to be deleted.
         :param pulumi.Input[bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
         :param pulumi.Input[bool] exportable: Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
-        :param pulumi.Input[float] min_decryption_version: Minimum key version to use for decryption.
-        :param pulumi.Input[float] min_encryption_version: Minimum key version to use for encryption
+        :param pulumi.Input[int] min_decryption_version: Minimum key version to use for decryption.
+        :param pulumi.Input[int] min_encryption_version: Minimum key version to use for encryption
         :param pulumi.Input[str] name: The name to identify this key within the backend. Must be unique within the backend.
         :param pulumi.Input[str] type: Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
                * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
@@ -113,11 +113,11 @@ class SecretBackendKey(pulumi.CustomResource):
             deletion_allowed: Optional[pulumi.Input[bool]] = None,
             derived: Optional[pulumi.Input[bool]] = None,
             exportable: Optional[pulumi.Input[bool]] = None,
-            keys: Optional[pulumi.Input[List[pulumi.Input[Mapping[str, Any]]]]] = None,
-            latest_version: Optional[pulumi.Input[float]] = None,
-            min_available_version: Optional[pulumi.Input[float]] = None,
-            min_decryption_version: Optional[pulumi.Input[float]] = None,
-            min_encryption_version: Optional[pulumi.Input[float]] = None,
+            keys: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]] = None,
+            latest_version: Optional[pulumi.Input[int]] = None,
+            min_available_version: Optional[pulumi.Input[int]] = None,
+            min_decryption_version: Optional[pulumi.Input[int]] = None,
+            min_encryption_version: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             supports_decryption: Optional[pulumi.Input[bool]] = None,
             supports_derivation: Optional[pulumi.Input[bool]] = None,
@@ -138,13 +138,13 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[bool] deletion_allowed: Specifies if the key is allowed to be deleted.
         :param pulumi.Input[bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
         :param pulumi.Input[bool] exportable: Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
-        :param pulumi.Input[List[pulumi.Input[Mapping[str, Any]]]] keys: List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]] keys: List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
                * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
                * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
-        :param pulumi.Input[float] latest_version: Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
-        :param pulumi.Input[float] min_available_version: Minimum key version available for use. If keys have been archived by increasing `min_decryption_version`, this attribute will reflect that change.
-        :param pulumi.Input[float] min_decryption_version: Minimum key version to use for decryption.
-        :param pulumi.Input[float] min_encryption_version: Minimum key version to use for encryption
+        :param pulumi.Input[int] latest_version: Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
+        :param pulumi.Input[int] min_available_version: Minimum key version available for use. If keys have been archived by increasing `min_decryption_version`, this attribute will reflect that change.
+        :param pulumi.Input[int] min_decryption_version: Minimum key version to use for decryption.
+        :param pulumi.Input[int] min_encryption_version: Minimum key version to use for encryption
         :param pulumi.Input[str] name: The name to identify this key within the backend. Must be unique within the backend.
         :param pulumi.Input[bool] supports_decryption: Whether or not the key supports decryption, based on key type.
         :param pulumi.Input[bool] supports_derivation: Whether or not the key supports derivation, based on key type.
@@ -227,7 +227,7 @@ class SecretBackendKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def keys(self) -> pulumi.Output[List[Mapping[str, Any]]]:
+    def keys(self) -> pulumi.Output[Sequence[Mapping[str, Any]]]:
         """
         List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
         * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
@@ -237,7 +237,7 @@ class SecretBackendKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="latestVersion")
-    def latest_version(self) -> pulumi.Output[float]:
+    def latest_version(self) -> pulumi.Output[int]:
         """
         Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
         """
@@ -245,7 +245,7 @@ class SecretBackendKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="minAvailableVersion")
-    def min_available_version(self) -> pulumi.Output[float]:
+    def min_available_version(self) -> pulumi.Output[int]:
         """
         Minimum key version available for use. If keys have been archived by increasing `min_decryption_version`, this attribute will reflect that change.
         """
@@ -253,7 +253,7 @@ class SecretBackendKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="minDecryptionVersion")
-    def min_decryption_version(self) -> pulumi.Output[Optional[float]]:
+    def min_decryption_version(self) -> pulumi.Output[Optional[int]]:
         """
         Minimum key version to use for decryption.
         """
@@ -261,7 +261,7 @@ class SecretBackendKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="minEncryptionVersion")
-    def min_encryption_version(self) -> pulumi.Output[Optional[float]]:
+    def min_encryption_version(self) -> pulumi.Output[Optional[int]]:
         """
         Minimum key version to use for encryption
         """

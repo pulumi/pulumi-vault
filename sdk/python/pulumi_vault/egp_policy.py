@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['EgpPolicy']
@@ -17,7 +17,7 @@ class EgpPolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enforcement_level: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 paths: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  policy: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
@@ -47,7 +47,7 @@ class EgpPolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] enforcement_level: Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
         :param pulumi.Input[str] name: The name of the policy
-        :param pulumi.Input[List[pulumi.Input[str]]] paths: List of paths to which the policy will be applied to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths: List of paths to which the policy will be applied to
         :param pulumi.Input[str] policy: String containing a Sentinel policy
         """
         if __name__ is not None:
@@ -89,7 +89,7 @@ class EgpPolicy(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             enforcement_level: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            paths: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             policy: Optional[pulumi.Input[str]] = None) -> 'EgpPolicy':
         """
         Get an existing EgpPolicy resource's state with the given name, id, and optional extra
@@ -100,7 +100,7 @@ class EgpPolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] enforcement_level: Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
         :param pulumi.Input[str] name: The name of the policy
-        :param pulumi.Input[List[pulumi.Input[str]]] paths: List of paths to which the policy will be applied to
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths: List of paths to which the policy will be applied to
         :param pulumi.Input[str] policy: String containing a Sentinel policy
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -131,7 +131,7 @@ class EgpPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def paths(self) -> pulumi.Output[List[str]]:
+    def paths(self) -> pulumi.Output[Sequence[str]]:
         """
         List of paths to which the policy will be applied to
         """

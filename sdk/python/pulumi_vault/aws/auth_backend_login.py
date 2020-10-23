@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['AuthBackendLogin']
@@ -115,12 +115,12 @@ class AuthBackendLogin(pulumi.CustomResource):
             iam_request_headers: Optional[pulumi.Input[str]] = None,
             iam_request_url: Optional[pulumi.Input[str]] = None,
             identity: Optional[pulumi.Input[str]] = None,
-            lease_duration: Optional[pulumi.Input[float]] = None,
+            lease_duration: Optional[pulumi.Input[int]] = None,
             lease_start_time: Optional[pulumi.Input[str]] = None,
             metadata: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             nonce: Optional[pulumi.Input[str]] = None,
             pkcs7: Optional[pulumi.Input[str]] = None,
-            policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             renewable: Optional[pulumi.Input[bool]] = None,
             role: Optional[pulumi.Input[str]] = None,
             signature: Optional[pulumi.Input[str]] = None) -> 'AuthBackendLogin':
@@ -146,7 +146,7 @@ class AuthBackendLogin(pulumi.CustomResource):
                request.
         :param pulumi.Input[str] identity: The base64-encoded EC2 instance identity document to
                authenticate with. Can be retrieved from the EC2 metadata server.
-        :param pulumi.Input[float] lease_duration: The duration in seconds the token will be valid, relative
+        :param pulumi.Input[int] lease_duration: The duration in seconds the token will be valid, relative
                to the time in `lease_start_time`.
         :param pulumi.Input[str] lease_start_time: Time at which the lease was read, using the clock of the system where Terraform was running
         :param pulumi.Input[Mapping[str, Any]] metadata: A map of information returned by the Vault server about the
@@ -158,7 +158,7 @@ class AuthBackendLogin(pulumi.CustomResource):
         :param pulumi.Input[str] pkcs7: The PKCS#7 signature of the identity document to
                authenticate with, with all newline characters removed. Can be retrieved from
                the EC2 metadata server.
-        :param pulumi.Input[List[pulumi.Input[str]]] policies: The Vault policies assigned to this token.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: The Vault policies assigned to this token.
         :param pulumi.Input[bool] renewable: Set to true if the token can be extended through renewal.
         :param pulumi.Input[str] role: The name of the AWS auth backend role to create tokens
                against.
@@ -270,7 +270,7 @@ class AuthBackendLogin(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="leaseDuration")
-    def lease_duration(self) -> pulumi.Output[float]:
+    def lease_duration(self) -> pulumi.Output[int]:
         """
         The duration in seconds the token will be valid, relative
         to the time in `lease_start_time`.
@@ -317,7 +317,7 @@ class AuthBackendLogin(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def policies(self) -> pulumi.Output[List[str]]:
+    def policies(self) -> pulumi.Output[Sequence[str]]:
         """
         The Vault policies assigned to this token.
         """

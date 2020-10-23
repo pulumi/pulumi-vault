@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -22,8 +22,8 @@ class AuthBackend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  jwks_ca_pem: Optional[pulumi.Input[str]] = None,
                  jwks_url: Optional[pulumi.Input[str]] = None,
-                 jwt_supported_algs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 jwt_validation_pubkeys: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  oidc_client_id: Optional[pulumi.Input[str]] = None,
                  oidc_client_secret: Optional[pulumi.Input[str]] = None,
                  oidc_discovery_ca_pem: Optional[pulumi.Input[str]] = None,
@@ -79,8 +79,8 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the auth backend
         :param pulumi.Input[str] jwks_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
         :param pulumi.Input[str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
-        :param pulumi.Input[List[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
-        :param pulumi.Input[List[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
         :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
         :param pulumi.Input[str] oidc_client_secret: Client Secret used for OIDC backends
         :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
@@ -136,8 +136,8 @@ class AuthBackend(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             jwks_ca_pem: Optional[pulumi.Input[str]] = None,
             jwks_url: Optional[pulumi.Input[str]] = None,
-            jwt_supported_algs: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            jwt_validation_pubkeys: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             oidc_client_id: Optional[pulumi.Input[str]] = None,
             oidc_client_secret: Optional[pulumi.Input[str]] = None,
             oidc_discovery_ca_pem: Optional[pulumi.Input[str]] = None,
@@ -158,8 +158,8 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the auth backend
         :param pulumi.Input[str] jwks_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
         :param pulumi.Input[str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
-        :param pulumi.Input[List[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
-        :param pulumi.Input[List[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
         :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
         :param pulumi.Input[str] oidc_client_secret: Client Secret used for OIDC backends
         :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
@@ -238,7 +238,7 @@ class AuthBackend(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="jwtSupportedAlgs")
-    def jwt_supported_algs(self) -> pulumi.Output[Optional[List[str]]]:
+    def jwt_supported_algs(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         """
@@ -246,7 +246,7 @@ class AuthBackend(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="jwtValidationPubkeys")
-    def jwt_validation_pubkeys(self) -> pulumi.Output[Optional[List[str]]]:
+    def jwt_validation_pubkeys(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
         """

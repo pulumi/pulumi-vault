@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['AuthBackendIdentityWhitelist']
@@ -17,7 +17,7 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  disable_periodic_tidy: Optional[pulumi.Input[bool]] = None,
-                 safety_buffer: Optional[pulumi.Input[float]] = None,
+                 safety_buffer: Optional[pulumi.Input[int]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -44,7 +44,7 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The path of the AWS backend being configured.
         :param pulumi.Input[bool] disable_periodic_tidy: If set to true, disables the periodic
                tidying of the identity-whitelist entries.
-        :param pulumi.Input[float] safety_buffer: The amount of extra time, in minutes, that must
+        :param pulumi.Input[int] safety_buffer: The amount of extra time, in minutes, that must
                have passed beyond the roletag expiration, before it is removed from the
                backend storage.
         """
@@ -80,7 +80,7 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             disable_periodic_tidy: Optional[pulumi.Input[bool]] = None,
-            safety_buffer: Optional[pulumi.Input[float]] = None) -> 'AuthBackendIdentityWhitelist':
+            safety_buffer: Optional[pulumi.Input[int]] = None) -> 'AuthBackendIdentityWhitelist':
         """
         Get an existing AuthBackendIdentityWhitelist resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -91,7 +91,7 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The path of the AWS backend being configured.
         :param pulumi.Input[bool] disable_periodic_tidy: If set to true, disables the periodic
                tidying of the identity-whitelist entries.
-        :param pulumi.Input[float] safety_buffer: The amount of extra time, in minutes, that must
+        :param pulumi.Input[int] safety_buffer: The amount of extra time, in minutes, that must
                have passed beyond the roletag expiration, before it is removed from the
                backend storage.
         """
@@ -123,7 +123,7 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="safetyBuffer")
-    def safety_buffer(self) -> pulumi.Output[Optional[float]]:
+    def safety_buffer(self) -> pulumi.Output[Optional[int]]:
         """
         The amount of extra time, in minutes, that must
         have passed beyond the roletag expiration, before it is removed from the

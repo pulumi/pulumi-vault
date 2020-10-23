@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['SecretBackendRole']
@@ -21,34 +21,34 @@ class SecretBackendRole(pulumi.CustomResource):
                  allow_ip_sans: Optional[pulumi.Input[bool]] = None,
                  allow_localhost: Optional[pulumi.Input[bool]] = None,
                  allow_subdomains: Optional[pulumi.Input[bool]] = None,
-                 allowed_domains: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allowed_other_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 allowed_uri_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 allowed_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
                  client_flag: Optional[pulumi.Input[bool]] = None,
                  code_signing_flag: Optional[pulumi.Input[bool]] = None,
-                 countries: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  email_protection_flag: Optional[pulumi.Input[bool]] = None,
                  enforce_hostnames: Optional[pulumi.Input[bool]] = None,
-                 ext_key_usages: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 ext_key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  generate_lease: Optional[pulumi.Input[bool]] = None,
-                 key_bits: Optional[pulumi.Input[float]] = None,
+                 key_bits: Optional[pulumi.Input[int]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
-                 key_usages: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 localities: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 localities: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  no_store: Optional[pulumi.Input[bool]] = None,
                  not_before_duration: Optional[pulumi.Input[str]] = None,
-                 organization_unit: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 organizations: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 policy_identifiers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 postal_codes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 provinces: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 organization_unit: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 organizations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 policy_identifiers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 postal_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 provinces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  require_cn: Optional[pulumi.Input[bool]] = None,
                  server_flag: Optional[pulumi.Input[bool]] = None,
-                 street_addresses: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 street_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  use_csr_common_name: Optional[pulumi.Input[bool]] = None,
                  use_csr_sans: Optional[pulumi.Input[bool]] = None,
@@ -79,34 +79,34 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[bool] allow_ip_sans: Flag to allow IP SANs
         :param pulumi.Input[bool] allow_localhost: Flag to allow certificates for localhost
         :param pulumi.Input[bool] allow_subdomains: Flag to allow certificates matching subdomains
-        :param pulumi.Input[List[pulumi.Input[str]]] allowed_domains: List of allowed domains for certificates
-        :param pulumi.Input[List[pulumi.Input[str]]] allowed_other_sans: Defines allowed custom SANs
-        :param pulumi.Input[List[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_domains: List of allowed domains for certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_other_sans: Defines allowed custom SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
         :param pulumi.Input[bool] client_flag: Flag to specify certificates for client use
         :param pulumi.Input[bool] code_signing_flag: Flag to specify certificates for code signing use
-        :param pulumi.Input[List[pulumi.Input[str]]] countries: The country of generated certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: The country of generated certificates
         :param pulumi.Input[bool] email_protection_flag: Flag to specify certificates for email protection use
         :param pulumi.Input[bool] enforce_hostnames: Flag to allow only valid host names
-        :param pulumi.Input[List[pulumi.Input[str]]] ext_key_usages: Specify the allowed extended key usage constraint on issued certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usages: Specify the allowed extended key usage constraint on issued certificates
         :param pulumi.Input[bool] generate_lease: Flag to generate leases with certificates
-        :param pulumi.Input[float] key_bits: The number of bits of generated keys
+        :param pulumi.Input[int] key_bits: The number of bits of generated keys
         :param pulumi.Input[str] key_type: The type of generated keys
-        :param pulumi.Input[List[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued certificates
-        :param pulumi.Input[List[pulumi.Input[str]]] localities: The locality of generated certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
         :param pulumi.Input[str] max_ttl: The maximum TTL
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
-        :param pulumi.Input[List[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
-        :param pulumi.Input[List[pulumi.Input[str]]] organizations: The organization of generated certificates
-        :param pulumi.Input[List[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies IODs
-        :param pulumi.Input[List[pulumi.Input[str]]] postal_codes: The postal code of generated certificates
-        :param pulumi.Input[List[pulumi.Input[str]]] provinces: The province of generated certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] organizations: The organization of generated certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies IODs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] postal_codes: The postal code of generated certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] provinces: The province of generated certificates
         :param pulumi.Input[bool] require_cn: Flag to force CN usage
         :param pulumi.Input[bool] server_flag: Flag to specify certificates for server use
-        :param pulumi.Input[List[pulumi.Input[str]]] street_addresses: The street address of generated certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] street_addresses: The street address of generated certificates
         :param pulumi.Input[str] ttl: The TTL
         :param pulumi.Input[bool] use_csr_common_name: Flag to use the CN in the CSR
         :param pulumi.Input[bool] use_csr_sans: Flag to use the SANs in the CSR
@@ -183,34 +183,34 @@ class SecretBackendRole(pulumi.CustomResource):
             allow_ip_sans: Optional[pulumi.Input[bool]] = None,
             allow_localhost: Optional[pulumi.Input[bool]] = None,
             allow_subdomains: Optional[pulumi.Input[bool]] = None,
-            allowed_domains: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            allowed_other_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            allowed_uri_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            allowed_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            allowed_other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
             client_flag: Optional[pulumi.Input[bool]] = None,
             code_signing_flag: Optional[pulumi.Input[bool]] = None,
-            countries: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             email_protection_flag: Optional[pulumi.Input[bool]] = None,
             enforce_hostnames: Optional[pulumi.Input[bool]] = None,
-            ext_key_usages: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            ext_key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             generate_lease: Optional[pulumi.Input[bool]] = None,
-            key_bits: Optional[pulumi.Input[float]] = None,
+            key_bits: Optional[pulumi.Input[int]] = None,
             key_type: Optional[pulumi.Input[str]] = None,
-            key_usages: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            localities: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            localities: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             max_ttl: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             no_store: Optional[pulumi.Input[bool]] = None,
             not_before_duration: Optional[pulumi.Input[str]] = None,
-            organization_unit: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            organizations: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            policy_identifiers: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            postal_codes: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-            provinces: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            organization_unit: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            organizations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            policy_identifiers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            postal_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            provinces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             require_cn: Optional[pulumi.Input[bool]] = None,
             server_flag: Optional[pulumi.Input[bool]] = None,
-            street_addresses: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            street_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ttl: Optional[pulumi.Input[str]] = None,
             use_csr_common_name: Optional[pulumi.Input[bool]] = None,
             use_csr_sans: Optional[pulumi.Input[bool]] = None) -> 'SecretBackendRole':
@@ -227,34 +227,34 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[bool] allow_ip_sans: Flag to allow IP SANs
         :param pulumi.Input[bool] allow_localhost: Flag to allow certificates for localhost
         :param pulumi.Input[bool] allow_subdomains: Flag to allow certificates matching subdomains
-        :param pulumi.Input[List[pulumi.Input[str]]] allowed_domains: List of allowed domains for certificates
-        :param pulumi.Input[List[pulumi.Input[str]]] allowed_other_sans: Defines allowed custom SANs
-        :param pulumi.Input[List[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_domains: List of allowed domains for certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_other_sans: Defines allowed custom SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
         :param pulumi.Input[bool] client_flag: Flag to specify certificates for client use
         :param pulumi.Input[bool] code_signing_flag: Flag to specify certificates for code signing use
-        :param pulumi.Input[List[pulumi.Input[str]]] countries: The country of generated certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: The country of generated certificates
         :param pulumi.Input[bool] email_protection_flag: Flag to specify certificates for email protection use
         :param pulumi.Input[bool] enforce_hostnames: Flag to allow only valid host names
-        :param pulumi.Input[List[pulumi.Input[str]]] ext_key_usages: Specify the allowed extended key usage constraint on issued certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usages: Specify the allowed extended key usage constraint on issued certificates
         :param pulumi.Input[bool] generate_lease: Flag to generate leases with certificates
-        :param pulumi.Input[float] key_bits: The number of bits of generated keys
+        :param pulumi.Input[int] key_bits: The number of bits of generated keys
         :param pulumi.Input[str] key_type: The type of generated keys
-        :param pulumi.Input[List[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued certificates
-        :param pulumi.Input[List[pulumi.Input[str]]] localities: The locality of generated certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
         :param pulumi.Input[str] max_ttl: The maximum TTL
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
-        :param pulumi.Input[List[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
-        :param pulumi.Input[List[pulumi.Input[str]]] organizations: The organization of generated certificates
-        :param pulumi.Input[List[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies IODs
-        :param pulumi.Input[List[pulumi.Input[str]]] postal_codes: The postal code of generated certificates
-        :param pulumi.Input[List[pulumi.Input[str]]] provinces: The province of generated certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] organizations: The organization of generated certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies IODs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] postal_codes: The postal code of generated certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] provinces: The province of generated certificates
         :param pulumi.Input[bool] require_cn: Flag to force CN usage
         :param pulumi.Input[bool] server_flag: Flag to specify certificates for server use
-        :param pulumi.Input[List[pulumi.Input[str]]] street_addresses: The street address of generated certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] street_addresses: The street address of generated certificates
         :param pulumi.Input[str] ttl: The TTL
         :param pulumi.Input[bool] use_csr_common_name: Flag to use the CN in the CSR
         :param pulumi.Input[bool] use_csr_sans: Flag to use the SANs in the CSR
@@ -352,7 +352,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="allowedDomains")
-    def allowed_domains(self) -> pulumi.Output[Optional[List[str]]]:
+    def allowed_domains(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of allowed domains for certificates
         """
@@ -360,7 +360,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="allowedOtherSans")
-    def allowed_other_sans(self) -> pulumi.Output[Optional[List[str]]]:
+    def allowed_other_sans(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Defines allowed custom SANs
         """
@@ -368,7 +368,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="allowedUriSans")
-    def allowed_uri_sans(self) -> pulumi.Output[Optional[List[str]]]:
+    def allowed_uri_sans(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Defines allowed URI SANs
         """
@@ -408,7 +408,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def countries(self) -> pulumi.Output[Optional[List[str]]]:
+    def countries(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         The country of generated certificates
         """
@@ -432,7 +432,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="extKeyUsages")
-    def ext_key_usages(self) -> pulumi.Output[Optional[List[str]]]:
+    def ext_key_usages(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Specify the allowed extended key usage constraint on issued certificates
         """
@@ -448,7 +448,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="keyBits")
-    def key_bits(self) -> pulumi.Output[Optional[float]]:
+    def key_bits(self) -> pulumi.Output[Optional[int]]:
         """
         The number of bits of generated keys
         """
@@ -464,7 +464,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="keyUsages")
-    def key_usages(self) -> pulumi.Output[Optional[List[str]]]:
+    def key_usages(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Specify the allowed key usage constraint on issued certificates
         """
@@ -472,7 +472,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def localities(self) -> pulumi.Output[Optional[List[str]]]:
+    def localities(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         The locality of generated certificates
         """
@@ -512,7 +512,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="organizationUnit")
-    def organization_unit(self) -> pulumi.Output[Optional[List[str]]]:
+    def organization_unit(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         The organization unit of generated certificates
         """
@@ -520,7 +520,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def organizations(self) -> pulumi.Output[Optional[List[str]]]:
+    def organizations(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         The organization of generated certificates
         """
@@ -528,7 +528,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="policyIdentifiers")
-    def policy_identifiers(self) -> pulumi.Output[Optional[List[str]]]:
+    def policy_identifiers(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Specify the list of allowed policies IODs
         """
@@ -536,7 +536,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="postalCodes")
-    def postal_codes(self) -> pulumi.Output[Optional[List[str]]]:
+    def postal_codes(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         The postal code of generated certificates
         """
@@ -544,7 +544,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def provinces(self) -> pulumi.Output[Optional[List[str]]]:
+    def provinces(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         The province of generated certificates
         """
@@ -568,7 +568,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="streetAddresses")
-    def street_addresses(self) -> pulumi.Output[Optional[List[str]]]:
+    def street_addresses(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         The street address of generated certificates
         """

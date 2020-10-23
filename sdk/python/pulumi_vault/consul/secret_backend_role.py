@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['SecretBackendRole']
@@ -17,12 +17,12 @@ class SecretBackendRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
-                 max_ttl: Optional[pulumi.Input[float]] = None,
+                 max_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
-                 policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_type: Optional[pulumi.Input[str]] = None,
-                 ttl: Optional[pulumi.Input[float]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -49,12 +49,12 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
         :param pulumi.Input[bool] local: Indicates that the token should not be replicated globally and instead be local to the current datacenter.
-        :param pulumi.Input[float] max_ttl: Maximum TTL for leases associated with this role, in seconds.
+        :param pulumi.Input[int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
         :param pulumi.Input[str] name: The name of the Consul secrets engine role to create.
         :param pulumi.Input[str] path: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
-        :param pulumi.Input[List[pulumi.Input[str]]] policies: The list of Consul ACL policies to associate with these roles.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: The list of Consul ACL policies to associate with these roles.
         :param pulumi.Input[str] token_type: Specifies the type of token to create when using this role. Valid values are "client" or "management".
-        :param pulumi.Input[float] ttl: Specifies the TTL for this role.
+        :param pulumi.Input[int] ttl: Specifies the TTL for this role.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -98,12 +98,12 @@ class SecretBackendRole(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             local: Optional[pulumi.Input[bool]] = None,
-            max_ttl: Optional[pulumi.Input[float]] = None,
+            max_ttl: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
-            policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             token_type: Optional[pulumi.Input[str]] = None,
-            ttl: Optional[pulumi.Input[float]] = None) -> 'SecretBackendRole':
+            ttl: Optional[pulumi.Input[int]] = None) -> 'SecretBackendRole':
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -113,12 +113,12 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
         :param pulumi.Input[bool] local: Indicates that the token should not be replicated globally and instead be local to the current datacenter.
-        :param pulumi.Input[float] max_ttl: Maximum TTL for leases associated with this role, in seconds.
+        :param pulumi.Input[int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
         :param pulumi.Input[str] name: The name of the Consul secrets engine role to create.
         :param pulumi.Input[str] path: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
-        :param pulumi.Input[List[pulumi.Input[str]]] policies: The list of Consul ACL policies to associate with these roles.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: The list of Consul ACL policies to associate with these roles.
         :param pulumi.Input[str] token_type: Specifies the type of token to create when using this role. Valid values are "client" or "management".
-        :param pulumi.Input[float] ttl: Specifies the TTL for this role.
+        :param pulumi.Input[int] ttl: Specifies the TTL for this role.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -152,7 +152,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> pulumi.Output[Optional[float]]:
+    def max_ttl(self) -> pulumi.Output[Optional[int]]:
         """
         Maximum TTL for leases associated with this role, in seconds.
         """
@@ -176,7 +176,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def policies(self) -> pulumi.Output[List[str]]:
+    def policies(self) -> pulumi.Output[Sequence[str]]:
         """
         The list of Consul ACL policies to associate with these roles.
         """
@@ -192,7 +192,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def ttl(self) -> pulumi.Output[Optional[float]]:
+    def ttl(self) -> pulumi.Output[Optional[int]]:
         """
         Specifies the TTL for this role.
         """

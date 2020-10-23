@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['OidcRole']
@@ -18,7 +18,7 @@ class OidcRole(pulumi.CustomResource):
                  key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None,
-                 ttl: Optional[pulumi.Input[float]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -33,7 +33,7 @@ class OidcRole(pulumi.CustomResource):
                string-ified JSON or base64 format. See the
                [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
                for the template format.
-        :param pulumi.Input[float] ttl: TTL of the tokens generated against the role in number of seconds.
+        :param pulumi.Input[int] ttl: TTL of the tokens generated against the role in number of seconds.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -73,7 +73,7 @@ class OidcRole(pulumi.CustomResource):
             key: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             template: Optional[pulumi.Input[str]] = None,
-            ttl: Optional[pulumi.Input[float]] = None) -> 'OidcRole':
+            ttl: Optional[pulumi.Input[int]] = None) -> 'OidcRole':
         """
         Get an existing OidcRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -90,7 +90,7 @@ class OidcRole(pulumi.CustomResource):
                string-ified JSON or base64 format. See the
                [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
                for the template format.
-        :param pulumi.Input[float] ttl: TTL of the tokens generated against the role in number of seconds.
+        :param pulumi.Input[int] ttl: TTL of the tokens generated against the role in number of seconds.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -142,7 +142,7 @@ class OidcRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def ttl(self) -> pulumi.Output[Optional[float]]:
+    def ttl(self) -> pulumi.Output[Optional[int]]:
         """
         TTL of the tokens generated against the role in number of seconds.
         """

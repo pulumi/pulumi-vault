@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -15,20 +15,20 @@ __all__ = [
 @pulumi.output_type
 class AuthBackendTune(dict):
     def __init__(__self__, *,
-                 allowed_response_headers: Optional[List[str]] = None,
-                 audit_non_hmac_request_keys: Optional[List[str]] = None,
-                 audit_non_hmac_response_keys: Optional[List[str]] = None,
+                 allowed_response_headers: Optional[Sequence[str]] = None,
+                 audit_non_hmac_request_keys: Optional[Sequence[str]] = None,
+                 audit_non_hmac_response_keys: Optional[Sequence[str]] = None,
                  default_lease_ttl: Optional[str] = None,
                  listing_visibility: Optional[str] = None,
                  max_lease_ttl: Optional[str] = None,
-                 passthrough_request_headers: Optional[List[str]] = None,
+                 passthrough_request_headers: Optional[Sequence[str]] = None,
                  token_type: Optional[str] = None):
         """
-        :param List[str] allowed_response_headers: List of headers to whitelist and allowing
+        :param Sequence[str] allowed_response_headers: List of headers to whitelist and allowing
                a plugin to include them in the response.
-        :param List[str] audit_non_hmac_request_keys: Specifies the list of keys that will
+        :param Sequence[str] audit_non_hmac_request_keys: Specifies the list of keys that will
                not be HMAC'd by audit devices in the request data object.
-        :param List[str] audit_non_hmac_response_keys: Specifies the list of keys that will
+        :param Sequence[str] audit_non_hmac_response_keys: Specifies the list of keys that will
                not be HMAC'd by audit devices in the response data object.
         :param str default_lease_ttl: Specifies the default time-to-live.
                If set, this overrides the global default.
@@ -38,7 +38,7 @@ class AuthBackendTune(dict):
         :param str max_lease_ttl: Specifies the maximum time-to-live.
                If set, this overrides the global default.
                Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-        :param List[str] passthrough_request_headers: List of headers to whitelist and
+        :param Sequence[str] passthrough_request_headers: List of headers to whitelist and
                pass from the request to the backend.
         :param str token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
@@ -62,7 +62,7 @@ class AuthBackendTune(dict):
 
     @property
     @pulumi.getter(name="allowedResponseHeaders")
-    def allowed_response_headers(self) -> Optional[List[str]]:
+    def allowed_response_headers(self) -> Optional[Sequence[str]]:
         """
         List of headers to whitelist and allowing
         a plugin to include them in the response.
@@ -71,7 +71,7 @@ class AuthBackendTune(dict):
 
     @property
     @pulumi.getter(name="auditNonHmacRequestKeys")
-    def audit_non_hmac_request_keys(self) -> Optional[List[str]]:
+    def audit_non_hmac_request_keys(self) -> Optional[Sequence[str]]:
         """
         Specifies the list of keys that will
         not be HMAC'd by audit devices in the request data object.
@@ -80,7 +80,7 @@ class AuthBackendTune(dict):
 
     @property
     @pulumi.getter(name="auditNonHmacResponseKeys")
-    def audit_non_hmac_response_keys(self) -> Optional[List[str]]:
+    def audit_non_hmac_response_keys(self) -> Optional[Sequence[str]]:
         """
         Specifies the list of keys that will
         not be HMAC'd by audit devices in the response data object.
@@ -118,7 +118,7 @@ class AuthBackendTune(dict):
 
     @property
     @pulumi.getter(name="passthroughRequestHeaders")
-    def passthrough_request_headers(self) -> Optional[List[str]]:
+    def passthrough_request_headers(self) -> Optional[Sequence[str]]:
         """
         List of headers to whitelist and
         pass from the request to the backend.

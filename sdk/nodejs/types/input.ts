@@ -575,4 +575,3 @@ export namespace rabbitMq {
         write: pulumi.Input<string>;
     }
 }
-

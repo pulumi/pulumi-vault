@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -32,8 +32,8 @@ class GetAccessCredentialsResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if lease_duration and not isinstance(lease_duration, float):
-            raise TypeError("Expected argument 'lease_duration' to be a float")
+        if lease_duration and not isinstance(lease_duration, int):
+            raise TypeError("Expected argument 'lease_duration' to be a int")
         pulumi.set(__self__, "lease_duration", lease_duration)
         if lease_id and not isinstance(lease_id, str):
             raise TypeError("Expected argument 'lease_id' to be a str")
@@ -44,14 +44,14 @@ class GetAccessCredentialsResult:
         if lease_start_time and not isinstance(lease_start_time, str):
             raise TypeError("Expected argument 'lease_start_time' to be a str")
         pulumi.set(__self__, "lease_start_time", lease_start_time)
-        if max_cred_validation_seconds and not isinstance(max_cred_validation_seconds, float):
-            raise TypeError("Expected argument 'max_cred_validation_seconds' to be a float")
+        if max_cred_validation_seconds and not isinstance(max_cred_validation_seconds, int):
+            raise TypeError("Expected argument 'max_cred_validation_seconds' to be a int")
         pulumi.set(__self__, "max_cred_validation_seconds", max_cred_validation_seconds)
-        if num_seconds_between_tests and not isinstance(num_seconds_between_tests, float):
-            raise TypeError("Expected argument 'num_seconds_between_tests' to be a float")
+        if num_seconds_between_tests and not isinstance(num_seconds_between_tests, int):
+            raise TypeError("Expected argument 'num_seconds_between_tests' to be a int")
         pulumi.set(__self__, "num_seconds_between_tests", num_seconds_between_tests)
-        if num_sequential_successes and not isinstance(num_sequential_successes, float):
-            raise TypeError("Expected argument 'num_sequential_successes' to be a float")
+        if num_sequential_successes and not isinstance(num_sequential_successes, int):
+            raise TypeError("Expected argument 'num_sequential_successes' to be a int")
         pulumi.set(__self__, "num_sequential_successes", num_sequential_successes)
         if role and not isinstance(role, str):
             raise TypeError("Expected argument 'role' to be a str")
@@ -91,7 +91,7 @@ class GetAccessCredentialsResult:
 
     @property
     @pulumi.getter(name="leaseDuration")
-    def lease_duration(self) -> float:
+    def lease_duration(self) -> int:
         """
         The duration of the secret lease, in seconds relative
         to the time the data was requested. Once this time has passed any plan
@@ -119,17 +119,17 @@ class GetAccessCredentialsResult:
 
     @property
     @pulumi.getter(name="maxCredValidationSeconds")
-    def max_cred_validation_seconds(self) -> Optional[float]:
+    def max_cred_validation_seconds(self) -> Optional[int]:
         return pulumi.get(self, "max_cred_validation_seconds")
 
     @property
     @pulumi.getter(name="numSecondsBetweenTests")
-    def num_seconds_between_tests(self) -> Optional[float]:
+    def num_seconds_between_tests(self) -> Optional[int]:
         return pulumi.get(self, "num_seconds_between_tests")
 
     @property
     @pulumi.getter(name="numSequentialSuccesses")
-    def num_sequential_successes(self) -> Optional[float]:
+    def num_sequential_successes(self) -> Optional[int]:
         return pulumi.get(self, "num_sequential_successes")
 
     @property
@@ -165,9 +165,9 @@ class AwaitableGetAccessCredentialsResult(GetAccessCredentialsResult):
 
 
 def get_access_credentials(backend: Optional[str] = None,
-                           max_cred_validation_seconds: Optional[float] = None,
-                           num_seconds_between_tests: Optional[float] = None,
-                           num_sequential_successes: Optional[float] = None,
+                           max_cred_validation_seconds: Optional[int] = None,
+                           num_seconds_between_tests: Optional[int] = None,
+                           num_sequential_successes: Optional[int] = None,
                            role: Optional[str] = None,
                            validate_creds: Optional[bool] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccessCredentialsResult:
@@ -176,13 +176,13 @@ def get_access_credentials(backend: Optional[str] = None,
 
     :param str backend: The path to the Azure secret backend to
            read credentials from, with no leading or trailing `/`s.
-    :param float max_cred_validation_seconds: If 'validate_creds' is true, 
+    :param int max_cred_validation_seconds: If 'validate_creds' is true, 
            the number of seconds after which to give up validating credentials. Defaults
            to 1,200 (20 minutes).
-    :param float num_seconds_between_tests: If 'validate_creds' is true, 
+    :param int num_seconds_between_tests: If 'validate_creds' is true, 
            the number of seconds to wait between each test of generated credentials.
            Defaults to 7.
-    :param float num_sequential_successes: If 'validate_creds' is true, 
+    :param int num_sequential_successes: If 'validate_creds' is true, 
            the number of sequential successes required to validate generated
            credentials. Defaults to 8.
     :param str role: The name of the Azure secret backend role to read

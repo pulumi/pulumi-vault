@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['SecretBackendSign']
@@ -15,19 +15,19 @@ class SecretBackendSign(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alt_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  common_name: Optional[pulumi.Input[str]] = None,
                  csr: Optional[pulumi.Input[str]] = None,
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
                  format: Optional[pulumi.Input[str]] = None,
-                 ip_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
-                 min_seconds_remaining: Optional[pulumi.Input[float]] = None,
+                 ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 min_seconds_remaining: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 other_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
-                 uri_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -35,19 +35,19 @@ class SecretBackendSign(pulumi.CustomResource):
         Create a SecretBackendSign resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] alt_names: List of alternative names
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[bool] auto_renew: If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] common_name: CN of certificate to create
         :param pulumi.Input[str] csr: The CSR
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[str] format: The format of data
-        :param pulumi.Input[List[pulumi.Input[str]]] ip_sans: List of alternative IPs
-        :param pulumi.Input[float] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
+        :param pulumi.Input[int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
         :param pulumi.Input[str] name: Name of the role to create the certificate against
-        :param pulumi.Input[List[pulumi.Input[str]]] other_sans: List of other SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ttl: Time to live
-        :param pulumi.Input[List[pulumi.Input[str]]] uri_sans: List of alterative URIs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alterative URIs
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -100,24 +100,24 @@ class SecretBackendSign(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alt_names: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             auto_renew: Optional[pulumi.Input[bool]] = None,
             backend: Optional[pulumi.Input[str]] = None,
-            ca_chains: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            ca_chains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
             common_name: Optional[pulumi.Input[str]] = None,
             csr: Optional[pulumi.Input[str]] = None,
             exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
-            expiration: Optional[pulumi.Input[float]] = None,
+            expiration: Optional[pulumi.Input[int]] = None,
             format: Optional[pulumi.Input[str]] = None,
-            ip_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             issuing_ca: Optional[pulumi.Input[str]] = None,
-            min_seconds_remaining: Optional[pulumi.Input[float]] = None,
+            min_seconds_remaining: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            other_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             serial: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[str]] = None,
-            uri_sans: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'SecretBackendSign':
+            uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'SecretBackendSign':
         """
         Get an existing SecretBackendSign resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -125,24 +125,24 @@ class SecretBackendSign(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] alt_names: List of alternative names
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[bool] auto_renew: If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
-        :param pulumi.Input[List[pulumi.Input[str]]] ca_chains: The CA chain
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ca_chains: The CA chain
         :param pulumi.Input[str] certificate: The certificate
         :param pulumi.Input[str] common_name: CN of certificate to create
         :param pulumi.Input[str] csr: The CSR
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
-        :param pulumi.Input[float] expiration: The expiration date of the certificate in unix epoch format
+        :param pulumi.Input[int] expiration: The expiration date of the certificate in unix epoch format
         :param pulumi.Input[str] format: The format of data
-        :param pulumi.Input[List[pulumi.Input[str]]] ip_sans: List of alternative IPs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[str] issuing_ca: The issuing CA
-        :param pulumi.Input[float] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
+        :param pulumi.Input[int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
         :param pulumi.Input[str] name: Name of the role to create the certificate against
-        :param pulumi.Input[List[pulumi.Input[str]]] other_sans: List of other SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] serial: The serial
         :param pulumi.Input[str] ttl: Time to live
-        :param pulumi.Input[List[pulumi.Input[str]]] uri_sans: List of alterative URIs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alterative URIs
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -170,7 +170,7 @@ class SecretBackendSign(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="altNames")
-    def alt_names(self) -> pulumi.Output[Optional[List[str]]]:
+    def alt_names(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of alternative names
         """
@@ -194,7 +194,7 @@ class SecretBackendSign(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="caChains")
-    def ca_chains(self) -> pulumi.Output[List[str]]:
+    def ca_chains(self) -> pulumi.Output[Sequence[str]]:
         """
         The CA chain
         """
@@ -234,7 +234,7 @@ class SecretBackendSign(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def expiration(self) -> pulumi.Output[float]:
+    def expiration(self) -> pulumi.Output[int]:
         """
         The expiration date of the certificate in unix epoch format
         """
@@ -250,7 +250,7 @@ class SecretBackendSign(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ipSans")
-    def ip_sans(self) -> pulumi.Output[Optional[List[str]]]:
+    def ip_sans(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of alternative IPs
         """
@@ -266,7 +266,7 @@ class SecretBackendSign(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="minSecondsRemaining")
-    def min_seconds_remaining(self) -> pulumi.Output[Optional[float]]:
+    def min_seconds_remaining(self) -> pulumi.Output[Optional[int]]:
         """
         Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
         """
@@ -282,7 +282,7 @@ class SecretBackendSign(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="otherSans")
-    def other_sans(self) -> pulumi.Output[Optional[List[str]]]:
+    def other_sans(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of other SANs
         """
@@ -306,7 +306,7 @@ class SecretBackendSign(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="uriSans")
-    def uri_sans(self) -> pulumi.Output[Optional[List[str]]]:
+    def uri_sans(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of alterative URIs
         """

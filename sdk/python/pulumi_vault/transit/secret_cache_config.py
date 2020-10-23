@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['SecretCacheConfig']
@@ -16,7 +16,7 @@ class SecretCacheConfig(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
-                 size: Optional[pulumi.Input[float]] = None,
+                 size: Optional[pulumi.Input[int]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -26,7 +26,7 @@ class SecretCacheConfig(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
-        :param pulumi.Input[float] size: The number of cache entries. 0 means unlimited.
+        :param pulumi.Input[int] size: The number of cache entries. 0 means unlimited.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -62,7 +62,7 @@ class SecretCacheConfig(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
-            size: Optional[pulumi.Input[float]] = None) -> 'SecretCacheConfig':
+            size: Optional[pulumi.Input[int]] = None) -> 'SecretCacheConfig':
         """
         Get an existing SecretCacheConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -71,7 +71,7 @@ class SecretCacheConfig(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
-        :param pulumi.Input[float] size: The number of cache entries. 0 means unlimited.
+        :param pulumi.Input[int] size: The number of cache entries. 0 means unlimited.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -91,7 +91,7 @@ class SecretCacheConfig(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def size(self) -> pulumi.Output[float]:
+    def size(self) -> pulumi.Output[int]:
         """
         The number of cache entries. 0 means unlimited.
         """

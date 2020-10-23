@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['AuthBackendUser']
@@ -15,9 +15,9 @@ class AuthBackendUser(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
-                 policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
@@ -46,9 +46,9 @@ class AuthBackendUser(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] groups: List of Okta groups to associate with this user
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: List of Okta groups to associate with this user
         :param pulumi.Input[str] path: The path where the Okta auth backend is mounted
-        :param pulumi.Input[List[pulumi.Input[str]]] policies: List of Vault policies to associate with this user
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of Vault policies to associate with this user
         :param pulumi.Input[str] username: Name of the user within Okta
         """
         if __name__ is not None:
@@ -86,9 +86,9 @@ class AuthBackendUser(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            groups: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             path: Optional[pulumi.Input[str]] = None,
-            policies: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             username: Optional[pulumi.Input[str]] = None) -> 'AuthBackendUser':
         """
         Get an existing AuthBackendUser resource's state with the given name, id, and optional extra
@@ -97,9 +97,9 @@ class AuthBackendUser(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] groups: List of Okta groups to associate with this user
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: List of Okta groups to associate with this user
         :param pulumi.Input[str] path: The path where the Okta auth backend is mounted
-        :param pulumi.Input[List[pulumi.Input[str]]] policies: List of Vault policies to associate with this user
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of Vault policies to associate with this user
         :param pulumi.Input[str] username: Name of the user within Okta
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -114,7 +114,7 @@ class AuthBackendUser(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def groups(self) -> pulumi.Output[Optional[List[str]]]:
+    def groups(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of Okta groups to associate with this user
         """
@@ -130,7 +130,7 @@ class AuthBackendUser(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def policies(self) -> pulumi.Output[Optional[List[str]]]:
+    def policies(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of Vault policies to associate with this user
         """

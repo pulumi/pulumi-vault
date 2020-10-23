@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = ['GroupMemberEntityIds']
@@ -17,7 +17,7 @@ class GroupMemberEntityIds(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  exclusive: Optional[pulumi.Input[bool]] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
-                 member_entity_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -75,7 +75,7 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
-        :param pulumi.Input[List[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -113,7 +113,7 @@ class GroupMemberEntityIds(pulumi.CustomResource):
             exclusive: Optional[pulumi.Input[bool]] = None,
             group_id: Optional[pulumi.Input[str]] = None,
             group_name: Optional[pulumi.Input[str]] = None,
-            member_entity_ids: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'GroupMemberEntityIds':
+            member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'GroupMemberEntityIds':
         """
         Get an existing GroupMemberEntityIds resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -124,7 +124,7 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
         :param pulumi.Input[str] group_name: The name of the group that are assigned the member entities.
-        :param pulumi.Input[List[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -162,7 +162,7 @@ class GroupMemberEntityIds(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="memberEntityIds")
-    def member_entity_ids(self) -> pulumi.Output[Optional[List[str]]]:
+    def member_entity_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of member entities that belong to the group
         """

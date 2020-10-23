@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
@@ -26,29 +26,29 @@ __all__ = [
 @pulumi.input_type
 class SecretBackendConnectionCassandraArgs:
     def __init__(__self__, *,
-                 connect_timeout: Optional[pulumi.Input[float]] = None,
-                 hosts: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 connect_timeout: Optional[pulumi.Input[int]] = None,
+                 hosts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  pem_bundle: Optional[pulumi.Input[str]] = None,
                  pem_json: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[float]] = None,
-                 protocol_version: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
+                 protocol_version: Optional[pulumi.Input[int]] = None,
                  tls: Optional[pulumi.Input[bool]] = None,
                  username: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[float] connect_timeout: The number of seconds to use as a connection
+        :param pulumi.Input[int] connect_timeout: The number of seconds to use as a connection
                timeout.
-        :param pulumi.Input[List[pulumi.Input[str]]] hosts: The hosts to connect to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: The hosts to connect to.
         :param pulumi.Input[bool] insecure_tls: Whether to skip verification of the server
                certificate when using TLS.
         :param pulumi.Input[str] password: The password to be used in the connection.
         :param pulumi.Input[str] pem_bundle: Concatenated PEM blocks configuring the certificate
                chain.
         :param pulumi.Input[str] pem_json: A JSON structure configuring the certificate chain.
-        :param pulumi.Input[float] port: The default port to connect to if no port is specified as
+        :param pulumi.Input[int] port: The default port to connect to if no port is specified as
                part of the host.
-        :param pulumi.Input[float] protocol_version: The CQL protocol version to use.
+        :param pulumi.Input[int] protocol_version: The CQL protocol version to use.
         :param pulumi.Input[bool] tls: Whether to use TLS when connecting to Cassandra.
         :param pulumi.Input[str] username: The username to be used in the connection.
         """
@@ -75,7 +75,7 @@ class SecretBackendConnectionCassandraArgs:
 
     @property
     @pulumi.getter(name="connectTimeout")
-    def connect_timeout(self) -> Optional[pulumi.Input[float]]:
+    def connect_timeout(self) -> Optional[pulumi.Input[int]]:
         """
         The number of seconds to use as a connection
         timeout.
@@ -83,19 +83,19 @@ class SecretBackendConnectionCassandraArgs:
         return pulumi.get(self, "connect_timeout")
 
     @connect_timeout.setter
-    def connect_timeout(self, value: Optional[pulumi.Input[float]]):
+    def connect_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "connect_timeout", value)
 
     @property
     @pulumi.getter
-    def hosts(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The hosts to connect to.
         """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
-    def hosts(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def hosts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "hosts", value)
 
     @property
@@ -150,7 +150,7 @@ class SecretBackendConnectionCassandraArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[float]]:
+    def port(self) -> Optional[pulumi.Input[int]]:
         """
         The default port to connect to if no port is specified as
         part of the host.
@@ -158,19 +158,19 @@ class SecretBackendConnectionCassandraArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[float]]):
+    def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
     @property
     @pulumi.getter(name="protocolVersion")
-    def protocol_version(self) -> Optional[pulumi.Input[float]]:
+    def protocol_version(self) -> Optional[pulumi.Input[int]]:
         """
         The CQL protocol version to use.
         """
         return pulumi.get(self, "protocol_version")
 
     @protocol_version.setter
-    def protocol_version(self, value: Optional[pulumi.Input[float]]):
+    def protocol_version(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "protocol_version", value)
 
     @property
@@ -256,19 +256,19 @@ class SecretBackendConnectionElasticsearchArgs:
 class SecretBackendConnectionHanaArgs:
     def __init__(__self__, *,
                  connection_url: Optional[pulumi.Input[str]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[float]] = None,
-                 max_idle_connections: Optional[pulumi.Input[float]] = None,
-                 max_open_connections: Optional[pulumi.Input[float]] = None):
+                 max_connection_lifetime: Optional[pulumi.Input[int]] = None,
+                 max_idle_connections: Optional[pulumi.Input[int]] = None,
+                 max_open_connections: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] connection_url: A URL containing connection information. See
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
                for an example.
-        :param pulumi.Input[float] max_connection_lifetime: The maximum number of seconds to keep
+        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
-        :param pulumi.Input[float] max_idle_connections: The maximum number of idle connections to
+        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
                maintain.
-        :param pulumi.Input[float] max_open_connections: The maximum number of open connections to
+        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                use.
         """
         if connection_url is not None:
@@ -297,7 +297,7 @@ class SecretBackendConnectionHanaArgs:
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[float]]:
+    def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of seconds to keep
         a connection alive for.
@@ -305,12 +305,12 @@ class SecretBackendConnectionHanaArgs:
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[float]]):
+    def max_connection_lifetime(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of idle connections to
         maintain.
@@ -318,12 +318,12 @@ class SecretBackendConnectionHanaArgs:
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_idle_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of open connections to
         use.
@@ -331,7 +331,7 @@ class SecretBackendConnectionHanaArgs:
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_open_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_open_connections", value)
 
 
@@ -339,19 +339,19 @@ class SecretBackendConnectionHanaArgs:
 class SecretBackendConnectionMongodbArgs:
     def __init__(__self__, *,
                  connection_url: Optional[pulumi.Input[str]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[float]] = None,
-                 max_idle_connections: Optional[pulumi.Input[float]] = None,
-                 max_open_connections: Optional[pulumi.Input[float]] = None):
+                 max_connection_lifetime: Optional[pulumi.Input[int]] = None,
+                 max_idle_connections: Optional[pulumi.Input[int]] = None,
+                 max_open_connections: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] connection_url: A URL containing connection information. See
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
                for an example.
-        :param pulumi.Input[float] max_connection_lifetime: The maximum number of seconds to keep
+        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
-        :param pulumi.Input[float] max_idle_connections: The maximum number of idle connections to
+        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
                maintain.
-        :param pulumi.Input[float] max_open_connections: The maximum number of open connections to
+        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                use.
         """
         if connection_url is not None:
@@ -380,7 +380,7 @@ class SecretBackendConnectionMongodbArgs:
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[float]]:
+    def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of seconds to keep
         a connection alive for.
@@ -388,12 +388,12 @@ class SecretBackendConnectionMongodbArgs:
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[float]]):
+    def max_connection_lifetime(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of idle connections to
         maintain.
@@ -401,12 +401,12 @@ class SecretBackendConnectionMongodbArgs:
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_idle_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of open connections to
         use.
@@ -414,7 +414,7 @@ class SecretBackendConnectionMongodbArgs:
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_open_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_open_connections", value)
 
 
@@ -460,19 +460,19 @@ class SecretBackendConnectionMongodbatlasArgs:
 class SecretBackendConnectionMssqlArgs:
     def __init__(__self__, *,
                  connection_url: Optional[pulumi.Input[str]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[float]] = None,
-                 max_idle_connections: Optional[pulumi.Input[float]] = None,
-                 max_open_connections: Optional[pulumi.Input[float]] = None):
+                 max_connection_lifetime: Optional[pulumi.Input[int]] = None,
+                 max_idle_connections: Optional[pulumi.Input[int]] = None,
+                 max_open_connections: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] connection_url: A URL containing connection information. See
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
                for an example.
-        :param pulumi.Input[float] max_connection_lifetime: The maximum number of seconds to keep
+        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
-        :param pulumi.Input[float] max_idle_connections: The maximum number of idle connections to
+        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
                maintain.
-        :param pulumi.Input[float] max_open_connections: The maximum number of open connections to
+        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                use.
         """
         if connection_url is not None:
@@ -501,7 +501,7 @@ class SecretBackendConnectionMssqlArgs:
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[float]]:
+    def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of seconds to keep
         a connection alive for.
@@ -509,12 +509,12 @@ class SecretBackendConnectionMssqlArgs:
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[float]]):
+    def max_connection_lifetime(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of idle connections to
         maintain.
@@ -522,12 +522,12 @@ class SecretBackendConnectionMssqlArgs:
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_idle_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of open connections to
         use.
@@ -535,7 +535,7 @@ class SecretBackendConnectionMssqlArgs:
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_open_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_open_connections", value)
 
 
@@ -543,19 +543,19 @@ class SecretBackendConnectionMssqlArgs:
 class SecretBackendConnectionMysqlArgs:
     def __init__(__self__, *,
                  connection_url: Optional[pulumi.Input[str]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[float]] = None,
-                 max_idle_connections: Optional[pulumi.Input[float]] = None,
-                 max_open_connections: Optional[pulumi.Input[float]] = None):
+                 max_connection_lifetime: Optional[pulumi.Input[int]] = None,
+                 max_idle_connections: Optional[pulumi.Input[int]] = None,
+                 max_open_connections: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] connection_url: A URL containing connection information. See
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
                for an example.
-        :param pulumi.Input[float] max_connection_lifetime: The maximum number of seconds to keep
+        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
-        :param pulumi.Input[float] max_idle_connections: The maximum number of idle connections to
+        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
                maintain.
-        :param pulumi.Input[float] max_open_connections: The maximum number of open connections to
+        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                use.
         """
         if connection_url is not None:
@@ -584,7 +584,7 @@ class SecretBackendConnectionMysqlArgs:
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[float]]:
+    def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of seconds to keep
         a connection alive for.
@@ -592,12 +592,12 @@ class SecretBackendConnectionMysqlArgs:
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[float]]):
+    def max_connection_lifetime(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of idle connections to
         maintain.
@@ -605,12 +605,12 @@ class SecretBackendConnectionMysqlArgs:
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_idle_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of open connections to
         use.
@@ -618,7 +618,7 @@ class SecretBackendConnectionMysqlArgs:
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_open_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_open_connections", value)
 
 
@@ -626,19 +626,19 @@ class SecretBackendConnectionMysqlArgs:
 class SecretBackendConnectionMysqlAuroraArgs:
     def __init__(__self__, *,
                  connection_url: Optional[pulumi.Input[str]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[float]] = None,
-                 max_idle_connections: Optional[pulumi.Input[float]] = None,
-                 max_open_connections: Optional[pulumi.Input[float]] = None):
+                 max_connection_lifetime: Optional[pulumi.Input[int]] = None,
+                 max_idle_connections: Optional[pulumi.Input[int]] = None,
+                 max_open_connections: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] connection_url: A URL containing connection information. See
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
                for an example.
-        :param pulumi.Input[float] max_connection_lifetime: The maximum number of seconds to keep
+        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
-        :param pulumi.Input[float] max_idle_connections: The maximum number of idle connections to
+        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
                maintain.
-        :param pulumi.Input[float] max_open_connections: The maximum number of open connections to
+        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                use.
         """
         if connection_url is not None:
@@ -667,7 +667,7 @@ class SecretBackendConnectionMysqlAuroraArgs:
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[float]]:
+    def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of seconds to keep
         a connection alive for.
@@ -675,12 +675,12 @@ class SecretBackendConnectionMysqlAuroraArgs:
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[float]]):
+    def max_connection_lifetime(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of idle connections to
         maintain.
@@ -688,12 +688,12 @@ class SecretBackendConnectionMysqlAuroraArgs:
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_idle_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of open connections to
         use.
@@ -701,7 +701,7 @@ class SecretBackendConnectionMysqlAuroraArgs:
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_open_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_open_connections", value)
 
 
@@ -709,19 +709,19 @@ class SecretBackendConnectionMysqlAuroraArgs:
 class SecretBackendConnectionMysqlLegacyArgs:
     def __init__(__self__, *,
                  connection_url: Optional[pulumi.Input[str]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[float]] = None,
-                 max_idle_connections: Optional[pulumi.Input[float]] = None,
-                 max_open_connections: Optional[pulumi.Input[float]] = None):
+                 max_connection_lifetime: Optional[pulumi.Input[int]] = None,
+                 max_idle_connections: Optional[pulumi.Input[int]] = None,
+                 max_open_connections: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] connection_url: A URL containing connection information. See
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
                for an example.
-        :param pulumi.Input[float] max_connection_lifetime: The maximum number of seconds to keep
+        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
-        :param pulumi.Input[float] max_idle_connections: The maximum number of idle connections to
+        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
                maintain.
-        :param pulumi.Input[float] max_open_connections: The maximum number of open connections to
+        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                use.
         """
         if connection_url is not None:
@@ -750,7 +750,7 @@ class SecretBackendConnectionMysqlLegacyArgs:
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[float]]:
+    def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of seconds to keep
         a connection alive for.
@@ -758,12 +758,12 @@ class SecretBackendConnectionMysqlLegacyArgs:
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[float]]):
+    def max_connection_lifetime(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of idle connections to
         maintain.
@@ -771,12 +771,12 @@ class SecretBackendConnectionMysqlLegacyArgs:
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_idle_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of open connections to
         use.
@@ -784,7 +784,7 @@ class SecretBackendConnectionMysqlLegacyArgs:
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_open_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_open_connections", value)
 
 
@@ -792,19 +792,19 @@ class SecretBackendConnectionMysqlLegacyArgs:
 class SecretBackendConnectionMysqlRdsArgs:
     def __init__(__self__, *,
                  connection_url: Optional[pulumi.Input[str]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[float]] = None,
-                 max_idle_connections: Optional[pulumi.Input[float]] = None,
-                 max_open_connections: Optional[pulumi.Input[float]] = None):
+                 max_connection_lifetime: Optional[pulumi.Input[int]] = None,
+                 max_idle_connections: Optional[pulumi.Input[int]] = None,
+                 max_open_connections: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] connection_url: A URL containing connection information. See
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
                for an example.
-        :param pulumi.Input[float] max_connection_lifetime: The maximum number of seconds to keep
+        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
-        :param pulumi.Input[float] max_idle_connections: The maximum number of idle connections to
+        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
                maintain.
-        :param pulumi.Input[float] max_open_connections: The maximum number of open connections to
+        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                use.
         """
         if connection_url is not None:
@@ -833,7 +833,7 @@ class SecretBackendConnectionMysqlRdsArgs:
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[float]]:
+    def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of seconds to keep
         a connection alive for.
@@ -841,12 +841,12 @@ class SecretBackendConnectionMysqlRdsArgs:
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[float]]):
+    def max_connection_lifetime(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of idle connections to
         maintain.
@@ -854,12 +854,12 @@ class SecretBackendConnectionMysqlRdsArgs:
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_idle_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of open connections to
         use.
@@ -867,7 +867,7 @@ class SecretBackendConnectionMysqlRdsArgs:
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_open_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_open_connections", value)
 
 
@@ -875,19 +875,19 @@ class SecretBackendConnectionMysqlRdsArgs:
 class SecretBackendConnectionOracleArgs:
     def __init__(__self__, *,
                  connection_url: Optional[pulumi.Input[str]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[float]] = None,
-                 max_idle_connections: Optional[pulumi.Input[float]] = None,
-                 max_open_connections: Optional[pulumi.Input[float]] = None):
+                 max_connection_lifetime: Optional[pulumi.Input[int]] = None,
+                 max_idle_connections: Optional[pulumi.Input[int]] = None,
+                 max_open_connections: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] connection_url: A URL containing connection information. See
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
                for an example.
-        :param pulumi.Input[float] max_connection_lifetime: The maximum number of seconds to keep
+        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
-        :param pulumi.Input[float] max_idle_connections: The maximum number of idle connections to
+        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
                maintain.
-        :param pulumi.Input[float] max_open_connections: The maximum number of open connections to
+        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                use.
         """
         if connection_url is not None:
@@ -916,7 +916,7 @@ class SecretBackendConnectionOracleArgs:
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[float]]:
+    def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of seconds to keep
         a connection alive for.
@@ -924,12 +924,12 @@ class SecretBackendConnectionOracleArgs:
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[float]]):
+    def max_connection_lifetime(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of idle connections to
         maintain.
@@ -937,12 +937,12 @@ class SecretBackendConnectionOracleArgs:
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_idle_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of open connections to
         use.
@@ -950,7 +950,7 @@ class SecretBackendConnectionOracleArgs:
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_open_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_open_connections", value)
 
 
@@ -958,19 +958,19 @@ class SecretBackendConnectionOracleArgs:
 class SecretBackendConnectionPostgresqlArgs:
     def __init__(__self__, *,
                  connection_url: Optional[pulumi.Input[str]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[float]] = None,
-                 max_idle_connections: Optional[pulumi.Input[float]] = None,
-                 max_open_connections: Optional[pulumi.Input[float]] = None):
+                 max_connection_lifetime: Optional[pulumi.Input[int]] = None,
+                 max_idle_connections: Optional[pulumi.Input[int]] = None,
+                 max_open_connections: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] connection_url: A URL containing connection information. See
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
                for an example.
-        :param pulumi.Input[float] max_connection_lifetime: The maximum number of seconds to keep
+        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
-        :param pulumi.Input[float] max_idle_connections: The maximum number of idle connections to
+        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
                maintain.
-        :param pulumi.Input[float] max_open_connections: The maximum number of open connections to
+        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                use.
         """
         if connection_url is not None:
@@ -999,7 +999,7 @@ class SecretBackendConnectionPostgresqlArgs:
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[float]]:
+    def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of seconds to keep
         a connection alive for.
@@ -1007,12 +1007,12 @@ class SecretBackendConnectionPostgresqlArgs:
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[float]]):
+    def max_connection_lifetime(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of idle connections to
         maintain.
@@ -1020,12 +1020,12 @@ class SecretBackendConnectionPostgresqlArgs:
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_idle_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[float]]:
+    def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
         The maximum number of open connections to
         use.
@@ -1033,7 +1033,7 @@ class SecretBackendConnectionPostgresqlArgs:
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[float]]):
+    def max_open_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_open_connections", value)
 
 

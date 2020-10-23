@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -17,11 +17,11 @@ class AuthBackend(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 default_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  listing_visibility: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
-                 max_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -45,12 +45,12 @@ class AuthBackend(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] default_lease_ttl_seconds: (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
+        :param pulumi.Input[int] default_lease_ttl_seconds: (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
         :param pulumi.Input[str] description: A description of the auth method
         :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in
                the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
-        :param pulumi.Input[float] max_lease_ttl_seconds: (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
+        :param pulumi.Input[int] max_lease_ttl_seconds: (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
         :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type
         :param pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']] tune: Extra configuration block. Structure is documented below.
         :param pulumi.Input[str] type: The name of the auth method type
@@ -103,11 +103,11 @@ class AuthBackend(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             accessor: Optional[pulumi.Input[str]] = None,
-            default_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+            default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
             listing_visibility: Optional[pulumi.Input[str]] = None,
             local: Optional[pulumi.Input[bool]] = None,
-            max_lease_ttl_seconds: Optional[pulumi.Input[float]] = None,
+            max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             path: Optional[pulumi.Input[str]] = None,
             tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'AuthBackend':
@@ -119,12 +119,12 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accessor: The accessor for this auth method
-        :param pulumi.Input[float] default_lease_ttl_seconds: (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
+        :param pulumi.Input[int] default_lease_ttl_seconds: (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
         :param pulumi.Input[str] description: A description of the auth method
         :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in
                the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
-        :param pulumi.Input[float] max_lease_ttl_seconds: (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
+        :param pulumi.Input[int] max_lease_ttl_seconds: (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
         :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type
         :param pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']] tune: Extra configuration block. Structure is documented below.
         :param pulumi.Input[str] type: The name of the auth method type
@@ -154,7 +154,7 @@ class AuthBackend(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
-    def default_lease_ttl_seconds(self) -> pulumi.Output[float]:
+    def default_lease_ttl_seconds(self) -> pulumi.Output[int]:
         """
         (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
         """
@@ -187,7 +187,7 @@ class AuthBackend(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxLeaseTtlSeconds")
-    def max_lease_ttl_seconds(self) -> pulumi.Output[float]:
+    def max_lease_ttl_seconds(self) -> pulumi.Output[int]:
         """
         (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
         """
