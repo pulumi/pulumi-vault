@@ -2,6 +2,11 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+_(none)_
+
+---
+
+## 3.0.0 (2020-10-26)
 * Upgrade to v2.15.0 of the Vault Terraform Provider
 * Upgrade to Pulumi v2.12.0. This includes a change which adds type annotations and input/output classes to Python
 * Upgrade to pulumi-terraform-bridge v2.11.0  
@@ -13,8 +18,6 @@ CHANGELOG
 * Improving the accuracy of previews leading to a more accurate understanding of what will actually change rather than assuming all output properties will change.  
   ** PLEASE NOTE:**  
   This new preview functionality can be disabled by setting `PULUMI_DISABLE_PROVIDER_PREVIEW` to `1` or `false`.
-
----
 
 ## 2.4.0 (2020-09-21)
 * Upgrade to v2.14.0 of the Vault Terraform Provider
