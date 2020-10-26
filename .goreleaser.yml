@@ -24,7 +24,7 @@ builds:
   - windows
   - linux
   ldflags:
-  - -X github.com/pulumi/pulumi-vault/provider/v2/pkg/version.Version={{.Tag}}
+  - -X github.com/pulumi/pulumi-vault/provider/v3/pkg/version.Version={{.Tag}}
   main: ./cmd/pulumi-resource-vault/
 changelog:
   skip: true

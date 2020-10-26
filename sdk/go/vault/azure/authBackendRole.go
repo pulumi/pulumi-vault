@@ -22,8 +22,8 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/azure"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/azure"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //

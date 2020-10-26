@@ -15,7 +15,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/transit"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/transit"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //

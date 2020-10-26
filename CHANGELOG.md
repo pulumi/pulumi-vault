@@ -10,7 +10,9 @@ CHANGELOG
   * `vault.appRole` is now `vault.approle` in Go, NodeJS and Python
   * `vault.pkiSecret` is now `vault.pkisecret` in Go, NodeJS and Python
   * `vault.rabbitMq` is now `vault.rabbitmq` in Go, NodeJS and Python
-* Improving the accuracy of previews leading to a more accurate understanding of what will actually change rather than assuming all output properties will change
+* Improving the accuracy of previews leading to a more accurate understanding of what will actually change rather than assuming all output properties will change.  
+  ** PLEASE NOTE:**  
+  This new preview functionality can be disabled by setting `PULUMI_DISABLE_PROVIDER_PREVIEW` to `1` or `false`.
 
 ---
 

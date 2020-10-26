@@ -17,7 +17,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v2/go/vault/kubernetes"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/kubernetes"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
