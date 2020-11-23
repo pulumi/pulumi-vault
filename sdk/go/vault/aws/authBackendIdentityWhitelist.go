@@ -4,6 +4,7 @@
 package aws
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -43,6 +44,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// AWS auth backend identity whitelists can be imported using `auth/`, the `backend` path, and `/config/tidy/identity-whitelist` e.g.
+//
+// ```sh
+//  $ pulumi import vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist example auth/aws/config/tidy/identity-whitelist
 // ```
 type AuthBackendIdentityWhitelist struct {
 	pulumi.CustomResourceState
@@ -140,4 +149,43 @@ type AuthBackendIdentityWhitelistArgs struct {
 
 func (AuthBackendIdentityWhitelistArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendIdentityWhitelistArgs)(nil)).Elem()
+}
+
+type AuthBackendIdentityWhitelistInput interface {
+	pulumi.Input
+
+	ToAuthBackendIdentityWhitelistOutput() AuthBackendIdentityWhitelistOutput
+	ToAuthBackendIdentityWhitelistOutputWithContext(ctx context.Context) AuthBackendIdentityWhitelistOutput
+}
+
+func (AuthBackendIdentityWhitelist) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendIdentityWhitelist)(nil)).Elem()
+}
+
+func (i AuthBackendIdentityWhitelist) ToAuthBackendIdentityWhitelistOutput() AuthBackendIdentityWhitelistOutput {
+	return i.ToAuthBackendIdentityWhitelistOutputWithContext(context.Background())
+}
+
+func (i AuthBackendIdentityWhitelist) ToAuthBackendIdentityWhitelistOutputWithContext(ctx context.Context) AuthBackendIdentityWhitelistOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendIdentityWhitelistOutput)
+}
+
+type AuthBackendIdentityWhitelistOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendIdentityWhitelistOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendIdentityWhitelistOutput)(nil)).Elem()
+}
+
+func (o AuthBackendIdentityWhitelistOutput) ToAuthBackendIdentityWhitelistOutput() AuthBackendIdentityWhitelistOutput {
+	return o
+}
+
+func (o AuthBackendIdentityWhitelistOutput) ToAuthBackendIdentityWhitelistOutputWithContext(ctx context.Context) AuthBackendIdentityWhitelistOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AuthBackendIdentityWhitelistOutput{})
 }

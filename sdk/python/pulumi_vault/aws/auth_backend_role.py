@@ -84,6 +84,14 @@ class AuthBackendRole(pulumi.CustomResource):
             ])
         ```
 
+        ## Import
+
+        AWS auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.
+
+        ```sh
+         $ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_instance_migration: If set to `true`, allows migration of
@@ -226,15 +234,15 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__['inferred_aws_region'] = inferred_aws_region
             __props__['inferred_entity_type'] = inferred_entity_type
             if max_ttl is not None:
-                warnings.warn("use `token_max_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
+                warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2")
             __props__['max_ttl'] = max_ttl
             if period is not None:
-                warnings.warn("use `token_period` instead if you are running Vault >= 1.2", DeprecationWarning)
+                warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("period is deprecated: use `token_period` instead if you are running Vault >= 1.2")
             __props__['period'] = period
             if policies is not None:
-                warnings.warn("use `token_policies` instead if you are running Vault >= 1.2", DeprecationWarning)
+                warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2")
             __props__['policies'] = policies
             __props__['resolve_aws_unique_ids'] = resolve_aws_unique_ids
@@ -252,7 +260,7 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__['token_ttl'] = token_ttl
             __props__['token_type'] = token_type
             if ttl is not None:
-                warnings.warn("use `token_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
+                warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2")
             __props__['ttl'] = ttl
         super(AuthBackendRole, __self__).__init__(

@@ -4,6 +4,15 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Import
+ *
+ * AWS secret backend roles can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:aws/secretBackendRole:SecretBackendRole role aws/roles/deploy
+ * ```
+ */
 export class SecretBackendRole extends pulumi.CustomResource {
     /**
      * Get an existing SecretBackendRole resource's state with the given name, ID, and optional extra

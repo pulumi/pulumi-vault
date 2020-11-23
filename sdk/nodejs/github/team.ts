@@ -25,6 +25,14 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Github team mappings can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
+ * ```
  */
 export class Team extends pulumi.CustomResource {
     /**

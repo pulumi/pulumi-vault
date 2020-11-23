@@ -4,6 +4,15 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Import
+ *
+ * AWS auth backend certificates can be imported using `auth/`, the `backend` path, `/config/certificate/`, and the `cert_name` e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:aws/authBackendCert:AuthBackendCert example auth/aws/config/certificate/my-cert
+ * ```
+ */
 export class AuthBackendCert extends pulumi.CustomResource {
     /**
      * Get an existing AuthBackendCert resource's state with the given name, ID, and optional extra

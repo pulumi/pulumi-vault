@@ -4,6 +4,7 @@
 package vault
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -126,4 +127,43 @@ type RgpPolicyArgs struct {
 
 func (RgpPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*rgpPolicyArgs)(nil)).Elem()
+}
+
+type RgpPolicyInput interface {
+	pulumi.Input
+
+	ToRgpPolicyOutput() RgpPolicyOutput
+	ToRgpPolicyOutputWithContext(ctx context.Context) RgpPolicyOutput
+}
+
+func (RgpPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*RgpPolicy)(nil)).Elem()
+}
+
+func (i RgpPolicy) ToRgpPolicyOutput() RgpPolicyOutput {
+	return i.ToRgpPolicyOutputWithContext(context.Background())
+}
+
+func (i RgpPolicy) ToRgpPolicyOutputWithContext(ctx context.Context) RgpPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RgpPolicyOutput)
+}
+
+type RgpPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (RgpPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RgpPolicyOutput)(nil)).Elem()
+}
+
+func (o RgpPolicyOutput) ToRgpPolicyOutput() RgpPolicyOutput {
+	return o
+}
+
+func (o RgpPolicyOutput) ToRgpPolicyOutputWithContext(ctx context.Context) RgpPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(RgpPolicyOutput{})
 }

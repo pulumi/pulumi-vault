@@ -4,6 +4,7 @@
 package identity
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -87,4 +88,43 @@ type OidcKeyAllowedClientIDArgs struct {
 
 func (OidcKeyAllowedClientIDArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*oidcKeyAllowedClientIDArgs)(nil)).Elem()
+}
+
+type OidcKeyAllowedClientIDInput interface {
+	pulumi.Input
+
+	ToOidcKeyAllowedClientIDOutput() OidcKeyAllowedClientIDOutput
+	ToOidcKeyAllowedClientIDOutputWithContext(ctx context.Context) OidcKeyAllowedClientIDOutput
+}
+
+func (OidcKeyAllowedClientID) ElementType() reflect.Type {
+	return reflect.TypeOf((*OidcKeyAllowedClientID)(nil)).Elem()
+}
+
+func (i OidcKeyAllowedClientID) ToOidcKeyAllowedClientIDOutput() OidcKeyAllowedClientIDOutput {
+	return i.ToOidcKeyAllowedClientIDOutputWithContext(context.Background())
+}
+
+func (i OidcKeyAllowedClientID) ToOidcKeyAllowedClientIDOutputWithContext(ctx context.Context) OidcKeyAllowedClientIDOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyAllowedClientIDOutput)
+}
+
+type OidcKeyAllowedClientIDOutput struct {
+	*pulumi.OutputState
+}
+
+func (OidcKeyAllowedClientIDOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OidcKeyAllowedClientIDOutput)(nil)).Elem()
+}
+
+func (o OidcKeyAllowedClientIDOutput) ToOidcKeyAllowedClientIDOutput() OidcKeyAllowedClientIDOutput {
+	return o
+}
+
+func (o OidcKeyAllowedClientIDOutput) ToOidcKeyAllowedClientIDOutputWithContext(ctx context.Context) OidcKeyAllowedClientIDOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OidcKeyAllowedClientIDOutput{})
 }

@@ -4,6 +4,15 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Import
+ *
+ * The key can be imported with the key name, for example
+ *
+ * ```sh
+ *  $ pulumi import vault:identity/oidcKey:OidcKey key key
+ * ```
+ */
 export class OidcKey extends pulumi.CustomResource {
     /**
      * Get an existing OidcKey resource's state with the given name, ID, and optional extra

@@ -4,6 +4,7 @@
 package identity
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -190,4 +191,43 @@ type GroupPoliciesArgs struct {
 
 func (GroupPoliciesArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupPoliciesArgs)(nil)).Elem()
+}
+
+type GroupPoliciesInput interface {
+	pulumi.Input
+
+	ToGroupPoliciesOutput() GroupPoliciesOutput
+	ToGroupPoliciesOutputWithContext(ctx context.Context) GroupPoliciesOutput
+}
+
+func (GroupPolicies) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupPolicies)(nil)).Elem()
+}
+
+func (i GroupPolicies) ToGroupPoliciesOutput() GroupPoliciesOutput {
+	return i.ToGroupPoliciesOutputWithContext(context.Background())
+}
+
+func (i GroupPolicies) ToGroupPoliciesOutputWithContext(ctx context.Context) GroupPoliciesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupPoliciesOutput)
+}
+
+type GroupPoliciesOutput struct {
+	*pulumi.OutputState
+}
+
+func (GroupPoliciesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupPoliciesOutput)(nil)).Elem()
+}
+
+func (o GroupPoliciesOutput) ToGroupPoliciesOutput() GroupPoliciesOutput {
+	return o
+}
+
+func (o GroupPoliciesOutput) ToGroupPoliciesOutputWithContext(ctx context.Context) GroupPoliciesOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GroupPoliciesOutput{})
 }

@@ -4,12 +4,20 @@
 package aws
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// AWS auth backend STS roles can be imported using `auth/`, the `backend` path, `/config/sts/`, and the `account_id` e.g.
+//
+// ```sh
+//  $ pulumi import vault:aws/authBackendStsRole:AuthBackendStsRole example auth/aws/config/sts/1234567890
+// ```
 type AuthBackendStsRole struct {
 	pulumi.CustomResourceState
 
@@ -107,4 +115,43 @@ type AuthBackendStsRoleArgs struct {
 
 func (AuthBackendStsRoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendStsRoleArgs)(nil)).Elem()
+}
+
+type AuthBackendStsRoleInput interface {
+	pulumi.Input
+
+	ToAuthBackendStsRoleOutput() AuthBackendStsRoleOutput
+	ToAuthBackendStsRoleOutputWithContext(ctx context.Context) AuthBackendStsRoleOutput
+}
+
+func (AuthBackendStsRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendStsRole)(nil)).Elem()
+}
+
+func (i AuthBackendStsRole) ToAuthBackendStsRoleOutput() AuthBackendStsRoleOutput {
+	return i.ToAuthBackendStsRoleOutputWithContext(context.Background())
+}
+
+func (i AuthBackendStsRole) ToAuthBackendStsRoleOutputWithContext(ctx context.Context) AuthBackendStsRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendStsRoleOutput)
+}
+
+type AuthBackendStsRoleOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendStsRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendStsRoleOutput)(nil)).Elem()
+}
+
+func (o AuthBackendStsRoleOutput) ToAuthBackendStsRoleOutput() AuthBackendStsRoleOutput {
+	return o
+}
+
+func (o AuthBackendStsRoleOutput) ToAuthBackendStsRoleOutputWithContext(ctx context.Context) AuthBackendStsRoleOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AuthBackendStsRoleOutput{})
 }

@@ -43,6 +43,14 @@ namespace Pulumi.Vault.AppRole
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// AppRole authentication backend roles can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:appRole/authBackendRole:AuthBackendRole example auth/approle/role/test-role
+    /// ```
     /// </summary>
     public partial class AuthBackendRole : Pulumi.CustomResource
     {

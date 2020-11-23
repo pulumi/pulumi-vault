@@ -4,6 +4,7 @@
 package database
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -61,6 +62,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Database secret backend static roles can be imported using the `backend`, `/static-roles/`, and the `name` e.g.
+//
+// ```sh
+//  $ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
 // ```
 type SecretBackendStaticRole struct {
 	pulumi.CustomResourceState
@@ -185,4 +194,43 @@ type SecretBackendStaticRoleArgs struct {
 
 func (SecretBackendStaticRoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendStaticRoleArgs)(nil)).Elem()
+}
+
+type SecretBackendStaticRoleInput interface {
+	pulumi.Input
+
+	ToSecretBackendStaticRoleOutput() SecretBackendStaticRoleOutput
+	ToSecretBackendStaticRoleOutputWithContext(ctx context.Context) SecretBackendStaticRoleOutput
+}
+
+func (SecretBackendStaticRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendStaticRole)(nil)).Elem()
+}
+
+func (i SecretBackendStaticRole) ToSecretBackendStaticRoleOutput() SecretBackendStaticRoleOutput {
+	return i.ToSecretBackendStaticRoleOutputWithContext(context.Background())
+}
+
+func (i SecretBackendStaticRole) ToSecretBackendStaticRoleOutputWithContext(ctx context.Context) SecretBackendStaticRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendStaticRoleOutput)
+}
+
+type SecretBackendStaticRoleOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretBackendStaticRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendStaticRoleOutput)(nil)).Elem()
+}
+
+func (o SecretBackendStaticRoleOutput) ToSecretBackendStaticRoleOutput() SecretBackendStaticRoleOutput {
+	return o
+}
+
+func (o SecretBackendStaticRoleOutput) ToSecretBackendStaticRoleOutputWithContext(ctx context.Context) SecretBackendStaticRoleOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretBackendStaticRoleOutput{})
 }

@@ -4,6 +4,7 @@
 package aws
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -146,4 +147,43 @@ type AuthBackendRoletagBlacklistArgs struct {
 
 func (AuthBackendRoletagBlacklistArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendRoletagBlacklistArgs)(nil)).Elem()
+}
+
+type AuthBackendRoletagBlacklistInput interface {
+	pulumi.Input
+
+	ToAuthBackendRoletagBlacklistOutput() AuthBackendRoletagBlacklistOutput
+	ToAuthBackendRoletagBlacklistOutputWithContext(ctx context.Context) AuthBackendRoletagBlacklistOutput
+}
+
+func (AuthBackendRoletagBlacklist) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendRoletagBlacklist)(nil)).Elem()
+}
+
+func (i AuthBackendRoletagBlacklist) ToAuthBackendRoletagBlacklistOutput() AuthBackendRoletagBlacklistOutput {
+	return i.ToAuthBackendRoletagBlacklistOutputWithContext(context.Background())
+}
+
+func (i AuthBackendRoletagBlacklist) ToAuthBackendRoletagBlacklistOutputWithContext(ctx context.Context) AuthBackendRoletagBlacklistOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoletagBlacklistOutput)
+}
+
+type AuthBackendRoletagBlacklistOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendRoletagBlacklistOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendRoletagBlacklistOutput)(nil)).Elem()
+}
+
+func (o AuthBackendRoletagBlacklistOutput) ToAuthBackendRoletagBlacklistOutput() AuthBackendRoletagBlacklistOutput {
+	return o
+}
+
+func (o AuthBackendRoletagBlacklistOutput) ToAuthBackendRoletagBlacklistOutputWithContext(ctx context.Context) AuthBackendRoletagBlacklistOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AuthBackendRoletagBlacklistOutput{})
 }

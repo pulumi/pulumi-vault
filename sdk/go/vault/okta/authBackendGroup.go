@@ -4,6 +4,7 @@
 package okta
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -46,6 +47,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Okta authentication backend groups can be imported using the format `backend/groupName` e.g.
+//
+// ```sh
+//  $ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
 // ```
 type AuthBackendGroup struct {
 	pulumi.CustomResourceState
@@ -134,4 +143,43 @@ type AuthBackendGroupArgs struct {
 
 func (AuthBackendGroupArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendGroupArgs)(nil)).Elem()
+}
+
+type AuthBackendGroupInput interface {
+	pulumi.Input
+
+	ToAuthBackendGroupOutput() AuthBackendGroupOutput
+	ToAuthBackendGroupOutputWithContext(ctx context.Context) AuthBackendGroupOutput
+}
+
+func (AuthBackendGroup) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendGroup)(nil)).Elem()
+}
+
+func (i AuthBackendGroup) ToAuthBackendGroupOutput() AuthBackendGroupOutput {
+	return i.ToAuthBackendGroupOutputWithContext(context.Background())
+}
+
+func (i AuthBackendGroup) ToAuthBackendGroupOutputWithContext(ctx context.Context) AuthBackendGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupOutput)
+}
+
+type AuthBackendGroupOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendGroupOutput)(nil)).Elem()
+}
+
+func (o AuthBackendGroupOutput) ToAuthBackendGroupOutput() AuthBackendGroupOutput {
+	return o
+}
+
+func (o AuthBackendGroupOutput) ToAuthBackendGroupOutputWithContext(ctx context.Context) AuthBackendGroupOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AuthBackendGroupOutput{})
 }

@@ -39,7 +39,14 @@ class SecretBackendConnection(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a SecretBackendConnection resource with the given unique name, props, and options.
+        ## Import
+
+        Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.
+
+        ```sh
+         $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this

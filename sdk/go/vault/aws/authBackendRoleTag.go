@@ -4,6 +4,7 @@
 package aws
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -157,4 +158,43 @@ type AuthBackendRoleTagArgs struct {
 
 func (AuthBackendRoleTagArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendRoleTagArgs)(nil)).Elem()
+}
+
+type AuthBackendRoleTagInput interface {
+	pulumi.Input
+
+	ToAuthBackendRoleTagOutput() AuthBackendRoleTagOutput
+	ToAuthBackendRoleTagOutputWithContext(ctx context.Context) AuthBackendRoleTagOutput
+}
+
+func (AuthBackendRoleTag) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendRoleTag)(nil)).Elem()
+}
+
+func (i AuthBackendRoleTag) ToAuthBackendRoleTagOutput() AuthBackendRoleTagOutput {
+	return i.ToAuthBackendRoleTagOutputWithContext(context.Background())
+}
+
+func (i AuthBackendRoleTag) ToAuthBackendRoleTagOutputWithContext(ctx context.Context) AuthBackendRoleTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleTagOutput)
+}
+
+type AuthBackendRoleTagOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendRoleTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendRoleTagOutput)(nil)).Elem()
+}
+
+func (o AuthBackendRoleTagOutput) ToAuthBackendRoleTagOutput() AuthBackendRoleTagOutput {
+	return o
+}
+
+func (o AuthBackendRoleTagOutput) ToAuthBackendRoleTagOutputWithContext(ctx context.Context) AuthBackendRoleTagOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AuthBackendRoleTagOutput{})
 }

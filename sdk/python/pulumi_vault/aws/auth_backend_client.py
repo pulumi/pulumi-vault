@@ -26,7 +26,14 @@ class AuthBackendClient(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a AuthBackendClient resource with the given unique name, props, and options.
+        ## Import
+
+        AWS auth backend clients can be imported using `auth/`, the `backend` path, and `/config/client` e.g.
+
+        ```sh
+         $ pulumi import vault:aws/authBackendClient:AuthBackendClient example auth/aws/config/client
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The AWS access key that Vault should use for the

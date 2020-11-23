@@ -4,6 +4,7 @@
 package identity
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -145,4 +146,43 @@ type GroupAliasArgs struct {
 
 func (GroupAliasArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupAliasArgs)(nil)).Elem()
+}
+
+type GroupAliasInput interface {
+	pulumi.Input
+
+	ToGroupAliasOutput() GroupAliasOutput
+	ToGroupAliasOutputWithContext(ctx context.Context) GroupAliasOutput
+}
+
+func (GroupAlias) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupAlias)(nil)).Elem()
+}
+
+func (i GroupAlias) ToGroupAliasOutput() GroupAliasOutput {
+	return i.ToGroupAliasOutputWithContext(context.Background())
+}
+
+func (i GroupAlias) ToGroupAliasOutputWithContext(ctx context.Context) GroupAliasOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupAliasOutput)
+}
+
+type GroupAliasOutput struct {
+	*pulumi.OutputState
+}
+
+func (GroupAliasOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupAliasOutput)(nil)).Elem()
+}
+
+func (o GroupAliasOutput) ToGroupAliasOutput() GroupAliasOutput {
+	return o
+}
+
+func (o GroupAliasOutput) ToGroupAliasOutputWithContext(ctx context.Context) GroupAliasOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GroupAliasOutput{})
 }

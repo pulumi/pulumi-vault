@@ -26,6 +26,14 @@ import * as utilities from "./utilities";
  *     secretKey: "8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Mounts can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
+ * ```
  */
 export class MfaDuo extends pulumi.CustomResource {
     /**

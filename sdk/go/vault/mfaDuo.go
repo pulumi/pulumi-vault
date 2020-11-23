@@ -4,6 +4,7 @@
 package vault
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -45,6 +46,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Mounts can be imported using the `path`, e.g.
+//
+// ```sh
+//  $ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
 // ```
 type MfaDuo struct {
 	pulumi.CustomResourceState
@@ -199,4 +208,43 @@ type MfaDuoArgs struct {
 
 func (MfaDuoArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*mfaDuoArgs)(nil)).Elem()
+}
+
+type MfaDuoInput interface {
+	pulumi.Input
+
+	ToMfaDuoOutput() MfaDuoOutput
+	ToMfaDuoOutputWithContext(ctx context.Context) MfaDuoOutput
+}
+
+func (MfaDuo) ElementType() reflect.Type {
+	return reflect.TypeOf((*MfaDuo)(nil)).Elem()
+}
+
+func (i MfaDuo) ToMfaDuoOutput() MfaDuoOutput {
+	return i.ToMfaDuoOutputWithContext(context.Background())
+}
+
+func (i MfaDuo) ToMfaDuoOutputWithContext(ctx context.Context) MfaDuoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MfaDuoOutput)
+}
+
+type MfaDuoOutput struct {
+	*pulumi.OutputState
+}
+
+func (MfaDuoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MfaDuoOutput)(nil)).Elem()
+}
+
+func (o MfaDuoOutput) ToMfaDuoOutput() MfaDuoOutput {
+	return o
+}
+
+func (o MfaDuoOutput) ToMfaDuoOutputWithContext(ctx context.Context) MfaDuoOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(MfaDuoOutput{})
 }

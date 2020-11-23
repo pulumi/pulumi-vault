@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.RabbitMQ
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// RabbitMQ secret backend roles can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:rabbitMq/secretBackendRole:SecretBackendRole role rabbitmq/roles/deploy
+    /// ```
+    /// </summary>
     public partial class SecretBackendRole : Pulumi.CustomResource
     {
         /// <summary>

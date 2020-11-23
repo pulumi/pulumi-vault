@@ -4,12 +4,20 @@
 package consul
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// Consul secret backends can be imported using the `path`, e.g.
+//
+// ```sh
+//  $ pulumi import vault:consul/secretBackend:SecretBackend example consul
+// ```
 type SecretBackend struct {
 	pulumi.CustomResourceState
 
@@ -142,4 +150,43 @@ type SecretBackendArgs struct {
 
 func (SecretBackendArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendArgs)(nil)).Elem()
+}
+
+type SecretBackendInput interface {
+	pulumi.Input
+
+	ToSecretBackendOutput() SecretBackendOutput
+	ToSecretBackendOutputWithContext(ctx context.Context) SecretBackendOutput
+}
+
+func (SecretBackend) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackend)(nil)).Elem()
+}
+
+func (i SecretBackend) ToSecretBackendOutput() SecretBackendOutput {
+	return i.ToSecretBackendOutputWithContext(context.Background())
+}
+
+func (i SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) SecretBackendOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendOutput)
+}
+
+type SecretBackendOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretBackendOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendOutput)(nil)).Elem()
+}
+
+func (o SecretBackendOutput) ToSecretBackendOutput() SecretBackendOutput {
+	return o
+}
+
+func (o SecretBackendOutput) ToSecretBackendOutputWithContext(ctx context.Context) SecretBackendOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretBackendOutput{})
 }

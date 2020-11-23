@@ -24,6 +24,14 @@ import * as utilities from "../utilities";
  *     backend: transit.path,
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Transit secret backend keys can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
+ * ```
  */
 export class SecretBackendKey extends pulumi.CustomResource {
     /**

@@ -4,6 +4,7 @@
 package kubernetes
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -184,4 +185,43 @@ type AuthBackendConfigArgs struct {
 
 func (AuthBackendConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendConfigArgs)(nil)).Elem()
+}
+
+type AuthBackendConfigInput interface {
+	pulumi.Input
+
+	ToAuthBackendConfigOutput() AuthBackendConfigOutput
+	ToAuthBackendConfigOutputWithContext(ctx context.Context) AuthBackendConfigOutput
+}
+
+func (AuthBackendConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendConfig)(nil)).Elem()
+}
+
+func (i AuthBackendConfig) ToAuthBackendConfigOutput() AuthBackendConfigOutput {
+	return i.ToAuthBackendConfigOutputWithContext(context.Background())
+}
+
+func (i AuthBackendConfig) ToAuthBackendConfigOutputWithContext(ctx context.Context) AuthBackendConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendConfigOutput)
+}
+
+type AuthBackendConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendConfigOutput)(nil)).Elem()
+}
+
+func (o AuthBackendConfigOutput) ToAuthBackendConfigOutput() AuthBackendConfigOutput {
+	return o
+}
+
+func (o AuthBackendConfigOutput) ToAuthBackendConfigOutputWithContext(ctx context.Context) AuthBackendConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AuthBackendConfigOutput{})
 }

@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Azure
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
+    /// ```
+    /// </summary>
     public partial class AuthBackendConfig : Pulumi.CustomResource
     {
         /// <summary>

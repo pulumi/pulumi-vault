@@ -46,6 +46,14 @@ class MfaDuo(pulumi.CustomResource):
             secret_key="8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz")
         ```
 
+        ## Import
+
+        Mounts can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_hostname: `(string: <required>)` - API hostname for Duo.

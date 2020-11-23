@@ -26,6 +26,14 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ *
+ * ## Import
+ *
+ * AppRole authentication backend roles can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:appRole/authBackendRole:AuthBackendRole example auth/approle/role/test-role
+ * ```
  */
 export class AuthBackendRole extends pulumi.CustomResource {
     /**

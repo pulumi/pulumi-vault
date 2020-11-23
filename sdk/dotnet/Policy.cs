@@ -32,6 +32,14 @@ namespace Pulumi.Vault
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Policies can be imported using the `name`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:index/policy:Policy example dev-team
+    /// ```
     /// </summary>
     public partial class Policy : Pulumi.CustomResource
     {

@@ -4,6 +4,7 @@
 package vault
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -33,6 +34,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Mounts can be imported using the `path`, e.g.
+//
+// ```sh
+//  $ pulumi import vault:index/mount:Mount example dummy
 // ```
 type Mount struct {
 	pulumi.CustomResourceState
@@ -187,4 +196,43 @@ type MountArgs struct {
 
 func (MountArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*mountArgs)(nil)).Elem()
+}
+
+type MountInput interface {
+	pulumi.Input
+
+	ToMountOutput() MountOutput
+	ToMountOutputWithContext(ctx context.Context) MountOutput
+}
+
+func (Mount) ElementType() reflect.Type {
+	return reflect.TypeOf((*Mount)(nil)).Elem()
+}
+
+func (i Mount) ToMountOutput() MountOutput {
+	return i.ToMountOutputWithContext(context.Background())
+}
+
+func (i Mount) ToMountOutputWithContext(ctx context.Context) MountOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MountOutput)
+}
+
+type MountOutput struct {
+	*pulumi.OutputState
+}
+
+func (MountOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MountOutput)(nil)).Elem()
+}
+
+func (o MountOutput) ToMountOutput() MountOutput {
+	return o
+}
+
+func (o MountOutput) ToMountOutputWithContext(ctx context.Context) MountOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(MountOutput{})
 }

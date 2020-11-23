@@ -28,7 +28,14 @@ class SecretBackendRole(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a SecretBackendRole resource with the given unique name, props, and options.
+        ## Import
+
+        Database secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
+
+        ```sh
+         $ pulumi import vault:database/secretBackendRole:SecretBackendRole example postgres/roles/my-role
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.

@@ -43,6 +43,14 @@ class AuthBackend(pulumi.CustomResource):
             type="github")
         ```
 
+        ## Import
+
+        Auth methods can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:index/authBackend:AuthBackend example github
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] default_lease_ttl_seconds: (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
@@ -73,17 +81,17 @@ class AuthBackend(pulumi.CustomResource):
             __props__ = dict()
 
             if default_lease_ttl_seconds is not None:
-                warnings.warn("Use the tune configuration block to avoid forcing creation of new resource on an update", DeprecationWarning)
+                warnings.warn("""Use the tune configuration block to avoid forcing creation of new resource on an update""", DeprecationWarning)
                 pulumi.log.warn("default_lease_ttl_seconds is deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update")
             __props__['default_lease_ttl_seconds'] = default_lease_ttl_seconds
             __props__['description'] = description
             if listing_visibility is not None:
-                warnings.warn("Use the tune configuration block to avoid forcing creation of new resource on an update", DeprecationWarning)
+                warnings.warn("""Use the tune configuration block to avoid forcing creation of new resource on an update""", DeprecationWarning)
                 pulumi.log.warn("listing_visibility is deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update")
             __props__['listing_visibility'] = listing_visibility
             __props__['local'] = local
             if max_lease_ttl_seconds is not None:
-                warnings.warn("Use the tune configuration block to avoid forcing creation of new resource on an update", DeprecationWarning)
+                warnings.warn("""Use the tune configuration block to avoid forcing creation of new resource on an update""", DeprecationWarning)
                 pulumi.log.warn("max_lease_ttl_seconds is deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update")
             __props__['max_lease_ttl_seconds'] = max_lease_ttl_seconds
             __props__['path'] = path

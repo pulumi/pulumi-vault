@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Aws
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// AWS auth backend certificates can be imported using `auth/`, the `backend` path, `/config/certificate/`, and the `cert_name` e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:aws/authBackendCert:AuthBackendCert example auth/aws/config/certificate/my-cert
+    /// ```
+    /// </summary>
     public partial class AuthBackendCert : Pulumi.CustomResource
     {
         /// <summary>

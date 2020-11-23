@@ -4,6 +4,15 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Import
+ *
+ * AWS auth backend STS roles can be imported using `auth/`, the `backend` path, `/config/sts/`, and the `account_id` e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:aws/authBackendStsRole:AuthBackendStsRole example auth/aws/config/sts/1234567890
+ * ```
+ */
 export class AuthBackendStsRole extends pulumi.CustomResource {
     /**
      * Get an existing AuthBackendStsRole resource's state with the given name, ID, and optional extra

@@ -4,6 +4,7 @@
 package ssh
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -132,4 +133,43 @@ type SecretBackendCaArgs struct {
 
 func (SecretBackendCaArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendCaArgs)(nil)).Elem()
+}
+
+type SecretBackendCaInput interface {
+	pulumi.Input
+
+	ToSecretBackendCaOutput() SecretBackendCaOutput
+	ToSecretBackendCaOutputWithContext(ctx context.Context) SecretBackendCaOutput
+}
+
+func (SecretBackendCa) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendCa)(nil)).Elem()
+}
+
+func (i SecretBackendCa) ToSecretBackendCaOutput() SecretBackendCaOutput {
+	return i.ToSecretBackendCaOutputWithContext(context.Background())
+}
+
+func (i SecretBackendCa) ToSecretBackendCaOutputWithContext(ctx context.Context) SecretBackendCaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCaOutput)
+}
+
+type SecretBackendCaOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretBackendCaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendCaOutput)(nil)).Elem()
+}
+
+func (o SecretBackendCaOutput) ToSecretBackendCaOutput() SecretBackendCaOutput {
+	return o
+}
+
+func (o SecretBackendCaOutput) ToSecretBackendCaOutputWithContext(ctx context.Context) SecretBackendCaOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretBackendCaOutput{})
 }

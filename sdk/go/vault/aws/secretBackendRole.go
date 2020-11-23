@@ -4,12 +4,20 @@
 package aws
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// AWS secret backend roles can be imported using the `path`, e.g.
+//
+// ```sh
+//  $ pulumi import vault:aws/secretBackendRole:SecretBackendRole role aws/roles/deploy
+// ```
 type SecretBackendRole struct {
 	pulumi.CustomResourceState
 
@@ -292,4 +300,43 @@ type SecretBackendRoleArgs struct {
 
 func (SecretBackendRoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendRoleArgs)(nil)).Elem()
+}
+
+type SecretBackendRoleInput interface {
+	pulumi.Input
+
+	ToSecretBackendRoleOutput() SecretBackendRoleOutput
+	ToSecretBackendRoleOutputWithContext(ctx context.Context) SecretBackendRoleOutput
+}
+
+func (SecretBackendRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendRole)(nil)).Elem()
+}
+
+func (i SecretBackendRole) ToSecretBackendRoleOutput() SecretBackendRoleOutput {
+	return i.ToSecretBackendRoleOutputWithContext(context.Background())
+}
+
+func (i SecretBackendRole) ToSecretBackendRoleOutputWithContext(ctx context.Context) SecretBackendRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRoleOutput)
+}
+
+type SecretBackendRoleOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretBackendRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendRoleOutput)(nil)).Elem()
+}
+
+func (o SecretBackendRoleOutput) ToSecretBackendRoleOutput() SecretBackendRoleOutput {
+	return o
+}
+
+func (o SecretBackendRoleOutput) ToSecretBackendRoleOutputWithContext(ctx context.Context) SecretBackendRoleOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretBackendRoleOutput{})
 }

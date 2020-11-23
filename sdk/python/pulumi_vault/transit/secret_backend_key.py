@@ -46,6 +46,14 @@ class SecretBackendKey(pulumi.CustomResource):
         key = vault.transit.SecretBackendKey("key", backend=transit.path)
         ```
 
+        ## Import
+
+        Transit secret backend keys can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.

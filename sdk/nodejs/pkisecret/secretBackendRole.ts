@@ -22,6 +22,14 @@ import * as utilities from "../utilities";
  *     backend: pki.path,
  * });
  * ```
+ *
+ * ## Import
+ *
+ * PKI secret backend roles can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:pkiSecret/secretBackendRole:SecretBackendRole role pki/roles/my_role
+ * ```
  */
 export class SecretBackendRole extends pulumi.CustomResource {
     /**

@@ -4,12 +4,20 @@
 package azure
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.
+//
+// ```sh
+//  $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
+// ```
 type AuthBackendConfig struct {
 	pulumi.CustomResourceState
 
@@ -162,4 +170,43 @@ type AuthBackendConfigArgs struct {
 
 func (AuthBackendConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendConfigArgs)(nil)).Elem()
+}
+
+type AuthBackendConfigInput interface {
+	pulumi.Input
+
+	ToAuthBackendConfigOutput() AuthBackendConfigOutput
+	ToAuthBackendConfigOutputWithContext(ctx context.Context) AuthBackendConfigOutput
+}
+
+func (AuthBackendConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendConfig)(nil)).Elem()
+}
+
+func (i AuthBackendConfig) ToAuthBackendConfigOutput() AuthBackendConfigOutput {
+	return i.ToAuthBackendConfigOutputWithContext(context.Background())
+}
+
+func (i AuthBackendConfig) ToAuthBackendConfigOutputWithContext(ctx context.Context) AuthBackendConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendConfigOutput)
+}
+
+type AuthBackendConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendConfigOutput)(nil)).Elem()
+}
+
+func (o AuthBackendConfigOutput) ToAuthBackendConfigOutput() AuthBackendConfigOutput {
+	return o
+}
+
+func (o AuthBackendConfigOutput) ToAuthBackendConfigOutputWithContext(ctx context.Context) AuthBackendConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AuthBackendConfigOutput{})
 }

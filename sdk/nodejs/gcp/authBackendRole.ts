@@ -24,6 +24,14 @@ import * as utilities from "../utilities";
  *     tokenPolicies: ["database-server"],
  * });
  * ```
+ *
+ * ## Import
+ *
+ * GCP authentication roles can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:gcp/authBackendRole:AuthBackendRole my_role auth/gcp/role/my_role
+ * ```
  */
 export class AuthBackendRole extends pulumi.CustomResource {
     /**

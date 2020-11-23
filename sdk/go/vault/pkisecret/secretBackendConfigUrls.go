@@ -4,6 +4,7 @@
 package pkisecret
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -141,4 +142,43 @@ type SecretBackendConfigUrlsArgs struct {
 
 func (SecretBackendConfigUrlsArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendConfigUrlsArgs)(nil)).Elem()
+}
+
+type SecretBackendConfigUrlsInput interface {
+	pulumi.Input
+
+	ToSecretBackendConfigUrlsOutput() SecretBackendConfigUrlsOutput
+	ToSecretBackendConfigUrlsOutputWithContext(ctx context.Context) SecretBackendConfigUrlsOutput
+}
+
+func (SecretBackendConfigUrls) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConfigUrls)(nil)).Elem()
+}
+
+func (i SecretBackendConfigUrls) ToSecretBackendConfigUrlsOutput() SecretBackendConfigUrlsOutput {
+	return i.ToSecretBackendConfigUrlsOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConfigUrls) ToSecretBackendConfigUrlsOutputWithContext(ctx context.Context) SecretBackendConfigUrlsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConfigUrlsOutput)
+}
+
+type SecretBackendConfigUrlsOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretBackendConfigUrlsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConfigUrlsOutput)(nil)).Elem()
+}
+
+func (o SecretBackendConfigUrlsOutput) ToSecretBackendConfigUrlsOutput() SecretBackendConfigUrlsOutput {
+	return o
+}
+
+func (o SecretBackendConfigUrlsOutput) ToSecretBackendConfigUrlsOutputWithContext(ctx context.Context) SecretBackendConfigUrlsOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretBackendConfigUrlsOutput{})
 }

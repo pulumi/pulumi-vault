@@ -30,6 +30,14 @@ namespace Pulumi.Vault
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Mounts can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:index/mount:Mount example dummy
+    /// ```
     /// </summary>
     public partial class Mount : Pulumi.CustomResource
     {

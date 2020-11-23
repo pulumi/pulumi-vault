@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Aws
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// AWS auth backend STS roles can be imported using `auth/`, the `backend` path, `/config/sts/`, and the `account_id` e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:aws/authBackendStsRole:AuthBackendStsRole example auth/aws/config/sts/1234567890
+    /// ```
+    /// </summary>
     public partial class AuthBackendStsRole : Pulumi.CustomResource
     {
         /// <summary>

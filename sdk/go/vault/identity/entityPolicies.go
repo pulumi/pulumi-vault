@@ -4,6 +4,7 @@
 package identity
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -182,4 +183,43 @@ type EntityPoliciesArgs struct {
 
 func (EntityPoliciesArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*entityPoliciesArgs)(nil)).Elem()
+}
+
+type EntityPoliciesInput interface {
+	pulumi.Input
+
+	ToEntityPoliciesOutput() EntityPoliciesOutput
+	ToEntityPoliciesOutputWithContext(ctx context.Context) EntityPoliciesOutput
+}
+
+func (EntityPolicies) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntityPolicies)(nil)).Elem()
+}
+
+func (i EntityPolicies) ToEntityPoliciesOutput() EntityPoliciesOutput {
+	return i.ToEntityPoliciesOutputWithContext(context.Background())
+}
+
+func (i EntityPolicies) ToEntityPoliciesOutputWithContext(ctx context.Context) EntityPoliciesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntityPoliciesOutput)
+}
+
+type EntityPoliciesOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntityPoliciesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntityPoliciesOutput)(nil)).Elem()
+}
+
+func (o EntityPoliciesOutput) ToEntityPoliciesOutput() EntityPoliciesOutput {
+	return o
+}
+
+func (o EntityPoliciesOutput) ToEntityPoliciesOutputWithContext(ctx context.Context) EntityPoliciesOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EntityPoliciesOutput{})
 }

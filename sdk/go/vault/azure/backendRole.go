@@ -4,6 +4,7 @@
 package azure
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -149,4 +150,43 @@ type BackendRoleArgs struct {
 
 func (BackendRoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*backendRoleArgs)(nil)).Elem()
+}
+
+type BackendRoleInput interface {
+	pulumi.Input
+
+	ToBackendRoleOutput() BackendRoleOutput
+	ToBackendRoleOutputWithContext(ctx context.Context) BackendRoleOutput
+}
+
+func (BackendRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendRole)(nil)).Elem()
+}
+
+func (i BackendRole) ToBackendRoleOutput() BackendRoleOutput {
+	return i.ToBackendRoleOutputWithContext(context.Background())
+}
+
+func (i BackendRole) ToBackendRoleOutputWithContext(ctx context.Context) BackendRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendRoleOutput)
+}
+
+type BackendRoleOutput struct {
+	*pulumi.OutputState
+}
+
+func (BackendRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendRoleOutput)(nil)).Elem()
+}
+
+func (o BackendRoleOutput) ToBackendRoleOutput() BackendRoleOutput {
+	return o
+}
+
+func (o BackendRoleOutput) ToBackendRoleOutputWithContext(ctx context.Context) BackendRoleOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(BackendRoleOutput{})
 }

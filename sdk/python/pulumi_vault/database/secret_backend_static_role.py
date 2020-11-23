@@ -52,6 +52,14 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             username="example")
         ```
 
+        ## Import
+
+        Database secret backend static roles can be imported using the `backend`, `/static-roles/`, and the `name` e.g.
+
+        ```sh
+         $ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.

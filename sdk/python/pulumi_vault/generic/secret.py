@@ -22,7 +22,14 @@ class Secret(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a Secret resource with the given unique name, props, and options.
+        ## Import
+
+        Generic secrets can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:generic/secret:Secret example secret/foo
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] data_json: String containing a JSON-encoded object that will be

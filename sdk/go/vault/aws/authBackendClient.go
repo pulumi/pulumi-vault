@@ -4,11 +4,19 @@
 package aws
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// AWS auth backend clients can be imported using `auth/`, the `backend` path, and `/config/client` e.g.
+//
+// ```sh
+//  $ pulumi import vault:aws/authBackendClient:AuthBackendClient example auth/aws/config/client
+// ```
 type AuthBackendClient struct {
 	pulumi.CustomResourceState
 
@@ -170,4 +178,43 @@ type AuthBackendClientArgs struct {
 
 func (AuthBackendClientArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendClientArgs)(nil)).Elem()
+}
+
+type AuthBackendClientInput interface {
+	pulumi.Input
+
+	ToAuthBackendClientOutput() AuthBackendClientOutput
+	ToAuthBackendClientOutputWithContext(ctx context.Context) AuthBackendClientOutput
+}
+
+func (AuthBackendClient) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendClient)(nil)).Elem()
+}
+
+func (i AuthBackendClient) ToAuthBackendClientOutput() AuthBackendClientOutput {
+	return i.ToAuthBackendClientOutputWithContext(context.Background())
+}
+
+func (i AuthBackendClient) ToAuthBackendClientOutputWithContext(ctx context.Context) AuthBackendClientOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendClientOutput)
+}
+
+type AuthBackendClientOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendClientOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendClientOutput)(nil)).Elem()
+}
+
+func (o AuthBackendClientOutput) ToAuthBackendClientOutput() AuthBackendClientOutput {
+	return o
+}
+
+func (o AuthBackendClientOutput) ToAuthBackendClientOutputWithContext(ctx context.Context) AuthBackendClientOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AuthBackendClientOutput{})
 }

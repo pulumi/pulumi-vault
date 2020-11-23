@@ -50,6 +50,14 @@ class AuthBackend(pulumi.CustomResource):
         example = vault.github.AuthBackend("example", organization="myorg")
         ```
 
+        ## Import
+
+        Github authentication mounts can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:github/authBackend:AuthBackend example github
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] base_url: The API endpoint to use. Useful if you
@@ -108,7 +116,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__['base_url'] = base_url
             __props__['description'] = description
             if max_ttl is not None:
-                warnings.warn("use `token_max_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
+                warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2")
             __props__['max_ttl'] = max_ttl
             if organization is None:
@@ -125,7 +133,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__['token_ttl'] = token_ttl
             __props__['token_type'] = token_type
             if ttl is not None:
-                warnings.warn("use `token_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
+                warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2")
             __props__['ttl'] = ttl
             __props__['tune'] = tune

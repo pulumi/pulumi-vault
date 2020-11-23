@@ -4,12 +4,21 @@
 package gcp
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
 // Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
+//
+// ## Import
+//
+// GCP authentication backends can be imported using the backend name, e.g.
+//
+// ```sh
+//  $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
+// ```
 type AuthBackend struct {
 	pulumi.CustomResourceState
 
@@ -121,4 +130,43 @@ type AuthBackendArgs struct {
 
 func (AuthBackendArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendArgs)(nil)).Elem()
+}
+
+type AuthBackendInput interface {
+	pulumi.Input
+
+	ToAuthBackendOutput() AuthBackendOutput
+	ToAuthBackendOutputWithContext(ctx context.Context) AuthBackendOutput
+}
+
+func (AuthBackend) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackend)(nil)).Elem()
+}
+
+func (i AuthBackend) ToAuthBackendOutput() AuthBackendOutput {
+	return i.ToAuthBackendOutputWithContext(context.Background())
+}
+
+func (i AuthBackend) ToAuthBackendOutputWithContext(ctx context.Context) AuthBackendOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendOutput)
+}
+
+type AuthBackendOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendOutput)(nil)).Elem()
+}
+
+func (o AuthBackendOutput) ToAuthBackendOutput() AuthBackendOutput {
+	return o
+}
+
+func (o AuthBackendOutput) ToAuthBackendOutputWithContext(ctx context.Context) AuthBackendOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AuthBackendOutput{})
 }

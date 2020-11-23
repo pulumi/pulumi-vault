@@ -61,6 +61,14 @@ class AuthBackendRole(pulumi.CustomResource):
             role_name="my-role")
         ```
 
+        ## Import
+
+        Token auth backend roles can be imported with `auth/token/roles/` followed by the `role_name`, e.g.
+
+        ```sh
+         $ pulumi import vault:tokenauth/authBackendRole:AuthBackendRole example auth/token/roles/my-role
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_policies: List of allowed policies for given role.
@@ -123,18 +131,18 @@ class AuthBackendRole(pulumi.CustomResource):
 
             __props__['allowed_policies'] = allowed_policies
             if bound_cidrs is not None:
-                warnings.warn("use `token_bound_cidrs` instead if you are running Vault >= 1.2", DeprecationWarning)
+                warnings.warn("""use `token_bound_cidrs` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("bound_cidrs is deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2")
             __props__['bound_cidrs'] = bound_cidrs
             __props__['disallowed_policies'] = disallowed_policies
             if explicit_max_ttl is not None:
-                warnings.warn("use `token_explicit_max_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
+                warnings.warn("""use `token_explicit_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("explicit_max_ttl is deprecated: use `token_explicit_max_ttl` instead if you are running Vault >= 1.2")
             __props__['explicit_max_ttl'] = explicit_max_ttl
             __props__['orphan'] = orphan
             __props__['path_suffix'] = path_suffix
             if period is not None:
-                warnings.warn("use `token_period` instead if you are running Vault >= 1.2", DeprecationWarning)
+                warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("period is deprecated: use `token_period` instead if you are running Vault >= 1.2")
             __props__['period'] = period
             __props__['renewable'] = renewable

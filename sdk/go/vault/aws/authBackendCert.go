@@ -4,12 +4,20 @@
 package aws
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// AWS auth backend certificates can be imported using `auth/`, the `backend` path, `/config/certificate/`, and the `cert_name` e.g.
+//
+// ```sh
+//  $ pulumi import vault:aws/authBackendCert:AuthBackendCert example auth/aws/config/certificate/my-cert
+// ```
 type AuthBackendCert struct {
 	pulumi.CustomResourceState
 
@@ -137,4 +145,43 @@ type AuthBackendCertArgs struct {
 
 func (AuthBackendCertArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendCertArgs)(nil)).Elem()
+}
+
+type AuthBackendCertInput interface {
+	pulumi.Input
+
+	ToAuthBackendCertOutput() AuthBackendCertOutput
+	ToAuthBackendCertOutputWithContext(ctx context.Context) AuthBackendCertOutput
+}
+
+func (AuthBackendCert) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendCert)(nil)).Elem()
+}
+
+func (i AuthBackendCert) ToAuthBackendCertOutput() AuthBackendCertOutput {
+	return i.ToAuthBackendCertOutputWithContext(context.Background())
+}
+
+func (i AuthBackendCert) ToAuthBackendCertOutputWithContext(ctx context.Context) AuthBackendCertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendCertOutput)
+}
+
+type AuthBackendCertOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendCertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendCertOutput)(nil)).Elem()
+}
+
+func (o AuthBackendCertOutput) ToAuthBackendCertOutput() AuthBackendCertOutput {
+	return o
+}
+
+func (o AuthBackendCertOutput) ToAuthBackendCertOutputWithContext(ctx context.Context) AuthBackendCertOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AuthBackendCertOutput{})
 }

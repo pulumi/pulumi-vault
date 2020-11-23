@@ -4,6 +4,15 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Import
+ *
+ * Database secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:database/secretBackendRole:SecretBackendRole example postgres/roles/my-role
+ * ```
+ */
 export class SecretBackendRole extends pulumi.CustomResource {
     /**
      * Get an existing SecretBackendRole resource's state with the given name, ID, and optional extra

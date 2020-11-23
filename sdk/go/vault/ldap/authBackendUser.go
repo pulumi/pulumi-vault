@@ -4,6 +4,7 @@
 package ldap
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -51,6 +52,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// LDAP authentication backend users can be imported using the `path`, e.g.
+//
+// ```sh
+//  $ pulumi import vault:ldap/authBackendUser:AuthBackendUser foo auth/ldap/users/foo
 // ```
 type AuthBackendUser struct {
 	pulumi.CustomResourceState
@@ -146,4 +155,43 @@ type AuthBackendUserArgs struct {
 
 func (AuthBackendUserArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendUserArgs)(nil)).Elem()
+}
+
+type AuthBackendUserInput interface {
+	pulumi.Input
+
+	ToAuthBackendUserOutput() AuthBackendUserOutput
+	ToAuthBackendUserOutputWithContext(ctx context.Context) AuthBackendUserOutput
+}
+
+func (AuthBackendUser) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendUser)(nil)).Elem()
+}
+
+func (i AuthBackendUser) ToAuthBackendUserOutput() AuthBackendUserOutput {
+	return i.ToAuthBackendUserOutputWithContext(context.Background())
+}
+
+func (i AuthBackendUser) ToAuthBackendUserOutputWithContext(ctx context.Context) AuthBackendUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendUserOutput)
+}
+
+type AuthBackendUserOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendUserOutput)(nil)).Elem()
+}
+
+func (o AuthBackendUserOutput) ToAuthBackendUserOutput() AuthBackendUserOutput {
+	return o
+}
+
+func (o AuthBackendUserOutput) ToAuthBackendUserOutputWithContext(ctx context.Context) AuthBackendUserOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AuthBackendUserOutput{})
 }

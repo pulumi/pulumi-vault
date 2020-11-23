@@ -51,6 +51,14 @@ class User(pulumi.CustomResource):
             ])
         ```
 
+        ## Import
+
+        Github user mappings can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:github/user:User tf_user auth/github/map/users/john.doe
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path where the github auth backend is mounted. Defaults to `github`
@@ -88,39 +96,39 @@ class User(pulumi.CustomResource):
             __props__['backend'] = backend
             __props__['policies'] = policies
             if token_bound_cidrs is not None:
-                warnings.warn("This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.", DeprecationWarning)
+                warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
                 pulumi.log.warn("token_bound_cidrs is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.")
             __props__['token_bound_cidrs'] = token_bound_cidrs
             if token_explicit_max_ttl is not None:
-                warnings.warn("This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.", DeprecationWarning)
+                warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
                 pulumi.log.warn("token_explicit_max_ttl is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.")
             __props__['token_explicit_max_ttl'] = token_explicit_max_ttl
             if token_max_ttl is not None:
-                warnings.warn("This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.", DeprecationWarning)
+                warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
                 pulumi.log.warn("token_max_ttl is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.")
             __props__['token_max_ttl'] = token_max_ttl
             if token_no_default_policy is not None:
-                warnings.warn("This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.", DeprecationWarning)
+                warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
                 pulumi.log.warn("token_no_default_policy is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.")
             __props__['token_no_default_policy'] = token_no_default_policy
             if token_num_uses is not None:
-                warnings.warn("This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.", DeprecationWarning)
+                warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
                 pulumi.log.warn("token_num_uses is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.")
             __props__['token_num_uses'] = token_num_uses
             if token_period is not None:
-                warnings.warn("This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.", DeprecationWarning)
+                warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
                 pulumi.log.warn("token_period is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.")
             __props__['token_period'] = token_period
             if token_policies is not None:
-                warnings.warn("This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.", DeprecationWarning)
+                warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
                 pulumi.log.warn("token_policies is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.")
             __props__['token_policies'] = token_policies
             if token_ttl is not None:
-                warnings.warn("This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.", DeprecationWarning)
+                warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
                 pulumi.log.warn("token_ttl is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.")
             __props__['token_ttl'] = token_ttl
             if token_type is not None:
-                warnings.warn("This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.", DeprecationWarning)
+                warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
                 pulumi.log.warn("token_type is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.")
             __props__['token_type'] = token_type
             if user is None:

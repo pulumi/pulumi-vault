@@ -23,6 +23,14 @@ import * as utilities from "./utilities";
  *     rate: 100,
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Rate limit quotas can be imported using their names
+ *
+ * ```sh
+ *  $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
+ * ```
  */
 export class QuotaRateLimit extends pulumi.CustomResource {
     /**

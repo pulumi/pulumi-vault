@@ -4,6 +4,7 @@
 package azure
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -58,6 +59,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Azure auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.
+//
+// ```sh
+//  $ pulumi import vault:azure/authBackendRole:AuthBackendRole example auth/azure/role/test-role
 // ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
@@ -543,4 +552,43 @@ type AuthBackendRoleArgs struct {
 
 func (AuthBackendRoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendRoleArgs)(nil)).Elem()
+}
+
+type AuthBackendRoleInput interface {
+	pulumi.Input
+
+	ToAuthBackendRoleOutput() AuthBackendRoleOutput
+	ToAuthBackendRoleOutputWithContext(ctx context.Context) AuthBackendRoleOutput
+}
+
+func (AuthBackendRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendRole)(nil)).Elem()
+}
+
+func (i AuthBackendRole) ToAuthBackendRoleOutput() AuthBackendRoleOutput {
+	return i.ToAuthBackendRoleOutputWithContext(context.Background())
+}
+
+func (i AuthBackendRole) ToAuthBackendRoleOutputWithContext(ctx context.Context) AuthBackendRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleOutput)
+}
+
+type AuthBackendRoleOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendRoleOutput)(nil)).Elem()
+}
+
+func (o AuthBackendRoleOutput) ToAuthBackendRoleOutput() AuthBackendRoleOutput {
+	return o
+}
+
+func (o AuthBackendRoleOutput) ToAuthBackendRoleOutputWithContext(ctx context.Context) AuthBackendRoleOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AuthBackendRoleOutput{})
 }

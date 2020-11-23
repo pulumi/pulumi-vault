@@ -4,12 +4,20 @@
 package database
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.
+//
+// ```sh
+//  $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
+// ```
 type SecretBackendConnection struct {
 	pulumi.CustomResourceState
 
@@ -254,4 +262,43 @@ type SecretBackendConnectionArgs struct {
 
 func (SecretBackendConnectionArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendConnectionArgs)(nil)).Elem()
+}
+
+type SecretBackendConnectionInput interface {
+	pulumi.Input
+
+	ToSecretBackendConnectionOutput() SecretBackendConnectionOutput
+	ToSecretBackendConnectionOutputWithContext(ctx context.Context) SecretBackendConnectionOutput
+}
+
+func (SecretBackendConnection) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConnection)(nil)).Elem()
+}
+
+func (i SecretBackendConnection) ToSecretBackendConnectionOutput() SecretBackendConnectionOutput {
+	return i.ToSecretBackendConnectionOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConnection) ToSecretBackendConnectionOutputWithContext(ctx context.Context) SecretBackendConnectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionOutput)
+}
+
+type SecretBackendConnectionOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretBackendConnectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConnectionOutput)(nil)).Elem()
+}
+
+func (o SecretBackendConnectionOutput) ToSecretBackendConnectionOutput() SecretBackendConnectionOutput {
+	return o
+}
+
+func (o SecretBackendConnectionOutput) ToSecretBackendConnectionOutputWithContext(ctx context.Context) SecretBackendConnectionOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretBackendConnectionOutput{})
 }

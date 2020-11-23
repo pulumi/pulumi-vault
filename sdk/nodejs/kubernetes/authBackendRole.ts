@@ -30,6 +30,14 @@ import * as utilities from "../utilities";
  *     audience: "vault",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Kubernetes auth backend role can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:kubernetes/authBackendRole:AuthBackendRole foo auth/kubernetes/role/foo
+ * ```
  */
 export class AuthBackendRole extends pulumi.CustomResource {
     /**

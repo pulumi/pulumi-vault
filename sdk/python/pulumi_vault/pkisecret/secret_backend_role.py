@@ -71,6 +71,14 @@ class SecretBackendRole(pulumi.CustomResource):
         role = vault.pki_secret.SecretBackendRole("role", backend=pki.path)
         ```
 
+        ## Import
+
+        PKI secret backend roles can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:pkiSecret/secretBackendRole:SecretBackendRole role pki/roles/my_role
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_any_name: Flag to allow any name

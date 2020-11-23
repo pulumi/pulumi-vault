@@ -11,6 +11,14 @@ namespace Pulumi.Vault.Gcp
 {
     /// <summary>
     /// Provides a resource to create a role in an [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
+    /// 
+    /// ## Import
+    /// 
+    /// GCP authentication roles can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:gcp/authBackendRole:AuthBackendRole my_role auth/gcp/role/my_role
+    /// ```
     /// </summary>
     public partial class AuthBackendRole : Pulumi.CustomResource
     {

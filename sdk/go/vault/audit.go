@@ -4,6 +4,7 @@
 package vault
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -63,6 +64,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Audit devices can be imported using the `path`, e.g.
+//
+// ```sh
+//  $ pulumi import vault:index/audit:Audit test syslog
 // ```
 type Audit struct {
 	pulumi.CustomResourceState
@@ -161,4 +170,43 @@ type AuditArgs struct {
 
 func (AuditArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*auditArgs)(nil)).Elem()
+}
+
+type AuditInput interface {
+	pulumi.Input
+
+	ToAuditOutput() AuditOutput
+	ToAuditOutputWithContext(ctx context.Context) AuditOutput
+}
+
+func (Audit) ElementType() reflect.Type {
+	return reflect.TypeOf((*Audit)(nil)).Elem()
+}
+
+func (i Audit) ToAuditOutput() AuditOutput {
+	return i.ToAuditOutputWithContext(context.Background())
+}
+
+func (i Audit) ToAuditOutputWithContext(ctx context.Context) AuditOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuditOutput)
+}
+
+type AuditOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuditOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuditOutput)(nil)).Elem()
+}
+
+func (o AuditOutput) ToAuditOutput() AuditOutput {
+	return o
+}
+
+func (o AuditOutput) ToAuditOutputWithContext(ctx context.Context) AuditOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AuditOutput{})
 }

@@ -29,7 +29,7 @@ class GetAuthBackendRoleResult:
         if bound_cidrs and not isinstance(bound_cidrs, list):
             raise TypeError("Expected argument 'bound_cidrs' to be a list")
         if bound_cidrs is not None:
-            warnings.warn("use `token_bound_cidrs` instead if you are running Vault >= 1.2", DeprecationWarning)
+            warnings.warn("""use `token_bound_cidrs` instead if you are running Vault >= 1.2""", DeprecationWarning)
             pulumi.log.warn("bound_cidrs is deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2")
 
         pulumi.set(__self__, "bound_cidrs", bound_cidrs)
@@ -45,28 +45,28 @@ class GetAuthBackendRoleResult:
         if max_ttl and not isinstance(max_ttl, int):
             raise TypeError("Expected argument 'max_ttl' to be a int")
         if max_ttl is not None:
-            warnings.warn("use `token_max_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
+            warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
             pulumi.log.warn("max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2")
 
         pulumi.set(__self__, "max_ttl", max_ttl)
         if num_uses and not isinstance(num_uses, int):
             raise TypeError("Expected argument 'num_uses' to be a int")
         if num_uses is not None:
-            warnings.warn("use `token_num_uses` instead if you are running Vault >= 1.2", DeprecationWarning)
+            warnings.warn("""use `token_num_uses` instead if you are running Vault >= 1.2""", DeprecationWarning)
             pulumi.log.warn("num_uses is deprecated: use `token_num_uses` instead if you are running Vault >= 1.2")
 
         pulumi.set(__self__, "num_uses", num_uses)
         if period and not isinstance(period, int):
             raise TypeError("Expected argument 'period' to be a int")
         if period is not None:
-            warnings.warn("use `token_period` instead if you are running Vault >= 1.2", DeprecationWarning)
+            warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
             pulumi.log.warn("period is deprecated: use `token_period` instead if you are running Vault >= 1.2")
 
         pulumi.set(__self__, "period", period)
         if policies and not isinstance(policies, list):
             raise TypeError("Expected argument 'policies' to be a list")
         if policies is not None:
-            warnings.warn("use `token_policies` instead if you are running Vault >= 1.2", DeprecationWarning)
+            warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
             pulumi.log.warn("policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2")
 
         pulumi.set(__self__, "policies", policies)
@@ -103,7 +103,7 @@ class GetAuthBackendRoleResult:
         if ttl and not isinstance(ttl, int):
             raise TypeError("Expected argument 'ttl' to be a int")
         if ttl is not None:
-            warnings.warn("use `token_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
+            warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
             pulumi.log.warn("ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2")
 
         pulumi.set(__self__, "ttl", ttl)

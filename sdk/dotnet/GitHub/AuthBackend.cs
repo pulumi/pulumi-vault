@@ -32,6 +32,14 @@ namespace Pulumi.Vault.GitHub
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Github authentication mounts can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:github/authBackend:AuthBackend example github
+    /// ```
     /// </summary>
     public partial class AuthBackend : Pulumi.CustomResource
     {

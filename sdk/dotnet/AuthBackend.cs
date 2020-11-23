@@ -33,6 +33,14 @@ namespace Pulumi.Vault
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Auth methods can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:index/authBackend:AuthBackend example github
+    /// ```
     /// </summary>
     public partial class AuthBackend : Pulumi.CustomResource
     {

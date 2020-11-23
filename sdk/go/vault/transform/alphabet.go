@@ -4,6 +4,7 @@
 package transform
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -129,4 +130,43 @@ type AlphabetArgs struct {
 
 func (AlphabetArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*alphabetArgs)(nil)).Elem()
+}
+
+type AlphabetInput interface {
+	pulumi.Input
+
+	ToAlphabetOutput() AlphabetOutput
+	ToAlphabetOutputWithContext(ctx context.Context) AlphabetOutput
+}
+
+func (Alphabet) ElementType() reflect.Type {
+	return reflect.TypeOf((*Alphabet)(nil)).Elem()
+}
+
+func (i Alphabet) ToAlphabetOutput() AlphabetOutput {
+	return i.ToAlphabetOutputWithContext(context.Background())
+}
+
+func (i Alphabet) ToAlphabetOutputWithContext(ctx context.Context) AlphabetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlphabetOutput)
+}
+
+type AlphabetOutput struct {
+	*pulumi.OutputState
+}
+
+func (AlphabetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlphabetOutput)(nil)).Elem()
+}
+
+func (o AlphabetOutput) ToAlphabetOutput() AlphabetOutput {
+	return o
+}
+
+func (o AlphabetOutput) ToAlphabetOutputWithContext(ctx context.Context) AlphabetOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AlphabetOutput{})
 }

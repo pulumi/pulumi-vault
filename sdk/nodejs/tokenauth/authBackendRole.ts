@@ -29,6 +29,14 @@ import * as utilities from "../utilities";
  *     roleName: "my-role",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Token auth backend roles can be imported with `auth/token/roles/` followed by the `role_name`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:tokenauth/authBackendRole:AuthBackendRole example auth/token/roles/my-role
+ * ```
  */
 export class AuthBackendRole extends pulumi.CustomResource {
     /**

@@ -53,6 +53,14 @@ class SecretRoleset(pulumi.CustomResource):
             token_scopes=["https://www.googleapis.com/auth/cloud-platform"])
         ```
 
+        ## Import
+
+        A roleset can be imported using its Vault Path. For example, referencing the example above,
+
+        ```sh
+         $ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path where the GCP Secrets Engine is mounted

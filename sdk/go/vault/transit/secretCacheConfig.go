@@ -4,6 +4,7 @@
 package transit
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -88,4 +89,43 @@ type SecretCacheConfigArgs struct {
 
 func (SecretCacheConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretCacheConfigArgs)(nil)).Elem()
+}
+
+type SecretCacheConfigInput interface {
+	pulumi.Input
+
+	ToSecretCacheConfigOutput() SecretCacheConfigOutput
+	ToSecretCacheConfigOutputWithContext(ctx context.Context) SecretCacheConfigOutput
+}
+
+func (SecretCacheConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretCacheConfig)(nil)).Elem()
+}
+
+func (i SecretCacheConfig) ToSecretCacheConfigOutput() SecretCacheConfigOutput {
+	return i.ToSecretCacheConfigOutputWithContext(context.Background())
+}
+
+func (i SecretCacheConfig) ToSecretCacheConfigOutputWithContext(ctx context.Context) SecretCacheConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretCacheConfigOutput)
+}
+
+type SecretCacheConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretCacheConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretCacheConfigOutput)(nil)).Elem()
+}
+
+func (o SecretCacheConfigOutput) ToSecretCacheConfigOutput() SecretCacheConfigOutput {
+	return o
+}
+
+func (o SecretCacheConfigOutput) ToSecretCacheConfigOutputWithContext(ctx context.Context) SecretCacheConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretCacheConfigOutput{})
 }

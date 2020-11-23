@@ -4,6 +4,7 @@
 package approle
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -224,4 +225,43 @@ type AuthBackendRoleSecretIDArgs struct {
 
 func (AuthBackendRoleSecretIDArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendRoleSecretIDArgs)(nil)).Elem()
+}
+
+type AuthBackendRoleSecretIDInput interface {
+	pulumi.Input
+
+	ToAuthBackendRoleSecretIDOutput() AuthBackendRoleSecretIDOutput
+	ToAuthBackendRoleSecretIDOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDOutput
+}
+
+func (AuthBackendRoleSecretID) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendRoleSecretID)(nil)).Elem()
+}
+
+func (i AuthBackendRoleSecretID) ToAuthBackendRoleSecretIDOutput() AuthBackendRoleSecretIDOutput {
+	return i.ToAuthBackendRoleSecretIDOutputWithContext(context.Background())
+}
+
+func (i AuthBackendRoleSecretID) ToAuthBackendRoleSecretIDOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleSecretIDOutput)
+}
+
+type AuthBackendRoleSecretIDOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendRoleSecretIDOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendRoleSecretIDOutput)(nil)).Elem()
+}
+
+func (o AuthBackendRoleSecretIDOutput) ToAuthBackendRoleSecretIDOutput() AuthBackendRoleSecretIDOutput {
+	return o
+}
+
+func (o AuthBackendRoleSecretIDOutput) ToAuthBackendRoleSecretIDOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AuthBackendRoleSecretIDOutput{})
 }

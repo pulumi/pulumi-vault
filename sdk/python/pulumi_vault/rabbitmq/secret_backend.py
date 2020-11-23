@@ -27,7 +27,14 @@ class SecretBackend(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a SecretBackend resource with the given unique name, props, and options.
+        ## Import
+
+        RabbitMQ secret backends can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] connection_uri: Specifies the RabbitMQ connection URI.

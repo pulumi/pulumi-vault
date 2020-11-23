@@ -2,10 +2,18 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
+/**
+ * ## Import
+ *
+ * Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
+ * ```
+ */
 export class SecretBackendConnection extends pulumi.CustomResource {
     /**
      * Get an existing SecretBackendConnection resource's state with the given name, ID, and optional extra

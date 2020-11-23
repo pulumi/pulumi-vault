@@ -4,11 +4,19 @@
 package identity
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// The key can be imported with the key name, for example
+//
+// ```sh
+//  $ pulumi import vault:identity/oidcKey:OidcKey key key
+// ```
 type OidcKey struct {
 	pulumi.CustomResourceState
 
@@ -125,4 +133,43 @@ type OidcKeyArgs struct {
 
 func (OidcKeyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*oidcKeyArgs)(nil)).Elem()
+}
+
+type OidcKeyInput interface {
+	pulumi.Input
+
+	ToOidcKeyOutput() OidcKeyOutput
+	ToOidcKeyOutputWithContext(ctx context.Context) OidcKeyOutput
+}
+
+func (OidcKey) ElementType() reflect.Type {
+	return reflect.TypeOf((*OidcKey)(nil)).Elem()
+}
+
+func (i OidcKey) ToOidcKeyOutput() OidcKeyOutput {
+	return i.ToOidcKeyOutputWithContext(context.Background())
+}
+
+func (i OidcKey) ToOidcKeyOutputWithContext(ctx context.Context) OidcKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyOutput)
+}
+
+type OidcKeyOutput struct {
+	*pulumi.OutputState
+}
+
+func (OidcKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OidcKeyOutput)(nil)).Elem()
+}
+
+func (o OidcKeyOutput) ToOidcKeyOutput() OidcKeyOutput {
+	return o
+}
+
+func (o OidcKeyOutput) ToOidcKeyOutputWithContext(ctx context.Context) OidcKeyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OidcKeyOutput{})
 }
