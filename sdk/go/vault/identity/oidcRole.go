@@ -4,12 +4,20 @@
 package identity
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// The key can be imported with the role name, for example
+//
+// ```sh
+//  $ pulumi import vault:identity/oidcRole:OidcRole role role
+// ```
 type OidcRole struct {
 	pulumi.CustomResourceState
 
@@ -133,4 +141,43 @@ type OidcRoleArgs struct {
 
 func (OidcRoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*oidcRoleArgs)(nil)).Elem()
+}
+
+type OidcRoleInput interface {
+	pulumi.Input
+
+	ToOidcRoleOutput() OidcRoleOutput
+	ToOidcRoleOutputWithContext(ctx context.Context) OidcRoleOutput
+}
+
+func (OidcRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*OidcRole)(nil)).Elem()
+}
+
+func (i OidcRole) ToOidcRoleOutput() OidcRoleOutput {
+	return i.ToOidcRoleOutputWithContext(context.Background())
+}
+
+func (i OidcRole) ToOidcRoleOutputWithContext(ctx context.Context) OidcRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OidcRoleOutput)
+}
+
+type OidcRoleOutput struct {
+	*pulumi.OutputState
+}
+
+func (OidcRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OidcRoleOutput)(nil)).Elem()
+}
+
+func (o OidcRoleOutput) ToOidcRoleOutput() OidcRoleOutput {
+	return o
+}
+
+func (o OidcRoleOutput) ToOidcRoleOutputWithContext(ctx context.Context) OidcRoleOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(OidcRoleOutput{})
 }

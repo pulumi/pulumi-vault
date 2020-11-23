@@ -4,6 +4,7 @@
 package identity
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -202,4 +203,43 @@ type GroupMemberEntityIdsArgs struct {
 
 func (GroupMemberEntityIdsArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupMemberEntityIdsArgs)(nil)).Elem()
+}
+
+type GroupMemberEntityIdsInput interface {
+	pulumi.Input
+
+	ToGroupMemberEntityIdsOutput() GroupMemberEntityIdsOutput
+	ToGroupMemberEntityIdsOutputWithContext(ctx context.Context) GroupMemberEntityIdsOutput
+}
+
+func (GroupMemberEntityIds) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupMemberEntityIds)(nil)).Elem()
+}
+
+func (i GroupMemberEntityIds) ToGroupMemberEntityIdsOutput() GroupMemberEntityIdsOutput {
+	return i.ToGroupMemberEntityIdsOutputWithContext(context.Background())
+}
+
+func (i GroupMemberEntityIds) ToGroupMemberEntityIdsOutputWithContext(ctx context.Context) GroupMemberEntityIdsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupMemberEntityIdsOutput)
+}
+
+type GroupMemberEntityIdsOutput struct {
+	*pulumi.OutputState
+}
+
+func (GroupMemberEntityIdsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupMemberEntityIdsOutput)(nil)).Elem()
+}
+
+func (o GroupMemberEntityIdsOutput) ToGroupMemberEntityIdsOutput() GroupMemberEntityIdsOutput {
+	return o
+}
+
+func (o GroupMemberEntityIdsOutput) ToGroupMemberEntityIdsOutputWithContext(ctx context.Context) GroupMemberEntityIdsOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GroupMemberEntityIdsOutput{})
 }

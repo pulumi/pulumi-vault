@@ -49,6 +49,14 @@ class AuthBackendUser(pulumi.CustomResource):
             username="test-user")
         ```
 
+        ## Import
+
+        LDAP authentication backend users can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:ldap/authBackendUser:AuthBackendUser foo auth/ldap/users/foo
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path to the authentication backend

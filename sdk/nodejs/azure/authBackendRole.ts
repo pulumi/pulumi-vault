@@ -34,6 +34,14 @@ import * as utilities from "../utilities";
  *     tokenTtl: 60,
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Azure auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:azure/authBackendRole:AuthBackendRole example auth/azure/role/test-role
+ * ```
  */
 export class AuthBackendRole extends pulumi.CustomResource {
     /**

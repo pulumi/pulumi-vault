@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Database
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Database secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:database/secretBackendRole:SecretBackendRole example postgres/roles/my-role
+    /// ```
+    /// </summary>
     public partial class SecretBackendRole : Pulumi.CustomResource
     {
         /// <summary>

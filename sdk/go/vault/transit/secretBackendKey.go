@@ -4,6 +4,7 @@
 package transit
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -44,6 +45,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Transit secret backend keys can be imported using the `path`, e.g.
+//
+// ```sh
+//  $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
 // ```
 type SecretBackendKey struct {
 	pulumi.CustomResourceState
@@ -257,4 +266,43 @@ type SecretBackendKeyArgs struct {
 
 func (SecretBackendKeyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendKeyArgs)(nil)).Elem()
+}
+
+type SecretBackendKeyInput interface {
+	pulumi.Input
+
+	ToSecretBackendKeyOutput() SecretBackendKeyOutput
+	ToSecretBackendKeyOutputWithContext(ctx context.Context) SecretBackendKeyOutput
+}
+
+func (SecretBackendKey) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendKey)(nil)).Elem()
+}
+
+func (i SecretBackendKey) ToSecretBackendKeyOutput() SecretBackendKeyOutput {
+	return i.ToSecretBackendKeyOutputWithContext(context.Background())
+}
+
+func (i SecretBackendKey) ToSecretBackendKeyOutputWithContext(ctx context.Context) SecretBackendKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendKeyOutput)
+}
+
+type SecretBackendKeyOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretBackendKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendKeyOutput)(nil)).Elem()
+}
+
+func (o SecretBackendKeyOutput) ToSecretBackendKeyOutput() SecretBackendKeyOutput {
+	return o
+}
+
+func (o SecretBackendKeyOutput) ToSecretBackendKeyOutputWithContext(ctx context.Context) SecretBackendKeyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretBackendKeyOutput{})
 }

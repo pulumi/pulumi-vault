@@ -27,6 +27,14 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Okta authentication backend groups can be imported using the format `backend/groupName` e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
+ * ```
  */
 export class AuthBackendGroup extends pulumi.CustomResource {
     /**

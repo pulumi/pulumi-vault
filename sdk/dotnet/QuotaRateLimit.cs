@@ -36,6 +36,14 @@ namespace Pulumi.Vault
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Rate limit quotas can be imported using their names
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
+    /// ```
     /// </summary>
     public partial class QuotaRateLimit : Pulumi.CustomResource
     {

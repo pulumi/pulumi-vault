@@ -42,6 +42,14 @@ namespace Pulumi.Vault.Okta
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Okta authentication backend groups can be imported using the format `backend/groupName` e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
+    /// ```
     /// </summary>
     public partial class AuthBackendGroup : Pulumi.CustomResource
     {

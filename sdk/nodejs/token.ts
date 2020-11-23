@@ -4,6 +4,15 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Import
+ *
+ * Tokens can be imported using its `id` as accessor id, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:index/token:Token example <accessor_id>
+ * ```
+ */
 export class Token extends pulumi.CustomResource {
     /**
      * Get an existing Token resource's state with the given name, ID, and optional extra

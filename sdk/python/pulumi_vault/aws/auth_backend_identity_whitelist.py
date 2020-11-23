@@ -39,6 +39,14 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
             safety_buffer=3600)
         ```
 
+        ## Import
+
+        AWS auth backend identity whitelists can be imported using `auth/`, the `backend` path, and `/config/tidy/identity-whitelist` e.g.
+
+        ```sh
+         $ pulumi import vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist example auth/aws/config/tidy/identity-whitelist
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path of the AWS backend being configured.

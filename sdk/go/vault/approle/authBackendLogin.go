@@ -4,6 +4,7 @@
 package approle
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -195,4 +196,43 @@ type AuthBackendLoginArgs struct {
 
 func (AuthBackendLoginArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendLoginArgs)(nil)).Elem()
+}
+
+type AuthBackendLoginInput interface {
+	pulumi.Input
+
+	ToAuthBackendLoginOutput() AuthBackendLoginOutput
+	ToAuthBackendLoginOutputWithContext(ctx context.Context) AuthBackendLoginOutput
+}
+
+func (AuthBackendLogin) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendLogin)(nil)).Elem()
+}
+
+func (i AuthBackendLogin) ToAuthBackendLoginOutput() AuthBackendLoginOutput {
+	return i.ToAuthBackendLoginOutputWithContext(context.Background())
+}
+
+func (i AuthBackendLogin) ToAuthBackendLoginOutputWithContext(ctx context.Context) AuthBackendLoginOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendLoginOutput)
+}
+
+type AuthBackendLoginOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendLoginOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendLoginOutput)(nil)).Elem()
+}
+
+func (o AuthBackendLoginOutput) ToAuthBackendLoginOutput() AuthBackendLoginOutput {
+	return o
+}
+
+func (o AuthBackendLoginOutput) ToAuthBackendLoginOutputWithContext(ctx context.Context) AuthBackendLoginOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AuthBackendLoginOutput{})
 }

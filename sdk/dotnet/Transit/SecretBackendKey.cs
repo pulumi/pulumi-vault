@@ -38,6 +38,14 @@ namespace Pulumi.Vault.Transit
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Transit secret backend keys can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
+    /// ```
     /// </summary>
     public partial class SecretBackendKey : Pulumi.CustomResource
     {

@@ -4,6 +4,7 @@
 package vault
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -39,6 +40,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Rate limit quotas can be imported using their names
+//
+// ```sh
+//  $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
 // ```
 type QuotaRateLimit struct {
 	pulumi.CustomResourceState
@@ -154,4 +163,43 @@ type QuotaRateLimitArgs struct {
 
 func (QuotaRateLimitArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*quotaRateLimitArgs)(nil)).Elem()
+}
+
+type QuotaRateLimitInput interface {
+	pulumi.Input
+
+	ToQuotaRateLimitOutput() QuotaRateLimitOutput
+	ToQuotaRateLimitOutputWithContext(ctx context.Context) QuotaRateLimitOutput
+}
+
+func (QuotaRateLimit) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuotaRateLimit)(nil)).Elem()
+}
+
+func (i QuotaRateLimit) ToQuotaRateLimitOutput() QuotaRateLimitOutput {
+	return i.ToQuotaRateLimitOutputWithContext(context.Background())
+}
+
+func (i QuotaRateLimit) ToQuotaRateLimitOutputWithContext(ctx context.Context) QuotaRateLimitOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuotaRateLimitOutput)
+}
+
+type QuotaRateLimitOutput struct {
+	*pulumi.OutputState
+}
+
+func (QuotaRateLimitOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuotaRateLimitOutput)(nil)).Elem()
+}
+
+func (o QuotaRateLimitOutput) ToQuotaRateLimitOutput() QuotaRateLimitOutput {
+	return o
+}
+
+func (o QuotaRateLimitOutput) ToQuotaRateLimitOutputWithContext(ctx context.Context) QuotaRateLimitOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(QuotaRateLimitOutput{})
 }

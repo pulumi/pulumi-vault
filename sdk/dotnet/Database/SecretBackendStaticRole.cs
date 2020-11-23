@@ -56,6 +56,14 @@ namespace Pulumi.Vault.Database
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Database secret backend static roles can be imported using the `backend`, `/static-roles/`, and the `name` e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
+    /// ```
     /// </summary>
     public partial class SecretBackendStaticRole : Pulumi.CustomResource
     {

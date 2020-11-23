@@ -23,6 +23,14 @@ import * as utilities from "../utilities";
  *     arn: "acs:ram:123456:tf:role/foobar",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Alicloud authentication roles can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:alicloud/authBackendRole:AuthBackendRole my_role auth/alicloud/role/my_role
+ * ```
  */
 export class AuthBackendRole extends pulumi.CustomResource {
     /**

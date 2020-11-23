@@ -40,6 +40,14 @@ namespace Pulumi.Vault
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Mounts can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
+    /// ```
     /// </summary>
     public partial class MfaDuo : Pulumi.CustomResource
     {

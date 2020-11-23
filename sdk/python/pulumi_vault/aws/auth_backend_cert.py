@@ -23,7 +23,14 @@ class AuthBackendCert(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a AuthBackendCert resource with the given unique name, props, and options.
+        ## Import
+
+        AWS auth backend certificates can be imported using `auth/`, the `backend` path, `/config/certificate/`, and the `cert_name` e.g.
+
+        ```sh
+         $ pulumi import vault:aws/authBackendCert:AuthBackendCert example auth/aws/config/certificate/my-cert
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] aws_public_cert: The  Base64 encoded AWS Public key required to

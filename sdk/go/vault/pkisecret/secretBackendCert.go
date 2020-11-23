@@ -4,6 +4,7 @@
 package pkisecret
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -239,4 +240,43 @@ type SecretBackendCertArgs struct {
 
 func (SecretBackendCertArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendCertArgs)(nil)).Elem()
+}
+
+type SecretBackendCertInput interface {
+	pulumi.Input
+
+	ToSecretBackendCertOutput() SecretBackendCertOutput
+	ToSecretBackendCertOutputWithContext(ctx context.Context) SecretBackendCertOutput
+}
+
+func (SecretBackendCert) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendCert)(nil)).Elem()
+}
+
+func (i SecretBackendCert) ToSecretBackendCertOutput() SecretBackendCertOutput {
+	return i.ToSecretBackendCertOutputWithContext(context.Background())
+}
+
+func (i SecretBackendCert) ToSecretBackendCertOutputWithContext(ctx context.Context) SecretBackendCertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCertOutput)
+}
+
+type SecretBackendCertOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretBackendCertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendCertOutput)(nil)).Elem()
+}
+
+func (o SecretBackendCertOutput) ToSecretBackendCertOutput() SecretBackendCertOutput {
+	return o
+}
+
+func (o SecretBackendCertOutput) ToSecretBackendCertOutputWithContext(ctx context.Context) SecretBackendCertOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretBackendCertOutput{})
 }

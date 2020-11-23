@@ -66,6 +66,14 @@ class AuthBackend(pulumi.CustomResource):
             userdn="OU=Users,OU=Accounts,DC=example,DC=org")
         ```
 
+        ## Import
+
+        LDAP authentication backends can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] binddn: DN of object to bind when performing user search

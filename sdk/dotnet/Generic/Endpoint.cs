@@ -9,6 +9,11 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Generic
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Import is not supported for this resource.
+    /// </summary>
     public partial class Endpoint : Pulumi.CustomResource
     {
         /// <summary>

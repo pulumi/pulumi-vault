@@ -26,7 +26,14 @@ class SecretBackend(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a SecretBackend resource with the given unique name, props, and options.
+        ## Import
+
+        Consul secret backends can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:consul/secretBackend:SecretBackend example consul
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address: Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".

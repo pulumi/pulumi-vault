@@ -4,6 +4,7 @@
 package pkisecret
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -132,4 +133,43 @@ type SecretBackendCrlConfigArgs struct {
 
 func (SecretBackendCrlConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendCrlConfigArgs)(nil)).Elem()
+}
+
+type SecretBackendCrlConfigInput interface {
+	pulumi.Input
+
+	ToSecretBackendCrlConfigOutput() SecretBackendCrlConfigOutput
+	ToSecretBackendCrlConfigOutputWithContext(ctx context.Context) SecretBackendCrlConfigOutput
+}
+
+func (SecretBackendCrlConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendCrlConfig)(nil)).Elem()
+}
+
+func (i SecretBackendCrlConfig) ToSecretBackendCrlConfigOutput() SecretBackendCrlConfigOutput {
+	return i.ToSecretBackendCrlConfigOutputWithContext(context.Background())
+}
+
+func (i SecretBackendCrlConfig) ToSecretBackendCrlConfigOutputWithContext(ctx context.Context) SecretBackendCrlConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCrlConfigOutput)
+}
+
+type SecretBackendCrlConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretBackendCrlConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendCrlConfigOutput)(nil)).Elem()
+}
+
+func (o SecretBackendCrlConfigOutput) ToSecretBackendCrlConfigOutput() SecretBackendCrlConfigOutput {
+	return o
+}
+
+func (o SecretBackendCrlConfigOutput) ToSecretBackendCrlConfigOutputWithContext(ctx context.Context) SecretBackendCrlConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretBackendCrlConfigOutput{})
 }

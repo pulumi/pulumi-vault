@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Tokens can be imported using its `id` as accessor id, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:index/token:Token example &lt;accessor_id&gt;
+    /// ```
+    /// </summary>
     public partial class Token : Pulumi.CustomResource
     {
         /// <summary>

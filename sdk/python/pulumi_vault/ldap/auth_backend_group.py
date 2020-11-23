@@ -45,6 +45,14 @@ class AuthBackendGroup(pulumi.CustomResource):
             policies=["dba"])
         ```
 
+        ## Import
+
+        LDAP authentication backend groups can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:ldap/authBackendGroup:AuthBackendGroup foo auth/ldap/groups/foo
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path to the authentication backend

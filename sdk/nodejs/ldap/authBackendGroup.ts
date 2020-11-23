@@ -29,6 +29,14 @@ import * as utilities from "../utilities";
  *     policies: ["dba"],
  * });
  * ```
+ *
+ * ## Import
+ *
+ * LDAP authentication backend groups can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:ldap/authBackendGroup:AuthBackendGroup foo auth/ldap/groups/foo
+ * ```
  */
 export class AuthBackendGroup extends pulumi.CustomResource {
     /**

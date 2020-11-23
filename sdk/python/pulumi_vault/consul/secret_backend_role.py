@@ -45,6 +45,14 @@ class SecretBackendRole(pulumi.CustomResource):
             policies=["example-policy"])
         ```
 
+        ## Import
+
+        Consul secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
+
+        ```sh
+         $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
@@ -78,7 +86,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__['max_ttl'] = max_ttl
             __props__['name'] = name
             if path is not None:
-                warnings.warn("use `backend` instead", DeprecationWarning)
+                warnings.warn("""use `backend` instead""", DeprecationWarning)
                 pulumi.log.warn("path is deprecated: use `backend` instead")
             __props__['path'] = path
             if policies is None:

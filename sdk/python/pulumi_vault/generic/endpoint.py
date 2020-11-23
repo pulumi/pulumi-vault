@@ -25,7 +25,10 @@ class Endpoint(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a Endpoint resource with the given unique name, props, and options.
+        ## Import
+
+        Import is not supported for this resource.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] data_json: String containing a JSON-encoded object that will be

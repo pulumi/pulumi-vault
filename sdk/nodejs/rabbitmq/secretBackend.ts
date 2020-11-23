@@ -4,6 +4,15 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Import
+ *
+ * RabbitMQ secret backends can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
+ * ```
+ */
 export class SecretBackend extends pulumi.CustomResource {
     /**
      * Get an existing SecretBackend resource's state with the given name, ID, and optional extra

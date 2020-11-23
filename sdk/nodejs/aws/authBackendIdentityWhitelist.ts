@@ -24,6 +24,14 @@ import * as utilities from "../utilities";
  *     safetyBuffer: 3600,
  * });
  * ```
+ *
+ * ## Import
+ *
+ * AWS auth backend identity whitelists can be imported using `auth/`, the `backend` path, and `/config/tidy/identity-whitelist` e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist example auth/aws/config/tidy/identity-whitelist
+ * ```
  */
 export class AuthBackendIdentityWhitelist extends pulumi.CustomResource {
     /**

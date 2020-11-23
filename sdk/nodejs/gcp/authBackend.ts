@@ -18,6 +18,14 @@ import * as utilities from "../utilities";
  *     credentials: fs.readFileSync("vault-gcp-credentials.json", "utf-8"),
  * });
  * ```
+ *
+ * ## Import
+ *
+ * GCP authentication backends can be imported using the backend name, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
+ * ```
  */
 export class AuthBackend extends pulumi.CustomResource {
     /**

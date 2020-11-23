@@ -24,6 +24,14 @@ import * as utilities from "../utilities";
  *     userdn: "OU=Users,OU=Accounts,DC=example,DC=org",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * LDAP authentication backends can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
+ * ```
  */
 export class AuthBackend extends pulumi.CustomResource {
     /**

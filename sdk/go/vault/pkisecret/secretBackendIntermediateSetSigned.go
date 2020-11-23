@@ -4,6 +4,7 @@
 package pkisecret
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -87,4 +88,43 @@ type SecretBackendIntermediateSetSignedArgs struct {
 
 func (SecretBackendIntermediateSetSignedArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendIntermediateSetSignedArgs)(nil)).Elem()
+}
+
+type SecretBackendIntermediateSetSignedInput interface {
+	pulumi.Input
+
+	ToSecretBackendIntermediateSetSignedOutput() SecretBackendIntermediateSetSignedOutput
+	ToSecretBackendIntermediateSetSignedOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedOutput
+}
+
+func (SecretBackendIntermediateSetSigned) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendIntermediateSetSigned)(nil)).Elem()
+}
+
+func (i SecretBackendIntermediateSetSigned) ToSecretBackendIntermediateSetSignedOutput() SecretBackendIntermediateSetSignedOutput {
+	return i.ToSecretBackendIntermediateSetSignedOutputWithContext(context.Background())
+}
+
+func (i SecretBackendIntermediateSetSigned) ToSecretBackendIntermediateSetSignedOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIntermediateSetSignedOutput)
+}
+
+type SecretBackendIntermediateSetSignedOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretBackendIntermediateSetSignedOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendIntermediateSetSignedOutput)(nil)).Elem()
+}
+
+func (o SecretBackendIntermediateSetSignedOutput) ToSecretBackendIntermediateSetSignedOutput() SecretBackendIntermediateSetSignedOutput {
+	return o
+}
+
+func (o SecretBackendIntermediateSetSignedOutput) ToSecretBackendIntermediateSetSignedOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretBackendIntermediateSetSignedOutput{})
 }

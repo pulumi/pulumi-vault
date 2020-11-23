@@ -40,6 +40,14 @@ class QuotaRateLimit(pulumi.CustomResource):
             rate=100)
         ```
 
+        ## Import
+
+        Rate limit quotas can be imported using their names
+
+        ```sh
+         $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: Name of the rate limit quota

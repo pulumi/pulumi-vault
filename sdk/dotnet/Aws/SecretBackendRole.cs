@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Aws
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// AWS secret backend roles can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:aws/secretBackendRole:SecretBackendRole role aws/roles/deploy
+    /// ```
+    /// </summary>
     public partial class SecretBackendRole : Pulumi.CustomResource
     {
         /// <summary>

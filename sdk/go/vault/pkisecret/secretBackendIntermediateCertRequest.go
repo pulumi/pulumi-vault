@@ -4,6 +4,7 @@
 package pkisecret
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -278,4 +279,43 @@ type SecretBackendIntermediateCertRequestArgs struct {
 
 func (SecretBackendIntermediateCertRequestArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendIntermediateCertRequestArgs)(nil)).Elem()
+}
+
+type SecretBackendIntermediateCertRequestInput interface {
+	pulumi.Input
+
+	ToSecretBackendIntermediateCertRequestOutput() SecretBackendIntermediateCertRequestOutput
+	ToSecretBackendIntermediateCertRequestOutputWithContext(ctx context.Context) SecretBackendIntermediateCertRequestOutput
+}
+
+func (SecretBackendIntermediateCertRequest) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendIntermediateCertRequest)(nil)).Elem()
+}
+
+func (i SecretBackendIntermediateCertRequest) ToSecretBackendIntermediateCertRequestOutput() SecretBackendIntermediateCertRequestOutput {
+	return i.ToSecretBackendIntermediateCertRequestOutputWithContext(context.Background())
+}
+
+func (i SecretBackendIntermediateCertRequest) ToSecretBackendIntermediateCertRequestOutputWithContext(ctx context.Context) SecretBackendIntermediateCertRequestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIntermediateCertRequestOutput)
+}
+
+type SecretBackendIntermediateCertRequestOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretBackendIntermediateCertRequestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendIntermediateCertRequestOutput)(nil)).Elem()
+}
+
+func (o SecretBackendIntermediateCertRequestOutput) ToSecretBackendIntermediateCertRequestOutput() SecretBackendIntermediateCertRequestOutput {
+	return o
+}
+
+func (o SecretBackendIntermediateCertRequestOutput) ToSecretBackendIntermediateCertRequestOutputWithContext(ctx context.Context) SecretBackendIntermediateCertRequestOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretBackendIntermediateCertRequestOutput{})
 }

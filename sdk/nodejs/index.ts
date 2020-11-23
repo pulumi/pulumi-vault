@@ -40,4 +40,28 @@ import * as tokenauth from "./tokenauth";
 import * as transform from "./transform";
 import * as transit from "./transit";
 import * as types from "./types";
-export {alicloud, approle, aws, azure, config, consul, database, gcp, generic, github, identity, jwt, kubernetes, ldap, okta, pkisecret, rabbitmq, ssh, tokenauth, transform, transit, types};
+
+export {
+    alicloud,
+    approle,
+    aws,
+    azure,
+    config,
+    consul,
+    database,
+    gcp,
+    generic,
+    github,
+    identity,
+    jwt,
+    kubernetes,
+    ldap,
+    okta,
+    pkisecret,
+    rabbitmq,
+    ssh,
+    tokenauth,
+    transform,
+    transit,
+    types,
+};

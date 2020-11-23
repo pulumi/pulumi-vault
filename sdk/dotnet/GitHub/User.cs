@@ -42,6 +42,14 @@ namespace Pulumi.Vault.GitHub
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Github user mappings can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:github/user:User tf_user auth/github/map/users/john.doe
+    /// ```
     /// </summary>
     public partial class User : Pulumi.CustomResource
     {

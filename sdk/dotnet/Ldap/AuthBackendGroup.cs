@@ -46,6 +46,14 @@ namespace Pulumi.Vault.Ldap
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// LDAP authentication backend groups can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:ldap/authBackendGroup:AuthBackendGroup foo auth/ldap/groups/foo
+    /// ```
     /// </summary>
     public partial class AuthBackendGroup : Pulumi.CustomResource
     {

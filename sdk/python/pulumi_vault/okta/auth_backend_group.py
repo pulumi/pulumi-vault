@@ -43,6 +43,14 @@ class AuthBackendGroup(pulumi.CustomResource):
             ])
         ```
 
+        ## Import
+
+        Okta authentication backend groups can be imported using the format `backend/groupName` e.g.
+
+        ```sh
+         $ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] group_name: Name of the group within the Okta

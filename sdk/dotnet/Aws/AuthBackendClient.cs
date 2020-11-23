@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Aws
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// AWS auth backend clients can be imported using `auth/`, the `backend` path, and `/config/client` e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:aws/authBackendClient:AuthBackendClient example auth/aws/config/client
+    /// ```
+    /// </summary>
     public partial class AuthBackendClient : Pulumi.CustomResource
     {
         /// <summary>

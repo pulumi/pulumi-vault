@@ -4,6 +4,7 @@
 package vault
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -490,4 +491,43 @@ type CertAuthBackendRoleArgs struct {
 
 func (CertAuthBackendRoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*certAuthBackendRoleArgs)(nil)).Elem()
+}
+
+type CertAuthBackendRoleInput interface {
+	pulumi.Input
+
+	ToCertAuthBackendRoleOutput() CertAuthBackendRoleOutput
+	ToCertAuthBackendRoleOutputWithContext(ctx context.Context) CertAuthBackendRoleOutput
+}
+
+func (CertAuthBackendRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertAuthBackendRole)(nil)).Elem()
+}
+
+func (i CertAuthBackendRole) ToCertAuthBackendRoleOutput() CertAuthBackendRoleOutput {
+	return i.ToCertAuthBackendRoleOutputWithContext(context.Background())
+}
+
+func (i CertAuthBackendRole) ToCertAuthBackendRoleOutputWithContext(ctx context.Context) CertAuthBackendRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertAuthBackendRoleOutput)
+}
+
+type CertAuthBackendRoleOutput struct {
+	*pulumi.OutputState
+}
+
+func (CertAuthBackendRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertAuthBackendRoleOutput)(nil)).Elem()
+}
+
+func (o CertAuthBackendRoleOutput) ToCertAuthBackendRoleOutput() CertAuthBackendRoleOutput {
+	return o
+}
+
+func (o CertAuthBackendRoleOutput) ToCertAuthBackendRoleOutputWithContext(ctx context.Context) CertAuthBackendRoleOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CertAuthBackendRoleOutput{})
 }

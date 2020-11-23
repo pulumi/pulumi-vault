@@ -4,6 +4,15 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Import
+ *
+ * Generic secrets can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:generic/secret:Secret example secret/foo
+ * ```
+ */
 export class Secret extends pulumi.CustomResource {
     /**
      * Get an existing Secret resource's state with the given name, ID, and optional extra

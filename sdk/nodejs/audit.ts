@@ -35,6 +35,14 @@ import * as utilities from "./utilities";
  *     type: "socket",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Audit devices can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:index/audit:Audit test syslog
+ * ```
  */
 export class Audit extends pulumi.CustomResource {
     /**

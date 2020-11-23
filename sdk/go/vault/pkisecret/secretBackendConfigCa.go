@@ -4,6 +4,7 @@
 package pkisecret
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -87,4 +88,43 @@ type SecretBackendConfigCaArgs struct {
 
 func (SecretBackendConfigCaArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendConfigCaArgs)(nil)).Elem()
+}
+
+type SecretBackendConfigCaInput interface {
+	pulumi.Input
+
+	ToSecretBackendConfigCaOutput() SecretBackendConfigCaOutput
+	ToSecretBackendConfigCaOutputWithContext(ctx context.Context) SecretBackendConfigCaOutput
+}
+
+func (SecretBackendConfigCa) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConfigCa)(nil)).Elem()
+}
+
+func (i SecretBackendConfigCa) ToSecretBackendConfigCaOutput() SecretBackendConfigCaOutput {
+	return i.ToSecretBackendConfigCaOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConfigCa) ToSecretBackendConfigCaOutputWithContext(ctx context.Context) SecretBackendConfigCaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConfigCaOutput)
+}
+
+type SecretBackendConfigCaOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretBackendConfigCaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConfigCaOutput)(nil)).Elem()
+}
+
+func (o SecretBackendConfigCaOutput) ToSecretBackendConfigCaOutput() SecretBackendConfigCaOutput {
+	return o
+}
+
+func (o SecretBackendConfigCaOutput) ToSecretBackendConfigCaOutputWithContext(ctx context.Context) SecretBackendConfigCaOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretBackendConfigCaOutput{})
 }

@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Identity
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// The key can be imported with the role name, for example
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:identity/oidcRole:OidcRole role role
+    /// ```
+    /// </summary>
     public partial class OidcRole : Pulumi.CustomResource
     {
         /// <summary>

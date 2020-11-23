@@ -17,6 +17,14 @@ import * as utilities from "./utilities";
  *     type: "generic",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Mounts can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:index/mount:Mount example dummy
+ * ```
  */
 export class Mount extends pulumi.CustomResource {
     /**

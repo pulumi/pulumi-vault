@@ -47,6 +47,14 @@ namespace Pulumi.Vault.Ldap
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// LDAP authentication backend users can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:ldap/authBackendUser:AuthBackendUser foo auth/ldap/users/foo
+    /// ```
     /// </summary>
     public partial class AuthBackendUser : Pulumi.CustomResource
     {

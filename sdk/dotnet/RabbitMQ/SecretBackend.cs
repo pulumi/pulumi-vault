@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.RabbitMQ
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// RabbitMQ secret backends can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
+    /// ```
+    /// </summary>
     public partial class SecretBackend : Pulumi.CustomResource
     {
         /// <summary>

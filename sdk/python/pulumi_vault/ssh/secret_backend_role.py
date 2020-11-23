@@ -63,6 +63,14 @@ class SecretBackendRole(pulumi.CustomResource):
             key_type="otp")
         ```
 
+        ## Import
+
+        SSH secret backend roles can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:ssh/secretBackendRole:SecretBackendRole foo ssh/roles/my-role
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] algorithm_signer: When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.

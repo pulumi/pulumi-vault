@@ -36,6 +36,14 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// PKI secret backend roles can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:pkiSecret/secretBackendRole:SecretBackendRole role pki/roles/my_role
+    /// ```
     /// </summary>
     public partial class SecretBackendRole : Pulumi.CustomResource
     {

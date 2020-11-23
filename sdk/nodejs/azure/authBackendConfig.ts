@@ -4,6 +4,15 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Import
+ *
+ * Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
+ * ```
+ */
 export class AuthBackendConfig extends pulumi.CustomResource {
     /**
      * Get an existing AuthBackendConfig resource's state with the given name, ID, and optional extra

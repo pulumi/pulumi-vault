@@ -38,6 +38,14 @@ class SecretBackend(pulumi.CustomResource):
             path="pki")
         ```
 
+        ## Import
+
+        PKI secret backends can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:pkiSecret/secretBackend:SecretBackend pki pki
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials issued by this backend.

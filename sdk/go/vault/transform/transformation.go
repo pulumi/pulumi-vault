@@ -4,6 +4,7 @@
 package transform
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -185,4 +186,43 @@ type TransformationArgs struct {
 
 func (TransformationArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*transformationArgs)(nil)).Elem()
+}
+
+type TransformationInput interface {
+	pulumi.Input
+
+	ToTransformationOutput() TransformationOutput
+	ToTransformationOutputWithContext(ctx context.Context) TransformationOutput
+}
+
+func (Transformation) ElementType() reflect.Type {
+	return reflect.TypeOf((*Transformation)(nil)).Elem()
+}
+
+func (i Transformation) ToTransformationOutput() TransformationOutput {
+	return i.ToTransformationOutputWithContext(context.Background())
+}
+
+func (i Transformation) ToTransformationOutputWithContext(ctx context.Context) TransformationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TransformationOutput)
+}
+
+type TransformationOutput struct {
+	*pulumi.OutputState
+}
+
+func (TransformationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TransformationOutput)(nil)).Elem()
+}
+
+func (o TransformationOutput) ToTransformationOutput() TransformationOutput {
+	return o
+}
+
+func (o TransformationOutput) ToTransformationOutputWithContext(ctx context.Context) TransformationOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TransformationOutput{})
 }

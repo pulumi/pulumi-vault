@@ -52,6 +52,14 @@ class Audit(pulumi.CustomResource):
             type="socket")
         ```
 
+        ## Import
+
+        Audit devices can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:index/audit:Audit test syslog
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Human-friendly description of the audit device.

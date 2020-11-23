@@ -24,7 +24,14 @@ class OidcKey(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a OidcKey resource with the given unique name, props, and options.
+        ## Import
+
+        The key can be imported with the key name, for example
+
+        ```sh
+         $ pulumi import vault:identity/oidcKey:OidcKey key key
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] algorithm: Signing algorithm to use. Signing algorithm to use.

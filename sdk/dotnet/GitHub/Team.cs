@@ -42,6 +42,14 @@ namespace Pulumi.Vault.GitHub
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Github team mappings can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
+    /// ```
     /// </summary>
     public partial class Team : Pulumi.CustomResource
     {

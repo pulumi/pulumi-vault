@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Consul
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Consul secret backends can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:consul/secretBackend:SecretBackend example consul
+    /// ```
+    /// </summary>
     public partial class SecretBackend : Pulumi.CustomResource
     {
         /// <summary>

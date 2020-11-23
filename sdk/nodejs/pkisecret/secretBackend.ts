@@ -20,6 +20,14 @@ import * as utilities from "../utilities";
  *     path: "pki",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * PKI secret backends can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:pkiSecret/secretBackend:SecretBackend pki pki
+ * ```
  */
 export class SecretBackend extends pulumi.CustomResource {
     /**

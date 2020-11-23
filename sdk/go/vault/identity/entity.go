@@ -4,6 +4,7 @@
 package identity
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -110,4 +111,43 @@ type EntityArgs struct {
 
 func (EntityArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*entityArgs)(nil)).Elem()
+}
+
+type EntityInput interface {
+	pulumi.Input
+
+	ToEntityOutput() EntityOutput
+	ToEntityOutputWithContext(ctx context.Context) EntityOutput
+}
+
+func (Entity) ElementType() reflect.Type {
+	return reflect.TypeOf((*Entity)(nil)).Elem()
+}
+
+func (i Entity) ToEntityOutput() EntityOutput {
+	return i.ToEntityOutputWithContext(context.Background())
+}
+
+func (i Entity) ToEntityOutputWithContext(ctx context.Context) EntityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntityOutput)
+}
+
+type EntityOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntityOutput)(nil)).Elem()
+}
+
+func (o EntityOutput) ToEntityOutput() EntityOutput {
+	return o
+}
+
+func (o EntityOutput) ToEntityOutputWithContext(ctx context.Context) EntityOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EntityOutput{})
 }

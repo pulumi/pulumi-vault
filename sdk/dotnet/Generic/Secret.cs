@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Generic
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Generic secrets can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:generic/secret:Secret example secret/foo
+    /// ```
+    /// </summary>
     public partial class Secret : Pulumi.CustomResource
     {
         /// <summary>

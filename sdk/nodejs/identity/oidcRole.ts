@@ -4,6 +4,15 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Import
+ *
+ * The key can be imported with the role name, for example
+ *
+ * ```sh
+ *  $ pulumi import vault:identity/oidcRole:OidcRole role role
+ * ```
+ */
 export class OidcRole extends pulumi.CustomResource {
     /**
      * Get an existing OidcRole resource's state with the given name, ID, and optional extra

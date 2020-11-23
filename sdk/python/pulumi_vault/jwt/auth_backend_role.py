@@ -98,6 +98,14 @@ class AuthBackendRole(pulumi.CustomResource):
             allowed_redirect_uris=["http://localhost:8200/ui/vault/auth/oidc/oidc/callback"])
         ```
 
+        ## Import
+
+        JWT authentication backend roles can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:jwt/authBackendRole:AuthBackendRole example auth/jwt/role/test-role
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_redirect_uris: The list of allowed values for redirect_uri during OIDC logins.
@@ -207,7 +215,7 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__['backend'] = backend
             __props__['bound_audiences'] = bound_audiences
             if bound_cidrs is not None:
-                warnings.warn("use `token_bound_cidrs` instead if you are running Vault >= 1.2", DeprecationWarning)
+                warnings.warn("""use `token_bound_cidrs` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("bound_cidrs is deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2")
             __props__['bound_cidrs'] = bound_cidrs
             __props__['bound_claims'] = bound_claims
@@ -217,25 +225,25 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__['expiration_leeway'] = expiration_leeway
             __props__['groups_claim'] = groups_claim
             if groups_claim_delimiter_pattern is not None:
-                warnings.warn("`groups_claim_delimiter_pattern` has been removed since Vault 1.1. If the groups claim is not at the top level, it can now be specified as a JSONPointer.", DeprecationWarning)
+                warnings.warn("""`groups_claim_delimiter_pattern` has been removed since Vault 1.1. If the groups claim is not at the top level, it can now be specified as a JSONPointer.""", DeprecationWarning)
                 pulumi.log.warn("groups_claim_delimiter_pattern is deprecated: `groups_claim_delimiter_pattern` has been removed since Vault 1.1. If the groups claim is not at the top level, it can now be specified as a JSONPointer.")
             __props__['groups_claim_delimiter_pattern'] = groups_claim_delimiter_pattern
             if max_ttl is not None:
-                warnings.warn("use `token_max_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
+                warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2")
             __props__['max_ttl'] = max_ttl
             __props__['not_before_leeway'] = not_before_leeway
             if num_uses is not None:
-                warnings.warn("use `token_num_uses` instead if you are running Vault >= 1.2", DeprecationWarning)
+                warnings.warn("""use `token_num_uses` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("num_uses is deprecated: use `token_num_uses` instead if you are running Vault >= 1.2")
             __props__['num_uses'] = num_uses
             __props__['oidc_scopes'] = oidc_scopes
             if period is not None:
-                warnings.warn("use `token_period` instead if you are running Vault >= 1.2", DeprecationWarning)
+                warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("period is deprecated: use `token_period` instead if you are running Vault >= 1.2")
             __props__['period'] = period
             if policies is not None:
-                warnings.warn("use `token_policies` instead if you are running Vault >= 1.2", DeprecationWarning)
+                warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2")
             __props__['policies'] = policies
             if role_name is None:
@@ -252,7 +260,7 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__['token_ttl'] = token_ttl
             __props__['token_type'] = token_type
             if ttl is not None:
-                warnings.warn("use `token_ttl` instead if you are running Vault >= 1.2", DeprecationWarning)
+                warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2")
             __props__['ttl'] = ttl
             if user_claim is None:

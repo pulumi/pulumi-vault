@@ -4,6 +4,7 @@
 package identity
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -97,4 +98,43 @@ type EntityAliasArgs struct {
 
 func (EntityAliasArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*entityAliasArgs)(nil)).Elem()
+}
+
+type EntityAliasInput interface {
+	pulumi.Input
+
+	ToEntityAliasOutput() EntityAliasOutput
+	ToEntityAliasOutputWithContext(ctx context.Context) EntityAliasOutput
+}
+
+func (EntityAlias) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntityAlias)(nil)).Elem()
+}
+
+func (i EntityAlias) ToEntityAliasOutput() EntityAliasOutput {
+	return i.ToEntityAliasOutputWithContext(context.Background())
+}
+
+func (i EntityAlias) ToEntityAliasOutputWithContext(ctx context.Context) EntityAliasOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntityAliasOutput)
+}
+
+type EntityAliasOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntityAliasOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntityAliasOutput)(nil)).Elem()
+}
+
+func (o EntityAliasOutput) ToEntityAliasOutput() EntityAliasOutput {
+	return o
+}
+
+func (o EntityAliasOutput) ToEntityAliasOutputWithContext(ctx context.Context) EntityAliasOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EntityAliasOutput{})
 }

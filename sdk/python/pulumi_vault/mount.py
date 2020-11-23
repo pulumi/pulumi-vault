@@ -40,6 +40,14 @@ class Mount(pulumi.CustomResource):
             type="generic")
         ```
 
+        ## Import
+
+        Mounts can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:index/mount:Mount example dummy
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds

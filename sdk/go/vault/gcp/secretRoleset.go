@@ -4,6 +4,7 @@
 package gcp
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -13,6 +14,14 @@ import (
 // Creates a Roleset in the [GCP Secrets Engine](https://www.vaultproject.io/docs/secrets/gcp/index.html) for Vault.
 //
 // Each Roleset is [tied](https://www.vaultproject.io/docs/secrets/gcp/index.html#service-accounts-are-tied-to-rolesets) to a Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings) associated with it.
+//
+// ## Import
+//
+// A roleset can be imported using its Vault Path. For example, referencing the example above,
+//
+// ```sh
+//  $ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer
+// ```
 type SecretRoleset struct {
 	pulumi.CustomResourceState
 
@@ -142,4 +151,43 @@ type SecretRolesetArgs struct {
 
 func (SecretRolesetArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretRolesetArgs)(nil)).Elem()
+}
+
+type SecretRolesetInput interface {
+	pulumi.Input
+
+	ToSecretRolesetOutput() SecretRolesetOutput
+	ToSecretRolesetOutputWithContext(ctx context.Context) SecretRolesetOutput
+}
+
+func (SecretRoleset) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretRoleset)(nil)).Elem()
+}
+
+func (i SecretRoleset) ToSecretRolesetOutput() SecretRolesetOutput {
+	return i.ToSecretRolesetOutputWithContext(context.Background())
+}
+
+func (i SecretRoleset) ToSecretRolesetOutputWithContext(ctx context.Context) SecretRolesetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretRolesetOutput)
+}
+
+type SecretRolesetOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretRolesetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretRolesetOutput)(nil)).Elem()
+}
+
+func (o SecretRolesetOutput) ToSecretRolesetOutput() SecretRolesetOutput {
+	return o
+}
+
+func (o SecretRolesetOutput) ToSecretRolesetOutputWithContext(ctx context.Context) SecretRolesetOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SecretRolesetOutput{})
 }

@@ -25,7 +25,14 @@ class AuthBackendConfig(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a AuthBackendConfig resource with the given unique name, props, and options.
+        ## Import
+
+        Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.
+
+        ```sh
+         $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path the Azure auth backend being configured was

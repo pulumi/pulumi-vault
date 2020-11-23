@@ -24,6 +24,14 @@ import * as utilities from "../utilities";
  *     policies: ["example-policy"],
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Consul secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
+ * ```
  */
 export class SecretBackendRole extends pulumi.CustomResource {
     /**

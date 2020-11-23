@@ -58,6 +58,14 @@ namespace Pulumi.Vault
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Audit devices can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:index/audit:Audit test syslog
+    /// ```
     /// </summary>
     public partial class Audit : Pulumi.CustomResource
     {

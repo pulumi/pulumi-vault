@@ -31,6 +31,14 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// GCP authentication backends can be imported using the backend name, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
+    /// ```
     /// </summary>
     public partial class AuthBackend : Pulumi.CustomResource
     {

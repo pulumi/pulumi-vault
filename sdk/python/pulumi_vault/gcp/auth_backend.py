@@ -37,6 +37,14 @@ class AuthBackend(pulumi.CustomResource):
         gcp = vault.gcp.AuthBackend("gcp", credentials=(lambda path: open(path).read())("vault-gcp-credentials.json"))
         ```
 
+        ## Import
+
+        GCP authentication backends can be imported using the backend name, e.g.
+
+        ```sh
+         $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_email: The clients email associated with the credentials
