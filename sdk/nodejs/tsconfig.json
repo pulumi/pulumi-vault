@@ -13,6 +13,11 @@
         "strict": true
     },
     "files": [
+        "ad/getAccessCredentials.ts",
+        "ad/index.ts",
+        "ad/secretBackend.ts",
+        "ad/secretLibrary.ts",
+        "ad/secretRole.ts",
         "alicloud/authBackendRole.ts",
         "alicloud/index.ts",
         "approle/authBackendLogin.ts",

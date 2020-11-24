@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  *     path: "transit",
  *     type: "transit",
  * });
- * const cfg = new vault.TransitSecretBackendCacheConfig("cfg", {
+ * const cfg = new vault.transit.SecretCacheConfig("cfg", {
  *     backend: transit.path,
  *     size: 500,
  * });

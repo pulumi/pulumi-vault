@@ -60,9 +60,21 @@ namespace Pulumi.Vault.Gcp
         [Output("credentials")]
         public Output<string?> Credentials { get; private set; } = null!;
 
+        /// <summary>
+        /// A description of the auth method.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Specifies if the auth method is local only.
+        /// </summary>
+        [Output("local")]
+        public Output<bool?> Local { get; private set; } = null!;
+
+        /// <summary>
+        /// The path to mount the auth method — this defaults to 'gcp'.
+        /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
 
@@ -142,9 +154,21 @@ namespace Pulumi.Vault.Gcp
         [Input("credentials")]
         public Input<string>? Credentials { get; set; }
 
+        /// <summary>
+        /// A description of the auth method.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Specifies if the auth method is local only.
+        /// </summary>
+        [Input("local")]
+        public Input<bool>? Local { get; set; }
+
+        /// <summary>
+        /// The path to mount the auth method — this defaults to 'gcp'.
+        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
@@ -185,9 +209,21 @@ namespace Pulumi.Vault.Gcp
         [Input("credentials")]
         public Input<string>? Credentials { get; set; }
 
+        /// <summary>
+        /// A description of the auth method.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Specifies if the auth method is local only.
+        /// </summary>
+        [Input("local")]
+        public Input<bool>? Local { get; set; }
+
+        /// <summary>
+        /// The path to mount the auth method — this defaults to 'gcp'.
+        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 

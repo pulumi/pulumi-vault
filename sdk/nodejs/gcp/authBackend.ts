@@ -67,7 +67,17 @@ export class AuthBackend extends pulumi.CustomResource {
      * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
      */
     public readonly credentials!: pulumi.Output<string | undefined>;
+    /**
+     * A description of the auth method.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Specifies if the auth method is local only.
+     */
+    public readonly local!: pulumi.Output<boolean | undefined>;
+    /**
+     * The path to mount the auth method — this defaults to 'gcp'.
+     */
     public readonly path!: pulumi.Output<string | undefined>;
     /**
      * The ID of the private key from the credentials
@@ -94,6 +104,7 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["clientId"] = state ? state.clientId : undefined;
             inputs["credentials"] = state ? state.credentials : undefined;
             inputs["description"] = state ? state.description : undefined;
+            inputs["local"] = state ? state.local : undefined;
             inputs["path"] = state ? state.path : undefined;
             inputs["privateKeyId"] = state ? state.privateKeyId : undefined;
             inputs["projectId"] = state ? state.projectId : undefined;
@@ -103,6 +114,7 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["clientId"] = args ? args.clientId : undefined;
             inputs["credentials"] = args ? args.credentials : undefined;
             inputs["description"] = args ? args.description : undefined;
+            inputs["local"] = args ? args.local : undefined;
             inputs["path"] = args ? args.path : undefined;
             inputs["privateKeyId"] = args ? args.privateKeyId : undefined;
             inputs["projectId"] = args ? args.projectId : undefined;
@@ -134,7 +146,17 @@ export interface AuthBackendState {
      * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
      */
     readonly credentials?: pulumi.Input<string>;
+    /**
+     * A description of the auth method.
+     */
     readonly description?: pulumi.Input<string>;
+    /**
+     * Specifies if the auth method is local only.
+     */
+    readonly local?: pulumi.Input<boolean>;
+    /**
+     * The path to mount the auth method — this defaults to 'gcp'.
+     */
     readonly path?: pulumi.Input<string>;
     /**
      * The ID of the private key from the credentials
@@ -162,7 +184,17 @@ export interface AuthBackendArgs {
      * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
      */
     readonly credentials?: pulumi.Input<string>;
+    /**
+     * A description of the auth method.
+     */
     readonly description?: pulumi.Input<string>;
+    /**
+     * Specifies if the auth method is local only.
+     */
+    readonly local?: pulumi.Input<boolean>;
+    /**
+     * The path to mount the auth method — this defaults to 'gcp'.
+     */
     readonly path?: pulumi.Input<string>;
     /**
      * The ID of the private key from the credentials

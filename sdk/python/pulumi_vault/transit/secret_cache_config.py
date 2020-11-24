@@ -23,6 +23,23 @@ class SecretCacheConfig(pulumi.CustomResource):
         """
         Configure the cache for the Transit Secret Backend in Vault.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        transit = vault.Mount("transit",
+            default_lease_ttl_seconds=3600,
+            description="Example description",
+            max_lease_ttl_seconds=86400,
+            path="transit",
+            type="transit")
+        cfg = vault.transit.SecretCacheConfig("cfg",
+            backend=transit.path,
+            size=500)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.

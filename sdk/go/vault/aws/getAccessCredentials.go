@@ -29,6 +29,10 @@ type GetAccessCredentialsArgs struct {
 	// from the configured role. If the role does not have multiple ARNs, this does
 	// not need to be specified.
 	RoleArn *string `pulumi:"roleArn"`
+	// Specifies the TTL for the use of the STS token. This
+	// is specified as a string with a duration suffix. Valid only when
+	// `credentialType` is `assumedRole` or `federationToken`
+	Ttl *string `pulumi:"ttl"`
 	// The type of credentials to read. Defaults
 	// to `"creds"`, which just returns an AWS Access Key ID and Secret
 	// Key. Can also be set to `"sts"`, which will return a security token
@@ -58,5 +62,6 @@ type GetAccessCredentialsResult struct {
 	SecretKey string `pulumi:"secretKey"`
 	// The STS token returned by Vault, if any.
 	SecurityToken string  `pulumi:"securityToken"`
+	Ttl           *string `pulumi:"ttl"`
 	Type          *string `pulumi:"type"`
 }

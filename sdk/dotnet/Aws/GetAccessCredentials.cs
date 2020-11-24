@@ -44,6 +44,14 @@ namespace Pulumi.Vault.Aws
         public string? RoleArn { get; set; }
 
         /// <summary>
+        /// Specifies the TTL for the use of the STS token. This
+        /// is specified as a string with a duration suffix. Valid only when
+        /// `credential_type` is `assumed_role` or `federation_token`
+        /// </summary>
+        [Input("ttl")]
+        public string? Ttl { get; set; }
+
+        /// <summary>
         /// The type of credentials to read. Defaults
         /// to `"creds"`, which just returns an AWS Access Key ID and Secret
         /// Key. Can also be set to `"sts"`, which will return a security token
@@ -93,6 +101,7 @@ namespace Pulumi.Vault.Aws
         /// The STS token returned by Vault, if any.
         /// </summary>
         public readonly string SecurityToken;
+        public readonly string? Ttl;
         public readonly string? Type;
 
         [OutputConstructor]
@@ -121,6 +130,8 @@ namespace Pulumi.Vault.Aws
 
             string securityToken,
 
+            string? ttl,
+
             string? type)
         {
             AccessKey = accessKey;
@@ -135,6 +146,7 @@ namespace Pulumi.Vault.Aws
             RoleArn = roleArn;
             SecretKey = secretKey;
             SecurityToken = securityToken;
+            Ttl = ttl;
             Type = type;
         }
     }

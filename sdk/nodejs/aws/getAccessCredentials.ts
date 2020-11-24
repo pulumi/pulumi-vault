@@ -18,6 +18,7 @@ export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulu
         "region": args.region,
         "role": args.role,
         "roleArn": args.roleArn,
+        "ttl": args.ttl,
         "type": args.type,
     }, opts);
 }
@@ -43,6 +44,12 @@ export interface GetAccessCredentialsArgs {
      * not need to be specified.
      */
     readonly roleArn?: string;
+    /**
+     * Specifies the TTL for the use of the STS token. This
+     * is specified as a string with a duration suffix. Valid only when
+     * `credentialType` is `assumedRole` or `federationToken`
+     */
+    readonly ttl?: string;
     /**
      * The type of credentials to read. Defaults
      * to `"creds"`, which just returns an AWS Access Key ID and Secret
@@ -88,5 +95,6 @@ export interface GetAccessCredentialsResult {
      * The STS token returned by Vault, if any.
      */
     readonly securityToken: string;
+    readonly ttl?: string;
     readonly type?: string;
 }
