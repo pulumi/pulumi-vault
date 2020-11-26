@@ -36,6 +36,7 @@ const (
 	// modules:
 	mainMod       = "index"
 	appRoleMod    = "AppRole"
+	adMod         = "AD"
 	aliCloudMod   = "AliCloud"
 	awsMod        = "Aws"
 	azureMod      = "Azure"
@@ -221,6 +222,11 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_rgp_policy":       {Tok: makeResource(mainMod, "RgpPolicy")},
 			"vault_token":            {Tok: makeResource(mainMod, "Token")},
 			"vault_quota_rate_limit": {Tok: makeResource(mainMod, "QuotaRateLimit")},
+
+			// AD
+			"vault_ad_secret_backend": {Tok: makeResource(adMod, "SecretBackend")},
+			"vault_ad_secret_role":    {Tok: makeResource(adMod, "SecretRole")},
+			"vault_ad_secret_library": {Tok: makeResource(adMod, "SecretLibrary")},
 
 			// AppRole
 			"vault_approle_auth_backend_role":           {Tok: makeResource(appRoleMod, "AuthBackendRole")},
@@ -434,6 +440,9 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "auth_backend.html.md",
 				},
 			},
+
+			// AD
+			"vault_ad_access_credentials": {Tok: makeDataSource(adMod, "getAccessCredentials")},
 
 			// AppRole
 			"vault_approle_auth_backend_role_id": {

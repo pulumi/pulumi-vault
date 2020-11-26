@@ -19,7 +19,7 @@ class GetAccessCredentialsResult:
     """
     A collection of values returned by getAccessCredentials.
     """
-    def __init__(__self__, access_key=None, backend=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, region=None, role=None, role_arn=None, secret_key=None, security_token=None, type=None):
+    def __init__(__self__, access_key=None, backend=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, region=None, role=None, role_arn=None, secret_key=None, security_token=None, ttl=None, type=None):
         if access_key and not isinstance(access_key, str):
             raise TypeError("Expected argument 'access_key' to be a str")
         pulumi.set(__self__, "access_key", access_key)
@@ -56,6 +56,9 @@ class GetAccessCredentialsResult:
         if security_token and not isinstance(security_token, str):
             raise TypeError("Expected argument 'security_token' to be a str")
         pulumi.set(__self__, "security_token", security_token)
+        if ttl and not isinstance(ttl, str):
+            raise TypeError("Expected argument 'ttl' to be a str")
+        pulumi.set(__self__, "ttl", ttl)
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
@@ -142,6 +145,11 @@ class GetAccessCredentialsResult:
 
     @property
     @pulumi.getter
+    def ttl(self) -> Optional[str]:
+        return pulumi.get(self, "ttl")
+
+    @property
+    @pulumi.getter
     def type(self) -> Optional[str]:
         return pulumi.get(self, "type")
 
@@ -164,6 +172,7 @@ class AwaitableGetAccessCredentialsResult(GetAccessCredentialsResult):
             role_arn=self.role_arn,
             secret_key=self.secret_key,
             security_token=self.security_token,
+            ttl=self.ttl,
             type=self.type)
 
 
@@ -171,6 +180,7 @@ def get_access_credentials(backend: Optional[str] = None,
                            region: Optional[str] = None,
                            role: Optional[str] = None,
                            role_arn: Optional[str] = None,
+                           ttl: Optional[str] = None,
                            type: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccessCredentialsResult:
     """
@@ -183,6 +193,9 @@ def get_access_credentials(backend: Optional[str] = None,
     :param str role_arn: The specific AWS ARN to use
            from the configured role. If the role does not have multiple ARNs, this does
            not need to be specified.
+    :param str ttl: Specifies the TTL for the use of the STS token. This
+           is specified as a string with a duration suffix. Valid only when
+           `credential_type` is `assumed_role` or `federation_token`
     :param str type: The type of credentials to read. Defaults
            to `"creds"`, which just returns an AWS Access Key ID and Secret
            Key. Can also be set to `"sts"`, which will return a security token
@@ -193,6 +206,7 @@ def get_access_credentials(backend: Optional[str] = None,
     __args__['region'] = region
     __args__['role'] = role
     __args__['roleArn'] = role_arn
+    __args__['ttl'] = ttl
     __args__['type'] = type
     if opts is None:
         opts = pulumi.InvokeOptions()
@@ -213,4 +227,5 @@ def get_access_credentials(backend: Optional[str] = None,
         role_arn=__ret__.role_arn,
         secret_key=__ret__.secret_key,
         security_token=__ret__.security_token,
+        ttl=__ret__.ttl,
         type=__ret__.type)

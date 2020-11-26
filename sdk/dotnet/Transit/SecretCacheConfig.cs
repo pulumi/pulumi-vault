@@ -11,6 +11,34 @@ namespace Pulumi.Vault.Transit
 {
     /// <summary>
     /// Configure the cache for the Transit Secret Backend in Vault.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var transit = new Vault.Mount("transit", new Vault.MountArgs
+    ///         {
+    ///             DefaultLeaseTtlSeconds = 3600,
+    ///             Description = "Example description",
+    ///             MaxLeaseTtlSeconds = 86400,
+    ///             Path = "transit",
+    ///             Type = "transit",
+    ///         });
+    ///         var cfg = new Vault.Transit.SecretCacheConfig("cfg", new Vault.Transit.SecretCacheConfigArgs
+    ///         {
+    ///             Backend = transit.Path,
+    ///             Size = 500,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class SecretCacheConfig : Pulumi.CustomResource
     {

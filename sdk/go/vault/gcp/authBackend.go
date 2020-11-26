@@ -28,8 +28,12 @@ type AuthBackend struct {
 	ClientId pulumi.StringOutput `pulumi:"clientId"`
 	// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
 	Credentials pulumi.StringPtrOutput `pulumi:"credentials"`
+	// A description of the auth method.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	Path        pulumi.StringPtrOutput `pulumi:"path"`
+	// Specifies if the auth method is local only.
+	Local pulumi.BoolPtrOutput `pulumi:"local"`
+	// The path to mount the auth method — this defaults to 'gcp'.
+	Path pulumi.StringPtrOutput `pulumi:"path"`
 	// The ID of the private key from the credentials
 	PrivateKeyId pulumi.StringOutput `pulumi:"privateKeyId"`
 	// The GCP Project ID
@@ -70,8 +74,12 @@ type authBackendState struct {
 	ClientId *string `pulumi:"clientId"`
 	// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
 	Credentials *string `pulumi:"credentials"`
+	// A description of the auth method.
 	Description *string `pulumi:"description"`
-	Path        *string `pulumi:"path"`
+	// Specifies if the auth method is local only.
+	Local *bool `pulumi:"local"`
+	// The path to mount the auth method — this defaults to 'gcp'.
+	Path *string `pulumi:"path"`
 	// The ID of the private key from the credentials
 	PrivateKeyId *string `pulumi:"privateKeyId"`
 	// The GCP Project ID
@@ -85,8 +93,12 @@ type AuthBackendState struct {
 	ClientId pulumi.StringPtrInput
 	// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
 	Credentials pulumi.StringPtrInput
+	// A description of the auth method.
 	Description pulumi.StringPtrInput
-	Path        pulumi.StringPtrInput
+	// Specifies if the auth method is local only.
+	Local pulumi.BoolPtrInput
+	// The path to mount the auth method — this defaults to 'gcp'.
+	Path pulumi.StringPtrInput
 	// The ID of the private key from the credentials
 	PrivateKeyId pulumi.StringPtrInput
 	// The GCP Project ID
@@ -104,8 +116,12 @@ type authBackendArgs struct {
 	ClientId *string `pulumi:"clientId"`
 	// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
 	Credentials *string `pulumi:"credentials"`
+	// A description of the auth method.
 	Description *string `pulumi:"description"`
-	Path        *string `pulumi:"path"`
+	// Specifies if the auth method is local only.
+	Local *bool `pulumi:"local"`
+	// The path to mount the auth method — this defaults to 'gcp'.
+	Path *string `pulumi:"path"`
 	// The ID of the private key from the credentials
 	PrivateKeyId *string `pulumi:"privateKeyId"`
 	// The GCP Project ID
@@ -120,8 +136,12 @@ type AuthBackendArgs struct {
 	ClientId pulumi.StringPtrInput
 	// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
 	Credentials pulumi.StringPtrInput
+	// A description of the auth method.
 	Description pulumi.StringPtrInput
-	Path        pulumi.StringPtrInput
+	// Specifies if the auth method is local only.
+	Local pulumi.BoolPtrInput
+	// The path to mount the auth method — this defaults to 'gcp'.
+	Path pulumi.StringPtrInput
 	// The ID of the private key from the credentials
 	PrivateKeyId pulumi.StringPtrInput
 	// The GCP Project ID

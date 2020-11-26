@@ -18,6 +18,7 @@ export * from "./rgpPolicy";
 export * from "./token";
 
 // Export sub-modules:
+import * as ad from "./ad";
 import * as alicloud from "./alicloud";
 import * as approle from "./approle";
 import * as aws from "./aws";
@@ -42,6 +43,7 @@ import * as transit from "./transit";
 import * as types from "./types";
 
 export {
+    ad,
     alicloud,
     approle,
     aws,

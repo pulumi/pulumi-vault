@@ -12,6 +12,41 @@ import (
 )
 
 // Configure the cache for the Transit Secret Backend in Vault.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/transit"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		transit, err := vault.NewMount(ctx, "transit", &vault.MountArgs{
+// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
+// 			Description:            pulumi.String("Example description"),
+// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
+// 			Path:                   pulumi.String("transit"),
+// 			Type:                   pulumi.String("transit"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = transit.NewSecretCacheConfig(ctx, "cfg", &transit.SecretCacheConfigArgs{
+// 			Backend: transit.Path,
+// 			Size:    pulumi.Int(500),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type SecretCacheConfig struct {
 	pulumi.CustomResourceState
 

@@ -1672,6 +1672,645 @@
         }
     },
     "resources": {
+        "vault:ad/secretBackend:SecretBackend": {
+            "description": "\n\n\n## Import\n\nAD secret backend can be imported using the `backend`, e.g.\n\n```sh\n $ pulumi import vault:ad/secretBackend:SecretBackend ad ad\n```\n\n ",
+            "properties": {
+                "anonymousGroupSearch": {
+                    "type": "boolean",
+                    "description": "Use anonymous binds when performing LDAP group searches\n(if true the initial credentials will still be used for the initial connection test).\n"
+                },
+                "backend": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `ad`.\n"
+                },
+                "binddn": {
+                    "type": "string",
+                    "description": "Distinguished name of object to bind when performing user and group search.\n"
+                },
+                "bindpass": {
+                    "type": "string",
+                    "description": "Password to use along with binddn when performing user search.\n"
+                },
+                "caseSensitiveNames": {
+                    "type": "boolean",
+                    "description": "If set, user and group names assigned to policies within the\nbackend will be case sensitive. Otherwise, names will be normalized to lower case.\n"
+                },
+                "certificate": {
+                    "type": "string",
+                    "description": "CA certificate to use when verifying LDAP server certificate, must be\nx509 PEM encoded.\n"
+                },
+                "clientTlsCert": {
+                    "type": "string",
+                    "description": "Client certificate to provide to the LDAP server, must be x509 PEM encoded.\n"
+                },
+                "clientTlsKey": {
+                    "type": "string",
+                    "description": "Client certificate key to provide to the LDAP server, must be x509 PEM encoded.\n"
+                },
+                "defaultLeaseTtlSeconds": {
+                    "type": "integer",
+                    "description": "Default lease duration for secrets in seconds.\n"
+                },
+                "denyNullBind": {
+                    "type": "boolean",
+                    "description": "Denies an unauthenticated LDAP bind request if the user's password is empty;\ndefaults to true.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Human-friendly description of the mount for the Active Directory backend.\n"
+                },
+                "discoverdn": {
+                    "type": "boolean",
+                    "description": "Use anonymous bind to discover the bind Distinguished Name of a user.\n"
+                },
+                "formatter": {
+                    "type": "string",
+                    "description": "Text to insert the password into, ex. \"customPrefix{{PASSWORD}}customSuffix\". This\nsetting is deprecated and should instead use `password_policy`.\n",
+                    "deprecationMessage": "Formatter is deprecated and password_policy should be used with Vault \u003e= 1.5."
+                },
+                "groupattr": {
+                    "type": "string",
+                    "description": "LDAP attribute to follow on objects returned by \u003cgroupfilter\u003e in order to enumerate\nuser group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.\n"
+                },
+                "groupdn": {
+                    "type": "string",
+                    "description": "LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org).\n"
+                },
+                "groupfilter": {
+                    "type": "string",
+                    "description": "Go template for querying group membership of user (optional) The template can access\nthe following context variables: UserDN, Username. Defaults to `(|(memberUid={{.Username}})(member={{.UserDN}})(uniqueMember={{.UserDN}}))`\n"
+                },
+                "insecureTls": {
+                    "type": "boolean",
+                    "description": "Skip LDAP server SSL Certificate verification. This is not recommended for production.\nDefaults to `false`.\n"
+                },
+                "lastRotationTolerance": {
+                    "type": "integer",
+                    "description": "The number of seconds after a Vault rotation where, if Active Directory\nshows a later rotation, it should be considered out-of-band\n"
+                },
+                "length": {
+                    "type": "integer",
+                    "description": "The desired length of passwords that Vault generates. This\nsetting is deprecated and should instead use `password_policy`.\n",
+                    "deprecationMessage": "Length is deprecated and password_policy should be used with Vault \u003e= 1.5."
+                },
+                "local": {
+                    "type": "boolean",
+                    "description": "Mark the secrets engine as local-only. Local engines are not replicated or removed by\nreplication.Tolerance duration to use when checking the last rotation time.\n"
+                },
+                "maxLeaseTtlSeconds": {
+                    "type": "integer",
+                    "description": "Maximum possible lease duration for secrets in seconds.\n"
+                },
+                "maxTtl": {
+                    "type": "integer",
+                    "description": "In seconds, the maximum password time-to-live.\n"
+                },
+                "passwordPolicy": {
+                    "type": "string",
+                    "description": "Name of the password policy to use to generate passwords.\n"
+                },
+                "requestTimeout": {
+                    "type": "integer",
+                    "description": "Timeout, in seconds, for the connection when making requests against the server\nbefore returning back an error.\n"
+                },
+                "starttls": {
+                    "type": "boolean",
+                    "description": "Issue a StartTLS command after establishing unencrypted connection.\n"
+                },
+                "tlsMaxVersion": {
+                    "type": "string",
+                    "description": "Maximum TLS version to use. Accepted values are `tls10`, `tls11`,\n`tls12` or `tls13`. Defaults to `tls12`.\n"
+                },
+                "tlsMinVersion": {
+                    "type": "string",
+                    "description": "Minimum TLS version to use. Accepted values are `tls10`, `tls11`,\n`tls12` or `tls13`. Defaults to `tls12`.\n"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "In seconds, the default password time-to-live.\n"
+                },
+                "upndomain": {
+                    "type": "string",
+                    "description": "Enables userPrincipalDomain login with [username]@UPNDomain.\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "LDAP URL to connect to. Multiple URLs can be specified by concatenating\nthem with commas; they will be tried in-order. Defaults to `ldap://127.0.0.1`.\n"
+                },
+                "usePre111GroupCnBehavior": {
+                    "type": "boolean",
+                    "description": "In Vault 1.1.1 a fix for handling group CN values of\ndifferent cases unfortunately introduced a regression that could cause previously defined groups\nto not be found due to a change in the resulting name. If set true, the pre-1.1.1 behavior for\nmatching group CNs will be used. This is only needed in some upgrade scenarios for backwards\ncompatibility. It is enabled by default if the config is upgraded but disabled by default on\nnew configurations.\n"
+                },
+                "useTokenGroups": {
+                    "type": "boolean",
+                    "description": "If true, use the Active Directory tokenGroups constructed attribute of the\nuser to find the group memberships. This will find all security groups including nested ones.\n"
+                },
+                "userattr": {
+                    "type": "string",
+                    "description": "Attribute used when searching users. Defaults to `cn`.\n"
+                },
+                "userdn": {
+                    "type": "string",
+                    "description": "LDAP domain to use for users (eg: ou=People,dc=example,dc=org)`.\n"
+                }
+            },
+            "required": [
+                "binddn",
+                "bindpass",
+                "defaultLeaseTtlSeconds",
+                "formatter",
+                "lastRotationTolerance",
+                "length",
+                "maxLeaseTtlSeconds",
+                "maxTtl",
+                "starttls",
+                "tlsMaxVersion",
+                "tlsMinVersion",
+                "ttl",
+                "upndomain",
+                "usePre111GroupCnBehavior"
+            ],
+            "inputProperties": {
+                "anonymousGroupSearch": {
+                    "type": "boolean",
+                    "description": "Use anonymous binds when performing LDAP group searches\n(if true the initial credentials will still be used for the initial connection test).\n"
+                },
+                "backend": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `ad`.\n"
+                },
+                "binddn": {
+                    "type": "string",
+                    "description": "Distinguished name of object to bind when performing user and group search.\n"
+                },
+                "bindpass": {
+                    "type": "string",
+                    "description": "Password to use along with binddn when performing user search.\n"
+                },
+                "caseSensitiveNames": {
+                    "type": "boolean",
+                    "description": "If set, user and group names assigned to policies within the\nbackend will be case sensitive. Otherwise, names will be normalized to lower case.\n"
+                },
+                "certificate": {
+                    "type": "string",
+                    "description": "CA certificate to use when verifying LDAP server certificate, must be\nx509 PEM encoded.\n"
+                },
+                "clientTlsCert": {
+                    "type": "string",
+                    "description": "Client certificate to provide to the LDAP server, must be x509 PEM encoded.\n"
+                },
+                "clientTlsKey": {
+                    "type": "string",
+                    "description": "Client certificate key to provide to the LDAP server, must be x509 PEM encoded.\n"
+                },
+                "defaultLeaseTtlSeconds": {
+                    "type": "integer",
+                    "description": "Default lease duration for secrets in seconds.\n"
+                },
+                "denyNullBind": {
+                    "type": "boolean",
+                    "description": "Denies an unauthenticated LDAP bind request if the user's password is empty;\ndefaults to true.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Human-friendly description of the mount for the Active Directory backend.\n"
+                },
+                "discoverdn": {
+                    "type": "boolean",
+                    "description": "Use anonymous bind to discover the bind Distinguished Name of a user.\n"
+                },
+                "formatter": {
+                    "type": "string",
+                    "description": "Text to insert the password into, ex. \"customPrefix{{PASSWORD}}customSuffix\". This\nsetting is deprecated and should instead use `password_policy`.\n",
+                    "deprecationMessage": "Formatter is deprecated and password_policy should be used with Vault \u003e= 1.5."
+                },
+                "groupattr": {
+                    "type": "string",
+                    "description": "LDAP attribute to follow on objects returned by \u003cgroupfilter\u003e in order to enumerate\nuser group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.\n"
+                },
+                "groupdn": {
+                    "type": "string",
+                    "description": "LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org).\n"
+                },
+                "groupfilter": {
+                    "type": "string",
+                    "description": "Go template for querying group membership of user (optional) The template can access\nthe following context variables: UserDN, Username. Defaults to `(|(memberUid={{.Username}})(member={{.UserDN}})(uniqueMember={{.UserDN}}))`\n"
+                },
+                "insecureTls": {
+                    "type": "boolean",
+                    "description": "Skip LDAP server SSL Certificate verification. This is not recommended for production.\nDefaults to `false`.\n"
+                },
+                "lastRotationTolerance": {
+                    "type": "integer",
+                    "description": "The number of seconds after a Vault rotation where, if Active Directory\nshows a later rotation, it should be considered out-of-band\n"
+                },
+                "length": {
+                    "type": "integer",
+                    "description": "The desired length of passwords that Vault generates. This\nsetting is deprecated and should instead use `password_policy`.\n",
+                    "deprecationMessage": "Length is deprecated and password_policy should be used with Vault \u003e= 1.5."
+                },
+                "local": {
+                    "type": "boolean",
+                    "description": "Mark the secrets engine as local-only. Local engines are not replicated or removed by\nreplication.Tolerance duration to use when checking the last rotation time.\n"
+                },
+                "maxLeaseTtlSeconds": {
+                    "type": "integer",
+                    "description": "Maximum possible lease duration for secrets in seconds.\n"
+                },
+                "maxTtl": {
+                    "type": "integer",
+                    "description": "In seconds, the maximum password time-to-live.\n"
+                },
+                "passwordPolicy": {
+                    "type": "string",
+                    "description": "Name of the password policy to use to generate passwords.\n"
+                },
+                "requestTimeout": {
+                    "type": "integer",
+                    "description": "Timeout, in seconds, for the connection when making requests against the server\nbefore returning back an error.\n"
+                },
+                "starttls": {
+                    "type": "boolean",
+                    "description": "Issue a StartTLS command after establishing unencrypted connection.\n"
+                },
+                "tlsMaxVersion": {
+                    "type": "string",
+                    "description": "Maximum TLS version to use. Accepted values are `tls10`, `tls11`,\n`tls12` or `tls13`. Defaults to `tls12`.\n"
+                },
+                "tlsMinVersion": {
+                    "type": "string",
+                    "description": "Minimum TLS version to use. Accepted values are `tls10`, `tls11`,\n`tls12` or `tls13`. Defaults to `tls12`.\n"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "In seconds, the default password time-to-live.\n"
+                },
+                "upndomain": {
+                    "type": "string",
+                    "description": "Enables userPrincipalDomain login with [username]@UPNDomain.\n"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "LDAP URL to connect to. Multiple URLs can be specified by concatenating\nthem with commas; they will be tried in-order. Defaults to `ldap://127.0.0.1`.\n"
+                },
+                "usePre111GroupCnBehavior": {
+                    "type": "boolean",
+                    "description": "In Vault 1.1.1 a fix for handling group CN values of\ndifferent cases unfortunately introduced a regression that could cause previously defined groups\nto not be found due to a change in the resulting name. If set true, the pre-1.1.1 behavior for\nmatching group CNs will be used. This is only needed in some upgrade scenarios for backwards\ncompatibility. It is enabled by default if the config is upgraded but disabled by default on\nnew configurations.\n"
+                },
+                "useTokenGroups": {
+                    "type": "boolean",
+                    "description": "If true, use the Active Directory tokenGroups constructed attribute of the\nuser to find the group memberships. This will find all security groups including nested ones.\n"
+                },
+                "userattr": {
+                    "type": "string",
+                    "description": "Attribute used when searching users. Defaults to `cn`.\n"
+                },
+                "userdn": {
+                    "type": "string",
+                    "description": "LDAP domain to use for users (eg: ou=People,dc=example,dc=org)`.\n"
+                }
+            },
+            "requiredInputs": [
+                "binddn",
+                "bindpass"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SecretBackend resources.\n",
+                "properties": {
+                    "anonymousGroupSearch": {
+                        "type": "boolean",
+                        "description": "Use anonymous binds when performing LDAP group searches\n(if true the initial credentials will still be used for the initial connection test).\n"
+                    },
+                    "backend": {
+                        "type": "string",
+                        "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `ad`.\n"
+                    },
+                    "binddn": {
+                        "type": "string",
+                        "description": "Distinguished name of object to bind when performing user and group search.\n"
+                    },
+                    "bindpass": {
+                        "type": "string",
+                        "description": "Password to use along with binddn when performing user search.\n"
+                    },
+                    "caseSensitiveNames": {
+                        "type": "boolean",
+                        "description": "If set, user and group names assigned to policies within the\nbackend will be case sensitive. Otherwise, names will be normalized to lower case.\n"
+                    },
+                    "certificate": {
+                        "type": "string",
+                        "description": "CA certificate to use when verifying LDAP server certificate, must be\nx509 PEM encoded.\n"
+                    },
+                    "clientTlsCert": {
+                        "type": "string",
+                        "description": "Client certificate to provide to the LDAP server, must be x509 PEM encoded.\n"
+                    },
+                    "clientTlsKey": {
+                        "type": "string",
+                        "description": "Client certificate key to provide to the LDAP server, must be x509 PEM encoded.\n"
+                    },
+                    "defaultLeaseTtlSeconds": {
+                        "type": "integer",
+                        "description": "Default lease duration for secrets in seconds.\n"
+                    },
+                    "denyNullBind": {
+                        "type": "boolean",
+                        "description": "Denies an unauthenticated LDAP bind request if the user's password is empty;\ndefaults to true.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Human-friendly description of the mount for the Active Directory backend.\n"
+                    },
+                    "discoverdn": {
+                        "type": "boolean",
+                        "description": "Use anonymous bind to discover the bind Distinguished Name of a user.\n"
+                    },
+                    "formatter": {
+                        "type": "string",
+                        "description": "Text to insert the password into, ex. \"customPrefix{{PASSWORD}}customSuffix\". This\nsetting is deprecated and should instead use `password_policy`.\n",
+                        "deprecationMessage": "Formatter is deprecated and password_policy should be used with Vault \u003e= 1.5."
+                    },
+                    "groupattr": {
+                        "type": "string",
+                        "description": "LDAP attribute to follow on objects returned by \u003cgroupfilter\u003e in order to enumerate\nuser group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.\n"
+                    },
+                    "groupdn": {
+                        "type": "string",
+                        "description": "LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org).\n"
+                    },
+                    "groupfilter": {
+                        "type": "string",
+                        "description": "Go template for querying group membership of user (optional) The template can access\nthe following context variables: UserDN, Username. Defaults to `(|(memberUid={{.Username}})(member={{.UserDN}})(uniqueMember={{.UserDN}}))`\n"
+                    },
+                    "insecureTls": {
+                        "type": "boolean",
+                        "description": "Skip LDAP server SSL Certificate verification. This is not recommended for production.\nDefaults to `false`.\n"
+                    },
+                    "lastRotationTolerance": {
+                        "type": "integer",
+                        "description": "The number of seconds after a Vault rotation where, if Active Directory\nshows a later rotation, it should be considered out-of-band\n"
+                    },
+                    "length": {
+                        "type": "integer",
+                        "description": "The desired length of passwords that Vault generates. This\nsetting is deprecated and should instead use `password_policy`.\n",
+                        "deprecationMessage": "Length is deprecated and password_policy should be used with Vault \u003e= 1.5."
+                    },
+                    "local": {
+                        "type": "boolean",
+                        "description": "Mark the secrets engine as local-only. Local engines are not replicated or removed by\nreplication.Tolerance duration to use when checking the last rotation time.\n"
+                    },
+                    "maxLeaseTtlSeconds": {
+                        "type": "integer",
+                        "description": "Maximum possible lease duration for secrets in seconds.\n"
+                    },
+                    "maxTtl": {
+                        "type": "integer",
+                        "description": "In seconds, the maximum password time-to-live.\n"
+                    },
+                    "passwordPolicy": {
+                        "type": "string",
+                        "description": "Name of the password policy to use to generate passwords.\n"
+                    },
+                    "requestTimeout": {
+                        "type": "integer",
+                        "description": "Timeout, in seconds, for the connection when making requests against the server\nbefore returning back an error.\n"
+                    },
+                    "starttls": {
+                        "type": "boolean",
+                        "description": "Issue a StartTLS command after establishing unencrypted connection.\n"
+                    },
+                    "tlsMaxVersion": {
+                        "type": "string",
+                        "description": "Maximum TLS version to use. Accepted values are `tls10`, `tls11`,\n`tls12` or `tls13`. Defaults to `tls12`.\n"
+                    },
+                    "tlsMinVersion": {
+                        "type": "string",
+                        "description": "Minimum TLS version to use. Accepted values are `tls10`, `tls11`,\n`tls12` or `tls13`. Defaults to `tls12`.\n"
+                    },
+                    "ttl": {
+                        "type": "integer",
+                        "description": "In seconds, the default password time-to-live.\n"
+                    },
+                    "upndomain": {
+                        "type": "string",
+                        "description": "Enables userPrincipalDomain login with [username]@UPNDomain.\n"
+                    },
+                    "url": {
+                        "type": "string",
+                        "description": "LDAP URL to connect to. Multiple URLs can be specified by concatenating\nthem with commas; they will be tried in-order. Defaults to `ldap://127.0.0.1`.\n"
+                    },
+                    "usePre111GroupCnBehavior": {
+                        "type": "boolean",
+                        "description": "In Vault 1.1.1 a fix for handling group CN values of\ndifferent cases unfortunately introduced a regression that could cause previously defined groups\nto not be found due to a change in the resulting name. If set true, the pre-1.1.1 behavior for\nmatching group CNs will be used. This is only needed in some upgrade scenarios for backwards\ncompatibility. It is enabled by default if the config is upgraded but disabled by default on\nnew configurations.\n"
+                    },
+                    "useTokenGroups": {
+                        "type": "boolean",
+                        "description": "If true, use the Active Directory tokenGroups constructed attribute of the\nuser to find the group memberships. This will find all security groups including nested ones.\n"
+                    },
+                    "userattr": {
+                        "type": "string",
+                        "description": "Attribute used when searching users. Defaults to `cn`.\n"
+                    },
+                    "userdn": {
+                        "type": "string",
+                        "description": "LDAP domain to use for users (eg: ou=People,dc=example,dc=org)`.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:ad/secretLibrary:SecretLibrary": {
+            "properties": {
+                "backend": {
+                    "type": "string",
+                    "description": "The mount path for the AD backend.\n"
+                },
+                "disableCheckInEnforcement": {
+                    "type": "boolean",
+                    "description": "Disable enforcing that service accounts must be checked in by the entity or client token that checked them out.\n"
+                },
+                "maxTtl": {
+                    "type": "integer",
+                    "description": "The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the set of service accounts.\n"
+                },
+                "serviceAccountNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The names of all the service accounts that can be checked out from this set. These service accounts must already exist\nin Active Directory.\n"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.\n"
+                }
+            },
+            "required": [
+                "backend",
+                "maxTtl",
+                "name",
+                "serviceAccountNames",
+                "ttl"
+            ],
+            "inputProperties": {
+                "backend": {
+                    "type": "string",
+                    "description": "The mount path for the AD backend.\n"
+                },
+                "disableCheckInEnforcement": {
+                    "type": "boolean",
+                    "description": "Disable enforcing that service accounts must be checked in by the entity or client token that checked them out.\n"
+                },
+                "maxTtl": {
+                    "type": "integer",
+                    "description": "The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the set of service accounts.\n"
+                },
+                "serviceAccountNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The names of all the service accounts that can be checked out from this set. These service accounts must already exist\nin Active Directory.\n"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.\n"
+                }
+            },
+            "requiredInputs": [
+                "backend",
+                "serviceAccountNames"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SecretLibrary resources.\n",
+                "properties": {
+                    "backend": {
+                        "type": "string",
+                        "description": "The mount path for the AD backend.\n"
+                    },
+                    "disableCheckInEnforcement": {
+                        "type": "boolean",
+                        "description": "Disable enforcing that service accounts must be checked in by the entity or client token that checked them out.\n"
+                    },
+                    "maxTtl": {
+                        "type": "integer",
+                        "description": "The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the set of service accounts.\n"
+                    },
+                    "serviceAccountNames": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The names of all the service accounts that can be checked out from this set. These service accounts must already exist\nin Active Directory.\n"
+                    },
+                    "ttl": {
+                        "type": "integer",
+                        "description": "The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:ad/secretRole:SecretRole": {
+            "properties": {
+                "backend": {
+                    "type": "string",
+                    "description": "The mount path for the AD backend.\n"
+                },
+                "lastVaultRotation": {
+                    "type": "string",
+                    "description": "Last time Vault rotated this service account's password.\n"
+                },
+                "passwordLastSet": {
+                    "type": "string",
+                    "description": "Last time Vault set this service account's password.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "Name of the role.\n"
+                },
+                "serviceAccountName": {
+                    "type": "string",
+                    "description": "The username/logon name for the service account with which this role will be associated.\n"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "In seconds, the default password time-to-live.\n"
+                }
+            },
+            "required": [
+                "backend",
+                "lastVaultRotation",
+                "passwordLastSet",
+                "role",
+                "serviceAccountName"
+            ],
+            "inputProperties": {
+                "backend": {
+                    "type": "string",
+                    "description": "The mount path for the AD backend.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "Name of the role.\n"
+                },
+                "serviceAccountName": {
+                    "type": "string",
+                    "description": "The username/logon name for the service account with which this role will be associated.\n"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "In seconds, the default password time-to-live.\n"
+                }
+            },
+            "requiredInputs": [
+                "backend",
+                "role",
+                "serviceAccountName"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SecretRole resources.\n",
+                "properties": {
+                    "backend": {
+                        "type": "string",
+                        "description": "The mount path for the AD backend.\n"
+                    },
+                    "lastVaultRotation": {
+                        "type": "string",
+                        "description": "Last time Vault rotated this service account's password.\n"
+                    },
+                    "passwordLastSet": {
+                        "type": "string",
+                        "description": "Last time Vault set this service account's password.\n"
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "Name of the role.\n"
+                    },
+                    "serviceAccountName": {
+                        "type": "string",
+                        "description": "The username/logon name for the service account with which this role will be associated.\n"
+                    },
+                    "ttl": {
+                        "type": "integer",
+                        "description": "In seconds, the default password time-to-live.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "vault:alicloud/authBackendRole:AuthBackendRole": {
             "description": "Provides a resource to create a role in an [AliCloud auth backend within Vault](https://www.vaultproject.io/docs/auth/alicloud.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst alicloudAuthBackend = new vault.AuthBackend(\"alicloudAuthBackend\", {\n    type: \"alicloud\",\n    path: \"alicloud\",\n});\nconst alicloudAuthBackendRole = new vault.alicloud.AuthBackendRole(\"alicloudAuthBackendRole\", {\n    backend: alicloudAuthBackend.path,\n    role: \"example\",\n    arn: \"acs:ram:123456:tf:role/foobar\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nalicloud_auth_backend = vault.AuthBackend(\"alicloudAuthBackend\",\n    type=\"alicloud\",\n    path=\"alicloud\")\nalicloud_auth_backend_role = vault.alicloud.AuthBackendRole(\"alicloudAuthBackendRole\",\n    backend=alicloud_auth_backend.path,\n    role=\"example\",\n    arn=\"acs:ram:123456:tf:role/foobar\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var alicloudAuthBackend = new Vault.AuthBackend(\"alicloudAuthBackend\", new Vault.AuthBackendArgs\n        {\n            Type = \"alicloud\",\n            Path = \"alicloud\",\n        });\n        var alicloudAuthBackendRole = new Vault.AliCloud.AuthBackendRole(\"alicloudAuthBackendRole\", new Vault.AliCloud.AuthBackendRoleArgs\n        {\n            Backend = alicloudAuthBackend.Path,\n            Role = \"example\",\n            Arn = \"acs:ram:123456:tf:role/foobar\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/alicloud\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\talicloudAuthBackend, err := vault.NewAuthBackend(ctx, \"alicloudAuthBackend\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"alicloud\"),\n\t\t\tPath: pulumi.String(\"alicloud\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = alicloud.NewAuthBackendRole(ctx, \"alicloudAuthBackendRole\", \u0026alicloud.AuthBackendRoleArgs{\n\t\t\tBackend: alicloudAuthBackend.Path,\n\t\t\tRole:    pulumi.String(\"example\"),\n\t\t\tArn:     pulumi.String(\"acs:ram:123456:tf:role/foobar\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAlicloud authentication roles can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:alicloud/authBackendRole:AuthBackendRole my_role auth/alicloud/role/my_role\n```\n\n ",
             "properties": {
@@ -5324,10 +5963,16 @@
                     "description": "A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.\n"
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A description of the auth method.\n"
+                },
+                "local": {
+                    "type": "boolean",
+                    "description": "Specifies if the auth method is local only.\n"
                 },
                 "path": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path to mount the auth method — this defaults to 'gcp'.\n"
                 },
                 "privateKeyId": {
                     "type": "string",
@@ -5358,10 +6003,16 @@
                     "description": "A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.\n"
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A description of the auth method.\n"
+                },
+                "local": {
+                    "type": "boolean",
+                    "description": "Specifies if the auth method is local only.\n"
                 },
                 "path": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path to mount the auth method — this defaults to 'gcp'.\n"
                 },
                 "privateKeyId": {
                     "type": "string",
@@ -5388,10 +6039,16 @@
                         "description": "A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.\n"
                     },
                     "description": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "A description of the auth method.\n"
+                    },
+                    "local": {
+                        "type": "boolean",
+                        "description": "Specifies if the auth method is local only.\n"
                     },
                     "path": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The path to mount the auth method — this defaults to 'gcp'.\n"
                     },
                     "privateKeyId": {
                         "type": "string",
@@ -14639,7 +15296,7 @@
             }
         },
         "vault:transform/role:Role": {
-            "description": "This resource supports the \"/transform/role/{name}\" Vault endpoint.\n\nIt creates or updates the role with the given name. If a role with the name does not exist, it will be created. \nIf the role exists, it will be updated with the new attributes.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst mountTransform = new vault.Mount(\"mountTransform\", {\n    path: \"transform\",\n    type: \"transform\",\n});\nconst test = new vault.transform.Role(\"test\", {\n    path: mountTransform.path,\n    transformations: [\"ccn-fpe\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nmount_transform = vault.Mount(\"mountTransform\",\n    path=\"transform\",\n    type=\"transform\")\ntest = vault.transform.Role(\"test\",\n    path=mount_transform.path,\n    transformations=[\"ccn-fpe\"])\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var mountTransform = new Vault.Mount(\"mountTransform\", new Vault.MountArgs\n        {\n            Path = \"transform\",\n            Type = \"transform\",\n        });\n        var test = new Vault.Transform.Role(\"test\", new Vault.Transform.RoleArgs\n        {\n            Path = mountTransform.Path,\n            Transformations = \n            {\n                \"ccn-fpe\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/transform\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmountTransform, err := vault.NewMount(ctx, \"mountTransform\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"transform\"),\n\t\t\tType: pulumi.String(\"transform\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = transform.NewRole(ctx, \"test\", \u0026transform.RoleArgs{\n\t\t\tPath: mountTransform.Path,\n\t\t\tTransformations: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ccn-fpe\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "This resource supports the \"/transform/role/{name}\" Vault endpoint.\n\nIt creates or updates the role with the given name. If a role with the name does not exist, it will be created.\nIf the role exists, it will be updated with the new attributes.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst mountTransform = new vault.Mount(\"mountTransform\", {\n    path: \"transform\",\n    type: \"transform\",\n});\nconst test = new vault.transform.Role(\"test\", {\n    path: mountTransform.path,\n    transformations: [\"ccn-fpe\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nmount_transform = vault.Mount(\"mountTransform\",\n    path=\"transform\",\n    type=\"transform\")\ntest = vault.transform.Role(\"test\",\n    path=mount_transform.path,\n    transformations=[\"ccn-fpe\"])\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var mountTransform = new Vault.Mount(\"mountTransform\", new Vault.MountArgs\n        {\n            Path = \"transform\",\n            Type = \"transform\",\n        });\n        var test = new Vault.Transform.Role(\"test\", new Vault.Transform.RoleArgs\n        {\n            Path = mountTransform.Path,\n            Transformations = \n            {\n                \"ccn-fpe\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/transform\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmountTransform, err := vault.NewMount(ctx, \"mountTransform\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"transform\"),\n\t\t\tType: pulumi.String(\"transform\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = transform.NewRole(ctx, \"test\", \u0026transform.RoleArgs{\n\t\t\tPath: mountTransform.Path,\n\t\t\tTransformations: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ccn-fpe\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "name": {
                     "type": "string",
@@ -14783,7 +15440,7 @@
             }
         },
         "vault:transform/transformation:Transformation": {
-            "description": "This resource supports the \"/transform/transformation/{name}\" Vault endpoint.\n\nIt creates or updates a transformation with the given name. If a transformation with the name does not exist, \nit will be created. If the transformation exists, it will be updated with the new attributes.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst mountTransform = new vault.Mount(\"mountTransform\", {\n    path: \"transform\",\n    type: \"transform\",\n});\nconst test = new vault.transform.Transformation(\"test\", {\n    path: mountTransform.path,\n    type: \"fpe\",\n    template: \"ccn\",\n    tweakSource: \"internal\",\n    allowedRoles: [\"payments\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nmount_transform = vault.Mount(\"mountTransform\",\n    path=\"transform\",\n    type=\"transform\")\ntest = vault.transform.Transformation(\"test\",\n    path=mount_transform.path,\n    type=\"fpe\",\n    template=\"ccn\",\n    tweak_source=\"internal\",\n    allowed_roles=[\"payments\"])\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var mountTransform = new Vault.Mount(\"mountTransform\", new Vault.MountArgs\n        {\n            Path = \"transform\",\n            Type = \"transform\",\n        });\n        var test = new Vault.Transform.Transformation(\"test\", new Vault.Transform.TransformationArgs\n        {\n            Path = mountTransform.Path,\n            Type = \"fpe\",\n            Template = \"ccn\",\n            TweakSource = \"internal\",\n            AllowedRoles = \n            {\n                \"payments\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/transform\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmountTransform, err := vault.NewMount(ctx, \"mountTransform\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"transform\"),\n\t\t\tType: pulumi.String(\"transform\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = transform.NewTransformation(ctx, \"test\", \u0026transform.TransformationArgs{\n\t\t\tPath:        mountTransform.Path,\n\t\t\tType:        pulumi.String(\"fpe\"),\n\t\t\tTemplate:    pulumi.String(\"ccn\"),\n\t\t\tTweakSource: pulumi.String(\"internal\"),\n\t\t\tAllowedRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"payments\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "This resource supports the \"/transform/transformation/{name}\" Vault endpoint.\n\nIt creates or updates a transformation with the given name. If a transformation with the name does not exist,\nit will be created. If the transformation exists, it will be updated with the new attributes.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst mountTransform = new vault.Mount(\"mountTransform\", {\n    path: \"transform\",\n    type: \"transform\",\n});\nconst test = new vault.transform.Transformation(\"test\", {\n    path: mountTransform.path,\n    type: \"fpe\",\n    template: \"ccn\",\n    tweakSource: \"internal\",\n    allowedRoles: [\"payments\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nmount_transform = vault.Mount(\"mountTransform\",\n    path=\"transform\",\n    type=\"transform\")\ntest = vault.transform.Transformation(\"test\",\n    path=mount_transform.path,\n    type=\"fpe\",\n    template=\"ccn\",\n    tweak_source=\"internal\",\n    allowed_roles=[\"payments\"])\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var mountTransform = new Vault.Mount(\"mountTransform\", new Vault.MountArgs\n        {\n            Path = \"transform\",\n            Type = \"transform\",\n        });\n        var test = new Vault.Transform.Transformation(\"test\", new Vault.Transform.TransformationArgs\n        {\n            Path = mountTransform.Path,\n            Type = \"fpe\",\n            Template = \"ccn\",\n            TweakSource = \"internal\",\n            AllowedRoles = \n            {\n                \"payments\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/transform\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmountTransform, err := vault.NewMount(ctx, \"mountTransform\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"transform\"),\n\t\t\tType: pulumi.String(\"transform\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = transform.NewTransformation(ctx, \"test\", \u0026transform.TransformationArgs{\n\t\t\tPath:        mountTransform.Path,\n\t\t\tType:        pulumi.String(\"fpe\"),\n\t\t\tTemplate:    pulumi.String(\"ccn\"),\n\t\t\tTweakSource: pulumi.String(\"internal\"),\n\t\t\tAllowedRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"payments\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "allowedRoles": {
                     "type": "array",
@@ -15133,7 +15790,7 @@
             }
         },
         "vault:transit/secretCacheConfig:SecretCacheConfig": {
-            "description": "Configure the cache for the Transit Secret Backend in Vault.\n",
+            "description": "Configure the cache for the Transit Secret Backend in Vault.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst transit = new vault.Mount(\"transit\", {\n    defaultLeaseTtlSeconds: 3600,\n    description: \"Example description\",\n    maxLeaseTtlSeconds: 86400,\n    path: \"transit\",\n    type: \"transit\",\n});\nconst cfg = new vault.transit.SecretCacheConfig(\"cfg\", {\n    backend: transit.path,\n    size: 500,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntransit = vault.Mount(\"transit\",\n    default_lease_ttl_seconds=3600,\n    description=\"Example description\",\n    max_lease_ttl_seconds=86400,\n    path=\"transit\",\n    type=\"transit\")\ncfg = vault.transit.SecretCacheConfig(\"cfg\",\n    backend=transit.path,\n    size=500)\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var transit = new Vault.Mount(\"transit\", new Vault.MountArgs\n        {\n            DefaultLeaseTtlSeconds = 3600,\n            Description = \"Example description\",\n            MaxLeaseTtlSeconds = 86400,\n            Path = \"transit\",\n            Type = \"transit\",\n        });\n        var cfg = new Vault.Transit.SecretCacheConfig(\"cfg\", new Vault.Transit.SecretCacheConfigArgs\n        {\n            Backend = transit.Path,\n            Size = 500,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/transit\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttransit, err := vault.NewMount(ctx, \"transit\", \u0026vault.MountArgs{\n\t\t\tDefaultLeaseTtlSeconds: pulumi.Int(3600),\n\t\t\tDescription:            pulumi.String(\"Example description\"),\n\t\t\tMaxLeaseTtlSeconds:     pulumi.Int(86400),\n\t\t\tPath:                   pulumi.String(\"transit\"),\n\t\t\tType:                   pulumi.String(\"transit\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = transit.NewSecretCacheConfig(ctx, \"cfg\", \u0026transit.SecretCacheConfigArgs{\n\t\t\tBackend: transit.Path,\n\t\t\tSize:    pulumi.Int(500),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "backend": {
                     "type": "string",
@@ -15179,6 +15836,62 @@
         }
     },
     "functions": {
+        "vault:ad/getAccessCredentials:getAccessCredentials": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getAccessCredentials.\n",
+                "properties": {
+                    "backend": {
+                        "type": "string",
+                        "description": "The path to the AD secret backend to\nread credentials from, with no leading or trailing `/`s.\n"
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "The name of the AD secret backend role to read\ncredentials from, with no leading or trailing `/`s.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "backend",
+                    "role"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getAccessCredentials.\n",
+                "properties": {
+                    "backend": {
+                        "type": "string"
+                    },
+                    "currentPassword": {
+                        "type": "string",
+                        "description": "The current set password on the Active Directory service account.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "lastPassword": {
+                        "type": "string",
+                        "description": "The current set password on the Active Directory service account, provided because AD is eventually consistent.\n"
+                    },
+                    "role": {
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "The Active Directory service account username.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "backend",
+                    "currentPassword",
+                    "lastPassword",
+                    "role",
+                    "username",
+                    "id"
+                ]
+            }
+        },
         "vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId": {
             "description": "Reads the Role ID of an AppRole from a Vault server.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst role = pulumi.output(vault.appRole.getAuthBackendRoleId({\n    backend: \"my-approle-backend\",\n    roleName: \"my-role\",\n}, { async: true }));\n\nexport const role_id = role.roleId;\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nrole = vault.appRole.get_auth_backend_role_id(backend=\"my-approle-backend\",\n    role_name=\"my-role\")\npulumi.export(\"role-id\", role.role_id)\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var role = Output.Create(Vault.AppRole.GetAuthBackendRoleId.InvokeAsync(new Vault.AppRole.GetAuthBackendRoleIdArgs\n        {\n            Backend = \"my-approle-backend\",\n            RoleName = \"my-role\",\n        }));\n        this.Role_id = role.Apply(role =\u003e role.RoleId);\n    }\n\n    [Output(\"role-id\")]\n    public Output\u003cstring\u003e Role_id { get; set; }\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/appRole\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"my-approle-backend\"\n\t\trole, err := appRole.GetAuthBackendRoleId(ctx, \u0026appRole.GetAuthBackendRoleIdArgs{\n\t\t\tBackend:  \u0026opt0,\n\t\t\tRoleName: \"my-role\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"role-id\", role.RoleId)\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
@@ -15243,6 +15956,10 @@
                         "type": "string",
                         "description": "The specific AWS ARN to use\nfrom the configured role. If the role does not have multiple ARNs, this does\nnot need to be specified.\n"
                     },
+                    "ttl": {
+                        "type": "string",
+                        "description": "Specifies the TTL for the use of the STS token. This\nis specified as a string with a duration suffix. Valid only when\n`credential_type` is `assumed_role` or `federation_token`\n"
+                    },
                     "type": {
                         "type": "string",
                         "description": "The type of credentials to read. Defaults\nto `\"creds\"`, which just returns an AWS Access Key ID and Secret\nKey. Can also be set to `\"sts\"`, which will return a security token\nin addition to the keys.\n"
@@ -15298,6 +16015,9 @@
                     "securityToken": {
                         "type": "string",
                         "description": "The STS token returned by Vault, if any.\n"
+                    },
+                    "ttl": {
+                        "type": "string"
                     },
                     "type": {
                         "type": "string"
@@ -16556,6 +17276,7 @@
     "language": {
         "csharp": {
             "namespaces": {
+                "ad": "AD",
                 "alicloud": "AliCloud",
                 "appRole": "AppRole",
                 "aws": "Aws",

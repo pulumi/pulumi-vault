@@ -22,6 +22,7 @@ from . import outputs
 
 # Make subpackages available:
 from . import (
+    ad,
     alicloud,
     approle,
     aws,
