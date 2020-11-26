@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v2.16.0 of the Vault Terraform Provider
+_(none)_
 
 ---
+
+## 3.1.0 (2020-11-26)
+* Upgrade to v2.16.0 of the Vault Terraform Provider
 
 ## 3.0.2 (2020-11-24)
 * Upgrade to pulumi-terraform-bridge v2.13.2  
