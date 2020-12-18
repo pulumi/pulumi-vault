@@ -32,7 +32,7 @@ class Team(pulumi.CustomResource):
                  __opts__=None):
         """
         Manages policy mappings for Github Teams authenticated via Github. See the [Vault
-        documentation](https://www.vaultproject.io/docs/auth/github/) for more
+        documentation](https://www.vaultproject.io/docs/auth/github.html) for more
         information.
 
         ## Example Usage
@@ -44,11 +44,11 @@ class Team(pulumi.CustomResource):
         example = vault.github.AuthBackend("example", organization="myorg")
         tf_devs = vault.github.Team("tfDevs",
             backend=example.id,
-            team="terraform-developers",
             policies=[
                 "developer",
                 "read-only",
-            ])
+            ],
+            team="terraform-developers")
         ```
 
         ## Import
@@ -61,10 +61,9 @@ class Team(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend: Path where the github auth backend is mounted. Defaults to `github`
+        :param pulumi.Input[str] backend: Path where the github auth backend is mounted. Defaults to `github` 
                if not specified.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings specifying the policies to be set on tokens
-               issued using this role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: A list of policies to be assigned to this team.
         :param pulumi.Input[str] team: GitHub team name in "slugified" format.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
         :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
@@ -163,10 +162,9 @@ class Team(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend: Path where the github auth backend is mounted. Defaults to `github`
+        :param pulumi.Input[str] backend: Path where the github auth backend is mounted. Defaults to `github` 
                if not specified.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings specifying the policies to be set on tokens
-               issued using this role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: A list of policies to be assigned to this team.
         :param pulumi.Input[str] team: GitHub team name in "slugified" format.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
         :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
@@ -200,7 +198,7 @@ class Team(pulumi.CustomResource):
     @pulumi.getter
     def backend(self) -> pulumi.Output[Optional[str]]:
         """
-        Path where the github auth backend is mounted. Defaults to `github`
+        Path where the github auth backend is mounted. Defaults to `github` 
         if not specified.
         """
         return pulumi.get(self, "backend")
@@ -209,8 +207,7 @@ class Team(pulumi.CustomResource):
     @pulumi.getter
     def policies(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        An array of strings specifying the policies to be set on tokens
-        issued using this role.
+        A list of policies to be assigned to this team.
         """
         return pulumi.get(self, "policies")
 

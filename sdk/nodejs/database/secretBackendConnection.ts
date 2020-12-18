@@ -60,7 +60,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      */
     public readonly data!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
-     * A nested block containing configuration options for Elasticsearch connections.
+     * Connection parameters for the elasticsearch-database-plugin.
      */
     public readonly elasticsearch!: pulumi.Output<outputs.database.SecretBackendConnectionElasticsearch | undefined>;
     /**
@@ -204,7 +204,7 @@ export interface SecretBackendConnectionState {
      */
     readonly data?: pulumi.Input<{[key: string]: any}>;
     /**
-     * A nested block containing configuration options for Elasticsearch connections.
+     * Connection parameters for the elasticsearch-database-plugin.
      */
     readonly elasticsearch?: pulumi.Input<inputs.database.SecretBackendConnectionElasticsearch>;
     /**
@@ -284,7 +284,7 @@ export interface SecretBackendConnectionArgs {
      */
     readonly data?: pulumi.Input<{[key: string]: any}>;
     /**
-     * A nested block containing configuration options for Elasticsearch connections.
+     * Connection parameters for the elasticsearch-database-plugin.
      */
     readonly elasticsearch?: pulumi.Input<inputs.database.SecretBackendConnectionElasticsearch>;
     /**

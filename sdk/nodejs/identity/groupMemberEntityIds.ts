@@ -4,61 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages member entities for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
- *
- * ## Example Usage
- * ### Exclusive Member Entities
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const internal = new vault.identity.Group("internal", {
- *     type: "internal",
- *     externalMemberEntityIds: true,
- *     metadata: {
- *         version: "2",
- *     },
- * });
- * const user = new vault.identity.Entity("user", {});
- * const members = new vault.identity.GroupMemberEntityIds("members", {
- *     exclusive: true,
- *     memberEntityIds: [user.id],
- *     groupId: internal.id,
- * });
- * ```
- * ### Non-exclusive Member Entities
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const internal = new vault.identity.Group("internal", {
- *     type: "internal",
- *     externalMemberEntityIds: true,
- *     metadata: {
- *         version: "2",
- *     },
- * });
- * const testUser = new vault.identity.Entity("testUser", {});
- * const secondTestUser = new vault.identity.Entity("secondTestUser", {});
- * const devUser = new vault.identity.Entity("devUser", {});
- * const test = new vault.identity.GroupMemberEntityIds("test", {
- *     memberEntityIds: [
- *         testUser.id,
- *         secondTestUser.id,
- *     ],
- *     exclusive: false,
- *     groupId: internal.id,
- * });
- * const others = new vault.identity.GroupMemberEntityIds("others", {
- *     memberEntityIds: [devUser.id],
- *     exclusive: false,
- *     groupId: internal.id,
- * });
- * ```
- */
 export class GroupMemberEntityIds extends pulumi.CustomResource {
     /**
      * Get an existing GroupMemberEntityIds resource's state with the given name, ID, and optional extra
@@ -88,19 +33,19 @@ export class GroupMemberEntityIds extends pulumi.CustomResource {
     }
 
     /**
-     * Defaults to `true`.
+     * Should the resource manage member entity ids exclusively? Beware of race conditions when disabling exclusive management
      */
     public readonly exclusive!: pulumi.Output<boolean | undefined>;
     /**
-     * Group ID to assign member entities to.
+     * ID of the group.
      */
     public readonly groupId!: pulumi.Output<string>;
     /**
-     * The name of the group that are assigned the member entities.
+     * Name of the group.
      */
     public /*out*/ readonly groupName!: pulumi.Output<string>;
     /**
-     * List of member entities that belong to the group
+     * Entity IDs to be assigned as group members.
      */
     public readonly memberEntityIds!: pulumi.Output<string[] | undefined>;
 
@@ -146,19 +91,19 @@ export class GroupMemberEntityIds extends pulumi.CustomResource {
  */
 export interface GroupMemberEntityIdsState {
     /**
-     * Defaults to `true`.
+     * Should the resource manage member entity ids exclusively? Beware of race conditions when disabling exclusive management
      */
     readonly exclusive?: pulumi.Input<boolean>;
     /**
-     * Group ID to assign member entities to.
+     * ID of the group.
      */
     readonly groupId?: pulumi.Input<string>;
     /**
-     * The name of the group that are assigned the member entities.
+     * Name of the group.
      */
     readonly groupName?: pulumi.Input<string>;
     /**
-     * List of member entities that belong to the group
+     * Entity IDs to be assigned as group members.
      */
     readonly memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -168,15 +113,15 @@ export interface GroupMemberEntityIdsState {
  */
 export interface GroupMemberEntityIdsArgs {
     /**
-     * Defaults to `true`.
+     * Should the resource manage member entity ids exclusively? Beware of race conditions when disabling exclusive management
      */
     readonly exclusive?: pulumi.Input<boolean>;
     /**
-     * Group ID to assign member entities to.
+     * ID of the group.
      */
     readonly groupId: pulumi.Input<string>;
     /**
-     * List of member entities that belong to the group
+     * Entity IDs to be assigned as group members.
      */
     readonly memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
 }

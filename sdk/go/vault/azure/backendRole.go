@@ -14,22 +14,20 @@ import (
 type BackendRole struct {
 	pulumi.CustomResourceState
 
-	// Application Object ID for an existing service principal that will
-	// be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
-	ApplicationObjectId pulumi.StringPtrOutput `pulumi:"applicationObjectId"`
-	// List of Azure roles to be assigned to the generated service principal.
-	AzureRoles BackendRoleAzureRoleArrayOutput `pulumi:"azureRoles"`
-	// Path to the mounted Azure auth backend
+	// Application Object ID for an existing service principal that will be used instead of creating dynamic service
+	// principals.
+	ApplicationObjectId pulumi.StringPtrOutput           `pulumi:"applicationObjectId"`
+	AzureGroups         BackendRoleAzureGroupArrayOutput `pulumi:"azureGroups"`
+	AzureRoles          BackendRoleAzureRoleArrayOutput  `pulumi:"azureRoles"`
+	// Unique name of the auth backend to configure.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
 	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Specifies the maximum TTL for service principals generated using this role. Accepts time
-	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+	// Human-friendly description of the mount for the backend.
 	MaxTtl pulumi.StringPtrOutput `pulumi:"maxTtl"`
-	// Name of the Azure role
+	// Name of the role to create
 	Role pulumi.StringOutput `pulumi:"role"`
-	// Specifies the default TTL for service principals generated using this role.
-	// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+	// Human-friendly description of the mount for the backend.
 	Ttl pulumi.StringPtrOutput `pulumi:"ttl"`
 }
 
@@ -64,42 +62,38 @@ func GetBackendRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BackendRole resources.
 type backendRoleState struct {
-	// Application Object ID for an existing service principal that will
-	// be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
-	ApplicationObjectId *string `pulumi:"applicationObjectId"`
-	// List of Azure roles to be assigned to the generated service principal.
-	AzureRoles []BackendRoleAzureRole `pulumi:"azureRoles"`
-	// Path to the mounted Azure auth backend
+	// Application Object ID for an existing service principal that will be used instead of creating dynamic service
+	// principals.
+	ApplicationObjectId *string                 `pulumi:"applicationObjectId"`
+	AzureGroups         []BackendRoleAzureGroup `pulumi:"azureGroups"`
+	AzureRoles          []BackendRoleAzureRole  `pulumi:"azureRoles"`
+	// Unique name of the auth backend to configure.
 	Backend *string `pulumi:"backend"`
 	// Human-friendly description of the mount for the backend.
 	Description *string `pulumi:"description"`
-	// Specifies the maximum TTL for service principals generated using this role. Accepts time
-	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+	// Human-friendly description of the mount for the backend.
 	MaxTtl *string `pulumi:"maxTtl"`
-	// Name of the Azure role
+	// Name of the role to create
 	Role *string `pulumi:"role"`
-	// Specifies the default TTL for service principals generated using this role.
-	// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+	// Human-friendly description of the mount for the backend.
 	Ttl *string `pulumi:"ttl"`
 }
 
 type BackendRoleState struct {
-	// Application Object ID for an existing service principal that will
-	// be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
+	// Application Object ID for an existing service principal that will be used instead of creating dynamic service
+	// principals.
 	ApplicationObjectId pulumi.StringPtrInput
-	// List of Azure roles to be assigned to the generated service principal.
-	AzureRoles BackendRoleAzureRoleArrayInput
-	// Path to the mounted Azure auth backend
+	AzureGroups         BackendRoleAzureGroupArrayInput
+	AzureRoles          BackendRoleAzureRoleArrayInput
+	// Unique name of the auth backend to configure.
 	Backend pulumi.StringPtrInput
 	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrInput
-	// Specifies the maximum TTL for service principals generated using this role. Accepts time
-	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+	// Human-friendly description of the mount for the backend.
 	MaxTtl pulumi.StringPtrInput
-	// Name of the Azure role
+	// Name of the role to create
 	Role pulumi.StringPtrInput
-	// Specifies the default TTL for service principals generated using this role.
-	// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+	// Human-friendly description of the mount for the backend.
 	Ttl pulumi.StringPtrInput
 }
 
@@ -108,43 +102,39 @@ func (BackendRoleState) ElementType() reflect.Type {
 }
 
 type backendRoleArgs struct {
-	// Application Object ID for an existing service principal that will
-	// be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
-	ApplicationObjectId *string `pulumi:"applicationObjectId"`
-	// List of Azure roles to be assigned to the generated service principal.
-	AzureRoles []BackendRoleAzureRole `pulumi:"azureRoles"`
-	// Path to the mounted Azure auth backend
+	// Application Object ID for an existing service principal that will be used instead of creating dynamic service
+	// principals.
+	ApplicationObjectId *string                 `pulumi:"applicationObjectId"`
+	AzureGroups         []BackendRoleAzureGroup `pulumi:"azureGroups"`
+	AzureRoles          []BackendRoleAzureRole  `pulumi:"azureRoles"`
+	// Unique name of the auth backend to configure.
 	Backend *string `pulumi:"backend"`
 	// Human-friendly description of the mount for the backend.
 	Description *string `pulumi:"description"`
-	// Specifies the maximum TTL for service principals generated using this role. Accepts time
-	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+	// Human-friendly description of the mount for the backend.
 	MaxTtl *string `pulumi:"maxTtl"`
-	// Name of the Azure role
+	// Name of the role to create
 	Role string `pulumi:"role"`
-	// Specifies the default TTL for service principals generated using this role.
-	// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+	// Human-friendly description of the mount for the backend.
 	Ttl *string `pulumi:"ttl"`
 }
 
 // The set of arguments for constructing a BackendRole resource.
 type BackendRoleArgs struct {
-	// Application Object ID for an existing service principal that will
-	// be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
+	// Application Object ID for an existing service principal that will be used instead of creating dynamic service
+	// principals.
 	ApplicationObjectId pulumi.StringPtrInput
-	// List of Azure roles to be assigned to the generated service principal.
-	AzureRoles BackendRoleAzureRoleArrayInput
-	// Path to the mounted Azure auth backend
+	AzureGroups         BackendRoleAzureGroupArrayInput
+	AzureRoles          BackendRoleAzureRoleArrayInput
+	// Unique name of the auth backend to configure.
 	Backend pulumi.StringPtrInput
 	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrInput
-	// Specifies the maximum TTL for service principals generated using this role. Accepts time
-	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+	// Human-friendly description of the mount for the backend.
 	MaxTtl pulumi.StringPtrInput
-	// Name of the Azure role
+	// Name of the role to create
 	Role pulumi.StringInput
-	// Specifies the default TTL for service principals generated using this role.
-	// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+	// Human-friendly description of the mount for the backend.
 	Ttl pulumi.StringPtrInput
 }
 

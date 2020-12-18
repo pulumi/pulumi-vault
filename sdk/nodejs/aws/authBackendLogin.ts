@@ -33,12 +33,12 @@ import * as utilities from "../utilities";
  *     boundSubnetId: "vpc-133128f1",
  *     boundVpcId: "vpc-b61106d4",
  *     maxTtl: 120,
- *     role: "test-role",
- *     tokenPolicies: [
+ *     policies: [
  *         "default",
  *         "dev",
  *         "prod",
  *     ],
+ *     role: "test-role",
  *     ttl: 60,
  * }, { dependsOn: [exampleAuthBackendClient] });
  * const exampleAuthBackendLogin = new vault.aws.AuthBackendLogin("example", {

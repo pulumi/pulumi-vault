@@ -9,98 +9,28 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Identity
 {
-    /// <summary>
-    /// Manages policies for an Identity Entity for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
-    /// 
-    /// ## Example Usage
-    /// ### Exclusive Policies
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var entity = new Vault.Identity.Entity("entity", new Vault.Identity.EntityArgs
-    ///         {
-    ///             ExternalPolicies = true,
-    ///         });
-    ///         var policies = new Vault.Identity.EntityPolicies("policies", new Vault.Identity.EntityPoliciesArgs
-    ///         {
-    ///             Policies = 
-    ///             {
-    ///                 "default",
-    ///                 "test",
-    ///             },
-    ///             Exclusive = true,
-    ///             EntityId = entity.Id,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// ### Non-exclusive Policies
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var entity = new Vault.Identity.Entity("entity", new Vault.Identity.EntityArgs
-    ///         {
-    ///             ExternalPolicies = true,
-    ///         });
-    ///         var @default = new Vault.Identity.EntityPolicies("default", new Vault.Identity.EntityPoliciesArgs
-    ///         {
-    ///             Policies = 
-    ///             {
-    ///                 "default",
-    ///                 "test",
-    ///             },
-    ///             Exclusive = false,
-    ///             EntityId = entity.Id,
-    ///         });
-    ///         var others = new Vault.Identity.EntityPolicies("others", new Vault.Identity.EntityPoliciesArgs
-    ///         {
-    ///             Policies = 
-    ///             {
-    ///                 "others",
-    ///             },
-    ///             Exclusive = false,
-    ///             EntityId = entity.Id,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// </summary>
     public partial class EntityPolicies : Pulumi.CustomResource
     {
         /// <summary>
-        /// Entity ID to assign policies to.
+        /// ID of the entity.
         /// </summary>
         [Output("entityId")]
         public Output<string> EntityId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the entity that are assigned the policies.
+        /// Name of the entity.
         /// </summary>
         [Output("entityName")]
         public Output<string> EntityName { get; private set; } = null!;
 
         /// <summary>
-        /// Defaults to `true`.
+        /// Should the resource manage policies exclusively
         /// </summary>
         [Output("exclusive")]
         public Output<bool?> Exclusive { get; private set; } = null!;
 
         /// <summary>
-        /// List of policies to assign to the entity
+        /// Policies to be tied to the entity.
         /// </summary>
         [Output("policies")]
         public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
@@ -152,13 +82,13 @@ namespace Pulumi.Vault.Identity
     public sealed class EntityPoliciesArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Entity ID to assign policies to.
+        /// ID of the entity.
         /// </summary>
         [Input("entityId", required: true)]
         public Input<string> EntityId { get; set; } = null!;
 
         /// <summary>
-        /// Defaults to `true`.
+        /// Should the resource manage policies exclusively
         /// </summary>
         [Input("exclusive")]
         public Input<bool>? Exclusive { get; set; }
@@ -167,7 +97,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _policies;
 
         /// <summary>
-        /// List of policies to assign to the entity
+        /// Policies to be tied to the entity.
         /// </summary>
         public InputList<string> Policies
         {
@@ -183,19 +113,19 @@ namespace Pulumi.Vault.Identity
     public sealed class EntityPoliciesState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Entity ID to assign policies to.
+        /// ID of the entity.
         /// </summary>
         [Input("entityId")]
         public Input<string>? EntityId { get; set; }
 
         /// <summary>
-        /// The name of the entity that are assigned the policies.
+        /// Name of the entity.
         /// </summary>
         [Input("entityName")]
         public Input<string>? EntityName { get; set; }
 
         /// <summary>
-        /// Defaults to `true`.
+        /// Should the resource manage policies exclusively
         /// </summary>
         [Input("exclusive")]
         public Input<bool>? Exclusive { get; set; }
@@ -204,7 +134,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _policies;
 
         /// <summary>
-        /// List of policies to assign to the entity
+        /// Policies to be tied to the entity.
         /// </summary>
         public InputList<string> Policies
         {

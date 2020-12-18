@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  * });
  * const configUrls = new vault.pkiSecret.SecretBackendConfigUrls("config_urls", {
  *     backend: pki.path,
- *     issuingCertificates: ["http://127.0.0.1:8200/v1/pki/ca"],
+ *     issuingCertificates: "http://127.0.0.1:8200/v1/pki/ca",
  * });
  * ```
  */
@@ -57,15 +57,15 @@ export class SecretBackendConfigUrls extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string>;
     /**
-     * Specifies the URL values for the CRL Distribution Points field.
+     * Specifies the URL values for the CRL Distribution Points field. Comma-separated string if multiple.
      */
     public readonly crlDistributionPoints!: pulumi.Output<string[] | undefined>;
     /**
-     * Specifies the URL values for the Issuing Certificate field.
+     * Specifies the URL values for the Issuing Certificate field. Comma-separated string if multiple.
      */
     public readonly issuingCertificates!: pulumi.Output<string[] | undefined>;
     /**
-     * Specifies the URL values for the OCSP Servers field.
+     * Specifies the URL values for the OCSP Servers field. Comma-separated string if multiple.
      */
     public readonly ocspServers!: pulumi.Output<string[] | undefined>;
 
@@ -115,15 +115,15 @@ export interface SecretBackendConfigUrlsState {
      */
     readonly backend?: pulumi.Input<string>;
     /**
-     * Specifies the URL values for the CRL Distribution Points field.
+     * Specifies the URL values for the CRL Distribution Points field. Comma-separated string if multiple.
      */
     readonly crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Specifies the URL values for the Issuing Certificate field.
+     * Specifies the URL values for the Issuing Certificate field. Comma-separated string if multiple.
      */
     readonly issuingCertificates?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Specifies the URL values for the OCSP Servers field.
+     * Specifies the URL values for the OCSP Servers field. Comma-separated string if multiple.
      */
     readonly ocspServers?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -137,15 +137,15 @@ export interface SecretBackendConfigUrlsArgs {
      */
     readonly backend: pulumi.Input<string>;
     /**
-     * Specifies the URL values for the CRL Distribution Points field.
+     * Specifies the URL values for the CRL Distribution Points field. Comma-separated string if multiple.
      */
     readonly crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Specifies the URL values for the Issuing Certificate field.
+     * Specifies the URL values for the Issuing Certificate field. Comma-separated string if multiple.
      */
     readonly issuingCertificates?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Specifies the URL values for the OCSP Servers field.
+     * Specifies the URL values for the OCSP Servers field. Comma-separated string if multiple.
      */
     readonly ocspServers?: pulumi.Input<pulumi.Input<string>[]>;
 }

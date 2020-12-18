@@ -22,59 +22,19 @@ class GroupPolicies(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Manages policies for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
+        ## Import
 
-        ## Example Usage
-        ### Exclusive Policies
+        Database secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
 
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        internal = vault.identity.Group("internal",
-            type="internal",
-            external_policies=True,
-            metadata={
-                "version": "2",
-            })
-        policies = vault.identity.GroupPolicies("policies",
-            policies=[
-                "default",
-                "test",
-            ],
-            exclusive=True,
-            group_id=internal.id)
-        ```
-        ### Non-exclusive Policies
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        internal = vault.identity.Group("internal",
-            type="internal",
-            external_policies=True,
-            metadata={
-                "version": "2",
-            })
-        default = vault.identity.GroupPolicies("default",
-            policies=[
-                "default",
-                "test",
-            ],
-            exclusive=False,
-            group_id=internal.id)
-        others = vault.identity.GroupPolicies("others",
-            policies=["others"],
-            exclusive=False,
-            group_id=internal.id)
+        ```sh
+         $ pulumi import vault:identity/groupPolicies:GroupPolicies example postgres/roles/my-role
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] exclusive: Defaults to `true`.
-        :param pulumi.Input[str] group_id: Group ID to assign policies to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the group
+        :param pulumi.Input[bool] exclusive: Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
+        :param pulumi.Input[str] group_id: ID of the group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Policies to be tied to the group.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -122,10 +82,10 @@ class GroupPolicies(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] exclusive: Defaults to `true`.
-        :param pulumi.Input[str] group_id: Group ID to assign policies to.
-        :param pulumi.Input[str] group_name: The name of the group that are assigned the policies.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the group
+        :param pulumi.Input[bool] exclusive: Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
+        :param pulumi.Input[str] group_id: ID of the group.
+        :param pulumi.Input[str] group_name: Name of the group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Policies to be tied to the group.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -141,7 +101,7 @@ class GroupPolicies(pulumi.CustomResource):
     @pulumi.getter
     def exclusive(self) -> pulumi.Output[Optional[bool]]:
         """
-        Defaults to `true`.
+        Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
         """
         return pulumi.get(self, "exclusive")
 
@@ -149,7 +109,7 @@ class GroupPolicies(pulumi.CustomResource):
     @pulumi.getter(name="groupId")
     def group_id(self) -> pulumi.Output[str]:
         """
-        Group ID to assign policies to.
+        ID of the group.
         """
         return pulumi.get(self, "group_id")
 
@@ -157,7 +117,7 @@ class GroupPolicies(pulumi.CustomResource):
     @pulumi.getter(name="groupName")
     def group_name(self) -> pulumi.Output[str]:
         """
-        The name of the group that are assigned the policies.
+        Name of the group.
         """
         return pulumi.get(self, "group_name")
 
@@ -165,7 +125,7 @@ class GroupPolicies(pulumi.CustomResource):
     @pulumi.getter
     def policies(self) -> pulumi.Output[Sequence[str]]:
         """
-        List of policies to assign to the group
+        Policies to be tied to the group.
         """
         return pulumi.get(self, "policies")
 

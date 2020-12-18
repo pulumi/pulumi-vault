@@ -32,6 +32,7 @@ namespace Pulumi.Vault
         ///             {
         ///                 new Vault.Inputs.GetPolicyDocumentRuleArgs
         ///                 {
+        ///                     Path = "secret/*",
         ///                     Capabilities = 
         ///                     {
         ///                         "create",
@@ -41,13 +42,12 @@ namespace Pulumi.Vault
         ///                         "list",
         ///                     },
         ///                     Description = "allow all on secrets",
-        ///                     Path = "secret/*",
         ///                 },
         ///             },
         ///         }));
         ///         var examplePolicy = new Vault.Policy("examplePolicy", new Vault.PolicyArgs
         ///         {
-        ///             Policy = examplePolicyDocument.Apply(examplePolicyDocument =&gt; examplePolicyDocument.Hcl),
+        ///             Policy = data.Vault_policy_document.Hcl,
         ///         });
         ///     }
         /// 

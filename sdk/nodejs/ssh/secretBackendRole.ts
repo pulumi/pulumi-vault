@@ -67,9 +67,6 @@ export class SecretBackendRole extends pulumi.CustomResource {
         return obj['__pulumiType'] === SecretBackendRole.__pulumiType;
     }
 
-    /**
-     * When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
-     */
     public readonly algorithmSigner!: pulumi.Output<string>;
     /**
      * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
@@ -103,17 +100,11 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * Specifies a comma-separated list of extensions that certificates can have when signed.
      */
     public readonly allowedExtensions!: pulumi.Output<string | undefined>;
-    /**
-     * Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
-     */
     public readonly allowedUserKeyLengths!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      */
     public readonly allowedUsers!: pulumi.Output<string | undefined>;
-    /**
-     * Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
-     */
     public readonly allowedUsersTemplate!: pulumi.Output<boolean | undefined>;
     /**
      * The path where the SSH secret backend is mounted.
@@ -144,7 +135,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly keyType!: pulumi.Output<string>;
     /**
-     * Specifies the maximum Time To Live value.
+     * Specifies the Time To Live value.
      */
     public readonly maxTtl!: pulumi.Output<string>;
     /**
@@ -152,7 +143,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Specifies the Time To Live value.
+     * Specifies the maximum Time To Live value.
      */
     public readonly ttl!: pulumi.Output<string>;
 
@@ -236,9 +227,6 @@ export class SecretBackendRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SecretBackendRole resources.
  */
 export interface SecretBackendRoleState {
-    /**
-     * When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
-     */
     readonly algorithmSigner?: pulumi.Input<string>;
     /**
      * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
@@ -272,17 +260,11 @@ export interface SecretBackendRoleState {
      * Specifies a comma-separated list of extensions that certificates can have when signed.
      */
     readonly allowedExtensions?: pulumi.Input<string>;
-    /**
-     * Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
-     */
     readonly allowedUserKeyLengths?: pulumi.Input<{[key: string]: any}>;
     /**
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      */
     readonly allowedUsers?: pulumi.Input<string>;
-    /**
-     * Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
-     */
     readonly allowedUsersTemplate?: pulumi.Input<boolean>;
     /**
      * The path where the SSH secret backend is mounted.
@@ -313,7 +295,7 @@ export interface SecretBackendRoleState {
      */
     readonly keyType?: pulumi.Input<string>;
     /**
-     * Specifies the maximum Time To Live value.
+     * Specifies the Time To Live value.
      */
     readonly maxTtl?: pulumi.Input<string>;
     /**
@@ -321,7 +303,7 @@ export interface SecretBackendRoleState {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Specifies the Time To Live value.
+     * Specifies the maximum Time To Live value.
      */
     readonly ttl?: pulumi.Input<string>;
 }
@@ -330,9 +312,6 @@ export interface SecretBackendRoleState {
  * The set of arguments for constructing a SecretBackendRole resource.
  */
 export interface SecretBackendRoleArgs {
-    /**
-     * When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
-     */
     readonly algorithmSigner?: pulumi.Input<string>;
     /**
      * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
@@ -366,17 +345,11 @@ export interface SecretBackendRoleArgs {
      * Specifies a comma-separated list of extensions that certificates can have when signed.
      */
     readonly allowedExtensions?: pulumi.Input<string>;
-    /**
-     * Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
-     */
     readonly allowedUserKeyLengths?: pulumi.Input<{[key: string]: any}>;
     /**
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      */
     readonly allowedUsers?: pulumi.Input<string>;
-    /**
-     * Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
-     */
     readonly allowedUsersTemplate?: pulumi.Input<boolean>;
     /**
      * The path where the SSH secret backend is mounted.
@@ -407,7 +380,7 @@ export interface SecretBackendRoleArgs {
      */
     readonly keyType: pulumi.Input<string>;
     /**
-     * Specifies the maximum Time To Live value.
+     * Specifies the Time To Live value.
      */
     readonly maxTtl?: pulumi.Input<string>;
     /**
@@ -415,7 +388,7 @@ export interface SecretBackendRoleArgs {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Specifies the Time To Live value.
+     * Specifies the maximum Time To Live value.
      */
     readonly ttl?: pulumi.Input<string>;
 }

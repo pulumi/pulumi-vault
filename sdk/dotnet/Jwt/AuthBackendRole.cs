@@ -33,19 +33,19 @@ namespace Pulumi.Vault.Jwt
     ///         var example = new Vault.Jwt.AuthBackendRole("example", new Vault.Jwt.AuthBackendRoleArgs
     ///         {
     ///             Backend = jwt.Path,
-    ///             RoleName = "test-role",
-    ///             TokenPolicies = 
+    ///             BoundAudiences = 
+    ///             {
+    ///                 "https://myco.test",
+    ///             },
+    ///             Policies = 
     ///             {
     ///                 "default",
     ///                 "dev",
     ///                 "prod",
     ///             },
-    ///             BoundAudiences = 
-    ///             {
-    ///                 "https://myco.test",
-    ///             },
-    ///             UserClaim = "https://vault/user",
+    ///             RoleName = "test-role",
     ///             RoleType = "jwt",
+    ///             UserClaim = "https://vault/user",
     ///         });
     ///     }
     /// 
@@ -64,25 +64,29 @@ namespace Pulumi.Vault.Jwt
     ///     {
     ///         var oidc = new Vault.Jwt.AuthBackend("oidc", new Vault.Jwt.AuthBackendArgs
     ///         {
-    ///             Path = "oidc",
     ///             DefaultRole = "test-role",
+    ///             Path = "oidc",
     ///         });
     ///         var example = new Vault.Jwt.AuthBackendRole("example", new Vault.Jwt.AuthBackendRoleArgs
     ///         {
+    ///             AllowedRedirectUris = 
+    ///             {
+    ///                 "http://localhost:8200/ui/vault/auth/oidc/oidc/callback",
+    ///             },
     ///             Backend = oidc.Path,
-    ///             RoleName = "test-role",
-    ///             TokenPolicies = 
+    ///             BoundAudiences = 
+    ///             {
+    ///                 "https://myco.test",
+    ///             },
+    ///             Policies = 
     ///             {
     ///                 "default",
     ///                 "dev",
     ///                 "prod",
     ///             },
-    ///             UserClaim = "https://vault/user",
+    ///             RoleName = "test-role",
     ///             RoleType = "oidc",
-    ///             AllowedRedirectUris = 
-    ///             {
-    ///                 "http://localhost:8200/ui/vault/auth/oidc/oidc/callback",
-    ///             },
+    ///             UserClaim = "https://vault/user",
     ///         });
     ///     }
     /// 
@@ -114,25 +118,32 @@ namespace Pulumi.Vault.Jwt
         public Output<string?> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// (Required for roles of type `jwt`, optional for roles of
-        /// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+        /// List of `aud` claims to match
+        /// against. Any match is sufficient.
         /// </summary>
         [Output("boundAudiences")]
         public Output<ImmutableArray<string>> BoundAudiences { get; private set; } = null!;
 
         /// <summary>
-        /// If set, a list of
-        /// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+        /// If set, a list of CIDRs valid as the source
+        /// address for login requests. This value is also encoded into any resulting
+        /// token.
         /// </summary>
         [Output("boundCidrs")]
         public Output<ImmutableArray<string>> BoundCidrs { get; private set; } = null!;
 
         /// <summary>
-        /// If set, a map of claims/values to match against.
+        /// If set, a map of claims/values to match against. 
         /// The expected value may be a single string or a list of strings.
         /// </summary>
         [Output("boundClaims")]
         public Output<ImmutableDictionary<string, object>?> BoundClaims { get; private set; } = null!;
+
+        /// <summary>
+        /// How to interpret values in the claims/values map: can be either "string" (exact match) or "glob" (wildcard match).
+        /// </summary>
+        [Output("boundClaimsType")]
+        public Output<string> BoundClaimsType { get; private set; } = null!;
 
         /// <summary>
         /// If set, requires that the `sub` claim matches
@@ -142,24 +153,22 @@ namespace Pulumi.Vault.Jwt
         public Output<string?> BoundSubject { get; private set; } = null!;
 
         /// <summary>
-        /// If set, a map of claims (keys) to be copied
+        /// If set, a map of claims (keys) to be copied 
         /// to specified metadata fields (values).
         /// </summary>
         [Output("claimMappings")]
         public Output<ImmutableDictionary<string, object>?> ClaimMappings { get; private set; } = null!;
 
         /// <summary>
-        /// The amount of leeway to add to all claims to account for clock skew, in
-        /// seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
-        /// Only applicable with "jwt" roles.
+        /// The amount of leeway to add to all claims to account for clock skew, in seconds. Defaults to 60 seconds if set to 0 and
+        /// can be disabled if set to -1. Only applicable with 'jwt' roles.
         /// </summary>
         [Output("clockSkewLeeway")]
         public Output<int?> ClockSkewLeeway { get; private set; } = null!;
 
         /// <summary>
-        /// The amount of leeway to add to expiration (`exp`) claims to account for
-        /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
-        /// Only applicable with "jwt" roles.
+        /// The amount of leeway to add to expiration (exp) claims to account for clock skew, in seconds. Defaults to 60 seconds if
+        /// set to 0 and can be disabled if set to -1. Only applicable with 'jwt' roles.
         /// </summary>
         [Output("expirationLeeway")]
         public Output<int?> ExpirationLeeway { get; private set; } = null!;
@@ -188,46 +197,43 @@ namespace Pulumi.Vault.Jwt
         public Output<string?> GroupsClaimDelimiterPattern { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum allowed lifetime of tokens
-        /// issued using this role, provided as a number of seconds.
+        /// The maximum allowed lifetime of tokens issued using
+        /// this role, in seconds.
         /// </summary>
         [Output("maxTtl")]
         public Output<int?> MaxTtl { get; private set; } = null!;
 
         /// <summary>
-        /// The amount of leeway to add to not before (`nbf`) claims to account for
-        /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
-        /// Only applicable with "jwt" roles.
+        /// The amount of leeway to add to not before (nbf) claims to account for clock skew, in seconds. Defaults to 150 seconds if
+        /// set to 0 and can be disabled if set to -1. Only applicable with 'jwt' roles.
         /// </summary>
         [Output("notBeforeLeeway")]
         public Output<int?> NotBeforeLeeway { get; private set; } = null!;
 
         /// <summary>
-        /// If set, puts a use-count
-        /// limitation on the issued token.
+        /// If set, puts a use-count limitation on the issued
+        /// token.
         /// </summary>
         [Output("numUses")]
         public Output<int?> NumUses { get; private set; } = null!;
 
         /// <summary>
-        /// If set, a list of OIDC scopes to be used with an OIDC role.
+        /// If set, a list of OIDC scopes to be used with an OIDC role. 
         /// The standard scope "openid" is automatically included and need not be specified.
         /// </summary>
         [Output("oidcScopes")]
         public Output<ImmutableArray<string>> OidcScopes { get; private set; } = null!;
 
         /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
+        /// If set, indicates that the token generated
+        /// using this role should never expire, but instead always use the value set
+        /// here as the TTL for every renewal.
         /// </summary>
         [Output("period")]
         public Output<int?> Period { get; private set; } = null!;
 
         /// <summary>
-        /// An array of strings
-        /// specifying the policies to be set on tokens issued using this role.
+        /// Policies to be set on tokens issued using this role.
         /// </summary>
         [Output("policies")]
         public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
@@ -245,80 +251,62 @@ namespace Pulumi.Vault.Jwt
         public Output<string> RoleType { get; private set; } = null!;
 
         /// <summary>
-        /// List of CIDR blocks; if set, specifies blocks of IP
-        /// addresses which can authenticate successfully, and ties the resulting token to these blocks
-        /// as well.
+        /// Specifies the blocks of IP addresses which are allowed to use the generated token
         /// </summary>
         [Output("tokenBoundCidrs")]
         public Output<ImmutableArray<string>> TokenBoundCidrs { get; private set; } = null!;
 
         /// <summary>
-        /// If set, will encode an
-        /// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        /// onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        /// `token_max_ttl` would otherwise allow a renewal.
+        /// Generated Token's Explicit Maximum TTL in seconds
         /// </summary>
         [Output("tokenExplicitMaxTtl")]
         public Output<int?> TokenExplicitMaxTtl { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum lifetime for generated tokens in number of seconds.
-        /// Its current value will be referenced at renewal time.
+        /// The maximum lifetime of the generated token
         /// </summary>
         [Output("tokenMaxTtl")]
         public Output<int?> TokenMaxTtl { get; private set; } = null!;
 
         /// <summary>
-        /// If set, the default policy will not be set on
-        /// generated tokens; otherwise it will be added to the policies set in token_policies.
+        /// If true, the 'default' policy will not automatically be added to generated tokens
         /// </summary>
         [Output("tokenNoDefaultPolicy")]
         public Output<bool?> TokenNoDefaultPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// The
-        /// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        /// if any, in number of seconds to set on the token.
+        /// The maximum number of times a token may be used, a value of zero means unlimited
         /// </summary>
         [Output("tokenNumUses")]
         public Output<int?> TokenNumUses { get; private set; } = null!;
 
         /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
+        /// Generated Token's Period
         /// </summary>
         [Output("tokenPeriod")]
         public Output<int?> TokenPeriod { get; private set; } = null!;
 
         /// <summary>
-        /// List of policies to encode onto generated tokens. Depending
-        /// on the auth method, this list may be supplemented by user/group/other values.
+        /// Generated Token's Policies
         /// </summary>
         [Output("tokenPolicies")]
         public Output<ImmutableArray<string>> TokenPolicies { get; private set; } = null!;
 
         /// <summary>
-        /// The incremental lifetime for generated tokens in number of seconds.
-        /// Its current value will be referenced at renewal time.
+        /// The initial ttl of the token to generate in seconds
         /// </summary>
         [Output("tokenTtl")]
         public Output<int?> TokenTtl { get; private set; } = null!;
 
         /// <summary>
-        /// The type of token that should be generated. Can be `service`,
-        /// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        /// `service` tokens). For token store roles, there are two additional possibilities:
-        /// `default-service` and `default-batch` which specify the type to return unless the client
-        /// requests a different type at generation time.
+        /// The type of token to generate, service or batch
         /// </summary>
         [Output("tokenType")]
         public Output<string?> TokenType { get; private set; } = null!;
 
         /// <summary>
-        /// The TTL period of tokens issued
-        /// using this role, provided as a number of seconds.
+        /// The initial/renewal TTL of tokens issued using this role,
+        /// in seconds.
         /// </summary>
         [Output("ttl")]
         public Output<int?> Ttl { get; private set; } = null!;
@@ -332,9 +320,8 @@ namespace Pulumi.Vault.Jwt
         public Output<string> UserClaim { get; private set; } = null!;
 
         /// <summary>
-        /// Log received OIDC tokens and claims when debug-level
-        /// logging is active. Not recommended in production since sensitive information may be present
-        /// in OIDC responses.
+        /// Log received OIDC tokens and claims when debug-level logging is active. Not recommended in production since sensitive
+        /// information may be present in OIDC responses.
         /// </summary>
         [Output("verboseOidcLogging")]
         public Output<bool?> VerboseOidcLogging { get; private set; } = null!;
@@ -409,8 +396,8 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _boundAudiences;
 
         /// <summary>
-        /// (Required for roles of type `jwt`, optional for roles of
-        /// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+        /// List of `aud` claims to match
+        /// against. Any match is sufficient.
         /// </summary>
         public InputList<string> BoundAudiences
         {
@@ -422,8 +409,9 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _boundCidrs;
 
         /// <summary>
-        /// If set, a list of
-        /// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+        /// If set, a list of CIDRs valid as the source
+        /// address for login requests. This value is also encoded into any resulting
+        /// token.
         /// </summary>
         [Obsolete(@"use `token_bound_cidrs` instead if you are running Vault >= 1.2")]
         public InputList<string> BoundCidrs
@@ -436,7 +424,7 @@ namespace Pulumi.Vault.Jwt
         private InputMap<object>? _boundClaims;
 
         /// <summary>
-        /// If set, a map of claims/values to match against.
+        /// If set, a map of claims/values to match against. 
         /// The expected value may be a single string or a list of strings.
         /// </summary>
         public InputMap<object> BoundClaims
@@ -444,6 +432,12 @@ namespace Pulumi.Vault.Jwt
             get => _boundClaims ?? (_boundClaims = new InputMap<object>());
             set => _boundClaims = value;
         }
+
+        /// <summary>
+        /// How to interpret values in the claims/values map: can be either "string" (exact match) or "glob" (wildcard match).
+        /// </summary>
+        [Input("boundClaimsType")]
+        public Input<string>? BoundClaimsType { get; set; }
 
         /// <summary>
         /// If set, requires that the `sub` claim matches
@@ -456,7 +450,7 @@ namespace Pulumi.Vault.Jwt
         private InputMap<object>? _claimMappings;
 
         /// <summary>
-        /// If set, a map of claims (keys) to be copied
+        /// If set, a map of claims (keys) to be copied 
         /// to specified metadata fields (values).
         /// </summary>
         public InputMap<object> ClaimMappings
@@ -466,17 +460,15 @@ namespace Pulumi.Vault.Jwt
         }
 
         /// <summary>
-        /// The amount of leeway to add to all claims to account for clock skew, in
-        /// seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
-        /// Only applicable with "jwt" roles.
+        /// The amount of leeway to add to all claims to account for clock skew, in seconds. Defaults to 60 seconds if set to 0 and
+        /// can be disabled if set to -1. Only applicable with 'jwt' roles.
         /// </summary>
         [Input("clockSkewLeeway")]
         public Input<int>? ClockSkewLeeway { get; set; }
 
         /// <summary>
-        /// The amount of leeway to add to expiration (`exp`) claims to account for
-        /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
-        /// Only applicable with "jwt" roles.
+        /// The amount of leeway to add to expiration (exp) claims to account for clock skew, in seconds. Defaults to 60 seconds if
+        /// set to 0 and can be disabled if set to -1. Only applicable with 'jwt' roles.
         /// </summary>
         [Input("expirationLeeway")]
         public Input<int>? ExpirationLeeway { get; set; }
@@ -505,23 +497,22 @@ namespace Pulumi.Vault.Jwt
         public Input<string>? GroupsClaimDelimiterPattern { get; set; }
 
         /// <summary>
-        /// The maximum allowed lifetime of tokens
-        /// issued using this role, provided as a number of seconds.
+        /// The maximum allowed lifetime of tokens issued using
+        /// this role, in seconds.
         /// </summary>
         [Input("maxTtl")]
         public Input<int>? MaxTtl { get; set; }
 
         /// <summary>
-        /// The amount of leeway to add to not before (`nbf`) claims to account for
-        /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
-        /// Only applicable with "jwt" roles.
+        /// The amount of leeway to add to not before (nbf) claims to account for clock skew, in seconds. Defaults to 150 seconds if
+        /// set to 0 and can be disabled if set to -1. Only applicable with 'jwt' roles.
         /// </summary>
         [Input("notBeforeLeeway")]
         public Input<int>? NotBeforeLeeway { get; set; }
 
         /// <summary>
-        /// If set, puts a use-count
-        /// limitation on the issued token.
+        /// If set, puts a use-count limitation on the issued
+        /// token.
         /// </summary>
         [Input("numUses")]
         public Input<int>? NumUses { get; set; }
@@ -530,7 +521,7 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _oidcScopes;
 
         /// <summary>
-        /// If set, a list of OIDC scopes to be used with an OIDC role.
+        /// If set, a list of OIDC scopes to be used with an OIDC role. 
         /// The standard scope "openid" is automatically included and need not be specified.
         /// </summary>
         public InputList<string> OidcScopes
@@ -540,10 +531,9 @@ namespace Pulumi.Vault.Jwt
         }
 
         /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
+        /// If set, indicates that the token generated
+        /// using this role should never expire, but instead always use the value set
+        /// here as the TTL for every renewal.
         /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
@@ -552,8 +542,7 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _policies;
 
         /// <summary>
-        /// An array of strings
-        /// specifying the policies to be set on tokens issued using this role.
+        /// Policies to be set on tokens issued using this role.
         /// </summary>
         [Obsolete(@"use `token_policies` instead if you are running Vault >= 1.2")]
         public InputList<string> Policies
@@ -578,9 +567,7 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _tokenBoundCidrs;
 
         /// <summary>
-        /// List of CIDR blocks; if set, specifies blocks of IP
-        /// addresses which can authenticate successfully, and ties the resulting token to these blocks
-        /// as well.
+        /// Specifies the blocks of IP addresses which are allowed to use the generated token
         /// </summary>
         public InputList<string> TokenBoundCidrs
         {
@@ -589,41 +576,31 @@ namespace Pulumi.Vault.Jwt
         }
 
         /// <summary>
-        /// If set, will encode an
-        /// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        /// onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        /// `token_max_ttl` would otherwise allow a renewal.
+        /// Generated Token's Explicit Maximum TTL in seconds
         /// </summary>
         [Input("tokenExplicitMaxTtl")]
         public Input<int>? TokenExplicitMaxTtl { get; set; }
 
         /// <summary>
-        /// The maximum lifetime for generated tokens in number of seconds.
-        /// Its current value will be referenced at renewal time.
+        /// The maximum lifetime of the generated token
         /// </summary>
         [Input("tokenMaxTtl")]
         public Input<int>? TokenMaxTtl { get; set; }
 
         /// <summary>
-        /// If set, the default policy will not be set on
-        /// generated tokens; otherwise it will be added to the policies set in token_policies.
+        /// If true, the 'default' policy will not automatically be added to generated tokens
         /// </summary>
         [Input("tokenNoDefaultPolicy")]
         public Input<bool>? TokenNoDefaultPolicy { get; set; }
 
         /// <summary>
-        /// The
-        /// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        /// if any, in number of seconds to set on the token.
+        /// The maximum number of times a token may be used, a value of zero means unlimited
         /// </summary>
         [Input("tokenNumUses")]
         public Input<int>? TokenNumUses { get; set; }
 
         /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
+        /// Generated Token's Period
         /// </summary>
         [Input("tokenPeriod")]
         public Input<int>? TokenPeriod { get; set; }
@@ -632,8 +609,7 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _tokenPolicies;
 
         /// <summary>
-        /// List of policies to encode onto generated tokens. Depending
-        /// on the auth method, this list may be supplemented by user/group/other values.
+        /// Generated Token's Policies
         /// </summary>
         public InputList<string> TokenPolicies
         {
@@ -642,25 +618,20 @@ namespace Pulumi.Vault.Jwt
         }
 
         /// <summary>
-        /// The incremental lifetime for generated tokens in number of seconds.
-        /// Its current value will be referenced at renewal time.
+        /// The initial ttl of the token to generate in seconds
         /// </summary>
         [Input("tokenTtl")]
         public Input<int>? TokenTtl { get; set; }
 
         /// <summary>
-        /// The type of token that should be generated. Can be `service`,
-        /// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        /// `service` tokens). For token store roles, there are two additional possibilities:
-        /// `default-service` and `default-batch` which specify the type to return unless the client
-        /// requests a different type at generation time.
+        /// The type of token to generate, service or batch
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
 
         /// <summary>
-        /// The TTL period of tokens issued
-        /// using this role, provided as a number of seconds.
+        /// The initial/renewal TTL of tokens issued using this role,
+        /// in seconds.
         /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
@@ -674,9 +645,8 @@ namespace Pulumi.Vault.Jwt
         public Input<string> UserClaim { get; set; } = null!;
 
         /// <summary>
-        /// Log received OIDC tokens and claims when debug-level
-        /// logging is active. Not recommended in production since sensitive information may be present
-        /// in OIDC responses.
+        /// Log received OIDC tokens and claims when debug-level logging is active. Not recommended in production since sensitive
+        /// information may be present in OIDC responses.
         /// </summary>
         [Input("verboseOidcLogging")]
         public Input<bool>? VerboseOidcLogging { get; set; }
@@ -712,8 +682,8 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _boundAudiences;
 
         /// <summary>
-        /// (Required for roles of type `jwt`, optional for roles of
-        /// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+        /// List of `aud` claims to match
+        /// against. Any match is sufficient.
         /// </summary>
         public InputList<string> BoundAudiences
         {
@@ -725,8 +695,9 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _boundCidrs;
 
         /// <summary>
-        /// If set, a list of
-        /// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+        /// If set, a list of CIDRs valid as the source
+        /// address for login requests. This value is also encoded into any resulting
+        /// token.
         /// </summary>
         [Obsolete(@"use `token_bound_cidrs` instead if you are running Vault >= 1.2")]
         public InputList<string> BoundCidrs
@@ -739,7 +710,7 @@ namespace Pulumi.Vault.Jwt
         private InputMap<object>? _boundClaims;
 
         /// <summary>
-        /// If set, a map of claims/values to match against.
+        /// If set, a map of claims/values to match against. 
         /// The expected value may be a single string or a list of strings.
         /// </summary>
         public InputMap<object> BoundClaims
@@ -747,6 +718,12 @@ namespace Pulumi.Vault.Jwt
             get => _boundClaims ?? (_boundClaims = new InputMap<object>());
             set => _boundClaims = value;
         }
+
+        /// <summary>
+        /// How to interpret values in the claims/values map: can be either "string" (exact match) or "glob" (wildcard match).
+        /// </summary>
+        [Input("boundClaimsType")]
+        public Input<string>? BoundClaimsType { get; set; }
 
         /// <summary>
         /// If set, requires that the `sub` claim matches
@@ -759,7 +736,7 @@ namespace Pulumi.Vault.Jwt
         private InputMap<object>? _claimMappings;
 
         /// <summary>
-        /// If set, a map of claims (keys) to be copied
+        /// If set, a map of claims (keys) to be copied 
         /// to specified metadata fields (values).
         /// </summary>
         public InputMap<object> ClaimMappings
@@ -769,17 +746,15 @@ namespace Pulumi.Vault.Jwt
         }
 
         /// <summary>
-        /// The amount of leeway to add to all claims to account for clock skew, in
-        /// seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
-        /// Only applicable with "jwt" roles.
+        /// The amount of leeway to add to all claims to account for clock skew, in seconds. Defaults to 60 seconds if set to 0 and
+        /// can be disabled if set to -1. Only applicable with 'jwt' roles.
         /// </summary>
         [Input("clockSkewLeeway")]
         public Input<int>? ClockSkewLeeway { get; set; }
 
         /// <summary>
-        /// The amount of leeway to add to expiration (`exp`) claims to account for
-        /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
-        /// Only applicable with "jwt" roles.
+        /// The amount of leeway to add to expiration (exp) claims to account for clock skew, in seconds. Defaults to 60 seconds if
+        /// set to 0 and can be disabled if set to -1. Only applicable with 'jwt' roles.
         /// </summary>
         [Input("expirationLeeway")]
         public Input<int>? ExpirationLeeway { get; set; }
@@ -808,23 +783,22 @@ namespace Pulumi.Vault.Jwt
         public Input<string>? GroupsClaimDelimiterPattern { get; set; }
 
         /// <summary>
-        /// The maximum allowed lifetime of tokens
-        /// issued using this role, provided as a number of seconds.
+        /// The maximum allowed lifetime of tokens issued using
+        /// this role, in seconds.
         /// </summary>
         [Input("maxTtl")]
         public Input<int>? MaxTtl { get; set; }
 
         /// <summary>
-        /// The amount of leeway to add to not before (`nbf`) claims to account for
-        /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
-        /// Only applicable with "jwt" roles.
+        /// The amount of leeway to add to not before (nbf) claims to account for clock skew, in seconds. Defaults to 150 seconds if
+        /// set to 0 and can be disabled if set to -1. Only applicable with 'jwt' roles.
         /// </summary>
         [Input("notBeforeLeeway")]
         public Input<int>? NotBeforeLeeway { get; set; }
 
         /// <summary>
-        /// If set, puts a use-count
-        /// limitation on the issued token.
+        /// If set, puts a use-count limitation on the issued
+        /// token.
         /// </summary>
         [Input("numUses")]
         public Input<int>? NumUses { get; set; }
@@ -833,7 +807,7 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _oidcScopes;
 
         /// <summary>
-        /// If set, a list of OIDC scopes to be used with an OIDC role.
+        /// If set, a list of OIDC scopes to be used with an OIDC role. 
         /// The standard scope "openid" is automatically included and need not be specified.
         /// </summary>
         public InputList<string> OidcScopes
@@ -843,10 +817,9 @@ namespace Pulumi.Vault.Jwt
         }
 
         /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
+        /// If set, indicates that the token generated
+        /// using this role should never expire, but instead always use the value set
+        /// here as the TTL for every renewal.
         /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
@@ -855,8 +828,7 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _policies;
 
         /// <summary>
-        /// An array of strings
-        /// specifying the policies to be set on tokens issued using this role.
+        /// Policies to be set on tokens issued using this role.
         /// </summary>
         [Obsolete(@"use `token_policies` instead if you are running Vault >= 1.2")]
         public InputList<string> Policies
@@ -881,9 +853,7 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _tokenBoundCidrs;
 
         /// <summary>
-        /// List of CIDR blocks; if set, specifies blocks of IP
-        /// addresses which can authenticate successfully, and ties the resulting token to these blocks
-        /// as well.
+        /// Specifies the blocks of IP addresses which are allowed to use the generated token
         /// </summary>
         public InputList<string> TokenBoundCidrs
         {
@@ -892,41 +862,31 @@ namespace Pulumi.Vault.Jwt
         }
 
         /// <summary>
-        /// If set, will encode an
-        /// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        /// onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        /// `token_max_ttl` would otherwise allow a renewal.
+        /// Generated Token's Explicit Maximum TTL in seconds
         /// </summary>
         [Input("tokenExplicitMaxTtl")]
         public Input<int>? TokenExplicitMaxTtl { get; set; }
 
         /// <summary>
-        /// The maximum lifetime for generated tokens in number of seconds.
-        /// Its current value will be referenced at renewal time.
+        /// The maximum lifetime of the generated token
         /// </summary>
         [Input("tokenMaxTtl")]
         public Input<int>? TokenMaxTtl { get; set; }
 
         /// <summary>
-        /// If set, the default policy will not be set on
-        /// generated tokens; otherwise it will be added to the policies set in token_policies.
+        /// If true, the 'default' policy will not automatically be added to generated tokens
         /// </summary>
         [Input("tokenNoDefaultPolicy")]
         public Input<bool>? TokenNoDefaultPolicy { get; set; }
 
         /// <summary>
-        /// The
-        /// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        /// if any, in number of seconds to set on the token.
+        /// The maximum number of times a token may be used, a value of zero means unlimited
         /// </summary>
         [Input("tokenNumUses")]
         public Input<int>? TokenNumUses { get; set; }
 
         /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
+        /// Generated Token's Period
         /// </summary>
         [Input("tokenPeriod")]
         public Input<int>? TokenPeriod { get; set; }
@@ -935,8 +895,7 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _tokenPolicies;
 
         /// <summary>
-        /// List of policies to encode onto generated tokens. Depending
-        /// on the auth method, this list may be supplemented by user/group/other values.
+        /// Generated Token's Policies
         /// </summary>
         public InputList<string> TokenPolicies
         {
@@ -945,25 +904,20 @@ namespace Pulumi.Vault.Jwt
         }
 
         /// <summary>
-        /// The incremental lifetime for generated tokens in number of seconds.
-        /// Its current value will be referenced at renewal time.
+        /// The initial ttl of the token to generate in seconds
         /// </summary>
         [Input("tokenTtl")]
         public Input<int>? TokenTtl { get; set; }
 
         /// <summary>
-        /// The type of token that should be generated. Can be `service`,
-        /// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        /// `service` tokens). For token store roles, there are two additional possibilities:
-        /// `default-service` and `default-batch` which specify the type to return unless the client
-        /// requests a different type at generation time.
+        /// The type of token to generate, service or batch
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
 
         /// <summary>
-        /// The TTL period of tokens issued
-        /// using this role, provided as a number of seconds.
+        /// The initial/renewal TTL of tokens issued using this role,
+        /// in seconds.
         /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
@@ -977,9 +931,8 @@ namespace Pulumi.Vault.Jwt
         public Input<string>? UserClaim { get; set; }
 
         /// <summary>
-        /// Log received OIDC tokens and claims when debug-level
-        /// logging is active. Not recommended in production since sensitive information may be present
-        /// in OIDC responses.
+        /// Log received OIDC tokens and claims when debug-level logging is active. Not recommended in production since sensitive
+        /// information may be present in OIDC responses.
         /// </summary>
         [Input("verboseOidcLogging")]
         public Input<bool>? VerboseOidcLogging { get; set; }

@@ -33,11 +33,11 @@ export class OidcKeyAllowedClientID extends pulumi.CustomResource {
     }
 
     /**
-     * Client ID to allow usage with the OIDC named key
+     * Role Client ID allowed to use the key for signing.
      */
     public readonly allowedClientId!: pulumi.Output<string>;
     /**
-     * Name of the OIDC Key allow the Client ID.
+     * Name of the key.
      */
     public readonly keyName!: pulumi.Output<string>;
 
@@ -82,11 +82,11 @@ export class OidcKeyAllowedClientID extends pulumi.CustomResource {
  */
 export interface OidcKeyAllowedClientIDState {
     /**
-     * Client ID to allow usage with the OIDC named key
+     * Role Client ID allowed to use the key for signing.
      */
     readonly allowedClientId?: pulumi.Input<string>;
     /**
-     * Name of the OIDC Key allow the Client ID.
+     * Name of the key.
      */
     readonly keyName?: pulumi.Input<string>;
 }
@@ -96,11 +96,11 @@ export interface OidcKeyAllowedClientIDState {
  */
 export interface OidcKeyAllowedClientIDArgs {
     /**
-     * Client ID to allow usage with the OIDC named key
+     * Role Client ID allowed to use the key for signing.
      */
     readonly allowedClientId: pulumi.Input<string>;
     /**
-     * Name of the OIDC Key allow the Client ID.
+     * Name of the key.
      */
     readonly keyName: pulumi.Input<string>;
 }

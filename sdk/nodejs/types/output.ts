@@ -5,47 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
 export interface AuthBackendTune {
-    /**
-     * List of headers to whitelist and allowing
-     * a plugin to include them in the response.
-     */
     allowedResponseHeaders?: string[];
-    /**
-     * Specifies the list of keys that will
-     * not be HMAC'd by audit devices in the request data object.
-     */
     auditNonHmacRequestKeys?: string[];
-    /**
-     * Specifies the list of keys that will
-     * not be HMAC'd by audit devices in the response data object.
-     */
     auditNonHmacResponseKeys?: string[];
-    /**
-     * Specifies the default time-to-live.
-     * If set, this overrides the global default.
-     * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-     */
     defaultLeaseTtl?: string;
     /**
-     * Specifies whether to show this mount in
-     * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+     * Speficies whether to show this mount in the UI-specific listing endpoint.
      */
     listingVisibility?: string;
-    /**
-     * Specifies the maximum time-to-live.
-     * If set, this overrides the global default.
-     * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-     */
     maxLeaseTtl?: string;
-    /**
-     * List of headers to whitelist and
-     * pass from the request to the backend.
-     */
     passthroughRequestHeaders?: string[];
-    /**
-     * Specifies the type of tokens that should be returned by
-     * the mount. Valid values are "default-service", "default-batch", "service", "batch".
-     */
     tokenType?: string;
 }
 
@@ -122,6 +91,11 @@ export interface ProviderHeader {
     value?: string;
 }
 export namespace azure {
+    export interface BackendRoleAzureGroup {
+        groupName: string;
+        objectId: string;
+    }
+
     export interface BackendRoleAzureRole {
         roleId: string;
         roleName: string;
@@ -164,7 +138,7 @@ export namespace database {
          */
         insecureTls?: boolean;
         /**
-         * The password to be used in the connection.
+         * The password to authenticate with.
          */
         password?: string;
         /**
@@ -190,23 +164,19 @@ export namespace database {
          */
         tls?: boolean;
         /**
-         * The username to be used in the connection.
+         * The username to authenticate with.
          */
         username?: string;
     }
 
     export interface SecretBackendConnectionElasticsearch {
         /**
-         * The password to be used in the connection.
+         * The password to authenticate with.
          */
         password: string;
-        /**
-         * The URL for Elasticsearch's API. https requires certificate
-         * by trusted CA if used.
-         */
         url: string;
         /**
-         * The username to be used in the connection.
+         * The username to authenticate with.
          */
         username: string;
     }
@@ -215,7 +185,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -240,7 +210,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -271,7 +241,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -296,7 +266,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -321,7 +291,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -346,7 +316,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -371,7 +341,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -396,7 +366,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -421,7 +391,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -458,139 +428,93 @@ export namespace gcp {
 
 export namespace github {
     export interface AuthBackendTune {
-        /**
-         * List of headers to whitelist and allowing
-         * a plugin to include them in the response.
-         */
         allowedResponseHeaders?: string[];
         /**
-         * Specifies the list of keys that will
+         * Specifies the list of keys that will 
          * not be HMAC'd by audit devices in the request data object.
          */
         auditNonHmacRequestKeys?: string[];
         /**
-         * Specifies the list of keys that will
+         * Specifies the list of keys that will 
          * not be HMAC'd by audit devices in the response data object.
          */
         auditNonHmacResponseKeys?: string[];
         /**
-         * Specifies the default time-to-live.
+         * Specifies the default time-to-live. 
          * If set, this overrides the global default.
          * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
          */
         defaultLeaseTtl?: string;
         /**
-         * Specifies whether to show this mount in
+         * Specifies whether to show this mount in 
          * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
          */
         listingVisibility?: string;
         /**
-         * Specifies the maximum time-to-live.
+         * Specifies the maximum time-to-live. 
          * If set, this overrides the global default.
          * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
          */
         maxLeaseTtl?: string;
         /**
-         * List of headers to whitelist and
+         * List of headers to whitelist and 
          * pass from the request to the backend.
          */
         passthroughRequestHeaders?: string[];
-        /**
-         * Specifies the type of tokens that should be returned by
-         * the mount. Valid values are "default-service", "default-batch", "service", "batch".
-         */
         tokenType?: string;
     }
 }
 
 export namespace identity {
     export interface GetEntityAlias {
-        /**
-         * Canonical ID of the Alias
-         */
         canonicalId: string;
-        /**
-         * Creation time of the Alias
-         */
         creationTime: string;
-        /**
-         * ID of the alias
-         */
         id: string;
-        /**
-         * Last update time of the alias
-         */
         lastUpdateTime: string;
-        /**
-         * List of canonical IDs merged with this alias
-         */
         mergedFromCanonicalIds: string[];
-        /**
-         * Arbitrary metadata
-         */
         metadata: {[key: string]: any};
-        /**
-         * Authentication mount acccessor which this alias belongs to
-         */
         mountAccessor: string;
-        /**
-         * Authentication mount path which this alias belongs to
-         */
         mountPath: string;
-        /**
-         * Authentication mount type which this alias belongs to
-         */
         mountType: string;
-        /**
-         * Name of the alias
-         */
         name: string;
     }
 }
 
 export namespace jwt {
     export interface AuthBackendTune {
-        /**
-         * List of headers to whitelist and allowing
-         * a plugin to include them in the response.
-         */
         allowedResponseHeaders?: string[];
         /**
-         * Specifies the list of keys that will
+         * Specifies the list of keys that will 
          * not be HMAC'd by audit devices in the request data object.
          */
         auditNonHmacRequestKeys?: string[];
         /**
-         * Specifies the list of keys that will
+         * Specifies the list of keys that will 
          * not be HMAC'd by audit devices in the response data object.
          */
         auditNonHmacResponseKeys?: string[];
         /**
-         * Specifies the default time-to-live.
+         * Specifies the default time-to-live. 
          * If set, this overrides the global default.
          * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
          */
         defaultLeaseTtl?: string;
         /**
-         * Specifies whether to show this mount in
+         * Specifies whether to show this mount in 
          * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
          */
         listingVisibility?: string;
         /**
-         * Specifies the maximum time-to-live.
+         * Specifies the maximum time-to-live. 
          * If set, this overrides the global default.
          * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
          */
         maxLeaseTtl?: string;
         /**
-         * List of headers to whitelist and
+         * List of headers to whitelist and 
          * pass from the request to the backend.
          */
         passthroughRequestHeaders?: string[];
-        /**
-         * Specifies the type of tokens that should be returned by
-         * the mount. Valid values are "default-service", "default-batch", "service", "batch".
-         */
         tokenType?: string;
     }
 }

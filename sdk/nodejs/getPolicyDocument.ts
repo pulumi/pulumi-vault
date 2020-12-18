@@ -14,8 +14,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const examplePolicyDocument = pulumi.output(vault.getPolicyDocument({
+ * const examplePolicyDocument = vault.getPolicyDocument({
  *     rules: [{
+ *         path: "secret/*",
  *         capabilities: [
  *             "create",
  *             "read",
@@ -24,12 +25,9 @@ import * as utilities from "./utilities";
  *             "list",
  *         ],
  *         description: "allow all on secrets",
- *         path: "secret/*",
  *     }],
- * }, { async: true }));
- * const examplePolicy = new vault.Policy("example", {
- *     policy: examplePolicyDocument.hcl,
  * });
+ * const examplePolicy = new vault.Policy("examplePolicy", {policy: data.vault_policy_document.hcl});
  * ```
  */
 export function getPolicyDocument(args?: GetPolicyDocumentArgs, opts?: pulumi.InvokeOptions): Promise<GetPolicyDocumentResult> {

@@ -12,20 +12,20 @@ namespace Pulumi.Vault.Azure
     public partial class BackendRole : Pulumi.CustomResource
     {
         /// <summary>
-        /// Application Object ID for an existing service principal that will
-        /// be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+        /// Application Object ID for an existing service principal that will be used instead of creating dynamic service
+        /// principals.
         /// </summary>
         [Output("applicationObjectId")]
         public Output<string?> ApplicationObjectId { get; private set; } = null!;
 
-        /// <summary>
-        /// List of Azure roles to be assigned to the generated service principal.
-        /// </summary>
+        [Output("azureGroups")]
+        public Output<ImmutableArray<Outputs.BackendRoleAzureGroup>> AzureGroups { get; private set; } = null!;
+
         [Output("azureRoles")]
         public Output<ImmutableArray<Outputs.BackendRoleAzureRole>> AzureRoles { get; private set; } = null!;
 
         /// <summary>
-        /// Path to the mounted Azure auth backend
+        /// Unique name of the auth backend to configure.
         /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
@@ -37,21 +37,19 @@ namespace Pulumi.Vault.Azure
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the maximum TTL for service principals generated using this role. Accepts time
-        /// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+        /// Human-friendly description of the mount for the backend.
         /// </summary>
         [Output("maxTtl")]
         public Output<string?> MaxTtl { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the Azure role
+        /// Name of the role to create
         /// </summary>
         [Output("role")]
         public Output<string> Role { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the default TTL for service principals generated using this role.
-        /// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+        /// Human-friendly description of the mount for the backend.
         /// </summary>
         [Output("ttl")]
         public Output<string?> Ttl { get; private set; } = null!;
@@ -103,18 +101,22 @@ namespace Pulumi.Vault.Azure
     public sealed class BackendRoleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Application Object ID for an existing service principal that will
-        /// be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+        /// Application Object ID for an existing service principal that will be used instead of creating dynamic service
+        /// principals.
         /// </summary>
         [Input("applicationObjectId")]
         public Input<string>? ApplicationObjectId { get; set; }
 
+        [Input("azureGroups")]
+        private InputList<Inputs.BackendRoleAzureGroupArgs>? _azureGroups;
+        public InputList<Inputs.BackendRoleAzureGroupArgs> AzureGroups
+        {
+            get => _azureGroups ?? (_azureGroups = new InputList<Inputs.BackendRoleAzureGroupArgs>());
+            set => _azureGroups = value;
+        }
+
         [Input("azureRoles")]
         private InputList<Inputs.BackendRoleAzureRoleArgs>? _azureRoles;
-
-        /// <summary>
-        /// List of Azure roles to be assigned to the generated service principal.
-        /// </summary>
         public InputList<Inputs.BackendRoleAzureRoleArgs> AzureRoles
         {
             get => _azureRoles ?? (_azureRoles = new InputList<Inputs.BackendRoleAzureRoleArgs>());
@@ -122,7 +124,7 @@ namespace Pulumi.Vault.Azure
         }
 
         /// <summary>
-        /// Path to the mounted Azure auth backend
+        /// Unique name of the auth backend to configure.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -134,21 +136,19 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Specifies the maximum TTL for service principals generated using this role. Accepts time
-        /// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+        /// Human-friendly description of the mount for the backend.
         /// </summary>
         [Input("maxTtl")]
         public Input<string>? MaxTtl { get; set; }
 
         /// <summary>
-        /// Name of the Azure role
+        /// Name of the role to create
         /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
         /// <summary>
-        /// Specifies the default TTL for service principals generated using this role.
-        /// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+        /// Human-friendly description of the mount for the backend.
         /// </summary>
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }
@@ -161,18 +161,22 @@ namespace Pulumi.Vault.Azure
     public sealed class BackendRoleState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Application Object ID for an existing service principal that will
-        /// be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+        /// Application Object ID for an existing service principal that will be used instead of creating dynamic service
+        /// principals.
         /// </summary>
         [Input("applicationObjectId")]
         public Input<string>? ApplicationObjectId { get; set; }
 
+        [Input("azureGroups")]
+        private InputList<Inputs.BackendRoleAzureGroupGetArgs>? _azureGroups;
+        public InputList<Inputs.BackendRoleAzureGroupGetArgs> AzureGroups
+        {
+            get => _azureGroups ?? (_azureGroups = new InputList<Inputs.BackendRoleAzureGroupGetArgs>());
+            set => _azureGroups = value;
+        }
+
         [Input("azureRoles")]
         private InputList<Inputs.BackendRoleAzureRoleGetArgs>? _azureRoles;
-
-        /// <summary>
-        /// List of Azure roles to be assigned to the generated service principal.
-        /// </summary>
         public InputList<Inputs.BackendRoleAzureRoleGetArgs> AzureRoles
         {
             get => _azureRoles ?? (_azureRoles = new InputList<Inputs.BackendRoleAzureRoleGetArgs>());
@@ -180,7 +184,7 @@ namespace Pulumi.Vault.Azure
         }
 
         /// <summary>
-        /// Path to the mounted Azure auth backend
+        /// Unique name of the auth backend to configure.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -192,21 +196,19 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Specifies the maximum TTL for service principals generated using this role. Accepts time
-        /// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+        /// Human-friendly description of the mount for the backend.
         /// </summary>
         [Input("maxTtl")]
         public Input<string>? MaxTtl { get; set; }
 
         /// <summary>
-        /// Name of the Azure role
+        /// Name of the role to create
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
 
         /// <summary>
-        /// Specifies the default TTL for service principals generated using this role.
-        /// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+        /// Human-friendly description of the mount for the backend.
         /// </summary>
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }

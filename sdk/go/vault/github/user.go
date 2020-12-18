@@ -12,7 +12,7 @@ import (
 )
 
 // Manages policy mappings for Github Users authenticated via Github. See the [Vault
-// documentation](https://www.vaultproject.io/docs/auth/github/) for more
+// documentation](https://www.vaultproject.io/docs/auth/github.html) for more
 // information.
 //
 // ## Example Usage
@@ -35,11 +35,11 @@ import (
 // 		}
 // 		_, err = github.NewUser(ctx, "tfUser", &github.UserArgs{
 // 			Backend: example.ID(),
-// 			User:    pulumi.String("john.doe"),
 // 			Policies: pulumi.StringArray{
 // 				pulumi.String("developer"),
 // 				pulumi.String("read-only"),
 // 			},
+// 			User: pulumi.String("john.doe"),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -62,8 +62,7 @@ type User struct {
 	// Path where the github auth backend is mounted. Defaults to `github`
 	// if not specified.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
-	// An array of strings specifying the policies to be set on tokens issued
-	// using this role.
+	// A list of policies to be assigned to this user.
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// Specifies the blocks of IP addresses which are allowed to use the generated token
 	//
@@ -139,8 +138,7 @@ type userState struct {
 	// Path where the github auth backend is mounted. Defaults to `github`
 	// if not specified.
 	Backend *string `pulumi:"backend"`
-	// An array of strings specifying the policies to be set on tokens issued
-	// using this role.
+	// A list of policies to be assigned to this user.
 	Policies []string `pulumi:"policies"`
 	// Specifies the blocks of IP addresses which are allowed to use the generated token
 	//
@@ -186,8 +184,7 @@ type UserState struct {
 	// Path where the github auth backend is mounted. Defaults to `github`
 	// if not specified.
 	Backend pulumi.StringPtrInput
-	// An array of strings specifying the policies to be set on tokens issued
-	// using this role.
+	// A list of policies to be assigned to this user.
 	Policies pulumi.StringArrayInput
 	// Specifies the blocks of IP addresses which are allowed to use the generated token
 	//
@@ -237,8 +234,7 @@ type userArgs struct {
 	// Path where the github auth backend is mounted. Defaults to `github`
 	// if not specified.
 	Backend *string `pulumi:"backend"`
-	// An array of strings specifying the policies to be set on tokens issued
-	// using this role.
+	// A list of policies to be assigned to this user.
 	Policies []string `pulumi:"policies"`
 	// Specifies the blocks of IP addresses which are allowed to use the generated token
 	//
@@ -285,8 +281,7 @@ type UserArgs struct {
 	// Path where the github auth backend is mounted. Defaults to `github`
 	// if not specified.
 	Backend pulumi.StringPtrInput
-	// An array of strings specifying the policies to be set on tokens issued
-	// using this role.
+	// A list of policies to be assigned to this user.
 	Policies pulumi.StringArrayInput
 	// Specifies the blocks of IP addresses which are allowed to use the generated token
 	//

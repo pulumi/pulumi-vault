@@ -6,7 +6,7 @@ import * as utilities from "../utilities";
 
 /**
  * Manages an AppRole auth backend SecretID in a Vault server. See the [Vault
- * documentation](https://www.vaultproject.io/docs/auth/approle) for more
+ * documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
  * information.
  *
  * ## Example Usage
@@ -93,19 +93,15 @@ export class AuthBackendRoleSecretID extends pulumi.CustomResource {
      */
     public readonly secretId!: pulumi.Output<string>;
     /**
-     * The unique ID for the response-wrapped SecretID that can
-     * be safely logged.
+     * The wrapped SecretID accessor.
      */
     public /*out*/ readonly wrappingAccessor!: pulumi.Output<string>;
     /**
-     * The token used to retrieve a response-wrapped SecretID.
+     * The wrapped SecretID token.
      */
     public /*out*/ readonly wrappingToken!: pulumi.Output<string>;
     /**
-     * If set, the SecretID response will be
-     * [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
-     * and available for the duration specified. Only a single unwrapping of the
-     * token is allowed.
+     * The TTL duration of the wrapped SecretID.
      */
     public readonly wrappingTtl!: pulumi.Output<string | undefined>;
 
@@ -188,19 +184,15 @@ export interface AuthBackendRoleSecretIDState {
      */
     readonly secretId?: pulumi.Input<string>;
     /**
-     * The unique ID for the response-wrapped SecretID that can
-     * be safely logged.
+     * The wrapped SecretID accessor.
      */
     readonly wrappingAccessor?: pulumi.Input<string>;
     /**
-     * The token used to retrieve a response-wrapped SecretID.
+     * The wrapped SecretID token.
      */
     readonly wrappingToken?: pulumi.Input<string>;
     /**
-     * If set, the SecretID response will be
-     * [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
-     * and available for the duration specified. Only a single unwrapping of the
-     * token is allowed.
+     * The TTL duration of the wrapped SecretID.
      */
     readonly wrappingTtl?: pulumi.Input<string>;
 }
@@ -233,10 +225,7 @@ export interface AuthBackendRoleSecretIDArgs {
      */
     readonly secretId?: pulumi.Input<string>;
     /**
-     * If set, the SecretID response will be
-     * [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
-     * and available for the duration specified. Only a single unwrapping of the
-     * token is allowed.
+     * The TTL duration of the wrapped SecretID.
      */
     readonly wrappingTtl?: pulumi.Input<string>;
 }

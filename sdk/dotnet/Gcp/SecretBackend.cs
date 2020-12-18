@@ -12,7 +12,7 @@ namespace Pulumi.Vault.Gcp
     public partial class SecretBackend : Pulumi.CustomResource
     {
         /// <summary>
-        /// The GCP service account credentials in JSON format.
+        /// The GCP service account credentails in JSON format.
         /// </summary>
         [Output("credentials")]
         public Output<string?> Credentials { get; private set; } = null!;
@@ -31,7 +31,7 @@ namespace Pulumi.Vault.Gcp
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+        /// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         /// </summary>
         [Output("local")]
         public Output<bool?> Local { get; private set; } = null!;
@@ -97,7 +97,7 @@ namespace Pulumi.Vault.Gcp
     public sealed class SecretBackendArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The GCP service account credentials in JSON format.
+        /// The GCP service account credentails in JSON format.
         /// </summary>
         [Input("credentials")]
         public Input<string>? Credentials { get; set; }
@@ -116,7 +116,7 @@ namespace Pulumi.Vault.Gcp
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+        /// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
@@ -143,7 +143,7 @@ namespace Pulumi.Vault.Gcp
     public sealed class SecretBackendState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The GCP service account credentials in JSON format.
+        /// The GCP service account credentails in JSON format.
         /// </summary>
         [Input("credentials")]
         public Input<string>? Credentials { get; set; }
@@ -162,7 +162,7 @@ namespace Pulumi.Vault.Gcp
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+        /// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }

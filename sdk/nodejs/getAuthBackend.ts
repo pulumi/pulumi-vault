@@ -5,18 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
-/**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const example = pulumi.output(vault.getAuthBackend({
- *     path: "userpass",
- * }, { async: true }));
- * ```
- */
 export function getAuthBackend(args: GetAuthBackendArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendResult> {
     if (!opts) {
         opts = {}
@@ -34,9 +22,6 @@ export function getAuthBackend(args: GetAuthBackendArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getAuthBackend.
  */
 export interface GetAuthBackendArgs {
-    /**
-     * The auth backend mount point.
-     */
     readonly path: string;
 }
 
@@ -44,37 +29,16 @@ export interface GetAuthBackendArgs {
  * A collection of values returned by getAuthBackend.
  */
 export interface GetAuthBackendResult {
-    /**
-     * The accessor for this auth method
-     */
     readonly accessor: string;
-    /**
-     * The default lease duration in seconds.
-     */
     readonly defaultLeaseTtlSeconds: number;
-    /**
-     * A description of the auth method.
-     */
     readonly description: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Speficies whether to show this mount in the UI-specific listing endpoint.
-     */
     readonly listingVisibility: string;
-    /**
-     * Specifies if the auth method is local only.
-     */
     readonly local: boolean;
-    /**
-     * The maximum lease duration in seconds.
-     */
     readonly maxLeaseTtlSeconds: number;
     readonly path: string;
-    /**
-     * The name of the auth method type.
-     */
     readonly type: string;
 }

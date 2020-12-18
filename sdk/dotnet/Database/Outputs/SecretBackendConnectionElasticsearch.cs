@@ -14,16 +14,12 @@ namespace Pulumi.Vault.Database.Outputs
     public sealed class SecretBackendConnectionElasticsearch
     {
         /// <summary>
-        /// The password to be used in the connection.
+        /// The password to authenticate with.
         /// </summary>
         public readonly string Password;
-        /// <summary>
-        /// The URL for Elasticsearch's API. https requires certificate
-        /// by trusted CA if used.
-        /// </summary>
         public readonly string Url;
         /// <summary>
-        /// The username to be used in the connection.
+        /// The username to authenticate with.
         /// </summary>
         public readonly string Username;
 

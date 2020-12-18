@@ -38,17 +38,7 @@ export interface GetAccessCredentialsArgs {
      * credentials from, with no leading or trailing `/`s.
      */
     readonly role: string;
-    /**
-     * The specific AWS ARN to use
-     * from the configured role. If the role does not have multiple ARNs, this does
-     * not need to be specified.
-     */
     readonly roleArn?: string;
-    /**
-     * Specifies the TTL for the use of the STS token. This
-     * is specified as a string with a duration suffix. Valid only when
-     * `credentialType` is `assumedRole` or `federationToken`
-     */
     readonly ttl?: string;
     /**
      * The type of credentials to read. Defaults

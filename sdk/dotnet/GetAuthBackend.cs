@@ -11,30 +11,6 @@ namespace Pulumi.Vault
 {
     public static class GetAuthBackend
     {
-        /// <summary>
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var example = Output.Create(Vault.GetAuthBackend.InvokeAsync(new Vault.GetAuthBackendArgs
-        ///         {
-        ///             Path = "userpass",
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Task<GetAuthBackendResult> InvokeAsync(GetAuthBackendArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendResult>("vault:index/getAuthBackend:getAuthBackend", args ?? new GetAuthBackendArgs(), options.WithVersion());
     }
@@ -42,9 +18,6 @@ namespace Pulumi.Vault
 
     public sealed class GetAuthBackendArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The auth backend mount point.
-        /// </summary>
         [Input("path", required: true)]
         public string Path { get; set; } = null!;
 
@@ -57,38 +30,17 @@ namespace Pulumi.Vault
     [OutputType]
     public sealed class GetAuthBackendResult
     {
-        /// <summary>
-        /// The accessor for this auth method
-        /// </summary>
         public readonly string Accessor;
-        /// <summary>
-        /// The default lease duration in seconds.
-        /// </summary>
         public readonly int DefaultLeaseTtlSeconds;
-        /// <summary>
-        /// A description of the auth method.
-        /// </summary>
         public readonly string Description;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// Speficies whether to show this mount in the UI-specific listing endpoint.
-        /// </summary>
         public readonly string ListingVisibility;
-        /// <summary>
-        /// Specifies if the auth method is local only.
-        /// </summary>
         public readonly bool Local;
-        /// <summary>
-        /// The maximum lease duration in seconds.
-        /// </summary>
         public readonly int MaxLeaseTtlSeconds;
         public readonly string Path;
-        /// <summary>
-        /// The name of the auth method type.
-        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

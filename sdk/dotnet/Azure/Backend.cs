@@ -12,13 +12,14 @@ namespace Pulumi.Vault.Azure
     public partial class Backend : Pulumi.CustomResource
     {
         /// <summary>
-        /// - The OAuth2 client id to connect to Azure.
+        /// The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
+        /// required.
         /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// - The OAuth2 client secret to connect to Azure.
+        /// The client secret for credentials to query the Azure APIs
         /// </summary>
         [Output("clientSecret")]
         public Output<string?> ClientSecret { get; private set; } = null!;
@@ -30,25 +31,25 @@ namespace Pulumi.Vault.Azure
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// - The Azure environment.
+        /// The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
         /// </summary>
         [Output("environment")]
         public Output<string?> Environment { get; private set; } = null!;
 
         /// <summary>
-        /// - The unique path this backend should be mounted at. Defaults to `azure`.
+        /// Path to mount the backend at.
         /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
 
         /// <summary>
-        /// - The subscription id for the Azure Active Directory.
+        /// The subscription id for the Azure Active Directory.
         /// </summary>
         [Output("subscriptionId")]
         public Output<string> SubscriptionId { get; private set; } = null!;
 
         /// <summary>
-        /// - The tenant id for the Azure Active Directory.
+        /// The tenant id for the Azure Active Directory organization.
         /// </summary>
         [Output("tenantId")]
         public Output<string> TenantId { get; private set; } = null!;
@@ -100,13 +101,14 @@ namespace Pulumi.Vault.Azure
     public sealed class BackendArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// - The OAuth2 client id to connect to Azure.
+        /// The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
+        /// required.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// - The OAuth2 client secret to connect to Azure.
+        /// The client secret for credentials to query the Azure APIs
         /// </summary>
         [Input("clientSecret")]
         public Input<string>? ClientSecret { get; set; }
@@ -118,25 +120,25 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// - The Azure environment.
+        /// The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
         /// </summary>
         [Input("environment")]
         public Input<string>? Environment { get; set; }
 
         /// <summary>
-        /// - The unique path this backend should be mounted at. Defaults to `azure`.
+        /// Path to mount the backend at.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// - The subscription id for the Azure Active Directory.
+        /// The subscription id for the Azure Active Directory.
         /// </summary>
         [Input("subscriptionId", required: true)]
         public Input<string> SubscriptionId { get; set; } = null!;
 
         /// <summary>
-        /// - The tenant id for the Azure Active Directory.
+        /// The tenant id for the Azure Active Directory organization.
         /// </summary>
         [Input("tenantId", required: true)]
         public Input<string> TenantId { get; set; } = null!;
@@ -149,13 +151,14 @@ namespace Pulumi.Vault.Azure
     public sealed class BackendState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// - The OAuth2 client id to connect to Azure.
+        /// The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
+        /// required.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// - The OAuth2 client secret to connect to Azure.
+        /// The client secret for credentials to query the Azure APIs
         /// </summary>
         [Input("clientSecret")]
         public Input<string>? ClientSecret { get; set; }
@@ -167,25 +170,25 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// - The Azure environment.
+        /// The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
         /// </summary>
         [Input("environment")]
         public Input<string>? Environment { get; set; }
 
         /// <summary>
-        /// - The unique path this backend should be mounted at. Defaults to `azure`.
+        /// Path to mount the backend at.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// - The subscription id for the Azure Active Directory.
+        /// The subscription id for the Azure Active Directory.
         /// </summary>
         [Input("subscriptionId")]
         public Input<string>? SubscriptionId { get; set; }
 
         /// <summary>
-        /// - The tenant id for the Azure Active Directory.
+        /// The tenant id for the Azure Active Directory organization.
         /// </summary>
         [Input("tenantId")]
         public Input<string>? TenantId { get; set; }

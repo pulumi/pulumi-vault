@@ -10,42 +10,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Configure the [Identity Tokens Backend](https://www.vaultproject.io/docs/secrets/identity/index.html#identity-tokens).
-//
-// The Identity secrets engine is the identity management solution for Vault. It internally maintains
-// the clients who are recognized by Vault.
-//
-// > **NOTE:** Each Vault server may only have one Identity Tokens Backend configuration. Multiple configurations of the resource against the same Vault server will cause a perpetual difference.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/identity"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := identity.NewOidc(ctx, "server", &identity.OidcArgs{
-// 			Issuer: pulumi.String("https://www.acme.com"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type Oidc struct {
 	pulumi.CustomResourceState
 
-	// Issuer URL to be used in the iss claim of the token. If not set, Vault's
-	// `apiAddr` will be used. The issuer is a case sensitive URL using the https scheme that contains
-	// scheme, host, and optionally, port number and path components, but no query or fragment
-	// components.
+	// Issuer URL to be used in the iss claim of the token. If not set, Vault's api_addr will be used. The issuer is a case
+	// sensitive URL using the https scheme that contains scheme, host, and optionally, port number and path components, but no
+	// query or fragment components.
 	Issuer pulumi.StringOutput `pulumi:"issuer"`
 }
 
@@ -77,18 +47,16 @@ func GetOidc(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Oidc resources.
 type oidcState struct {
-	// Issuer URL to be used in the iss claim of the token. If not set, Vault's
-	// `apiAddr` will be used. The issuer is a case sensitive URL using the https scheme that contains
-	// scheme, host, and optionally, port number and path components, but no query or fragment
-	// components.
+	// Issuer URL to be used in the iss claim of the token. If not set, Vault's api_addr will be used. The issuer is a case
+	// sensitive URL using the https scheme that contains scheme, host, and optionally, port number and path components, but no
+	// query or fragment components.
 	Issuer *string `pulumi:"issuer"`
 }
 
 type OidcState struct {
-	// Issuer URL to be used in the iss claim of the token. If not set, Vault's
-	// `apiAddr` will be used. The issuer is a case sensitive URL using the https scheme that contains
-	// scheme, host, and optionally, port number and path components, but no query or fragment
-	// components.
+	// Issuer URL to be used in the iss claim of the token. If not set, Vault's api_addr will be used. The issuer is a case
+	// sensitive URL using the https scheme that contains scheme, host, and optionally, port number and path components, but no
+	// query or fragment components.
 	Issuer pulumi.StringPtrInput
 }
 
@@ -97,19 +65,17 @@ func (OidcState) ElementType() reflect.Type {
 }
 
 type oidcArgs struct {
-	// Issuer URL to be used in the iss claim of the token. If not set, Vault's
-	// `apiAddr` will be used. The issuer is a case sensitive URL using the https scheme that contains
-	// scheme, host, and optionally, port number and path components, but no query or fragment
-	// components.
+	// Issuer URL to be used in the iss claim of the token. If not set, Vault's api_addr will be used. The issuer is a case
+	// sensitive URL using the https scheme that contains scheme, host, and optionally, port number and path components, but no
+	// query or fragment components.
 	Issuer *string `pulumi:"issuer"`
 }
 
 // The set of arguments for constructing a Oidc resource.
 type OidcArgs struct {
-	// Issuer URL to be used in the iss claim of the token. If not set, Vault's
-	// `apiAddr` will be used. The issuer is a case sensitive URL using the https scheme that contains
-	// scheme, host, and optionally, port number and path components, but no query or fragment
-	// components.
+	// Issuer URL to be used in the iss claim of the token. If not set, Vault's api_addr will be used. The issuer is a case
+	// sensitive URL using the https scheme that contains scheme, host, and optionally, port number and path components, but no
+	// query or fragment components.
 	Issuer pulumi.StringPtrInput
 }
 

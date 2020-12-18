@@ -29,8 +29,7 @@ type CertAuthBackendRole struct {
 	AllowedUriSans pulumi.StringArrayOutput `pulumi:"allowedUriSans"`
 	// Path to the mounted Cert auth backend
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
-	// Restriction usage of the
-	// certificates to client IPs falling within the range of the specified CIDRs
+	// Restriction usage of the certificates to client IPs falling within the range of the specified CIDRs
 	//
 	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs pulumi.StringArrayOutput `pulumi:"boundCidrs"`
@@ -38,65 +37,41 @@ type CertAuthBackendRole struct {
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
 	// The name to display on tokens issued under this role.
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
-	// The maximum allowed lifetime of tokens
-	// issued using this role, provided as a number of seconds.
+	// Maximum TTL of tokens issued by the backend
 	//
 	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl pulumi.StringOutput `pulumi:"maxTtl"`
 	// Name of the role
 	Name pulumi.StringOutput `pulumi:"name"`
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
+	// Duration in seconds for token.  If set, the issued token is a periodic token.
 	//
 	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period pulumi.StringOutput `pulumi:"period"`
-	// An array of strings
-	// specifying the policies to be set on tokens issued using this role.
+	// Policies to grant on the issued token
 	//
 	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// TLS extensions required on client certificates
 	RequiredExtensions pulumi.StringArrayOutput `pulumi:"requiredExtensions"`
-	// List of CIDR blocks; if set, specifies blocks of IP
-	// addresses which can authenticate successfully, and ties the resulting token to these blocks
-	// as well.
+	// Specifies the blocks of IP addresses which are allowed to use the generated token
 	TokenBoundCidrs pulumi.StringArrayOutput `pulumi:"tokenBoundCidrs"`
-	// If set, will encode an
-	// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-	// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
-	// `tokenMaxTtl` would otherwise allow a renewal.
+	// Generated Token's Explicit Maximum TTL in seconds
 	TokenExplicitMaxTtl pulumi.IntPtrOutput `pulumi:"tokenExplicitMaxTtl"`
-	// The maximum lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The maximum lifetime of the generated token
 	TokenMaxTtl pulumi.IntPtrOutput `pulumi:"tokenMaxTtl"`
-	// If set, the default policy will not be set on
-	// generated tokens; otherwise it will be added to the policies set in token_policies.
+	// If true, the 'default' policy will not automatically be added to generated tokens
 	TokenNoDefaultPolicy pulumi.BoolPtrOutput `pulumi:"tokenNoDefaultPolicy"`
-	// The
-	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-	// if any, in number of seconds to set on the token.
+	// The maximum number of times a token may be used, a value of zero means unlimited
 	TokenNumUses pulumi.IntPtrOutput `pulumi:"tokenNumUses"`
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
+	// Generated Token's Period
 	TokenPeriod pulumi.IntPtrOutput `pulumi:"tokenPeriod"`
-	// List of policies to encode onto generated tokens. Depending
-	// on the auth method, this list may be supplemented by user/group/other values.
+	// Generated Token's Policies
 	TokenPolicies pulumi.StringArrayOutput `pulumi:"tokenPolicies"`
-	// The incremental lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The initial ttl of the token to generate in seconds
 	TokenTtl pulumi.IntPtrOutput `pulumi:"tokenTtl"`
-	// The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// The type of token to generate, service or batch
 	TokenType pulumi.StringPtrOutput `pulumi:"tokenType"`
-	// The TTL period of tokens issued
-	// using this role, provided as a number of seconds.
+	// Default TTL of tokens issued by the backend
 	//
 	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl pulumi.StringOutput `pulumi:"ttl"`
@@ -147,8 +122,7 @@ type certAuthBackendRoleState struct {
 	AllowedUriSans []string `pulumi:"allowedUriSans"`
 	// Path to the mounted Cert auth backend
 	Backend *string `pulumi:"backend"`
-	// Restriction usage of the
-	// certificates to client IPs falling within the range of the specified CIDRs
+	// Restriction usage of the certificates to client IPs falling within the range of the specified CIDRs
 	//
 	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs []string `pulumi:"boundCidrs"`
@@ -156,65 +130,41 @@ type certAuthBackendRoleState struct {
 	Certificate *string `pulumi:"certificate"`
 	// The name to display on tokens issued under this role.
 	DisplayName *string `pulumi:"displayName"`
-	// The maximum allowed lifetime of tokens
-	// issued using this role, provided as a number of seconds.
+	// Maximum TTL of tokens issued by the backend
 	//
 	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl *string `pulumi:"maxTtl"`
 	// Name of the role
 	Name *string `pulumi:"name"`
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
+	// Duration in seconds for token.  If set, the issued token is a periodic token.
 	//
 	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period *string `pulumi:"period"`
-	// An array of strings
-	// specifying the policies to be set on tokens issued using this role.
+	// Policies to grant on the issued token
 	//
 	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies []string `pulumi:"policies"`
 	// TLS extensions required on client certificates
 	RequiredExtensions []string `pulumi:"requiredExtensions"`
-	// List of CIDR blocks; if set, specifies blocks of IP
-	// addresses which can authenticate successfully, and ties the resulting token to these blocks
-	// as well.
+	// Specifies the blocks of IP addresses which are allowed to use the generated token
 	TokenBoundCidrs []string `pulumi:"tokenBoundCidrs"`
-	// If set, will encode an
-	// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-	// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
-	// `tokenMaxTtl` would otherwise allow a renewal.
+	// Generated Token's Explicit Maximum TTL in seconds
 	TokenExplicitMaxTtl *int `pulumi:"tokenExplicitMaxTtl"`
-	// The maximum lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The maximum lifetime of the generated token
 	TokenMaxTtl *int `pulumi:"tokenMaxTtl"`
-	// If set, the default policy will not be set on
-	// generated tokens; otherwise it will be added to the policies set in token_policies.
+	// If true, the 'default' policy will not automatically be added to generated tokens
 	TokenNoDefaultPolicy *bool `pulumi:"tokenNoDefaultPolicy"`
-	// The
-	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-	// if any, in number of seconds to set on the token.
+	// The maximum number of times a token may be used, a value of zero means unlimited
 	TokenNumUses *int `pulumi:"tokenNumUses"`
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
+	// Generated Token's Period
 	TokenPeriod *int `pulumi:"tokenPeriod"`
-	// List of policies to encode onto generated tokens. Depending
-	// on the auth method, this list may be supplemented by user/group/other values.
+	// Generated Token's Policies
 	TokenPolicies []string `pulumi:"tokenPolicies"`
-	// The incremental lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The initial ttl of the token to generate in seconds
 	TokenTtl *int `pulumi:"tokenTtl"`
-	// The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// The type of token to generate, service or batch
 	TokenType *string `pulumi:"tokenType"`
-	// The TTL period of tokens issued
-	// using this role, provided as a number of seconds.
+	// Default TTL of tokens issued by the backend
 	//
 	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl *string `pulumi:"ttl"`
@@ -235,8 +185,7 @@ type CertAuthBackendRoleState struct {
 	AllowedUriSans pulumi.StringArrayInput
 	// Path to the mounted Cert auth backend
 	Backend pulumi.StringPtrInput
-	// Restriction usage of the
-	// certificates to client IPs falling within the range of the specified CIDRs
+	// Restriction usage of the certificates to client IPs falling within the range of the specified CIDRs
 	//
 	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs pulumi.StringArrayInput
@@ -244,65 +193,41 @@ type CertAuthBackendRoleState struct {
 	Certificate pulumi.StringPtrInput
 	// The name to display on tokens issued under this role.
 	DisplayName pulumi.StringPtrInput
-	// The maximum allowed lifetime of tokens
-	// issued using this role, provided as a number of seconds.
+	// Maximum TTL of tokens issued by the backend
 	//
 	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl pulumi.StringPtrInput
 	// Name of the role
 	Name pulumi.StringPtrInput
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
+	// Duration in seconds for token.  If set, the issued token is a periodic token.
 	//
 	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period pulumi.StringPtrInput
-	// An array of strings
-	// specifying the policies to be set on tokens issued using this role.
+	// Policies to grant on the issued token
 	//
 	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies pulumi.StringArrayInput
 	// TLS extensions required on client certificates
 	RequiredExtensions pulumi.StringArrayInput
-	// List of CIDR blocks; if set, specifies blocks of IP
-	// addresses which can authenticate successfully, and ties the resulting token to these blocks
-	// as well.
+	// Specifies the blocks of IP addresses which are allowed to use the generated token
 	TokenBoundCidrs pulumi.StringArrayInput
-	// If set, will encode an
-	// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-	// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
-	// `tokenMaxTtl` would otherwise allow a renewal.
+	// Generated Token's Explicit Maximum TTL in seconds
 	TokenExplicitMaxTtl pulumi.IntPtrInput
-	// The maximum lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The maximum lifetime of the generated token
 	TokenMaxTtl pulumi.IntPtrInput
-	// If set, the default policy will not be set on
-	// generated tokens; otherwise it will be added to the policies set in token_policies.
+	// If true, the 'default' policy will not automatically be added to generated tokens
 	TokenNoDefaultPolicy pulumi.BoolPtrInput
-	// The
-	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-	// if any, in number of seconds to set on the token.
+	// The maximum number of times a token may be used, a value of zero means unlimited
 	TokenNumUses pulumi.IntPtrInput
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
+	// Generated Token's Period
 	TokenPeriod pulumi.IntPtrInput
-	// List of policies to encode onto generated tokens. Depending
-	// on the auth method, this list may be supplemented by user/group/other values.
+	// Generated Token's Policies
 	TokenPolicies pulumi.StringArrayInput
-	// The incremental lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The initial ttl of the token to generate in seconds
 	TokenTtl pulumi.IntPtrInput
-	// The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// The type of token to generate, service or batch
 	TokenType pulumi.StringPtrInput
-	// The TTL period of tokens issued
-	// using this role, provided as a number of seconds.
+	// Default TTL of tokens issued by the backend
 	//
 	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl pulumi.StringPtrInput
@@ -327,8 +252,7 @@ type certAuthBackendRoleArgs struct {
 	AllowedUriSans []string `pulumi:"allowedUriSans"`
 	// Path to the mounted Cert auth backend
 	Backend *string `pulumi:"backend"`
-	// Restriction usage of the
-	// certificates to client IPs falling within the range of the specified CIDRs
+	// Restriction usage of the certificates to client IPs falling within the range of the specified CIDRs
 	//
 	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs []string `pulumi:"boundCidrs"`
@@ -336,65 +260,41 @@ type certAuthBackendRoleArgs struct {
 	Certificate string `pulumi:"certificate"`
 	// The name to display on tokens issued under this role.
 	DisplayName *string `pulumi:"displayName"`
-	// The maximum allowed lifetime of tokens
-	// issued using this role, provided as a number of seconds.
+	// Maximum TTL of tokens issued by the backend
 	//
 	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl *string `pulumi:"maxTtl"`
 	// Name of the role
 	Name *string `pulumi:"name"`
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
+	// Duration in seconds for token.  If set, the issued token is a periodic token.
 	//
 	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period *string `pulumi:"period"`
-	// An array of strings
-	// specifying the policies to be set on tokens issued using this role.
+	// Policies to grant on the issued token
 	//
 	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies []string `pulumi:"policies"`
 	// TLS extensions required on client certificates
 	RequiredExtensions []string `pulumi:"requiredExtensions"`
-	// List of CIDR blocks; if set, specifies blocks of IP
-	// addresses which can authenticate successfully, and ties the resulting token to these blocks
-	// as well.
+	// Specifies the blocks of IP addresses which are allowed to use the generated token
 	TokenBoundCidrs []string `pulumi:"tokenBoundCidrs"`
-	// If set, will encode an
-	// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-	// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
-	// `tokenMaxTtl` would otherwise allow a renewal.
+	// Generated Token's Explicit Maximum TTL in seconds
 	TokenExplicitMaxTtl *int `pulumi:"tokenExplicitMaxTtl"`
-	// The maximum lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The maximum lifetime of the generated token
 	TokenMaxTtl *int `pulumi:"tokenMaxTtl"`
-	// If set, the default policy will not be set on
-	// generated tokens; otherwise it will be added to the policies set in token_policies.
+	// If true, the 'default' policy will not automatically be added to generated tokens
 	TokenNoDefaultPolicy *bool `pulumi:"tokenNoDefaultPolicy"`
-	// The
-	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-	// if any, in number of seconds to set on the token.
+	// The maximum number of times a token may be used, a value of zero means unlimited
 	TokenNumUses *int `pulumi:"tokenNumUses"`
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
+	// Generated Token's Period
 	TokenPeriod *int `pulumi:"tokenPeriod"`
-	// List of policies to encode onto generated tokens. Depending
-	// on the auth method, this list may be supplemented by user/group/other values.
+	// Generated Token's Policies
 	TokenPolicies []string `pulumi:"tokenPolicies"`
-	// The incremental lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The initial ttl of the token to generate in seconds
 	TokenTtl *int `pulumi:"tokenTtl"`
-	// The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// The type of token to generate, service or batch
 	TokenType *string `pulumi:"tokenType"`
-	// The TTL period of tokens issued
-	// using this role, provided as a number of seconds.
+	// Default TTL of tokens issued by the backend
 	//
 	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl *string `pulumi:"ttl"`
@@ -416,8 +316,7 @@ type CertAuthBackendRoleArgs struct {
 	AllowedUriSans pulumi.StringArrayInput
 	// Path to the mounted Cert auth backend
 	Backend pulumi.StringPtrInput
-	// Restriction usage of the
-	// certificates to client IPs falling within the range of the specified CIDRs
+	// Restriction usage of the certificates to client IPs falling within the range of the specified CIDRs
 	//
 	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs pulumi.StringArrayInput
@@ -425,65 +324,41 @@ type CertAuthBackendRoleArgs struct {
 	Certificate pulumi.StringInput
 	// The name to display on tokens issued under this role.
 	DisplayName pulumi.StringPtrInput
-	// The maximum allowed lifetime of tokens
-	// issued using this role, provided as a number of seconds.
+	// Maximum TTL of tokens issued by the backend
 	//
 	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
 	MaxTtl pulumi.StringPtrInput
 	// Name of the role
 	Name pulumi.StringPtrInput
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
+	// Duration in seconds for token.  If set, the issued token is a periodic token.
 	//
 	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period pulumi.StringPtrInput
-	// An array of strings
-	// specifying the policies to be set on tokens issued using this role.
+	// Policies to grant on the issued token
 	//
 	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
 	Policies pulumi.StringArrayInput
 	// TLS extensions required on client certificates
 	RequiredExtensions pulumi.StringArrayInput
-	// List of CIDR blocks; if set, specifies blocks of IP
-	// addresses which can authenticate successfully, and ties the resulting token to these blocks
-	// as well.
+	// Specifies the blocks of IP addresses which are allowed to use the generated token
 	TokenBoundCidrs pulumi.StringArrayInput
-	// If set, will encode an
-	// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-	// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
-	// `tokenMaxTtl` would otherwise allow a renewal.
+	// Generated Token's Explicit Maximum TTL in seconds
 	TokenExplicitMaxTtl pulumi.IntPtrInput
-	// The maximum lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The maximum lifetime of the generated token
 	TokenMaxTtl pulumi.IntPtrInput
-	// If set, the default policy will not be set on
-	// generated tokens; otherwise it will be added to the policies set in token_policies.
+	// If true, the 'default' policy will not automatically be added to generated tokens
 	TokenNoDefaultPolicy pulumi.BoolPtrInput
-	// The
-	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-	// if any, in number of seconds to set on the token.
+	// The maximum number of times a token may be used, a value of zero means unlimited
 	TokenNumUses pulumi.IntPtrInput
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
+	// Generated Token's Period
 	TokenPeriod pulumi.IntPtrInput
-	// List of policies to encode onto generated tokens. Depending
-	// on the auth method, this list may be supplemented by user/group/other values.
+	// Generated Token's Policies
 	TokenPolicies pulumi.StringArrayInput
-	// The incremental lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The initial ttl of the token to generate in seconds
 	TokenTtl pulumi.IntPtrInput
-	// The type of token that should be generated. Can be `service`,
-	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-	// `service` tokens). For token store roles, there are two additional possibilities:
-	// `default-service` and `default-batch` which specify the type to return unless the client
-	// requests a different type at generation time.
+	// The type of token to generate, service or batch
 	TokenType pulumi.StringPtrInput
-	// The TTL period of tokens issued
-	// using this role, provided as a number of seconds.
+	// Default TTL of tokens issued by the backend
 	//
 	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl pulumi.StringPtrInput

@@ -94,42 +94,26 @@ class GetEntityResult:
     @property
     @pulumi.getter
     def aliases(self) -> Sequence['outputs.GetEntityAliasResult']:
-        """
-        A list of entity alias. Structure is documented below.
-        """
         return pulumi.get(self, "aliases")
 
     @property
     @pulumi.getter(name="creationTime")
     def creation_time(self) -> str:
-        """
-        Creation time of the Alias
-        """
         return pulumi.get(self, "creation_time")
 
     @property
     @pulumi.getter(name="dataJson")
     def data_json(self) -> str:
-        """
-        A string containing the full data payload retrieved from
-        Vault, serialized in JSON format.
-        """
         return pulumi.get(self, "data_json")
 
     @property
     @pulumi.getter(name="directGroupIds")
     def direct_group_ids(self) -> Sequence[str]:
-        """
-        List of Group IDs of which the entity is directly a member of
-        """
         return pulumi.get(self, "direct_group_ids")
 
     @property
     @pulumi.getter
     def disabled(self) -> bool:
-        """
-        Whether the entity is disabled
-        """
         return pulumi.get(self, "disabled")
 
     @property
@@ -145,9 +129,6 @@ class GetEntityResult:
     @property
     @pulumi.getter(name="groupIds")
     def group_ids(self) -> Sequence[str]:
-        """
-        List of all Group IDs of which the entity is a member of
-        """
         return pulumi.get(self, "group_ids")
 
     @property
@@ -161,49 +142,31 @@ class GetEntityResult:
     @property
     @pulumi.getter(name="inheritedGroupIds")
     def inherited_group_ids(self) -> Sequence[str]:
-        """
-        List of all Group IDs of which the entity is a member of transitively
-        """
         return pulumi.get(self, "inherited_group_ids")
 
     @property
     @pulumi.getter(name="lastUpdateTime")
     def last_update_time(self) -> str:
-        """
-        Last update time of the alias
-        """
         return pulumi.get(self, "last_update_time")
 
     @property
     @pulumi.getter(name="mergedEntityIds")
     def merged_entity_ids(self) -> Sequence[str]:
-        """
-        Other entity IDs which is merged with this entity
-        """
         return pulumi.get(self, "merged_entity_ids")
 
     @property
     @pulumi.getter
     def metadata(self) -> Mapping[str, Any]:
-        """
-        Arbitrary metadata
-        """
         return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> str:
-        """
-        Namespace of which the entity is part of
-        """
         return pulumi.get(self, "namespace_id")
 
     @property
     @pulumi.getter
     def policies(self) -> Sequence[str]:
-        """
-        List of policies attached to the entity
-        """
         return pulumi.get(self, "policies")
 
 
@@ -241,14 +204,6 @@ def get_entity(alias_id: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEntityResult:
     """
     Use this data source to access information about an existing resource.
-
-    :param str alias_id: ID of the alias.
-    :param str alias_mount_accessor: Accessor of the mount to which the alias belongs to.
-           This should be supplied in conjunction with `alias_name`.
-    :param str alias_name: Name of the alias. This should be supplied in conjunction with
-           `alias_mount_accessor`.
-    :param str entity_id: ID of the entity.
-    :param str entity_name: Name of the entity.
     """
     __args__ = dict()
     __args__['aliasId'] = alias_id

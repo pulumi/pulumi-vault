@@ -8,7 +8,7 @@ import (
 )
 
 // Reads the Role of an Kubernetes from a Vault server. See the [Vault
-// documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
+// documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-config) for more
 // information.
 func LookupAuthBackendConfig(ctx *pulumi.Context, args *LookupAuthBackendConfigArgs, opts ...pulumi.InvokeOption) (*LookupAuthBackendConfigResult, error) {
 	var rv LookupAuthBackendConfigResult
@@ -26,8 +26,7 @@ type LookupAuthBackendConfigArgs struct {
 	Backend              *string `pulumi:"backend"`
 	DisableIssValidation *bool   `pulumi:"disableIssValidation"`
 	DisableLocalCaJwt    *bool   `pulumi:"disableLocalCaJwt"`
-	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
-	Issuer *string `pulumi:"issuer"`
+	Issuer               *string `pulumi:"issuer"`
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
 	KubernetesCaCert *string `pulumi:"kubernetesCaCert"`
 	// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
@@ -42,8 +41,7 @@ type LookupAuthBackendConfigResult struct {
 	DisableIssValidation bool    `pulumi:"disableIssValidation"`
 	DisableLocalCaJwt    bool    `pulumi:"disableLocalCaJwt"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+	Id     string `pulumi:"id"`
 	Issuer string `pulumi:"issuer"`
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
 	KubernetesCaCert string `pulumi:"kubernetesCaCert"`

@@ -60,13 +60,13 @@ namespace Pulumi.Vault
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+        /// Enable the secrets engine to access Vault's external entropy source
         /// </summary>
         [Output("externalEntropyAccess")]
         public Output<bool?> ExternalEntropyAccess { get; private set; } = null!;
 
         /// <summary>
-        /// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+        /// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         /// </summary>
         [Output("local")]
         public Output<bool?> Local { get; private set; } = null!;
@@ -90,7 +90,7 @@ namespace Pulumi.Vault
         public Output<string> Path { get; private set; } = null!;
 
         /// <summary>
-        /// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        /// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         /// </summary>
         [Output("sealWrap")]
         public Output<bool> SealWrap { get; private set; } = null!;
@@ -160,13 +160,13 @@ namespace Pulumi.Vault
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+        /// Enable the secrets engine to access Vault's external entropy source
         /// </summary>
         [Input("externalEntropyAccess")]
         public Input<bool>? ExternalEntropyAccess { get; set; }
 
         /// <summary>
-        /// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+        /// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
@@ -196,7 +196,7 @@ namespace Pulumi.Vault
         public Input<string> Path { get; set; } = null!;
 
         /// <summary>
-        /// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        /// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         /// </summary>
         [Input("sealWrap")]
         public Input<bool>? SealWrap { get; set; }
@@ -233,13 +233,13 @@ namespace Pulumi.Vault
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+        /// Enable the secrets engine to access Vault's external entropy source
         /// </summary>
         [Input("externalEntropyAccess")]
         public Input<bool>? ExternalEntropyAccess { get; set; }
 
         /// <summary>
-        /// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+        /// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
@@ -269,7 +269,7 @@ namespace Pulumi.Vault
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        /// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         /// </summary>
         [Input("sealWrap")]
         public Input<bool>? SealWrap { get; set; }

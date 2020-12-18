@@ -37,15 +37,15 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
             path="%s")
         config_urls = vault.pki_secret.SecretBackendConfigUrls("configUrls",
             backend=pki.path,
-            issuing_certificates=["http://127.0.0.1:8200/v1/pki/ca"])
+            issuing_certificates="http://127.0.0.1:8200/v1/pki/ca")
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] issuing_certificates: Specifies the URL values for the Issuing Certificate field.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers: Specifies the URL values for the OCSP Servers field.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field. Comma-separated string if multiple.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] issuing_certificates: Specifies the URL values for the Issuing Certificate field. Comma-separated string if multiple.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers: Specifies the URL values for the OCSP Servers field. Comma-separated string if multiple.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -92,9 +92,9 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] issuing_certificates: Specifies the URL values for the Issuing Certificate field.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers: Specifies the URL values for the OCSP Servers field.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field. Comma-separated string if multiple.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] issuing_certificates: Specifies the URL values for the Issuing Certificate field. Comma-separated string if multiple.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers: Specifies the URL values for the OCSP Servers field. Comma-separated string if multiple.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -118,7 +118,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
     @pulumi.getter(name="crlDistributionPoints")
     def crl_distribution_points(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        Specifies the URL values for the CRL Distribution Points field.
+        Specifies the URL values for the CRL Distribution Points field. Comma-separated string if multiple.
         """
         return pulumi.get(self, "crl_distribution_points")
 
@@ -126,7 +126,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
     @pulumi.getter(name="issuingCertificates")
     def issuing_certificates(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        Specifies the URL values for the Issuing Certificate field.
+        Specifies the URL values for the Issuing Certificate field. Comma-separated string if multiple.
         """
         return pulumi.get(self, "issuing_certificates")
 
@@ -134,7 +134,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
     @pulumi.getter(name="ocspServers")
     def ocsp_servers(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        Specifies the URL values for the OCSP Servers field.
+        Specifies the URL values for the OCSP Servers field. Comma-separated string if multiple.
         """
         return pulumi.get(self, "ocsp_servers")
 

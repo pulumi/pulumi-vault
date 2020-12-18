@@ -90,11 +90,12 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+     * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set,
+     * system certificates are used.
      */
     public readonly jwksCaPem!: pulumi.Output<string | undefined>;
     /**
-     * JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
+     * JWKS URL to use to authenticate signatures. Cannot be used with 'oidc_discovery_url' or 'jwt_validation_pubkeys'.
      */
     public readonly jwksUrl!: pulumi.Output<string | undefined>;
     /**
@@ -208,11 +209,12 @@ export interface AuthBackendState {
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+     * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set,
+     * system certificates are used.
      */
     readonly jwksCaPem?: pulumi.Input<string>;
     /**
-     * JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
+     * JWKS URL to use to authenticate signatures. Cannot be used with 'oidc_discovery_url' or 'jwt_validation_pubkeys'.
      */
     readonly jwksUrl?: pulumi.Input<string>;
     /**
@@ -267,11 +269,12 @@ export interface AuthBackendArgs {
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+     * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set,
+     * system certificates are used.
      */
     readonly jwksCaPem?: pulumi.Input<string>;
     /**
-     * JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
+     * JWKS URL to use to authenticate signatures. Cannot be used with 'oidc_discovery_url' or 'jwt_validation_pubkeys'.
      */
     readonly jwksUrl?: pulumi.Input<string>;
     /**

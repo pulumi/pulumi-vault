@@ -77,8 +77,9 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] bound_issuer: The value against which to match the iss claim in a JWT
         :param pulumi.Input[str] default_role: The default role to use if none is provided during login
         :param pulumi.Input[str] description: The description of the auth backend
-        :param pulumi.Input[str] jwks_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
-        :param pulumi.Input[str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
+        :param pulumi.Input[str] jwks_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set,
+               system certificates are used.
+        :param pulumi.Input[str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with 'oidc_discovery_url' or 'jwt_validation_pubkeys'.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
         :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
@@ -156,8 +157,9 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] bound_issuer: The value against which to match the iss claim in a JWT
         :param pulumi.Input[str] default_role: The default role to use if none is provided during login
         :param pulumi.Input[str] description: The description of the auth backend
-        :param pulumi.Input[str] jwks_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
-        :param pulumi.Input[str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
+        :param pulumi.Input[str] jwks_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set,
+               system certificates are used.
+        :param pulumi.Input[str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with 'oidc_discovery_url' or 'jwt_validation_pubkeys'.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
         :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
@@ -224,7 +226,8 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="jwksCaPem")
     def jwks_ca_pem(self) -> pulumi.Output[Optional[str]]:
         """
-        The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+        The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set,
+        system certificates are used.
         """
         return pulumi.get(self, "jwks_ca_pem")
 
@@ -232,7 +235,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="jwksUrl")
     def jwks_url(self) -> pulumi.Output[Optional[str]]:
         """
-        JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
+        JWKS URL to use to authenticate signatures. Cannot be used with 'oidc_discovery_url' or 'jwt_validation_pubkeys'.
         """
         return pulumi.get(self, "jwks_url")
 

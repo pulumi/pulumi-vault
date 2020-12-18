@@ -11,118 +11,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Manages member entities for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
-//
-// ## Example Usage
-// ### Exclusive Member Entities
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/identity"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
-// 			Type:                    pulumi.String("internal"),
-// 			ExternalMemberEntityIds: pulumi.Bool(true),
-// 			Metadata: pulumi.StringMap{
-// 				"version": pulumi.String("2"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		user, err := identity.NewEntity(ctx, "user", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = identity.NewGroupMemberEntityIds(ctx, "members", &identity.GroupMemberEntityIdsArgs{
-// 			Exclusive: pulumi.Bool(true),
-// 			MemberEntityIds: pulumi.StringArray{
-// 				user.ID(),
-// 			},
-// 			GroupId: internal.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### Non-exclusive Member Entities
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/identity"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
-// 			Type:                    pulumi.String("internal"),
-// 			ExternalMemberEntityIds: pulumi.Bool(true),
-// 			Metadata: pulumi.StringMap{
-// 				"version": pulumi.String("2"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		testUser, err := identity.NewEntity(ctx, "testUser", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		secondTestUser, err := identity.NewEntity(ctx, "secondTestUser", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		devUser, err := identity.NewEntity(ctx, "devUser", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = identity.NewGroupMemberEntityIds(ctx, "test", &identity.GroupMemberEntityIdsArgs{
-// 			MemberEntityIds: pulumi.StringArray{
-// 				testUser.ID(),
-// 				secondTestUser.ID(),
-// 			},
-// 			Exclusive: pulumi.Bool(false),
-// 			GroupId:   internal.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = identity.NewGroupMemberEntityIds(ctx, "others", &identity.GroupMemberEntityIdsArgs{
-// 			MemberEntityIds: pulumi.StringArray{
-// 				devUser.ID(),
-// 			},
-// 			Exclusive: pulumi.Bool(false),
-// 			GroupId:   internal.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type GroupMemberEntityIds struct {
 	pulumi.CustomResourceState
 
-	// Defaults to `true`.
+	// Should the resource manage member entity ids exclusively? Beware of race conditions when disabling exclusive management
 	Exclusive pulumi.BoolPtrOutput `pulumi:"exclusive"`
-	// Group ID to assign member entities to.
+	// ID of the group.
 	GroupId pulumi.StringOutput `pulumi:"groupId"`
-	// The name of the group that are assigned the member entities.
+	// Name of the group.
 	GroupName pulumi.StringOutput `pulumi:"groupName"`
-	// List of member entities that belong to the group
+	// Entity IDs to be assigned as group members.
 	MemberEntityIds pulumi.StringArrayOutput `pulumi:"memberEntityIds"`
 }
 
@@ -157,24 +55,24 @@ func GetGroupMemberEntityIds(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GroupMemberEntityIds resources.
 type groupMemberEntityIdsState struct {
-	// Defaults to `true`.
+	// Should the resource manage member entity ids exclusively? Beware of race conditions when disabling exclusive management
 	Exclusive *bool `pulumi:"exclusive"`
-	// Group ID to assign member entities to.
+	// ID of the group.
 	GroupId *string `pulumi:"groupId"`
-	// The name of the group that are assigned the member entities.
+	// Name of the group.
 	GroupName *string `pulumi:"groupName"`
-	// List of member entities that belong to the group
+	// Entity IDs to be assigned as group members.
 	MemberEntityIds []string `pulumi:"memberEntityIds"`
 }
 
 type GroupMemberEntityIdsState struct {
-	// Defaults to `true`.
+	// Should the resource manage member entity ids exclusively? Beware of race conditions when disabling exclusive management
 	Exclusive pulumi.BoolPtrInput
-	// Group ID to assign member entities to.
+	// ID of the group.
 	GroupId pulumi.StringPtrInput
-	// The name of the group that are assigned the member entities.
+	// Name of the group.
 	GroupName pulumi.StringPtrInput
-	// List of member entities that belong to the group
+	// Entity IDs to be assigned as group members.
 	MemberEntityIds pulumi.StringArrayInput
 }
 
@@ -183,21 +81,21 @@ func (GroupMemberEntityIdsState) ElementType() reflect.Type {
 }
 
 type groupMemberEntityIdsArgs struct {
-	// Defaults to `true`.
+	// Should the resource manage member entity ids exclusively? Beware of race conditions when disabling exclusive management
 	Exclusive *bool `pulumi:"exclusive"`
-	// Group ID to assign member entities to.
+	// ID of the group.
 	GroupId string `pulumi:"groupId"`
-	// List of member entities that belong to the group
+	// Entity IDs to be assigned as group members.
 	MemberEntityIds []string `pulumi:"memberEntityIds"`
 }
 
 // The set of arguments for constructing a GroupMemberEntityIds resource.
 type GroupMemberEntityIdsArgs struct {
-	// Defaults to `true`.
+	// Should the resource manage member entity ids exclusively? Beware of race conditions when disabling exclusive management
 	Exclusive pulumi.BoolPtrInput
-	// Group ID to assign member entities to.
+	// ID of the group.
 	GroupId pulumi.StringInput
-	// List of member entities that belong to the group
+	// Entity IDs to be assigned as group members.
 	MemberEntityIds pulumi.StringArrayInput
 }
 

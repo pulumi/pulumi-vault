@@ -14,9 +14,9 @@ import (
 type OidcKeyAllowedClientID struct {
 	pulumi.CustomResourceState
 
-	// Client ID to allow usage with the OIDC named key
+	// Role Client ID allowed to use the key for signing.
 	AllowedClientId pulumi.StringOutput `pulumi:"allowedClientId"`
-	// Name of the OIDC Key allow the Client ID.
+	// Name of the key.
 	KeyName pulumi.StringOutput `pulumi:"keyName"`
 }
 
@@ -54,16 +54,16 @@ func GetOidcKeyAllowedClientID(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering OidcKeyAllowedClientID resources.
 type oidcKeyAllowedClientIDState struct {
-	// Client ID to allow usage with the OIDC named key
+	// Role Client ID allowed to use the key for signing.
 	AllowedClientId *string `pulumi:"allowedClientId"`
-	// Name of the OIDC Key allow the Client ID.
+	// Name of the key.
 	KeyName *string `pulumi:"keyName"`
 }
 
 type OidcKeyAllowedClientIDState struct {
-	// Client ID to allow usage with the OIDC named key
+	// Role Client ID allowed to use the key for signing.
 	AllowedClientId pulumi.StringPtrInput
-	// Name of the OIDC Key allow the Client ID.
+	// Name of the key.
 	KeyName pulumi.StringPtrInput
 }
 
@@ -72,17 +72,17 @@ func (OidcKeyAllowedClientIDState) ElementType() reflect.Type {
 }
 
 type oidcKeyAllowedClientIDArgs struct {
-	// Client ID to allow usage with the OIDC named key
+	// Role Client ID allowed to use the key for signing.
 	AllowedClientId string `pulumi:"allowedClientId"`
-	// Name of the OIDC Key allow the Client ID.
+	// Name of the key.
 	KeyName string `pulumi:"keyName"`
 }
 
 // The set of arguments for constructing a OidcKeyAllowedClientID resource.
 type OidcKeyAllowedClientIDArgs struct {
-	// Client ID to allow usage with the OIDC named key
+	// Role Client ID allowed to use the key for signing.
 	AllowedClientId pulumi.StringInput
-	// Name of the OIDC Key allow the Client ID.
+	// Name of the key.
 	KeyName pulumi.StringInput
 }
 

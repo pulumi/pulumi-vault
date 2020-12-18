@@ -76,6 +76,13 @@ namespace Pulumi.Vault
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by
+        /// replication.
+        /// </summary>
+        [Output("local")]
+        public Output<bool?> Local { get; private set; } = null!;
+
+        /// <summary>
         /// Configuration options to pass to the audit device itself.
         /// </summary>
         [Output("options")]
@@ -145,6 +152,13 @@ namespace Pulumi.Vault
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by
+        /// replication.
+        /// </summary>
+        [Input("local")]
+        public Input<bool>? Local { get; set; }
+
         [Input("options", required: true)]
         private InputMap<string>? _options;
 
@@ -181,6 +195,13 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by
+        /// replication.
+        /// </summary>
+        [Input("local")]
+        public Input<bool>? Local { get; set; }
 
         [Input("options")]
         private InputMap<string>? _options;

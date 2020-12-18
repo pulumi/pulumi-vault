@@ -38,10 +38,8 @@ class SecretRoleset(pulumi.CustomResource):
         import pulumi_vault as vault
 
         project = "my-awesome-project"
-        gcp = vault.gcp.SecretBackend("gcp",
-            credentials=(lambda path: open(path).read())("credentials.json"),
-            path="gcp")
-        roleset = vault.gcp.SecretRoleset("roleset",
+        gcp = vault.gcp.SecretBackend("gcp", credentials=(lambda path: open(path).read())("credentials.json"))
+        agent = vault.gcp.SecretRoleset("agent",
             backend=gcp.path,
             bindings=[vault.gcp.SecretRolesetBindingArgs(
                 resource=f"//cloudresourcemanager.googleapis.com/projects/{project}",
@@ -51,14 +49,6 @@ class SecretRoleset(pulumi.CustomResource):
             roleset="project_viewer",
             secret_type="access_token",
             token_scopes=["https://www.googleapis.com/auth/cloud-platform"])
-        ```
-
-        ## Import
-
-        A roleset can be imported using its Vault Path. For example, referencing the example above,
-
-        ```sh
-         $ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer
         ```
 
         :param str resource_name: The name of the resource.

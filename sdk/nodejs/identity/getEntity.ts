@@ -27,27 +27,10 @@ export function getEntity(args?: GetEntityArgs, opts?: pulumi.InvokeOptions): Pr
  * A collection of arguments for invoking getEntity.
  */
 export interface GetEntityArgs {
-    /**
-     * ID of the alias.
-     */
     readonly aliasId?: string;
-    /**
-     * Accessor of the mount to which the alias belongs to.
-     * This should be supplied in conjunction with `aliasName`.
-     */
     readonly aliasMountAccessor?: string;
-    /**
-     * Name of the alias. This should be supplied in conjunction with
-     * `aliasMountAccessor`.
-     */
     readonly aliasName?: string;
-    /**
-     * ID of the entity.
-     */
     readonly entityId?: string;
-    /**
-     * Name of the entity.
-     */
     readonly entityName?: string;
 }
 
@@ -58,59 +41,22 @@ export interface GetEntityResult {
     readonly aliasId: string;
     readonly aliasMountAccessor: string;
     readonly aliasName: string;
-    /**
-     * A list of entity alias. Structure is documented below.
-     */
     readonly aliases: outputs.identity.GetEntityAlias[];
-    /**
-     * Creation time of the Alias
-     */
     readonly creationTime: string;
-    /**
-     * A string containing the full data payload retrieved from
-     * Vault, serialized in JSON format.
-     */
     readonly dataJson: string;
-    /**
-     * List of Group IDs of which the entity is directly a member of
-     */
     readonly directGroupIds: string[];
-    /**
-     * Whether the entity is disabled
-     */
     readonly disabled: boolean;
     readonly entityId: string;
     readonly entityName: string;
-    /**
-     * List of all Group IDs of which the entity is a member of
-     */
     readonly groupIds: string[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * List of all Group IDs of which the entity is a member of transitively
-     */
     readonly inheritedGroupIds: string[];
-    /**
-     * Last update time of the alias
-     */
     readonly lastUpdateTime: string;
-    /**
-     * Other entity IDs which is merged with this entity
-     */
     readonly mergedEntityIds: string[];
-    /**
-     * Arbitrary metadata
-     */
     readonly metadata: {[key: string]: any};
-    /**
-     * Namespace of which the entity is part of
-     */
     readonly namespaceId: string;
-    /**
-     * List of policies attached to the entity
-     */
     readonly policies: string[];
 }

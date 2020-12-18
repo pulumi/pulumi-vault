@@ -9,27 +9,17 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.AD
 {
-    /// <summary>
-    /// ## Import
-    /// 
-    /// AD secret backend can be imported using the `backend`, e.g.
-    /// 
-    /// ```sh
-    ///  $ pulumi import vault:ad/secretBackend:SecretBackend ad ad
-    /// ```
-    /// </summary>
     public partial class SecretBackend : Pulumi.CustomResource
     {
         /// <summary>
-        /// Use anonymous binds when performing LDAP group searches
-        /// (if true the initial credentials will still be used for the initial connection test).
+        /// Use anonymous binds when performing LDAP group searches (if true the initial credentials will still be used for the
+        /// initial connection test).
         /// </summary>
         [Output("anonymousGroupSearch")]
         public Output<bool?> AnonymousGroupSearch { get; private set; } = null!;
 
         /// <summary>
-        /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `ad`.
+        /// The mount path for a backend, for example, the path given in "$ vault auth enable -path=my-ad ad".
         /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
@@ -41,21 +31,19 @@ namespace Pulumi.Vault.AD
         public Output<string> Binddn { get; private set; } = null!;
 
         /// <summary>
-        /// Password to use along with binddn when performing user search.
+        /// LDAP password for searching for the user DN.
         /// </summary>
         [Output("bindpass")]
         public Output<string> Bindpass { get; private set; } = null!;
 
         /// <summary>
-        /// If set, user and group names assigned to policies within the
-        /// backend will be case sensitive. Otherwise, names will be normalized to lower case.
+        /// If true, case sensitivity will be used when comparing usernames and groups for matching policies.
         /// </summary>
         [Output("caseSensitiveNames")]
         public Output<bool?> CaseSensitiveNames { get; private set; } = null!;
 
         /// <summary>
-        /// CA certificate to use when verifying LDAP server certificate, must be
-        /// x509 PEM encoded.
+        /// CA certificate to use when verifying LDAP server certificate, must be x509 PEM encoded.
         /// </summary>
         [Output("certificate")]
         public Output<string?> Certificate { get; private set; } = null!;
@@ -73,81 +61,78 @@ namespace Pulumi.Vault.AD
         public Output<string?> ClientTlsKey { get; private set; } = null!;
 
         /// <summary>
-        /// Default lease duration for secrets in seconds.
+        /// Default lease duration for secrets in seconds
         /// </summary>
         [Output("defaultLeaseTtlSeconds")]
         public Output<int> DefaultLeaseTtlSeconds { get; private set; } = null!;
 
         /// <summary>
-        /// Denies an unauthenticated LDAP bind request if the user's password is empty;
-        /// defaults to true.
+        /// Denies an unauthenticated LDAP bind request if the user's password is empty; defaults to true
         /// </summary>
         [Output("denyNullBind")]
         public Output<bool?> DenyNullBind { get; private set; } = null!;
 
         /// <summary>
-        /// Human-friendly description of the mount for the Active Directory backend.
+        /// Human-friendly description of the mount for the backend.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Use anonymous bind to discover the bind Distinguished Name of a user.
+        /// Use anonymous bind to discover the bind DN of a user.
         /// </summary>
         [Output("discoverdn")]
         public Output<bool?> Discoverdn { get; private set; } = null!;
 
         /// <summary>
-        /// Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix". This
-        /// setting is deprecated and should instead use `password_policy`.
+        /// Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
         /// </summary>
         [Output("formatter")]
         public Output<string> Formatter { get; private set; } = null!;
 
         /// <summary>
-        /// LDAP attribute to follow on objects returned by &lt;groupfilter&gt; in order to enumerate
-        /// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
+        /// LDAP attribute to follow on objects returned by &lt;groupfilter&gt; in order to enumerate user group membership. Examples:
+        /// "cn" or "memberOf", etc. Default: cn
         /// </summary>
         [Output("groupattr")]
         public Output<string?> Groupattr { get; private set; } = null!;
 
         /// <summary>
-        /// LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org).
+        /// LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org)
         /// </summary>
         [Output("groupdn")]
         public Output<string?> Groupdn { get; private set; } = null!;
 
         /// <summary>
-        /// Go template for querying group membership of user (optional) The template can access
-        /// the following context variables: UserDN, Username. Defaults to `(|(memberUid={{.Username}})(member={{.UserDN}})(uniqueMember={{.UserDN}}))`
+        /// Go template for querying group membership of user. The template can access the following context variables: UserDN,
+        /// Username Example: (&amp;(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}})) Default:
+        /// (|(memberUid={{.Username}})(member={{.UserDN}})(uniqueMember={{.UserDN}}))
         /// </summary>
         [Output("groupfilter")]
         public Output<string?> Groupfilter { get; private set; } = null!;
 
         /// <summary>
-        /// Skip LDAP server SSL Certificate verification. This is not recommended for production.
-        /// Defaults to `false`.
+        /// Skip LDAP server SSL Certificate verification - insecure and not recommended for production use.
         /// </summary>
         [Output("insecureTls")]
         public Output<bool?> InsecureTls { get; private set; } = null!;
 
         /// <summary>
-        /// The number of seconds after a Vault rotation where, if Active Directory
-        /// shows a later rotation, it should be considered out-of-band
+        /// The number of seconds after a Vault rotation where, if Active Directory shows a later rotation, it should be considered
+        /// out-of-band.
         /// </summary>
         [Output("lastRotationTolerance")]
         public Output<int> LastRotationTolerance { get; private set; } = null!;
 
         /// <summary>
-        /// The desired length of passwords that Vault generates. This
-        /// setting is deprecated and should instead use `password_policy`.
+        /// The desired length of passwords that Vault generates.
         /// </summary>
         [Output("length")]
         public Output<int> Length { get; private set; } = null!;
 
         /// <summary>
-        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-        /// replication.Tolerance duration to use when checking the last rotation time.
+        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication.Tolerance duration to
+        /// use when checking the last rotation time.
         /// </summary>
         [Output("local")]
         public Output<bool?> Local { get; private set; } = null!;
@@ -171,8 +156,7 @@ namespace Pulumi.Vault.AD
         public Output<string?> PasswordPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// Timeout, in seconds, for the connection when making requests against the server
-        /// before returning back an error.
+        /// Timeout, in seconds, for the connection when making requests against the server before returning back an error.
         /// </summary>
         [Output("requestTimeout")]
         public Output<int?> RequestTimeout { get; private set; } = null!;
@@ -184,15 +168,13 @@ namespace Pulumi.Vault.AD
         public Output<bool> Starttls { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum TLS version to use. Accepted values are `tls10`, `tls11`,
-        /// `tls12` or `tls13`. Defaults to `tls12`.
+        /// Maximum TLS version to use. Accepted values are 'tls10', 'tls11', 'tls12' or 'tls13'. Defaults to 'tls12'
         /// </summary>
         [Output("tlsMaxVersion")]
         public Output<string> TlsMaxVersion { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum TLS version to use. Accepted values are `tls10`, `tls11`,
-        /// `tls12` or `tls13`. Defaults to `tls12`.
+        /// Minimum TLS version to use. Accepted values are 'tls10', 'tls11', 'tls12' or 'tls13'. Defaults to 'tls12'
         /// </summary>
         [Output("tlsMinVersion")]
         public Output<string> TlsMinVersion { get; private set; } = null!;
@@ -210,38 +192,36 @@ namespace Pulumi.Vault.AD
         public Output<string> Upndomain { get; private set; } = null!;
 
         /// <summary>
-        /// LDAP URL to connect to. Multiple URLs can be specified by concatenating
-        /// them with commas; they will be tried in-order. Defaults to `ldap://127.0.0.1`.
+        /// LDAP URL to connect to (default: ldap://127.0.0.1). Multiple URLs can be specified by concatenating them with commas;
+        /// they will be tried in-order.
         /// </summary>
         [Output("url")]
         public Output<string?> Url { get; private set; } = null!;
 
         /// <summary>
-        /// In Vault 1.1.1 a fix for handling group CN values of
-        /// different cases unfortunately introduced a regression that could cause previously defined groups
-        /// to not be found due to a change in the resulting name. If set true, the pre-1.1.1 behavior for
-        /// matching group CNs will be used. This is only needed in some upgrade scenarios for backwards
-        /// compatibility. It is enabled by default if the config is upgraded but disabled by default on
-        /// new configurations.
+        /// In Vault 1.1.1 a fix for handling group CN values of different cases unfortunately introduced a regression that could
+        /// cause previously defined groups to not be found due to a change in the resulting name. If set true, the pre-1.1.1
+        /// behavior for matching group CNs will be used. This is only needed in some upgrade scenarios for backwards compatibility.
+        /// It is enabled by default if the config is upgraded but disabled by default on new configurations.
         /// </summary>
         [Output("usePre111GroupCnBehavior")]
         public Output<bool> UsePre111GroupCnBehavior { get; private set; } = null!;
 
         /// <summary>
-        /// If true, use the Active Directory tokenGroups constructed attribute of the
-        /// user to find the group memberships. This will find all security groups including nested ones.
+        /// If true, use the Active Directory tokenGroups constructed attribute of the user to find the group memberships. This will
+        /// find all security groups including nested ones.
         /// </summary>
         [Output("useTokenGroups")]
         public Output<bool?> UseTokenGroups { get; private set; } = null!;
 
         /// <summary>
-        /// Attribute used when searching users. Defaults to `cn`.
+        /// Attribute used for users (default: cn)
         /// </summary>
         [Output("userattr")]
         public Output<string?> Userattr { get; private set; } = null!;
 
         /// <summary>
-        /// LDAP domain to use for users (eg: ou=People,dc=example,dc=org)`.
+        /// LDAP domain to use for users (eg: ou=People,dc=example,dc=org)
         /// </summary>
         [Output("userdn")]
         public Output<string?> Userdn { get; private set; } = null!;
@@ -293,15 +273,14 @@ namespace Pulumi.Vault.AD
     public sealed class SecretBackendArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Use anonymous binds when performing LDAP group searches
-        /// (if true the initial credentials will still be used for the initial connection test).
+        /// Use anonymous binds when performing LDAP group searches (if true the initial credentials will still be used for the
+        /// initial connection test).
         /// </summary>
         [Input("anonymousGroupSearch")]
         public Input<bool>? AnonymousGroupSearch { get; set; }
 
         /// <summary>
-        /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `ad`.
+        /// The mount path for a backend, for example, the path given in "$ vault auth enable -path=my-ad ad".
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -313,21 +292,19 @@ namespace Pulumi.Vault.AD
         public Input<string> Binddn { get; set; } = null!;
 
         /// <summary>
-        /// Password to use along with binddn when performing user search.
+        /// LDAP password for searching for the user DN.
         /// </summary>
         [Input("bindpass", required: true)]
         public Input<string> Bindpass { get; set; } = null!;
 
         /// <summary>
-        /// If set, user and group names assigned to policies within the
-        /// backend will be case sensitive. Otherwise, names will be normalized to lower case.
+        /// If true, case sensitivity will be used when comparing usernames and groups for matching policies.
         /// </summary>
         [Input("caseSensitiveNames")]
         public Input<bool>? CaseSensitiveNames { get; set; }
 
         /// <summary>
-        /// CA certificate to use when verifying LDAP server certificate, must be
-        /// x509 PEM encoded.
+        /// CA certificate to use when verifying LDAP server certificate, must be x509 PEM encoded.
         /// </summary>
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
@@ -345,81 +322,78 @@ namespace Pulumi.Vault.AD
         public Input<string>? ClientTlsKey { get; set; }
 
         /// <summary>
-        /// Default lease duration for secrets in seconds.
+        /// Default lease duration for secrets in seconds
         /// </summary>
         [Input("defaultLeaseTtlSeconds")]
         public Input<int>? DefaultLeaseTtlSeconds { get; set; }
 
         /// <summary>
-        /// Denies an unauthenticated LDAP bind request if the user's password is empty;
-        /// defaults to true.
+        /// Denies an unauthenticated LDAP bind request if the user's password is empty; defaults to true
         /// </summary>
         [Input("denyNullBind")]
         public Input<bool>? DenyNullBind { get; set; }
 
         /// <summary>
-        /// Human-friendly description of the mount for the Active Directory backend.
+        /// Human-friendly description of the mount for the backend.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Use anonymous bind to discover the bind Distinguished Name of a user.
+        /// Use anonymous bind to discover the bind DN of a user.
         /// </summary>
         [Input("discoverdn")]
         public Input<bool>? Discoverdn { get; set; }
 
         /// <summary>
-        /// Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix". This
-        /// setting is deprecated and should instead use `password_policy`.
+        /// Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
         /// </summary>
         [Input("formatter")]
         public Input<string>? Formatter { get; set; }
 
         /// <summary>
-        /// LDAP attribute to follow on objects returned by &lt;groupfilter&gt; in order to enumerate
-        /// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
+        /// LDAP attribute to follow on objects returned by &lt;groupfilter&gt; in order to enumerate user group membership. Examples:
+        /// "cn" or "memberOf", etc. Default: cn
         /// </summary>
         [Input("groupattr")]
         public Input<string>? Groupattr { get; set; }
 
         /// <summary>
-        /// LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org).
+        /// LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org)
         /// </summary>
         [Input("groupdn")]
         public Input<string>? Groupdn { get; set; }
 
         /// <summary>
-        /// Go template for querying group membership of user (optional) The template can access
-        /// the following context variables: UserDN, Username. Defaults to `(|(memberUid={{.Username}})(member={{.UserDN}})(uniqueMember={{.UserDN}}))`
+        /// Go template for querying group membership of user. The template can access the following context variables: UserDN,
+        /// Username Example: (&amp;(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}})) Default:
+        /// (|(memberUid={{.Username}})(member={{.UserDN}})(uniqueMember={{.UserDN}}))
         /// </summary>
         [Input("groupfilter")]
         public Input<string>? Groupfilter { get; set; }
 
         /// <summary>
-        /// Skip LDAP server SSL Certificate verification. This is not recommended for production.
-        /// Defaults to `false`.
+        /// Skip LDAP server SSL Certificate verification - insecure and not recommended for production use.
         /// </summary>
         [Input("insecureTls")]
         public Input<bool>? InsecureTls { get; set; }
 
         /// <summary>
-        /// The number of seconds after a Vault rotation where, if Active Directory
-        /// shows a later rotation, it should be considered out-of-band
+        /// The number of seconds after a Vault rotation where, if Active Directory shows a later rotation, it should be considered
+        /// out-of-band.
         /// </summary>
         [Input("lastRotationTolerance")]
         public Input<int>? LastRotationTolerance { get; set; }
 
         /// <summary>
-        /// The desired length of passwords that Vault generates. This
-        /// setting is deprecated and should instead use `password_policy`.
+        /// The desired length of passwords that Vault generates.
         /// </summary>
         [Input("length")]
         public Input<int>? Length { get; set; }
 
         /// <summary>
-        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-        /// replication.Tolerance duration to use when checking the last rotation time.
+        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication.Tolerance duration to
+        /// use when checking the last rotation time.
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
@@ -443,8 +417,7 @@ namespace Pulumi.Vault.AD
         public Input<string>? PasswordPolicy { get; set; }
 
         /// <summary>
-        /// Timeout, in seconds, for the connection when making requests against the server
-        /// before returning back an error.
+        /// Timeout, in seconds, for the connection when making requests against the server before returning back an error.
         /// </summary>
         [Input("requestTimeout")]
         public Input<int>? RequestTimeout { get; set; }
@@ -456,15 +429,13 @@ namespace Pulumi.Vault.AD
         public Input<bool>? Starttls { get; set; }
 
         /// <summary>
-        /// Maximum TLS version to use. Accepted values are `tls10`, `tls11`,
-        /// `tls12` or `tls13`. Defaults to `tls12`.
+        /// Maximum TLS version to use. Accepted values are 'tls10', 'tls11', 'tls12' or 'tls13'. Defaults to 'tls12'
         /// </summary>
         [Input("tlsMaxVersion")]
         public Input<string>? TlsMaxVersion { get; set; }
 
         /// <summary>
-        /// Minimum TLS version to use. Accepted values are `tls10`, `tls11`,
-        /// `tls12` or `tls13`. Defaults to `tls12`.
+        /// Minimum TLS version to use. Accepted values are 'tls10', 'tls11', 'tls12' or 'tls13'. Defaults to 'tls12'
         /// </summary>
         [Input("tlsMinVersion")]
         public Input<string>? TlsMinVersion { get; set; }
@@ -482,38 +453,36 @@ namespace Pulumi.Vault.AD
         public Input<string>? Upndomain { get; set; }
 
         /// <summary>
-        /// LDAP URL to connect to. Multiple URLs can be specified by concatenating
-        /// them with commas; they will be tried in-order. Defaults to `ldap://127.0.0.1`.
+        /// LDAP URL to connect to (default: ldap://127.0.0.1). Multiple URLs can be specified by concatenating them with commas;
+        /// they will be tried in-order.
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// In Vault 1.1.1 a fix for handling group CN values of
-        /// different cases unfortunately introduced a regression that could cause previously defined groups
-        /// to not be found due to a change in the resulting name. If set true, the pre-1.1.1 behavior for
-        /// matching group CNs will be used. This is only needed in some upgrade scenarios for backwards
-        /// compatibility. It is enabled by default if the config is upgraded but disabled by default on
-        /// new configurations.
+        /// In Vault 1.1.1 a fix for handling group CN values of different cases unfortunately introduced a regression that could
+        /// cause previously defined groups to not be found due to a change in the resulting name. If set true, the pre-1.1.1
+        /// behavior for matching group CNs will be used. This is only needed in some upgrade scenarios for backwards compatibility.
+        /// It is enabled by default if the config is upgraded but disabled by default on new configurations.
         /// </summary>
         [Input("usePre111GroupCnBehavior")]
         public Input<bool>? UsePre111GroupCnBehavior { get; set; }
 
         /// <summary>
-        /// If true, use the Active Directory tokenGroups constructed attribute of the
-        /// user to find the group memberships. This will find all security groups including nested ones.
+        /// If true, use the Active Directory tokenGroups constructed attribute of the user to find the group memberships. This will
+        /// find all security groups including nested ones.
         /// </summary>
         [Input("useTokenGroups")]
         public Input<bool>? UseTokenGroups { get; set; }
 
         /// <summary>
-        /// Attribute used when searching users. Defaults to `cn`.
+        /// Attribute used for users (default: cn)
         /// </summary>
         [Input("userattr")]
         public Input<string>? Userattr { get; set; }
 
         /// <summary>
-        /// LDAP domain to use for users (eg: ou=People,dc=example,dc=org)`.
+        /// LDAP domain to use for users (eg: ou=People,dc=example,dc=org)
         /// </summary>
         [Input("userdn")]
         public Input<string>? Userdn { get; set; }
@@ -526,15 +495,14 @@ namespace Pulumi.Vault.AD
     public sealed class SecretBackendState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Use anonymous binds when performing LDAP group searches
-        /// (if true the initial credentials will still be used for the initial connection test).
+        /// Use anonymous binds when performing LDAP group searches (if true the initial credentials will still be used for the
+        /// initial connection test).
         /// </summary>
         [Input("anonymousGroupSearch")]
         public Input<bool>? AnonymousGroupSearch { get; set; }
 
         /// <summary>
-        /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `ad`.
+        /// The mount path for a backend, for example, the path given in "$ vault auth enable -path=my-ad ad".
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -546,21 +514,19 @@ namespace Pulumi.Vault.AD
         public Input<string>? Binddn { get; set; }
 
         /// <summary>
-        /// Password to use along with binddn when performing user search.
+        /// LDAP password for searching for the user DN.
         /// </summary>
         [Input("bindpass")]
         public Input<string>? Bindpass { get; set; }
 
         /// <summary>
-        /// If set, user and group names assigned to policies within the
-        /// backend will be case sensitive. Otherwise, names will be normalized to lower case.
+        /// If true, case sensitivity will be used when comparing usernames and groups for matching policies.
         /// </summary>
         [Input("caseSensitiveNames")]
         public Input<bool>? CaseSensitiveNames { get; set; }
 
         /// <summary>
-        /// CA certificate to use when verifying LDAP server certificate, must be
-        /// x509 PEM encoded.
+        /// CA certificate to use when verifying LDAP server certificate, must be x509 PEM encoded.
         /// </summary>
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
@@ -578,81 +544,78 @@ namespace Pulumi.Vault.AD
         public Input<string>? ClientTlsKey { get; set; }
 
         /// <summary>
-        /// Default lease duration for secrets in seconds.
+        /// Default lease duration for secrets in seconds
         /// </summary>
         [Input("defaultLeaseTtlSeconds")]
         public Input<int>? DefaultLeaseTtlSeconds { get; set; }
 
         /// <summary>
-        /// Denies an unauthenticated LDAP bind request if the user's password is empty;
-        /// defaults to true.
+        /// Denies an unauthenticated LDAP bind request if the user's password is empty; defaults to true
         /// </summary>
         [Input("denyNullBind")]
         public Input<bool>? DenyNullBind { get; set; }
 
         /// <summary>
-        /// Human-friendly description of the mount for the Active Directory backend.
+        /// Human-friendly description of the mount for the backend.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Use anonymous bind to discover the bind Distinguished Name of a user.
+        /// Use anonymous bind to discover the bind DN of a user.
         /// </summary>
         [Input("discoverdn")]
         public Input<bool>? Discoverdn { get; set; }
 
         /// <summary>
-        /// Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix". This
-        /// setting is deprecated and should instead use `password_policy`.
+        /// Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
         /// </summary>
         [Input("formatter")]
         public Input<string>? Formatter { get; set; }
 
         /// <summary>
-        /// LDAP attribute to follow on objects returned by &lt;groupfilter&gt; in order to enumerate
-        /// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
+        /// LDAP attribute to follow on objects returned by &lt;groupfilter&gt; in order to enumerate user group membership. Examples:
+        /// "cn" or "memberOf", etc. Default: cn
         /// </summary>
         [Input("groupattr")]
         public Input<string>? Groupattr { get; set; }
 
         /// <summary>
-        /// LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org).
+        /// LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org)
         /// </summary>
         [Input("groupdn")]
         public Input<string>? Groupdn { get; set; }
 
         /// <summary>
-        /// Go template for querying group membership of user (optional) The template can access
-        /// the following context variables: UserDN, Username. Defaults to `(|(memberUid={{.Username}})(member={{.UserDN}})(uniqueMember={{.UserDN}}))`
+        /// Go template for querying group membership of user. The template can access the following context variables: UserDN,
+        /// Username Example: (&amp;(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}})) Default:
+        /// (|(memberUid={{.Username}})(member={{.UserDN}})(uniqueMember={{.UserDN}}))
         /// </summary>
         [Input("groupfilter")]
         public Input<string>? Groupfilter { get; set; }
 
         /// <summary>
-        /// Skip LDAP server SSL Certificate verification. This is not recommended for production.
-        /// Defaults to `false`.
+        /// Skip LDAP server SSL Certificate verification - insecure and not recommended for production use.
         /// </summary>
         [Input("insecureTls")]
         public Input<bool>? InsecureTls { get; set; }
 
         /// <summary>
-        /// The number of seconds after a Vault rotation where, if Active Directory
-        /// shows a later rotation, it should be considered out-of-band
+        /// The number of seconds after a Vault rotation where, if Active Directory shows a later rotation, it should be considered
+        /// out-of-band.
         /// </summary>
         [Input("lastRotationTolerance")]
         public Input<int>? LastRotationTolerance { get; set; }
 
         /// <summary>
-        /// The desired length of passwords that Vault generates. This
-        /// setting is deprecated and should instead use `password_policy`.
+        /// The desired length of passwords that Vault generates.
         /// </summary>
         [Input("length")]
         public Input<int>? Length { get; set; }
 
         /// <summary>
-        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-        /// replication.Tolerance duration to use when checking the last rotation time.
+        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication.Tolerance duration to
+        /// use when checking the last rotation time.
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
@@ -676,8 +639,7 @@ namespace Pulumi.Vault.AD
         public Input<string>? PasswordPolicy { get; set; }
 
         /// <summary>
-        /// Timeout, in seconds, for the connection when making requests against the server
-        /// before returning back an error.
+        /// Timeout, in seconds, for the connection when making requests against the server before returning back an error.
         /// </summary>
         [Input("requestTimeout")]
         public Input<int>? RequestTimeout { get; set; }
@@ -689,15 +651,13 @@ namespace Pulumi.Vault.AD
         public Input<bool>? Starttls { get; set; }
 
         /// <summary>
-        /// Maximum TLS version to use. Accepted values are `tls10`, `tls11`,
-        /// `tls12` or `tls13`. Defaults to `tls12`.
+        /// Maximum TLS version to use. Accepted values are 'tls10', 'tls11', 'tls12' or 'tls13'. Defaults to 'tls12'
         /// </summary>
         [Input("tlsMaxVersion")]
         public Input<string>? TlsMaxVersion { get; set; }
 
         /// <summary>
-        /// Minimum TLS version to use. Accepted values are `tls10`, `tls11`,
-        /// `tls12` or `tls13`. Defaults to `tls12`.
+        /// Minimum TLS version to use. Accepted values are 'tls10', 'tls11', 'tls12' or 'tls13'. Defaults to 'tls12'
         /// </summary>
         [Input("tlsMinVersion")]
         public Input<string>? TlsMinVersion { get; set; }
@@ -715,38 +675,36 @@ namespace Pulumi.Vault.AD
         public Input<string>? Upndomain { get; set; }
 
         /// <summary>
-        /// LDAP URL to connect to. Multiple URLs can be specified by concatenating
-        /// them with commas; they will be tried in-order. Defaults to `ldap://127.0.0.1`.
+        /// LDAP URL to connect to (default: ldap://127.0.0.1). Multiple URLs can be specified by concatenating them with commas;
+        /// they will be tried in-order.
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// In Vault 1.1.1 a fix for handling group CN values of
-        /// different cases unfortunately introduced a regression that could cause previously defined groups
-        /// to not be found due to a change in the resulting name. If set true, the pre-1.1.1 behavior for
-        /// matching group CNs will be used. This is only needed in some upgrade scenarios for backwards
-        /// compatibility. It is enabled by default if the config is upgraded but disabled by default on
-        /// new configurations.
+        /// In Vault 1.1.1 a fix for handling group CN values of different cases unfortunately introduced a regression that could
+        /// cause previously defined groups to not be found due to a change in the resulting name. If set true, the pre-1.1.1
+        /// behavior for matching group CNs will be used. This is only needed in some upgrade scenarios for backwards compatibility.
+        /// It is enabled by default if the config is upgraded but disabled by default on new configurations.
         /// </summary>
         [Input("usePre111GroupCnBehavior")]
         public Input<bool>? UsePre111GroupCnBehavior { get; set; }
 
         /// <summary>
-        /// If true, use the Active Directory tokenGroups constructed attribute of the
-        /// user to find the group memberships. This will find all security groups including nested ones.
+        /// If true, use the Active Directory tokenGroups constructed attribute of the user to find the group memberships. This will
+        /// find all security groups including nested ones.
         /// </summary>
         [Input("useTokenGroups")]
         public Input<bool>? UseTokenGroups { get; set; }
 
         /// <summary>
-        /// Attribute used when searching users. Defaults to `cn`.
+        /// Attribute used for users (default: cn)
         /// </summary>
         [Input("userattr")]
         public Input<string>? Userattr { get; set; }
 
         /// <summary>
-        /// LDAP domain to use for users (eg: ou=People,dc=example,dc=org)`.
+        /// LDAP domain to use for users (eg: ou=People,dc=example,dc=org)
         /// </summary>
         [Input("userdn")]
         public Input<string>? Userdn { get; set; }

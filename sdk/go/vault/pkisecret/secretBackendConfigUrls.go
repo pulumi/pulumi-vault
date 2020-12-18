@@ -36,10 +36,8 @@ import (
 // 			return err
 // 		}
 // 		_, err = pkiSecret.NewSecretBackendConfigUrls(ctx, "configUrls", &pkiSecret.SecretBackendConfigUrlsArgs{
-// 			Backend: pki.Path,
-// 			IssuingCertificates: pulumi.StringArray{
-// 				pulumi.String("http://127.0.0.1:8200/v1/pki/ca"),
-// 			},
+// 			Backend:             pki.Path,
+// 			IssuingCertificates: "http://127.0.0.1:8200/v1/pki/ca",
 // 		})
 // 		if err != nil {
 // 			return err
@@ -53,11 +51,11 @@ type SecretBackendConfigUrls struct {
 
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringOutput `pulumi:"backend"`
-	// Specifies the URL values for the CRL Distribution Points field.
+	// Specifies the URL values for the CRL Distribution Points field. Comma-separated string if multiple.
 	CrlDistributionPoints pulumi.StringArrayOutput `pulumi:"crlDistributionPoints"`
-	// Specifies the URL values for the Issuing Certificate field.
+	// Specifies the URL values for the Issuing Certificate field. Comma-separated string if multiple.
 	IssuingCertificates pulumi.StringArrayOutput `pulumi:"issuingCertificates"`
-	// Specifies the URL values for the OCSP Servers field.
+	// Specifies the URL values for the OCSP Servers field. Comma-separated string if multiple.
 	OcspServers pulumi.StringArrayOutput `pulumi:"ocspServers"`
 }
 
@@ -94,22 +92,22 @@ func GetSecretBackendConfigUrls(ctx *pulumi.Context,
 type secretBackendConfigUrlsState struct {
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend *string `pulumi:"backend"`
-	// Specifies the URL values for the CRL Distribution Points field.
+	// Specifies the URL values for the CRL Distribution Points field. Comma-separated string if multiple.
 	CrlDistributionPoints []string `pulumi:"crlDistributionPoints"`
-	// Specifies the URL values for the Issuing Certificate field.
+	// Specifies the URL values for the Issuing Certificate field. Comma-separated string if multiple.
 	IssuingCertificates []string `pulumi:"issuingCertificates"`
-	// Specifies the URL values for the OCSP Servers field.
+	// Specifies the URL values for the OCSP Servers field. Comma-separated string if multiple.
 	OcspServers []string `pulumi:"ocspServers"`
 }
 
 type SecretBackendConfigUrlsState struct {
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringPtrInput
-	// Specifies the URL values for the CRL Distribution Points field.
+	// Specifies the URL values for the CRL Distribution Points field. Comma-separated string if multiple.
 	CrlDistributionPoints pulumi.StringArrayInput
-	// Specifies the URL values for the Issuing Certificate field.
+	// Specifies the URL values for the Issuing Certificate field. Comma-separated string if multiple.
 	IssuingCertificates pulumi.StringArrayInput
-	// Specifies the URL values for the OCSP Servers field.
+	// Specifies the URL values for the OCSP Servers field. Comma-separated string if multiple.
 	OcspServers pulumi.StringArrayInput
 }
 
@@ -120,11 +118,11 @@ func (SecretBackendConfigUrlsState) ElementType() reflect.Type {
 type secretBackendConfigUrlsArgs struct {
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
-	// Specifies the URL values for the CRL Distribution Points field.
+	// Specifies the URL values for the CRL Distribution Points field. Comma-separated string if multiple.
 	CrlDistributionPoints []string `pulumi:"crlDistributionPoints"`
-	// Specifies the URL values for the Issuing Certificate field.
+	// Specifies the URL values for the Issuing Certificate field. Comma-separated string if multiple.
 	IssuingCertificates []string `pulumi:"issuingCertificates"`
-	// Specifies the URL values for the OCSP Servers field.
+	// Specifies the URL values for the OCSP Servers field. Comma-separated string if multiple.
 	OcspServers []string `pulumi:"ocspServers"`
 }
 
@@ -132,11 +130,11 @@ type secretBackendConfigUrlsArgs struct {
 type SecretBackendConfigUrlsArgs struct {
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringInput
-	// Specifies the URL values for the CRL Distribution Points field.
+	// Specifies the URL values for the CRL Distribution Points field. Comma-separated string if multiple.
 	CrlDistributionPoints pulumi.StringArrayInput
-	// Specifies the URL values for the Issuing Certificate field.
+	// Specifies the URL values for the Issuing Certificate field. Comma-separated string if multiple.
 	IssuingCertificates pulumi.StringArrayInput
-	// Specifies the URL values for the OCSP Servers field.
+	// Specifies the URL values for the OCSP Servers field. Comma-separated string if multiple.
 	OcspServers pulumi.StringArrayInput
 }
 

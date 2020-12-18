@@ -14,19 +14,20 @@ import (
 type Backend struct {
 	pulumi.CustomResourceState
 
-	// - The OAuth2 client id to connect to Azure.
+	// The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
+	// required.
 	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
-	// - The OAuth2 client secret to connect to Azure.
+	// The client secret for credentials to query the Azure APIs
 	ClientSecret pulumi.StringPtrOutput `pulumi:"clientSecret"`
 	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// - The Azure environment.
+	// The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
 	Environment pulumi.StringPtrOutput `pulumi:"environment"`
-	// - The unique path this backend should be mounted at. Defaults to `azure`.
+	// Path to mount the backend at.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
-	// - The subscription id for the Azure Active Directory.
+	// The subscription id for the Azure Active Directory.
 	SubscriptionId pulumi.StringOutput `pulumi:"subscriptionId"`
-	// - The tenant id for the Azure Active Directory.
+	// The tenant id for the Azure Active Directory organization.
 	TenantId pulumi.StringOutput `pulumi:"tenantId"`
 }
 
@@ -64,36 +65,38 @@ func GetBackend(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Backend resources.
 type backendState struct {
-	// - The OAuth2 client id to connect to Azure.
+	// The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
+	// required.
 	ClientId *string `pulumi:"clientId"`
-	// - The OAuth2 client secret to connect to Azure.
+	// The client secret for credentials to query the Azure APIs
 	ClientSecret *string `pulumi:"clientSecret"`
 	// Human-friendly description of the mount for the backend.
 	Description *string `pulumi:"description"`
-	// - The Azure environment.
+	// The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
 	Environment *string `pulumi:"environment"`
-	// - The unique path this backend should be mounted at. Defaults to `azure`.
+	// Path to mount the backend at.
 	Path *string `pulumi:"path"`
-	// - The subscription id for the Azure Active Directory.
+	// The subscription id for the Azure Active Directory.
 	SubscriptionId *string `pulumi:"subscriptionId"`
-	// - The tenant id for the Azure Active Directory.
+	// The tenant id for the Azure Active Directory organization.
 	TenantId *string `pulumi:"tenantId"`
 }
 
 type BackendState struct {
-	// - The OAuth2 client id to connect to Azure.
+	// The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
+	// required.
 	ClientId pulumi.StringPtrInput
-	// - The OAuth2 client secret to connect to Azure.
+	// The client secret for credentials to query the Azure APIs
 	ClientSecret pulumi.StringPtrInput
 	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrInput
-	// - The Azure environment.
+	// The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
 	Environment pulumi.StringPtrInput
-	// - The unique path this backend should be mounted at. Defaults to `azure`.
+	// Path to mount the backend at.
 	Path pulumi.StringPtrInput
-	// - The subscription id for the Azure Active Directory.
+	// The subscription id for the Azure Active Directory.
 	SubscriptionId pulumi.StringPtrInput
-	// - The tenant id for the Azure Active Directory.
+	// The tenant id for the Azure Active Directory organization.
 	TenantId pulumi.StringPtrInput
 }
 
@@ -102,37 +105,39 @@ func (BackendState) ElementType() reflect.Type {
 }
 
 type backendArgs struct {
-	// - The OAuth2 client id to connect to Azure.
+	// The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
+	// required.
 	ClientId *string `pulumi:"clientId"`
-	// - The OAuth2 client secret to connect to Azure.
+	// The client secret for credentials to query the Azure APIs
 	ClientSecret *string `pulumi:"clientSecret"`
 	// Human-friendly description of the mount for the backend.
 	Description *string `pulumi:"description"`
-	// - The Azure environment.
+	// The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
 	Environment *string `pulumi:"environment"`
-	// - The unique path this backend should be mounted at. Defaults to `azure`.
+	// Path to mount the backend at.
 	Path *string `pulumi:"path"`
-	// - The subscription id for the Azure Active Directory.
+	// The subscription id for the Azure Active Directory.
 	SubscriptionId string `pulumi:"subscriptionId"`
-	// - The tenant id for the Azure Active Directory.
+	// The tenant id for the Azure Active Directory organization.
 	TenantId string `pulumi:"tenantId"`
 }
 
 // The set of arguments for constructing a Backend resource.
 type BackendArgs struct {
-	// - The OAuth2 client id to connect to Azure.
+	// The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
+	// required.
 	ClientId pulumi.StringPtrInput
-	// - The OAuth2 client secret to connect to Azure.
+	// The client secret for credentials to query the Azure APIs
 	ClientSecret pulumi.StringPtrInput
 	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrInput
-	// - The Azure environment.
+	// The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
 	Environment pulumi.StringPtrInput
-	// - The unique path this backend should be mounted at. Defaults to `azure`.
+	// Path to mount the backend at.
 	Path pulumi.StringPtrInput
-	// - The subscription id for the Azure Active Directory.
+	// The subscription id for the Azure Active Directory.
 	SubscriptionId pulumi.StringInput
-	// - The tenant id for the Azure Active Directory.
+	// The tenant id for the Azure Active Directory organization.
 	TenantId pulumi.StringInput
 }
 

@@ -29,7 +29,7 @@ class Template(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alphabet: The alphabet to use for this template. This is only used during FPE transformations.
         :param pulumi.Input[str] name: The name of the template.
-        :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
+        :param pulumi.Input[str] path: The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
         :param pulumi.Input[str] pattern: The pattern used for matching. Currently, only regular expression pattern is supported.
         :param pulumi.Input[str] type: The pattern type to use for match detection. Currently, only regex is supported.
         """
@@ -81,7 +81,7 @@ class Template(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alphabet: The alphabet to use for this template. This is only used during FPE transformations.
         :param pulumi.Input[str] name: The name of the template.
-        :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
+        :param pulumi.Input[str] path: The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
         :param pulumi.Input[str] pattern: The pattern used for matching. Currently, only regular expression pattern is supported.
         :param pulumi.Input[str] type: The pattern type to use for match detection. Currently, only regex is supported.
         """
@@ -116,7 +116,7 @@ class Template(pulumi.CustomResource):
     @pulumi.getter
     def path(self) -> pulumi.Output[str]:
         """
-        Path to where the back-end is mounted within Vault.
+        The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
         """
         return pulumi.get(self, "path")
 

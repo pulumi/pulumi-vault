@@ -37,7 +37,7 @@ class SecretBackend(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The AWS Access Key ID this backend should use to
-               issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+               issue new credentials.
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
@@ -47,7 +47,7 @@ class SecretBackend(pulumi.CustomResource):
                not begin or end with a `/`. Defaults to `aws`.
         :param pulumi.Input[str] region: The AWS region for API calls. Defaults to `us-east-1`.
         :param pulumi.Input[str] secret_key: The AWS Secret Key this backend should use to
-               issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+               issue new credentials.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -98,7 +98,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The AWS Access Key ID this backend should use to
-               issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+               issue new credentials.
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
@@ -108,7 +108,7 @@ class SecretBackend(pulumi.CustomResource):
                not begin or end with a `/`. Defaults to `aws`.
         :param pulumi.Input[str] region: The AWS region for API calls. Defaults to `us-east-1`.
         :param pulumi.Input[str] secret_key: The AWS Secret Key this backend should use to
-               issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+               issue new credentials.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -128,7 +128,7 @@ class SecretBackend(pulumi.CustomResource):
     def access_key(self) -> pulumi.Output[Optional[str]]:
         """
         The AWS Access Key ID this backend should use to
-        issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        issue new credentials.
         """
         return pulumi.get(self, "access_key")
 
@@ -180,7 +180,7 @@ class SecretBackend(pulumi.CustomResource):
     def secret_key(self) -> pulumi.Output[Optional[str]]:
         """
         The AWS Secret Key this backend should use to
-        issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        issue new credentials.
         """
         return pulumi.get(self, "secret_key")
 

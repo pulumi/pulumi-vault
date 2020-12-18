@@ -67,11 +67,11 @@ export class Mount extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+     * Enable the secrets engine to access Vault's external entropy source
      */
     public readonly externalEntropyAccess!: pulumi.Output<boolean | undefined>;
     /**
-     * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+     * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
     public readonly local!: pulumi.Output<boolean | undefined>;
     /**
@@ -87,7 +87,7 @@ export class Mount extends pulumi.CustomResource {
      */
     public readonly path!: pulumi.Output<string>;
     /**
-     * Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+     * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
     public readonly sealWrap!: pulumi.Output<boolean>;
     /**
@@ -164,11 +164,11 @@ export interface MountState {
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+     * Enable the secrets engine to access Vault's external entropy source
      */
     readonly externalEntropyAccess?: pulumi.Input<boolean>;
     /**
-     * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+     * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
     readonly local?: pulumi.Input<boolean>;
     /**
@@ -184,7 +184,7 @@ export interface MountState {
      */
     readonly path?: pulumi.Input<string>;
     /**
-     * Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+     * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
     readonly sealWrap?: pulumi.Input<boolean>;
     /**
@@ -206,11 +206,11 @@ export interface MountArgs {
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+     * Enable the secrets engine to access Vault's external entropy source
      */
     readonly externalEntropyAccess?: pulumi.Input<boolean>;
     /**
-     * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+     * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
     readonly local?: pulumi.Input<boolean>;
     /**
@@ -226,7 +226,7 @@ export interface MountArgs {
      */
     readonly path: pulumi.Input<string>;
     /**
-     * Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+     * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
     readonly sealWrap?: pulumi.Input<boolean>;
     /**

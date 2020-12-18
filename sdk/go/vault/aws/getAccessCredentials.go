@@ -24,15 +24,9 @@ type GetAccessCredentialsArgs struct {
 	Region  *string `pulumi:"region"`
 	// The name of the AWS secret backend role to read
 	// credentials from, with no leading or trailing `/`s.
-	Role string `pulumi:"role"`
-	// The specific AWS ARN to use
-	// from the configured role. If the role does not have multiple ARNs, this does
-	// not need to be specified.
+	Role    string  `pulumi:"role"`
 	RoleArn *string `pulumi:"roleArn"`
-	// Specifies the TTL for the use of the STS token. This
-	// is specified as a string with a duration suffix. Valid only when
-	// `credentialType` is `assumedRole` or `federationToken`
-	Ttl *string `pulumi:"ttl"`
+	Ttl     *string `pulumi:"ttl"`
 	// The type of credentials to read. Defaults
 	// to `"creds"`, which just returns an AWS Access Key ID and Secret
 	// Key. Can also be set to `"sts"`, which will return a security token

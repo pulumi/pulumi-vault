@@ -111,9 +111,6 @@ class GetAuthBackendRoleResult:
     @property
     @pulumi.getter
     def audience(self) -> Optional[str]:
-        """
-        (Optional) Audience claim to verify in the JWT.
-        """
         return pulumi.get(self, "audience")
 
     @property
@@ -153,21 +150,33 @@ class GetAuthBackendRoleResult:
     @property
     @pulumi.getter(name="maxTtl")
     def max_ttl(self) -> Optional[int]:
+        """
+        The maximum allowed lifetime of tokens issued in seconds using this role.
+        """
         return pulumi.get(self, "max_ttl")
 
     @property
     @pulumi.getter(name="numUses")
     def num_uses(self) -> Optional[int]:
+        """
+        Number of times issued tokens can be used. Setting this to 0 or leaving it unset means unlimited uses.
+        """
         return pulumi.get(self, "num_uses")
 
     @property
     @pulumi.getter
     def period(self) -> Optional[int]:
+        """
+        If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this parameter.
+        """
         return pulumi.get(self, "period")
 
     @property
     @pulumi.getter
     def policies(self) -> Optional[Sequence[str]]:
+        """
+        Policies to be set on tokens issued using this role.
+        """
         return pulumi.get(self, "policies")
 
     @property
@@ -178,96 +187,54 @@ class GetAuthBackendRoleResult:
     @property
     @pulumi.getter(name="tokenBoundCidrs")
     def token_bound_cidrs(self) -> Optional[Sequence[str]]:
-        """
-        List of CIDR blocks; if set, specifies blocks of IP
-        addresses which can authenticate successfully, and ties the resulting token to these blocks
-        as well.
-        """
         return pulumi.get(self, "token_bound_cidrs")
 
     @property
     @pulumi.getter(name="tokenExplicitMaxTtl")
     def token_explicit_max_ttl(self) -> Optional[int]:
-        """
-        If set, will encode an
-        [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        `token_max_ttl` would otherwise allow a renewal.
-        """
         return pulumi.get(self, "token_explicit_max_ttl")
 
     @property
     @pulumi.getter(name="tokenMaxTtl")
     def token_max_ttl(self) -> Optional[int]:
-        """
-        The maximum lifetime for generated tokens in number of seconds.
-        Its current value will be referenced at renewal time.
-        """
         return pulumi.get(self, "token_max_ttl")
 
     @property
     @pulumi.getter(name="tokenNoDefaultPolicy")
     def token_no_default_policy(self) -> Optional[bool]:
-        """
-        If set, the default policy will not be set on
-        generated tokens; otherwise it will be added to the policies set in token_policies.
-        """
         return pulumi.get(self, "token_no_default_policy")
 
     @property
     @pulumi.getter(name="tokenNumUses")
     def token_num_uses(self) -> Optional[int]:
-        """
-        The
-        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        if any, in number of seconds to set on the token.
-        """
         return pulumi.get(self, "token_num_uses")
 
     @property
     @pulumi.getter(name="tokenPeriod")
     def token_period(self) -> Optional[int]:
-        """
-        (Optional) If set, indicates that the
-        token generated using this role should never expire. The token should be renewed within the
-        duration specified by this value. At each renewal, the token's TTL will be set to the
-        value of this field. Specified in seconds.
-        """
         return pulumi.get(self, "token_period")
 
     @property
     @pulumi.getter(name="tokenPolicies")
     def token_policies(self) -> Optional[Sequence[str]]:
-        """
-        List of policies to encode onto generated tokens. Depending
-        on the auth method, this list may be supplemented by user/group/other values.
-        """
         return pulumi.get(self, "token_policies")
 
     @property
     @pulumi.getter(name="tokenTtl")
     def token_ttl(self) -> Optional[int]:
-        """
-        The incremental lifetime for generated tokens in number of seconds.
-        Its current value will be referenced at renewal time.
-        """
         return pulumi.get(self, "token_ttl")
 
     @property
     @pulumi.getter(name="tokenType")
     def token_type(self) -> Optional[str]:
-        """
-        The type of token that should be generated. Can be `service`,
-        `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        `service` tokens). For token store roles, there are two additional possibilities:
-        `default-service` and `default-batch` which specify the type to return unless the client
-        requests a different type at generation time.
-        """
         return pulumi.get(self, "token_type")
 
     @property
     @pulumi.getter
     def ttl(self) -> Optional[int]:
+        """
+        The TTL period of tokens issued using this role in seconds.
+        """
         return pulumi.get(self, "ttl")
 
 
@@ -321,7 +288,7 @@ def get_auth_backend_role(audience: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuthBackendRoleResult:
     """
     Reads the Role of an Kubernetes from a Vault server. See the [Vault
-    documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
+    documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-role) for more
     information.
 
     ## Example Usage
@@ -336,37 +303,14 @@ def get_auth_backend_role(audience: Optional[str] = None,
     ```
 
 
-    :param str audience: (Optional) Audience claim to verify in the JWT.
     :param str backend: The unique name for the Kubernetes backend the role to
            retrieve Role attributes for resides in. Defaults to "kubernetes".
+    :param int max_ttl: The maximum allowed lifetime of tokens issued in seconds using this role.
+    :param int num_uses: Number of times issued tokens can be used. Setting this to 0 or leaving it unset means unlimited uses.
+    :param int period: If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this parameter.
+    :param Sequence[str] policies: Policies to be set on tokens issued using this role.
     :param str role_name: The name of the role to retrieve the Role attributes for.
-    :param Sequence[str] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
-           addresses which can authenticate successfully, and ties the resulting token to these blocks
-           as well.
-    :param int token_explicit_max_ttl: If set, will encode an
-           [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-           onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-           `token_max_ttl` would otherwise allow a renewal.
-    :param int token_max_ttl: The maximum lifetime for generated tokens in number of seconds.
-           Its current value will be referenced at renewal time.
-    :param bool token_no_default_policy: If set, the default policy will not be set on
-           generated tokens; otherwise it will be added to the policies set in token_policies.
-    :param int token_num_uses: The
-           [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-           if any, in number of seconds to set on the token.
-    :param int token_period: (Optional) If set, indicates that the
-           token generated using this role should never expire. The token should be renewed within the
-           duration specified by this value. At each renewal, the token's TTL will be set to the
-           value of this field. Specified in seconds.
-    :param Sequence[str] token_policies: List of policies to encode onto generated tokens. Depending
-           on the auth method, this list may be supplemented by user/group/other values.
-    :param int token_ttl: The incremental lifetime for generated tokens in number of seconds.
-           Its current value will be referenced at renewal time.
-    :param str token_type: The type of token that should be generated. Can be `service`,
-           `batch`, or `default` to use the mount's tuned default (which unless changed will be
-           `service` tokens). For token store roles, there are two additional possibilities:
-           `default-service` and `default-batch` which specify the type to return unless the client
-           requests a different type at generation time.
+    :param int ttl: The TTL period of tokens issued using this role in seconds.
     """
     __args__ = dict()
     __args__['audience'] = audience

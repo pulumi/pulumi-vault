@@ -37,7 +37,7 @@ export class Entity extends pulumi.CustomResource {
      */
     public readonly disabled!: pulumi.Output<boolean | undefined>;
     /**
-     * `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+     * Manage policies externally through `vault_identity_entity_policies`.
      */
     public readonly externalPolicies!: pulumi.Output<boolean | undefined>;
     /**
@@ -98,7 +98,7 @@ export interface EntityState {
      */
     readonly disabled?: pulumi.Input<boolean>;
     /**
-     * `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+     * Manage policies externally through `vault_identity_entity_policies`.
      */
     readonly externalPolicies?: pulumi.Input<boolean>;
     /**
@@ -124,7 +124,7 @@ export interface EntityArgs {
      */
     readonly disabled?: pulumi.Input<boolean>;
     /**
-     * `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+     * Manage policies externally through `vault_identity_entity_policies`.
      */
     readonly externalPolicies?: pulumi.Input<boolean>;
     /**

@@ -33,6 +33,27 @@ class Token(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
+        Provides a resource to generate a vault token with its options. The token renewing is supported through optional
+        arguments.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.Token("example",
+            policies=[
+                "policy1",
+                "policy2",
+            ],
+            renew_increment=86400,
+            renew_min_lease=43200,
+            renewable=True,
+            role_name="app",
+            ttl="24h")
+        ```
+
         ## Import
 
         Tokens can be imported using its `id` as accessor id, e.g.
@@ -134,7 +155,7 @@ class Token(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_token: String containing the client token if stored in present file
         :param pulumi.Input[str] display_name: String containing the token display name
-        :param pulumi.Input[str] encrypted_client_token: String containing the client token encrypted with the given `pgp_key` if stored in present file
+        :param pulumi.Input[str] encrypted_client_token: The client token encrypted using the provided PGP key.
         :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token
         :param pulumi.Input[int] lease_duration: String containing the token lease duration if present in state file
         :param pulumi.Input[str] lease_started: String containing the token lease started time if present in state file
@@ -199,7 +220,7 @@ class Token(pulumi.CustomResource):
     @pulumi.getter(name="encryptedClientToken")
     def encrypted_client_token(self) -> pulumi.Output[str]:
         """
-        String containing the client token encrypted with the given `pgp_key` if stored in present file
+        The client token encrypted using the provided PGP key.
         """
         return pulumi.get(self, "encrypted_client_token")
 

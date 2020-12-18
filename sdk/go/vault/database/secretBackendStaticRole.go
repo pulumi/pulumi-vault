@@ -11,80 +11,20 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Creates a Database Secret Backend static role in Vault. Database secret backend
-// static roles can be used to manage 1-to-1 mapping of a Vault Role to a user in a
-// database for the database.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/database"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		db, err := vault.NewMount(ctx, "db", &vault.MountArgs{
-// 			Path: pulumi.String("postgres"),
-// 			Type: pulumi.String("database"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		postgres, err := database.NewSecretBackendConnection(ctx, "postgres", &database.SecretBackendConnectionArgs{
-// 			AllowedRoles: pulumi.StringArray{
-// 				pulumi.String("*"),
-// 			},
-// 			Backend: db.Path,
-// 			Postgresql: &database.SecretBackendConnectionPostgresqlArgs{
-// 				ConnectionUrl: pulumi.String("postgres://username:password@host:port/database"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = database.NewSecretBackendStaticRole(ctx, "staticRole", &database.SecretBackendStaticRoleArgs{
-// 			Backend:        db.Path,
-// 			DbName:         postgres.Name,
-// 			RotationPeriod: pulumi.Int(3600),
-// 			RotationStatements: pulumi.StringArray{
-// 				pulumi.String("ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"),
-// 			},
-// 			Username: pulumi.String("example"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ## Import
-//
-// Database secret backend static roles can be imported using the `backend`, `/static-roles/`, and the `name` e.g.
-//
-// ```sh
-//  $ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
-// ```
 type SecretBackendStaticRole struct {
 	pulumi.CustomResourceState
 
-	// The unique name of the Vault mount to configure.
+	// The path of the Database Secret Backend the role belongs to.
 	Backend pulumi.StringOutput `pulumi:"backend"`
-	// The unique name of the database connection to use for the static role.
+	// Database connection to use for this role.
 	DbName pulumi.StringOutput `pulumi:"dbName"`
-	// A unique name to give the static role.
+	// Unique name for the static role.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The amount of time Vault should wait before rotating the password, in seconds.
 	RotationPeriod pulumi.IntOutput `pulumi:"rotationPeriod"`
 	// Database statements to execute to rotate the password for the configured database user.
 	RotationStatements pulumi.StringArrayOutput `pulumi:"rotationStatements"`
-	// The database username that this static role corresponds to.
+	// The database username that this role corresponds to.
 	Username pulumi.StringOutput `pulumi:"username"`
 }
 
@@ -128,32 +68,32 @@ func GetSecretBackendStaticRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretBackendStaticRole resources.
 type secretBackendStaticRoleState struct {
-	// The unique name of the Vault mount to configure.
+	// The path of the Database Secret Backend the role belongs to.
 	Backend *string `pulumi:"backend"`
-	// The unique name of the database connection to use for the static role.
+	// Database connection to use for this role.
 	DbName *string `pulumi:"dbName"`
-	// A unique name to give the static role.
+	// Unique name for the static role.
 	Name *string `pulumi:"name"`
 	// The amount of time Vault should wait before rotating the password, in seconds.
 	RotationPeriod *int `pulumi:"rotationPeriod"`
 	// Database statements to execute to rotate the password for the configured database user.
 	RotationStatements []string `pulumi:"rotationStatements"`
-	// The database username that this static role corresponds to.
+	// The database username that this role corresponds to.
 	Username *string `pulumi:"username"`
 }
 
 type SecretBackendStaticRoleState struct {
-	// The unique name of the Vault mount to configure.
+	// The path of the Database Secret Backend the role belongs to.
 	Backend pulumi.StringPtrInput
-	// The unique name of the database connection to use for the static role.
+	// Database connection to use for this role.
 	DbName pulumi.StringPtrInput
-	// A unique name to give the static role.
+	// Unique name for the static role.
 	Name pulumi.StringPtrInput
 	// The amount of time Vault should wait before rotating the password, in seconds.
 	RotationPeriod pulumi.IntPtrInput
 	// Database statements to execute to rotate the password for the configured database user.
 	RotationStatements pulumi.StringArrayInput
-	// The database username that this static role corresponds to.
+	// The database username that this role corresponds to.
 	Username pulumi.StringPtrInput
 }
 
@@ -162,33 +102,33 @@ func (SecretBackendStaticRoleState) ElementType() reflect.Type {
 }
 
 type secretBackendStaticRoleArgs struct {
-	// The unique name of the Vault mount to configure.
+	// The path of the Database Secret Backend the role belongs to.
 	Backend string `pulumi:"backend"`
-	// The unique name of the database connection to use for the static role.
+	// Database connection to use for this role.
 	DbName string `pulumi:"dbName"`
-	// A unique name to give the static role.
+	// Unique name for the static role.
 	Name *string `pulumi:"name"`
 	// The amount of time Vault should wait before rotating the password, in seconds.
 	RotationPeriod int `pulumi:"rotationPeriod"`
 	// Database statements to execute to rotate the password for the configured database user.
 	RotationStatements []string `pulumi:"rotationStatements"`
-	// The database username that this static role corresponds to.
+	// The database username that this role corresponds to.
 	Username string `pulumi:"username"`
 }
 
 // The set of arguments for constructing a SecretBackendStaticRole resource.
 type SecretBackendStaticRoleArgs struct {
-	// The unique name of the Vault mount to configure.
+	// The path of the Database Secret Backend the role belongs to.
 	Backend pulumi.StringInput
-	// The unique name of the database connection to use for the static role.
+	// Database connection to use for this role.
 	DbName pulumi.StringInput
-	// A unique name to give the static role.
+	// Unique name for the static role.
 	Name pulumi.StringPtrInput
 	// The amount of time Vault should wait before rotating the password, in seconds.
 	RotationPeriod pulumi.IntInput
 	// Database statements to execute to rotate the password for the configured database user.
 	RotationStatements pulumi.StringArrayInput
-	// The database username that this static role corresponds to.
+	// The database username that this role corresponds to.
 	Username pulumi.StringInput
 }
 

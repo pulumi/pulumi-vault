@@ -18,64 +18,38 @@ func LookupGroup(ctx *pulumi.Context, args *LookupGroupArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getGroup.
 type LookupGroupArgs struct {
-	// ID of the alias.
-	AliasId *string `pulumi:"aliasId"`
-	// Accessor of the mount to which the alias belongs to.
-	// This should be supplied in conjunction with `aliasName`.
+	AliasId            *string `pulumi:"aliasId"`
 	AliasMountAccessor *string `pulumi:"aliasMountAccessor"`
-	// Name of the alias. This should be supplied in conjunction with
-	// `aliasMountAccessor`.
-	AliasName *string `pulumi:"aliasName"`
-	// ID of the group.
-	GroupId *string `pulumi:"groupId"`
-	// Name of the group.
-	GroupName *string `pulumi:"groupName"`
+	AliasName          *string `pulumi:"aliasName"`
+	GroupId            *string `pulumi:"groupId"`
+	GroupName          *string `pulumi:"groupName"`
 }
 
 // A collection of values returned by getGroup.
 type LookupGroupResult struct {
-	// Canonical ID of the Alias
-	AliasCanonicalId string `pulumi:"aliasCanonicalId"`
-	// Creation time of the Alias
-	AliasCreationTime string `pulumi:"aliasCreationTime"`
-	AliasId           string `pulumi:"aliasId"`
-	// Last update time of the alias
-	AliasLastUpdateTime string `pulumi:"aliasLastUpdateTime"`
-	// List of canonical IDs merged with this alias
-	AliasMergedFromCanonicalIds []string `pulumi:"aliasMergedFromCanonicalIds"`
-	// Arbitrary metadata
-	AliasMetadata      map[string]interface{} `pulumi:"aliasMetadata"`
-	AliasMountAccessor string                 `pulumi:"aliasMountAccessor"`
-	// Authentication mount path which this alias belongs to
-	AliasMountPath string `pulumi:"aliasMountPath"`
-	// Authentication mount type which this alias belongs to
-	AliasMountType string `pulumi:"aliasMountType"`
-	AliasName      string `pulumi:"aliasName"`
-	// Creation timestamp of the group
-	CreationTime string `pulumi:"creationTime"`
-	// A string containing the full data payload retrieved from
-	// Vault, serialized in JSON format.
-	DataJson  string `pulumi:"dataJson"`
-	GroupId   string `pulumi:"groupId"`
-	GroupName string `pulumi:"groupName"`
+	AliasCanonicalId            string                 `pulumi:"aliasCanonicalId"`
+	AliasCreationTime           string                 `pulumi:"aliasCreationTime"`
+	AliasId                     string                 `pulumi:"aliasId"`
+	AliasLastUpdateTime         string                 `pulumi:"aliasLastUpdateTime"`
+	AliasMergedFromCanonicalIds []string               `pulumi:"aliasMergedFromCanonicalIds"`
+	AliasMetadata               map[string]interface{} `pulumi:"aliasMetadata"`
+	AliasMountAccessor          string                 `pulumi:"aliasMountAccessor"`
+	AliasMountPath              string                 `pulumi:"aliasMountPath"`
+	AliasMountType              string                 `pulumi:"aliasMountType"`
+	AliasName                   string                 `pulumi:"aliasName"`
+	CreationTime                string                 `pulumi:"creationTime"`
+	DataJson                    string                 `pulumi:"dataJson"`
+	GroupId                     string                 `pulumi:"groupId"`
+	GroupName                   string                 `pulumi:"groupName"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Last updated time of the group
-	LastUpdateTime string `pulumi:"lastUpdateTime"`
-	// List of Entity IDs which are members of this group
-	MemberEntityIds []string `pulumi:"memberEntityIds"`
-	// List of Group IDs which are members of this group
-	MemberGroupIds []string `pulumi:"memberGroupIds"`
-	// Arbitrary metadata
-	Metadata map[string]interface{} `pulumi:"metadata"`
-	// Modify index of the group
-	ModifyIndex int `pulumi:"modifyIndex"`
-	// Namespace of which the group is part of
-	NamespaceId string `pulumi:"namespaceId"`
-	// List of Group IDs which are parents of this group.
-	ParentGroupIds []string `pulumi:"parentGroupIds"`
-	// List of policies attached to the group
-	Policies []string `pulumi:"policies"`
-	// Type of group
-	Type string `pulumi:"type"`
+	Id              string                 `pulumi:"id"`
+	LastUpdateTime  string                 `pulumi:"lastUpdateTime"`
+	MemberEntityIds []string               `pulumi:"memberEntityIds"`
+	MemberGroupIds  []string               `pulumi:"memberGroupIds"`
+	Metadata        map[string]interface{} `pulumi:"metadata"`
+	ModifyIndex     int                    `pulumi:"modifyIndex"`
+	NamespaceId     string                 `pulumi:"namespaceId"`
+	ParentGroupIds  []string               `pulumi:"parentGroupIds"`
+	Policies        []string               `pulumi:"policies"`
+	Type            string                 `pulumi:"type"`
 }

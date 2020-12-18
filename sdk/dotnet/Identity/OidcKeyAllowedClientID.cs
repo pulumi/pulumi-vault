@@ -12,13 +12,13 @@ namespace Pulumi.Vault.Identity
     public partial class OidcKeyAllowedClientID : Pulumi.CustomResource
     {
         /// <summary>
-        /// Client ID to allow usage with the OIDC named key
+        /// Role Client ID allowed to use the key for signing.
         /// </summary>
         [Output("allowedClientId")]
         public Output<string> AllowedClientId { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the OIDC Key allow the Client ID.
+        /// Name of the key.
         /// </summary>
         [Output("keyName")]
         public Output<string> KeyName { get; private set; } = null!;
@@ -70,13 +70,13 @@ namespace Pulumi.Vault.Identity
     public sealed class OidcKeyAllowedClientIDArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Client ID to allow usage with the OIDC named key
+        /// Role Client ID allowed to use the key for signing.
         /// </summary>
         [Input("allowedClientId", required: true)]
         public Input<string> AllowedClientId { get; set; } = null!;
 
         /// <summary>
-        /// Name of the OIDC Key allow the Client ID.
+        /// Name of the key.
         /// </summary>
         [Input("keyName", required: true)]
         public Input<string> KeyName { get; set; } = null!;
@@ -89,13 +89,13 @@ namespace Pulumi.Vault.Identity
     public sealed class OidcKeyAllowedClientIDState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Client ID to allow usage with the OIDC named key
+        /// Role Client ID allowed to use the key for signing.
         /// </summary>
         [Input("allowedClientId")]
         public Input<string>? AllowedClientId { get; set; }
 
         /// <summary>
-        /// Name of the OIDC Key allow the Client ID.
+        /// Name of the key.
         /// </summary>
         [Input("keyName")]
         public Input<string>? KeyName { get; set; }

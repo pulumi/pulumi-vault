@@ -5,57 +5,12 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages policies for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
+ * ## Import
  *
- * ## Example Usage
- * ### Exclusive Policies
+ * Database secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
  *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const internal = new vault.identity.Group("internal", {
- *     type: "internal",
- *     externalPolicies: true,
- *     metadata: {
- *         version: "2",
- *     },
- * });
- * const policies = new vault.identity.GroupPolicies("policies", {
- *     policies: [
- *         "default",
- *         "test",
- *     ],
- *     exclusive: true,
- *     groupId: internal.id,
- * });
- * ```
- * ### Non-exclusive Policies
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const internal = new vault.identity.Group("internal", {
- *     type: "internal",
- *     externalPolicies: true,
- *     metadata: {
- *         version: "2",
- *     },
- * });
- * const _default = new vault.identity.GroupPolicies("default", {
- *     policies: [
- *         "default",
- *         "test",
- *     ],
- *     exclusive: false,
- *     groupId: internal.id,
- * });
- * const others = new vault.identity.GroupPolicies("others", {
- *     policies: ["others"],
- *     exclusive: false,
- *     groupId: internal.id,
- * });
+ * ```sh
+ *  $ pulumi import vault:identity/groupPolicies:GroupPolicies example postgres/roles/my-role
  * ```
  */
 export class GroupPolicies extends pulumi.CustomResource {
@@ -87,19 +42,19 @@ export class GroupPolicies extends pulumi.CustomResource {
     }
 
     /**
-     * Defaults to `true`.
+     * Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
      */
     public readonly exclusive!: pulumi.Output<boolean | undefined>;
     /**
-     * Group ID to assign policies to.
+     * ID of the group.
      */
     public readonly groupId!: pulumi.Output<string>;
     /**
-     * The name of the group that are assigned the policies.
+     * Name of the group.
      */
     public /*out*/ readonly groupName!: pulumi.Output<string>;
     /**
-     * List of policies to assign to the group
+     * Policies to be tied to the group.
      */
     public readonly policies!: pulumi.Output<string[]>;
 
@@ -148,19 +103,19 @@ export class GroupPolicies extends pulumi.CustomResource {
  */
 export interface GroupPoliciesState {
     /**
-     * Defaults to `true`.
+     * Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
      */
     readonly exclusive?: pulumi.Input<boolean>;
     /**
-     * Group ID to assign policies to.
+     * ID of the group.
      */
     readonly groupId?: pulumi.Input<string>;
     /**
-     * The name of the group that are assigned the policies.
+     * Name of the group.
      */
     readonly groupName?: pulumi.Input<string>;
     /**
-     * List of policies to assign to the group
+     * Policies to be tied to the group.
      */
     readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -170,15 +125,15 @@ export interface GroupPoliciesState {
  */
 export interface GroupPoliciesArgs {
     /**
-     * Defaults to `true`.
+     * Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
      */
     readonly exclusive?: pulumi.Input<boolean>;
     /**
-     * Group ID to assign policies to.
+     * ID of the group.
      */
     readonly groupId: pulumi.Input<string>;
     /**
-     * List of policies to assign to the group
+     * Policies to be tied to the group.
      */
     readonly policies: pulumi.Input<pulumi.Input<string>[]>;
 }

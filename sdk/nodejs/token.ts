@@ -5,6 +5,28 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Provides a resource to generate a vault token with its options. The token renewing is supported through optional
+ * arguments.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const example = new vault.Token("example", {
+ *     policies: [
+ *         "policy1",
+ *         "policy2",
+ *     ],
+ *     renewIncrement: 86400,
+ *     renewMinLease: 43200,
+ *     renewable: true,
+ *     roleName: "app",
+ *     ttl: "24h",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Tokens can be imported using its `id` as accessor id, e.g.
@@ -50,7 +72,7 @@ export class Token extends pulumi.CustomResource {
      */
     public readonly displayName!: pulumi.Output<string | undefined>;
     /**
-     * String containing the client token encrypted with the given `pgpKey` if stored in present file
+     * The client token encrypted using the provided PGP key.
      */
     public /*out*/ readonly encryptedClientToken!: pulumi.Output<string>;
     /**
@@ -201,7 +223,7 @@ export interface TokenState {
      */
     readonly displayName?: pulumi.Input<string>;
     /**
-     * String containing the client token encrypted with the given `pgpKey` if stored in present file
+     * The client token encrypted using the provided PGP key.
      */
     readonly encryptedClientToken?: pulumi.Input<string>;
     /**

@@ -9,47 +9,16 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.PkiSecret
 {
-    /// <summary>
-    /// Allows setting the duration for which the generated CRL should be marked valid. If the CRL is disabled, it will return a signed but zero-length CRL for any request. If enabled, it will re-build the CRL.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var pki = new Vault.Mount("pki", new Vault.MountArgs
-    ///         {
-    ///             DefaultLeaseTtlSeconds = 3600,
-    ///             MaxLeaseTtlSeconds = 86400,
-    ///             Path = "%s",
-    ///             Type = "pki",
-    ///         });
-    ///         var crlConfig = new Vault.PkiSecret.SecretBackendCrlConfig("crlConfig", new Vault.PkiSecret.SecretBackendCrlConfigArgs
-    ///         {
-    ///             Backend = pki.Path,
-    ///             Disable = false,
-    ///             Expiry = "72h",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// </summary>
     public partial class SecretBackendCrlConfig : Pulumi.CustomResource
     {
         /// <summary>
-        /// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+        /// The path of the PKI secret backend the resource belongs to.
         /// </summary>
         [Output("backend")]
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// Disables or enables CRL building.
+        /// Disables or enables CRL building
         /// </summary>
         [Output("disable")]
         public Output<bool?> Disable { get; private set; } = null!;
@@ -107,13 +76,13 @@ namespace Pulumi.Vault.PkiSecret
     public sealed class SecretBackendCrlConfigArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+        /// The path of the PKI secret backend the resource belongs to.
         /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
-        /// Disables or enables CRL building.
+        /// Disables or enables CRL building
         /// </summary>
         [Input("disable")]
         public Input<bool>? Disable { get; set; }
@@ -132,13 +101,13 @@ namespace Pulumi.Vault.PkiSecret
     public sealed class SecretBackendCrlConfigState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+        /// The path of the PKI secret backend the resource belongs to.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// Disables or enables CRL building.
+        /// Disables or enables CRL building
         /// </summary>
         [Input("disable")]
         public Input<bool>? Disable { get; set; }

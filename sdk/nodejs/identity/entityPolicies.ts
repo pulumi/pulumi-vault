@@ -4,48 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages policies for an Identity Entity for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
- *
- * ## Example Usage
- * ### Exclusive Policies
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const entity = new vault.identity.Entity("entity", {externalPolicies: true});
- * const policies = new vault.identity.EntityPolicies("policies", {
- *     policies: [
- *         "default",
- *         "test",
- *     ],
- *     exclusive: true,
- *     entityId: entity.id,
- * });
- * ```
- * ### Non-exclusive Policies
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const entity = new vault.identity.Entity("entity", {externalPolicies: true});
- * const _default = new vault.identity.EntityPolicies("default", {
- *     policies: [
- *         "default",
- *         "test",
- *     ],
- *     exclusive: false,
- *     entityId: entity.id,
- * });
- * const others = new vault.identity.EntityPolicies("others", {
- *     policies: ["others"],
- *     exclusive: false,
- *     entityId: entity.id,
- * });
- * ```
- */
 export class EntityPolicies extends pulumi.CustomResource {
     /**
      * Get an existing EntityPolicies resource's state with the given name, ID, and optional extra
@@ -75,19 +33,19 @@ export class EntityPolicies extends pulumi.CustomResource {
     }
 
     /**
-     * Entity ID to assign policies to.
+     * ID of the entity.
      */
     public readonly entityId!: pulumi.Output<string>;
     /**
-     * The name of the entity that are assigned the policies.
+     * Name of the entity.
      */
     public /*out*/ readonly entityName!: pulumi.Output<string>;
     /**
-     * Defaults to `true`.
+     * Should the resource manage policies exclusively
      */
     public readonly exclusive!: pulumi.Output<boolean | undefined>;
     /**
-     * List of policies to assign to the entity
+     * Policies to be tied to the entity.
      */
     public readonly policies!: pulumi.Output<string[]>;
 
@@ -136,19 +94,19 @@ export class EntityPolicies extends pulumi.CustomResource {
  */
 export interface EntityPoliciesState {
     /**
-     * Entity ID to assign policies to.
+     * ID of the entity.
      */
     readonly entityId?: pulumi.Input<string>;
     /**
-     * The name of the entity that are assigned the policies.
+     * Name of the entity.
      */
     readonly entityName?: pulumi.Input<string>;
     /**
-     * Defaults to `true`.
+     * Should the resource manage policies exclusively
      */
     readonly exclusive?: pulumi.Input<boolean>;
     /**
-     * List of policies to assign to the entity
+     * Policies to be tied to the entity.
      */
     readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -158,15 +116,15 @@ export interface EntityPoliciesState {
  */
 export interface EntityPoliciesArgs {
     /**
-     * Entity ID to assign policies to.
+     * ID of the entity.
      */
     readonly entityId: pulumi.Input<string>;
     /**
-     * Defaults to `true`.
+     * Should the resource manage policies exclusively
      */
     readonly exclusive?: pulumi.Input<boolean>;
     /**
-     * List of policies to assign to the entity
+     * Policies to be tied to the entity.
      */
     readonly policies: pulumi.Input<pulumi.Input<string>[]>;
 }

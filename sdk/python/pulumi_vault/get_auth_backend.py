@@ -51,25 +51,16 @@ class GetAuthBackendResult:
     @property
     @pulumi.getter
     def accessor(self) -> str:
-        """
-        The accessor for this auth method
-        """
         return pulumi.get(self, "accessor")
 
     @property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
     def default_lease_ttl_seconds(self) -> int:
-        """
-        The default lease duration in seconds.
-        """
         return pulumi.get(self, "default_lease_ttl_seconds")
 
     @property
     @pulumi.getter
     def description(self) -> str:
-        """
-        A description of the auth method.
-        """
         return pulumi.get(self, "description")
 
     @property
@@ -83,25 +74,16 @@ class GetAuthBackendResult:
     @property
     @pulumi.getter(name="listingVisibility")
     def listing_visibility(self) -> str:
-        """
-        Speficies whether to show this mount in the UI-specific listing endpoint.
-        """
         return pulumi.get(self, "listing_visibility")
 
     @property
     @pulumi.getter
     def local(self) -> bool:
-        """
-        Specifies if the auth method is local only.
-        """
         return pulumi.get(self, "local")
 
     @property
     @pulumi.getter(name="maxLeaseTtlSeconds")
     def max_lease_ttl_seconds(self) -> int:
-        """
-        The maximum lease duration in seconds.
-        """
         return pulumi.get(self, "max_lease_ttl_seconds")
 
     @property
@@ -112,9 +94,6 @@ class GetAuthBackendResult:
     @property
     @pulumi.getter
     def type(self) -> str:
-        """
-        The name of the auth method type.
-        """
         return pulumi.get(self, "type")
 
 
@@ -138,17 +117,7 @@ class AwaitableGetAuthBackendResult(GetAuthBackendResult):
 def get_auth_backend(path: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuthBackendResult:
     """
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_vault as vault
-
-    example = vault.get_auth_backend(path="userpass")
-    ```
-
-
-    :param str path: The auth backend mount point.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['path'] = path

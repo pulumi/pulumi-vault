@@ -18,7 +18,7 @@ namespace Pulumi.Vault.Identity
         public Output<bool?> Disabled { get; private set; } = null!;
 
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+        /// Manage policies externally through `vault_identity_entity_policies`.
         /// </summary>
         [Output("externalPolicies")]
         public Output<bool?> ExternalPolicies { get; private set; } = null!;
@@ -94,7 +94,7 @@ namespace Pulumi.Vault.Identity
         public Input<bool>? Disabled { get; set; }
 
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+        /// Manage policies externally through `vault_identity_entity_policies`.
         /// </summary>
         [Input("externalPolicies")]
         public Input<bool>? ExternalPolicies { get; set; }
@@ -143,7 +143,7 @@ namespace Pulumi.Vault.Identity
         public Input<bool>? Disabled { get; set; }
 
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+        /// Manage policies externally through `vault_identity_entity_policies`.
         /// </summary>
         [Input("externalPolicies")]
         public Input<bool>? ExternalPolicies { get; set; }

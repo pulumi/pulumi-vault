@@ -7,7 +7,7 @@ import * as utilities from "../utilities";
 
 /**
  * Reads the Role of an Kubernetes from a Vault server. See the [Vault
- * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
+ * documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-config) for more
  * information.
  *
  * ## Example Usage
@@ -54,9 +54,6 @@ export interface GetAuthBackendConfigArgs {
     readonly backend?: string;
     readonly disableIssValidation?: boolean;
     readonly disableLocalCaJwt?: boolean;
-    /**
-     * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
-     */
     readonly issuer?: string;
     /**
      * PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
@@ -83,9 +80,6 @@ export interface GetAuthBackendConfigResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
-     */
     readonly issuer: string;
     /**
      * PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.

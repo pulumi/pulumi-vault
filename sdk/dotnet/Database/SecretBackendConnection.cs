@@ -46,7 +46,7 @@ namespace Pulumi.Vault.Database
         public Output<ImmutableDictionary<string, object>?> Data { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for Elasticsearch connections.
+        /// Connection parameters for the elasticsearch-database-plugin.
         /// </summary>
         [Output("elasticsearch")]
         public Output<Outputs.SecretBackendConnectionElasticsearch?> Elasticsearch { get; private set; } = null!;
@@ -214,7 +214,7 @@ namespace Pulumi.Vault.Database
         }
 
         /// <summary>
-        /// A nested block containing configuration options for Elasticsearch connections.
+        /// Connection parameters for the elasticsearch-database-plugin.
         /// </summary>
         [Input("elasticsearch")]
         public Input<Inputs.SecretBackendConnectionElasticsearchArgs>? Elasticsearch { get; set; }
@@ -349,7 +349,7 @@ namespace Pulumi.Vault.Database
         }
 
         /// <summary>
-        /// A nested block containing configuration options for Elasticsearch connections.
+        /// Connection parameters for the elasticsearch-database-plugin.
         /// </summary>
         [Input("elasticsearch")]
         public Input<Inputs.SecretBackendConnectionElasticsearchGetArgs>? Elasticsearch { get; set; }

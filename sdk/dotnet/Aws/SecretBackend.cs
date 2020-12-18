@@ -22,7 +22,7 @@ namespace Pulumi.Vault.Aws
     {
         /// <summary>
         /// The AWS Access Key ID this backend should use to
-        /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        /// issue new credentials.
         /// </summary>
         [Output("accessKey")]
         public Output<string?> AccessKey { get; private set; } = null!;
@@ -62,7 +62,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The AWS Secret Key this backend should use to
-        /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        /// issue new credentials.
         /// </summary>
         [Output("secretKey")]
         public Output<string?> SecretKey { get; private set; } = null!;
@@ -115,7 +115,7 @@ namespace Pulumi.Vault.Aws
     {
         /// <summary>
         /// The AWS Access Key ID this backend should use to
-        /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        /// issue new credentials.
         /// </summary>
         [Input("accessKey")]
         public Input<string>? AccessKey { get; set; }
@@ -155,7 +155,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The AWS Secret Key this backend should use to
-        /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        /// issue new credentials.
         /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
@@ -169,7 +169,7 @@ namespace Pulumi.Vault.Aws
     {
         /// <summary>
         /// The AWS Access Key ID this backend should use to
-        /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        /// issue new credentials.
         /// </summary>
         [Input("accessKey")]
         public Input<string>? AccessKey { get; set; }
@@ -209,7 +209,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The AWS Secret Key this backend should use to
-        /// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
+        /// issue new credentials.
         /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }

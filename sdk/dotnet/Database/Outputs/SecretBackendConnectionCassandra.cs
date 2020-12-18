@@ -28,7 +28,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly bool? InsecureTls;
         /// <summary>
-        /// The password to be used in the connection.
+        /// The password to authenticate with.
         /// </summary>
         public readonly string? Password;
         /// <summary>
@@ -54,7 +54,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly bool? Tls;
         /// <summary>
-        /// The username to be used in the connection.
+        /// The username to authenticate with.
         /// </summary>
         public readonly string? Username;
 

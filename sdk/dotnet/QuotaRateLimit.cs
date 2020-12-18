@@ -9,64 +9,22 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault
 {
-    /// <summary>
-    /// Manage rate limit quotas which enforce API rate limiting using a token bucket algorithm.
-    /// A rate limit quota can be created at the root level or defined on a namespace or mount by
-    /// specifying a path when creating the quota.
-    /// 
-    /// See [Vault's Documentation](https://www.vaultproject.io/docs/concepts/resource-quotas) for more
-    /// information.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var @global = new Vault.QuotaRateLimit("global", new Vault.QuotaRateLimitArgs
-    ///         {
-    ///             Path = "",
-    ///             Rate = 100,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// Rate limit quotas can be imported using their names
-    /// 
-    /// ```sh
-    ///  $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
-    /// ```
-    /// </summary>
     public partial class QuotaRateLimit : Pulumi.CustomResource
     {
         /// <summary>
-        /// Name of the rate limit quota
+        /// The name of the quota.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Path of the mount or namespace to apply the quota. A blank path configures a
-        /// global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
-        /// `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
-        /// Updating this field on an existing quota can have "moving" effects. For example, updating
-        /// `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
-        /// a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
+        /// Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota.
         /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum number of requests at any given second to be allowed by the quota
-        /// rule. The `rate` must be positive.
+        /// The maximum number of requests at any given second to be allowed by the quota rule. The rate must be positive.
         /// </summary>
         [Output("rate")]
         public Output<double> Rate { get; private set; } = null!;
@@ -118,25 +76,19 @@ namespace Pulumi.Vault
     public sealed class QuotaRateLimitArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of the rate limit quota
+        /// The name of the quota.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Path of the mount or namespace to apply the quota. A blank path configures a
-        /// global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
-        /// `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
-        /// Updating this field on an existing quota can have "moving" effects. For example, updating
-        /// `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
-        /// a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
+        /// Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// The maximum number of requests at any given second to be allowed by the quota
-        /// rule. The `rate` must be positive.
+        /// The maximum number of requests at any given second to be allowed by the quota rule. The rate must be positive.
         /// </summary>
         [Input("rate", required: true)]
         public Input<double> Rate { get; set; } = null!;
@@ -149,25 +101,19 @@ namespace Pulumi.Vault
     public sealed class QuotaRateLimitState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of the rate limit quota
+        /// The name of the quota.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Path of the mount or namespace to apply the quota. A blank path configures a
-        /// global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
-        /// `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
-        /// Updating this field on an existing quota can have "moving" effects. For example, updating
-        /// `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
-        /// a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
+        /// Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// The maximum number of requests at any given second to be allowed by the quota
-        /// rule. The `rate` must be positive.
+        /// The maximum number of requests at any given second to be allowed by the quota rule. The rate must be positive.
         /// </summary>
         [Input("rate")]
         public Input<double>? Rate { get; set; }

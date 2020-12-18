@@ -26,47 +26,17 @@ class MfaDuo(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Provides a resource to manage [Duo MFA](https://www.vaultproject.io/docs/enterprise/mfa/mfa-duo.html).
-
-        **Note** this feature is available only with Vault Enterprise.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        userpass = vault.AuthBackend("userpass",
-            path="userpass",
-            type="userpass")
-        my_duo = vault.MfaDuo("myDuo",
-            api_hostname="api-2b5c39f5.duosecurity.com",
-            integration_key="BIACEUEAXI20BNWTEYXT",
-            mount_accessor=userpass.accessor,
-            secret_key="8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz")
-        ```
-
-        ## Import
-
-        Mounts can be imported using the `path`, e.g.
-
-        ```sh
-         $ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
-        ```
-
+        Create a MfaDuo resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] api_hostname: `(string: <required>)` - API hostname for Duo.
-        :param pulumi.Input[str] integration_key: `(string: <required>)` - Integration key for Duo.
-        :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
-        :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
-        :param pulumi.Input[str] push_info: `(string)` - Push information for Duo.
-        :param pulumi.Input[str] secret_key: `(string: <required>)` - Secret key for Duo.
-        :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
-               - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
-               - entity.name: The name configured for the Entity
-               - alias.metadata.`<key>`: The value of the Alias's metadata parameter
-               - entity.metadata.`<key>`: The value of the Entity's metadata parameter
+        :param pulumi.Input[str] api_hostname: API hostname for Duo.
+        :param pulumi.Input[str] integration_key: Integration key for Duo.
+        :param pulumi.Input[str] mount_accessor: The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated
+               with this mount as the username in the mapping.
+        :param pulumi.Input[str] name: Name of the MFA method.
+        :param pulumi.Input[str] push_info: Push information for Duo.
+        :param pulumi.Input[str] secret_key: Secret key for Duo.
+        :param pulumi.Input[str] username_format: A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -124,17 +94,14 @@ class MfaDuo(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] api_hostname: `(string: <required>)` - API hostname for Duo.
-        :param pulumi.Input[str] integration_key: `(string: <required>)` - Integration key for Duo.
-        :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
-        :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
-        :param pulumi.Input[str] push_info: `(string)` - Push information for Duo.
-        :param pulumi.Input[str] secret_key: `(string: <required>)` - Secret key for Duo.
-        :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
-               - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
-               - entity.name: The name configured for the Entity
-               - alias.metadata.`<key>`: The value of the Alias's metadata parameter
-               - entity.metadata.`<key>`: The value of the Entity's metadata parameter
+        :param pulumi.Input[str] api_hostname: API hostname for Duo.
+        :param pulumi.Input[str] integration_key: Integration key for Duo.
+        :param pulumi.Input[str] mount_accessor: The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated
+               with this mount as the username in the mapping.
+        :param pulumi.Input[str] name: Name of the MFA method.
+        :param pulumi.Input[str] push_info: Push information for Duo.
+        :param pulumi.Input[str] secret_key: Secret key for Duo.
+        :param pulumi.Input[str] username_format: A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -153,7 +120,7 @@ class MfaDuo(pulumi.CustomResource):
     @pulumi.getter(name="apiHostname")
     def api_hostname(self) -> pulumi.Output[str]:
         """
-        `(string: <required>)` - API hostname for Duo.
+        API hostname for Duo.
         """
         return pulumi.get(self, "api_hostname")
 
@@ -161,7 +128,7 @@ class MfaDuo(pulumi.CustomResource):
     @pulumi.getter(name="integrationKey")
     def integration_key(self) -> pulumi.Output[str]:
         """
-        `(string: <required>)` - Integration key for Duo.
+        Integration key for Duo.
         """
         return pulumi.get(self, "integration_key")
 
@@ -169,7 +136,8 @@ class MfaDuo(pulumi.CustomResource):
     @pulumi.getter(name="mountAccessor")
     def mount_accessor(self) -> pulumi.Output[str]:
         """
-        `(string: <required>)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
+        The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated
+        with this mount as the username in the mapping.
         """
         return pulumi.get(self, "mount_accessor")
 
@@ -177,7 +145,7 @@ class MfaDuo(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        `(string: <required>)` – Name of the MFA method.
+        Name of the MFA method.
         """
         return pulumi.get(self, "name")
 
@@ -185,7 +153,7 @@ class MfaDuo(pulumi.CustomResource):
     @pulumi.getter(name="pushInfo")
     def push_info(self) -> pulumi.Output[Optional[str]]:
         """
-        `(string)` - Push information for Duo.
+        Push information for Duo.
         """
         return pulumi.get(self, "push_info")
 
@@ -193,7 +161,7 @@ class MfaDuo(pulumi.CustomResource):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Output[str]:
         """
-        `(string: <required>)` - Secret key for Duo.
+        Secret key for Duo.
         """
         return pulumi.get(self, "secret_key")
 
@@ -201,11 +169,7 @@ class MfaDuo(pulumi.CustomResource):
     @pulumi.getter(name="usernameFormat")
     def username_format(self) -> pulumi.Output[Optional[str]]:
         """
-        `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
-        - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
-        - entity.name: The name configured for the Entity
-        - alias.metadata.`<key>`: The value of the Alias's metadata parameter
-        - entity.metadata.`<key>`: The value of the Entity's metadata parameter
+        A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`.
         """
         return pulumi.get(self, "username_format")
 

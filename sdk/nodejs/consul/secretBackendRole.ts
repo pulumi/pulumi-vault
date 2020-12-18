@@ -4,35 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages a Consul secrets role for a Consul secrets engine in Vault. Consul secret backends can then issue Consul tokens.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const test = new vault.consul.SecretBackend("test", {
- *     path: "consul",
- *     description: "Manages the Consul backend",
- *     address: "127.0.0.1:8500",
- *     token: "4240861b-ce3d-8530-115a-521ff070dd29",
- * });
- * const example = new vault.consul.SecretBackendRole("example", {
- *     backend: test.path,
- *     policies: ["example-policy"],
- * });
- * ```
- *
- * ## Import
- *
- * Consul secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
- *
- * ```sh
- *  $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
- * ```
- */
 export class SecretBackendRole extends pulumi.CustomResource {
     /**
      * Get an existing SecretBackendRole resource's state with the given name, ID, and optional extra
@@ -62,7 +33,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
     }
 
     /**
-     * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+     * The path of the Consul Secret Backend the role belongs to.
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
@@ -74,17 +45,17 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly maxTtl!: pulumi.Output<number | undefined>;
     /**
-     * The name of the Consul secrets engine role to create.
+     * The name of an existing role against which to create this Consul credential
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
+     * The path of the Consul Secret Backend the role belongs to.
      *
      * @deprecated use `backend` instead
      */
     public readonly path!: pulumi.Output<string | undefined>;
     /**
-     * The list of Consul ACL policies to associate with these roles.
+     * List of Consul policies to associate with this role
      */
     public readonly policies!: pulumi.Output<string[]>;
     /**
@@ -146,7 +117,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
  */
 export interface SecretBackendRoleState {
     /**
-     * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+     * The path of the Consul Secret Backend the role belongs to.
      */
     readonly backend?: pulumi.Input<string>;
     /**
@@ -158,17 +129,17 @@ export interface SecretBackendRoleState {
      */
     readonly maxTtl?: pulumi.Input<number>;
     /**
-     * The name of the Consul secrets engine role to create.
+     * The name of an existing role against which to create this Consul credential
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
+     * The path of the Consul Secret Backend the role belongs to.
      *
      * @deprecated use `backend` instead
      */
     readonly path?: pulumi.Input<string>;
     /**
-     * The list of Consul ACL policies to associate with these roles.
+     * List of Consul policies to associate with this role
      */
     readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -186,7 +157,7 @@ export interface SecretBackendRoleState {
  */
 export interface SecretBackendRoleArgs {
     /**
-     * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+     * The path of the Consul Secret Backend the role belongs to.
      */
     readonly backend?: pulumi.Input<string>;
     /**
@@ -198,17 +169,17 @@ export interface SecretBackendRoleArgs {
      */
     readonly maxTtl?: pulumi.Input<number>;
     /**
-     * The name of the Consul secrets engine role to create.
+     * The name of an existing role against which to create this Consul credential
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
+     * The path of the Consul Secret Backend the role belongs to.
      *
      * @deprecated use `backend` instead
      */
     readonly path?: pulumi.Input<string>;
     /**
-     * The list of Consul ACL policies to associate with these roles.
+     * List of Consul policies to associate with this role
      */
     readonly policies: pulumi.Input<pulumi.Input<string>[]>;
     /**

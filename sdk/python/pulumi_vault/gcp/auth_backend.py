@@ -38,22 +38,12 @@ class AuthBackend(pulumi.CustomResource):
         gcp = vault.gcp.AuthBackend("gcp", credentials=(lambda path: open(path).read())("vault-gcp-credentials.json"))
         ```
 
-        ## Import
-
-        GCP authentication backends can be imported using the backend name, e.g.
-
-        ```sh
-         $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
-        ```
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_email: The clients email associated with the credentials
+        :param pulumi.Input[str] client_email: The clients email assosiated with the credentials
         :param pulumi.Input[str] client_id: The Client ID of the credentials
-        :param pulumi.Input[str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
-        :param pulumi.Input[str] description: A description of the auth method.
-        :param pulumi.Input[bool] local: Specifies if the auth method is local only.
-        :param pulumi.Input[str] path: The path to mount the auth method — this defaults to 'gcp'.
+        :param pulumi.Input[str] credentials: A JSON string containing the contents of a GCP credentials file.
+        :param pulumi.Input[bool] local: Specifies if the auth method is local only
         :param pulumi.Input[str] private_key_id: The ID of the private key from the credentials
         :param pulumi.Input[str] project_id: The GCP Project ID
         """
@@ -107,12 +97,10 @@ class AuthBackend(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_email: The clients email associated with the credentials
+        :param pulumi.Input[str] client_email: The clients email assosiated with the credentials
         :param pulumi.Input[str] client_id: The Client ID of the credentials
-        :param pulumi.Input[str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
-        :param pulumi.Input[str] description: A description of the auth method.
-        :param pulumi.Input[bool] local: Specifies if the auth method is local only.
-        :param pulumi.Input[str] path: The path to mount the auth method — this defaults to 'gcp'.
+        :param pulumi.Input[str] credentials: A JSON string containing the contents of a GCP credentials file.
+        :param pulumi.Input[bool] local: Specifies if the auth method is local only
         :param pulumi.Input[str] private_key_id: The ID of the private key from the credentials
         :param pulumi.Input[str] project_id: The GCP Project ID
         """
@@ -134,7 +122,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="clientEmail")
     def client_email(self) -> pulumi.Output[str]:
         """
-        The clients email associated with the credentials
+        The clients email assosiated with the credentials
         """
         return pulumi.get(self, "client_email")
 
@@ -150,32 +138,26 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter
     def credentials(self) -> pulumi.Output[Optional[str]]:
         """
-        A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+        A JSON string containing the contents of a GCP credentials file.
         """
         return pulumi.get(self, "credentials")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
-        """
-        A description of the auth method.
-        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def local(self) -> pulumi.Output[Optional[bool]]:
         """
-        Specifies if the auth method is local only.
+        Specifies if the auth method is local only
         """
         return pulumi.get(self, "local")
 
     @property
     @pulumi.getter
     def path(self) -> pulumi.Output[Optional[str]]:
-        """
-        The path to mount the auth method — this defaults to 'gcp'.
-        """
         return pulumi.get(self, "path")
 
     @property

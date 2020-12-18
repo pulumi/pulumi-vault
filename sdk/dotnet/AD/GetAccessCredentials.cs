@@ -18,17 +18,9 @@ namespace Pulumi.Vault.AD
 
     public sealed class GetAccessCredentialsArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The path to the AD secret backend to
-        /// read credentials from, with no leading or trailing `/`s.
-        /// </summary>
         [Input("backend", required: true)]
         public string Backend { get; set; } = null!;
 
-        /// <summary>
-        /// The name of the AD secret backend role to read
-        /// credentials from, with no leading or trailing `/`s.
-        /// </summary>
         [Input("role", required: true)]
         public string Role { get; set; } = null!;
 
@@ -42,22 +34,13 @@ namespace Pulumi.Vault.AD
     public sealed class GetAccessCredentialsResult
     {
         public readonly string Backend;
-        /// <summary>
-        /// The current set password on the Active Directory service account.
-        /// </summary>
         public readonly string CurrentPassword;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// The current set password on the Active Directory service account, provided because AD is eventually consistent.
-        /// </summary>
         public readonly string LastPassword;
         public readonly string Role;
-        /// <summary>
-        /// The Active Directory service account username.
-        /// </summary>
         public readonly string Username;
 
         [OutputConstructor]

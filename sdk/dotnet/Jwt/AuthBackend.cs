@@ -93,13 +93,14 @@ namespace Pulumi.Vault.Jwt
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+        /// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set,
+        /// system certificates are used.
         /// </summary>
         [Output("jwksCaPem")]
         public Output<string?> JwksCaPem { get; private set; } = null!;
 
         /// <summary>
-        /// JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
+        /// JWKS URL to use to authenticate signatures. Cannot be used with 'oidc_discovery_url' or 'jwt_validation_pubkeys'.
         /// </summary>
         [Output("jwksUrl")]
         public Output<string?> JwksUrl { get; private set; } = null!;
@@ -220,13 +221,14 @@ namespace Pulumi.Vault.Jwt
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+        /// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set,
+        /// system certificates are used.
         /// </summary>
         [Input("jwksCaPem")]
         public Input<string>? JwksCaPem { get; set; }
 
         /// <summary>
-        /// JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
+        /// JWKS URL to use to authenticate signatures. Cannot be used with 'oidc_discovery_url' or 'jwt_validation_pubkeys'.
         /// </summary>
         [Input("jwksUrl")]
         public Input<string>? JwksUrl { get; set; }
@@ -326,13 +328,14 @@ namespace Pulumi.Vault.Jwt
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+        /// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set,
+        /// system certificates are used.
         /// </summary>
         [Input("jwksCaPem")]
         public Input<string>? JwksCaPem { get; set; }
 
         /// <summary>
-        /// JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
+        /// JWKS URL to use to authenticate signatures. Cannot be used with 'oidc_discovery_url' or 'jwt_validation_pubkeys'.
         /// </summary>
         [Input("jwksUrl")]
         public Input<string>? JwksUrl { get; set; }

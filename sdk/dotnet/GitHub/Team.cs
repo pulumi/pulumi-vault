@@ -11,7 +11,7 @@ namespace Pulumi.Vault.GitHub
 {
     /// <summary>
     /// Manages policy mappings for Github Teams authenticated via Github. See the [Vault
-    /// documentation](https://www.vaultproject.io/docs/auth/github/) for more
+    /// documentation](https://www.vaultproject.io/docs/auth/github.html) for more
     /// information.
     /// 
     /// ## Example Usage
@@ -31,12 +31,12 @@ namespace Pulumi.Vault.GitHub
     ///         var tfDevs = new Vault.GitHub.Team("tfDevs", new Vault.GitHub.TeamArgs
     ///         {
     ///             Backend = example.Id,
-    ///             Team = "terraform-developers",
     ///             Policies = 
     ///             {
     ///                 "developer",
     ///                 "read-only",
     ///             },
+    ///             Team = "terraform-developers",
     ///         });
     ///     }
     /// 
@@ -54,15 +54,14 @@ namespace Pulumi.Vault.GitHub
     public partial class Team : Pulumi.CustomResource
     {
         /// <summary>
-        /// Path where the github auth backend is mounted. Defaults to `github`
+        /// Path where the github auth backend is mounted. Defaults to `github` 
         /// if not specified.
         /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// An array of strings specifying the policies to be set on tokens
-        /// issued using this role.
+        /// A list of policies to be assigned to this team.
         /// </summary>
         [Output("policies")]
         public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
@@ -174,7 +173,7 @@ namespace Pulumi.Vault.GitHub
     public sealed class TeamArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Path where the github auth backend is mounted. Defaults to `github`
+        /// Path where the github auth backend is mounted. Defaults to `github` 
         /// if not specified.
         /// </summary>
         [Input("backend")]
@@ -184,8 +183,7 @@ namespace Pulumi.Vault.GitHub
         private InputList<string>? _policies;
 
         /// <summary>
-        /// An array of strings specifying the policies to be set on tokens
-        /// issued using this role.
+        /// A list of policies to be assigned to this team.
         /// </summary>
         public InputList<string> Policies
         {
@@ -275,7 +273,7 @@ namespace Pulumi.Vault.GitHub
     public sealed class TeamState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Path where the github auth backend is mounted. Defaults to `github`
+        /// Path where the github auth backend is mounted. Defaults to `github` 
         /// if not specified.
         /// </summary>
         [Input("backend")]
@@ -285,8 +283,7 @@ namespace Pulumi.Vault.GitHub
         private InputList<string>? _policies;
 
         /// <summary>
-        /// An array of strings specifying the policies to be set on tokens
-        /// issued using this role.
+        /// A list of policies to be assigned to this team.
         /// </summary>
         public InputList<string> Policies
         {

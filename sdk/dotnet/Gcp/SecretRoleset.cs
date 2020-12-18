@@ -29,9 +29,8 @@ namespace Pulumi.Vault.Gcp
     ///         var gcp = new Vault.Gcp.SecretBackend("gcp", new Vault.Gcp.SecretBackendArgs
     ///         {
     ///             Credentials = File.ReadAllText("credentials.json"),
-    ///             Path = "gcp",
     ///         });
-    ///         var roleset = new Vault.Gcp.SecretRoleset("roleset", new Vault.Gcp.SecretRolesetArgs
+    ///         var agent = new Vault.Gcp.SecretRoleset("agent", new Vault.Gcp.SecretRolesetArgs
     ///         {
     ///             Backend = gcp.Path,
     ///             Bindings = 
@@ -56,14 +55,6 @@ namespace Pulumi.Vault.Gcp
     ///     }
     /// 
     /// }
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// A roleset can be imported using its Vault Path. For example, referencing the example above,
-    /// 
-    /// ```sh
-    ///  $ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer
     /// ```
     /// </summary>
     public partial class SecretRoleset : Pulumi.CustomResource

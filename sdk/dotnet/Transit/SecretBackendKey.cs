@@ -9,61 +9,23 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Transit
 {
-    /// <summary>
-    /// Creates an Encryption Keyring on a Transit Secret Backend for Vault.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var transit = new Vault.Mount("transit", new Vault.MountArgs
-    ///         {
-    ///             DefaultLeaseTtlSeconds = 3600,
-    ///             Description = "Example description",
-    ///             MaxLeaseTtlSeconds = 86400,
-    ///             Path = "transit",
-    ///             Type = "transit",
-    ///         });
-    ///         var key = new Vault.Transit.SecretBackendKey("key", new Vault.Transit.SecretBackendKeyArgs
-    ///         {
-    ///             Backend = transit.Path,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// Transit secret backend keys can be imported using the `path`, e.g.
-    /// 
-    /// ```sh
-    ///  $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
-    /// ```
-    /// </summary>
     public partial class SecretBackendKey : Pulumi.CustomResource
     {
         /// <summary>
-        /// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
-        /// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
+        /// If set, enables taking backup of named key in the plaintext format. Once set, this cannot be disabled.
         /// </summary>
         [Output("allowPlaintextBackup")]
         public Output<bool?> AllowPlaintextBackup { get; private set; } = null!;
 
         /// <summary>
-        /// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        /// The Transit secret backend the resource belongs to.
         /// </summary>
         [Output("backend")]
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
+        /// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires
+        /// derived to be set to true.
         /// </summary>
         [Output("convergentEncryption")]
         public Output<bool?> ConvergentEncryption { get; private set; } = null!;
@@ -75,33 +37,33 @@ namespace Pulumi.Vault.Transit
         public Output<bool?> DeletionAllowed { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
+        /// Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context
+        /// which is used for key derivation.
         /// </summary>
         [Output("derived")]
         public Output<bool?> Derived { get; private set; } = null!;
 
         /// <summary>
-        /// Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
+        /// Enables keys to be exportable. This allows for all the valid keys in the key ring to be exported. Once set, this cannot
+        /// be disabled.
         /// </summary>
         [Output("exportable")]
         public Output<bool?> Exportable { get; private set; } = null!;
 
         /// <summary>
-        /// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
-        /// * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
-        /// * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
+        /// List of key versions in the keyring.
         /// </summary>
         [Output("keys")]
         public Output<ImmutableArray<ImmutableDictionary<string, object>>> Keys { get; private set; } = null!;
 
         /// <summary>
-        /// Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
+        /// Latest key version in use in the keyring
         /// </summary>
         [Output("latestVersion")]
         public Output<int> LatestVersion { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum key version available for use. If keys have been archived by increasing `min_decryption_version`, this attribute will reflect that change.
+        /// Minimum key version available for use.
         /// </summary>
         [Output("minAvailableVersion")]
         public Output<int> MinAvailableVersion { get; private set; } = null!;
@@ -119,7 +81,7 @@ namespace Pulumi.Vault.Transit
         public Output<int?> MinEncryptionVersion { get; private set; } = null!;
 
         /// <summary>
-        /// The name to identify this key within the backend. Must be unique within the backend.
+        /// Name of the encryption key to create.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -149,8 +111,8 @@ namespace Pulumi.Vault.Transit
         public Output<bool> SupportsSigning { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
-        /// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
+        /// Specifies the type of key to create. The currently-supported types are: aes128-gcm96, aes256-gcm96, chacha20-poly1305,
+        /// ed25519, ecdsa-p256, ecdsa-p384, ecdsa-p521, rsa-2048, rsa-3072, rsa-4096
         /// </summary>
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
@@ -202,20 +164,20 @@ namespace Pulumi.Vault.Transit
     public sealed class SecretBackendKeyArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
-        /// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
+        /// If set, enables taking backup of named key in the plaintext format. Once set, this cannot be disabled.
         /// </summary>
         [Input("allowPlaintextBackup")]
         public Input<bool>? AllowPlaintextBackup { get; set; }
 
         /// <summary>
-        /// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        /// The Transit secret backend the resource belongs to.
         /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
-        /// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
+        /// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires
+        /// derived to be set to true.
         /// </summary>
         [Input("convergentEncryption")]
         public Input<bool>? ConvergentEncryption { get; set; }
@@ -227,13 +189,15 @@ namespace Pulumi.Vault.Transit
         public Input<bool>? DeletionAllowed { get; set; }
 
         /// <summary>
-        /// Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
+        /// Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context
+        /// which is used for key derivation.
         /// </summary>
         [Input("derived")]
         public Input<bool>? Derived { get; set; }
 
         /// <summary>
-        /// Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
+        /// Enables keys to be exportable. This allows for all the valid keys in the key ring to be exported. Once set, this cannot
+        /// be disabled.
         /// </summary>
         [Input("exportable")]
         public Input<bool>? Exportable { get; set; }
@@ -251,14 +215,14 @@ namespace Pulumi.Vault.Transit
         public Input<int>? MinEncryptionVersion { get; set; }
 
         /// <summary>
-        /// The name to identify this key within the backend. Must be unique within the backend.
+        /// Name of the encryption key to create.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
-        /// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
+        /// Specifies the type of key to create. The currently-supported types are: aes128-gcm96, aes256-gcm96, chacha20-poly1305,
+        /// ed25519, ecdsa-p256, ecdsa-p384, ecdsa-p521, rsa-2048, rsa-3072, rsa-4096
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -271,20 +235,20 @@ namespace Pulumi.Vault.Transit
     public sealed class SecretBackendKeyState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
-        /// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
+        /// If set, enables taking backup of named key in the plaintext format. Once set, this cannot be disabled.
         /// </summary>
         [Input("allowPlaintextBackup")]
         public Input<bool>? AllowPlaintextBackup { get; set; }
 
         /// <summary>
-        /// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        /// The Transit secret backend the resource belongs to.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
+        /// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires
+        /// derived to be set to true.
         /// </summary>
         [Input("convergentEncryption")]
         public Input<bool>? ConvergentEncryption { get; set; }
@@ -296,13 +260,15 @@ namespace Pulumi.Vault.Transit
         public Input<bool>? DeletionAllowed { get; set; }
 
         /// <summary>
-        /// Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
+        /// Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context
+        /// which is used for key derivation.
         /// </summary>
         [Input("derived")]
         public Input<bool>? Derived { get; set; }
 
         /// <summary>
-        /// Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
+        /// Enables keys to be exportable. This allows for all the valid keys in the key ring to be exported. Once set, this cannot
+        /// be disabled.
         /// </summary>
         [Input("exportable")]
         public Input<bool>? Exportable { get; set; }
@@ -311,9 +277,7 @@ namespace Pulumi.Vault.Transit
         private InputList<ImmutableDictionary<string, object>>? _keys;
 
         /// <summary>
-        /// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
-        /// * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
-        /// * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
+        /// List of key versions in the keyring.
         /// </summary>
         public InputList<ImmutableDictionary<string, object>> Keys
         {
@@ -322,13 +286,13 @@ namespace Pulumi.Vault.Transit
         }
 
         /// <summary>
-        /// Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
+        /// Latest key version in use in the keyring
         /// </summary>
         [Input("latestVersion")]
         public Input<int>? LatestVersion { get; set; }
 
         /// <summary>
-        /// Minimum key version available for use. If keys have been archived by increasing `min_decryption_version`, this attribute will reflect that change.
+        /// Minimum key version available for use.
         /// </summary>
         [Input("minAvailableVersion")]
         public Input<int>? MinAvailableVersion { get; set; }
@@ -346,7 +310,7 @@ namespace Pulumi.Vault.Transit
         public Input<int>? MinEncryptionVersion { get; set; }
 
         /// <summary>
-        /// The name to identify this key within the backend. Must be unique within the backend.
+        /// Name of the encryption key to create.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -376,8 +340,8 @@ namespace Pulumi.Vault.Transit
         public Input<bool>? SupportsSigning { get; set; }
 
         /// <summary>
-        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
-        /// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
+        /// Specifies the type of key to create. The currently-supported types are: aes128-gcm96, aes256-gcm96, chacha20-poly1305,
+        /// ed25519, ecdsa-p256, ecdsa-p384, ecdsa-p521, rsa-2048, rsa-3072, rsa-4096
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

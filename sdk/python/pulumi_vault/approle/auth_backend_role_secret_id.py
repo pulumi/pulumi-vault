@@ -26,7 +26,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
                  __opts__=None):
         """
         Manages an AppRole auth backend SecretID in a Vault server. See the [Vault
-        documentation](https://www.vaultproject.io/docs/auth/approle) for more
+        documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
         information.
 
         ## Example Usage
@@ -64,10 +64,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
         :param pulumi.Input[str] role_name: The name of the role to create the SecretID for.
         :param pulumi.Input[str] secret_id: The SecretID to be created. If set, uses "Push"
                mode.  Defaults to Vault auto-generating SecretIDs.
-        :param pulumi.Input[str] wrapping_ttl: If set, the SecretID response will be
-               [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
-               and available for the duration specified. Only a single unwrapping of the
-               token is allowed.
+        :param pulumi.Input[str] wrapping_ttl: The TTL duration of the wrapped SecretID.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -132,13 +129,9 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
         :param pulumi.Input[str] role_name: The name of the role to create the SecretID for.
         :param pulumi.Input[str] secret_id: The SecretID to be created. If set, uses "Push"
                mode.  Defaults to Vault auto-generating SecretIDs.
-        :param pulumi.Input[str] wrapping_accessor: The unique ID for the response-wrapped SecretID that can
-               be safely logged.
-        :param pulumi.Input[str] wrapping_token: The token used to retrieve a response-wrapped SecretID.
-        :param pulumi.Input[str] wrapping_ttl: If set, the SecretID response will be
-               [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
-               and available for the duration specified. Only a single unwrapping of the
-               token is allowed.
+        :param pulumi.Input[str] wrapping_accessor: The wrapped SecretID accessor.
+        :param pulumi.Input[str] wrapping_token: The wrapped SecretID token.
+        :param pulumi.Input[str] wrapping_ttl: The TTL duration of the wrapped SecretID.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -210,8 +203,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
     @pulumi.getter(name="wrappingAccessor")
     def wrapping_accessor(self) -> pulumi.Output[str]:
         """
-        The unique ID for the response-wrapped SecretID that can
-        be safely logged.
+        The wrapped SecretID accessor.
         """
         return pulumi.get(self, "wrapping_accessor")
 
@@ -219,7 +211,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
     @pulumi.getter(name="wrappingToken")
     def wrapping_token(self) -> pulumi.Output[str]:
         """
-        The token used to retrieve a response-wrapped SecretID.
+        The wrapped SecretID token.
         """
         return pulumi.get(self, "wrapping_token")
 
@@ -227,10 +219,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
     @pulumi.getter(name="wrappingTtl")
     def wrapping_ttl(self) -> pulumi.Output[Optional[str]]:
         """
-        If set, the SecretID response will be
-        [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
-        and available for the duration specified. Only a single unwrapping of the
-        token is allowed.
+        The TTL duration of the wrapped SecretID.
         """
         return pulumi.get(self, "wrapping_ttl")
 

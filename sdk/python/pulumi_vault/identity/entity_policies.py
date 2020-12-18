@@ -22,49 +22,12 @@ class EntityPolicies(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Manages policies for an Identity Entity for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
-
-        ## Example Usage
-        ### Exclusive Policies
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        entity = vault.identity.Entity("entity", external_policies=True)
-        policies = vault.identity.EntityPolicies("policies",
-            policies=[
-                "default",
-                "test",
-            ],
-            exclusive=True,
-            entity_id=entity.id)
-        ```
-        ### Non-exclusive Policies
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        entity = vault.identity.Entity("entity", external_policies=True)
-        default = vault.identity.EntityPolicies("default",
-            policies=[
-                "default",
-                "test",
-            ],
-            exclusive=False,
-            entity_id=entity.id)
-        others = vault.identity.EntityPolicies("others",
-            policies=["others"],
-            exclusive=False,
-            entity_id=entity.id)
-        ```
-
+        Create a EntityPolicies resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] entity_id: Entity ID to assign policies to.
-        :param pulumi.Input[bool] exclusive: Defaults to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the entity
+        :param pulumi.Input[str] entity_id: ID of the entity.
+        :param pulumi.Input[bool] exclusive: Should the resource manage policies exclusively
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Policies to be tied to the entity.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -112,10 +75,10 @@ class EntityPolicies(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] entity_id: Entity ID to assign policies to.
-        :param pulumi.Input[str] entity_name: The name of the entity that are assigned the policies.
-        :param pulumi.Input[bool] exclusive: Defaults to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the entity
+        :param pulumi.Input[str] entity_id: ID of the entity.
+        :param pulumi.Input[str] entity_name: Name of the entity.
+        :param pulumi.Input[bool] exclusive: Should the resource manage policies exclusively
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Policies to be tied to the entity.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -131,7 +94,7 @@ class EntityPolicies(pulumi.CustomResource):
     @pulumi.getter(name="entityId")
     def entity_id(self) -> pulumi.Output[str]:
         """
-        Entity ID to assign policies to.
+        ID of the entity.
         """
         return pulumi.get(self, "entity_id")
 
@@ -139,7 +102,7 @@ class EntityPolicies(pulumi.CustomResource):
     @pulumi.getter(name="entityName")
     def entity_name(self) -> pulumi.Output[str]:
         """
-        The name of the entity that are assigned the policies.
+        Name of the entity.
         """
         return pulumi.get(self, "entity_name")
 
@@ -147,7 +110,7 @@ class EntityPolicies(pulumi.CustomResource):
     @pulumi.getter
     def exclusive(self) -> pulumi.Output[Optional[bool]]:
         """
-        Defaults to `true`.
+        Should the resource manage policies exclusively
         """
         return pulumi.get(self, "exclusive")
 
@@ -155,7 +118,7 @@ class EntityPolicies(pulumi.CustomResource):
     @pulumi.getter
     def policies(self) -> pulumi.Output[Sequence[str]]:
         """
-        List of policies to assign to the entity
+        Policies to be tied to the entity.
         """
         return pulumi.get(self, "policies")
 

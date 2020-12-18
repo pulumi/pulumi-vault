@@ -13,7 +13,7 @@ namespace Pulumi.Vault.Kubernetes
     {
         /// <summary>
         /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
-        /// documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
+        /// documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-config) for more
         /// information.
         /// </summary>
         public static Task<GetAuthBackendConfigResult> InvokeAsync(GetAuthBackendConfigArgs? args = null, InvokeOptions? options = null)
@@ -36,9 +36,6 @@ namespace Pulumi.Vault.Kubernetes
         [Input("disableLocalCaJwt")]
         public bool? DisableLocalCaJwt { get; set; }
 
-        /// <summary>
-        /// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
-        /// </summary>
         [Input("issuer")]
         public string? Issuer { get; set; }
 
@@ -82,9 +79,6 @@ namespace Pulumi.Vault.Kubernetes
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
-        /// </summary>
         public readonly string Issuer;
         /// <summary>
         /// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.

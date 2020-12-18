@@ -4,28 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Configure the cache for the Transit Secret Backend in Vault.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const transit = new vault.Mount("transit", {
- *     defaultLeaseTtlSeconds: 3600,
- *     description: "Example description",
- *     maxLeaseTtlSeconds: 86400,
- *     path: "transit",
- *     type: "transit",
- * });
- * const cfg = new vault.transit.SecretCacheConfig("cfg", {
- *     backend: transit.path,
- *     size: 500,
- * });
- * ```
- */
 export class SecretCacheConfig extends pulumi.CustomResource {
     /**
      * Get an existing SecretCacheConfig resource's state with the given name, ID, and optional extra
@@ -55,11 +33,11 @@ export class SecretCacheConfig extends pulumi.CustomResource {
     }
 
     /**
-     * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+     * The Transit secret backend the resource belongs to.
      */
     public readonly backend!: pulumi.Output<string>;
     /**
-     * The number of cache entries. 0 means unlimited.
+     * Number of cache entries. A size of 0 mean unlimited.
      */
     public readonly size!: pulumi.Output<number>;
 
@@ -104,11 +82,11 @@ export class SecretCacheConfig extends pulumi.CustomResource {
  */
 export interface SecretCacheConfigState {
     /**
-     * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+     * The Transit secret backend the resource belongs to.
      */
     readonly backend?: pulumi.Input<string>;
     /**
-     * The number of cache entries. 0 means unlimited.
+     * Number of cache entries. A size of 0 mean unlimited.
      */
     readonly size?: pulumi.Input<number>;
 }
@@ -118,11 +96,11 @@ export interface SecretCacheConfigState {
  */
 export interface SecretCacheConfigArgs {
     /**
-     * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+     * The Transit secret backend the resource belongs to.
      */
     readonly backend: pulumi.Input<string>;
     /**
-     * The number of cache entries. 0 means unlimited.
+     * Number of cache entries. A size of 0 mean unlimited.
      */
     readonly size: pulumi.Input<number>;
 }

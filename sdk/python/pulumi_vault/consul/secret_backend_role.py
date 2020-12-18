@@ -27,40 +27,15 @@ class SecretBackendRole(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Manages a Consul secrets role for a Consul secrets engine in Vault. Consul secret backends can then issue Consul tokens.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        test = vault.consul.SecretBackend("test",
-            path="consul",
-            description="Manages the Consul backend",
-            address="127.0.0.1:8500",
-            token="4240861b-ce3d-8530-115a-521ff070dd29")
-        example = vault.consul.SecretBackendRole("example",
-            backend=test.path,
-            policies=["example-policy"])
-        ```
-
-        ## Import
-
-        Consul secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
-
-        ```sh
-         $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
-        ```
-
+        Create a SecretBackendRole resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        :param pulumi.Input[str] backend: The path of the Consul Secret Backend the role belongs to.
         :param pulumi.Input[bool] local: Indicates that the token should not be replicated globally and instead be local to the current datacenter.
         :param pulumi.Input[int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
-        :param pulumi.Input[str] name: The name of the Consul secrets engine role to create.
-        :param pulumi.Input[str] path: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: The list of Consul ACL policies to associate with these roles.
+        :param pulumi.Input[str] name: The name of an existing role against which to create this Consul credential
+        :param pulumi.Input[str] path: The path of the Consul Secret Backend the role belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of Consul policies to associate with this role
         :param pulumi.Input[str] token_type: Specifies the type of token to create when using this role. Valid values are "client" or "management".
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
         """
@@ -119,12 +94,12 @@ class SecretBackendRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        :param pulumi.Input[str] backend: The path of the Consul Secret Backend the role belongs to.
         :param pulumi.Input[bool] local: Indicates that the token should not be replicated globally and instead be local to the current datacenter.
         :param pulumi.Input[int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
-        :param pulumi.Input[str] name: The name of the Consul secrets engine role to create.
-        :param pulumi.Input[str] path: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: The list of Consul ACL policies to associate with these roles.
+        :param pulumi.Input[str] name: The name of an existing role against which to create this Consul credential
+        :param pulumi.Input[str] path: The path of the Consul Secret Backend the role belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of Consul policies to associate with this role
         :param pulumi.Input[str] token_type: Specifies the type of token to create when using this role. Valid values are "client" or "management".
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
         """
@@ -146,7 +121,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter
     def backend(self) -> pulumi.Output[Optional[str]]:
         """
-        The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        The path of the Consul Secret Backend the role belongs to.
         """
         return pulumi.get(self, "backend")
 
@@ -170,7 +145,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the Consul secrets engine role to create.
+        The name of an existing role against which to create this Consul credential
         """
         return pulumi.get(self, "name")
 
@@ -178,7 +153,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter
     def path(self) -> pulumi.Output[Optional[str]]:
         """
-        The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
+        The path of the Consul Secret Backend the role belongs to.
         """
         return pulumi.get(self, "path")
 
@@ -186,7 +161,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter
     def policies(self) -> pulumi.Output[Sequence[str]]:
         """
-        The list of Consul ACL policies to associate with these roles.
+        List of Consul policies to associate with this role
         """
         return pulumi.get(self, "policies")
 

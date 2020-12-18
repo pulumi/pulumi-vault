@@ -5,47 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
 export interface AuthBackendTune {
-    /**
-     * List of headers to whitelist and allowing
-     * a plugin to include them in the response.
-     */
     allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Specifies the list of keys that will
-     * not be HMAC'd by audit devices in the request data object.
-     */
     auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Specifies the list of keys that will
-     * not be HMAC'd by audit devices in the response data object.
-     */
     auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Specifies the default time-to-live.
-     * If set, this overrides the global default.
-     * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-     */
     defaultLeaseTtl?: pulumi.Input<string>;
     /**
-     * Specifies whether to show this mount in
-     * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+     * Speficies whether to show this mount in the UI-specific listing endpoint.
      */
     listingVisibility?: pulumi.Input<string>;
-    /**
-     * Specifies the maximum time-to-live.
-     * If set, this overrides the global default.
-     * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-     */
     maxLeaseTtl?: pulumi.Input<string>;
-    /**
-     * List of headers to whitelist and
-     * pass from the request to the backend.
-     */
     passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Specifies the type of tokens that should be returned by
-     * the mount. Valid values are "default-service", "default-batch", "service", "batch".
-     */
     tokenType?: pulumi.Input<string>;
 }
 
@@ -122,6 +91,11 @@ export interface ProviderHeader {
     value: pulumi.Input<string>;
 }
 export namespace azure {
+    export interface BackendRoleAzureGroup {
+        groupName: pulumi.Input<string>;
+        objectId?: pulumi.Input<string>;
+    }
+
     export interface BackendRoleAzureRole {
         roleId?: pulumi.Input<string>;
         roleName: pulumi.Input<string>;
@@ -149,7 +123,7 @@ export namespace database {
          */
         insecureTls?: pulumi.Input<boolean>;
         /**
-         * The password to be used in the connection.
+         * The password to authenticate with.
          */
         password?: pulumi.Input<string>;
         /**
@@ -175,23 +149,19 @@ export namespace database {
          */
         tls?: pulumi.Input<boolean>;
         /**
-         * The username to be used in the connection.
+         * The username to authenticate with.
          */
         username?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionElasticsearch {
         /**
-         * The password to be used in the connection.
+         * The password to authenticate with.
          */
         password: pulumi.Input<string>;
-        /**
-         * The URL for Elasticsearch's API. https requires certificate
-         * by trusted CA if used.
-         */
         url: pulumi.Input<string>;
         /**
-         * The username to be used in the connection.
+         * The username to authenticate with.
          */
         username: pulumi.Input<string>;
     }
@@ -200,7 +170,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -225,7 +195,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -256,7 +226,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -281,7 +251,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -306,7 +276,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -331,7 +301,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -356,7 +326,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -381,7 +351,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -406,7 +376,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -443,47 +413,39 @@ export namespace gcp {
 
 export namespace github {
     export interface AuthBackendTune {
-        /**
-         * List of headers to whitelist and allowing
-         * a plugin to include them in the response.
-         */
         allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the list of keys that will
+         * Specifies the list of keys that will 
          * not be HMAC'd by audit devices in the request data object.
          */
         auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the list of keys that will
+         * Specifies the list of keys that will 
          * not be HMAC'd by audit devices in the response data object.
          */
         auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the default time-to-live.
+         * Specifies the default time-to-live. 
          * If set, this overrides the global default.
          * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
          */
         defaultLeaseTtl?: pulumi.Input<string>;
         /**
-         * Specifies whether to show this mount in
+         * Specifies whether to show this mount in 
          * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
          */
         listingVisibility?: pulumi.Input<string>;
         /**
-         * Specifies the maximum time-to-live.
+         * Specifies the maximum time-to-live. 
          * If set, this overrides the global default.
          * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
          */
         maxLeaseTtl?: pulumi.Input<string>;
         /**
-         * List of headers to whitelist and
+         * List of headers to whitelist and 
          * pass from the request to the backend.
          */
         passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
-        /**
-         * Specifies the type of tokens that should be returned by
-         * the mount. Valid values are "default-service", "default-batch", "service", "batch".
-         */
         tokenType?: pulumi.Input<string>;
     }
 }
@@ -493,47 +455,39 @@ export namespace identity {
 
 export namespace jwt {
     export interface AuthBackendTune {
-        /**
-         * List of headers to whitelist and allowing
-         * a plugin to include them in the response.
-         */
         allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the list of keys that will
+         * Specifies the list of keys that will 
          * not be HMAC'd by audit devices in the request data object.
          */
         auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the list of keys that will
+         * Specifies the list of keys that will 
          * not be HMAC'd by audit devices in the response data object.
          */
         auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the default time-to-live.
+         * Specifies the default time-to-live. 
          * If set, this overrides the global default.
          * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
          */
         defaultLeaseTtl?: pulumi.Input<string>;
         /**
-         * Specifies whether to show this mount in
+         * Specifies whether to show this mount in 
          * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
          */
         listingVisibility?: pulumi.Input<string>;
         /**
-         * Specifies the maximum time-to-live.
+         * Specifies the maximum time-to-live. 
          * If set, this overrides the global default.
          * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
          */
         maxLeaseTtl?: pulumi.Input<string>;
         /**
-         * List of headers to whitelist and
+         * List of headers to whitelist and 
          * pass from the request to the backend.
          */
         passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
-        /**
-         * Specifies the type of tokens that should be returned by
-         * the mount. Valid values are "default-service", "default-batch", "service", "batch".
-         */
         tokenType?: pulumi.Input<string>;
     }
 }

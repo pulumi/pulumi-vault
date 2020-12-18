@@ -18,14 +18,14 @@ import (
 	"strings"
 	"unicode"
 
+	"github.com/hashicorp/terraform-provider-vault/generated"
+	"github.com/hashicorp/terraform-provider-vault/schema"
+	"github.com/hashicorp/terraform-provider-vault/vault"
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim"
 	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim/sdk-v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
-	"github.com/terraform-providers/terraform-provider-vault/generated"
-	"github.com/terraform-providers/terraform-provider-vault/schema"
-	"github.com/terraform-providers/terraform-provider-vault/vault"
 )
 
 // all of the token components used below.

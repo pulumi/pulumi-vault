@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  *
  * const example = new vault.Policy("example", {
  *     policy: `path "secret/my_app" {
- *   capabilities = ["update"]
+ *   policy = "write"
  * }
  * `,
  * });

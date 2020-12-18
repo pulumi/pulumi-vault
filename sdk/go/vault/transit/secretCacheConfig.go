@@ -11,48 +11,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Configure the cache for the Transit Secret Backend in Vault.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/transit"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		transit, err := vault.NewMount(ctx, "transit", &vault.MountArgs{
-// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
-// 			Description:            pulumi.String("Example description"),
-// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
-// 			Path:                   pulumi.String("transit"),
-// 			Type:                   pulumi.String("transit"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = transit.NewSecretCacheConfig(ctx, "cfg", &transit.SecretCacheConfigArgs{
-// 			Backend: transit.Path,
-// 			Size:    pulumi.Int(500),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type SecretCacheConfig struct {
 	pulumi.CustomResourceState
 
-	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+	// The Transit secret backend the resource belongs to.
 	Backend pulumi.StringOutput `pulumi:"backend"`
-	// The number of cache entries. 0 means unlimited.
+	// Number of cache entries. A size of 0 mean unlimited.
 	Size pulumi.IntOutput `pulumi:"size"`
 }
 
@@ -90,16 +54,16 @@ func GetSecretCacheConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretCacheConfig resources.
 type secretCacheConfigState struct {
-	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+	// The Transit secret backend the resource belongs to.
 	Backend *string `pulumi:"backend"`
-	// The number of cache entries. 0 means unlimited.
+	// Number of cache entries. A size of 0 mean unlimited.
 	Size *int `pulumi:"size"`
 }
 
 type SecretCacheConfigState struct {
-	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+	// The Transit secret backend the resource belongs to.
 	Backend pulumi.StringPtrInput
-	// The number of cache entries. 0 means unlimited.
+	// Number of cache entries. A size of 0 mean unlimited.
 	Size pulumi.IntPtrInput
 }
 
@@ -108,17 +72,17 @@ func (SecretCacheConfigState) ElementType() reflect.Type {
 }
 
 type secretCacheConfigArgs struct {
-	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+	// The Transit secret backend the resource belongs to.
 	Backend string `pulumi:"backend"`
-	// The number of cache entries. 0 means unlimited.
+	// Number of cache entries. A size of 0 mean unlimited.
 	Size int `pulumi:"size"`
 }
 
 // The set of arguments for constructing a SecretCacheConfig resource.
 type SecretCacheConfigArgs struct {
-	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+	// The Transit secret backend the resource belongs to.
 	Backend pulumi.StringInput
-	// The number of cache entries. 0 means unlimited.
+	// Number of cache entries. A size of 0 mean unlimited.
 	Size pulumi.IntInput
 }
 

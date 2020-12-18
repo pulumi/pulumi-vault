@@ -83,9 +83,10 @@ type AuthBackend struct {
 	DefaultRole pulumi.StringPtrOutput `pulumi:"defaultRole"`
 	// The description of the auth backend
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set,
+	// system certificates are used.
 	JwksCaPem pulumi.StringPtrOutput `pulumi:"jwksCaPem"`
-	// JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
+	// JWKS URL to use to authenticate signatures. Cannot be used with 'oidc_discovery_url' or 'jwt_validation_pubkeys'.
 	JwksUrl pulumi.StringPtrOutput `pulumi:"jwksUrl"`
 	// A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
 	JwtSupportedAlgs pulumi.StringArrayOutput `pulumi:"jwtSupportedAlgs"`
@@ -142,9 +143,10 @@ type authBackendState struct {
 	DefaultRole *string `pulumi:"defaultRole"`
 	// The description of the auth backend
 	Description *string `pulumi:"description"`
-	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set,
+	// system certificates are used.
 	JwksCaPem *string `pulumi:"jwksCaPem"`
-	// JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
+	// JWKS URL to use to authenticate signatures. Cannot be used with 'oidc_discovery_url' or 'jwt_validation_pubkeys'.
 	JwksUrl *string `pulumi:"jwksUrl"`
 	// A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
 	JwtSupportedAlgs []string `pulumi:"jwtSupportedAlgs"`
@@ -174,9 +176,10 @@ type AuthBackendState struct {
 	DefaultRole pulumi.StringPtrInput
 	// The description of the auth backend
 	Description pulumi.StringPtrInput
-	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set,
+	// system certificates are used.
 	JwksCaPem pulumi.StringPtrInput
-	// JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
+	// JWKS URL to use to authenticate signatures. Cannot be used with 'oidc_discovery_url' or 'jwt_validation_pubkeys'.
 	JwksUrl pulumi.StringPtrInput
 	// A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
 	JwtSupportedAlgs pulumi.StringArrayInput
@@ -208,9 +211,10 @@ type authBackendArgs struct {
 	DefaultRole *string `pulumi:"defaultRole"`
 	// The description of the auth backend
 	Description *string `pulumi:"description"`
-	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set,
+	// system certificates are used.
 	JwksCaPem *string `pulumi:"jwksCaPem"`
-	// JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
+	// JWKS URL to use to authenticate signatures. Cannot be used with 'oidc_discovery_url' or 'jwt_validation_pubkeys'.
 	JwksUrl *string `pulumi:"jwksUrl"`
 	// A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
 	JwtSupportedAlgs []string `pulumi:"jwtSupportedAlgs"`
@@ -239,9 +243,10 @@ type AuthBackendArgs struct {
 	DefaultRole pulumi.StringPtrInput
 	// The description of the auth backend
 	Description pulumi.StringPtrInput
-	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set,
+	// system certificates are used.
 	JwksCaPem pulumi.StringPtrInput
-	// JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
+	// JWKS URL to use to authenticate signatures. Cannot be used with 'oidc_discovery_url' or 'jwt_validation_pubkeys'.
 	JwksUrl pulumi.StringPtrInput
 	// A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
 	JwtSupportedAlgs pulumi.StringArrayInput

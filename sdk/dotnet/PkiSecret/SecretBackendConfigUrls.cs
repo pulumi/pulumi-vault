@@ -31,10 +31,7 @@ namespace Pulumi.Vault.PkiSecret
     ///         var configUrls = new Vault.PkiSecret.SecretBackendConfigUrls("configUrls", new Vault.PkiSecret.SecretBackendConfigUrlsArgs
     ///         {
     ///             Backend = pki.Path,
-    ///             IssuingCertificates = 
-    ///             {
-    ///                 "http://127.0.0.1:8200/v1/pki/ca",
-    ///             },
+    ///             IssuingCertificates = "http://127.0.0.1:8200/v1/pki/ca",
     ///         });
     ///     }
     /// 
@@ -50,19 +47,19 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the URL values for the CRL Distribution Points field.
+        /// Specifies the URL values for the CRL Distribution Points field. Comma-separated string if multiple.
         /// </summary>
         [Output("crlDistributionPoints")]
         public Output<ImmutableArray<string>> CrlDistributionPoints { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the URL values for the Issuing Certificate field.
+        /// Specifies the URL values for the Issuing Certificate field. Comma-separated string if multiple.
         /// </summary>
         [Output("issuingCertificates")]
         public Output<ImmutableArray<string>> IssuingCertificates { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the URL values for the OCSP Servers field.
+        /// Specifies the URL values for the OCSP Servers field. Comma-separated string if multiple.
         /// </summary>
         [Output("ocspServers")]
         public Output<ImmutableArray<string>> OcspServers { get; private set; } = null!;
@@ -123,7 +120,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _crlDistributionPoints;
 
         /// <summary>
-        /// Specifies the URL values for the CRL Distribution Points field.
+        /// Specifies the URL values for the CRL Distribution Points field. Comma-separated string if multiple.
         /// </summary>
         public InputList<string> CrlDistributionPoints
         {
@@ -135,7 +132,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _issuingCertificates;
 
         /// <summary>
-        /// Specifies the URL values for the Issuing Certificate field.
+        /// Specifies the URL values for the Issuing Certificate field. Comma-separated string if multiple.
         /// </summary>
         public InputList<string> IssuingCertificates
         {
@@ -147,7 +144,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _ocspServers;
 
         /// <summary>
-        /// Specifies the URL values for the OCSP Servers field.
+        /// Specifies the URL values for the OCSP Servers field. Comma-separated string if multiple.
         /// </summary>
         public InputList<string> OcspServers
         {
@@ -172,7 +169,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _crlDistributionPoints;
 
         /// <summary>
-        /// Specifies the URL values for the CRL Distribution Points field.
+        /// Specifies the URL values for the CRL Distribution Points field. Comma-separated string if multiple.
         /// </summary>
         public InputList<string> CrlDistributionPoints
         {
@@ -184,7 +181,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _issuingCertificates;
 
         /// <summary>
-        /// Specifies the URL values for the Issuing Certificate field.
+        /// Specifies the URL values for the Issuing Certificate field. Comma-separated string if multiple.
         /// </summary>
         public InputList<string> IssuingCertificates
         {
@@ -196,7 +193,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _ocspServers;
 
         /// <summary>
-        /// Specifies the URL values for the OCSP Servers field.
+        /// Specifies the URL values for the OCSP Servers field. Comma-separated string if multiple.
         /// </summary>
         public InputList<string> OcspServers
         {

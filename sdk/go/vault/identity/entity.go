@@ -15,7 +15,7 @@ type Entity struct {
 
 	// True/false Is this entity currently disabled. Defaults to `false`
 	Disabled pulumi.BoolPtrOutput `pulumi:"disabled"`
-	// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+	// Manage policies externally through `vault_identity_entity_policies`.
 	ExternalPolicies pulumi.BoolPtrOutput `pulumi:"externalPolicies"`
 	// A Map of additional metadata to associate with the user.
 	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
@@ -55,7 +55,7 @@ func GetEntity(ctx *pulumi.Context,
 type entityState struct {
 	// True/false Is this entity currently disabled. Defaults to `false`
 	Disabled *bool `pulumi:"disabled"`
-	// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+	// Manage policies externally through `vault_identity_entity_policies`.
 	ExternalPolicies *bool `pulumi:"externalPolicies"`
 	// A Map of additional metadata to associate with the user.
 	Metadata map[string]string `pulumi:"metadata"`
@@ -68,7 +68,7 @@ type entityState struct {
 type EntityState struct {
 	// True/false Is this entity currently disabled. Defaults to `false`
 	Disabled pulumi.BoolPtrInput
-	// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+	// Manage policies externally through `vault_identity_entity_policies`.
 	ExternalPolicies pulumi.BoolPtrInput
 	// A Map of additional metadata to associate with the user.
 	Metadata pulumi.StringMapInput
@@ -85,7 +85,7 @@ func (EntityState) ElementType() reflect.Type {
 type entityArgs struct {
 	// True/false Is this entity currently disabled. Defaults to `false`
 	Disabled *bool `pulumi:"disabled"`
-	// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+	// Manage policies externally through `vault_identity_entity_policies`.
 	ExternalPolicies *bool `pulumi:"externalPolicies"`
 	// A Map of additional metadata to associate with the user.
 	Metadata map[string]string `pulumi:"metadata"`
@@ -99,7 +99,7 @@ type entityArgs struct {
 type EntityArgs struct {
 	// True/false Is this entity currently disabled. Defaults to `false`
 	Disabled pulumi.BoolPtrInput
-	// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+	// Manage policies externally through `vault_identity_entity_policies`.
 	ExternalPolicies pulumi.BoolPtrInput
 	// A Map of additional metadata to associate with the user.
 	Metadata pulumi.StringMapInput

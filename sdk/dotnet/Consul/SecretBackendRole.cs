@@ -9,51 +9,10 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Consul
 {
-    /// <summary>
-    /// Manages a Consul secrets role for a Consul secrets engine in Vault. Consul secret backends can then issue Consul tokens.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var test = new Vault.Consul.SecretBackend("test", new Vault.Consul.SecretBackendArgs
-    ///         {
-    ///             Path = "consul",
-    ///             Description = "Manages the Consul backend",
-    ///             Address = "127.0.0.1:8500",
-    ///             Token = "4240861b-ce3d-8530-115a-521ff070dd29",
-    ///         });
-    ///         var example = new Vault.Consul.SecretBackendRole("example", new Vault.Consul.SecretBackendRoleArgs
-    ///         {
-    ///             Backend = test.Path,
-    ///             Policies = 
-    ///             {
-    ///                 "example-policy",
-    ///             },
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// Consul secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
-    /// 
-    /// ```sh
-    ///  $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
-    /// ```
-    /// </summary>
     public partial class SecretBackendRole : Pulumi.CustomResource
     {
         /// <summary>
-        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        /// The path of the Consul Secret Backend the role belongs to.
         /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
@@ -71,19 +30,19 @@ namespace Pulumi.Vault.Consul
         public Output<int?> MaxTtl { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the Consul secrets engine role to create.
+        /// The name of an existing role against which to create this Consul credential
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
+        /// The path of the Consul Secret Backend the role belongs to.
         /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
 
         /// <summary>
-        /// The list of Consul ACL policies to associate with these roles.
+        /// List of Consul policies to associate with this role
         /// </summary>
         [Output("policies")]
         public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
@@ -147,7 +106,7 @@ namespace Pulumi.Vault.Consul
     public sealed class SecretBackendRoleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        /// The path of the Consul Secret Backend the role belongs to.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -165,13 +124,13 @@ namespace Pulumi.Vault.Consul
         public Input<int>? MaxTtl { get; set; }
 
         /// <summary>
-        /// The name of the Consul secrets engine role to create.
+        /// The name of an existing role against which to create this Consul credential
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
+        /// The path of the Consul Secret Backend the role belongs to.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -180,7 +139,7 @@ namespace Pulumi.Vault.Consul
         private InputList<string>? _policies;
 
         /// <summary>
-        /// The list of Consul ACL policies to associate with these roles.
+        /// List of Consul policies to associate with this role
         /// </summary>
         public InputList<string> Policies
         {
@@ -208,7 +167,7 @@ namespace Pulumi.Vault.Consul
     public sealed class SecretBackendRoleState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        /// The path of the Consul Secret Backend the role belongs to.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -226,13 +185,13 @@ namespace Pulumi.Vault.Consul
         public Input<int>? MaxTtl { get; set; }
 
         /// <summary>
-        /// The name of the Consul secrets engine role to create.
+        /// The name of an existing role against which to create this Consul credential
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
+        /// The path of the Consul Secret Backend the role belongs to.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -241,7 +200,7 @@ namespace Pulumi.Vault.Consul
         private InputList<string>? _policies;
 
         /// <summary>
-        /// The list of Consul ACL policies to associate with these roles.
+        /// List of Consul policies to associate with this role
         /// </summary>
         public InputList<string> Policies
         {

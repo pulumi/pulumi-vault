@@ -22,11 +22,6 @@ namespace Pulumi.Vault
     ///     {
     ///         var example = new Vault.AuthBackend("example", new Vault.AuthBackendArgs
     ///         {
-    ///             Tune = new Vault.Inputs.AuthBackendTuneArgs
-    ///             {
-    ///                 ListingVisibility = "unauth",
-    ///                 MaxLeaseTtl = "90000s",
-    ///             },
     ///             Type = "github",
     ///         });
     ///     }
@@ -51,7 +46,7 @@ namespace Pulumi.Vault
         public Output<string> Accessor { get; private set; } = null!;
 
         /// <summary>
-        /// (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version &gt;= 1.8) The default lease duration in seconds.
+        /// The default lease duration in seconds.
         /// </summary>
         [Output("defaultLeaseTtlSeconds")]
         public Output<int> DefaultLeaseTtlSeconds { get; private set; } = null!;
@@ -63,8 +58,7 @@ namespace Pulumi.Vault
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies whether to show this mount in
-        /// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+        /// Speficies whether to show this mount in the UI-specific listing endpoint.
         /// </summary>
         [Output("listingVisibility")]
         public Output<string> ListingVisibility { get; private set; } = null!;
@@ -76,7 +70,7 @@ namespace Pulumi.Vault
         public Output<bool?> Local { get; private set; } = null!;
 
         /// <summary>
-        /// (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version &gt;= 1.8) The maximum lease duration in seconds.
+        /// The maximum lease duration in seconds.
         /// </summary>
         [Output("maxLeaseTtlSeconds")]
         public Output<int> MaxLeaseTtlSeconds { get; private set; } = null!;
@@ -87,9 +81,6 @@ namespace Pulumi.Vault
         [Output("path")]
         public Output<string> Path { get; private set; } = null!;
 
-        /// <summary>
-        /// Extra configuration block. Structure is documented below.
-        /// </summary>
         [Output("tune")]
         public Output<Outputs.AuthBackendTune> Tune { get; private set; } = null!;
 
@@ -146,7 +137,7 @@ namespace Pulumi.Vault
     public sealed class AuthBackendArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version &gt;= 1.8) The default lease duration in seconds.
+        /// The default lease duration in seconds.
         /// </summary>
         [Input("defaultLeaseTtlSeconds")]
         public Input<int>? DefaultLeaseTtlSeconds { get; set; }
@@ -158,8 +149,7 @@ namespace Pulumi.Vault
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Specifies whether to show this mount in
-        /// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+        /// Speficies whether to show this mount in the UI-specific listing endpoint.
         /// </summary>
         [Input("listingVisibility")]
         public Input<string>? ListingVisibility { get; set; }
@@ -171,7 +161,7 @@ namespace Pulumi.Vault
         public Input<bool>? Local { get; set; }
 
         /// <summary>
-        /// (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version &gt;= 1.8) The maximum lease duration in seconds.
+        /// The maximum lease duration in seconds.
         /// </summary>
         [Input("maxLeaseTtlSeconds")]
         public Input<int>? MaxLeaseTtlSeconds { get; set; }
@@ -182,9 +172,6 @@ namespace Pulumi.Vault
         [Input("path")]
         public Input<string>? Path { get; set; }
 
-        /// <summary>
-        /// Extra configuration block. Structure is documented below.
-        /// </summary>
         [Input("tune")]
         public Input<Inputs.AuthBackendTuneArgs>? Tune { get; set; }
 
@@ -208,7 +195,7 @@ namespace Pulumi.Vault
         public Input<string>? Accessor { get; set; }
 
         /// <summary>
-        /// (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version &gt;= 1.8) The default lease duration in seconds.
+        /// The default lease duration in seconds.
         /// </summary>
         [Input("defaultLeaseTtlSeconds")]
         public Input<int>? DefaultLeaseTtlSeconds { get; set; }
@@ -220,8 +207,7 @@ namespace Pulumi.Vault
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Specifies whether to show this mount in
-        /// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+        /// Speficies whether to show this mount in the UI-specific listing endpoint.
         /// </summary>
         [Input("listingVisibility")]
         public Input<string>? ListingVisibility { get; set; }
@@ -233,7 +219,7 @@ namespace Pulumi.Vault
         public Input<bool>? Local { get; set; }
 
         /// <summary>
-        /// (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version &gt;= 1.8) The maximum lease duration in seconds.
+        /// The maximum lease duration in seconds.
         /// </summary>
         [Input("maxLeaseTtlSeconds")]
         public Input<int>? MaxLeaseTtlSeconds { get; set; }
@@ -244,9 +230,6 @@ namespace Pulumi.Vault
         [Input("path")]
         public Input<string>? Path { get; set; }
 
-        /// <summary>
-        /// Extra configuration block. Structure is documented below.
-        /// </summary>
         [Input("tune")]
         public Input<Inputs.AuthBackendTuneGetArgs>? Tune { get; set; }
 

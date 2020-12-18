@@ -31,19 +31,11 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// }
     /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// GCP authentication backends can be imported using the backend name, e.g.
-    /// 
-    /// ```sh
-    ///  $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
-    /// ```
     /// </summary>
     public partial class AuthBackend : Pulumi.CustomResource
     {
         /// <summary>
-        /// The clients email associated with the credentials
+        /// The clients email assosiated with the credentials
         /// </summary>
         [Output("clientEmail")]
         public Output<string> ClientEmail { get; private set; } = null!;
@@ -55,26 +47,20 @@ namespace Pulumi.Vault.Gcp
         public Output<string> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+        /// A JSON string containing the contents of a GCP credentials file.
         /// </summary>
         [Output("credentials")]
         public Output<string?> Credentials { get; private set; } = null!;
 
-        /// <summary>
-        /// A description of the auth method.
-        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies if the auth method is local only.
+        /// Specifies if the auth method is local only
         /// </summary>
         [Output("local")]
         public Output<bool?> Local { get; private set; } = null!;
 
-        /// <summary>
-        /// The path to mount the auth method — this defaults to 'gcp'.
-        /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
 
@@ -137,7 +123,7 @@ namespace Pulumi.Vault.Gcp
     public sealed class AuthBackendArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The clients email associated with the credentials
+        /// The clients email assosiated with the credentials
         /// </summary>
         [Input("clientEmail")]
         public Input<string>? ClientEmail { get; set; }
@@ -149,26 +135,20 @@ namespace Pulumi.Vault.Gcp
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+        /// A JSON string containing the contents of a GCP credentials file.
         /// </summary>
         [Input("credentials")]
         public Input<string>? Credentials { get; set; }
 
-        /// <summary>
-        /// A description of the auth method.
-        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Specifies if the auth method is local only.
+        /// Specifies if the auth method is local only
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
 
-        /// <summary>
-        /// The path to mount the auth method — this defaults to 'gcp'.
-        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
@@ -192,7 +172,7 @@ namespace Pulumi.Vault.Gcp
     public sealed class AuthBackendState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The clients email associated with the credentials
+        /// The clients email assosiated with the credentials
         /// </summary>
         [Input("clientEmail")]
         public Input<string>? ClientEmail { get; set; }
@@ -204,26 +184,20 @@ namespace Pulumi.Vault.Gcp
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+        /// A JSON string containing the contents of a GCP credentials file.
         /// </summary>
         [Input("credentials")]
         public Input<string>? Credentials { get; set; }
 
-        /// <summary>
-        /// A description of the auth method.
-        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Specifies if the auth method is local only.
+        /// Specifies if the auth method is local only
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
 
-        /// <summary>
-        /// The path to mount the auth method — this defaults to 'gcp'.
-        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 

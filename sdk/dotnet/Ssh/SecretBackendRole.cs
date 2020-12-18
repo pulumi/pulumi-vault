@@ -56,9 +56,6 @@ namespace Pulumi.Vault.Ssh
     /// </summary>
     public partial class SecretBackendRole : Pulumi.CustomResource
     {
-        /// <summary>
-        /// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
-        /// </summary>
         [Output("algorithmSigner")]
         public Output<string> AlgorithmSigner { get; private set; } = null!;
 
@@ -110,9 +107,6 @@ namespace Pulumi.Vault.Ssh
         [Output("allowedExtensions")]
         public Output<string?> AllowedExtensions { get; private set; } = null!;
 
-        /// <summary>
-        /// Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
-        /// </summary>
         [Output("allowedUserKeyLengths")]
         public Output<ImmutableDictionary<string, object>?> AllowedUserKeyLengths { get; private set; } = null!;
 
@@ -122,9 +116,6 @@ namespace Pulumi.Vault.Ssh
         [Output("allowedUsers")]
         public Output<string?> AllowedUsers { get; private set; } = null!;
 
-        /// <summary>
-        /// Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
-        /// </summary>
         [Output("allowedUsersTemplate")]
         public Output<bool?> AllowedUsersTemplate { get; private set; } = null!;
 
@@ -171,7 +162,7 @@ namespace Pulumi.Vault.Ssh
         public Output<string> KeyType { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the maximum Time To Live value.
+        /// Specifies the Time To Live value.
         /// </summary>
         [Output("maxTtl")]
         public Output<string> MaxTtl { get; private set; } = null!;
@@ -183,7 +174,7 @@ namespace Pulumi.Vault.Ssh
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the Time To Live value.
+        /// Specifies the maximum Time To Live value.
         /// </summary>
         [Output("ttl")]
         public Output<string> Ttl { get; private set; } = null!;
@@ -234,9 +225,6 @@ namespace Pulumi.Vault.Ssh
 
     public sealed class SecretBackendRoleArgs : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
-        /// </summary>
         [Input("algorithmSigner")]
         public Input<string>? AlgorithmSigner { get; set; }
 
@@ -290,10 +278,6 @@ namespace Pulumi.Vault.Ssh
 
         [Input("allowedUserKeyLengths")]
         private InputMap<object>? _allowedUserKeyLengths;
-
-        /// <summary>
-        /// Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
-        /// </summary>
         public InputMap<object> AllowedUserKeyLengths
         {
             get => _allowedUserKeyLengths ?? (_allowedUserKeyLengths = new InputMap<object>());
@@ -306,9 +290,6 @@ namespace Pulumi.Vault.Ssh
         [Input("allowedUsers")]
         public Input<string>? AllowedUsers { get; set; }
 
-        /// <summary>
-        /// Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
-        /// </summary>
         [Input("allowedUsersTemplate")]
         public Input<bool>? AllowedUsersTemplate { get; set; }
 
@@ -367,7 +348,7 @@ namespace Pulumi.Vault.Ssh
         public Input<string> KeyType { get; set; } = null!;
 
         /// <summary>
-        /// Specifies the maximum Time To Live value.
+        /// Specifies the Time To Live value.
         /// </summary>
         [Input("maxTtl")]
         public Input<string>? MaxTtl { get; set; }
@@ -379,7 +360,7 @@ namespace Pulumi.Vault.Ssh
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Specifies the Time To Live value.
+        /// Specifies the maximum Time To Live value.
         /// </summary>
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }
@@ -391,9 +372,6 @@ namespace Pulumi.Vault.Ssh
 
     public sealed class SecretBackendRoleState : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
-        /// </summary>
         [Input("algorithmSigner")]
         public Input<string>? AlgorithmSigner { get; set; }
 
@@ -447,10 +425,6 @@ namespace Pulumi.Vault.Ssh
 
         [Input("allowedUserKeyLengths")]
         private InputMap<object>? _allowedUserKeyLengths;
-
-        /// <summary>
-        /// Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
-        /// </summary>
         public InputMap<object> AllowedUserKeyLengths
         {
             get => _allowedUserKeyLengths ?? (_allowedUserKeyLengths = new InputMap<object>());
@@ -463,9 +437,6 @@ namespace Pulumi.Vault.Ssh
         [Input("allowedUsers")]
         public Input<string>? AllowedUsers { get; set; }
 
-        /// <summary>
-        /// Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
-        /// </summary>
         [Input("allowedUsersTemplate")]
         public Input<bool>? AllowedUsersTemplate { get; set; }
 
@@ -524,7 +495,7 @@ namespace Pulumi.Vault.Ssh
         public Input<string>? KeyType { get; set; }
 
         /// <summary>
-        /// Specifies the maximum Time To Live value.
+        /// Specifies the Time To Live value.
         /// </summary>
         [Input("maxTtl")]
         public Input<string>? MaxTtl { get; set; }
@@ -536,7 +507,7 @@ namespace Pulumi.Vault.Ssh
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Specifies the Time To Live value.
+        /// Specifies the maximum Time To Live value.
         /// </summary>
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }

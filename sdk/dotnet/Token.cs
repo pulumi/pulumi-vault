@@ -10,6 +10,37 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault
 {
     /// <summary>
+    /// Provides a resource to generate a vault token with its options. The token renewing is supported through optional
+    /// arguments.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Vault.Token("example", new Vault.TokenArgs
+    ///         {
+    ///             Policies = 
+    ///             {
+    ///                 "policy1",
+    ///                 "policy2",
+    ///             },
+    ///             RenewIncrement = 86400,
+    ///             RenewMinLease = 43200,
+    ///             Renewable = true,
+    ///             RoleName = "app",
+    ///             Ttl = "24h",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Tokens can be imported using its `id` as accessor id, e.g.
@@ -33,7 +64,7 @@ namespace Pulumi.Vault
         public Output<string?> DisplayName { get; private set; } = null!;
 
         /// <summary>
-        /// String containing the client token encrypted with the given `pgp_key` if stored in present file
+        /// The client token encrypted using the provided PGP key.
         /// </summary>
         [Output("encryptedClientToken")]
         public Output<string> EncryptedClientToken { get; private set; } = null!;
@@ -296,7 +327,7 @@ namespace Pulumi.Vault
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// String containing the client token encrypted with the given `pgp_key` if stored in present file
+        /// The client token encrypted using the provided PGP key.
         /// </summary>
         [Input("encryptedClientToken")]
         public Input<string>? EncryptedClientToken { get; set; }

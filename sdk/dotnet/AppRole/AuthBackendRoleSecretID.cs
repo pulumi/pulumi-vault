@@ -11,7 +11,7 @@ namespace Pulumi.Vault.AppRole
 {
     /// <summary>
     /// Manages an AppRole auth backend SecretID in a Vault server. See the [Vault
-    /// documentation](https://www.vaultproject.io/docs/auth/approle) for more
+    /// documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
     /// information.
     /// 
     /// ## Example Usage
@@ -96,23 +96,19 @@ namespace Pulumi.Vault.AppRole
         public Output<string> SecretId { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID for the response-wrapped SecretID that can
-        /// be safely logged.
+        /// The wrapped SecretID accessor.
         /// </summary>
         [Output("wrappingAccessor")]
         public Output<string> WrappingAccessor { get; private set; } = null!;
 
         /// <summary>
-        /// The token used to retrieve a response-wrapped SecretID.
+        /// The wrapped SecretID token.
         /// </summary>
         [Output("wrappingToken")]
         public Output<string> WrappingToken { get; private set; } = null!;
 
         /// <summary>
-        /// If set, the SecretID response will be
-        /// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
-        /// and available for the duration specified. Only a single unwrapping of the
-        /// token is allowed.
+        /// The TTL duration of the wrapped SecretID.
         /// </summary>
         [Output("wrappingTtl")]
         public Output<string?> WrappingTtl { get; private set; } = null!;
@@ -203,10 +199,7 @@ namespace Pulumi.Vault.AppRole
         public Input<string>? SecretId { get; set; }
 
         /// <summary>
-        /// If set, the SecretID response will be
-        /// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
-        /// and available for the duration specified. Only a single unwrapping of the
-        /// token is allowed.
+        /// The TTL duration of the wrapped SecretID.
         /// </summary>
         [Input("wrappingTtl")]
         public Input<string>? WrappingTtl { get; set; }
@@ -264,23 +257,19 @@ namespace Pulumi.Vault.AppRole
         public Input<string>? SecretId { get; set; }
 
         /// <summary>
-        /// The unique ID for the response-wrapped SecretID that can
-        /// be safely logged.
+        /// The wrapped SecretID accessor.
         /// </summary>
         [Input("wrappingAccessor")]
         public Input<string>? WrappingAccessor { get; set; }
 
         /// <summary>
-        /// The token used to retrieve a response-wrapped SecretID.
+        /// The wrapped SecretID token.
         /// </summary>
         [Input("wrappingToken")]
         public Input<string>? WrappingToken { get; set; }
 
         /// <summary>
-        /// If set, the SecretID response will be
-        /// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
-        /// and available for the duration specified. Only a single unwrapping of the
-        /// token is allowed.
+        /// The TTL duration of the wrapped SecretID.
         /// </summary>
         [Input("wrappingTtl")]
         public Input<string>? WrappingTtl { get; set; }

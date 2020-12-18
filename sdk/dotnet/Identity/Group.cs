@@ -72,13 +72,13 @@ namespace Pulumi.Vault.Identity
     public partial class Group : Pulumi.CustomResource
     {
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+        /// Manage member entities externally through `vault_identity_group_policies_member_entity_ids`
         /// </summary>
         [Output("externalMemberEntityIds")]
         public Output<bool?> ExternalMemberEntityIds { get; private set; } = null!;
 
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+        /// Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned policies.
         /// </summary>
         [Output("externalPolicies")]
         public Output<bool?> ExternalPolicies { get; private set; } = null!;
@@ -90,7 +90,7 @@ namespace Pulumi.Vault.Identity
         public Output<ImmutableArray<string>> MemberEntityIds { get; private set; } = null!;
 
         /// <summary>
-        /// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
+        /// A list of Group IDs to be assigned as group members.
         /// </summary>
         [Output("memberGroupIds")]
         public Output<ImmutableArray<string>> MemberGroupIds { get; private set; } = null!;
@@ -166,13 +166,13 @@ namespace Pulumi.Vault.Identity
     public sealed class GroupArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+        /// Manage member entities externally through `vault_identity_group_policies_member_entity_ids`
         /// </summary>
         [Input("externalMemberEntityIds")]
         public Input<bool>? ExternalMemberEntityIds { get; set; }
 
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+        /// Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned policies.
         /// </summary>
         [Input("externalPolicies")]
         public Input<bool>? ExternalPolicies { get; set; }
@@ -193,7 +193,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _memberGroupIds;
 
         /// <summary>
-        /// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
+        /// A list of Group IDs to be assigned as group members.
         /// </summary>
         public InputList<string> MemberGroupIds
         {
@@ -245,13 +245,13 @@ namespace Pulumi.Vault.Identity
     public sealed class GroupState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+        /// Manage member entities externally through `vault_identity_group_policies_member_entity_ids`
         /// </summary>
         [Input("externalMemberEntityIds")]
         public Input<bool>? ExternalMemberEntityIds { get; set; }
 
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+        /// Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned policies.
         /// </summary>
         [Input("externalPolicies")]
         public Input<bool>? ExternalPolicies { get; set; }
@@ -272,7 +272,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _memberGroupIds;
 
         /// <summary>
-        /// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
+        /// A list of Group IDs to be assigned as group members.
         /// </summary>
         public InputList<string> MemberGroupIds
         {

@@ -4,15 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * ## Import
- *
- * The key can be imported with the role name, for example
- *
- * ```sh
- *  $ pulumi import vault:identity/oidcRole:OidcRole role role
- * ```
- */
 export class OidcRole extends pulumi.CustomResource {
     /**
      * Get an existing OidcRole resource's state with the given name, ID, and optional extra
@@ -42,24 +33,19 @@ export class OidcRole extends pulumi.CustomResource {
     }
 
     /**
-     * The value that will be included in the `aud` field of all the OIDC identity
-     * tokens issued by this role
+     * The value that will be included in the `aud` field of all the OIDC identity tokens issued by this role
      */
-    public /*out*/ readonly clientId!: pulumi.Output<string>;
+    public readonly clientId!: pulumi.Output<string>;
     /**
-     * A configured named key, the key must already exist
-     * before tokens can be issued.
+     * A configured named key, the key must already exist.
      */
     public readonly key!: pulumi.Output<string>;
     /**
-     * Name of the OIDC Role to create.
+     * Name of the role.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The template string to use for generating tokens. This may be in
-     * string-ified JSON or base64 format. See the
-     * [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
-     * for the template format.
+     * The template string to use for generating tokens. This may be in string-ified JSON or base64 format.
      */
     public readonly template!: pulumi.Output<string | undefined>;
     /**
@@ -89,11 +75,11 @@ export class OidcRole extends pulumi.CustomResource {
             if (!args || args.key === undefined) {
                 throw new Error("Missing required property 'key'");
             }
+            inputs["clientId"] = args ? args.clientId : undefined;
             inputs["key"] = args ? args.key : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["template"] = args ? args.template : undefined;
             inputs["ttl"] = args ? args.ttl : undefined;
-            inputs["clientId"] = undefined /*out*/;
         }
         if (!opts) {
             opts = {}
@@ -111,24 +97,19 @@ export class OidcRole extends pulumi.CustomResource {
  */
 export interface OidcRoleState {
     /**
-     * The value that will be included in the `aud` field of all the OIDC identity
-     * tokens issued by this role
+     * The value that will be included in the `aud` field of all the OIDC identity tokens issued by this role
      */
     readonly clientId?: pulumi.Input<string>;
     /**
-     * A configured named key, the key must already exist
-     * before tokens can be issued.
+     * A configured named key, the key must already exist.
      */
     readonly key?: pulumi.Input<string>;
     /**
-     * Name of the OIDC Role to create.
+     * Name of the role.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The template string to use for generating tokens. This may be in
-     * string-ified JSON or base64 format. See the
-     * [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
-     * for the template format.
+     * The template string to use for generating tokens. This may be in string-ified JSON or base64 format.
      */
     readonly template?: pulumi.Input<string>;
     /**
@@ -142,19 +123,19 @@ export interface OidcRoleState {
  */
 export interface OidcRoleArgs {
     /**
-     * A configured named key, the key must already exist
-     * before tokens can be issued.
+     * The value that will be included in the `aud` field of all the OIDC identity tokens issued by this role
+     */
+    readonly clientId?: pulumi.Input<string>;
+    /**
+     * A configured named key, the key must already exist.
      */
     readonly key: pulumi.Input<string>;
     /**
-     * Name of the OIDC Role to create.
+     * Name of the role.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The template string to use for generating tokens. This may be in
-     * string-ified JSON or base64 format. See the
-     * [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
-     * for the template format.
+     * The template string to use for generating tokens. This may be in string-ified JSON or base64 format.
      */
     readonly template?: pulumi.Input<string>;
     /**

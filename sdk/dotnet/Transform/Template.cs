@@ -24,7 +24,7 @@ namespace Pulumi.Vault.Transform
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Path to where the back-end is mounted within Vault.
+        /// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
         /// </summary>
         [Output("path")]
         public Output<string> Path { get; private set; } = null!;
@@ -100,7 +100,7 @@ namespace Pulumi.Vault.Transform
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Path to where the back-end is mounted within Vault.
+        /// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
         /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
@@ -137,7 +137,7 @@ namespace Pulumi.Vault.Transform
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Path to where the back-end is mounted within Vault.
+        /// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }

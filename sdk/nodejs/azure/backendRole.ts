@@ -34,16 +34,14 @@ export class BackendRole extends pulumi.CustomResource {
     }
 
     /**
-     * Application Object ID for an existing service principal that will
-     * be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
+     * Application Object ID for an existing service principal that will be used instead of creating dynamic service
+     * principals.
      */
     public readonly applicationObjectId!: pulumi.Output<string | undefined>;
-    /**
-     * List of Azure roles to be assigned to the generated service principal.
-     */
+    public readonly azureGroups!: pulumi.Output<outputs.azure.BackendRoleAzureGroup[] | undefined>;
     public readonly azureRoles!: pulumi.Output<outputs.azure.BackendRoleAzureRole[] | undefined>;
     /**
-     * Path to the mounted Azure auth backend
+     * Unique name of the auth backend to configure.
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
@@ -51,17 +49,15 @@ export class BackendRole extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * Specifies the maximum TTL for service principals generated using this role. Accepts time
-     * suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+     * Human-friendly description of the mount for the backend.
      */
     public readonly maxTtl!: pulumi.Output<string | undefined>;
     /**
-     * Name of the Azure role
+     * Name of the role to create
      */
     public readonly role!: pulumi.Output<string>;
     /**
-     * Specifies the default TTL for service principals generated using this role.
-     * Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+     * Human-friendly description of the mount for the backend.
      */
     public readonly ttl!: pulumi.Output<string | undefined>;
 
@@ -78,6 +74,7 @@ export class BackendRole extends pulumi.CustomResource {
         if (opts && opts.id) {
             const state = argsOrState as BackendRoleState | undefined;
             inputs["applicationObjectId"] = state ? state.applicationObjectId : undefined;
+            inputs["azureGroups"] = state ? state.azureGroups : undefined;
             inputs["azureRoles"] = state ? state.azureRoles : undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["description"] = state ? state.description : undefined;
@@ -90,6 +87,7 @@ export class BackendRole extends pulumi.CustomResource {
                 throw new Error("Missing required property 'role'");
             }
             inputs["applicationObjectId"] = args ? args.applicationObjectId : undefined;
+            inputs["azureGroups"] = args ? args.azureGroups : undefined;
             inputs["azureRoles"] = args ? args.azureRoles : undefined;
             inputs["backend"] = args ? args.backend : undefined;
             inputs["description"] = args ? args.description : undefined;
@@ -113,16 +111,14 @@ export class BackendRole extends pulumi.CustomResource {
  */
 export interface BackendRoleState {
     /**
-     * Application Object ID for an existing service principal that will
-     * be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
+     * Application Object ID for an existing service principal that will be used instead of creating dynamic service
+     * principals.
      */
     readonly applicationObjectId?: pulumi.Input<string>;
-    /**
-     * List of Azure roles to be assigned to the generated service principal.
-     */
+    readonly azureGroups?: pulumi.Input<pulumi.Input<inputs.azure.BackendRoleAzureGroup>[]>;
     readonly azureRoles?: pulumi.Input<pulumi.Input<inputs.azure.BackendRoleAzureRole>[]>;
     /**
-     * Path to the mounted Azure auth backend
+     * Unique name of the auth backend to configure.
      */
     readonly backend?: pulumi.Input<string>;
     /**
@@ -130,17 +126,15 @@ export interface BackendRoleState {
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Specifies the maximum TTL for service principals generated using this role. Accepts time
-     * suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+     * Human-friendly description of the mount for the backend.
      */
     readonly maxTtl?: pulumi.Input<string>;
     /**
-     * Name of the Azure role
+     * Name of the role to create
      */
     readonly role?: pulumi.Input<string>;
     /**
-     * Specifies the default TTL for service principals generated using this role.
-     * Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+     * Human-friendly description of the mount for the backend.
      */
     readonly ttl?: pulumi.Input<string>;
 }
@@ -150,16 +144,14 @@ export interface BackendRoleState {
  */
 export interface BackendRoleArgs {
     /**
-     * Application Object ID for an existing service principal that will
-     * be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
+     * Application Object ID for an existing service principal that will be used instead of creating dynamic service
+     * principals.
      */
     readonly applicationObjectId?: pulumi.Input<string>;
-    /**
-     * List of Azure roles to be assigned to the generated service principal.
-     */
+    readonly azureGroups?: pulumi.Input<pulumi.Input<inputs.azure.BackendRoleAzureGroup>[]>;
     readonly azureRoles?: pulumi.Input<pulumi.Input<inputs.azure.BackendRoleAzureRole>[]>;
     /**
-     * Path to the mounted Azure auth backend
+     * Unique name of the auth backend to configure.
      */
     readonly backend?: pulumi.Input<string>;
     /**
@@ -167,17 +159,15 @@ export interface BackendRoleArgs {
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Specifies the maximum TTL for service principals generated using this role. Accepts time
-     * suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+     * Human-friendly description of the mount for the backend.
      */
     readonly maxTtl?: pulumi.Input<string>;
     /**
-     * Name of the Azure role
+     * Name of the role to create
      */
     readonly role: pulumi.Input<string>;
     /**
-     * Specifies the default TTL for service principals generated using this role.
-     * Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+     * Human-friendly description of the mount for the backend.
      */
     readonly ttl?: pulumi.Input<string>;
 }

@@ -33,11 +33,12 @@ export class Backend extends pulumi.CustomResource {
     }
 
     /**
-     * - The OAuth2 client id to connect to Azure.
+     * The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
+     * required.
      */
     public readonly clientId!: pulumi.Output<string | undefined>;
     /**
-     * - The OAuth2 client secret to connect to Azure.
+     * The client secret for credentials to query the Azure APIs
      */
     public readonly clientSecret!: pulumi.Output<string | undefined>;
     /**
@@ -45,19 +46,19 @@ export class Backend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * - The Azure environment.
+     * The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
      */
     public readonly environment!: pulumi.Output<string | undefined>;
     /**
-     * - The unique path this backend should be mounted at. Defaults to `azure`.
+     * Path to mount the backend at.
      */
     public readonly path!: pulumi.Output<string | undefined>;
     /**
-     * - The subscription id for the Azure Active Directory.
+     * The subscription id for the Azure Active Directory.
      */
     public readonly subscriptionId!: pulumi.Output<string>;
     /**
-     * - The tenant id for the Azure Active Directory.
+     * The tenant id for the Azure Active Directory organization.
      */
     public readonly tenantId!: pulumi.Output<string>;
 
@@ -112,11 +113,12 @@ export class Backend extends pulumi.CustomResource {
  */
 export interface BackendState {
     /**
-     * - The OAuth2 client id to connect to Azure.
+     * The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
+     * required.
      */
     readonly clientId?: pulumi.Input<string>;
     /**
-     * - The OAuth2 client secret to connect to Azure.
+     * The client secret for credentials to query the Azure APIs
      */
     readonly clientSecret?: pulumi.Input<string>;
     /**
@@ -124,19 +126,19 @@ export interface BackendState {
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * - The Azure environment.
+     * The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
      */
     readonly environment?: pulumi.Input<string>;
     /**
-     * - The unique path this backend should be mounted at. Defaults to `azure`.
+     * Path to mount the backend at.
      */
     readonly path?: pulumi.Input<string>;
     /**
-     * - The subscription id for the Azure Active Directory.
+     * The subscription id for the Azure Active Directory.
      */
     readonly subscriptionId?: pulumi.Input<string>;
     /**
-     * - The tenant id for the Azure Active Directory.
+     * The tenant id for the Azure Active Directory organization.
      */
     readonly tenantId?: pulumi.Input<string>;
 }
@@ -146,11 +148,12 @@ export interface BackendState {
  */
 export interface BackendArgs {
     /**
-     * - The OAuth2 client id to connect to Azure.
+     * The client id for credentials to query the Azure APIs. Currently read permissions to query compute resources are
+     * required.
      */
     readonly clientId?: pulumi.Input<string>;
     /**
-     * - The OAuth2 client secret to connect to Azure.
+     * The client secret for credentials to query the Azure APIs
      */
     readonly clientSecret?: pulumi.Input<string>;
     /**
@@ -158,19 +161,19 @@ export interface BackendArgs {
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * - The Azure environment.
+     * The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud.
      */
     readonly environment?: pulumi.Input<string>;
     /**
-     * - The unique path this backend should be mounted at. Defaults to `azure`.
+     * Path to mount the backend at.
      */
     readonly path?: pulumi.Input<string>;
     /**
-     * - The subscription id for the Azure Active Directory.
+     * The subscription id for the Azure Active Directory.
      */
     readonly subscriptionId: pulumi.Input<string>;
     /**
-     * - The tenant id for the Azure Active Directory.
+     * The tenant id for the Azure Active Directory organization.
      */
     readonly tenantId: pulumi.Input<string>;
 }

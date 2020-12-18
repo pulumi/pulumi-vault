@@ -24,8 +24,8 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
         Create a OidcKeyAllowedClientID resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] allowed_client_id: Client ID to allow usage with the OIDC named key
-        :param pulumi.Input[str] key_name: Name of the OIDC Key allow the Client ID.
+        :param pulumi.Input[str] allowed_client_id: Role Client ID allowed to use the key for signing.
+        :param pulumi.Input[str] key_name: Name of the key.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -69,8 +69,8 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] allowed_client_id: Client ID to allow usage with the OIDC named key
-        :param pulumi.Input[str] key_name: Name of the OIDC Key allow the Client ID.
+        :param pulumi.Input[str] allowed_client_id: Role Client ID allowed to use the key for signing.
+        :param pulumi.Input[str] key_name: Name of the key.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -84,7 +84,7 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
     @pulumi.getter(name="allowedClientId")
     def allowed_client_id(self) -> pulumi.Output[str]:
         """
-        Client ID to allow usage with the OIDC named key
+        Role Client ID allowed to use the key for signing.
         """
         return pulumi.get(self, "allowed_client_id")
 
@@ -92,7 +92,7 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
     @pulumi.getter(name="keyName")
     def key_name(self) -> pulumi.Output[str]:
         """
-        Name of the OIDC Key allow the Client ID.
+        Name of the key.
         """
         return pulumi.get(self, "key_name")
 

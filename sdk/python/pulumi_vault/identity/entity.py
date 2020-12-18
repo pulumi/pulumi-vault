@@ -28,7 +28,7 @@ class Entity(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] disabled: True/false Is this entity currently disabled. Defaults to `false`
-        :param pulumi.Input[bool] external_policies: `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+        :param pulumi.Input[bool] external_policies: Manage policies externally through `vault_identity_entity_policies`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: A Map of additional metadata to associate with the user.
         :param pulumi.Input[str] name: Name of the identity entity to create.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: A list of policies to apply to the entity.
@@ -78,7 +78,7 @@ class Entity(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] disabled: True/false Is this entity currently disabled. Defaults to `false`
-        :param pulumi.Input[bool] external_policies: `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+        :param pulumi.Input[bool] external_policies: Manage policies externally through `vault_identity_entity_policies`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: A Map of additional metadata to associate with the user.
         :param pulumi.Input[str] name: Name of the identity entity to create.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: A list of policies to apply to the entity.
@@ -106,7 +106,7 @@ class Entity(pulumi.CustomResource):
     @pulumi.getter(name="externalPolicies")
     def external_policies(self) -> pulumi.Output[Optional[bool]]:
         """
-        `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+        Manage policies externally through `vault_identity_entity_policies`.
         """
         return pulumi.get(self, "external_policies")
 

@@ -9,20 +9,11 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Identity
 {
-    /// <summary>
-    /// ## Import
-    /// 
-    /// The key can be imported with the key name, for example
-    /// 
-    /// ```sh
-    ///  $ pulumi import vault:identity/oidcKey:OidcKey key key
-    /// ```
-    /// </summary>
     public partial class OidcKey : Pulumi.CustomResource
     {
         /// <summary>
-        /// Signing algorithm to use. Signing algorithm to use.
-        /// Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+        /// Signing algorithm to use. Signing algorithm to use. Allowed values are: RS256 (default), RS384, RS512, ES256, ES384,
+        /// ES512, EdDSA.
         /// </summary>
         [Output("algorithm")]
         public Output<string?> Algorithm { get; private set; } = null!;
@@ -35,7 +26,7 @@ namespace Pulumi.Vault.Identity
         public Output<ImmutableArray<string>> AllowedClientIds { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the OIDC Key to create.
+        /// Name of the key.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -47,8 +38,7 @@ namespace Pulumi.Vault.Identity
         public Output<int?> RotationPeriod { get; private set; } = null!;
 
         /// <summary>
-        /// "Controls how long the public portion of a signing key will be
-        /// available for verification after being rotated in seconds.
+        /// Controls how long the public portion of a signing key will be available for verification after being rotated in seconds.
         /// </summary>
         [Output("verificationTtl")]
         public Output<int?> VerificationTtl { get; private set; } = null!;
@@ -100,8 +90,8 @@ namespace Pulumi.Vault.Identity
     public sealed class OidcKeyArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Signing algorithm to use. Signing algorithm to use.
-        /// Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+        /// Signing algorithm to use. Signing algorithm to use. Allowed values are: RS256 (default), RS384, RS512, ES256, ES384,
+        /// ES512, EdDSA.
         /// </summary>
         [Input("algorithm")]
         public Input<string>? Algorithm { get; set; }
@@ -120,7 +110,7 @@ namespace Pulumi.Vault.Identity
         }
 
         /// <summary>
-        /// Name of the OIDC Key to create.
+        /// Name of the key.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -132,8 +122,7 @@ namespace Pulumi.Vault.Identity
         public Input<int>? RotationPeriod { get; set; }
 
         /// <summary>
-        /// "Controls how long the public portion of a signing key will be
-        /// available for verification after being rotated in seconds.
+        /// Controls how long the public portion of a signing key will be available for verification after being rotated in seconds.
         /// </summary>
         [Input("verificationTtl")]
         public Input<int>? VerificationTtl { get; set; }
@@ -146,8 +135,8 @@ namespace Pulumi.Vault.Identity
     public sealed class OidcKeyState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Signing algorithm to use. Signing algorithm to use.
-        /// Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+        /// Signing algorithm to use. Signing algorithm to use. Allowed values are: RS256 (default), RS384, RS512, ES256, ES384,
+        /// ES512, EdDSA.
         /// </summary>
         [Input("algorithm")]
         public Input<string>? Algorithm { get; set; }
@@ -166,7 +155,7 @@ namespace Pulumi.Vault.Identity
         }
 
         /// <summary>
-        /// Name of the OIDC Key to create.
+        /// Name of the key.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -178,8 +167,7 @@ namespace Pulumi.Vault.Identity
         public Input<int>? RotationPeriod { get; set; }
 
         /// <summary>
-        /// "Controls how long the public portion of a signing key will be
-        /// available for verification after being rotated in seconds.
+        /// Controls how long the public portion of a signing key will be available for verification after being rotated in seconds.
         /// </summary>
         [Input("verificationTtl")]
         public Input<int>? VerificationTtl { get; set; }

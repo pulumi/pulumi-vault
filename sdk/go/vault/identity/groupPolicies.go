@@ -11,103 +11,23 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Manages policies for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
+// ## Import
 //
-// ## Example Usage
-// ### Exclusive Policies
+// Database secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
 //
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/identity"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
-// 			Type:             pulumi.String("internal"),
-// 			ExternalPolicies: pulumi.Bool(true),
-// 			Metadata: pulumi.StringMap{
-// 				"version": pulumi.String("2"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = identity.NewGroupPolicies(ctx, "policies", &identity.GroupPoliciesArgs{
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("default"),
-// 				pulumi.String("test"),
-// 			},
-// 			Exclusive: pulumi.Bool(true),
-// 			GroupId:   internal.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### Non-exclusive Policies
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/identity"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
-// 			Type:             pulumi.String("internal"),
-// 			ExternalPolicies: pulumi.Bool(true),
-// 			Metadata: pulumi.StringMap{
-// 				"version": pulumi.String("2"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = identity.NewGroupPolicies(ctx, "_default", &identity.GroupPoliciesArgs{
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("default"),
-// 				pulumi.String("test"),
-// 			},
-// 			Exclusive: pulumi.Bool(false),
-// 			GroupId:   internal.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = identity.NewGroupPolicies(ctx, "others", &identity.GroupPoliciesArgs{
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("others"),
-// 			},
-// 			Exclusive: pulumi.Bool(false),
-// 			GroupId:   internal.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+// ```sh
+//  $ pulumi import vault:identity/groupPolicies:GroupPolicies example postgres/roles/my-role
 // ```
 type GroupPolicies struct {
 	pulumi.CustomResourceState
 
-	// Defaults to `true`.
+	// Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
 	Exclusive pulumi.BoolPtrOutput `pulumi:"exclusive"`
-	// Group ID to assign policies to.
+	// ID of the group.
 	GroupId pulumi.StringOutput `pulumi:"groupId"`
-	// The name of the group that are assigned the policies.
+	// Name of the group.
 	GroupName pulumi.StringOutput `pulumi:"groupName"`
-	// List of policies to assign to the group
+	// Policies to be tied to the group.
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 }
 
@@ -145,24 +65,24 @@ func GetGroupPolicies(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GroupPolicies resources.
 type groupPoliciesState struct {
-	// Defaults to `true`.
+	// Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
 	Exclusive *bool `pulumi:"exclusive"`
-	// Group ID to assign policies to.
+	// ID of the group.
 	GroupId *string `pulumi:"groupId"`
-	// The name of the group that are assigned the policies.
+	// Name of the group.
 	GroupName *string `pulumi:"groupName"`
-	// List of policies to assign to the group
+	// Policies to be tied to the group.
 	Policies []string `pulumi:"policies"`
 }
 
 type GroupPoliciesState struct {
-	// Defaults to `true`.
+	// Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
 	Exclusive pulumi.BoolPtrInput
-	// Group ID to assign policies to.
+	// ID of the group.
 	GroupId pulumi.StringPtrInput
-	// The name of the group that are assigned the policies.
+	// Name of the group.
 	GroupName pulumi.StringPtrInput
-	// List of policies to assign to the group
+	// Policies to be tied to the group.
 	Policies pulumi.StringArrayInput
 }
 
@@ -171,21 +91,21 @@ func (GroupPoliciesState) ElementType() reflect.Type {
 }
 
 type groupPoliciesArgs struct {
-	// Defaults to `true`.
+	// Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
 	Exclusive *bool `pulumi:"exclusive"`
-	// Group ID to assign policies to.
+	// ID of the group.
 	GroupId string `pulumi:"groupId"`
-	// List of policies to assign to the group
+	// Policies to be tied to the group.
 	Policies []string `pulumi:"policies"`
 }
 
 // The set of arguments for constructing a GroupPolicies resource.
 type GroupPoliciesArgs struct {
-	// Defaults to `true`.
+	// Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
 	Exclusive pulumi.BoolPtrInput
-	// Group ID to assign policies to.
+	// ID of the group.
 	GroupId pulumi.StringInput
-	// List of policies to assign to the group
+	// Policies to be tied to the group.
 	Policies pulumi.StringArrayInput
 }
 

@@ -24,24 +24,16 @@ class OidcKey(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        ## Import
-
-        The key can be imported with the key name, for example
-
-        ```sh
-         $ pulumi import vault:identity/oidcKey:OidcKey key key
-        ```
-
+        Create a OidcKey resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] algorithm: Signing algorithm to use. Signing algorithm to use.
-               Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+        :param pulumi.Input[str] algorithm: Signing algorithm to use. Signing algorithm to use. Allowed values are: RS256 (default), RS384, RS512, ES256, ES384,
+               ES512, EdDSA.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
                allowed.
-        :param pulumi.Input[str] name: Name of the OIDC Key to create.
+        :param pulumi.Input[str] name: Name of the key.
         :param pulumi.Input[int] rotation_period: How often to generate a new signing key in number of seconds
-        :param pulumi.Input[int] verification_ttl: "Controls how long the public portion of a signing key will be
-               available for verification after being rotated in seconds.
+        :param pulumi.Input[int] verification_ttl: Controls how long the public portion of a signing key will be available for verification after being rotated in seconds.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -87,14 +79,13 @@ class OidcKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] algorithm: Signing algorithm to use. Signing algorithm to use.
-               Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+        :param pulumi.Input[str] algorithm: Signing algorithm to use. Signing algorithm to use. Allowed values are: RS256 (default), RS384, RS512, ES256, ES384,
+               ES512, EdDSA.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
                allowed.
-        :param pulumi.Input[str] name: Name of the OIDC Key to create.
+        :param pulumi.Input[str] name: Name of the key.
         :param pulumi.Input[int] rotation_period: How often to generate a new signing key in number of seconds
-        :param pulumi.Input[int] verification_ttl: "Controls how long the public portion of a signing key will be
-               available for verification after being rotated in seconds.
+        :param pulumi.Input[int] verification_ttl: Controls how long the public portion of a signing key will be available for verification after being rotated in seconds.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -111,8 +102,8 @@ class OidcKey(pulumi.CustomResource):
     @pulumi.getter
     def algorithm(self) -> pulumi.Output[Optional[str]]:
         """
-        Signing algorithm to use. Signing algorithm to use.
-        Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+        Signing algorithm to use. Signing algorithm to use. Allowed values are: RS256 (default), RS384, RS512, ES256, ES384,
+        ES512, EdDSA.
         """
         return pulumi.get(self, "algorithm")
 
@@ -129,7 +120,7 @@ class OidcKey(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Name of the OIDC Key to create.
+        Name of the key.
         """
         return pulumi.get(self, "name")
 
@@ -145,8 +136,7 @@ class OidcKey(pulumi.CustomResource):
     @pulumi.getter(name="verificationTtl")
     def verification_ttl(self) -> pulumi.Output[Optional[int]]:
         """
-        "Controls how long the public portion of a signing key will be
-        available for verification after being rotated in seconds.
+        Controls how long the public portion of a signing key will be available for verification after being rotated in seconds.
         """
         return pulumi.get(self, "verification_ttl")
 

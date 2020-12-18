@@ -18,14 +18,6 @@ import * as utilities from "../utilities";
  *     credentials: fs.readFileSync("vault-gcp-credentials.json", "utf-8"),
  * });
  * ```
- *
- * ## Import
- *
- * GCP authentication backends can be imported using the backend name, e.g.
- *
- * ```sh
- *  $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
- * ```
  */
 export class AuthBackend extends pulumi.CustomResource {
     /**
@@ -56,7 +48,7 @@ export class AuthBackend extends pulumi.CustomResource {
     }
 
     /**
-     * The clients email associated with the credentials
+     * The clients email assosiated with the credentials
      */
     public readonly clientEmail!: pulumi.Output<string>;
     /**
@@ -64,20 +56,14 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly clientId!: pulumi.Output<string>;
     /**
-     * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+     * A JSON string containing the contents of a GCP credentials file.
      */
     public readonly credentials!: pulumi.Output<string | undefined>;
-    /**
-     * A description of the auth method.
-     */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * Specifies if the auth method is local only.
+     * Specifies if the auth method is local only
      */
     public readonly local!: pulumi.Output<boolean | undefined>;
-    /**
-     * The path to mount the auth method — this defaults to 'gcp'.
-     */
     public readonly path!: pulumi.Output<string | undefined>;
     /**
      * The ID of the private key from the credentials
@@ -135,7 +121,7 @@ export class AuthBackend extends pulumi.CustomResource {
  */
 export interface AuthBackendState {
     /**
-     * The clients email associated with the credentials
+     * The clients email assosiated with the credentials
      */
     readonly clientEmail?: pulumi.Input<string>;
     /**
@@ -143,20 +129,14 @@ export interface AuthBackendState {
      */
     readonly clientId?: pulumi.Input<string>;
     /**
-     * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+     * A JSON string containing the contents of a GCP credentials file.
      */
     readonly credentials?: pulumi.Input<string>;
-    /**
-     * A description of the auth method.
-     */
     readonly description?: pulumi.Input<string>;
     /**
-     * Specifies if the auth method is local only.
+     * Specifies if the auth method is local only
      */
     readonly local?: pulumi.Input<boolean>;
-    /**
-     * The path to mount the auth method — this defaults to 'gcp'.
-     */
     readonly path?: pulumi.Input<string>;
     /**
      * The ID of the private key from the credentials
@@ -173,7 +153,7 @@ export interface AuthBackendState {
  */
 export interface AuthBackendArgs {
     /**
-     * The clients email associated with the credentials
+     * The clients email assosiated with the credentials
      */
     readonly clientEmail?: pulumi.Input<string>;
     /**
@@ -181,20 +161,14 @@ export interface AuthBackendArgs {
      */
     readonly clientId?: pulumi.Input<string>;
     /**
-     * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+     * A JSON string containing the contents of a GCP credentials file.
      */
     readonly credentials?: pulumi.Input<string>;
-    /**
-     * A description of the auth method.
-     */
     readonly description?: pulumi.Input<string>;
     /**
-     * Specifies if the auth method is local only.
+     * Specifies if the auth method is local only
      */
     readonly local?: pulumi.Input<boolean>;
-    /**
-     * The path to mount the auth method — this defaults to 'gcp'.
-     */
     readonly path?: pulumi.Input<string>;
     /**
      * The ID of the private key from the credentials

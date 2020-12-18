@@ -7,7 +7,7 @@ import * as utilities from "../utilities";
 
 /**
  * Reads the Role of an Kubernetes from a Vault server. See the [Vault
- * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
+ * documentation](https://www.vaultproject.io/api/auth/kubernetes/index.html#read-role) for more
  * information.
  *
  * ## Example Usage
@@ -58,9 +58,6 @@ export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.I
  * A collection of arguments for invoking getAuthBackendRole.
  */
 export interface GetAuthBackendRoleArgs {
-    /**
-     * (Optional) Audience claim to verify in the JWT.
-     */
     readonly audience?: string;
     /**
      * The unique name for the Kubernetes backend the role to
@@ -72,18 +69,26 @@ export interface GetAuthBackendRoleArgs {
      */
     readonly boundCidrs?: string[];
     /**
+     * The maximum allowed lifetime of tokens issued in seconds using this role.
+     *
      * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
      */
     readonly maxTtl?: number;
     /**
+     * Number of times issued tokens can be used. Setting this to 0 or leaving it unset means unlimited uses.
+     *
      * @deprecated use `token_num_uses` instead if you are running Vault >= 1.2
      */
     readonly numUses?: number;
     /**
+     * If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this parameter.
+     *
      * @deprecated use `token_period` instead if you are running Vault >= 1.2
      */
     readonly period?: number;
     /**
+     * Policies to be set on tokens issued using this role.
+     *
      * @deprecated use `token_policies` instead if you are running Vault >= 1.2
      */
     readonly policies?: string[];
@@ -91,61 +96,18 @@ export interface GetAuthBackendRoleArgs {
      * The name of the role to retrieve the Role attributes for.
      */
     readonly roleName: string;
-    /**
-     * List of CIDR blocks; if set, specifies blocks of IP
-     * addresses which can authenticate successfully, and ties the resulting token to these blocks
-     * as well.
-     */
     readonly tokenBoundCidrs?: string[];
-    /**
-     * If set, will encode an
-     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-     * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
-     * `tokenMaxTtl` would otherwise allow a renewal.
-     */
     readonly tokenExplicitMaxTtl?: number;
-    /**
-     * The maximum lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
-     */
     readonly tokenMaxTtl?: number;
-    /**
-     * If set, the default policy will not be set on
-     * generated tokens; otherwise it will be added to the policies set in token_policies.
-     */
     readonly tokenNoDefaultPolicy?: boolean;
-    /**
-     * The
-     * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-     * if any, in number of seconds to set on the token.
-     */
     readonly tokenNumUses?: number;
-    /**
-     * (Optional) If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     */
     readonly tokenPeriod?: number;
-    /**
-     * List of policies to encode onto generated tokens. Depending
-     * on the auth method, this list may be supplemented by user/group/other values.
-     */
     readonly tokenPolicies?: string[];
-    /**
-     * The incremental lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
-     */
     readonly tokenTtl?: number;
-    /**
-     * The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount's tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
-     */
     readonly tokenType?: string;
     /**
+     * The TTL period of tokens issued using this role in seconds.
+     *
      * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
      */
     readonly ttl?: number;
@@ -155,9 +117,6 @@ export interface GetAuthBackendRoleArgs {
  * A collection of values returned by getAuthBackendRole.
  */
 export interface GetAuthBackendRoleResult {
-    /**
-     * (Optional) Audience claim to verify in the JWT.
-     */
     readonly audience?: string;
     readonly backend?: string;
     /**
@@ -177,77 +136,42 @@ export interface GetAuthBackendRoleResult {
      */
     readonly id: string;
     /**
+     * The maximum allowed lifetime of tokens issued in seconds using this role.
+     *
      * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
      */
     readonly maxTtl?: number;
     /**
+     * Number of times issued tokens can be used. Setting this to 0 or leaving it unset means unlimited uses.
+     *
      * @deprecated use `token_num_uses` instead if you are running Vault >= 1.2
      */
     readonly numUses?: number;
     /**
+     * If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this parameter.
+     *
      * @deprecated use `token_period` instead if you are running Vault >= 1.2
      */
     readonly period?: number;
     /**
+     * Policies to be set on tokens issued using this role.
+     *
      * @deprecated use `token_policies` instead if you are running Vault >= 1.2
      */
     readonly policies?: string[];
     readonly roleName: string;
-    /**
-     * List of CIDR blocks; if set, specifies blocks of IP
-     * addresses which can authenticate successfully, and ties the resulting token to these blocks
-     * as well.
-     */
     readonly tokenBoundCidrs?: string[];
-    /**
-     * If set, will encode an
-     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-     * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
-     * `tokenMaxTtl` would otherwise allow a renewal.
-     */
     readonly tokenExplicitMaxTtl?: number;
-    /**
-     * The maximum lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
-     */
     readonly tokenMaxTtl?: number;
-    /**
-     * If set, the default policy will not be set on
-     * generated tokens; otherwise it will be added to the policies set in token_policies.
-     */
     readonly tokenNoDefaultPolicy?: boolean;
-    /**
-     * The
-     * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-     * if any, in number of seconds to set on the token.
-     */
     readonly tokenNumUses?: number;
-    /**
-     * (Optional) If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     */
     readonly tokenPeriod?: number;
-    /**
-     * List of policies to encode onto generated tokens. Depending
-     * on the auth method, this list may be supplemented by user/group/other values.
-     */
     readonly tokenPolicies?: string[];
-    /**
-     * The incremental lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
-     */
     readonly tokenTtl?: number;
-    /**
-     * The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount's tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
-     */
     readonly tokenType?: string;
     /**
+     * The TTL period of tokens issued using this role in seconds.
+     *
      * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
      */
     readonly ttl?: number;

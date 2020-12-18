@@ -52,9 +52,9 @@ type Mount struct {
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// Human-friendly description of the mount
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrOutput `pulumi:"externalEntropyAccess"`
-	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntOutput `pulumi:"maxLeaseTtlSeconds"`
@@ -62,7 +62,7 @@ type Mount struct {
 	Options pulumi.MapOutput `pulumi:"options"`
 	// Where the secret backend will be mounted
 	Path pulumi.StringOutput `pulumi:"path"`
-	// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolOutput `pulumi:"sealWrap"`
 	// Type of the backend, such as "aws"
 	Type pulumi.StringOutput `pulumi:"type"`
@@ -108,9 +108,9 @@ type mountState struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// Human-friendly description of the mount
 	Description *string `pulumi:"description"`
-	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
-	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
@@ -118,7 +118,7 @@ type mountState struct {
 	Options map[string]interface{} `pulumi:"options"`
 	// Where the secret backend will be mounted
 	Path *string `pulumi:"path"`
-	// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
 	// Type of the backend, such as "aws"
 	Type *string `pulumi:"type"`
@@ -131,9 +131,9 @@ type MountState struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// Human-friendly description of the mount
 	Description pulumi.StringPtrInput
-	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrInput
-	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
@@ -141,7 +141,7 @@ type MountState struct {
 	Options pulumi.MapInput
 	// Where the secret backend will be mounted
 	Path pulumi.StringPtrInput
-	// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
 	// Type of the backend, such as "aws"
 	Type pulumi.StringPtrInput
@@ -156,9 +156,9 @@ type mountArgs struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// Human-friendly description of the mount
 	Description *string `pulumi:"description"`
-	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
-	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
@@ -166,7 +166,7 @@ type mountArgs struct {
 	Options map[string]interface{} `pulumi:"options"`
 	// Where the secret backend will be mounted
 	Path string `pulumi:"path"`
-	// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
 	// Type of the backend, such as "aws"
 	Type string `pulumi:"type"`
@@ -178,9 +178,9 @@ type MountArgs struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// Human-friendly description of the mount
 	Description pulumi.StringPtrInput
-	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrInput
-	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
@@ -188,7 +188,7 @@ type MountArgs struct {
 	Options pulumi.MapInput
 	// Where the secret backend will be mounted
 	Path pulumi.StringInput
-	// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
 	// Type of the backend, such as "aws"
 	Type pulumi.StringInput

@@ -12,7 +12,7 @@ import (
 )
 
 // Manages policy mappings for Github Teams authenticated via Github. See the [Vault
-// documentation](https://www.vaultproject.io/docs/auth/github/) for more
+// documentation](https://www.vaultproject.io/docs/auth/github.html) for more
 // information.
 //
 // ## Example Usage
@@ -35,11 +35,11 @@ import (
 // 		}
 // 		_, err = github.NewTeam(ctx, "tfDevs", &github.TeamArgs{
 // 			Backend: example.ID(),
-// 			Team:    pulumi.String("terraform-developers"),
 // 			Policies: pulumi.StringArray{
 // 				pulumi.String("developer"),
 // 				pulumi.String("read-only"),
 // 			},
+// 			Team: pulumi.String("terraform-developers"),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -62,8 +62,7 @@ type Team struct {
 	// Path where the github auth backend is mounted. Defaults to `github`
 	// if not specified.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
-	// An array of strings specifying the policies to be set on tokens
-	// issued using this role.
+	// A list of policies to be assigned to this team.
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// GitHub team name in "slugified" format.
 	Team pulumi.StringOutput `pulumi:"team"`
@@ -139,8 +138,7 @@ type teamState struct {
 	// Path where the github auth backend is mounted. Defaults to `github`
 	// if not specified.
 	Backend *string `pulumi:"backend"`
-	// An array of strings specifying the policies to be set on tokens
-	// issued using this role.
+	// A list of policies to be assigned to this team.
 	Policies []string `pulumi:"policies"`
 	// GitHub team name in "slugified" format.
 	Team *string `pulumi:"team"`
@@ -186,8 +184,7 @@ type TeamState struct {
 	// Path where the github auth backend is mounted. Defaults to `github`
 	// if not specified.
 	Backend pulumi.StringPtrInput
-	// An array of strings specifying the policies to be set on tokens
-	// issued using this role.
+	// A list of policies to be assigned to this team.
 	Policies pulumi.StringArrayInput
 	// GitHub team name in "slugified" format.
 	Team pulumi.StringPtrInput
@@ -237,8 +234,7 @@ type teamArgs struct {
 	// Path where the github auth backend is mounted. Defaults to `github`
 	// if not specified.
 	Backend *string `pulumi:"backend"`
-	// An array of strings specifying the policies to be set on tokens
-	// issued using this role.
+	// A list of policies to be assigned to this team.
 	Policies []string `pulumi:"policies"`
 	// GitHub team name in "slugified" format.
 	Team string `pulumi:"team"`
@@ -285,8 +281,7 @@ type TeamArgs struct {
 	// Path where the github auth backend is mounted. Defaults to `github`
 	// if not specified.
 	Backend pulumi.StringPtrInput
-	// An array of strings specifying the policies to be set on tokens
-	// issued using this role.
+	// A list of policies to be assigned to this team.
 	Policies pulumi.StringArrayInput
 	// GitHub team name in "slugified" format.
 	Team pulumi.StringInput

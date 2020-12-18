@@ -4,15 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * ## Import
- *
- * The key can be imported with the key name, for example
- *
- * ```sh
- *  $ pulumi import vault:identity/oidcKey:OidcKey key key
- * ```
- */
 export class OidcKey extends pulumi.CustomResource {
     /**
      * Get an existing OidcKey resource's state with the given name, ID, and optional extra
@@ -42,8 +33,8 @@ export class OidcKey extends pulumi.CustomResource {
     }
 
     /**
-     * Signing algorithm to use. Signing algorithm to use.
-     * Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+     * Signing algorithm to use. Signing algorithm to use. Allowed values are: RS256 (default), RS384, RS512, ES256, ES384,
+     * ES512, EdDSA.
      */
     public readonly algorithm!: pulumi.Output<string | undefined>;
     /**
@@ -52,7 +43,7 @@ export class OidcKey extends pulumi.CustomResource {
      */
     public readonly allowedClientIds!: pulumi.Output<string[]>;
     /**
-     * Name of the OIDC Key to create.
+     * Name of the key.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -60,8 +51,7 @@ export class OidcKey extends pulumi.CustomResource {
      */
     public readonly rotationPeriod!: pulumi.Output<number | undefined>;
     /**
-     * "Controls how long the public portion of a signing key will be
-     * available for verification after being rotated in seconds.
+     * Controls how long the public portion of a signing key will be available for verification after being rotated in seconds.
      */
     public readonly verificationTtl!: pulumi.Output<number | undefined>;
 
@@ -106,8 +96,8 @@ export class OidcKey extends pulumi.CustomResource {
  */
 export interface OidcKeyState {
     /**
-     * Signing algorithm to use. Signing algorithm to use.
-     * Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+     * Signing algorithm to use. Signing algorithm to use. Allowed values are: RS256 (default), RS384, RS512, ES256, ES384,
+     * ES512, EdDSA.
      */
     readonly algorithm?: pulumi.Input<string>;
     /**
@@ -116,7 +106,7 @@ export interface OidcKeyState {
      */
     readonly allowedClientIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Name of the OIDC Key to create.
+     * Name of the key.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -124,8 +114,7 @@ export interface OidcKeyState {
      */
     readonly rotationPeriod?: pulumi.Input<number>;
     /**
-     * "Controls how long the public portion of a signing key will be
-     * available for verification after being rotated in seconds.
+     * Controls how long the public portion of a signing key will be available for verification after being rotated in seconds.
      */
     readonly verificationTtl?: pulumi.Input<number>;
 }
@@ -135,8 +124,8 @@ export interface OidcKeyState {
  */
 export interface OidcKeyArgs {
     /**
-     * Signing algorithm to use. Signing algorithm to use.
-     * Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+     * Signing algorithm to use. Signing algorithm to use. Allowed values are: RS256 (default), RS384, RS512, ES256, ES384,
+     * ES512, EdDSA.
      */
     readonly algorithm?: pulumi.Input<string>;
     /**
@@ -145,7 +134,7 @@ export interface OidcKeyArgs {
      */
     readonly allowedClientIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Name of the OIDC Key to create.
+     * Name of the key.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -153,8 +142,7 @@ export interface OidcKeyArgs {
      */
     readonly rotationPeriod?: pulumi.Input<number>;
     /**
-     * "Controls how long the public portion of a signing key will be
-     * available for verification after being rotated in seconds.
+     * Controls how long the public portion of a signing key will be available for verification after being rotated in seconds.
      */
     readonly verificationTtl?: pulumi.Input<number>;
 }

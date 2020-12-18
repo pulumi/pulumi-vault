@@ -9,36 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Transform
 {
-    /// <summary>
-    /// This resource supports the "/transform/alphabet/{name}" Vault endpoint.
-    /// 
-    /// It queries an existing alphabet by the given name.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var mountTransform = new Vault.Mount("mountTransform", new Vault.MountArgs
-    ///         {
-    ///             Path = "transform",
-    ///             Type = "transform",
-    ///         });
-    ///         var test = new Vault.Transform.Alphabet("test", new Vault.Transform.AlphabetArgs
-    ///         {
-    ///             Path = mountTransform.Path,
-    ///             Alphabet = "0123456789",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// </summary>
     public partial class Alphabet : Pulumi.CustomResource
     {
         /// <summary>
@@ -54,7 +24,7 @@ namespace Pulumi.Vault.Transform
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Path to where the back-end is mounted within Vault.
+        /// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
         /// </summary>
         [Output("path")]
         public Output<string> Path { get; private set; } = null!;
@@ -118,7 +88,7 @@ namespace Pulumi.Vault.Transform
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Path to where the back-end is mounted within Vault.
+        /// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
         /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
@@ -143,7 +113,7 @@ namespace Pulumi.Vault.Transform
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Path to where the back-end is mounted within Vault.
+        /// The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }

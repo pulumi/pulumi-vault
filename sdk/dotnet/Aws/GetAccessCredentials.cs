@@ -35,19 +35,9 @@ namespace Pulumi.Vault.Aws
         [Input("role", required: true)]
         public string Role { get; set; } = null!;
 
-        /// <summary>
-        /// The specific AWS ARN to use
-        /// from the configured role. If the role does not have multiple ARNs, this does
-        /// not need to be specified.
-        /// </summary>
         [Input("roleArn")]
         public string? RoleArn { get; set; }
 
-        /// <summary>
-        /// Specifies the TTL for the use of the STS token. This
-        /// is specified as a string with a duration suffix. Valid only when
-        /// `credential_type` is `assumed_role` or `federation_token`
-        /// </summary>
         [Input("ttl")]
         public string? Ttl { get; set; }
 

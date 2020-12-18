@@ -4,28 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * This resource supports the "/transform/role/{name}" Vault endpoint.
- *
- * It creates or updates the role with the given name. If a role with the name does not exist, it will be created.
- * If the role exists, it will be updated with the new attributes.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const mountTransform = new vault.Mount("mountTransform", {
- *     path: "transform",
- *     type: "transform",
- * });
- * const test = new vault.transform.Role("test", {
- *     path: mountTransform.path,
- *     transformations: ["ccn-fpe"],
- * });
- * ```
- */
 export class Role extends pulumi.CustomResource {
     /**
      * Get an existing Role resource's state with the given name, ID, and optional extra
@@ -59,7 +37,7 @@ export class Role extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Path to where the back-end is mounted within Vault.
+     * The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
      */
     public readonly path!: pulumi.Output<string>;
     /**
@@ -111,7 +89,7 @@ export interface RoleState {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Path to where the back-end is mounted within Vault.
+     * The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
      */
     readonly path?: pulumi.Input<string>;
     /**
@@ -129,7 +107,7 @@ export interface RoleArgs {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Path to where the back-end is mounted within Vault.
+     * The mount path for a back-end, for example, the path given in "$ vault auth enable -path=my-aws aws".
      */
     readonly path: pulumi.Input<string>;
     /**

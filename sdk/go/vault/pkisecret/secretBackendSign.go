@@ -16,7 +16,7 @@ type SecretBackendSign struct {
 
 	// List of alternative names
 	AltNames pulumi.StringArrayOutput `pulumi:"altNames"`
-	// If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
+	// If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
 	AutoRenew pulumi.BoolPtrOutput `pulumi:"autoRenew"`
 	// The PKI secret backend the resource belongs to.
 	Backend pulumi.StringOutput `pulumi:"backend"`
@@ -91,7 +91,7 @@ func GetSecretBackendSign(ctx *pulumi.Context,
 type secretBackendSignState struct {
 	// List of alternative names
 	AltNames []string `pulumi:"altNames"`
-	// If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
+	// If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
 	AutoRenew *bool `pulumi:"autoRenew"`
 	// The PKI secret backend the resource belongs to.
 	Backend *string `pulumi:"backend"`
@@ -130,7 +130,7 @@ type secretBackendSignState struct {
 type SecretBackendSignState struct {
 	// List of alternative names
 	AltNames pulumi.StringArrayInput
-	// If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
+	// If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
 	AutoRenew pulumi.BoolPtrInput
 	// The PKI secret backend the resource belongs to.
 	Backend pulumi.StringPtrInput
@@ -173,7 +173,7 @@ func (SecretBackendSignState) ElementType() reflect.Type {
 type secretBackendSignArgs struct {
 	// List of alternative names
 	AltNames []string `pulumi:"altNames"`
-	// If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
+	// If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
 	AutoRenew *bool `pulumi:"autoRenew"`
 	// The PKI secret backend the resource belongs to.
 	Backend string `pulumi:"backend"`
@@ -203,7 +203,7 @@ type secretBackendSignArgs struct {
 type SecretBackendSignArgs struct {
 	// List of alternative names
 	AltNames pulumi.StringArrayInput
-	// If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
+	// If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
 	AutoRenew pulumi.BoolPtrInput
 	// The PKI secret backend the resource belongs to.
 	Backend pulumi.StringInput

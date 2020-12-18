@@ -11,34 +11,6 @@ namespace Pulumi.Vault.Transit
 {
     public static class GetDecrypt
     {
-        /// <summary>
-        /// This is a data source which can be used to decrypt ciphertext using a Vault Transit key.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var test = Output.Create(Vault.Transit.GetDecrypt.InvokeAsync(new Vault.Transit.GetDecryptArgs
-        ///         {
-        ///             Backend = "transit",
-        ///             Ciphertext = "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
-        ///             Key = "test",
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Task<GetDecryptResult> InvokeAsync(GetDecryptArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDecryptResult>("vault:transit/getDecrypt:getDecrypt", args ?? new GetDecryptArgs(), options.WithVersion());
     }
@@ -46,27 +18,15 @@ namespace Pulumi.Vault.Transit
 
     public sealed class GetDecryptArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The path the transit secret backend is mounted at, with no leading or trailing `/`.
-        /// </summary>
         [Input("backend", required: true)]
         public string Backend { get; set; } = null!;
 
-        /// <summary>
-        /// Ciphertext to be decoded.
-        /// </summary>
         [Input("ciphertext", required: true)]
         public string Ciphertext { get; set; } = null!;
 
-        /// <summary>
-        /// Context for key derivation. This is required if key derivation is enabled for this key.
-        /// </summary>
         [Input("context")]
         public string? Context { get; set; }
 
-        /// <summary>
-        /// Specifies the name of the transit key to decrypt against.
-        /// </summary>
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
 
@@ -87,9 +47,6 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         public readonly string Id;
         public readonly string Key;
-        /// <summary>
-        /// Decrypted plaintext returned from Vault
-        /// </summary>
         public readonly string Plaintext;
 
         [OutputConstructor]

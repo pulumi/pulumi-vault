@@ -42,7 +42,7 @@ class SecretBackendConnectionCassandra(dict):
         :param Sequence[str] hosts: The hosts to connect to.
         :param bool insecure_tls: Whether to skip verification of the server
                certificate when using TLS.
-        :param str password: The password to be used in the connection.
+        :param str password: The password to authenticate with.
         :param str pem_bundle: Concatenated PEM blocks configuring the certificate
                chain.
         :param str pem_json: A JSON structure configuring the certificate chain.
@@ -50,7 +50,7 @@ class SecretBackendConnectionCassandra(dict):
                part of the host.
         :param int protocol_version: The CQL protocol version to use.
         :param bool tls: Whether to use TLS when connecting to Cassandra.
-        :param str username: The username to be used in the connection.
+        :param str username: The username to authenticate with.
         """
         if connect_timeout is not None:
             pulumi.set(__self__, "connect_timeout", connect_timeout)
@@ -103,7 +103,7 @@ class SecretBackendConnectionCassandra(dict):
     @pulumi.getter
     def password(self) -> Optional[str]:
         """
-        The password to be used in the connection.
+        The password to authenticate with.
         """
         return pulumi.get(self, "password")
 
@@ -153,7 +153,7 @@ class SecretBackendConnectionCassandra(dict):
     @pulumi.getter
     def username(self) -> Optional[str]:
         """
-        The username to be used in the connection.
+        The username to authenticate with.
         """
         return pulumi.get(self, "username")
 
@@ -168,10 +168,8 @@ class SecretBackendConnectionElasticsearch(dict):
                  url: str,
                  username: str):
         """
-        :param str password: The password to be used in the connection.
-        :param str url: The URL for Elasticsearch's API. https requires certificate
-               by trusted CA if used.
-        :param str username: The username to be used in the connection.
+        :param str password: The password to authenticate with.
+        :param str username: The username to authenticate with.
         """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "url", url)
@@ -181,24 +179,20 @@ class SecretBackendConnectionElasticsearch(dict):
     @pulumi.getter
     def password(self) -> str:
         """
-        The password to be used in the connection.
+        The password to authenticate with.
         """
         return pulumi.get(self, "password")
 
     @property
     @pulumi.getter
     def url(self) -> str:
-        """
-        The URL for Elasticsearch's API. https requires certificate
-        by trusted CA if used.
-        """
         return pulumi.get(self, "url")
 
     @property
     @pulumi.getter
     def username(self) -> str:
         """
-        The username to be used in the connection.
+        The username to authenticate with.
         """
         return pulumi.get(self, "username")
 
@@ -216,7 +210,7 @@ class SecretBackendConnectionHana(dict):
         """
         :param str connection_url: A URL containing connection information. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+               docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
                for an example.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
@@ -240,7 +234,7 @@ class SecretBackendConnectionHana(dict):
         """
         A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -286,7 +280,7 @@ class SecretBackendConnectionMongodb(dict):
         """
         :param str connection_url: A URL containing connection information. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+               docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
                for an example.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
@@ -310,7 +304,7 @@ class SecretBackendConnectionMongodb(dict):
         """
         A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -385,7 +379,7 @@ class SecretBackendConnectionMssql(dict):
         """
         :param str connection_url: A URL containing connection information. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+               docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
                for an example.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
@@ -409,7 +403,7 @@ class SecretBackendConnectionMssql(dict):
         """
         A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -455,7 +449,7 @@ class SecretBackendConnectionMysql(dict):
         """
         :param str connection_url: A URL containing connection information. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+               docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
                for an example.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
@@ -479,7 +473,7 @@ class SecretBackendConnectionMysql(dict):
         """
         A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -525,7 +519,7 @@ class SecretBackendConnectionMysqlAurora(dict):
         """
         :param str connection_url: A URL containing connection information. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+               docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
                for an example.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
@@ -549,7 +543,7 @@ class SecretBackendConnectionMysqlAurora(dict):
         """
         A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -595,7 +589,7 @@ class SecretBackendConnectionMysqlLegacy(dict):
         """
         :param str connection_url: A URL containing connection information. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+               docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
                for an example.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
@@ -619,7 +613,7 @@ class SecretBackendConnectionMysqlLegacy(dict):
         """
         A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -665,7 +659,7 @@ class SecretBackendConnectionMysqlRds(dict):
         """
         :param str connection_url: A URL containing connection information. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+               docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
                for an example.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
@@ -689,7 +683,7 @@ class SecretBackendConnectionMysqlRds(dict):
         """
         A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -735,7 +729,7 @@ class SecretBackendConnectionOracle(dict):
         """
         :param str connection_url: A URL containing connection information. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+               docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
                for an example.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
@@ -759,7 +753,7 @@ class SecretBackendConnectionOracle(dict):
         """
         A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -805,7 +799,7 @@ class SecretBackendConnectionPostgresql(dict):
         """
         :param str connection_url: A URL containing connection information. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+               docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
                for an example.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
@@ -829,7 +823,7 @@ class SecretBackendConnectionPostgresql(dict):
         """
         A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api/secret/databases/oracle.html#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")

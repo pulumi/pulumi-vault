@@ -9,90 +9,47 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault
 {
-    /// <summary>
-    /// Provides a resource to manage [Duo MFA](https://www.vaultproject.io/docs/enterprise/mfa/mfa-duo.html).
-    /// 
-    /// **Note** this feature is available only with Vault Enterprise.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var userpass = new Vault.AuthBackend("userpass", new Vault.AuthBackendArgs
-    ///         {
-    ///             Path = "userpass",
-    ///             Type = "userpass",
-    ///         });
-    ///         var myDuo = new Vault.MfaDuo("myDuo", new Vault.MfaDuoArgs
-    ///         {
-    ///             ApiHostname = "api-2b5c39f5.duosecurity.com",
-    ///             IntegrationKey = "BIACEUEAXI20BNWTEYXT",
-    ///             MountAccessor = userpass.Accessor,
-    ///             SecretKey = "8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// Mounts can be imported using the `path`, e.g.
-    /// 
-    /// ```sh
-    ///  $ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
-    /// ```
-    /// </summary>
     public partial class MfaDuo : Pulumi.CustomResource
     {
         /// <summary>
-        /// `(string: &lt;required&gt;)` - API hostname for Duo.
+        /// API hostname for Duo.
         /// </summary>
         [Output("apiHostname")]
         public Output<string> ApiHostname { get; private set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - Integration key for Duo.
+        /// Integration key for Duo.
         /// </summary>
         [Output("integrationKey")]
         public Output<string> IntegrationKey { get; private set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
+        /// The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated
+        /// with this mount as the username in the mapping.
         /// </summary>
         [Output("mountAccessor")]
         public Output<string> MountAccessor { get; private set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` – Name of the MFA method.
+        /// Name of the MFA method.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// `(string)` - Push information for Duo.
+        /// Push information for Duo.
         /// </summary>
         [Output("pushInfo")]
         public Output<string?> PushInfo { get; private set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - Secret key for Duo.
+        /// Secret key for Duo.
         /// </summary>
         [Output("secretKey")]
         public Output<string> SecretKey { get; private set; } = null!;
 
         /// <summary>
-        /// `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
-        /// - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
-        /// - entity.name: The name configured for the Entity
-        /// - alias.metadata.`&lt;key&gt;`: The value of the Alias's metadata parameter
-        /// - entity.metadata.`&lt;key&gt;`: The value of the Entity's metadata parameter
+        /// A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`.
         /// </summary>
         [Output("usernameFormat")]
         public Output<string?> UsernameFormat { get; private set; } = null!;
@@ -144,47 +101,44 @@ namespace Pulumi.Vault
     public sealed class MfaDuoArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `(string: &lt;required&gt;)` - API hostname for Duo.
+        /// API hostname for Duo.
         /// </summary>
         [Input("apiHostname", required: true)]
         public Input<string> ApiHostname { get; set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - Integration key for Duo.
+        /// Integration key for Duo.
         /// </summary>
         [Input("integrationKey", required: true)]
         public Input<string> IntegrationKey { get; set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
+        /// The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated
+        /// with this mount as the username in the mapping.
         /// </summary>
         [Input("mountAccessor", required: true)]
         public Input<string> MountAccessor { get; set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` – Name of the MFA method.
+        /// Name of the MFA method.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `(string)` - Push information for Duo.
+        /// Push information for Duo.
         /// </summary>
         [Input("pushInfo")]
         public Input<string>? PushInfo { get; set; }
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - Secret key for Duo.
+        /// Secret key for Duo.
         /// </summary>
         [Input("secretKey", required: true)]
         public Input<string> SecretKey { get; set; } = null!;
 
         /// <summary>
-        /// `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
-        /// - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
-        /// - entity.name: The name configured for the Entity
-        /// - alias.metadata.`&lt;key&gt;`: The value of the Alias's metadata parameter
-        /// - entity.metadata.`&lt;key&gt;`: The value of the Entity's metadata parameter
+        /// A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`.
         /// </summary>
         [Input("usernameFormat")]
         public Input<string>? UsernameFormat { get; set; }
@@ -197,47 +151,44 @@ namespace Pulumi.Vault
     public sealed class MfaDuoState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `(string: &lt;required&gt;)` - API hostname for Duo.
+        /// API hostname for Duo.
         /// </summary>
         [Input("apiHostname")]
         public Input<string>? ApiHostname { get; set; }
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - Integration key for Duo.
+        /// Integration key for Duo.
         /// </summary>
         [Input("integrationKey")]
         public Input<string>? IntegrationKey { get; set; }
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
+        /// The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated
+        /// with this mount as the username in the mapping.
         /// </summary>
         [Input("mountAccessor")]
         public Input<string>? MountAccessor { get; set; }
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` – Name of the MFA method.
+        /// Name of the MFA method.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `(string)` - Push information for Duo.
+        /// Push information for Duo.
         /// </summary>
         [Input("pushInfo")]
         public Input<string>? PushInfo { get; set; }
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - Secret key for Duo.
+        /// Secret key for Duo.
         /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
 
         /// <summary>
-        /// `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
-        /// - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
-        /// - entity.name: The name configured for the Entity
-        /// - alias.metadata.`&lt;key&gt;`: The value of the Alias's metadata parameter
-        /// - entity.metadata.`&lt;key&gt;`: The value of the Entity's metadata parameter
+        /// A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`.
         /// </summary>
         [Input("usernameFormat")]
         public Input<string>? UsernameFormat { get; set; }

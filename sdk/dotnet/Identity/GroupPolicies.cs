@@ -10,107 +10,36 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Identity
 {
     /// <summary>
-    /// Manages policies for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
+    /// ## Import
     /// 
-    /// ## Example Usage
-    /// ### Exclusive Policies
+    /// Database secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
     /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var @internal = new Vault.Identity.Group("internal", new Vault.Identity.GroupArgs
-    ///         {
-    ///             Type = "internal",
-    ///             ExternalPolicies = true,
-    ///             Metadata = 
-    ///             {
-    ///                 { "version", "2" },
-    ///             },
-    ///         });
-    ///         var policies = new Vault.Identity.GroupPolicies("policies", new Vault.Identity.GroupPoliciesArgs
-    ///         {
-    ///             Policies = 
-    ///             {
-    ///                 "default",
-    ///                 "test",
-    ///             },
-    ///             Exclusive = true,
-    ///             GroupId = @internal.Id,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// ### Non-exclusive Policies
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var @internal = new Vault.Identity.Group("internal", new Vault.Identity.GroupArgs
-    ///         {
-    ///             Type = "internal",
-    ///             ExternalPolicies = true,
-    ///             Metadata = 
-    ///             {
-    ///                 { "version", "2" },
-    ///             },
-    ///         });
-    ///         var @default = new Vault.Identity.GroupPolicies("default", new Vault.Identity.GroupPoliciesArgs
-    ///         {
-    ///             Policies = 
-    ///             {
-    ///                 "default",
-    ///                 "test",
-    ///             },
-    ///             Exclusive = false,
-    ///             GroupId = @internal.Id,
-    ///         });
-    ///         var others = new Vault.Identity.GroupPolicies("others", new Vault.Identity.GroupPoliciesArgs
-    ///         {
-    ///             Policies = 
-    ///             {
-    ///                 "others",
-    ///             },
-    ///             Exclusive = false,
-    ///             GroupId = @internal.Id,
-    ///         });
-    ///     }
-    /// 
-    /// }
+    /// ```sh
+    ///  $ pulumi import vault:identity/groupPolicies:GroupPolicies example postgres/roles/my-role
     /// ```
     /// </summary>
     public partial class GroupPolicies : Pulumi.CustomResource
     {
         /// <summary>
-        /// Defaults to `true`.
+        /// Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
         /// </summary>
         [Output("exclusive")]
         public Output<bool?> Exclusive { get; private set; } = null!;
 
         /// <summary>
-        /// Group ID to assign policies to.
+        /// ID of the group.
         /// </summary>
         [Output("groupId")]
         public Output<string> GroupId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the group that are assigned the policies.
+        /// Name of the group.
         /// </summary>
         [Output("groupName")]
         public Output<string> GroupName { get; private set; } = null!;
 
         /// <summary>
-        /// List of policies to assign to the group
+        /// Policies to be tied to the group.
         /// </summary>
         [Output("policies")]
         public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
@@ -162,13 +91,13 @@ namespace Pulumi.Vault.Identity
     public sealed class GroupPoliciesArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defaults to `true`.
+        /// Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
         /// </summary>
         [Input("exclusive")]
         public Input<bool>? Exclusive { get; set; }
 
         /// <summary>
-        /// Group ID to assign policies to.
+        /// ID of the group.
         /// </summary>
         [Input("groupId", required: true)]
         public Input<string> GroupId { get; set; } = null!;
@@ -177,7 +106,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _policies;
 
         /// <summary>
-        /// List of policies to assign to the group
+        /// Policies to be tied to the group.
         /// </summary>
         public InputList<string> Policies
         {
@@ -193,19 +122,19 @@ namespace Pulumi.Vault.Identity
     public sealed class GroupPoliciesState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defaults to `true`.
+        /// Should the resource manage policies exclusively? Beware of race conditions when disabling exclusive management
         /// </summary>
         [Input("exclusive")]
         public Input<bool>? Exclusive { get; set; }
 
         /// <summary>
-        /// Group ID to assign policies to.
+        /// ID of the group.
         /// </summary>
         [Input("groupId")]
         public Input<string>? GroupId { get; set; }
 
         /// <summary>
-        /// The name of the group that are assigned the policies.
+        /// Name of the group.
         /// </summary>
         [Input("groupName")]
         public Input<string>? GroupName { get; set; }
@@ -214,7 +143,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _policies;
 
         /// <summary>
-        /// List of policies to assign to the group
+        /// Policies to be tied to the group.
         /// </summary>
         public InputList<string> Policies
         {

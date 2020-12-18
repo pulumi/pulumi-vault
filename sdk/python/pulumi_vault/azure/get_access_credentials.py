@@ -68,17 +68,11 @@ class GetAccessCredentialsResult:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> str:
-        """
-        The client id for credentials to query the Azure APIs.
-        """
         return pulumi.get(self, "client_id")
 
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> str:
-        """
-        The client secret for credentials to query the Azure APIs.
-        """
         return pulumi.get(self, "client_secret")
 
     @property
@@ -92,19 +86,11 @@ class GetAccessCredentialsResult:
     @property
     @pulumi.getter(name="leaseDuration")
     def lease_duration(self) -> int:
-        """
-        The duration of the secret lease, in seconds relative
-        to the time the data was requested. Once this time has passed any plan
-        generated with this data may fail to apply.
-        """
         return pulumi.get(self, "lease_duration")
 
     @property
     @pulumi.getter(name="leaseId")
     def lease_id(self) -> str:
-        """
-        The lease identifier assigned by Vault.
-        """
         return pulumi.get(self, "lease_id")
 
     @property
@@ -173,24 +159,6 @@ def get_access_credentials(backend: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccessCredentialsResult:
     """
     Use this data source to access information about an existing resource.
-
-    :param str backend: The path to the Azure secret backend to
-           read credentials from, with no leading or trailing `/`s.
-    :param int max_cred_validation_seconds: If 'validate_creds' is true, 
-           the number of seconds after which to give up validating credentials. Defaults
-           to 1,200 (20 minutes).
-    :param int num_seconds_between_tests: If 'validate_creds' is true, 
-           the number of seconds to wait between each test of generated credentials.
-           Defaults to 7.
-    :param int num_sequential_successes: If 'validate_creds' is true, 
-           the number of sequential successes required to validate generated
-           credentials. Defaults to 8.
-    :param str role: The name of the Azure secret backend role to read
-           credentials from, with no leading or trailing `/`s.
-    :param bool validate_creds: Whether generated credentials should be 
-           validated before being returned. Defaults to `false`, which returns
-           credentials without checking whether they have fully propagated throughout
-           Azure Active Directory. Designating `true` activates testing.
     """
     __args__ = dict()
     __args__['backend'] = backend

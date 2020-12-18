@@ -37,7 +37,7 @@ export class SecretBackendCert extends pulumi.CustomResource {
      */
     public readonly altNames!: pulumi.Output<string[] | undefined>;
     /**
-     * If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
+     * If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
      */
     public readonly autoRenew!: pulumi.Output<boolean | undefined>;
     /**
@@ -109,7 +109,7 @@ export class SecretBackendCert extends pulumi.CustomResource {
      */
     public readonly ttl!: pulumi.Output<string | undefined>;
     /**
-     * List of alternative URIs
+     * List of alternative URIs.
      */
     public readonly uriSans!: pulumi.Output<string[] | undefined>;
 
@@ -194,7 +194,7 @@ export interface SecretBackendCertState {
      */
     readonly altNames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
+     * If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
      */
     readonly autoRenew?: pulumi.Input<boolean>;
     /**
@@ -266,7 +266,7 @@ export interface SecretBackendCertState {
      */
     readonly ttl?: pulumi.Input<string>;
     /**
-     * List of alternative URIs
+     * List of alternative URIs.
      */
     readonly uriSans?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -280,7 +280,7 @@ export interface SecretBackendCertArgs {
      */
     readonly altNames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
+     * If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
      */
     readonly autoRenew?: pulumi.Input<boolean>;
     /**
@@ -324,7 +324,7 @@ export interface SecretBackendCertArgs {
      */
     readonly ttl?: pulumi.Input<string>;
     /**
-     * List of alternative URIs
+     * List of alternative URIs.
      */
     readonly uriSans?: pulumi.Input<pulumi.Input<string>[]>;
 }

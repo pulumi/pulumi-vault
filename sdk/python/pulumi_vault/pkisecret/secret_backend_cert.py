@@ -36,7 +36,7 @@ class SecretBackendCert(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
-        :param pulumi.Input[bool] auto_renew: If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+        :param pulumi.Input[bool] auto_renew: If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] common_name: CN of certificate to create
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
@@ -47,7 +47,7 @@ class SecretBackendCert(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] private_key_format: The private key format
         :param pulumi.Input[str] ttl: Time to live
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -128,7 +128,7 @@ class SecretBackendCert(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
-        :param pulumi.Input[bool] auto_renew: If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+        :param pulumi.Input[bool] auto_renew: If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] ca_chain: The CA chain
         :param pulumi.Input[str] certificate: The certificate
@@ -146,7 +146,7 @@ class SecretBackendCert(pulumi.CustomResource):
         :param pulumi.Input[str] private_key_type: The private key type
         :param pulumi.Input[str] serial_number: The serial number
         :param pulumi.Input[str] ttl: Time to live
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -186,7 +186,7 @@ class SecretBackendCert(pulumi.CustomResource):
     @pulumi.getter(name="autoRenew")
     def auto_renew(self) -> pulumi.Output[Optional[bool]]:
         """
-        If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+        If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
         """
         return pulumi.get(self, "auto_renew")
 
@@ -330,7 +330,7 @@ class SecretBackendCert(pulumi.CustomResource):
     @pulumi.getter(name="uriSans")
     def uri_sans(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        List of alternative URIs
+        List of alternative URIs.
         """
         return pulumi.get(self, "uri_sans")
 

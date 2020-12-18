@@ -47,9 +47,6 @@ class GetAccessCredentialsResult:
     @property
     @pulumi.getter(name="currentPassword")
     def current_password(self) -> str:
-        """
-        The current set password on the Active Directory service account.
-        """
         return pulumi.get(self, "current_password")
 
     @property
@@ -63,9 +60,6 @@ class GetAccessCredentialsResult:
     @property
     @pulumi.getter(name="lastPassword")
     def last_password(self) -> str:
-        """
-        The current set password on the Active Directory service account, provided because AD is eventually consistent.
-        """
         return pulumi.get(self, "last_password")
 
     @property
@@ -76,9 +70,6 @@ class GetAccessCredentialsResult:
     @property
     @pulumi.getter
     def username(self) -> str:
-        """
-        The Active Directory service account username.
-        """
         return pulumi.get(self, "username")
 
 
@@ -101,11 +92,6 @@ def get_access_credentials(backend: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccessCredentialsResult:
     """
     Use this data source to access information about an existing resource.
-
-    :param str backend: The path to the AD secret backend to
-           read credentials from, with no leading or trailing `/`s.
-    :param str role: The name of the AD secret backend role to read
-           credentials from, with no leading or trailing `/`s.
     """
     __args__ = dict()
     __args__['backend'] = backend

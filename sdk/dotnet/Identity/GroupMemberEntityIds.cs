@@ -9,119 +9,28 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Identity
 {
-    /// <summary>
-    /// Manages member entities for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
-    /// 
-    /// ## Example Usage
-    /// ### Exclusive Member Entities
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var @internal = new Vault.Identity.Group("internal", new Vault.Identity.GroupArgs
-    ///         {
-    ///             Type = "internal",
-    ///             ExternalMemberEntityIds = true,
-    ///             Metadata = 
-    ///             {
-    ///                 { "version", "2" },
-    ///             },
-    ///         });
-    ///         var user = new Vault.Identity.Entity("user", new Vault.Identity.EntityArgs
-    ///         {
-    ///         });
-    ///         var members = new Vault.Identity.GroupMemberEntityIds("members", new Vault.Identity.GroupMemberEntityIdsArgs
-    ///         {
-    ///             Exclusive = true,
-    ///             MemberEntityIds = 
-    ///             {
-    ///                 user.Id,
-    ///             },
-    ///             GroupId = @internal.Id,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// ### Non-exclusive Member Entities
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var @internal = new Vault.Identity.Group("internal", new Vault.Identity.GroupArgs
-    ///         {
-    ///             Type = "internal",
-    ///             ExternalMemberEntityIds = true,
-    ///             Metadata = 
-    ///             {
-    ///                 { "version", "2" },
-    ///             },
-    ///         });
-    ///         var testUser = new Vault.Identity.Entity("testUser", new Vault.Identity.EntityArgs
-    ///         {
-    ///         });
-    ///         var secondTestUser = new Vault.Identity.Entity("secondTestUser", new Vault.Identity.EntityArgs
-    ///         {
-    ///         });
-    ///         var devUser = new Vault.Identity.Entity("devUser", new Vault.Identity.EntityArgs
-    ///         {
-    ///         });
-    ///         var test = new Vault.Identity.GroupMemberEntityIds("test", new Vault.Identity.GroupMemberEntityIdsArgs
-    ///         {
-    ///             MemberEntityIds = 
-    ///             {
-    ///                 testUser.Id,
-    ///                 secondTestUser.Id,
-    ///             },
-    ///             Exclusive = false,
-    ///             GroupId = @internal.Id,
-    ///         });
-    ///         var others = new Vault.Identity.GroupMemberEntityIds("others", new Vault.Identity.GroupMemberEntityIdsArgs
-    ///         {
-    ///             MemberEntityIds = 
-    ///             {
-    ///                 devUser.Id,
-    ///             },
-    ///             Exclusive = false,
-    ///             GroupId = @internal.Id,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// </summary>
     public partial class GroupMemberEntityIds : Pulumi.CustomResource
     {
         /// <summary>
-        /// Defaults to `true`.
+        /// Should the resource manage member entity ids exclusively? Beware of race conditions when disabling exclusive management
         /// </summary>
         [Output("exclusive")]
         public Output<bool?> Exclusive { get; private set; } = null!;
 
         /// <summary>
-        /// Group ID to assign member entities to.
+        /// ID of the group.
         /// </summary>
         [Output("groupId")]
         public Output<string> GroupId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the group that are assigned the member entities.
+        /// Name of the group.
         /// </summary>
         [Output("groupName")]
         public Output<string> GroupName { get; private set; } = null!;
 
         /// <summary>
-        /// List of member entities that belong to the group
+        /// Entity IDs to be assigned as group members.
         /// </summary>
         [Output("memberEntityIds")]
         public Output<ImmutableArray<string>> MemberEntityIds { get; private set; } = null!;
@@ -173,13 +82,13 @@ namespace Pulumi.Vault.Identity
     public sealed class GroupMemberEntityIdsArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defaults to `true`.
+        /// Should the resource manage member entity ids exclusively? Beware of race conditions when disabling exclusive management
         /// </summary>
         [Input("exclusive")]
         public Input<bool>? Exclusive { get; set; }
 
         /// <summary>
-        /// Group ID to assign member entities to.
+        /// ID of the group.
         /// </summary>
         [Input("groupId", required: true)]
         public Input<string> GroupId { get; set; } = null!;
@@ -188,7 +97,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _memberEntityIds;
 
         /// <summary>
-        /// List of member entities that belong to the group
+        /// Entity IDs to be assigned as group members.
         /// </summary>
         public InputList<string> MemberEntityIds
         {
@@ -204,19 +113,19 @@ namespace Pulumi.Vault.Identity
     public sealed class GroupMemberEntityIdsState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defaults to `true`.
+        /// Should the resource manage member entity ids exclusively? Beware of race conditions when disabling exclusive management
         /// </summary>
         [Input("exclusive")]
         public Input<bool>? Exclusive { get; set; }
 
         /// <summary>
-        /// Group ID to assign member entities to.
+        /// ID of the group.
         /// </summary>
         [Input("groupId")]
         public Input<string>? GroupId { get; set; }
 
         /// <summary>
-        /// The name of the group that are assigned the member entities.
+        /// Name of the group.
         /// </summary>
         [Input("groupName")]
         public Input<string>? GroupName { get; set; }
@@ -225,7 +134,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _memberEntityIds;
 
         /// <summary>
-        /// List of member entities that belong to the group
+        /// Entity IDs to be assigned as group members.
         /// </summary>
         public InputList<string> MemberEntityIds
         {

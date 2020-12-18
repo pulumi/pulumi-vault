@@ -31,7 +31,6 @@ namespace Pulumi.Vault.Kubernetes
     ///         var example = new Vault.Kubernetes.AuthBackendRole("example", new Vault.Kubernetes.AuthBackendRoleArgs
     ///         {
     ///             Backend = kubernetes.Path,
-    ///             RoleName = "example-role",
     ///             BoundServiceAccountNames = 
     ///             {
     ///                 "example",
@@ -40,32 +39,24 @@ namespace Pulumi.Vault.Kubernetes
     ///             {
     ///                 "example",
     ///             },
-    ///             TokenTtl = 3600,
-    ///             TokenPolicies = 
+    ///             Policies = 
     ///             {
     ///                 "default",
     ///                 "dev",
     ///                 "prod",
     ///             },
-    ///             Audience = "vault",
+    ///             RoleName = "example-role",
+    ///             Ttl = 3600,
     ///         });
     ///     }
     /// 
     /// }
     /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// Kubernetes auth backend role can be imported using the `path`, e.g.
-    /// 
-    /// ```sh
-    ///  $ pulumi import vault:kubernetes/authBackendRole:AuthBackendRole foo auth/kubernetes/role/foo
-    /// ```
     /// </summary>
     public partial class AuthBackendRole : Pulumi.CustomResource
     {
         /// <summary>
-        /// Audience claim to verify in the JWT.
+        /// Optional Audience claim to verify in the JWT.
         /// </summary>
         [Output("audience")]
         public Output<string?> Audience { get; private set; } = null!;
@@ -77,8 +68,7 @@ namespace Pulumi.Vault.Kubernetes
         public Output<string?> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// If set, a list of
-        /// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+        /// List of CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
         /// </summary>
         [Output("boundCidrs")]
         public Output<ImmutableArray<string>> BoundCidrs { get; private set; } = null!;
@@ -96,31 +86,25 @@ namespace Pulumi.Vault.Kubernetes
         public Output<ImmutableArray<string>> BoundServiceAccountNamespaces { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum allowed lifetime of tokens
-        /// issued using this role, provided as a number of seconds.
+        /// The maximum allowed lifetime of tokens issued in seconds using this role.
         /// </summary>
         [Output("maxTtl")]
         public Output<int?> MaxTtl { get; private set; } = null!;
 
         /// <summary>
-        /// If set, puts a use-count
-        /// limitation on the issued token.
+        /// Number of times issued tokens can be used. Setting this to 0 or leaving it unset means unlimited uses.
         /// </summary>
         [Output("numUses")]
         public Output<int?> NumUses { get; private set; } = null!;
 
         /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
+        /// If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this parameter.
         /// </summary>
         [Output("period")]
         public Output<int?> Period { get; private set; } = null!;
 
         /// <summary>
-        /// An array of strings
-        /// specifying the policies to be set on tokens issued using this role.
+        /// Policies to be set on tokens issued using this role.
         /// </summary>
         [Output("policies")]
         public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
@@ -132,80 +116,61 @@ namespace Pulumi.Vault.Kubernetes
         public Output<string> RoleName { get; private set; } = null!;
 
         /// <summary>
-        /// List of CIDR blocks; if set, specifies blocks of IP
-        /// addresses which can authenticate successfully, and ties the resulting token to these blocks
-        /// as well.
+        /// Specifies the blocks of IP addresses which are allowed to use the generated token
         /// </summary>
         [Output("tokenBoundCidrs")]
         public Output<ImmutableArray<string>> TokenBoundCidrs { get; private set; } = null!;
 
         /// <summary>
-        /// If set, will encode an
-        /// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        /// onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        /// `token_max_ttl` would otherwise allow a renewal.
+        /// Generated Token's Explicit Maximum TTL in seconds
         /// </summary>
         [Output("tokenExplicitMaxTtl")]
         public Output<int?> TokenExplicitMaxTtl { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum lifetime for generated tokens in number of seconds.
-        /// Its current value will be referenced at renewal time.
+        /// The maximum lifetime of the generated token
         /// </summary>
         [Output("tokenMaxTtl")]
         public Output<int?> TokenMaxTtl { get; private set; } = null!;
 
         /// <summary>
-        /// If set, the default policy will not be set on
-        /// generated tokens; otherwise it will be added to the policies set in token_policies.
+        /// If true, the 'default' policy will not automatically be added to generated tokens
         /// </summary>
         [Output("tokenNoDefaultPolicy")]
         public Output<bool?> TokenNoDefaultPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// The
-        /// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        /// if any, in number of seconds to set on the token.
+        /// The maximum number of times a token may be used, a value of zero means unlimited
         /// </summary>
         [Output("tokenNumUses")]
         public Output<int?> TokenNumUses { get; private set; } = null!;
 
         /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
+        /// Generated Token's Period
         /// </summary>
         [Output("tokenPeriod")]
         public Output<int?> TokenPeriod { get; private set; } = null!;
 
         /// <summary>
-        /// List of policies to encode onto generated tokens. Depending
-        /// on the auth method, this list may be supplemented by user/group/other values.
+        /// Generated Token's Policies
         /// </summary>
         [Output("tokenPolicies")]
         public Output<ImmutableArray<string>> TokenPolicies { get; private set; } = null!;
 
         /// <summary>
-        /// The incremental lifetime for generated tokens in number of seconds.
-        /// Its current value will be referenced at renewal time.
+        /// The initial ttl of the token to generate in seconds
         /// </summary>
         [Output("tokenTtl")]
         public Output<int?> TokenTtl { get; private set; } = null!;
 
         /// <summary>
-        /// The type of token that should be generated. Can be `service`,
-        /// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        /// `service` tokens). For token store roles, there are two additional possibilities:
-        /// `default-service` and `default-batch` which specify the type to return unless the client
-        /// requests a different type at generation time.
+        /// The type of token to generate, service or batch
         /// </summary>
         [Output("tokenType")]
         public Output<string?> TokenType { get; private set; } = null!;
 
         /// <summary>
-        /// The TTL period of tokens issued
-        /// using this role, provided as a number of seconds.
+        /// The TTL period of tokens issued using this role in seconds.
         /// </summary>
         [Output("ttl")]
         public Output<int?> Ttl { get; private set; } = null!;
@@ -257,7 +222,7 @@ namespace Pulumi.Vault.Kubernetes
     public sealed class AuthBackendRoleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Audience claim to verify in the JWT.
+        /// Optional Audience claim to verify in the JWT.
         /// </summary>
         [Input("audience")]
         public Input<string>? Audience { get; set; }
@@ -272,8 +237,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputList<string>? _boundCidrs;
 
         /// <summary>
-        /// If set, a list of
-        /// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+        /// List of CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
         /// </summary>
         [Obsolete(@"use `token_bound_cidrs` instead if you are running Vault >= 1.2")]
         public InputList<string> BoundCidrs
@@ -307,24 +271,19 @@ namespace Pulumi.Vault.Kubernetes
         }
 
         /// <summary>
-        /// The maximum allowed lifetime of tokens
-        /// issued using this role, provided as a number of seconds.
+        /// The maximum allowed lifetime of tokens issued in seconds using this role.
         /// </summary>
         [Input("maxTtl")]
         public Input<int>? MaxTtl { get; set; }
 
         /// <summary>
-        /// If set, puts a use-count
-        /// limitation on the issued token.
+        /// Number of times issued tokens can be used. Setting this to 0 or leaving it unset means unlimited uses.
         /// </summary>
         [Input("numUses")]
         public Input<int>? NumUses { get; set; }
 
         /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
+        /// If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this parameter.
         /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
@@ -333,8 +292,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputList<string>? _policies;
 
         /// <summary>
-        /// An array of strings
-        /// specifying the policies to be set on tokens issued using this role.
+        /// Policies to be set on tokens issued using this role.
         /// </summary>
         [Obsolete(@"use `token_policies` instead if you are running Vault >= 1.2")]
         public InputList<string> Policies
@@ -353,9 +311,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputList<string>? _tokenBoundCidrs;
 
         /// <summary>
-        /// List of CIDR blocks; if set, specifies blocks of IP
-        /// addresses which can authenticate successfully, and ties the resulting token to these blocks
-        /// as well.
+        /// Specifies the blocks of IP addresses which are allowed to use the generated token
         /// </summary>
         public InputList<string> TokenBoundCidrs
         {
@@ -364,41 +320,31 @@ namespace Pulumi.Vault.Kubernetes
         }
 
         /// <summary>
-        /// If set, will encode an
-        /// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        /// onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        /// `token_max_ttl` would otherwise allow a renewal.
+        /// Generated Token's Explicit Maximum TTL in seconds
         /// </summary>
         [Input("tokenExplicitMaxTtl")]
         public Input<int>? TokenExplicitMaxTtl { get; set; }
 
         /// <summary>
-        /// The maximum lifetime for generated tokens in number of seconds.
-        /// Its current value will be referenced at renewal time.
+        /// The maximum lifetime of the generated token
         /// </summary>
         [Input("tokenMaxTtl")]
         public Input<int>? TokenMaxTtl { get; set; }
 
         /// <summary>
-        /// If set, the default policy will not be set on
-        /// generated tokens; otherwise it will be added to the policies set in token_policies.
+        /// If true, the 'default' policy will not automatically be added to generated tokens
         /// </summary>
         [Input("tokenNoDefaultPolicy")]
         public Input<bool>? TokenNoDefaultPolicy { get; set; }
 
         /// <summary>
-        /// The
-        /// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        /// if any, in number of seconds to set on the token.
+        /// The maximum number of times a token may be used, a value of zero means unlimited
         /// </summary>
         [Input("tokenNumUses")]
         public Input<int>? TokenNumUses { get; set; }
 
         /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
+        /// Generated Token's Period
         /// </summary>
         [Input("tokenPeriod")]
         public Input<int>? TokenPeriod { get; set; }
@@ -407,8 +353,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputList<string>? _tokenPolicies;
 
         /// <summary>
-        /// List of policies to encode onto generated tokens. Depending
-        /// on the auth method, this list may be supplemented by user/group/other values.
+        /// Generated Token's Policies
         /// </summary>
         public InputList<string> TokenPolicies
         {
@@ -417,25 +362,19 @@ namespace Pulumi.Vault.Kubernetes
         }
 
         /// <summary>
-        /// The incremental lifetime for generated tokens in number of seconds.
-        /// Its current value will be referenced at renewal time.
+        /// The initial ttl of the token to generate in seconds
         /// </summary>
         [Input("tokenTtl")]
         public Input<int>? TokenTtl { get; set; }
 
         /// <summary>
-        /// The type of token that should be generated. Can be `service`,
-        /// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        /// `service` tokens). For token store roles, there are two additional possibilities:
-        /// `default-service` and `default-batch` which specify the type to return unless the client
-        /// requests a different type at generation time.
+        /// The type of token to generate, service or batch
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
 
         /// <summary>
-        /// The TTL period of tokens issued
-        /// using this role, provided as a number of seconds.
+        /// The TTL period of tokens issued using this role in seconds.
         /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
@@ -448,7 +387,7 @@ namespace Pulumi.Vault.Kubernetes
     public sealed class AuthBackendRoleState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Audience claim to verify in the JWT.
+        /// Optional Audience claim to verify in the JWT.
         /// </summary>
         [Input("audience")]
         public Input<string>? Audience { get; set; }
@@ -463,8 +402,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputList<string>? _boundCidrs;
 
         /// <summary>
-        /// If set, a list of
-        /// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+        /// List of CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
         /// </summary>
         [Obsolete(@"use `token_bound_cidrs` instead if you are running Vault >= 1.2")]
         public InputList<string> BoundCidrs
@@ -498,24 +436,19 @@ namespace Pulumi.Vault.Kubernetes
         }
 
         /// <summary>
-        /// The maximum allowed lifetime of tokens
-        /// issued using this role, provided as a number of seconds.
+        /// The maximum allowed lifetime of tokens issued in seconds using this role.
         /// </summary>
         [Input("maxTtl")]
         public Input<int>? MaxTtl { get; set; }
 
         /// <summary>
-        /// If set, puts a use-count
-        /// limitation on the issued token.
+        /// Number of times issued tokens can be used. Setting this to 0 or leaving it unset means unlimited uses.
         /// </summary>
         [Input("numUses")]
         public Input<int>? NumUses { get; set; }
 
         /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
+        /// If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this parameter.
         /// </summary>
         [Input("period")]
         public Input<int>? Period { get; set; }
@@ -524,8 +457,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputList<string>? _policies;
 
         /// <summary>
-        /// An array of strings
-        /// specifying the policies to be set on tokens issued using this role.
+        /// Policies to be set on tokens issued using this role.
         /// </summary>
         [Obsolete(@"use `token_policies` instead if you are running Vault >= 1.2")]
         public InputList<string> Policies
@@ -544,9 +476,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputList<string>? _tokenBoundCidrs;
 
         /// <summary>
-        /// List of CIDR blocks; if set, specifies blocks of IP
-        /// addresses which can authenticate successfully, and ties the resulting token to these blocks
-        /// as well.
+        /// Specifies the blocks of IP addresses which are allowed to use the generated token
         /// </summary>
         public InputList<string> TokenBoundCidrs
         {
@@ -555,41 +485,31 @@ namespace Pulumi.Vault.Kubernetes
         }
 
         /// <summary>
-        /// If set, will encode an
-        /// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        /// onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        /// `token_max_ttl` would otherwise allow a renewal.
+        /// Generated Token's Explicit Maximum TTL in seconds
         /// </summary>
         [Input("tokenExplicitMaxTtl")]
         public Input<int>? TokenExplicitMaxTtl { get; set; }
 
         /// <summary>
-        /// The maximum lifetime for generated tokens in number of seconds.
-        /// Its current value will be referenced at renewal time.
+        /// The maximum lifetime of the generated token
         /// </summary>
         [Input("tokenMaxTtl")]
         public Input<int>? TokenMaxTtl { get; set; }
 
         /// <summary>
-        /// If set, the default policy will not be set on
-        /// generated tokens; otherwise it will be added to the policies set in token_policies.
+        /// If true, the 'default' policy will not automatically be added to generated tokens
         /// </summary>
         [Input("tokenNoDefaultPolicy")]
         public Input<bool>? TokenNoDefaultPolicy { get; set; }
 
         /// <summary>
-        /// The
-        /// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        /// if any, in number of seconds to set on the token.
+        /// The maximum number of times a token may be used, a value of zero means unlimited
         /// </summary>
         [Input("tokenNumUses")]
         public Input<int>? TokenNumUses { get; set; }
 
         /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
+        /// Generated Token's Period
         /// </summary>
         [Input("tokenPeriod")]
         public Input<int>? TokenPeriod { get; set; }
@@ -598,8 +518,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputList<string>? _tokenPolicies;
 
         /// <summary>
-        /// List of policies to encode onto generated tokens. Depending
-        /// on the auth method, this list may be supplemented by user/group/other values.
+        /// Generated Token's Policies
         /// </summary>
         public InputList<string> TokenPolicies
         {
@@ -608,25 +527,19 @@ namespace Pulumi.Vault.Kubernetes
         }
 
         /// <summary>
-        /// The incremental lifetime for generated tokens in number of seconds.
-        /// Its current value will be referenced at renewal time.
+        /// The initial ttl of the token to generate in seconds
         /// </summary>
         [Input("tokenTtl")]
         public Input<int>? TokenTtl { get; set; }
 
         /// <summary>
-        /// The type of token that should be generated. Can be `service`,
-        /// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        /// `service` tokens). For token store roles, there are two additional possibilities:
-        /// `default-service` and `default-batch` which specify the type to return unless the client
-        /// requests a different type at generation time.
+        /// The type of token to generate, service or batch
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
 
         /// <summary>
-        /// The TTL period of tokens issued
-        /// using this role, provided as a number of seconds.
+        /// The TTL period of tokens issued using this role in seconds.
         /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }

@@ -9,78 +9,22 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Database
 {
-    /// <summary>
-    /// Creates a Database Secret Backend static role in Vault. Database secret backend
-    /// static roles can be used to manage 1-to-1 mapping of a Vault Role to a user in a
-    /// database for the database.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var db = new Vault.Mount("db", new Vault.MountArgs
-    ///         {
-    ///             Path = "postgres",
-    ///             Type = "database",
-    ///         });
-    ///         var postgres = new Vault.Database.SecretBackendConnection("postgres", new Vault.Database.SecretBackendConnectionArgs
-    ///         {
-    ///             AllowedRoles = 
-    ///             {
-    ///                 "*",
-    ///             },
-    ///             Backend = db.Path,
-    ///             Postgresql = new Vault.Database.Inputs.SecretBackendConnectionPostgresqlArgs
-    ///             {
-    ///                 ConnectionUrl = "postgres://username:password@host:port/database",
-    ///             },
-    ///         });
-    ///         var staticRole = new Vault.Database.SecretBackendStaticRole("staticRole", new Vault.Database.SecretBackendStaticRoleArgs
-    ///         {
-    ///             Backend = db.Path,
-    ///             DbName = postgres.Name,
-    ///             RotationPeriod = 3600,
-    ///             RotationStatements = 
-    ///             {
-    ///                 "ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';",
-    ///             },
-    ///             Username = "example",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// Database secret backend static roles can be imported using the `backend`, `/static-roles/`, and the `name` e.g.
-    /// 
-    /// ```sh
-    ///  $ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
-    /// ```
-    /// </summary>
     public partial class SecretBackendStaticRole : Pulumi.CustomResource
     {
         /// <summary>
-        /// The unique name of the Vault mount to configure.
+        /// The path of the Database Secret Backend the role belongs to.
         /// </summary>
         [Output("backend")]
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of the database connection to use for the static role.
+        /// Database connection to use for this role.
         /// </summary>
         [Output("dbName")]
         public Output<string> DbName { get; private set; } = null!;
 
         /// <summary>
-        /// A unique name to give the static role.
+        /// Unique name for the static role.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -98,7 +42,7 @@ namespace Pulumi.Vault.Database
         public Output<ImmutableArray<string>> RotationStatements { get; private set; } = null!;
 
         /// <summary>
-        /// The database username that this static role corresponds to.
+        /// The database username that this role corresponds to.
         /// </summary>
         [Output("username")]
         public Output<string> Username { get; private set; } = null!;
@@ -150,19 +94,19 @@ namespace Pulumi.Vault.Database
     public sealed class SecretBackendStaticRoleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name of the Vault mount to configure.
+        /// The path of the Database Secret Backend the role belongs to.
         /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
-        /// The unique name of the database connection to use for the static role.
+        /// Database connection to use for this role.
         /// </summary>
         [Input("dbName", required: true)]
         public Input<string> DbName { get; set; } = null!;
 
         /// <summary>
-        /// A unique name to give the static role.
+        /// Unique name for the static role.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -186,7 +130,7 @@ namespace Pulumi.Vault.Database
         }
 
         /// <summary>
-        /// The database username that this static role corresponds to.
+        /// The database username that this role corresponds to.
         /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
@@ -199,19 +143,19 @@ namespace Pulumi.Vault.Database
     public sealed class SecretBackendStaticRoleState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name of the Vault mount to configure.
+        /// The path of the Database Secret Backend the role belongs to.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// The unique name of the database connection to use for the static role.
+        /// Database connection to use for this role.
         /// </summary>
         [Input("dbName")]
         public Input<string>? DbName { get; set; }
 
         /// <summary>
-        /// A unique name to give the static role.
+        /// Unique name for the static role.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -235,7 +179,7 @@ namespace Pulumi.Vault.Database
         }
 
         /// <summary>
-        /// The database username that this static role corresponds to.
+        /// The database username that this role corresponds to.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }

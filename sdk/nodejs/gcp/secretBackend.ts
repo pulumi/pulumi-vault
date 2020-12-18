@@ -33,7 +33,7 @@ export class SecretBackend extends pulumi.CustomResource {
     }
 
     /**
-     * The GCP service account credentials in JSON format.
+     * The GCP service account credentails in JSON format.
      */
     public readonly credentials!: pulumi.Output<string | undefined>;
     /**
@@ -46,7 +46,7 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+     * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
     public readonly local!: pulumi.Output<boolean | undefined>;
     /**
@@ -103,7 +103,7 @@ export class SecretBackend extends pulumi.CustomResource {
  */
 export interface SecretBackendState {
     /**
-     * The GCP service account credentials in JSON format.
+     * The GCP service account credentails in JSON format.
      */
     readonly credentials?: pulumi.Input<string>;
     /**
@@ -116,7 +116,7 @@ export interface SecretBackendState {
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+     * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
     readonly local?: pulumi.Input<boolean>;
     /**
@@ -136,7 +136,7 @@ export interface SecretBackendState {
  */
 export interface SecretBackendArgs {
     /**
-     * The GCP service account credentials in JSON format.
+     * The GCP service account credentails in JSON format.
      */
     readonly credentials?: pulumi.Input<string>;
     /**
@@ -149,7 +149,7 @@ export interface SecretBackendArgs {
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+     * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
     readonly local?: pulumi.Input<boolean>;
     /**

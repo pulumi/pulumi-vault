@@ -22,29 +22,11 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Allows setting the duration for which the generated CRL should be marked valid. If the CRL is disabled, it will return a signed but zero-length CRL for any request. If enabled, it will re-build the CRL.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        pki = vault.Mount("pki",
-            default_lease_ttl_seconds=3600,
-            max_lease_ttl_seconds=86400,
-            path="%s",
-            type="pki")
-        crl_config = vault.pki_secret.SecretBackendCrlConfig("crlConfig",
-            backend=pki.path,
-            disable=False,
-            expiry="72h")
-        ```
-
+        Create a SecretBackendCrlConfig resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
-        :param pulumi.Input[bool] disable: Disables or enables CRL building.
+        :param pulumi.Input[str] backend: The path of the PKI secret backend the resource belongs to.
+        :param pulumi.Input[bool] disable: Disables or enables CRL building
         :param pulumi.Input[str] expiry: Specifies the time until expiration.
         """
         if __name__ is not None:
@@ -89,8 +71,8 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
-        :param pulumi.Input[bool] disable: Disables or enables CRL building.
+        :param pulumi.Input[str] backend: The path of the PKI secret backend the resource belongs to.
+        :param pulumi.Input[bool] disable: Disables or enables CRL building
         :param pulumi.Input[str] expiry: Specifies the time until expiration.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -106,7 +88,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
     @pulumi.getter
     def backend(self) -> pulumi.Output[str]:
         """
-        The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+        The path of the PKI secret backend the resource belongs to.
         """
         return pulumi.get(self, "backend")
 
@@ -114,7 +96,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
     @pulumi.getter
     def disable(self) -> pulumi.Output[Optional[bool]]:
         """
-        Disables or enables CRL building.
+        Disables or enables CRL building
         """
         return pulumi.get(self, "disable")
 

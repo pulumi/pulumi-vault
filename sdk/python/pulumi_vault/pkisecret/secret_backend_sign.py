@@ -36,7 +36,7 @@ class SecretBackendSign(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
-        :param pulumi.Input[bool] auto_renew: If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+        :param pulumi.Input[bool] auto_renew: If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] common_name: CN of certificate to create
         :param pulumi.Input[str] csr: The CSR
@@ -126,7 +126,7 @@ class SecretBackendSign(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
-        :param pulumi.Input[bool] auto_renew: If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+        :param pulumi.Input[bool] auto_renew: If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ca_chains: The CA chain
         :param pulumi.Input[str] certificate: The certificate
@@ -180,7 +180,7 @@ class SecretBackendSign(pulumi.CustomResource):
     @pulumi.getter(name="autoRenew")
     def auto_renew(self) -> pulumi.Output[Optional[bool]]:
         """
-        If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+        If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
         """
         return pulumi.get(self, "auto_renew")
 

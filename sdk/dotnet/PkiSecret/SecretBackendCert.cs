@@ -18,7 +18,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> AltNames { get; private set; } = null!;
 
         /// <summary>
-        /// If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+        /// If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
         /// </summary>
         [Output("autoRenew")]
         public Output<bool?> AutoRenew { get; private set; } = null!;
@@ -126,7 +126,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string?> Ttl { get; private set; } = null!;
 
         /// <summary>
-        /// List of alternative URIs
+        /// List of alternative URIs.
         /// </summary>
         [Output("uriSans")]
         public Output<ImmutableArray<string>> UriSans { get; private set; } = null!;
@@ -190,7 +190,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+        /// If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
         /// </summary>
         [Input("autoRenew")]
         public Input<bool>? AutoRenew { get; set; }
@@ -271,7 +271,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _uriSans;
 
         /// <summary>
-        /// List of alternative URIs
+        /// List of alternative URIs.
         /// </summary>
         public InputList<string> UriSans
         {
@@ -299,7 +299,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+        /// If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
         /// </summary>
         [Input("autoRenew")]
         public Input<bool>? AutoRenew { get; set; }
@@ -422,7 +422,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _uriSans;
 
         /// <summary>
-        /// List of alternative URIs
+        /// List of alternative URIs.
         /// </summary>
         public InputList<string> UriSans
         {

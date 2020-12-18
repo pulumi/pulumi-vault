@@ -13,20 +13,16 @@ namespace Pulumi.Vault.Database.Inputs
     public sealed class SecretBackendConnectionElasticsearchGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The password to be used in the connection.
+        /// The password to authenticate with.
         /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
-        /// <summary>
-        /// The URL for Elasticsearch's API. https requires certificate
-        /// by trusted CA if used.
-        /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
 
         /// <summary>
-        /// The username to be used in the connection.
+        /// The username to authenticate with.
         /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;

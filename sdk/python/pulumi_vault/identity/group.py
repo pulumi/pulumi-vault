@@ -64,10 +64,10 @@ class Group(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] external_member_entity_ids: `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
-        :param pulumi.Input[bool] external_policies: `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+        :param pulumi.Input[bool] external_member_entity_ids: Manage member entities externally through `vault_identity_group_policies_member_entity_ids`
+        :param pulumi.Input[bool] external_policies: Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned policies.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] member_group_ids: A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] member_group_ids: A list of Group IDs to be assigned as group members.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: A Map of additional metadata to associate with the group.
         :param pulumi.Input[str] name: Name of the identity group to create.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: A list of policies to apply to the group.
@@ -123,10 +123,10 @@ class Group(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] external_member_entity_ids: `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
-        :param pulumi.Input[bool] external_policies: `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+        :param pulumi.Input[bool] external_member_entity_ids: Manage member entities externally through `vault_identity_group_policies_member_entity_ids`
+        :param pulumi.Input[bool] external_policies: Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned policies.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] member_group_ids: A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] member_group_ids: A list of Group IDs to be assigned as group members.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: A Map of additional metadata to associate with the group.
         :param pulumi.Input[str] name: Name of the identity group to create.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: A list of policies to apply to the group.
@@ -150,7 +150,7 @@ class Group(pulumi.CustomResource):
     @pulumi.getter(name="externalMemberEntityIds")
     def external_member_entity_ids(self) -> pulumi.Output[Optional[bool]]:
         """
-        `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+        Manage member entities externally through `vault_identity_group_policies_member_entity_ids`
         """
         return pulumi.get(self, "external_member_entity_ids")
 
@@ -158,7 +158,7 @@ class Group(pulumi.CustomResource):
     @pulumi.getter(name="externalPolicies")
     def external_policies(self) -> pulumi.Output[Optional[bool]]:
         """
-        `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+        Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned policies.
         """
         return pulumi.get(self, "external_policies")
 
@@ -174,7 +174,7 @@ class Group(pulumi.CustomResource):
     @pulumi.getter(name="memberGroupIds")
     def member_group_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
+        A list of Group IDs to be assigned as group members.
         """
         return pulumi.get(self, "member_group_ids")
 

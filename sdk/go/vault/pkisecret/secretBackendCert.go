@@ -16,7 +16,7 @@ type SecretBackendCert struct {
 
 	// List of alternative names
 	AltNames pulumi.StringArrayOutput `pulumi:"altNames"`
-	// If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
+	// If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
 	AutoRenew pulumi.BoolPtrOutput `pulumi:"autoRenew"`
 	// The PKI secret backend the resource belongs to.
 	Backend pulumi.StringOutput `pulumi:"backend"`
@@ -52,7 +52,7 @@ type SecretBackendCert struct {
 	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
 	// Time to live
 	Ttl pulumi.StringPtrOutput `pulumi:"ttl"`
-	// List of alternative URIs
+	// List of alternative URIs.
 	UriSans pulumi.StringArrayOutput `pulumi:"uriSans"`
 }
 
@@ -92,7 +92,7 @@ func GetSecretBackendCert(ctx *pulumi.Context,
 type secretBackendCertState struct {
 	// List of alternative names
 	AltNames []string `pulumi:"altNames"`
-	// If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
+	// If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
 	AutoRenew *bool `pulumi:"autoRenew"`
 	// The PKI secret backend the resource belongs to.
 	Backend *string `pulumi:"backend"`
@@ -128,14 +128,14 @@ type secretBackendCertState struct {
 	SerialNumber *string `pulumi:"serialNumber"`
 	// Time to live
 	Ttl *string `pulumi:"ttl"`
-	// List of alternative URIs
+	// List of alternative URIs.
 	UriSans []string `pulumi:"uriSans"`
 }
 
 type SecretBackendCertState struct {
 	// List of alternative names
 	AltNames pulumi.StringArrayInput
-	// If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
+	// If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
 	AutoRenew pulumi.BoolPtrInput
 	// The PKI secret backend the resource belongs to.
 	Backend pulumi.StringPtrInput
@@ -171,7 +171,7 @@ type SecretBackendCertState struct {
 	SerialNumber pulumi.StringPtrInput
 	// Time to live
 	Ttl pulumi.StringPtrInput
-	// List of alternative URIs
+	// List of alternative URIs.
 	UriSans pulumi.StringArrayInput
 }
 
@@ -182,7 +182,7 @@ func (SecretBackendCertState) ElementType() reflect.Type {
 type secretBackendCertArgs struct {
 	// List of alternative names
 	AltNames []string `pulumi:"altNames"`
-	// If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
+	// If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
 	AutoRenew *bool `pulumi:"autoRenew"`
 	// The PKI secret backend the resource belongs to.
 	Backend string `pulumi:"backend"`
@@ -204,7 +204,7 @@ type secretBackendCertArgs struct {
 	PrivateKeyFormat *string `pulumi:"privateKeyFormat"`
 	// Time to live
 	Ttl *string `pulumi:"ttl"`
-	// List of alternative URIs
+	// List of alternative URIs.
 	UriSans []string `pulumi:"uriSans"`
 }
 
@@ -212,7 +212,7 @@ type secretBackendCertArgs struct {
 type SecretBackendCertArgs struct {
 	// List of alternative names
 	AltNames pulumi.StringArrayInput
-	// If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
+	// If enabled, a new certificate will be generated if the expiration is within min_seconds_remaining
 	AutoRenew pulumi.BoolPtrInput
 	// The PKI secret backend the resource belongs to.
 	Backend pulumi.StringInput
@@ -234,7 +234,7 @@ type SecretBackendCertArgs struct {
 	PrivateKeyFormat pulumi.StringPtrInput
 	// Time to live
 	Ttl pulumi.StringPtrInput
-	// List of alternative URIs
+	// List of alternative URIs.
 	UriSans pulumi.StringArrayInput
 }
 

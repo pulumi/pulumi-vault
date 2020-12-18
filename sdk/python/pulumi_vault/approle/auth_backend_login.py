@@ -23,7 +23,7 @@ class AuthBackendLogin(pulumi.CustomResource):
                  __opts__=None):
         """
         Logs into Vault using the AppRole auth backend. See the [Vault
-        documentation](https://www.vaultproject.io/docs/auth/approle) for more
+        documentation](https://www.vaultproject.io/docs/auth/approle.html) for more
         information.
 
         ## Example Usage

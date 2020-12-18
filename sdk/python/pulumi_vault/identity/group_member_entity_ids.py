@@ -22,60 +22,12 @@ class GroupMemberEntityIds(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Manages member entities for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
-
-        ## Example Usage
-        ### Exclusive Member Entities
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        internal = vault.identity.Group("internal",
-            type="internal",
-            external_member_entity_ids=True,
-            metadata={
-                "version": "2",
-            })
-        user = vault.identity.Entity("user")
-        members = vault.identity.GroupMemberEntityIds("members",
-            exclusive=True,
-            member_entity_ids=[user.id],
-            group_id=internal.id)
-        ```
-        ### Non-exclusive Member Entities
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        internal = vault.identity.Group("internal",
-            type="internal",
-            external_member_entity_ids=True,
-            metadata={
-                "version": "2",
-            })
-        test_user = vault.identity.Entity("testUser")
-        second_test_user = vault.identity.Entity("secondTestUser")
-        dev_user = vault.identity.Entity("devUser")
-        test = vault.identity.GroupMemberEntityIds("test",
-            member_entity_ids=[
-                test_user.id,
-                second_test_user.id,
-            ],
-            exclusive=False,
-            group_id=internal.id)
-        others = vault.identity.GroupMemberEntityIds("others",
-            member_entity_ids=[dev_user.id],
-            exclusive=False,
-            group_id=internal.id)
-        ```
-
+        Create a GroupMemberEntityIds resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] exclusive: Defaults to `true`.
-        :param pulumi.Input[str] group_id: Group ID to assign member entities to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
+        :param pulumi.Input[bool] exclusive: Should the resource manage member entity ids exclusively? Beware of race conditions when disabling exclusive management
+        :param pulumi.Input[str] group_id: ID of the group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: Entity IDs to be assigned as group members.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -121,10 +73,10 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] exclusive: Defaults to `true`.
-        :param pulumi.Input[str] group_id: Group ID to assign member entities to.
-        :param pulumi.Input[str] group_name: The name of the group that are assigned the member entities.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
+        :param pulumi.Input[bool] exclusive: Should the resource manage member entity ids exclusively? Beware of race conditions when disabling exclusive management
+        :param pulumi.Input[str] group_id: ID of the group.
+        :param pulumi.Input[str] group_name: Name of the group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: Entity IDs to be assigned as group members.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -140,7 +92,7 @@ class GroupMemberEntityIds(pulumi.CustomResource):
     @pulumi.getter
     def exclusive(self) -> pulumi.Output[Optional[bool]]:
         """
-        Defaults to `true`.
+        Should the resource manage member entity ids exclusively? Beware of race conditions when disabling exclusive management
         """
         return pulumi.get(self, "exclusive")
 
@@ -148,7 +100,7 @@ class GroupMemberEntityIds(pulumi.CustomResource):
     @pulumi.getter(name="groupId")
     def group_id(self) -> pulumi.Output[str]:
         """
-        Group ID to assign member entities to.
+        ID of the group.
         """
         return pulumi.get(self, "group_id")
 
@@ -156,7 +108,7 @@ class GroupMemberEntityIds(pulumi.CustomResource):
     @pulumi.getter(name="groupName")
     def group_name(self) -> pulumi.Output[str]:
         """
-        The name of the group that are assigned the member entities.
+        Name of the group.
         """
         return pulumi.get(self, "group_name")
 
@@ -164,7 +116,7 @@ class GroupMemberEntityIds(pulumi.CustomResource):
     @pulumi.getter(name="memberEntityIds")
     def member_entity_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        List of member entities that belong to the group
+        Entity IDs to be assigned as group members.
         """
         return pulumi.get(self, "member_entity_ids")
 

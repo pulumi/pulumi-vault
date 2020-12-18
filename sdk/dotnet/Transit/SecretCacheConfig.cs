@@ -9,47 +9,16 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Transit
 {
-    /// <summary>
-    /// Configure the cache for the Transit Secret Backend in Vault.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var transit = new Vault.Mount("transit", new Vault.MountArgs
-    ///         {
-    ///             DefaultLeaseTtlSeconds = 3600,
-    ///             Description = "Example description",
-    ///             MaxLeaseTtlSeconds = 86400,
-    ///             Path = "transit",
-    ///             Type = "transit",
-    ///         });
-    ///         var cfg = new Vault.Transit.SecretCacheConfig("cfg", new Vault.Transit.SecretCacheConfigArgs
-    ///         {
-    ///             Backend = transit.Path,
-    ///             Size = 500,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// </summary>
     public partial class SecretCacheConfig : Pulumi.CustomResource
     {
         /// <summary>
-        /// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        /// The Transit secret backend the resource belongs to.
         /// </summary>
         [Output("backend")]
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// The number of cache entries. 0 means unlimited.
+        /// Number of cache entries. A size of 0 mean unlimited.
         /// </summary>
         [Output("size")]
         public Output<int> Size { get; private set; } = null!;
@@ -101,13 +70,13 @@ namespace Pulumi.Vault.Transit
     public sealed class SecretCacheConfigArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        /// The Transit secret backend the resource belongs to.
         /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
-        /// The number of cache entries. 0 means unlimited.
+        /// Number of cache entries. A size of 0 mean unlimited.
         /// </summary>
         [Input("size", required: true)]
         public Input<int> Size { get; set; } = null!;
@@ -120,13 +89,13 @@ namespace Pulumi.Vault.Transit
     public sealed class SecretCacheConfigState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        /// The Transit secret backend the resource belongs to.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// The number of cache entries. 0 means unlimited.
+        /// Number of cache entries. A size of 0 mean unlimited.
         /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }

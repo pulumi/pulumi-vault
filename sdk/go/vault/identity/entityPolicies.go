@@ -11,95 +11,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Manages policies for an Identity Entity for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
-//
-// ## Example Usage
-// ### Exclusive Policies
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/identity"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		entity, err := identity.NewEntity(ctx, "entity", &identity.EntityArgs{
-// 			ExternalPolicies: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = identity.NewEntityPolicies(ctx, "policies", &identity.EntityPoliciesArgs{
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("default"),
-// 				pulumi.String("test"),
-// 			},
-// 			Exclusive: pulumi.Bool(true),
-// 			EntityId:  entity.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### Non-exclusive Policies
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/identity"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		entity, err := identity.NewEntity(ctx, "entity", &identity.EntityArgs{
-// 			ExternalPolicies: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = identity.NewEntityPolicies(ctx, "_default", &identity.EntityPoliciesArgs{
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("default"),
-// 				pulumi.String("test"),
-// 			},
-// 			Exclusive: pulumi.Bool(false),
-// 			EntityId:  entity.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = identity.NewEntityPolicies(ctx, "others", &identity.EntityPoliciesArgs{
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("others"),
-// 			},
-// 			Exclusive: pulumi.Bool(false),
-// 			EntityId:  entity.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type EntityPolicies struct {
 	pulumi.CustomResourceState
 
-	// Entity ID to assign policies to.
+	// ID of the entity.
 	EntityId pulumi.StringOutput `pulumi:"entityId"`
-	// The name of the entity that are assigned the policies.
+	// Name of the entity.
 	EntityName pulumi.StringOutput `pulumi:"entityName"`
-	// Defaults to `true`.
+	// Should the resource manage policies exclusively
 	Exclusive pulumi.BoolPtrOutput `pulumi:"exclusive"`
-	// List of policies to assign to the entity
+	// Policies to be tied to the entity.
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 }
 
@@ -137,24 +58,24 @@ func GetEntityPolicies(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EntityPolicies resources.
 type entityPoliciesState struct {
-	// Entity ID to assign policies to.
+	// ID of the entity.
 	EntityId *string `pulumi:"entityId"`
-	// The name of the entity that are assigned the policies.
+	// Name of the entity.
 	EntityName *string `pulumi:"entityName"`
-	// Defaults to `true`.
+	// Should the resource manage policies exclusively
 	Exclusive *bool `pulumi:"exclusive"`
-	// List of policies to assign to the entity
+	// Policies to be tied to the entity.
 	Policies []string `pulumi:"policies"`
 }
 
 type EntityPoliciesState struct {
-	// Entity ID to assign policies to.
+	// ID of the entity.
 	EntityId pulumi.StringPtrInput
-	// The name of the entity that are assigned the policies.
+	// Name of the entity.
 	EntityName pulumi.StringPtrInput
-	// Defaults to `true`.
+	// Should the resource manage policies exclusively
 	Exclusive pulumi.BoolPtrInput
-	// List of policies to assign to the entity
+	// Policies to be tied to the entity.
 	Policies pulumi.StringArrayInput
 }
 
@@ -163,21 +84,21 @@ func (EntityPoliciesState) ElementType() reflect.Type {
 }
 
 type entityPoliciesArgs struct {
-	// Entity ID to assign policies to.
+	// ID of the entity.
 	EntityId string `pulumi:"entityId"`
-	// Defaults to `true`.
+	// Should the resource manage policies exclusively
 	Exclusive *bool `pulumi:"exclusive"`
-	// List of policies to assign to the entity
+	// Policies to be tied to the entity.
 	Policies []string `pulumi:"policies"`
 }
 
 // The set of arguments for constructing a EntityPolicies resource.
 type EntityPoliciesArgs struct {
-	// Entity ID to assign policies to.
+	// ID of the entity.
 	EntityId pulumi.StringInput
-	// Defaults to `true`.
+	// Should the resource manage policies exclusively
 	Exclusive pulumi.BoolPtrInput
-	// List of policies to assign to the entity
+	// Policies to be tied to the entity.
 	Policies pulumi.StringArrayInput
 }
 

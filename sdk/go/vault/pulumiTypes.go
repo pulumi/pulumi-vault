@@ -11,32 +11,15 @@ import (
 )
 
 type AuthBackendTune struct {
-	// List of headers to whitelist and allowing
-	// a plugin to include them in the response.
-	AllowedResponseHeaders []string `pulumi:"allowedResponseHeaders"`
-	// Specifies the list of keys that will
-	// not be HMAC'd by audit devices in the request data object.
-	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
-	// Specifies the list of keys that will
-	// not be HMAC'd by audit devices in the response data object.
+	AllowedResponseHeaders   []string `pulumi:"allowedResponseHeaders"`
+	AuditNonHmacRequestKeys  []string `pulumi:"auditNonHmacRequestKeys"`
 	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
-	// Specifies the default time-to-live.
-	// If set, this overrides the global default.
-	// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-	DefaultLeaseTtl *string `pulumi:"defaultLeaseTtl"`
-	// Specifies whether to show this mount in
-	// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
-	ListingVisibility *string `pulumi:"listingVisibility"`
-	// Specifies the maximum time-to-live.
-	// If set, this overrides the global default.
-	// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-	MaxLeaseTtl *string `pulumi:"maxLeaseTtl"`
-	// List of headers to whitelist and
-	// pass from the request to the backend.
+	DefaultLeaseTtl          *string  `pulumi:"defaultLeaseTtl"`
+	// Speficies whether to show this mount in the UI-specific listing endpoint.
+	ListingVisibility         *string  `pulumi:"listingVisibility"`
+	MaxLeaseTtl               *string  `pulumi:"maxLeaseTtl"`
 	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
-	// Specifies the type of tokens that should be returned by
-	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
-	TokenType *string `pulumi:"tokenType"`
+	TokenType                 *string  `pulumi:"tokenType"`
 }
 
 // AuthBackendTuneInput is an input type that accepts AuthBackendTuneArgs and AuthBackendTuneOutput values.
@@ -51,32 +34,15 @@ type AuthBackendTuneInput interface {
 }
 
 type AuthBackendTuneArgs struct {
-	// List of headers to whitelist and allowing
-	// a plugin to include them in the response.
-	AllowedResponseHeaders pulumi.StringArrayInput `pulumi:"allowedResponseHeaders"`
-	// Specifies the list of keys that will
-	// not be HMAC'd by audit devices in the request data object.
-	AuditNonHmacRequestKeys pulumi.StringArrayInput `pulumi:"auditNonHmacRequestKeys"`
-	// Specifies the list of keys that will
-	// not be HMAC'd by audit devices in the response data object.
+	AllowedResponseHeaders   pulumi.StringArrayInput `pulumi:"allowedResponseHeaders"`
+	AuditNonHmacRequestKeys  pulumi.StringArrayInput `pulumi:"auditNonHmacRequestKeys"`
 	AuditNonHmacResponseKeys pulumi.StringArrayInput `pulumi:"auditNonHmacResponseKeys"`
-	// Specifies the default time-to-live.
-	// If set, this overrides the global default.
-	// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-	DefaultLeaseTtl pulumi.StringPtrInput `pulumi:"defaultLeaseTtl"`
-	// Specifies whether to show this mount in
-	// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
-	ListingVisibility pulumi.StringPtrInput `pulumi:"listingVisibility"`
-	// Specifies the maximum time-to-live.
-	// If set, this overrides the global default.
-	// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-	MaxLeaseTtl pulumi.StringPtrInput `pulumi:"maxLeaseTtl"`
-	// List of headers to whitelist and
-	// pass from the request to the backend.
+	DefaultLeaseTtl          pulumi.StringPtrInput   `pulumi:"defaultLeaseTtl"`
+	// Speficies whether to show this mount in the UI-specific listing endpoint.
+	ListingVisibility         pulumi.StringPtrInput   `pulumi:"listingVisibility"`
+	MaxLeaseTtl               pulumi.StringPtrInput   `pulumi:"maxLeaseTtl"`
 	PassthroughRequestHeaders pulumi.StringArrayInput `pulumi:"passthroughRequestHeaders"`
-	// Specifies the type of tokens that should be returned by
-	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
-	TokenType pulumi.StringPtrInput `pulumi:"tokenType"`
+	TokenType                 pulumi.StringPtrInput   `pulumi:"tokenType"`
 }
 
 func (AuthBackendTuneArgs) ElementType() reflect.Type {
@@ -155,53 +121,35 @@ func (o AuthBackendTuneOutput) ToAuthBackendTunePtrOutputWithContext(ctx context
 		return &v
 	}).(AuthBackendTunePtrOutput)
 }
-
-// List of headers to whitelist and allowing
-// a plugin to include them in the response.
 func (o AuthBackendTuneOutput) AllowedResponseHeaders() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AuthBackendTune) []string { return v.AllowedResponseHeaders }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the list of keys that will
-// not be HMAC'd by audit devices in the request data object.
 func (o AuthBackendTuneOutput) AuditNonHmacRequestKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AuthBackendTune) []string { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the list of keys that will
-// not be HMAC'd by audit devices in the response data object.
 func (o AuthBackendTuneOutput) AuditNonHmacResponseKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AuthBackendTune) []string { return v.AuditNonHmacResponseKeys }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the default time-to-live.
-// If set, this overrides the global default.
-// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 func (o AuthBackendTuneOutput) DefaultLeaseTtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AuthBackendTune) *string { return v.DefaultLeaseTtl }).(pulumi.StringPtrOutput)
 }
 
-// Specifies whether to show this mount in
-// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+// Speficies whether to show this mount in the UI-specific listing endpoint.
 func (o AuthBackendTuneOutput) ListingVisibility() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AuthBackendTune) *string { return v.ListingVisibility }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the maximum time-to-live.
-// If set, this overrides the global default.
-// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 func (o AuthBackendTuneOutput) MaxLeaseTtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AuthBackendTune) *string { return v.MaxLeaseTtl }).(pulumi.StringPtrOutput)
 }
 
-// List of headers to whitelist and
-// pass from the request to the backend.
 func (o AuthBackendTuneOutput) PassthroughRequestHeaders() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AuthBackendTune) []string { return v.PassthroughRequestHeaders }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the type of tokens that should be returned by
-// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 func (o AuthBackendTuneOutput) TokenType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AuthBackendTune) *string { return v.TokenType }).(pulumi.StringPtrOutput)
 }
@@ -224,8 +172,6 @@ func (o AuthBackendTunePtrOutput) Elem() AuthBackendTuneOutput {
 	return o.ApplyT(func(v *AuthBackendTune) AuthBackendTune { return *v }).(AuthBackendTuneOutput)
 }
 
-// List of headers to whitelist and allowing
-// a plugin to include them in the response.
 func (o AuthBackendTunePtrOutput) AllowedResponseHeaders() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AuthBackendTune) []string {
 		if v == nil {
@@ -235,8 +181,6 @@ func (o AuthBackendTunePtrOutput) AllowedResponseHeaders() pulumi.StringArrayOut
 	}).(pulumi.StringArrayOutput)
 }
 
-// Specifies the list of keys that will
-// not be HMAC'd by audit devices in the request data object.
 func (o AuthBackendTunePtrOutput) AuditNonHmacRequestKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AuthBackendTune) []string {
 		if v == nil {
@@ -246,8 +190,6 @@ func (o AuthBackendTunePtrOutput) AuditNonHmacRequestKeys() pulumi.StringArrayOu
 	}).(pulumi.StringArrayOutput)
 }
 
-// Specifies the list of keys that will
-// not be HMAC'd by audit devices in the response data object.
 func (o AuthBackendTunePtrOutput) AuditNonHmacResponseKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AuthBackendTune) []string {
 		if v == nil {
@@ -257,9 +199,6 @@ func (o AuthBackendTunePtrOutput) AuditNonHmacResponseKeys() pulumi.StringArrayO
 	}).(pulumi.StringArrayOutput)
 }
 
-// Specifies the default time-to-live.
-// If set, this overrides the global default.
-// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 func (o AuthBackendTunePtrOutput) DefaultLeaseTtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendTune) *string {
 		if v == nil {
@@ -269,8 +208,7 @@ func (o AuthBackendTunePtrOutput) DefaultLeaseTtl() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Specifies whether to show this mount in
-// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+// Speficies whether to show this mount in the UI-specific listing endpoint.
 func (o AuthBackendTunePtrOutput) ListingVisibility() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendTune) *string {
 		if v == nil {
@@ -280,9 +218,6 @@ func (o AuthBackendTunePtrOutput) ListingVisibility() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Specifies the maximum time-to-live.
-// If set, this overrides the global default.
-// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
 func (o AuthBackendTunePtrOutput) MaxLeaseTtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendTune) *string {
 		if v == nil {
@@ -292,8 +227,6 @@ func (o AuthBackendTunePtrOutput) MaxLeaseTtl() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// List of headers to whitelist and
-// pass from the request to the backend.
 func (o AuthBackendTunePtrOutput) PassthroughRequestHeaders() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AuthBackendTune) []string {
 		if v == nil {
@@ -303,8 +236,6 @@ func (o AuthBackendTunePtrOutput) PassthroughRequestHeaders() pulumi.StringArray
 	}).(pulumi.StringArrayOutput)
 }
 
-// Specifies the type of tokens that should be returned by
-// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 func (o AuthBackendTunePtrOutput) TokenType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendTune) *string {
 		if v == nil {

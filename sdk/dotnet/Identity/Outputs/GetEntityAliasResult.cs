@@ -13,45 +13,15 @@ namespace Pulumi.Vault.Identity.Outputs
     [OutputType]
     public sealed class GetEntityAliasResult
     {
-        /// <summary>
-        /// Canonical ID of the Alias
-        /// </summary>
         public readonly string CanonicalId;
-        /// <summary>
-        /// Creation time of the Alias
-        /// </summary>
         public readonly string CreationTime;
-        /// <summary>
-        /// ID of the alias
-        /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// Last update time of the alias
-        /// </summary>
         public readonly string LastUpdateTime;
-        /// <summary>
-        /// List of canonical IDs merged with this alias
-        /// </summary>
         public readonly ImmutableArray<string> MergedFromCanonicalIds;
-        /// <summary>
-        /// Arbitrary metadata
-        /// </summary>
         public readonly ImmutableDictionary<string, object> Metadata;
-        /// <summary>
-        /// Authentication mount acccessor which this alias belongs to
-        /// </summary>
         public readonly string MountAccessor;
-        /// <summary>
-        /// Authentication mount path which this alias belongs to
-        /// </summary>
         public readonly string MountPath;
-        /// <summary>
-        /// Authentication mount type which this alias belongs to
-        /// </summary>
         public readonly string MountType;
-        /// <summary>
-        /// Name of the alias
-        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

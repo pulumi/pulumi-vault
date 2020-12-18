@@ -13,14 +13,14 @@ import (
 type SecretBackend struct {
 	pulumi.CustomResourceState
 
-	// The GCP service account credentials in JSON format.
+	// The GCP service account credentails in JSON format.
 	Credentials pulumi.StringPtrOutput `pulumi:"credentials"`
 	// The default TTL for credentials
 	// issued by this backend. Defaults to '0'.
 	DefaultLeaseTtlSeconds pulumi.IntPtrOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend. Defaults to '0'.
@@ -58,14 +58,14 @@ func GetSecretBackend(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretBackend resources.
 type secretBackendState struct {
-	// The GCP service account credentials in JSON format.
+	// The GCP service account credentails in JSON format.
 	Credentials *string `pulumi:"credentials"`
 	// The default TTL for credentials
 	// issued by this backend. Defaults to '0'.
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
-	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend. Defaults to '0'.
@@ -76,14 +76,14 @@ type secretBackendState struct {
 }
 
 type SecretBackendState struct {
-	// The GCP service account credentials in JSON format.
+	// The GCP service account credentails in JSON format.
 	Credentials pulumi.StringPtrInput
 	// The default TTL for credentials
 	// issued by this backend. Defaults to '0'.
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
-	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend. Defaults to '0'.
@@ -98,14 +98,14 @@ func (SecretBackendState) ElementType() reflect.Type {
 }
 
 type secretBackendArgs struct {
-	// The GCP service account credentials in JSON format.
+	// The GCP service account credentails in JSON format.
 	Credentials *string `pulumi:"credentials"`
 	// The default TTL for credentials
 	// issued by this backend. Defaults to '0'.
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
-	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend. Defaults to '0'.
@@ -117,14 +117,14 @@ type secretBackendArgs struct {
 
 // The set of arguments for constructing a SecretBackend resource.
 type SecretBackendArgs struct {
-	// The GCP service account credentials in JSON format.
+	// The GCP service account credentails in JSON format.
 	Credentials pulumi.StringPtrInput
 	// The default TTL for credentials
 	// issued by this backend. Defaults to '0'.
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
-	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend. Defaults to '0'.

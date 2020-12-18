@@ -11,50 +11,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Allows setting the duration for which the generated CRL should be marked valid. If the CRL is disabled, it will return a signed but zero-length CRL for any request. If enabled, it will re-build the CRL.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"fmt"
-//
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/pkiSecret"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		pki, err := vault.NewMount(ctx, "pki", &vault.MountArgs{
-// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
-// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
-// 			Path:                   pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
-// 			Type:                   pulumi.String("pki"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = pkiSecret.NewSecretBackendCrlConfig(ctx, "crlConfig", &pkiSecret.SecretBackendCrlConfigArgs{
-// 			Backend: pki.Path,
-// 			Disable: pulumi.Bool(false),
-// 			Expiry:  pulumi.String("72h"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type SecretBackendCrlConfig struct {
 	pulumi.CustomResourceState
 
-	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+	// The path of the PKI secret backend the resource belongs to.
 	Backend pulumi.StringOutput `pulumi:"backend"`
-	// Disables or enables CRL building.
+	// Disables or enables CRL building
 	Disable pulumi.BoolPtrOutput `pulumi:"disable"`
 	// Specifies the time until expiration.
 	Expiry pulumi.StringPtrOutput `pulumi:"expiry"`
@@ -91,18 +53,18 @@ func GetSecretBackendCrlConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretBackendCrlConfig resources.
 type secretBackendCrlConfigState struct {
-	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+	// The path of the PKI secret backend the resource belongs to.
 	Backend *string `pulumi:"backend"`
-	// Disables or enables CRL building.
+	// Disables or enables CRL building
 	Disable *bool `pulumi:"disable"`
 	// Specifies the time until expiration.
 	Expiry *string `pulumi:"expiry"`
 }
 
 type SecretBackendCrlConfigState struct {
-	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+	// The path of the PKI secret backend the resource belongs to.
 	Backend pulumi.StringPtrInput
-	// Disables or enables CRL building.
+	// Disables or enables CRL building
 	Disable pulumi.BoolPtrInput
 	// Specifies the time until expiration.
 	Expiry pulumi.StringPtrInput
@@ -113,9 +75,9 @@ func (SecretBackendCrlConfigState) ElementType() reflect.Type {
 }
 
 type secretBackendCrlConfigArgs struct {
-	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+	// The path of the PKI secret backend the resource belongs to.
 	Backend string `pulumi:"backend"`
-	// Disables or enables CRL building.
+	// Disables or enables CRL building
 	Disable *bool `pulumi:"disable"`
 	// Specifies the time until expiration.
 	Expiry *string `pulumi:"expiry"`
@@ -123,9 +85,9 @@ type secretBackendCrlConfigArgs struct {
 
 // The set of arguments for constructing a SecretBackendCrlConfig resource.
 type SecretBackendCrlConfigArgs struct {
-	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+	// The path of the PKI secret backend the resource belongs to.
 	Backend pulumi.StringInput
-	// Disables or enables CRL building.
+	// Disables or enables CRL building
 	Disable pulumi.BoolPtrInput
 	// Specifies the time until expiration.
 	Expiry pulumi.StringPtrInput

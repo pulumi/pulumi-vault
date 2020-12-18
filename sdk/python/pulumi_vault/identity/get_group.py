@@ -96,17 +96,11 @@ class GetGroupResult:
     @property
     @pulumi.getter(name="aliasCanonicalId")
     def alias_canonical_id(self) -> str:
-        """
-        Canonical ID of the Alias
-        """
         return pulumi.get(self, "alias_canonical_id")
 
     @property
     @pulumi.getter(name="aliasCreationTime")
     def alias_creation_time(self) -> str:
-        """
-        Creation time of the Alias
-        """
         return pulumi.get(self, "alias_creation_time")
 
     @property
@@ -117,25 +111,16 @@ class GetGroupResult:
     @property
     @pulumi.getter(name="aliasLastUpdateTime")
     def alias_last_update_time(self) -> str:
-        """
-        Last update time of the alias
-        """
         return pulumi.get(self, "alias_last_update_time")
 
     @property
     @pulumi.getter(name="aliasMergedFromCanonicalIds")
     def alias_merged_from_canonical_ids(self) -> Sequence[str]:
-        """
-        List of canonical IDs merged with this alias
-        """
         return pulumi.get(self, "alias_merged_from_canonical_ids")
 
     @property
     @pulumi.getter(name="aliasMetadata")
     def alias_metadata(self) -> Mapping[str, Any]:
-        """
-        Arbitrary metadata
-        """
         return pulumi.get(self, "alias_metadata")
 
     @property
@@ -146,17 +131,11 @@ class GetGroupResult:
     @property
     @pulumi.getter(name="aliasMountPath")
     def alias_mount_path(self) -> str:
-        """
-        Authentication mount path which this alias belongs to
-        """
         return pulumi.get(self, "alias_mount_path")
 
     @property
     @pulumi.getter(name="aliasMountType")
     def alias_mount_type(self) -> str:
-        """
-        Authentication mount type which this alias belongs to
-        """
         return pulumi.get(self, "alias_mount_type")
 
     @property
@@ -167,18 +146,11 @@ class GetGroupResult:
     @property
     @pulumi.getter(name="creationTime")
     def creation_time(self) -> str:
-        """
-        Creation timestamp of the group
-        """
         return pulumi.get(self, "creation_time")
 
     @property
     @pulumi.getter(name="dataJson")
     def data_json(self) -> str:
-        """
-        A string containing the full data payload retrieved from
-        Vault, serialized in JSON format.
-        """
         return pulumi.get(self, "data_json")
 
     @property
@@ -202,73 +174,46 @@ class GetGroupResult:
     @property
     @pulumi.getter(name="lastUpdateTime")
     def last_update_time(self) -> str:
-        """
-        Last updated time of the group
-        """
         return pulumi.get(self, "last_update_time")
 
     @property
     @pulumi.getter(name="memberEntityIds")
     def member_entity_ids(self) -> Sequence[str]:
-        """
-        List of Entity IDs which are members of this group
-        """
         return pulumi.get(self, "member_entity_ids")
 
     @property
     @pulumi.getter(name="memberGroupIds")
     def member_group_ids(self) -> Sequence[str]:
-        """
-        List of Group IDs which are members of this group
-        """
         return pulumi.get(self, "member_group_ids")
 
     @property
     @pulumi.getter
     def metadata(self) -> Mapping[str, Any]:
-        """
-        Arbitrary metadata
-        """
         return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter(name="modifyIndex")
     def modify_index(self) -> int:
-        """
-        Modify index of the group
-        """
         return pulumi.get(self, "modify_index")
 
     @property
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> str:
-        """
-        Namespace of which the group is part of
-        """
         return pulumi.get(self, "namespace_id")
 
     @property
     @pulumi.getter(name="parentGroupIds")
     def parent_group_ids(self) -> Sequence[str]:
-        """
-        List of Group IDs which are parents of this group.
-        """
         return pulumi.get(self, "parent_group_ids")
 
     @property
     @pulumi.getter
     def policies(self) -> Sequence[str]:
-        """
-        List of policies attached to the group
-        """
         return pulumi.get(self, "policies")
 
     @property
     @pulumi.getter
     def type(self) -> str:
-        """
-        Type of group
-        """
         return pulumi.get(self, "type")
 
 
@@ -312,14 +257,6 @@ def get_group(alias_id: Optional[str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupResult:
     """
     Use this data source to access information about an existing resource.
-
-    :param str alias_id: ID of the alias.
-    :param str alias_mount_accessor: Accessor of the mount to which the alias belongs to.
-           This should be supplied in conjunction with `alias_name`.
-    :param str alias_name: Name of the alias. This should be supplied in conjunction with
-           `alias_mount_accessor`.
-    :param str group_id: ID of the group.
-    :param str group_name: Name of the group.
     """
     __args__ = dict()
     __args__['aliasId'] = alias_id

@@ -25,49 +25,15 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Creates a Database Secret Backend static role in Vault. Database secret backend
-        static roles can be used to manage 1-to-1 mapping of a Vault Role to a user in a
-        database for the database.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        db = vault.Mount("db",
-            path="postgres",
-            type="database")
-        postgres = vault.database.SecretBackendConnection("postgres",
-            allowed_roles=["*"],
-            backend=db.path,
-            postgresql=vault.database.SecretBackendConnectionPostgresqlArgs(
-                connection_url="postgres://username:password@host:port/database",
-            ))
-        static_role = vault.database.SecretBackendStaticRole("staticRole",
-            backend=db.path,
-            db_name=postgres.name,
-            rotation_period=3600,
-            rotation_statements=["ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"],
-            username="example")
-        ```
-
-        ## Import
-
-        Database secret backend static roles can be imported using the `backend`, `/static-roles/`, and the `name` e.g.
-
-        ```sh
-         $ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
-        ```
-
+        Create a SecretBackendStaticRole resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
-        :param pulumi.Input[str] db_name: The unique name of the database connection to use for the static role.
-        :param pulumi.Input[str] name: A unique name to give the static role.
+        :param pulumi.Input[str] backend: The path of the Database Secret Backend the role belongs to.
+        :param pulumi.Input[str] db_name: Database connection to use for this role.
+        :param pulumi.Input[str] name: Unique name for the static role.
         :param pulumi.Input[int] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
-        :param pulumi.Input[str] username: The database username that this static role corresponds to.
+        :param pulumi.Input[str] username: The database username that this role corresponds to.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -123,12 +89,12 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
-        :param pulumi.Input[str] db_name: The unique name of the database connection to use for the static role.
-        :param pulumi.Input[str] name: A unique name to give the static role.
+        :param pulumi.Input[str] backend: The path of the Database Secret Backend the role belongs to.
+        :param pulumi.Input[str] db_name: Database connection to use for this role.
+        :param pulumi.Input[str] name: Unique name for the static role.
         :param pulumi.Input[int] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
-        :param pulumi.Input[str] username: The database username that this static role corresponds to.
+        :param pulumi.Input[str] username: The database username that this role corresponds to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -146,7 +112,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     @pulumi.getter
     def backend(self) -> pulumi.Output[str]:
         """
-        The unique name of the Vault mount to configure.
+        The path of the Database Secret Backend the role belongs to.
         """
         return pulumi.get(self, "backend")
 
@@ -154,7 +120,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     @pulumi.getter(name="dbName")
     def db_name(self) -> pulumi.Output[str]:
         """
-        The unique name of the database connection to use for the static role.
+        Database connection to use for this role.
         """
         return pulumi.get(self, "db_name")
 
@@ -162,7 +128,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        A unique name to give the static role.
+        Unique name for the static role.
         """
         return pulumi.get(self, "name")
 
@@ -186,7 +152,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     @pulumi.getter
     def username(self) -> pulumi.Output[str]:
         """
-        The database username that this static role corresponds to.
+        The database username that this role corresponds to.
         """
         return pulumi.get(self, "username")
 

@@ -28,7 +28,7 @@ class Policy(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.Policy("example", policy=\"\"\"path "secret/my_app" {
-          capabilities = ["update"]
+          policy = "write"
         }
 
         \"\"\")

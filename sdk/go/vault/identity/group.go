@@ -75,13 +75,13 @@ import (
 type Group struct {
 	pulumi.CustomResourceState
 
-	// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+	// Manage member entities externally through `vault_identity_group_policies_member_entity_ids`
 	ExternalMemberEntityIds pulumi.BoolPtrOutput `pulumi:"externalMemberEntityIds"`
-	// `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+	// Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned policies.
 	ExternalPolicies pulumi.BoolPtrOutput `pulumi:"externalPolicies"`
 	// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberEntityIds pulumi.StringArrayOutput `pulumi:"memberEntityIds"`
-	// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
+	// A list of Group IDs to be assigned as group members.
 	MemberGroupIds pulumi.StringArrayOutput `pulumi:"memberGroupIds"`
 	// A Map of additional metadata to associate with the group.
 	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
@@ -121,13 +121,13 @@ func GetGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Group resources.
 type groupState struct {
-	// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+	// Manage member entities externally through `vault_identity_group_policies_member_entity_ids`
 	ExternalMemberEntityIds *bool `pulumi:"externalMemberEntityIds"`
-	// `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+	// Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned policies.
 	ExternalPolicies *bool `pulumi:"externalPolicies"`
 	// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberEntityIds []string `pulumi:"memberEntityIds"`
-	// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
+	// A list of Group IDs to be assigned as group members.
 	MemberGroupIds []string `pulumi:"memberGroupIds"`
 	// A Map of additional metadata to associate with the group.
 	Metadata map[string]string `pulumi:"metadata"`
@@ -140,13 +140,13 @@ type groupState struct {
 }
 
 type GroupState struct {
-	// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+	// Manage member entities externally through `vault_identity_group_policies_member_entity_ids`
 	ExternalMemberEntityIds pulumi.BoolPtrInput
-	// `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+	// Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned policies.
 	ExternalPolicies pulumi.BoolPtrInput
 	// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberEntityIds pulumi.StringArrayInput
-	// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
+	// A list of Group IDs to be assigned as group members.
 	MemberGroupIds pulumi.StringArrayInput
 	// A Map of additional metadata to associate with the group.
 	Metadata pulumi.StringMapInput
@@ -163,13 +163,13 @@ func (GroupState) ElementType() reflect.Type {
 }
 
 type groupArgs struct {
-	// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+	// Manage member entities externally through `vault_identity_group_policies_member_entity_ids`
 	ExternalMemberEntityIds *bool `pulumi:"externalMemberEntityIds"`
-	// `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+	// Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned policies.
 	ExternalPolicies *bool `pulumi:"externalPolicies"`
 	// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberEntityIds []string `pulumi:"memberEntityIds"`
-	// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
+	// A list of Group IDs to be assigned as group members.
 	MemberGroupIds []string `pulumi:"memberGroupIds"`
 	// A Map of additional metadata to associate with the group.
 	Metadata map[string]string `pulumi:"metadata"`
@@ -183,13 +183,13 @@ type groupArgs struct {
 
 // The set of arguments for constructing a Group resource.
 type GroupArgs struct {
-	// `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
+	// Manage member entities externally through `vault_identity_group_policies_member_entity_ids`
 	ExternalMemberEntityIds pulumi.BoolPtrInput
-	// `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `identity.GroupPolicies` to manage policies for this group in a decoupled manner.
+	// Manage policies externally through `vault_identity_group_policies`, allows using group ID in assigned policies.
 	ExternalPolicies pulumi.BoolPtrInput
 	// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
 	MemberEntityIds pulumi.StringArrayInput
-	// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
+	// A list of Group IDs to be assigned as group members.
 	MemberGroupIds pulumi.StringArrayInput
 	// A Map of additional metadata to associate with the group.
 	Metadata pulumi.StringMapInput

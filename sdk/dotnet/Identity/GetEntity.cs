@@ -18,35 +18,18 @@ namespace Pulumi.Vault.Identity
 
     public sealed class GetEntityArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// ID of the alias.
-        /// </summary>
         [Input("aliasId")]
         public string? AliasId { get; set; }
 
-        /// <summary>
-        /// Accessor of the mount to which the alias belongs to.
-        /// This should be supplied in conjunction with `alias_name`.
-        /// </summary>
         [Input("aliasMountAccessor")]
         public string? AliasMountAccessor { get; set; }
 
-        /// <summary>
-        /// Name of the alias. This should be supplied in conjunction with
-        /// `alias_mount_accessor`.
-        /// </summary>
         [Input("aliasName")]
         public string? AliasName { get; set; }
 
-        /// <summary>
-        /// ID of the entity.
-        /// </summary>
         [Input("entityId")]
         public string? EntityId { get; set; }
 
-        /// <summary>
-        /// Name of the entity.
-        /// </summary>
         [Input("entityName")]
         public string? EntityName { get; set; }
 
@@ -62,60 +45,23 @@ namespace Pulumi.Vault.Identity
         public readonly string AliasId;
         public readonly string AliasMountAccessor;
         public readonly string AliasName;
-        /// <summary>
-        /// A list of entity alias. Structure is documented below.
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetEntityAliasResult> Aliases;
-        /// <summary>
-        /// Creation time of the Alias
-        /// </summary>
         public readonly string CreationTime;
-        /// <summary>
-        /// A string containing the full data payload retrieved from
-        /// Vault, serialized in JSON format.
-        /// </summary>
         public readonly string DataJson;
-        /// <summary>
-        /// List of Group IDs of which the entity is directly a member of
-        /// </summary>
         public readonly ImmutableArray<string> DirectGroupIds;
-        /// <summary>
-        /// Whether the entity is disabled
-        /// </summary>
         public readonly bool Disabled;
         public readonly string EntityId;
         public readonly string EntityName;
-        /// <summary>
-        /// List of all Group IDs of which the entity is a member of
-        /// </summary>
         public readonly ImmutableArray<string> GroupIds;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// List of all Group IDs of which the entity is a member of transitively
-        /// </summary>
         public readonly ImmutableArray<string> InheritedGroupIds;
-        /// <summary>
-        /// Last update time of the alias
-        /// </summary>
         public readonly string LastUpdateTime;
-        /// <summary>
-        /// Other entity IDs which is merged with this entity
-        /// </summary>
         public readonly ImmutableArray<string> MergedEntityIds;
-        /// <summary>
-        /// Arbitrary metadata
-        /// </summary>
         public readonly ImmutableDictionary<string, object> Metadata;
-        /// <summary>
-        /// Namespace of which the entity is part of
-        /// </summary>
         public readonly string NamespaceId;
-        /// <summary>
-        /// List of policies attached to the entity
-        /// </summary>
         public readonly ImmutableArray<string> Policies;
 
         [OutputConstructor]

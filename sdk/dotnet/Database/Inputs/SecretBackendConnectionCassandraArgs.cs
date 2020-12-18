@@ -39,7 +39,7 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<bool>? InsecureTls { get; set; }
 
         /// <summary>
-        /// The password to be used in the connection.
+        /// The password to authenticate with.
         /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }
@@ -77,7 +77,7 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<bool>? Tls { get; set; }
 
         /// <summary>
-        /// The username to be used in the connection.
+        /// The username to authenticate with.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }

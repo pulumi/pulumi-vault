@@ -52,12 +52,12 @@ class Mount(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[str] description: Human-friendly description of the mount
-        :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
-        :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+        :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[str] path: Where the secret backend will be mounted
-        :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[str] type: Type of the backend, such as "aws"
         """
         if __name__ is not None:
@@ -121,12 +121,12 @@ class Mount(pulumi.CustomResource):
         :param pulumi.Input[str] accessor: The accessor for this mount.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[str] description: Human-friendly description of the mount
-        :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
-        :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+        :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[str] path: Where the secret backend will be mounted
-        :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[str] type: Type of the backend, such as "aws"
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -173,7 +173,7 @@ class Mount(pulumi.CustomResource):
     @pulumi.getter(name="externalEntropyAccess")
     def external_entropy_access(self) -> pulumi.Output[Optional[bool]]:
         """
-        Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+        Enable the secrets engine to access Vault's external entropy source
         """
         return pulumi.get(self, "external_entropy_access")
 
@@ -181,7 +181,7 @@ class Mount(pulumi.CustomResource):
     @pulumi.getter
     def local(self) -> pulumi.Output[Optional[bool]]:
         """
-        Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+        Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         """
         return pulumi.get(self, "local")
 
@@ -213,7 +213,7 @@ class Mount(pulumi.CustomResource):
     @pulumi.getter(name="sealWrap")
     def seal_wrap(self) -> pulumi.Output[bool]:
         """
-        Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         """
         return pulumi.get(self, "seal_wrap")
 

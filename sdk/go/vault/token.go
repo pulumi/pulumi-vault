@@ -10,6 +10,40 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// Provides a resource to generate a vault token with its options. The token renewing is supported through optional
+// arguments.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := vault.NewToken(ctx, "example", &vault.TokenArgs{
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("policy1"),
+// 				pulumi.String("policy2"),
+// 			},
+// 			RenewIncrement: pulumi.Int(86400),
+// 			RenewMinLease:  pulumi.Int(43200),
+// 			Renewable:      pulumi.Bool(true),
+// 			RoleName:       pulumi.String("app"),
+// 			Ttl:            pulumi.String("24h"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // Tokens can be imported using its `id` as accessor id, e.g.
@@ -24,7 +58,7 @@ type Token struct {
 	ClientToken pulumi.StringOutput `pulumi:"clientToken"`
 	// String containing the token display name
 	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
-	// String containing the client token encrypted with the given `pgpKey` if stored in present file
+	// The client token encrypted using the provided PGP key.
 	EncryptedClientToken pulumi.StringOutput `pulumi:"encryptedClientToken"`
 	// The explicit max TTL of this token
 	ExplicitMaxTtl pulumi.StringPtrOutput `pulumi:"explicitMaxTtl"`
@@ -94,7 +128,7 @@ type tokenState struct {
 	ClientToken *string `pulumi:"clientToken"`
 	// String containing the token display name
 	DisplayName *string `pulumi:"displayName"`
-	// String containing the client token encrypted with the given `pgpKey` if stored in present file
+	// The client token encrypted using the provided PGP key.
 	EncryptedClientToken *string `pulumi:"encryptedClientToken"`
 	// The explicit max TTL of this token
 	ExplicitMaxTtl *string `pulumi:"explicitMaxTtl"`
@@ -137,7 +171,7 @@ type TokenState struct {
 	ClientToken pulumi.StringPtrInput
 	// String containing the token display name
 	DisplayName pulumi.StringPtrInput
-	// String containing the client token encrypted with the given `pgpKey` if stored in present file
+	// The client token encrypted using the provided PGP key.
 	EncryptedClientToken pulumi.StringPtrInput
 	// The explicit max TTL of this token
 	ExplicitMaxTtl pulumi.StringPtrInput

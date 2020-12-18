@@ -20,28 +20,12 @@ class Oidc(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Configure the [Identity Tokens Backend](https://www.vaultproject.io/docs/secrets/identity/index.html#identity-tokens).
-
-        The Identity secrets engine is the identity management solution for Vault. It internally maintains
-        the clients who are recognized by Vault.
-
-        > **NOTE:** Each Vault server may only have one Identity Tokens Backend configuration. Multiple configurations of the resource against the same Vault server will cause a perpetual difference.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        server = vault.identity.Oidc("server", issuer="https://www.acme.com")
-        ```
-
+        Create a Oidc resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] issuer: Issuer URL to be used in the iss claim of the token. If not set, Vault's
-               `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
-               scheme, host, and optionally, port number and path components, but no query or fragment
-               components.
+        :param pulumi.Input[str] issuer: Issuer URL to be used in the iss claim of the token. If not set, Vault's api_addr will be used. The issuer is a case
+               sensitive URL using the https scheme that contains scheme, host, and optionally, port number and path components, but no
+               query or fragment components.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -79,10 +63,9 @@ class Oidc(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] issuer: Issuer URL to be used in the iss claim of the token. If not set, Vault's
-               `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
-               scheme, host, and optionally, port number and path components, but no query or fragment
-               components.
+        :param pulumi.Input[str] issuer: Issuer URL to be used in the iss claim of the token. If not set, Vault's api_addr will be used. The issuer is a case
+               sensitive URL using the https scheme that contains scheme, host, and optionally, port number and path components, but no
+               query or fragment components.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -95,10 +78,9 @@ class Oidc(pulumi.CustomResource):
     @pulumi.getter
     def issuer(self) -> pulumi.Output[str]:
         """
-        Issuer URL to be used in the iss claim of the token. If not set, Vault's
-        `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
-        scheme, host, and optionally, port number and path components, but no query or fragment
-        components.
+        Issuer URL to be used in the iss claim of the token. If not set, Vault's api_addr will be used. The issuer is a case
+        sensitive URL using the https scheme that contains scheme, host, and optionally, port number and path components, but no
+        query or fragment components.
         """
         return pulumi.get(self, "issuer")
 

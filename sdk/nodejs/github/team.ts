@@ -6,7 +6,7 @@ import * as utilities from "../utilities";
 
 /**
  * Manages policy mappings for Github Teams authenticated via Github. See the [Vault
- * documentation](https://www.vaultproject.io/docs/auth/github/) for more
+ * documentation](https://www.vaultproject.io/docs/auth/github.html) for more
  * information.
  *
  * ## Example Usage
@@ -15,14 +15,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const example = new vault.github.AuthBackend("example", {organization: "myorg"});
- * const tfDevs = new vault.github.Team("tfDevs", {
+ * const example = new vault.github.AuthBackend("example", {
+ *     organization: "myorg",
+ * });
+ * const tfDevs = new vault.github.Team("tf_devs", {
  *     backend: example.id,
- *     team: "terraform-developers",
  *     policies: [
  *         "developer",
  *         "read-only",
  *     ],
+ *     team: "terraform-developers",
  * });
  * ```
  *
@@ -63,13 +65,12 @@ export class Team extends pulumi.CustomResource {
     }
 
     /**
-     * Path where the github auth backend is mounted. Defaults to `github`
+     * Path where the github auth backend is mounted. Defaults to `github` 
      * if not specified.
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
-     * An array of strings specifying the policies to be set on tokens
-     * issued using this role.
+     * A list of policies to be assigned to this team.
      */
     public readonly policies!: pulumi.Output<string[] | undefined>;
     /**
@@ -189,13 +190,12 @@ export class Team extends pulumi.CustomResource {
  */
 export interface TeamState {
     /**
-     * Path where the github auth backend is mounted. Defaults to `github`
+     * Path where the github auth backend is mounted. Defaults to `github` 
      * if not specified.
      */
     readonly backend?: pulumi.Input<string>;
     /**
-     * An array of strings specifying the policies to be set on tokens
-     * issued using this role.
+     * A list of policies to be assigned to this team.
      */
     readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -263,13 +263,12 @@ export interface TeamState {
  */
 export interface TeamArgs {
     /**
-     * Path where the github auth backend is mounted. Defaults to `github`
+     * Path where the github auth backend is mounted. Defaults to `github` 
      * if not specified.
      */
     readonly backend?: pulumi.Input<string>;
     /**
-     * An array of strings specifying the policies to be set on tokens
-     * issued using this role.
+     * A list of policies to be assigned to this team.
      */
     readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**

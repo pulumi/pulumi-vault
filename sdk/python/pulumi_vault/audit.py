@@ -16,6 +16,7 @@ class Audit(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -63,6 +64,8 @@ class Audit(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Human-friendly description of the audit device.
+        :param pulumi.Input[bool] local: Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by
+               replication.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Configuration options to pass to the audit device itself.
         :param pulumi.Input[str] path: The path to mount the audit device. This defaults to the type.
         :param pulumi.Input[str] type: Type of the audit device, such as 'file'.
@@ -85,6 +88,7 @@ class Audit(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['description'] = description
+            __props__['local'] = local
             if options is None:
                 raise TypeError("Missing required property 'options'")
             __props__['options'] = options
@@ -103,6 +107,7 @@ class Audit(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             description: Optional[pulumi.Input[str]] = None,
+            local: Optional[pulumi.Input[bool]] = None,
             options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             path: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'Audit':
@@ -114,6 +119,8 @@ class Audit(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Human-friendly description of the audit device.
+        :param pulumi.Input[bool] local: Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by
+               replication.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Configuration options to pass to the audit device itself.
         :param pulumi.Input[str] path: The path to mount the audit device. This defaults to the type.
         :param pulumi.Input[str] type: Type of the audit device, such as 'file'.
@@ -123,6 +130,7 @@ class Audit(pulumi.CustomResource):
         __props__ = dict()
 
         __props__["description"] = description
+        __props__["local"] = local
         __props__["options"] = options
         __props__["path"] = path
         __props__["type"] = type
@@ -135,6 +143,15 @@ class Audit(pulumi.CustomResource):
         Human-friendly description of the audit device.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def local(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by
+        replication.
+        """
+        return pulumi.get(self, "local")
 
     @property
     @pulumi.getter

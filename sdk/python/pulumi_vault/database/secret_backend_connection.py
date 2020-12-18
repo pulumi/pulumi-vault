@@ -54,7 +54,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionCassandraArgs']] cassandra: A nested block containing configuration options for Cassandra connections.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
+        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']] elasticsearch: Connection parameters for the elasticsearch-database-plugin.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbArgs']] mongodb: A nested block containing configuration options for MongoDB connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbatlasArgs']] mongodbatlas: Connection parameters for the mongodbatlas-database-plugin plugin.
@@ -147,7 +147,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionCassandraArgs']] cassandra: A nested block containing configuration options for Cassandra connections.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
+        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']] elasticsearch: Connection parameters for the elasticsearch-database-plugin.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbArgs']] mongodb: A nested block containing configuration options for MongoDB connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbatlasArgs']] mongodbatlas: Connection parameters for the mongodbatlas-database-plugin plugin.
@@ -224,7 +224,7 @@ class SecretBackendConnection(pulumi.CustomResource):
     @pulumi.getter
     def elasticsearch(self) -> pulumi.Output[Optional['outputs.SecretBackendConnectionElasticsearch']]:
         """
-        A nested block containing configuration options for Elasticsearch connections.
+        Connection parameters for the elasticsearch-database-plugin.
         """
         return pulumi.get(self, "elasticsearch")
 

@@ -22,43 +22,12 @@ class QuotaRateLimit(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Manage rate limit quotas which enforce API rate limiting using a token bucket algorithm.
-        A rate limit quota can be created at the root level or defined on a namespace or mount by
-        specifying a path when creating the quota.
-
-        See [Vault's Documentation](https://www.vaultproject.io/docs/concepts/resource-quotas) for more
-        information.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        global_ = vault.QuotaRateLimit("global",
-            path="",
-            rate=100)
-        ```
-
-        ## Import
-
-        Rate limit quotas can be imported using their names
-
-        ```sh
-         $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
-        ```
-
+        Create a QuotaRateLimit resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: Name of the rate limit quota
-        :param pulumi.Input[str] path: Path of the mount or namespace to apply the quota. A blank path configures a
-               global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
-               `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
-               Updating this field on an existing quota can have "moving" effects. For example, updating
-               `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
-               a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
-        :param pulumi.Input[float] rate: The maximum number of requests at any given second to be allowed by the quota
-               rule. The `rate` must be positive.
+        :param pulumi.Input[str] name: The name of the quota.
+        :param pulumi.Input[str] path: Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota.
+        :param pulumi.Input[float] rate: The maximum number of requests at any given second to be allowed by the quota rule. The rate must be positive.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -102,15 +71,9 @@ class QuotaRateLimit(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: Name of the rate limit quota
-        :param pulumi.Input[str] path: Path of the mount or namespace to apply the quota. A blank path configures a
-               global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
-               `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
-               Updating this field on an existing quota can have "moving" effects. For example, updating
-               `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
-               a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
-        :param pulumi.Input[float] rate: The maximum number of requests at any given second to be allowed by the quota
-               rule. The `rate` must be positive.
+        :param pulumi.Input[str] name: The name of the quota.
+        :param pulumi.Input[str] path: Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota.
+        :param pulumi.Input[float] rate: The maximum number of requests at any given second to be allowed by the quota rule. The rate must be positive.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -125,7 +88,7 @@ class QuotaRateLimit(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Name of the rate limit quota
+        The name of the quota.
         """
         return pulumi.get(self, "name")
 
@@ -133,12 +96,7 @@ class QuotaRateLimit(pulumi.CustomResource):
     @pulumi.getter
     def path(self) -> pulumi.Output[Optional[str]]:
         """
-        Path of the mount or namespace to apply the quota. A blank path configures a
-        global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
-        `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
-        Updating this field on an existing quota can have "moving" effects. For example, updating
-        `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
-        a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
+        Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota.
         """
         return pulumi.get(self, "path")
 
@@ -146,8 +104,7 @@ class QuotaRateLimit(pulumi.CustomResource):
     @pulumi.getter
     def rate(self) -> pulumi.Output[float]:
         """
-        The maximum number of requests at any given second to be allowed by the quota
-        rule. The `rate` must be positive.
+        The maximum number of requests at any given second to be allowed by the quota rule. The rate must be positive.
         """
         return pulumi.get(self, "rate")
 

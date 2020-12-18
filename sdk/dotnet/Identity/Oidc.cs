@@ -9,40 +9,12 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Identity
 {
-    /// <summary>
-    /// Configure the [Identity Tokens Backend](https://www.vaultproject.io/docs/secrets/identity/index.html#identity-tokens).
-    /// 
-    /// The Identity secrets engine is the identity management solution for Vault. It internally maintains
-    /// the clients who are recognized by Vault.
-    /// 
-    /// &gt; **NOTE:** Each Vault server may only have one Identity Tokens Backend configuration. Multiple configurations of the resource against the same Vault server will cause a perpetual difference.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var server = new Vault.Identity.Oidc("server", new Vault.Identity.OidcArgs
-    ///         {
-    ///             Issuer = "https://www.acme.com",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// </summary>
     public partial class Oidc : Pulumi.CustomResource
     {
         /// <summary>
-        /// Issuer URL to be used in the iss claim of the token. If not set, Vault's
-        /// `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
-        /// scheme, host, and optionally, port number and path components, but no query or fragment
-        /// components.
+        /// Issuer URL to be used in the iss claim of the token. If not set, Vault's api_addr will be used. The issuer is a case
+        /// sensitive URL using the https scheme that contains scheme, host, and optionally, port number and path components, but no
+        /// query or fragment components.
         /// </summary>
         [Output("issuer")]
         public Output<string> Issuer { get; private set; } = null!;
@@ -94,10 +66,9 @@ namespace Pulumi.Vault.Identity
     public sealed class OidcArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Issuer URL to be used in the iss claim of the token. If not set, Vault's
-        /// `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
-        /// scheme, host, and optionally, port number and path components, but no query or fragment
-        /// components.
+        /// Issuer URL to be used in the iss claim of the token. If not set, Vault's api_addr will be used. The issuer is a case
+        /// sensitive URL using the https scheme that contains scheme, host, and optionally, port number and path components, but no
+        /// query or fragment components.
         /// </summary>
         [Input("issuer")]
         public Input<string>? Issuer { get; set; }
@@ -110,10 +81,9 @@ namespace Pulumi.Vault.Identity
     public sealed class OidcState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Issuer URL to be used in the iss claim of the token. If not set, Vault's
-        /// `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
-        /// scheme, host, and optionally, port number and path components, but no query or fragment
-        /// components.
+        /// Issuer URL to be used in the iss claim of the token. If not set, Vault's api_addr will be used. The issuer is a case
+        /// sensitive URL using the https scheme that contains scheme, host, and optionally, port number and path components, but no
+        /// query or fragment components.
         /// </summary>
         [Input("issuer")]
         public Input<string>? Issuer { get; set; }

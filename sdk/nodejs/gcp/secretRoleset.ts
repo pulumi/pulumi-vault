@@ -20,9 +20,8 @@ import * as utilities from "../utilities";
  * const project = "my-awesome-project";
  * const gcp = new vault.gcp.SecretBackend("gcp", {
  *     credentials: fs.readFileSync("credentials.json", "utf-8"),
- *     path: "gcp",
  * });
- * const roleset = new vault.gcp.SecretRoleset("roleset", {
+ * const agent = new vault.gcp.SecretRoleset("agent", {
  *     backend: gcp.path,
  *     bindings: [{
  *         resource: `//cloudresourcemanager.googleapis.com/projects/${project}`,
@@ -33,14 +32,6 @@ import * as utilities from "../utilities";
  *     secretType: "access_token",
  *     tokenScopes: ["https://www.googleapis.com/auth/cloud-platform"],
  * });
- * ```
- *
- * ## Import
- *
- * A roleset can be imported using its Vault Path. For example, referencing the example above,
- *
- * ```sh
- *  $ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer
  * ```
  */
 export class SecretRoleset extends pulumi.CustomResource {

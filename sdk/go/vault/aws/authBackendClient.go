@@ -42,6 +42,8 @@ type AuthBackendClient struct {
 	// Override the URL Vault uses when making STS API
 	// calls.
 	StsEndpoint pulumi.StringPtrOutput `pulumi:"stsEndpoint"`
+	// Region to override the default region for making AWS STS API calls.
+	StsRegion pulumi.StringPtrOutput `pulumi:"stsRegion"`
 }
 
 // NewAuthBackendClient registers a new resource with the given unique name, arguments, and options.
@@ -94,6 +96,8 @@ type authBackendClientState struct {
 	// Override the URL Vault uses when making STS API
 	// calls.
 	StsEndpoint *string `pulumi:"stsEndpoint"`
+	// Region to override the default region for making AWS STS API calls.
+	StsRegion *string `pulumi:"stsRegion"`
 }
 
 type AuthBackendClientState struct {
@@ -119,6 +123,8 @@ type AuthBackendClientState struct {
 	// Override the URL Vault uses when making STS API
 	// calls.
 	StsEndpoint pulumi.StringPtrInput
+	// Region to override the default region for making AWS STS API calls.
+	StsRegion pulumi.StringPtrInput
 }
 
 func (AuthBackendClientState) ElementType() reflect.Type {
@@ -148,6 +154,8 @@ type authBackendClientArgs struct {
 	// Override the URL Vault uses when making STS API
 	// calls.
 	StsEndpoint *string `pulumi:"stsEndpoint"`
+	// Region to override the default region for making AWS STS API calls.
+	StsRegion *string `pulumi:"stsRegion"`
 }
 
 // The set of arguments for constructing a AuthBackendClient resource.
@@ -174,6 +182,8 @@ type AuthBackendClientArgs struct {
 	// Override the URL Vault uses when making STS API
 	// calls.
 	StsEndpoint pulumi.StringPtrInput
+	// Region to override the default region for making AWS STS API calls.
+	StsRegion pulumi.StringPtrInput
 }
 
 func (AuthBackendClientArgs) ElementType() reflect.Type {

@@ -18,24 +18,17 @@ func GetAccessCredentials(ctx *pulumi.Context, args *GetAccessCredentialsArgs, o
 
 // A collection of arguments for invoking getAccessCredentials.
 type GetAccessCredentialsArgs struct {
-	// The path to the AD secret backend to
-	// read credentials from, with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
-	// The name of the AD secret backend role to read
-	// credentials from, with no leading or trailing `/`s.
-	Role string `pulumi:"role"`
+	Role    string `pulumi:"role"`
 }
 
 // A collection of values returned by getAccessCredentials.
 type GetAccessCredentialsResult struct {
-	Backend string `pulumi:"backend"`
-	// The current set password on the Active Directory service account.
+	Backend         string `pulumi:"backend"`
 	CurrentPassword string `pulumi:"currentPassword"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// The current set password on the Active Directory service account, provided because AD is eventually consistent.
+	Id           string `pulumi:"id"`
 	LastPassword string `pulumi:"lastPassword"`
 	Role         string `pulumi:"role"`
-	// The Active Directory service account username.
-	Username string `pulumi:"username"`
+	Username     string `pulumi:"username"`
 }

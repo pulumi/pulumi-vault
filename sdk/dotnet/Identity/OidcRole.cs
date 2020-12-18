@@ -9,42 +9,28 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Identity
 {
-    /// <summary>
-    /// ## Import
-    /// 
-    /// The key can be imported with the role name, for example
-    /// 
-    /// ```sh
-    ///  $ pulumi import vault:identity/oidcRole:OidcRole role role
-    /// ```
-    /// </summary>
     public partial class OidcRole : Pulumi.CustomResource
     {
         /// <summary>
-        /// The value that will be included in the `aud` field of all the OIDC identity
-        /// tokens issued by this role
+        /// The value that will be included in the `aud` field of all the OIDC identity tokens issued by this role
         /// </summary>
         [Output("clientId")]
         public Output<string> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// A configured named key, the key must already exist
-        /// before tokens can be issued.
+        /// A configured named key, the key must already exist.
         /// </summary>
         [Output("key")]
         public Output<string> Key { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the OIDC Role to create.
+        /// Name of the role.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The template string to use for generating tokens. This may be in
-        /// string-ified JSON or base64 format. See the
-        /// [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
-        /// for the template format.
+        /// The template string to use for generating tokens. This may be in string-ified JSON or base64 format.
         /// </summary>
         [Output("template")]
         public Output<string?> Template { get; private set; } = null!;
@@ -102,23 +88,25 @@ namespace Pulumi.Vault.Identity
     public sealed class OidcRoleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A configured named key, the key must already exist
-        /// before tokens can be issued.
+        /// The value that will be included in the `aud` field of all the OIDC identity tokens issued by this role
+        /// </summary>
+        [Input("clientId")]
+        public Input<string>? ClientId { get; set; }
+
+        /// <summary>
+        /// A configured named key, the key must already exist.
         /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
         /// <summary>
-        /// Name of the OIDC Role to create.
+        /// Name of the role.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The template string to use for generating tokens. This may be in
-        /// string-ified JSON or base64 format. See the
-        /// [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
-        /// for the template format.
+        /// The template string to use for generating tokens. This may be in string-ified JSON or base64 format.
         /// </summary>
         [Input("template")]
         public Input<string>? Template { get; set; }
@@ -137,30 +125,25 @@ namespace Pulumi.Vault.Identity
     public sealed class OidcRoleState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The value that will be included in the `aud` field of all the OIDC identity
-        /// tokens issued by this role
+        /// The value that will be included in the `aud` field of all the OIDC identity tokens issued by this role
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// A configured named key, the key must already exist
-        /// before tokens can be issued.
+        /// A configured named key, the key must already exist.
         /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
         /// <summary>
-        /// Name of the OIDC Role to create.
+        /// Name of the role.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The template string to use for generating tokens. This may be in
-        /// string-ified JSON or base64 format. See the
-        /// [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
-        /// for the template format.
+        /// The template string to use for generating tokens. This may be in string-ified JSON or base64 format.
         /// </summary>
         [Input("template")]
         public Input<string>? Template { get; set; }

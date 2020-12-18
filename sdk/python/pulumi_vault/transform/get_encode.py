@@ -124,19 +124,7 @@ def get_encode(batch_inputs: Optional[Sequence[Mapping[str, Any]]] = None,
                value: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEncodeResult:
     """
-    This data source supports the "/transform/encode/{role_name}" Vault endpoint.
-
-    It encodes the provided value using a named role.
-
-
-    :param Sequence[Mapping[str, Any]] batch_inputs: Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
-    :param Sequence[Mapping[str, Any]] batch_results: The result of encoding a batch.
-    :param str encoded_value: The result of encoding a value.
-    :param str path: Path to where the back-end is mounted within Vault.
-    :param str role_name: The name of the role.
-    :param str transformation: The transformation to perform. If no value is provided and the role contains a single transformation, this value will be inferred from the role.
-    :param str tweak: The tweak value to use. Only applicable for FPE transformations
-    :param str value: The value in which to encode.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['batchInputs'] = batch_inputs

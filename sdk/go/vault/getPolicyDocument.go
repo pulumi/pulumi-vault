@@ -21,9 +21,10 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		examplePolicyDocument, err := vault.GetPolicyDocument(ctx, &vault.GetPolicyDocumentArgs{
+// 		_, err := vault.GetPolicyDocument(ctx, &vault.GetPolicyDocumentArgs{
 // 			Rules: []vault.GetPolicyDocumentRule{
 // 				vault.GetPolicyDocumentRule{
+// 					Path: "secret/*",
 // 					Capabilities: []string{
 // 						"create",
 // 						"read",
@@ -32,7 +33,6 @@ import (
 // 						"list",
 // 					},
 // 					Description: "allow all on secrets",
-// 					Path:        "secret/*",
 // 				},
 // 			},
 // 		}, nil)
@@ -40,7 +40,7 @@ import (
 // 			return err
 // 		}
 // 		_, err = vault.NewPolicy(ctx, "examplePolicy", &vault.PolicyArgs{
-// 			Policy: pulumi.String(examplePolicyDocument.Hcl),
+// 			Policy: pulumi.Any(data.Vault_policy_document.Hcl),
 // 		})
 // 		if err != nil {
 // 			return err

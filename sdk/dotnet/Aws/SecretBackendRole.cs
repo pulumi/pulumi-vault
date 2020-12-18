@@ -28,7 +28,7 @@ namespace Pulumi.Vault.Aws
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the type of credential to be used when
+        /// Specifies the type of credential to be used when 
         /// retrieving credentials from the role. Must be one of `iam_user`, `assumed_role`, or
         /// `federation_token`.
         /// </summary>
@@ -36,30 +36,25 @@ namespace Pulumi.Vault.Aws
         public Output<string> CredentialType { get; private set; } = null!;
 
         /// <summary>
-        /// The default TTL in seconds for STS credentials.
-        /// When a TTL is not specified when STS credentials are requested,
-        /// and a default TTL is specified on the role,
-        /// then this default TTL will be used. Valid only when `credential_type` is one of
-        /// `assumed_role` or `federation_token`.
+        /// The default TTL in seconds for STS credentials. When a TTL is not specified when STS credentials are requested, and a
+        /// default TTL is specified on the role, then this default TTL will be used. Valid only when credential_type is one of
+        /// assumed_role or federation_token.
         /// </summary>
         [Output("defaultStsTtl")]
         public Output<int> DefaultStsTtl { get; private set; } = null!;
 
         /// <summary>
-        /// A list of IAM group names. IAM users generated
-        /// against this vault role will be added to these IAM Groups. For a credential
-        /// type of `assumed_role` or `federation_token`, the policies sent to the
-        /// corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
-        /// policies from each group in `iam_groups` combined with the `policy_document`
-        /// and `policy_arns` parameters.
+        /// A list of IAM group names. IAM users generated against this vault role will be added to these IAM Groups. For a
+        /// credential type of assumed_role or federation_token, the policies sent to the corresponding AWS call (sts:AssumeRole or
+        /// sts:GetFederation) will be the policies from each group in iam_groups combined with the policy_document and policy_arns
+        /// parameters.
         /// </summary>
         [Output("iamGroups")]
         public Output<ImmutableArray<string>> IamGroups { get; private set; } = null!;
 
         /// <summary>
-        /// The max allowed TTL in seconds for STS credentials
-        /// (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
-        /// one of `assumed_role` or `federation_token`.
+        /// The max allowed TTL in seconds for STS credentials (credentials TTL are capped to max_sts_ttl). Valid only when
+        /// credential_type is one of assumed_role or federation_token.
         /// </summary>
         [Output("maxStsTtl")]
         public Output<int> MaxStsTtl { get; private set; } = null!;
@@ -72,23 +67,15 @@ namespace Pulumi.Vault.Aws
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies a list of AWS managed policy ARNs. The
-        /// behavior depends on the credential type. With `iam_user`, the policies will be
-        /// attached to IAM users when they are requested. With `assumed_role` and
-        /// `federation_token`, the policy ARNs will act as a filter on what the credentials
-        /// can do, similar to `policy_document`. When `credential_type` is `iam_user` or
-        /// `federation_token`, at least one of `policy_document` or `policy_arns` must
-        /// be specified.
+        /// The ARN for a pre-existing policy to associate
+        /// with this role. Either `policy_document` or `policy_arns` must be specified.
         /// </summary>
         [Output("policyArns")]
         public Output<ImmutableArray<string>> PolicyArns { get; private set; } = null!;
 
         /// <summary>
-        /// The IAM policy document for the role. The
-        /// behavior depends on the credential type. With `iam_user`, the policy document
-        /// will be attached to the IAM user generated and augment the permissions the IAM
-        /// user has. With `assumed_role` and `federation_token`, the policy document will
-        /// act as a filter on what the credentials can do, similar to `policy_arns`.
+        /// The JSON-formatted policy to associate with this
+        /// role. Either `policy_document` or `policy_arns` must be specified.
         /// </summary>
         [Output("policyDocument")]
         public Output<string?> PolicyDocument { get; private set; } = null!;
@@ -155,7 +142,7 @@ namespace Pulumi.Vault.Aws
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
-        /// Specifies the type of credential to be used when
+        /// Specifies the type of credential to be used when 
         /// retrieving credentials from the role. Must be one of `iam_user`, `assumed_role`, or
         /// `federation_token`.
         /// </summary>
@@ -163,11 +150,9 @@ namespace Pulumi.Vault.Aws
         public Input<string> CredentialType { get; set; } = null!;
 
         /// <summary>
-        /// The default TTL in seconds for STS credentials.
-        /// When a TTL is not specified when STS credentials are requested,
-        /// and a default TTL is specified on the role,
-        /// then this default TTL will be used. Valid only when `credential_type` is one of
-        /// `assumed_role` or `federation_token`.
+        /// The default TTL in seconds for STS credentials. When a TTL is not specified when STS credentials are requested, and a
+        /// default TTL is specified on the role, then this default TTL will be used. Valid only when credential_type is one of
+        /// assumed_role or federation_token.
         /// </summary>
         [Input("defaultStsTtl")]
         public Input<int>? DefaultStsTtl { get; set; }
@@ -176,12 +161,10 @@ namespace Pulumi.Vault.Aws
         private InputList<string>? _iamGroups;
 
         /// <summary>
-        /// A list of IAM group names. IAM users generated
-        /// against this vault role will be added to these IAM Groups. For a credential
-        /// type of `assumed_role` or `federation_token`, the policies sent to the
-        /// corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
-        /// policies from each group in `iam_groups` combined with the `policy_document`
-        /// and `policy_arns` parameters.
+        /// A list of IAM group names. IAM users generated against this vault role will be added to these IAM Groups. For a
+        /// credential type of assumed_role or federation_token, the policies sent to the corresponding AWS call (sts:AssumeRole or
+        /// sts:GetFederation) will be the policies from each group in iam_groups combined with the policy_document and policy_arns
+        /// parameters.
         /// </summary>
         public InputList<string> IamGroups
         {
@@ -190,9 +173,8 @@ namespace Pulumi.Vault.Aws
         }
 
         /// <summary>
-        /// The max allowed TTL in seconds for STS credentials
-        /// (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
-        /// one of `assumed_role` or `federation_token`.
+        /// The max allowed TTL in seconds for STS credentials (credentials TTL are capped to max_sts_ttl). Valid only when
+        /// credential_type is one of assumed_role or federation_token.
         /// </summary>
         [Input("maxStsTtl")]
         public Input<int>? MaxStsTtl { get; set; }
@@ -208,13 +190,8 @@ namespace Pulumi.Vault.Aws
         private InputList<string>? _policyArns;
 
         /// <summary>
-        /// Specifies a list of AWS managed policy ARNs. The
-        /// behavior depends on the credential type. With `iam_user`, the policies will be
-        /// attached to IAM users when they are requested. With `assumed_role` and
-        /// `federation_token`, the policy ARNs will act as a filter on what the credentials
-        /// can do, similar to `policy_document`. When `credential_type` is `iam_user` or
-        /// `federation_token`, at least one of `policy_document` or `policy_arns` must
-        /// be specified.
+        /// The ARN for a pre-existing policy to associate
+        /// with this role. Either `policy_document` or `policy_arns` must be specified.
         /// </summary>
         public InputList<string> PolicyArns
         {
@@ -223,11 +200,8 @@ namespace Pulumi.Vault.Aws
         }
 
         /// <summary>
-        /// The IAM policy document for the role. The
-        /// behavior depends on the credential type. With `iam_user`, the policy document
-        /// will be attached to the IAM user generated and augment the permissions the IAM
-        /// user has. With `assumed_role` and `federation_token`, the policy document will
-        /// act as a filter on what the credentials can do, similar to `policy_arns`.
+        /// The JSON-formatted policy to associate with this
+        /// role. Either `policy_document` or `policy_arns` must be specified.
         /// </summary>
         [Input("policyDocument")]
         public Input<string>? PolicyDocument { get; set; }
@@ -261,7 +235,7 @@ namespace Pulumi.Vault.Aws
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// Specifies the type of credential to be used when
+        /// Specifies the type of credential to be used when 
         /// retrieving credentials from the role. Must be one of `iam_user`, `assumed_role`, or
         /// `federation_token`.
         /// </summary>
@@ -269,11 +243,9 @@ namespace Pulumi.Vault.Aws
         public Input<string>? CredentialType { get; set; }
 
         /// <summary>
-        /// The default TTL in seconds for STS credentials.
-        /// When a TTL is not specified when STS credentials are requested,
-        /// and a default TTL is specified on the role,
-        /// then this default TTL will be used. Valid only when `credential_type` is one of
-        /// `assumed_role` or `federation_token`.
+        /// The default TTL in seconds for STS credentials. When a TTL is not specified when STS credentials are requested, and a
+        /// default TTL is specified on the role, then this default TTL will be used. Valid only when credential_type is one of
+        /// assumed_role or federation_token.
         /// </summary>
         [Input("defaultStsTtl")]
         public Input<int>? DefaultStsTtl { get; set; }
@@ -282,12 +254,10 @@ namespace Pulumi.Vault.Aws
         private InputList<string>? _iamGroups;
 
         /// <summary>
-        /// A list of IAM group names. IAM users generated
-        /// against this vault role will be added to these IAM Groups. For a credential
-        /// type of `assumed_role` or `federation_token`, the policies sent to the
-        /// corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
-        /// policies from each group in `iam_groups` combined with the `policy_document`
-        /// and `policy_arns` parameters.
+        /// A list of IAM group names. IAM users generated against this vault role will be added to these IAM Groups. For a
+        /// credential type of assumed_role or federation_token, the policies sent to the corresponding AWS call (sts:AssumeRole or
+        /// sts:GetFederation) will be the policies from each group in iam_groups combined with the policy_document and policy_arns
+        /// parameters.
         /// </summary>
         public InputList<string> IamGroups
         {
@@ -296,9 +266,8 @@ namespace Pulumi.Vault.Aws
         }
 
         /// <summary>
-        /// The max allowed TTL in seconds for STS credentials
-        /// (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
-        /// one of `assumed_role` or `federation_token`.
+        /// The max allowed TTL in seconds for STS credentials (credentials TTL are capped to max_sts_ttl). Valid only when
+        /// credential_type is one of assumed_role or federation_token.
         /// </summary>
         [Input("maxStsTtl")]
         public Input<int>? MaxStsTtl { get; set; }
@@ -314,13 +283,8 @@ namespace Pulumi.Vault.Aws
         private InputList<string>? _policyArns;
 
         /// <summary>
-        /// Specifies a list of AWS managed policy ARNs. The
-        /// behavior depends on the credential type. With `iam_user`, the policies will be
-        /// attached to IAM users when they are requested. With `assumed_role` and
-        /// `federation_token`, the policy ARNs will act as a filter on what the credentials
-        /// can do, similar to `policy_document`. When `credential_type` is `iam_user` or
-        /// `federation_token`, at least one of `policy_document` or `policy_arns` must
-        /// be specified.
+        /// The ARN for a pre-existing policy to associate
+        /// with this role. Either `policy_document` or `policy_arns` must be specified.
         /// </summary>
         public InputList<string> PolicyArns
         {
@@ -329,11 +293,8 @@ namespace Pulumi.Vault.Aws
         }
 
         /// <summary>
-        /// The IAM policy document for the role. The
-        /// behavior depends on the credential type. With `iam_user`, the policy document
-        /// will be attached to the IAM user generated and augment the permissions the IAM
-        /// user has. With `assumed_role` and `federation_token`, the policy document will
-        /// act as a filter on what the credentials can do, similar to `policy_arns`.
+        /// The JSON-formatted policy to associate with this
+        /// role. Either `policy_document` or `policy_arns` must be specified.
         /// </summary>
         [Input("policyDocument")]
         public Input<string>? PolicyDocument { get; set; }

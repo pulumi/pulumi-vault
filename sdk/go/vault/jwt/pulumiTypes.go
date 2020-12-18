@@ -11,8 +11,6 @@ import (
 )
 
 type AuthBackendTune struct {
-	// List of headers to whitelist and allowing
-	// a plugin to include them in the response.
 	AllowedResponseHeaders []string `pulumi:"allowedResponseHeaders"`
 	// Specifies the list of keys that will
 	// not be HMAC'd by audit devices in the request data object.
@@ -34,9 +32,7 @@ type AuthBackendTune struct {
 	// List of headers to whitelist and
 	// pass from the request to the backend.
 	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
-	// Specifies the type of tokens that should be returned by
-	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
-	TokenType *string `pulumi:"tokenType"`
+	TokenType                 *string  `pulumi:"tokenType"`
 }
 
 // AuthBackendTuneInput is an input type that accepts AuthBackendTuneArgs and AuthBackendTuneOutput values.
@@ -51,8 +47,6 @@ type AuthBackendTuneInput interface {
 }
 
 type AuthBackendTuneArgs struct {
-	// List of headers to whitelist and allowing
-	// a plugin to include them in the response.
 	AllowedResponseHeaders pulumi.StringArrayInput `pulumi:"allowedResponseHeaders"`
 	// Specifies the list of keys that will
 	// not be HMAC'd by audit devices in the request data object.
@@ -74,9 +68,7 @@ type AuthBackendTuneArgs struct {
 	// List of headers to whitelist and
 	// pass from the request to the backend.
 	PassthroughRequestHeaders pulumi.StringArrayInput `pulumi:"passthroughRequestHeaders"`
-	// Specifies the type of tokens that should be returned by
-	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
-	TokenType pulumi.StringPtrInput `pulumi:"tokenType"`
+	TokenType                 pulumi.StringPtrInput   `pulumi:"tokenType"`
 }
 
 func (AuthBackendTuneArgs) ElementType() reflect.Type {
@@ -155,9 +147,6 @@ func (o AuthBackendTuneOutput) ToAuthBackendTunePtrOutputWithContext(ctx context
 		return &v
 	}).(AuthBackendTunePtrOutput)
 }
-
-// List of headers to whitelist and allowing
-// a plugin to include them in the response.
 func (o AuthBackendTuneOutput) AllowedResponseHeaders() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AuthBackendTune) []string { return v.AllowedResponseHeaders }).(pulumi.StringArrayOutput)
 }
@@ -200,8 +189,6 @@ func (o AuthBackendTuneOutput) PassthroughRequestHeaders() pulumi.StringArrayOut
 	return o.ApplyT(func(v AuthBackendTune) []string { return v.PassthroughRequestHeaders }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the type of tokens that should be returned by
-// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 func (o AuthBackendTuneOutput) TokenType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AuthBackendTune) *string { return v.TokenType }).(pulumi.StringPtrOutput)
 }
@@ -224,8 +211,6 @@ func (o AuthBackendTunePtrOutput) Elem() AuthBackendTuneOutput {
 	return o.ApplyT(func(v *AuthBackendTune) AuthBackendTune { return *v }).(AuthBackendTuneOutput)
 }
 
-// List of headers to whitelist and allowing
-// a plugin to include them in the response.
 func (o AuthBackendTunePtrOutput) AllowedResponseHeaders() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AuthBackendTune) []string {
 		if v == nil {
@@ -303,8 +288,6 @@ func (o AuthBackendTunePtrOutput) PassthroughRequestHeaders() pulumi.StringArray
 	}).(pulumi.StringArrayOutput)
 }
 
-// Specifies the type of tokens that should be returned by
-// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 func (o AuthBackendTunePtrOutput) TokenType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendTune) *string {
 		if v == nil {

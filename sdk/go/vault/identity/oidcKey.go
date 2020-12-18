@@ -10,28 +10,20 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// ## Import
-//
-// The key can be imported with the key name, for example
-//
-// ```sh
-//  $ pulumi import vault:identity/oidcKey:OidcKey key key
-// ```
 type OidcKey struct {
 	pulumi.CustomResourceState
 
-	// Signing algorithm to use. Signing algorithm to use.
-	// Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+	// Signing algorithm to use. Signing algorithm to use. Allowed values are: RS256 (default), RS384, RS512, ES256, ES384,
+	// ES512, EdDSA.
 	Algorithm pulumi.StringPtrOutput `pulumi:"algorithm"`
 	// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
 	// allowed.
 	AllowedClientIds pulumi.StringArrayOutput `pulumi:"allowedClientIds"`
-	// Name of the OIDC Key to create.
+	// Name of the key.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// How often to generate a new signing key in number of seconds
 	RotationPeriod pulumi.IntPtrOutput `pulumi:"rotationPeriod"`
-	// "Controls how long the public portion of a signing key will be
-	// available for verification after being rotated in seconds.
+	// Controls how long the public portion of a signing key will be available for verification after being rotated in seconds.
 	VerificationTtl pulumi.IntPtrOutput `pulumi:"verificationTtl"`
 }
 
@@ -63,34 +55,32 @@ func GetOidcKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering OidcKey resources.
 type oidcKeyState struct {
-	// Signing algorithm to use. Signing algorithm to use.
-	// Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+	// Signing algorithm to use. Signing algorithm to use. Allowed values are: RS256 (default), RS384, RS512, ES256, ES384,
+	// ES512, EdDSA.
 	Algorithm *string `pulumi:"algorithm"`
 	// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
 	// allowed.
 	AllowedClientIds []string `pulumi:"allowedClientIds"`
-	// Name of the OIDC Key to create.
+	// Name of the key.
 	Name *string `pulumi:"name"`
 	// How often to generate a new signing key in number of seconds
 	RotationPeriod *int `pulumi:"rotationPeriod"`
-	// "Controls how long the public portion of a signing key will be
-	// available for verification after being rotated in seconds.
+	// Controls how long the public portion of a signing key will be available for verification after being rotated in seconds.
 	VerificationTtl *int `pulumi:"verificationTtl"`
 }
 
 type OidcKeyState struct {
-	// Signing algorithm to use. Signing algorithm to use.
-	// Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+	// Signing algorithm to use. Signing algorithm to use. Allowed values are: RS256 (default), RS384, RS512, ES256, ES384,
+	// ES512, EdDSA.
 	Algorithm pulumi.StringPtrInput
 	// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
 	// allowed.
 	AllowedClientIds pulumi.StringArrayInput
-	// Name of the OIDC Key to create.
+	// Name of the key.
 	Name pulumi.StringPtrInput
 	// How often to generate a new signing key in number of seconds
 	RotationPeriod pulumi.IntPtrInput
-	// "Controls how long the public portion of a signing key will be
-	// available for verification after being rotated in seconds.
+	// Controls how long the public portion of a signing key will be available for verification after being rotated in seconds.
 	VerificationTtl pulumi.IntPtrInput
 }
 
@@ -99,35 +89,33 @@ func (OidcKeyState) ElementType() reflect.Type {
 }
 
 type oidcKeyArgs struct {
-	// Signing algorithm to use. Signing algorithm to use.
-	// Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+	// Signing algorithm to use. Signing algorithm to use. Allowed values are: RS256 (default), RS384, RS512, ES256, ES384,
+	// ES512, EdDSA.
 	Algorithm *string `pulumi:"algorithm"`
 	// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
 	// allowed.
 	AllowedClientIds []string `pulumi:"allowedClientIds"`
-	// Name of the OIDC Key to create.
+	// Name of the key.
 	Name *string `pulumi:"name"`
 	// How often to generate a new signing key in number of seconds
 	RotationPeriod *int `pulumi:"rotationPeriod"`
-	// "Controls how long the public portion of a signing key will be
-	// available for verification after being rotated in seconds.
+	// Controls how long the public portion of a signing key will be available for verification after being rotated in seconds.
 	VerificationTtl *int `pulumi:"verificationTtl"`
 }
 
 // The set of arguments for constructing a OidcKey resource.
 type OidcKeyArgs struct {
-	// Signing algorithm to use. Signing algorithm to use.
-	// Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+	// Signing algorithm to use. Signing algorithm to use. Allowed values are: RS256 (default), RS384, RS512, ES256, ES384,
+	// ES512, EdDSA.
 	Algorithm pulumi.StringPtrInput
 	// Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
 	// allowed.
 	AllowedClientIds pulumi.StringArrayInput
-	// Name of the OIDC Key to create.
+	// Name of the key.
 	Name pulumi.StringPtrInput
 	// How often to generate a new signing key in number of seconds
 	RotationPeriod pulumi.IntPtrInput
-	// "Controls how long the public portion of a signing key will be
-	// available for verification after being rotated in seconds.
+	// Controls how long the public portion of a signing key will be available for verification after being rotated in seconds.
 	VerificationTtl pulumi.IntPtrInput
 }
 
