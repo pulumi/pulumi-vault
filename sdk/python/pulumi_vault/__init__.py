@@ -8,10 +8,13 @@ from .auth_backend import *
 from .cert_auth_backend_role import *
 from .egp_policy import *
 from .get_auth_backend import *
+from .get_nomad_access_token import *
 from .get_policy_document import *
 from .mfa_duo import *
 from .mount import *
 from .namespace import *
+from .nomad_secret_backend import *
+from .nomad_secret_role import *
 from .policy import *
 from .provider import *
 from .quota_rate_limit import *

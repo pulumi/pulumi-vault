@@ -50,6 +50,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := vault.NewAudit(ctx, "test", &vault.AuditArgs{
+// 			Local: pulumi.Bool(false),
 // 			Options: pulumi.StringMap{
 // 				"address":     pulumi.String("127.0.0.1:8000"),
 // 				"description": pulumi.String("application x socket"),
@@ -78,6 +79,8 @@ type Audit struct {
 
 	// Human-friendly description of the audit device.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
+	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// Configuration options to pass to the audit device itself.
 	Options pulumi.StringMapOutput `pulumi:"options"`
 	// The path to mount the audit device. This defaults to the type.
@@ -122,6 +125,8 @@ func GetAudit(ctx *pulumi.Context,
 type auditState struct {
 	// Human-friendly description of the audit device.
 	Description *string `pulumi:"description"`
+	// Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
+	Local *bool `pulumi:"local"`
 	// Configuration options to pass to the audit device itself.
 	Options map[string]string `pulumi:"options"`
 	// The path to mount the audit device. This defaults to the type.
@@ -133,6 +138,8 @@ type auditState struct {
 type AuditState struct {
 	// Human-friendly description of the audit device.
 	Description pulumi.StringPtrInput
+	// Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
+	Local pulumi.BoolPtrInput
 	// Configuration options to pass to the audit device itself.
 	Options pulumi.StringMapInput
 	// The path to mount the audit device. This defaults to the type.
@@ -148,6 +155,8 @@ func (AuditState) ElementType() reflect.Type {
 type auditArgs struct {
 	// Human-friendly description of the audit device.
 	Description *string `pulumi:"description"`
+	// Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
+	Local *bool `pulumi:"local"`
 	// Configuration options to pass to the audit device itself.
 	Options map[string]string `pulumi:"options"`
 	// The path to mount the audit device. This defaults to the type.
@@ -160,6 +169,8 @@ type auditArgs struct {
 type AuditArgs struct {
 	// Human-friendly description of the audit device.
 	Description pulumi.StringPtrInput
+	// Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
+	Local pulumi.BoolPtrInput
 	// Configuration options to pass to the audit device itself.
 	Options pulumi.StringMapInput
 	// The path to mount the audit device. This defaults to the type.

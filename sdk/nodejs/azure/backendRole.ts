@@ -39,6 +39,10 @@ export class BackendRole extends pulumi.CustomResource {
      */
     public readonly applicationObjectId!: pulumi.Output<string | undefined>;
     /**
+     * List of Azure groups to be assigned to the generated service principal.
+     */
+    public readonly azureGroups!: pulumi.Output<outputs.azure.BackendRoleAzureGroup[] | undefined>;
+    /**
      * List of Azure roles to be assigned to the generated service principal.
      */
     public readonly azureRoles!: pulumi.Output<outputs.azure.BackendRoleAzureRole[] | undefined>;
@@ -78,6 +82,7 @@ export class BackendRole extends pulumi.CustomResource {
         if (opts && opts.id) {
             const state = argsOrState as BackendRoleState | undefined;
             inputs["applicationObjectId"] = state ? state.applicationObjectId : undefined;
+            inputs["azureGroups"] = state ? state.azureGroups : undefined;
             inputs["azureRoles"] = state ? state.azureRoles : undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["description"] = state ? state.description : undefined;
@@ -90,6 +95,7 @@ export class BackendRole extends pulumi.CustomResource {
                 throw new Error("Missing required property 'role'");
             }
             inputs["applicationObjectId"] = args ? args.applicationObjectId : undefined;
+            inputs["azureGroups"] = args ? args.azureGroups : undefined;
             inputs["azureRoles"] = args ? args.azureRoles : undefined;
             inputs["backend"] = args ? args.backend : undefined;
             inputs["description"] = args ? args.description : undefined;
@@ -117,6 +123,10 @@ export interface BackendRoleState {
      * be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
      */
     readonly applicationObjectId?: pulumi.Input<string>;
+    /**
+     * List of Azure groups to be assigned to the generated service principal.
+     */
+    readonly azureGroups?: pulumi.Input<pulumi.Input<inputs.azure.BackendRoleAzureGroup>[]>;
     /**
      * List of Azure roles to be assigned to the generated service principal.
      */
@@ -154,6 +164,10 @@ export interface BackendRoleArgs {
      * be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
      */
     readonly applicationObjectId?: pulumi.Input<string>;
+    /**
+     * List of Azure groups to be assigned to the generated service principal.
+     */
+    readonly azureGroups?: pulumi.Input<pulumi.Input<inputs.azure.BackendRoleAzureGroup>[]>;
     /**
      * List of Azure roles to be assigned to the generated service principal.
      */

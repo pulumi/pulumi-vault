@@ -20,6 +20,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_claims: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 bound_claims_type: Optional[pulumi.Input[str]] = None,
                  bound_subject: Optional[pulumi.Input[str]] = None,
                  claim_mappings: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  clock_skew_leeway: Optional[pulumi.Input[int]] = None,
@@ -118,6 +119,9 @@ class AuthBackendRole(pulumi.CustomResource):
                CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
         :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims/values to match against.
                The expected value may be a single string or a list of strings.
+        :param pulumi.Input[str] bound_claims_type: How to interpret values in the claims/values
+               map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
+               match). Requires Vault 1.4.0 or above.
         :param pulumi.Input[str] bound_subject: If set, requires that the `sub` claim matches
                this value.
         :param pulumi.Input[Mapping[str, Any]] claim_mappings: If set, a map of claims (keys) to be copied
@@ -219,6 +223,7 @@ class AuthBackendRole(pulumi.CustomResource):
                 pulumi.log.warn("bound_cidrs is deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2")
             __props__['bound_cidrs'] = bound_cidrs
             __props__['bound_claims'] = bound_claims
+            __props__['bound_claims_type'] = bound_claims_type
             __props__['bound_subject'] = bound_subject
             __props__['claim_mappings'] = claim_mappings
             __props__['clock_skew_leeway'] = clock_skew_leeway
@@ -282,6 +287,7 @@ class AuthBackendRole(pulumi.CustomResource):
             bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             bound_claims: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            bound_claims_type: Optional[pulumi.Input[str]] = None,
             bound_subject: Optional[pulumi.Input[str]] = None,
             claim_mappings: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             clock_skew_leeway: Optional[pulumi.Input[int]] = None,
@@ -325,6 +331,9 @@ class AuthBackendRole(pulumi.CustomResource):
                CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
         :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims/values to match against.
                The expected value may be a single string or a list of strings.
+        :param pulumi.Input[str] bound_claims_type: How to interpret values in the claims/values
+               map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
+               match). Requires Vault 1.4.0 or above.
         :param pulumi.Input[str] bound_subject: If set, requires that the `sub` claim matches
                this value.
         :param pulumi.Input[Mapping[str, Any]] claim_mappings: If set, a map of claims (keys) to be copied
@@ -410,6 +419,7 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__["bound_audiences"] = bound_audiences
         __props__["bound_cidrs"] = bound_cidrs
         __props__["bound_claims"] = bound_claims
+        __props__["bound_claims_type"] = bound_claims_type
         __props__["bound_subject"] = bound_subject
         __props__["claim_mappings"] = claim_mappings
         __props__["clock_skew_leeway"] = clock_skew_leeway
@@ -482,6 +492,16 @@ class AuthBackendRole(pulumi.CustomResource):
         The expected value may be a single string or a list of strings.
         """
         return pulumi.get(self, "bound_claims")
+
+    @property
+    @pulumi.getter(name="boundClaimsType")
+    def bound_claims_type(self) -> pulumi.Output[str]:
+        """
+        How to interpret values in the claims/values
+        map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
+        match). Requires Vault 1.4.0 or above.
+        """
+        return pulumi.get(self, "bound_claims_type")
 
     @property
     @pulumi.getter(name="boundSubject")

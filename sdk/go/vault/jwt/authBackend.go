@@ -72,6 +72,20 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// JWT auth backend can be imported using the `type`, e.g.
+//
+// ```sh
+//  $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
+// ```
+//
+//  or
+//
+// ```sh
+//  $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt
+// ```
 type AuthBackend struct {
 	pulumi.CustomResourceState
 

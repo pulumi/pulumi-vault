@@ -22,6 +22,7 @@ class AuthBackendClient(pulumi.CustomResource):
                  iam_server_id_header_value: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
+                 sts_region: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -51,6 +52,8 @@ class AuthBackendClient(pulumi.CustomResource):
                auth backend.
         :param pulumi.Input[str] sts_endpoint: Override the URL Vault uses when making STS API
                calls.
+        :param pulumi.Input[str] sts_region: Override the default region when making STS API 
+               calls. The `sts_endpoint` argument must be set when using `sts_region`.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -76,6 +79,7 @@ class AuthBackendClient(pulumi.CustomResource):
             __props__['iam_server_id_header_value'] = iam_server_id_header_value
             __props__['secret_key'] = secret_key
             __props__['sts_endpoint'] = sts_endpoint
+            __props__['sts_region'] = sts_region
         super(AuthBackendClient, __self__).__init__(
             'vault:aws/authBackendClient:AuthBackendClient',
             resource_name,
@@ -92,7 +96,8 @@ class AuthBackendClient(pulumi.CustomResource):
             iam_endpoint: Optional[pulumi.Input[str]] = None,
             iam_server_id_header_value: Optional[pulumi.Input[str]] = None,
             secret_key: Optional[pulumi.Input[str]] = None,
-            sts_endpoint: Optional[pulumi.Input[str]] = None) -> 'AuthBackendClient':
+            sts_endpoint: Optional[pulumi.Input[str]] = None,
+            sts_region: Optional[pulumi.Input[str]] = None) -> 'AuthBackendClient':
         """
         Get an existing AuthBackendClient resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -115,6 +120,8 @@ class AuthBackendClient(pulumi.CustomResource):
                auth backend.
         :param pulumi.Input[str] sts_endpoint: Override the URL Vault uses when making STS API
                calls.
+        :param pulumi.Input[str] sts_region: Override the default region when making STS API 
+               calls. The `sts_endpoint` argument must be set when using `sts_region`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -127,6 +134,7 @@ class AuthBackendClient(pulumi.CustomResource):
         __props__["iam_server_id_header_value"] = iam_server_id_header_value
         __props__["secret_key"] = secret_key
         __props__["sts_endpoint"] = sts_endpoint
+        __props__["sts_region"] = sts_region
         return AuthBackendClient(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -192,6 +200,15 @@ class AuthBackendClient(pulumi.CustomResource):
         calls.
         """
         return pulumi.get(self, "sts_endpoint")
+
+    @property
+    @pulumi.getter(name="stsRegion")
+    def sts_region(self) -> pulumi.Output[Optional[str]]:
+        """
+        Override the default region when making STS API 
+        calls. The `sts_endpoint` argument must be set when using `sts_region`.
+        """
+        return pulumi.get(self, "sts_region")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

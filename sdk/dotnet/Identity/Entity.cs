@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Identity
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Identity entity can be imported using the `id`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:identity/entity:Entity test "ae6f8ued-0f1a-9f6b-2915-1a2be20dc053"
+    /// ```
+    /// </summary>
     public partial class Entity : Pulumi.CustomResource
     {
         /// <summary>

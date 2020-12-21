@@ -65,6 +65,20 @@ namespace Pulumi.Vault.Jwt
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// JWT auth backend can be imported using the `type`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
+    /// ```
+    /// 
+    ///  or
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt
+    /// ```
     /// </summary>
     public partial class AuthBackend : Pulumi.CustomResource
     {

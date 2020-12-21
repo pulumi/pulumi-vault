@@ -135,6 +135,14 @@ namespace Pulumi.Vault.Jwt
         public Output<ImmutableDictionary<string, object>?> BoundClaims { get; private set; } = null!;
 
         /// <summary>
+        /// How to interpret values in the claims/values
+        /// map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
+        /// match). Requires Vault 1.4.0 or above.
+        /// </summary>
+        [Output("boundClaimsType")]
+        public Output<string> BoundClaimsType { get; private set; } = null!;
+
+        /// <summary>
         /// If set, requires that the `sub` claim matches
         /// this value.
         /// </summary>
@@ -446,6 +454,14 @@ namespace Pulumi.Vault.Jwt
         }
 
         /// <summary>
+        /// How to interpret values in the claims/values
+        /// map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
+        /// match). Requires Vault 1.4.0 or above.
+        /// </summary>
+        [Input("boundClaimsType")]
+        public Input<string>? BoundClaimsType { get; set; }
+
+        /// <summary>
         /// If set, requires that the `sub` claim matches
         /// this value.
         /// </summary>
@@ -747,6 +763,14 @@ namespace Pulumi.Vault.Jwt
             get => _boundClaims ?? (_boundClaims = new InputMap<object>());
             set => _boundClaims = value;
         }
+
+        /// <summary>
+        /// How to interpret values in the claims/values
+        /// map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
+        /// match). Requires Vault 1.4.0 or above.
+        /// </summary>
+        [Input("boundClaimsType")]
+        public Input<string>? BoundClaimsType { get; set; }
 
         /// <summary>
         /// If set, requires that the `sub` claim matches

@@ -15,6 +15,7 @@ class OidcRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[str]] = None,
@@ -33,6 +34,8 @@ class OidcRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] client_id: The value that will be included in the `aud` field of all the OIDC identity
+               tokens issued by this role
         :param pulumi.Input[str] key: A configured named key, the key must already exist
                before tokens can be issued.
         :param pulumi.Input[str] name: Name of the OIDC Role to create.
@@ -59,13 +62,13 @@ class OidcRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
+            __props__['client_id'] = client_id
             if key is None:
                 raise TypeError("Missing required property 'key'")
             __props__['key'] = key
             __props__['name'] = name
             __props__['template'] = template
             __props__['ttl'] = ttl
-            __props__['client_id'] = None
         super(OidcRole, __self__).__init__(
             'vault:identity/oidcRole:OidcRole',
             resource_name,

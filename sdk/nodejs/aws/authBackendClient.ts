@@ -77,6 +77,11 @@ export class AuthBackendClient extends pulumi.CustomResource {
      * calls.
      */
     public readonly stsEndpoint!: pulumi.Output<string | undefined>;
+    /**
+     * Override the default region when making STS API 
+     * calls. The `stsEndpoint` argument must be set when using `stsRegion`.
+     */
+    public readonly stsRegion!: pulumi.Output<string | undefined>;
 
     /**
      * Create a AuthBackendClient resource with the given unique name, arguments, and options.
@@ -97,6 +102,7 @@ export class AuthBackendClient extends pulumi.CustomResource {
             inputs["iamServerIdHeaderValue"] = state ? state.iamServerIdHeaderValue : undefined;
             inputs["secretKey"] = state ? state.secretKey : undefined;
             inputs["stsEndpoint"] = state ? state.stsEndpoint : undefined;
+            inputs["stsRegion"] = state ? state.stsRegion : undefined;
         } else {
             const args = argsOrState as AuthBackendClientArgs | undefined;
             inputs["accessKey"] = args ? args.accessKey : undefined;
@@ -106,6 +112,7 @@ export class AuthBackendClient extends pulumi.CustomResource {
             inputs["iamServerIdHeaderValue"] = args ? args.iamServerIdHeaderValue : undefined;
             inputs["secretKey"] = args ? args.secretKey : undefined;
             inputs["stsEndpoint"] = args ? args.stsEndpoint : undefined;
+            inputs["stsRegion"] = args ? args.stsRegion : undefined;
         }
         if (!opts) {
             opts = {}
@@ -158,6 +165,11 @@ export interface AuthBackendClientState {
      * calls.
      */
     readonly stsEndpoint?: pulumi.Input<string>;
+    /**
+     * Override the default region when making STS API 
+     * calls. The `stsEndpoint` argument must be set when using `stsRegion`.
+     */
+    readonly stsRegion?: pulumi.Input<string>;
 }
 
 /**
@@ -200,4 +212,9 @@ export interface AuthBackendClientArgs {
      * calls.
      */
     readonly stsEndpoint?: pulumi.Input<string>;
+    /**
+     * Override the default region when making STS API 
+     * calls. The `stsEndpoint` argument must be set when using `stsRegion`.
+     */
+    readonly stsRegion?: pulumi.Input<string>;
 }

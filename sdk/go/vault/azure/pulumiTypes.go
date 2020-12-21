@@ -10,6 +10,106 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+type BackendRoleAzureGroup struct {
+	GroupName string  `pulumi:"groupName"`
+	ObjectId  *string `pulumi:"objectId"`
+}
+
+// BackendRoleAzureGroupInput is an input type that accepts BackendRoleAzureGroupArgs and BackendRoleAzureGroupOutput values.
+// You can construct a concrete instance of `BackendRoleAzureGroupInput` via:
+//
+//          BackendRoleAzureGroupArgs{...}
+type BackendRoleAzureGroupInput interface {
+	pulumi.Input
+
+	ToBackendRoleAzureGroupOutput() BackendRoleAzureGroupOutput
+	ToBackendRoleAzureGroupOutputWithContext(context.Context) BackendRoleAzureGroupOutput
+}
+
+type BackendRoleAzureGroupArgs struct {
+	GroupName pulumi.StringInput    `pulumi:"groupName"`
+	ObjectId  pulumi.StringPtrInput `pulumi:"objectId"`
+}
+
+func (BackendRoleAzureGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendRoleAzureGroup)(nil)).Elem()
+}
+
+func (i BackendRoleAzureGroupArgs) ToBackendRoleAzureGroupOutput() BackendRoleAzureGroupOutput {
+	return i.ToBackendRoleAzureGroupOutputWithContext(context.Background())
+}
+
+func (i BackendRoleAzureGroupArgs) ToBackendRoleAzureGroupOutputWithContext(ctx context.Context) BackendRoleAzureGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendRoleAzureGroupOutput)
+}
+
+// BackendRoleAzureGroupArrayInput is an input type that accepts BackendRoleAzureGroupArray and BackendRoleAzureGroupArrayOutput values.
+// You can construct a concrete instance of `BackendRoleAzureGroupArrayInput` via:
+//
+//          BackendRoleAzureGroupArray{ BackendRoleAzureGroupArgs{...} }
+type BackendRoleAzureGroupArrayInput interface {
+	pulumi.Input
+
+	ToBackendRoleAzureGroupArrayOutput() BackendRoleAzureGroupArrayOutput
+	ToBackendRoleAzureGroupArrayOutputWithContext(context.Context) BackendRoleAzureGroupArrayOutput
+}
+
+type BackendRoleAzureGroupArray []BackendRoleAzureGroupInput
+
+func (BackendRoleAzureGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BackendRoleAzureGroup)(nil)).Elem()
+}
+
+func (i BackendRoleAzureGroupArray) ToBackendRoleAzureGroupArrayOutput() BackendRoleAzureGroupArrayOutput {
+	return i.ToBackendRoleAzureGroupArrayOutputWithContext(context.Background())
+}
+
+func (i BackendRoleAzureGroupArray) ToBackendRoleAzureGroupArrayOutputWithContext(ctx context.Context) BackendRoleAzureGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendRoleAzureGroupArrayOutput)
+}
+
+type BackendRoleAzureGroupOutput struct{ *pulumi.OutputState }
+
+func (BackendRoleAzureGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendRoleAzureGroup)(nil)).Elem()
+}
+
+func (o BackendRoleAzureGroupOutput) ToBackendRoleAzureGroupOutput() BackendRoleAzureGroupOutput {
+	return o
+}
+
+func (o BackendRoleAzureGroupOutput) ToBackendRoleAzureGroupOutputWithContext(ctx context.Context) BackendRoleAzureGroupOutput {
+	return o
+}
+
+func (o BackendRoleAzureGroupOutput) GroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v BackendRoleAzureGroup) string { return v.GroupName }).(pulumi.StringOutput)
+}
+
+func (o BackendRoleAzureGroupOutput) ObjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackendRoleAzureGroup) *string { return v.ObjectId }).(pulumi.StringPtrOutput)
+}
+
+type BackendRoleAzureGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (BackendRoleAzureGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BackendRoleAzureGroup)(nil)).Elem()
+}
+
+func (o BackendRoleAzureGroupArrayOutput) ToBackendRoleAzureGroupArrayOutput() BackendRoleAzureGroupArrayOutput {
+	return o
+}
+
+func (o BackendRoleAzureGroupArrayOutput) ToBackendRoleAzureGroupArrayOutputWithContext(ctx context.Context) BackendRoleAzureGroupArrayOutput {
+	return o
+}
+
+func (o BackendRoleAzureGroupArrayOutput) Index(i pulumi.IntInput) BackendRoleAzureGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BackendRoleAzureGroup {
+		return vs[0].([]BackendRoleAzureGroup)[vs[1].(int)]
+	}).(BackendRoleAzureGroupOutput)
+}
+
 type BackendRoleAzureRole struct {
 	RoleId   *string `pulumi:"roleId"`
 	RoleName string  `pulumi:"roleName"`
@@ -117,6 +217,8 @@ func (o BackendRoleAzureRoleArrayOutput) Index(i pulumi.IntInput) BackendRoleAzu
 }
 
 func init() {
+	pulumi.RegisterOutputType(BackendRoleAzureGroupOutput{})
+	pulumi.RegisterOutputType(BackendRoleAzureGroupArrayOutput{})
 	pulumi.RegisterOutputType(BackendRoleAzureRoleOutput{})
 	pulumi.RegisterOutputType(BackendRoleAzureRoleArrayOutput{})
 }

@@ -70,6 +70,13 @@ namespace Pulumi.Vault.Aws
         [Output("stsEndpoint")]
         public Output<string?> StsEndpoint { get; private set; } = null!;
 
+        /// <summary>
+        /// Override the default region when making STS API 
+        /// calls. The `sts_endpoint` argument must be set when using `sts_region`.
+        /// </summary>
+        [Output("stsRegion")]
+        public Output<string?> StsRegion { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a AuthBackendClient resource with the given unique name, arguments, and options.
@@ -166,6 +173,13 @@ namespace Pulumi.Vault.Aws
         [Input("stsEndpoint")]
         public Input<string>? StsEndpoint { get; set; }
 
+        /// <summary>
+        /// Override the default region when making STS API 
+        /// calls. The `sts_endpoint` argument must be set when using `sts_region`.
+        /// </summary>
+        [Input("stsRegion")]
+        public Input<string>? StsRegion { get; set; }
+
         public AuthBackendClientArgs()
         {
         }
@@ -222,6 +236,13 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("stsEndpoint")]
         public Input<string>? StsEndpoint { get; set; }
+
+        /// <summary>
+        /// Override the default region when making STS API 
+        /// calls. The `sts_endpoint` argument must be set when using `sts_region`.
+        /// </summary>
+        [Input("stsRegion")]
+        public Input<string>? StsRegion { get; set; }
 
         public AuthBackendClientState()
         {

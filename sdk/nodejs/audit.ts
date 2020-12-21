@@ -26,6 +26,7 @@ import * as utilities from "./utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const test = new vault.Audit("test", {
+ *     local: false,
  *     options: {
  *         address: "127.0.0.1:8000",
  *         description: "application x socket",
@@ -77,6 +78,10 @@ export class Audit extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
+     */
+    public readonly local!: pulumi.Output<boolean | undefined>;
+    /**
      * Configuration options to pass to the audit device itself.
      */
     public readonly options!: pulumi.Output<{[key: string]: string}>;
@@ -102,6 +107,7 @@ export class Audit extends pulumi.CustomResource {
         if (opts && opts.id) {
             const state = argsOrState as AuditState | undefined;
             inputs["description"] = state ? state.description : undefined;
+            inputs["local"] = state ? state.local : undefined;
             inputs["options"] = state ? state.options : undefined;
             inputs["path"] = state ? state.path : undefined;
             inputs["type"] = state ? state.type : undefined;
@@ -114,6 +120,7 @@ export class Audit extends pulumi.CustomResource {
                 throw new Error("Missing required property 'type'");
             }
             inputs["description"] = args ? args.description : undefined;
+            inputs["local"] = args ? args.local : undefined;
             inputs["options"] = args ? args.options : undefined;
             inputs["path"] = args ? args.path : undefined;
             inputs["type"] = args ? args.type : undefined;
@@ -138,6 +145,10 @@ export interface AuditState {
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
+     */
+    readonly local?: pulumi.Input<boolean>;
+    /**
      * Configuration options to pass to the audit device itself.
      */
     readonly options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
@@ -159,6 +170,10 @@ export interface AuditArgs {
      * Human-friendly description of the audit device.
      */
     readonly description?: pulumi.Input<string>;
+    /**
+     * Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
+     */
+    readonly local?: pulumi.Input<boolean>;
     /**
      * Configuration options to pass to the audit device itself.
      */
