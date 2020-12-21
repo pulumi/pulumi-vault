@@ -109,6 +109,9 @@ func (OidcRoleState) ElementType() reflect.Type {
 }
 
 type oidcRoleArgs struct {
+	// The value that will be included in the `aud` field of all the OIDC identity
+	// tokens issued by this role
+	ClientId *string `pulumi:"clientId"`
 	// A configured named key, the key must already exist
 	// before tokens can be issued.
 	Key string `pulumi:"key"`
@@ -125,6 +128,9 @@ type oidcRoleArgs struct {
 
 // The set of arguments for constructing a OidcRole resource.
 type OidcRoleArgs struct {
+	// The value that will be included in the `aud` field of all the OIDC identity
+	// tokens issued by this role
+	ClientId pulumi.StringPtrInput
 	// A configured named key, the key must already exist
 	// before tokens can be issued.
 	Key pulumi.StringInput

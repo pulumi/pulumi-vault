@@ -9,8 +9,37 @@ from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
+    'BackendRoleAzureGroupArgs',
     'BackendRoleAzureRoleArgs',
 ]
+
+@pulumi.input_type
+class BackendRoleAzureGroupArgs:
+    def __init__(__self__, *,
+                 group_name: pulumi.Input[str],
+                 object_id: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "group_name", group_name)
+        if object_id is not None:
+            pulumi.set(__self__, "object_id", object_id)
+
+    @property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "group_name")
+
+    @group_name.setter
+    def group_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "group_name", value)
+
+    @property
+    @pulumi.getter(name="objectId")
+    def object_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "object_id")
+
+    @object_id.setter
+    def object_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "object_id", value)
+
 
 @pulumi.input_type
 class BackendRoleAzureRoleArgs:

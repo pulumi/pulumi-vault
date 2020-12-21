@@ -122,6 +122,11 @@ export interface ProviderHeader {
     value?: string;
 }
 export namespace azure {
+    export interface BackendRoleAzureGroup {
+        groupName: string;
+        objectId: string;
+    }
+
     export interface BackendRoleAzureRole {
         roleId: string;
         roleName: string;

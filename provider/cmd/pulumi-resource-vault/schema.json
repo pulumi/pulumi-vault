@@ -7,7 +7,7 @@
     ],
     "homepage": "https://pulumi.io",
     "license": "Apache-2.0",
-    "attribution": "This Pulumi package is based on the [`vault` Terraform Provider](https://github.com/terraform-providers/terraform-provider-vault).",
+    "attribution": "This Pulumi package is based on the [`vault` Terraform Provider](https://github.com/hashicorp/terraform-provider-vault).",
     "repository": "https://github.com/pulumi/pulumi-vault",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
@@ -129,6 +129,38 @@
         ]
     },
     "types": {
+        "vault:azure/BackendRoleAzureGroup:BackendRoleAzureGroup": {
+            "properties": {
+                "groupName": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "objectId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "groupName"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "groupName",
+                        "objectId"
+                    ]
+                }
+            }
+        },
         "vault:azure/BackendRoleAzureRole:BackendRoleAzureRole": {
             "properties": {
                 "roleId": {
@@ -3153,6 +3185,10 @@
                 "stsEndpoint": {
                     "type": "string",
                     "description": "Override the URL Vault uses when making STS API\ncalls.\n"
+                },
+                "stsRegion": {
+                    "type": "string",
+                    "description": "Override the default region when making STS API \ncalls. The `sts_endpoint` argument must be set when using `sts_region`.\n"
                 }
             },
             "inputProperties": {
@@ -3183,6 +3219,10 @@
                 "stsEndpoint": {
                     "type": "string",
                     "description": "Override the URL Vault uses when making STS API\ncalls.\n"
+                },
+                "stsRegion": {
+                    "type": "string",
+                    "description": "Override the default region when making STS API \ncalls. The `sts_endpoint` argument must be set when using `sts_region`.\n"
                 }
             },
             "stateInputs": {
@@ -3215,6 +3255,10 @@
                     "stsEndpoint": {
                         "type": "string",
                         "description": "Override the URL Vault uses when making STS API\ncalls.\n"
+                    },
+                    "stsRegion": {
+                        "type": "string",
+                        "description": "Override the default region when making STS API \ncalls. The `sts_endpoint` argument must be set when using `sts_region`.\n"
                     }
                 },
                 "type": "object"
@@ -5071,6 +5115,13 @@
                     "type": "string",
                     "description": "Application Object ID for an existing service principal that will\nbe used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.\n"
                 },
+                "azureGroups": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/vault:azure/BackendRoleAzureGroup:BackendRoleAzureGroup"
+                    },
+                    "description": "List of Azure groups to be assigned to the generated service principal.\n"
+                },
                 "azureRoles": {
                     "type": "array",
                     "items": {
@@ -5106,6 +5157,13 @@
                 "applicationObjectId": {
                     "type": "string",
                     "description": "Application Object ID for an existing service principal that will\nbe used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.\n"
+                },
+                "azureGroups": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/vault:azure/BackendRoleAzureGroup:BackendRoleAzureGroup"
+                    },
+                    "description": "List of Azure groups to be assigned to the generated service principal.\n"
                 },
                 "azureRoles": {
                     "type": "array",
@@ -5144,6 +5202,13 @@
                     "applicationObjectId": {
                         "type": "string",
                         "description": "Application Object ID for an existing service principal that will\nbe used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.\n"
+                    },
+                    "azureGroups": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/vault:azure/BackendRoleAzureGroup:BackendRoleAzureGroup"
+                        },
+                        "description": "List of Azure groups to be assigned to the generated service principal.\n"
                     },
                     "azureRoles": {
                         "type": "array",
@@ -7599,6 +7664,7 @@
             }
         },
         "vault:identity/entity:Entity": {
+            "description": "\n\n\n## Import\n\nIdentity entity can be imported using the `id`, e.g.\n\n```sh\n $ pulumi import vault:identity/entity:Entity test \"ae6f8ued-0f1a-9f6b-2915-1a2be20dc053\"\n```\n\n ",
             "properties": {
                 "disabled": {
                     "type": "boolean",
@@ -8366,6 +8432,10 @@
                 "name"
             ],
             "inputProperties": {
+                "clientId": {
+                    "type": "string",
+                    "description": "The value that will be included in the `aud` field of all the OIDC identity\ntokens issued by this role\n"
+                },
                 "key": {
                     "type": "string",
                     "description": "A configured named key, the key must already exist\nbefore tokens can be issued.\n"
@@ -8414,11 +8484,15 @@
             }
         },
         "vault:index/audit:Audit": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n### File Audit Device)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst test = new vault.Audit(\"test\", {\n    options: {\n        file_path: \"C:/temp/audit.txt\",\n    },\n    type: \"file\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntest = vault.Audit(\"test\",\n    options={\n        \"file_path\": \"C:/temp/audit.txt\",\n    },\n    type=\"file\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Vault.Audit(\"test\", new Vault.AuditArgs\n        {\n            Options = \n            {\n                { \"file_path\", \"C:/temp/audit.txt\" },\n            },\n            Type = \"file\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewAudit(ctx, \"test\", \u0026vault.AuditArgs{\n\t\t\tOptions: pulumi.StringMap{\n\t\t\t\t\"file_path\": pulumi.String(\"C:/temp/audit.txt\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"file\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Socket Audit Device)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst test = new vault.Audit(\"test\", {\n    options: {\n        address: \"127.0.0.1:8000\",\n        description: \"application x socket\",\n        socket_type: \"tcp\",\n    },\n    path: \"app_socket\",\n    type: \"socket\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntest = vault.Audit(\"test\",\n    options={\n        \"address\": \"127.0.0.1:8000\",\n        \"description\": \"application x socket\",\n        \"socket_type\": \"tcp\",\n    },\n    path=\"app_socket\",\n    type=\"socket\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Vault.Audit(\"test\", new Vault.AuditArgs\n        {\n            Options = \n            {\n                { \"address\", \"127.0.0.1:8000\" },\n                { \"description\", \"application x socket\" },\n                { \"socket_type\", \"tcp\" },\n            },\n            Path = \"app_socket\",\n            Type = \"socket\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewAudit(ctx, \"test\", \u0026vault.AuditArgs{\n\t\t\tOptions: pulumi.StringMap{\n\t\t\t\t\"address\":     pulumi.String(\"127.0.0.1:8000\"),\n\t\t\t\t\"description\": pulumi.String(\"application x socket\"),\n\t\t\t\t\"socket_type\": pulumi.String(\"tcp\"),\n\t\t\t},\n\t\t\tPath: pulumi.String(\"app_socket\"),\n\t\t\tType: pulumi.String(\"socket\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAudit devices can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:index/audit:Audit test syslog\n```\n\n ",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n### File Audit Device)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst test = new vault.Audit(\"test\", {\n    options: {\n        file_path: \"C:/temp/audit.txt\",\n    },\n    type: \"file\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntest = vault.Audit(\"test\",\n    options={\n        \"file_path\": \"C:/temp/audit.txt\",\n    },\n    type=\"file\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Vault.Audit(\"test\", new Vault.AuditArgs\n        {\n            Options = \n            {\n                { \"file_path\", \"C:/temp/audit.txt\" },\n            },\n            Type = \"file\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewAudit(ctx, \"test\", \u0026vault.AuditArgs{\n\t\t\tOptions: pulumi.StringMap{\n\t\t\t\t\"file_path\": pulumi.String(\"C:/temp/audit.txt\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"file\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Socket Audit Device)\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst test = new vault.Audit(\"test\", {\n    local: false,\n    options: {\n        address: \"127.0.0.1:8000\",\n        description: \"application x socket\",\n        socket_type: \"tcp\",\n    },\n    path: \"app_socket\",\n    type: \"socket\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntest = vault.Audit(\"test\",\n    local=False,\n    options={\n        \"address\": \"127.0.0.1:8000\",\n        \"description\": \"application x socket\",\n        \"socket_type\": \"tcp\",\n    },\n    path=\"app_socket\",\n    type=\"socket\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Vault.Audit(\"test\", new Vault.AuditArgs\n        {\n            Local = false,\n            Options = \n            {\n                { \"address\", \"127.0.0.1:8000\" },\n                { \"description\", \"application x socket\" },\n                { \"socket_type\", \"tcp\" },\n            },\n            Path = \"app_socket\",\n            Type = \"socket\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewAudit(ctx, \"test\", \u0026vault.AuditArgs{\n\t\t\tLocal: pulumi.Bool(false),\n\t\t\tOptions: pulumi.StringMap{\n\t\t\t\t\"address\":     pulumi.String(\"127.0.0.1:8000\"),\n\t\t\t\t\"description\": pulumi.String(\"application x socket\"),\n\t\t\t\t\"socket_type\": pulumi.String(\"tcp\"),\n\t\t\t},\n\t\t\tPath: pulumi.String(\"app_socket\"),\n\t\t\tType: pulumi.String(\"socket\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAudit devices can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:index/audit:Audit test syslog\n```\n\n ",
             "properties": {
                 "description": {
                     "type": "string",
                     "description": "Human-friendly description of the audit device.\n"
+                },
+                "local": {
+                    "type": "boolean",
+                    "description": "Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.\n"
                 },
                 "options": {
                     "type": "object",
@@ -8446,6 +8520,10 @@
                     "type": "string",
                     "description": "Human-friendly description of the audit device.\n"
                 },
+                "local": {
+                    "type": "boolean",
+                    "description": "Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.\n"
+                },
                 "options": {
                     "type": "object",
                     "additionalProperties": {
@@ -8472,6 +8550,10 @@
                     "description": {
                         "type": "string",
                         "description": "Human-friendly description of the audit device.\n"
+                    },
+                    "local": {
+                        "type": "boolean",
+                        "description": "Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.\n"
                     },
                     "options": {
                         "type": "object",
@@ -9458,6 +9540,275 @@
                 "type": "object"
             }
         },
+        "vault:index/nomadSecretBackend:NomadSecretBackend": {
+            "description": "\n\n\n## Import\n\nNomad secret backend can be imported using the `backend`, e.g.\n\n```sh\n $ pulumi import vault:index/nomadSecretBackend:NomadSecretBackend nomad nomad\n```\n\n ",
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "description": "Specifies the address of the Nomad instance, provided\nas \"protocol://host:port\" like \"http://127.0.0.1:4646\".\n"
+                },
+                "backend": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `nomad`.\n"
+                },
+                "caCert": {
+                    "type": "string",
+                    "description": "CA certificate to use when verifying the Nomad server certificate, must be\nx509 PEM encoded.\n"
+                },
+                "clientCert": {
+                    "type": "string",
+                    "description": "Client certificate to provide to the Nomad server, must be x509 PEM encoded.\n"
+                },
+                "clientKey": {
+                    "type": "string",
+                    "description": "Client certificate key to provide to the Nomad server, must be x509 PEM encoded.\n"
+                },
+                "defaultLeaseTtlSeconds": {
+                    "type": "integer",
+                    "description": "Default lease duration for secrets in seconds.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Human-friendly description of the mount for the Active Directory backend.\n"
+                },
+                "local": {
+                    "type": "boolean",
+                    "description": "Mark the secrets engine as local-only. Local engines are not replicated or removed by\nreplication.Tolerance duration to use when checking the last rotation time.\n"
+                },
+                "maxLeaseTtlSeconds": {
+                    "type": "integer",
+                    "description": "Maximum possible lease duration for secrets in seconds.\n"
+                },
+                "maxTokenNameLength": {
+                    "type": "integer",
+                    "description": "Specifies the maximum length to use for the name of the Nomad token\ngenerated with Generate Credential. If omitted, 0 is used and ignored, defaulting to the max value allowed\nby the Nomad version.\n"
+                },
+                "maxTtl": {
+                    "type": "integer",
+                    "description": "Maximum possible lease duration for secrets in seconds.\n"
+                },
+                "token": {
+                    "type": "string",
+                    "description": "Specifies the Nomad Management token to use.\n"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "Specifies the ttl of the lease for the generated token.\n"
+                }
+            },
+            "required": [
+                "defaultLeaseTtlSeconds",
+                "maxLeaseTtlSeconds",
+                "maxTokenNameLength",
+                "maxTtl",
+                "ttl"
+            ],
+            "inputProperties": {
+                "address": {
+                    "type": "string",
+                    "description": "Specifies the address of the Nomad instance, provided\nas \"protocol://host:port\" like \"http://127.0.0.1:4646\".\n"
+                },
+                "backend": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `nomad`.\n"
+                },
+                "caCert": {
+                    "type": "string",
+                    "description": "CA certificate to use when verifying the Nomad server certificate, must be\nx509 PEM encoded.\n"
+                },
+                "clientCert": {
+                    "type": "string",
+                    "description": "Client certificate to provide to the Nomad server, must be x509 PEM encoded.\n"
+                },
+                "clientKey": {
+                    "type": "string",
+                    "description": "Client certificate key to provide to the Nomad server, must be x509 PEM encoded.\n"
+                },
+                "defaultLeaseTtlSeconds": {
+                    "type": "integer",
+                    "description": "Default lease duration for secrets in seconds.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Human-friendly description of the mount for the Active Directory backend.\n"
+                },
+                "local": {
+                    "type": "boolean",
+                    "description": "Mark the secrets engine as local-only. Local engines are not replicated or removed by\nreplication.Tolerance duration to use when checking the last rotation time.\n"
+                },
+                "maxLeaseTtlSeconds": {
+                    "type": "integer",
+                    "description": "Maximum possible lease duration for secrets in seconds.\n"
+                },
+                "maxTokenNameLength": {
+                    "type": "integer",
+                    "description": "Specifies the maximum length to use for the name of the Nomad token\ngenerated with Generate Credential. If omitted, 0 is used and ignored, defaulting to the max value allowed\nby the Nomad version.\n"
+                },
+                "maxTtl": {
+                    "type": "integer",
+                    "description": "Maximum possible lease duration for secrets in seconds.\n"
+                },
+                "token": {
+                    "type": "string",
+                    "description": "Specifies the Nomad Management token to use.\n"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "Specifies the ttl of the lease for the generated token.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering NomadSecretBackend resources.\n",
+                "properties": {
+                    "address": {
+                        "type": "string",
+                        "description": "Specifies the address of the Nomad instance, provided\nas \"protocol://host:port\" like \"http://127.0.0.1:4646\".\n"
+                    },
+                    "backend": {
+                        "type": "string",
+                        "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `nomad`.\n"
+                    },
+                    "caCert": {
+                        "type": "string",
+                        "description": "CA certificate to use when verifying the Nomad server certificate, must be\nx509 PEM encoded.\n"
+                    },
+                    "clientCert": {
+                        "type": "string",
+                        "description": "Client certificate to provide to the Nomad server, must be x509 PEM encoded.\n"
+                    },
+                    "clientKey": {
+                        "type": "string",
+                        "description": "Client certificate key to provide to the Nomad server, must be x509 PEM encoded.\n"
+                    },
+                    "defaultLeaseTtlSeconds": {
+                        "type": "integer",
+                        "description": "Default lease duration for secrets in seconds.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Human-friendly description of the mount for the Active Directory backend.\n"
+                    },
+                    "local": {
+                        "type": "boolean",
+                        "description": "Mark the secrets engine as local-only. Local engines are not replicated or removed by\nreplication.Tolerance duration to use when checking the last rotation time.\n"
+                    },
+                    "maxLeaseTtlSeconds": {
+                        "type": "integer",
+                        "description": "Maximum possible lease duration for secrets in seconds.\n"
+                    },
+                    "maxTokenNameLength": {
+                        "type": "integer",
+                        "description": "Specifies the maximum length to use for the name of the Nomad token\ngenerated with Generate Credential. If omitted, 0 is used and ignored, defaulting to the max value allowed\nby the Nomad version.\n"
+                    },
+                    "maxTtl": {
+                        "type": "integer",
+                        "description": "Maximum possible lease duration for secrets in seconds.\n"
+                    },
+                    "token": {
+                        "type": "string",
+                        "description": "Specifies the Nomad Management token to use.\n"
+                    },
+                    "ttl": {
+                        "type": "integer",
+                        "description": "Specifies the ttl of the lease for the generated token.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:index/nomadSecretRole:NomadSecretRole": {
+            "description": "\n\n\n## Import\n\nNomad secret role can be imported using the `backend`, e.g.\n\n```sh\n $ pulumi import vault:index/nomadSecretRole:NomadSecretRole bob nomad/role/bob\n```\n\n ",
+            "properties": {
+                "backend": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `nomad`.\n"
+                },
+                "global": {
+                    "type": "boolean",
+                    "description": "Specifies if the generated token should be global. Defaults to \nfalse.\n"
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of policies attached to the generated token. This setting is only used \nwhen `type` is 'client'.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "The name to identify this role within the backend.\nMust be unique within the backend.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Specifies the type of token to create when using this role. Valid \nsettings are 'client' and 'management'. Defaults to 'client'.\n"
+                }
+            },
+            "required": [
+                "backend",
+                "global",
+                "policies",
+                "role",
+                "type"
+            ],
+            "inputProperties": {
+                "backend": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `nomad`.\n"
+                },
+                "global": {
+                    "type": "boolean",
+                    "description": "Specifies if the generated token should be global. Defaults to \nfalse.\n"
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of policies attached to the generated token. This setting is only used \nwhen `type` is 'client'.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "The name to identify this role within the backend.\nMust be unique within the backend.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Specifies the type of token to create when using this role. Valid \nsettings are 'client' and 'management'. Defaults to 'client'.\n"
+                }
+            },
+            "requiredInputs": [
+                "backend",
+                "role"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering NomadSecretRole resources.\n",
+                "properties": {
+                    "backend": {
+                        "type": "string",
+                        "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `nomad`.\n"
+                    },
+                    "global": {
+                        "type": "boolean",
+                        "description": "Specifies if the generated token should be global. Defaults to \nfalse.\n"
+                    },
+                    "policies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of policies attached to the generated token. This setting is only used \nwhen `type` is 'client'.\n"
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "The name to identify this role within the backend.\nMust be unique within the backend.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Specifies the type of token to create when using this role. Valid \nsettings are 'client' and 'management'. Defaults to 'client'.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "vault:index/policy:Policy": {
             "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.Policy(\"example\", {\n    policy: `path \"secret/my_app\" {\n  capabilities = [\"update\"]\n}\n`,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.Policy(\"example\", policy=\"\"\"path \"secret/my_app\" {\n  capabilities = [\"update\"]\n}\n\n\"\"\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.Policy(\"example\", new Vault.PolicyArgs\n        {\n            Policy = @\"path \"\"secret/my_app\"\" {\n  capabilities = [\"\"update\"\"]\n}\n\n\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewPolicy(ctx, \"example\", \u0026vault.PolicyArgs{\n\t\t\tPolicy: pulumi.String(fmt.Sprintf(\"%v%v%v%v\", \"path \\\"secret/my_app\\\" {\\n\", \"  capabilities = [\\\"update\\\"]\\n\", \"}\\n\", \"\\n\")),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPolicies can be imported using the `name`, e.g.\n\n```sh\n $ pulumi import vault:index/policy:Policy example dev-team\n```\n\n ",
             "properties": {
@@ -9881,7 +10232,7 @@
             }
         },
         "vault:jwt/authBackend:AuthBackend": {
-            "description": "Provides a resource for managing an\n[JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nManage JWT auth backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.jwt.AuthBackend(\"example\", {\n    boundIssuer: \"https://myco.auth0.com/\",\n    description: \"Demonstration of the Terraform JWT auth backend\",\n    oidcDiscoveryUrl: \"https://myco.auth0.com/\",\n    path: \"jwt\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.jwt.AuthBackend(\"example\",\n    bound_issuer=\"https://myco.auth0.com/\",\n    description=\"Demonstration of the Terraform JWT auth backend\",\n    oidc_discovery_url=\"https://myco.auth0.com/\",\n    path=\"jwt\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.Jwt.AuthBackend(\"example\", new Vault.Jwt.AuthBackendArgs\n        {\n            BoundIssuer = \"https://myco.auth0.com/\",\n            Description = \"Demonstration of the Terraform JWT auth backend\",\n            OidcDiscoveryUrl = \"https://myco.auth0.com/\",\n            Path = \"jwt\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := jwt.NewAuthBackend(ctx, \"example\", \u0026jwt.AuthBackendArgs{\n\t\t\tBoundIssuer:      pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tDescription:      pulumi.String(\"Demonstration of the Terraform JWT auth backend\"),\n\t\t\tOidcDiscoveryUrl: pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tPath:             pulumi.String(\"jwt\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\nManage OIDC auth backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.jwt.AuthBackend(\"example\", {\n    boundIssuer: \"https://myco.auth0.com/\",\n    description: \"Demonstration of the Terraform JWT auth backend\",\n    oidcClientId: \"1234567890\",\n    oidcClientSecret: \"secret123456\",\n    oidcDiscoveryUrl: \"https://myco.auth0.com/\",\n    path: \"oidc\",\n    tune: {\n        listingVisibility: \"unauth\",\n    },\n    type: \"oidc\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.jwt.AuthBackend(\"example\",\n    bound_issuer=\"https://myco.auth0.com/\",\n    description=\"Demonstration of the Terraform JWT auth backend\",\n    oidc_client_id=\"1234567890\",\n    oidc_client_secret=\"secret123456\",\n    oidc_discovery_url=\"https://myco.auth0.com/\",\n    path=\"oidc\",\n    tune=vault.jwt.AuthBackendTuneArgs(\n        listing_visibility=\"unauth\",\n    ),\n    type=\"oidc\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.Jwt.AuthBackend(\"example\", new Vault.Jwt.AuthBackendArgs\n        {\n            BoundIssuer = \"https://myco.auth0.com/\",\n            Description = \"Demonstration of the Terraform JWT auth backend\",\n            OidcClientId = \"1234567890\",\n            OidcClientSecret = \"secret123456\",\n            OidcDiscoveryUrl = \"https://myco.auth0.com/\",\n            Path = \"oidc\",\n            Tune = new Vault.Jwt.Inputs.AuthBackendTuneArgs\n            {\n                ListingVisibility = \"unauth\",\n            },\n            Type = \"oidc\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := jwt.NewAuthBackend(ctx, \"example\", \u0026jwt.AuthBackendArgs{\n\t\t\tBoundIssuer:      pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tDescription:      pulumi.String(\"Demonstration of the Terraform JWT auth backend\"),\n\t\t\tOidcClientId:     pulumi.String(\"1234567890\"),\n\t\t\tOidcClientSecret: pulumi.String(\"secret123456\"),\n\t\t\tOidcDiscoveryUrl: pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tPath:             pulumi.String(\"oidc\"),\n\t\t\tTune: \u0026jwt.AuthBackendTuneArgs{\n\t\t\t\tListingVisibility: pulumi.String(\"unauth\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"oidc\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Provides a resource for managing an\n[JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nManage JWT auth backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.jwt.AuthBackend(\"example\", {\n    boundIssuer: \"https://myco.auth0.com/\",\n    description: \"Demonstration of the Terraform JWT auth backend\",\n    oidcDiscoveryUrl: \"https://myco.auth0.com/\",\n    path: \"jwt\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.jwt.AuthBackend(\"example\",\n    bound_issuer=\"https://myco.auth0.com/\",\n    description=\"Demonstration of the Terraform JWT auth backend\",\n    oidc_discovery_url=\"https://myco.auth0.com/\",\n    path=\"jwt\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.Jwt.AuthBackend(\"example\", new Vault.Jwt.AuthBackendArgs\n        {\n            BoundIssuer = \"https://myco.auth0.com/\",\n            Description = \"Demonstration of the Terraform JWT auth backend\",\n            OidcDiscoveryUrl = \"https://myco.auth0.com/\",\n            Path = \"jwt\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := jwt.NewAuthBackend(ctx, \"example\", \u0026jwt.AuthBackendArgs{\n\t\t\tBoundIssuer:      pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tDescription:      pulumi.String(\"Demonstration of the Terraform JWT auth backend\"),\n\t\t\tOidcDiscoveryUrl: pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tPath:             pulumi.String(\"jwt\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\nManage OIDC auth backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.jwt.AuthBackend(\"example\", {\n    boundIssuer: \"https://myco.auth0.com/\",\n    description: \"Demonstration of the Terraform JWT auth backend\",\n    oidcClientId: \"1234567890\",\n    oidcClientSecret: \"secret123456\",\n    oidcDiscoveryUrl: \"https://myco.auth0.com/\",\n    path: \"oidc\",\n    tune: {\n        listingVisibility: \"unauth\",\n    },\n    type: \"oidc\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.jwt.AuthBackend(\"example\",\n    bound_issuer=\"https://myco.auth0.com/\",\n    description=\"Demonstration of the Terraform JWT auth backend\",\n    oidc_client_id=\"1234567890\",\n    oidc_client_secret=\"secret123456\",\n    oidc_discovery_url=\"https://myco.auth0.com/\",\n    path=\"oidc\",\n    tune=vault.jwt.AuthBackendTuneArgs(\n        listing_visibility=\"unauth\",\n    ),\n    type=\"oidc\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.Jwt.AuthBackend(\"example\", new Vault.Jwt.AuthBackendArgs\n        {\n            BoundIssuer = \"https://myco.auth0.com/\",\n            Description = \"Demonstration of the Terraform JWT auth backend\",\n            OidcClientId = \"1234567890\",\n            OidcClientSecret = \"secret123456\",\n            OidcDiscoveryUrl = \"https://myco.auth0.com/\",\n            Path = \"oidc\",\n            Tune = new Vault.Jwt.Inputs.AuthBackendTuneArgs\n            {\n                ListingVisibility = \"unauth\",\n            },\n            Type = \"oidc\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := jwt.NewAuthBackend(ctx, \"example\", \u0026jwt.AuthBackendArgs{\n\t\t\tBoundIssuer:      pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tDescription:      pulumi.String(\"Demonstration of the Terraform JWT auth backend\"),\n\t\t\tOidcClientId:     pulumi.String(\"1234567890\"),\n\t\t\tOidcClientSecret: pulumi.String(\"secret123456\"),\n\t\t\tOidcDiscoveryUrl: pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tPath:             pulumi.String(\"oidc\"),\n\t\t\tTune: \u0026jwt.AuthBackendTuneArgs{\n\t\t\t\tListingVisibility: pulumi.String(\"unauth\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"oidc\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nJWT auth backend can be imported using the `type`, e.g.\n\n```sh\n $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc\n```\n\n or\n\n```sh\n $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt\n```\n\n ",
             "properties": {
                 "accessor": {
                     "type": "string",
@@ -10124,6 +10475,10 @@
                     },
                     "description": "If set, a map of claims/values to match against.\nThe expected value may be a single string or a list of strings.\n"
                 },
+                "boundClaimsType": {
+                    "type": "string",
+                    "description": "How to interpret values in the claims/values\nmap (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard\nmatch). Requires Vault 1.4.0 or above.\n"
+                },
                 "boundSubject": {
                     "type": "string",
                     "description": "If set, requires that the `sub` claim matches\nthis value.\n"
@@ -10251,6 +10606,7 @@
                 }
             },
             "required": [
+                "boundClaimsType",
                 "roleName",
                 "roleType",
                 "userClaim"
@@ -10288,6 +10644,10 @@
                         "$ref": "pulumi.json#/Any"
                     },
                     "description": "If set, a map of claims/values to match against.\nThe expected value may be a single string or a list of strings.\n"
+                },
+                "boundClaimsType": {
+                    "type": "string",
+                    "description": "How to interpret values in the claims/values\nmap (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard\nmatch). Requires Vault 1.4.0 or above.\n"
                 },
                 "boundSubject": {
                     "type": "string",
@@ -10454,6 +10814,10 @@
                             "$ref": "pulumi.json#/Any"
                         },
                         "description": "If set, a map of claims/values to match against.\nThe expected value may be a single string or a list of strings.\n"
+                    },
+                    "boundClaimsType": {
+                        "type": "string",
+                        "description": "How to interpret values in the claims/values\nmap (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard\nmatch). Requires Vault 1.4.0 or above.\n"
                     },
                     "boundSubject": {
                         "type": "string",
@@ -16586,6 +16950,57 @@
                 ]
             }
         },
+        "vault:index/getNomadAccessToken:getNomadAccessToken": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getNomadAccessToken.\n",
+                "properties": {
+                    "backend": {
+                        "type": "string",
+                        "description": "The path to the Nomad secret backend to\nread credentials from, with no leading or trailing `/`s.\n"
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "The name of the Nomad secret backend role to generate\na token for, with no leading or trailing `/`s.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "backend",
+                    "role"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getNomadAccessToken.\n",
+                "properties": {
+                    "accessorId": {
+                        "type": "string",
+                        "description": "The public identifier for a specific token. It can be used \nto look up information about a token or to revoke a token.\n"
+                    },
+                    "backend": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "role": {
+                        "type": "string"
+                    },
+                    "secretId": {
+                        "type": "string",
+                        "description": "The token to be used when making requests to Nomad and should be kept private.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "accessorId",
+                    "backend",
+                    "role",
+                    "secretId",
+                    "id"
+                ]
+            }
+        },
         "vault:index/getPolicyDocument:getPolicyDocument": {
             "description": "This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `vault.Policy` resource.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst examplePolicyDocument = pulumi.output(vault.getPolicyDocument({\n    rules: [{\n        capabilities: [\n            \"create\",\n            \"read\",\n            \"update\",\n            \"delete\",\n            \"list\",\n        ],\n        description: \"allow all on secrets\",\n        path: \"secret/*\",\n    }],\n}, { async: true }));\nconst examplePolicy = new vault.Policy(\"example\", {\n    policy: examplePolicyDocument.hcl,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample_policy_document = vault.get_policy_document(rules=[vault.GetPolicyDocumentRuleArgs(\n    capabilities=[\n        \"create\",\n        \"read\",\n        \"update\",\n        \"delete\",\n        \"list\",\n    ],\n    description=\"allow all on secrets\",\n    path=\"secret/*\",\n)])\nexample_policy = vault.Policy(\"examplePolicy\", policy=example_policy_document.hcl)\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var examplePolicyDocument = Output.Create(Vault.GetPolicyDocument.InvokeAsync(new Vault.GetPolicyDocumentArgs\n        {\n            Rules = \n            {\n                new Vault.Inputs.GetPolicyDocumentRuleArgs\n                {\n                    Capabilities = \n                    {\n                        \"create\",\n                        \"read\",\n                        \"update\",\n                        \"delete\",\n                        \"list\",\n                    },\n                    Description = \"allow all on secrets\",\n                    Path = \"secret/*\",\n                },\n            },\n        }));\n        var examplePolicy = new Vault.Policy(\"examplePolicy\", new Vault.PolicyArgs\n        {\n            Policy = examplePolicyDocument.Apply(examplePolicyDocument =\u003e examplePolicyDocument.Hcl),\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texamplePolicyDocument, err := vault.GetPolicyDocument(ctx, \u0026vault.GetPolicyDocumentArgs{\n\t\t\tRules: []vault.GetPolicyDocumentRule{\n\t\t\t\tvault.GetPolicyDocumentRule{\n\t\t\t\t\tCapabilities: []string{\n\t\t\t\t\t\t\"create\",\n\t\t\t\t\t\t\"read\",\n\t\t\t\t\t\t\"update\",\n\t\t\t\t\t\t\"delete\",\n\t\t\t\t\t\t\"list\",\n\t\t\t\t\t},\n\t\t\t\t\tDescription: \"allow all on secrets\",\n\t\t\t\t\tPath:        \"secret/*\",\n\t\t\t\t},\n\t\t\t},\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = vault.NewPolicy(ctx, \"examplePolicy\", \u0026vault.PolicyArgs{\n\t\t\tPolicy: pulumi.String(examplePolicyDocument.Hcl),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
@@ -17316,11 +17731,11 @@
             "disableUnionOutputTypes": true,
             "packageDescription": "A Pulumi package for creating and managing vault cloud resources.",
             "packageName": "",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-vault)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-vault` repo](https://github.com/pulumi/pulumi-vault/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-providers/terraform-provider-vault` repo](https://github.com/terraform-providers/terraform-provider-vault/issues).",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-vault)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-vault` repo](https://github.com/pulumi/pulumi-vault/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`hashicorp/terraform-provider-vault` repo](https://github.com/hashicorp/terraform-provider-vault/issues).",
             "typescriptVersion": ""
         },
         "python": {
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-vault)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-vault` repo](https://github.com/pulumi/pulumi-vault/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-providers/terraform-provider-vault` repo](https://github.com/terraform-providers/terraform-provider-vault/issues).",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-vault)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-vault` repo](https://github.com/pulumi/pulumi-vault/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`hashicorp/terraform-provider-vault` repo](https://github.com/hashicorp/terraform-provider-vault/issues).",
             "requires": {
                 "pulumi": "\u003e=2.9.0,\u003c3.0.0"
             },

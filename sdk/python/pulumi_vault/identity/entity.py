@@ -24,7 +24,14 @@ class Entity(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a Entity resource with the given unique name, props, and options.
+        ## Import
+
+        Identity entity can be imported using the `id`, e.g.
+
+        ```sh
+         $ pulumi import vault:identity/entity:Entity test "ae6f8ued-0f1a-9f6b-2915-1a2be20dc053"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] disabled: True/false Is this entity currently disabled. Defaults to `false`

@@ -122,6 +122,11 @@ export interface ProviderHeader {
     value: pulumi.Input<string>;
 }
 export namespace azure {
+    export interface BackendRoleAzureGroup {
+        groupName: pulumi.Input<string>;
+        objectId?: pulumi.Input<string>;
+    }
+
     export interface BackendRoleAzureRole {
         roleId?: pulumi.Input<string>;
         roleName: pulumi.Input<string>;

@@ -120,6 +120,12 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly boundClaims!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
+     * How to interpret values in the claims/values
+     * map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
+     * match). Requires Vault 1.4.0 or above.
+     */
+    public readonly boundClaimsType!: pulumi.Output<string>;
+    /**
      * If set, requires that the `sub` claim matches
      * this value.
      */
@@ -302,6 +308,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["boundAudiences"] = state ? state.boundAudiences : undefined;
             inputs["boundCidrs"] = state ? state.boundCidrs : undefined;
             inputs["boundClaims"] = state ? state.boundClaims : undefined;
+            inputs["boundClaimsType"] = state ? state.boundClaimsType : undefined;
             inputs["boundSubject"] = state ? state.boundSubject : undefined;
             inputs["claimMappings"] = state ? state.claimMappings : undefined;
             inputs["clockSkewLeeway"] = state ? state.clockSkewLeeway : undefined;
@@ -341,6 +348,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["boundAudiences"] = args ? args.boundAudiences : undefined;
             inputs["boundCidrs"] = args ? args.boundCidrs : undefined;
             inputs["boundClaims"] = args ? args.boundClaims : undefined;
+            inputs["boundClaimsType"] = args ? args.boundClaimsType : undefined;
             inputs["boundSubject"] = args ? args.boundSubject : undefined;
             inputs["claimMappings"] = args ? args.claimMappings : undefined;
             inputs["clockSkewLeeway"] = args ? args.clockSkewLeeway : undefined;
@@ -410,6 +418,12 @@ export interface AuthBackendRoleState {
      * The expected value may be a single string or a list of strings.
      */
     readonly boundClaims?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * How to interpret values in the claims/values
+     * map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
+     * match). Requires Vault 1.4.0 or above.
+     */
+    readonly boundClaimsType?: pulumi.Input<string>;
     /**
      * If set, requires that the `sub` claim matches
      * this value.
@@ -608,6 +622,12 @@ export interface AuthBackendRoleArgs {
      * The expected value may be a single string or a list of strings.
      */
     readonly boundClaims?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * How to interpret values in the claims/values
+     * map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
+     * match). Requires Vault 1.4.0 or above.
+     */
+    readonly boundClaimsType?: pulumi.Input<string>;
     /**
      * If set, requires that the `sub` claim matches
      * this value.

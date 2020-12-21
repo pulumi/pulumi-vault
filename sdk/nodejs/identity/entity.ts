@@ -4,6 +4,15 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Import
+ *
+ * Identity entity can be imported using the `id`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:identity/entity:Entity test "ae6f8ued-0f1a-9f6b-2915-1a2be20dc053"
+ * ```
+ */
 export class Entity extends pulumi.CustomResource {
     /**
      * Get an existing Entity resource's state with the given name, ID, and optional extra

@@ -125,6 +125,10 @@ type AuthBackendRole struct {
 	// If set, a map of claims/values to match against.
 	// The expected value may be a single string or a list of strings.
 	BoundClaims pulumi.MapOutput `pulumi:"boundClaims"`
+	// How to interpret values in the claims/values
+	// map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
+	// match). Requires Vault 1.4.0 or above.
+	BoundClaimsType pulumi.StringOutput `pulumi:"boundClaimsType"`
 	// If set, requires that the `sub` claim matches
 	// this value.
 	BoundSubject pulumi.StringPtrOutput `pulumi:"boundSubject"`
@@ -291,6 +295,10 @@ type authBackendRoleState struct {
 	// If set, a map of claims/values to match against.
 	// The expected value may be a single string or a list of strings.
 	BoundClaims map[string]interface{} `pulumi:"boundClaims"`
+	// How to interpret values in the claims/values
+	// map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
+	// match). Requires Vault 1.4.0 or above.
+	BoundClaimsType *string `pulumi:"boundClaimsType"`
 	// If set, requires that the `sub` claim matches
 	// this value.
 	BoundSubject *string `pulumi:"boundSubject"`
@@ -424,6 +432,10 @@ type AuthBackendRoleState struct {
 	// If set, a map of claims/values to match against.
 	// The expected value may be a single string or a list of strings.
 	BoundClaims pulumi.MapInput
+	// How to interpret values in the claims/values
+	// map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
+	// match). Requires Vault 1.4.0 or above.
+	BoundClaimsType pulumi.StringPtrInput
 	// If set, requires that the `sub` claim matches
 	// this value.
 	BoundSubject pulumi.StringPtrInput
@@ -561,6 +573,10 @@ type authBackendRoleArgs struct {
 	// If set, a map of claims/values to match against.
 	// The expected value may be a single string or a list of strings.
 	BoundClaims map[string]interface{} `pulumi:"boundClaims"`
+	// How to interpret values in the claims/values
+	// map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
+	// match). Requires Vault 1.4.0 or above.
+	BoundClaimsType *string `pulumi:"boundClaimsType"`
 	// If set, requires that the `sub` claim matches
 	// this value.
 	BoundSubject *string `pulumi:"boundSubject"`
@@ -695,6 +711,10 @@ type AuthBackendRoleArgs struct {
 	// If set, a map of claims/values to match against.
 	// The expected value may be a single string or a list of strings.
 	BoundClaims pulumi.MapInput
+	// How to interpret values in the claims/values
+	// map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
+	// match). Requires Vault 1.4.0 or above.
+	BoundClaimsType pulumi.StringPtrInput
 	// If set, requires that the `sub` claim matches
 	// this value.
 	BoundSubject pulumi.StringPtrInput

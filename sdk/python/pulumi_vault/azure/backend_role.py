@@ -18,6 +18,7 @@ class BackendRole(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  application_object_id: Optional[pulumi.Input[str]] = None,
+                 azure_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureGroupArgs']]]]] = None,
                  azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -33,6 +34,7 @@ class BackendRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] application_object_id: Application Object ID for an existing service principal that will
                be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureGroupArgs']]]] azure_groups: List of Azure groups to be assigned to the generated service principal.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]] azure_roles: List of Azure roles to be assigned to the generated service principal.
         :param pulumi.Input[str] backend: Path to the mounted Azure auth backend
         :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
@@ -60,6 +62,7 @@ class BackendRole(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['application_object_id'] = application_object_id
+            __props__['azure_groups'] = azure_groups
             __props__['azure_roles'] = azure_roles
             __props__['backend'] = backend
             __props__['description'] = description
@@ -79,6 +82,7 @@ class BackendRole(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             application_object_id: Optional[pulumi.Input[str]] = None,
+            azure_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureGroupArgs']]]]] = None,
             azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
@@ -94,6 +98,7 @@ class BackendRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] application_object_id: Application Object ID for an existing service principal that will
                be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureGroupArgs']]]] azure_groups: List of Azure groups to be assigned to the generated service principal.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]] azure_roles: List of Azure roles to be assigned to the generated service principal.
         :param pulumi.Input[str] backend: Path to the mounted Azure auth backend
         :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
@@ -108,6 +113,7 @@ class BackendRole(pulumi.CustomResource):
         __props__ = dict()
 
         __props__["application_object_id"] = application_object_id
+        __props__["azure_groups"] = azure_groups
         __props__["azure_roles"] = azure_roles
         __props__["backend"] = backend
         __props__["description"] = description
@@ -124,6 +130,14 @@ class BackendRole(pulumi.CustomResource):
         be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
         """
         return pulumi.get(self, "application_object_id")
+
+    @property
+    @pulumi.getter(name="azureGroups")
+    def azure_groups(self) -> pulumi.Output[Optional[Sequence['outputs.BackendRoleAzureGroup']]]:
+        """
+        List of Azure groups to be assigned to the generated service principal.
+        """
+        return pulumi.get(self, "azure_groups")
 
     @property
     @pulumi.getter(name="azureRoles")

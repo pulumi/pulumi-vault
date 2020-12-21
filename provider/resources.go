@@ -18,14 +18,14 @@ import (
 	"strings"
 	"unicode"
 
+	"github.com/hashicorp/terraform-provider-vault/generated"
+	"github.com/hashicorp/terraform-provider-vault/schema"
+	"github.com/hashicorp/terraform-provider-vault/vault"
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim"
 	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim/sdk-v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
-	"github.com/terraform-providers/terraform-provider-vault/generated"
-	"github.com/terraform-providers/terraform-provider-vault/schema"
-	"github.com/terraform-providers/terraform-provider-vault/vault"
 )
 
 // all of the token components used below.
@@ -115,6 +115,7 @@ func Provider() tfbridge.ProviderInfo {
 		Keywords:    []string{"pulumi", "vault"},
 		License:     "Apache-2.0",
 		Homepage:    "https://pulumi.io",
+		GitHubOrg:   "hashicorp",
 		Repository:  "https://github.com/pulumi/pulumi-vault",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"address": {
@@ -219,9 +220,11 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			"vault_rgp_policy":       {Tok: makeResource(mainMod, "RgpPolicy")},
-			"vault_token":            {Tok: makeResource(mainMod, "Token")},
-			"vault_quota_rate_limit": {Tok: makeResource(mainMod, "QuotaRateLimit")},
+			"vault_rgp_policy":           {Tok: makeResource(mainMod, "RgpPolicy")},
+			"vault_token":                {Tok: makeResource(mainMod, "Token")},
+			"vault_quota_rate_limit":     {Tok: makeResource(mainMod, "QuotaRateLimit")},
+			"vault_nomad_secret_backend": {Tok: makeResource(mainMod, "NomadSecretBackend")},
+			"vault_nomad_secret_role":    {Tok: makeResource(mainMod, "NomadSecretRole")},
 
 			// AD
 			"vault_ad_secret_backend": {Tok: makeResource(adMod, "SecretBackend")},
@@ -440,6 +443,7 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "auth_backend.html.md",
 				},
 			},
+			"vault_nomad_access_token": {Tok: makeDataSource(mainMod, "getNomadAccessToken")},
 
 			// AD
 			"vault_ad_access_credentials": {Tok: makeDataSource(adMod, "getAccessCredentials")},

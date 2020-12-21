@@ -72,6 +72,20 @@ class AuthBackend(pulumi.CustomResource):
             type="oidc")
         ```
 
+        ## Import
+
+        JWT auth backend can be imported using the `type`, e.g.
+
+        ```sh
+         $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
+        ```
+
+         or
+
+        ```sh
+         $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bound_issuer: The value against which to match the iss claim in a JWT

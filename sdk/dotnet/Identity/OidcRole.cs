@@ -102,6 +102,13 @@ namespace Pulumi.Vault.Identity
     public sealed class OidcRoleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The value that will be included in the `aud` field of all the OIDC identity
+        /// tokens issued by this role
+        /// </summary>
+        [Input("clientId")]
+        public Input<string>? ClientId { get; set; }
+
+        /// <summary>
         /// A configured named key, the key must already exist
         /// before tokens can be issued.
         /// </summary>

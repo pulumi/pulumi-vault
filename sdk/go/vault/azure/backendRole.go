@@ -17,6 +17,8 @@ type BackendRole struct {
 	// Application Object ID for an existing service principal that will
 	// be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
 	ApplicationObjectId pulumi.StringPtrOutput `pulumi:"applicationObjectId"`
+	// List of Azure groups to be assigned to the generated service principal.
+	AzureGroups BackendRoleAzureGroupArrayOutput `pulumi:"azureGroups"`
 	// List of Azure roles to be assigned to the generated service principal.
 	AzureRoles BackendRoleAzureRoleArrayOutput `pulumi:"azureRoles"`
 	// Path to the mounted Azure auth backend
@@ -67,6 +69,8 @@ type backendRoleState struct {
 	// Application Object ID for an existing service principal that will
 	// be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
 	ApplicationObjectId *string `pulumi:"applicationObjectId"`
+	// List of Azure groups to be assigned to the generated service principal.
+	AzureGroups []BackendRoleAzureGroup `pulumi:"azureGroups"`
 	// List of Azure roles to be assigned to the generated service principal.
 	AzureRoles []BackendRoleAzureRole `pulumi:"azureRoles"`
 	// Path to the mounted Azure auth backend
@@ -87,6 +91,8 @@ type BackendRoleState struct {
 	// Application Object ID for an existing service principal that will
 	// be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
 	ApplicationObjectId pulumi.StringPtrInput
+	// List of Azure groups to be assigned to the generated service principal.
+	AzureGroups BackendRoleAzureGroupArrayInput
 	// List of Azure roles to be assigned to the generated service principal.
 	AzureRoles BackendRoleAzureRoleArrayInput
 	// Path to the mounted Azure auth backend
@@ -111,6 +117,8 @@ type backendRoleArgs struct {
 	// Application Object ID for an existing service principal that will
 	// be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
 	ApplicationObjectId *string `pulumi:"applicationObjectId"`
+	// List of Azure groups to be assigned to the generated service principal.
+	AzureGroups []BackendRoleAzureGroup `pulumi:"azureGroups"`
 	// List of Azure roles to be assigned to the generated service principal.
 	AzureRoles []BackendRoleAzureRole `pulumi:"azureRoles"`
 	// Path to the mounted Azure auth backend
@@ -132,6 +140,8 @@ type BackendRoleArgs struct {
 	// Application Object ID for an existing service principal that will
 	// be used instead of creating dynamic service principals. If present, `azureRoles` will be ignored.
 	ApplicationObjectId pulumi.StringPtrInput
+	// List of Azure groups to be assigned to the generated service principal.
+	AzureGroups BackendRoleAzureGroupArrayInput
 	// List of Azure roles to be assigned to the generated service principal.
 	AzureRoles BackendRoleAzureRoleArrayInput
 	// Path to the mounted Azure auth backend

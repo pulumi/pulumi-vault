@@ -19,6 +19,12 @@ namespace Pulumi.Vault.Azure
         public Output<string?> ApplicationObjectId { get; private set; } = null!;
 
         /// <summary>
+        /// List of Azure groups to be assigned to the generated service principal.
+        /// </summary>
+        [Output("azureGroups")]
+        public Output<ImmutableArray<Outputs.BackendRoleAzureGroup>> AzureGroups { get; private set; } = null!;
+
+        /// <summary>
         /// List of Azure roles to be assigned to the generated service principal.
         /// </summary>
         [Output("azureRoles")]
@@ -109,6 +115,18 @@ namespace Pulumi.Vault.Azure
         [Input("applicationObjectId")]
         public Input<string>? ApplicationObjectId { get; set; }
 
+        [Input("azureGroups")]
+        private InputList<Inputs.BackendRoleAzureGroupArgs>? _azureGroups;
+
+        /// <summary>
+        /// List of Azure groups to be assigned to the generated service principal.
+        /// </summary>
+        public InputList<Inputs.BackendRoleAzureGroupArgs> AzureGroups
+        {
+            get => _azureGroups ?? (_azureGroups = new InputList<Inputs.BackendRoleAzureGroupArgs>());
+            set => _azureGroups = value;
+        }
+
         [Input("azureRoles")]
         private InputList<Inputs.BackendRoleAzureRoleArgs>? _azureRoles;
 
@@ -166,6 +184,18 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("applicationObjectId")]
         public Input<string>? ApplicationObjectId { get; set; }
+
+        [Input("azureGroups")]
+        private InputList<Inputs.BackendRoleAzureGroupGetArgs>? _azureGroups;
+
+        /// <summary>
+        /// List of Azure groups to be assigned to the generated service principal.
+        /// </summary>
+        public InputList<Inputs.BackendRoleAzureGroupGetArgs> AzureGroups
+        {
+            get => _azureGroups ?? (_azureGroups = new InputList<Inputs.BackendRoleAzureGroupGetArgs>());
+            set => _azureGroups = value;
+        }
 
         [Input("azureRoles")]
         private InputList<Inputs.BackendRoleAzureRoleGetArgs>? _azureRoles;

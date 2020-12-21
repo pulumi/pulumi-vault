@@ -45,7 +45,7 @@ export class OidcRole extends pulumi.CustomResource {
      * The value that will be included in the `aud` field of all the OIDC identity
      * tokens issued by this role
      */
-    public /*out*/ readonly clientId!: pulumi.Output<string>;
+    public readonly clientId!: pulumi.Output<string>;
     /**
      * A configured named key, the key must already exist
      * before tokens can be issued.
@@ -89,11 +89,11 @@ export class OidcRole extends pulumi.CustomResource {
             if (!args || args.key === undefined) {
                 throw new Error("Missing required property 'key'");
             }
+            inputs["clientId"] = args ? args.clientId : undefined;
             inputs["key"] = args ? args.key : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["template"] = args ? args.template : undefined;
             inputs["ttl"] = args ? args.ttl : undefined;
-            inputs["clientId"] = undefined /*out*/;
         }
         if (!opts) {
             opts = {}
@@ -141,6 +141,11 @@ export interface OidcRoleState {
  * The set of arguments for constructing a OidcRole resource.
  */
 export interface OidcRoleArgs {
+    /**
+     * The value that will be included in the `aud` field of all the OIDC identity
+     * tokens issued by this role
+     */
+    readonly clientId?: pulumi.Input<string>;
     /**
      * A configured named key, the key must already exist
      * before tokens can be issued.
