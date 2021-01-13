@@ -23,14 +23,15 @@ type SecretBackendIntermediateSetSigned struct {
 // NewSecretBackendIntermediateSetSigned registers a new resource with the given unique name, arguments, and options.
 func NewSecretBackendIntermediateSetSigned(ctx *pulumi.Context,
 	name string, args *SecretBackendIntermediateSetSignedArgs, opts ...pulumi.ResourceOption) (*SecretBackendIntermediateSetSigned, error) {
-	if args == nil || args.Backend == nil {
-		return nil, errors.New("missing required argument 'Backend'")
-	}
-	if args == nil || args.Certificate == nil {
-		return nil, errors.New("missing required argument 'Certificate'")
-	}
 	if args == nil {
-		args = &SecretBackendIntermediateSetSignedArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Backend == nil {
+		return nil, errors.New("invalid value for required argument 'Backend'")
+	}
+	if args.Certificate == nil {
+		return nil, errors.New("invalid value for required argument 'Certificate'")
 	}
 	var resource SecretBackendIntermediateSetSigned
 	err := ctx.RegisterResource("vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned", name, args, &resource, opts...)

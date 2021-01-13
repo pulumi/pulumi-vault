@@ -109,10 +109,10 @@ export class EntityPolicies extends pulumi.CustomResource {
             inputs["policies"] = state ? state.policies : undefined;
         } else {
             const args = argsOrState as EntityPoliciesArgs | undefined;
-            if (!args || args.entityId === undefined) {
+            if ((!args || args.entityId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'entityId'");
             }
-            if (!args || args.policies === undefined) {
+            if ((!args || args.policies === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'policies'");
             }
             inputs["entityId"] = args ? args.entityId : undefined;

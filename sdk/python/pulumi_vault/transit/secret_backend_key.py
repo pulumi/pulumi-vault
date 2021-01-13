@@ -87,7 +87,7 @@ class SecretBackendKey(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['allow_plaintext_backup'] = allow_plaintext_backup
-            if backend is None:
+            if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__['backend'] = backend
             __props__['convergent_encryption'] = convergent_encryption

@@ -133,7 +133,7 @@ export class AuthBackendRoleTag extends pulumi.CustomResource {
             inputs["tagValue"] = state ? state.tagValue : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleTagArgs | undefined;
-            if (!args || args.role === undefined) {
+            if ((!args || args.role === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'role'");
             }
             inputs["allowInstanceMigration"] = args ? args.allowInstanceMigration : undefined;

@@ -76,11 +76,12 @@ type Transformation struct {
 // NewTransformation registers a new resource with the given unique name, arguments, and options.
 func NewTransformation(ctx *pulumi.Context,
 	name string, args *TransformationArgs, opts ...pulumi.ResourceOption) (*Transformation, error) {
-	if args == nil || args.Path == nil {
-		return nil, errors.New("missing required argument 'Path'")
-	}
 	if args == nil {
-		args = &TransformationArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Path == nil {
+		return nil, errors.New("invalid value for required argument 'Path'")
 	}
 	var resource Transformation
 	err := ctx.RegisterResource("vault:transform/transformation:Transformation", name, args, &resource, opts...)

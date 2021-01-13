@@ -122,7 +122,7 @@ export class GroupMemberEntityIds extends pulumi.CustomResource {
             inputs["memberEntityIds"] = state ? state.memberEntityIds : undefined;
         } else {
             const args = argsOrState as GroupMemberEntityIdsArgs | undefined;
-            if (!args || args.groupId === undefined) {
+            if ((!args || args.groupId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'groupId'");
             }
             inputs["exclusive"] = args ? args.exclusive : undefined;

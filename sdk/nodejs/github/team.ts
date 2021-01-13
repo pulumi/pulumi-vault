@@ -157,7 +157,7 @@ export class Team extends pulumi.CustomResource {
             inputs["tokenType"] = state ? state.tokenType : undefined;
         } else {
             const args = argsOrState as TeamArgs | undefined;
-            if (!args || args.team === undefined) {
+            if ((!args || args.team === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'team'");
             }
             inputs["backend"] = args ? args.backend : undefined;

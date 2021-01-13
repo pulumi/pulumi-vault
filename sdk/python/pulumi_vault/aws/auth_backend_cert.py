@@ -61,11 +61,11 @@ class AuthBackendCert(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if aws_public_cert is None:
+            if aws_public_cert is None and not opts.urn:
                 raise TypeError("Missing required property 'aws_public_cert'")
             __props__['aws_public_cert'] = aws_public_cert
             __props__['backend'] = backend
-            if cert_name is None:
+            if cert_name is None and not opts.urn:
                 raise TypeError("Missing required property 'cert_name'")
             __props__['cert_name'] = cert_name
             __props__['type'] = type

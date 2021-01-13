@@ -96,7 +96,7 @@ export class AuthBackendGroup extends pulumi.CustomResource {
             inputs["policies"] = state ? state.policies : undefined;
         } else {
             const args = argsOrState as AuthBackendGroupArgs | undefined;
-            if (!args || args.groupname === undefined) {
+            if ((!args || args.groupname === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'groupname'");
             }
             inputs["backend"] = args ? args.backend : undefined;

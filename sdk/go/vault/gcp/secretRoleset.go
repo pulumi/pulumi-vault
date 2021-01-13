@@ -44,20 +44,21 @@ type SecretRoleset struct {
 // NewSecretRoleset registers a new resource with the given unique name, arguments, and options.
 func NewSecretRoleset(ctx *pulumi.Context,
 	name string, args *SecretRolesetArgs, opts ...pulumi.ResourceOption) (*SecretRoleset, error) {
-	if args == nil || args.Backend == nil {
-		return nil, errors.New("missing required argument 'Backend'")
-	}
-	if args == nil || args.Bindings == nil {
-		return nil, errors.New("missing required argument 'Bindings'")
-	}
-	if args == nil || args.Project == nil {
-		return nil, errors.New("missing required argument 'Project'")
-	}
-	if args == nil || args.Roleset == nil {
-		return nil, errors.New("missing required argument 'Roleset'")
-	}
 	if args == nil {
-		args = &SecretRolesetArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Backend == nil {
+		return nil, errors.New("invalid value for required argument 'Backend'")
+	}
+	if args.Bindings == nil {
+		return nil, errors.New("invalid value for required argument 'Bindings'")
+	}
+	if args.Project == nil {
+		return nil, errors.New("invalid value for required argument 'Project'")
+	}
+	if args.Roleset == nil {
+		return nil, errors.New("invalid value for required argument 'Roleset'")
 	}
 	var resource SecretRoleset
 	err := ctx.RegisterResource("vault:gcp/secretRoleset:SecretRoleset", name, args, &resource, opts...)

@@ -75,11 +75,12 @@ type AuthBackendConfig struct {
 // NewAuthBackendConfig registers a new resource with the given unique name, arguments, and options.
 func NewAuthBackendConfig(ctx *pulumi.Context,
 	name string, args *AuthBackendConfigArgs, opts ...pulumi.ResourceOption) (*AuthBackendConfig, error) {
-	if args == nil || args.KubernetesHost == nil {
-		return nil, errors.New("missing required argument 'KubernetesHost'")
-	}
 	if args == nil {
-		args = &AuthBackendConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.KubernetesHost == nil {
+		return nil, errors.New("invalid value for required argument 'KubernetesHost'")
 	}
 	var resource AuthBackendConfig
 	err := ctx.RegisterResource("vault:kubernetes/authBackendConfig:AuthBackendConfig", name, args, &resource, opts...)

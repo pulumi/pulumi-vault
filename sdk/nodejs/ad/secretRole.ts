@@ -77,13 +77,13 @@ export class SecretRole extends pulumi.CustomResource {
             inputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as SecretRoleArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
-            if (!args || args.role === undefined) {
+            if ((!args || args.role === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'role'");
             }
-            if (!args || args.serviceAccountName === undefined) {
+            if ((!args || args.serviceAccountName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'serviceAccountName'");
             }
             inputs["backend"] = args ? args.backend : undefined;

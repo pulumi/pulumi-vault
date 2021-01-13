@@ -47,6 +47,7 @@ func NewSecretBackend(ctx *pulumi.Context,
 	if args == nil {
 		args = &SecretBackendArgs{}
 	}
+
 	var resource SecretBackend
 	err := ctx.RegisterResource("vault:aws/secretBackend:SecretBackend", name, args, &resource, opts...)
 	if err != nil {

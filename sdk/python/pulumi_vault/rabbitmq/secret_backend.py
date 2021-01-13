@@ -67,17 +67,17 @@ class SecretBackend(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if connection_uri is None:
+            if connection_uri is None and not opts.urn:
                 raise TypeError("Missing required property 'connection_uri'")
             __props__['connection_uri'] = connection_uri
             __props__['default_lease_ttl_seconds'] = default_lease_ttl_seconds
             __props__['description'] = description
             __props__['max_lease_ttl_seconds'] = max_lease_ttl_seconds
-            if password is None:
+            if password is None and not opts.urn:
                 raise TypeError("Missing required property 'password'")
             __props__['password'] = password
             __props__['path'] = path
-            if username is None:
+            if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
             __props__['username'] = username
             __props__['verify_connection'] = verify_connection

@@ -89,7 +89,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
             __props__['backend'] = backend
             __props__['cidr_lists'] = cidr_lists
             __props__['metadata'] = metadata
-            if role_name is None:
+            if role_name is None and not opts.urn:
                 raise TypeError("Missing required property 'role_name'")
             __props__['role_name'] = role_name
             __props__['secret_id'] = secret_id

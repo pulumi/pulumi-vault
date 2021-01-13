@@ -117,16 +117,16 @@ export class MfaDuo extends pulumi.CustomResource {
             inputs["usernameFormat"] = state ? state.usernameFormat : undefined;
         } else {
             const args = argsOrState as MfaDuoArgs | undefined;
-            if (!args || args.apiHostname === undefined) {
+            if ((!args || args.apiHostname === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'apiHostname'");
             }
-            if (!args || args.integrationKey === undefined) {
+            if ((!args || args.integrationKey === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'integrationKey'");
             }
-            if (!args || args.mountAccessor === undefined) {
+            if ((!args || args.mountAccessor === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'mountAccessor'");
             }
-            if (!args || args.secretKey === undefined) {
+            if ((!args || args.secretKey === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'secretKey'");
             }
             inputs["apiHostname"] = args ? args.apiHostname : undefined;

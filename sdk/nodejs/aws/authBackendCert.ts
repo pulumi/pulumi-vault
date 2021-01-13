@@ -82,10 +82,10 @@ export class AuthBackendCert extends pulumi.CustomResource {
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as AuthBackendCertArgs | undefined;
-            if (!args || args.awsPublicCert === undefined) {
+            if ((!args || args.awsPublicCert === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'awsPublicCert'");
             }
-            if (!args || args.certName === undefined) {
+            if ((!args || args.certName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'certName'");
             }
             inputs["awsPublicCert"] = args ? args.awsPublicCert : undefined;

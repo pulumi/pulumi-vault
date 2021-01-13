@@ -55,11 +55,11 @@ class AuthBackendStsRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if account_id is None:
+            if account_id is None and not opts.urn:
                 raise TypeError("Missing required property 'account_id'")
             __props__['account_id'] = account_id
             __props__['backend'] = backend
-            if sts_role is None:
+            if sts_role is None and not opts.urn:
                 raise TypeError("Missing required property 'sts_role'")
             __props__['sts_role'] = sts_role
         super(AuthBackendStsRole, __self__).__init__(

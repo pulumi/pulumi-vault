@@ -59,10 +59,10 @@ class Backend(pulumi.CustomResource):
             __props__['description'] = description
             __props__['environment'] = environment
             __props__['path'] = path
-            if subscription_id is None:
+            if subscription_id is None and not opts.urn:
                 raise TypeError("Missing required property 'subscription_id'")
             __props__['subscription_id'] = subscription_id
-            if tenant_id is None:
+            if tenant_id is None and not opts.urn:
                 raise TypeError("Missing required property 'tenant_id'")
             __props__['tenant_id'] = tenant_id
         super(Backend, __self__).__init__(

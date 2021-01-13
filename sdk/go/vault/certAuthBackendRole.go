@@ -105,11 +105,12 @@ type CertAuthBackendRole struct {
 // NewCertAuthBackendRole registers a new resource with the given unique name, arguments, and options.
 func NewCertAuthBackendRole(ctx *pulumi.Context,
 	name string, args *CertAuthBackendRoleArgs, opts ...pulumi.ResourceOption) (*CertAuthBackendRole, error) {
-	if args == nil || args.Certificate == nil {
-		return nil, errors.New("missing required argument 'Certificate'")
-	}
 	if args == nil {
-		args = &CertAuthBackendRoleArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Certificate == nil {
+		return nil, errors.New("invalid value for required argument 'Certificate'")
 	}
 	var resource CertAuthBackendRole
 	err := ctx.RegisterResource("vault:index/certAuthBackendRole:CertAuthBackendRole", name, args, &resource, opts...)

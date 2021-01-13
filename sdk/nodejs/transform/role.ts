@@ -84,7 +84,7 @@ export class Role extends pulumi.CustomResource {
             inputs["transformations"] = state ? state.transformations : undefined;
         } else {
             const args = argsOrState as RoleArgs | undefined;
-            if (!args || args.path === undefined) {
+            if ((!args || args.path === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'path'");
             }
             inputs["name"] = args ? args.name : undefined;

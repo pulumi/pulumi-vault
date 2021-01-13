@@ -70,10 +70,10 @@ class AuthBackendConfig(pulumi.CustomResource):
             __props__['client_id'] = client_id
             __props__['client_secret'] = client_secret
             __props__['environment'] = environment
-            if resource is None:
+            if resource is None and not opts.urn:
                 raise TypeError("Missing required property 'resource'")
             __props__['resource'] = resource
-            if tenant_id is None:
+            if tenant_id is None and not opts.urn:
                 raise TypeError("Missing required property 'tenant_id'")
             __props__['tenant_id'] = tenant_id
         super(AuthBackendConfig, __self__).__init__(

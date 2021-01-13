@@ -79,7 +79,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["vhosts"] = state ? state.vhosts : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
             inputs["backend"] = args ? args.backend : undefined;

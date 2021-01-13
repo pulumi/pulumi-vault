@@ -218,7 +218,7 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__['allowed_redirect_uris'] = allowed_redirect_uris
             __props__['backend'] = backend
             __props__['bound_audiences'] = bound_audiences
-            if bound_cidrs is not None:
+            if bound_cidrs is not None and not opts.urn:
                 warnings.warn("""use `token_bound_cidrs` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("bound_cidrs is deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2")
             __props__['bound_cidrs'] = bound_cidrs
@@ -229,29 +229,29 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__['clock_skew_leeway'] = clock_skew_leeway
             __props__['expiration_leeway'] = expiration_leeway
             __props__['groups_claim'] = groups_claim
-            if groups_claim_delimiter_pattern is not None:
+            if groups_claim_delimiter_pattern is not None and not opts.urn:
                 warnings.warn("""`groups_claim_delimiter_pattern` has been removed since Vault 1.1. If the groups claim is not at the top level, it can now be specified as a JSONPointer.""", DeprecationWarning)
                 pulumi.log.warn("groups_claim_delimiter_pattern is deprecated: `groups_claim_delimiter_pattern` has been removed since Vault 1.1. If the groups claim is not at the top level, it can now be specified as a JSONPointer.")
             __props__['groups_claim_delimiter_pattern'] = groups_claim_delimiter_pattern
-            if max_ttl is not None:
+            if max_ttl is not None and not opts.urn:
                 warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2")
             __props__['max_ttl'] = max_ttl
             __props__['not_before_leeway'] = not_before_leeway
-            if num_uses is not None:
+            if num_uses is not None and not opts.urn:
                 warnings.warn("""use `token_num_uses` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("num_uses is deprecated: use `token_num_uses` instead if you are running Vault >= 1.2")
             __props__['num_uses'] = num_uses
             __props__['oidc_scopes'] = oidc_scopes
-            if period is not None:
+            if period is not None and not opts.urn:
                 warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("period is deprecated: use `token_period` instead if you are running Vault >= 1.2")
             __props__['period'] = period
-            if policies is not None:
+            if policies is not None and not opts.urn:
                 warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2")
             __props__['policies'] = policies
-            if role_name is None:
+            if role_name is None and not opts.urn:
                 raise TypeError("Missing required property 'role_name'")
             __props__['role_name'] = role_name
             __props__['role_type'] = role_type
@@ -264,11 +264,11 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__['token_policies'] = token_policies
             __props__['token_ttl'] = token_ttl
             __props__['token_type'] = token_type
-            if ttl is not None:
+            if ttl is not None and not opts.urn:
                 warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2")
             __props__['ttl'] = ttl
-            if user_claim is None:
+            if user_claim is None and not opts.urn:
                 raise TypeError("Missing required property 'user_claim'")
             __props__['user_claim'] = user_claim
             __props__['verbose_oidc_logging'] = verbose_oidc_logging

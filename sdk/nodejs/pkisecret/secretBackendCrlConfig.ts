@@ -84,7 +84,7 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
             inputs["expiry"] = state ? state.expiry : undefined;
         } else {
             const args = argsOrState as SecretBackendCrlConfigArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
             inputs["backend"] = args ? args.backend : undefined;

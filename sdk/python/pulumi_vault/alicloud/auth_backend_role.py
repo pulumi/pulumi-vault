@@ -108,11 +108,11 @@ class AuthBackendRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if arn is None:
+            if arn is None and not opts.urn:
                 raise TypeError("Missing required property 'arn'")
             __props__['arn'] = arn
             __props__['backend'] = backend
-            if role is None:
+            if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
             __props__['role'] = role
             __props__['token_bound_cidrs'] = token_bound_cidrs

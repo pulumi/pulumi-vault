@@ -162,7 +162,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__['token_ttl'] = token_ttl
             __props__['token_type'] = token_type
             __props__['upndomain'] = upndomain
-            if url is None:
+            if url is None and not opts.urn:
                 raise TypeError("Missing required property 'url'")
             __props__['url'] = url
             __props__['use_token_groups'] = use_token_groups

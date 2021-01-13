@@ -24,6 +24,7 @@ func NewProvider(ctx *pulumi.Context,
 	if args == nil {
 		args = &ProviderArgs{}
 	}
+
 	if args.Address == nil {
 		args.Address = pulumi.StringPtr(getEnvOrDefault("", nil, "VAULT_ADDR").(string))
 	}

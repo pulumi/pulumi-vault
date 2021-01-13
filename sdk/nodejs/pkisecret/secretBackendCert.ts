@@ -147,10 +147,10 @@ export class SecretBackendCert extends pulumi.CustomResource {
             inputs["uriSans"] = state ? state.uriSans : undefined;
         } else {
             const args = argsOrState as SecretBackendCertArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
-            if (!args || args.commonName === undefined) {
+            if ((!args || args.commonName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'commonName'");
             }
             inputs["altNames"] = args ? args.altNames : undefined;

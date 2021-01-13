@@ -115,11 +115,11 @@ class AuthBackend(pulumi.CustomResource):
 
             __props__['base_url'] = base_url
             __props__['description'] = description
-            if max_ttl is not None:
+            if max_ttl is not None and not opts.urn:
                 warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2")
             __props__['max_ttl'] = max_ttl
-            if organization is None:
+            if organization is None and not opts.urn:
                 raise TypeError("Missing required property 'organization'")
             __props__['organization'] = organization
             __props__['path'] = path
@@ -132,7 +132,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__['token_policies'] = token_policies
             __props__['token_ttl'] = token_ttl
             __props__['token_type'] = token_type
-            if ttl is not None:
+            if ttl is not None and not opts.urn:
                 warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2")
             __props__['ttl'] = ttl

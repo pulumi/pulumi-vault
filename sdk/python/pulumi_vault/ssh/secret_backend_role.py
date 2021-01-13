@@ -125,7 +125,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__['allowed_user_key_lengths'] = allowed_user_key_lengths
             __props__['allowed_users'] = allowed_users
             __props__['allowed_users_template'] = allowed_users_template
-            if backend is None:
+            if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__['backend'] = backend
             __props__['cidr_list'] = cidr_list
@@ -133,7 +133,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__['default_extensions'] = default_extensions
             __props__['default_user'] = default_user
             __props__['key_id_format'] = key_id_format
-            if key_type is None:
+            if key_type is None and not opts.urn:
                 raise TypeError("Missing required property 'key_type'")
             __props__['key_type'] = key_type
             __props__['max_ttl'] = max_ttl

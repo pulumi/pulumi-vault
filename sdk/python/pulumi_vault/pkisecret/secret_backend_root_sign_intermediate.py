@@ -54,7 +54,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             exclude_cn_from_sans=True,
             ou="My OU",
             organization="My organization",
-            opts=ResourceOptions(depends_on=["vault_pki_secret_backend_intermediate_cert_request.intermediate"]))
+            opts=pulumi.ResourceOptions(depends_on=["vault_pki_secret_backend_intermediate_cert_request.intermediate"]))
         ```
 
         :param str resource_name: The name of the resource.
@@ -98,14 +98,14 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['alt_names'] = alt_names
-            if backend is None:
+            if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__['backend'] = backend
-            if common_name is None:
+            if common_name is None and not opts.urn:
                 raise TypeError("Missing required property 'common_name'")
             __props__['common_name'] = common_name
             __props__['country'] = country
-            if csr is None:
+            if csr is None and not opts.urn:
                 raise TypeError("Missing required property 'csr'")
             __props__['csr'] = csr
             __props__['exclude_cn_from_sans'] = exclude_cn_from_sans

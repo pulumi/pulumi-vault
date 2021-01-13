@@ -40,14 +40,15 @@ type AuthBackendCert struct {
 // NewAuthBackendCert registers a new resource with the given unique name, arguments, and options.
 func NewAuthBackendCert(ctx *pulumi.Context,
 	name string, args *AuthBackendCertArgs, opts ...pulumi.ResourceOption) (*AuthBackendCert, error) {
-	if args == nil || args.AwsPublicCert == nil {
-		return nil, errors.New("missing required argument 'AwsPublicCert'")
-	}
-	if args == nil || args.CertName == nil {
-		return nil, errors.New("missing required argument 'CertName'")
-	}
 	if args == nil {
-		args = &AuthBackendCertArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.AwsPublicCert == nil {
+		return nil, errors.New("invalid value for required argument 'AwsPublicCert'")
+	}
+	if args.CertName == nil {
+		return nil, errors.New("invalid value for required argument 'CertName'")
 	}
 	var resource AuthBackendCert
 	err := ctx.RegisterResource("vault:aws/authBackendCert:AuthBackendCert", name, args, &resource, opts...)

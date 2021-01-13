@@ -69,11 +69,12 @@ type QuotaRateLimit struct {
 // NewQuotaRateLimit registers a new resource with the given unique name, arguments, and options.
 func NewQuotaRateLimit(ctx *pulumi.Context,
 	name string, args *QuotaRateLimitArgs, opts ...pulumi.ResourceOption) (*QuotaRateLimit, error) {
-	if args == nil || args.Rate == nil {
-		return nil, errors.New("missing required argument 'Rate'")
-	}
 	if args == nil {
-		args = &QuotaRateLimitArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Rate == nil {
+		return nil, errors.New("invalid value for required argument 'Rate'")
 	}
 	var resource QuotaRateLimit
 	err := ctx.RegisterResource("vault:index/quotaRateLimit:QuotaRateLimit", name, args, &resource, opts...)

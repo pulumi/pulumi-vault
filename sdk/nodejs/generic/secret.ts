@@ -86,10 +86,10 @@ export class Secret extends pulumi.CustomResource {
             inputs["path"] = state ? state.path : undefined;
         } else {
             const args = argsOrState as SecretArgs | undefined;
-            if (!args || args.dataJson === undefined) {
+            if ((!args || args.dataJson === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'dataJson'");
             }
-            if (!args || args.path === undefined) {
+            if ((!args || args.path === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'path'");
             }
             inputs["dataJson"] = args ? args.dataJson : undefined;

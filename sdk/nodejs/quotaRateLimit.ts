@@ -96,7 +96,7 @@ export class QuotaRateLimit extends pulumi.CustomResource {
             inputs["rate"] = state ? state.rate : undefined;
         } else {
             const args = argsOrState as QuotaRateLimitArgs | undefined;
-            if (!args || args.rate === undefined) {
+            if ((!args || args.rate === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'rate'");
             }
             inputs["name"] = args ? args.name : undefined;

@@ -93,11 +93,12 @@ type AuthBackendRoleSecretID struct {
 // NewAuthBackendRoleSecretID registers a new resource with the given unique name, arguments, and options.
 func NewAuthBackendRoleSecretID(ctx *pulumi.Context,
 	name string, args *AuthBackendRoleSecretIDArgs, opts ...pulumi.ResourceOption) (*AuthBackendRoleSecretID, error) {
-	if args == nil || args.RoleName == nil {
-		return nil, errors.New("missing required argument 'RoleName'")
-	}
 	if args == nil {
-		args = &AuthBackendRoleSecretIDArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.RoleName == nil {
+		return nil, errors.New("invalid value for required argument 'RoleName'")
 	}
 	var resource AuthBackendRoleSecretID
 	err := ctx.RegisterResource("vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID", name, args, &resource, opts...)

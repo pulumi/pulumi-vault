@@ -98,17 +98,18 @@ type SecretBackendRootSignIntermediate struct {
 // NewSecretBackendRootSignIntermediate registers a new resource with the given unique name, arguments, and options.
 func NewSecretBackendRootSignIntermediate(ctx *pulumi.Context,
 	name string, args *SecretBackendRootSignIntermediateArgs, opts ...pulumi.ResourceOption) (*SecretBackendRootSignIntermediate, error) {
-	if args == nil || args.Backend == nil {
-		return nil, errors.New("missing required argument 'Backend'")
-	}
-	if args == nil || args.CommonName == nil {
-		return nil, errors.New("missing required argument 'CommonName'")
-	}
-	if args == nil || args.Csr == nil {
-		return nil, errors.New("missing required argument 'Csr'")
-	}
 	if args == nil {
-		args = &SecretBackendRootSignIntermediateArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Backend == nil {
+		return nil, errors.New("invalid value for required argument 'Backend'")
+	}
+	if args.CommonName == nil {
+		return nil, errors.New("invalid value for required argument 'CommonName'")
+	}
+	if args.Csr == nil {
+		return nil, errors.New("invalid value for required argument 'Csr'")
 	}
 	var resource SecretBackendRootSignIntermediate
 	err := ctx.RegisterResource("vault:pkiSecret/secretBackendRootSignIntermediate:SecretBackendRootSignIntermediate", name, args, &resource, opts...)

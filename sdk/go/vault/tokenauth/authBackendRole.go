@@ -129,11 +129,12 @@ type AuthBackendRole struct {
 // NewAuthBackendRole registers a new resource with the given unique name, arguments, and options.
 func NewAuthBackendRole(ctx *pulumi.Context,
 	name string, args *AuthBackendRoleArgs, opts ...pulumi.ResourceOption) (*AuthBackendRole, error) {
-	if args == nil || args.RoleName == nil {
-		return nil, errors.New("missing required argument 'RoleName'")
-	}
 	if args == nil {
-		args = &AuthBackendRoleArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.RoleName == nil {
+		return nil, errors.New("invalid value for required argument 'RoleName'")
 	}
 	var resource AuthBackendRole
 	err := ctx.RegisterResource("vault:tokenauth/authBackendRole:AuthBackendRole", name, args, &resource, opts...)

@@ -145,7 +145,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__['allowed_domains'] = allowed_domains
             __props__['allowed_other_sans'] = allowed_other_sans
             __props__['allowed_uri_sans'] = allowed_uri_sans
-            if backend is None:
+            if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__['backend'] = backend
             __props__['basic_constraints_valid_for_non_ca'] = basic_constraints_valid_for_non_ca

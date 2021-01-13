@@ -126,6 +126,7 @@ func NewAuthBackend(ctx *pulumi.Context,
 	if args == nil {
 		args = &AuthBackendArgs{}
 	}
+
 	var resource AuthBackend
 	err := ctx.RegisterResource("vault:jwt/authBackend:AuthBackend", name, args, &resource, opts...)
 	if err != nil {

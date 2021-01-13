@@ -73,7 +73,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__['default_lease_ttl_seconds'] = default_lease_ttl_seconds
             __props__['description'] = description
             __props__['max_lease_ttl_seconds'] = max_lease_ttl_seconds
-            if path is None:
+            if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__['path'] = path
         super(SecretBackend, __self__).__init__(

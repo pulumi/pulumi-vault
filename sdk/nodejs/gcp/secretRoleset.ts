@@ -121,16 +121,16 @@ export class SecretRoleset extends pulumi.CustomResource {
             inputs["tokenScopes"] = state ? state.tokenScopes : undefined;
         } else {
             const args = argsOrState as SecretRolesetArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
-            if (!args || args.bindings === undefined) {
+            if ((!args || args.bindings === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'bindings'");
             }
-            if (!args || args.project === undefined) {
+            if ((!args || args.project === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'project'");
             }
-            if (!args || args.roleset === undefined) {
+            if ((!args || args.roleset === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'roleset'");
             }
             inputs["backend"] = args ? args.backend : undefined;

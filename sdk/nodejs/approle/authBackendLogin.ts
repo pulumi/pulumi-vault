@@ -132,7 +132,7 @@ export class AuthBackendLogin extends pulumi.CustomResource {
             inputs["secretId"] = state ? state.secretId : undefined;
         } else {
             const args = argsOrState as AuthBackendLoginArgs | undefined;
-            if (!args || args.roleId === undefined) {
+            if ((!args || args.roleId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'roleId'");
             }
             inputs["backend"] = args ? args.backend : undefined;

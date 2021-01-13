@@ -91,20 +91,21 @@ type SecretBackendStaticRole struct {
 // NewSecretBackendStaticRole registers a new resource with the given unique name, arguments, and options.
 func NewSecretBackendStaticRole(ctx *pulumi.Context,
 	name string, args *SecretBackendStaticRoleArgs, opts ...pulumi.ResourceOption) (*SecretBackendStaticRole, error) {
-	if args == nil || args.Backend == nil {
-		return nil, errors.New("missing required argument 'Backend'")
-	}
-	if args == nil || args.DbName == nil {
-		return nil, errors.New("missing required argument 'DbName'")
-	}
-	if args == nil || args.RotationPeriod == nil {
-		return nil, errors.New("missing required argument 'RotationPeriod'")
-	}
-	if args == nil || args.Username == nil {
-		return nil, errors.New("missing required argument 'Username'")
-	}
 	if args == nil {
-		args = &SecretBackendStaticRoleArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Backend == nil {
+		return nil, errors.New("invalid value for required argument 'Backend'")
+	}
+	if args.DbName == nil {
+		return nil, errors.New("invalid value for required argument 'DbName'")
+	}
+	if args.RotationPeriod == nil {
+		return nil, errors.New("invalid value for required argument 'RotationPeriod'")
+	}
+	if args.Username == nil {
+		return nil, errors.New("invalid value for required argument 'Username'")
 	}
 	var resource SecretBackendStaticRole
 	err := ctx.RegisterResource("vault:database/secretBackendStaticRole:SecretBackendStaticRole", name, args, &resource, opts...)

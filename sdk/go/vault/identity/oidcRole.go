@@ -41,11 +41,12 @@ type OidcRole struct {
 // NewOidcRole registers a new resource with the given unique name, arguments, and options.
 func NewOidcRole(ctx *pulumi.Context,
 	name string, args *OidcRoleArgs, opts ...pulumi.ResourceOption) (*OidcRole, error) {
-	if args == nil || args.Key == nil {
-		return nil, errors.New("missing required argument 'Key'")
-	}
 	if args == nil {
-		args = &OidcRoleArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Key == nil {
+		return nil, errors.New("invalid value for required argument 'Key'")
 	}
 	var resource OidcRole
 	err := ctx.RegisterResource("vault:identity/oidcRole:OidcRole", name, args, &resource, opts...)

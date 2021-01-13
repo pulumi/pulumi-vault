@@ -64,11 +64,12 @@ type SecretBackendConnection struct {
 // NewSecretBackendConnection registers a new resource with the given unique name, arguments, and options.
 func NewSecretBackendConnection(ctx *pulumi.Context,
 	name string, args *SecretBackendConnectionArgs, opts ...pulumi.ResourceOption) (*SecretBackendConnection, error) {
-	if args == nil || args.Backend == nil {
-		return nil, errors.New("missing required argument 'Backend'")
-	}
 	if args == nil {
-		args = &SecretBackendConnectionArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Backend == nil {
+		return nil, errors.New("invalid value for required argument 'Backend'")
 	}
 	var resource SecretBackendConnection
 	err := ctx.RegisterResource("vault:database/secretBackendConnection:SecretBackendConnection", name, args, &resource, opts...)

@@ -38,6 +38,7 @@ func NewEntity(ctx *pulumi.Context,
 	if args == nil {
 		args = &EntityArgs{}
 	}
+
 	var resource Entity
 	err := ctx.RegisterResource("vault:identity/entity:Entity", name, args, &resource, opts...)
 	if err != nil {

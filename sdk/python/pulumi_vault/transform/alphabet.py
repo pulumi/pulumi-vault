@@ -65,7 +65,7 @@ class Alphabet(pulumi.CustomResource):
 
             __props__['alphabet'] = alphabet
             __props__['name'] = name
-            if path is None:
+            if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__['path'] = path
         super(Alphabet, __self__).__init__(

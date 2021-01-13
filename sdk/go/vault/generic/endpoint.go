@@ -46,14 +46,15 @@ type Endpoint struct {
 // NewEndpoint registers a new resource with the given unique name, arguments, and options.
 func NewEndpoint(ctx *pulumi.Context,
 	name string, args *EndpointArgs, opts ...pulumi.ResourceOption) (*Endpoint, error) {
-	if args == nil || args.DataJson == nil {
-		return nil, errors.New("missing required argument 'DataJson'")
-	}
-	if args == nil || args.Path == nil {
-		return nil, errors.New("missing required argument 'Path'")
-	}
 	if args == nil {
-		args = &EndpointArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DataJson == nil {
+		return nil, errors.New("invalid value for required argument 'DataJson'")
+	}
+	if args.Path == nil {
+		return nil, errors.New("invalid value for required argument 'Path'")
 	}
 	var resource Endpoint
 	err := ctx.RegisterResource("vault:generic/endpoint:Endpoint", name, args, &resource, opts...)

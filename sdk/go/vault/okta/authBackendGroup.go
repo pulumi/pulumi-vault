@@ -70,14 +70,15 @@ type AuthBackendGroup struct {
 // NewAuthBackendGroup registers a new resource with the given unique name, arguments, and options.
 func NewAuthBackendGroup(ctx *pulumi.Context,
 	name string, args *AuthBackendGroupArgs, opts ...pulumi.ResourceOption) (*AuthBackendGroup, error) {
-	if args == nil || args.GroupName == nil {
-		return nil, errors.New("missing required argument 'GroupName'")
-	}
-	if args == nil || args.Path == nil {
-		return nil, errors.New("missing required argument 'Path'")
-	}
 	if args == nil {
-		args = &AuthBackendGroupArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.GroupName == nil {
+		return nil, errors.New("invalid value for required argument 'GroupName'")
+	}
+	if args.Path == nil {
+		return nil, errors.New("invalid value for required argument 'Path'")
 	}
 	var resource AuthBackendGroup
 	err := ctx.RegisterResource("vault:okta/authBackendGroup:AuthBackendGroup", name, args, &resource, opts...)

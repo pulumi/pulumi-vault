@@ -44,10 +44,10 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if allowed_client_id is None:
+            if allowed_client_id is None and not opts.urn:
                 raise TypeError("Missing required property 'allowed_client_id'")
             __props__['allowed_client_id'] = allowed_client_id
-            if key_name is None:
+            if key_name is None and not opts.urn:
                 raise TypeError("Missing required property 'key_name'")
             __props__['key_name'] = key_name
         super(OidcKeyAllowedClientID, __self__).__init__(

@@ -149,7 +149,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             inputs["verifyConnection"] = state ? state.verifyConnection : undefined;
         } else {
             const args = argsOrState as SecretBackendConnectionArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
             inputs["allowedRoles"] = args ? args.allowedRoles : undefined;

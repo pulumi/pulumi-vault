@@ -54,14 +54,15 @@ type RgpPolicy struct {
 // NewRgpPolicy registers a new resource with the given unique name, arguments, and options.
 func NewRgpPolicy(ctx *pulumi.Context,
 	name string, args *RgpPolicyArgs, opts ...pulumi.ResourceOption) (*RgpPolicy, error) {
-	if args == nil || args.EnforcementLevel == nil {
-		return nil, errors.New("missing required argument 'EnforcementLevel'")
-	}
-	if args == nil || args.Policy == nil {
-		return nil, errors.New("missing required argument 'Policy'")
-	}
 	if args == nil {
-		args = &RgpPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.EnforcementLevel == nil {
+		return nil, errors.New("invalid value for required argument 'EnforcementLevel'")
+	}
+	if args.Policy == nil {
+		return nil, errors.New("invalid value for required argument 'Policy'")
 	}
 	var resource RgpPolicy
 	err := ctx.RegisterResource("vault:index/rgpPolicy:RgpPolicy", name, args, &resource, opts...)

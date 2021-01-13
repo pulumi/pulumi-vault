@@ -59,17 +59,18 @@ type EgpPolicy struct {
 // NewEgpPolicy registers a new resource with the given unique name, arguments, and options.
 func NewEgpPolicy(ctx *pulumi.Context,
 	name string, args *EgpPolicyArgs, opts ...pulumi.ResourceOption) (*EgpPolicy, error) {
-	if args == nil || args.EnforcementLevel == nil {
-		return nil, errors.New("missing required argument 'EnforcementLevel'")
-	}
-	if args == nil || args.Paths == nil {
-		return nil, errors.New("missing required argument 'Paths'")
-	}
-	if args == nil || args.Policy == nil {
-		return nil, errors.New("missing required argument 'Policy'")
-	}
 	if args == nil {
-		args = &EgpPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.EnforcementLevel == nil {
+		return nil, errors.New("invalid value for required argument 'EnforcementLevel'")
+	}
+	if args.Paths == nil {
+		return nil, errors.New("invalid value for required argument 'Paths'")
+	}
+	if args.Policy == nil {
+		return nil, errors.New("invalid value for required argument 'Policy'")
 	}
 	var resource EgpPolicy
 	err := ctx.RegisterResource("vault:index/egpPolicy:EgpPolicy", name, args, &resource, opts...)

@@ -61,6 +61,7 @@ func NewSecretBackendCa(ctx *pulumi.Context,
 	if args == nil {
 		args = &SecretBackendCaArgs{}
 	}
+
 	var resource SecretBackendCa
 	err := ctx.RegisterResource("vault:ssh/secretBackendCa:SecretBackendCa", name, args, &resource, opts...)
 	if err != nil {

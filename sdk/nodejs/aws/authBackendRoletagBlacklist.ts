@@ -84,7 +84,7 @@ export class AuthBackendRoletagBlacklist extends pulumi.CustomResource {
             inputs["safetyBuffer"] = state ? state.safetyBuffer : undefined;
         } else {
             const args = argsOrState as AuthBackendRoletagBlacklistArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
             inputs["backend"] = args ? args.backend : undefined;

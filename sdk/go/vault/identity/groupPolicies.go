@@ -114,14 +114,15 @@ type GroupPolicies struct {
 // NewGroupPolicies registers a new resource with the given unique name, arguments, and options.
 func NewGroupPolicies(ctx *pulumi.Context,
 	name string, args *GroupPoliciesArgs, opts ...pulumi.ResourceOption) (*GroupPolicies, error) {
-	if args == nil || args.GroupId == nil {
-		return nil, errors.New("missing required argument 'GroupId'")
-	}
-	if args == nil || args.Policies == nil {
-		return nil, errors.New("missing required argument 'Policies'")
-	}
 	if args == nil {
-		args = &GroupPoliciesArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.GroupId == nil {
+		return nil, errors.New("invalid value for required argument 'GroupId'")
+	}
+	if args.Policies == nil {
+		return nil, errors.New("invalid value for required argument 'Policies'")
 	}
 	var resource GroupPolicies
 	err := ctx.RegisterResource("vault:identity/groupPolicies:GroupPolicies", name, args, &resource, opts...)

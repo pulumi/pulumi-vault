@@ -60,11 +60,12 @@ type Alphabet struct {
 // NewAlphabet registers a new resource with the given unique name, arguments, and options.
 func NewAlphabet(ctx *pulumi.Context,
 	name string, args *AlphabetArgs, opts ...pulumi.ResourceOption) (*Alphabet, error) {
-	if args == nil || args.Path == nil {
-		return nil, errors.New("missing required argument 'Path'")
-	}
 	if args == nil {
-		args = &AlphabetArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Path == nil {
+		return nil, errors.New("invalid value for required argument 'Path'")
 	}
 	var resource Alphabet
 	err := ctx.RegisterResource("vault:transform/alphabet:Alphabet", name, args, &resource, opts...)

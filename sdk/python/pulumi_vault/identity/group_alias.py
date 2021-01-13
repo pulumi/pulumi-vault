@@ -67,13 +67,13 @@ class GroupAlias(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if canonical_id is None:
+            if canonical_id is None and not opts.urn:
                 raise TypeError("Missing required property 'canonical_id'")
             __props__['canonical_id'] = canonical_id
-            if mount_accessor is None:
+            if mount_accessor is None and not opts.urn:
                 raise TypeError("Missing required property 'mount_accessor'")
             __props__['mount_accessor'] = mount_accessor
-            if name is None:
+            if name is None and not opts.urn:
                 raise TypeError("Missing required property 'name'")
             __props__['name'] = name
         super(GroupAlias, __self__).__init__(

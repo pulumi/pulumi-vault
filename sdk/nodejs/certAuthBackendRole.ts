@@ -234,7 +234,7 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
             inputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as CertAuthBackendRoleArgs | undefined;
-            if (!args || args.certificate === undefined) {
+            if ((!args || args.certificate === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'certificate'");
             }
             inputs["allowedCommonNames"] = args ? args.allowedCommonNames : undefined;

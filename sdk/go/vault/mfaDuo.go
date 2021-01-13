@@ -81,20 +81,21 @@ type MfaDuo struct {
 // NewMfaDuo registers a new resource with the given unique name, arguments, and options.
 func NewMfaDuo(ctx *pulumi.Context,
 	name string, args *MfaDuoArgs, opts ...pulumi.ResourceOption) (*MfaDuo, error) {
-	if args == nil || args.ApiHostname == nil {
-		return nil, errors.New("missing required argument 'ApiHostname'")
-	}
-	if args == nil || args.IntegrationKey == nil {
-		return nil, errors.New("missing required argument 'IntegrationKey'")
-	}
-	if args == nil || args.MountAccessor == nil {
-		return nil, errors.New("missing required argument 'MountAccessor'")
-	}
-	if args == nil || args.SecretKey == nil {
-		return nil, errors.New("missing required argument 'SecretKey'")
-	}
 	if args == nil {
-		args = &MfaDuoArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ApiHostname == nil {
+		return nil, errors.New("invalid value for required argument 'ApiHostname'")
+	}
+	if args.IntegrationKey == nil {
+		return nil, errors.New("invalid value for required argument 'IntegrationKey'")
+	}
+	if args.MountAccessor == nil {
+		return nil, errors.New("invalid value for required argument 'MountAccessor'")
+	}
+	if args.SecretKey == nil {
+		return nil, errors.New("invalid value for required argument 'SecretKey'")
 	}
 	var resource MfaDuo
 	err := ctx.RegisterResource("vault:index/mfaDuo:MfaDuo", name, args, &resource, opts...)

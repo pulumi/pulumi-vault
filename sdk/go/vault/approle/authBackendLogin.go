@@ -94,11 +94,12 @@ type AuthBackendLogin struct {
 // NewAuthBackendLogin registers a new resource with the given unique name, arguments, and options.
 func NewAuthBackendLogin(ctx *pulumi.Context,
 	name string, args *AuthBackendLoginArgs, opts ...pulumi.ResourceOption) (*AuthBackendLogin, error) {
-	if args == nil || args.RoleId == nil {
-		return nil, errors.New("missing required argument 'RoleId'")
-	}
 	if args == nil {
-		args = &AuthBackendLoginArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.RoleId == nil {
+		return nil, errors.New("invalid value for required argument 'RoleId'")
 	}
 	var resource AuthBackendLogin
 	err := ctx.RegisterResource("vault:appRole/authBackendLogin:AuthBackendLogin", name, args, &resource, opts...)

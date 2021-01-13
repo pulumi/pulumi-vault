@@ -67,14 +67,14 @@ class EgpPolicy(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if enforcement_level is None:
+            if enforcement_level is None and not opts.urn:
                 raise TypeError("Missing required property 'enforcement_level'")
             __props__['enforcement_level'] = enforcement_level
             __props__['name'] = name
-            if paths is None:
+            if paths is None and not opts.urn:
                 raise TypeError("Missing required property 'paths'")
             __props__['paths'] = paths
-            if policy is None:
+            if policy is None and not opts.urn:
                 raise TypeError("Missing required property 'policy'")
             __props__['policy'] = policy
         super(EgpPolicy, __self__).__init__(

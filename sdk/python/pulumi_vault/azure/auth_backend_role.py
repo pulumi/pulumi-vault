@@ -159,19 +159,19 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__['bound_scale_sets'] = bound_scale_sets
             __props__['bound_service_principal_ids'] = bound_service_principal_ids
             __props__['bound_subscription_ids'] = bound_subscription_ids
-            if max_ttl is not None:
+            if max_ttl is not None and not opts.urn:
                 warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2")
             __props__['max_ttl'] = max_ttl
-            if period is not None:
+            if period is not None and not opts.urn:
                 warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("period is deprecated: use `token_period` instead if you are running Vault >= 1.2")
             __props__['period'] = period
-            if policies is not None:
+            if policies is not None and not opts.urn:
                 warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2")
             __props__['policies'] = policies
-            if role is None:
+            if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
             __props__['role'] = role
             __props__['token_bound_cidrs'] = token_bound_cidrs
@@ -183,7 +183,7 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__['token_policies'] = token_policies
             __props__['token_ttl'] = token_ttl
             __props__['token_type'] = token_type
-            if ttl is not None:
+            if ttl is not None and not opts.urn:
                 warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2")
             __props__['ttl'] = ttl

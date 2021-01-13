@@ -95,42 +95,42 @@ class Team(pulumi.CustomResource):
 
             __props__['backend'] = backend
             __props__['policies'] = policies
-            if team is None:
+            if team is None and not opts.urn:
                 raise TypeError("Missing required property 'team'")
             __props__['team'] = team
-            if token_bound_cidrs is not None:
+            if token_bound_cidrs is not None and not opts.urn:
                 warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
                 pulumi.log.warn("token_bound_cidrs is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.")
             __props__['token_bound_cidrs'] = token_bound_cidrs
-            if token_explicit_max_ttl is not None:
+            if token_explicit_max_ttl is not None and not opts.urn:
                 warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
                 pulumi.log.warn("token_explicit_max_ttl is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.")
             __props__['token_explicit_max_ttl'] = token_explicit_max_ttl
-            if token_max_ttl is not None:
+            if token_max_ttl is not None and not opts.urn:
                 warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
                 pulumi.log.warn("token_max_ttl is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.")
             __props__['token_max_ttl'] = token_max_ttl
-            if token_no_default_policy is not None:
+            if token_no_default_policy is not None and not opts.urn:
                 warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
                 pulumi.log.warn("token_no_default_policy is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.")
             __props__['token_no_default_policy'] = token_no_default_policy
-            if token_num_uses is not None:
+            if token_num_uses is not None and not opts.urn:
                 warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
                 pulumi.log.warn("token_num_uses is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.")
             __props__['token_num_uses'] = token_num_uses
-            if token_period is not None:
+            if token_period is not None and not opts.urn:
                 warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
                 pulumi.log.warn("token_period is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.")
             __props__['token_period'] = token_period
-            if token_policies is not None:
+            if token_policies is not None and not opts.urn:
                 warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
                 pulumi.log.warn("token_policies is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.")
             __props__['token_policies'] = token_policies
-            if token_ttl is not None:
+            if token_ttl is not None and not opts.urn:
                 warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
                 pulumi.log.warn("token_ttl is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.")
             __props__['token_ttl'] = token_ttl
-            if token_type is not None:
+            if token_type is not None and not opts.urn:
                 warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
                 pulumi.log.warn("token_type is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.")
             __props__['token_type'] = token_type

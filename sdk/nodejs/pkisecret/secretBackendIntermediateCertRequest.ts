@@ -157,13 +157,13 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
             inputs["uriSans"] = state ? state.uriSans : undefined;
         } else {
             const args = argsOrState as SecretBackendIntermediateCertRequestArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
-            if (!args || args.commonName === undefined) {
+            if ((!args || args.commonName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'commonName'");
             }
-            if (!args || args.type === undefined) {
+            if ((!args || args.type === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'type'");
             }
             inputs["altNames"] = args ? args.altNames : undefined;

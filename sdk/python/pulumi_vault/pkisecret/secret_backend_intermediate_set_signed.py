@@ -44,10 +44,10 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if backend is None:
+            if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__['backend'] = backend
-            if certificate is None:
+            if certificate is None and not opts.urn:
                 raise TypeError("Missing required property 'certificate'")
             __props__['certificate'] = certificate
         super(SecretBackendIntermediateSetSigned, __self__).__init__(

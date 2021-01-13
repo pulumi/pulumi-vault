@@ -67,7 +67,7 @@ class BackendRole(pulumi.CustomResource):
             __props__['backend'] = backend
             __props__['description'] = description
             __props__['max_ttl'] = max_ttl
-            if role is None:
+            if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
             __props__['role'] = role
             __props__['ttl'] = ttl

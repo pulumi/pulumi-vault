@@ -80,23 +80,23 @@ class AuthBackend(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if default_lease_ttl_seconds is not None:
+            if default_lease_ttl_seconds is not None and not opts.urn:
                 warnings.warn("""Use the tune configuration block to avoid forcing creation of new resource on an update""", DeprecationWarning)
                 pulumi.log.warn("default_lease_ttl_seconds is deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update")
             __props__['default_lease_ttl_seconds'] = default_lease_ttl_seconds
             __props__['description'] = description
-            if listing_visibility is not None:
+            if listing_visibility is not None and not opts.urn:
                 warnings.warn("""Use the tune configuration block to avoid forcing creation of new resource on an update""", DeprecationWarning)
                 pulumi.log.warn("listing_visibility is deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update")
             __props__['listing_visibility'] = listing_visibility
             __props__['local'] = local
-            if max_lease_ttl_seconds is not None:
+            if max_lease_ttl_seconds is not None and not opts.urn:
                 warnings.warn("""Use the tune configuration block to avoid forcing creation of new resource on an update""", DeprecationWarning)
                 pulumi.log.warn("max_lease_ttl_seconds is deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update")
             __props__['max_lease_ttl_seconds'] = max_lease_ttl_seconds
             __props__['path'] = path
             __props__['tune'] = tune
-            if type is None:
+            if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__['type'] = type
             __props__['accessor'] = None

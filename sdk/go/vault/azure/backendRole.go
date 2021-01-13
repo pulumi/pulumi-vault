@@ -38,11 +38,12 @@ type BackendRole struct {
 // NewBackendRole registers a new resource with the given unique name, arguments, and options.
 func NewBackendRole(ctx *pulumi.Context,
 	name string, args *BackendRoleArgs, opts ...pulumi.ResourceOption) (*BackendRole, error) {
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &BackendRoleArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource BackendRole
 	err := ctx.RegisterResource("vault:azure/backendRole:BackendRole", name, args, &resource, opts...)

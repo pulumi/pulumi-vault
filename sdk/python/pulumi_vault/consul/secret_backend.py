@@ -62,7 +62,7 @@ class SecretBackend(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if address is None:
+            if address is None and not opts.urn:
                 raise TypeError("Missing required property 'address'")
             __props__['address'] = address
             __props__['default_lease_ttl_seconds'] = default_lease_ttl_seconds
@@ -70,7 +70,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__['max_lease_ttl_seconds'] = max_lease_ttl_seconds
             __props__['path'] = path
             __props__['scheme'] = scheme
-            if token is None:
+            if token is None and not opts.urn:
                 raise TypeError("Missing required property 'token'")
             __props__['token'] = token
         super(SecretBackend, __self__).__init__(

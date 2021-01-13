@@ -81,11 +81,12 @@ type SecretBackendRole struct {
 // NewSecretBackendRole registers a new resource with the given unique name, arguments, and options.
 func NewSecretBackendRole(ctx *pulumi.Context,
 	name string, args *SecretBackendRoleArgs, opts ...pulumi.ResourceOption) (*SecretBackendRole, error) {
-	if args == nil || args.Policies == nil {
-		return nil, errors.New("missing required argument 'Policies'")
-	}
 	if args == nil {
-		args = &SecretBackendRoleArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Policies == nil {
+		return nil, errors.New("invalid value for required argument 'Policies'")
 	}
 	var resource SecretBackendRole
 	err := ctx.RegisterResource("vault:consul/secretBackendRole:SecretBackendRole", name, args, &resource, opts...)

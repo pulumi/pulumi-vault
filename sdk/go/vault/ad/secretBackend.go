@@ -120,14 +120,15 @@ type SecretBackend struct {
 // NewSecretBackend registers a new resource with the given unique name, arguments, and options.
 func NewSecretBackend(ctx *pulumi.Context,
 	name string, args *SecretBackendArgs, opts ...pulumi.ResourceOption) (*SecretBackend, error) {
-	if args == nil || args.Binddn == nil {
-		return nil, errors.New("missing required argument 'Binddn'")
-	}
-	if args == nil || args.Bindpass == nil {
-		return nil, errors.New("missing required argument 'Bindpass'")
-	}
 	if args == nil {
-		args = &SecretBackendArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Binddn == nil {
+		return nil, errors.New("invalid value for required argument 'Binddn'")
+	}
+	if args.Bindpass == nil {
+		return nil, errors.New("invalid value for required argument 'Bindpass'")
 	}
 	var resource SecretBackend
 	err := ctx.RegisterResource("vault:ad/secretBackend:SecretBackend", name, args, &resource, opts...)

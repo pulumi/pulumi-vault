@@ -62,10 +62,10 @@ export class EntityAlias extends pulumi.CustomResource {
             inputs["name"] = state ? state.name : undefined;
         } else {
             const args = argsOrState as EntityAliasArgs | undefined;
-            if (!args || args.canonicalId === undefined) {
+            if ((!args || args.canonicalId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'canonicalId'");
             }
-            if (!args || args.mountAccessor === undefined) {
+            if ((!args || args.mountAccessor === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'mountAccessor'");
             }
             inputs["canonicalId"] = args ? args.canonicalId : undefined;

@@ -63,7 +63,7 @@ class AuthBackendRoleTag(pulumi.CustomResource):
             __props__['instance_id'] = instance_id
             __props__['max_ttl'] = max_ttl
             __props__['policies'] = policies
-            if role is None:
+            if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
             __props__['role'] = role
             __props__['tag_key'] = None

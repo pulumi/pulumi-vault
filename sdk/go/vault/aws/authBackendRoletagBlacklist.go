@@ -61,11 +61,12 @@ type AuthBackendRoletagBlacklist struct {
 // NewAuthBackendRoletagBlacklist registers a new resource with the given unique name, arguments, and options.
 func NewAuthBackendRoletagBlacklist(ctx *pulumi.Context,
 	name string, args *AuthBackendRoletagBlacklistArgs, opts ...pulumi.ResourceOption) (*AuthBackendRoletagBlacklist, error) {
-	if args == nil || args.Backend == nil {
-		return nil, errors.New("missing required argument 'Backend'")
-	}
 	if args == nil {
-		args = &AuthBackendRoletagBlacklistArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Backend == nil {
+		return nil, errors.New("invalid value for required argument 'Backend'")
 	}
 	var resource AuthBackendRoletagBlacklist
 	err := ctx.RegisterResource("vault:aws/authBackendRoletagBlacklist:AuthBackendRoletagBlacklist", name, args, &resource, opts...)

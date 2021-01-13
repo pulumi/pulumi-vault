@@ -83,11 +83,11 @@ class Mount(pulumi.CustomResource):
             __props__['local'] = local
             __props__['max_lease_ttl_seconds'] = max_lease_ttl_seconds
             __props__['options'] = options
-            if path is None:
+            if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__['path'] = path
             __props__['seal_wrap'] = seal_wrap
-            if type is None:
+            if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__['type'] = type
             __props__['accessor'] = None

@@ -92,10 +92,10 @@ export class SecretBackend extends pulumi.CustomResource {
             inputs["token"] = state ? state.token : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
-            if (!args || args.address === undefined) {
+            if ((!args || args.address === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'address'");
             }
-            if (!args || args.token === undefined) {
+            if ((!args || args.token === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'token'");
             }
             inputs["address"] = args ? args.address : undefined;

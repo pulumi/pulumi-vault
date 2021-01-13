@@ -99,6 +99,7 @@ func NewGroup(ctx *pulumi.Context,
 	if args == nil {
 		args = &GroupArgs{}
 	}
+
 	var resource Group
 	err := ctx.RegisterResource("vault:identity/group:Group", name, args, &resource, opts...)
 	if err != nil {

@@ -7,3 +7,29 @@ from .auth_backend_config import *
 from .auth_backend_role import *
 from .get_auth_backend_config import *
 from .get_auth_backend_role import *
+
+def _register_module():
+    import pulumi
+    from .. import _utilities
+
+
+    class Module(pulumi.runtime.ResourceModule):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Module._version
+
+        def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+            if typ == "vault:kubernetes/authBackendConfig:AuthBackendConfig":
+                return AuthBackendConfig(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "vault:kubernetes/authBackendRole:AuthBackendRole":
+                return AuthBackendRole(name, pulumi.ResourceOptions(urn=urn))
+            else:
+                raise Exception(f"unknown resource type {typ}")
+
+
+    _module_instance = Module()
+    pulumi.runtime.register_resource_module("vault", "kubernetes/authBackendConfig", _module_instance)
+    pulumi.runtime.register_resource_module("vault", "kubernetes/authBackendRole", _module_instance)
+
+_register_module()

@@ -85,10 +85,10 @@ class SecretBackendRootCert(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['alt_names'] = alt_names
-            if backend is None:
+            if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__['backend'] = backend
-            if common_name is None:
+            if common_name is None and not opts.urn:
                 raise TypeError("Missing required property 'common_name'")
             __props__['common_name'] = common_name
             __props__['country'] = country
@@ -108,7 +108,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
             __props__['province'] = province
             __props__['street_address'] = street_address
             __props__['ttl'] = ttl
-            if type is None:
+            if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__['type'] = type
             __props__['uri_sans'] = uri_sans

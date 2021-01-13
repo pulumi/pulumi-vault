@@ -46,17 +46,18 @@ type SecretBackend struct {
 // NewSecretBackend registers a new resource with the given unique name, arguments, and options.
 func NewSecretBackend(ctx *pulumi.Context,
 	name string, args *SecretBackendArgs, opts ...pulumi.ResourceOption) (*SecretBackend, error) {
-	if args == nil || args.ConnectionUri == nil {
-		return nil, errors.New("missing required argument 'ConnectionUri'")
-	}
-	if args == nil || args.Password == nil {
-		return nil, errors.New("missing required argument 'Password'")
-	}
-	if args == nil || args.Username == nil {
-		return nil, errors.New("missing required argument 'Username'")
-	}
 	if args == nil {
-		args = &SecretBackendArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ConnectionUri == nil {
+		return nil, errors.New("invalid value for required argument 'ConnectionUri'")
+	}
+	if args.Password == nil {
+		return nil, errors.New("invalid value for required argument 'Password'")
+	}
+	if args.Username == nil {
+		return nil, errors.New("invalid value for required argument 'Username'")
 	}
 	var resource SecretBackend
 	err := ctx.RegisterResource("vault:rabbitMq/secretBackend:SecretBackend", name, args, &resource, opts...)
