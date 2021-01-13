@@ -73,6 +73,7 @@ func NewAuthBackendIdentityWhitelist(ctx *pulumi.Context,
 	if args == nil {
 		args = &AuthBackendIdentityWhitelistArgs{}
 	}
+
 	var resource AuthBackendIdentityWhitelist
 	err := ctx.RegisterResource("vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist", name, args, &resource, opts...)
 	if err != nil {

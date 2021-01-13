@@ -85,18 +85,18 @@ class MfaDuo(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if api_hostname is None:
+            if api_hostname is None and not opts.urn:
                 raise TypeError("Missing required property 'api_hostname'")
             __props__['api_hostname'] = api_hostname
-            if integration_key is None:
+            if integration_key is None and not opts.urn:
                 raise TypeError("Missing required property 'integration_key'")
             __props__['integration_key'] = integration_key
-            if mount_accessor is None:
+            if mount_accessor is None and not opts.urn:
                 raise TypeError("Missing required property 'mount_accessor'")
             __props__['mount_accessor'] = mount_accessor
             __props__['name'] = name
             __props__['push_info'] = push_info
-            if secret_key is None:
+            if secret_key is None and not opts.urn:
                 raise TypeError("Missing required property 'secret_key'")
             __props__['secret_key'] = secret_key
             __props__['username_format'] = username_format

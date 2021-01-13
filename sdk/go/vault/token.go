@@ -68,6 +68,7 @@ func NewToken(ctx *pulumi.Context,
 	if args == nil {
 		args = &TokenArgs{}
 	}
+
 	var resource Token
 	err := ctx.RegisterResource("vault:index/token:Token", name, args, &resource, opts...)
 	if err != nil {

@@ -74,11 +74,12 @@ type AuthBackendGroup struct {
 // NewAuthBackendGroup registers a new resource with the given unique name, arguments, and options.
 func NewAuthBackendGroup(ctx *pulumi.Context,
 	name string, args *AuthBackendGroupArgs, opts ...pulumi.ResourceOption) (*AuthBackendGroup, error) {
-	if args == nil || args.Groupname == nil {
-		return nil, errors.New("missing required argument 'Groupname'")
-	}
 	if args == nil {
-		args = &AuthBackendGroupArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Groupname == nil {
+		return nil, errors.New("invalid value for required argument 'Groupname'")
 	}
 	var resource AuthBackendGroup
 	err := ctx.RegisterResource("vault:ldap/authBackendGroup:AuthBackendGroup", name, args, &resource, opts...)

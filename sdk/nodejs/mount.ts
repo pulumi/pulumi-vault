@@ -119,10 +119,10 @@ export class Mount extends pulumi.CustomResource {
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as MountArgs | undefined;
-            if (!args || args.path === undefined) {
+            if ((!args || args.path === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'path'");
             }
-            if (!args || args.type === undefined) {
+            if ((!args || args.type === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'type'");
             }
             inputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;

@@ -41,14 +41,15 @@ type NomadSecretRole struct {
 // NewNomadSecretRole registers a new resource with the given unique name, arguments, and options.
 func NewNomadSecretRole(ctx *pulumi.Context,
 	name string, args *NomadSecretRoleArgs, opts ...pulumi.ResourceOption) (*NomadSecretRole, error) {
-	if args == nil || args.Backend == nil {
-		return nil, errors.New("missing required argument 'Backend'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &NomadSecretRoleArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Backend == nil {
+		return nil, errors.New("invalid value for required argument 'Backend'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource NomadSecretRole
 	err := ctx.RegisterResource("vault:index/nomadSecretRole:NomadSecretRole", name, args, &resource, opts...)

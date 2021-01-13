@@ -92,14 +92,15 @@ type Audit struct {
 // NewAudit registers a new resource with the given unique name, arguments, and options.
 func NewAudit(ctx *pulumi.Context,
 	name string, args *AuditArgs, opts ...pulumi.ResourceOption) (*Audit, error) {
-	if args == nil || args.Options == nil {
-		return nil, errors.New("missing required argument 'Options'")
-	}
-	if args == nil || args.Type == nil {
-		return nil, errors.New("missing required argument 'Type'")
-	}
 	if args == nil {
-		args = &AuditArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Options == nil {
+		return nil, errors.New("invalid value for required argument 'Options'")
+	}
+	if args.Type == nil {
+		return nil, errors.New("invalid value for required argument 'Type'")
 	}
 	var resource Audit
 	err := ctx.RegisterResource("vault:index/audit:Audit", name, args, &resource, opts...)

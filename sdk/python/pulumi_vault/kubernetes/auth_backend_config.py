@@ -83,7 +83,7 @@ class AuthBackendConfig(pulumi.CustomResource):
             __props__['disable_local_ca_jwt'] = disable_local_ca_jwt
             __props__['issuer'] = issuer
             __props__['kubernetes_ca_cert'] = kubernetes_ca_cert
-            if kubernetes_host is None:
+            if kubernetes_host is None and not opts.urn:
                 raise TypeError("Missing required property 'kubernetes_host'")
             __props__['kubernetes_host'] = kubernetes_host
             __props__['pem_keys'] = pem_keys

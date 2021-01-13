@@ -88,7 +88,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['allowed_roles'] = allowed_roles
-            if backend is None:
+            if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__['backend'] = backend
             __props__['cassandra'] = cassandra

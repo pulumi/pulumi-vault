@@ -132,11 +132,12 @@ type AuthBackend struct {
 // NewAuthBackend registers a new resource with the given unique name, arguments, and options.
 func NewAuthBackend(ctx *pulumi.Context,
 	name string, args *AuthBackendArgs, opts ...pulumi.ResourceOption) (*AuthBackend, error) {
-	if args == nil || args.Url == nil {
-		return nil, errors.New("missing required argument 'Url'")
-	}
 	if args == nil {
-		args = &AuthBackendArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Url == nil {
+		return nil, errors.New("invalid value for required argument 'Url'")
 	}
 	var resource AuthBackend
 	err := ctx.RegisterResource("vault:ldap/authBackend:AuthBackend", name, args, &resource, opts...)

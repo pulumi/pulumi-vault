@@ -34,14 +34,15 @@ type AuthBackendStsRole struct {
 // NewAuthBackendStsRole registers a new resource with the given unique name, arguments, and options.
 func NewAuthBackendStsRole(ctx *pulumi.Context,
 	name string, args *AuthBackendStsRoleArgs, opts ...pulumi.ResourceOption) (*AuthBackendStsRole, error) {
-	if args == nil || args.AccountId == nil {
-		return nil, errors.New("missing required argument 'AccountId'")
-	}
-	if args == nil || args.StsRole == nil {
-		return nil, errors.New("missing required argument 'StsRole'")
-	}
 	if args == nil {
-		args = &AuthBackendStsRoleArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.AccountId == nil {
+		return nil, errors.New("invalid value for required argument 'AccountId'")
+	}
+	if args.StsRole == nil {
+		return nil, errors.New("invalid value for required argument 'StsRole'")
 	}
 	var resource AuthBackendStsRole
 	err := ctx.RegisterResource("vault:aws/authBackendStsRole:AuthBackendStsRole", name, args, &resource, opts...)

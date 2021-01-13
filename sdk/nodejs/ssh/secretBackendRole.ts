@@ -192,10 +192,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
-            if (!args || args.keyType === undefined) {
+            if ((!args || args.keyType === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'keyType'");
             }
             inputs["algorithmSigner"] = args ? args.algorithmSigner : undefined;

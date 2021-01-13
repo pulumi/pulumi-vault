@@ -113,7 +113,7 @@ export class AuthBackendConfig extends pulumi.CustomResource {
             inputs["tokenReviewerJwt"] = state ? state.tokenReviewerJwt : undefined;
         } else {
             const args = argsOrState as AuthBackendConfigArgs | undefined;
-            if (!args || args.kubernetesHost === undefined) {
+            if ((!args || args.kubernetesHost === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'kubernetesHost'");
             }
             inputs["backend"] = args ? args.backend : undefined;

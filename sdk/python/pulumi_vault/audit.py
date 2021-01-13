@@ -89,11 +89,11 @@ class Audit(pulumi.CustomResource):
 
             __props__['description'] = description
             __props__['local'] = local
-            if options is None:
+            if options is None and not opts.urn:
                 raise TypeError("Missing required property 'options'")
             __props__['options'] = options
             __props__['path'] = path
-            if type is None:
+            if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__['type'] = type
         super(Audit, __self__).__init__(

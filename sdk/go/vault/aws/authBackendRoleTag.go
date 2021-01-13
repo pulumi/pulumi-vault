@@ -40,11 +40,12 @@ type AuthBackendRoleTag struct {
 // NewAuthBackendRoleTag registers a new resource with the given unique name, arguments, and options.
 func NewAuthBackendRoleTag(ctx *pulumi.Context,
 	name string, args *AuthBackendRoleTagArgs, opts ...pulumi.ResourceOption) (*AuthBackendRoleTag, error) {
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &AuthBackendRoleTagArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource AuthBackendRoleTag
 	err := ctx.RegisterResource("vault:aws/authBackendRoleTag:AuthBackendRoleTag", name, args, &resource, opts...)

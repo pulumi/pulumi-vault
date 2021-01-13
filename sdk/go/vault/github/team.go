@@ -108,11 +108,12 @@ type Team struct {
 // NewTeam registers a new resource with the given unique name, arguments, and options.
 func NewTeam(ctx *pulumi.Context,
 	name string, args *TeamArgs, opts ...pulumi.ResourceOption) (*Team, error) {
-	if args == nil || args.Team == nil {
-		return nil, errors.New("missing required argument 'Team'")
-	}
 	if args == nil {
-		args = &TeamArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Team == nil {
+		return nil, errors.New("invalid value for required argument 'Team'")
 	}
 	var resource Team
 	err := ctx.RegisterResource("vault:github/team:Team", name, args, &resource, opts...)

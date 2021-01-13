@@ -83,11 +83,11 @@ class EntityPolicies(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if entity_id is None:
+            if entity_id is None and not opts.urn:
                 raise TypeError("Missing required property 'entity_id'")
             __props__['entity_id'] = entity_id
             __props__['exclusive'] = exclusive
-            if policies is None:
+            if policies is None and not opts.urn:
                 raise TypeError("Missing required property 'policies'")
             __props__['policies'] = policies
             __props__['entity_name'] = None

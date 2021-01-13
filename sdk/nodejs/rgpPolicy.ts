@@ -82,10 +82,10 @@ export class RgpPolicy extends pulumi.CustomResource {
             inputs["policy"] = state ? state.policy : undefined;
         } else {
             const args = argsOrState as RgpPolicyArgs | undefined;
-            if (!args || args.enforcementLevel === undefined) {
+            if ((!args || args.enforcementLevel === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'enforcementLevel'");
             }
-            if (!args || args.policy === undefined) {
+            if ((!args || args.policy === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'policy'");
             }
             inputs["enforcementLevel"] = args ? args.enforcementLevel : undefined;

@@ -55,6 +55,7 @@ func NewOidc(ctx *pulumi.Context,
 	if args == nil {
 		args = &OidcArgs{}
 	}
+
 	var resource Oidc
 	err := ctx.RegisterResource("vault:identity/oidc:Oidc", name, args, &resource, opts...)
 	if err != nil {

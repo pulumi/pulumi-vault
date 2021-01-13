@@ -63,11 +63,12 @@ type SecretBackendCrlConfig struct {
 // NewSecretBackendCrlConfig registers a new resource with the given unique name, arguments, and options.
 func NewSecretBackendCrlConfig(ctx *pulumi.Context,
 	name string, args *SecretBackendCrlConfigArgs, opts ...pulumi.ResourceOption) (*SecretBackendCrlConfig, error) {
-	if args == nil || args.Backend == nil {
-		return nil, errors.New("missing required argument 'Backend'")
-	}
 	if args == nil {
-		args = &SecretBackendCrlConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Backend == nil {
+		return nil, errors.New("invalid value for required argument 'Backend'")
 	}
 	var resource SecretBackendCrlConfig
 	err := ctx.RegisterResource("vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig", name, args, &resource, opts...)

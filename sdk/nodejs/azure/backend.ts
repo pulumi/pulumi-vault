@@ -82,10 +82,10 @@ export class Backend extends pulumi.CustomResource {
             inputs["tenantId"] = state ? state.tenantId : undefined;
         } else {
             const args = argsOrState as BackendArgs | undefined;
-            if (!args || args.subscriptionId === undefined) {
+            if ((!args || args.subscriptionId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'subscriptionId'");
             }
-            if (!args || args.tenantId === undefined) {
+            if ((!args || args.tenantId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'tenantId'");
             }
             inputs["clientId"] = args ? args.clientId : undefined;

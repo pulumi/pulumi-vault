@@ -91,7 +91,7 @@ export class BackendRole extends pulumi.CustomResource {
             inputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as BackendRoleArgs | undefined;
-            if (!args || args.role === undefined) {
+            if ((!args || args.role === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'role'");
             }
             inputs["applicationObjectId"] = args ? args.applicationObjectId : undefined;

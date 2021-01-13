@@ -121,10 +121,10 @@ export class GroupPolicies extends pulumi.CustomResource {
             inputs["policies"] = state ? state.policies : undefined;
         } else {
             const args = argsOrState as GroupPoliciesArgs | undefined;
-            if (!args || args.groupId === undefined) {
+            if ((!args || args.groupId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'groupId'");
             }
-            if (!args || args.policies === undefined) {
+            if ((!args || args.policies === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'policies'");
             }
             inputs["exclusive"] = args ? args.exclusive : undefined;

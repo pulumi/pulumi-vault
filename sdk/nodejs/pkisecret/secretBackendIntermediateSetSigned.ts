@@ -57,10 +57,10 @@ export class SecretBackendIntermediateSetSigned extends pulumi.CustomResource {
             inputs["certificate"] = state ? state.certificate : undefined;
         } else {
             const args = argsOrState as SecretBackendIntermediateSetSignedArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
-            if (!args || args.certificate === undefined) {
+            if ((!args || args.certificate === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'certificate'");
             }
             inputs["backend"] = args ? args.backend : undefined;

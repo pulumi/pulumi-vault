@@ -63,11 +63,12 @@ type Role struct {
 // NewRole registers a new resource with the given unique name, arguments, and options.
 func NewRole(ctx *pulumi.Context,
 	name string, args *RoleArgs, opts ...pulumi.ResourceOption) (*Role, error) {
-	if args == nil || args.Path == nil {
-		return nil, errors.New("missing required argument 'Path'")
-	}
 	if args == nil {
-		args = &RoleArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Path == nil {
+		return nil, errors.New("invalid value for required argument 'Path'")
 	}
 	var resource Role
 	err := ctx.RegisterResource("vault:transform/role:Role", name, args, &resource, opts...)

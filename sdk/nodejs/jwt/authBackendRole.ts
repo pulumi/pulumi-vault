@@ -337,10 +337,10 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["verboseOidcLogging"] = state ? state.verboseOidcLogging : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
-            if (!args || args.roleName === undefined) {
+            if ((!args || args.roleName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'roleName'");
             }
-            if (!args || args.userClaim === undefined) {
+            if ((!args || args.userClaim === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'userClaim'");
             }
             inputs["allowedRedirectUris"] = args ? args.allowedRedirectUris : undefined;

@@ -63,13 +63,13 @@ class Endpoint(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if data_json is None:
+            if data_json is None and not opts.urn:
                 raise TypeError("Missing required property 'data_json'")
             __props__['data_json'] = data_json
             __props__['disable_delete'] = disable_delete
             __props__['disable_read'] = disable_read
             __props__['ignore_absent_fields'] = ignore_absent_fields
-            if path is None:
+            if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__['path'] = path
             __props__['write_fields'] = write_fields

@@ -63,17 +63,18 @@ type SecretBackendIntermediateCertRequest struct {
 // NewSecretBackendIntermediateCertRequest registers a new resource with the given unique name, arguments, and options.
 func NewSecretBackendIntermediateCertRequest(ctx *pulumi.Context,
 	name string, args *SecretBackendIntermediateCertRequestArgs, opts ...pulumi.ResourceOption) (*SecretBackendIntermediateCertRequest, error) {
-	if args == nil || args.Backend == nil {
-		return nil, errors.New("missing required argument 'Backend'")
-	}
-	if args == nil || args.CommonName == nil {
-		return nil, errors.New("missing required argument 'CommonName'")
-	}
-	if args == nil || args.Type == nil {
-		return nil, errors.New("missing required argument 'Type'")
-	}
 	if args == nil {
-		args = &SecretBackendIntermediateCertRequestArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Backend == nil {
+		return nil, errors.New("invalid value for required argument 'Backend'")
+	}
+	if args.CommonName == nil {
+		return nil, errors.New("invalid value for required argument 'CommonName'")
+	}
+	if args.Type == nil {
+		return nil, errors.New("invalid value for required argument 'Type'")
 	}
 	var resource SecretBackendIntermediateCertRequest
 	err := ctx.RegisterResource("vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest", name, args, &resource, opts...)

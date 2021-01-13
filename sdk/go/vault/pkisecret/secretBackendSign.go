@@ -55,17 +55,18 @@ type SecretBackendSign struct {
 // NewSecretBackendSign registers a new resource with the given unique name, arguments, and options.
 func NewSecretBackendSign(ctx *pulumi.Context,
 	name string, args *SecretBackendSignArgs, opts ...pulumi.ResourceOption) (*SecretBackendSign, error) {
-	if args == nil || args.Backend == nil {
-		return nil, errors.New("missing required argument 'Backend'")
-	}
-	if args == nil || args.CommonName == nil {
-		return nil, errors.New("missing required argument 'CommonName'")
-	}
-	if args == nil || args.Csr == nil {
-		return nil, errors.New("missing required argument 'Csr'")
-	}
 	if args == nil {
-		args = &SecretBackendSignArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Backend == nil {
+		return nil, errors.New("invalid value for required argument 'Backend'")
+	}
+	if args.CommonName == nil {
+		return nil, errors.New("invalid value for required argument 'CommonName'")
+	}
+	if args.Csr == nil {
+		return nil, errors.New("invalid value for required argument 'Csr'")
 	}
 	var resource SecretBackendSign
 	err := ctx.RegisterResource("vault:pkiSecret/secretBackendSign:SecretBackendSign", name, args, &resource, opts...)

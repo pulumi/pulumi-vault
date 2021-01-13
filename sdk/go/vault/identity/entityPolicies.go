@@ -106,14 +106,15 @@ type EntityPolicies struct {
 // NewEntityPolicies registers a new resource with the given unique name, arguments, and options.
 func NewEntityPolicies(ctx *pulumi.Context,
 	name string, args *EntityPoliciesArgs, opts ...pulumi.ResourceOption) (*EntityPolicies, error) {
-	if args == nil || args.EntityId == nil {
-		return nil, errors.New("missing required argument 'EntityId'")
-	}
-	if args == nil || args.Policies == nil {
-		return nil, errors.New("missing required argument 'Policies'")
-	}
 	if args == nil {
-		args = &EntityPoliciesArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.EntityId == nil {
+		return nil, errors.New("invalid value for required argument 'EntityId'")
+	}
+	if args.Policies == nil {
+		return nil, errors.New("invalid value for required argument 'Policies'")
 	}
 	var resource EntityPolicies
 	err := ctx.RegisterResource("vault:identity/entityPolicies:EntityPolicies", name, args, &resource, opts...)

@@ -31,17 +31,18 @@ type SecretRole struct {
 // NewSecretRole registers a new resource with the given unique name, arguments, and options.
 func NewSecretRole(ctx *pulumi.Context,
 	name string, args *SecretRoleArgs, opts ...pulumi.ResourceOption) (*SecretRole, error) {
-	if args == nil || args.Backend == nil {
-		return nil, errors.New("missing required argument 'Backend'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
-	if args == nil || args.ServiceAccountName == nil {
-		return nil, errors.New("missing required argument 'ServiceAccountName'")
-	}
 	if args == nil {
-		args = &SecretRoleArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Backend == nil {
+		return nil, errors.New("invalid value for required argument 'Backend'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
+	}
+	if args.ServiceAccountName == nil {
+		return nil, errors.New("invalid value for required argument 'ServiceAccountName'")
 	}
 	var resource SecretRole
 	err := ctx.RegisterResource("vault:ad/secretRole:SecretRole", name, args, &resource, opts...)

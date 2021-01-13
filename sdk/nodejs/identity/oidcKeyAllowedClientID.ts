@@ -57,10 +57,10 @@ export class OidcKeyAllowedClientID extends pulumi.CustomResource {
             inputs["keyName"] = state ? state.keyName : undefined;
         } else {
             const args = argsOrState as OidcKeyAllowedClientIDArgs | undefined;
-            if (!args || args.allowedClientId === undefined) {
+            if ((!args || args.allowedClientId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'allowedClientId'");
             }
-            if (!args || args.keyName === undefined) {
+            if ((!args || args.keyName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'keyName'");
             }
             inputs["allowedClientId"] = args ? args.allowedClientId : undefined;

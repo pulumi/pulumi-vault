@@ -60,6 +60,7 @@ func NewNomadSecretBackend(ctx *pulumi.Context,
 	if args == nil {
 		args = &NomadSecretBackendArgs{}
 	}
+
 	var resource NomadSecretBackend
 	err := ctx.RegisterResource("vault:index/nomadSecretBackend:NomadSecretBackend", name, args, &resource, opts...)
 	if err != nil {

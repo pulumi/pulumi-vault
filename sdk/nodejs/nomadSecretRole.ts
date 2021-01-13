@@ -86,10 +86,10 @@ export class NomadSecretRole extends pulumi.CustomResource {
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as NomadSecretRoleArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
-            if (!args || args.role === undefined) {
+            if ((!args || args.role === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'role'");
             }
             inputs["backend"] = args ? args.backend : undefined;

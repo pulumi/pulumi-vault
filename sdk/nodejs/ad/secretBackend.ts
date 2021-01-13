@@ -252,10 +252,10 @@ export class SecretBackend extends pulumi.CustomResource {
             inputs["userdn"] = state ? state.userdn : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
-            if (!args || args.binddn === undefined) {
+            if ((!args || args.binddn === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'binddn'");
             }
-            if (!args || args.bindpass === undefined) {
+            if ((!args || args.bindpass === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'bindpass'");
             }
             inputs["anonymousGroupSearch"] = args ? args.anonymousGroupSearch : undefined;

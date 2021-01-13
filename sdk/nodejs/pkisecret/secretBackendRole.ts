@@ -259,7 +259,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["useCsrSans"] = state ? state.useCsrSans : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
             inputs["allowAnyName"] = args ? args.allowAnyName : undefined;

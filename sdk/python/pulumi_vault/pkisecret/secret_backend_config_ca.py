@@ -44,10 +44,10 @@ class SecretBackendConfigCa(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if backend is None:
+            if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__['backend'] = backend
-            if pem_bundle is None:
+            if pem_bundle is None and not opts.urn:
                 raise TypeError("Missing required property 'pem_bundle'")
             __props__['pem_bundle'] = pem_bundle
         super(SecretBackendConfigCa, __self__).__init__(

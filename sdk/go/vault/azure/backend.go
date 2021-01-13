@@ -33,14 +33,15 @@ type Backend struct {
 // NewBackend registers a new resource with the given unique name, arguments, and options.
 func NewBackend(ctx *pulumi.Context,
 	name string, args *BackendArgs, opts ...pulumi.ResourceOption) (*Backend, error) {
-	if args == nil || args.SubscriptionId == nil {
-		return nil, errors.New("missing required argument 'SubscriptionId'")
-	}
-	if args == nil || args.TenantId == nil {
-		return nil, errors.New("missing required argument 'TenantId'")
-	}
 	if args == nil {
-		args = &BackendArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.SubscriptionId == nil {
+		return nil, errors.New("invalid value for required argument 'SubscriptionId'")
+	}
+	if args.TenantId == nil {
+		return nil, errors.New("invalid value for required argument 'TenantId'")
 	}
 	var resource Backend
 	err := ctx.RegisterResource("vault:azure/backend:Backend", name, args, &resource, opts...)

@@ -73,10 +73,10 @@ export class AuthBackendStsRole extends pulumi.CustomResource {
             inputs["stsRole"] = state ? state.stsRole : undefined;
         } else {
             const args = argsOrState as AuthBackendStsRoleArgs | undefined;
-            if (!args || args.accountId === undefined) {
+            if ((!args || args.accountId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'accountId'");
             }
-            if (!args || args.stsRole === undefined) {
+            if ((!args || args.stsRole === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'stsRole'");
             }
             inputs["accountId"] = args ? args.accountId : undefined;

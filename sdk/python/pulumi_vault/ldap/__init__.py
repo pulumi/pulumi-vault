@@ -6,3 +6,32 @@
 from .auth_backend import *
 from .auth_backend_group import *
 from .auth_backend_user import *
+
+def _register_module():
+    import pulumi
+    from .. import _utilities
+
+
+    class Module(pulumi.runtime.ResourceModule):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Module._version
+
+        def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+            if typ == "vault:ldap/authBackend:AuthBackend":
+                return AuthBackend(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "vault:ldap/authBackendGroup:AuthBackendGroup":
+                return AuthBackendGroup(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "vault:ldap/authBackendUser:AuthBackendUser":
+                return AuthBackendUser(name, pulumi.ResourceOptions(urn=urn))
+            else:
+                raise Exception(f"unknown resource type {typ}")
+
+
+    _module_instance = Module()
+    pulumi.runtime.register_resource_module("vault", "ldap/authBackend", _module_instance)
+    pulumi.runtime.register_resource_module("vault", "ldap/authBackendGroup", _module_instance)
+    pulumi.runtime.register_resource_module("vault", "ldap/authBackendUser", _module_instance)
+
+_register_module()

@@ -29,11 +29,12 @@ type Template struct {
 // NewTemplate registers a new resource with the given unique name, arguments, and options.
 func NewTemplate(ctx *pulumi.Context,
 	name string, args *TemplateArgs, opts ...pulumi.ResourceOption) (*Template, error) {
-	if args == nil || args.Path == nil {
-		return nil, errors.New("missing required argument 'Path'")
-	}
 	if args == nil {
-		args = &TemplateArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Path == nil {
+		return nil, errors.New("invalid value for required argument 'Path'")
 	}
 	var resource Template
 	err := ctx.RegisterResource("vault:transform/template:Template", name, args, &resource, opts...)

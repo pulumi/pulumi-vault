@@ -71,14 +71,15 @@ type Mount struct {
 // NewMount registers a new resource with the given unique name, arguments, and options.
 func NewMount(ctx *pulumi.Context,
 	name string, args *MountArgs, opts ...pulumi.ResourceOption) (*Mount, error) {
-	if args == nil || args.Path == nil {
-		return nil, errors.New("missing required argument 'Path'")
-	}
-	if args == nil || args.Type == nil {
-		return nil, errors.New("missing required argument 'Type'")
-	}
 	if args == nil {
-		args = &MountArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Path == nil {
+		return nil, errors.New("invalid value for required argument 'Path'")
+	}
+	if args.Type == nil {
+		return nil, errors.New("invalid value for required argument 'Type'")
 	}
 	var resource Mount
 	err := ctx.RegisterResource("vault:index/mount:Mount", name, args, &resource, opts...)

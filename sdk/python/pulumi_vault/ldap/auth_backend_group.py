@@ -77,7 +77,7 @@ class AuthBackendGroup(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['backend'] = backend
-            if groupname is None:
+            if groupname is None and not opts.urn:
                 raise TypeError("Missing required property 'groupname'")
             __props__['groupname'] = groupname
             __props__['policies'] = policies

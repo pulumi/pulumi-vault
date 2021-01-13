@@ -165,7 +165,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as SecretBackendKeyArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
             inputs["allowPlaintextBackup"] = args ? args.allowPlaintextBackup : undefined;

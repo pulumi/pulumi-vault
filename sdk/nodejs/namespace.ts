@@ -73,7 +73,7 @@ export class Namespace extends pulumi.CustomResource {
             inputs["path"] = state ? state.path : undefined;
         } else {
             const args = argsOrState as NamespaceArgs | undefined;
-            if (!args || args.path === undefined) {
+            if ((!args || args.path === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'path'");
             }
             inputs["path"] = args ? args.path : undefined;

@@ -69,11 +69,11 @@ class AuthBackendUser(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['groups'] = groups
-            if path is None:
+            if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__['path'] = path
             __props__['policies'] = policies
-            if username is None:
+            if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
             __props__['username'] = username
         super(AuthBackendUser, __self__).__init__(

@@ -87,7 +87,7 @@ export class SecretBackendConfigUrls extends pulumi.CustomResource {
             inputs["ocspServers"] = state ? state.ocspServers : undefined;
         } else {
             const args = argsOrState as SecretBackendConfigUrlsArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
             inputs["backend"] = args ? args.backend : undefined;

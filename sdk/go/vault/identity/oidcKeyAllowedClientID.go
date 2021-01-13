@@ -23,14 +23,15 @@ type OidcKeyAllowedClientID struct {
 // NewOidcKeyAllowedClientID registers a new resource with the given unique name, arguments, and options.
 func NewOidcKeyAllowedClientID(ctx *pulumi.Context,
 	name string, args *OidcKeyAllowedClientIDArgs, opts ...pulumi.ResourceOption) (*OidcKeyAllowedClientID, error) {
-	if args == nil || args.AllowedClientId == nil {
-		return nil, errors.New("missing required argument 'AllowedClientId'")
-	}
-	if args == nil || args.KeyName == nil {
-		return nil, errors.New("missing required argument 'KeyName'")
-	}
 	if args == nil {
-		args = &OidcKeyAllowedClientIDArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.AllowedClientId == nil {
+		return nil, errors.New("invalid value for required argument 'AllowedClientId'")
+	}
+	if args.KeyName == nil {
+		return nil, errors.New("invalid value for required argument 'KeyName'")
 	}
 	var resource OidcKeyAllowedClientID
 	err := ctx.RegisterResource("vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID", name, args, &resource, opts...)

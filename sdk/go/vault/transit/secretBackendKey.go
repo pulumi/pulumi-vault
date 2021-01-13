@@ -100,11 +100,12 @@ type SecretBackendKey struct {
 // NewSecretBackendKey registers a new resource with the given unique name, arguments, and options.
 func NewSecretBackendKey(ctx *pulumi.Context,
 	name string, args *SecretBackendKeyArgs, opts ...pulumi.ResourceOption) (*SecretBackendKey, error) {
-	if args == nil || args.Backend == nil {
-		return nil, errors.New("missing required argument 'Backend'")
-	}
 	if args == nil {
-		args = &SecretBackendKeyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Backend == nil {
+		return nil, errors.New("invalid value for required argument 'Backend'")
 	}
 	var resource SecretBackendKey
 	err := ctx.RegisterResource("vault:transit/secretBackendKey:SecretBackendKey", name, args, &resource, opts...)

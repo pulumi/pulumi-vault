@@ -7,3 +7,32 @@ from .get_access_credentials import *
 from .secret_backend import *
 from .secret_library import *
 from .secret_role import *
+
+def _register_module():
+    import pulumi
+    from .. import _utilities
+
+
+    class Module(pulumi.runtime.ResourceModule):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Module._version
+
+        def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+            if typ == "vault:ad/secretBackend:SecretBackend":
+                return SecretBackend(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "vault:ad/secretLibrary:SecretLibrary":
+                return SecretLibrary(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "vault:ad/secretRole:SecretRole":
+                return SecretRole(name, pulumi.ResourceOptions(urn=urn))
+            else:
+                raise Exception(f"unknown resource type {typ}")
+
+
+    _module_instance = Module()
+    pulumi.runtime.register_resource_module("vault", "ad/secretBackend", _module_instance)
+    pulumi.runtime.register_resource_module("vault", "ad/secretLibrary", _module_instance)
+    pulumi.runtime.register_resource_module("vault", "ad/secretRole", _module_instance)
+
+_register_module()

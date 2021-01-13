@@ -79,10 +79,10 @@ export class SecretCacheConfig extends pulumi.CustomResource {
             inputs["size"] = state ? state.size : undefined;
         } else {
             const args = argsOrState as SecretCacheConfigArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
-            if (!args || args.size === undefined) {
+            if ((!args || args.size === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'size'");
             }
             inputs["backend"] = args ? args.backend : undefined;

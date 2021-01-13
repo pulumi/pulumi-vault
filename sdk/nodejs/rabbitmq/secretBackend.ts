@@ -100,13 +100,13 @@ export class SecretBackend extends pulumi.CustomResource {
             inputs["verifyConnection"] = state ? state.verifyConnection : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
-            if (!args || args.connectionUri === undefined) {
+            if ((!args || args.connectionUri === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'connectionUri'");
             }
-            if (!args || args.password === undefined) {
+            if ((!args || args.password === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'password'");
             }
-            if (!args || args.username === undefined) {
+            if ((!args || args.username === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'username'");
             }
             inputs["connectionUri"] = args ? args.connectionUri : undefined;

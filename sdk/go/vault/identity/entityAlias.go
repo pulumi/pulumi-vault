@@ -25,14 +25,15 @@ type EntityAlias struct {
 // NewEntityAlias registers a new resource with the given unique name, arguments, and options.
 func NewEntityAlias(ctx *pulumi.Context,
 	name string, args *EntityAliasArgs, opts ...pulumi.ResourceOption) (*EntityAlias, error) {
-	if args == nil || args.CanonicalId == nil {
-		return nil, errors.New("missing required argument 'CanonicalId'")
-	}
-	if args == nil || args.MountAccessor == nil {
-		return nil, errors.New("missing required argument 'MountAccessor'")
-	}
 	if args == nil {
-		args = &EntityAliasArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.CanonicalId == nil {
+		return nil, errors.New("invalid value for required argument 'CanonicalId'")
+	}
+	if args.MountAccessor == nil {
+		return nil, errors.New("invalid value for required argument 'MountAccessor'")
 	}
 	var resource EntityAlias
 	err := ctx.RegisterResource("vault:identity/entityAlias:EntityAlias", name, args, &resource, opts...)

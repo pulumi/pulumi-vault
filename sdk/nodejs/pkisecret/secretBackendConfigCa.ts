@@ -57,10 +57,10 @@ export class SecretBackendConfigCa extends pulumi.CustomResource {
             inputs["pemBundle"] = state ? state.pemBundle : undefined;
         } else {
             const args = argsOrState as SecretBackendConfigCaArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
-            if (!args || args.pemBundle === undefined) {
+            if ((!args || args.pemBundle === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'pemBundle'");
             }
             inputs["backend"] = args ? args.backend : undefined;

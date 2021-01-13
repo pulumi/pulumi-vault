@@ -155,10 +155,10 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["tokenType"] = state ? state.tokenType : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
-            if (!args || args.arn === undefined) {
+            if ((!args || args.arn === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'arn'");
             }
-            if (!args || args.role === undefined) {
+            if ((!args || args.role === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'role'");
             }
             inputs["arn"] = args ? args.arn : undefined;

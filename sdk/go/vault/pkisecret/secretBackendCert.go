@@ -59,14 +59,15 @@ type SecretBackendCert struct {
 // NewSecretBackendCert registers a new resource with the given unique name, arguments, and options.
 func NewSecretBackendCert(ctx *pulumi.Context,
 	name string, args *SecretBackendCertArgs, opts ...pulumi.ResourceOption) (*SecretBackendCert, error) {
-	if args == nil || args.Backend == nil {
-		return nil, errors.New("missing required argument 'Backend'")
-	}
-	if args == nil || args.CommonName == nil {
-		return nil, errors.New("missing required argument 'CommonName'")
-	}
 	if args == nil {
-		args = &SecretBackendCertArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Backend == nil {
+		return nil, errors.New("invalid value for required argument 'Backend'")
+	}
+	if args.CommonName == nil {
+		return nil, errors.New("invalid value for required argument 'CommonName'")
 	}
 	var resource SecretBackendCert
 	err := ctx.RegisterResource("vault:pkiSecret/secretBackendCert:SecretBackendCert", name, args, &resource, opts...)

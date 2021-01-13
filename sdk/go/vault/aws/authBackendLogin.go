@@ -77,6 +77,7 @@ func NewAuthBackendLogin(ctx *pulumi.Context,
 	if args == nil {
 		args = &AuthBackendLoginArgs{}
 	}
+
 	var resource AuthBackendLogin
 	err := ctx.RegisterResource("vault:aws/authBackendLogin:AuthBackendLogin", name, args, &resource, opts...)
 	if err != nil {

@@ -80,7 +80,7 @@ class Transformation(pulumi.CustomResource):
             __props__['allowed_roles'] = allowed_roles
             __props__['masking_character'] = masking_character
             __props__['name'] = name
-            if path is None:
+            if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__['path'] = path
             __props__['template'] = template

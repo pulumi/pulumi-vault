@@ -53,13 +53,13 @@ class SecretLibrary(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if backend is None:
+            if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__['backend'] = backend
             __props__['disable_check_in_enforcement'] = disable_check_in_enforcement
             __props__['max_ttl'] = max_ttl
             __props__['name'] = name
-            if service_account_names is None:
+            if service_account_names is None and not opts.urn:
                 raise TypeError("Missing required property 'service_account_names'")
             __props__['service_account_names'] = service_account_names
             __props__['ttl'] = ttl

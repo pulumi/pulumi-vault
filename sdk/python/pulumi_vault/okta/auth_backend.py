@@ -97,7 +97,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__['description'] = description
             __props__['groups'] = groups
             __props__['max_ttl'] = max_ttl
-            if organization is None:
+            if organization is None and not opts.urn:
                 raise TypeError("Missing required property 'organization'")
             __props__['organization'] = organization
             __props__['path'] = path

@@ -65,7 +65,7 @@ class Role(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['name'] = name
-            if path is None:
+            if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__['path'] = path
             __props__['transformations'] = transformations

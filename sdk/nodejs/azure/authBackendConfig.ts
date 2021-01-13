@@ -93,10 +93,10 @@ export class AuthBackendConfig extends pulumi.CustomResource {
             inputs["tenantId"] = state ? state.tenantId : undefined;
         } else {
             const args = argsOrState as AuthBackendConfigArgs | undefined;
-            if (!args || args.resource === undefined) {
+            if ((!args || args.resource === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'resource'");
             }
-            if (!args || args.tenantId === undefined) {
+            if ((!args || args.tenantId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'tenantId'");
             }
             inputs["backend"] = args ? args.backend : undefined;

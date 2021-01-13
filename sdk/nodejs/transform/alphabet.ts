@@ -83,7 +83,7 @@ export class Alphabet extends pulumi.CustomResource {
             inputs["path"] = state ? state.path : undefined;
         } else {
             const args = argsOrState as AlphabetArgs | undefined;
-            if (!args || args.path === undefined) {
+            if ((!args || args.path === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'path'");
             }
             inputs["alphabet"] = args ? args.alphabet : undefined;

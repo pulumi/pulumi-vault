@@ -68,10 +68,10 @@ class SecretBackendCert(pulumi.CustomResource):
 
             __props__['alt_names'] = alt_names
             __props__['auto_renew'] = auto_renew
-            if backend is None:
+            if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__['backend'] = backend
-            if common_name is None:
+            if common_name is None and not opts.urn:
                 raise TypeError("Missing required property 'common_name'")
             __props__['common_name'] = common_name
             __props__['exclude_cn_from_sans'] = exclude_cn_from_sans

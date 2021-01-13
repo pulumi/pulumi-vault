@@ -59,14 +59,15 @@ type SecretCacheConfig struct {
 // NewSecretCacheConfig registers a new resource with the given unique name, arguments, and options.
 func NewSecretCacheConfig(ctx *pulumi.Context,
 	name string, args *SecretCacheConfigArgs, opts ...pulumi.ResourceOption) (*SecretCacheConfig, error) {
-	if args == nil || args.Backend == nil {
-		return nil, errors.New("missing required argument 'Backend'")
-	}
-	if args == nil || args.Size == nil {
-		return nil, errors.New("missing required argument 'Size'")
-	}
 	if args == nil {
-		args = &SecretCacheConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Backend == nil {
+		return nil, errors.New("invalid value for required argument 'Backend'")
+	}
+	if args.Size == nil {
+		return nil, errors.New("invalid value for required argument 'Size'")
 	}
 	var resource SecretCacheConfig
 	err := ctx.RegisterResource("vault:transit/secretCacheConfig:SecretCacheConfig", name, args, &resource, opts...)

@@ -137,13 +137,13 @@ export class SecretBackendSign extends pulumi.CustomResource {
             inputs["uriSans"] = state ? state.uriSans : undefined;
         } else {
             const args = argsOrState as SecretBackendSignArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
-            if (!args || args.commonName === undefined) {
+            if ((!args || args.commonName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'commonName'");
             }
-            if (!args || args.csr === undefined) {
+            if ((!args || args.csr === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'csr'");
             }
             inputs["altNames"] = args ? args.altNames : undefined;

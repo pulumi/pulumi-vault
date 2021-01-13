@@ -92,7 +92,7 @@ export class SecretBackend extends pulumi.CustomResource {
             inputs["path"] = state ? state.path : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
-            if (!args || args.path === undefined) {
+            if ((!args || args.path === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'path'");
             }
             inputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;

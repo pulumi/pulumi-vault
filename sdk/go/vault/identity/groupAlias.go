@@ -70,17 +70,18 @@ type GroupAlias struct {
 // NewGroupAlias registers a new resource with the given unique name, arguments, and options.
 func NewGroupAlias(ctx *pulumi.Context,
 	name string, args *GroupAliasArgs, opts ...pulumi.ResourceOption) (*GroupAlias, error) {
-	if args == nil || args.CanonicalId == nil {
-		return nil, errors.New("missing required argument 'CanonicalId'")
-	}
-	if args == nil || args.MountAccessor == nil {
-		return nil, errors.New("missing required argument 'MountAccessor'")
-	}
-	if args == nil || args.Name == nil {
-		return nil, errors.New("missing required argument 'Name'")
-	}
 	if args == nil {
-		args = &GroupAliasArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.CanonicalId == nil {
+		return nil, errors.New("invalid value for required argument 'CanonicalId'")
+	}
+	if args.MountAccessor == nil {
+		return nil, errors.New("invalid value for required argument 'MountAccessor'")
+	}
+	if args.Name == nil {
+		return nil, errors.New("invalid value for required argument 'Name'")
 	}
 	var resource GroupAlias
 	err := ctx.RegisterResource("vault:identity/groupAlias:GroupAlias", name, args, &resource, opts...)

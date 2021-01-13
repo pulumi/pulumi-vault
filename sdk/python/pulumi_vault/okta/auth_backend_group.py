@@ -74,10 +74,10 @@ class AuthBackendGroup(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if group_name is None:
+            if group_name is None and not opts.urn:
                 raise TypeError("Missing required property 'group_name'")
             __props__['group_name'] = group_name
-            if path is None:
+            if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__['path'] = path
             __props__['policies'] = policies

@@ -87,16 +87,16 @@ class SecretRoleset(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if backend is None:
+            if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__['backend'] = backend
-            if bindings is None:
+            if bindings is None and not opts.urn:
                 raise TypeError("Missing required property 'bindings'")
             __props__['bindings'] = bindings
-            if project is None:
+            if project is None and not opts.urn:
                 raise TypeError("Missing required property 'project'")
             __props__['project'] = project
-            if roleset is None:
+            if roleset is None and not opts.urn:
                 raise TypeError("Missing required property 'roleset'")
             __props__['roleset'] = roleset
             __props__['secret_type'] = secret_type

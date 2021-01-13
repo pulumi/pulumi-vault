@@ -100,10 +100,10 @@ export class Endpoint extends pulumi.CustomResource {
             inputs["writeFields"] = state ? state.writeFields : undefined;
         } else {
             const args = argsOrState as EndpointArgs | undefined;
-            if (!args || args.dataJson === undefined) {
+            if ((!args || args.dataJson === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'dataJson'");
             }
-            if (!args || args.path === undefined) {
+            if ((!args || args.path === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'path'");
             }
             inputs["dataJson"] = args ? args.dataJson : undefined;

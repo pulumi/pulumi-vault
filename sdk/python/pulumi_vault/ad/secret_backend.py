@@ -139,10 +139,10 @@ class SecretBackend(pulumi.CustomResource):
 
             __props__['anonymous_group_search'] = anonymous_group_search
             __props__['backend'] = backend
-            if binddn is None:
+            if binddn is None and not opts.urn:
                 raise TypeError("Missing required property 'binddn'")
             __props__['binddn'] = binddn
-            if bindpass is None:
+            if bindpass is None and not opts.urn:
                 raise TypeError("Missing required property 'bindpass'")
             __props__['bindpass'] = bindpass
             __props__['case_sensitive_names'] = case_sensitive_names
@@ -153,7 +153,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__['deny_null_bind'] = deny_null_bind
             __props__['description'] = description
             __props__['discoverdn'] = discoverdn
-            if formatter is not None:
+            if formatter is not None and not opts.urn:
                 warnings.warn("""Formatter is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
                 pulumi.log.warn("formatter is deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.")
             __props__['formatter'] = formatter
@@ -162,7 +162,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__['groupfilter'] = groupfilter
             __props__['insecure_tls'] = insecure_tls
             __props__['last_rotation_tolerance'] = last_rotation_tolerance
-            if length is not None:
+            if length is not None and not opts.urn:
                 warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
                 pulumi.log.warn("length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.")
             __props__['length'] = length

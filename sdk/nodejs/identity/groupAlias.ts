@@ -88,13 +88,13 @@ export class GroupAlias extends pulumi.CustomResource {
             inputs["name"] = state ? state.name : undefined;
         } else {
             const args = argsOrState as GroupAliasArgs | undefined;
-            if (!args || args.canonicalId === undefined) {
+            if ((!args || args.canonicalId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'canonicalId'");
             }
-            if (!args || args.mountAccessor === undefined) {
+            if ((!args || args.mountAccessor === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'mountAccessor'");
             }
-            if (!args || args.name === undefined) {
+            if ((!args || args.name === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'name'");
             }
             inputs["canonicalId"] = args ? args.canonicalId : undefined;

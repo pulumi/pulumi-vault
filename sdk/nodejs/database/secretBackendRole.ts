@@ -108,13 +108,13 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["rollbackStatements"] = state ? state.rollbackStatements : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
-            if (!args || args.creationStatements === undefined) {
+            if ((!args || args.creationStatements === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'creationStatements'");
             }
-            if (!args || args.dbName === undefined) {
+            if ((!args || args.dbName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'dbName'");
             }
             inputs["backend"] = args ? args.backend : undefined;

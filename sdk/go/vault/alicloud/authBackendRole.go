@@ -105,14 +105,15 @@ type AuthBackendRole struct {
 // NewAuthBackendRole registers a new resource with the given unique name, arguments, and options.
 func NewAuthBackendRole(ctx *pulumi.Context,
 	name string, args *AuthBackendRoleArgs, opts ...pulumi.ResourceOption) (*AuthBackendRole, error) {
-	if args == nil || args.Arn == nil {
-		return nil, errors.New("missing required argument 'Arn'")
-	}
-	if args == nil || args.Role == nil {
-		return nil, errors.New("missing required argument 'Role'")
-	}
 	if args == nil {
-		args = &AuthBackendRoleArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Arn == nil {
+		return nil, errors.New("invalid value for required argument 'Arn'")
+	}
+	if args.Role == nil {
+		return nil, errors.New("invalid value for required argument 'Role'")
 	}
 	var resource AuthBackendRole
 	err := ctx.RegisterResource("vault:alicloud/authBackendRole:AuthBackendRole", name, args, &resource, opts...)

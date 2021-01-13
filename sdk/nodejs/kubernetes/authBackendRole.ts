@@ -220,13 +220,13 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
-            if (!args || args.boundServiceAccountNames === undefined) {
+            if ((!args || args.boundServiceAccountNames === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'boundServiceAccountNames'");
             }
-            if (!args || args.boundServiceAccountNamespaces === undefined) {
+            if ((!args || args.boundServiceAccountNamespaces === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'boundServiceAccountNamespaces'");
             }
-            if (!args || args.roleName === undefined) {
+            if ((!args || args.roleName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'roleName'");
             }
             inputs["audience"] = args ? args.audience : undefined;

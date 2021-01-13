@@ -79,7 +79,7 @@ class QuotaRateLimit(pulumi.CustomResource):
 
             __props__['name'] = name
             __props__['path'] = path
-            if rate is None:
+            if rate is None and not opts.urn:
                 raise TypeError("Missing required property 'rate'")
             __props__['rate'] = rate
         super(QuotaRateLimit, __self__).__init__(

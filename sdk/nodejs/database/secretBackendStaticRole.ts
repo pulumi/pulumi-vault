@@ -116,16 +116,16 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
             inputs["username"] = state ? state.username : undefined;
         } else {
             const args = argsOrState as SecretBackendStaticRoleArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
-            if (!args || args.dbName === undefined) {
+            if ((!args || args.dbName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'dbName'");
             }
-            if (!args || args.rotationPeriod === undefined) {
+            if ((!args || args.rotationPeriod === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'rotationPeriod'");
             }
-            if (!args || args.username === undefined) {
+            if ((!args || args.username === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'username'");
             }
             inputs["backend"] = args ? args.backend : undefined;

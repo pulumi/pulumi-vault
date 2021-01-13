@@ -233,7 +233,7 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["userdn"] = state ? state.userdn : undefined;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
-            if (!args || args.url === undefined) {
+            if ((!args || args.url === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'url'");
             }
             inputs["binddn"] = args ? args.binddn : undefined;

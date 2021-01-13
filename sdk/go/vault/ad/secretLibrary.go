@@ -32,14 +32,15 @@ type SecretLibrary struct {
 // NewSecretLibrary registers a new resource with the given unique name, arguments, and options.
 func NewSecretLibrary(ctx *pulumi.Context,
 	name string, args *SecretLibraryArgs, opts ...pulumi.ResourceOption) (*SecretLibrary, error) {
-	if args == nil || args.Backend == nil {
-		return nil, errors.New("missing required argument 'Backend'")
-	}
-	if args == nil || args.ServiceAccountNames == nil {
-		return nil, errors.New("missing required argument 'ServiceAccountNames'")
-	}
 	if args == nil {
-		args = &SecretLibraryArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Backend == nil {
+		return nil, errors.New("invalid value for required argument 'Backend'")
+	}
+	if args.ServiceAccountNames == nil {
+		return nil, errors.New("invalid value for required argument 'ServiceAccountNames'")
 	}
 	var resource SecretLibrary
 	err := ctx.RegisterResource("vault:ad/secretLibrary:SecretLibrary", name, args, &resource, opts...)

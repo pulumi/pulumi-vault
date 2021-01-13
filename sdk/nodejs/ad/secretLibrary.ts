@@ -78,10 +78,10 @@ export class SecretLibrary extends pulumi.CustomResource {
             inputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as SecretLibraryArgs | undefined;
-            if (!args || args.backend === undefined) {
+            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backend'");
             }
-            if (!args || args.serviceAccountNames === undefined) {
+            if ((!args || args.serviceAccountNames === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'serviceAccountNames'");
             }
             inputs["backend"] = args ? args.backend : undefined;

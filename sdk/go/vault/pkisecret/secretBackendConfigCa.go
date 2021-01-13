@@ -23,14 +23,15 @@ type SecretBackendConfigCa struct {
 // NewSecretBackendConfigCa registers a new resource with the given unique name, arguments, and options.
 func NewSecretBackendConfigCa(ctx *pulumi.Context,
 	name string, args *SecretBackendConfigCaArgs, opts ...pulumi.ResourceOption) (*SecretBackendConfigCa, error) {
-	if args == nil || args.Backend == nil {
-		return nil, errors.New("missing required argument 'Backend'")
-	}
-	if args == nil || args.PemBundle == nil {
-		return nil, errors.New("missing required argument 'PemBundle'")
-	}
 	if args == nil {
-		args = &SecretBackendConfigCaArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Backend == nil {
+		return nil, errors.New("invalid value for required argument 'Backend'")
+	}
+	if args.PemBundle == nil {
+		return nil, errors.New("invalid value for required argument 'PemBundle'")
 	}
 	var resource SecretBackendConfigCa
 	err := ctx.RegisterResource("vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa", name, args, &resource, opts...)
