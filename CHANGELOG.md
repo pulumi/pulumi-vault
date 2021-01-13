@@ -2,10 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to pulumi-terraform-bridge v2.17.0
-* Upgrade to Pulumi
+_(none)_
 
 ---
+
+## 3.2.1 (2021-01-13)
+* Upgrade to pulumi-terraform-bridge v2.17.0
+* Upgrade to Pulumi
 
 ## 3.2.0 (2020-12-21)
 * Upgrade to v2.17.0 of the Vault Terraform Provider
