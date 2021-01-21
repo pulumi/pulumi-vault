@@ -22,7 +22,14 @@ class EntityAlias(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a EntityAlias resource with the given unique name, props, and options.
+        ## Import
+
+        Identity entity alias can be imported using the `id`, e.g.
+
+        ```sh
+         $ pulumi import vault:identity/entityAlias:EntityAlias test "3856fb4d-3c91-dcaf-2401-68f446796bfb"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] canonical_id: Entity ID to which this alias belongs to.

@@ -283,7 +283,7 @@ class GetPolicyDocumentRuleArgs:
         :param str path: A path in Vault that this rule applies to.
         :param Sequence['GetPolicyDocumentRuleAllowedParameterArgs'] allowed_parameters: Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
         :param Sequence['GetPolicyDocumentRuleDeniedParameterArgs'] denied_parameters: Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.
-        :param str description: Description of the rule. Will be added as a commend to rendered rule.
+        :param str description: Description of the rule. Will be added as a comment to rendered rule.
         :param str max_wrapping_ttl: The maximum allowed TTL that clients can specify for a wrapped response.
         :param str min_wrapping_ttl: The minimum allowed TTL that clients can specify for a wrapped response.
         :param Sequence[str] required_parameters: A list of parameters that must be specified.
@@ -355,7 +355,7 @@ class GetPolicyDocumentRuleArgs:
     @pulumi.getter
     def description(self) -> Optional[str]:
         """
-        Description of the rule. Will be added as a commend to rendered rule.
+        Description of the rule. Will be added as a comment to rendered rule.
         """
         return pulumi.get(self, "description")
 

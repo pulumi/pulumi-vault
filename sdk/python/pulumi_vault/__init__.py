@@ -15,6 +15,7 @@ from .mount import *
 from .namespace import *
 from .nomad_secret_backend import *
 from .nomad_secret_role import *
+from .password_policy import *
 from .policy import *
 from .provider import *
 from .quota_rate_limit import *
@@ -79,6 +80,8 @@ def _register_module():
                 return NomadSecretBackend(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "vault:index/nomadSecretRole:NomadSecretRole":
                 return NomadSecretRole(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "vault:index/passwordPolicy:PasswordPolicy":
+                return PasswordPolicy(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "vault:index/policy:Policy":
                 return Policy(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "vault:index/quotaRateLimit:QuotaRateLimit":
@@ -101,6 +104,7 @@ def _register_module():
     pulumi.runtime.register_resource_module("vault", "index/namespace", _module_instance)
     pulumi.runtime.register_resource_module("vault", "index/nomadSecretBackend", _module_instance)
     pulumi.runtime.register_resource_module("vault", "index/nomadSecretRole", _module_instance)
+    pulumi.runtime.register_resource_module("vault", "index/passwordPolicy", _module_instance)
     pulumi.runtime.register_resource_module("vault", "index/policy", _module_instance)
     pulumi.runtime.register_resource_module("vault", "index/quotaRateLimit", _module_instance)
     pulumi.runtime.register_resource_module("vault", "index/rgpPolicy", _module_instance)

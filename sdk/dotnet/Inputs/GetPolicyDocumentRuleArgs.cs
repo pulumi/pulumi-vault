@@ -49,7 +49,7 @@ namespace Pulumi.Vault.Inputs
         }
 
         /// <summary>
-        /// Description of the rule. Will be added as a commend to rendered rule.
+        /// Description of the rule. Will be added as a comment to rendered rule.
         /// </summary>
         [Input("description")]
         public string? Description { get; set; }

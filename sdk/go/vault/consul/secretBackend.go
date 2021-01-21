@@ -23,6 +23,12 @@ type SecretBackend struct {
 
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address pulumi.StringOutput `pulumi:"address"`
+	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
+	CaCert pulumi.StringPtrOutput `pulumi:"caCert"`
+	// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+	ClientCert pulumi.StringPtrOutput `pulumi:"clientCert"`
+	// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+	ClientKey pulumi.StringPtrOutput `pulumi:"clientKey"`
 	// The default TTL for credentials issued by this backend.
 	DefaultLeaseTtlSeconds pulumi.IntPtrOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
@@ -75,6 +81,12 @@ func GetSecretBackend(ctx *pulumi.Context,
 type secretBackendState struct {
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address *string `pulumi:"address"`
+	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
+	CaCert *string `pulumi:"caCert"`
+	// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+	ClientCert *string `pulumi:"clientCert"`
+	// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+	ClientKey *string `pulumi:"clientKey"`
 	// The default TTL for credentials issued by this backend.
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
@@ -93,6 +105,12 @@ type secretBackendState struct {
 type SecretBackendState struct {
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address pulumi.StringPtrInput
+	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
+	CaCert pulumi.StringPtrInput
+	// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+	ClientCert pulumi.StringPtrInput
+	// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+	ClientKey pulumi.StringPtrInput
 	// The default TTL for credentials issued by this backend.
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
@@ -115,6 +133,12 @@ func (SecretBackendState) ElementType() reflect.Type {
 type secretBackendArgs struct {
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address string `pulumi:"address"`
+	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
+	CaCert *string `pulumi:"caCert"`
+	// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+	ClientCert *string `pulumi:"clientCert"`
+	// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+	ClientKey *string `pulumi:"clientKey"`
 	// The default TTL for credentials issued by this backend.
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
@@ -134,6 +158,12 @@ type secretBackendArgs struct {
 type SecretBackendArgs struct {
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address pulumi.StringInput
+	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
+	CaCert pulumi.StringPtrInput
+	// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+	ClientCert pulumi.StringPtrInput
+	// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+	ClientKey pulumi.StringPtrInput
 	// The default TTL for credentials issued by this backend.
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.

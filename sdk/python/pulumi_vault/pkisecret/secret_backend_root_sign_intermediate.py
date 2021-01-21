@@ -39,7 +39,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Creates an PKI certificate.
+        Creates PKI certificate.
 
         ## Example Usage
 

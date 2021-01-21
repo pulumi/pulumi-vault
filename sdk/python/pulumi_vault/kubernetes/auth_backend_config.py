@@ -50,6 +50,14 @@ class AuthBackendConfig(pulumi.CustomResource):
             token_reviewer_jwt="ZXhhbXBsZQo=")
         ```
 
+        ## Import
+
+        Kubernetes authentication backend can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.

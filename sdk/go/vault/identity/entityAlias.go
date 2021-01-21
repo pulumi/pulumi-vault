@@ -11,6 +11,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// Identity entity alias can be imported using the `id`, e.g.
+//
+// ```sh
+//  $ pulumi import vault:identity/entityAlias:EntityAlias test "3856fb4d-3c91-dcaf-2401-68f446796bfb"
+// ```
 type EntityAlias struct {
 	pulumi.CustomResourceState
 

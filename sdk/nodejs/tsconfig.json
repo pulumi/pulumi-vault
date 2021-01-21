@@ -108,6 +108,7 @@
         "okta/authBackendGroup.ts",
         "okta/authBackendUser.ts",
         "okta/index.ts",
+        "passwordPolicy.ts",
         "pkisecret/index.ts",
         "pkisecret/secretBackend.ts",
         "pkisecret/secretBackendCert.ts",

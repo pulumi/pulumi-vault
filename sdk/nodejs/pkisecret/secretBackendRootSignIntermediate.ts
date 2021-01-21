@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Creates an PKI certificate.
+ * Creates PKI certificate.
  *
  * ## Example Usage
  *
