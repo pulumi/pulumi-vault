@@ -27,6 +27,24 @@ namespace Pulumi.Vault.Consul
         public Output<string> Address { get; private set; } = null!;
 
         /// <summary>
+        /// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
+        /// </summary>
+        [Output("caCert")]
+        public Output<string?> CaCert { get; private set; } = null!;
+
+        /// <summary>
+        /// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+        /// </summary>
+        [Output("clientCert")]
+        public Output<string?> ClientCert { get; private set; } = null!;
+
+        /// <summary>
+        /// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+        /// </summary>
+        [Output("clientKey")]
+        public Output<string?> ClientKey { get; private set; } = null!;
+
+        /// <summary>
         /// The default TTL for credentials issued by this backend.
         /// </summary>
         [Output("defaultLeaseTtlSeconds")]
@@ -116,6 +134,24 @@ namespace Pulumi.Vault.Consul
         public Input<string> Address { get; set; } = null!;
 
         /// <summary>
+        /// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
+        /// </summary>
+        [Input("caCert")]
+        public Input<string>? CaCert { get; set; }
+
+        /// <summary>
+        /// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+        /// </summary>
+        [Input("clientCert")]
+        public Input<string>? ClientCert { get; set; }
+
+        /// <summary>
+        /// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+        /// </summary>
+        [Input("clientKey")]
+        public Input<string>? ClientKey { get; set; }
+
+        /// <summary>
         /// The default TTL for credentials issued by this backend.
         /// </summary>
         [Input("defaultLeaseTtlSeconds")]
@@ -164,6 +200,24 @@ namespace Pulumi.Vault.Consul
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
+
+        /// <summary>
+        /// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
+        /// </summary>
+        [Input("caCert")]
+        public Input<string>? CaCert { get; set; }
+
+        /// <summary>
+        /// Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+        /// </summary>
+        [Input("clientCert")]
+        public Input<string>? ClientCert { get; set; }
+
+        /// <summary>
+        /// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+        /// </summary>
+        [Input("clientKey")]
+        public Input<string>? ClientKey { get; set; }
 
         /// <summary>
         /// The default TTL for credentials issued by this backend.

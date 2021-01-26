@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Creates an PKI certificate.
+// Creates PKI certificate.
 //
 // ## Example Usage
 //

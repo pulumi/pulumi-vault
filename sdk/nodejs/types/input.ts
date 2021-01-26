@@ -63,7 +63,7 @@ export interface GetPolicyDocumentRule {
      */
     deniedParameters?: inputs.GetPolicyDocumentRuleDeniedParameter[];
     /**
-     * Description of the rule. Will be added as a commend to rendered rule.
+     * Description of the rule. Will be added as a comment to rendered rule.
      */
     description?: string;
     /**

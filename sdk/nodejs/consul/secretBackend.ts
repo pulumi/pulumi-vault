@@ -46,6 +46,18 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly address!: pulumi.Output<string>;
     /**
+     * CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
+     */
+    public readonly caCert!: pulumi.Output<string | undefined>;
+    /**
+     * Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+     */
+    public readonly clientCert!: pulumi.Output<string | undefined>;
+    /**
+     * Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+     */
+    public readonly clientKey!: pulumi.Output<string | undefined>;
+    /**
      * The default TTL for credentials issued by this backend.
      */
     public readonly defaultLeaseTtlSeconds!: pulumi.Output<number | undefined>;
@@ -84,6 +96,9 @@ export class SecretBackend extends pulumi.CustomResource {
         if (opts && opts.id) {
             const state = argsOrState as SecretBackendState | undefined;
             inputs["address"] = state ? state.address : undefined;
+            inputs["caCert"] = state ? state.caCert : undefined;
+            inputs["clientCert"] = state ? state.clientCert : undefined;
+            inputs["clientKey"] = state ? state.clientKey : undefined;
             inputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
@@ -99,6 +114,9 @@ export class SecretBackend extends pulumi.CustomResource {
                 throw new Error("Missing required property 'token'");
             }
             inputs["address"] = args ? args.address : undefined;
+            inputs["caCert"] = args ? args.caCert : undefined;
+            inputs["clientCert"] = args ? args.clientCert : undefined;
+            inputs["clientKey"] = args ? args.clientKey : undefined;
             inputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
             inputs["description"] = args ? args.description : undefined;
             inputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
@@ -125,6 +143,18 @@ export interface SecretBackendState {
      * Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
      */
     readonly address?: pulumi.Input<string>;
+    /**
+     * CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
+     */
+    readonly caCert?: pulumi.Input<string>;
+    /**
+     * Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+     */
+    readonly clientCert?: pulumi.Input<string>;
+    /**
+     * Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+     */
+    readonly clientKey?: pulumi.Input<string>;
     /**
      * The default TTL for credentials issued by this backend.
      */
@@ -160,6 +190,18 @@ export interface SecretBackendArgs {
      * Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
      */
     readonly address: pulumi.Input<string>;
+    /**
+     * CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
+     */
+    readonly caCert?: pulumi.Input<string>;
+    /**
+     * Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+     */
+    readonly clientCert?: pulumi.Input<string>;
+    /**
+     * Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+     */
+    readonly clientKey?: pulumi.Input<string>;
     /**
      * The default TTL for credentials issued by this backend.
      */

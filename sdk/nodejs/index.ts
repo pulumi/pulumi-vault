@@ -17,6 +17,7 @@ export * from "./mount";
 export * from "./namespace";
 export * from "./nomadSecretBackend";
 export * from "./nomadSecretRole";
+export * from "./passwordPolicy";
 export * from "./policy";
 export * from "./provider";
 export * from "./quotaRateLimit";
@@ -84,6 +85,7 @@ import { Mount } from "./mount";
 import { Namespace } from "./namespace";
 import { NomadSecretBackend } from "./nomadSecretBackend";
 import { NomadSecretRole } from "./nomadSecretRole";
+import { PasswordPolicy } from "./passwordPolicy";
 import { Policy } from "./policy";
 import { QuotaRateLimit } from "./quotaRateLimit";
 import { RgpPolicy } from "./rgpPolicy";
@@ -111,6 +113,8 @@ const _module = {
                 return new NomadSecretBackend(name, <any>undefined, { urn })
             case "vault:index/nomadSecretRole:NomadSecretRole":
                 return new NomadSecretRole(name, <any>undefined, { urn })
+            case "vault:index/passwordPolicy:PasswordPolicy":
+                return new PasswordPolicy(name, <any>undefined, { urn })
             case "vault:index/policy:Policy":
                 return new Policy(name, <any>undefined, { urn })
             case "vault:index/quotaRateLimit:QuotaRateLimit":
@@ -133,6 +137,7 @@ pulumi.runtime.registerResourceModule("vault", "index/mount", _module)
 pulumi.runtime.registerResourceModule("vault", "index/namespace", _module)
 pulumi.runtime.registerResourceModule("vault", "index/nomadSecretBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "index/nomadSecretRole", _module)
+pulumi.runtime.registerResourceModule("vault", "index/passwordPolicy", _module)
 pulumi.runtime.registerResourceModule("vault", "index/policy", _module)
 pulumi.runtime.registerResourceModule("vault", "index/quotaRateLimit", _module)
 pulumi.runtime.registerResourceModule("vault", "index/rgpPolicy", _module)

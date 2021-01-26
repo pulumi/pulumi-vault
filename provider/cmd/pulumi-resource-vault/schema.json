@@ -1272,7 +1272,7 @@
                 },
                 "description": {
                     "type": "string",
-                    "description": "Description of the rule. Will be added as a commend to rendered rule.\n",
+                    "description": "Description of the rule. Will be added as a comment to rendered rule.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5248,6 +5248,18 @@
                     "type": "string",
                     "description": "Specifies the address of the Consul instance, provided as \"host:port\" like \"127.0.0.1:8500\".\n"
                 },
+                "caCert": {
+                    "type": "string",
+                    "description": "CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.\n"
+                },
+                "clientCert": {
+                    "type": "string",
+                    "description": "Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.\n"
+                },
+                "clientKey": {
+                    "type": "string",
+                    "description": "Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.\n"
+                },
                 "defaultLeaseTtlSeconds": {
                     "type": "integer",
                     "description": "The default TTL for credentials issued by this backend.\n"
@@ -5281,6 +5293,18 @@
                 "address": {
                     "type": "string",
                     "description": "Specifies the address of the Consul instance, provided as \"host:port\" like \"127.0.0.1:8500\".\n"
+                },
+                "caCert": {
+                    "type": "string",
+                    "description": "CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.\n"
+                },
+                "clientCert": {
+                    "type": "string",
+                    "description": "Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.\n"
+                },
+                "clientKey": {
+                    "type": "string",
+                    "description": "Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.\n"
                 },
                 "defaultLeaseTtlSeconds": {
                     "type": "integer",
@@ -5317,6 +5341,18 @@
                     "address": {
                         "type": "string",
                         "description": "Specifies the address of the Consul instance, provided as \"host:port\" like \"127.0.0.1:8500\".\n"
+                    },
+                    "caCert": {
+                        "type": "string",
+                        "description": "CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.\n"
+                    },
+                    "clientCert": {
+                        "type": "string",
+                        "description": "Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.\n"
+                    },
+                    "clientKey": {
+                        "type": "string",
+                        "description": "Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.\n"
                     },
                     "defaultLeaseTtlSeconds": {
                         "type": "integer",
@@ -7758,6 +7794,7 @@
             }
         },
         "vault:identity/entityAlias:EntityAlias": {
+            "description": "\n\n\n## Import\n\nIdentity entity alias can be imported using the `id`, e.g.\n\n```sh\n $ pulumi import vault:identity/entityAlias:EntityAlias test \"3856fb4d-3c91-dcaf-2401-68f446796bfb\"\n```\n\n ",
             "properties": {
                 "canonicalId": {
                     "type": "string",
@@ -9809,6 +9846,50 @@
                 "type": "object"
             }
         },
+        "vault:index/passwordPolicy:PasswordPolicy": {
+            "description": "Provides a resource to manage Password Policies \n\n**Note** this feature is available only Vault 1.5+ \n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst alphanumeric = new vault.PasswordPolicy(\"alphanumeric\", {\n    policy: `length = 20\nrule \"charset\" {\n\t  charset = \"abcdefghijklmnopqrstuvwxyz0123456789\"\n}\n`,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nalphanumeric = vault.PasswordPolicy(\"alphanumeric\", policy=\"\"\"length = 20\nrule \"charset\" {\n\t  charset = \"abcdefghijklmnopqrstuvwxyz0123456789\"\n}\n\n\"\"\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var alphanumeric = new Vault.PasswordPolicy(\"alphanumeric\", new Vault.PasswordPolicyArgs\n        {\n            Policy = @\"length = 20\nrule \"\"charset\"\" {\n\t  charset = \"\"abcdefghijklmnopqrstuvwxyz0123456789\"\"\n}\n\n\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewPasswordPolicy(ctx, \"alphanumeric\", \u0026vault.PasswordPolicyArgs{\n\t\t\tPolicy: pulumi.String(fmt.Sprintf(\"%v%v%v%v%v\", \"length = 20\\n\", \"rule \\\"charset\\\" {\\n\", \"\t  charset = \\\"abcdefghijklmnopqrstuvwxyz0123456789\\\"\\n\", \"}\\n\", \"\\n\")),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPassword policies can be imported using the `name`, e.g.\n\n```sh\n $ pulumi import vault:index/passwordPolicy:PasswordPolicy alphanumeric alphanumeric\n```\n\n ",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the password policy.\n"
+                },
+                "policy": {
+                    "type": "string",
+                    "description": "String containing a password policy.\n"
+                }
+            },
+            "required": [
+                "name",
+                "policy"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the password policy.\n"
+                },
+                "policy": {
+                    "type": "string",
+                    "description": "String containing a password policy.\n"
+                }
+            },
+            "requiredInputs": [
+                "policy"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering PasswordPolicy resources.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the password policy.\n"
+                    },
+                    "policy": {
+                        "type": "string",
+                        "description": "String containing a password policy.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "vault:index/policy:Policy": {
             "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.Policy(\"example\", {\n    policy: `path \"secret/my_app\" {\n  capabilities = [\"update\"]\n}\n`,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.Policy(\"example\", policy=\"\"\"path \"secret/my_app\" {\n  capabilities = [\"update\"]\n}\n\n\"\"\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.Policy(\"example\", new Vault.PolicyArgs\n        {\n            Policy = @\"path \"\"secret/my_app\"\" {\n  capabilities = [\"\"update\"\"]\n}\n\n\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewPolicy(ctx, \"example\", \u0026vault.PolicyArgs{\n\t\t\tPolicy: pulumi.String(fmt.Sprintf(\"%v%v%v%v\", \"path \\\"secret/my_app\\\" {\\n\", \"  capabilities = [\\\"update\\\"]\\n\", \"}\\n\", \"\\n\")),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPolicies can be imported using the `name`, e.g.\n\n```sh\n $ pulumi import vault:index/policy:Policy example dev-team\n```\n\n ",
             "properties": {
@@ -10236,7 +10317,7 @@
             "properties": {
                 "accessor": {
                     "type": "string",
-                    "description": "The accessor of the JWT auth backend\n"
+                    "description": "The accessor for this auth method\n"
                 },
                 "boundIssuer": {
                     "type": "string",
@@ -10291,6 +10372,13 @@
                 "path": {
                     "type": "string",
                     "description": "Path to mount the JWT/OIDC auth backend\n"
+                },
+                "providerConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Provider specific handling configuration\n"
                 },
                 "tune": {
                     "$ref": "#/types/vault:jwt/AuthBackendTune:AuthBackendTune"
@@ -10359,6 +10447,13 @@
                     "type": "string",
                     "description": "Path to mount the JWT/OIDC auth backend\n"
                 },
+                "providerConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Provider specific handling configuration\n"
+                },
                 "tune": {
                     "$ref": "#/types/vault:jwt/AuthBackendTune:AuthBackendTune"
                 },
@@ -10372,7 +10467,7 @@
                 "properties": {
                     "accessor": {
                         "type": "string",
-                        "description": "The accessor of the JWT auth backend\n"
+                        "description": "The accessor for this auth method\n"
                     },
                     "boundIssuer": {
                         "type": "string",
@@ -10427,6 +10522,13 @@
                     "path": {
                         "type": "string",
                         "description": "Path to mount the JWT/OIDC auth backend\n"
+                    },
+                    "providerConfig": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Provider specific handling configuration\n"
                     },
                     "tune": {
                         "$ref": "#/types/vault:jwt/AuthBackendTune:AuthBackendTune"
@@ -10949,7 +11051,7 @@
             }
         },
         "vault:kubernetes/authBackendConfig:AuthBackendConfig": {
-            "description": "Manages an Kubernetes auth backend config in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst kubernetes = new vault.AuthBackend(\"kubernetes\", {\n    type: \"kubernetes\",\n});\nconst example = new vault.kubernetes.AuthBackendConfig(\"example\", {\n    backend: kubernetes.path,\n    disableIssValidation: true,\n    issuer: \"api\",\n    kubernetesCaCert: `-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----`,\n    kubernetesHost: \"http://example.com:443\",\n    tokenReviewerJwt: \"ZXhhbXBsZQo=\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nkubernetes = vault.AuthBackend(\"kubernetes\", type=\"kubernetes\")\nexample = vault.kubernetes.AuthBackendConfig(\"example\",\n    backend=kubernetes.path,\n    disable_iss_validation=True,\n    issuer=\"api\",\n    kubernetes_ca_cert=\"\"\"-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----\n\"\"\",\n    kubernetes_host=\"http://example.com:443\",\n    token_reviewer_jwt=\"ZXhhbXBsZQo=\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var kubernetes = new Vault.AuthBackend(\"kubernetes\", new Vault.AuthBackendArgs\n        {\n            Type = \"kubernetes\",\n        });\n        var example = new Vault.Kubernetes.AuthBackendConfig(\"example\", new Vault.Kubernetes.AuthBackendConfigArgs\n        {\n            Backend = kubernetes.Path,\n            DisableIssValidation = true,\n            Issuer = \"api\",\n            KubernetesCaCert = @\"-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----\n\",\n            KubernetesHost = \"http://example.com:443\",\n            TokenReviewerJwt = \"ZXhhbXBsZQo=\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/kubernetes\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tkubernetes, err := vault.NewAuthBackend(ctx, \"kubernetes\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"kubernetes\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kubernetes.NewAuthBackendConfig(ctx, \"example\", \u0026kubernetes.AuthBackendConfigArgs{\n\t\t\tBackend:              kubernetes.Path,\n\t\t\tDisableIssValidation: pulumi.Bool(true),\n\t\t\tIssuer:               pulumi.String(\"api\"),\n\t\t\tKubernetesCaCert:     pulumi.String(fmt.Sprintf(\"%v%v%v\", \"-----BEGIN CERTIFICATE-----\\n\", \"example\\n\", \"-----END CERTIFICATE-----\\n\")),\n\t\t\tKubernetesHost:       pulumi.String(\"http://example.com:443\"),\n\t\t\tTokenReviewerJwt:     pulumi.String(\"ZXhhbXBsZQo=\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages an Kubernetes auth backend config in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst kubernetes = new vault.AuthBackend(\"kubernetes\", {\n    type: \"kubernetes\",\n});\nconst example = new vault.kubernetes.AuthBackendConfig(\"example\", {\n    backend: kubernetes.path,\n    disableIssValidation: true,\n    issuer: \"api\",\n    kubernetesCaCert: `-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----`,\n    kubernetesHost: \"http://example.com:443\",\n    tokenReviewerJwt: \"ZXhhbXBsZQo=\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nkubernetes = vault.AuthBackend(\"kubernetes\", type=\"kubernetes\")\nexample = vault.kubernetes.AuthBackendConfig(\"example\",\n    backend=kubernetes.path,\n    disable_iss_validation=True,\n    issuer=\"api\",\n    kubernetes_ca_cert=\"\"\"-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----\n\"\"\",\n    kubernetes_host=\"http://example.com:443\",\n    token_reviewer_jwt=\"ZXhhbXBsZQo=\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var kubernetes = new Vault.AuthBackend(\"kubernetes\", new Vault.AuthBackendArgs\n        {\n            Type = \"kubernetes\",\n        });\n        var example = new Vault.Kubernetes.AuthBackendConfig(\"example\", new Vault.Kubernetes.AuthBackendConfigArgs\n        {\n            Backend = kubernetes.Path,\n            DisableIssValidation = true,\n            Issuer = \"api\",\n            KubernetesCaCert = @\"-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----\n\",\n            KubernetesHost = \"http://example.com:443\",\n            TokenReviewerJwt = \"ZXhhbXBsZQo=\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/kubernetes\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tkubernetes, err := vault.NewAuthBackend(ctx, \"kubernetes\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"kubernetes\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kubernetes.NewAuthBackendConfig(ctx, \"example\", \u0026kubernetes.AuthBackendConfigArgs{\n\t\t\tBackend:              kubernetes.Path,\n\t\t\tDisableIssValidation: pulumi.Bool(true),\n\t\t\tIssuer:               pulumi.String(\"api\"),\n\t\t\tKubernetesCaCert:     pulumi.String(fmt.Sprintf(\"%v%v%v\", \"-----BEGIN CERTIFICATE-----\\n\", \"example\\n\", \"-----END CERTIFICATE-----\\n\")),\n\t\t\tKubernetesHost:       pulumi.String(\"http://example.com:443\"),\n\t\t\tTokenReviewerJwt:     pulumi.String(\"ZXhhbXBsZQo=\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nKubernetes authentication backend can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config\n```\n\n ",
             "properties": {
                 "backend": {
                     "type": "string",
@@ -14111,7 +14213,7 @@
             }
         },
         "vault:pkiSecret/secretBackendRootSignIntermediate:SecretBackendRootSignIntermediate": {
-            "description": "Creates an PKI certificate.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst root = new vault.pkiSecret.SecretBackendRootSignIntermediate(\"root\", {\n    backend: vault_pki_secret_backend.root.path,\n    csr: vault_pki_secret_backend_intermediate_cert_request.intermediate.csr,\n    commonName: \"Intermediate CA\",\n    excludeCnFromSans: true,\n    ou: \"My OU\",\n    organization: \"My organization\",\n}, {\n    dependsOn: [\"vault_pki_secret_backend_intermediate_cert_request.intermediate\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nroot = vault.pki_secret.SecretBackendRootSignIntermediate(\"root\",\n    backend=vault_pki_secret_backend[\"root\"][\"path\"],\n    csr=vault_pki_secret_backend_intermediate_cert_request[\"intermediate\"][\"csr\"],\n    common_name=\"Intermediate CA\",\n    exclude_cn_from_sans=True,\n    ou=\"My OU\",\n    organization=\"My organization\",\n    opts=pulumi.ResourceOptions(depends_on=[\"vault_pki_secret_backend_intermediate_cert_request.intermediate\"]))\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var root = new Vault.PkiSecret.SecretBackendRootSignIntermediate(\"root\", new Vault.PkiSecret.SecretBackendRootSignIntermediateArgs\n        {\n            Backend = vault_pki_secret_backend.Root.Path,\n            Csr = vault_pki_secret_backend_intermediate_cert_request.Intermediate.Csr,\n            CommonName = \"Intermediate CA\",\n            ExcludeCnFromSans = true,\n            Ou = \"My OU\",\n            Organization = \"My organization\",\n        }, new CustomResourceOptions\n        {\n            DependsOn = \n            {\n                \"vault_pki_secret_backend_intermediate_cert_request.intermediate\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/pkiSecret\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := pkiSecret.NewSecretBackendRootSignIntermediate(ctx, \"root\", \u0026pkiSecret.SecretBackendRootSignIntermediateArgs{\n\t\t\tBackend:           pulumi.Any(vault_pki_secret_backend.Root.Path),\n\t\t\tCsr:               pulumi.Any(vault_pki_secret_backend_intermediate_cert_request.Intermediate.Csr),\n\t\t\tCommonName:        pulumi.String(\"Intermediate CA\"),\n\t\t\tExcludeCnFromSans: pulumi.Bool(true),\n\t\t\tOu:                pulumi.String(\"My OU\"),\n\t\t\tOrganization:      pulumi.String(\"My organization\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\t\"vault_pki_secret_backend_intermediate_cert_request.intermediate\",\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Creates PKI certificate.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst root = new vault.pkiSecret.SecretBackendRootSignIntermediate(\"root\", {\n    backend: vault_pki_secret_backend.root.path,\n    csr: vault_pki_secret_backend_intermediate_cert_request.intermediate.csr,\n    commonName: \"Intermediate CA\",\n    excludeCnFromSans: true,\n    ou: \"My OU\",\n    organization: \"My organization\",\n}, {\n    dependsOn: [\"vault_pki_secret_backend_intermediate_cert_request.intermediate\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nroot = vault.pki_secret.SecretBackendRootSignIntermediate(\"root\",\n    backend=vault_pki_secret_backend[\"root\"][\"path\"],\n    csr=vault_pki_secret_backend_intermediate_cert_request[\"intermediate\"][\"csr\"],\n    common_name=\"Intermediate CA\",\n    exclude_cn_from_sans=True,\n    ou=\"My OU\",\n    organization=\"My organization\",\n    opts=pulumi.ResourceOptions(depends_on=[\"vault_pki_secret_backend_intermediate_cert_request.intermediate\"]))\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var root = new Vault.PkiSecret.SecretBackendRootSignIntermediate(\"root\", new Vault.PkiSecret.SecretBackendRootSignIntermediateArgs\n        {\n            Backend = vault_pki_secret_backend.Root.Path,\n            Csr = vault_pki_secret_backend_intermediate_cert_request.Intermediate.Csr,\n            CommonName = \"Intermediate CA\",\n            ExcludeCnFromSans = true,\n            Ou = \"My OU\",\n            Organization = \"My organization\",\n        }, new CustomResourceOptions\n        {\n            DependsOn = \n            {\n                \"vault_pki_secret_backend_intermediate_cert_request.intermediate\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/pkiSecret\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := pkiSecret.NewSecretBackendRootSignIntermediate(ctx, \"root\", \u0026pkiSecret.SecretBackendRootSignIntermediateArgs{\n\t\t\tBackend:           pulumi.Any(vault_pki_secret_backend.Root.Path),\n\t\t\tCsr:               pulumi.Any(vault_pki_secret_backend_intermediate_cert_request.Intermediate.Csr),\n\t\t\tCommonName:        pulumi.String(\"Intermediate CA\"),\n\t\t\tExcludeCnFromSans: pulumi.Bool(true),\n\t\t\tOu:                pulumi.String(\"My OU\"),\n\t\t\tOrganization:      pulumi.String(\"My organization\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\t\"vault_pki_secret_backend_intermediate_cert_request.intermediate\",\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "altNames": {
                     "type": "array",

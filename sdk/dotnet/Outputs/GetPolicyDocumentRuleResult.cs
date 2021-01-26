@@ -26,7 +26,7 @@ namespace Pulumi.Vault.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetPolicyDocumentRuleDeniedParameterResult> DeniedParameters;
         /// <summary>
-        /// Description of the rule. Will be added as a commend to rendered rule.
+        /// Description of the rule. Will be added as a comment to rendered rule.
         /// </summary>
         public readonly string? Description;
         /// <summary>

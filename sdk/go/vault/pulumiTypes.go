@@ -627,7 +627,7 @@ type GetPolicyDocumentRule struct {
 	Capabilities []string `pulumi:"capabilities"`
 	// Blacklists a list of parameter and values. Any values specified here take precedence over `allowedParameter`. See Parameters below.
 	DeniedParameters []GetPolicyDocumentRuleDeniedParameter `pulumi:"deniedParameters"`
-	// Description of the rule. Will be added as a commend to rendered rule.
+	// Description of the rule. Will be added as a comment to rendered rule.
 	Description *string `pulumi:"description"`
 	// The maximum allowed TTL that clients can specify for a wrapped response.
 	MaxWrappingTtl *string `pulumi:"maxWrappingTtl"`
@@ -657,7 +657,7 @@ type GetPolicyDocumentRuleArgs struct {
 	Capabilities pulumi.StringArrayInput `pulumi:"capabilities"`
 	// Blacklists a list of parameter and values. Any values specified here take precedence over `allowedParameter`. See Parameters below.
 	DeniedParameters GetPolicyDocumentRuleDeniedParameterArrayInput `pulumi:"deniedParameters"`
-	// Description of the rule. Will be added as a commend to rendered rule.
+	// Description of the rule. Will be added as a comment to rendered rule.
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// The maximum allowed TTL that clients can specify for a wrapped response.
 	MaxWrappingTtl pulumi.StringPtrInput `pulumi:"maxWrappingTtl"`
@@ -735,7 +735,7 @@ func (o GetPolicyDocumentRuleOutput) DeniedParameters() GetPolicyDocumentRuleDen
 	return o.ApplyT(func(v GetPolicyDocumentRule) []GetPolicyDocumentRuleDeniedParameter { return v.DeniedParameters }).(GetPolicyDocumentRuleDeniedParameterArrayOutput)
 }
 
-// Description of the rule. Will be added as a commend to rendered rule.
+// Description of the rule. Will be added as a comment to rendered rule.
 func (o GetPolicyDocumentRuleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPolicyDocumentRule) *string { return v.Description }).(pulumi.StringPtrOutput)
 }

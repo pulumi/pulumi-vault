@@ -29,6 +29,14 @@ import * as utilities from "../utilities";
  *     tokenReviewerJwt: "ZXhhbXBsZQo=",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Kubernetes authentication backend can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config
+ * ```
  */
 export class AuthBackendConfig extends pulumi.CustomResource {
     /**

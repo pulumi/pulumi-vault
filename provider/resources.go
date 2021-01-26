@@ -225,6 +225,7 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_quota_rate_limit":     {Tok: makeResource(mainMod, "QuotaRateLimit")},
 			"vault_nomad_secret_backend": {Tok: makeResource(mainMod, "NomadSecretBackend")},
 			"vault_nomad_secret_role":    {Tok: makeResource(mainMod, "NomadSecretRole")},
+			"vault_password_policy":      {Tok: makeResource(mainMod, "PasswordPolicy")},
 
 			// AD
 			"vault_ad_secret_backend": {Tok: makeResource(adMod, "SecretBackend")},

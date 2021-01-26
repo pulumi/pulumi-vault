@@ -29,6 +29,7 @@ class AuthBackend(pulumi.CustomResource):
                  oidc_discovery_ca_pem: Optional[pulumi.Input[str]] = None,
                  oidc_discovery_url: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 provider_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None,
@@ -100,6 +101,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
         :param pulumi.Input[str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
         :param pulumi.Input[str] path: Path to mount the JWT/OIDC auth backend
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] provider_config: Provider specific handling configuration
         :param pulumi.Input[str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
         """
         if __name__ is not None:
@@ -131,6 +133,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__['oidc_discovery_ca_pem'] = oidc_discovery_ca_pem
             __props__['oidc_discovery_url'] = oidc_discovery_url
             __props__['path'] = path
+            __props__['provider_config'] = provider_config
             __props__['tune'] = tune
             __props__['type'] = type
             __props__['accessor'] = None
@@ -157,6 +160,7 @@ class AuthBackend(pulumi.CustomResource):
             oidc_discovery_ca_pem: Optional[pulumi.Input[str]] = None,
             oidc_discovery_url: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
+            provider_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'AuthBackend':
         """
@@ -166,7 +170,7 @@ class AuthBackend(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] accessor: The accessor of the JWT auth backend
+        :param pulumi.Input[str] accessor: The accessor for this auth method
         :param pulumi.Input[str] bound_issuer: The value against which to match the iss claim in a JWT
         :param pulumi.Input[str] default_role: The default role to use if none is provided during login
         :param pulumi.Input[str] description: The description of the auth backend
@@ -179,6 +183,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
         :param pulumi.Input[str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
         :param pulumi.Input[str] path: Path to mount the JWT/OIDC auth backend
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] provider_config: Provider specific handling configuration
         :param pulumi.Input[str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -198,6 +203,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__["oidc_discovery_ca_pem"] = oidc_discovery_ca_pem
         __props__["oidc_discovery_url"] = oidc_discovery_url
         __props__["path"] = path
+        __props__["provider_config"] = provider_config
         __props__["tune"] = tune
         __props__["type"] = type
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
@@ -206,7 +212,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter
     def accessor(self) -> pulumi.Output[str]:
         """
-        The accessor of the JWT auth backend
+        The accessor for this auth method
         """
         return pulumi.get(self, "accessor")
 
@@ -305,6 +311,14 @@ class AuthBackend(pulumi.CustomResource):
         Path to mount the JWT/OIDC auth backend
         """
         return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="providerConfig")
+    def provider_config(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Provider specific handling configuration
+        """
+        return pulumi.get(self, "provider_config")
 
     @property
     @pulumi.getter

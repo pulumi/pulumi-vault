@@ -4,6 +4,15 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Import
+ *
+ * Identity entity alias can be imported using the `id`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:identity/entityAlias:EntityAlias test "3856fb4d-3c91-dcaf-2401-68f446796bfb"
+ * ```
+ */
 export class EntityAlias extends pulumi.CustomResource {
     /**
      * Get an existing EntityAlias resource's state with the given name, ID, and optional extra

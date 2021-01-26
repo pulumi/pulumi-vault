@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.PkiSecret
 {
     /// <summary>
-    /// Creates an PKI certificate.
+    /// Creates PKI certificate.
     /// 
     /// ## Example Usage
     /// 

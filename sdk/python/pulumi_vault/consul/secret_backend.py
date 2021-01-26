@@ -16,6 +16,9 @@ class SecretBackend(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  address: Optional[pulumi.Input[str]] = None,
+                 ca_cert: Optional[pulumi.Input[str]] = None,
+                 client_cert: Optional[pulumi.Input[str]] = None,
+                 client_key: Optional[pulumi.Input[str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
@@ -37,6 +40,9 @@ class SecretBackend(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address: Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
+        :param pulumi.Input[str] ca_cert: CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
+        :param pulumi.Input[str] client_cert: Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+        :param pulumi.Input[str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials issued by this backend.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
@@ -65,6 +71,9 @@ class SecretBackend(pulumi.CustomResource):
             if address is None and not opts.urn:
                 raise TypeError("Missing required property 'address'")
             __props__['address'] = address
+            __props__['ca_cert'] = ca_cert
+            __props__['client_cert'] = client_cert
+            __props__['client_key'] = client_key
             __props__['default_lease_ttl_seconds'] = default_lease_ttl_seconds
             __props__['description'] = description
             __props__['max_lease_ttl_seconds'] = max_lease_ttl_seconds
@@ -84,6 +93,9 @@ class SecretBackend(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             address: Optional[pulumi.Input[str]] = None,
+            ca_cert: Optional[pulumi.Input[str]] = None,
+            client_cert: Optional[pulumi.Input[str]] = None,
+            client_key: Optional[pulumi.Input[str]] = None,
             default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
             max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
@@ -98,6 +110,9 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address: Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
+        :param pulumi.Input[str] ca_cert: CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
+        :param pulumi.Input[str] client_cert: Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+        :param pulumi.Input[str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials issued by this backend.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
@@ -111,6 +126,9 @@ class SecretBackend(pulumi.CustomResource):
         __props__ = dict()
 
         __props__["address"] = address
+        __props__["ca_cert"] = ca_cert
+        __props__["client_cert"] = client_cert
+        __props__["client_key"] = client_key
         __props__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__["description"] = description
         __props__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
@@ -126,6 +144,30 @@ class SecretBackend(pulumi.CustomResource):
         Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
         """
         return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter(name="caCert")
+    def ca_cert(self) -> pulumi.Output[Optional[str]]:
+        """
+        CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
+        """
+        return pulumi.get(self, "ca_cert")
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> pulumi.Output[Optional[str]]:
+        """
+        Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+        """
+        return pulumi.get(self, "client_cert")
+
+    @property
+    @pulumi.getter(name="clientKey")
+    def client_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+        """
+        return pulumi.get(self, "client_key")
 
     @property
     @pulumi.getter(name="defaultLeaseTtlSeconds")

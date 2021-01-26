@@ -83,7 +83,7 @@ namespace Pulumi.Vault.Jwt
     public partial class AuthBackend : Pulumi.CustomResource
     {
         /// <summary>
-        /// The accessor of the JWT auth backend
+        /// The accessor for this auth method
         /// </summary>
         [Output("accessor")]
         public Output<string> Accessor { get; private set; } = null!;
@@ -159,6 +159,12 @@ namespace Pulumi.Vault.Jwt
         /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
+
+        /// <summary>
+        /// Provider specific handling configuration
+        /// </summary>
+        [Output("providerConfig")]
+        public Output<ImmutableDictionary<string, string>?> ProviderConfig { get; private set; } = null!;
 
         [Output("tune")]
         public Output<Outputs.AuthBackendTune> Tune { get; private set; } = null!;
@@ -299,6 +305,18 @@ namespace Pulumi.Vault.Jwt
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        [Input("providerConfig")]
+        private InputMap<string>? _providerConfig;
+
+        /// <summary>
+        /// Provider specific handling configuration
+        /// </summary>
+        public InputMap<string> ProviderConfig
+        {
+            get => _providerConfig ?? (_providerConfig = new InputMap<string>());
+            set => _providerConfig = value;
+        }
+
         [Input("tune")]
         public Input<Inputs.AuthBackendTuneArgs>? Tune { get; set; }
 
@@ -316,7 +334,7 @@ namespace Pulumi.Vault.Jwt
     public sealed class AuthBackendState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The accessor of the JWT auth backend
+        /// The accessor for this auth method
         /// </summary>
         [Input("accessor")]
         public Input<string>? Accessor { get; set; }
@@ -404,6 +422,18 @@ namespace Pulumi.Vault.Jwt
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
+
+        [Input("providerConfig")]
+        private InputMap<string>? _providerConfig;
+
+        /// <summary>
+        /// Provider specific handling configuration
+        /// </summary>
+        public InputMap<string> ProviderConfig
+        {
+            get => _providerConfig ?? (_providerConfig = new InputMap<string>());
+            set => _providerConfig = value;
+        }
 
         [Input("tune")]
         public Input<Inputs.AuthBackendTuneGetArgs>? Tune { get; set; }

@@ -88,7 +88,7 @@ export class AuthBackend extends pulumi.CustomResource {
     }
 
     /**
-     * The accessor of the JWT auth backend
+     * The accessor for this auth method
      */
     public /*out*/ readonly accessor!: pulumi.Output<string>;
     /**
@@ -139,6 +139,10 @@ export class AuthBackend extends pulumi.CustomResource {
      * Path to mount the JWT/OIDC auth backend
      */
     public readonly path!: pulumi.Output<string | undefined>;
+    /**
+     * Provider specific handling configuration
+     */
+    public readonly providerConfig!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly tune!: pulumi.Output<outputs.jwt.AuthBackendTune>;
     /**
      * Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
@@ -170,6 +174,7 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["oidcDiscoveryCaPem"] = state ? state.oidcDiscoveryCaPem : undefined;
             inputs["oidcDiscoveryUrl"] = state ? state.oidcDiscoveryUrl : undefined;
             inputs["path"] = state ? state.path : undefined;
+            inputs["providerConfig"] = state ? state.providerConfig : undefined;
             inputs["tune"] = state ? state.tune : undefined;
             inputs["type"] = state ? state.type : undefined;
         } else {
@@ -186,6 +191,7 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["oidcDiscoveryCaPem"] = args ? args.oidcDiscoveryCaPem : undefined;
             inputs["oidcDiscoveryUrl"] = args ? args.oidcDiscoveryUrl : undefined;
             inputs["path"] = args ? args.path : undefined;
+            inputs["providerConfig"] = args ? args.providerConfig : undefined;
             inputs["tune"] = args ? args.tune : undefined;
             inputs["type"] = args ? args.type : undefined;
             inputs["accessor"] = undefined /*out*/;
@@ -206,7 +212,7 @@ export class AuthBackend extends pulumi.CustomResource {
  */
 export interface AuthBackendState {
     /**
-     * The accessor of the JWT auth backend
+     * The accessor for this auth method
      */
     readonly accessor?: pulumi.Input<string>;
     /**
@@ -257,6 +263,10 @@ export interface AuthBackendState {
      * Path to mount the JWT/OIDC auth backend
      */
     readonly path?: pulumi.Input<string>;
+    /**
+     * Provider specific handling configuration
+     */
+    readonly providerConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     readonly tune?: pulumi.Input<inputs.jwt.AuthBackendTune>;
     /**
      * Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
@@ -316,6 +326,10 @@ export interface AuthBackendArgs {
      * Path to mount the JWT/OIDC auth backend
      */
     readonly path?: pulumi.Input<string>;
+    /**
+     * Provider specific handling configuration
+     */
+    readonly providerConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     readonly tune?: pulumi.Input<inputs.jwt.AuthBackendTune>;
     /**
      * Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`

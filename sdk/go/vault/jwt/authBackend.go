@@ -89,7 +89,7 @@ import (
 type AuthBackend struct {
 	pulumi.CustomResourceState
 
-	// The accessor of the JWT auth backend
+	// The accessor for this auth method
 	Accessor pulumi.StringOutput `pulumi:"accessor"`
 	// The value against which to match the iss claim in a JWT
 	BoundIssuer pulumi.StringPtrOutput `pulumi:"boundIssuer"`
@@ -115,7 +115,9 @@ type AuthBackend struct {
 	OidcDiscoveryUrl pulumi.StringPtrOutput `pulumi:"oidcDiscoveryUrl"`
 	// Path to mount the JWT/OIDC auth backend
 	Path pulumi.StringPtrOutput `pulumi:"path"`
-	Tune AuthBackendTuneOutput  `pulumi:"tune"`
+	// Provider specific handling configuration
+	ProviderConfig pulumi.StringMapOutput `pulumi:"providerConfig"`
+	Tune           AuthBackendTuneOutput  `pulumi:"tune"`
 	// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
 	Type pulumi.StringPtrOutput `pulumi:"type"`
 }
@@ -149,7 +151,7 @@ func GetAuthBackend(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AuthBackend resources.
 type authBackendState struct {
-	// The accessor of the JWT auth backend
+	// The accessor for this auth method
 	Accessor *string `pulumi:"accessor"`
 	// The value against which to match the iss claim in a JWT
 	BoundIssuer *string `pulumi:"boundIssuer"`
@@ -174,14 +176,16 @@ type authBackendState struct {
 	// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
 	OidcDiscoveryUrl *string `pulumi:"oidcDiscoveryUrl"`
 	// Path to mount the JWT/OIDC auth backend
-	Path *string          `pulumi:"path"`
-	Tune *AuthBackendTune `pulumi:"tune"`
+	Path *string `pulumi:"path"`
+	// Provider specific handling configuration
+	ProviderConfig map[string]string `pulumi:"providerConfig"`
+	Tune           *AuthBackendTune  `pulumi:"tune"`
 	// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
 	Type *string `pulumi:"type"`
 }
 
 type AuthBackendState struct {
-	// The accessor of the JWT auth backend
+	// The accessor for this auth method
 	Accessor pulumi.StringPtrInput
 	// The value against which to match the iss claim in a JWT
 	BoundIssuer pulumi.StringPtrInput
@@ -207,7 +211,9 @@ type AuthBackendState struct {
 	OidcDiscoveryUrl pulumi.StringPtrInput
 	// Path to mount the JWT/OIDC auth backend
 	Path pulumi.StringPtrInput
-	Tune AuthBackendTunePtrInput
+	// Provider specific handling configuration
+	ProviderConfig pulumi.StringMapInput
+	Tune           AuthBackendTunePtrInput
 	// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
 	Type pulumi.StringPtrInput
 }
@@ -240,8 +246,10 @@ type authBackendArgs struct {
 	// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
 	OidcDiscoveryUrl *string `pulumi:"oidcDiscoveryUrl"`
 	// Path to mount the JWT/OIDC auth backend
-	Path *string          `pulumi:"path"`
-	Tune *AuthBackendTune `pulumi:"tune"`
+	Path *string `pulumi:"path"`
+	// Provider specific handling configuration
+	ProviderConfig map[string]string `pulumi:"providerConfig"`
+	Tune           *AuthBackendTune  `pulumi:"tune"`
 	// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
 	Type *string `pulumi:"type"`
 }
@@ -272,7 +280,9 @@ type AuthBackendArgs struct {
 	OidcDiscoveryUrl pulumi.StringPtrInput
 	// Path to mount the JWT/OIDC auth backend
 	Path pulumi.StringPtrInput
-	Tune AuthBackendTunePtrInput
+	// Provider specific handling configuration
+	ProviderConfig pulumi.StringMapInput
+	Tune           AuthBackendTunePtrInput
 	// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
 	Type pulumi.StringPtrInput
 }
