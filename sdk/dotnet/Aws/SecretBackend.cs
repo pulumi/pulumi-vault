@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Aws
     ///  $ pulumi import vault:aws/secretBackend:SecretBackend aws aws
     /// ```
     /// </summary>
+    [VaultResourceType("vault:aws/secretBackend:SecretBackend")]
     public partial class SecretBackend : Pulumi.CustomResource
     {
         /// <summary>

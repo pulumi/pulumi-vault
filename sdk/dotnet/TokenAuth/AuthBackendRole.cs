@@ -55,6 +55,7 @@ namespace Pulumi.Vault.TokenAuth
     ///  $ pulumi import vault:tokenauth/authBackendRole:AuthBackendRole example auth/token/roles/my-role
     /// ```
     /// </summary>
+    [VaultResourceType("vault:tokenauth/authBackendRole:AuthBackendRole")]
     public partial class AuthBackendRole : Pulumi.CustomResource
     {
         /// <summary>

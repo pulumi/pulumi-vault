@@ -125,15 +125,15 @@ type AuthBackendStsRoleInput interface {
 	ToAuthBackendStsRoleOutputWithContext(ctx context.Context) AuthBackendStsRoleOutput
 }
 
-func (AuthBackendStsRole) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendStsRole)(nil)).Elem()
+func (*AuthBackendStsRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendStsRole)(nil))
 }
 
-func (i AuthBackendStsRole) ToAuthBackendStsRoleOutput() AuthBackendStsRoleOutput {
+func (i *AuthBackendStsRole) ToAuthBackendStsRoleOutput() AuthBackendStsRoleOutput {
 	return i.ToAuthBackendStsRoleOutputWithContext(context.Background())
 }
 
-func (i AuthBackendStsRole) ToAuthBackendStsRoleOutputWithContext(ctx context.Context) AuthBackendStsRoleOutput {
+func (i *AuthBackendStsRole) ToAuthBackendStsRoleOutputWithContext(ctx context.Context) AuthBackendStsRoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendStsRoleOutput)
 }
 
@@ -142,7 +142,7 @@ type AuthBackendStsRoleOutput struct {
 }
 
 func (AuthBackendStsRoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendStsRoleOutput)(nil)).Elem()
+	return reflect.TypeOf((*AuthBackendStsRole)(nil))
 }
 
 func (o AuthBackendStsRoleOutput) ToAuthBackendStsRoleOutput() AuthBackendStsRoleOutput {

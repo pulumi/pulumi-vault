@@ -170,15 +170,15 @@ type BackendRoleInput interface {
 	ToBackendRoleOutputWithContext(ctx context.Context) BackendRoleOutput
 }
 
-func (BackendRole) ElementType() reflect.Type {
-	return reflect.TypeOf((*BackendRole)(nil)).Elem()
+func (*BackendRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendRole)(nil))
 }
 
-func (i BackendRole) ToBackendRoleOutput() BackendRoleOutput {
+func (i *BackendRole) ToBackendRoleOutput() BackendRoleOutput {
 	return i.ToBackendRoleOutputWithContext(context.Background())
 }
 
-func (i BackendRole) ToBackendRoleOutputWithContext(ctx context.Context) BackendRoleOutput {
+func (i *BackendRole) ToBackendRoleOutputWithContext(ctx context.Context) BackendRoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BackendRoleOutput)
 }
 
@@ -187,7 +187,7 @@ type BackendRoleOutput struct {
 }
 
 func (BackendRoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BackendRoleOutput)(nil)).Elem()
+	return reflect.TypeOf((*BackendRole)(nil))
 }
 
 func (o BackendRoleOutput) ToBackendRoleOutput() BackendRoleOutput {

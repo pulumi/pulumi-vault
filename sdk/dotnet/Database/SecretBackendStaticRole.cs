@@ -65,6 +65,7 @@ namespace Pulumi.Vault.Database
     ///  $ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
     /// ```
     /// </summary>
+    [VaultResourceType("vault:database/secretBackendStaticRole:SecretBackendStaticRole")]
     public partial class SecretBackendStaticRole : Pulumi.CustomResource
     {
         /// <summary>

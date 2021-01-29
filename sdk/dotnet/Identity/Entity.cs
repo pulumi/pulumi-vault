@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Identity
     ///  $ pulumi import vault:identity/entity:Entity test "ae6f8ued-0f1a-9f6b-2915-1a2be20dc053"
     /// ```
     /// </summary>
+    [VaultResourceType("vault:identity/entity:Entity")]
     public partial class Entity : Pulumi.CustomResource
     {
         /// <summary>

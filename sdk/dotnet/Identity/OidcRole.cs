@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Identity
     ///  $ pulumi import vault:identity/oidcRole:OidcRole role role
     /// ```
     /// </summary>
+    [VaultResourceType("vault:identity/oidcRole:OidcRole")]
     public partial class OidcRole : Pulumi.CustomResource
     {
         /// <summary>

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Gcp
 {
+    [VaultResourceType("vault:gcp/secretBackend:SecretBackend")]
     public partial class SecretBackend : Pulumi.CustomResource
     {
         /// <summary>

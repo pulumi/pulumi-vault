@@ -128,15 +128,15 @@ type EntityInput interface {
 	ToEntityOutputWithContext(ctx context.Context) EntityOutput
 }
 
-func (Entity) ElementType() reflect.Type {
-	return reflect.TypeOf((*Entity)(nil)).Elem()
+func (*Entity) ElementType() reflect.Type {
+	return reflect.TypeOf((*Entity)(nil))
 }
 
-func (i Entity) ToEntityOutput() EntityOutput {
+func (i *Entity) ToEntityOutput() EntityOutput {
 	return i.ToEntityOutputWithContext(context.Background())
 }
 
-func (i Entity) ToEntityOutputWithContext(ctx context.Context) EntityOutput {
+func (i *Entity) ToEntityOutputWithContext(ctx context.Context) EntityOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EntityOutput)
 }
 
@@ -145,7 +145,7 @@ type EntityOutput struct {
 }
 
 func (EntityOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EntityOutput)(nil)).Elem()
+	return reflect.TypeOf((*Entity)(nil))
 }
 
 func (o EntityOutput) ToEntityOutput() EntityOutput {

@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/transit"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -276,15 +276,15 @@ type SecretBackendKeyInput interface {
 	ToSecretBackendKeyOutputWithContext(ctx context.Context) SecretBackendKeyOutput
 }
 
-func (SecretBackendKey) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendKey)(nil)).Elem()
+func (*SecretBackendKey) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendKey)(nil))
 }
 
-func (i SecretBackendKey) ToSecretBackendKeyOutput() SecretBackendKeyOutput {
+func (i *SecretBackendKey) ToSecretBackendKeyOutput() SecretBackendKeyOutput {
 	return i.ToSecretBackendKeyOutputWithContext(context.Background())
 }
 
-func (i SecretBackendKey) ToSecretBackendKeyOutputWithContext(ctx context.Context) SecretBackendKeyOutput {
+func (i *SecretBackendKey) ToSecretBackendKeyOutputWithContext(ctx context.Context) SecretBackendKeyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendKeyOutput)
 }
 
@@ -293,7 +293,7 @@ type SecretBackendKeyOutput struct {
 }
 
 func (SecretBackendKeyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendKeyOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretBackendKey)(nil))
 }
 
 func (o SecretBackendKeyOutput) ToSecretBackendKeyOutput() SecretBackendKeyOutput {

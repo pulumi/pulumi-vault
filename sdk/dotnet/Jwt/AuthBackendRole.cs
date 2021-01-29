@@ -97,6 +97,7 @@ namespace Pulumi.Vault.Jwt
     ///  $ pulumi import vault:jwt/authBackendRole:AuthBackendRole example auth/jwt/role/test-role
     /// ```
     /// </summary>
+    [VaultResourceType("vault:jwt/authBackendRole:AuthBackendRole")]
     public partial class AuthBackendRole : Pulumi.CustomResource
     {
         /// <summary>

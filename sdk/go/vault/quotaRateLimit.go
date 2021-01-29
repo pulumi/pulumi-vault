@@ -24,7 +24,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -173,15 +173,15 @@ type QuotaRateLimitInput interface {
 	ToQuotaRateLimitOutputWithContext(ctx context.Context) QuotaRateLimitOutput
 }
 
-func (QuotaRateLimit) ElementType() reflect.Type {
-	return reflect.TypeOf((*QuotaRateLimit)(nil)).Elem()
+func (*QuotaRateLimit) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuotaRateLimit)(nil))
 }
 
-func (i QuotaRateLimit) ToQuotaRateLimitOutput() QuotaRateLimitOutput {
+func (i *QuotaRateLimit) ToQuotaRateLimitOutput() QuotaRateLimitOutput {
 	return i.ToQuotaRateLimitOutputWithContext(context.Background())
 }
 
-func (i QuotaRateLimit) ToQuotaRateLimitOutputWithContext(ctx context.Context) QuotaRateLimitOutput {
+func (i *QuotaRateLimit) ToQuotaRateLimitOutputWithContext(ctx context.Context) QuotaRateLimitOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(QuotaRateLimitOutput)
 }
 
@@ -190,7 +190,7 @@ type QuotaRateLimitOutput struct {
 }
 
 func (QuotaRateLimitOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*QuotaRateLimitOutput)(nil)).Elem()
+	return reflect.TypeOf((*QuotaRateLimit)(nil))
 }
 
 func (o QuotaRateLimitOutput) ToQuotaRateLimitOutput() QuotaRateLimitOutput {

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.AD
 {
+    [VaultResourceType("vault:ad/secretLibrary:SecretLibrary")]
     public partial class SecretLibrary : Pulumi.CustomResource
     {
         /// <summary>

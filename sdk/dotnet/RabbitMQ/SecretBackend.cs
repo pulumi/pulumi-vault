@@ -18,6 +18,7 @@ namespace Pulumi.Vault.RabbitMQ
     ///  $ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
     /// ```
     /// </summary>
+    [VaultResourceType("vault:rabbitMq/secretBackend:SecretBackend")]
     public partial class SecretBackend : Pulumi.CustomResource
     {
         /// <summary>

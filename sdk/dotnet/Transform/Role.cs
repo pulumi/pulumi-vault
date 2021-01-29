@@ -43,6 +43,7 @@ namespace Pulumi.Vault.Transform
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:transform/role:Role")]
     public partial class Role : Pulumi.CustomResource
     {
         /// <summary>

@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Aws
     ///  $ pulumi import vault:aws/authBackendCert:AuthBackendCert example auth/aws/config/certificate/my-cert
     /// ```
     /// </summary>
+    [VaultResourceType("vault:aws/authBackendCert:AuthBackendCert")]
     public partial class AuthBackendCert : Pulumi.CustomResource
     {
         /// <summary>

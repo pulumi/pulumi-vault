@@ -18,6 +18,7 @@ namespace Pulumi.Vault
     ///  $ pulumi import vault:index/token:Token example &lt;accessor_id&gt;
     /// ```
     /// </summary>
+    [VaultResourceType("vault:index/token:Token")]
     public partial class Token : Pulumi.CustomResource
     {
         /// <summary>

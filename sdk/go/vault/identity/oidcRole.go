@@ -157,15 +157,15 @@ type OidcRoleInput interface {
 	ToOidcRoleOutputWithContext(ctx context.Context) OidcRoleOutput
 }
 
-func (OidcRole) ElementType() reflect.Type {
-	return reflect.TypeOf((*OidcRole)(nil)).Elem()
+func (*OidcRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*OidcRole)(nil))
 }
 
-func (i OidcRole) ToOidcRoleOutput() OidcRoleOutput {
+func (i *OidcRole) ToOidcRoleOutput() OidcRoleOutput {
 	return i.ToOidcRoleOutputWithContext(context.Background())
 }
 
-func (i OidcRole) ToOidcRoleOutputWithContext(ctx context.Context) OidcRoleOutput {
+func (i *OidcRole) ToOidcRoleOutputWithContext(ctx context.Context) OidcRoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OidcRoleOutput)
 }
 
@@ -174,7 +174,7 @@ type OidcRoleOutput struct {
 }
 
 func (OidcRoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*OidcRoleOutput)(nil)).Elem()
+	return reflect.TypeOf((*OidcRole)(nil))
 }
 
 func (o OidcRoleOutput) ToOidcRoleOutput() OidcRoleOutput {

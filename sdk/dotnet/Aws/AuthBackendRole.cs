@@ -83,6 +83,7 @@ namespace Pulumi.Vault.Aws
     ///  $ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
     /// ```
     /// </summary>
+    [VaultResourceType("vault:aws/authBackendRole:AuthBackendRole")]
     public partial class AuthBackendRole : Pulumi.CustomResource
     {
         /// <summary>

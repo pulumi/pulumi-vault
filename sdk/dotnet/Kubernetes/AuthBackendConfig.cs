@@ -53,6 +53,7 @@ namespace Pulumi.Vault.Kubernetes
     ///  $ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config
     /// ```
     /// </summary>
+    [VaultResourceType("vault:kubernetes/authBackendConfig:AuthBackendConfig")]
     public partial class AuthBackendConfig : Pulumi.CustomResource
     {
         /// <summary>

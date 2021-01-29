@@ -201,15 +201,15 @@ type GroupPoliciesInput interface {
 	ToGroupPoliciesOutputWithContext(ctx context.Context) GroupPoliciesOutput
 }
 
-func (GroupPolicies) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupPolicies)(nil)).Elem()
+func (*GroupPolicies) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupPolicies)(nil))
 }
 
-func (i GroupPolicies) ToGroupPoliciesOutput() GroupPoliciesOutput {
+func (i *GroupPolicies) ToGroupPoliciesOutput() GroupPoliciesOutput {
 	return i.ToGroupPoliciesOutputWithContext(context.Background())
 }
 
-func (i GroupPolicies) ToGroupPoliciesOutputWithContext(ctx context.Context) GroupPoliciesOutput {
+func (i *GroupPolicies) ToGroupPoliciesOutputWithContext(ctx context.Context) GroupPoliciesOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupPoliciesOutput)
 }
 
@@ -218,7 +218,7 @@ type GroupPoliciesOutput struct {
 }
 
 func (GroupPoliciesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupPoliciesOutput)(nil)).Elem()
+	return reflect.TypeOf((*GroupPolicies)(nil))
 }
 
 func (o GroupPoliciesOutput) ToGroupPoliciesOutput() GroupPoliciesOutput {

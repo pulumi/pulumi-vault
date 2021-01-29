@@ -98,15 +98,15 @@ type OidcKeyAllowedClientIDInput interface {
 	ToOidcKeyAllowedClientIDOutputWithContext(ctx context.Context) OidcKeyAllowedClientIDOutput
 }
 
-func (OidcKeyAllowedClientID) ElementType() reflect.Type {
-	return reflect.TypeOf((*OidcKeyAllowedClientID)(nil)).Elem()
+func (*OidcKeyAllowedClientID) ElementType() reflect.Type {
+	return reflect.TypeOf((*OidcKeyAllowedClientID)(nil))
 }
 
-func (i OidcKeyAllowedClientID) ToOidcKeyAllowedClientIDOutput() OidcKeyAllowedClientIDOutput {
+func (i *OidcKeyAllowedClientID) ToOidcKeyAllowedClientIDOutput() OidcKeyAllowedClientIDOutput {
 	return i.ToOidcKeyAllowedClientIDOutputWithContext(context.Background())
 }
 
-func (i OidcKeyAllowedClientID) ToOidcKeyAllowedClientIDOutputWithContext(ctx context.Context) OidcKeyAllowedClientIDOutput {
+func (i *OidcKeyAllowedClientID) ToOidcKeyAllowedClientIDOutputWithContext(ctx context.Context) OidcKeyAllowedClientIDOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyAllowedClientIDOutput)
 }
 
@@ -115,7 +115,7 @@ type OidcKeyAllowedClientIDOutput struct {
 }
 
 func (OidcKeyAllowedClientIDOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*OidcKeyAllowedClientIDOutput)(nil)).Elem()
+	return reflect.TypeOf((*OidcKeyAllowedClientID)(nil))
 }
 
 func (o OidcKeyAllowedClientIDOutput) ToOidcKeyAllowedClientIDOutput() OidcKeyAllowedClientIDOutput {

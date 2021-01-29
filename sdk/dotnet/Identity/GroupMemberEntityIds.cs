@@ -100,6 +100,7 @@ namespace Pulumi.Vault.Identity
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:identity/groupMemberEntityIds:GroupMemberEntityIds")]
     public partial class GroupMemberEntityIds : Pulumi.CustomResource
     {
         /// <summary>

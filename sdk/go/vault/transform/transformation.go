@@ -22,7 +22,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/transform"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -196,15 +196,15 @@ type TransformationInput interface {
 	ToTransformationOutputWithContext(ctx context.Context) TransformationOutput
 }
 
-func (Transformation) ElementType() reflect.Type {
-	return reflect.TypeOf((*Transformation)(nil)).Elem()
+func (*Transformation) ElementType() reflect.Type {
+	return reflect.TypeOf((*Transformation)(nil))
 }
 
-func (i Transformation) ToTransformationOutput() TransformationOutput {
+func (i *Transformation) ToTransformationOutput() TransformationOutput {
 	return i.ToTransformationOutputWithContext(context.Background())
 }
 
-func (i Transformation) ToTransformationOutputWithContext(ctx context.Context) TransformationOutput {
+func (i *Transformation) ToTransformationOutputWithContext(ctx context.Context) TransformationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TransformationOutput)
 }
 
@@ -213,7 +213,7 @@ type TransformationOutput struct {
 }
 
 func (TransformationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*TransformationOutput)(nil)).Elem()
+	return reflect.TypeOf((*Transformation)(nil))
 }
 
 func (o TransformationOutput) ToTransformationOutput() TransformationOutput {

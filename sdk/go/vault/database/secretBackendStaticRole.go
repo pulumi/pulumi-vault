@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/database"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -204,15 +204,15 @@ type SecretBackendStaticRoleInput interface {
 	ToSecretBackendStaticRoleOutputWithContext(ctx context.Context) SecretBackendStaticRoleOutput
 }
 
-func (SecretBackendStaticRole) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendStaticRole)(nil)).Elem()
+func (*SecretBackendStaticRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendStaticRole)(nil))
 }
 
-func (i SecretBackendStaticRole) ToSecretBackendStaticRoleOutput() SecretBackendStaticRoleOutput {
+func (i *SecretBackendStaticRole) ToSecretBackendStaticRoleOutput() SecretBackendStaticRoleOutput {
 	return i.ToSecretBackendStaticRoleOutputWithContext(context.Background())
 }
 
-func (i SecretBackendStaticRole) ToSecretBackendStaticRoleOutputWithContext(ctx context.Context) SecretBackendStaticRoleOutput {
+func (i *SecretBackendStaticRole) ToSecretBackendStaticRoleOutputWithContext(ctx context.Context) SecretBackendStaticRoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendStaticRoleOutput)
 }
 
@@ -221,7 +221,7 @@ type SecretBackendStaticRoleOutput struct {
 }
 
 func (SecretBackendStaticRoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendStaticRoleOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretBackendStaticRole)(nil))
 }
 
 func (o SecretBackendStaticRoleOutput) ToSecretBackendStaticRoleOutput() SecretBackendStaticRoleOutput {

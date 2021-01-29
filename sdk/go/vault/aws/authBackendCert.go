@@ -155,15 +155,15 @@ type AuthBackendCertInput interface {
 	ToAuthBackendCertOutputWithContext(ctx context.Context) AuthBackendCertOutput
 }
 
-func (AuthBackendCert) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendCert)(nil)).Elem()
+func (*AuthBackendCert) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendCert)(nil))
 }
 
-func (i AuthBackendCert) ToAuthBackendCertOutput() AuthBackendCertOutput {
+func (i *AuthBackendCert) ToAuthBackendCertOutput() AuthBackendCertOutput {
 	return i.ToAuthBackendCertOutputWithContext(context.Background())
 }
 
-func (i AuthBackendCert) ToAuthBackendCertOutputWithContext(ctx context.Context) AuthBackendCertOutput {
+func (i *AuthBackendCert) ToAuthBackendCertOutputWithContext(ctx context.Context) AuthBackendCertOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendCertOutput)
 }
 
@@ -172,7 +172,7 @@ type AuthBackendCertOutput struct {
 }
 
 func (AuthBackendCertOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendCertOutput)(nil)).Elem()
+	return reflect.TypeOf((*AuthBackendCert)(nil))
 }
 
 func (o AuthBackendCertOutput) ToAuthBackendCertOutput() AuthBackendCertOutput {

@@ -38,6 +38,7 @@ namespace Pulumi.Vault
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:index/rgpPolicy:RgpPolicy")]
     public partial class RgpPolicy : Pulumi.CustomResource
     {
         /// <summary>

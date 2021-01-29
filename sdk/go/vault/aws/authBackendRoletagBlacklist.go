@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/aws"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -157,15 +157,15 @@ type AuthBackendRoletagBlacklistInput interface {
 	ToAuthBackendRoletagBlacklistOutputWithContext(ctx context.Context) AuthBackendRoletagBlacklistOutput
 }
 
-func (AuthBackendRoletagBlacklist) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendRoletagBlacklist)(nil)).Elem()
+func (*AuthBackendRoletagBlacklist) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendRoletagBlacklist)(nil))
 }
 
-func (i AuthBackendRoletagBlacklist) ToAuthBackendRoletagBlacklistOutput() AuthBackendRoletagBlacklistOutput {
+func (i *AuthBackendRoletagBlacklist) ToAuthBackendRoletagBlacklistOutput() AuthBackendRoletagBlacklistOutput {
 	return i.ToAuthBackendRoletagBlacklistOutputWithContext(context.Background())
 }
 
-func (i AuthBackendRoletagBlacklist) ToAuthBackendRoletagBlacklistOutputWithContext(ctx context.Context) AuthBackendRoletagBlacklistOutput {
+func (i *AuthBackendRoletagBlacklist) ToAuthBackendRoletagBlacklistOutputWithContext(ctx context.Context) AuthBackendRoletagBlacklistOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoletagBlacklistOutput)
 }
 
@@ -174,7 +174,7 @@ type AuthBackendRoletagBlacklistOutput struct {
 }
 
 func (AuthBackendRoletagBlacklistOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendRoletagBlacklistOutput)(nil)).Elem()
+	return reflect.TypeOf((*AuthBackendRoletagBlacklist)(nil))
 }
 
 func (o AuthBackendRoletagBlacklistOutput) ToAuthBackendRoletagBlacklistOutput() AuthBackendRoletagBlacklistOutput {

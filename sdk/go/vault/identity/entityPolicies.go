@@ -193,15 +193,15 @@ type EntityPoliciesInput interface {
 	ToEntityPoliciesOutputWithContext(ctx context.Context) EntityPoliciesOutput
 }
 
-func (EntityPolicies) ElementType() reflect.Type {
-	return reflect.TypeOf((*EntityPolicies)(nil)).Elem()
+func (*EntityPolicies) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntityPolicies)(nil))
 }
 
-func (i EntityPolicies) ToEntityPoliciesOutput() EntityPoliciesOutput {
+func (i *EntityPolicies) ToEntityPoliciesOutput() EntityPoliciesOutput {
 	return i.ToEntityPoliciesOutputWithContext(context.Background())
 }
 
-func (i EntityPolicies) ToEntityPoliciesOutputWithContext(ctx context.Context) EntityPoliciesOutput {
+func (i *EntityPolicies) ToEntityPoliciesOutputWithContext(ctx context.Context) EntityPoliciesOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EntityPoliciesOutput)
 }
 
@@ -210,7 +210,7 @@ type EntityPoliciesOutput struct {
 }
 
 func (EntityPoliciesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EntityPoliciesOutput)(nil)).Elem()
+	return reflect.TypeOf((*EntityPolicies)(nil))
 }
 
 func (o EntityPoliciesOutput) ToEntityPoliciesOutput() EntityPoliciesOutput {

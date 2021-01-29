@@ -68,6 +68,7 @@ namespace Pulumi.Vault
     ///  $ pulumi import vault:index/audit:Audit test syslog
     /// ```
     /// </summary>
+    [VaultResourceType("vault:index/audit:Audit")]
     public partial class Audit : Pulumi.CustomResource
     {
         /// <summary>

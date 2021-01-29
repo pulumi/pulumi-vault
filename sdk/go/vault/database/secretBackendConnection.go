@@ -272,15 +272,15 @@ type SecretBackendConnectionInput interface {
 	ToSecretBackendConnectionOutputWithContext(ctx context.Context) SecretBackendConnectionOutput
 }
 
-func (SecretBackendConnection) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendConnection)(nil)).Elem()
+func (*SecretBackendConnection) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConnection)(nil))
 }
 
-func (i SecretBackendConnection) ToSecretBackendConnectionOutput() SecretBackendConnectionOutput {
+func (i *SecretBackendConnection) ToSecretBackendConnectionOutput() SecretBackendConnectionOutput {
 	return i.ToSecretBackendConnectionOutputWithContext(context.Background())
 }
 
-func (i SecretBackendConnection) ToSecretBackendConnectionOutputWithContext(ctx context.Context) SecretBackendConnectionOutput {
+func (i *SecretBackendConnection) ToSecretBackendConnectionOutputWithContext(ctx context.Context) SecretBackendConnectionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionOutput)
 }
 
@@ -289,7 +289,7 @@ type SecretBackendConnectionOutput struct {
 }
 
 func (SecretBackendConnectionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendConnectionOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretBackendConnection)(nil))
 }
 
 func (o SecretBackendConnectionOutput) ToSecretBackendConnectionOutput() SecretBackendConnectionOutput {

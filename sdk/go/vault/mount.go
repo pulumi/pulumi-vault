@@ -17,7 +17,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -206,15 +206,15 @@ type MountInput interface {
 	ToMountOutputWithContext(ctx context.Context) MountOutput
 }
 
-func (Mount) ElementType() reflect.Type {
-	return reflect.TypeOf((*Mount)(nil)).Elem()
+func (*Mount) ElementType() reflect.Type {
+	return reflect.TypeOf((*Mount)(nil))
 }
 
-func (i Mount) ToMountOutput() MountOutput {
+func (i *Mount) ToMountOutput() MountOutput {
 	return i.ToMountOutputWithContext(context.Background())
 }
 
-func (i Mount) ToMountOutputWithContext(ctx context.Context) MountOutput {
+func (i *Mount) ToMountOutputWithContext(ctx context.Context) MountOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MountOutput)
 }
 
@@ -223,7 +223,7 @@ type MountOutput struct {
 }
 
 func (MountOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*MountOutput)(nil)).Elem()
+	return reflect.TypeOf((*Mount)(nil))
 }
 
 func (o MountOutput) ToMountOutput() MountOutput {

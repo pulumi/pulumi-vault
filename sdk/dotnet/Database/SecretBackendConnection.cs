@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Database
     ///  $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
     /// ```
     /// </summary>
+    [VaultResourceType("vault:database/secretBackendConnection:SecretBackendConnection")]
     public partial class SecretBackendConnection : Pulumi.CustomResource
     {
         /// <summary>

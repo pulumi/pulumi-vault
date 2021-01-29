@@ -33,6 +33,7 @@ namespace Pulumi.Vault
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:index/namespace:Namespace")]
     public partial class Namespace : Pulumi.CustomResource
     {
         /// <summary>

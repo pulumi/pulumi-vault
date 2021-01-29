@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Aws
     ///  $ pulumi import vault:aws/secretBackendRole:SecretBackendRole role aws/roles/deploy
     /// ```
     /// </summary>
+    [VaultResourceType("vault:aws/secretBackendRole:SecretBackendRole")]
     public partial class SecretBackendRole : Pulumi.CustomResource
     {
         /// <summary>

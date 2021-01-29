@@ -49,6 +49,7 @@ namespace Pulumi.Vault
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:index/certAuthBackendRole:CertAuthBackendRole")]
     public partial class CertAuthBackendRole : Pulumi.CustomResource
     {
         /// <summary>

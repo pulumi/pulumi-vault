@@ -42,6 +42,7 @@ namespace Pulumi.Vault
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:index/egpPolicy:EgpPolicy")]
     public partial class EgpPolicy : Pulumi.CustomResource
     {
         /// <summary>

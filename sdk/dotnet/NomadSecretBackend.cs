@@ -18,6 +18,7 @@ namespace Pulumi.Vault
     ///  $ pulumi import vault:index/nomadSecretBackend:NomadSecretBackend nomad nomad
     /// ```
     /// </summary>
+    [VaultResourceType("vault:index/nomadSecretBackend:NomadSecretBackend")]
     public partial class NomadSecretBackend : Pulumi.CustomResource
     {
         /// <summary>

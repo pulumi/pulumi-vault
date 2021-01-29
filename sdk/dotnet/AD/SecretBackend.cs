@@ -18,6 +18,7 @@ namespace Pulumi.Vault.AD
     ///  $ pulumi import vault:ad/secretBackend:SecretBackend ad ad
     /// ```
     /// </summary>
+    [VaultResourceType("vault:ad/secretBackend:SecretBackend")]
     public partial class SecretBackend : Pulumi.CustomResource
     {
         /// <summary>

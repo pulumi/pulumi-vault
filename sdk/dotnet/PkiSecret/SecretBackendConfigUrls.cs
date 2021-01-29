@@ -41,6 +41,7 @@ namespace Pulumi.Vault.PkiSecret
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls")]
     public partial class SecretBackendConfigUrls : Pulumi.CustomResource
     {
         /// <summary>

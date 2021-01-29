@@ -143,15 +143,15 @@ type SecretLibraryInput interface {
 	ToSecretLibraryOutputWithContext(ctx context.Context) SecretLibraryOutput
 }
 
-func (SecretLibrary) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretLibrary)(nil)).Elem()
+func (*SecretLibrary) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretLibrary)(nil))
 }
 
-func (i SecretLibrary) ToSecretLibraryOutput() SecretLibraryOutput {
+func (i *SecretLibrary) ToSecretLibraryOutput() SecretLibraryOutput {
 	return i.ToSecretLibraryOutputWithContext(context.Background())
 }
 
-func (i SecretLibrary) ToSecretLibraryOutputWithContext(ctx context.Context) SecretLibraryOutput {
+func (i *SecretLibrary) ToSecretLibraryOutputWithContext(ctx context.Context) SecretLibraryOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretLibraryOutput)
 }
 
@@ -160,7 +160,7 @@ type SecretLibraryOutput struct {
 }
 
 func (SecretLibraryOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretLibraryOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretLibrary)(nil))
 }
 
 func (o SecretLibraryOutput) ToSecretLibraryOutput() SecretLibraryOutput {

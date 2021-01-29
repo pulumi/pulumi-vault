@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Identity
     ///  $ pulumi import vault:identity/entityAlias:EntityAlias test "3856fb4d-3c91-dcaf-2401-68f446796bfb"
     /// ```
     /// </summary>
+    [VaultResourceType("vault:identity/entityAlias:EntityAlias")]
     public partial class EntityAlias : Pulumi.CustomResource
     {
         /// <summary>

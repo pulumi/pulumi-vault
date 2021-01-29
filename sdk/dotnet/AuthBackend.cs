@@ -42,6 +42,7 @@ namespace Pulumi.Vault
     ///  $ pulumi import vault:index/authBackend:AuthBackend example github
     /// ```
     /// </summary>
+    [VaultResourceType("vault:index/authBackend:AuthBackend")]
     public partial class AuthBackend : Pulumi.CustomResource
     {
         /// <summary>

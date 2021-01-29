@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Generic
     ///  $ pulumi import vault:generic/secret:Secret example secret/foo
     /// ```
     /// </summary>
+    [VaultResourceType("vault:generic/secret:Secret")]
     public partial class Secret : Pulumi.CustomResource
     {
         /// <summary>

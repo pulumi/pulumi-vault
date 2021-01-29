@@ -55,6 +55,7 @@ namespace Pulumi.Vault.Ldap
     ///  $ pulumi import vault:ldap/authBackendGroup:AuthBackendGroup foo auth/ldap/groups/foo
     /// ```
     /// </summary>
+    [VaultResourceType("vault:ldap/authBackendGroup:AuthBackendGroup")]
     public partial class AuthBackendGroup : Pulumi.CustomResource
     {
         /// <summary>

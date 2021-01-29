@@ -319,15 +319,15 @@ type SecretBackendRootCertInput interface {
 	ToSecretBackendRootCertOutputWithContext(ctx context.Context) SecretBackendRootCertOutput
 }
 
-func (SecretBackendRootCert) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendRootCert)(nil)).Elem()
+func (*SecretBackendRootCert) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendRootCert)(nil))
 }
 
-func (i SecretBackendRootCert) ToSecretBackendRootCertOutput() SecretBackendRootCertOutput {
+func (i *SecretBackendRootCert) ToSecretBackendRootCertOutput() SecretBackendRootCertOutput {
 	return i.ToSecretBackendRootCertOutputWithContext(context.Background())
 }
 
-func (i SecretBackendRootCert) ToSecretBackendRootCertOutputWithContext(ctx context.Context) SecretBackendRootCertOutput {
+func (i *SecretBackendRootCert) ToSecretBackendRootCertOutputWithContext(ctx context.Context) SecretBackendRootCertOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRootCertOutput)
 }
 
@@ -336,7 +336,7 @@ type SecretBackendRootCertOutput struct {
 }
 
 func (SecretBackendRootCertOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendRootCertOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretBackendRootCert)(nil))
 }
 
 func (o SecretBackendRootCertOutput) ToSecretBackendRootCertOutput() SecretBackendRootCertOutput {

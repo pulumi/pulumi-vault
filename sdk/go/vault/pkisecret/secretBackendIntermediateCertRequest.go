@@ -289,15 +289,15 @@ type SecretBackendIntermediateCertRequestInput interface {
 	ToSecretBackendIntermediateCertRequestOutputWithContext(ctx context.Context) SecretBackendIntermediateCertRequestOutput
 }
 
-func (SecretBackendIntermediateCertRequest) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendIntermediateCertRequest)(nil)).Elem()
+func (*SecretBackendIntermediateCertRequest) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendIntermediateCertRequest)(nil))
 }
 
-func (i SecretBackendIntermediateCertRequest) ToSecretBackendIntermediateCertRequestOutput() SecretBackendIntermediateCertRequestOutput {
+func (i *SecretBackendIntermediateCertRequest) ToSecretBackendIntermediateCertRequestOutput() SecretBackendIntermediateCertRequestOutput {
 	return i.ToSecretBackendIntermediateCertRequestOutputWithContext(context.Background())
 }
 
-func (i SecretBackendIntermediateCertRequest) ToSecretBackendIntermediateCertRequestOutputWithContext(ctx context.Context) SecretBackendIntermediateCertRequestOutput {
+func (i *SecretBackendIntermediateCertRequest) ToSecretBackendIntermediateCertRequestOutputWithContext(ctx context.Context) SecretBackendIntermediateCertRequestOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIntermediateCertRequestOutput)
 }
 
@@ -306,7 +306,7 @@ type SecretBackendIntermediateCertRequestOutput struct {
 }
 
 func (SecretBackendIntermediateCertRequestOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendIntermediateCertRequestOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretBackendIntermediateCertRequest)(nil))
 }
 
 func (o SecretBackendIntermediateCertRequestOutput) ToSecretBackendIntermediateCertRequestOutput() SecretBackendIntermediateCertRequestOutput {

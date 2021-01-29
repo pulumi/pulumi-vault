@@ -23,7 +23,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/appRole"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -235,15 +235,15 @@ type AuthBackendRoleSecretIDInput interface {
 	ToAuthBackendRoleSecretIDOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDOutput
 }
 
-func (AuthBackendRoleSecretID) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendRoleSecretID)(nil)).Elem()
+func (*AuthBackendRoleSecretID) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendRoleSecretID)(nil))
 }
 
-func (i AuthBackendRoleSecretID) ToAuthBackendRoleSecretIDOutput() AuthBackendRoleSecretIDOutput {
+func (i *AuthBackendRoleSecretID) ToAuthBackendRoleSecretIDOutput() AuthBackendRoleSecretIDOutput {
 	return i.ToAuthBackendRoleSecretIDOutputWithContext(context.Background())
 }
 
-func (i AuthBackendRoleSecretID) ToAuthBackendRoleSecretIDOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDOutput {
+func (i *AuthBackendRoleSecretID) ToAuthBackendRoleSecretIDOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleSecretIDOutput)
 }
 
@@ -252,7 +252,7 @@ type AuthBackendRoleSecretIDOutput struct {
 }
 
 func (AuthBackendRoleSecretIDOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendRoleSecretIDOutput)(nil)).Elem()
+	return reflect.TypeOf((*AuthBackendRoleSecretID)(nil))
 }
 
 func (o AuthBackendRoleSecretIDOutput) ToAuthBackendRoleSecretIDOutput() AuthBackendRoleSecretIDOutput {

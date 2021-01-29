@@ -152,15 +152,15 @@ type SecretBackendConfigUrlsInput interface {
 	ToSecretBackendConfigUrlsOutputWithContext(ctx context.Context) SecretBackendConfigUrlsOutput
 }
 
-func (SecretBackendConfigUrls) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendConfigUrls)(nil)).Elem()
+func (*SecretBackendConfigUrls) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConfigUrls)(nil))
 }
 
-func (i SecretBackendConfigUrls) ToSecretBackendConfigUrlsOutput() SecretBackendConfigUrlsOutput {
+func (i *SecretBackendConfigUrls) ToSecretBackendConfigUrlsOutput() SecretBackendConfigUrlsOutput {
 	return i.ToSecretBackendConfigUrlsOutputWithContext(context.Background())
 }
 
-func (i SecretBackendConfigUrls) ToSecretBackendConfigUrlsOutputWithContext(ctx context.Context) SecretBackendConfigUrlsOutput {
+func (i *SecretBackendConfigUrls) ToSecretBackendConfigUrlsOutputWithContext(ctx context.Context) SecretBackendConfigUrlsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConfigUrlsOutput)
 }
 
@@ -169,7 +169,7 @@ type SecretBackendConfigUrlsOutput struct {
 }
 
 func (SecretBackendConfigUrlsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendConfigUrlsOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretBackendConfigUrls)(nil))
 }
 
 func (o SecretBackendConfigUrlsOutput) ToSecretBackendConfigUrlsOutput() SecretBackendConfigUrlsOutput {

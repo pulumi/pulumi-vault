@@ -115,15 +115,15 @@ type EntityAliasInput interface {
 	ToEntityAliasOutputWithContext(ctx context.Context) EntityAliasOutput
 }
 
-func (EntityAlias) ElementType() reflect.Type {
-	return reflect.TypeOf((*EntityAlias)(nil)).Elem()
+func (*EntityAlias) ElementType() reflect.Type {
+	return reflect.TypeOf((*EntityAlias)(nil))
 }
 
-func (i EntityAlias) ToEntityAliasOutput() EntityAliasOutput {
+func (i *EntityAlias) ToEntityAliasOutput() EntityAliasOutput {
 	return i.ToEntityAliasOutputWithContext(context.Background())
 }
 
-func (i EntityAlias) ToEntityAliasOutputWithContext(ctx context.Context) EntityAliasOutput {
+func (i *EntityAlias) ToEntityAliasOutputWithContext(ctx context.Context) EntityAliasOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EntityAliasOutput)
 }
 
@@ -132,7 +132,7 @@ type EntityAliasOutput struct {
 }
 
 func (EntityAliasOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EntityAliasOutput)(nil)).Elem()
+	return reflect.TypeOf((*EntityAlias)(nil))
 }
 
 func (o EntityAliasOutput) ToEntityAliasOutput() EntityAliasOutput {

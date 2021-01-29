@@ -49,6 +49,7 @@ namespace Pulumi.Vault
     ///  $ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
     /// ```
     /// </summary>
+    [VaultResourceType("vault:index/mfaDuo:MfaDuo")]
     public partial class MfaDuo : Pulumi.CustomResource
     {
         /// <summary>

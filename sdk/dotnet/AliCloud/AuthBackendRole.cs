@@ -46,6 +46,7 @@ namespace Pulumi.Vault.AliCloud
     ///  $ pulumi import vault:alicloud/authBackendRole:AuthBackendRole my_role auth/alicloud/role/my_role
     /// ```
     /// </summary>
+    [VaultResourceType("vault:alicloud/authBackendRole:AuthBackendRole")]
     public partial class AuthBackendRole : Pulumi.CustomResource
     {
         /// <summary>

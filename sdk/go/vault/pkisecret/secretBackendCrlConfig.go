@@ -21,7 +21,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/pkiSecret"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -143,15 +143,15 @@ type SecretBackendCrlConfigInput interface {
 	ToSecretBackendCrlConfigOutputWithContext(ctx context.Context) SecretBackendCrlConfigOutput
 }
 
-func (SecretBackendCrlConfig) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendCrlConfig)(nil)).Elem()
+func (*SecretBackendCrlConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendCrlConfig)(nil))
 }
 
-func (i SecretBackendCrlConfig) ToSecretBackendCrlConfigOutput() SecretBackendCrlConfigOutput {
+func (i *SecretBackendCrlConfig) ToSecretBackendCrlConfigOutput() SecretBackendCrlConfigOutput {
 	return i.ToSecretBackendCrlConfigOutputWithContext(context.Background())
 }
 
-func (i SecretBackendCrlConfig) ToSecretBackendCrlConfigOutputWithContext(ctx context.Context) SecretBackendCrlConfigOutput {
+func (i *SecretBackendCrlConfig) ToSecretBackendCrlConfigOutputWithContext(ctx context.Context) SecretBackendCrlConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCrlConfigOutput)
 }
 
@@ -160,7 +160,7 @@ type SecretBackendCrlConfigOutput struct {
 }
 
 func (SecretBackendCrlConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendCrlConfigOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretBackendCrlConfig)(nil))
 }
 
 func (o SecretBackendCrlConfigOutput) ToSecretBackendCrlConfigOutput() SecretBackendCrlConfigOutput {

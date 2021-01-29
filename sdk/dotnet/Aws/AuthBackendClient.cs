@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Aws
     ///  $ pulumi import vault:aws/authBackendClient:AuthBackendClient example auth/aws/config/client
     /// ```
     /// </summary>
+    [VaultResourceType("vault:aws/authBackendClient:AuthBackendClient")]
     public partial class AuthBackendClient : Pulumi.CustomResource
     {
         /// <summary>

@@ -48,6 +48,7 @@ namespace Pulumi.Vault.Identity
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:identity/groupAlias:GroupAlias")]
     public partial class GroupAlias : Pulumi.CustomResource
     {
         /// <summary>

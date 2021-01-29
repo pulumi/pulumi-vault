@@ -42,6 +42,7 @@ namespace Pulumi.Vault.PkiSecret
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:pkiSecret/secretBackendRootSignIntermediate:SecretBackendRootSignIntermediate")]
     public partial class SecretBackendRootSignIntermediate : Pulumi.CustomResource
     {
         /// <summary>
