@@ -23,7 +23,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -131,15 +131,15 @@ type PasswordPolicyInput interface {
 	ToPasswordPolicyOutputWithContext(ctx context.Context) PasswordPolicyOutput
 }
 
-func (PasswordPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*PasswordPolicy)(nil)).Elem()
+func (*PasswordPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*PasswordPolicy)(nil))
 }
 
-func (i PasswordPolicy) ToPasswordPolicyOutput() PasswordPolicyOutput {
+func (i *PasswordPolicy) ToPasswordPolicyOutput() PasswordPolicyOutput {
 	return i.ToPasswordPolicyOutputWithContext(context.Background())
 }
 
-func (i PasswordPolicy) ToPasswordPolicyOutputWithContext(ctx context.Context) PasswordPolicyOutput {
+func (i *PasswordPolicy) ToPasswordPolicyOutputWithContext(ctx context.Context) PasswordPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PasswordPolicyOutput)
 }
 
@@ -148,7 +148,7 @@ type PasswordPolicyOutput struct {
 }
 
 func (PasswordPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PasswordPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*PasswordPolicy)(nil))
 }
 
 func (o PasswordPolicyOutput) ToPasswordPolicyOutput() PasswordPolicyOutput {

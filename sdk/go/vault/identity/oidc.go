@@ -125,15 +125,15 @@ type OidcInput interface {
 	ToOidcOutputWithContext(ctx context.Context) OidcOutput
 }
 
-func (Oidc) ElementType() reflect.Type {
-	return reflect.TypeOf((*Oidc)(nil)).Elem()
+func (*Oidc) ElementType() reflect.Type {
+	return reflect.TypeOf((*Oidc)(nil))
 }
 
-func (i Oidc) ToOidcOutput() OidcOutput {
+func (i *Oidc) ToOidcOutput() OidcOutput {
 	return i.ToOidcOutputWithContext(context.Background())
 }
 
-func (i Oidc) ToOidcOutputWithContext(ctx context.Context) OidcOutput {
+func (i *Oidc) ToOidcOutputWithContext(ctx context.Context) OidcOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OidcOutput)
 }
 
@@ -142,7 +142,7 @@ type OidcOutput struct {
 }
 
 func (OidcOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*OidcOutput)(nil)).Elem()
+	return reflect.TypeOf((*Oidc)(nil))
 }
 
 func (o OidcOutput) ToOidcOutput() OidcOutput {

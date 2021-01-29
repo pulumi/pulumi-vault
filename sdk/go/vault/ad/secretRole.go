@@ -133,15 +133,15 @@ type SecretRoleInput interface {
 	ToSecretRoleOutputWithContext(ctx context.Context) SecretRoleOutput
 }
 
-func (SecretRole) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretRole)(nil)).Elem()
+func (*SecretRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretRole)(nil))
 }
 
-func (i SecretRole) ToSecretRoleOutput() SecretRoleOutput {
+func (i *SecretRole) ToSecretRoleOutput() SecretRoleOutput {
 	return i.ToSecretRoleOutputWithContext(context.Background())
 }
 
-func (i SecretRole) ToSecretRoleOutputWithContext(ctx context.Context) SecretRoleOutput {
+func (i *SecretRole) ToSecretRoleOutputWithContext(ctx context.Context) SecretRoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretRoleOutput)
 }
 
@@ -150,7 +150,7 @@ type SecretRoleOutput struct {
 }
 
 func (SecretRoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretRoleOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretRole)(nil))
 }
 
 func (o SecretRoleOutput) ToSecretRoleOutput() SecretRoleOutput {

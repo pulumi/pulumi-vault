@@ -40,6 +40,7 @@ namespace Pulumi.Vault.Transit
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:transit/secretCacheConfig:SecretCacheConfig")]
     public partial class SecretCacheConfig : Pulumi.CustomResource
     {
         /// <summary>

@@ -98,15 +98,15 @@ type SecretBackendIntermediateSetSignedInput interface {
 	ToSecretBackendIntermediateSetSignedOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedOutput
 }
 
-func (SecretBackendIntermediateSetSigned) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendIntermediateSetSigned)(nil)).Elem()
+func (*SecretBackendIntermediateSetSigned) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendIntermediateSetSigned)(nil))
 }
 
-func (i SecretBackendIntermediateSetSigned) ToSecretBackendIntermediateSetSignedOutput() SecretBackendIntermediateSetSignedOutput {
+func (i *SecretBackendIntermediateSetSigned) ToSecretBackendIntermediateSetSignedOutput() SecretBackendIntermediateSetSignedOutput {
 	return i.ToSecretBackendIntermediateSetSignedOutputWithContext(context.Background())
 }
 
-func (i SecretBackendIntermediateSetSigned) ToSecretBackendIntermediateSetSignedOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedOutput {
+func (i *SecretBackendIntermediateSetSigned) ToSecretBackendIntermediateSetSignedOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIntermediateSetSignedOutput)
 }
 
@@ -115,7 +115,7 @@ type SecretBackendIntermediateSetSignedOutput struct {
 }
 
 func (SecretBackendIntermediateSetSignedOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendIntermediateSetSignedOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretBackendIntermediateSetSigned)(nil))
 }
 
 func (o SecretBackendIntermediateSetSignedOutput) ToSecretBackendIntermediateSetSignedOutput() SecretBackendIntermediateSetSignedOutput {

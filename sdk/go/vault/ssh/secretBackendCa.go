@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/ssh"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -143,15 +143,15 @@ type SecretBackendCaInput interface {
 	ToSecretBackendCaOutputWithContext(ctx context.Context) SecretBackendCaOutput
 }
 
-func (SecretBackendCa) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendCa)(nil)).Elem()
+func (*SecretBackendCa) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendCa)(nil))
 }
 
-func (i SecretBackendCa) ToSecretBackendCaOutput() SecretBackendCaOutput {
+func (i *SecretBackendCa) ToSecretBackendCaOutput() SecretBackendCaOutput {
 	return i.ToSecretBackendCaOutputWithContext(context.Background())
 }
 
-func (i SecretBackendCa) ToSecretBackendCaOutputWithContext(ctx context.Context) SecretBackendCaOutput {
+func (i *SecretBackendCa) ToSecretBackendCaOutputWithContext(ctx context.Context) SecretBackendCaOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCaOutput)
 }
 
@@ -160,7 +160,7 @@ type SecretBackendCaOutput struct {
 }
 
 func (SecretBackendCaOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendCaOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretBackendCa)(nil))
 }
 
 func (o SecretBackendCaOutput) ToSecretBackendCaOutput() SecretBackendCaOutput {

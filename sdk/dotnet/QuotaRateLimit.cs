@@ -45,6 +45,7 @@ namespace Pulumi.Vault
     ///  $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
     /// ```
     /// </summary>
+    [VaultResourceType("vault:index/quotaRateLimit:QuotaRateLimit")]
     public partial class QuotaRateLimit : Pulumi.CustomResource
     {
         /// <summary>

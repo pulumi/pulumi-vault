@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.PkiSecret
 {
+    [VaultResourceType("vault:pkiSecret/secretBackendCert:SecretBackendCert")]
     public partial class SecretBackendCert : Pulumi.CustomResource
     {
         /// <summary>

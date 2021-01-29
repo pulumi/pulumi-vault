@@ -18,6 +18,7 @@ namespace Pulumi.Vault
     ///  $ pulumi import vault:index/nomadSecretRole:NomadSecretRole bob nomad/role/bob
     /// ```
     /// </summary>
+    [VaultResourceType("vault:index/nomadSecretRole:NomadSecretRole")]
     public partial class NomadSecretRole : Pulumi.CustomResource
     {
         /// <summary>

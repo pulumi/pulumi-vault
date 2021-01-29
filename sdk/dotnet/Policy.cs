@@ -41,6 +41,7 @@ namespace Pulumi.Vault
     ///  $ pulumi import vault:index/policy:Policy example dev-team
     /// ```
     /// </summary>
+    [VaultResourceType("vault:index/policy:Policy")]
     public partial class Policy : Pulumi.CustomResource
     {
         /// <summary>

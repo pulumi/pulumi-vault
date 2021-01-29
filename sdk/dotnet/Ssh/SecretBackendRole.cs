@@ -54,6 +54,7 @@ namespace Pulumi.Vault.Ssh
     ///  $ pulumi import vault:ssh/secretBackendRole:SecretBackendRole foo ssh/roles/my-role
     /// ```
     /// </summary>
+    [VaultResourceType("vault:ssh/secretBackendRole:SecretBackendRole")]
     public partial class SecretBackendRole : Pulumi.CustomResource
     {
         /// <summary>

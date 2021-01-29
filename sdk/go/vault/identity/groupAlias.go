@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/identity"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -156,15 +156,15 @@ type GroupAliasInput interface {
 	ToGroupAliasOutputWithContext(ctx context.Context) GroupAliasOutput
 }
 
-func (GroupAlias) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupAlias)(nil)).Elem()
+func (*GroupAlias) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupAlias)(nil))
 }
 
-func (i GroupAlias) ToGroupAliasOutput() GroupAliasOutput {
+func (i *GroupAlias) ToGroupAliasOutput() GroupAliasOutput {
 	return i.ToGroupAliasOutputWithContext(context.Background())
 }
 
-func (i GroupAlias) ToGroupAliasOutputWithContext(ctx context.Context) GroupAliasOutput {
+func (i *GroupAlias) ToGroupAliasOutputWithContext(ctx context.Context) GroupAliasOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupAliasOutput)
 }
 
@@ -173,7 +173,7 @@ type GroupAliasOutput struct {
 }
 
 func (GroupAliasOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupAliasOutput)(nil)).Elem()
+	return reflect.TypeOf((*GroupAlias)(nil))
 }
 
 func (o GroupAliasOutput) ToGroupAliasOutput() GroupAliasOutput {

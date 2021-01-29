@@ -57,6 +57,7 @@ namespace Pulumi.Vault.Okta
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:okta/authBackend:AuthBackend")]
     public partial class AuthBackend : Pulumi.CustomResource
     {
         /// <summary>

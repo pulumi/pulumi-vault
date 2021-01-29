@@ -36,6 +36,7 @@ namespace Pulumi.Vault.Ssh
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:ssh/secretBackendCa:SecretBackendCa")]
     public partial class SecretBackendCa : Pulumi.CustomResource
     {
         /// <summary>

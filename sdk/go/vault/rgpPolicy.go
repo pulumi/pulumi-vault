@@ -23,7 +23,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -137,15 +137,15 @@ type RgpPolicyInput interface {
 	ToRgpPolicyOutputWithContext(ctx context.Context) RgpPolicyOutput
 }
 
-func (RgpPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*RgpPolicy)(nil)).Elem()
+func (*RgpPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*RgpPolicy)(nil))
 }
 
-func (i RgpPolicy) ToRgpPolicyOutput() RgpPolicyOutput {
+func (i *RgpPolicy) ToRgpPolicyOutput() RgpPolicyOutput {
 	return i.ToRgpPolicyOutputWithContext(context.Background())
 }
 
-func (i RgpPolicy) ToRgpPolicyOutputWithContext(ctx context.Context) RgpPolicyOutput {
+func (i *RgpPolicy) ToRgpPolicyOutputWithContext(ctx context.Context) RgpPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RgpPolicyOutput)
 }
 
@@ -154,7 +154,7 @@ type RgpPolicyOutput struct {
 }
 
 func (RgpPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RgpPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*RgpPolicy)(nil))
 }
 
 func (o RgpPolicyOutput) ToRgpPolicyOutput() RgpPolicyOutput {

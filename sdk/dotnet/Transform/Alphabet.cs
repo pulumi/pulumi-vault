@@ -39,6 +39,7 @@ namespace Pulumi.Vault.Transform
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:transform/alphabet:Alphabet")]
     public partial class Alphabet : Pulumi.CustomResource
     {
         /// <summary>

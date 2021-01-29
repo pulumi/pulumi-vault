@@ -51,6 +51,7 @@ namespace Pulumi.Vault.GitHub
     ///  $ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
     /// ```
     /// </summary>
+    [VaultResourceType("vault:github/team:Team")]
     public partial class Team : Pulumi.CustomResource
     {
         /// <summary>

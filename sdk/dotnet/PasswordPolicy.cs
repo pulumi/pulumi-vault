@@ -46,6 +46,7 @@ namespace Pulumi.Vault
     ///  $ pulumi import vault:index/passwordPolicy:PasswordPolicy alphanumeric alphanumeric
     /// ```
     /// </summary>
+    [VaultResourceType("vault:index/passwordPolicy:PasswordPolicy")]
     public partial class PasswordPolicy : Pulumi.CustomResource
     {
         /// <summary>

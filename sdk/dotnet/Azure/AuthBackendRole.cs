@@ -64,6 +64,7 @@ namespace Pulumi.Vault.Azure
     ///  $ pulumi import vault:azure/authBackendRole:AuthBackendRole example auth/azure/role/test-role
     /// ```
     /// </summary>
+    [VaultResourceType("vault:azure/authBackendRole:AuthBackendRole")]
     public partial class AuthBackendRole : Pulumi.CustomResource
     {
         /// <summary>

@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -43,7 +43,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -191,15 +191,15 @@ type AuditInput interface {
 	ToAuditOutputWithContext(ctx context.Context) AuditOutput
 }
 
-func (Audit) ElementType() reflect.Type {
-	return reflect.TypeOf((*Audit)(nil)).Elem()
+func (*Audit) ElementType() reflect.Type {
+	return reflect.TypeOf((*Audit)(nil))
 }
 
-func (i Audit) ToAuditOutput() AuditOutput {
+func (i *Audit) ToAuditOutput() AuditOutput {
 	return i.ToAuditOutputWithContext(context.Background())
 }
 
-func (i Audit) ToAuditOutputWithContext(ctx context.Context) AuditOutput {
+func (i *Audit) ToAuditOutputWithContext(ctx context.Context) AuditOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuditOutput)
 }
 
@@ -208,7 +208,7 @@ type AuditOutput struct {
 }
 
 func (AuditOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuditOutput)(nil)).Elem()
+	return reflect.TypeOf((*Audit)(nil))
 }
 
 func (o AuditOutput) ToAuditOutput() AuditOutput {

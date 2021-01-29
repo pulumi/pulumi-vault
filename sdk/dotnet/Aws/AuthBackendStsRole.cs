@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Aws
     ///  $ pulumi import vault:aws/authBackendStsRole:AuthBackendStsRole example auth/aws/config/sts/1234567890
     /// ```
     /// </summary>
+    [VaultResourceType("vault:aws/authBackendStsRole:AuthBackendStsRole")]
     public partial class AuthBackendStsRole : Pulumi.CustomResource
     {
         /// <summary>

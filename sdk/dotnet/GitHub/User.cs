@@ -51,6 +51,7 @@ namespace Pulumi.Vault.GitHub
     ///  $ pulumi import vault:github/user:User tf_user auth/github/map/users/john.doe
     /// ```
     /// </summary>
+    [VaultResourceType("vault:github/user:User")]
     public partial class User : Pulumi.CustomResource
     {
         /// <summary>

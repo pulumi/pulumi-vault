@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Identity
 {
+    [VaultResourceType("vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID")]
     public partial class OidcKeyAllowedClientID : Pulumi.CustomResource
     {
         /// <summary>

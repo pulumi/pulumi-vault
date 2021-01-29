@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Aws
     /// <summary>
     /// Reads role tag information from an AWS auth backend in Vault.
     /// </summary>
+    [VaultResourceType("vault:aws/authBackendRoleTag:AuthBackendRoleTag")]
     public partial class AuthBackendRoleTag : Pulumi.CustomResource
     {
         /// <summary>

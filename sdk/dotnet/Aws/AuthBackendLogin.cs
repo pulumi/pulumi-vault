@@ -15,6 +15,7 @@ namespace Pulumi.Vault.Aws
     /// instance metadata. For more information, see the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/aws.html).
     /// </summary>
+    [VaultResourceType("vault:aws/authBackendLogin:AuthBackendLogin")]
     public partial class AuthBackendLogin : Pulumi.CustomResource
     {
         /// <summary>

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Transform
 {
+    [VaultResourceType("vault:transform/template:Template")]
     public partial class Template : Pulumi.CustomResource
     {
         /// <summary>

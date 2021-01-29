@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Identity
     ///  $ pulumi import vault:identity/oidcKey:OidcKey key key
     /// ```
     /// </summary>
+    [VaultResourceType("vault:identity/oidcKey:OidcKey")]
     public partial class OidcKey : Pulumi.CustomResource
     {
         /// <summary>

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.PkiSecret
 {
+    [VaultResourceType("vault:pkiSecret/secretBackendSign:SecretBackendSign")]
     public partial class SecretBackendSign : Pulumi.CustomResource
     {
         /// <summary>

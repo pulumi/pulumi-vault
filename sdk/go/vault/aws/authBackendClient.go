@@ -203,15 +203,15 @@ type AuthBackendClientInput interface {
 	ToAuthBackendClientOutputWithContext(ctx context.Context) AuthBackendClientOutput
 }
 
-func (AuthBackendClient) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendClient)(nil)).Elem()
+func (*AuthBackendClient) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendClient)(nil))
 }
 
-func (i AuthBackendClient) ToAuthBackendClientOutput() AuthBackendClientOutput {
+func (i *AuthBackendClient) ToAuthBackendClientOutput() AuthBackendClientOutput {
 	return i.ToAuthBackendClientOutputWithContext(context.Background())
 }
 
-func (i AuthBackendClient) ToAuthBackendClientOutputWithContext(ctx context.Context) AuthBackendClientOutput {
+func (i *AuthBackendClient) ToAuthBackendClientOutputWithContext(ctx context.Context) AuthBackendClientOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendClientOutput)
 }
 
@@ -220,7 +220,7 @@ type AuthBackendClientOutput struct {
 }
 
 func (AuthBackendClientOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendClientOutput)(nil)).Elem()
+	return reflect.TypeOf((*AuthBackendClient)(nil))
 }
 
 func (o AuthBackendClientOutput) ToAuthBackendClientOutput() AuthBackendClientOutput {

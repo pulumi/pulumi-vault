@@ -46,6 +46,7 @@ namespace Pulumi.Vault.Transform
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:transform/transformation:Transformation")]
     public partial class Transformation : Pulumi.CustomResource
     {
         /// <summary>

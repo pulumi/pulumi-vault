@@ -18,6 +18,7 @@ namespace Pulumi.Vault.RabbitMQ
     ///  $ pulumi import vault:rabbitMq/secretBackendRole:SecretBackendRole role rabbitmq/roles/deploy
     /// ```
     /// </summary>
+    [VaultResourceType("vault:rabbitMq/secretBackendRole:SecretBackendRole")]
     public partial class SecretBackendRole : Pulumi.CustomResource
     {
         /// <summary>

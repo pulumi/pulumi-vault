@@ -20,6 +20,7 @@ namespace Pulumi.Vault.Gcp
     ///  $ pulumi import vault:gcp/authBackendRole:AuthBackendRole my_role auth/gcp/role/my_role
     /// ```
     /// </summary>
+    [VaultResourceType("vault:gcp/authBackendRole:AuthBackendRole")]
     public partial class AuthBackendRole : Pulumi.CustomResource
     {
         [Output("addGroupAliases")]

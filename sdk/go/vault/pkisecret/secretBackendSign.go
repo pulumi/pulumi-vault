@@ -241,15 +241,15 @@ type SecretBackendSignInput interface {
 	ToSecretBackendSignOutputWithContext(ctx context.Context) SecretBackendSignOutput
 }
 
-func (SecretBackendSign) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendSign)(nil)).Elem()
+func (*SecretBackendSign) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendSign)(nil))
 }
 
-func (i SecretBackendSign) ToSecretBackendSignOutput() SecretBackendSignOutput {
+func (i *SecretBackendSign) ToSecretBackendSignOutput() SecretBackendSignOutput {
 	return i.ToSecretBackendSignOutputWithContext(context.Background())
 }
 
-func (i SecretBackendSign) ToSecretBackendSignOutputWithContext(ctx context.Context) SecretBackendSignOutput {
+func (i *SecretBackendSign) ToSecretBackendSignOutputWithContext(ctx context.Context) SecretBackendSignOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendSignOutput)
 }
 
@@ -258,7 +258,7 @@ type SecretBackendSignOutput struct {
 }
 
 func (SecretBackendSignOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendSignOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretBackendSign)(nil))
 }
 
 func (o SecretBackendSignOutput) ToSecretBackendSignOutput() SecretBackendSignOutput {

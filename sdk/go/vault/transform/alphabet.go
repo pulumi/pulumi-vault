@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/transform"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -140,15 +140,15 @@ type AlphabetInput interface {
 	ToAlphabetOutputWithContext(ctx context.Context) AlphabetOutput
 }
 
-func (Alphabet) ElementType() reflect.Type {
-	return reflect.TypeOf((*Alphabet)(nil)).Elem()
+func (*Alphabet) ElementType() reflect.Type {
+	return reflect.TypeOf((*Alphabet)(nil))
 }
 
-func (i Alphabet) ToAlphabetOutput() AlphabetOutput {
+func (i *Alphabet) ToAlphabetOutput() AlphabetOutput {
 	return i.ToAlphabetOutputWithContext(context.Background())
 }
 
-func (i Alphabet) ToAlphabetOutputWithContext(ctx context.Context) AlphabetOutput {
+func (i *Alphabet) ToAlphabetOutputWithContext(ctx context.Context) AlphabetOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AlphabetOutput)
 }
 
@@ -157,7 +157,7 @@ type AlphabetOutput struct {
 }
 
 func (AlphabetOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AlphabetOutput)(nil)).Elem()
+	return reflect.TypeOf((*Alphabet)(nil))
 }
 
 func (o AlphabetOutput) ToAlphabetOutput() AlphabetOutput {

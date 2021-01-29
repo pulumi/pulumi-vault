@@ -51,6 +51,7 @@ namespace Pulumi.Vault.Okta
     ///  $ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
     /// ```
     /// </summary>
+    [VaultResourceType("vault:okta/authBackendGroup:AuthBackendGroup")]
     public partial class AuthBackendGroup : Pulumi.CustomResource
     {
         /// <summary>

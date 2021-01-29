@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -218,15 +218,15 @@ type MfaDuoInput interface {
 	ToMfaDuoOutputWithContext(ctx context.Context) MfaDuoOutput
 }
 
-func (MfaDuo) ElementType() reflect.Type {
-	return reflect.TypeOf((*MfaDuo)(nil)).Elem()
+func (*MfaDuo) ElementType() reflect.Type {
+	return reflect.TypeOf((*MfaDuo)(nil))
 }
 
-func (i MfaDuo) ToMfaDuoOutput() MfaDuoOutput {
+func (i *MfaDuo) ToMfaDuoOutput() MfaDuoOutput {
 	return i.ToMfaDuoOutputWithContext(context.Background())
 }
 
-func (i MfaDuo) ToMfaDuoOutputWithContext(ctx context.Context) MfaDuoOutput {
+func (i *MfaDuo) ToMfaDuoOutputWithContext(ctx context.Context) MfaDuoOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MfaDuoOutput)
 }
 
@@ -235,7 +235,7 @@ type MfaDuoOutput struct {
 }
 
 func (MfaDuoOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*MfaDuoOutput)(nil)).Elem()
+	return reflect.TypeOf((*MfaDuo)(nil))
 }
 
 func (o MfaDuoOutput) ToMfaDuoOutput() MfaDuoOutput {

@@ -66,6 +66,7 @@ namespace Pulumi.Vault.Gcp
     ///  $ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer
     /// ```
     /// </summary>
+    [VaultResourceType("vault:gcp/secretRoleset:SecretRoleset")]
     public partial class SecretRoleset : Pulumi.CustomResource
     {
         /// <summary>

@@ -79,6 +79,7 @@ namespace Pulumi.Vault.Identity
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:identity/entityPolicies:EntityPolicies")]
     public partial class EntityPolicies : Pulumi.CustomResource
     {
         /// <summary>

@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Azure
 {
+    [VaultResourceType("vault:azure/backend:Backend")]
     public partial class Backend : Pulumi.CustomResource
     {
         /// <summary>

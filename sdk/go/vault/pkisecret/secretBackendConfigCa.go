@@ -98,15 +98,15 @@ type SecretBackendConfigCaInput interface {
 	ToSecretBackendConfigCaOutputWithContext(ctx context.Context) SecretBackendConfigCaOutput
 }
 
-func (SecretBackendConfigCa) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendConfigCa)(nil)).Elem()
+func (*SecretBackendConfigCa) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConfigCa)(nil))
 }
 
-func (i SecretBackendConfigCa) ToSecretBackendConfigCaOutput() SecretBackendConfigCaOutput {
+func (i *SecretBackendConfigCa) ToSecretBackendConfigCaOutput() SecretBackendConfigCaOutput {
 	return i.ToSecretBackendConfigCaOutputWithContext(context.Background())
 }
 
-func (i SecretBackendConfigCa) ToSecretBackendConfigCaOutputWithContext(ctx context.Context) SecretBackendConfigCaOutput {
+func (i *SecretBackendConfigCa) ToSecretBackendConfigCaOutputWithContext(ctx context.Context) SecretBackendConfigCaOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConfigCaOutput)
 }
 
@@ -115,7 +115,7 @@ type SecretBackendConfigCaOutput struct {
 }
 
 func (SecretBackendConfigCaOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendConfigCaOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretBackendConfigCa)(nil))
 }
 
 func (o SecretBackendConfigCaOutput) ToSecretBackendConfigCaOutput() SecretBackendConfigCaOutput {

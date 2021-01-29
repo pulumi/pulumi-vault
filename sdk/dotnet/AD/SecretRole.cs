@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.AD
 {
+    [VaultResourceType("vault:ad/secretRole:SecretRole")]
     public partial class SecretRole : Pulumi.CustomResource
     {
         /// <summary>

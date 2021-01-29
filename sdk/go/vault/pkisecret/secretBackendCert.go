@@ -250,15 +250,15 @@ type SecretBackendCertInput interface {
 	ToSecretBackendCertOutputWithContext(ctx context.Context) SecretBackendCertOutput
 }
 
-func (SecretBackendCert) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendCert)(nil)).Elem()
+func (*SecretBackendCert) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendCert)(nil))
 }
 
-func (i SecretBackendCert) ToSecretBackendCertOutput() SecretBackendCertOutput {
+func (i *SecretBackendCert) ToSecretBackendCertOutput() SecretBackendCertOutput {
 	return i.ToSecretBackendCertOutputWithContext(context.Background())
 }
 
-func (i SecretBackendCert) ToSecretBackendCertOutputWithContext(ctx context.Context) SecretBackendCertOutput {
+func (i *SecretBackendCert) ToSecretBackendCertOutputWithContext(ctx context.Context) SecretBackendCertOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCertOutput)
 }
 
@@ -267,7 +267,7 @@ type SecretBackendCertOutput struct {
 }
 
 func (SecretBackendCertOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendCertOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretBackendCert)(nil))
 }
 
 func (o SecretBackendCertOutput) ToSecretBackendCertOutput() SecretBackendCertOutput {

@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Consul
     ///  $ pulumi import vault:consul/secretBackend:SecretBackend example consul
     /// ```
     /// </summary>
+    [VaultResourceType("vault:consul/secretBackend:SecretBackend")]
     public partial class SecretBackend : Pulumi.CustomResource
     {
         /// <summary>

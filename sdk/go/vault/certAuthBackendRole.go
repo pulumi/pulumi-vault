@@ -501,15 +501,15 @@ type CertAuthBackendRoleInput interface {
 	ToCertAuthBackendRoleOutputWithContext(ctx context.Context) CertAuthBackendRoleOutput
 }
 
-func (CertAuthBackendRole) ElementType() reflect.Type {
-	return reflect.TypeOf((*CertAuthBackendRole)(nil)).Elem()
+func (*CertAuthBackendRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertAuthBackendRole)(nil))
 }
 
-func (i CertAuthBackendRole) ToCertAuthBackendRoleOutput() CertAuthBackendRoleOutput {
+func (i *CertAuthBackendRole) ToCertAuthBackendRoleOutput() CertAuthBackendRoleOutput {
 	return i.ToCertAuthBackendRoleOutputWithContext(context.Background())
 }
 
-func (i CertAuthBackendRole) ToCertAuthBackendRoleOutputWithContext(ctx context.Context) CertAuthBackendRoleOutput {
+func (i *CertAuthBackendRole) ToCertAuthBackendRoleOutputWithContext(ctx context.Context) CertAuthBackendRoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CertAuthBackendRoleOutput)
 }
 
@@ -518,7 +518,7 @@ type CertAuthBackendRoleOutput struct {
 }
 
 func (CertAuthBackendRoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CertAuthBackendRoleOutput)(nil)).Elem()
+	return reflect.TypeOf((*CertAuthBackendRole)(nil))
 }
 
 func (o CertAuthBackendRoleOutput) ToCertAuthBackendRoleOutput() CertAuthBackendRoleOutput {

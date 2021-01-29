@@ -23,7 +23,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -153,15 +153,15 @@ type EgpPolicyInput interface {
 	ToEgpPolicyOutputWithContext(ctx context.Context) EgpPolicyOutput
 }
 
-func (EgpPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*EgpPolicy)(nil)).Elem()
+func (*EgpPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*EgpPolicy)(nil))
 }
 
-func (i EgpPolicy) ToEgpPolicyOutput() EgpPolicyOutput {
+func (i *EgpPolicy) ToEgpPolicyOutput() EgpPolicyOutput {
 	return i.ToEgpPolicyOutputWithContext(context.Background())
 }
 
-func (i EgpPolicy) ToEgpPolicyOutputWithContext(ctx context.Context) EgpPolicyOutput {
+func (i *EgpPolicy) ToEgpPolicyOutputWithContext(ctx context.Context) EgpPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EgpPolicyOutput)
 }
 
@@ -170,7 +170,7 @@ type EgpPolicyOutput struct {
 }
 
 func (EgpPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EgpPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*EgpPolicy)(nil))
 }
 
 func (o EgpPolicyOutput) ToEgpPolicyOutput() EgpPolicyOutput {

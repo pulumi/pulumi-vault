@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Azure
     ///  $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
     /// ```
     /// </summary>
+    [VaultResourceType("vault:azure/authBackendConfig:AuthBackendConfig")]
     public partial class AuthBackendConfig : Pulumi.CustomResource
     {
         /// <summary>

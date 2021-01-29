@@ -40,6 +40,7 @@ namespace Pulumi.Vault.PkiSecret
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig")]
     public partial class SecretBackendCrlConfig : Pulumi.CustomResource
     {
         /// <summary>

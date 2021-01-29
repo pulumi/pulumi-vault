@@ -55,6 +55,7 @@ namespace Pulumi.Vault.AppRole
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:appRole/authBackendLogin:AuthBackendLogin")]
     public partial class AuthBackendLogin : Pulumi.CustomResource
     {
         /// <summary>

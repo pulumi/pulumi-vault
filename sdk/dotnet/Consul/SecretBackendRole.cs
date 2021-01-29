@@ -50,6 +50,7 @@ namespace Pulumi.Vault.Consul
     ///  $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
     /// ```
     /// </summary>
+    [VaultResourceType("vault:consul/secretBackendRole:SecretBackendRole")]
     public partial class SecretBackendRole : Pulumi.CustomResource
     {
         /// <summary>

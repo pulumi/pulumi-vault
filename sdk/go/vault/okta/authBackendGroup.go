@@ -153,15 +153,15 @@ type AuthBackendGroupInput interface {
 	ToAuthBackendGroupOutputWithContext(ctx context.Context) AuthBackendGroupOutput
 }
 
-func (AuthBackendGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendGroup)(nil)).Elem()
+func (*AuthBackendGroup) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendGroup)(nil))
 }
 
-func (i AuthBackendGroup) ToAuthBackendGroupOutput() AuthBackendGroupOutput {
+func (i *AuthBackendGroup) ToAuthBackendGroupOutput() AuthBackendGroupOutput {
 	return i.ToAuthBackendGroupOutputWithContext(context.Background())
 }
 
-func (i AuthBackendGroup) ToAuthBackendGroupOutputWithContext(ctx context.Context) AuthBackendGroupOutput {
+func (i *AuthBackendGroup) ToAuthBackendGroupOutputWithContext(ctx context.Context) AuthBackendGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupOutput)
 }
 
@@ -170,7 +170,7 @@ type AuthBackendGroupOutput struct {
 }
 
 func (AuthBackendGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendGroupOutput)(nil)).Elem()
+	return reflect.TypeOf((*AuthBackendGroup)(nil))
 }
 
 func (o AuthBackendGroupOutput) ToAuthBackendGroupOutput() AuthBackendGroupOutput {

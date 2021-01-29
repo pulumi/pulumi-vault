@@ -36,6 +36,7 @@ namespace Pulumi.Vault.Aws
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:aws/authBackendRoletagBlacklist:AuthBackendRoletagBlacklist")]
     public partial class AuthBackendRoletagBlacklist : Pulumi.CustomResource
     {
         /// <summary>

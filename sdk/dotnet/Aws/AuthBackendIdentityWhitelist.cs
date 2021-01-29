@@ -47,6 +47,7 @@ namespace Pulumi.Vault.Aws
     ///  $ pulumi import vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist example auth/aws/config/tidy/identity-whitelist
     /// ```
     /// </summary>
+    [VaultResourceType("vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist")]
     public partial class AuthBackendIdentityWhitelist : Pulumi.CustomResource
     {
         /// <summary>

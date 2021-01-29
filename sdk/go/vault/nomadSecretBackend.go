@@ -238,15 +238,15 @@ type NomadSecretBackendInput interface {
 	ToNomadSecretBackendOutputWithContext(ctx context.Context) NomadSecretBackendOutput
 }
 
-func (NomadSecretBackend) ElementType() reflect.Type {
-	return reflect.TypeOf((*NomadSecretBackend)(nil)).Elem()
+func (*NomadSecretBackend) ElementType() reflect.Type {
+	return reflect.TypeOf((*NomadSecretBackend)(nil))
 }
 
-func (i NomadSecretBackend) ToNomadSecretBackendOutput() NomadSecretBackendOutput {
+func (i *NomadSecretBackend) ToNomadSecretBackendOutput() NomadSecretBackendOutput {
 	return i.ToNomadSecretBackendOutputWithContext(context.Background())
 }
 
-func (i NomadSecretBackend) ToNomadSecretBackendOutputWithContext(ctx context.Context) NomadSecretBackendOutput {
+func (i *NomadSecretBackend) ToNomadSecretBackendOutputWithContext(ctx context.Context) NomadSecretBackendOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NomadSecretBackendOutput)
 }
 
@@ -255,7 +255,7 @@ type NomadSecretBackendOutput struct {
 }
 
 func (NomadSecretBackendOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NomadSecretBackendOutput)(nil)).Elem()
+	return reflect.TypeOf((*NomadSecretBackend)(nil))
 }
 
 func (o NomadSecretBackendOutput) ToNomadSecretBackendOutput() NomadSecretBackendOutput {

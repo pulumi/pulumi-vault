@@ -555,15 +555,15 @@ type SecretBackendInput interface {
 	ToSecretBackendOutputWithContext(ctx context.Context) SecretBackendOutput
 }
 
-func (SecretBackend) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackend)(nil)).Elem()
+func (*SecretBackend) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackend)(nil))
 }
 
-func (i SecretBackend) ToSecretBackendOutput() SecretBackendOutput {
+func (i *SecretBackend) ToSecretBackendOutput() SecretBackendOutput {
 	return i.ToSecretBackendOutputWithContext(context.Background())
 }
 
-func (i SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) SecretBackendOutput {
+func (i *SecretBackend) ToSecretBackendOutputWithContext(ctx context.Context) SecretBackendOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendOutput)
 }
 
@@ -572,7 +572,7 @@ type SecretBackendOutput struct {
 }
 
 func (SecretBackendOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretBackend)(nil))
 }
 
 func (o SecretBackendOutput) ToSecretBackendOutput() SecretBackendOutput {

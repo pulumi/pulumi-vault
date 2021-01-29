@@ -89,6 +89,7 @@ namespace Pulumi.Vault.Identity
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:identity/groupPolicies:GroupPolicies")]
     public partial class GroupPolicies : Pulumi.CustomResource
     {
         /// <summary>

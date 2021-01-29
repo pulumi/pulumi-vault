@@ -14,6 +14,7 @@ namespace Pulumi.Vault.Generic
     /// 
     /// Import is not supported for this resource.
     /// </summary>
+    [VaultResourceType("vault:generic/endpoint:Endpoint")]
     public partial class Endpoint : Pulumi.CustomResource
     {
         /// <summary>

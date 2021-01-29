@@ -213,15 +213,15 @@ type GroupMemberEntityIdsInput interface {
 	ToGroupMemberEntityIdsOutputWithContext(ctx context.Context) GroupMemberEntityIdsOutput
 }
 
-func (GroupMemberEntityIds) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupMemberEntityIds)(nil)).Elem()
+func (*GroupMemberEntityIds) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupMemberEntityIds)(nil))
 }
 
-func (i GroupMemberEntityIds) ToGroupMemberEntityIdsOutput() GroupMemberEntityIdsOutput {
+func (i *GroupMemberEntityIds) ToGroupMemberEntityIdsOutput() GroupMemberEntityIdsOutput {
 	return i.ToGroupMemberEntityIdsOutputWithContext(context.Background())
 }
 
-func (i GroupMemberEntityIds) ToGroupMemberEntityIdsOutputWithContext(ctx context.Context) GroupMemberEntityIdsOutput {
+func (i *GroupMemberEntityIds) ToGroupMemberEntityIdsOutputWithContext(ctx context.Context) GroupMemberEntityIdsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMemberEntityIdsOutput)
 }
 
@@ -230,7 +230,7 @@ type GroupMemberEntityIdsOutput struct {
 }
 
 func (GroupMemberEntityIdsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupMemberEntityIdsOutput)(nil)).Elem()
+	return reflect.TypeOf((*GroupMemberEntityIds)(nil))
 }
 
 func (o GroupMemberEntityIdsOutput) ToGroupMemberEntityIdsOutput() GroupMemberEntityIdsOutput {

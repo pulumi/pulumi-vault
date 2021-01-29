@@ -40,6 +40,7 @@ namespace Pulumi.Vault.Gcp
     ///  $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
     /// ```
     /// </summary>
+    [VaultResourceType("vault:gcp/authBackend:AuthBackend")]
     public partial class AuthBackend : Pulumi.CustomResource
     {
         /// <summary>

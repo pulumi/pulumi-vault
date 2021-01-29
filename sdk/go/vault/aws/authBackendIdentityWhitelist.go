@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/aws"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -159,15 +159,15 @@ type AuthBackendIdentityWhitelistInput interface {
 	ToAuthBackendIdentityWhitelistOutputWithContext(ctx context.Context) AuthBackendIdentityWhitelistOutput
 }
 
-func (AuthBackendIdentityWhitelist) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendIdentityWhitelist)(nil)).Elem()
+func (*AuthBackendIdentityWhitelist) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendIdentityWhitelist)(nil))
 }
 
-func (i AuthBackendIdentityWhitelist) ToAuthBackendIdentityWhitelistOutput() AuthBackendIdentityWhitelistOutput {
+func (i *AuthBackendIdentityWhitelist) ToAuthBackendIdentityWhitelistOutput() AuthBackendIdentityWhitelistOutput {
 	return i.ToAuthBackendIdentityWhitelistOutputWithContext(context.Background())
 }
 
-func (i AuthBackendIdentityWhitelist) ToAuthBackendIdentityWhitelistOutputWithContext(ctx context.Context) AuthBackendIdentityWhitelistOutput {
+func (i *AuthBackendIdentityWhitelist) ToAuthBackendIdentityWhitelistOutputWithContext(ctx context.Context) AuthBackendIdentityWhitelistOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendIdentityWhitelistOutput)
 }
 
@@ -176,7 +176,7 @@ type AuthBackendIdentityWhitelistOutput struct {
 }
 
 func (AuthBackendIdentityWhitelistOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendIdentityWhitelistOutput)(nil)).Elem()
+	return reflect.TypeOf((*AuthBackendIdentityWhitelist)(nil))
 }
 
 func (o AuthBackendIdentityWhitelistOutput) ToAuthBackendIdentityWhitelistOutput() AuthBackendIdentityWhitelistOutput {

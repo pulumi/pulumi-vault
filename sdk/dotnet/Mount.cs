@@ -39,6 +39,7 @@ namespace Pulumi.Vault
     ///  $ pulumi import vault:index/mount:Mount example dummy
     /// ```
     /// </summary>
+    [VaultResourceType("vault:index/mount:Mount")]
     public partial class Mount : Pulumi.CustomResource
     {
         /// <summary>

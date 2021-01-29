@@ -143,15 +143,15 @@ type OidcKeyInput interface {
 	ToOidcKeyOutputWithContext(ctx context.Context) OidcKeyOutput
 }
 
-func (OidcKey) ElementType() reflect.Type {
-	return reflect.TypeOf((*OidcKey)(nil)).Elem()
+func (*OidcKey) ElementType() reflect.Type {
+	return reflect.TypeOf((*OidcKey)(nil))
 }
 
-func (i OidcKey) ToOidcKeyOutput() OidcKeyOutput {
+func (i *OidcKey) ToOidcKeyOutput() OidcKeyOutput {
 	return i.ToOidcKeyOutputWithContext(context.Background())
 }
 
-func (i OidcKey) ToOidcKeyOutputWithContext(ctx context.Context) OidcKeyOutput {
+func (i *OidcKey) ToOidcKeyOutputWithContext(ctx context.Context) OidcKeyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyOutput)
 }
 
@@ -160,7 +160,7 @@ type OidcKeyOutput struct {
 }
 
 func (OidcKeyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*OidcKeyOutput)(nil)).Elem()
+	return reflect.TypeOf((*OidcKey)(nil))
 }
 
 func (o OidcKeyOutput) ToOidcKeyOutput() OidcKeyOutput {

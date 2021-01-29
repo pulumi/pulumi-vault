@@ -23,7 +23,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/kubernetes"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -203,15 +203,15 @@ type AuthBackendConfigInput interface {
 	ToAuthBackendConfigOutputWithContext(ctx context.Context) AuthBackendConfigOutput
 }
 
-func (AuthBackendConfig) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendConfig)(nil)).Elem()
+func (*AuthBackendConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthBackendConfig)(nil))
 }
 
-func (i AuthBackendConfig) ToAuthBackendConfigOutput() AuthBackendConfigOutput {
+func (i *AuthBackendConfig) ToAuthBackendConfigOutput() AuthBackendConfigOutput {
 	return i.ToAuthBackendConfigOutputWithContext(context.Background())
 }
 
-func (i AuthBackendConfig) ToAuthBackendConfigOutputWithContext(ctx context.Context) AuthBackendConfigOutput {
+func (i *AuthBackendConfig) ToAuthBackendConfigOutputWithContext(ctx context.Context) AuthBackendConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendConfigOutput)
 }
 
@@ -220,7 +220,7 @@ type AuthBackendConfigOutput struct {
 }
 
 func (AuthBackendConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendConfigOutput)(nil)).Elem()
+	return reflect.TypeOf((*AuthBackendConfig)(nil))
 }
 
 func (o AuthBackendConfigOutput) ToAuthBackendConfigOutput() AuthBackendConfigOutput {

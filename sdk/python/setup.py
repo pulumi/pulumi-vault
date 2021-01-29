@@ -48,7 +48,7 @@ setup(name='pulumi_vault',
       packages=find_packages(),
       package_data={
           'pulumi_vault': [
-              'py.typed'
+              'py.typed',
           ]
       },
       install_requires=[

@@ -47,6 +47,7 @@ namespace Pulumi.Vault.Transit
     ///  $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
     /// ```
     /// </summary>
+    [VaultResourceType("vault:transit/secretBackendKey:SecretBackendKey")]
     public partial class SecretBackendKey : Pulumi.CustomResource
     {
         /// <summary>

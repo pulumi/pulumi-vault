@@ -160,15 +160,15 @@ type NomadSecretRoleInput interface {
 	ToNomadSecretRoleOutputWithContext(ctx context.Context) NomadSecretRoleOutput
 }
 
-func (NomadSecretRole) ElementType() reflect.Type {
-	return reflect.TypeOf((*NomadSecretRole)(nil)).Elem()
+func (*NomadSecretRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*NomadSecretRole)(nil))
 }
 
-func (i NomadSecretRole) ToNomadSecretRoleOutput() NomadSecretRoleOutput {
+func (i *NomadSecretRole) ToNomadSecretRoleOutput() NomadSecretRoleOutput {
 	return i.ToNomadSecretRoleOutputWithContext(context.Background())
 }
 
-func (i NomadSecretRole) ToNomadSecretRoleOutputWithContext(ctx context.Context) NomadSecretRoleOutput {
+func (i *NomadSecretRole) ToNomadSecretRoleOutputWithContext(ctx context.Context) NomadSecretRoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NomadSecretRoleOutput)
 }
 
@@ -177,7 +177,7 @@ type NomadSecretRoleOutput struct {
 }
 
 func (NomadSecretRoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NomadSecretRoleOutput)(nil)).Elem()
+	return reflect.TypeOf((*NomadSecretRole)(nil))
 }
 
 func (o NomadSecretRoleOutput) ToNomadSecretRoleOutput() NomadSecretRoleOutput {

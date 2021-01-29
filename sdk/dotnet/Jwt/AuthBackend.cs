@@ -80,6 +80,7 @@ namespace Pulumi.Vault.Jwt
     ///  $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt
     /// ```
     /// </summary>
+    [VaultResourceType("vault:jwt/authBackend:AuthBackend")]
     public partial class AuthBackend : Pulumi.CustomResource
     {
         /// <summary>

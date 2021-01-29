@@ -336,15 +336,15 @@ type SecretBackendRootSignIntermediateInput interface {
 	ToSecretBackendRootSignIntermediateOutputWithContext(ctx context.Context) SecretBackendRootSignIntermediateOutput
 }
 
-func (SecretBackendRootSignIntermediate) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendRootSignIntermediate)(nil)).Elem()
+func (*SecretBackendRootSignIntermediate) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendRootSignIntermediate)(nil))
 }
 
-func (i SecretBackendRootSignIntermediate) ToSecretBackendRootSignIntermediateOutput() SecretBackendRootSignIntermediateOutput {
+func (i *SecretBackendRootSignIntermediate) ToSecretBackendRootSignIntermediateOutput() SecretBackendRootSignIntermediateOutput {
 	return i.ToSecretBackendRootSignIntermediateOutputWithContext(context.Background())
 }
 
-func (i SecretBackendRootSignIntermediate) ToSecretBackendRootSignIntermediateOutputWithContext(ctx context.Context) SecretBackendRootSignIntermediateOutput {
+func (i *SecretBackendRootSignIntermediate) ToSecretBackendRootSignIntermediateOutputWithContext(ctx context.Context) SecretBackendRootSignIntermediateOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRootSignIntermediateOutput)
 }
 
@@ -353,7 +353,7 @@ type SecretBackendRootSignIntermediateOutput struct {
 }
 
 func (SecretBackendRootSignIntermediateOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendRootSignIntermediateOutput)(nil)).Elem()
+	return reflect.TypeOf((*SecretBackendRootSignIntermediate)(nil))
 }
 
 func (o SecretBackendRootSignIntermediateOutput) ToSecretBackendRootSignIntermediateOutput() SecretBackendRootSignIntermediateOutput {

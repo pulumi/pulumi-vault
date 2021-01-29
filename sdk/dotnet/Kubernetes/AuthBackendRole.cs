@@ -62,6 +62,7 @@ namespace Pulumi.Vault.Kubernetes
     ///  $ pulumi import vault:kubernetes/authBackendRole:AuthBackendRole foo auth/kubernetes/role/foo
     /// ```
     /// </summary>
+    [VaultResourceType("vault:kubernetes/authBackendRole:AuthBackendRole")]
     public partial class AuthBackendRole : Pulumi.CustomResource
     {
         /// <summary>

@@ -36,6 +36,7 @@ namespace Pulumi.Vault.Identity
     /// }
     /// ```
     /// </summary>
+    [VaultResourceType("vault:identity/oidc:Oidc")]
     public partial class Oidc : Pulumi.CustomResource
     {
         /// <summary>
