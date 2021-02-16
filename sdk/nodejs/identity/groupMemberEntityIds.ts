@@ -114,7 +114,8 @@ export class GroupMemberEntityIds extends pulumi.CustomResource {
     constructor(name: string, args: GroupMemberEntityIdsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GroupMemberEntityIdsArgs | GroupMemberEntityIdsState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as GroupMemberEntityIdsState | undefined;
             inputs["exclusive"] = state ? state.exclusive : undefined;
             inputs["groupId"] = state ? state.groupId : undefined;
@@ -122,7 +123,7 @@ export class GroupMemberEntityIds extends pulumi.CustomResource {
             inputs["memberEntityIds"] = state ? state.memberEntityIds : undefined;
         } else {
             const args = argsOrState as GroupMemberEntityIdsArgs | undefined;
-            if ((!args || args.groupId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.groupId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'groupId'");
             }
             inputs["exclusive"] = args ? args.exclusive : undefined;
@@ -130,12 +131,8 @@ export class GroupMemberEntityIds extends pulumi.CustomResource {
             inputs["memberEntityIds"] = args ? args.memberEntityIds : undefined;
             inputs["groupName"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(GroupMemberEntityIds.__pulumiType, name, inputs, opts);
     }

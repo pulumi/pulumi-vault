@@ -75,7 +75,8 @@ export class OidcKey extends pulumi.CustomResource {
     constructor(name: string, args?: OidcKeyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: OidcKeyArgs | OidcKeyState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as OidcKeyState | undefined;
             inputs["algorithm"] = state ? state.algorithm : undefined;
             inputs["allowedClientIds"] = state ? state.allowedClientIds : undefined;
@@ -90,12 +91,8 @@ export class OidcKey extends pulumi.CustomResource {
             inputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
             inputs["verificationTtl"] = args ? args.verificationTtl : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(OidcKey.__pulumiType, name, inputs, opts);
     }

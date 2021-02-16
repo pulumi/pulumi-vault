@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
 // 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/identity"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -168,6 +168,85 @@ func (i *GroupAlias) ToGroupAliasOutputWithContext(ctx context.Context) GroupAli
 	return pulumi.ToOutputWithContext(ctx, i).(GroupAliasOutput)
 }
 
+func (i *GroupAlias) ToGroupAliasPtrOutput() GroupAliasPtrOutput {
+	return i.ToGroupAliasPtrOutputWithContext(context.Background())
+}
+
+func (i *GroupAlias) ToGroupAliasPtrOutputWithContext(ctx context.Context) GroupAliasPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupAliasPtrOutput)
+}
+
+type GroupAliasPtrInput interface {
+	pulumi.Input
+
+	ToGroupAliasPtrOutput() GroupAliasPtrOutput
+	ToGroupAliasPtrOutputWithContext(ctx context.Context) GroupAliasPtrOutput
+}
+
+type groupAliasPtrType GroupAliasArgs
+
+func (*groupAliasPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GroupAlias)(nil))
+}
+
+func (i *groupAliasPtrType) ToGroupAliasPtrOutput() GroupAliasPtrOutput {
+	return i.ToGroupAliasPtrOutputWithContext(context.Background())
+}
+
+func (i *groupAliasPtrType) ToGroupAliasPtrOutputWithContext(ctx context.Context) GroupAliasPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupAliasPtrOutput)
+}
+
+// GroupAliasArrayInput is an input type that accepts GroupAliasArray and GroupAliasArrayOutput values.
+// You can construct a concrete instance of `GroupAliasArrayInput` via:
+//
+//          GroupAliasArray{ GroupAliasArgs{...} }
+type GroupAliasArrayInput interface {
+	pulumi.Input
+
+	ToGroupAliasArrayOutput() GroupAliasArrayOutput
+	ToGroupAliasArrayOutputWithContext(context.Context) GroupAliasArrayOutput
+}
+
+type GroupAliasArray []GroupAliasInput
+
+func (GroupAliasArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*GroupAlias)(nil))
+}
+
+func (i GroupAliasArray) ToGroupAliasArrayOutput() GroupAliasArrayOutput {
+	return i.ToGroupAliasArrayOutputWithContext(context.Background())
+}
+
+func (i GroupAliasArray) ToGroupAliasArrayOutputWithContext(ctx context.Context) GroupAliasArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupAliasArrayOutput)
+}
+
+// GroupAliasMapInput is an input type that accepts GroupAliasMap and GroupAliasMapOutput values.
+// You can construct a concrete instance of `GroupAliasMapInput` via:
+//
+//          GroupAliasMap{ "key": GroupAliasArgs{...} }
+type GroupAliasMapInput interface {
+	pulumi.Input
+
+	ToGroupAliasMapOutput() GroupAliasMapOutput
+	ToGroupAliasMapOutputWithContext(context.Context) GroupAliasMapOutput
+}
+
+type GroupAliasMap map[string]GroupAliasInput
+
+func (GroupAliasMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*GroupAlias)(nil))
+}
+
+func (i GroupAliasMap) ToGroupAliasMapOutput() GroupAliasMapOutput {
+	return i.ToGroupAliasMapOutputWithContext(context.Background())
+}
+
+func (i GroupAliasMap) ToGroupAliasMapOutputWithContext(ctx context.Context) GroupAliasMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupAliasMapOutput)
+}
+
 type GroupAliasOutput struct {
 	*pulumi.OutputState
 }
@@ -184,6 +263,75 @@ func (o GroupAliasOutput) ToGroupAliasOutputWithContext(ctx context.Context) Gro
 	return o
 }
 
+func (o GroupAliasOutput) ToGroupAliasPtrOutput() GroupAliasPtrOutput {
+	return o.ToGroupAliasPtrOutputWithContext(context.Background())
+}
+
+func (o GroupAliasOutput) ToGroupAliasPtrOutputWithContext(ctx context.Context) GroupAliasPtrOutput {
+	return o.ApplyT(func(v GroupAlias) *GroupAlias {
+		return &v
+	}).(GroupAliasPtrOutput)
+}
+
+type GroupAliasPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GroupAliasPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GroupAlias)(nil))
+}
+
+func (o GroupAliasPtrOutput) ToGroupAliasPtrOutput() GroupAliasPtrOutput {
+	return o
+}
+
+func (o GroupAliasPtrOutput) ToGroupAliasPtrOutputWithContext(ctx context.Context) GroupAliasPtrOutput {
+	return o
+}
+
+type GroupAliasArrayOutput struct{ *pulumi.OutputState }
+
+func (GroupAliasArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GroupAlias)(nil))
+}
+
+func (o GroupAliasArrayOutput) ToGroupAliasArrayOutput() GroupAliasArrayOutput {
+	return o
+}
+
+func (o GroupAliasArrayOutput) ToGroupAliasArrayOutputWithContext(ctx context.Context) GroupAliasArrayOutput {
+	return o
+}
+
+func (o GroupAliasArrayOutput) Index(i pulumi.IntInput) GroupAliasOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GroupAlias {
+		return vs[0].([]GroupAlias)[vs[1].(int)]
+	}).(GroupAliasOutput)
+}
+
+type GroupAliasMapOutput struct{ *pulumi.OutputState }
+
+func (GroupAliasMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]GroupAlias)(nil))
+}
+
+func (o GroupAliasMapOutput) ToGroupAliasMapOutput() GroupAliasMapOutput {
+	return o
+}
+
+func (o GroupAliasMapOutput) ToGroupAliasMapOutputWithContext(ctx context.Context) GroupAliasMapOutput {
+	return o
+}
+
+func (o GroupAliasMapOutput) MapIndex(k pulumi.StringInput) GroupAliasOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) GroupAlias {
+		return vs[0].(map[string]GroupAlias)[vs[1].(string)]
+	}).(GroupAliasOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(GroupAliasOutput{})
+	pulumi.RegisterOutputType(GroupAliasPtrOutput{})
+	pulumi.RegisterOutputType(GroupAliasArrayOutput{})
+	pulumi.RegisterOutputType(GroupAliasMapOutput{})
 }

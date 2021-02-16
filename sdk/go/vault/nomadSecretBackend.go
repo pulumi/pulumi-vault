@@ -250,6 +250,85 @@ func (i *NomadSecretBackend) ToNomadSecretBackendOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(NomadSecretBackendOutput)
 }
 
+func (i *NomadSecretBackend) ToNomadSecretBackendPtrOutput() NomadSecretBackendPtrOutput {
+	return i.ToNomadSecretBackendPtrOutputWithContext(context.Background())
+}
+
+func (i *NomadSecretBackend) ToNomadSecretBackendPtrOutputWithContext(ctx context.Context) NomadSecretBackendPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NomadSecretBackendPtrOutput)
+}
+
+type NomadSecretBackendPtrInput interface {
+	pulumi.Input
+
+	ToNomadSecretBackendPtrOutput() NomadSecretBackendPtrOutput
+	ToNomadSecretBackendPtrOutputWithContext(ctx context.Context) NomadSecretBackendPtrOutput
+}
+
+type nomadSecretBackendPtrType NomadSecretBackendArgs
+
+func (*nomadSecretBackendPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NomadSecretBackend)(nil))
+}
+
+func (i *nomadSecretBackendPtrType) ToNomadSecretBackendPtrOutput() NomadSecretBackendPtrOutput {
+	return i.ToNomadSecretBackendPtrOutputWithContext(context.Background())
+}
+
+func (i *nomadSecretBackendPtrType) ToNomadSecretBackendPtrOutputWithContext(ctx context.Context) NomadSecretBackendPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NomadSecretBackendPtrOutput)
+}
+
+// NomadSecretBackendArrayInput is an input type that accepts NomadSecretBackendArray and NomadSecretBackendArrayOutput values.
+// You can construct a concrete instance of `NomadSecretBackendArrayInput` via:
+//
+//          NomadSecretBackendArray{ NomadSecretBackendArgs{...} }
+type NomadSecretBackendArrayInput interface {
+	pulumi.Input
+
+	ToNomadSecretBackendArrayOutput() NomadSecretBackendArrayOutput
+	ToNomadSecretBackendArrayOutputWithContext(context.Context) NomadSecretBackendArrayOutput
+}
+
+type NomadSecretBackendArray []NomadSecretBackendInput
+
+func (NomadSecretBackendArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*NomadSecretBackend)(nil))
+}
+
+func (i NomadSecretBackendArray) ToNomadSecretBackendArrayOutput() NomadSecretBackendArrayOutput {
+	return i.ToNomadSecretBackendArrayOutputWithContext(context.Background())
+}
+
+func (i NomadSecretBackendArray) ToNomadSecretBackendArrayOutputWithContext(ctx context.Context) NomadSecretBackendArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NomadSecretBackendArrayOutput)
+}
+
+// NomadSecretBackendMapInput is an input type that accepts NomadSecretBackendMap and NomadSecretBackendMapOutput values.
+// You can construct a concrete instance of `NomadSecretBackendMapInput` via:
+//
+//          NomadSecretBackendMap{ "key": NomadSecretBackendArgs{...} }
+type NomadSecretBackendMapInput interface {
+	pulumi.Input
+
+	ToNomadSecretBackendMapOutput() NomadSecretBackendMapOutput
+	ToNomadSecretBackendMapOutputWithContext(context.Context) NomadSecretBackendMapOutput
+}
+
+type NomadSecretBackendMap map[string]NomadSecretBackendInput
+
+func (NomadSecretBackendMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*NomadSecretBackend)(nil))
+}
+
+func (i NomadSecretBackendMap) ToNomadSecretBackendMapOutput() NomadSecretBackendMapOutput {
+	return i.ToNomadSecretBackendMapOutputWithContext(context.Background())
+}
+
+func (i NomadSecretBackendMap) ToNomadSecretBackendMapOutputWithContext(ctx context.Context) NomadSecretBackendMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NomadSecretBackendMapOutput)
+}
+
 type NomadSecretBackendOutput struct {
 	*pulumi.OutputState
 }
@@ -266,6 +345,75 @@ func (o NomadSecretBackendOutput) ToNomadSecretBackendOutputWithContext(ctx cont
 	return o
 }
 
+func (o NomadSecretBackendOutput) ToNomadSecretBackendPtrOutput() NomadSecretBackendPtrOutput {
+	return o.ToNomadSecretBackendPtrOutputWithContext(context.Background())
+}
+
+func (o NomadSecretBackendOutput) ToNomadSecretBackendPtrOutputWithContext(ctx context.Context) NomadSecretBackendPtrOutput {
+	return o.ApplyT(func(v NomadSecretBackend) *NomadSecretBackend {
+		return &v
+	}).(NomadSecretBackendPtrOutput)
+}
+
+type NomadSecretBackendPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NomadSecretBackendPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NomadSecretBackend)(nil))
+}
+
+func (o NomadSecretBackendPtrOutput) ToNomadSecretBackendPtrOutput() NomadSecretBackendPtrOutput {
+	return o
+}
+
+func (o NomadSecretBackendPtrOutput) ToNomadSecretBackendPtrOutputWithContext(ctx context.Context) NomadSecretBackendPtrOutput {
+	return o
+}
+
+type NomadSecretBackendArrayOutput struct{ *pulumi.OutputState }
+
+func (NomadSecretBackendArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NomadSecretBackend)(nil))
+}
+
+func (o NomadSecretBackendArrayOutput) ToNomadSecretBackendArrayOutput() NomadSecretBackendArrayOutput {
+	return o
+}
+
+func (o NomadSecretBackendArrayOutput) ToNomadSecretBackendArrayOutputWithContext(ctx context.Context) NomadSecretBackendArrayOutput {
+	return o
+}
+
+func (o NomadSecretBackendArrayOutput) Index(i pulumi.IntInput) NomadSecretBackendOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NomadSecretBackend {
+		return vs[0].([]NomadSecretBackend)[vs[1].(int)]
+	}).(NomadSecretBackendOutput)
+}
+
+type NomadSecretBackendMapOutput struct{ *pulumi.OutputState }
+
+func (NomadSecretBackendMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]NomadSecretBackend)(nil))
+}
+
+func (o NomadSecretBackendMapOutput) ToNomadSecretBackendMapOutput() NomadSecretBackendMapOutput {
+	return o
+}
+
+func (o NomadSecretBackendMapOutput) ToNomadSecretBackendMapOutputWithContext(ctx context.Context) NomadSecretBackendMapOutput {
+	return o
+}
+
+func (o NomadSecretBackendMapOutput) MapIndex(k pulumi.StringInput) NomadSecretBackendOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) NomadSecretBackend {
+		return vs[0].(map[string]NomadSecretBackend)[vs[1].(string)]
+	}).(NomadSecretBackendOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(NomadSecretBackendOutput{})
+	pulumi.RegisterOutputType(NomadSecretBackendPtrOutput{})
+	pulumi.RegisterOutputType(NomadSecretBackendArrayOutput{})
+	pulumi.RegisterOutputType(NomadSecretBackendMapOutput{})
 }

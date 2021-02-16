@@ -120,7 +120,8 @@ export class AuthBackendRoleTag extends pulumi.CustomResource {
     constructor(name: string, args: AuthBackendRoleTagArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendRoleTagArgs | AuthBackendRoleTagState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as AuthBackendRoleTagState | undefined;
             inputs["allowInstanceMigration"] = state ? state.allowInstanceMigration : undefined;
             inputs["backend"] = state ? state.backend : undefined;
@@ -133,7 +134,7 @@ export class AuthBackendRoleTag extends pulumi.CustomResource {
             inputs["tagValue"] = state ? state.tagValue : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleTagArgs | undefined;
-            if ((!args || args.role === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.role === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
             inputs["allowInstanceMigration"] = args ? args.allowInstanceMigration : undefined;
@@ -146,12 +147,8 @@ export class AuthBackendRoleTag extends pulumi.CustomResource {
             inputs["tagKey"] = undefined /*out*/;
             inputs["tagValue"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(AuthBackendRoleTag.__pulumiType, name, inputs, opts);
     }

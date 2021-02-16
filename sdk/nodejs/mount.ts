@@ -105,7 +105,8 @@ export class Mount extends pulumi.CustomResource {
     constructor(name: string, args: MountArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: MountArgs | MountState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as MountState | undefined;
             inputs["accessor"] = state ? state.accessor : undefined;
             inputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
@@ -119,10 +120,10 @@ export class Mount extends pulumi.CustomResource {
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as MountArgs | undefined;
-            if ((!args || args.path === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.path === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            if ((!args || args.type === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
             inputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
@@ -136,12 +137,8 @@ export class Mount extends pulumi.CustomResource {
             inputs["type"] = args ? args.type : undefined;
             inputs["accessor"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Mount.__pulumiType, name, inputs, opts);
     }

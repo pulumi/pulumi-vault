@@ -67,7 +67,8 @@ export class SecretRole extends pulumi.CustomResource {
     constructor(name: string, args: SecretRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretRoleArgs | SecretRoleState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretRoleState | undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["lastVaultRotation"] = state ? state.lastVaultRotation : undefined;
@@ -77,13 +78,13 @@ export class SecretRole extends pulumi.CustomResource {
             inputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as SecretRoleArgs | undefined;
-            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.role === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.role === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            if ((!args || args.serviceAccountName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.serviceAccountName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serviceAccountName'");
             }
             inputs["backend"] = args ? args.backend : undefined;
@@ -93,12 +94,8 @@ export class SecretRole extends pulumi.CustomResource {
             inputs["lastVaultRotation"] = undefined /*out*/;
             inputs["passwordLastSet"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(SecretRole.__pulumiType, name, inputs, opts);
     }

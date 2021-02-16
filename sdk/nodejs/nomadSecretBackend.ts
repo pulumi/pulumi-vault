@@ -110,7 +110,8 @@ export class NomadSecretBackend extends pulumi.CustomResource {
     constructor(name: string, args?: NomadSecretBackendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: NomadSecretBackendArgs | NomadSecretBackendState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as NomadSecretBackendState | undefined;
             inputs["address"] = state ? state.address : undefined;
             inputs["backend"] = state ? state.backend : undefined;
@@ -141,12 +142,8 @@ export class NomadSecretBackend extends pulumi.CustomResource {
             inputs["token"] = args ? args.token : undefined;
             inputs["ttl"] = args ? args.ttl : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(NomadSecretBackend.__pulumiType, name, inputs, opts);
     }

@@ -17,7 +17,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -218,6 +218,85 @@ func (i *Mount) ToMountOutputWithContext(ctx context.Context) MountOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MountOutput)
 }
 
+func (i *Mount) ToMountPtrOutput() MountPtrOutput {
+	return i.ToMountPtrOutputWithContext(context.Background())
+}
+
+func (i *Mount) ToMountPtrOutputWithContext(ctx context.Context) MountPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MountPtrOutput)
+}
+
+type MountPtrInput interface {
+	pulumi.Input
+
+	ToMountPtrOutput() MountPtrOutput
+	ToMountPtrOutputWithContext(ctx context.Context) MountPtrOutput
+}
+
+type mountPtrType MountArgs
+
+func (*mountPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Mount)(nil))
+}
+
+func (i *mountPtrType) ToMountPtrOutput() MountPtrOutput {
+	return i.ToMountPtrOutputWithContext(context.Background())
+}
+
+func (i *mountPtrType) ToMountPtrOutputWithContext(ctx context.Context) MountPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MountPtrOutput)
+}
+
+// MountArrayInput is an input type that accepts MountArray and MountArrayOutput values.
+// You can construct a concrete instance of `MountArrayInput` via:
+//
+//          MountArray{ MountArgs{...} }
+type MountArrayInput interface {
+	pulumi.Input
+
+	ToMountArrayOutput() MountArrayOutput
+	ToMountArrayOutputWithContext(context.Context) MountArrayOutput
+}
+
+type MountArray []MountInput
+
+func (MountArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*Mount)(nil))
+}
+
+func (i MountArray) ToMountArrayOutput() MountArrayOutput {
+	return i.ToMountArrayOutputWithContext(context.Background())
+}
+
+func (i MountArray) ToMountArrayOutputWithContext(ctx context.Context) MountArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MountArrayOutput)
+}
+
+// MountMapInput is an input type that accepts MountMap and MountMapOutput values.
+// You can construct a concrete instance of `MountMapInput` via:
+//
+//          MountMap{ "key": MountArgs{...} }
+type MountMapInput interface {
+	pulumi.Input
+
+	ToMountMapOutput() MountMapOutput
+	ToMountMapOutputWithContext(context.Context) MountMapOutput
+}
+
+type MountMap map[string]MountInput
+
+func (MountMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*Mount)(nil))
+}
+
+func (i MountMap) ToMountMapOutput() MountMapOutput {
+	return i.ToMountMapOutputWithContext(context.Background())
+}
+
+func (i MountMap) ToMountMapOutputWithContext(ctx context.Context) MountMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MountMapOutput)
+}
+
 type MountOutput struct {
 	*pulumi.OutputState
 }
@@ -234,6 +313,75 @@ func (o MountOutput) ToMountOutputWithContext(ctx context.Context) MountOutput {
 	return o
 }
 
+func (o MountOutput) ToMountPtrOutput() MountPtrOutput {
+	return o.ToMountPtrOutputWithContext(context.Background())
+}
+
+func (o MountOutput) ToMountPtrOutputWithContext(ctx context.Context) MountPtrOutput {
+	return o.ApplyT(func(v Mount) *Mount {
+		return &v
+	}).(MountPtrOutput)
+}
+
+type MountPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (MountPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Mount)(nil))
+}
+
+func (o MountPtrOutput) ToMountPtrOutput() MountPtrOutput {
+	return o
+}
+
+func (o MountPtrOutput) ToMountPtrOutputWithContext(ctx context.Context) MountPtrOutput {
+	return o
+}
+
+type MountArrayOutput struct{ *pulumi.OutputState }
+
+func (MountArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Mount)(nil))
+}
+
+func (o MountArrayOutput) ToMountArrayOutput() MountArrayOutput {
+	return o
+}
+
+func (o MountArrayOutput) ToMountArrayOutputWithContext(ctx context.Context) MountArrayOutput {
+	return o
+}
+
+func (o MountArrayOutput) Index(i pulumi.IntInput) MountOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Mount {
+		return vs[0].([]Mount)[vs[1].(int)]
+	}).(MountOutput)
+}
+
+type MountMapOutput struct{ *pulumi.OutputState }
+
+func (MountMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]Mount)(nil))
+}
+
+func (o MountMapOutput) ToMountMapOutput() MountMapOutput {
+	return o
+}
+
+func (o MountMapOutput) ToMountMapOutputWithContext(ctx context.Context) MountMapOutput {
+	return o
+}
+
+func (o MountMapOutput) MapIndex(k pulumi.StringInput) MountOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) Mount {
+		return vs[0].(map[string]Mount)[vs[1].(string)]
+	}).(MountOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(MountOutput{})
+	pulumi.RegisterOutputType(MountPtrOutput{})
+	pulumi.RegisterOutputType(MountArrayOutput{})
+	pulumi.RegisterOutputType(MountMapOutput{})
 }

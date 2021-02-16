@@ -214,7 +214,8 @@ export class SecretBackend extends pulumi.CustomResource {
     constructor(name: string, args: SecretBackendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendArgs | SecretBackendState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretBackendState | undefined;
             inputs["anonymousGroupSearch"] = state ? state.anonymousGroupSearch : undefined;
             inputs["backend"] = state ? state.backend : undefined;
@@ -252,10 +253,10 @@ export class SecretBackend extends pulumi.CustomResource {
             inputs["userdn"] = state ? state.userdn : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
-            if ((!args || args.binddn === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.binddn === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'binddn'");
             }
-            if ((!args || args.bindpass === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.bindpass === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'bindpass'");
             }
             inputs["anonymousGroupSearch"] = args ? args.anonymousGroupSearch : undefined;
@@ -293,12 +294,8 @@ export class SecretBackend extends pulumi.CustomResource {
             inputs["userattr"] = args ? args.userattr : undefined;
             inputs["userdn"] = args ? args.userdn : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(SecretBackend.__pulumiType, name, inputs, opts);
     }

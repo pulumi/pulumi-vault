@@ -23,7 +23,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
 // 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/appRole"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -247,6 +247,85 @@ func (i *AuthBackendRoleSecretID) ToAuthBackendRoleSecretIDOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleSecretIDOutput)
 }
 
+func (i *AuthBackendRoleSecretID) ToAuthBackendRoleSecretIDPtrOutput() AuthBackendRoleSecretIDPtrOutput {
+	return i.ToAuthBackendRoleSecretIDPtrOutputWithContext(context.Background())
+}
+
+func (i *AuthBackendRoleSecretID) ToAuthBackendRoleSecretIDPtrOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleSecretIDPtrOutput)
+}
+
+type AuthBackendRoleSecretIDPtrInput interface {
+	pulumi.Input
+
+	ToAuthBackendRoleSecretIDPtrOutput() AuthBackendRoleSecretIDPtrOutput
+	ToAuthBackendRoleSecretIDPtrOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDPtrOutput
+}
+
+type authBackendRoleSecretIDPtrType AuthBackendRoleSecretIDArgs
+
+func (*authBackendRoleSecretIDPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthBackendRoleSecretID)(nil))
+}
+
+func (i *authBackendRoleSecretIDPtrType) ToAuthBackendRoleSecretIDPtrOutput() AuthBackendRoleSecretIDPtrOutput {
+	return i.ToAuthBackendRoleSecretIDPtrOutputWithContext(context.Background())
+}
+
+func (i *authBackendRoleSecretIDPtrType) ToAuthBackendRoleSecretIDPtrOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleSecretIDPtrOutput)
+}
+
+// AuthBackendRoleSecretIDArrayInput is an input type that accepts AuthBackendRoleSecretIDArray and AuthBackendRoleSecretIDArrayOutput values.
+// You can construct a concrete instance of `AuthBackendRoleSecretIDArrayInput` via:
+//
+//          AuthBackendRoleSecretIDArray{ AuthBackendRoleSecretIDArgs{...} }
+type AuthBackendRoleSecretIDArrayInput interface {
+	pulumi.Input
+
+	ToAuthBackendRoleSecretIDArrayOutput() AuthBackendRoleSecretIDArrayOutput
+	ToAuthBackendRoleSecretIDArrayOutputWithContext(context.Context) AuthBackendRoleSecretIDArrayOutput
+}
+
+type AuthBackendRoleSecretIDArray []AuthBackendRoleSecretIDInput
+
+func (AuthBackendRoleSecretIDArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*AuthBackendRoleSecretID)(nil))
+}
+
+func (i AuthBackendRoleSecretIDArray) ToAuthBackendRoleSecretIDArrayOutput() AuthBackendRoleSecretIDArrayOutput {
+	return i.ToAuthBackendRoleSecretIDArrayOutputWithContext(context.Background())
+}
+
+func (i AuthBackendRoleSecretIDArray) ToAuthBackendRoleSecretIDArrayOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleSecretIDArrayOutput)
+}
+
+// AuthBackendRoleSecretIDMapInput is an input type that accepts AuthBackendRoleSecretIDMap and AuthBackendRoleSecretIDMapOutput values.
+// You can construct a concrete instance of `AuthBackendRoleSecretIDMapInput` via:
+//
+//          AuthBackendRoleSecretIDMap{ "key": AuthBackendRoleSecretIDArgs{...} }
+type AuthBackendRoleSecretIDMapInput interface {
+	pulumi.Input
+
+	ToAuthBackendRoleSecretIDMapOutput() AuthBackendRoleSecretIDMapOutput
+	ToAuthBackendRoleSecretIDMapOutputWithContext(context.Context) AuthBackendRoleSecretIDMapOutput
+}
+
+type AuthBackendRoleSecretIDMap map[string]AuthBackendRoleSecretIDInput
+
+func (AuthBackendRoleSecretIDMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*AuthBackendRoleSecretID)(nil))
+}
+
+func (i AuthBackendRoleSecretIDMap) ToAuthBackendRoleSecretIDMapOutput() AuthBackendRoleSecretIDMapOutput {
+	return i.ToAuthBackendRoleSecretIDMapOutputWithContext(context.Background())
+}
+
+func (i AuthBackendRoleSecretIDMap) ToAuthBackendRoleSecretIDMapOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleSecretIDMapOutput)
+}
+
 type AuthBackendRoleSecretIDOutput struct {
 	*pulumi.OutputState
 }
@@ -263,6 +342,75 @@ func (o AuthBackendRoleSecretIDOutput) ToAuthBackendRoleSecretIDOutputWithContex
 	return o
 }
 
+func (o AuthBackendRoleSecretIDOutput) ToAuthBackendRoleSecretIDPtrOutput() AuthBackendRoleSecretIDPtrOutput {
+	return o.ToAuthBackendRoleSecretIDPtrOutputWithContext(context.Background())
+}
+
+func (o AuthBackendRoleSecretIDOutput) ToAuthBackendRoleSecretIDPtrOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDPtrOutput {
+	return o.ApplyT(func(v AuthBackendRoleSecretID) *AuthBackendRoleSecretID {
+		return &v
+	}).(AuthBackendRoleSecretIDPtrOutput)
+}
+
+type AuthBackendRoleSecretIDPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendRoleSecretIDPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthBackendRoleSecretID)(nil))
+}
+
+func (o AuthBackendRoleSecretIDPtrOutput) ToAuthBackendRoleSecretIDPtrOutput() AuthBackendRoleSecretIDPtrOutput {
+	return o
+}
+
+func (o AuthBackendRoleSecretIDPtrOutput) ToAuthBackendRoleSecretIDPtrOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDPtrOutput {
+	return o
+}
+
+type AuthBackendRoleSecretIDArrayOutput struct{ *pulumi.OutputState }
+
+func (AuthBackendRoleSecretIDArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AuthBackendRoleSecretID)(nil))
+}
+
+func (o AuthBackendRoleSecretIDArrayOutput) ToAuthBackendRoleSecretIDArrayOutput() AuthBackendRoleSecretIDArrayOutput {
+	return o
+}
+
+func (o AuthBackendRoleSecretIDArrayOutput) ToAuthBackendRoleSecretIDArrayOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDArrayOutput {
+	return o
+}
+
+func (o AuthBackendRoleSecretIDArrayOutput) Index(i pulumi.IntInput) AuthBackendRoleSecretIDOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthBackendRoleSecretID {
+		return vs[0].([]AuthBackendRoleSecretID)[vs[1].(int)]
+	}).(AuthBackendRoleSecretIDOutput)
+}
+
+type AuthBackendRoleSecretIDMapOutput struct{ *pulumi.OutputState }
+
+func (AuthBackendRoleSecretIDMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]AuthBackendRoleSecretID)(nil))
+}
+
+func (o AuthBackendRoleSecretIDMapOutput) ToAuthBackendRoleSecretIDMapOutput() AuthBackendRoleSecretIDMapOutput {
+	return o
+}
+
+func (o AuthBackendRoleSecretIDMapOutput) ToAuthBackendRoleSecretIDMapOutputWithContext(ctx context.Context) AuthBackendRoleSecretIDMapOutput {
+	return o
+}
+
+func (o AuthBackendRoleSecretIDMapOutput) MapIndex(k pulumi.StringInput) AuthBackendRoleSecretIDOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AuthBackendRoleSecretID {
+		return vs[0].(map[string]AuthBackendRoleSecretID)[vs[1].(string)]
+	}).(AuthBackendRoleSecretIDOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(AuthBackendRoleSecretIDOutput{})
+	pulumi.RegisterOutputType(AuthBackendRoleSecretIDPtrOutput{})
+	pulumi.RegisterOutputType(AuthBackendRoleSecretIDArrayOutput{})
+	pulumi.RegisterOutputType(AuthBackendRoleSecretIDMapOutput{})
 }

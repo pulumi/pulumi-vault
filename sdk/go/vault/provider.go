@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -22,17 +23,14 @@ type Provider struct {
 func NewProvider(ctx *pulumi.Context,
 	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
 	if args == nil {
-		args = &ProviderArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
 	if args.Address == nil {
-		args.Address = pulumi.StringPtr(getEnvOrDefault("", nil, "VAULT_ADDR").(string))
+		return nil, errors.New("invalid value for required argument 'Address'")
 	}
-	if args.CaCertDir == nil {
-		args.CaCertDir = pulumi.StringPtr(getEnvOrDefault("", nil, "VAULT_CAPATH").(string))
-	}
-	if args.CaCertFile == nil {
-		args.CaCertFile = pulumi.StringPtr(getEnvOrDefault("", nil, "VAULT_CACERT").(string))
+	if args.Token == nil {
+		return nil, errors.New("invalid value for required argument 'Token'")
 	}
 	if args.MaxLeaseTtlSeconds == nil {
 		args.MaxLeaseTtlSeconds = pulumi.IntPtr(getEnvOrDefault(1200, parseEnvInt, "TERRAFORM_VAULT_MAX_TTL").(int))
@@ -40,17 +38,8 @@ func NewProvider(ctx *pulumi.Context,
 	if args.MaxRetries == nil {
 		args.MaxRetries = pulumi.IntPtr(getEnvOrDefault(2, parseEnvInt, "VAULT_MAX_RETRIES").(int))
 	}
-	if args.Namespace == nil {
-		args.Namespace = pulumi.StringPtr(getEnvOrDefault("", nil, "VAULT_NAMESPACE").(string))
-	}
 	if args.SkipTlsVerify == nil {
 		args.SkipTlsVerify = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "VAULT_SKIP_VERIFY").(bool))
-	}
-	if args.Token == nil {
-		args.Token = pulumi.StringPtr(getEnvOrDefault("", nil, "VAULT_TOKEN").(string))
-	}
-	if args.TokenName == nil {
-		args.TokenName = pulumi.StringPtr(getEnvOrDefault("", nil, "VAULT_TOKEN_NAME").(string))
 	}
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:vault", name, args, &resource, opts...)
@@ -64,7 +53,7 @@ type providerArgs struct {
 	// If true, adds the value of the `address` argument to the Terraform process environment.
 	AddAddressToEnv *string `pulumi:"addAddressToEnv"`
 	// URL of the root of the target Vault server.
-	Address *string `pulumi:"address"`
+	Address string `pulumi:"address"`
 	// Login to vault with an existing auth method using auth/<mount>/login
 	AuthLogins []ProviderAuthLogin `pulumi:"authLogins"`
 	// Path to directory containing CA certificate files to validate the server's certificate.
@@ -84,7 +73,7 @@ type providerArgs struct {
 	// Set this to true only if the target Vault server is an insecure development instance.
 	SkipTlsVerify *bool `pulumi:"skipTlsVerify"`
 	// Token to use to authenticate to Vault.
-	Token *string `pulumi:"token"`
+	Token string `pulumi:"token"`
 	// Token name to use for creating the Vault child token.
 	TokenName *string `pulumi:"tokenName"`
 }
@@ -94,7 +83,7 @@ type ProviderArgs struct {
 	// If true, adds the value of the `address` argument to the Terraform process environment.
 	AddAddressToEnv pulumi.StringPtrInput
 	// URL of the root of the target Vault server.
-	Address pulumi.StringPtrInput
+	Address pulumi.StringInput
 	// Login to vault with an existing auth method using auth/<mount>/login
 	AuthLogins ProviderAuthLoginArrayInput
 	// Path to directory containing CA certificate files to validate the server's certificate.
@@ -114,7 +103,7 @@ type ProviderArgs struct {
 	// Set this to true only if the target Vault server is an insecure development instance.
 	SkipTlsVerify pulumi.BoolPtrInput
 	// Token to use to authenticate to Vault.
-	Token pulumi.StringPtrInput
+	Token pulumi.StringInput
 	// Token name to use for creating the Vault child token.
 	TokenName pulumi.StringPtrInput
 }
@@ -142,6 +131,35 @@ func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
 }
 
+func (i *Provider) ToProviderPtrOutput() ProviderPtrOutput {
+	return i.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *Provider) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderPtrOutput)
+}
+
+type ProviderPtrInput interface {
+	pulumi.Input
+
+	ToProviderPtrOutput() ProviderPtrOutput
+	ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput
+}
+
+type providerPtrType ProviderArgs
+
+func (*providerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Provider)(nil))
+}
+
+func (i *providerPtrType) ToProviderPtrOutput() ProviderPtrOutput {
+	return i.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *providerPtrType) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderPtrOutput)
+}
+
 type ProviderOutput struct {
 	*pulumi.OutputState
 }
@@ -158,6 +176,33 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
+func (o ProviderOutput) ToProviderPtrOutput() ProviderPtrOutput {
+	return o.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (o ProviderOutput) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return o.ApplyT(func(v Provider) *Provider {
+		return &v
+	}).(ProviderPtrOutput)
+}
+
+type ProviderPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProviderPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Provider)(nil))
+}
+
+func (o ProviderPtrOutput) ToProviderPtrOutput() ProviderPtrOutput {
+	return o
+}
+
+func (o ProviderPtrOutput) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ProviderOutput{})
+	pulumi.RegisterOutputType(ProviderPtrOutput{})
 }

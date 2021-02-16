@@ -95,7 +95,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
     constructor(name: string, args: SecretBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendRoleArgs | SecretBackendRoleState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretBackendRoleState | undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["creationStatements"] = state ? state.creationStatements : undefined;
@@ -108,13 +109,13 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["rollbackStatements"] = state ? state.rollbackStatements : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
-            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.creationStatements === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.creationStatements === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'creationStatements'");
             }
-            if ((!args || args.dbName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.dbName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'dbName'");
             }
             inputs["backend"] = args ? args.backend : undefined;
@@ -127,12 +128,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["revocationStatements"] = args ? args.revocationStatements : undefined;
             inputs["rollbackStatements"] = args ? args.rollbackStatements : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(SecretBackendRole.__pulumiType, name, inputs, opts);
     }

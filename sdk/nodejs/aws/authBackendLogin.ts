@@ -176,7 +176,8 @@ export class AuthBackendLogin extends pulumi.CustomResource {
     constructor(name: string, args?: AuthBackendLoginArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendLoginArgs | AuthBackendLoginState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as AuthBackendLoginState | undefined;
             inputs["accessor"] = state ? state.accessor : undefined;
             inputs["authType"] = state ? state.authType : undefined;
@@ -217,12 +218,8 @@ export class AuthBackendLogin extends pulumi.CustomResource {
             inputs["policies"] = undefined /*out*/;
             inputs["renewable"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(AuthBackendLogin.__pulumiType, name, inputs, opts);
     }

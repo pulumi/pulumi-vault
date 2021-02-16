@@ -104,7 +104,8 @@ export class Audit extends pulumi.CustomResource {
     constructor(name: string, args: AuditArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuditArgs | AuditState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as AuditState | undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["local"] = state ? state.local : undefined;
@@ -113,10 +114,10 @@ export class Audit extends pulumi.CustomResource {
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as AuditArgs | undefined;
-            if ((!args || args.options === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.options === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'options'");
             }
-            if ((!args || args.type === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
             inputs["description"] = args ? args.description : undefined;
@@ -125,12 +126,8 @@ export class Audit extends pulumi.CustomResource {
             inputs["path"] = args ? args.path : undefined;
             inputs["type"] = args ? args.type : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Audit.__pulumiType, name, inputs, opts);
     }

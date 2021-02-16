@@ -77,26 +77,23 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
     constructor(name: string, args: SecretBackendCrlConfigArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendCrlConfigArgs | SecretBackendCrlConfigState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretBackendCrlConfigState | undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["disable"] = state ? state.disable : undefined;
             inputs["expiry"] = state ? state.expiry : undefined;
         } else {
             const args = argsOrState as SecretBackendCrlConfigArgs | undefined;
-            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
             inputs["backend"] = args ? args.backend : undefined;
             inputs["disable"] = args ? args.disable : undefined;
             inputs["expiry"] = args ? args.expiry : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(SecretBackendCrlConfig.__pulumiType, name, inputs, opts);
     }

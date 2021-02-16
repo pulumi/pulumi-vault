@@ -93,7 +93,8 @@ export class SecretBackend extends pulumi.CustomResource {
     constructor(name: string, args: SecretBackendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendArgs | SecretBackendState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretBackendState | undefined;
             inputs["address"] = state ? state.address : undefined;
             inputs["caCert"] = state ? state.caCert : undefined;
@@ -107,10 +108,10 @@ export class SecretBackend extends pulumi.CustomResource {
             inputs["token"] = state ? state.token : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
-            if ((!args || args.address === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.address === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'address'");
             }
-            if ((!args || args.token === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.token === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'token'");
             }
             inputs["address"] = args ? args.address : undefined;
@@ -124,12 +125,8 @@ export class SecretBackend extends pulumi.CustomResource {
             inputs["scheme"] = args ? args.scheme : undefined;
             inputs["token"] = args ? args.token : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(SecretBackend.__pulumiType, name, inputs, opts);
     }

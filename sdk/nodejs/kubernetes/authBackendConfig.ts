@@ -109,7 +109,8 @@ export class AuthBackendConfig extends pulumi.CustomResource {
     constructor(name: string, args: AuthBackendConfigArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendConfigArgs | AuthBackendConfigState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as AuthBackendConfigState | undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["disableIssValidation"] = state ? state.disableIssValidation : undefined;
@@ -121,7 +122,7 @@ export class AuthBackendConfig extends pulumi.CustomResource {
             inputs["tokenReviewerJwt"] = state ? state.tokenReviewerJwt : undefined;
         } else {
             const args = argsOrState as AuthBackendConfigArgs | undefined;
-            if ((!args || args.kubernetesHost === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.kubernetesHost === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'kubernetesHost'");
             }
             inputs["backend"] = args ? args.backend : undefined;
@@ -133,12 +134,8 @@ export class AuthBackendConfig extends pulumi.CustomResource {
             inputs["pemKeys"] = args ? args.pemKeys : undefined;
             inputs["tokenReviewerJwt"] = args ? args.tokenReviewerJwt : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(AuthBackendConfig.__pulumiType, name, inputs, opts);
     }

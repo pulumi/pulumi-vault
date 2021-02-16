@@ -78,7 +78,8 @@ export class Secret extends pulumi.CustomResource {
     constructor(name: string, args: SecretArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretArgs | SecretState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretState | undefined;
             inputs["data"] = state ? state.data : undefined;
             inputs["dataJson"] = state ? state.dataJson : undefined;
@@ -86,10 +87,10 @@ export class Secret extends pulumi.CustomResource {
             inputs["path"] = state ? state.path : undefined;
         } else {
             const args = argsOrState as SecretArgs | undefined;
-            if ((!args || args.dataJson === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.dataJson === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'dataJson'");
             }
-            if ((!args || args.path === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.path === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
             inputs["dataJson"] = args ? args.dataJson : undefined;
@@ -97,12 +98,8 @@ export class Secret extends pulumi.CustomResource {
             inputs["path"] = args ? args.path : undefined;
             inputs["data"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Secret.__pulumiType, name, inputs, opts);
     }

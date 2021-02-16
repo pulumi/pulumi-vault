@@ -15,11 +15,7 @@ func GetAddAddressToEnv(ctx *pulumi.Context) string {
 
 // URL of the root of the target Vault server.
 func GetAddress(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "vault:address")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "VAULT_ADDR").(string)
+	return config.Get(ctx, "vault:address")
 }
 
 // Login to vault with an existing auth method using auth/<mount>/login
@@ -29,20 +25,12 @@ func GetAuthLogins(ctx *pulumi.Context) string {
 
 // Path to directory containing CA certificate files to validate the server's certificate.
 func GetCaCertDir(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "vault:caCertDir")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "VAULT_CAPATH").(string)
+	return config.Get(ctx, "vault:caCertDir")
 }
 
 // Path to a CA certificate file to validate the server's certificate.
 func GetCaCertFile(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "vault:caCertFile")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "VAULT_CACERT").(string)
+	return config.Get(ctx, "vault:caCertFile")
 }
 
 // Client authentication credentials.
@@ -75,11 +63,7 @@ func GetMaxRetries(ctx *pulumi.Context) int {
 
 // The namespace to use. Available only for Vault Enterprise
 func GetNamespace(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "vault:namespace")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "VAULT_NAMESPACE").(string)
+	return config.Get(ctx, "vault:namespace")
 }
 
 // Set this to true only if the target Vault server is an insecure development instance.
@@ -93,18 +77,10 @@ func GetSkipTlsVerify(ctx *pulumi.Context) bool {
 
 // Token to use to authenticate to Vault.
 func GetToken(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "vault:token")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "VAULT_TOKEN").(string)
+	return config.Get(ctx, "vault:token")
 }
 
 // Token name to use for creating the Vault child token.
 func GetTokenName(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "vault:tokenName")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "VAULT_TOKEN_NAME").(string)
+	return config.Get(ctx, "vault:tokenName")
 }

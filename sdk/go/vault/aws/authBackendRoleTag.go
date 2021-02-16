@@ -180,6 +180,85 @@ func (i *AuthBackendRoleTag) ToAuthBackendRoleTagOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleTagOutput)
 }
 
+func (i *AuthBackendRoleTag) ToAuthBackendRoleTagPtrOutput() AuthBackendRoleTagPtrOutput {
+	return i.ToAuthBackendRoleTagPtrOutputWithContext(context.Background())
+}
+
+func (i *AuthBackendRoleTag) ToAuthBackendRoleTagPtrOutputWithContext(ctx context.Context) AuthBackendRoleTagPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleTagPtrOutput)
+}
+
+type AuthBackendRoleTagPtrInput interface {
+	pulumi.Input
+
+	ToAuthBackendRoleTagPtrOutput() AuthBackendRoleTagPtrOutput
+	ToAuthBackendRoleTagPtrOutputWithContext(ctx context.Context) AuthBackendRoleTagPtrOutput
+}
+
+type authBackendRoleTagPtrType AuthBackendRoleTagArgs
+
+func (*authBackendRoleTagPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthBackendRoleTag)(nil))
+}
+
+func (i *authBackendRoleTagPtrType) ToAuthBackendRoleTagPtrOutput() AuthBackendRoleTagPtrOutput {
+	return i.ToAuthBackendRoleTagPtrOutputWithContext(context.Background())
+}
+
+func (i *authBackendRoleTagPtrType) ToAuthBackendRoleTagPtrOutputWithContext(ctx context.Context) AuthBackendRoleTagPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleTagPtrOutput)
+}
+
+// AuthBackendRoleTagArrayInput is an input type that accepts AuthBackendRoleTagArray and AuthBackendRoleTagArrayOutput values.
+// You can construct a concrete instance of `AuthBackendRoleTagArrayInput` via:
+//
+//          AuthBackendRoleTagArray{ AuthBackendRoleTagArgs{...} }
+type AuthBackendRoleTagArrayInput interface {
+	pulumi.Input
+
+	ToAuthBackendRoleTagArrayOutput() AuthBackendRoleTagArrayOutput
+	ToAuthBackendRoleTagArrayOutputWithContext(context.Context) AuthBackendRoleTagArrayOutput
+}
+
+type AuthBackendRoleTagArray []AuthBackendRoleTagInput
+
+func (AuthBackendRoleTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*AuthBackendRoleTag)(nil))
+}
+
+func (i AuthBackendRoleTagArray) ToAuthBackendRoleTagArrayOutput() AuthBackendRoleTagArrayOutput {
+	return i.ToAuthBackendRoleTagArrayOutputWithContext(context.Background())
+}
+
+func (i AuthBackendRoleTagArray) ToAuthBackendRoleTagArrayOutputWithContext(ctx context.Context) AuthBackendRoleTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleTagArrayOutput)
+}
+
+// AuthBackendRoleTagMapInput is an input type that accepts AuthBackendRoleTagMap and AuthBackendRoleTagMapOutput values.
+// You can construct a concrete instance of `AuthBackendRoleTagMapInput` via:
+//
+//          AuthBackendRoleTagMap{ "key": AuthBackendRoleTagArgs{...} }
+type AuthBackendRoleTagMapInput interface {
+	pulumi.Input
+
+	ToAuthBackendRoleTagMapOutput() AuthBackendRoleTagMapOutput
+	ToAuthBackendRoleTagMapOutputWithContext(context.Context) AuthBackendRoleTagMapOutput
+}
+
+type AuthBackendRoleTagMap map[string]AuthBackendRoleTagInput
+
+func (AuthBackendRoleTagMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*AuthBackendRoleTag)(nil))
+}
+
+func (i AuthBackendRoleTagMap) ToAuthBackendRoleTagMapOutput() AuthBackendRoleTagMapOutput {
+	return i.ToAuthBackendRoleTagMapOutputWithContext(context.Background())
+}
+
+func (i AuthBackendRoleTagMap) ToAuthBackendRoleTagMapOutputWithContext(ctx context.Context) AuthBackendRoleTagMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleTagMapOutput)
+}
+
 type AuthBackendRoleTagOutput struct {
 	*pulumi.OutputState
 }
@@ -196,6 +275,75 @@ func (o AuthBackendRoleTagOutput) ToAuthBackendRoleTagOutputWithContext(ctx cont
 	return o
 }
 
+func (o AuthBackendRoleTagOutput) ToAuthBackendRoleTagPtrOutput() AuthBackendRoleTagPtrOutput {
+	return o.ToAuthBackendRoleTagPtrOutputWithContext(context.Background())
+}
+
+func (o AuthBackendRoleTagOutput) ToAuthBackendRoleTagPtrOutputWithContext(ctx context.Context) AuthBackendRoleTagPtrOutput {
+	return o.ApplyT(func(v AuthBackendRoleTag) *AuthBackendRoleTag {
+		return &v
+	}).(AuthBackendRoleTagPtrOutput)
+}
+
+type AuthBackendRoleTagPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendRoleTagPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthBackendRoleTag)(nil))
+}
+
+func (o AuthBackendRoleTagPtrOutput) ToAuthBackendRoleTagPtrOutput() AuthBackendRoleTagPtrOutput {
+	return o
+}
+
+func (o AuthBackendRoleTagPtrOutput) ToAuthBackendRoleTagPtrOutputWithContext(ctx context.Context) AuthBackendRoleTagPtrOutput {
+	return o
+}
+
+type AuthBackendRoleTagArrayOutput struct{ *pulumi.OutputState }
+
+func (AuthBackendRoleTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AuthBackendRoleTag)(nil))
+}
+
+func (o AuthBackendRoleTagArrayOutput) ToAuthBackendRoleTagArrayOutput() AuthBackendRoleTagArrayOutput {
+	return o
+}
+
+func (o AuthBackendRoleTagArrayOutput) ToAuthBackendRoleTagArrayOutputWithContext(ctx context.Context) AuthBackendRoleTagArrayOutput {
+	return o
+}
+
+func (o AuthBackendRoleTagArrayOutput) Index(i pulumi.IntInput) AuthBackendRoleTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthBackendRoleTag {
+		return vs[0].([]AuthBackendRoleTag)[vs[1].(int)]
+	}).(AuthBackendRoleTagOutput)
+}
+
+type AuthBackendRoleTagMapOutput struct{ *pulumi.OutputState }
+
+func (AuthBackendRoleTagMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]AuthBackendRoleTag)(nil))
+}
+
+func (o AuthBackendRoleTagMapOutput) ToAuthBackendRoleTagMapOutput() AuthBackendRoleTagMapOutput {
+	return o
+}
+
+func (o AuthBackendRoleTagMapOutput) ToAuthBackendRoleTagMapOutputWithContext(ctx context.Context) AuthBackendRoleTagMapOutput {
+	return o
+}
+
+func (o AuthBackendRoleTagMapOutput) MapIndex(k pulumi.StringInput) AuthBackendRoleTagOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AuthBackendRoleTag {
+		return vs[0].(map[string]AuthBackendRoleTag)[vs[1].(string)]
+	}).(AuthBackendRoleTagOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(AuthBackendRoleTagOutput{})
+	pulumi.RegisterOutputType(AuthBackendRoleTagPtrOutput{})
+	pulumi.RegisterOutputType(AuthBackendRoleTagArrayOutput{})
+	pulumi.RegisterOutputType(AuthBackendRoleTagMapOutput{})
 }

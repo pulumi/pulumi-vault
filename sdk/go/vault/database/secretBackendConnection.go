@@ -284,6 +284,85 @@ func (i *SecretBackendConnection) ToSecretBackendConnectionOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionOutput)
 }
 
+func (i *SecretBackendConnection) ToSecretBackendConnectionPtrOutput() SecretBackendConnectionPtrOutput {
+	return i.ToSecretBackendConnectionPtrOutputWithContext(context.Background())
+}
+
+func (i *SecretBackendConnection) ToSecretBackendConnectionPtrOutputWithContext(ctx context.Context) SecretBackendConnectionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionPtrOutput)
+}
+
+type SecretBackendConnectionPtrInput interface {
+	pulumi.Input
+
+	ToSecretBackendConnectionPtrOutput() SecretBackendConnectionPtrOutput
+	ToSecretBackendConnectionPtrOutputWithContext(ctx context.Context) SecretBackendConnectionPtrOutput
+}
+
+type secretBackendConnectionPtrType SecretBackendConnectionArgs
+
+func (*secretBackendConnectionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendConnection)(nil))
+}
+
+func (i *secretBackendConnectionPtrType) ToSecretBackendConnectionPtrOutput() SecretBackendConnectionPtrOutput {
+	return i.ToSecretBackendConnectionPtrOutputWithContext(context.Background())
+}
+
+func (i *secretBackendConnectionPtrType) ToSecretBackendConnectionPtrOutputWithContext(ctx context.Context) SecretBackendConnectionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionPtrOutput)
+}
+
+// SecretBackendConnectionArrayInput is an input type that accepts SecretBackendConnectionArray and SecretBackendConnectionArrayOutput values.
+// You can construct a concrete instance of `SecretBackendConnectionArrayInput` via:
+//
+//          SecretBackendConnectionArray{ SecretBackendConnectionArgs{...} }
+type SecretBackendConnectionArrayInput interface {
+	pulumi.Input
+
+	ToSecretBackendConnectionArrayOutput() SecretBackendConnectionArrayOutput
+	ToSecretBackendConnectionArrayOutputWithContext(context.Context) SecretBackendConnectionArrayOutput
+}
+
+type SecretBackendConnectionArray []SecretBackendConnectionInput
+
+func (SecretBackendConnectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*SecretBackendConnection)(nil))
+}
+
+func (i SecretBackendConnectionArray) ToSecretBackendConnectionArrayOutput() SecretBackendConnectionArrayOutput {
+	return i.ToSecretBackendConnectionArrayOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConnectionArray) ToSecretBackendConnectionArrayOutputWithContext(ctx context.Context) SecretBackendConnectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionArrayOutput)
+}
+
+// SecretBackendConnectionMapInput is an input type that accepts SecretBackendConnectionMap and SecretBackendConnectionMapOutput values.
+// You can construct a concrete instance of `SecretBackendConnectionMapInput` via:
+//
+//          SecretBackendConnectionMap{ "key": SecretBackendConnectionArgs{...} }
+type SecretBackendConnectionMapInput interface {
+	pulumi.Input
+
+	ToSecretBackendConnectionMapOutput() SecretBackendConnectionMapOutput
+	ToSecretBackendConnectionMapOutputWithContext(context.Context) SecretBackendConnectionMapOutput
+}
+
+type SecretBackendConnectionMap map[string]SecretBackendConnectionInput
+
+func (SecretBackendConnectionMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*SecretBackendConnection)(nil))
+}
+
+func (i SecretBackendConnectionMap) ToSecretBackendConnectionMapOutput() SecretBackendConnectionMapOutput {
+	return i.ToSecretBackendConnectionMapOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConnectionMap) ToSecretBackendConnectionMapOutputWithContext(ctx context.Context) SecretBackendConnectionMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMapOutput)
+}
+
 type SecretBackendConnectionOutput struct {
 	*pulumi.OutputState
 }
@@ -300,6 +379,75 @@ func (o SecretBackendConnectionOutput) ToSecretBackendConnectionOutputWithContex
 	return o
 }
 
+func (o SecretBackendConnectionOutput) ToSecretBackendConnectionPtrOutput() SecretBackendConnectionPtrOutput {
+	return o.ToSecretBackendConnectionPtrOutputWithContext(context.Background())
+}
+
+func (o SecretBackendConnectionOutput) ToSecretBackendConnectionPtrOutputWithContext(ctx context.Context) SecretBackendConnectionPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnection) *SecretBackendConnection {
+		return &v
+	}).(SecretBackendConnectionPtrOutput)
+}
+
+type SecretBackendConnectionPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretBackendConnectionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendConnection)(nil))
+}
+
+func (o SecretBackendConnectionPtrOutput) ToSecretBackendConnectionPtrOutput() SecretBackendConnectionPtrOutput {
+	return o
+}
+
+func (o SecretBackendConnectionPtrOutput) ToSecretBackendConnectionPtrOutputWithContext(ctx context.Context) SecretBackendConnectionPtrOutput {
+	return o
+}
+
+type SecretBackendConnectionArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendConnectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretBackendConnection)(nil))
+}
+
+func (o SecretBackendConnectionArrayOutput) ToSecretBackendConnectionArrayOutput() SecretBackendConnectionArrayOutput {
+	return o
+}
+
+func (o SecretBackendConnectionArrayOutput) ToSecretBackendConnectionArrayOutputWithContext(ctx context.Context) SecretBackendConnectionArrayOutput {
+	return o
+}
+
+func (o SecretBackendConnectionArrayOutput) Index(i pulumi.IntInput) SecretBackendConnectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretBackendConnection {
+		return vs[0].([]SecretBackendConnection)[vs[1].(int)]
+	}).(SecretBackendConnectionOutput)
+}
+
+type SecretBackendConnectionMapOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendConnectionMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]SecretBackendConnection)(nil))
+}
+
+func (o SecretBackendConnectionMapOutput) ToSecretBackendConnectionMapOutput() SecretBackendConnectionMapOutput {
+	return o
+}
+
+func (o SecretBackendConnectionMapOutput) ToSecretBackendConnectionMapOutputWithContext(ctx context.Context) SecretBackendConnectionMapOutput {
+	return o
+}
+
+func (o SecretBackendConnectionMapOutput) MapIndex(k pulumi.StringInput) SecretBackendConnectionOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SecretBackendConnection {
+		return vs[0].(map[string]SecretBackendConnection)[vs[1].(string)]
+	}).(SecretBackendConnectionOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(SecretBackendConnectionOutput{})
+	pulumi.RegisterOutputType(SecretBackendConnectionPtrOutput{})
+	pulumi.RegisterOutputType(SecretBackendConnectionArrayOutput{})
+	pulumi.RegisterOutputType(SecretBackendConnectionMapOutput{})
 }

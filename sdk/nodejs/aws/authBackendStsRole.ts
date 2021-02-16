@@ -66,29 +66,26 @@ export class AuthBackendStsRole extends pulumi.CustomResource {
     constructor(name: string, args: AuthBackendStsRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendStsRoleArgs | AuthBackendStsRoleState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as AuthBackendStsRoleState | undefined;
             inputs["accountId"] = state ? state.accountId : undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["stsRole"] = state ? state.stsRole : undefined;
         } else {
             const args = argsOrState as AuthBackendStsRoleArgs | undefined;
-            if ((!args || args.accountId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.accountId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'accountId'");
             }
-            if ((!args || args.stsRole === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.stsRole === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'stsRole'");
             }
             inputs["accountId"] = args ? args.accountId : undefined;
             inputs["backend"] = args ? args.backend : undefined;
             inputs["stsRole"] = args ? args.stsRole : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(AuthBackendStsRole.__pulumiType, name, inputs, opts);
     }

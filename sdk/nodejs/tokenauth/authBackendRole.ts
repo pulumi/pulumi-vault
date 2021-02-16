@@ -177,7 +177,8 @@ export class AuthBackendRole extends pulumi.CustomResource {
     constructor(name: string, args: AuthBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendRoleArgs | AuthBackendRoleState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as AuthBackendRoleState | undefined;
             inputs["allowedPolicies"] = state ? state.allowedPolicies : undefined;
             inputs["boundCidrs"] = state ? state.boundCidrs : undefined;
@@ -199,7 +200,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["tokenType"] = state ? state.tokenType : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
-            if ((!args || args.roleName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.roleName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleName'");
             }
             inputs["allowedPolicies"] = args ? args.allowedPolicies : undefined;
@@ -221,12 +222,8 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["tokenTtl"] = args ? args.tokenTtl : undefined;
             inputs["tokenType"] = args ? args.tokenType : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(AuthBackendRole.__pulumiType, name, inputs, opts);
     }

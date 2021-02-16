@@ -166,7 +166,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
     constructor(name: string, args: SecretBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendRoleArgs | SecretBackendRoleState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretBackendRoleState | undefined;
             inputs["algorithmSigner"] = state ? state.algorithmSigner : undefined;
             inputs["allowBareDomains"] = state ? state.allowBareDomains : undefined;
@@ -192,10 +193,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
-            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.keyType === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.keyType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'keyType'");
             }
             inputs["algorithmSigner"] = args ? args.algorithmSigner : undefined;
@@ -221,12 +222,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["ttl"] = args ? args.ttl : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(SecretBackendRole.__pulumiType, name, inputs, opts);
     }

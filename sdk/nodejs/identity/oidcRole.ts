@@ -77,7 +77,8 @@ export class OidcRole extends pulumi.CustomResource {
     constructor(name: string, args: OidcRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: OidcRoleArgs | OidcRoleState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as OidcRoleState | undefined;
             inputs["clientId"] = state ? state.clientId : undefined;
             inputs["key"] = state ? state.key : undefined;
@@ -86,7 +87,7 @@ export class OidcRole extends pulumi.CustomResource {
             inputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as OidcRoleArgs | undefined;
-            if ((!args || args.key === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.key === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'key'");
             }
             inputs["clientId"] = args ? args.clientId : undefined;
@@ -95,12 +96,8 @@ export class OidcRole extends pulumi.CustomResource {
             inputs["template"] = args ? args.template : undefined;
             inputs["ttl"] = args ? args.ttl : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(OidcRole.__pulumiType, name, inputs, opts);
     }

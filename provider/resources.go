@@ -121,59 +121,6 @@ func Provider() tfbridge.ProviderInfo {
 		GitHubOrg:   "hashicorp",
 		Repository:  "https://github.com/pulumi/pulumi-vault",
 		Config: map[string]*tfbridge.SchemaInfo{
-			"address": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{
-						"VAULT_ADDR",
-					},
-				},
-			},
-			"token": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{
-						"VAULT_TOKEN",
-					},
-				},
-			},
-			"token_name": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{
-						"VAULT_TOKEN_NAME",
-					},
-				},
-			},
-			"ca_cert_file": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{
-						"VAULT_CACERT",
-					},
-				},
-			},
-			"ca_cert_dir": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{
-						"VAULT_CAPATH",
-					},
-				},
-			},
-			"client_auth": {
-				Fields: map[string]*tfbridge.SchemaInfo{
-					"cert_file": {
-						Default: &tfbridge.DefaultInfo{
-							EnvVars: []string{
-								"VAULT_CLIENT_CERT",
-							},
-						},
-					},
-					"key_file": {
-						Default: &tfbridge.DefaultInfo{
-							EnvVars: []string{
-								"VAULT_CLIENT_KEY",
-							},
-						},
-					},
-				},
-			},
 			"skip_tls_verify": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{
@@ -195,13 +142,6 @@ func Provider() tfbridge.ProviderInfo {
 						"VAULT_MAX_RETRIES",
 					},
 					Value: 2,
-				},
-			},
-			"namespace": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{
-						"VAULT_NAMESPACE",
-					},
 				},
 			},
 		},

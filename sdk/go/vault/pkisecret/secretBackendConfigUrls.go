@@ -164,6 +164,85 @@ func (i *SecretBackendConfigUrls) ToSecretBackendConfigUrlsOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConfigUrlsOutput)
 }
 
+func (i *SecretBackendConfigUrls) ToSecretBackendConfigUrlsPtrOutput() SecretBackendConfigUrlsPtrOutput {
+	return i.ToSecretBackendConfigUrlsPtrOutputWithContext(context.Background())
+}
+
+func (i *SecretBackendConfigUrls) ToSecretBackendConfigUrlsPtrOutputWithContext(ctx context.Context) SecretBackendConfigUrlsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConfigUrlsPtrOutput)
+}
+
+type SecretBackendConfigUrlsPtrInput interface {
+	pulumi.Input
+
+	ToSecretBackendConfigUrlsPtrOutput() SecretBackendConfigUrlsPtrOutput
+	ToSecretBackendConfigUrlsPtrOutputWithContext(ctx context.Context) SecretBackendConfigUrlsPtrOutput
+}
+
+type secretBackendConfigUrlsPtrType SecretBackendConfigUrlsArgs
+
+func (*secretBackendConfigUrlsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendConfigUrls)(nil))
+}
+
+func (i *secretBackendConfigUrlsPtrType) ToSecretBackendConfigUrlsPtrOutput() SecretBackendConfigUrlsPtrOutput {
+	return i.ToSecretBackendConfigUrlsPtrOutputWithContext(context.Background())
+}
+
+func (i *secretBackendConfigUrlsPtrType) ToSecretBackendConfigUrlsPtrOutputWithContext(ctx context.Context) SecretBackendConfigUrlsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConfigUrlsPtrOutput)
+}
+
+// SecretBackendConfigUrlsArrayInput is an input type that accepts SecretBackendConfigUrlsArray and SecretBackendConfigUrlsArrayOutput values.
+// You can construct a concrete instance of `SecretBackendConfigUrlsArrayInput` via:
+//
+//          SecretBackendConfigUrlsArray{ SecretBackendConfigUrlsArgs{...} }
+type SecretBackendConfigUrlsArrayInput interface {
+	pulumi.Input
+
+	ToSecretBackendConfigUrlsArrayOutput() SecretBackendConfigUrlsArrayOutput
+	ToSecretBackendConfigUrlsArrayOutputWithContext(context.Context) SecretBackendConfigUrlsArrayOutput
+}
+
+type SecretBackendConfigUrlsArray []SecretBackendConfigUrlsInput
+
+func (SecretBackendConfigUrlsArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*SecretBackendConfigUrls)(nil))
+}
+
+func (i SecretBackendConfigUrlsArray) ToSecretBackendConfigUrlsArrayOutput() SecretBackendConfigUrlsArrayOutput {
+	return i.ToSecretBackendConfigUrlsArrayOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConfigUrlsArray) ToSecretBackendConfigUrlsArrayOutputWithContext(ctx context.Context) SecretBackendConfigUrlsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConfigUrlsArrayOutput)
+}
+
+// SecretBackendConfigUrlsMapInput is an input type that accepts SecretBackendConfigUrlsMap and SecretBackendConfigUrlsMapOutput values.
+// You can construct a concrete instance of `SecretBackendConfigUrlsMapInput` via:
+//
+//          SecretBackendConfigUrlsMap{ "key": SecretBackendConfigUrlsArgs{...} }
+type SecretBackendConfigUrlsMapInput interface {
+	pulumi.Input
+
+	ToSecretBackendConfigUrlsMapOutput() SecretBackendConfigUrlsMapOutput
+	ToSecretBackendConfigUrlsMapOutputWithContext(context.Context) SecretBackendConfigUrlsMapOutput
+}
+
+type SecretBackendConfigUrlsMap map[string]SecretBackendConfigUrlsInput
+
+func (SecretBackendConfigUrlsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*SecretBackendConfigUrls)(nil))
+}
+
+func (i SecretBackendConfigUrlsMap) ToSecretBackendConfigUrlsMapOutput() SecretBackendConfigUrlsMapOutput {
+	return i.ToSecretBackendConfigUrlsMapOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConfigUrlsMap) ToSecretBackendConfigUrlsMapOutputWithContext(ctx context.Context) SecretBackendConfigUrlsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConfigUrlsMapOutput)
+}
+
 type SecretBackendConfigUrlsOutput struct {
 	*pulumi.OutputState
 }
@@ -180,6 +259,75 @@ func (o SecretBackendConfigUrlsOutput) ToSecretBackendConfigUrlsOutputWithContex
 	return o
 }
 
+func (o SecretBackendConfigUrlsOutput) ToSecretBackendConfigUrlsPtrOutput() SecretBackendConfigUrlsPtrOutput {
+	return o.ToSecretBackendConfigUrlsPtrOutputWithContext(context.Background())
+}
+
+func (o SecretBackendConfigUrlsOutput) ToSecretBackendConfigUrlsPtrOutputWithContext(ctx context.Context) SecretBackendConfigUrlsPtrOutput {
+	return o.ApplyT(func(v SecretBackendConfigUrls) *SecretBackendConfigUrls {
+		return &v
+	}).(SecretBackendConfigUrlsPtrOutput)
+}
+
+type SecretBackendConfigUrlsPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretBackendConfigUrlsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendConfigUrls)(nil))
+}
+
+func (o SecretBackendConfigUrlsPtrOutput) ToSecretBackendConfigUrlsPtrOutput() SecretBackendConfigUrlsPtrOutput {
+	return o
+}
+
+func (o SecretBackendConfigUrlsPtrOutput) ToSecretBackendConfigUrlsPtrOutputWithContext(ctx context.Context) SecretBackendConfigUrlsPtrOutput {
+	return o
+}
+
+type SecretBackendConfigUrlsArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendConfigUrlsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretBackendConfigUrls)(nil))
+}
+
+func (o SecretBackendConfigUrlsArrayOutput) ToSecretBackendConfigUrlsArrayOutput() SecretBackendConfigUrlsArrayOutput {
+	return o
+}
+
+func (o SecretBackendConfigUrlsArrayOutput) ToSecretBackendConfigUrlsArrayOutputWithContext(ctx context.Context) SecretBackendConfigUrlsArrayOutput {
+	return o
+}
+
+func (o SecretBackendConfigUrlsArrayOutput) Index(i pulumi.IntInput) SecretBackendConfigUrlsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretBackendConfigUrls {
+		return vs[0].([]SecretBackendConfigUrls)[vs[1].(int)]
+	}).(SecretBackendConfigUrlsOutput)
+}
+
+type SecretBackendConfigUrlsMapOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendConfigUrlsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]SecretBackendConfigUrls)(nil))
+}
+
+func (o SecretBackendConfigUrlsMapOutput) ToSecretBackendConfigUrlsMapOutput() SecretBackendConfigUrlsMapOutput {
+	return o
+}
+
+func (o SecretBackendConfigUrlsMapOutput) ToSecretBackendConfigUrlsMapOutputWithContext(ctx context.Context) SecretBackendConfigUrlsMapOutput {
+	return o
+}
+
+func (o SecretBackendConfigUrlsMapOutput) MapIndex(k pulumi.StringInput) SecretBackendConfigUrlsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SecretBackendConfigUrls {
+		return vs[0].(map[string]SecretBackendConfigUrls)[vs[1].(string)]
+	}).(SecretBackendConfigUrlsOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(SecretBackendConfigUrlsOutput{})
+	pulumi.RegisterOutputType(SecretBackendConfigUrlsPtrOutput{})
+	pulumi.RegisterOutputType(SecretBackendConfigUrlsArrayOutput{})
+	pulumi.RegisterOutputType(SecretBackendConfigUrlsMapOutput{})
 }

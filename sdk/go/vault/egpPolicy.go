@@ -23,7 +23,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -165,6 +165,85 @@ func (i *EgpPolicy) ToEgpPolicyOutputWithContext(ctx context.Context) EgpPolicyO
 	return pulumi.ToOutputWithContext(ctx, i).(EgpPolicyOutput)
 }
 
+func (i *EgpPolicy) ToEgpPolicyPtrOutput() EgpPolicyPtrOutput {
+	return i.ToEgpPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *EgpPolicy) ToEgpPolicyPtrOutputWithContext(ctx context.Context) EgpPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EgpPolicyPtrOutput)
+}
+
+type EgpPolicyPtrInput interface {
+	pulumi.Input
+
+	ToEgpPolicyPtrOutput() EgpPolicyPtrOutput
+	ToEgpPolicyPtrOutputWithContext(ctx context.Context) EgpPolicyPtrOutput
+}
+
+type egpPolicyPtrType EgpPolicyArgs
+
+func (*egpPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EgpPolicy)(nil))
+}
+
+func (i *egpPolicyPtrType) ToEgpPolicyPtrOutput() EgpPolicyPtrOutput {
+	return i.ToEgpPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *egpPolicyPtrType) ToEgpPolicyPtrOutputWithContext(ctx context.Context) EgpPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EgpPolicyPtrOutput)
+}
+
+// EgpPolicyArrayInput is an input type that accepts EgpPolicyArray and EgpPolicyArrayOutput values.
+// You can construct a concrete instance of `EgpPolicyArrayInput` via:
+//
+//          EgpPolicyArray{ EgpPolicyArgs{...} }
+type EgpPolicyArrayInput interface {
+	pulumi.Input
+
+	ToEgpPolicyArrayOutput() EgpPolicyArrayOutput
+	ToEgpPolicyArrayOutputWithContext(context.Context) EgpPolicyArrayOutput
+}
+
+type EgpPolicyArray []EgpPolicyInput
+
+func (EgpPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*EgpPolicy)(nil))
+}
+
+func (i EgpPolicyArray) ToEgpPolicyArrayOutput() EgpPolicyArrayOutput {
+	return i.ToEgpPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i EgpPolicyArray) ToEgpPolicyArrayOutputWithContext(ctx context.Context) EgpPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EgpPolicyArrayOutput)
+}
+
+// EgpPolicyMapInput is an input type that accepts EgpPolicyMap and EgpPolicyMapOutput values.
+// You can construct a concrete instance of `EgpPolicyMapInput` via:
+//
+//          EgpPolicyMap{ "key": EgpPolicyArgs{...} }
+type EgpPolicyMapInput interface {
+	pulumi.Input
+
+	ToEgpPolicyMapOutput() EgpPolicyMapOutput
+	ToEgpPolicyMapOutputWithContext(context.Context) EgpPolicyMapOutput
+}
+
+type EgpPolicyMap map[string]EgpPolicyInput
+
+func (EgpPolicyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*EgpPolicy)(nil))
+}
+
+func (i EgpPolicyMap) ToEgpPolicyMapOutput() EgpPolicyMapOutput {
+	return i.ToEgpPolicyMapOutputWithContext(context.Background())
+}
+
+func (i EgpPolicyMap) ToEgpPolicyMapOutputWithContext(ctx context.Context) EgpPolicyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EgpPolicyMapOutput)
+}
+
 type EgpPolicyOutput struct {
 	*pulumi.OutputState
 }
@@ -181,6 +260,75 @@ func (o EgpPolicyOutput) ToEgpPolicyOutputWithContext(ctx context.Context) EgpPo
 	return o
 }
 
+func (o EgpPolicyOutput) ToEgpPolicyPtrOutput() EgpPolicyPtrOutput {
+	return o.ToEgpPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o EgpPolicyOutput) ToEgpPolicyPtrOutputWithContext(ctx context.Context) EgpPolicyPtrOutput {
+	return o.ApplyT(func(v EgpPolicy) *EgpPolicy {
+		return &v
+	}).(EgpPolicyPtrOutput)
+}
+
+type EgpPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EgpPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EgpPolicy)(nil))
+}
+
+func (o EgpPolicyPtrOutput) ToEgpPolicyPtrOutput() EgpPolicyPtrOutput {
+	return o
+}
+
+func (o EgpPolicyPtrOutput) ToEgpPolicyPtrOutputWithContext(ctx context.Context) EgpPolicyPtrOutput {
+	return o
+}
+
+type EgpPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (EgpPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EgpPolicy)(nil))
+}
+
+func (o EgpPolicyArrayOutput) ToEgpPolicyArrayOutput() EgpPolicyArrayOutput {
+	return o
+}
+
+func (o EgpPolicyArrayOutput) ToEgpPolicyArrayOutputWithContext(ctx context.Context) EgpPolicyArrayOutput {
+	return o
+}
+
+func (o EgpPolicyArrayOutput) Index(i pulumi.IntInput) EgpPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EgpPolicy {
+		return vs[0].([]EgpPolicy)[vs[1].(int)]
+	}).(EgpPolicyOutput)
+}
+
+type EgpPolicyMapOutput struct{ *pulumi.OutputState }
+
+func (EgpPolicyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]EgpPolicy)(nil))
+}
+
+func (o EgpPolicyMapOutput) ToEgpPolicyMapOutput() EgpPolicyMapOutput {
+	return o
+}
+
+func (o EgpPolicyMapOutput) ToEgpPolicyMapOutputWithContext(ctx context.Context) EgpPolicyMapOutput {
+	return o
+}
+
+func (o EgpPolicyMapOutput) MapIndex(k pulumi.StringInput) EgpPolicyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) EgpPolicy {
+		return vs[0].(map[string]EgpPolicy)[vs[1].(string)]
+	}).(EgpPolicyOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(EgpPolicyOutput{})
+	pulumi.RegisterOutputType(EgpPolicyPtrOutput{})
+	pulumi.RegisterOutputType(EgpPolicyArrayOutput{})
+	pulumi.RegisterOutputType(EgpPolicyMapOutput{})
 }

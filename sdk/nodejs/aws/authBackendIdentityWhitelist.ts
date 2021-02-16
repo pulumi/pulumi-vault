@@ -87,7 +87,8 @@ export class AuthBackendIdentityWhitelist extends pulumi.CustomResource {
     constructor(name: string, args?: AuthBackendIdentityWhitelistArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendIdentityWhitelistArgs | AuthBackendIdentityWhitelistState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as AuthBackendIdentityWhitelistState | undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["disablePeriodicTidy"] = state ? state.disablePeriodicTidy : undefined;
@@ -98,12 +99,8 @@ export class AuthBackendIdentityWhitelist extends pulumi.CustomResource {
             inputs["disablePeriodicTidy"] = args ? args.disablePeriodicTidy : undefined;
             inputs["safetyBuffer"] = args ? args.safetyBuffer : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(AuthBackendIdentityWhitelist.__pulumiType, name, inputs, opts);
     }

@@ -205,6 +205,85 @@ func (i *EntityPolicies) ToEntityPoliciesOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(EntityPoliciesOutput)
 }
 
+func (i *EntityPolicies) ToEntityPoliciesPtrOutput() EntityPoliciesPtrOutput {
+	return i.ToEntityPoliciesPtrOutputWithContext(context.Background())
+}
+
+func (i *EntityPolicies) ToEntityPoliciesPtrOutputWithContext(ctx context.Context) EntityPoliciesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntityPoliciesPtrOutput)
+}
+
+type EntityPoliciesPtrInput interface {
+	pulumi.Input
+
+	ToEntityPoliciesPtrOutput() EntityPoliciesPtrOutput
+	ToEntityPoliciesPtrOutputWithContext(ctx context.Context) EntityPoliciesPtrOutput
+}
+
+type entityPoliciesPtrType EntityPoliciesArgs
+
+func (*entityPoliciesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EntityPolicies)(nil))
+}
+
+func (i *entityPoliciesPtrType) ToEntityPoliciesPtrOutput() EntityPoliciesPtrOutput {
+	return i.ToEntityPoliciesPtrOutputWithContext(context.Background())
+}
+
+func (i *entityPoliciesPtrType) ToEntityPoliciesPtrOutputWithContext(ctx context.Context) EntityPoliciesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntityPoliciesPtrOutput)
+}
+
+// EntityPoliciesArrayInput is an input type that accepts EntityPoliciesArray and EntityPoliciesArrayOutput values.
+// You can construct a concrete instance of `EntityPoliciesArrayInput` via:
+//
+//          EntityPoliciesArray{ EntityPoliciesArgs{...} }
+type EntityPoliciesArrayInput interface {
+	pulumi.Input
+
+	ToEntityPoliciesArrayOutput() EntityPoliciesArrayOutput
+	ToEntityPoliciesArrayOutputWithContext(context.Context) EntityPoliciesArrayOutput
+}
+
+type EntityPoliciesArray []EntityPoliciesInput
+
+func (EntityPoliciesArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*EntityPolicies)(nil))
+}
+
+func (i EntityPoliciesArray) ToEntityPoliciesArrayOutput() EntityPoliciesArrayOutput {
+	return i.ToEntityPoliciesArrayOutputWithContext(context.Background())
+}
+
+func (i EntityPoliciesArray) ToEntityPoliciesArrayOutputWithContext(ctx context.Context) EntityPoliciesArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntityPoliciesArrayOutput)
+}
+
+// EntityPoliciesMapInput is an input type that accepts EntityPoliciesMap and EntityPoliciesMapOutput values.
+// You can construct a concrete instance of `EntityPoliciesMapInput` via:
+//
+//          EntityPoliciesMap{ "key": EntityPoliciesArgs{...} }
+type EntityPoliciesMapInput interface {
+	pulumi.Input
+
+	ToEntityPoliciesMapOutput() EntityPoliciesMapOutput
+	ToEntityPoliciesMapOutputWithContext(context.Context) EntityPoliciesMapOutput
+}
+
+type EntityPoliciesMap map[string]EntityPoliciesInput
+
+func (EntityPoliciesMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*EntityPolicies)(nil))
+}
+
+func (i EntityPoliciesMap) ToEntityPoliciesMapOutput() EntityPoliciesMapOutput {
+	return i.ToEntityPoliciesMapOutputWithContext(context.Background())
+}
+
+func (i EntityPoliciesMap) ToEntityPoliciesMapOutputWithContext(ctx context.Context) EntityPoliciesMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntityPoliciesMapOutput)
+}
+
 type EntityPoliciesOutput struct {
 	*pulumi.OutputState
 }
@@ -221,6 +300,75 @@ func (o EntityPoliciesOutput) ToEntityPoliciesOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o EntityPoliciesOutput) ToEntityPoliciesPtrOutput() EntityPoliciesPtrOutput {
+	return o.ToEntityPoliciesPtrOutputWithContext(context.Background())
+}
+
+func (o EntityPoliciesOutput) ToEntityPoliciesPtrOutputWithContext(ctx context.Context) EntityPoliciesPtrOutput {
+	return o.ApplyT(func(v EntityPolicies) *EntityPolicies {
+		return &v
+	}).(EntityPoliciesPtrOutput)
+}
+
+type EntityPoliciesPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntityPoliciesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EntityPolicies)(nil))
+}
+
+func (o EntityPoliciesPtrOutput) ToEntityPoliciesPtrOutput() EntityPoliciesPtrOutput {
+	return o
+}
+
+func (o EntityPoliciesPtrOutput) ToEntityPoliciesPtrOutputWithContext(ctx context.Context) EntityPoliciesPtrOutput {
+	return o
+}
+
+type EntityPoliciesArrayOutput struct{ *pulumi.OutputState }
+
+func (EntityPoliciesArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EntityPolicies)(nil))
+}
+
+func (o EntityPoliciesArrayOutput) ToEntityPoliciesArrayOutput() EntityPoliciesArrayOutput {
+	return o
+}
+
+func (o EntityPoliciesArrayOutput) ToEntityPoliciesArrayOutputWithContext(ctx context.Context) EntityPoliciesArrayOutput {
+	return o
+}
+
+func (o EntityPoliciesArrayOutput) Index(i pulumi.IntInput) EntityPoliciesOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EntityPolicies {
+		return vs[0].([]EntityPolicies)[vs[1].(int)]
+	}).(EntityPoliciesOutput)
+}
+
+type EntityPoliciesMapOutput struct{ *pulumi.OutputState }
+
+func (EntityPoliciesMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]EntityPolicies)(nil))
+}
+
+func (o EntityPoliciesMapOutput) ToEntityPoliciesMapOutput() EntityPoliciesMapOutput {
+	return o
+}
+
+func (o EntityPoliciesMapOutput) ToEntityPoliciesMapOutputWithContext(ctx context.Context) EntityPoliciesMapOutput {
+	return o
+}
+
+func (o EntityPoliciesMapOutput) MapIndex(k pulumi.StringInput) EntityPoliciesOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) EntityPolicies {
+		return vs[0].(map[string]EntityPolicies)[vs[1].(string)]
+	}).(EntityPoliciesOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(EntityPoliciesOutput{})
+	pulumi.RegisterOutputType(EntityPoliciesPtrOutput{})
+	pulumi.RegisterOutputType(EntityPoliciesArrayOutput{})
+	pulumi.RegisterOutputType(EntityPoliciesMapOutput{})
 }

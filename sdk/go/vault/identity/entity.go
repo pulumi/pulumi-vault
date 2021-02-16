@@ -140,6 +140,85 @@ func (i *Entity) ToEntityOutputWithContext(ctx context.Context) EntityOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EntityOutput)
 }
 
+func (i *Entity) ToEntityPtrOutput() EntityPtrOutput {
+	return i.ToEntityPtrOutputWithContext(context.Background())
+}
+
+func (i *Entity) ToEntityPtrOutputWithContext(ctx context.Context) EntityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntityPtrOutput)
+}
+
+type EntityPtrInput interface {
+	pulumi.Input
+
+	ToEntityPtrOutput() EntityPtrOutput
+	ToEntityPtrOutputWithContext(ctx context.Context) EntityPtrOutput
+}
+
+type entityPtrType EntityArgs
+
+func (*entityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Entity)(nil))
+}
+
+func (i *entityPtrType) ToEntityPtrOutput() EntityPtrOutput {
+	return i.ToEntityPtrOutputWithContext(context.Background())
+}
+
+func (i *entityPtrType) ToEntityPtrOutputWithContext(ctx context.Context) EntityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntityPtrOutput)
+}
+
+// EntityArrayInput is an input type that accepts EntityArray and EntityArrayOutput values.
+// You can construct a concrete instance of `EntityArrayInput` via:
+//
+//          EntityArray{ EntityArgs{...} }
+type EntityArrayInput interface {
+	pulumi.Input
+
+	ToEntityArrayOutput() EntityArrayOutput
+	ToEntityArrayOutputWithContext(context.Context) EntityArrayOutput
+}
+
+type EntityArray []EntityInput
+
+func (EntityArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*Entity)(nil))
+}
+
+func (i EntityArray) ToEntityArrayOutput() EntityArrayOutput {
+	return i.ToEntityArrayOutputWithContext(context.Background())
+}
+
+func (i EntityArray) ToEntityArrayOutputWithContext(ctx context.Context) EntityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntityArrayOutput)
+}
+
+// EntityMapInput is an input type that accepts EntityMap and EntityMapOutput values.
+// You can construct a concrete instance of `EntityMapInput` via:
+//
+//          EntityMap{ "key": EntityArgs{...} }
+type EntityMapInput interface {
+	pulumi.Input
+
+	ToEntityMapOutput() EntityMapOutput
+	ToEntityMapOutputWithContext(context.Context) EntityMapOutput
+}
+
+type EntityMap map[string]EntityInput
+
+func (EntityMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*Entity)(nil))
+}
+
+func (i EntityMap) ToEntityMapOutput() EntityMapOutput {
+	return i.ToEntityMapOutputWithContext(context.Background())
+}
+
+func (i EntityMap) ToEntityMapOutputWithContext(ctx context.Context) EntityMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntityMapOutput)
+}
+
 type EntityOutput struct {
 	*pulumi.OutputState
 }
@@ -156,6 +235,75 @@ func (o EntityOutput) ToEntityOutputWithContext(ctx context.Context) EntityOutpu
 	return o
 }
 
+func (o EntityOutput) ToEntityPtrOutput() EntityPtrOutput {
+	return o.ToEntityPtrOutputWithContext(context.Background())
+}
+
+func (o EntityOutput) ToEntityPtrOutputWithContext(ctx context.Context) EntityPtrOutput {
+	return o.ApplyT(func(v Entity) *Entity {
+		return &v
+	}).(EntityPtrOutput)
+}
+
+type EntityPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Entity)(nil))
+}
+
+func (o EntityPtrOutput) ToEntityPtrOutput() EntityPtrOutput {
+	return o
+}
+
+func (o EntityPtrOutput) ToEntityPtrOutputWithContext(ctx context.Context) EntityPtrOutput {
+	return o
+}
+
+type EntityArrayOutput struct{ *pulumi.OutputState }
+
+func (EntityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]Entity)(nil))
+}
+
+func (o EntityArrayOutput) ToEntityArrayOutput() EntityArrayOutput {
+	return o
+}
+
+func (o EntityArrayOutput) ToEntityArrayOutputWithContext(ctx context.Context) EntityArrayOutput {
+	return o
+}
+
+func (o EntityArrayOutput) Index(i pulumi.IntInput) EntityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Entity {
+		return vs[0].([]Entity)[vs[1].(int)]
+	}).(EntityOutput)
+}
+
+type EntityMapOutput struct{ *pulumi.OutputState }
+
+func (EntityMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]Entity)(nil))
+}
+
+func (o EntityMapOutput) ToEntityMapOutput() EntityMapOutput {
+	return o
+}
+
+func (o EntityMapOutput) ToEntityMapOutputWithContext(ctx context.Context) EntityMapOutput {
+	return o
+}
+
+func (o EntityMapOutput) MapIndex(k pulumi.StringInput) EntityOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) Entity {
+		return vs[0].(map[string]Entity)[vs[1].(string)]
+	}).(EntityOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(EntityOutput{})
+	pulumi.RegisterOutputType(EntityPtrOutput{})
+	pulumi.RegisterOutputType(EntityArrayOutput{})
+	pulumi.RegisterOutputType(EntityMapOutput{})
 }

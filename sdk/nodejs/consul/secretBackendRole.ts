@@ -106,7 +106,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
     constructor(name: string, args: SecretBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendRoleArgs | SecretBackendRoleState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretBackendRoleState | undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["local"] = state ? state.local : undefined;
@@ -118,7 +119,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
-            if ((!args || args.policies === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.policies === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'policies'");
             }
             inputs["backend"] = args ? args.backend : undefined;
@@ -130,12 +131,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["tokenType"] = args ? args.tokenType : undefined;
             inputs["ttl"] = args ? args.ttl : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(SecretBackendRole.__pulumiType, name, inputs, opts);
     }

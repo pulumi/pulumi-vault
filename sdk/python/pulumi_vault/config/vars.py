@@ -32,7 +32,7 @@ add_address_to_env = __config__.get('addAddressToEnv')
 If true, adds the value of the `address` argument to the Terraform process environment.
 """
 
-address = __config__.get('address') or _utilities.get_env('VAULT_ADDR')
+address = __config__.get('address')
 """
 URL of the root of the target Vault server.
 """
@@ -42,12 +42,12 @@ auth_logins = __config__.get('authLogins')
 Login to vault with an existing auth method using auth/<mount>/login
 """
 
-ca_cert_dir = __config__.get('caCertDir') or _utilities.get_env('VAULT_CAPATH')
+ca_cert_dir = __config__.get('caCertDir')
 """
 Path to directory containing CA certificate files to validate the server's certificate.
 """
 
-ca_cert_file = __config__.get('caCertFile') or _utilities.get_env('VAULT_CACERT')
+ca_cert_file = __config__.get('caCertFile')
 """
 Path to a CA certificate file to validate the server's certificate.
 """
@@ -72,7 +72,7 @@ max_retries = __config__.get('maxRetries') or (_utilities.get_env_int('VAULT_MAX
 Maximum number of retries when a 5xx error code is encountered.
 """
 
-namespace = __config__.get('namespace') or _utilities.get_env('VAULT_NAMESPACE')
+namespace = __config__.get('namespace')
 """
 The namespace to use. Available only for Vault Enterprise
 """
@@ -82,12 +82,12 @@ skip_tls_verify = __config__.get('skipTlsVerify') or _utilities.get_env_bool('VA
 Set this to true only if the target Vault server is an insecure development instance.
 """
 
-token = __config__.get('token') or _utilities.get_env('VAULT_TOKEN')
+token = __config__.get('token')
 """
 Token to use to authenticate to Vault.
 """
 
-token_name = __config__.get('tokenName') or _utilities.get_env('VAULT_TOKEN_NAME')
+token_name = __config__.get('tokenName')
 """
 Token name to use for creating the Vault child token.
 """

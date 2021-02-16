@@ -72,15 +72,11 @@ class Provider(pulumi.ProviderResource):
             __props__ = dict()
 
             __props__['add_address_to_env'] = add_address_to_env
-            if address is None:
-                address = _utilities.get_env('VAULT_ADDR')
+            if address is None and not opts.urn:
+                raise TypeError("Missing required property 'address'")
             __props__['address'] = address
             __props__['auth_logins'] = pulumi.Output.from_input(auth_logins).apply(pulumi.runtime.to_json) if auth_logins is not None else None
-            if ca_cert_dir is None:
-                ca_cert_dir = _utilities.get_env('VAULT_CAPATH')
             __props__['ca_cert_dir'] = ca_cert_dir
-            if ca_cert_file is None:
-                ca_cert_file = _utilities.get_env('VAULT_CACERT')
             __props__['ca_cert_file'] = ca_cert_file
             __props__['client_auths'] = pulumi.Output.from_input(client_auths).apply(pulumi.runtime.to_json) if client_auths is not None else None
             __props__['headers'] = pulumi.Output.from_input(headers).apply(pulumi.runtime.to_json) if headers is not None else None
@@ -90,17 +86,13 @@ class Provider(pulumi.ProviderResource):
             if max_retries is None:
                 max_retries = (_utilities.get_env_int('VAULT_MAX_RETRIES') or 2)
             __props__['max_retries'] = pulumi.Output.from_input(max_retries).apply(pulumi.runtime.to_json) if max_retries is not None else None
-            if namespace is None:
-                namespace = _utilities.get_env('VAULT_NAMESPACE')
             __props__['namespace'] = namespace
             if skip_tls_verify is None:
                 skip_tls_verify = _utilities.get_env_bool('VAULT_SKIP_VERIFY')
             __props__['skip_tls_verify'] = pulumi.Output.from_input(skip_tls_verify).apply(pulumi.runtime.to_json) if skip_tls_verify is not None else None
-            if token is None:
-                token = _utilities.get_env('VAULT_TOKEN')
+            if token is None and not opts.urn:
+                raise TypeError("Missing required property 'token'")
             __props__['token'] = token
-            if token_name is None:
-                token_name = _utilities.get_env('VAULT_TOKEN_NAME')
             __props__['token_name'] = token_name
         super(Provider, __self__).__init__(
             'vault',

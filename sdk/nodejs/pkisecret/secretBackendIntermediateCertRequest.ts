@@ -131,7 +131,8 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
     constructor(name: string, args: SecretBackendIntermediateCertRequestArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendIntermediateCertRequestArgs | SecretBackendIntermediateCertRequestState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretBackendIntermediateCertRequestState | undefined;
             inputs["altNames"] = state ? state.altNames : undefined;
             inputs["backend"] = state ? state.backend : undefined;
@@ -157,13 +158,13 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
             inputs["uriSans"] = state ? state.uriSans : undefined;
         } else {
             const args = argsOrState as SecretBackendIntermediateCertRequestArgs | undefined;
-            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.commonName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.commonName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'commonName'");
             }
-            if ((!args || args.type === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
             inputs["altNames"] = args ? args.altNames : undefined;
@@ -189,12 +190,8 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
             inputs["privateKey"] = undefined /*out*/;
             inputs["privateKeyType"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(SecretBackendIntermediateCertRequest.__pulumiType, name, inputs, opts);
     }

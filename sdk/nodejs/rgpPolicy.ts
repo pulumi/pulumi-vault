@@ -75,29 +75,26 @@ export class RgpPolicy extends pulumi.CustomResource {
     constructor(name: string, args: RgpPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RgpPolicyArgs | RgpPolicyState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as RgpPolicyState | undefined;
             inputs["enforcementLevel"] = state ? state.enforcementLevel : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["policy"] = state ? state.policy : undefined;
         } else {
             const args = argsOrState as RgpPolicyArgs | undefined;
-            if ((!args || args.enforcementLevel === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.enforcementLevel === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'enforcementLevel'");
             }
-            if ((!args || args.policy === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.policy === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'policy'");
             }
             inputs["enforcementLevel"] = args ? args.enforcementLevel : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["policy"] = args ? args.policy : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(RgpPolicy.__pulumiType, name, inputs, opts);
     }

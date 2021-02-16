@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
 // 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/appRole"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -218,6 +218,85 @@ func (i *AuthBackendLogin) ToAuthBackendLoginOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendLoginOutput)
 }
 
+func (i *AuthBackendLogin) ToAuthBackendLoginPtrOutput() AuthBackendLoginPtrOutput {
+	return i.ToAuthBackendLoginPtrOutputWithContext(context.Background())
+}
+
+func (i *AuthBackendLogin) ToAuthBackendLoginPtrOutputWithContext(ctx context.Context) AuthBackendLoginPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendLoginPtrOutput)
+}
+
+type AuthBackendLoginPtrInput interface {
+	pulumi.Input
+
+	ToAuthBackendLoginPtrOutput() AuthBackendLoginPtrOutput
+	ToAuthBackendLoginPtrOutputWithContext(ctx context.Context) AuthBackendLoginPtrOutput
+}
+
+type authBackendLoginPtrType AuthBackendLoginArgs
+
+func (*authBackendLoginPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthBackendLogin)(nil))
+}
+
+func (i *authBackendLoginPtrType) ToAuthBackendLoginPtrOutput() AuthBackendLoginPtrOutput {
+	return i.ToAuthBackendLoginPtrOutputWithContext(context.Background())
+}
+
+func (i *authBackendLoginPtrType) ToAuthBackendLoginPtrOutputWithContext(ctx context.Context) AuthBackendLoginPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendLoginPtrOutput)
+}
+
+// AuthBackendLoginArrayInput is an input type that accepts AuthBackendLoginArray and AuthBackendLoginArrayOutput values.
+// You can construct a concrete instance of `AuthBackendLoginArrayInput` via:
+//
+//          AuthBackendLoginArray{ AuthBackendLoginArgs{...} }
+type AuthBackendLoginArrayInput interface {
+	pulumi.Input
+
+	ToAuthBackendLoginArrayOutput() AuthBackendLoginArrayOutput
+	ToAuthBackendLoginArrayOutputWithContext(context.Context) AuthBackendLoginArrayOutput
+}
+
+type AuthBackendLoginArray []AuthBackendLoginInput
+
+func (AuthBackendLoginArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*AuthBackendLogin)(nil))
+}
+
+func (i AuthBackendLoginArray) ToAuthBackendLoginArrayOutput() AuthBackendLoginArrayOutput {
+	return i.ToAuthBackendLoginArrayOutputWithContext(context.Background())
+}
+
+func (i AuthBackendLoginArray) ToAuthBackendLoginArrayOutputWithContext(ctx context.Context) AuthBackendLoginArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendLoginArrayOutput)
+}
+
+// AuthBackendLoginMapInput is an input type that accepts AuthBackendLoginMap and AuthBackendLoginMapOutput values.
+// You can construct a concrete instance of `AuthBackendLoginMapInput` via:
+//
+//          AuthBackendLoginMap{ "key": AuthBackendLoginArgs{...} }
+type AuthBackendLoginMapInput interface {
+	pulumi.Input
+
+	ToAuthBackendLoginMapOutput() AuthBackendLoginMapOutput
+	ToAuthBackendLoginMapOutputWithContext(context.Context) AuthBackendLoginMapOutput
+}
+
+type AuthBackendLoginMap map[string]AuthBackendLoginInput
+
+func (AuthBackendLoginMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*AuthBackendLogin)(nil))
+}
+
+func (i AuthBackendLoginMap) ToAuthBackendLoginMapOutput() AuthBackendLoginMapOutput {
+	return i.ToAuthBackendLoginMapOutputWithContext(context.Background())
+}
+
+func (i AuthBackendLoginMap) ToAuthBackendLoginMapOutputWithContext(ctx context.Context) AuthBackendLoginMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendLoginMapOutput)
+}
+
 type AuthBackendLoginOutput struct {
 	*pulumi.OutputState
 }
@@ -234,6 +313,75 @@ func (o AuthBackendLoginOutput) ToAuthBackendLoginOutputWithContext(ctx context.
 	return o
 }
 
+func (o AuthBackendLoginOutput) ToAuthBackendLoginPtrOutput() AuthBackendLoginPtrOutput {
+	return o.ToAuthBackendLoginPtrOutputWithContext(context.Background())
+}
+
+func (o AuthBackendLoginOutput) ToAuthBackendLoginPtrOutputWithContext(ctx context.Context) AuthBackendLoginPtrOutput {
+	return o.ApplyT(func(v AuthBackendLogin) *AuthBackendLogin {
+		return &v
+	}).(AuthBackendLoginPtrOutput)
+}
+
+type AuthBackendLoginPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendLoginPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthBackendLogin)(nil))
+}
+
+func (o AuthBackendLoginPtrOutput) ToAuthBackendLoginPtrOutput() AuthBackendLoginPtrOutput {
+	return o
+}
+
+func (o AuthBackendLoginPtrOutput) ToAuthBackendLoginPtrOutputWithContext(ctx context.Context) AuthBackendLoginPtrOutput {
+	return o
+}
+
+type AuthBackendLoginArrayOutput struct{ *pulumi.OutputState }
+
+func (AuthBackendLoginArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AuthBackendLogin)(nil))
+}
+
+func (o AuthBackendLoginArrayOutput) ToAuthBackendLoginArrayOutput() AuthBackendLoginArrayOutput {
+	return o
+}
+
+func (o AuthBackendLoginArrayOutput) ToAuthBackendLoginArrayOutputWithContext(ctx context.Context) AuthBackendLoginArrayOutput {
+	return o
+}
+
+func (o AuthBackendLoginArrayOutput) Index(i pulumi.IntInput) AuthBackendLoginOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthBackendLogin {
+		return vs[0].([]AuthBackendLogin)[vs[1].(int)]
+	}).(AuthBackendLoginOutput)
+}
+
+type AuthBackendLoginMapOutput struct{ *pulumi.OutputState }
+
+func (AuthBackendLoginMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]AuthBackendLogin)(nil))
+}
+
+func (o AuthBackendLoginMapOutput) ToAuthBackendLoginMapOutput() AuthBackendLoginMapOutput {
+	return o
+}
+
+func (o AuthBackendLoginMapOutput) ToAuthBackendLoginMapOutputWithContext(ctx context.Context) AuthBackendLoginMapOutput {
+	return o
+}
+
+func (o AuthBackendLoginMapOutput) MapIndex(k pulumi.StringInput) AuthBackendLoginOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AuthBackendLogin {
+		return vs[0].(map[string]AuthBackendLogin)[vs[1].(string)]
+	}).(AuthBackendLoginOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(AuthBackendLoginOutput{})
+	pulumi.RegisterOutputType(AuthBackendLoginPtrOutput{})
+	pulumi.RegisterOutputType(AuthBackendLoginArrayOutput{})
+	pulumi.RegisterOutputType(AuthBackendLoginMapOutput{})
 }

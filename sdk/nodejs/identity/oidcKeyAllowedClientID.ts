@@ -51,27 +51,24 @@ export class OidcKeyAllowedClientID extends pulumi.CustomResource {
     constructor(name: string, args: OidcKeyAllowedClientIDArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: OidcKeyAllowedClientIDArgs | OidcKeyAllowedClientIDState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as OidcKeyAllowedClientIDState | undefined;
             inputs["allowedClientId"] = state ? state.allowedClientId : undefined;
             inputs["keyName"] = state ? state.keyName : undefined;
         } else {
             const args = argsOrState as OidcKeyAllowedClientIDArgs | undefined;
-            if ((!args || args.allowedClientId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.allowedClientId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'allowedClientId'");
             }
-            if ((!args || args.keyName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.keyName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'keyName'");
             }
             inputs["allowedClientId"] = args ? args.allowedClientId : undefined;
             inputs["keyName"] = args ? args.keyName : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(OidcKeyAllowedClientID.__pulumiType, name, inputs, opts);
     }

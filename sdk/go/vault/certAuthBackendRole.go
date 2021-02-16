@@ -513,6 +513,85 @@ func (i *CertAuthBackendRole) ToCertAuthBackendRoleOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(CertAuthBackendRoleOutput)
 }
 
+func (i *CertAuthBackendRole) ToCertAuthBackendRolePtrOutput() CertAuthBackendRolePtrOutput {
+	return i.ToCertAuthBackendRolePtrOutputWithContext(context.Background())
+}
+
+func (i *CertAuthBackendRole) ToCertAuthBackendRolePtrOutputWithContext(ctx context.Context) CertAuthBackendRolePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertAuthBackendRolePtrOutput)
+}
+
+type CertAuthBackendRolePtrInput interface {
+	pulumi.Input
+
+	ToCertAuthBackendRolePtrOutput() CertAuthBackendRolePtrOutput
+	ToCertAuthBackendRolePtrOutputWithContext(ctx context.Context) CertAuthBackendRolePtrOutput
+}
+
+type certAuthBackendRolePtrType CertAuthBackendRoleArgs
+
+func (*certAuthBackendRolePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CertAuthBackendRole)(nil))
+}
+
+func (i *certAuthBackendRolePtrType) ToCertAuthBackendRolePtrOutput() CertAuthBackendRolePtrOutput {
+	return i.ToCertAuthBackendRolePtrOutputWithContext(context.Background())
+}
+
+func (i *certAuthBackendRolePtrType) ToCertAuthBackendRolePtrOutputWithContext(ctx context.Context) CertAuthBackendRolePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertAuthBackendRolePtrOutput)
+}
+
+// CertAuthBackendRoleArrayInput is an input type that accepts CertAuthBackendRoleArray and CertAuthBackendRoleArrayOutput values.
+// You can construct a concrete instance of `CertAuthBackendRoleArrayInput` via:
+//
+//          CertAuthBackendRoleArray{ CertAuthBackendRoleArgs{...} }
+type CertAuthBackendRoleArrayInput interface {
+	pulumi.Input
+
+	ToCertAuthBackendRoleArrayOutput() CertAuthBackendRoleArrayOutput
+	ToCertAuthBackendRoleArrayOutputWithContext(context.Context) CertAuthBackendRoleArrayOutput
+}
+
+type CertAuthBackendRoleArray []CertAuthBackendRoleInput
+
+func (CertAuthBackendRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*CertAuthBackendRole)(nil))
+}
+
+func (i CertAuthBackendRoleArray) ToCertAuthBackendRoleArrayOutput() CertAuthBackendRoleArrayOutput {
+	return i.ToCertAuthBackendRoleArrayOutputWithContext(context.Background())
+}
+
+func (i CertAuthBackendRoleArray) ToCertAuthBackendRoleArrayOutputWithContext(ctx context.Context) CertAuthBackendRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertAuthBackendRoleArrayOutput)
+}
+
+// CertAuthBackendRoleMapInput is an input type that accepts CertAuthBackendRoleMap and CertAuthBackendRoleMapOutput values.
+// You can construct a concrete instance of `CertAuthBackendRoleMapInput` via:
+//
+//          CertAuthBackendRoleMap{ "key": CertAuthBackendRoleArgs{...} }
+type CertAuthBackendRoleMapInput interface {
+	pulumi.Input
+
+	ToCertAuthBackendRoleMapOutput() CertAuthBackendRoleMapOutput
+	ToCertAuthBackendRoleMapOutputWithContext(context.Context) CertAuthBackendRoleMapOutput
+}
+
+type CertAuthBackendRoleMap map[string]CertAuthBackendRoleInput
+
+func (CertAuthBackendRoleMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*CertAuthBackendRole)(nil))
+}
+
+func (i CertAuthBackendRoleMap) ToCertAuthBackendRoleMapOutput() CertAuthBackendRoleMapOutput {
+	return i.ToCertAuthBackendRoleMapOutputWithContext(context.Background())
+}
+
+func (i CertAuthBackendRoleMap) ToCertAuthBackendRoleMapOutputWithContext(ctx context.Context) CertAuthBackendRoleMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertAuthBackendRoleMapOutput)
+}
+
 type CertAuthBackendRoleOutput struct {
 	*pulumi.OutputState
 }
@@ -529,6 +608,75 @@ func (o CertAuthBackendRoleOutput) ToCertAuthBackendRoleOutputWithContext(ctx co
 	return o
 }
 
+func (o CertAuthBackendRoleOutput) ToCertAuthBackendRolePtrOutput() CertAuthBackendRolePtrOutput {
+	return o.ToCertAuthBackendRolePtrOutputWithContext(context.Background())
+}
+
+func (o CertAuthBackendRoleOutput) ToCertAuthBackendRolePtrOutputWithContext(ctx context.Context) CertAuthBackendRolePtrOutput {
+	return o.ApplyT(func(v CertAuthBackendRole) *CertAuthBackendRole {
+		return &v
+	}).(CertAuthBackendRolePtrOutput)
+}
+
+type CertAuthBackendRolePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CertAuthBackendRolePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CertAuthBackendRole)(nil))
+}
+
+func (o CertAuthBackendRolePtrOutput) ToCertAuthBackendRolePtrOutput() CertAuthBackendRolePtrOutput {
+	return o
+}
+
+func (o CertAuthBackendRolePtrOutput) ToCertAuthBackendRolePtrOutputWithContext(ctx context.Context) CertAuthBackendRolePtrOutput {
+	return o
+}
+
+type CertAuthBackendRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (CertAuthBackendRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CertAuthBackendRole)(nil))
+}
+
+func (o CertAuthBackendRoleArrayOutput) ToCertAuthBackendRoleArrayOutput() CertAuthBackendRoleArrayOutput {
+	return o
+}
+
+func (o CertAuthBackendRoleArrayOutput) ToCertAuthBackendRoleArrayOutputWithContext(ctx context.Context) CertAuthBackendRoleArrayOutput {
+	return o
+}
+
+func (o CertAuthBackendRoleArrayOutput) Index(i pulumi.IntInput) CertAuthBackendRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CertAuthBackendRole {
+		return vs[0].([]CertAuthBackendRole)[vs[1].(int)]
+	}).(CertAuthBackendRoleOutput)
+}
+
+type CertAuthBackendRoleMapOutput struct{ *pulumi.OutputState }
+
+func (CertAuthBackendRoleMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]CertAuthBackendRole)(nil))
+}
+
+func (o CertAuthBackendRoleMapOutput) ToCertAuthBackendRoleMapOutput() CertAuthBackendRoleMapOutput {
+	return o
+}
+
+func (o CertAuthBackendRoleMapOutput) ToCertAuthBackendRoleMapOutputWithContext(ctx context.Context) CertAuthBackendRoleMapOutput {
+	return o
+}
+
+func (o CertAuthBackendRoleMapOutput) MapIndex(k pulumi.StringInput) CertAuthBackendRoleOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) CertAuthBackendRole {
+		return vs[0].(map[string]CertAuthBackendRole)[vs[1].(string)]
+	}).(CertAuthBackendRoleOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(CertAuthBackendRoleOutput{})
+	pulumi.RegisterOutputType(CertAuthBackendRolePtrOutput{})
+	pulumi.RegisterOutputType(CertAuthBackendRoleArrayOutput{})
+	pulumi.RegisterOutputType(CertAuthBackendRoleMapOutput{})
 }

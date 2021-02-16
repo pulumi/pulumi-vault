@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
 // 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/ssh"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -155,6 +155,85 @@ func (i *SecretBackendCa) ToSecretBackendCaOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCaOutput)
 }
 
+func (i *SecretBackendCa) ToSecretBackendCaPtrOutput() SecretBackendCaPtrOutput {
+	return i.ToSecretBackendCaPtrOutputWithContext(context.Background())
+}
+
+func (i *SecretBackendCa) ToSecretBackendCaPtrOutputWithContext(ctx context.Context) SecretBackendCaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCaPtrOutput)
+}
+
+type SecretBackendCaPtrInput interface {
+	pulumi.Input
+
+	ToSecretBackendCaPtrOutput() SecretBackendCaPtrOutput
+	ToSecretBackendCaPtrOutputWithContext(ctx context.Context) SecretBackendCaPtrOutput
+}
+
+type secretBackendCaPtrType SecretBackendCaArgs
+
+func (*secretBackendCaPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendCa)(nil))
+}
+
+func (i *secretBackendCaPtrType) ToSecretBackendCaPtrOutput() SecretBackendCaPtrOutput {
+	return i.ToSecretBackendCaPtrOutputWithContext(context.Background())
+}
+
+func (i *secretBackendCaPtrType) ToSecretBackendCaPtrOutputWithContext(ctx context.Context) SecretBackendCaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCaPtrOutput)
+}
+
+// SecretBackendCaArrayInput is an input type that accepts SecretBackendCaArray and SecretBackendCaArrayOutput values.
+// You can construct a concrete instance of `SecretBackendCaArrayInput` via:
+//
+//          SecretBackendCaArray{ SecretBackendCaArgs{...} }
+type SecretBackendCaArrayInput interface {
+	pulumi.Input
+
+	ToSecretBackendCaArrayOutput() SecretBackendCaArrayOutput
+	ToSecretBackendCaArrayOutputWithContext(context.Context) SecretBackendCaArrayOutput
+}
+
+type SecretBackendCaArray []SecretBackendCaInput
+
+func (SecretBackendCaArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*SecretBackendCa)(nil))
+}
+
+func (i SecretBackendCaArray) ToSecretBackendCaArrayOutput() SecretBackendCaArrayOutput {
+	return i.ToSecretBackendCaArrayOutputWithContext(context.Background())
+}
+
+func (i SecretBackendCaArray) ToSecretBackendCaArrayOutputWithContext(ctx context.Context) SecretBackendCaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCaArrayOutput)
+}
+
+// SecretBackendCaMapInput is an input type that accepts SecretBackendCaMap and SecretBackendCaMapOutput values.
+// You can construct a concrete instance of `SecretBackendCaMapInput` via:
+//
+//          SecretBackendCaMap{ "key": SecretBackendCaArgs{...} }
+type SecretBackendCaMapInput interface {
+	pulumi.Input
+
+	ToSecretBackendCaMapOutput() SecretBackendCaMapOutput
+	ToSecretBackendCaMapOutputWithContext(context.Context) SecretBackendCaMapOutput
+}
+
+type SecretBackendCaMap map[string]SecretBackendCaInput
+
+func (SecretBackendCaMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*SecretBackendCa)(nil))
+}
+
+func (i SecretBackendCaMap) ToSecretBackendCaMapOutput() SecretBackendCaMapOutput {
+	return i.ToSecretBackendCaMapOutputWithContext(context.Background())
+}
+
+func (i SecretBackendCaMap) ToSecretBackendCaMapOutputWithContext(ctx context.Context) SecretBackendCaMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCaMapOutput)
+}
+
 type SecretBackendCaOutput struct {
 	*pulumi.OutputState
 }
@@ -171,6 +250,75 @@ func (o SecretBackendCaOutput) ToSecretBackendCaOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o SecretBackendCaOutput) ToSecretBackendCaPtrOutput() SecretBackendCaPtrOutput {
+	return o.ToSecretBackendCaPtrOutputWithContext(context.Background())
+}
+
+func (o SecretBackendCaOutput) ToSecretBackendCaPtrOutputWithContext(ctx context.Context) SecretBackendCaPtrOutput {
+	return o.ApplyT(func(v SecretBackendCa) *SecretBackendCa {
+		return &v
+	}).(SecretBackendCaPtrOutput)
+}
+
+type SecretBackendCaPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretBackendCaPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendCa)(nil))
+}
+
+func (o SecretBackendCaPtrOutput) ToSecretBackendCaPtrOutput() SecretBackendCaPtrOutput {
+	return o
+}
+
+func (o SecretBackendCaPtrOutput) ToSecretBackendCaPtrOutputWithContext(ctx context.Context) SecretBackendCaPtrOutput {
+	return o
+}
+
+type SecretBackendCaArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendCaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretBackendCa)(nil))
+}
+
+func (o SecretBackendCaArrayOutput) ToSecretBackendCaArrayOutput() SecretBackendCaArrayOutput {
+	return o
+}
+
+func (o SecretBackendCaArrayOutput) ToSecretBackendCaArrayOutputWithContext(ctx context.Context) SecretBackendCaArrayOutput {
+	return o
+}
+
+func (o SecretBackendCaArrayOutput) Index(i pulumi.IntInput) SecretBackendCaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretBackendCa {
+		return vs[0].([]SecretBackendCa)[vs[1].(int)]
+	}).(SecretBackendCaOutput)
+}
+
+type SecretBackendCaMapOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendCaMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]SecretBackendCa)(nil))
+}
+
+func (o SecretBackendCaMapOutput) ToSecretBackendCaMapOutput() SecretBackendCaMapOutput {
+	return o
+}
+
+func (o SecretBackendCaMapOutput) ToSecretBackendCaMapOutputWithContext(ctx context.Context) SecretBackendCaMapOutput {
+	return o
+}
+
+func (o SecretBackendCaMapOutput) MapIndex(k pulumi.StringInput) SecretBackendCaOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SecretBackendCa {
+		return vs[0].(map[string]SecretBackendCa)[vs[1].(string)]
+	}).(SecretBackendCaOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(SecretBackendCaOutput{})
+	pulumi.RegisterOutputType(SecretBackendCaPtrOutput{})
+	pulumi.RegisterOutputType(SecretBackendCaArrayOutput{})
+	pulumi.RegisterOutputType(SecretBackendCaMapOutput{})
 }

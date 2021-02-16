@@ -83,7 +83,8 @@ export class AuthBackendConfig extends pulumi.CustomResource {
     constructor(name: string, args: AuthBackendConfigArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendConfigArgs | AuthBackendConfigState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as AuthBackendConfigState | undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["clientId"] = state ? state.clientId : undefined;
@@ -93,10 +94,10 @@ export class AuthBackendConfig extends pulumi.CustomResource {
             inputs["tenantId"] = state ? state.tenantId : undefined;
         } else {
             const args = argsOrState as AuthBackendConfigArgs | undefined;
-            if ((!args || args.resource === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.resource === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'resource'");
             }
-            if ((!args || args.tenantId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.tenantId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'tenantId'");
             }
             inputs["backend"] = args ? args.backend : undefined;
@@ -106,12 +107,8 @@ export class AuthBackendConfig extends pulumi.CustomResource {
             inputs["resource"] = args ? args.resource : undefined;
             inputs["tenantId"] = args ? args.tenantId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(AuthBackendConfig.__pulumiType, name, inputs, opts);
     }

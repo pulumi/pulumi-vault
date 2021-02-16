@@ -34,29 +34,32 @@ export class Provider extends pulumi.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
+        opts = opts || {};
         {
+            if ((!args || args.address === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'address'");
+            }
+            if ((!args || args.token === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'token'");
+            }
             inputs["addAddressToEnv"] = args ? args.addAddressToEnv : undefined;
-            inputs["address"] = (args ? args.address : undefined) || utilities.getEnv("VAULT_ADDR");
+            inputs["address"] = args ? args.address : undefined;
             inputs["authLogins"] = pulumi.output(args ? args.authLogins : undefined).apply(JSON.stringify);
-            inputs["caCertDir"] = (args ? args.caCertDir : undefined) || utilities.getEnv("VAULT_CAPATH");
-            inputs["caCertFile"] = (args ? args.caCertFile : undefined) || utilities.getEnv("VAULT_CACERT");
+            inputs["caCertDir"] = args ? args.caCertDir : undefined;
+            inputs["caCertFile"] = args ? args.caCertFile : undefined;
             inputs["clientAuths"] = pulumi.output(args ? args.clientAuths : undefined).apply(JSON.stringify);
             inputs["headers"] = pulumi.output(args ? args.headers : undefined).apply(JSON.stringify);
             inputs["maxLeaseTtlSeconds"] = pulumi.output((args ? args.maxLeaseTtlSeconds : undefined) || (<any>utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 1200)).apply(JSON.stringify);
             inputs["maxRetries"] = pulumi.output((args ? args.maxRetries : undefined) || (<any>utilities.getEnvNumber("VAULT_MAX_RETRIES") || 2)).apply(JSON.stringify);
-            inputs["namespace"] = (args ? args.namespace : undefined) || utilities.getEnv("VAULT_NAMESPACE");
+            inputs["namespace"] = args ? args.namespace : undefined;
             inputs["skipTlsVerify"] = pulumi.output((args ? args.skipTlsVerify : undefined) || <any>utilities.getEnvBoolean("VAULT_SKIP_VERIFY")).apply(JSON.stringify);
-            inputs["token"] = (args ? args.token : undefined) || utilities.getEnv("VAULT_TOKEN");
-            inputs["tokenName"] = (args ? args.tokenName : undefined) || utilities.getEnv("VAULT_TOKEN_NAME");
+            inputs["token"] = args ? args.token : undefined;
+            inputs["tokenName"] = args ? args.tokenName : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Provider.__pulumiType, name, inputs, opts);
     }
@@ -73,7 +76,7 @@ export interface ProviderArgs {
     /**
      * URL of the root of the target Vault server.
      */
-    readonly address?: pulumi.Input<string>;
+    readonly address: pulumi.Input<string>;
     /**
      * Login to vault with an existing auth method using auth/<mount>/login
      */
@@ -113,7 +116,7 @@ export interface ProviderArgs {
     /**
      * Token to use to authenticate to Vault.
      */
-    readonly token?: pulumi.Input<string>;
+    readonly token: pulumi.Input<string>;
     /**
      * Token name to use for creating the Vault child token.
      */
