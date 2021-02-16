@@ -74,7 +74,8 @@ export class AuthBackendCert extends pulumi.CustomResource {
     constructor(name: string, args: AuthBackendCertArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendCertArgs | AuthBackendCertState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as AuthBackendCertState | undefined;
             inputs["awsPublicCert"] = state ? state.awsPublicCert : undefined;
             inputs["backend"] = state ? state.backend : undefined;
@@ -82,10 +83,10 @@ export class AuthBackendCert extends pulumi.CustomResource {
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as AuthBackendCertArgs | undefined;
-            if ((!args || args.awsPublicCert === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.awsPublicCert === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'awsPublicCert'");
             }
-            if ((!args || args.certName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.certName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'certName'");
             }
             inputs["awsPublicCert"] = args ? args.awsPublicCert : undefined;
@@ -93,12 +94,8 @@ export class AuthBackendCert extends pulumi.CustomResource {
             inputs["certName"] = args ? args.certName : undefined;
             inputs["type"] = args ? args.type : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(AuthBackendCert.__pulumiType, name, inputs, opts);
     }

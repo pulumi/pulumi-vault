@@ -173,6 +173,85 @@ func (i *SecretRoleset) ToSecretRolesetOutputWithContext(ctx context.Context) Se
 	return pulumi.ToOutputWithContext(ctx, i).(SecretRolesetOutput)
 }
 
+func (i *SecretRoleset) ToSecretRolesetPtrOutput() SecretRolesetPtrOutput {
+	return i.ToSecretRolesetPtrOutputWithContext(context.Background())
+}
+
+func (i *SecretRoleset) ToSecretRolesetPtrOutputWithContext(ctx context.Context) SecretRolesetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretRolesetPtrOutput)
+}
+
+type SecretRolesetPtrInput interface {
+	pulumi.Input
+
+	ToSecretRolesetPtrOutput() SecretRolesetPtrOutput
+	ToSecretRolesetPtrOutputWithContext(ctx context.Context) SecretRolesetPtrOutput
+}
+
+type secretRolesetPtrType SecretRolesetArgs
+
+func (*secretRolesetPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretRoleset)(nil))
+}
+
+func (i *secretRolesetPtrType) ToSecretRolesetPtrOutput() SecretRolesetPtrOutput {
+	return i.ToSecretRolesetPtrOutputWithContext(context.Background())
+}
+
+func (i *secretRolesetPtrType) ToSecretRolesetPtrOutputWithContext(ctx context.Context) SecretRolesetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretRolesetPtrOutput)
+}
+
+// SecretRolesetArrayInput is an input type that accepts SecretRolesetArray and SecretRolesetArrayOutput values.
+// You can construct a concrete instance of `SecretRolesetArrayInput` via:
+//
+//          SecretRolesetArray{ SecretRolesetArgs{...} }
+type SecretRolesetArrayInput interface {
+	pulumi.Input
+
+	ToSecretRolesetArrayOutput() SecretRolesetArrayOutput
+	ToSecretRolesetArrayOutputWithContext(context.Context) SecretRolesetArrayOutput
+}
+
+type SecretRolesetArray []SecretRolesetInput
+
+func (SecretRolesetArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*SecretRoleset)(nil))
+}
+
+func (i SecretRolesetArray) ToSecretRolesetArrayOutput() SecretRolesetArrayOutput {
+	return i.ToSecretRolesetArrayOutputWithContext(context.Background())
+}
+
+func (i SecretRolesetArray) ToSecretRolesetArrayOutputWithContext(ctx context.Context) SecretRolesetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretRolesetArrayOutput)
+}
+
+// SecretRolesetMapInput is an input type that accepts SecretRolesetMap and SecretRolesetMapOutput values.
+// You can construct a concrete instance of `SecretRolesetMapInput` via:
+//
+//          SecretRolesetMap{ "key": SecretRolesetArgs{...} }
+type SecretRolesetMapInput interface {
+	pulumi.Input
+
+	ToSecretRolesetMapOutput() SecretRolesetMapOutput
+	ToSecretRolesetMapOutputWithContext(context.Context) SecretRolesetMapOutput
+}
+
+type SecretRolesetMap map[string]SecretRolesetInput
+
+func (SecretRolesetMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*SecretRoleset)(nil))
+}
+
+func (i SecretRolesetMap) ToSecretRolesetMapOutput() SecretRolesetMapOutput {
+	return i.ToSecretRolesetMapOutputWithContext(context.Background())
+}
+
+func (i SecretRolesetMap) ToSecretRolesetMapOutputWithContext(ctx context.Context) SecretRolesetMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretRolesetMapOutput)
+}
+
 type SecretRolesetOutput struct {
 	*pulumi.OutputState
 }
@@ -189,6 +268,75 @@ func (o SecretRolesetOutput) ToSecretRolesetOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o SecretRolesetOutput) ToSecretRolesetPtrOutput() SecretRolesetPtrOutput {
+	return o.ToSecretRolesetPtrOutputWithContext(context.Background())
+}
+
+func (o SecretRolesetOutput) ToSecretRolesetPtrOutputWithContext(ctx context.Context) SecretRolesetPtrOutput {
+	return o.ApplyT(func(v SecretRoleset) *SecretRoleset {
+		return &v
+	}).(SecretRolesetPtrOutput)
+}
+
+type SecretRolesetPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretRolesetPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretRoleset)(nil))
+}
+
+func (o SecretRolesetPtrOutput) ToSecretRolesetPtrOutput() SecretRolesetPtrOutput {
+	return o
+}
+
+func (o SecretRolesetPtrOutput) ToSecretRolesetPtrOutputWithContext(ctx context.Context) SecretRolesetPtrOutput {
+	return o
+}
+
+type SecretRolesetArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretRolesetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretRoleset)(nil))
+}
+
+func (o SecretRolesetArrayOutput) ToSecretRolesetArrayOutput() SecretRolesetArrayOutput {
+	return o
+}
+
+func (o SecretRolesetArrayOutput) ToSecretRolesetArrayOutputWithContext(ctx context.Context) SecretRolesetArrayOutput {
+	return o
+}
+
+func (o SecretRolesetArrayOutput) Index(i pulumi.IntInput) SecretRolesetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretRoleset {
+		return vs[0].([]SecretRoleset)[vs[1].(int)]
+	}).(SecretRolesetOutput)
+}
+
+type SecretRolesetMapOutput struct{ *pulumi.OutputState }
+
+func (SecretRolesetMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]SecretRoleset)(nil))
+}
+
+func (o SecretRolesetMapOutput) ToSecretRolesetMapOutput() SecretRolesetMapOutput {
+	return o
+}
+
+func (o SecretRolesetMapOutput) ToSecretRolesetMapOutputWithContext(ctx context.Context) SecretRolesetMapOutput {
+	return o
+}
+
+func (o SecretRolesetMapOutput) MapIndex(k pulumi.StringInput) SecretRolesetOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SecretRoleset {
+		return vs[0].(map[string]SecretRoleset)[vs[1].(string)]
+	}).(SecretRolesetOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(SecretRolesetOutput{})
+	pulumi.RegisterOutputType(SecretRolesetPtrOutput{})
+	pulumi.RegisterOutputType(SecretRolesetArrayOutput{})
+	pulumi.RegisterOutputType(SecretRolesetMapOutput{})
 }

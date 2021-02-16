@@ -77,7 +77,8 @@ export class SecretBackendCa extends pulumi.CustomResource {
     constructor(name: string, args?: SecretBackendCaArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendCaArgs | SecretBackendCaState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretBackendCaState | undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["generateSigningKey"] = state ? state.generateSigningKey : undefined;
@@ -90,12 +91,8 @@ export class SecretBackendCa extends pulumi.CustomResource {
             inputs["privateKey"] = args ? args.privateKey : undefined;
             inputs["publicKey"] = args ? args.publicKey : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(SecretBackendCa.__pulumiType, name, inputs, opts);
     }

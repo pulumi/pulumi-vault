@@ -100,7 +100,8 @@ export class Transformation extends pulumi.CustomResource {
     constructor(name: string, args: TransformationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TransformationArgs | TransformationState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as TransformationState | undefined;
             inputs["allowedRoles"] = state ? state.allowedRoles : undefined;
             inputs["maskingCharacter"] = state ? state.maskingCharacter : undefined;
@@ -112,7 +113,7 @@ export class Transformation extends pulumi.CustomResource {
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as TransformationArgs | undefined;
-            if ((!args || args.path === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.path === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
             inputs["allowedRoles"] = args ? args.allowedRoles : undefined;
@@ -124,12 +125,8 @@ export class Transformation extends pulumi.CustomResource {
             inputs["tweakSource"] = args ? args.tweakSource : undefined;
             inputs["type"] = args ? args.type : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Transformation.__pulumiType, name, inputs, opts);
     }

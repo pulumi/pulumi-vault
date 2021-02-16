@@ -80,7 +80,8 @@ export class EgpPolicy extends pulumi.CustomResource {
     constructor(name: string, args: EgpPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: EgpPolicyArgs | EgpPolicyState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as EgpPolicyState | undefined;
             inputs["enforcementLevel"] = state ? state.enforcementLevel : undefined;
             inputs["name"] = state ? state.name : undefined;
@@ -88,13 +89,13 @@ export class EgpPolicy extends pulumi.CustomResource {
             inputs["policy"] = state ? state.policy : undefined;
         } else {
             const args = argsOrState as EgpPolicyArgs | undefined;
-            if ((!args || args.enforcementLevel === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.enforcementLevel === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'enforcementLevel'");
             }
-            if ((!args || args.paths === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.paths === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'paths'");
             }
-            if ((!args || args.policy === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.policy === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'policy'");
             }
             inputs["enforcementLevel"] = args ? args.enforcementLevel : undefined;
@@ -102,12 +103,8 @@ export class EgpPolicy extends pulumi.CustomResource {
             inputs["paths"] = args ? args.paths : undefined;
             inputs["policy"] = args ? args.policy : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(EgpPolicy.__pulumiType, name, inputs, opts);
     }

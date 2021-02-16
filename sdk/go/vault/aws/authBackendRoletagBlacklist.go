@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
 // 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/aws"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
@@ -169,6 +169,85 @@ func (i *AuthBackendRoletagBlacklist) ToAuthBackendRoletagBlacklistOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoletagBlacklistOutput)
 }
 
+func (i *AuthBackendRoletagBlacklist) ToAuthBackendRoletagBlacklistPtrOutput() AuthBackendRoletagBlacklistPtrOutput {
+	return i.ToAuthBackendRoletagBlacklistPtrOutputWithContext(context.Background())
+}
+
+func (i *AuthBackendRoletagBlacklist) ToAuthBackendRoletagBlacklistPtrOutputWithContext(ctx context.Context) AuthBackendRoletagBlacklistPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoletagBlacklistPtrOutput)
+}
+
+type AuthBackendRoletagBlacklistPtrInput interface {
+	pulumi.Input
+
+	ToAuthBackendRoletagBlacklistPtrOutput() AuthBackendRoletagBlacklistPtrOutput
+	ToAuthBackendRoletagBlacklistPtrOutputWithContext(ctx context.Context) AuthBackendRoletagBlacklistPtrOutput
+}
+
+type authBackendRoletagBlacklistPtrType AuthBackendRoletagBlacklistArgs
+
+func (*authBackendRoletagBlacklistPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthBackendRoletagBlacklist)(nil))
+}
+
+func (i *authBackendRoletagBlacklistPtrType) ToAuthBackendRoletagBlacklistPtrOutput() AuthBackendRoletagBlacklistPtrOutput {
+	return i.ToAuthBackendRoletagBlacklistPtrOutputWithContext(context.Background())
+}
+
+func (i *authBackendRoletagBlacklistPtrType) ToAuthBackendRoletagBlacklistPtrOutputWithContext(ctx context.Context) AuthBackendRoletagBlacklistPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoletagBlacklistPtrOutput)
+}
+
+// AuthBackendRoletagBlacklistArrayInput is an input type that accepts AuthBackendRoletagBlacklistArray and AuthBackendRoletagBlacklistArrayOutput values.
+// You can construct a concrete instance of `AuthBackendRoletagBlacklistArrayInput` via:
+//
+//          AuthBackendRoletagBlacklistArray{ AuthBackendRoletagBlacklistArgs{...} }
+type AuthBackendRoletagBlacklistArrayInput interface {
+	pulumi.Input
+
+	ToAuthBackendRoletagBlacklistArrayOutput() AuthBackendRoletagBlacklistArrayOutput
+	ToAuthBackendRoletagBlacklistArrayOutputWithContext(context.Context) AuthBackendRoletagBlacklistArrayOutput
+}
+
+type AuthBackendRoletagBlacklistArray []AuthBackendRoletagBlacklistInput
+
+func (AuthBackendRoletagBlacklistArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*AuthBackendRoletagBlacklist)(nil))
+}
+
+func (i AuthBackendRoletagBlacklistArray) ToAuthBackendRoletagBlacklistArrayOutput() AuthBackendRoletagBlacklistArrayOutput {
+	return i.ToAuthBackendRoletagBlacklistArrayOutputWithContext(context.Background())
+}
+
+func (i AuthBackendRoletagBlacklistArray) ToAuthBackendRoletagBlacklistArrayOutputWithContext(ctx context.Context) AuthBackendRoletagBlacklistArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoletagBlacklistArrayOutput)
+}
+
+// AuthBackendRoletagBlacklistMapInput is an input type that accepts AuthBackendRoletagBlacklistMap and AuthBackendRoletagBlacklistMapOutput values.
+// You can construct a concrete instance of `AuthBackendRoletagBlacklistMapInput` via:
+//
+//          AuthBackendRoletagBlacklistMap{ "key": AuthBackendRoletagBlacklistArgs{...} }
+type AuthBackendRoletagBlacklistMapInput interface {
+	pulumi.Input
+
+	ToAuthBackendRoletagBlacklistMapOutput() AuthBackendRoletagBlacklistMapOutput
+	ToAuthBackendRoletagBlacklistMapOutputWithContext(context.Context) AuthBackendRoletagBlacklistMapOutput
+}
+
+type AuthBackendRoletagBlacklistMap map[string]AuthBackendRoletagBlacklistInput
+
+func (AuthBackendRoletagBlacklistMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*AuthBackendRoletagBlacklist)(nil))
+}
+
+func (i AuthBackendRoletagBlacklistMap) ToAuthBackendRoletagBlacklistMapOutput() AuthBackendRoletagBlacklistMapOutput {
+	return i.ToAuthBackendRoletagBlacklistMapOutputWithContext(context.Background())
+}
+
+func (i AuthBackendRoletagBlacklistMap) ToAuthBackendRoletagBlacklistMapOutputWithContext(ctx context.Context) AuthBackendRoletagBlacklistMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoletagBlacklistMapOutput)
+}
+
 type AuthBackendRoletagBlacklistOutput struct {
 	*pulumi.OutputState
 }
@@ -185,6 +264,75 @@ func (o AuthBackendRoletagBlacklistOutput) ToAuthBackendRoletagBlacklistOutputWi
 	return o
 }
 
+func (o AuthBackendRoletagBlacklistOutput) ToAuthBackendRoletagBlacklistPtrOutput() AuthBackendRoletagBlacklistPtrOutput {
+	return o.ToAuthBackendRoletagBlacklistPtrOutputWithContext(context.Background())
+}
+
+func (o AuthBackendRoletagBlacklistOutput) ToAuthBackendRoletagBlacklistPtrOutputWithContext(ctx context.Context) AuthBackendRoletagBlacklistPtrOutput {
+	return o.ApplyT(func(v AuthBackendRoletagBlacklist) *AuthBackendRoletagBlacklist {
+		return &v
+	}).(AuthBackendRoletagBlacklistPtrOutput)
+}
+
+type AuthBackendRoletagBlacklistPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendRoletagBlacklistPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthBackendRoletagBlacklist)(nil))
+}
+
+func (o AuthBackendRoletagBlacklistPtrOutput) ToAuthBackendRoletagBlacklistPtrOutput() AuthBackendRoletagBlacklistPtrOutput {
+	return o
+}
+
+func (o AuthBackendRoletagBlacklistPtrOutput) ToAuthBackendRoletagBlacklistPtrOutputWithContext(ctx context.Context) AuthBackendRoletagBlacklistPtrOutput {
+	return o
+}
+
+type AuthBackendRoletagBlacklistArrayOutput struct{ *pulumi.OutputState }
+
+func (AuthBackendRoletagBlacklistArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AuthBackendRoletagBlacklist)(nil))
+}
+
+func (o AuthBackendRoletagBlacklistArrayOutput) ToAuthBackendRoletagBlacklistArrayOutput() AuthBackendRoletagBlacklistArrayOutput {
+	return o
+}
+
+func (o AuthBackendRoletagBlacklistArrayOutput) ToAuthBackendRoletagBlacklistArrayOutputWithContext(ctx context.Context) AuthBackendRoletagBlacklistArrayOutput {
+	return o
+}
+
+func (o AuthBackendRoletagBlacklistArrayOutput) Index(i pulumi.IntInput) AuthBackendRoletagBlacklistOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthBackendRoletagBlacklist {
+		return vs[0].([]AuthBackendRoletagBlacklist)[vs[1].(int)]
+	}).(AuthBackendRoletagBlacklistOutput)
+}
+
+type AuthBackendRoletagBlacklistMapOutput struct{ *pulumi.OutputState }
+
+func (AuthBackendRoletagBlacklistMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]AuthBackendRoletagBlacklist)(nil))
+}
+
+func (o AuthBackendRoletagBlacklistMapOutput) ToAuthBackendRoletagBlacklistMapOutput() AuthBackendRoletagBlacklistMapOutput {
+	return o
+}
+
+func (o AuthBackendRoletagBlacklistMapOutput) ToAuthBackendRoletagBlacklistMapOutputWithContext(ctx context.Context) AuthBackendRoletagBlacklistMapOutput {
+	return o
+}
+
+func (o AuthBackendRoletagBlacklistMapOutput) MapIndex(k pulumi.StringInput) AuthBackendRoletagBlacklistOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AuthBackendRoletagBlacklist {
+		return vs[0].(map[string]AuthBackendRoletagBlacklist)[vs[1].(string)]
+	}).(AuthBackendRoletagBlacklistOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(AuthBackendRoletagBlacklistOutput{})
+	pulumi.RegisterOutputType(AuthBackendRoletagBlacklistPtrOutput{})
+	pulumi.RegisterOutputType(AuthBackendRoletagBlacklistArrayOutput{})
+	pulumi.RegisterOutputType(AuthBackendRoletagBlacklistMapOutput{})
 }

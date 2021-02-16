@@ -81,32 +81,29 @@ export class GroupAlias extends pulumi.CustomResource {
     constructor(name: string, args: GroupAliasArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GroupAliasArgs | GroupAliasState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as GroupAliasState | undefined;
             inputs["canonicalId"] = state ? state.canonicalId : undefined;
             inputs["mountAccessor"] = state ? state.mountAccessor : undefined;
             inputs["name"] = state ? state.name : undefined;
         } else {
             const args = argsOrState as GroupAliasArgs | undefined;
-            if ((!args || args.canonicalId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.canonicalId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'canonicalId'");
             }
-            if ((!args || args.mountAccessor === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.mountAccessor === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'mountAccessor'");
             }
-            if ((!args || args.name === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.name === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'name'");
             }
             inputs["canonicalId"] = args ? args.canonicalId : undefined;
             inputs["mountAccessor"] = args ? args.mountAccessor : undefined;
             inputs["name"] = args ? args.name : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(GroupAlias.__pulumiType, name, inputs, opts);
     }

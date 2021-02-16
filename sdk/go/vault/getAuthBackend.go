@@ -14,7 +14,6 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //

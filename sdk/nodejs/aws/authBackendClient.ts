@@ -93,7 +93,8 @@ export class AuthBackendClient extends pulumi.CustomResource {
     constructor(name: string, args?: AuthBackendClientArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendClientArgs | AuthBackendClientState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as AuthBackendClientState | undefined;
             inputs["accessKey"] = state ? state.accessKey : undefined;
             inputs["backend"] = state ? state.backend : undefined;
@@ -114,12 +115,8 @@ export class AuthBackendClient extends pulumi.CustomResource {
             inputs["stsEndpoint"] = args ? args.stsEndpoint : undefined;
             inputs["stsRegion"] = args ? args.stsRegion : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(AuthBackendClient.__pulumiType, name, inputs, opts);
     }

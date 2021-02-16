@@ -14,7 +14,7 @@ export let addAddressToEnv: string | undefined = __config.get("addAddressToEnv")
 /**
  * URL of the root of the target Vault server.
  */
-export let address: string | undefined = __config.get("address") || utilities.getEnv("VAULT_ADDR");
+export let address: string | undefined = __config.get("address");
 /**
  * Login to vault with an existing auth method using auth/<mount>/login
  */
@@ -22,11 +22,11 @@ export let authLogins: outputs.config.AuthLogins[] | undefined = __config.getObj
 /**
  * Path to directory containing CA certificate files to validate the server's certificate.
  */
-export let caCertDir: string | undefined = __config.get("caCertDir") || utilities.getEnv("VAULT_CAPATH");
+export let caCertDir: string | undefined = __config.get("caCertDir");
 /**
  * Path to a CA certificate file to validate the server's certificate.
  */
-export let caCertFile: string | undefined = __config.get("caCertFile") || utilities.getEnv("VAULT_CACERT");
+export let caCertFile: string | undefined = __config.get("caCertFile");
 /**
  * Client authentication credentials.
  */
@@ -46,7 +46,7 @@ export let maxRetries: number | undefined = __config.getObject<number>("maxRetri
 /**
  * The namespace to use. Available only for Vault Enterprise
  */
-export let namespace: string | undefined = __config.get("namespace") || utilities.getEnv("VAULT_NAMESPACE");
+export let namespace: string | undefined = __config.get("namespace");
 /**
  * Set this to true only if the target Vault server is an insecure development instance.
  */
@@ -54,8 +54,8 @@ export let skipTlsVerify: boolean | undefined = __config.getObject<boolean>("ski
 /**
  * Token to use to authenticate to Vault.
  */
-export let token: string | undefined = __config.get("token") || utilities.getEnv("VAULT_TOKEN");
+export let token: string | undefined = __config.get("token");
 /**
  * Token name to use for creating the Vault child token.
  */
-export let tokenName: string | undefined = __config.get("tokenName") || utilities.getEnv("VAULT_TOKEN_NAME");
+export let tokenName: string | undefined = __config.get("tokenName");

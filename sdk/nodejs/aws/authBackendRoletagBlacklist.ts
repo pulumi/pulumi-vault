@@ -77,26 +77,23 @@ export class AuthBackendRoletagBlacklist extends pulumi.CustomResource {
     constructor(name: string, args: AuthBackendRoletagBlacklistArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendRoletagBlacklistArgs | AuthBackendRoletagBlacklistState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as AuthBackendRoletagBlacklistState | undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["disablePeriodicTidy"] = state ? state.disablePeriodicTidy : undefined;
             inputs["safetyBuffer"] = state ? state.safetyBuffer : undefined;
         } else {
             const args = argsOrState as AuthBackendRoletagBlacklistArgs | undefined;
-            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
             inputs["backend"] = args ? args.backend : undefined;
             inputs["disablePeriodicTidy"] = args ? args.disablePeriodicTidy : undefined;
             inputs["safetyBuffer"] = args ? args.safetyBuffer : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(AuthBackendRoletagBlacklist.__pulumiType, name, inputs, opts);
     }

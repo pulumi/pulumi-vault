@@ -123,7 +123,8 @@ export class SecretBackendCert extends pulumi.CustomResource {
     constructor(name: string, args: SecretBackendCertArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendCertArgs | SecretBackendCertState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretBackendCertState | undefined;
             inputs["altNames"] = state ? state.altNames : undefined;
             inputs["autoRenew"] = state ? state.autoRenew : undefined;
@@ -147,10 +148,10 @@ export class SecretBackendCert extends pulumi.CustomResource {
             inputs["uriSans"] = state ? state.uriSans : undefined;
         } else {
             const args = argsOrState as SecretBackendCertArgs | undefined;
-            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.commonName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.commonName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'commonName'");
             }
             inputs["altNames"] = args ? args.altNames : undefined;
@@ -174,12 +175,8 @@ export class SecretBackendCert extends pulumi.CustomResource {
             inputs["privateKeyType"] = undefined /*out*/;
             inputs["serialNumber"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(SecretBackendCert.__pulumiType, name, inputs, opts);
     }

@@ -79,7 +79,8 @@ export class SecretBackendConfigUrls extends pulumi.CustomResource {
     constructor(name: string, args: SecretBackendConfigUrlsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendConfigUrlsArgs | SecretBackendConfigUrlsState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretBackendConfigUrlsState | undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["crlDistributionPoints"] = state ? state.crlDistributionPoints : undefined;
@@ -87,7 +88,7 @@ export class SecretBackendConfigUrls extends pulumi.CustomResource {
             inputs["ocspServers"] = state ? state.ocspServers : undefined;
         } else {
             const args = argsOrState as SecretBackendConfigUrlsArgs | undefined;
-            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
             inputs["backend"] = args ? args.backend : undefined;
@@ -95,12 +96,8 @@ export class SecretBackendConfigUrls extends pulumi.CustomResource {
             inputs["issuingCertificates"] = args ? args.issuingCertificates : undefined;
             inputs["ocspServers"] = args ? args.ocspServers : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(SecretBackendConfigUrls.__pulumiType, name, inputs, opts);
     }

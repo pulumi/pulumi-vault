@@ -79,7 +79,8 @@ export class BackendRole extends pulumi.CustomResource {
     constructor(name: string, args: BackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: BackendRoleArgs | BackendRoleState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as BackendRoleState | undefined;
             inputs["applicationObjectId"] = state ? state.applicationObjectId : undefined;
             inputs["azureGroups"] = state ? state.azureGroups : undefined;
@@ -91,7 +92,7 @@ export class BackendRole extends pulumi.CustomResource {
             inputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as BackendRoleArgs | undefined;
-            if ((!args || args.role === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.role === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
             inputs["applicationObjectId"] = args ? args.applicationObjectId : undefined;
@@ -103,12 +104,8 @@ export class BackendRole extends pulumi.CustomResource {
             inputs["role"] = args ? args.role : undefined;
             inputs["ttl"] = args ? args.ttl : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(BackendRole.__pulumiType, name, inputs, opts);
     }

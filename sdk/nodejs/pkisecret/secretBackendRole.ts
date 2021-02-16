@@ -218,7 +218,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
     constructor(name: string, args: SecretBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendRoleArgs | SecretBackendRoleState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretBackendRoleState | undefined;
             inputs["allowAnyName"] = state ? state.allowAnyName : undefined;
             inputs["allowBareDomains"] = state ? state.allowBareDomains : undefined;
@@ -259,7 +260,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["useCsrSans"] = state ? state.useCsrSans : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
-            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
             inputs["allowAnyName"] = args ? args.allowAnyName : undefined;
@@ -300,12 +301,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["useCsrCommonName"] = args ? args.useCsrCommonName : undefined;
             inputs["useCsrSans"] = args ? args.useCsrSans : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(SecretBackendRole.__pulumiType, name, inputs, opts);
     }

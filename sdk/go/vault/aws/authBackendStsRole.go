@@ -137,6 +137,85 @@ func (i *AuthBackendStsRole) ToAuthBackendStsRoleOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendStsRoleOutput)
 }
 
+func (i *AuthBackendStsRole) ToAuthBackendStsRolePtrOutput() AuthBackendStsRolePtrOutput {
+	return i.ToAuthBackendStsRolePtrOutputWithContext(context.Background())
+}
+
+func (i *AuthBackendStsRole) ToAuthBackendStsRolePtrOutputWithContext(ctx context.Context) AuthBackendStsRolePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendStsRolePtrOutput)
+}
+
+type AuthBackendStsRolePtrInput interface {
+	pulumi.Input
+
+	ToAuthBackendStsRolePtrOutput() AuthBackendStsRolePtrOutput
+	ToAuthBackendStsRolePtrOutputWithContext(ctx context.Context) AuthBackendStsRolePtrOutput
+}
+
+type authBackendStsRolePtrType AuthBackendStsRoleArgs
+
+func (*authBackendStsRolePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthBackendStsRole)(nil))
+}
+
+func (i *authBackendStsRolePtrType) ToAuthBackendStsRolePtrOutput() AuthBackendStsRolePtrOutput {
+	return i.ToAuthBackendStsRolePtrOutputWithContext(context.Background())
+}
+
+func (i *authBackendStsRolePtrType) ToAuthBackendStsRolePtrOutputWithContext(ctx context.Context) AuthBackendStsRolePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendStsRolePtrOutput)
+}
+
+// AuthBackendStsRoleArrayInput is an input type that accepts AuthBackendStsRoleArray and AuthBackendStsRoleArrayOutput values.
+// You can construct a concrete instance of `AuthBackendStsRoleArrayInput` via:
+//
+//          AuthBackendStsRoleArray{ AuthBackendStsRoleArgs{...} }
+type AuthBackendStsRoleArrayInput interface {
+	pulumi.Input
+
+	ToAuthBackendStsRoleArrayOutput() AuthBackendStsRoleArrayOutput
+	ToAuthBackendStsRoleArrayOutputWithContext(context.Context) AuthBackendStsRoleArrayOutput
+}
+
+type AuthBackendStsRoleArray []AuthBackendStsRoleInput
+
+func (AuthBackendStsRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*AuthBackendStsRole)(nil))
+}
+
+func (i AuthBackendStsRoleArray) ToAuthBackendStsRoleArrayOutput() AuthBackendStsRoleArrayOutput {
+	return i.ToAuthBackendStsRoleArrayOutputWithContext(context.Background())
+}
+
+func (i AuthBackendStsRoleArray) ToAuthBackendStsRoleArrayOutputWithContext(ctx context.Context) AuthBackendStsRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendStsRoleArrayOutput)
+}
+
+// AuthBackendStsRoleMapInput is an input type that accepts AuthBackendStsRoleMap and AuthBackendStsRoleMapOutput values.
+// You can construct a concrete instance of `AuthBackendStsRoleMapInput` via:
+//
+//          AuthBackendStsRoleMap{ "key": AuthBackendStsRoleArgs{...} }
+type AuthBackendStsRoleMapInput interface {
+	pulumi.Input
+
+	ToAuthBackendStsRoleMapOutput() AuthBackendStsRoleMapOutput
+	ToAuthBackendStsRoleMapOutputWithContext(context.Context) AuthBackendStsRoleMapOutput
+}
+
+type AuthBackendStsRoleMap map[string]AuthBackendStsRoleInput
+
+func (AuthBackendStsRoleMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*AuthBackendStsRole)(nil))
+}
+
+func (i AuthBackendStsRoleMap) ToAuthBackendStsRoleMapOutput() AuthBackendStsRoleMapOutput {
+	return i.ToAuthBackendStsRoleMapOutputWithContext(context.Background())
+}
+
+func (i AuthBackendStsRoleMap) ToAuthBackendStsRoleMapOutputWithContext(ctx context.Context) AuthBackendStsRoleMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendStsRoleMapOutput)
+}
+
 type AuthBackendStsRoleOutput struct {
 	*pulumi.OutputState
 }
@@ -153,6 +232,75 @@ func (o AuthBackendStsRoleOutput) ToAuthBackendStsRoleOutputWithContext(ctx cont
 	return o
 }
 
+func (o AuthBackendStsRoleOutput) ToAuthBackendStsRolePtrOutput() AuthBackendStsRolePtrOutput {
+	return o.ToAuthBackendStsRolePtrOutputWithContext(context.Background())
+}
+
+func (o AuthBackendStsRoleOutput) ToAuthBackendStsRolePtrOutputWithContext(ctx context.Context) AuthBackendStsRolePtrOutput {
+	return o.ApplyT(func(v AuthBackendStsRole) *AuthBackendStsRole {
+		return &v
+	}).(AuthBackendStsRolePtrOutput)
+}
+
+type AuthBackendStsRolePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendStsRolePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthBackendStsRole)(nil))
+}
+
+func (o AuthBackendStsRolePtrOutput) ToAuthBackendStsRolePtrOutput() AuthBackendStsRolePtrOutput {
+	return o
+}
+
+func (o AuthBackendStsRolePtrOutput) ToAuthBackendStsRolePtrOutputWithContext(ctx context.Context) AuthBackendStsRolePtrOutput {
+	return o
+}
+
+type AuthBackendStsRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (AuthBackendStsRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AuthBackendStsRole)(nil))
+}
+
+func (o AuthBackendStsRoleArrayOutput) ToAuthBackendStsRoleArrayOutput() AuthBackendStsRoleArrayOutput {
+	return o
+}
+
+func (o AuthBackendStsRoleArrayOutput) ToAuthBackendStsRoleArrayOutputWithContext(ctx context.Context) AuthBackendStsRoleArrayOutput {
+	return o
+}
+
+func (o AuthBackendStsRoleArrayOutput) Index(i pulumi.IntInput) AuthBackendStsRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthBackendStsRole {
+		return vs[0].([]AuthBackendStsRole)[vs[1].(int)]
+	}).(AuthBackendStsRoleOutput)
+}
+
+type AuthBackendStsRoleMapOutput struct{ *pulumi.OutputState }
+
+func (AuthBackendStsRoleMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]AuthBackendStsRole)(nil))
+}
+
+func (o AuthBackendStsRoleMapOutput) ToAuthBackendStsRoleMapOutput() AuthBackendStsRoleMapOutput {
+	return o
+}
+
+func (o AuthBackendStsRoleMapOutput) ToAuthBackendStsRoleMapOutputWithContext(ctx context.Context) AuthBackendStsRoleMapOutput {
+	return o
+}
+
+func (o AuthBackendStsRoleMapOutput) MapIndex(k pulumi.StringInput) AuthBackendStsRoleOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AuthBackendStsRole {
+		return vs[0].(map[string]AuthBackendStsRole)[vs[1].(string)]
+	}).(AuthBackendStsRoleOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(AuthBackendStsRoleOutput{})
+	pulumi.RegisterOutputType(AuthBackendStsRolePtrOutput{})
+	pulumi.RegisterOutputType(AuthBackendStsRoleArrayOutput{})
+	pulumi.RegisterOutputType(AuthBackendStsRoleMapOutput{})
 }

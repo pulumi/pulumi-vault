@@ -155,6 +155,85 @@ func (i *OidcKey) ToOidcKeyOutputWithContext(ctx context.Context) OidcKeyOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyOutput)
 }
 
+func (i *OidcKey) ToOidcKeyPtrOutput() OidcKeyPtrOutput {
+	return i.ToOidcKeyPtrOutputWithContext(context.Background())
+}
+
+func (i *OidcKey) ToOidcKeyPtrOutputWithContext(ctx context.Context) OidcKeyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyPtrOutput)
+}
+
+type OidcKeyPtrInput interface {
+	pulumi.Input
+
+	ToOidcKeyPtrOutput() OidcKeyPtrOutput
+	ToOidcKeyPtrOutputWithContext(ctx context.Context) OidcKeyPtrOutput
+}
+
+type oidcKeyPtrType OidcKeyArgs
+
+func (*oidcKeyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**OidcKey)(nil))
+}
+
+func (i *oidcKeyPtrType) ToOidcKeyPtrOutput() OidcKeyPtrOutput {
+	return i.ToOidcKeyPtrOutputWithContext(context.Background())
+}
+
+func (i *oidcKeyPtrType) ToOidcKeyPtrOutputWithContext(ctx context.Context) OidcKeyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyPtrOutput)
+}
+
+// OidcKeyArrayInput is an input type that accepts OidcKeyArray and OidcKeyArrayOutput values.
+// You can construct a concrete instance of `OidcKeyArrayInput` via:
+//
+//          OidcKeyArray{ OidcKeyArgs{...} }
+type OidcKeyArrayInput interface {
+	pulumi.Input
+
+	ToOidcKeyArrayOutput() OidcKeyArrayOutput
+	ToOidcKeyArrayOutputWithContext(context.Context) OidcKeyArrayOutput
+}
+
+type OidcKeyArray []OidcKeyInput
+
+func (OidcKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*OidcKey)(nil))
+}
+
+func (i OidcKeyArray) ToOidcKeyArrayOutput() OidcKeyArrayOutput {
+	return i.ToOidcKeyArrayOutputWithContext(context.Background())
+}
+
+func (i OidcKeyArray) ToOidcKeyArrayOutputWithContext(ctx context.Context) OidcKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyArrayOutput)
+}
+
+// OidcKeyMapInput is an input type that accepts OidcKeyMap and OidcKeyMapOutput values.
+// You can construct a concrete instance of `OidcKeyMapInput` via:
+//
+//          OidcKeyMap{ "key": OidcKeyArgs{...} }
+type OidcKeyMapInput interface {
+	pulumi.Input
+
+	ToOidcKeyMapOutput() OidcKeyMapOutput
+	ToOidcKeyMapOutputWithContext(context.Context) OidcKeyMapOutput
+}
+
+type OidcKeyMap map[string]OidcKeyInput
+
+func (OidcKeyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*OidcKey)(nil))
+}
+
+func (i OidcKeyMap) ToOidcKeyMapOutput() OidcKeyMapOutput {
+	return i.ToOidcKeyMapOutputWithContext(context.Background())
+}
+
+func (i OidcKeyMap) ToOidcKeyMapOutputWithContext(ctx context.Context) OidcKeyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyMapOutput)
+}
+
 type OidcKeyOutput struct {
 	*pulumi.OutputState
 }
@@ -171,6 +250,75 @@ func (o OidcKeyOutput) ToOidcKeyOutputWithContext(ctx context.Context) OidcKeyOu
 	return o
 }
 
+func (o OidcKeyOutput) ToOidcKeyPtrOutput() OidcKeyPtrOutput {
+	return o.ToOidcKeyPtrOutputWithContext(context.Background())
+}
+
+func (o OidcKeyOutput) ToOidcKeyPtrOutputWithContext(ctx context.Context) OidcKeyPtrOutput {
+	return o.ApplyT(func(v OidcKey) *OidcKey {
+		return &v
+	}).(OidcKeyPtrOutput)
+}
+
+type OidcKeyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (OidcKeyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OidcKey)(nil))
+}
+
+func (o OidcKeyPtrOutput) ToOidcKeyPtrOutput() OidcKeyPtrOutput {
+	return o
+}
+
+func (o OidcKeyPtrOutput) ToOidcKeyPtrOutputWithContext(ctx context.Context) OidcKeyPtrOutput {
+	return o
+}
+
+type OidcKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (OidcKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OidcKey)(nil))
+}
+
+func (o OidcKeyArrayOutput) ToOidcKeyArrayOutput() OidcKeyArrayOutput {
+	return o
+}
+
+func (o OidcKeyArrayOutput) ToOidcKeyArrayOutputWithContext(ctx context.Context) OidcKeyArrayOutput {
+	return o
+}
+
+func (o OidcKeyArrayOutput) Index(i pulumi.IntInput) OidcKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OidcKey {
+		return vs[0].([]OidcKey)[vs[1].(int)]
+	}).(OidcKeyOutput)
+}
+
+type OidcKeyMapOutput struct{ *pulumi.OutputState }
+
+func (OidcKeyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]OidcKey)(nil))
+}
+
+func (o OidcKeyMapOutput) ToOidcKeyMapOutput() OidcKeyMapOutput {
+	return o
+}
+
+func (o OidcKeyMapOutput) ToOidcKeyMapOutputWithContext(ctx context.Context) OidcKeyMapOutput {
+	return o
+}
+
+func (o OidcKeyMapOutput) MapIndex(k pulumi.StringInput) OidcKeyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) OidcKey {
+		return vs[0].(map[string]OidcKey)[vs[1].(string)]
+	}).(OidcKeyOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(OidcKeyOutput{})
+	pulumi.RegisterOutputType(OidcKeyPtrOutput{})
+	pulumi.RegisterOutputType(OidcKeyArrayOutput{})
+	pulumi.RegisterOutputType(OidcKeyMapOutput{})
 }

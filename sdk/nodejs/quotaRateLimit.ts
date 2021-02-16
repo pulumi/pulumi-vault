@@ -89,26 +89,23 @@ export class QuotaRateLimit extends pulumi.CustomResource {
     constructor(name: string, args: QuotaRateLimitArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: QuotaRateLimitArgs | QuotaRateLimitState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as QuotaRateLimitState | undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["path"] = state ? state.path : undefined;
             inputs["rate"] = state ? state.rate : undefined;
         } else {
             const args = argsOrState as QuotaRateLimitArgs | undefined;
-            if ((!args || args.rate === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.rate === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'rate'");
             }
             inputs["name"] = args ? args.name : undefined;
             inputs["path"] = args ? args.path : undefined;
             inputs["rate"] = args ? args.rate : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(QuotaRateLimit.__pulumiType, name, inputs, opts);
     }

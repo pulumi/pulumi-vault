@@ -205,7 +205,8 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
     constructor(name: string, args: CertAuthBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CertAuthBackendRoleArgs | CertAuthBackendRoleState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as CertAuthBackendRoleState | undefined;
             inputs["allowedCommonNames"] = state ? state.allowedCommonNames : undefined;
             inputs["allowedDnsSans"] = state ? state.allowedDnsSans : undefined;
@@ -234,7 +235,7 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
             inputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as CertAuthBackendRoleArgs | undefined;
-            if ((!args || args.certificate === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.certificate === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'certificate'");
             }
             inputs["allowedCommonNames"] = args ? args.allowedCommonNames : undefined;
@@ -263,12 +264,8 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
             inputs["tokenType"] = args ? args.tokenType : undefined;
             inputs["ttl"] = args ? args.ttl : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(CertAuthBackendRole.__pulumiType, name, inputs, opts);
     }

@@ -69,19 +69,16 @@ export class Oidc extends pulumi.CustomResource {
     constructor(name: string, args?: OidcArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: OidcArgs | OidcState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as OidcState | undefined;
             inputs["issuer"] = state ? state.issuer : undefined;
         } else {
             const args = argsOrState as OidcArgs | undefined;
             inputs["issuer"] = args ? args.issuer : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Oidc.__pulumiType, name, inputs, opts);
     }

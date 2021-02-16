@@ -101,7 +101,8 @@ export class EntityPolicies extends pulumi.CustomResource {
     constructor(name: string, args: EntityPoliciesArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: EntityPoliciesArgs | EntityPoliciesState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as EntityPoliciesState | undefined;
             inputs["entityId"] = state ? state.entityId : undefined;
             inputs["entityName"] = state ? state.entityName : undefined;
@@ -109,10 +110,10 @@ export class EntityPolicies extends pulumi.CustomResource {
             inputs["policies"] = state ? state.policies : undefined;
         } else {
             const args = argsOrState as EntityPoliciesArgs | undefined;
-            if ((!args || args.entityId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.entityId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'entityId'");
             }
-            if ((!args || args.policies === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.policies === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'policies'");
             }
             inputs["entityId"] = args ? args.entityId : undefined;
@@ -120,12 +121,8 @@ export class EntityPolicies extends pulumi.CustomResource {
             inputs["policies"] = args ? args.policies : undefined;
             inputs["entityName"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(EntityPolicies.__pulumiType, name, inputs, opts);
     }

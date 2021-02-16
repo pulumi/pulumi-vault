@@ -113,7 +113,8 @@ export class Group extends pulumi.CustomResource {
     constructor(name: string, args?: GroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GroupArgs | GroupState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as GroupState | undefined;
             inputs["externalMemberEntityIds"] = state ? state.externalMemberEntityIds : undefined;
             inputs["externalPolicies"] = state ? state.externalPolicies : undefined;
@@ -134,12 +135,8 @@ export class Group extends pulumi.CustomResource {
             inputs["policies"] = args ? args.policies : undefined;
             inputs["type"] = args ? args.type : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Group.__pulumiType, name, inputs, opts);
     }

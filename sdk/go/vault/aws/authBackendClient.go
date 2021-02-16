@@ -215,6 +215,85 @@ func (i *AuthBackendClient) ToAuthBackendClientOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendClientOutput)
 }
 
+func (i *AuthBackendClient) ToAuthBackendClientPtrOutput() AuthBackendClientPtrOutput {
+	return i.ToAuthBackendClientPtrOutputWithContext(context.Background())
+}
+
+func (i *AuthBackendClient) ToAuthBackendClientPtrOutputWithContext(ctx context.Context) AuthBackendClientPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendClientPtrOutput)
+}
+
+type AuthBackendClientPtrInput interface {
+	pulumi.Input
+
+	ToAuthBackendClientPtrOutput() AuthBackendClientPtrOutput
+	ToAuthBackendClientPtrOutputWithContext(ctx context.Context) AuthBackendClientPtrOutput
+}
+
+type authBackendClientPtrType AuthBackendClientArgs
+
+func (*authBackendClientPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthBackendClient)(nil))
+}
+
+func (i *authBackendClientPtrType) ToAuthBackendClientPtrOutput() AuthBackendClientPtrOutput {
+	return i.ToAuthBackendClientPtrOutputWithContext(context.Background())
+}
+
+func (i *authBackendClientPtrType) ToAuthBackendClientPtrOutputWithContext(ctx context.Context) AuthBackendClientPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendClientPtrOutput)
+}
+
+// AuthBackendClientArrayInput is an input type that accepts AuthBackendClientArray and AuthBackendClientArrayOutput values.
+// You can construct a concrete instance of `AuthBackendClientArrayInput` via:
+//
+//          AuthBackendClientArray{ AuthBackendClientArgs{...} }
+type AuthBackendClientArrayInput interface {
+	pulumi.Input
+
+	ToAuthBackendClientArrayOutput() AuthBackendClientArrayOutput
+	ToAuthBackendClientArrayOutputWithContext(context.Context) AuthBackendClientArrayOutput
+}
+
+type AuthBackendClientArray []AuthBackendClientInput
+
+func (AuthBackendClientArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*AuthBackendClient)(nil))
+}
+
+func (i AuthBackendClientArray) ToAuthBackendClientArrayOutput() AuthBackendClientArrayOutput {
+	return i.ToAuthBackendClientArrayOutputWithContext(context.Background())
+}
+
+func (i AuthBackendClientArray) ToAuthBackendClientArrayOutputWithContext(ctx context.Context) AuthBackendClientArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendClientArrayOutput)
+}
+
+// AuthBackendClientMapInput is an input type that accepts AuthBackendClientMap and AuthBackendClientMapOutput values.
+// You can construct a concrete instance of `AuthBackendClientMapInput` via:
+//
+//          AuthBackendClientMap{ "key": AuthBackendClientArgs{...} }
+type AuthBackendClientMapInput interface {
+	pulumi.Input
+
+	ToAuthBackendClientMapOutput() AuthBackendClientMapOutput
+	ToAuthBackendClientMapOutputWithContext(context.Context) AuthBackendClientMapOutput
+}
+
+type AuthBackendClientMap map[string]AuthBackendClientInput
+
+func (AuthBackendClientMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*AuthBackendClient)(nil))
+}
+
+func (i AuthBackendClientMap) ToAuthBackendClientMapOutput() AuthBackendClientMapOutput {
+	return i.ToAuthBackendClientMapOutputWithContext(context.Background())
+}
+
+func (i AuthBackendClientMap) ToAuthBackendClientMapOutputWithContext(ctx context.Context) AuthBackendClientMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendClientMapOutput)
+}
+
 type AuthBackendClientOutput struct {
 	*pulumi.OutputState
 }
@@ -231,6 +310,75 @@ func (o AuthBackendClientOutput) ToAuthBackendClientOutputWithContext(ctx contex
 	return o
 }
 
+func (o AuthBackendClientOutput) ToAuthBackendClientPtrOutput() AuthBackendClientPtrOutput {
+	return o.ToAuthBackendClientPtrOutputWithContext(context.Background())
+}
+
+func (o AuthBackendClientOutput) ToAuthBackendClientPtrOutputWithContext(ctx context.Context) AuthBackendClientPtrOutput {
+	return o.ApplyT(func(v AuthBackendClient) *AuthBackendClient {
+		return &v
+	}).(AuthBackendClientPtrOutput)
+}
+
+type AuthBackendClientPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendClientPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthBackendClient)(nil))
+}
+
+func (o AuthBackendClientPtrOutput) ToAuthBackendClientPtrOutput() AuthBackendClientPtrOutput {
+	return o
+}
+
+func (o AuthBackendClientPtrOutput) ToAuthBackendClientPtrOutputWithContext(ctx context.Context) AuthBackendClientPtrOutput {
+	return o
+}
+
+type AuthBackendClientArrayOutput struct{ *pulumi.OutputState }
+
+func (AuthBackendClientArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AuthBackendClient)(nil))
+}
+
+func (o AuthBackendClientArrayOutput) ToAuthBackendClientArrayOutput() AuthBackendClientArrayOutput {
+	return o
+}
+
+func (o AuthBackendClientArrayOutput) ToAuthBackendClientArrayOutputWithContext(ctx context.Context) AuthBackendClientArrayOutput {
+	return o
+}
+
+func (o AuthBackendClientArrayOutput) Index(i pulumi.IntInput) AuthBackendClientOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthBackendClient {
+		return vs[0].([]AuthBackendClient)[vs[1].(int)]
+	}).(AuthBackendClientOutput)
+}
+
+type AuthBackendClientMapOutput struct{ *pulumi.OutputState }
+
+func (AuthBackendClientMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]AuthBackendClient)(nil))
+}
+
+func (o AuthBackendClientMapOutput) ToAuthBackendClientMapOutput() AuthBackendClientMapOutput {
+	return o
+}
+
+func (o AuthBackendClientMapOutput) ToAuthBackendClientMapOutputWithContext(ctx context.Context) AuthBackendClientMapOutput {
+	return o
+}
+
+func (o AuthBackendClientMapOutput) MapIndex(k pulumi.StringInput) AuthBackendClientOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AuthBackendClient {
+		return vs[0].(map[string]AuthBackendClient)[vs[1].(string)]
+	}).(AuthBackendClientOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(AuthBackendClientOutput{})
+	pulumi.RegisterOutputType(AuthBackendClientPtrOutput{})
+	pulumi.RegisterOutputType(AuthBackendClientArrayOutput{})
+	pulumi.RegisterOutputType(AuthBackendClientMapOutput{})
 }

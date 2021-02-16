@@ -77,7 +77,8 @@ export class NomadSecretRole extends pulumi.CustomResource {
     constructor(name: string, args: NomadSecretRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: NomadSecretRoleArgs | NomadSecretRoleState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as NomadSecretRoleState | undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["global"] = state ? state.global : undefined;
@@ -86,10 +87,10 @@ export class NomadSecretRole extends pulumi.CustomResource {
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as NomadSecretRoleArgs | undefined;
-            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.role === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.role === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
             inputs["backend"] = args ? args.backend : undefined;
@@ -98,12 +99,8 @@ export class NomadSecretRole extends pulumi.CustomResource {
             inputs["role"] = args ? args.role : undefined;
             inputs["type"] = args ? args.type : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(NomadSecretRole.__pulumiType, name, inputs, opts);
     }

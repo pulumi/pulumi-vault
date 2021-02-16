@@ -16,7 +16,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// URL of the root of the target Vault server.
         /// </summary>
-        public static string? Address { get; set; } = __config.Get("address") ?? Utilities.GetEnv("VAULT_ADDR");
+        public static string? Address { get; set; } = __config.Get("address");
 
         /// <summary>
         /// Login to vault with an existing auth method using auth/&lt;mount&gt;/login
@@ -26,12 +26,12 @@ namespace Pulumi.Vault
         /// <summary>
         /// Path to directory containing CA certificate files to validate the server's certificate.
         /// </summary>
-        public static string? CaCertDir { get; set; } = __config.Get("caCertDir") ?? Utilities.GetEnv("VAULT_CAPATH");
+        public static string? CaCertDir { get; set; } = __config.Get("caCertDir");
 
         /// <summary>
         /// Path to a CA certificate file to validate the server's certificate.
         /// </summary>
-        public static string? CaCertFile { get; set; } = __config.Get("caCertFile") ?? Utilities.GetEnv("VAULT_CACERT");
+        public static string? CaCertFile { get; set; } = __config.Get("caCertFile");
 
         /// <summary>
         /// Client authentication credentials.
@@ -56,7 +56,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to use. Available only for Vault Enterprise
         /// </summary>
-        public static string? Namespace { get; set; } = __config.Get("namespace") ?? Utilities.GetEnv("VAULT_NAMESPACE");
+        public static string? Namespace { get; set; } = __config.Get("namespace");
 
         /// <summary>
         /// Set this to true only if the target Vault server is an insecure development instance.
@@ -66,12 +66,12 @@ namespace Pulumi.Vault
         /// <summary>
         /// Token to use to authenticate to Vault.
         /// </summary>
-        public static string? Token { get; set; } = __config.Get("token") ?? Utilities.GetEnv("VAULT_TOKEN");
+        public static string? Token { get; set; } = __config.Get("token");
 
         /// <summary>
         /// Token name to use for creating the Vault child token.
         /// </summary>
-        public static string? TokenName { get; set; } = __config.Get("tokenName") ?? Utilities.GetEnv("VAULT_TOKEN_NAME");
+        public static string? TokenName { get; set; } = __config.Get("tokenName");
 
         public static class Types
         {

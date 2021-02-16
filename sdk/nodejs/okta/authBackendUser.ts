@@ -83,7 +83,8 @@ export class AuthBackendUser extends pulumi.CustomResource {
     constructor(name: string, args: AuthBackendUserArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendUserArgs | AuthBackendUserState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as AuthBackendUserState | undefined;
             inputs["groups"] = state ? state.groups : undefined;
             inputs["path"] = state ? state.path : undefined;
@@ -91,10 +92,10 @@ export class AuthBackendUser extends pulumi.CustomResource {
             inputs["username"] = state ? state.username : undefined;
         } else {
             const args = argsOrState as AuthBackendUserArgs | undefined;
-            if ((!args || args.path === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.path === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            if ((!args || args.username === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.username === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
             inputs["groups"] = args ? args.groups : undefined;
@@ -102,12 +103,8 @@ export class AuthBackendUser extends pulumi.CustomResource {
             inputs["policies"] = args ? args.policies : undefined;
             inputs["username"] = args ? args.username : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(AuthBackendUser.__pulumiType, name, inputs, opts);
     }

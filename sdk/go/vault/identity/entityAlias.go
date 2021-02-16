@@ -127,6 +127,85 @@ func (i *EntityAlias) ToEntityAliasOutputWithContext(ctx context.Context) Entity
 	return pulumi.ToOutputWithContext(ctx, i).(EntityAliasOutput)
 }
 
+func (i *EntityAlias) ToEntityAliasPtrOutput() EntityAliasPtrOutput {
+	return i.ToEntityAliasPtrOutputWithContext(context.Background())
+}
+
+func (i *EntityAlias) ToEntityAliasPtrOutputWithContext(ctx context.Context) EntityAliasPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntityAliasPtrOutput)
+}
+
+type EntityAliasPtrInput interface {
+	pulumi.Input
+
+	ToEntityAliasPtrOutput() EntityAliasPtrOutput
+	ToEntityAliasPtrOutputWithContext(ctx context.Context) EntityAliasPtrOutput
+}
+
+type entityAliasPtrType EntityAliasArgs
+
+func (*entityAliasPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EntityAlias)(nil))
+}
+
+func (i *entityAliasPtrType) ToEntityAliasPtrOutput() EntityAliasPtrOutput {
+	return i.ToEntityAliasPtrOutputWithContext(context.Background())
+}
+
+func (i *entityAliasPtrType) ToEntityAliasPtrOutputWithContext(ctx context.Context) EntityAliasPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntityAliasPtrOutput)
+}
+
+// EntityAliasArrayInput is an input type that accepts EntityAliasArray and EntityAliasArrayOutput values.
+// You can construct a concrete instance of `EntityAliasArrayInput` via:
+//
+//          EntityAliasArray{ EntityAliasArgs{...} }
+type EntityAliasArrayInput interface {
+	pulumi.Input
+
+	ToEntityAliasArrayOutput() EntityAliasArrayOutput
+	ToEntityAliasArrayOutputWithContext(context.Context) EntityAliasArrayOutput
+}
+
+type EntityAliasArray []EntityAliasInput
+
+func (EntityAliasArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*EntityAlias)(nil))
+}
+
+func (i EntityAliasArray) ToEntityAliasArrayOutput() EntityAliasArrayOutput {
+	return i.ToEntityAliasArrayOutputWithContext(context.Background())
+}
+
+func (i EntityAliasArray) ToEntityAliasArrayOutputWithContext(ctx context.Context) EntityAliasArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntityAliasArrayOutput)
+}
+
+// EntityAliasMapInput is an input type that accepts EntityAliasMap and EntityAliasMapOutput values.
+// You can construct a concrete instance of `EntityAliasMapInput` via:
+//
+//          EntityAliasMap{ "key": EntityAliasArgs{...} }
+type EntityAliasMapInput interface {
+	pulumi.Input
+
+	ToEntityAliasMapOutput() EntityAliasMapOutput
+	ToEntityAliasMapOutputWithContext(context.Context) EntityAliasMapOutput
+}
+
+type EntityAliasMap map[string]EntityAliasInput
+
+func (EntityAliasMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*EntityAlias)(nil))
+}
+
+func (i EntityAliasMap) ToEntityAliasMapOutput() EntityAliasMapOutput {
+	return i.ToEntityAliasMapOutputWithContext(context.Background())
+}
+
+func (i EntityAliasMap) ToEntityAliasMapOutputWithContext(ctx context.Context) EntityAliasMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EntityAliasMapOutput)
+}
+
 type EntityAliasOutput struct {
 	*pulumi.OutputState
 }
@@ -143,6 +222,75 @@ func (o EntityAliasOutput) ToEntityAliasOutputWithContext(ctx context.Context) E
 	return o
 }
 
+func (o EntityAliasOutput) ToEntityAliasPtrOutput() EntityAliasPtrOutput {
+	return o.ToEntityAliasPtrOutputWithContext(context.Background())
+}
+
+func (o EntityAliasOutput) ToEntityAliasPtrOutputWithContext(ctx context.Context) EntityAliasPtrOutput {
+	return o.ApplyT(func(v EntityAlias) *EntityAlias {
+		return &v
+	}).(EntityAliasPtrOutput)
+}
+
+type EntityAliasPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EntityAliasPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EntityAlias)(nil))
+}
+
+func (o EntityAliasPtrOutput) ToEntityAliasPtrOutput() EntityAliasPtrOutput {
+	return o
+}
+
+func (o EntityAliasPtrOutput) ToEntityAliasPtrOutputWithContext(ctx context.Context) EntityAliasPtrOutput {
+	return o
+}
+
+type EntityAliasArrayOutput struct{ *pulumi.OutputState }
+
+func (EntityAliasArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EntityAlias)(nil))
+}
+
+func (o EntityAliasArrayOutput) ToEntityAliasArrayOutput() EntityAliasArrayOutput {
+	return o
+}
+
+func (o EntityAliasArrayOutput) ToEntityAliasArrayOutputWithContext(ctx context.Context) EntityAliasArrayOutput {
+	return o
+}
+
+func (o EntityAliasArrayOutput) Index(i pulumi.IntInput) EntityAliasOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EntityAlias {
+		return vs[0].([]EntityAlias)[vs[1].(int)]
+	}).(EntityAliasOutput)
+}
+
+type EntityAliasMapOutput struct{ *pulumi.OutputState }
+
+func (EntityAliasMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]EntityAlias)(nil))
+}
+
+func (o EntityAliasMapOutput) ToEntityAliasMapOutput() EntityAliasMapOutput {
+	return o
+}
+
+func (o EntityAliasMapOutput) ToEntityAliasMapOutputWithContext(ctx context.Context) EntityAliasMapOutput {
+	return o
+}
+
+func (o EntityAliasMapOutput) MapIndex(k pulumi.StringInput) EntityAliasOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) EntityAlias {
+		return vs[0].(map[string]EntityAlias)[vs[1].(string)]
+	}).(EntityAliasOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(EntityAliasOutput{})
+	pulumi.RegisterOutputType(EntityAliasPtrOutput{})
+	pulumi.RegisterOutputType(EntityAliasArrayOutput{})
+	pulumi.RegisterOutputType(EntityAliasMapOutput{})
 }

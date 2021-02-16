@@ -68,7 +68,8 @@ export class SecretLibrary extends pulumi.CustomResource {
     constructor(name: string, args: SecretLibraryArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretLibraryArgs | SecretLibraryState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretLibraryState | undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["disableCheckInEnforcement"] = state ? state.disableCheckInEnforcement : undefined;
@@ -78,10 +79,10 @@ export class SecretLibrary extends pulumi.CustomResource {
             inputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as SecretLibraryArgs | undefined;
-            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.serviceAccountNames === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.serviceAccountNames === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serviceAccountNames'");
             }
             inputs["backend"] = args ? args.backend : undefined;
@@ -91,12 +92,8 @@ export class SecretLibrary extends pulumi.CustomResource {
             inputs["serviceAccountNames"] = args ? args.serviceAccountNames : undefined;
             inputs["ttl"] = args ? args.ttl : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(SecretLibrary.__pulumiType, name, inputs, opts);
     }

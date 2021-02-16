@@ -77,26 +77,23 @@ export class Role extends pulumi.CustomResource {
     constructor(name: string, args: RoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RoleArgs | RoleState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as RoleState | undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["path"] = state ? state.path : undefined;
             inputs["transformations"] = state ? state.transformations : undefined;
         } else {
             const args = argsOrState as RoleArgs | undefined;
-            if ((!args || args.path === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.path === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
             inputs["name"] = args ? args.name : undefined;
             inputs["path"] = args ? args.path : undefined;
             inputs["transformations"] = args ? args.transformations : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Role.__pulumiType, name, inputs, opts);
     }

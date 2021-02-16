@@ -110,6 +110,85 @@ func (i *SecretBackendIntermediateSetSigned) ToSecretBackendIntermediateSetSigne
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIntermediateSetSignedOutput)
 }
 
+func (i *SecretBackendIntermediateSetSigned) ToSecretBackendIntermediateSetSignedPtrOutput() SecretBackendIntermediateSetSignedPtrOutput {
+	return i.ToSecretBackendIntermediateSetSignedPtrOutputWithContext(context.Background())
+}
+
+func (i *SecretBackendIntermediateSetSigned) ToSecretBackendIntermediateSetSignedPtrOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIntermediateSetSignedPtrOutput)
+}
+
+type SecretBackendIntermediateSetSignedPtrInput interface {
+	pulumi.Input
+
+	ToSecretBackendIntermediateSetSignedPtrOutput() SecretBackendIntermediateSetSignedPtrOutput
+	ToSecretBackendIntermediateSetSignedPtrOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedPtrOutput
+}
+
+type secretBackendIntermediateSetSignedPtrType SecretBackendIntermediateSetSignedArgs
+
+func (*secretBackendIntermediateSetSignedPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendIntermediateSetSigned)(nil))
+}
+
+func (i *secretBackendIntermediateSetSignedPtrType) ToSecretBackendIntermediateSetSignedPtrOutput() SecretBackendIntermediateSetSignedPtrOutput {
+	return i.ToSecretBackendIntermediateSetSignedPtrOutputWithContext(context.Background())
+}
+
+func (i *secretBackendIntermediateSetSignedPtrType) ToSecretBackendIntermediateSetSignedPtrOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIntermediateSetSignedPtrOutput)
+}
+
+// SecretBackendIntermediateSetSignedArrayInput is an input type that accepts SecretBackendIntermediateSetSignedArray and SecretBackendIntermediateSetSignedArrayOutput values.
+// You can construct a concrete instance of `SecretBackendIntermediateSetSignedArrayInput` via:
+//
+//          SecretBackendIntermediateSetSignedArray{ SecretBackendIntermediateSetSignedArgs{...} }
+type SecretBackendIntermediateSetSignedArrayInput interface {
+	pulumi.Input
+
+	ToSecretBackendIntermediateSetSignedArrayOutput() SecretBackendIntermediateSetSignedArrayOutput
+	ToSecretBackendIntermediateSetSignedArrayOutputWithContext(context.Context) SecretBackendIntermediateSetSignedArrayOutput
+}
+
+type SecretBackendIntermediateSetSignedArray []SecretBackendIntermediateSetSignedInput
+
+func (SecretBackendIntermediateSetSignedArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*SecretBackendIntermediateSetSigned)(nil))
+}
+
+func (i SecretBackendIntermediateSetSignedArray) ToSecretBackendIntermediateSetSignedArrayOutput() SecretBackendIntermediateSetSignedArrayOutput {
+	return i.ToSecretBackendIntermediateSetSignedArrayOutputWithContext(context.Background())
+}
+
+func (i SecretBackendIntermediateSetSignedArray) ToSecretBackendIntermediateSetSignedArrayOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIntermediateSetSignedArrayOutput)
+}
+
+// SecretBackendIntermediateSetSignedMapInput is an input type that accepts SecretBackendIntermediateSetSignedMap and SecretBackendIntermediateSetSignedMapOutput values.
+// You can construct a concrete instance of `SecretBackendIntermediateSetSignedMapInput` via:
+//
+//          SecretBackendIntermediateSetSignedMap{ "key": SecretBackendIntermediateSetSignedArgs{...} }
+type SecretBackendIntermediateSetSignedMapInput interface {
+	pulumi.Input
+
+	ToSecretBackendIntermediateSetSignedMapOutput() SecretBackendIntermediateSetSignedMapOutput
+	ToSecretBackendIntermediateSetSignedMapOutputWithContext(context.Context) SecretBackendIntermediateSetSignedMapOutput
+}
+
+type SecretBackendIntermediateSetSignedMap map[string]SecretBackendIntermediateSetSignedInput
+
+func (SecretBackendIntermediateSetSignedMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*SecretBackendIntermediateSetSigned)(nil))
+}
+
+func (i SecretBackendIntermediateSetSignedMap) ToSecretBackendIntermediateSetSignedMapOutput() SecretBackendIntermediateSetSignedMapOutput {
+	return i.ToSecretBackendIntermediateSetSignedMapOutputWithContext(context.Background())
+}
+
+func (i SecretBackendIntermediateSetSignedMap) ToSecretBackendIntermediateSetSignedMapOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIntermediateSetSignedMapOutput)
+}
+
 type SecretBackendIntermediateSetSignedOutput struct {
 	*pulumi.OutputState
 }
@@ -126,6 +205,75 @@ func (o SecretBackendIntermediateSetSignedOutput) ToSecretBackendIntermediateSet
 	return o
 }
 
+func (o SecretBackendIntermediateSetSignedOutput) ToSecretBackendIntermediateSetSignedPtrOutput() SecretBackendIntermediateSetSignedPtrOutput {
+	return o.ToSecretBackendIntermediateSetSignedPtrOutputWithContext(context.Background())
+}
+
+func (o SecretBackendIntermediateSetSignedOutput) ToSecretBackendIntermediateSetSignedPtrOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedPtrOutput {
+	return o.ApplyT(func(v SecretBackendIntermediateSetSigned) *SecretBackendIntermediateSetSigned {
+		return &v
+	}).(SecretBackendIntermediateSetSignedPtrOutput)
+}
+
+type SecretBackendIntermediateSetSignedPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (SecretBackendIntermediateSetSignedPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendIntermediateSetSigned)(nil))
+}
+
+func (o SecretBackendIntermediateSetSignedPtrOutput) ToSecretBackendIntermediateSetSignedPtrOutput() SecretBackendIntermediateSetSignedPtrOutput {
+	return o
+}
+
+func (o SecretBackendIntermediateSetSignedPtrOutput) ToSecretBackendIntermediateSetSignedPtrOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedPtrOutput {
+	return o
+}
+
+type SecretBackendIntermediateSetSignedArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendIntermediateSetSignedArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretBackendIntermediateSetSigned)(nil))
+}
+
+func (o SecretBackendIntermediateSetSignedArrayOutput) ToSecretBackendIntermediateSetSignedArrayOutput() SecretBackendIntermediateSetSignedArrayOutput {
+	return o
+}
+
+func (o SecretBackendIntermediateSetSignedArrayOutput) ToSecretBackendIntermediateSetSignedArrayOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedArrayOutput {
+	return o
+}
+
+func (o SecretBackendIntermediateSetSignedArrayOutput) Index(i pulumi.IntInput) SecretBackendIntermediateSetSignedOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretBackendIntermediateSetSigned {
+		return vs[0].([]SecretBackendIntermediateSetSigned)[vs[1].(int)]
+	}).(SecretBackendIntermediateSetSignedOutput)
+}
+
+type SecretBackendIntermediateSetSignedMapOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendIntermediateSetSignedMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]SecretBackendIntermediateSetSigned)(nil))
+}
+
+func (o SecretBackendIntermediateSetSignedMapOutput) ToSecretBackendIntermediateSetSignedMapOutput() SecretBackendIntermediateSetSignedMapOutput {
+	return o
+}
+
+func (o SecretBackendIntermediateSetSignedMapOutput) ToSecretBackendIntermediateSetSignedMapOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedMapOutput {
+	return o
+}
+
+func (o SecretBackendIntermediateSetSignedMapOutput) MapIndex(k pulumi.StringInput) SecretBackendIntermediateSetSignedOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SecretBackendIntermediateSetSigned {
+		return vs[0].(map[string]SecretBackendIntermediateSetSigned)[vs[1].(string)]
+	}).(SecretBackendIntermediateSetSignedOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(SecretBackendIntermediateSetSignedOutput{})
+	pulumi.RegisterOutputType(SecretBackendIntermediateSetSignedPtrOutput{})
+	pulumi.RegisterOutputType(SecretBackendIntermediateSetSignedArrayOutput{})
+	pulumi.RegisterOutputType(SecretBackendIntermediateSetSignedMapOutput{})
 }

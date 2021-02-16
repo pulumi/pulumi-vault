@@ -23,7 +23,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -143,6 +143,85 @@ func (i *PasswordPolicy) ToPasswordPolicyOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(PasswordPolicyOutput)
 }
 
+func (i *PasswordPolicy) ToPasswordPolicyPtrOutput() PasswordPolicyPtrOutput {
+	return i.ToPasswordPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *PasswordPolicy) ToPasswordPolicyPtrOutputWithContext(ctx context.Context) PasswordPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PasswordPolicyPtrOutput)
+}
+
+type PasswordPolicyPtrInput interface {
+	pulumi.Input
+
+	ToPasswordPolicyPtrOutput() PasswordPolicyPtrOutput
+	ToPasswordPolicyPtrOutputWithContext(ctx context.Context) PasswordPolicyPtrOutput
+}
+
+type passwordPolicyPtrType PasswordPolicyArgs
+
+func (*passwordPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PasswordPolicy)(nil))
+}
+
+func (i *passwordPolicyPtrType) ToPasswordPolicyPtrOutput() PasswordPolicyPtrOutput {
+	return i.ToPasswordPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *passwordPolicyPtrType) ToPasswordPolicyPtrOutputWithContext(ctx context.Context) PasswordPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PasswordPolicyPtrOutput)
+}
+
+// PasswordPolicyArrayInput is an input type that accepts PasswordPolicyArray and PasswordPolicyArrayOutput values.
+// You can construct a concrete instance of `PasswordPolicyArrayInput` via:
+//
+//          PasswordPolicyArray{ PasswordPolicyArgs{...} }
+type PasswordPolicyArrayInput interface {
+	pulumi.Input
+
+	ToPasswordPolicyArrayOutput() PasswordPolicyArrayOutput
+	ToPasswordPolicyArrayOutputWithContext(context.Context) PasswordPolicyArrayOutput
+}
+
+type PasswordPolicyArray []PasswordPolicyInput
+
+func (PasswordPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*PasswordPolicy)(nil))
+}
+
+func (i PasswordPolicyArray) ToPasswordPolicyArrayOutput() PasswordPolicyArrayOutput {
+	return i.ToPasswordPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i PasswordPolicyArray) ToPasswordPolicyArrayOutputWithContext(ctx context.Context) PasswordPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PasswordPolicyArrayOutput)
+}
+
+// PasswordPolicyMapInput is an input type that accepts PasswordPolicyMap and PasswordPolicyMapOutput values.
+// You can construct a concrete instance of `PasswordPolicyMapInput` via:
+//
+//          PasswordPolicyMap{ "key": PasswordPolicyArgs{...} }
+type PasswordPolicyMapInput interface {
+	pulumi.Input
+
+	ToPasswordPolicyMapOutput() PasswordPolicyMapOutput
+	ToPasswordPolicyMapOutputWithContext(context.Context) PasswordPolicyMapOutput
+}
+
+type PasswordPolicyMap map[string]PasswordPolicyInput
+
+func (PasswordPolicyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*PasswordPolicy)(nil))
+}
+
+func (i PasswordPolicyMap) ToPasswordPolicyMapOutput() PasswordPolicyMapOutput {
+	return i.ToPasswordPolicyMapOutputWithContext(context.Background())
+}
+
+func (i PasswordPolicyMap) ToPasswordPolicyMapOutputWithContext(ctx context.Context) PasswordPolicyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PasswordPolicyMapOutput)
+}
+
 type PasswordPolicyOutput struct {
 	*pulumi.OutputState
 }
@@ -159,6 +238,75 @@ func (o PasswordPolicyOutput) ToPasswordPolicyOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o PasswordPolicyOutput) ToPasswordPolicyPtrOutput() PasswordPolicyPtrOutput {
+	return o.ToPasswordPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o PasswordPolicyOutput) ToPasswordPolicyPtrOutputWithContext(ctx context.Context) PasswordPolicyPtrOutput {
+	return o.ApplyT(func(v PasswordPolicy) *PasswordPolicy {
+		return &v
+	}).(PasswordPolicyPtrOutput)
+}
+
+type PasswordPolicyPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PasswordPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PasswordPolicy)(nil))
+}
+
+func (o PasswordPolicyPtrOutput) ToPasswordPolicyPtrOutput() PasswordPolicyPtrOutput {
+	return o
+}
+
+func (o PasswordPolicyPtrOutput) ToPasswordPolicyPtrOutputWithContext(ctx context.Context) PasswordPolicyPtrOutput {
+	return o
+}
+
+type PasswordPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (PasswordPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PasswordPolicy)(nil))
+}
+
+func (o PasswordPolicyArrayOutput) ToPasswordPolicyArrayOutput() PasswordPolicyArrayOutput {
+	return o
+}
+
+func (o PasswordPolicyArrayOutput) ToPasswordPolicyArrayOutputWithContext(ctx context.Context) PasswordPolicyArrayOutput {
+	return o
+}
+
+func (o PasswordPolicyArrayOutput) Index(i pulumi.IntInput) PasswordPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PasswordPolicy {
+		return vs[0].([]PasswordPolicy)[vs[1].(int)]
+	}).(PasswordPolicyOutput)
+}
+
+type PasswordPolicyMapOutput struct{ *pulumi.OutputState }
+
+func (PasswordPolicyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]PasswordPolicy)(nil))
+}
+
+func (o PasswordPolicyMapOutput) ToPasswordPolicyMapOutput() PasswordPolicyMapOutput {
+	return o
+}
+
+func (o PasswordPolicyMapOutput) ToPasswordPolicyMapOutputWithContext(ctx context.Context) PasswordPolicyMapOutput {
+	return o
+}
+
+func (o PasswordPolicyMapOutput) MapIndex(k pulumi.StringInput) PasswordPolicyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) PasswordPolicy {
+		return vs[0].(map[string]PasswordPolicy)[vs[1].(string)]
+	}).(PasswordPolicyOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(PasswordPolicyOutput{})
+	pulumi.RegisterOutputType(PasswordPolicyPtrOutput{})
+	pulumi.RegisterOutputType(PasswordPolicyArrayOutput{})
+	pulumi.RegisterOutputType(PasswordPolicyMapOutput{})
 }

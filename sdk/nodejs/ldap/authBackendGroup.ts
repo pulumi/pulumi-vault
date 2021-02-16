@@ -89,26 +89,23 @@ export class AuthBackendGroup extends pulumi.CustomResource {
     constructor(name: string, args: AuthBackendGroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendGroupArgs | AuthBackendGroupState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as AuthBackendGroupState | undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["groupname"] = state ? state.groupname : undefined;
             inputs["policies"] = state ? state.policies : undefined;
         } else {
             const args = argsOrState as AuthBackendGroupArgs | undefined;
-            if ((!args || args.groupname === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.groupname === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'groupname'");
             }
             inputs["backend"] = args ? args.backend : undefined;
             inputs["groupname"] = args ? args.groupname : undefined;
             inputs["policies"] = args ? args.policies : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(AuthBackendGroup.__pulumiType, name, inputs, opts);
     }

@@ -110,7 +110,8 @@ export class SecretRoleset extends pulumi.CustomResource {
     constructor(name: string, args: SecretRolesetArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretRolesetArgs | SecretRolesetState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretRolesetState | undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["bindings"] = state ? state.bindings : undefined;
@@ -121,16 +122,16 @@ export class SecretRoleset extends pulumi.CustomResource {
             inputs["tokenScopes"] = state ? state.tokenScopes : undefined;
         } else {
             const args = argsOrState as SecretRolesetArgs | undefined;
-            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.bindings === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.bindings === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'bindings'");
             }
-            if ((!args || args.project === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.project === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'project'");
             }
-            if ((!args || args.roleset === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.roleset === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleset'");
             }
             inputs["backend"] = args ? args.backend : undefined;
@@ -141,12 +142,8 @@ export class SecretRoleset extends pulumi.CustomResource {
             inputs["tokenScopes"] = args ? args.tokenScopes : undefined;
             inputs["serviceAccountEmail"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(SecretRoleset.__pulumiType, name, inputs, opts);
     }

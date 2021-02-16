@@ -166,6 +166,85 @@ func (i *AuthBackendGroup) ToAuthBackendGroupOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupOutput)
 }
 
+func (i *AuthBackendGroup) ToAuthBackendGroupPtrOutput() AuthBackendGroupPtrOutput {
+	return i.ToAuthBackendGroupPtrOutputWithContext(context.Background())
+}
+
+func (i *AuthBackendGroup) ToAuthBackendGroupPtrOutputWithContext(ctx context.Context) AuthBackendGroupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupPtrOutput)
+}
+
+type AuthBackendGroupPtrInput interface {
+	pulumi.Input
+
+	ToAuthBackendGroupPtrOutput() AuthBackendGroupPtrOutput
+	ToAuthBackendGroupPtrOutputWithContext(ctx context.Context) AuthBackendGroupPtrOutput
+}
+
+type authBackendGroupPtrType AuthBackendGroupArgs
+
+func (*authBackendGroupPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthBackendGroup)(nil))
+}
+
+func (i *authBackendGroupPtrType) ToAuthBackendGroupPtrOutput() AuthBackendGroupPtrOutput {
+	return i.ToAuthBackendGroupPtrOutputWithContext(context.Background())
+}
+
+func (i *authBackendGroupPtrType) ToAuthBackendGroupPtrOutputWithContext(ctx context.Context) AuthBackendGroupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupPtrOutput)
+}
+
+// AuthBackendGroupArrayInput is an input type that accepts AuthBackendGroupArray and AuthBackendGroupArrayOutput values.
+// You can construct a concrete instance of `AuthBackendGroupArrayInput` via:
+//
+//          AuthBackendGroupArray{ AuthBackendGroupArgs{...} }
+type AuthBackendGroupArrayInput interface {
+	pulumi.Input
+
+	ToAuthBackendGroupArrayOutput() AuthBackendGroupArrayOutput
+	ToAuthBackendGroupArrayOutputWithContext(context.Context) AuthBackendGroupArrayOutput
+}
+
+type AuthBackendGroupArray []AuthBackendGroupInput
+
+func (AuthBackendGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*AuthBackendGroup)(nil))
+}
+
+func (i AuthBackendGroupArray) ToAuthBackendGroupArrayOutput() AuthBackendGroupArrayOutput {
+	return i.ToAuthBackendGroupArrayOutputWithContext(context.Background())
+}
+
+func (i AuthBackendGroupArray) ToAuthBackendGroupArrayOutputWithContext(ctx context.Context) AuthBackendGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupArrayOutput)
+}
+
+// AuthBackendGroupMapInput is an input type that accepts AuthBackendGroupMap and AuthBackendGroupMapOutput values.
+// You can construct a concrete instance of `AuthBackendGroupMapInput` via:
+//
+//          AuthBackendGroupMap{ "key": AuthBackendGroupArgs{...} }
+type AuthBackendGroupMapInput interface {
+	pulumi.Input
+
+	ToAuthBackendGroupMapOutput() AuthBackendGroupMapOutput
+	ToAuthBackendGroupMapOutputWithContext(context.Context) AuthBackendGroupMapOutput
+}
+
+type AuthBackendGroupMap map[string]AuthBackendGroupInput
+
+func (AuthBackendGroupMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*AuthBackendGroup)(nil))
+}
+
+func (i AuthBackendGroupMap) ToAuthBackendGroupMapOutput() AuthBackendGroupMapOutput {
+	return i.ToAuthBackendGroupMapOutputWithContext(context.Background())
+}
+
+func (i AuthBackendGroupMap) ToAuthBackendGroupMapOutputWithContext(ctx context.Context) AuthBackendGroupMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupMapOutput)
+}
+
 type AuthBackendGroupOutput struct {
 	*pulumi.OutputState
 }
@@ -182,6 +261,75 @@ func (o AuthBackendGroupOutput) ToAuthBackendGroupOutputWithContext(ctx context.
 	return o
 }
 
+func (o AuthBackendGroupOutput) ToAuthBackendGroupPtrOutput() AuthBackendGroupPtrOutput {
+	return o.ToAuthBackendGroupPtrOutputWithContext(context.Background())
+}
+
+func (o AuthBackendGroupOutput) ToAuthBackendGroupPtrOutputWithContext(ctx context.Context) AuthBackendGroupPtrOutput {
+	return o.ApplyT(func(v AuthBackendGroup) *AuthBackendGroup {
+		return &v
+	}).(AuthBackendGroupPtrOutput)
+}
+
+type AuthBackendGroupPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuthBackendGroupPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AuthBackendGroup)(nil))
+}
+
+func (o AuthBackendGroupPtrOutput) ToAuthBackendGroupPtrOutput() AuthBackendGroupPtrOutput {
+	return o
+}
+
+func (o AuthBackendGroupPtrOutput) ToAuthBackendGroupPtrOutputWithContext(ctx context.Context) AuthBackendGroupPtrOutput {
+	return o
+}
+
+type AuthBackendGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (AuthBackendGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AuthBackendGroup)(nil))
+}
+
+func (o AuthBackendGroupArrayOutput) ToAuthBackendGroupArrayOutput() AuthBackendGroupArrayOutput {
+	return o
+}
+
+func (o AuthBackendGroupArrayOutput) ToAuthBackendGroupArrayOutputWithContext(ctx context.Context) AuthBackendGroupArrayOutput {
+	return o
+}
+
+func (o AuthBackendGroupArrayOutput) Index(i pulumi.IntInput) AuthBackendGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthBackendGroup {
+		return vs[0].([]AuthBackendGroup)[vs[1].(int)]
+	}).(AuthBackendGroupOutput)
+}
+
+type AuthBackendGroupMapOutput struct{ *pulumi.OutputState }
+
+func (AuthBackendGroupMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]AuthBackendGroup)(nil))
+}
+
+func (o AuthBackendGroupMapOutput) ToAuthBackendGroupMapOutput() AuthBackendGroupMapOutput {
+	return o
+}
+
+func (o AuthBackendGroupMapOutput) ToAuthBackendGroupMapOutputWithContext(ctx context.Context) AuthBackendGroupMapOutput {
+	return o
+}
+
+func (o AuthBackendGroupMapOutput) MapIndex(k pulumi.StringInput) AuthBackendGroupOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AuthBackendGroup {
+		return vs[0].(map[string]AuthBackendGroup)[vs[1].(string)]
+	}).(AuthBackendGroupOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(AuthBackendGroupOutput{})
+	pulumi.RegisterOutputType(AuthBackendGroupPtrOutput{})
+	pulumi.RegisterOutputType(AuthBackendGroupArrayOutput{})
+	pulumi.RegisterOutputType(AuthBackendGroupMapOutput{})
 }

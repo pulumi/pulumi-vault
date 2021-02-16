@@ -51,27 +51,24 @@ export class SecretBackendIntermediateSetSigned extends pulumi.CustomResource {
     constructor(name: string, args: SecretBackendIntermediateSetSignedArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendIntermediateSetSignedArgs | SecretBackendIntermediateSetSignedState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretBackendIntermediateSetSignedState | undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["certificate"] = state ? state.certificate : undefined;
         } else {
             const args = argsOrState as SecretBackendIntermediateSetSignedArgs | undefined;
-            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.certificate === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.certificate === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'certificate'");
             }
             inputs["backend"] = args ? args.backend : undefined;
             inputs["certificate"] = args ? args.certificate : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(SecretBackendIntermediateSetSigned.__pulumiType, name, inputs, opts);
     }

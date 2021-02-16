@@ -110,6 +110,85 @@ func (i *OidcKeyAllowedClientID) ToOidcKeyAllowedClientIDOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyAllowedClientIDOutput)
 }
 
+func (i *OidcKeyAllowedClientID) ToOidcKeyAllowedClientIDPtrOutput() OidcKeyAllowedClientIDPtrOutput {
+	return i.ToOidcKeyAllowedClientIDPtrOutputWithContext(context.Background())
+}
+
+func (i *OidcKeyAllowedClientID) ToOidcKeyAllowedClientIDPtrOutputWithContext(ctx context.Context) OidcKeyAllowedClientIDPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyAllowedClientIDPtrOutput)
+}
+
+type OidcKeyAllowedClientIDPtrInput interface {
+	pulumi.Input
+
+	ToOidcKeyAllowedClientIDPtrOutput() OidcKeyAllowedClientIDPtrOutput
+	ToOidcKeyAllowedClientIDPtrOutputWithContext(ctx context.Context) OidcKeyAllowedClientIDPtrOutput
+}
+
+type oidcKeyAllowedClientIDPtrType OidcKeyAllowedClientIDArgs
+
+func (*oidcKeyAllowedClientIDPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**OidcKeyAllowedClientID)(nil))
+}
+
+func (i *oidcKeyAllowedClientIDPtrType) ToOidcKeyAllowedClientIDPtrOutput() OidcKeyAllowedClientIDPtrOutput {
+	return i.ToOidcKeyAllowedClientIDPtrOutputWithContext(context.Background())
+}
+
+func (i *oidcKeyAllowedClientIDPtrType) ToOidcKeyAllowedClientIDPtrOutputWithContext(ctx context.Context) OidcKeyAllowedClientIDPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyAllowedClientIDPtrOutput)
+}
+
+// OidcKeyAllowedClientIDArrayInput is an input type that accepts OidcKeyAllowedClientIDArray and OidcKeyAllowedClientIDArrayOutput values.
+// You can construct a concrete instance of `OidcKeyAllowedClientIDArrayInput` via:
+//
+//          OidcKeyAllowedClientIDArray{ OidcKeyAllowedClientIDArgs{...} }
+type OidcKeyAllowedClientIDArrayInput interface {
+	pulumi.Input
+
+	ToOidcKeyAllowedClientIDArrayOutput() OidcKeyAllowedClientIDArrayOutput
+	ToOidcKeyAllowedClientIDArrayOutputWithContext(context.Context) OidcKeyAllowedClientIDArrayOutput
+}
+
+type OidcKeyAllowedClientIDArray []OidcKeyAllowedClientIDInput
+
+func (OidcKeyAllowedClientIDArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*OidcKeyAllowedClientID)(nil))
+}
+
+func (i OidcKeyAllowedClientIDArray) ToOidcKeyAllowedClientIDArrayOutput() OidcKeyAllowedClientIDArrayOutput {
+	return i.ToOidcKeyAllowedClientIDArrayOutputWithContext(context.Background())
+}
+
+func (i OidcKeyAllowedClientIDArray) ToOidcKeyAllowedClientIDArrayOutputWithContext(ctx context.Context) OidcKeyAllowedClientIDArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyAllowedClientIDArrayOutput)
+}
+
+// OidcKeyAllowedClientIDMapInput is an input type that accepts OidcKeyAllowedClientIDMap and OidcKeyAllowedClientIDMapOutput values.
+// You can construct a concrete instance of `OidcKeyAllowedClientIDMapInput` via:
+//
+//          OidcKeyAllowedClientIDMap{ "key": OidcKeyAllowedClientIDArgs{...} }
+type OidcKeyAllowedClientIDMapInput interface {
+	pulumi.Input
+
+	ToOidcKeyAllowedClientIDMapOutput() OidcKeyAllowedClientIDMapOutput
+	ToOidcKeyAllowedClientIDMapOutputWithContext(context.Context) OidcKeyAllowedClientIDMapOutput
+}
+
+type OidcKeyAllowedClientIDMap map[string]OidcKeyAllowedClientIDInput
+
+func (OidcKeyAllowedClientIDMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*OidcKeyAllowedClientID)(nil))
+}
+
+func (i OidcKeyAllowedClientIDMap) ToOidcKeyAllowedClientIDMapOutput() OidcKeyAllowedClientIDMapOutput {
+	return i.ToOidcKeyAllowedClientIDMapOutputWithContext(context.Background())
+}
+
+func (i OidcKeyAllowedClientIDMap) ToOidcKeyAllowedClientIDMapOutputWithContext(ctx context.Context) OidcKeyAllowedClientIDMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyAllowedClientIDMapOutput)
+}
+
 type OidcKeyAllowedClientIDOutput struct {
 	*pulumi.OutputState
 }
@@ -126,6 +205,75 @@ func (o OidcKeyAllowedClientIDOutput) ToOidcKeyAllowedClientIDOutputWithContext(
 	return o
 }
 
+func (o OidcKeyAllowedClientIDOutput) ToOidcKeyAllowedClientIDPtrOutput() OidcKeyAllowedClientIDPtrOutput {
+	return o.ToOidcKeyAllowedClientIDPtrOutputWithContext(context.Background())
+}
+
+func (o OidcKeyAllowedClientIDOutput) ToOidcKeyAllowedClientIDPtrOutputWithContext(ctx context.Context) OidcKeyAllowedClientIDPtrOutput {
+	return o.ApplyT(func(v OidcKeyAllowedClientID) *OidcKeyAllowedClientID {
+		return &v
+	}).(OidcKeyAllowedClientIDPtrOutput)
+}
+
+type OidcKeyAllowedClientIDPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (OidcKeyAllowedClientIDPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OidcKeyAllowedClientID)(nil))
+}
+
+func (o OidcKeyAllowedClientIDPtrOutput) ToOidcKeyAllowedClientIDPtrOutput() OidcKeyAllowedClientIDPtrOutput {
+	return o
+}
+
+func (o OidcKeyAllowedClientIDPtrOutput) ToOidcKeyAllowedClientIDPtrOutputWithContext(ctx context.Context) OidcKeyAllowedClientIDPtrOutput {
+	return o
+}
+
+type OidcKeyAllowedClientIDArrayOutput struct{ *pulumi.OutputState }
+
+func (OidcKeyAllowedClientIDArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OidcKeyAllowedClientID)(nil))
+}
+
+func (o OidcKeyAllowedClientIDArrayOutput) ToOidcKeyAllowedClientIDArrayOutput() OidcKeyAllowedClientIDArrayOutput {
+	return o
+}
+
+func (o OidcKeyAllowedClientIDArrayOutput) ToOidcKeyAllowedClientIDArrayOutputWithContext(ctx context.Context) OidcKeyAllowedClientIDArrayOutput {
+	return o
+}
+
+func (o OidcKeyAllowedClientIDArrayOutput) Index(i pulumi.IntInput) OidcKeyAllowedClientIDOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OidcKeyAllowedClientID {
+		return vs[0].([]OidcKeyAllowedClientID)[vs[1].(int)]
+	}).(OidcKeyAllowedClientIDOutput)
+}
+
+type OidcKeyAllowedClientIDMapOutput struct{ *pulumi.OutputState }
+
+func (OidcKeyAllowedClientIDMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]OidcKeyAllowedClientID)(nil))
+}
+
+func (o OidcKeyAllowedClientIDMapOutput) ToOidcKeyAllowedClientIDMapOutput() OidcKeyAllowedClientIDMapOutput {
+	return o
+}
+
+func (o OidcKeyAllowedClientIDMapOutput) ToOidcKeyAllowedClientIDMapOutputWithContext(ctx context.Context) OidcKeyAllowedClientIDMapOutput {
+	return o
+}
+
+func (o OidcKeyAllowedClientIDMapOutput) MapIndex(k pulumi.StringInput) OidcKeyAllowedClientIDOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) OidcKeyAllowedClientID {
+		return vs[0].(map[string]OidcKeyAllowedClientID)[vs[1].(string)]
+	}).(OidcKeyAllowedClientIDOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(OidcKeyAllowedClientIDOutput{})
+	pulumi.RegisterOutputType(OidcKeyAllowedClientIDPtrOutput{})
+	pulumi.RegisterOutputType(OidcKeyAllowedClientIDArrayOutput{})
+	pulumi.RegisterOutputType(OidcKeyAllowedClientIDMapOutput{})
 }

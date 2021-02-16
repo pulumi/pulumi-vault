@@ -127,7 +127,8 @@ export class SecretBackendConnection extends pulumi.CustomResource {
     constructor(name: string, args: SecretBackendConnectionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendConnectionArgs | SecretBackendConnectionState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretBackendConnectionState | undefined;
             inputs["allowedRoles"] = state ? state.allowedRoles : undefined;
             inputs["backend"] = state ? state.backend : undefined;
@@ -149,7 +150,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             inputs["verifyConnection"] = state ? state.verifyConnection : undefined;
         } else {
             const args = argsOrState as SecretBackendConnectionArgs | undefined;
-            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
             inputs["allowedRoles"] = args ? args.allowedRoles : undefined;
@@ -171,12 +172,8 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             inputs["rootRotationStatements"] = args ? args.rootRotationStatements : undefined;
             inputs["verifyConnection"] = args ? args.verifyConnection : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(SecretBackendConnection.__pulumiType, name, inputs, opts);
     }

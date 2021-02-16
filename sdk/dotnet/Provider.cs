@@ -25,7 +25,7 @@ namespace Pulumi.Vault
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Provider(string name, ProviderArgs? args = null, CustomResourceOptions? options = null)
+        public Provider(string name, ProviderArgs args, CustomResourceOptions? options = null)
             : base("vault", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -54,8 +54,8 @@ namespace Pulumi.Vault
         /// <summary>
         /// URL of the root of the target Vault server.
         /// </summary>
-        [Input("address")]
-        public Input<string>? Address { get; set; }
+        [Input("address", required: true)]
+        public Input<string> Address { get; set; } = null!;
 
         [Input("authLogins", json: true)]
         private InputList<Inputs.ProviderAuthLoginArgs>? _authLogins;
@@ -132,8 +132,8 @@ namespace Pulumi.Vault
         /// <summary>
         /// Token to use to authenticate to Vault.
         /// </summary>
-        [Input("token")]
-        public Input<string>? Token { get; set; }
+        [Input("token", required: true)]
+        public Input<string> Token { get; set; } = null!;
 
         /// <summary>
         /// Token name to use for creating the Vault child token.
@@ -143,15 +143,9 @@ namespace Pulumi.Vault
 
         public ProviderArgs()
         {
-            Address = Utilities.GetEnv("VAULT_ADDR");
-            CaCertDir = Utilities.GetEnv("VAULT_CAPATH");
-            CaCertFile = Utilities.GetEnv("VAULT_CACERT");
             MaxLeaseTtlSeconds = Utilities.GetEnvInt32("TERRAFORM_VAULT_MAX_TTL") ?? 1200;
             MaxRetries = Utilities.GetEnvInt32("VAULT_MAX_RETRIES") ?? 2;
-            Namespace = Utilities.GetEnv("VAULT_NAMESPACE");
             SkipTlsVerify = Utilities.GetEnvBoolean("VAULT_SKIP_VERIFY");
-            Token = Utilities.GetEnv("VAULT_TOKEN");
-            TokenName = Utilities.GetEnv("VAULT_TOKEN_NAME");
         }
     }
 }

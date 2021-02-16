@@ -115,7 +115,8 @@ export class SecretBackendSign extends pulumi.CustomResource {
     constructor(name: string, args: SecretBackendSignArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendSignArgs | SecretBackendSignState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretBackendSignState | undefined;
             inputs["altNames"] = state ? state.altNames : undefined;
             inputs["autoRenew"] = state ? state.autoRenew : undefined;
@@ -137,13 +138,13 @@ export class SecretBackendSign extends pulumi.CustomResource {
             inputs["uriSans"] = state ? state.uriSans : undefined;
         } else {
             const args = argsOrState as SecretBackendSignArgs | undefined;
-            if ((!args || args.backend === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.commonName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.commonName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'commonName'");
             }
-            if ((!args || args.csr === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.csr === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'csr'");
             }
             inputs["altNames"] = args ? args.altNames : undefined;
@@ -165,12 +166,8 @@ export class SecretBackendSign extends pulumi.CustomResource {
             inputs["issuingCa"] = undefined /*out*/;
             inputs["serial"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(SecretBackendSign.__pulumiType, name, inputs, opts);
     }

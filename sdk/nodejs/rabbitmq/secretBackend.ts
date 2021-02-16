@@ -88,7 +88,8 @@ export class SecretBackend extends pulumi.CustomResource {
     constructor(name: string, args: SecretBackendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendArgs | SecretBackendState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SecretBackendState | undefined;
             inputs["connectionUri"] = state ? state.connectionUri : undefined;
             inputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
@@ -100,13 +101,13 @@ export class SecretBackend extends pulumi.CustomResource {
             inputs["verifyConnection"] = state ? state.verifyConnection : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
-            if ((!args || args.connectionUri === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.connectionUri === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'connectionUri'");
             }
-            if ((!args || args.password === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.password === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'password'");
             }
-            if ((!args || args.username === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.username === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
             inputs["connectionUri"] = args ? args.connectionUri : undefined;
@@ -118,12 +119,8 @@ export class SecretBackend extends pulumi.CustomResource {
             inputs["username"] = args ? args.username : undefined;
             inputs["verifyConnection"] = args ? args.verifyConnection : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(SecretBackend.__pulumiType, name, inputs, opts);
     }

@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault/"
+// 	"github.com/pulumi/pulumi-vault/sdk/v3/go/vault"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -230,6 +230,85 @@ func (i *MfaDuo) ToMfaDuoOutputWithContext(ctx context.Context) MfaDuoOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MfaDuoOutput)
 }
 
+func (i *MfaDuo) ToMfaDuoPtrOutput() MfaDuoPtrOutput {
+	return i.ToMfaDuoPtrOutputWithContext(context.Background())
+}
+
+func (i *MfaDuo) ToMfaDuoPtrOutputWithContext(ctx context.Context) MfaDuoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MfaDuoPtrOutput)
+}
+
+type MfaDuoPtrInput interface {
+	pulumi.Input
+
+	ToMfaDuoPtrOutput() MfaDuoPtrOutput
+	ToMfaDuoPtrOutputWithContext(ctx context.Context) MfaDuoPtrOutput
+}
+
+type mfaDuoPtrType MfaDuoArgs
+
+func (*mfaDuoPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MfaDuo)(nil))
+}
+
+func (i *mfaDuoPtrType) ToMfaDuoPtrOutput() MfaDuoPtrOutput {
+	return i.ToMfaDuoPtrOutputWithContext(context.Background())
+}
+
+func (i *mfaDuoPtrType) ToMfaDuoPtrOutputWithContext(ctx context.Context) MfaDuoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MfaDuoPtrOutput)
+}
+
+// MfaDuoArrayInput is an input type that accepts MfaDuoArray and MfaDuoArrayOutput values.
+// You can construct a concrete instance of `MfaDuoArrayInput` via:
+//
+//          MfaDuoArray{ MfaDuoArgs{...} }
+type MfaDuoArrayInput interface {
+	pulumi.Input
+
+	ToMfaDuoArrayOutput() MfaDuoArrayOutput
+	ToMfaDuoArrayOutputWithContext(context.Context) MfaDuoArrayOutput
+}
+
+type MfaDuoArray []MfaDuoInput
+
+func (MfaDuoArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*MfaDuo)(nil))
+}
+
+func (i MfaDuoArray) ToMfaDuoArrayOutput() MfaDuoArrayOutput {
+	return i.ToMfaDuoArrayOutputWithContext(context.Background())
+}
+
+func (i MfaDuoArray) ToMfaDuoArrayOutputWithContext(ctx context.Context) MfaDuoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MfaDuoArrayOutput)
+}
+
+// MfaDuoMapInput is an input type that accepts MfaDuoMap and MfaDuoMapOutput values.
+// You can construct a concrete instance of `MfaDuoMapInput` via:
+//
+//          MfaDuoMap{ "key": MfaDuoArgs{...} }
+type MfaDuoMapInput interface {
+	pulumi.Input
+
+	ToMfaDuoMapOutput() MfaDuoMapOutput
+	ToMfaDuoMapOutputWithContext(context.Context) MfaDuoMapOutput
+}
+
+type MfaDuoMap map[string]MfaDuoInput
+
+func (MfaDuoMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*MfaDuo)(nil))
+}
+
+func (i MfaDuoMap) ToMfaDuoMapOutput() MfaDuoMapOutput {
+	return i.ToMfaDuoMapOutputWithContext(context.Background())
+}
+
+func (i MfaDuoMap) ToMfaDuoMapOutputWithContext(ctx context.Context) MfaDuoMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MfaDuoMapOutput)
+}
+
 type MfaDuoOutput struct {
 	*pulumi.OutputState
 }
@@ -246,6 +325,75 @@ func (o MfaDuoOutput) ToMfaDuoOutputWithContext(ctx context.Context) MfaDuoOutpu
 	return o
 }
 
+func (o MfaDuoOutput) ToMfaDuoPtrOutput() MfaDuoPtrOutput {
+	return o.ToMfaDuoPtrOutputWithContext(context.Background())
+}
+
+func (o MfaDuoOutput) ToMfaDuoPtrOutputWithContext(ctx context.Context) MfaDuoPtrOutput {
+	return o.ApplyT(func(v MfaDuo) *MfaDuo {
+		return &v
+	}).(MfaDuoPtrOutput)
+}
+
+type MfaDuoPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (MfaDuoPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MfaDuo)(nil))
+}
+
+func (o MfaDuoPtrOutput) ToMfaDuoPtrOutput() MfaDuoPtrOutput {
+	return o
+}
+
+func (o MfaDuoPtrOutput) ToMfaDuoPtrOutputWithContext(ctx context.Context) MfaDuoPtrOutput {
+	return o
+}
+
+type MfaDuoArrayOutput struct{ *pulumi.OutputState }
+
+func (MfaDuoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MfaDuo)(nil))
+}
+
+func (o MfaDuoArrayOutput) ToMfaDuoArrayOutput() MfaDuoArrayOutput {
+	return o
+}
+
+func (o MfaDuoArrayOutput) ToMfaDuoArrayOutputWithContext(ctx context.Context) MfaDuoArrayOutput {
+	return o
+}
+
+func (o MfaDuoArrayOutput) Index(i pulumi.IntInput) MfaDuoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MfaDuo {
+		return vs[0].([]MfaDuo)[vs[1].(int)]
+	}).(MfaDuoOutput)
+}
+
+type MfaDuoMapOutput struct{ *pulumi.OutputState }
+
+func (MfaDuoMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]MfaDuo)(nil))
+}
+
+func (o MfaDuoMapOutput) ToMfaDuoMapOutput() MfaDuoMapOutput {
+	return o
+}
+
+func (o MfaDuoMapOutput) ToMfaDuoMapOutputWithContext(ctx context.Context) MfaDuoMapOutput {
+	return o
+}
+
+func (o MfaDuoMapOutput) MapIndex(k pulumi.StringInput) MfaDuoOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) MfaDuo {
+		return vs[0].(map[string]MfaDuo)[vs[1].(string)]
+	}).(MfaDuoOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(MfaDuoOutput{})
+	pulumi.RegisterOutputType(MfaDuoPtrOutput{})
+	pulumi.RegisterOutputType(MfaDuoArrayOutput{})
+	pulumi.RegisterOutputType(MfaDuoMapOutput{})
 }
