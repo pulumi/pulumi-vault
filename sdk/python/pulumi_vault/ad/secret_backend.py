@@ -155,7 +155,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__['discoverdn'] = discoverdn
             if formatter is not None and not opts.urn:
                 warnings.warn("""Formatter is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
-                pulumi.log.warn("formatter is deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.")
+                pulumi.log.warn("""formatter is deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.""")
             __props__['formatter'] = formatter
             __props__['groupattr'] = groupattr
             __props__['groupdn'] = groupdn
@@ -164,7 +164,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__['last_rotation_tolerance'] = last_rotation_tolerance
             if length is not None and not opts.urn:
                 warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
-                pulumi.log.warn("length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.")
+                pulumi.log.warn("""length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.""")
             __props__['length'] = length
             __props__['local'] = local
             __props__['max_lease_ttl_seconds'] = max_lease_ttl_seconds

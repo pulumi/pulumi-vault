@@ -87,7 +87,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__['name'] = name
             if path is not None and not opts.urn:
                 warnings.warn("""use `backend` instead""", DeprecationWarning)
-                pulumi.log.warn("path is deprecated: use `backend` instead")
+                pulumi.log.warn("""path is deprecated: use `backend` instead""")
             __props__['path'] = path
             if policies is None and not opts.urn:
                 raise TypeError("Missing required property 'policies'")

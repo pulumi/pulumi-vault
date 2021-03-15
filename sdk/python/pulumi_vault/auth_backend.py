@@ -82,17 +82,17 @@ class AuthBackend(pulumi.CustomResource):
 
             if default_lease_ttl_seconds is not None and not opts.urn:
                 warnings.warn("""Use the tune configuration block to avoid forcing creation of new resource on an update""", DeprecationWarning)
-                pulumi.log.warn("default_lease_ttl_seconds is deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update")
+                pulumi.log.warn("""default_lease_ttl_seconds is deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update""")
             __props__['default_lease_ttl_seconds'] = default_lease_ttl_seconds
             __props__['description'] = description
             if listing_visibility is not None and not opts.urn:
                 warnings.warn("""Use the tune configuration block to avoid forcing creation of new resource on an update""", DeprecationWarning)
-                pulumi.log.warn("listing_visibility is deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update")
+                pulumi.log.warn("""listing_visibility is deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update""")
             __props__['listing_visibility'] = listing_visibility
             __props__['local'] = local
             if max_lease_ttl_seconds is not None and not opts.urn:
                 warnings.warn("""Use the tune configuration block to avoid forcing creation of new resource on an update""", DeprecationWarning)
-                pulumi.log.warn("max_lease_ttl_seconds is deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update")
+                pulumi.log.warn("""max_lease_ttl_seconds is deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update""")
             __props__['max_lease_ttl_seconds'] = max_lease_ttl_seconds
             __props__['path'] = path
             __props__['tune'] = tune
