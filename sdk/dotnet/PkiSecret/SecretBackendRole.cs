@@ -91,6 +91,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> AllowedDomains { get; private set; } = null!;
 
         /// <summary>
+        /// Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+        /// </summary>
+        [Output("allowedDomainsTemplate")]
+        public Output<bool?> AllowedDomainsTemplate { get; private set; } = null!;
+
+        /// <summary>
         /// Defines allowed custom SANs
         /// </summary>
         [Output("allowedOtherSans")]
@@ -363,6 +369,12 @@ namespace Pulumi.Vault.PkiSecret
             get => _allowedDomains ?? (_allowedDomains = new InputList<string>());
             set => _allowedDomains = value;
         }
+
+        /// <summary>
+        /// Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+        /// </summary>
+        [Input("allowedDomainsTemplate")]
+        public Input<bool>? AllowedDomainsTemplate { get; set; }
 
         [Input("allowedOtherSans")]
         private InputList<string>? _allowedOtherSans;
@@ -670,6 +682,12 @@ namespace Pulumi.Vault.PkiSecret
             get => _allowedDomains ?? (_allowedDomains = new InputList<string>());
             set => _allowedDomains = value;
         }
+
+        /// <summary>
+        /// Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+        /// </summary>
+        [Input("allowedDomainsTemplate")]
+        public Input<bool>? AllowedDomainsTemplate { get; set; }
 
         [Input("allowedOtherSans")]
         private InputList<string>? _allowedOtherSans;

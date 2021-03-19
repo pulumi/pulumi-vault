@@ -70,6 +70,8 @@ type SecretBackendRole struct {
 	AllowSubdomains pulumi.BoolPtrOutput `pulumi:"allowSubdomains"`
 	// List of allowed domains for certificates
 	AllowedDomains pulumi.StringArrayOutput `pulumi:"allowedDomains"`
+	// Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+	AllowedDomainsTemplate pulumi.BoolPtrOutput `pulumi:"allowedDomainsTemplate"`
 	// Defines allowed custom SANs
 	AllowedOtherSans pulumi.StringArrayOutput `pulumi:"allowedOtherSans"`
 	// Defines allowed URI SANs
@@ -178,6 +180,8 @@ type secretBackendRoleState struct {
 	AllowSubdomains *bool `pulumi:"allowSubdomains"`
 	// List of allowed domains for certificates
 	AllowedDomains []string `pulumi:"allowedDomains"`
+	// Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+	AllowedDomainsTemplate *bool `pulumi:"allowedDomainsTemplate"`
 	// Defines allowed custom SANs
 	AllowedOtherSans []string `pulumi:"allowedOtherSans"`
 	// Defines allowed URI SANs
@@ -255,6 +259,8 @@ type SecretBackendRoleState struct {
 	AllowSubdomains pulumi.BoolPtrInput
 	// List of allowed domains for certificates
 	AllowedDomains pulumi.StringArrayInput
+	// Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+	AllowedDomainsTemplate pulumi.BoolPtrInput
 	// Defines allowed custom SANs
 	AllowedOtherSans pulumi.StringArrayInput
 	// Defines allowed URI SANs
@@ -336,6 +342,8 @@ type secretBackendRoleArgs struct {
 	AllowSubdomains *bool `pulumi:"allowSubdomains"`
 	// List of allowed domains for certificates
 	AllowedDomains []string `pulumi:"allowedDomains"`
+	// Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+	AllowedDomainsTemplate *bool `pulumi:"allowedDomainsTemplate"`
 	// Defines allowed custom SANs
 	AllowedOtherSans []string `pulumi:"allowedOtherSans"`
 	// Defines allowed URI SANs
@@ -414,6 +422,8 @@ type SecretBackendRoleArgs struct {
 	AllowSubdomains pulumi.BoolPtrInput
 	// List of allowed domains for certificates
 	AllowedDomains pulumi.StringArrayInput
+	// Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+	AllowedDomainsTemplate pulumi.BoolPtrInput
 	// Defines allowed custom SANs
 	AllowedOtherSans pulumi.StringArrayInput
 	// Defines allowed URI SANs

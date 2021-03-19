@@ -88,6 +88,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly allowedDomains!: pulumi.Output<string[] | undefined>;
     /**
+     * Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+     */
+    public readonly allowedDomainsTemplate!: pulumi.Output<boolean | undefined>;
+    /**
      * Defines allowed custom SANs
      */
     public readonly allowedOtherSans!: pulumi.Output<string[] | undefined>;
@@ -228,6 +232,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["allowLocalhost"] = state ? state.allowLocalhost : undefined;
             inputs["allowSubdomains"] = state ? state.allowSubdomains : undefined;
             inputs["allowedDomains"] = state ? state.allowedDomains : undefined;
+            inputs["allowedDomainsTemplate"] = state ? state.allowedDomainsTemplate : undefined;
             inputs["allowedOtherSans"] = state ? state.allowedOtherSans : undefined;
             inputs["allowedUriSans"] = state ? state.allowedUriSans : undefined;
             inputs["backend"] = state ? state.backend : undefined;
@@ -270,6 +275,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             inputs["allowLocalhost"] = args ? args.allowLocalhost : undefined;
             inputs["allowSubdomains"] = args ? args.allowSubdomains : undefined;
             inputs["allowedDomains"] = args ? args.allowedDomains : undefined;
+            inputs["allowedDomainsTemplate"] = args ? args.allowedDomainsTemplate : undefined;
             inputs["allowedOtherSans"] = args ? args.allowedOtherSans : undefined;
             inputs["allowedUriSans"] = args ? args.allowedUriSans : undefined;
             inputs["backend"] = args ? args.backend : undefined;
@@ -340,6 +346,10 @@ export interface SecretBackendRoleState {
      * List of allowed domains for certificates
      */
     readonly allowedDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+     */
+    readonly allowedDomainsTemplate?: pulumi.Input<boolean>;
     /**
      * Defines allowed custom SANs
      */
@@ -494,6 +504,10 @@ export interface SecretBackendRoleArgs {
      * List of allowed domains for certificates
      */
     readonly allowedDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+     */
+    readonly allowedDomainsTemplate?: pulumi.Input<boolean>;
     /**
      * Defines allowed custom SANs
      */

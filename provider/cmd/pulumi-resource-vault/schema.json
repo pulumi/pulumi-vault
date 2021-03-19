@@ -13250,6 +13250,10 @@
                     },
                     "description": "List of allowed domains for certificates\n"
                 },
+                "allowedDomainsTemplate": {
+                    "type": "boolean",
+                    "description": "Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.\u003cmount accessor\u003e.name}}`.\n"
+                },
                 "allowedOtherSans": {
                     "type": "array",
                     "items": {
@@ -13444,6 +13448,10 @@
                     },
                     "description": "List of allowed domains for certificates\n"
                 },
+                "allowedDomainsTemplate": {
+                    "type": "boolean",
+                    "description": "Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.\u003cmount accessor\u003e.name}}`.\n"
+                },
                 "allowedOtherSans": {
                     "type": "array",
                     "items": {
@@ -13637,6 +13645,10 @@
                             "type": "string"
                         },
                         "description": "List of allowed domains for certificates\n"
+                    },
+                    "allowedDomainsTemplate": {
+                        "type": "boolean",
+                        "description": "Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.\u003cmount accessor\u003e.name}}`.\n"
                     },
                     "allowedOtherSans": {
                         "type": "array",
