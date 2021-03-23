@@ -2,11 +2,14 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+_(none)_
+
+---
+
+## 3.5.1 (2021-03-23)
 * Upgrade to v2.19.0 of the Vault Terraform Provider
 * Upgrade to pulumi-terraform-bridge v2.22.1  
   **Please Note:** This includes a bug fix to the refresh operation regarding arrays
-
----
 
 ## 3.5.0 (2021-03-15)
 * Upgrade to pulumi-terraform-bridge v2.21.0
