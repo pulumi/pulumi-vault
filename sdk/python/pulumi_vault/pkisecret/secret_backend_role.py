@@ -22,6 +22,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  allow_localhost: Optional[pulumi.Input[bool]] = None,
                  allow_subdomains: Optional[pulumi.Input[bool]] = None,
                  allowed_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_domains_template: Optional[pulumi.Input[bool]] = None,
                  allowed_other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
@@ -88,6 +89,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[bool] allow_localhost: Flag to allow certificates for localhost
         :param pulumi.Input[bool] allow_subdomains: Flag to allow certificates matching subdomains
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_domains: List of allowed domains for certificates
+        :param pulumi.Input[bool] allowed_domains_template: Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_other_sans: Defines allowed custom SANs
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -143,6 +145,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__['allow_localhost'] = allow_localhost
             __props__['allow_subdomains'] = allow_subdomains
             __props__['allowed_domains'] = allowed_domains
+            __props__['allowed_domains_template'] = allowed_domains_template
             __props__['allowed_other_sans'] = allowed_other_sans
             __props__['allowed_uri_sans'] = allowed_uri_sans
             if backend is None and not opts.urn:
@@ -192,6 +195,7 @@ class SecretBackendRole(pulumi.CustomResource):
             allow_localhost: Optional[pulumi.Input[bool]] = None,
             allow_subdomains: Optional[pulumi.Input[bool]] = None,
             allowed_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            allowed_domains_template: Optional[pulumi.Input[bool]] = None,
             allowed_other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             backend: Optional[pulumi.Input[str]] = None,
@@ -236,6 +240,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[bool] allow_localhost: Flag to allow certificates for localhost
         :param pulumi.Input[bool] allow_subdomains: Flag to allow certificates matching subdomains
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_domains: List of allowed domains for certificates
+        :param pulumi.Input[bool] allowed_domains_template: Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_other_sans: Defines allowed custom SANs
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -278,6 +283,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__["allow_localhost"] = allow_localhost
         __props__["allow_subdomains"] = allow_subdomains
         __props__["allowed_domains"] = allowed_domains
+        __props__["allowed_domains_template"] = allowed_domains_template
         __props__["allowed_other_sans"] = allowed_other_sans
         __props__["allowed_uri_sans"] = allowed_uri_sans
         __props__["backend"] = backend
@@ -365,6 +371,14 @@ class SecretBackendRole(pulumi.CustomResource):
         List of allowed domains for certificates
         """
         return pulumi.get(self, "allowed_domains")
+
+    @property
+    @pulumi.getter(name="allowedDomainsTemplate")
+    def allowed_domains_template(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+        """
+        return pulumi.get(self, "allowed_domains_template")
 
     @property
     @pulumi.getter(name="allowedOtherSans")
