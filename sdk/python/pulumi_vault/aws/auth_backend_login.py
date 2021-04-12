@@ -5,13 +5,209 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['AuthBackendLogin']
+__all__ = ['AuthBackendLoginArgs', 'AuthBackendLogin']
+
+@pulumi.input_type
+class AuthBackendLoginArgs:
+    def __init__(__self__, *,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 iam_http_request_method: Optional[pulumi.Input[str]] = None,
+                 iam_request_body: Optional[pulumi.Input[str]] = None,
+                 iam_request_headers: Optional[pulumi.Input[str]] = None,
+                 iam_request_url: Optional[pulumi.Input[str]] = None,
+                 identity: Optional[pulumi.Input[str]] = None,
+                 nonce: Optional[pulumi.Input[str]] = None,
+                 pkcs7: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 signature: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a AuthBackendLogin resource.
+        :param pulumi.Input[str] backend: The unique name of the AWS auth backend. Defaults to
+               'aws'.
+        :param pulumi.Input[str] iam_http_request_method: The HTTP method used in the signed IAM
+               request.
+        :param pulumi.Input[str] iam_request_body: The base64-encoded body of the signed
+               request.
+        :param pulumi.Input[str] iam_request_headers: The base64-encoded, JSON serialized
+               representation of the GetCallerIdentity HTTP request headers.
+        :param pulumi.Input[str] iam_request_url: The base64-encoded HTTP URL used in the signed
+               request.
+        :param pulumi.Input[str] identity: The base64-encoded EC2 instance identity document to
+               authenticate with. Can be retrieved from the EC2 metadata server.
+        :param pulumi.Input[str] nonce: The unique nonce to be used for login requests. Can be
+               set to a user-specified value, or will contain the server-generated value
+               once a token is issued. EC2 instances can only acquire a single token until
+               the whitelist is tidied again unless they keep track of this nonce.
+        :param pulumi.Input[str] pkcs7: The PKCS#7 signature of the identity document to
+               authenticate with, with all newline characters removed. Can be retrieved from
+               the EC2 metadata server.
+        :param pulumi.Input[str] role: The name of the AWS auth backend role to create tokens
+               against.
+        :param pulumi.Input[str] signature: The base64-encoded SHA256 RSA signature of the
+               instance identity document to authenticate with, with all newline characters
+               removed. Can be retrieved from the EC2 metadata server.
+        """
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if iam_http_request_method is not None:
+            pulumi.set(__self__, "iam_http_request_method", iam_http_request_method)
+        if iam_request_body is not None:
+            pulumi.set(__self__, "iam_request_body", iam_request_body)
+        if iam_request_headers is not None:
+            pulumi.set(__self__, "iam_request_headers", iam_request_headers)
+        if iam_request_url is not None:
+            pulumi.set(__self__, "iam_request_url", iam_request_url)
+        if identity is not None:
+            pulumi.set(__self__, "identity", identity)
+        if nonce is not None:
+            pulumi.set(__self__, "nonce", nonce)
+        if pkcs7 is not None:
+            pulumi.set(__self__, "pkcs7", pkcs7)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if signature is not None:
+            pulumi.set(__self__, "signature", signature)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique name of the AWS auth backend. Defaults to
+        'aws'.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="iamHttpRequestMethod")
+    def iam_http_request_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        The HTTP method used in the signed IAM
+        request.
+        """
+        return pulumi.get(self, "iam_http_request_method")
+
+    @iam_http_request_method.setter
+    def iam_http_request_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iam_http_request_method", value)
+
+    @property
+    @pulumi.getter(name="iamRequestBody")
+    def iam_request_body(self) -> Optional[pulumi.Input[str]]:
+        """
+        The base64-encoded body of the signed
+        request.
+        """
+        return pulumi.get(self, "iam_request_body")
+
+    @iam_request_body.setter
+    def iam_request_body(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iam_request_body", value)
+
+    @property
+    @pulumi.getter(name="iamRequestHeaders")
+    def iam_request_headers(self) -> Optional[pulumi.Input[str]]:
+        """
+        The base64-encoded, JSON serialized
+        representation of the GetCallerIdentity HTTP request headers.
+        """
+        return pulumi.get(self, "iam_request_headers")
+
+    @iam_request_headers.setter
+    def iam_request_headers(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iam_request_headers", value)
+
+    @property
+    @pulumi.getter(name="iamRequestUrl")
+    def iam_request_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The base64-encoded HTTP URL used in the signed
+        request.
+        """
+        return pulumi.get(self, "iam_request_url")
+
+    @iam_request_url.setter
+    def iam_request_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iam_request_url", value)
+
+    @property
+    @pulumi.getter
+    def identity(self) -> Optional[pulumi.Input[str]]:
+        """
+        The base64-encoded EC2 instance identity document to
+        authenticate with. Can be retrieved from the EC2 metadata server.
+        """
+        return pulumi.get(self, "identity")
+
+    @identity.setter
+    def identity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity", value)
+
+    @property
+    @pulumi.getter
+    def nonce(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique nonce to be used for login requests. Can be
+        set to a user-specified value, or will contain the server-generated value
+        once a token is issued. EC2 instances can only acquire a single token until
+        the whitelist is tidied again unless they keep track of this nonce.
+        """
+        return pulumi.get(self, "nonce")
+
+    @nonce.setter
+    def nonce(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nonce", value)
+
+    @property
+    @pulumi.getter
+    def pkcs7(self) -> Optional[pulumi.Input[str]]:
+        """
+        The PKCS#7 signature of the identity document to
+        authenticate with, with all newline characters removed. Can be retrieved from
+        the EC2 metadata server.
+        """
+        return pulumi.get(self, "pkcs7")
+
+    @pkcs7.setter
+    def pkcs7(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pkcs7", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the AWS auth backend role to create tokens
+        against.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter
+    def signature(self) -> Optional[pulumi.Input[str]]:
+        """
+        The base64-encoded SHA256 RSA signature of the
+        instance identity document to authenticate with, with all newline characters
+        removed. Can be retrieved from the EC2 metadata server.
+        """
+        return pulumi.get(self, "signature")
+
+    @signature.setter
+    def signature(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "signature", value)
 
 
 class AuthBackendLogin(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -61,6 +257,46 @@ class AuthBackendLogin(pulumi.CustomResource):
                instance identity document to authenticate with, with all newline characters
                removed. Can be retrieved from the EC2 metadata server.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: Optional[AuthBackendLoginArgs] = None,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Logs into a Vault server using an AWS auth backend. Login can be
+        accomplished using a signed identity request from IAM or using ec2
+        instance metadata. For more information, see the [Vault
+        documentation](https://www.vaultproject.io/docs/auth/aws.html).
+
+        :param str resource_name: The name of the resource.
+        :param AuthBackendLoginArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(AuthBackendLoginArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 iam_http_request_method: Optional[pulumi.Input[str]] = None,
+                 iam_request_body: Optional[pulumi.Input[str]] = None,
+                 iam_request_headers: Optional[pulumi.Input[str]] = None,
+                 iam_request_url: Optional[pulumi.Input[str]] = None,
+                 identity: Optional[pulumi.Input[str]] = None,
+                 nonce: Optional[pulumi.Input[str]] = None,
+                 pkcs7: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 signature: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

@@ -5,13 +5,241 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['NomadSecretBackend']
+__all__ = ['NomadSecretBackendArgs', 'NomadSecretBackend']
+
+@pulumi.input_type
+class NomadSecretBackendArgs:
+    def __init__(__self__, *,
+                 address: Optional[pulumi.Input[str]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 ca_cert: Optional[pulumi.Input[str]] = None,
+                 client_cert: Optional[pulumi.Input[str]] = None,
+                 client_key: Optional[pulumi.Input[str]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 max_token_name_length: Optional[pulumi.Input[int]] = None,
+                 max_ttl: Optional[pulumi.Input[int]] = None,
+                 token: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None):
+        """
+        The set of arguments for constructing a NomadSecretBackend resource.
+        :param pulumi.Input[str] address: Specifies the address of the Nomad instance, provided
+               as "protocol://host:port" like "http://127.0.0.1:4646".
+        :param pulumi.Input[str] backend: The unique path this backend should be mounted at. Must
+               not begin or end with a `/`. Defaults to `nomad`.
+        :param pulumi.Input[str] ca_cert: CA certificate to use when verifying the Nomad server certificate, must be
+               x509 PEM encoded.
+        :param pulumi.Input[str] client_cert: Client certificate to provide to the Nomad server, must be x509 PEM encoded.
+        :param pulumi.Input[str] client_key: Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+        :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
+        :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
+        :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
+               replication.Tolerance duration to use when checking the last rotation time.
+        :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
+        :param pulumi.Input[int] max_token_name_length: Specifies the maximum length to use for the name of the Nomad token
+               generated with Generate Credential. If omitted, 0 is used and ignored, defaulting to the max value allowed
+               by the Nomad version.
+        :param pulumi.Input[int] max_ttl: Maximum possible lease duration for secrets in seconds.
+        :param pulumi.Input[str] token: Specifies the Nomad Management token to use.
+        :param pulumi.Input[int] ttl: Specifies the ttl of the lease for the generated token.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if ca_cert is not None:
+            pulumi.set(__self__, "ca_cert", ca_cert)
+        if client_cert is not None:
+            pulumi.set(__self__, "client_cert", client_cert)
+        if client_key is not None:
+            pulumi.set(__self__, "client_key", client_key)
+        if default_lease_ttl_seconds is not None:
+            pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
+        if max_lease_ttl_seconds is not None:
+            pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
+        if max_token_name_length is not None:
+            pulumi.set(__self__, "max_token_name_length", max_token_name_length)
+        if max_ttl is not None:
+            pulumi.set(__self__, "max_ttl", max_ttl)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the address of the Nomad instance, provided
+        as "protocol://host:port" like "http://127.0.0.1:4646".
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique path this backend should be mounted at. Must
+        not begin or end with a `/`. Defaults to `nomad`.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="caCert")
+    def ca_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        CA certificate to use when verifying the Nomad server certificate, must be
+        x509 PEM encoded.
+        """
+        return pulumi.get(self, "ca_cert")
+
+    @ca_cert.setter
+    def ca_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_cert", value)
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client certificate to provide to the Nomad server, must be x509 PEM encoded.
+        """
+        return pulumi.get(self, "client_cert")
+
+    @client_cert.setter
+    def client_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_cert", value)
+
+    @property
+    @pulumi.getter(name="clientKey")
+    def client_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+        """
+        return pulumi.get(self, "client_key")
+
+    @client_key.setter
+    def client_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_key", value)
+
+    @property
+    @pulumi.getter(name="defaultLeaseTtlSeconds")
+    def default_lease_ttl_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        Default lease duration for secrets in seconds.
+        """
+        return pulumi.get(self, "default_lease_ttl_seconds")
+
+    @default_lease_ttl_seconds.setter
+    def default_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "default_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-friendly description of the mount for the Active Directory backend.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Mark the secrets engine as local-only. Local engines are not replicated or removed by
+        replication.Tolerance duration to use when checking the last rotation time.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "local", value)
+
+    @property
+    @pulumi.getter(name="maxLeaseTtlSeconds")
+    def max_lease_ttl_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum possible lease duration for secrets in seconds.
+        """
+        return pulumi.get(self, "max_lease_ttl_seconds")
+
+    @max_lease_ttl_seconds.setter
+    def max_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter(name="maxTokenNameLength")
+    def max_token_name_length(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the maximum length to use for the name of the Nomad token
+        generated with Generate Credential. If omitted, 0 is used and ignored, defaulting to the max value allowed
+        by the Nomad version.
+        """
+        return pulumi.get(self, "max_token_name_length")
+
+    @max_token_name_length.setter
+    def max_token_name_length(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_token_name_length", value)
+
+    @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum possible lease duration for secrets in seconds.
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @max_ttl.setter
+    def max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_ttl", value)
+
+    @property
+    @pulumi.getter
+    def token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the Nomad Management token to use.
+        """
+        return pulumi.get(self, "token")
+
+    @token.setter
+    def token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the ttl of the lease for the generated token.
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ttl", value)
 
 
 class NomadSecretBackend(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -62,6 +290,52 @@ class NomadSecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] token: Specifies the Nomad Management token to use.
         :param pulumi.Input[int] ttl: Specifies the ttl of the lease for the generated token.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: Optional[NomadSecretBackendArgs] = None,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        Nomad secret backend can be imported using the `backend`, e.g.
+
+        ```sh
+         $ pulumi import vault:index/nomadSecretBackend:NomadSecretBackend nomad nomad
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param NomadSecretBackendArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(NomadSecretBackendArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 address: Optional[pulumi.Input[str]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 ca_cert: Optional[pulumi.Input[str]] = None,
+                 client_cert: Optional[pulumi.Input[str]] = None,
+                 client_key: Optional[pulumi.Input[str]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 max_token_name_length: Optional[pulumi.Input[int]] = None,
+                 max_ttl: Optional[pulumi.Input[int]] = None,
+                 token: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

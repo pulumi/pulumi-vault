@@ -5,13 +5,245 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['Token']
+__all__ = ['TokenArgs', 'Token']
+
+@pulumi.input_type
+class TokenArgs:
+    def __init__(__self__, *,
+                 display_name: Optional[pulumi.Input[str]] = None,
+                 explicit_max_ttl: Optional[pulumi.Input[str]] = None,
+                 no_default_policy: Optional[pulumi.Input[bool]] = None,
+                 no_parent: Optional[pulumi.Input[bool]] = None,
+                 num_uses: Optional[pulumi.Input[int]] = None,
+                 period: Optional[pulumi.Input[str]] = None,
+                 pgp_key: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 renew_increment: Optional[pulumi.Input[int]] = None,
+                 renew_min_lease: Optional[pulumi.Input[int]] = None,
+                 renewable: Optional[pulumi.Input[bool]] = None,
+                 role_name: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[str]] = None,
+                 wrapping_ttl: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a Token resource.
+        :param pulumi.Input[str] display_name: String containing the token display name
+        :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token
+        :param pulumi.Input[bool] no_default_policy: Flag to not attach the default policy to this token
+        :param pulumi.Input[bool] no_parent: Flag to create a token without parent
+        :param pulumi.Input[int] num_uses: The number of allowed uses of this token
+        :param pulumi.Input[str] period: The period of this token
+        :param pulumi.Input[str] pgp_key: The PGP key (base64 encoded) to encrypt the token.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to attach to this token
+        :param pulumi.Input[int] renew_increment: The renew increment
+        :param pulumi.Input[int] renew_min_lease: The minimal lease to renew this token
+        :param pulumi.Input[bool] renewable: Flag to allow to renew this token
+        :param pulumi.Input[str] role_name: The token role name
+        :param pulumi.Input[str] ttl: The TTL period of this token
+        :param pulumi.Input[str] wrapping_ttl: The TTL period of the wrapped token.
+        """
+        if display_name is not None:
+            pulumi.set(__self__, "display_name", display_name)
+        if explicit_max_ttl is not None:
+            pulumi.set(__self__, "explicit_max_ttl", explicit_max_ttl)
+        if no_default_policy is not None:
+            pulumi.set(__self__, "no_default_policy", no_default_policy)
+        if no_parent is not None:
+            pulumi.set(__self__, "no_parent", no_parent)
+        if num_uses is not None:
+            pulumi.set(__self__, "num_uses", num_uses)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if pgp_key is not None:
+            pulumi.set(__self__, "pgp_key", pgp_key)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+        if renew_increment is not None:
+            pulumi.set(__self__, "renew_increment", renew_increment)
+        if renew_min_lease is not None:
+            pulumi.set(__self__, "renew_min_lease", renew_min_lease)
+        if renewable is not None:
+            pulumi.set(__self__, "renewable", renewable)
+        if role_name is not None:
+            pulumi.set(__self__, "role_name", role_name)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+        if wrapping_ttl is not None:
+            pulumi.set(__self__, "wrapping_ttl", wrapping_ttl)
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        String containing the token display name
+        """
+        return pulumi.get(self, "display_name")
+
+    @display_name.setter
+    def display_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "display_name", value)
+
+    @property
+    @pulumi.getter(name="explicitMaxTtl")
+    def explicit_max_ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        The explicit max TTL of this token
+        """
+        return pulumi.get(self, "explicit_max_ttl")
+
+    @explicit_max_ttl.setter
+    def explicit_max_ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "explicit_max_ttl", value)
+
+    @property
+    @pulumi.getter(name="noDefaultPolicy")
+    def no_default_policy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to not attach the default policy to this token
+        """
+        return pulumi.get(self, "no_default_policy")
+
+    @no_default_policy.setter
+    def no_default_policy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "no_default_policy", value)
+
+    @property
+    @pulumi.getter(name="noParent")
+    def no_parent(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to create a token without parent
+        """
+        return pulumi.get(self, "no_parent")
+
+    @no_parent.setter
+    def no_parent(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "no_parent", value)
+
+    @property
+    @pulumi.getter(name="numUses")
+    def num_uses(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of allowed uses of this token
+        """
+        return pulumi.get(self, "num_uses")
+
+    @num_uses.setter
+    def num_uses(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "num_uses", value)
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[pulumi.Input[str]]:
+        """
+        The period of this token
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "period", value)
+
+    @property
+    @pulumi.getter(name="pgpKey")
+    def pgp_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The PGP key (base64 encoded) to encrypt the token.
+        """
+        return pulumi.get(self, "pgp_key")
+
+    @pgp_key.setter
+    def pgp_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pgp_key", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of policies to attach to this token
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
+
+    @property
+    @pulumi.getter(name="renewIncrement")
+    def renew_increment(self) -> Optional[pulumi.Input[int]]:
+        """
+        The renew increment
+        """
+        return pulumi.get(self, "renew_increment")
+
+    @renew_increment.setter
+    def renew_increment(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "renew_increment", value)
+
+    @property
+    @pulumi.getter(name="renewMinLease")
+    def renew_min_lease(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minimal lease to renew this token
+        """
+        return pulumi.get(self, "renew_min_lease")
+
+    @renew_min_lease.setter
+    def renew_min_lease(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "renew_min_lease", value)
+
+    @property
+    @pulumi.getter
+    def renewable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to allow to renew this token
+        """
+        return pulumi.get(self, "renewable")
+
+    @renewable.setter
+    def renewable(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "renewable", value)
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The token role name
+        """
+        return pulumi.get(self, "role_name")
+
+    @role_name.setter
+    def role_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_name", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        The TTL period of this token
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ttl", value)
+
+    @property
+    @pulumi.getter(name="wrappingTtl")
+    def wrapping_ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        The TTL period of the wrapped token.
+        """
+        return pulumi.get(self, "wrapping_ttl")
+
+    @wrapping_ttl.setter
+    def wrapping_ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wrapping_ttl", value)
 
 
 class Token(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -58,6 +290,53 @@ class Token(pulumi.CustomResource):
         :param pulumi.Input[str] ttl: The TTL period of this token
         :param pulumi.Input[str] wrapping_ttl: The TTL period of the wrapped token.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: Optional[TokenArgs] = None,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        Tokens can be imported using its `id` as accessor id, e.g.
+
+        ```sh
+         $ pulumi import vault:index/token:Token example <accessor_id>
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param TokenArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(TokenArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 display_name: Optional[pulumi.Input[str]] = None,
+                 explicit_max_ttl: Optional[pulumi.Input[str]] = None,
+                 no_default_policy: Optional[pulumi.Input[bool]] = None,
+                 no_parent: Optional[pulumi.Input[bool]] = None,
+                 num_uses: Optional[pulumi.Input[int]] = None,
+                 period: Optional[pulumi.Input[str]] = None,
+                 pgp_key: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 renew_increment: Optional[pulumi.Input[int]] = None,
+                 renew_min_lease: Optional[pulumi.Input[int]] = None,
+                 renewable: Optional[pulumi.Input[bool]] = None,
+                 role_name: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[str]] = None,
+                 wrapping_ttl: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

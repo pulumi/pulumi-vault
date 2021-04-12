@@ -5,13 +5,70 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['AuthBackendLogin']
+__all__ = ['AuthBackendLoginArgs', 'AuthBackendLogin']
+
+@pulumi.input_type
+class AuthBackendLoginArgs:
+    def __init__(__self__, *,
+                 role_id: pulumi.Input[str],
+                 backend: Optional[pulumi.Input[str]] = None,
+                 secret_id: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a AuthBackendLogin resource.
+        :param pulumi.Input[str] role_id: The ID of the role to log in with.
+        :param pulumi.Input[str] backend: The unique path of the Vault backend to log in with.
+        :param pulumi.Input[str] secret_id: The secret ID of the role to log in with. Required
+               unless `bind_secret_id` is set to false on the role.
+        """
+        pulumi.set(__self__, "role_id", role_id)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if secret_id is not None:
+            pulumi.set(__self__, "secret_id", secret_id)
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the role to log in with.
+        """
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role_id", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique path of the Vault backend to log in with.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The secret ID of the role to log in with. Required
+        unless `bind_secret_id` is set to false on the role.
+        """
+        return pulumi.get(self, "secret_id")
+
+    @secret_id.setter
+    def secret_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secret_id", value)
 
 
 class AuthBackendLogin(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -57,6 +114,62 @@ class AuthBackendLogin(pulumi.CustomResource):
         :param pulumi.Input[str] secret_id: The secret ID of the role to log in with. Required
                unless `bind_secret_id` is set to false on the role.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: AuthBackendLoginArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Logs into Vault using the AppRole auth backend. See the [Vault
+        documentation](https://www.vaultproject.io/docs/auth/approle) for more
+        information.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        approle = vault.AuthBackend("approle", type="approle")
+        example = vault.app_role.AuthBackendRole("example",
+            backend=approle.path,
+            policies=[
+                "default",
+                "dev",
+                "prod",
+            ],
+            role_name="test-role")
+        id = vault.app_role.AuthBackendRoleSecretID("id",
+            backend=approle.path,
+            role_name=example.role_name)
+        login = vault.app_role.AuthBackendLogin("login",
+            backend=approle.path,
+            role_id=example.role_id,
+            secret_id=id.secret_id)
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param AuthBackendLoginArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(AuthBackendLoginArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 role_id: Optional[pulumi.Input[str]] = None,
+                 secret_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

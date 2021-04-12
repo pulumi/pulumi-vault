@@ -5,13 +5,76 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['AuthBackendRoletagBlacklist']
+__all__ = ['AuthBackendRoletagBlacklistArgs', 'AuthBackendRoletagBlacklist']
+
+@pulumi.input_type
+class AuthBackendRoletagBlacklistArgs:
+    def __init__(__self__, *,
+                 backend: pulumi.Input[str],
+                 disable_periodic_tidy: Optional[pulumi.Input[bool]] = None,
+                 safety_buffer: Optional[pulumi.Input[int]] = None):
+        """
+        The set of arguments for constructing a AuthBackendRoletagBlacklist resource.
+        :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
+               mounted at.
+        :param pulumi.Input[bool] disable_periodic_tidy: If set to true, disables the periodic
+               tidying of the roletag blacklist entries. Defaults to false.
+        :param pulumi.Input[int] safety_buffer: The amount of extra time that must have passed
+               beyond the roletag expiration, before it is removed from the backend storage.
+               Defaults to 259,200 seconds, or 72 hours.
+        """
+        pulumi.set(__self__, "backend", backend)
+        if disable_periodic_tidy is not None:
+            pulumi.set(__self__, "disable_periodic_tidy", disable_periodic_tidy)
+        if safety_buffer is not None:
+            pulumi.set(__self__, "safety_buffer", safety_buffer)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> pulumi.Input[str]:
+        """
+        The path the AWS auth backend being configured was
+        mounted at.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: pulumi.Input[str]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="disablePeriodicTidy")
+    def disable_periodic_tidy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to true, disables the periodic
+        tidying of the roletag blacklist entries. Defaults to false.
+        """
+        return pulumi.get(self, "disable_periodic_tidy")
+
+    @disable_periodic_tidy.setter
+    def disable_periodic_tidy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_periodic_tidy", value)
+
+    @property
+    @pulumi.getter(name="safetyBuffer")
+    def safety_buffer(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of extra time that must have passed
+        beyond the roletag expiration, before it is removed from the backend storage.
+        Defaults to 259,200 seconds, or 72 hours.
+        """
+        return pulumi.get(self, "safety_buffer")
+
+    @safety_buffer.setter
+    def safety_buffer(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "safety_buffer", value)
 
 
 class AuthBackendRoletagBlacklist(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -46,6 +109,48 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
                beyond the roletag expiration, before it is removed from the backend storage.
                Defaults to 259,200 seconds, or 72 hours.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: AuthBackendRoletagBlacklistArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Configures the periodic tidying operation of the blacklisted role tag entries.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example_auth_backend = vault.AuthBackend("exampleAuthBackend", type="aws")
+        example_auth_backend_roletag_blacklist = vault.aws.AuthBackendRoletagBlacklist("exampleAuthBackendRoletagBlacklist",
+            backend=example_auth_backend.path,
+            safety_buffer=360)
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param AuthBackendRoletagBlacklistArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(AuthBackendRoletagBlacklistArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 disable_periodic_tidy: Optional[pulumi.Input[bool]] = None,
+                 safety_buffer: Optional[pulumi.Input[int]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

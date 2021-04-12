@@ -22,15 +22,16 @@ func (m *module) Version() semver.Version {
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
 	case "vault:okta/authBackend:AuthBackend":
-		r, err = NewAuthBackend(ctx, name, nil, pulumi.URN_(urn))
+		r = &AuthBackend{}
 	case "vault:okta/authBackendGroup:AuthBackendGroup":
-		r, err = NewAuthBackendGroup(ctx, name, nil, pulumi.URN_(urn))
+		r = &AuthBackendGroup{}
 	case "vault:okta/authBackendUser:AuthBackendUser":
-		r, err = NewAuthBackendUser(ctx, name, nil, pulumi.URN_(urn))
+		r = &AuthBackendUser{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
 	return
 }
 

@@ -5,13 +5,128 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['AuthBackendRoleSecretID']
+__all__ = ['AuthBackendRoleSecretIDArgs', 'AuthBackendRoleSecretID']
+
+@pulumi.input_type
+class AuthBackendRoleSecretIDArgs:
+    def __init__(__self__, *,
+                 role_name: pulumi.Input[str],
+                 backend: Optional[pulumi.Input[str]] = None,
+                 cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 metadata: Optional[pulumi.Input[str]] = None,
+                 secret_id: Optional[pulumi.Input[str]] = None,
+                 wrapping_ttl: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a AuthBackendRoleSecretID resource.
+        :param pulumi.Input[str] role_name: The name of the role to create the SecretID for.
+        :param pulumi.Input[str] backend: Unique name of the auth backend to configure.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidr_lists: If set, specifies blocks of IP addresses which can
+               perform the login operation using this SecretID.
+        :param pulumi.Input[str] metadata: A JSON-encoded string containing metadata in
+               key-value pairs to be set on tokens issued with this SecretID.
+        :param pulumi.Input[str] secret_id: The SecretID to be created. If set, uses "Push"
+               mode.  Defaults to Vault auto-generating SecretIDs.
+        :param pulumi.Input[str] wrapping_ttl: If set, the SecretID response will be
+               [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
+               and available for the duration specified. Only a single unwrapping of the
+               token is allowed.
+        """
+        pulumi.set(__self__, "role_name", role_name)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if cidr_lists is not None:
+            pulumi.set(__self__, "cidr_lists", cidr_lists)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if secret_id is not None:
+            pulumi.set(__self__, "secret_id", secret_id)
+        if wrapping_ttl is not None:
+            pulumi.set(__self__, "wrapping_ttl", wrapping_ttl)
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> pulumi.Input[str]:
+        """
+        The name of the role to create the SecretID for.
+        """
+        return pulumi.get(self, "role_name")
+
+    @role_name.setter
+    def role_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role_name", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique name of the auth backend to configure.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="cidrLists")
+    def cidr_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If set, specifies blocks of IP addresses which can
+        perform the login operation using this SecretID.
+        """
+        return pulumi.get(self, "cidr_lists")
+
+    @cidr_lists.setter
+    def cidr_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "cidr_lists", value)
+
+    @property
+    @pulumi.getter
+    def metadata(self) -> Optional[pulumi.Input[str]]:
+        """
+        A JSON-encoded string containing metadata in
+        key-value pairs to be set on tokens issued with this SecretID.
+        """
+        return pulumi.get(self, "metadata")
+
+    @metadata.setter
+    def metadata(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "metadata", value)
+
+    @property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The SecretID to be created. If set, uses "Push"
+        mode.  Defaults to Vault auto-generating SecretIDs.
+        """
+        return pulumi.get(self, "secret_id")
+
+    @secret_id.setter
+    def secret_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secret_id", value)
+
+    @property
+    @pulumi.getter(name="wrappingTtl")
+    def wrapping_ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        If set, the SecretID response will be
+        [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
+        and available for the duration specified. Only a single unwrapping of the
+        token is allowed.
+        """
+        return pulumi.get(self, "wrapping_ttl")
+
+    @wrapping_ttl.setter
+    def wrapping_ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wrapping_ttl", value)
 
 
 class AuthBackendRoleSecretID(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -69,6 +184,66 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
                and available for the duration specified. Only a single unwrapping of the
                token is allowed.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: AuthBackendRoleSecretIDArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Manages an AppRole auth backend SecretID in a Vault server. See the [Vault
+        documentation](https://www.vaultproject.io/docs/auth/approle) for more
+        information.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        approle = vault.AuthBackend("approle", type="approle")
+        example = vault.app_role.AuthBackendRole("example",
+            backend=approle.path,
+            policies=[
+                "default",
+                "dev",
+                "prod",
+            ],
+            role_name="test-role")
+        id = vault.app_role.AuthBackendRoleSecretID("id",
+            backend=approle.path,
+            metadata=\"\"\"{
+          "hello": "world"
+        }
+
+        \"\"\",
+            role_name=example.role_name)
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param AuthBackendRoleSecretIDArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(AuthBackendRoleSecretIDArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 metadata: Optional[pulumi.Input[str]] = None,
+                 role_name: Optional[pulumi.Input[str]] = None,
+                 secret_id: Optional[pulumi.Input[str]] = None,
+                 wrapping_ttl: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

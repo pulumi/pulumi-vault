@@ -5,13 +5,51 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['SecretBackendIntermediateSetSigned']
+__all__ = ['SecretBackendIntermediateSetSignedArgs', 'SecretBackendIntermediateSetSigned']
+
+@pulumi.input_type
+class SecretBackendIntermediateSetSignedArgs:
+    def __init__(__self__, *,
+                 backend: pulumi.Input[str],
+                 certificate: pulumi.Input[str]):
+        """
+        The set of arguments for constructing a SecretBackendIntermediateSetSigned resource.
+        :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
+        :param pulumi.Input[str] certificate: The certificate
+        """
+        pulumi.set(__self__, "backend", backend)
+        pulumi.set(__self__, "certificate", certificate)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> pulumi.Input[str]:
+        """
+        The PKI secret backend the resource belongs to.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: pulumi.Input[str]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def certificate(self) -> pulumi.Input[str]:
+        """
+        The certificate
+        """
+        return pulumi.get(self, "certificate")
+
+    @certificate.setter
+    def certificate(self, value: pulumi.Input[str]):
+        pulumi.set(self, "certificate", value)
 
 
 class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -27,6 +65,34 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] certificate: The certificate
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: SecretBackendIntermediateSetSignedArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a SecretBackendIntermediateSetSigned resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param SecretBackendIntermediateSetSignedArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(SecretBackendIntermediateSetSignedArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 certificate: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

@@ -5,13 +5,84 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['AuthBackendUser']
+__all__ = ['AuthBackendUserArgs', 'AuthBackendUser']
+
+@pulumi.input_type
+class AuthBackendUserArgs:
+    def __init__(__self__, *,
+                 username: pulumi.Input[str],
+                 backend: Optional[pulumi.Input[str]] = None,
+                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        The set of arguments for constructing a AuthBackendUser resource.
+        :param pulumi.Input[str] username: The LDAP username
+        :param pulumi.Input[str] backend: Path to the authentication backend
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: Override LDAP groups which should be granted to user
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Policies which should be granted to user
+        """
+        pulumi.set(__self__, "username", username)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if groups is not None:
+            pulumi.set(__self__, "groups", groups)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[str]:
+        """
+        The LDAP username
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[str]):
+        pulumi.set(self, "username", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to the authentication backend
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Override LDAP groups which should be granted to user
+        """
+        return pulumi.get(self, "groups")
+
+    @groups.setter
+    def groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "groups", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Policies which should be granted to user
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
 
 
 class AuthBackendUser(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -64,6 +135,69 @@ class AuthBackendUser(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Policies which should be granted to user
         :param pulumi.Input[str] username: The LDAP username
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: AuthBackendUserArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Provides a resource to create a user in an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        ldap = vault.ldap.AuthBackend("ldap",
+            discoverdn=False,
+            groupdn="OU=Groups,DC=example,DC=org",
+            groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
+            path="ldap",
+            upndomain="EXAMPLE.ORG",
+            url="ldaps://dc-01.example.org",
+            userattr="sAMAccountName",
+            userdn="OU=Users,OU=Accounts,DC=example,DC=org")
+        user = vault.ldap.AuthBackendUser("user",
+            backend=ldap.path,
+            policies=[
+                "dba",
+                "sysops",
+            ],
+            username="test-user")
+        ```
+
+        ## Import
+
+        LDAP authentication backend users can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:ldap/authBackendUser:AuthBackendUser foo auth/ldap/users/foo
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param AuthBackendUserArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(AuthBackendUserArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

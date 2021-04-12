@@ -5,13 +5,475 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['AuthBackendRole']
+__all__ = ['AuthBackendRoleArgs', 'AuthBackendRole']
+
+@pulumi.input_type
+class AuthBackendRoleArgs:
+    def __init__(__self__, *,
+                 role: pulumi.Input[str],
+                 type: pulumi.Input[str],
+                 add_group_aliases: Optional[pulumi.Input[bool]] = None,
+                 allow_gce_inference: Optional[pulumi.Input[bool]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 bound_instance_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_projects: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 max_jwt_exp: Optional[pulumi.Input[str]] = None,
+                 max_ttl: Optional[pulumi.Input[str]] = None,
+                 period: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+                 token_num_uses: Optional[pulumi.Input[int]] = None,
+                 token_period: Optional[pulumi.Input[int]] = None,
+                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_ttl: Optional[pulumi.Input[int]] = None,
+                 token_type: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a AuthBackendRole resource.
+        :param pulumi.Input[str] role: Name of the GCP role
+        :param pulumi.Input[str] type: Type of GCP authentication role (either `gce` or `iam`)
+        :param pulumi.Input[bool] allow_gce_inference: A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.
+        :param pulumi.Input[str] backend: Path to the mounted GCP auth backend
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_instance_groups: The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_labels: A comma-separated list of GCP labels formatted as `"key:value"` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL'd, we recommend that this be used in conjunction with other restrictions.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_projects: GCP Projects that the role exists within
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_regions: The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_accounts: GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_zones: The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
+        :param pulumi.Input[str] max_jwt_exp: The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
+        :param pulumi.Input[str] max_ttl: The maximum allowed lifetime of tokens
+               issued using this role, provided as a number of seconds.
+        :param pulumi.Input[str] period: If set, indicates that the
+               token generated using this role should never expire. The token should be renewed within the
+               duration specified by this value. At each renewal, the token's TTL will be set to the
+               value of this field. Specified in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings
+               specifying the policies to be set on tokens issued using this role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
+               addresses which can authenticate successfully, and ties the resulting token to these blocks
+               as well.
+        :param pulumi.Input[int] token_explicit_max_ttl: If set, will encode an
+               [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+               onto the token in number of seconds. This is a hard cap even if `token_ttl` and
+               `token_max_ttl` would otherwise allow a renewal.
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime for generated tokens in number of seconds.
+               Its current value will be referenced at renewal time.
+        :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
+               generated tokens; otherwise it will be added to the policies set in token_policies.
+        :param pulumi.Input[int] token_num_uses: The
+               [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+               if any, in number of seconds to set on the token.
+        :param pulumi.Input[int] token_period: If set, indicates that the
+               token generated using this role should never expire. The token should be renewed within the
+               duration specified by this value. At each renewal, the token's TTL will be set to the
+               value of this field. Specified in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
+               on the auth method, this list may be supplemented by user/group/other values.
+        :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
+               Its current value will be referenced at renewal time.
+        :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
+               `batch`, or `default` to use the mount's tuned default (which unless changed will be
+               `service` tokens). For token store roles, there are two additional possibilities:
+               `default-service` and `default-batch` which specify the type to return unless the client
+               requests a different type at generation time.
+        :param pulumi.Input[str] ttl: The TTL period of tokens issued
+               using this role, provided as a number of seconds.
+        """
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "type", type)
+        if add_group_aliases is not None:
+            pulumi.set(__self__, "add_group_aliases", add_group_aliases)
+        if allow_gce_inference is not None:
+            pulumi.set(__self__, "allow_gce_inference", allow_gce_inference)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if bound_instance_groups is not None:
+            pulumi.set(__self__, "bound_instance_groups", bound_instance_groups)
+        if bound_labels is not None:
+            pulumi.set(__self__, "bound_labels", bound_labels)
+        if bound_projects is not None:
+            pulumi.set(__self__, "bound_projects", bound_projects)
+        if bound_regions is not None:
+            pulumi.set(__self__, "bound_regions", bound_regions)
+        if bound_service_accounts is not None:
+            pulumi.set(__self__, "bound_service_accounts", bound_service_accounts)
+        if bound_zones is not None:
+            pulumi.set(__self__, "bound_zones", bound_zones)
+        if max_jwt_exp is not None:
+            pulumi.set(__self__, "max_jwt_exp", max_jwt_exp)
+        if max_ttl is not None:
+            warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
+            pulumi.log.warn("""max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2""")
+        if max_ttl is not None:
+            pulumi.set(__self__, "max_ttl", max_ttl)
+        if period is not None:
+            warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
+            pulumi.log.warn("""period is deprecated: use `token_period` instead if you are running Vault >= 1.2""")
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if policies is not None:
+            warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
+            pulumi.log.warn("""policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2""")
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+        if token_bound_cidrs is not None:
+            pulumi.set(__self__, "token_bound_cidrs", token_bound_cidrs)
+        if token_explicit_max_ttl is not None:
+            pulumi.set(__self__, "token_explicit_max_ttl", token_explicit_max_ttl)
+        if token_max_ttl is not None:
+            pulumi.set(__self__, "token_max_ttl", token_max_ttl)
+        if token_no_default_policy is not None:
+            pulumi.set(__self__, "token_no_default_policy", token_no_default_policy)
+        if token_num_uses is not None:
+            pulumi.set(__self__, "token_num_uses", token_num_uses)
+        if token_period is not None:
+            pulumi.set(__self__, "token_period", token_period)
+        if token_policies is not None:
+            pulumi.set(__self__, "token_policies", token_policies)
+        if token_ttl is not None:
+            pulumi.set(__self__, "token_ttl", token_ttl)
+        if token_type is not None:
+            pulumi.set(__self__, "token_type", token_type)
+        if ttl is not None:
+            warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
+            pulumi.log.warn("""ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2""")
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        """
+        Name of the GCP role
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        Type of GCP authentication role (either `gce` or `iam`)
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="addGroupAliases")
+    def add_group_aliases(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "add_group_aliases")
+
+    @add_group_aliases.setter
+    def add_group_aliases(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "add_group_aliases", value)
+
+    @property
+    @pulumi.getter(name="allowGceInference")
+    def allow_gce_inference(self) -> Optional[pulumi.Input[bool]]:
+        """
+        A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.
+        """
+        return pulumi.get(self, "allow_gce_inference")
+
+    @allow_gce_inference.setter
+    def allow_gce_inference(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_gce_inference", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to the mounted GCP auth backend
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="boundInstanceGroups")
+    def bound_instance_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
+        """
+        return pulumi.get(self, "bound_instance_groups")
+
+    @bound_instance_groups.setter
+    def bound_instance_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_instance_groups", value)
+
+    @property
+    @pulumi.getter(name="boundLabels")
+    def bound_labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A comma-separated list of GCP labels formatted as `"key:value"` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL'd, we recommend that this be used in conjunction with other restrictions.
+        """
+        return pulumi.get(self, "bound_labels")
+
+    @bound_labels.setter
+    def bound_labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_labels", value)
+
+    @property
+    @pulumi.getter(name="boundProjects")
+    def bound_projects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        GCP Projects that the role exists within
+        """
+        return pulumi.get(self, "bound_projects")
+
+    @bound_projects.setter
+    def bound_projects(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_projects", value)
+
+    @property
+    @pulumi.getter(name="boundRegions")
+    def bound_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
+        """
+        return pulumi.get(self, "bound_regions")
+
+    @bound_regions.setter
+    def bound_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_regions", value)
+
+    @property
+    @pulumi.getter(name="boundServiceAccounts")
+    def bound_service_accounts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
+        """
+        return pulumi.get(self, "bound_service_accounts")
+
+    @bound_service_accounts.setter
+    def bound_service_accounts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_service_accounts", value)
+
+    @property
+    @pulumi.getter(name="boundZones")
+    def bound_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
+        """
+        return pulumi.get(self, "bound_zones")
+
+    @bound_zones.setter
+    def bound_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_zones", value)
+
+    @property
+    @pulumi.getter(name="maxJwtExp")
+    def max_jwt_exp(self) -> Optional[pulumi.Input[str]]:
+        """
+        The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
+        """
+        return pulumi.get(self, "max_jwt_exp")
+
+    @max_jwt_exp.setter
+    def max_jwt_exp(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "max_jwt_exp", value)
+
+    @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        The maximum allowed lifetime of tokens
+        issued using this role, provided as a number of seconds.
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @max_ttl.setter
+    def max_ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "max_ttl", value)
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[pulumi.Input[str]]:
+        """
+        If set, indicates that the
+        token generated using this role should never expire. The token should be renewed within the
+        duration specified by this value. At each renewal, the token's TTL will be set to the
+        value of this field. Specified in seconds.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "period", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        An array of strings
+        specifying the policies to be set on tokens issued using this role.
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
+
+    @property
+    @pulumi.getter(name="tokenBoundCidrs")
+    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of CIDR blocks; if set, specifies blocks of IP
+        addresses which can authenticate successfully, and ties the resulting token to these blocks
+        as well.
+        """
+        return pulumi.get(self, "token_bound_cidrs")
+
+    @token_bound_cidrs.setter
+    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "token_bound_cidrs", value)
+
+    @property
+    @pulumi.getter(name="tokenExplicitMaxTtl")
+    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        If set, will encode an
+        [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+        onto the token in number of seconds. This is a hard cap even if `token_ttl` and
+        `token_max_ttl` would otherwise allow a renewal.
+        """
+        return pulumi.get(self, "token_explicit_max_ttl")
+
+    @token_explicit_max_ttl.setter
+    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_explicit_max_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenMaxTtl")
+    def token_max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum lifetime for generated tokens in number of seconds.
+        Its current value will be referenced at renewal time.
+        """
+        return pulumi.get(self, "token_max_ttl")
+
+    @token_max_ttl.setter
+    def token_max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_max_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenNoDefaultPolicy")
+    def token_no_default_policy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, the default policy will not be set on
+        generated tokens; otherwise it will be added to the policies set in token_policies.
+        """
+        return pulumi.get(self, "token_no_default_policy")
+
+    @token_no_default_policy.setter
+    def token_no_default_policy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "token_no_default_policy", value)
+
+    @property
+    @pulumi.getter(name="tokenNumUses")
+    def token_num_uses(self) -> Optional[pulumi.Input[int]]:
+        """
+        The
+        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+        if any, in number of seconds to set on the token.
+        """
+        return pulumi.get(self, "token_num_uses")
+
+    @token_num_uses.setter
+    def token_num_uses(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_num_uses", value)
+
+    @property
+    @pulumi.getter(name="tokenPeriod")
+    def token_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        If set, indicates that the
+        token generated using this role should never expire. The token should be renewed within the
+        duration specified by this value. At each renewal, the token's TTL will be set to the
+        value of this field. Specified in seconds.
+        """
+        return pulumi.get(self, "token_period")
+
+    @token_period.setter
+    def token_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_period", value)
+
+    @property
+    @pulumi.getter(name="tokenPolicies")
+    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of policies to encode onto generated tokens. Depending
+        on the auth method, this list may be supplemented by user/group/other values.
+        """
+        return pulumi.get(self, "token_policies")
+
+    @token_policies.setter
+    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "token_policies", value)
+
+    @property
+    @pulumi.getter(name="tokenTtl")
+    def token_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The incremental lifetime for generated tokens in number of seconds.
+        Its current value will be referenced at renewal time.
+        """
+        return pulumi.get(self, "token_ttl")
+
+    @token_ttl.setter
+    def token_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenType")
+    def token_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of token that should be generated. Can be `service`,
+        `batch`, or `default` to use the mount's tuned default (which unless changed will be
+        `service` tokens). For token store roles, there are two additional possibilities:
+        `default-service` and `default-batch` which specify the type to return unless the client
+        requests a different type at generation time.
+        """
+        return pulumi.get(self, "token_type")
+
+    @token_type.setter
+    def token_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token_type", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        The TTL period of tokens issued
+        using this role, provided as a number of seconds.
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ttl", value)
 
 
 class AuthBackendRole(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -105,6 +567,66 @@ class AuthBackendRole(pulumi.CustomResource):
                using this role, provided as a number of seconds.
         :param pulumi.Input[str] type: Type of GCP authentication role (either `gce` or `iam`)
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: AuthBackendRoleArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Provides a resource to create a role in an [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
+
+        ## Import
+
+        GCP authentication roles can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:gcp/authBackendRole:AuthBackendRole my_role auth/gcp/role/my_role
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param AuthBackendRoleArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(AuthBackendRoleArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 add_group_aliases: Optional[pulumi.Input[bool]] = None,
+                 allow_gce_inference: Optional[pulumi.Input[bool]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 bound_instance_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_labels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_projects: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 max_jwt_exp: Optional[pulumi.Input[str]] = None,
+                 max_ttl: Optional[pulumi.Input[str]] = None,
+                 period: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+                 token_num_uses: Optional[pulumi.Input[int]] = None,
+                 token_period: Optional[pulumi.Input[int]] = None,
+                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_ttl: Optional[pulumi.Input[int]] = None,
+                 token_type: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

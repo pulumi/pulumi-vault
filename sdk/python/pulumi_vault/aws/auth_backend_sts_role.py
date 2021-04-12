@@ -5,13 +5,71 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['AuthBackendStsRole']
+__all__ = ['AuthBackendStsRoleArgs', 'AuthBackendStsRole']
+
+@pulumi.input_type
+class AuthBackendStsRoleArgs:
+    def __init__(__self__, *,
+                 account_id: pulumi.Input[str],
+                 sts_role: pulumi.Input[str],
+                 backend: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a AuthBackendStsRole resource.
+        :param pulumi.Input[str] account_id: The AWS account ID to configure the STS role for.
+        :param pulumi.Input[str] sts_role: The STS role to assume when verifying requests made
+               by EC2 instances in the account specified by `account_id`.
+        :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
+               mounted at.  Defaults to `aws`.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "sts_role", sts_role)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> pulumi.Input[str]:
+        """
+        The AWS account ID to configure the STS role for.
+        """
+        return pulumi.get(self, "account_id")
+
+    @account_id.setter
+    def account_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "account_id", value)
+
+    @property
+    @pulumi.getter(name="stsRole")
+    def sts_role(self) -> pulumi.Input[str]:
+        """
+        The STS role to assume when verifying requests made
+        by EC2 instances in the account specified by `account_id`.
+        """
+        return pulumi.get(self, "sts_role")
+
+    @sts_role.setter
+    def sts_role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "sts_role", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path the AWS auth backend being configured was
+        mounted at.  Defaults to `aws`.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
 
 
 class AuthBackendStsRole(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -38,6 +96,42 @@ class AuthBackendStsRole(pulumi.CustomResource):
         :param pulumi.Input[str] sts_role: The STS role to assume when verifying requests made
                by EC2 instances in the account specified by `account_id`.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: AuthBackendStsRoleArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        AWS auth backend STS roles can be imported using `auth/`, the `backend` path, `/config/sts/`, and the `account_id` e.g.
+
+        ```sh
+         $ pulumi import vault:aws/authBackendStsRole:AuthBackendStsRole example auth/aws/config/sts/1234567890
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param AuthBackendStsRoleArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(AuthBackendStsRoleArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 account_id: Optional[pulumi.Input[str]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 sts_role: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

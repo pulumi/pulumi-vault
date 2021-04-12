@@ -5,13 +5,148 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['AuthBackendConfig']
+__all__ = ['AuthBackendConfigArgs', 'AuthBackendConfig']
+
+@pulumi.input_type
+class AuthBackendConfigArgs:
+    def __init__(__self__, *,
+                 kubernetes_host: pulumi.Input[str],
+                 backend: Optional[pulumi.Input[str]] = None,
+                 disable_iss_validation: Optional[pulumi.Input[bool]] = None,
+                 disable_local_ca_jwt: Optional[pulumi.Input[bool]] = None,
+                 issuer: Optional[pulumi.Input[str]] = None,
+                 kubernetes_ca_cert: Optional[pulumi.Input[str]] = None,
+                 pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_reviewer_jwt: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a AuthBackendConfig resource.
+        :param pulumi.Input[str] kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
+        :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
+        :param pulumi.Input[bool] disable_iss_validation: Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+        :param pulumi.Input[bool] disable_local_ca_jwt: Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+        :param pulumi.Input[str] issuer: Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+        :param pulumi.Input[str] kubernetes_ca_cert: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
+        :param pulumi.Input[str] token_reviewer_jwt: A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        """
+        pulumi.set(__self__, "kubernetes_host", kubernetes_host)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if disable_iss_validation is not None:
+            pulumi.set(__self__, "disable_iss_validation", disable_iss_validation)
+        if disable_local_ca_jwt is not None:
+            pulumi.set(__self__, "disable_local_ca_jwt", disable_local_ca_jwt)
+        if issuer is not None:
+            pulumi.set(__self__, "issuer", issuer)
+        if kubernetes_ca_cert is not None:
+            pulumi.set(__self__, "kubernetes_ca_cert", kubernetes_ca_cert)
+        if pem_keys is not None:
+            pulumi.set(__self__, "pem_keys", pem_keys)
+        if token_reviewer_jwt is not None:
+            pulumi.set(__self__, "token_reviewer_jwt", token_reviewer_jwt)
+
+    @property
+    @pulumi.getter(name="kubernetesHost")
+    def kubernetes_host(self) -> pulumi.Input[str]:
+        """
+        Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
+        """
+        return pulumi.get(self, "kubernetes_host")
+
+    @kubernetes_host.setter
+    def kubernetes_host(self, value: pulumi.Input[str]):
+        pulumi.set(self, "kubernetes_host", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique name of the kubernetes backend to configure.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="disableIssValidation")
+    def disable_iss_validation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+        """
+        return pulumi.get(self, "disable_iss_validation")
+
+    @disable_iss_validation.setter
+    def disable_iss_validation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_iss_validation", value)
+
+    @property
+    @pulumi.getter(name="disableLocalCaJwt")
+    def disable_local_ca_jwt(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+        """
+        return pulumi.get(self, "disable_local_ca_jwt")
+
+    @disable_local_ca_jwt.setter
+    def disable_local_ca_jwt(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_local_ca_jwt", value)
+
+    @property
+    @pulumi.getter
+    def issuer(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+        """
+        return pulumi.get(self, "issuer")
+
+    @issuer.setter
+    def issuer(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "issuer", value)
+
+    @property
+    @pulumi.getter(name="kubernetesCaCert")
+    def kubernetes_ca_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
+        """
+        return pulumi.get(self, "kubernetes_ca_cert")
+
+    @kubernetes_ca_cert.setter
+    def kubernetes_ca_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "kubernetes_ca_cert", value)
+
+    @property
+    @pulumi.getter(name="pemKeys")
+    def pem_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
+        """
+        return pulumi.get(self, "pem_keys")
+
+    @pem_keys.setter
+    def pem_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "pem_keys", value)
+
+    @property
+    @pulumi.getter(name="tokenReviewerJwt")
+    def token_reviewer_jwt(self) -> Optional[pulumi.Input[str]]:
+        """
+        A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        """
+        return pulumi.get(self, "token_reviewer_jwt")
+
+    @token_reviewer_jwt.setter
+    def token_reviewer_jwt(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token_reviewer_jwt", value)
 
 
 class AuthBackendConfig(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -69,6 +204,70 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         :param pulumi.Input[str] token_reviewer_jwt: A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: AuthBackendConfigArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Manages an Kubernetes auth backend config in a Vault server. See the [Vault
+        documentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more
+        information.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        kubernetes = vault.AuthBackend("kubernetes", type="kubernetes")
+        example = vault.kubernetes.AuthBackendConfig("example",
+            backend=kubernetes.path,
+            disable_iss_validation=True,
+            issuer="api",
+            kubernetes_ca_cert=\"\"\"-----BEGIN CERTIFICATE-----
+        example
+        -----END CERTIFICATE-----
+        \"\"\",
+            kubernetes_host="http://example.com:443",
+            token_reviewer_jwt="ZXhhbXBsZQo=")
+        ```
+
+        ## Import
+
+        Kubernetes authentication backend can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param AuthBackendConfigArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(AuthBackendConfigArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 disable_iss_validation: Optional[pulumi.Input[bool]] = None,
+                 disable_local_ca_jwt: Optional[pulumi.Input[bool]] = None,
+                 issuer: Optional[pulumi.Input[str]] = None,
+                 kubernetes_ca_cert: Optional[pulumi.Input[str]] = None,
+                 kubernetes_host: Optional[pulumi.Input[str]] = None,
+                 pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_reviewer_jwt: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

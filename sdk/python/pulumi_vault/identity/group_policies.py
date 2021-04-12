@@ -5,13 +5,67 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['GroupPolicies']
+__all__ = ['GroupPoliciesArgs', 'GroupPolicies']
+
+@pulumi.input_type
+class GroupPoliciesArgs:
+    def __init__(__self__, *,
+                 group_id: pulumi.Input[str],
+                 policies: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 exclusive: Optional[pulumi.Input[bool]] = None):
+        """
+        The set of arguments for constructing a GroupPolicies resource.
+        :param pulumi.Input[str] group_id: Group ID to assign policies to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the group
+        :param pulumi.Input[bool] exclusive: Defaults to `true`.
+        """
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "policies", policies)
+        if exclusive is not None:
+            pulumi.set(__self__, "exclusive", exclusive)
+
+    @property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> pulumi.Input[str]:
+        """
+        Group ID to assign policies to.
+        """
+        return pulumi.get(self, "group_id")
+
+    @group_id.setter
+    def group_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "group_id", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        List of policies to assign to the group
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "policies", value)
+
+    @property
+    @pulumi.getter
+    def exclusive(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defaults to `true`.
+        """
+        return pulumi.get(self, "exclusive")
+
+    @exclusive.setter
+    def exclusive(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "exclusive", value)
 
 
 class GroupPolicies(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -76,6 +130,82 @@ class GroupPolicies(pulumi.CustomResource):
         :param pulumi.Input[str] group_id: Group ID to assign policies to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the group
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: GroupPoliciesArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Manages policies for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
+
+        ## Example Usage
+        ### Exclusive Policies
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        internal = vault.identity.Group("internal",
+            type="internal",
+            external_policies=True,
+            metadata={
+                "version": "2",
+            })
+        policies = vault.identity.GroupPolicies("policies",
+            policies=[
+                "default",
+                "test",
+            ],
+            exclusive=True,
+            group_id=internal.id)
+        ```
+        ### Non-exclusive Policies
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        internal = vault.identity.Group("internal",
+            type="internal",
+            external_policies=True,
+            metadata={
+                "version": "2",
+            })
+        default = vault.identity.GroupPolicies("default",
+            policies=[
+                "default",
+                "test",
+            ],
+            exclusive=False,
+            group_id=internal.id)
+        others = vault.identity.GroupPolicies("others",
+            policies=["others"],
+            exclusive=False,
+            group_id=internal.id)
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param GroupPoliciesArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(GroupPoliciesArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 exclusive: Optional[pulumi.Input[bool]] = None,
+                 group_id: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

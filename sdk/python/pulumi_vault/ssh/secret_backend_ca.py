@@ -5,13 +5,85 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['SecretBackendCa']
+__all__ = ['SecretBackendCaArgs', 'SecretBackendCa']
+
+@pulumi.input_type
+class SecretBackendCaArgs:
+    def __init__(__self__, *,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 generate_signing_key: Optional[pulumi.Input[bool]] = None,
+                 private_key: Optional[pulumi.Input[str]] = None,
+                 public_key: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a SecretBackendCa resource.
+        :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted. Defaults to 'ssh'
+        :param pulumi.Input[bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
+        :param pulumi.Input[str] private_key: The private key part the SSH CA key pair; required if generate_signing_key is false.
+        :param pulumi.Input[str] public_key: The public key part the SSH CA key pair; required if generate_signing_key is false.
+        """
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if generate_signing_key is not None:
+            pulumi.set(__self__, "generate_signing_key", generate_signing_key)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path where the SSH secret backend is mounted. Defaults to 'ssh'
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="generateSigningKey")
+    def generate_signing_key(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether Vault should generate the signing key pair internally. Defaults to true
+        """
+        return pulumi.get(self, "generate_signing_key")
+
+    @generate_signing_key.setter
+    def generate_signing_key(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "generate_signing_key", value)
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private key part the SSH CA key pair; required if generate_signing_key is false.
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key", value)
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The public key part the SSH CA key pair; required if generate_signing_key is false.
+        """
+        return pulumi.get(self, "public_key")
+
+    @public_key.setter
+    def public_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "public_key", value)
 
 
 class SecretBackendCa(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -43,6 +115,48 @@ class SecretBackendCa(pulumi.CustomResource):
         :param pulumi.Input[str] private_key: The private key part the SSH CA key pair; required if generate_signing_key is false.
         :param pulumi.Input[str] public_key: The public key part the SSH CA key pair; required if generate_signing_key is false.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: Optional[SecretBackendCaArgs] = None,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Provides a resource to manage CA information in an SSH secret backend
+        [SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.Mount("example", type="ssh")
+        foo = vault.ssh.SecretBackendCa("foo", backend=example.path)
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param SecretBackendCaArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(SecretBackendCaArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 generate_signing_key: Optional[pulumi.Input[bool]] = None,
+                 private_key: Optional[pulumi.Input[str]] = None,
+                 public_key: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

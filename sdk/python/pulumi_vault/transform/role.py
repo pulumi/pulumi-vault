@@ -5,13 +5,68 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['Role']
+__all__ = ['RoleArgs', 'Role']
+
+@pulumi.input_type
+class RoleArgs:
+    def __init__(__self__, *,
+                 path: pulumi.Input[str],
+                 name: Optional[pulumi.Input[str]] = None,
+                 transformations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        The set of arguments for constructing a Role resource.
+        :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
+        :param pulumi.Input[str] name: The name of the role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] transformations: A comma separated string or slice of transformations to use.
+        """
+        pulumi.set(__self__, "path", path)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if transformations is not None:
+            pulumi.set(__self__, "transformations", transformations)
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[str]:
+        """
+        Path to where the back-end is mounted within Vault.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[str]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the role.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def transformations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A comma separated string or slice of transformations to use.
+        """
+        return pulumi.get(self, "transformations")
+
+    @transformations.setter
+    def transformations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "transformations", value)
 
 
 class Role(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -47,6 +102,53 @@ class Role(pulumi.CustomResource):
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] transformations: A comma separated string or slice of transformations to use.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: RoleArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        This resource supports the "/transform/role/{name}" Vault endpoint.
+
+        It creates or updates the role with the given name. If a role with the name does not exist, it will be created.
+        If the role exists, it will be updated with the new attributes.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        mount_transform = vault.Mount("mountTransform",
+            path="transform",
+            type="transform")
+        test = vault.transform.Role("test",
+            path=mount_transform.path,
+            transformations=["ccn-fpe"])
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param RoleArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(RoleArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 transformations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

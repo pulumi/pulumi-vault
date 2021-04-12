@@ -5,13 +5,243 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['User']
+__all__ = ['UserArgs', 'User']
+
+@pulumi.input_type
+class UserArgs:
+    def __init__(__self__, *,
+                 user: pulumi.Input[str],
+                 backend: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+                 token_num_uses: Optional[pulumi.Input[int]] = None,
+                 token_period: Optional[pulumi.Input[int]] = None,
+                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_ttl: Optional[pulumi.Input[int]] = None,
+                 token_type: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a User resource.
+        :param pulumi.Input[str] user: GitHub user name.
+        :param pulumi.Input[str] backend: Path where the github auth backend is mounted. Defaults to `github`
+               if not specified.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings specifying the policies to be set on tokens issued
+               using this role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
+        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[int] token_period: Generated Token's Period
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
+        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
+        """
+        pulumi.set(__self__, "user", user)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+        if token_bound_cidrs is not None:
+            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
+            pulumi.log.warn("""token_bound_cidrs is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
+        if token_bound_cidrs is not None:
+            pulumi.set(__self__, "token_bound_cidrs", token_bound_cidrs)
+        if token_explicit_max_ttl is not None:
+            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
+            pulumi.log.warn("""token_explicit_max_ttl is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
+        if token_explicit_max_ttl is not None:
+            pulumi.set(__self__, "token_explicit_max_ttl", token_explicit_max_ttl)
+        if token_max_ttl is not None:
+            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
+            pulumi.log.warn("""token_max_ttl is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
+        if token_max_ttl is not None:
+            pulumi.set(__self__, "token_max_ttl", token_max_ttl)
+        if token_no_default_policy is not None:
+            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
+            pulumi.log.warn("""token_no_default_policy is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
+        if token_no_default_policy is not None:
+            pulumi.set(__self__, "token_no_default_policy", token_no_default_policy)
+        if token_num_uses is not None:
+            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
+            pulumi.log.warn("""token_num_uses is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
+        if token_num_uses is not None:
+            pulumi.set(__self__, "token_num_uses", token_num_uses)
+        if token_period is not None:
+            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
+            pulumi.log.warn("""token_period is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
+        if token_period is not None:
+            pulumi.set(__self__, "token_period", token_period)
+        if token_policies is not None:
+            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
+            pulumi.log.warn("""token_policies is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
+        if token_policies is not None:
+            pulumi.set(__self__, "token_policies", token_policies)
+        if token_ttl is not None:
+            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
+            pulumi.log.warn("""token_ttl is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
+        if token_ttl is not None:
+            pulumi.set(__self__, "token_ttl", token_ttl)
+        if token_type is not None:
+            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
+            pulumi.log.warn("""token_type is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
+        if token_type is not None:
+            pulumi.set(__self__, "token_type", token_type)
+
+    @property
+    @pulumi.getter
+    def user(self) -> pulumi.Input[str]:
+        """
+        GitHub user name.
+        """
+        return pulumi.get(self, "user")
+
+    @user.setter
+    def user(self, value: pulumi.Input[str]):
+        pulumi.set(self, "user", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path where the github auth backend is mounted. Defaults to `github`
+        if not specified.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        An array of strings specifying the policies to be set on tokens issued
+        using this role.
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
+
+    @property
+    @pulumi.getter(name="tokenBoundCidrs")
+    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies the blocks of IP addresses which are allowed to use the generated token
+        """
+        return pulumi.get(self, "token_bound_cidrs")
+
+    @token_bound_cidrs.setter
+    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "token_bound_cidrs", value)
+
+    @property
+    @pulumi.getter(name="tokenExplicitMaxTtl")
+    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Generated Token's Explicit Maximum TTL in seconds
+        """
+        return pulumi.get(self, "token_explicit_max_ttl")
+
+    @token_explicit_max_ttl.setter
+    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_explicit_max_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenMaxTtl")
+    def token_max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum lifetime of the generated token
+        """
+        return pulumi.get(self, "token_max_ttl")
+
+    @token_max_ttl.setter
+    def token_max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_max_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenNoDefaultPolicy")
+    def token_no_default_policy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, the 'default' policy will not automatically be added to generated tokens
+        """
+        return pulumi.get(self, "token_no_default_policy")
+
+    @token_no_default_policy.setter
+    def token_no_default_policy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "token_no_default_policy", value)
+
+    @property
+    @pulumi.getter(name="tokenNumUses")
+    def token_num_uses(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of times a token may be used, a value of zero means unlimited
+        """
+        return pulumi.get(self, "token_num_uses")
+
+    @token_num_uses.setter
+    def token_num_uses(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_num_uses", value)
+
+    @property
+    @pulumi.getter(name="tokenPeriod")
+    def token_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        Generated Token's Period
+        """
+        return pulumi.get(self, "token_period")
+
+    @token_period.setter
+    def token_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_period", value)
+
+    @property
+    @pulumi.getter(name="tokenPolicies")
+    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Generated Token's Policies
+        """
+        return pulumi.get(self, "token_policies")
+
+    @token_policies.setter
+    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "token_policies", value)
+
+    @property
+    @pulumi.getter(name="tokenTtl")
+    def token_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The initial ttl of the token to generate in seconds
+        """
+        return pulumi.get(self, "token_ttl")
+
+    @token_ttl.setter
+    def token_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenType")
+    def token_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of token to generate, service or batch
+        """
+        return pulumi.get(self, "token_type")
+
+    @token_type.setter
+    def token_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token_type", value)
 
 
 class User(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -76,6 +306,71 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         :param pulumi.Input[str] user: GitHub user name.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: UserArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Manages policy mappings for Github Users authenticated via Github. See the [Vault
+        documentation](https://www.vaultproject.io/docs/auth/github/) for more
+        information.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.github.AuthBackend("example", organization="myorg")
+        tf_user = vault.github.User("tfUser",
+            backend=example.id,
+            user="john.doe",
+            policies=[
+                "developer",
+                "read-only",
+            ])
+        ```
+
+        ## Import
+
+        Github user mappings can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:github/user:User tf_user auth/github/map/users/john.doe
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param UserArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(UserArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+                 token_num_uses: Optional[pulumi.Input[int]] = None,
+                 token_period: Optional[pulumi.Input[int]] = None,
+                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_ttl: Optional[pulumi.Input[int]] = None,
+                 token_type: Optional[pulumi.Input[str]] = None,
+                 user: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

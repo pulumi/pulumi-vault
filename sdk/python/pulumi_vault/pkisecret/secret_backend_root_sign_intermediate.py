@@ -5,13 +5,338 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['SecretBackendRootSignIntermediate']
+__all__ = ['SecretBackendRootSignIntermediateArgs', 'SecretBackendRootSignIntermediate']
+
+@pulumi.input_type
+class SecretBackendRootSignIntermediateArgs:
+    def __init__(__self__, *,
+                 backend: pulumi.Input[str],
+                 common_name: pulumi.Input[str],
+                 csr: pulumi.Input[str],
+                 alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 country: Optional[pulumi.Input[str]] = None,
+                 exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
+                 format: Optional[pulumi.Input[str]] = None,
+                 ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 locality: Optional[pulumi.Input[str]] = None,
+                 max_path_length: Optional[pulumi.Input[int]] = None,
+                 organization: Optional[pulumi.Input[str]] = None,
+                 other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ou: Optional[pulumi.Input[str]] = None,
+                 permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 postal_code: Optional[pulumi.Input[str]] = None,
+                 province: Optional[pulumi.Input[str]] = None,
+                 street_address: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[str]] = None,
+                 uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 use_csr_values: Optional[pulumi.Input[bool]] = None):
+        """
+        The set of arguments for constructing a SecretBackendRootSignIntermediate resource.
+        :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
+        :param pulumi.Input[str] common_name: CN of intermediate to create
+        :param pulumi.Input[str] csr: The CSR
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
+        :param pulumi.Input[str] country: The country
+        :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
+        :param pulumi.Input[str] format: The format of data
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
+        :param pulumi.Input[str] locality: The locality
+        :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
+        :param pulumi.Input[str] organization: The organization
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
+        :param pulumi.Input[str] ou: The organization unit
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_dns_domains: List of domains for which certificates are allowed to be issued
+        :param pulumi.Input[str] postal_code: The postal code
+        :param pulumi.Input[str] province: The province
+        :param pulumi.Input[str] street_address: The street address
+        :param pulumi.Input[str] ttl: Time to live
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
+        :param pulumi.Input[bool] use_csr_values: Preserve CSR values
+        """
+        pulumi.set(__self__, "backend", backend)
+        pulumi.set(__self__, "common_name", common_name)
+        pulumi.set(__self__, "csr", csr)
+        if alt_names is not None:
+            pulumi.set(__self__, "alt_names", alt_names)
+        if country is not None:
+            pulumi.set(__self__, "country", country)
+        if exclude_cn_from_sans is not None:
+            pulumi.set(__self__, "exclude_cn_from_sans", exclude_cn_from_sans)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if ip_sans is not None:
+            pulumi.set(__self__, "ip_sans", ip_sans)
+        if locality is not None:
+            pulumi.set(__self__, "locality", locality)
+        if max_path_length is not None:
+            pulumi.set(__self__, "max_path_length", max_path_length)
+        if organization is not None:
+            pulumi.set(__self__, "organization", organization)
+        if other_sans is not None:
+            pulumi.set(__self__, "other_sans", other_sans)
+        if ou is not None:
+            pulumi.set(__self__, "ou", ou)
+        if permitted_dns_domains is not None:
+            pulumi.set(__self__, "permitted_dns_domains", permitted_dns_domains)
+        if postal_code is not None:
+            pulumi.set(__self__, "postal_code", postal_code)
+        if province is not None:
+            pulumi.set(__self__, "province", province)
+        if street_address is not None:
+            pulumi.set(__self__, "street_address", street_address)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+        if uri_sans is not None:
+            pulumi.set(__self__, "uri_sans", uri_sans)
+        if use_csr_values is not None:
+            pulumi.set(__self__, "use_csr_values", use_csr_values)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> pulumi.Input[str]:
+        """
+        The PKI secret backend the resource belongs to.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: pulumi.Input[str]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="commonName")
+    def common_name(self) -> pulumi.Input[str]:
+        """
+        CN of intermediate to create
+        """
+        return pulumi.get(self, "common_name")
+
+    @common_name.setter
+    def common_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "common_name", value)
+
+    @property
+    @pulumi.getter
+    def csr(self) -> pulumi.Input[str]:
+        """
+        The CSR
+        """
+        return pulumi.get(self, "csr")
+
+    @csr.setter
+    def csr(self, value: pulumi.Input[str]):
+        pulumi.set(self, "csr", value)
+
+    @property
+    @pulumi.getter(name="altNames")
+    def alt_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of alternative names
+        """
+        return pulumi.get(self, "alt_names")
+
+    @alt_names.setter
+    def alt_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "alt_names", value)
+
+    @property
+    @pulumi.getter
+    def country(self) -> Optional[pulumi.Input[str]]:
+        """
+        The country
+        """
+        return pulumi.get(self, "country")
+
+    @country.setter
+    def country(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "country", value)
+
+    @property
+    @pulumi.getter(name="excludeCnFromSans")
+    def exclude_cn_from_sans(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to exclude CN from SANs
+        """
+        return pulumi.get(self, "exclude_cn_from_sans")
+
+    @exclude_cn_from_sans.setter
+    def exclude_cn_from_sans(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "exclude_cn_from_sans", value)
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[pulumi.Input[str]]:
+        """
+        The format of data
+        """
+        return pulumi.get(self, "format")
+
+    @format.setter
+    def format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter(name="ipSans")
+    def ip_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of alternative IPs
+        """
+        return pulumi.get(self, "ip_sans")
+
+    @ip_sans.setter
+    def ip_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ip_sans", value)
+
+    @property
+    @pulumi.getter
+    def locality(self) -> Optional[pulumi.Input[str]]:
+        """
+        The locality
+        """
+        return pulumi.get(self, "locality")
+
+    @locality.setter
+    def locality(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "locality", value)
+
+    @property
+    @pulumi.getter(name="maxPathLength")
+    def max_path_length(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum path length to encode in the generated certificate
+        """
+        return pulumi.get(self, "max_path_length")
+
+    @max_path_length.setter
+    def max_path_length(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_path_length", value)
+
+    @property
+    @pulumi.getter
+    def organization(self) -> Optional[pulumi.Input[str]]:
+        """
+        The organization
+        """
+        return pulumi.get(self, "organization")
+
+    @organization.setter
+    def organization(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "organization", value)
+
+    @property
+    @pulumi.getter(name="otherSans")
+    def other_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of other SANs
+        """
+        return pulumi.get(self, "other_sans")
+
+    @other_sans.setter
+    def other_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "other_sans", value)
+
+    @property
+    @pulumi.getter
+    def ou(self) -> Optional[pulumi.Input[str]]:
+        """
+        The organization unit
+        """
+        return pulumi.get(self, "ou")
+
+    @ou.setter
+    def ou(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ou", value)
+
+    @property
+    @pulumi.getter(name="permittedDnsDomains")
+    def permitted_dns_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of domains for which certificates are allowed to be issued
+        """
+        return pulumi.get(self, "permitted_dns_domains")
+
+    @permitted_dns_domains.setter
+    def permitted_dns_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "permitted_dns_domains", value)
+
+    @property
+    @pulumi.getter(name="postalCode")
+    def postal_code(self) -> Optional[pulumi.Input[str]]:
+        """
+        The postal code
+        """
+        return pulumi.get(self, "postal_code")
+
+    @postal_code.setter
+    def postal_code(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "postal_code", value)
+
+    @property
+    @pulumi.getter
+    def province(self) -> Optional[pulumi.Input[str]]:
+        """
+        The province
+        """
+        return pulumi.get(self, "province")
+
+    @province.setter
+    def province(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "province", value)
+
+    @property
+    @pulumi.getter(name="streetAddress")
+    def street_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The street address
+        """
+        return pulumi.get(self, "street_address")
+
+    @street_address.setter
+    def street_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "street_address", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        Time to live
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ttl", value)
+
+    @property
+    @pulumi.getter(name="uriSans")
+    def uri_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of alternative URIs
+        """
+        return pulumi.get(self, "uri_sans")
+
+    @uri_sans.setter
+    def uri_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "uri_sans", value)
+
+    @property
+    @pulumi.getter(name="useCsrValues")
+    def use_csr_values(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Preserve CSR values
+        """
+        return pulumi.get(self, "use_csr_values")
+
+    @use_csr_values.setter
+    def use_csr_values(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_csr_values", value)
 
 
 class SecretBackendRootSignIntermediate(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -80,6 +405,69 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         :param pulumi.Input[bool] use_csr_values: Preserve CSR values
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: SecretBackendRootSignIntermediateArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Creates PKI certificate.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        root = vault.pki_secret.SecretBackendRootSignIntermediate("root",
+            backend=vault_pki_secret_backend["root"]["path"],
+            csr=vault_pki_secret_backend_intermediate_cert_request["intermediate"]["csr"],
+            common_name="Intermediate CA",
+            exclude_cn_from_sans=True,
+            ou="My OU",
+            organization="My organization",
+            opts=pulumi.ResourceOptions(depends_on=["vault_pki_secret_backend_intermediate_cert_request.intermediate"]))
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param SecretBackendRootSignIntermediateArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(SecretBackendRootSignIntermediateArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 common_name: Optional[pulumi.Input[str]] = None,
+                 country: Optional[pulumi.Input[str]] = None,
+                 csr: Optional[pulumi.Input[str]] = None,
+                 exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
+                 format: Optional[pulumi.Input[str]] = None,
+                 ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 locality: Optional[pulumi.Input[str]] = None,
+                 max_path_length: Optional[pulumi.Input[int]] = None,
+                 organization: Optional[pulumi.Input[str]] = None,
+                 other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ou: Optional[pulumi.Input[str]] = None,
+                 permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 postal_code: Optional[pulumi.Input[str]] = None,
+                 province: Optional[pulumi.Input[str]] = None,
+                 street_address: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[str]] = None,
+                 uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 use_csr_values: Optional[pulumi.Input[bool]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

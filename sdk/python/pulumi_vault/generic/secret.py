@@ -5,13 +5,81 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['Secret']
+__all__ = ['SecretArgs', 'Secret']
+
+@pulumi.input_type
+class SecretArgs:
+    def __init__(__self__, *,
+                 data_json: pulumi.Input[str],
+                 path: pulumi.Input[str],
+                 disable_read: Optional[pulumi.Input[bool]] = None):
+        """
+        The set of arguments for constructing a Secret resource.
+        :param pulumi.Input[str] data_json: String containing a JSON-encoded object that will be
+               written as the secret data at the given path.
+        :param pulumi.Input[str] path: The full logical path at which to write the given data.
+               To write data into the "generic" secret backend mounted in Vault by default,
+               this should be prefixed with `secret/`. Writing to other backends with this
+               resource is possible; consult each backend's documentation to see which
+               endpoints support the `PUT` and `DELETE` methods.
+        :param pulumi.Input[bool] disable_read: True/false. Set this to true if your vault
+               authentication is not able to read the data. Setting this to `true` will
+               break drift detection. Defaults to false.
+        """
+        pulumi.set(__self__, "data_json", data_json)
+        pulumi.set(__self__, "path", path)
+        if disable_read is not None:
+            pulumi.set(__self__, "disable_read", disable_read)
+
+    @property
+    @pulumi.getter(name="dataJson")
+    def data_json(self) -> pulumi.Input[str]:
+        """
+        String containing a JSON-encoded object that will be
+        written as the secret data at the given path.
+        """
+        return pulumi.get(self, "data_json")
+
+    @data_json.setter
+    def data_json(self, value: pulumi.Input[str]):
+        pulumi.set(self, "data_json", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[str]:
+        """
+        The full logical path at which to write the given data.
+        To write data into the "generic" secret backend mounted in Vault by default,
+        this should be prefixed with `secret/`. Writing to other backends with this
+        resource is possible; consult each backend's documentation to see which
+        endpoints support the `PUT` and `DELETE` methods.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[str]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="disableRead")
+    def disable_read(self) -> Optional[pulumi.Input[bool]]:
+        """
+        True/false. Set this to true if your vault
+        authentication is not able to read the data. Setting this to `true` will
+        break drift detection. Defaults to false.
+        """
+        return pulumi.get(self, "disable_read")
+
+    @disable_read.setter
+    def disable_read(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_read", value)
 
 
 class Secret(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -43,6 +111,42 @@ class Secret(pulumi.CustomResource):
                resource is possible; consult each backend's documentation to see which
                endpoints support the `PUT` and `DELETE` methods.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: SecretArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        Generic secrets can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:generic/secret:Secret example secret/foo
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param SecretArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(SecretArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 data_json: Optional[pulumi.Input[str]] = None,
+                 disable_read: Optional[pulumi.Input[bool]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

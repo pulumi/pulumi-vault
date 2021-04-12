@@ -5,13 +5,95 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['AuthBackendCert']
+__all__ = ['AuthBackendCertArgs', 'AuthBackendCert']
+
+@pulumi.input_type
+class AuthBackendCertArgs:
+    def __init__(__self__, *,
+                 aws_public_cert: pulumi.Input[str],
+                 cert_name: pulumi.Input[str],
+                 backend: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a AuthBackendCert resource.
+        :param pulumi.Input[str] aws_public_cert: The  Base64 encoded AWS Public key required to
+               verify PKCS7 signature of the EC2 instance metadata. You can find this key in
+               the [AWS
+               documentation](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-identity-documents.html).
+        :param pulumi.Input[str] cert_name: The name of the certificate.
+        :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
+               mounted at.  Defaults to `aws`.
+        :param pulumi.Input[str] type: Either "pkcs7" or "identity", indicating the type of
+               document which can be verified using the given certificate. Defaults to
+               "pkcs7".
+        """
+        pulumi.set(__self__, "aws_public_cert", aws_public_cert)
+        pulumi.set(__self__, "cert_name", cert_name)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="awsPublicCert")
+    def aws_public_cert(self) -> pulumi.Input[str]:
+        """
+        The  Base64 encoded AWS Public key required to
+        verify PKCS7 signature of the EC2 instance metadata. You can find this key in
+        the [AWS
+        documentation](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-identity-documents.html).
+        """
+        return pulumi.get(self, "aws_public_cert")
+
+    @aws_public_cert.setter
+    def aws_public_cert(self, value: pulumi.Input[str]):
+        pulumi.set(self, "aws_public_cert", value)
+
+    @property
+    @pulumi.getter(name="certName")
+    def cert_name(self) -> pulumi.Input[str]:
+        """
+        The name of the certificate.
+        """
+        return pulumi.get(self, "cert_name")
+
+    @cert_name.setter
+    def cert_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "cert_name", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path the AWS auth backend being configured was
+        mounted at.  Defaults to `aws`.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Either "pkcs7" or "identity", indicating the type of
+        document which can be verified using the given certificate. Defaults to
+        "pkcs7".
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
 
 
 class AuthBackendCert(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -44,6 +126,43 @@ class AuthBackendCert(pulumi.CustomResource):
                document which can be verified using the given certificate. Defaults to
                "pkcs7".
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: AuthBackendCertArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        AWS auth backend certificates can be imported using `auth/`, the `backend` path, `/config/certificate/`, and the `cert_name` e.g.
+
+        ```sh
+         $ pulumi import vault:aws/authBackendCert:AuthBackendCert example auth/aws/config/certificate/my-cert
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param AuthBackendCertArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(AuthBackendCertArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 aws_public_cert: Optional[pulumi.Input[str]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 cert_name: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

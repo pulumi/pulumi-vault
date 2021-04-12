@@ -5,13 +5,99 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['Audit']
+__all__ = ['AuditArgs', 'Audit']
+
+@pulumi.input_type
+class AuditArgs:
+    def __init__(__self__, *,
+                 options: pulumi.Input[Mapping[str, pulumi.Input[str]]],
+                 type: pulumi.Input[str],
+                 description: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
+                 path: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a Audit resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Configuration options to pass to the audit device itself.
+        :param pulumi.Input[str] type: Type of the audit device, such as 'file'.
+        :param pulumi.Input[str] description: Human-friendly description of the audit device.
+        :param pulumi.Input[bool] local: Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
+        :param pulumi.Input[str] path: The path to mount the audit device. This defaults to the type.
+        """
+        pulumi.set(__self__, "options", options)
+        pulumi.set(__self__, "type", type)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @property
+    @pulumi.getter
+    def options(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
+        """
+        Configuration options to pass to the audit device itself.
+        """
+        return pulumi.get(self, "options")
+
+    @options.setter
+    def options(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
+        pulumi.set(self, "options", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        Type of the audit device, such as 'file'.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-friendly description of the audit device.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "local", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path to mount the audit device. This defaults to the type.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
 
 
 class Audit(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -70,6 +156,74 @@ class Audit(pulumi.CustomResource):
         :param pulumi.Input[str] path: The path to mount the audit device. This defaults to the type.
         :param pulumi.Input[str] type: Type of the audit device, such as 'file'.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: AuditArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Example Usage
+        ### File Audit Device)
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.Audit("test",
+            options={
+                "file_path": "C:/temp/audit.txt",
+            },
+            type="file")
+        ```
+        ### Socket Audit Device)
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.Audit("test",
+            local=False,
+            options={
+                "address": "127.0.0.1:8000",
+                "description": "application x socket",
+                "socket_type": "tcp",
+            },
+            path="app_socket",
+            type="socket")
+        ```
+
+        ## Import
+
+        Audit devices can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:index/audit:Audit test syslog
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param AuditArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(AuditArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

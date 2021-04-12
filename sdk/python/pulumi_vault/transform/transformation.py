@@ -5,13 +5,148 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['Transformation']
+__all__ = ['TransformationArgs', 'Transformation']
+
+@pulumi.input_type
+class TransformationArgs:
+    def __init__(__self__, *,
+                 path: pulumi.Input[str],
+                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 masking_character: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 template: Optional[pulumi.Input[str]] = None,
+                 templates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 tweak_source: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a Transformation resource.
+        :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: The set of roles allowed to perform this transformation.
+        :param pulumi.Input[str] masking_character: The character used to replace data when in masking mode
+        :param pulumi.Input[str] name: The name of the transformation.
+        :param pulumi.Input[str] template: The name of the template to use.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] templates: Templates configured for transformation.
+        :param pulumi.Input[str] tweak_source: The source of where the tweak value comes from. Only valid when in FPE mode.
+        :param pulumi.Input[str] type: The type of transformation to perform.
+        """
+        pulumi.set(__self__, "path", path)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if masking_character is not None:
+            pulumi.set(__self__, "masking_character", masking_character)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if template is not None:
+            pulumi.set(__self__, "template", template)
+        if templates is not None:
+            pulumi.set(__self__, "templates", templates)
+        if tweak_source is not None:
+            pulumi.set(__self__, "tweak_source", tweak_source)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[str]:
+        """
+        Path to where the back-end is mounted within Vault.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[str]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The set of roles allowed to perform this transformation.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @allowed_roles.setter
+    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_roles", value)
+
+    @property
+    @pulumi.getter(name="maskingCharacter")
+    def masking_character(self) -> Optional[pulumi.Input[str]]:
+        """
+        The character used to replace data when in masking mode
+        """
+        return pulumi.get(self, "masking_character")
+
+    @masking_character.setter
+    def masking_character(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "masking_character", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the transformation.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def template(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the template to use.
+        """
+        return pulumi.get(self, "template")
+
+    @template.setter
+    def template(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "template", value)
+
+    @property
+    @pulumi.getter
+    def templates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Templates configured for transformation.
+        """
+        return pulumi.get(self, "templates")
+
+    @templates.setter
+    def templates(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "templates", value)
+
+    @property
+    @pulumi.getter(name="tweakSource")
+    def tweak_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source of where the tweak value comes from. Only valid when in FPE mode.
+        """
+        return pulumi.get(self, "tweak_source")
+
+    @tweak_source.setter
+    def tweak_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tweak_source", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of transformation to perform.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
 
 
 class Transformation(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -60,6 +195,61 @@ class Transformation(pulumi.CustomResource):
         :param pulumi.Input[str] tweak_source: The source of where the tweak value comes from. Only valid when in FPE mode.
         :param pulumi.Input[str] type: The type of transformation to perform.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: TransformationArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        This resource supports the "/transform/transformation/{name}" Vault endpoint.
+
+        It creates or updates a transformation with the given name. If a transformation with the name does not exist,
+        it will be created. If the transformation exists, it will be updated with the new attributes.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        mount_transform = vault.Mount("mountTransform",
+            path="transform",
+            type="transform")
+        test = vault.transform.Transformation("test",
+            path=mount_transform.path,
+            type="fpe",
+            template="ccn",
+            tweak_source="internal",
+            allowed_roles=["payments"])
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param TransformationArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(TransformationArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 masking_character: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 template: Optional[pulumi.Input[str]] = None,
+                 templates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 tweak_source: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

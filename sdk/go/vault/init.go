@@ -21,37 +21,38 @@ func (m *module) Version() semver.Version {
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
 	case "vault:index/audit:Audit":
-		r, err = NewAudit(ctx, name, nil, pulumi.URN_(urn))
+		r = &Audit{}
 	case "vault:index/authBackend:AuthBackend":
-		r, err = NewAuthBackend(ctx, name, nil, pulumi.URN_(urn))
+		r = &AuthBackend{}
 	case "vault:index/certAuthBackendRole:CertAuthBackendRole":
-		r, err = NewCertAuthBackendRole(ctx, name, nil, pulumi.URN_(urn))
+		r = &CertAuthBackendRole{}
 	case "vault:index/egpPolicy:EgpPolicy":
-		r, err = NewEgpPolicy(ctx, name, nil, pulumi.URN_(urn))
+		r = &EgpPolicy{}
 	case "vault:index/mfaDuo:MfaDuo":
-		r, err = NewMfaDuo(ctx, name, nil, pulumi.URN_(urn))
+		r = &MfaDuo{}
 	case "vault:index/mount:Mount":
-		r, err = NewMount(ctx, name, nil, pulumi.URN_(urn))
+		r = &Mount{}
 	case "vault:index/namespace:Namespace":
-		r, err = NewNamespace(ctx, name, nil, pulumi.URN_(urn))
+		r = &Namespace{}
 	case "vault:index/nomadSecretBackend:NomadSecretBackend":
-		r, err = NewNomadSecretBackend(ctx, name, nil, pulumi.URN_(urn))
+		r = &NomadSecretBackend{}
 	case "vault:index/nomadSecretRole:NomadSecretRole":
-		r, err = NewNomadSecretRole(ctx, name, nil, pulumi.URN_(urn))
+		r = &NomadSecretRole{}
 	case "vault:index/passwordPolicy:PasswordPolicy":
-		r, err = NewPasswordPolicy(ctx, name, nil, pulumi.URN_(urn))
+		r = &PasswordPolicy{}
 	case "vault:index/policy:Policy":
-		r, err = NewPolicy(ctx, name, nil, pulumi.URN_(urn))
+		r = &Policy{}
 	case "vault:index/quotaRateLimit:QuotaRateLimit":
-		r, err = NewQuotaRateLimit(ctx, name, nil, pulumi.URN_(urn))
+		r = &QuotaRateLimit{}
 	case "vault:index/rgpPolicy:RgpPolicy":
-		r, err = NewRgpPolicy(ctx, name, nil, pulumi.URN_(urn))
+		r = &RgpPolicy{}
 	case "vault:index/token:Token":
-		r, err = NewToken(ctx, name, nil, pulumi.URN_(urn))
+		r = &Token{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
 	return
 }
 
@@ -68,7 +69,9 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 		return nil, fmt.Errorf("unknown provider type: %s", typ)
 	}
 
-	return NewProvider(ctx, name, nil, pulumi.URN_(urn))
+	r := &Provider{}
+	err := ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	return r, err
 }
 
 func init() {

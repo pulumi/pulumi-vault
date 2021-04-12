@@ -5,13 +5,68 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['SecretBackendCrlConfig']
+__all__ = ['SecretBackendCrlConfigArgs', 'SecretBackendCrlConfig']
+
+@pulumi.input_type
+class SecretBackendCrlConfigArgs:
+    def __init__(__self__, *,
+                 backend: pulumi.Input[str],
+                 disable: Optional[pulumi.Input[bool]] = None,
+                 expiry: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a SecretBackendCrlConfig resource.
+        :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[bool] disable: Disables or enables CRL building.
+        :param pulumi.Input[str] expiry: Specifies the time until expiration.
+        """
+        pulumi.set(__self__, "backend", backend)
+        if disable is not None:
+            pulumi.set(__self__, "disable", disable)
+        if expiry is not None:
+            pulumi.set(__self__, "expiry", expiry)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> pulumi.Input[str]:
+        """
+        The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: pulumi.Input[str]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def disable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disables or enables CRL building.
+        """
+        return pulumi.get(self, "disable")
+
+    @disable.setter
+    def disable(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable", value)
+
+    @property
+    @pulumi.getter
+    def expiry(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the time until expiration.
+        """
+        return pulumi.get(self, "expiry")
+
+    @expiry.setter
+    def expiry(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "expiry", value)
 
 
 class SecretBackendCrlConfig(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -47,6 +102,53 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         :param pulumi.Input[bool] disable: Disables or enables CRL building.
         :param pulumi.Input[str] expiry: Specifies the time until expiration.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: SecretBackendCrlConfigArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Allows setting the duration for which the generated CRL should be marked valid. If the CRL is disabled, it will return a signed but zero-length CRL for any request. If enabled, it will re-build the CRL.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        pki = vault.Mount("pki",
+            default_lease_ttl_seconds=3600,
+            max_lease_ttl_seconds=86400,
+            path="%s",
+            type="pki")
+        crl_config = vault.pki_secret.SecretBackendCrlConfig("crlConfig",
+            backend=pki.path,
+            disable=False,
+            expiry="72h")
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param SecretBackendCrlConfigArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(SecretBackendCrlConfigArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 disable: Optional[pulumi.Input[bool]] = None,
+                 expiry: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

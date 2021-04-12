@@ -5,13 +5,613 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['SecretBackend']
+__all__ = ['SecretBackendArgs', 'SecretBackend']
+
+@pulumi.input_type
+class SecretBackendArgs:
+    def __init__(__self__, *,
+                 binddn: pulumi.Input[str],
+                 bindpass: pulumi.Input[str],
+                 anonymous_group_search: Optional[pulumi.Input[bool]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 case_sensitive_names: Optional[pulumi.Input[bool]] = None,
+                 certificate: Optional[pulumi.Input[str]] = None,
+                 client_tls_cert: Optional[pulumi.Input[str]] = None,
+                 client_tls_key: Optional[pulumi.Input[str]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 deny_null_bind: Optional[pulumi.Input[bool]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 discoverdn: Optional[pulumi.Input[bool]] = None,
+                 formatter: Optional[pulumi.Input[str]] = None,
+                 groupattr: Optional[pulumi.Input[str]] = None,
+                 groupdn: Optional[pulumi.Input[str]] = None,
+                 groupfilter: Optional[pulumi.Input[str]] = None,
+                 insecure_tls: Optional[pulumi.Input[bool]] = None,
+                 last_rotation_tolerance: Optional[pulumi.Input[int]] = None,
+                 length: Optional[pulumi.Input[int]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 max_ttl: Optional[pulumi.Input[int]] = None,
+                 password_policy: Optional[pulumi.Input[str]] = None,
+                 request_timeout: Optional[pulumi.Input[int]] = None,
+                 starttls: Optional[pulumi.Input[bool]] = None,
+                 tls_max_version: Optional[pulumi.Input[str]] = None,
+                 tls_min_version: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None,
+                 upndomain: Optional[pulumi.Input[str]] = None,
+                 url: Optional[pulumi.Input[str]] = None,
+                 use_pre111_group_cn_behavior: Optional[pulumi.Input[bool]] = None,
+                 use_token_groups: Optional[pulumi.Input[bool]] = None,
+                 userattr: Optional[pulumi.Input[str]] = None,
+                 userdn: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a SecretBackend resource.
+        :param pulumi.Input[str] binddn: Distinguished name of object to bind when performing user and group search.
+        :param pulumi.Input[str] bindpass: Password to use along with binddn when performing user search.
+        :param pulumi.Input[bool] anonymous_group_search: Use anonymous binds when performing LDAP group searches
+               (if true the initial credentials will still be used for the initial connection test).
+        :param pulumi.Input[str] backend: The unique path this backend should be mounted at. Must
+               not begin or end with a `/`. Defaults to `ad`.
+        :param pulumi.Input[bool] case_sensitive_names: If set, user and group names assigned to policies within the
+               backend will be case sensitive. Otherwise, names will be normalized to lower case.
+        :param pulumi.Input[str] certificate: CA certificate to use when verifying LDAP server certificate, must be
+               x509 PEM encoded.
+        :param pulumi.Input[str] client_tls_cert: Client certificate to provide to the LDAP server, must be x509 PEM encoded.
+        :param pulumi.Input[str] client_tls_key: Client certificate key to provide to the LDAP server, must be x509 PEM encoded.
+        :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
+        :param pulumi.Input[bool] deny_null_bind: Denies an unauthenticated LDAP bind request if the user's password is empty;
+               defaults to true.
+        :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
+        :param pulumi.Input[bool] discoverdn: Use anonymous bind to discover the bind Distinguished Name of a user.
+        :param pulumi.Input[str] formatter: Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix". This
+               setting is deprecated and should instead use `password_policy`.
+        :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
+               user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
+        :param pulumi.Input[str] groupdn: LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org).
+        :param pulumi.Input[str] groupfilter: Go template for querying group membership of user (optional) The template can access
+               the following context variables: UserDN, Username. Defaults to `(|(memberUid={{.Username}})(member={{.UserDN}})(uniqueMember={{.UserDN}}))`
+        :param pulumi.Input[bool] insecure_tls: Skip LDAP server SSL Certificate verification. This is not recommended for production.
+               Defaults to `false`.
+        :param pulumi.Input[int] last_rotation_tolerance: The number of seconds after a Vault rotation where, if Active Directory
+               shows a later rotation, it should be considered out-of-band
+        :param pulumi.Input[int] length: The desired length of passwords that Vault generates. This
+               setting is deprecated and should instead use `password_policy`.
+        :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
+               replication.Tolerance duration to use when checking the last rotation time.
+        :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
+        :param pulumi.Input[int] max_ttl: In seconds, the maximum password time-to-live.
+        :param pulumi.Input[str] password_policy: Name of the password policy to use to generate passwords.
+        :param pulumi.Input[int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
+               before returning back an error.
+        :param pulumi.Input[bool] starttls: Issue a StartTLS command after establishing unencrypted connection.
+        :param pulumi.Input[str] tls_max_version: Maximum TLS version to use. Accepted values are `tls10`, `tls11`,
+               `tls12` or `tls13`. Defaults to `tls12`.
+        :param pulumi.Input[str] tls_min_version: Minimum TLS version to use. Accepted values are `tls10`, `tls11`,
+               `tls12` or `tls13`. Defaults to `tls12`.
+        :param pulumi.Input[int] ttl: In seconds, the default password time-to-live.
+        :param pulumi.Input[str] upndomain: Enables userPrincipalDomain login with [username]@UPNDomain.
+        :param pulumi.Input[str] url: LDAP URL to connect to. Multiple URLs can be specified by concatenating
+               them with commas; they will be tried in-order. Defaults to `ldap://127.0.0.1`.
+        :param pulumi.Input[bool] use_pre111_group_cn_behavior: In Vault 1.1.1 a fix for handling group CN values of
+               different cases unfortunately introduced a regression that could cause previously defined groups
+               to not be found due to a change in the resulting name. If set true, the pre-1.1.1 behavior for
+               matching group CNs will be used. This is only needed in some upgrade scenarios for backwards
+               compatibility. It is enabled by default if the config is upgraded but disabled by default on
+               new configurations.
+        :param pulumi.Input[bool] use_token_groups: If true, use the Active Directory tokenGroups constructed attribute of the
+               user to find the group memberships. This will find all security groups including nested ones.
+        :param pulumi.Input[str] userattr: Attribute used when searching users. Defaults to `cn`.
+        :param pulumi.Input[str] userdn: LDAP domain to use for users (eg: ou=People,dc=example,dc=org)`.
+        """
+        pulumi.set(__self__, "binddn", binddn)
+        pulumi.set(__self__, "bindpass", bindpass)
+        if anonymous_group_search is not None:
+            pulumi.set(__self__, "anonymous_group_search", anonymous_group_search)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if case_sensitive_names is not None:
+            pulumi.set(__self__, "case_sensitive_names", case_sensitive_names)
+        if certificate is not None:
+            pulumi.set(__self__, "certificate", certificate)
+        if client_tls_cert is not None:
+            pulumi.set(__self__, "client_tls_cert", client_tls_cert)
+        if client_tls_key is not None:
+            pulumi.set(__self__, "client_tls_key", client_tls_key)
+        if default_lease_ttl_seconds is not None:
+            pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
+        if deny_null_bind is not None:
+            pulumi.set(__self__, "deny_null_bind", deny_null_bind)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if discoverdn is not None:
+            pulumi.set(__self__, "discoverdn", discoverdn)
+        if formatter is not None:
+            warnings.warn("""Formatter is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
+            pulumi.log.warn("""formatter is deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.""")
+        if formatter is not None:
+            pulumi.set(__self__, "formatter", formatter)
+        if groupattr is not None:
+            pulumi.set(__self__, "groupattr", groupattr)
+        if groupdn is not None:
+            pulumi.set(__self__, "groupdn", groupdn)
+        if groupfilter is not None:
+            pulumi.set(__self__, "groupfilter", groupfilter)
+        if insecure_tls is not None:
+            pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if last_rotation_tolerance is not None:
+            pulumi.set(__self__, "last_rotation_tolerance", last_rotation_tolerance)
+        if length is not None:
+            warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
+            pulumi.log.warn("""length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.""")
+        if length is not None:
+            pulumi.set(__self__, "length", length)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
+        if max_lease_ttl_seconds is not None:
+            pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
+        if max_ttl is not None:
+            pulumi.set(__self__, "max_ttl", max_ttl)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
+        if request_timeout is not None:
+            pulumi.set(__self__, "request_timeout", request_timeout)
+        if starttls is not None:
+            pulumi.set(__self__, "starttls", starttls)
+        if tls_max_version is not None:
+            pulumi.set(__self__, "tls_max_version", tls_max_version)
+        if tls_min_version is not None:
+            pulumi.set(__self__, "tls_min_version", tls_min_version)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+        if upndomain is not None:
+            pulumi.set(__self__, "upndomain", upndomain)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+        if use_pre111_group_cn_behavior is not None:
+            pulumi.set(__self__, "use_pre111_group_cn_behavior", use_pre111_group_cn_behavior)
+        if use_token_groups is not None:
+            pulumi.set(__self__, "use_token_groups", use_token_groups)
+        if userattr is not None:
+            pulumi.set(__self__, "userattr", userattr)
+        if userdn is not None:
+            pulumi.set(__self__, "userdn", userdn)
+
+    @property
+    @pulumi.getter
+    def binddn(self) -> pulumi.Input[str]:
+        """
+        Distinguished name of object to bind when performing user and group search.
+        """
+        return pulumi.get(self, "binddn")
+
+    @binddn.setter
+    def binddn(self, value: pulumi.Input[str]):
+        pulumi.set(self, "binddn", value)
+
+    @property
+    @pulumi.getter
+    def bindpass(self) -> pulumi.Input[str]:
+        """
+        Password to use along with binddn when performing user search.
+        """
+        return pulumi.get(self, "bindpass")
+
+    @bindpass.setter
+    def bindpass(self, value: pulumi.Input[str]):
+        pulumi.set(self, "bindpass", value)
+
+    @property
+    @pulumi.getter(name="anonymousGroupSearch")
+    def anonymous_group_search(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Use anonymous binds when performing LDAP group searches
+        (if true the initial credentials will still be used for the initial connection test).
+        """
+        return pulumi.get(self, "anonymous_group_search")
+
+    @anonymous_group_search.setter
+    def anonymous_group_search(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "anonymous_group_search", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique path this backend should be mounted at. Must
+        not begin or end with a `/`. Defaults to `ad`.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="caseSensitiveNames")
+    def case_sensitive_names(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, user and group names assigned to policies within the
+        backend will be case sensitive. Otherwise, names will be normalized to lower case.
+        """
+        return pulumi.get(self, "case_sensitive_names")
+
+    @case_sensitive_names.setter
+    def case_sensitive_names(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "case_sensitive_names", value)
+
+    @property
+    @pulumi.getter
+    def certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        CA certificate to use when verifying LDAP server certificate, must be
+        x509 PEM encoded.
+        """
+        return pulumi.get(self, "certificate")
+
+    @certificate.setter
+    def certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "certificate", value)
+
+    @property
+    @pulumi.getter(name="clientTlsCert")
+    def client_tls_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client certificate to provide to the LDAP server, must be x509 PEM encoded.
+        """
+        return pulumi.get(self, "client_tls_cert")
+
+    @client_tls_cert.setter
+    def client_tls_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_tls_cert", value)
+
+    @property
+    @pulumi.getter(name="clientTlsKey")
+    def client_tls_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client certificate key to provide to the LDAP server, must be x509 PEM encoded.
+        """
+        return pulumi.get(self, "client_tls_key")
+
+    @client_tls_key.setter
+    def client_tls_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_tls_key", value)
+
+    @property
+    @pulumi.getter(name="defaultLeaseTtlSeconds")
+    def default_lease_ttl_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        Default lease duration for secrets in seconds.
+        """
+        return pulumi.get(self, "default_lease_ttl_seconds")
+
+    @default_lease_ttl_seconds.setter
+    def default_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "default_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter(name="denyNullBind")
+    def deny_null_bind(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Denies an unauthenticated LDAP bind request if the user's password is empty;
+        defaults to true.
+        """
+        return pulumi.get(self, "deny_null_bind")
+
+    @deny_null_bind.setter
+    def deny_null_bind(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "deny_null_bind", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-friendly description of the mount for the Active Directory backend.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def discoverdn(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Use anonymous bind to discover the bind Distinguished Name of a user.
+        """
+        return pulumi.get(self, "discoverdn")
+
+    @discoverdn.setter
+    def discoverdn(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "discoverdn", value)
+
+    @property
+    @pulumi.getter
+    def formatter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix". This
+        setting is deprecated and should instead use `password_policy`.
+        """
+        return pulumi.get(self, "formatter")
+
+    @formatter.setter
+    def formatter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "formatter", value)
+
+    @property
+    @pulumi.getter
+    def groupattr(self) -> Optional[pulumi.Input[str]]:
+        """
+        LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
+        user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
+        """
+        return pulumi.get(self, "groupattr")
+
+    @groupattr.setter
+    def groupattr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "groupattr", value)
+
+    @property
+    @pulumi.getter
+    def groupdn(self) -> Optional[pulumi.Input[str]]:
+        """
+        LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org).
+        """
+        return pulumi.get(self, "groupdn")
+
+    @groupdn.setter
+    def groupdn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "groupdn", value)
+
+    @property
+    @pulumi.getter
+    def groupfilter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Go template for querying group membership of user (optional) The template can access
+        the following context variables: UserDN, Username. Defaults to `(|(memberUid={{.Username}})(member={{.UserDN}})(uniqueMember={{.UserDN}}))`
+        """
+        return pulumi.get(self, "groupfilter")
+
+    @groupfilter.setter
+    def groupfilter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "groupfilter", value)
+
+    @property
+    @pulumi.getter(name="insecureTls")
+    def insecure_tls(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Skip LDAP server SSL Certificate verification. This is not recommended for production.
+        Defaults to `false`.
+        """
+        return pulumi.get(self, "insecure_tls")
+
+    @insecure_tls.setter
+    def insecure_tls(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "insecure_tls", value)
+
+    @property
+    @pulumi.getter(name="lastRotationTolerance")
+    def last_rotation_tolerance(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of seconds after a Vault rotation where, if Active Directory
+        shows a later rotation, it should be considered out-of-band
+        """
+        return pulumi.get(self, "last_rotation_tolerance")
+
+    @last_rotation_tolerance.setter
+    def last_rotation_tolerance(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "last_rotation_tolerance", value)
+
+    @property
+    @pulumi.getter
+    def length(self) -> Optional[pulumi.Input[int]]:
+        """
+        The desired length of passwords that Vault generates. This
+        setting is deprecated and should instead use `password_policy`.
+        """
+        return pulumi.get(self, "length")
+
+    @length.setter
+    def length(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "length", value)
+
+    @property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Mark the secrets engine as local-only. Local engines are not replicated or removed by
+        replication.Tolerance duration to use when checking the last rotation time.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "local", value)
+
+    @property
+    @pulumi.getter(name="maxLeaseTtlSeconds")
+    def max_lease_ttl_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum possible lease duration for secrets in seconds.
+        """
+        return pulumi.get(self, "max_lease_ttl_seconds")
+
+    @max_lease_ttl_seconds.setter
+    def max_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        In seconds, the maximum password time-to-live.
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @max_ttl.setter
+    def max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_ttl", value)
+
+    @property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the password policy to use to generate passwords.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @property
+    @pulumi.getter(name="requestTimeout")
+    def request_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Timeout, in seconds, for the connection when making requests against the server
+        before returning back an error.
+        """
+        return pulumi.get(self, "request_timeout")
+
+    @request_timeout.setter
+    def request_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "request_timeout", value)
+
+    @property
+    @pulumi.getter
+    def starttls(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Issue a StartTLS command after establishing unencrypted connection.
+        """
+        return pulumi.get(self, "starttls")
+
+    @starttls.setter
+    def starttls(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "starttls", value)
+
+    @property
+    @pulumi.getter(name="tlsMaxVersion")
+    def tls_max_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum TLS version to use. Accepted values are `tls10`, `tls11`,
+        `tls12` or `tls13`. Defaults to `tls12`.
+        """
+        return pulumi.get(self, "tls_max_version")
+
+    @tls_max_version.setter
+    def tls_max_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_max_version", value)
+
+    @property
+    @pulumi.getter(name="tlsMinVersion")
+    def tls_min_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum TLS version to use. Accepted values are `tls10`, `tls11`,
+        `tls12` or `tls13`. Defaults to `tls12`.
+        """
+        return pulumi.get(self, "tls_min_version")
+
+    @tls_min_version.setter
+    def tls_min_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_min_version", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        In seconds, the default password time-to-live.
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ttl", value)
+
+    @property
+    @pulumi.getter
+    def upndomain(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enables userPrincipalDomain login with [username]@UPNDomain.
+        """
+        return pulumi.get(self, "upndomain")
+
+    @upndomain.setter
+    def upndomain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "upndomain", value)
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[str]]:
+        """
+        LDAP URL to connect to. Multiple URLs can be specified by concatenating
+        them with commas; they will be tried in-order. Defaults to `ldap://127.0.0.1`.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "url", value)
+
+    @property
+    @pulumi.getter(name="usePre111GroupCnBehavior")
+    def use_pre111_group_cn_behavior(self) -> Optional[pulumi.Input[bool]]:
+        """
+        In Vault 1.1.1 a fix for handling group CN values of
+        different cases unfortunately introduced a regression that could cause previously defined groups
+        to not be found due to a change in the resulting name. If set true, the pre-1.1.1 behavior for
+        matching group CNs will be used. This is only needed in some upgrade scenarios for backwards
+        compatibility. It is enabled by default if the config is upgraded but disabled by default on
+        new configurations.
+        """
+        return pulumi.get(self, "use_pre111_group_cn_behavior")
+
+    @use_pre111_group_cn_behavior.setter
+    def use_pre111_group_cn_behavior(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_pre111_group_cn_behavior", value)
+
+    @property
+    @pulumi.getter(name="useTokenGroups")
+    def use_token_groups(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, use the Active Directory tokenGroups constructed attribute of the
+        user to find the group memberships. This will find all security groups including nested ones.
+        """
+        return pulumi.get(self, "use_token_groups")
+
+    @use_token_groups.setter
+    def use_token_groups(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_token_groups", value)
+
+    @property
+    @pulumi.getter
+    def userattr(self) -> Optional[pulumi.Input[str]]:
+        """
+        Attribute used when searching users. Defaults to `cn`.
+        """
+        return pulumi.get(self, "userattr")
+
+    @userattr.setter
+    def userattr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "userattr", value)
+
+    @property
+    @pulumi.getter
+    def userdn(self) -> Optional[pulumi.Input[str]]:
+        """
+        LDAP domain to use for users (eg: ou=People,dc=example,dc=org)`.
+        """
+        return pulumi.get(self, "userdn")
+
+    @userdn.setter
+    def userdn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "userdn", value)
 
 
 class SecretBackend(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -120,6 +720,73 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] userattr: Attribute used when searching users. Defaults to `cn`.
         :param pulumi.Input[str] userdn: LDAP domain to use for users (eg: ou=People,dc=example,dc=org)`.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: SecretBackendArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        AD secret backend can be imported using the `backend`, e.g.
+
+        ```sh
+         $ pulumi import vault:ad/secretBackend:SecretBackend ad ad
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param SecretBackendArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(SecretBackendArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 anonymous_group_search: Optional[pulumi.Input[bool]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 binddn: Optional[pulumi.Input[str]] = None,
+                 bindpass: Optional[pulumi.Input[str]] = None,
+                 case_sensitive_names: Optional[pulumi.Input[bool]] = None,
+                 certificate: Optional[pulumi.Input[str]] = None,
+                 client_tls_cert: Optional[pulumi.Input[str]] = None,
+                 client_tls_key: Optional[pulumi.Input[str]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 deny_null_bind: Optional[pulumi.Input[bool]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 discoverdn: Optional[pulumi.Input[bool]] = None,
+                 formatter: Optional[pulumi.Input[str]] = None,
+                 groupattr: Optional[pulumi.Input[str]] = None,
+                 groupdn: Optional[pulumi.Input[str]] = None,
+                 groupfilter: Optional[pulumi.Input[str]] = None,
+                 insecure_tls: Optional[pulumi.Input[bool]] = None,
+                 last_rotation_tolerance: Optional[pulumi.Input[int]] = None,
+                 length: Optional[pulumi.Input[int]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 max_ttl: Optional[pulumi.Input[int]] = None,
+                 password_policy: Optional[pulumi.Input[str]] = None,
+                 request_timeout: Optional[pulumi.Input[int]] = None,
+                 starttls: Optional[pulumi.Input[bool]] = None,
+                 tls_max_version: Optional[pulumi.Input[str]] = None,
+                 tls_min_version: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None,
+                 upndomain: Optional[pulumi.Input[str]] = None,
+                 url: Optional[pulumi.Input[str]] = None,
+                 use_pre111_group_cn_behavior: Optional[pulumi.Input[bool]] = None,
+                 use_token_groups: Optional[pulumi.Input[bool]] = None,
+                 userattr: Optional[pulumi.Input[str]] = None,
+                 userdn: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

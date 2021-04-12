@@ -22,17 +22,18 @@ func (m *module) Version() semver.Version {
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
 	case "vault:azure/authBackendConfig:AuthBackendConfig":
-		r, err = NewAuthBackendConfig(ctx, name, nil, pulumi.URN_(urn))
+		r = &AuthBackendConfig{}
 	case "vault:azure/authBackendRole:AuthBackendRole":
-		r, err = NewAuthBackendRole(ctx, name, nil, pulumi.URN_(urn))
+		r = &AuthBackendRole{}
 	case "vault:azure/backend:Backend":
-		r, err = NewBackend(ctx, name, nil, pulumi.URN_(urn))
+		r = &Backend{}
 	case "vault:azure/backendRole:BackendRole":
-		r, err = NewBackendRole(ctx, name, nil, pulumi.URN_(urn))
+		r = &BackendRole{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
 	return
 }
 
