@@ -22,31 +22,32 @@ func (m *module) Version() semver.Version {
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
 	case "vault:identity/entity:Entity":
-		r, err = NewEntity(ctx, name, nil, pulumi.URN_(urn))
+		r = &Entity{}
 	case "vault:identity/entityAlias:EntityAlias":
-		r, err = NewEntityAlias(ctx, name, nil, pulumi.URN_(urn))
+		r = &EntityAlias{}
 	case "vault:identity/entityPolicies:EntityPolicies":
-		r, err = NewEntityPolicies(ctx, name, nil, pulumi.URN_(urn))
+		r = &EntityPolicies{}
 	case "vault:identity/group:Group":
-		r, err = NewGroup(ctx, name, nil, pulumi.URN_(urn))
+		r = &Group{}
 	case "vault:identity/groupAlias:GroupAlias":
-		r, err = NewGroupAlias(ctx, name, nil, pulumi.URN_(urn))
+		r = &GroupAlias{}
 	case "vault:identity/groupMemberEntityIds:GroupMemberEntityIds":
-		r, err = NewGroupMemberEntityIds(ctx, name, nil, pulumi.URN_(urn))
+		r = &GroupMemberEntityIds{}
 	case "vault:identity/groupPolicies:GroupPolicies":
-		r, err = NewGroupPolicies(ctx, name, nil, pulumi.URN_(urn))
+		r = &GroupPolicies{}
 	case "vault:identity/oidc:Oidc":
-		r, err = NewOidc(ctx, name, nil, pulumi.URN_(urn))
+		r = &Oidc{}
 	case "vault:identity/oidcKey:OidcKey":
-		r, err = NewOidcKey(ctx, name, nil, pulumi.URN_(urn))
+		r = &OidcKey{}
 	case "vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID":
-		r, err = NewOidcKeyAllowedClientID(ctx, name, nil, pulumi.URN_(urn))
+		r = &OidcKeyAllowedClientID{}
 	case "vault:identity/oidcRole:OidcRole":
-		r, err = NewOidcRole(ctx, name, nil, pulumi.URN_(urn))
+		r = &OidcRole{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
 	return
 }
 

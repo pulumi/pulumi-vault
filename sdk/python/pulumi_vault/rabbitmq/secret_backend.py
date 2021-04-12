@@ -5,13 +5,154 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['SecretBackend']
+__all__ = ['SecretBackendArgs', 'SecretBackend']
+
+@pulumi.input_type
+class SecretBackendArgs:
+    def __init__(__self__, *,
+                 connection_uri: pulumi.Input[str],
+                 password: pulumi.Input[str],
+                 username: pulumi.Input[str],
+                 default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 verify_connection: Optional[pulumi.Input[bool]] = None):
+        """
+        The set of arguments for constructing a SecretBackend resource.
+        :param pulumi.Input[str] connection_uri: Specifies the RabbitMQ connection URI.
+        :param pulumi.Input[str] password: Specifies the RabbitMQ management administrator password.
+        :param pulumi.Input[str] username: Specifies the RabbitMQ management administrator username.
+        :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
+               issued by this backend.
+        :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
+               for credentials issued by this backend.
+        :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
+               not begin or end with a `/`. Defaults to `aws`.
+        :param pulumi.Input[bool] verify_connection: Specifies whether to verify connection URI, username, and password.
+               Defaults to `true`.
+        """
+        pulumi.set(__self__, "connection_uri", connection_uri)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "username", username)
+        if default_lease_ttl_seconds is not None:
+            pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if max_lease_ttl_seconds is not None:
+            pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter(name="connectionUri")
+    def connection_uri(self) -> pulumi.Input[str]:
+        """
+        Specifies the RabbitMQ connection URI.
+        """
+        return pulumi.get(self, "connection_uri")
+
+    @connection_uri.setter
+    def connection_uri(self, value: pulumi.Input[str]):
+        pulumi.set(self, "connection_uri", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> pulumi.Input[str]:
+        """
+        Specifies the RabbitMQ management administrator password.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: pulumi.Input[str]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[str]:
+        """
+        Specifies the RabbitMQ management administrator username.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[str]):
+        pulumi.set(self, "username", value)
+
+    @property
+    @pulumi.getter(name="defaultLeaseTtlSeconds")
+    def default_lease_ttl_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        The default TTL for credentials
+        issued by this backend.
+        """
+        return pulumi.get(self, "default_lease_ttl_seconds")
+
+    @default_lease_ttl_seconds.setter
+    def default_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "default_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A human-friendly description for this backend.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="maxLeaseTtlSeconds")
+    def max_lease_ttl_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum TTL that can be requested
+        for credentials issued by this backend.
+        """
+        return pulumi.get(self, "max_lease_ttl_seconds")
+
+    @max_lease_ttl_seconds.setter
+    def max_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique path this backend should be mounted at. Must
+        not begin or end with a `/`. Defaults to `aws`.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether to verify connection URI, username, and password.
+        Defaults to `true`.
+        """
+        return pulumi.get(self, "verify_connection")
+
+    @verify_connection.setter
+    def verify_connection(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "verify_connection", value)
 
 
 class SecretBackend(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -50,6 +191,47 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] verify_connection: Specifies whether to verify connection URI, username, and password.
                Defaults to `true`.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: SecretBackendArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        RabbitMQ secret backends can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param SecretBackendArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(SecretBackendArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 connection_uri: Optional[pulumi.Input[str]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
+                 verify_connection: Optional[pulumi.Input[bool]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

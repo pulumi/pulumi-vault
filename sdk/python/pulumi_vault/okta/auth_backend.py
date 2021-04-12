@@ -5,15 +5,192 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['AuthBackend']
+__all__ = ['AuthBackendArgs', 'AuthBackend']
+
+@pulumi.input_type
+class AuthBackendArgs:
+    def __init__(__self__, *,
+                 organization: pulumi.Input[str],
+                 base_url: Optional[pulumi.Input[str]] = None,
+                 bypass_okta_mfa: Optional[pulumi.Input[bool]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 groups: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]] = None,
+                 max_ttl: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 token: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[str]] = None,
+                 users: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]] = None):
+        """
+        The set of arguments for constructing a AuthBackend resource.
+        :param pulumi.Input[str] organization: The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+        :param pulumi.Input[str] base_url: The Okta url. Examples: oktapreview.com, okta.com
+        :param pulumi.Input[bool] bypass_okta_mfa: When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
+        :param pulumi.Input[str] description: The description of the auth backend
+        :param pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]] groups: Associate Okta groups with policies within Vault.
+               See below for more details.
+        :param pulumi.Input[str] max_ttl: Maximum duration after which authentication will be expired
+               [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+        :param pulumi.Input[str] path: Path to mount the Okta auth backend
+        :param pulumi.Input[str] token: The Okta API token. This is required to query Okta for user group membership.
+               If this is not supplied only locally configured groups will be enabled.
+        :param pulumi.Input[str] ttl: Duration after which authentication will be expired.
+               [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+        :param pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]] users: Associate Okta users with groups or policies within Vault.
+               See below for more details.
+        """
+        pulumi.set(__self__, "organization", organization)
+        if base_url is not None:
+            pulumi.set(__self__, "base_url", base_url)
+        if bypass_okta_mfa is not None:
+            pulumi.set(__self__, "bypass_okta_mfa", bypass_okta_mfa)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if groups is not None:
+            pulumi.set(__self__, "groups", groups)
+        if max_ttl is not None:
+            pulumi.set(__self__, "max_ttl", max_ttl)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+        if users is not None:
+            pulumi.set(__self__, "users", users)
+
+    @property
+    @pulumi.getter
+    def organization(self) -> pulumi.Input[str]:
+        """
+        The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+        """
+        return pulumi.get(self, "organization")
+
+    @organization.setter
+    def organization(self, value: pulumi.Input[str]):
+        pulumi.set(self, "organization", value)
+
+    @property
+    @pulumi.getter(name="baseUrl")
+    def base_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Okta url. Examples: oktapreview.com, okta.com
+        """
+        return pulumi.get(self, "base_url")
+
+    @base_url.setter
+    def base_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "base_url", value)
+
+    @property
+    @pulumi.getter(name="bypassOktaMfa")
+    def bypass_okta_mfa(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
+        """
+        return pulumi.get(self, "bypass_okta_mfa")
+
+    @bypass_okta_mfa.setter
+    def bypass_okta_mfa(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "bypass_okta_mfa", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of the auth backend
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]]:
+        """
+        Associate Okta groups with policies within Vault.
+        See below for more details.
+        """
+        return pulumi.get(self, "groups")
+
+    @groups.setter
+    def groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]]):
+        pulumi.set(self, "groups", value)
+
+    @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum duration after which authentication will be expired
+        [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @max_ttl.setter
+    def max_ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "max_ttl", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to mount the Okta auth backend
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def token(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Okta API token. This is required to query Okta for user group membership.
+        If this is not supplied only locally configured groups will be enabled.
+        """
+        return pulumi.get(self, "token")
+
+    @token.setter
+    def token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        Duration after which authentication will be expired.
+        [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ttl", value)
+
+    @property
+    @pulumi.getter
+    def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]]:
+        """
+        Associate Okta users with groups or policies within Vault.
+        See below for more details.
+        """
+        return pulumi.get(self, "users")
+
+    @users.setter
+    def users(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]]):
+        pulumi.set(self, "users", value)
 
 
 class AuthBackend(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -75,6 +252,67 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthBackendUserArgs']]]] users: Associate Okta users with groups or policies within Vault.
                See below for more details.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: AuthBackendArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Provides a resource for managing an
+        [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.okta.AuthBackend("example",
+            description="Demonstration of the Terraform Okta auth backend",
+            groups=[vault.okta.AuthBackendGroupArgs(
+                group_name="foo",
+                policies=[
+                    "one",
+                    "two",
+                ],
+            )],
+            organization="example",
+            token="something that should be kept secret",
+            users=[vault.okta.AuthBackendUserArgs(
+                groups=["foo"],
+                username="bar",
+            )])
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param AuthBackendArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(AuthBackendArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 base_url: Optional[pulumi.Input[str]] = None,
+                 bypass_okta_mfa: Optional[pulumi.Input[bool]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthBackendGroupArgs']]]]] = None,
+                 max_ttl: Optional[pulumi.Input[str]] = None,
+                 organization: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 token: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[str]] = None,
+                 users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthBackendUserArgs']]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

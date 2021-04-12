@@ -5,13 +5,68 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['Alphabet']
+__all__ = ['AlphabetArgs', 'Alphabet']
+
+@pulumi.input_type
+class AlphabetArgs:
+    def __init__(__self__, *,
+                 path: pulumi.Input[str],
+                 alphabet: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a Alphabet resource.
+        :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
+        :param pulumi.Input[str] alphabet: A string of characters that contains the alphabet set.
+        :param pulumi.Input[str] name: The name of the alphabet.
+        """
+        pulumi.set(__self__, "path", path)
+        if alphabet is not None:
+            pulumi.set(__self__, "alphabet", alphabet)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[str]:
+        """
+        Path to where the back-end is mounted within Vault.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[str]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def alphabet(self) -> Optional[pulumi.Input[str]]:
+        """
+        A string of characters that contains the alphabet set.
+        """
+        return pulumi.get(self, "alphabet")
+
+    @alphabet.setter
+    def alphabet(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alphabet", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the alphabet.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 class Alphabet(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -46,6 +101,52 @@ class Alphabet(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the alphabet.
         :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: AlphabetArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        This resource supports the "/transform/alphabet/{name}" Vault endpoint.
+
+        It queries an existing alphabet by the given name.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        mount_transform = vault.Mount("mountTransform",
+            path="transform",
+            type="transform")
+        test = vault.transform.Alphabet("test",
+            path=mount_transform.path,
+            alphabet="0123456789")
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param AlphabetArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(AlphabetArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 alphabet: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

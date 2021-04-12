@@ -5,13 +5,107 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['OidcKey']
+__all__ = ['OidcKeyArgs', 'OidcKey']
+
+@pulumi.input_type
+class OidcKeyArgs:
+    def __init__(__self__, *,
+                 algorithm: Optional[pulumi.Input[str]] = None,
+                 allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 verification_ttl: Optional[pulumi.Input[int]] = None):
+        """
+        The set of arguments for constructing a OidcKey resource.
+        :param pulumi.Input[str] algorithm: Signing algorithm to use. Signing algorithm to use.
+               Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
+               allowed.
+        :param pulumi.Input[str] name: Name of the OIDC Key to create.
+        :param pulumi.Input[int] rotation_period: How often to generate a new signing key in number of seconds
+        :param pulumi.Input[int] verification_ttl: "Controls how long the public portion of a signing key will be
+               available for verification after being rotated in seconds.
+        """
+        if algorithm is not None:
+            pulumi.set(__self__, "algorithm", algorithm)
+        if allowed_client_ids is not None:
+            pulumi.set(__self__, "allowed_client_ids", allowed_client_ids)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if verification_ttl is not None:
+            pulumi.set(__self__, "verification_ttl", verification_ttl)
+
+    @property
+    @pulumi.getter
+    def algorithm(self) -> Optional[pulumi.Input[str]]:
+        """
+        Signing algorithm to use. Signing algorithm to use.
+        Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
+        """
+        return pulumi.get(self, "algorithm")
+
+    @algorithm.setter
+    def algorithm(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "algorithm", value)
+
+    @property
+    @pulumi.getter(name="allowedClientIds")
+    def allowed_client_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
+        allowed.
+        """
+        return pulumi.get(self, "allowed_client_ids")
+
+    @allowed_client_ids.setter
+    def allowed_client_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_client_ids", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the OIDC Key to create.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        How often to generate a new signing key in number of seconds
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="verificationTtl")
+    def verification_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        "Controls how long the public portion of a signing key will be
+        available for verification after being rotated in seconds.
+        """
+        return pulumi.get(self, "verification_ttl")
+
+    @verification_ttl.setter
+    def verification_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "verification_ttl", value)
 
 
 class OidcKey(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -43,6 +137,44 @@ class OidcKey(pulumi.CustomResource):
         :param pulumi.Input[int] verification_ttl: "Controls how long the public portion of a signing key will be
                available for verification after being rotated in seconds.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: Optional[OidcKeyArgs] = None,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        The key can be imported with the key name, for example
+
+        ```sh
+         $ pulumi import vault:identity/oidcKey:OidcKey key key
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param OidcKeyArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(OidcKeyArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 algorithm: Optional[pulumi.Input[str]] = None,
+                 allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 verification_ttl: Optional[pulumi.Input[int]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

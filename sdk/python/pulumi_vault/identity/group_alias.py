@@ -5,13 +5,66 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['GroupAlias']
+__all__ = ['GroupAliasArgs', 'GroupAlias']
+
+@pulumi.input_type
+class GroupAliasArgs:
+    def __init__(__self__, *,
+                 canonical_id: pulumi.Input[str],
+                 mount_accessor: pulumi.Input[str],
+                 name: pulumi.Input[str]):
+        """
+        The set of arguments for constructing a GroupAlias resource.
+        :param pulumi.Input[str] canonical_id: ID of the group to which this is an alias.
+        :param pulumi.Input[str] mount_accessor: Mount accessor of the authentication backend to which this alias belongs to.
+        :param pulumi.Input[str] name: Name of the group alias to create.
+        """
+        pulumi.set(__self__, "canonical_id", canonical_id)
+        pulumi.set(__self__, "mount_accessor", mount_accessor)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="canonicalId")
+    def canonical_id(self) -> pulumi.Input[str]:
+        """
+        ID of the group to which this is an alias.
+        """
+        return pulumi.get(self, "canonical_id")
+
+    @canonical_id.setter
+    def canonical_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "canonical_id", value)
+
+    @property
+    @pulumi.getter(name="mountAccessor")
+    def mount_accessor(self) -> pulumi.Input[str]:
+        """
+        Mount accessor of the authentication backend to which this alias belongs to.
+        """
+        return pulumi.get(self, "mount_accessor")
+
+    @mount_accessor.setter
+    def mount_accessor(self, value: pulumi.Input[str]):
+        pulumi.set(self, "mount_accessor", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Name of the group alias to create.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
 
 
 class GroupAlias(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -50,6 +103,56 @@ class GroupAlias(pulumi.CustomResource):
         :param pulumi.Input[str] mount_accessor: Mount accessor of the authentication backend to which this alias belongs to.
         :param pulumi.Input[str] name: Name of the group alias to create.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: GroupAliasArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Creates an Identity Group Alias for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
+
+        Group aliases allows entity membership in external groups to be managed semi-automatically. External group serves as a mapping to a group that is outside of the identity store. External groups can have one (and only one) alias. This alias should map to a notion of group that is outside of the identity store. For example, groups in LDAP, and teams in GitHub. A username in LDAP, belonging to a group in LDAP, can get its entity ID added as a member of a group in Vault automatically during logins and token renewals. This works only if the group in Vault is an external group and has an alias that maps to the group in LDAP. If the user is removed from the group in LDAP, that change gets reflected in Vault only upon the subsequent login or renewal operation.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        group = vault.identity.Group("group",
+            policies=["test"],
+            type="external")
+        github = vault.AuthBackend("github",
+            path="github",
+            type="github")
+        group_alias = vault.identity.GroupAlias("group-alias",
+            canonical_id=group.id,
+            mount_accessor=github.accessor,
+            name="Github_Team_Slug")
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param GroupAliasArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(GroupAliasArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 canonical_id: Optional[pulumi.Input[str]] = None,
+                 mount_accessor: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

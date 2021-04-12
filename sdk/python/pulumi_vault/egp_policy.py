@@ -5,13 +5,82 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['EgpPolicy']
+__all__ = ['EgpPolicyArgs', 'EgpPolicy']
+
+@pulumi.input_type
+class EgpPolicyArgs:
+    def __init__(__self__, *,
+                 enforcement_level: pulumi.Input[str],
+                 paths: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 policy: pulumi.Input[str],
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a EgpPolicy resource.
+        :param pulumi.Input[str] enforcement_level: Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths: List of paths to which the policy will be applied to
+        :param pulumi.Input[str] policy: String containing a Sentinel policy
+        :param pulumi.Input[str] name: The name of the policy
+        """
+        pulumi.set(__self__, "enforcement_level", enforcement_level)
+        pulumi.set(__self__, "paths", paths)
+        pulumi.set(__self__, "policy", policy)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="enforcementLevel")
+    def enforcement_level(self) -> pulumi.Input[str]:
+        """
+        Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
+        """
+        return pulumi.get(self, "enforcement_level")
+
+    @enforcement_level.setter
+    def enforcement_level(self, value: pulumi.Input[str]):
+        pulumi.set(self, "enforcement_level", value)
+
+    @property
+    @pulumi.getter
+    def paths(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        List of paths to which the policy will be applied to
+        """
+        return pulumi.get(self, "paths")
+
+    @paths.setter
+    def paths(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "paths", value)
+
+    @property
+    @pulumi.getter
+    def policy(self) -> pulumi.Input[str]:
+        """
+        String containing a Sentinel policy
+        """
+        return pulumi.get(self, "policy")
+
+    @policy.setter
+    def policy(self, value: pulumi.Input[str]):
+        pulumi.set(self, "policy", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the policy
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 class EgpPolicy(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -50,6 +119,55 @@ class EgpPolicy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] paths: List of paths to which the policy will be applied to
         :param pulumi.Input[str] policy: String containing a Sentinel policy
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: EgpPolicyArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Provides a resource to manage Endpoint Governing Policy (EGP) via [Sentinel](https://www.vaultproject.io/docs/enterprise/sentinel/index.html).
+
+        **Note** this feature is available only with Vault Enterprise.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        allow_all = vault.EgpPolicy("allow-all",
+            enforcement_level="soft-mandatory",
+            paths=["*"],
+            policy=\"\"\"main = rule {
+          true
+        }
+
+        \"\"\")
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param EgpPolicyArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(EgpPolicyArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 enforcement_level: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 policy: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

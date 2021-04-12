@@ -5,13 +5,68 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['AuthBackendGroup']
+__all__ = ['AuthBackendGroupArgs', 'AuthBackendGroup']
+
+@pulumi.input_type
+class AuthBackendGroupArgs:
+    def __init__(__self__, *,
+                 groupname: pulumi.Input[str],
+                 backend: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        The set of arguments for constructing a AuthBackendGroup resource.
+        :param pulumi.Input[str] groupname: The LDAP groupname
+        :param pulumi.Input[str] backend: Path to the authentication backend
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Policies which should be granted to members of the group
+        """
+        pulumi.set(__self__, "groupname", groupname)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter
+    def groupname(self) -> pulumi.Input[str]:
+        """
+        The LDAP groupname
+        """
+        return pulumi.get(self, "groupname")
+
+    @groupname.setter
+    def groupname(self, value: pulumi.Input[str]):
+        pulumi.set(self, "groupname", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to the authentication backend
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Policies which should be granted to members of the group
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
 
 
 class AuthBackendGroup(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -59,6 +114,65 @@ class AuthBackendGroup(pulumi.CustomResource):
         :param pulumi.Input[str] groupname: The LDAP groupname
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Policies which should be granted to members of the group
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: AuthBackendGroupArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Provides a resource to create a group in an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        ldap = vault.ldap.AuthBackend("ldap",
+            discoverdn=False,
+            groupdn="OU=Groups,DC=example,DC=org",
+            groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
+            path="ldap",
+            upndomain="EXAMPLE.ORG",
+            url="ldaps://dc-01.example.org",
+            userattr="sAMAccountName",
+            userdn="OU=Users,OU=Accounts,DC=example,DC=org")
+        group = vault.ldap.AuthBackendGroup("group",
+            backend=ldap.path,
+            groupname="dba",
+            policies=["dba"])
+        ```
+
+        ## Import
+
+        LDAP authentication backend groups can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:ldap/authBackendGroup:AuthBackendGroup foo auth/ldap/groups/foo
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param AuthBackendGroupArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(AuthBackendGroupArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 groupname: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

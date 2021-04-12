@@ -5,15 +5,314 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['SecretBackendConnection']
+__all__ = ['SecretBackendConnectionArgs', 'SecretBackendConnection']
+
+@pulumi.input_type
+class SecretBackendConnectionArgs:
+    def __init__(__self__, *,
+                 backend: pulumi.Input[str],
+                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 cassandra: Optional[pulumi.Input['SecretBackendConnectionCassandraArgs']] = None,
+                 data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 elasticsearch: Optional[pulumi.Input['SecretBackendConnectionElasticsearchArgs']] = None,
+                 hana: Optional[pulumi.Input['SecretBackendConnectionHanaArgs']] = None,
+                 mongodb: Optional[pulumi.Input['SecretBackendConnectionMongodbArgs']] = None,
+                 mongodbatlas: Optional[pulumi.Input['SecretBackendConnectionMongodbatlasArgs']] = None,
+                 mssql: Optional[pulumi.Input['SecretBackendConnectionMssqlArgs']] = None,
+                 mysql: Optional[pulumi.Input['SecretBackendConnectionMysqlArgs']] = None,
+                 mysql_aurora: Optional[pulumi.Input['SecretBackendConnectionMysqlAuroraArgs']] = None,
+                 mysql_legacy: Optional[pulumi.Input['SecretBackendConnectionMysqlLegacyArgs']] = None,
+                 mysql_rds: Optional[pulumi.Input['SecretBackendConnectionMysqlRdsArgs']] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 oracle: Optional[pulumi.Input['SecretBackendConnectionOracleArgs']] = None,
+                 postgresql: Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']] = None,
+                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 verify_connection: Optional[pulumi.Input[bool]] = None):
+        """
+        The set of arguments for constructing a SecretBackendConnection resource.
+        :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param pulumi.Input['SecretBackendConnectionCassandraArgs'] cassandra: A nested block containing configuration options for Cassandra connections.
+        :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input['SecretBackendConnectionElasticsearchArgs'] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
+        :param pulumi.Input['SecretBackendConnectionHanaArgs'] hana: A nested block containing configuration options for SAP HanaDB connections.
+        :param pulumi.Input['SecretBackendConnectionMongodbArgs'] mongodb: A nested block containing configuration options for MongoDB connections.
+        :param pulumi.Input['SecretBackendConnectionMongodbatlasArgs'] mongodbatlas: Connection parameters for the mongodbatlas-database-plugin plugin.
+        :param pulumi.Input['SecretBackendConnectionMssqlArgs'] mssql: A nested block containing configuration options for MSSQL connections.
+        :param pulumi.Input['SecretBackendConnectionMysqlArgs'] mysql: A nested block containing configuration options for MySQL connections.
+        :param pulumi.Input['SecretBackendConnectionMysqlAuroraArgs'] mysql_aurora: A nested block containing configuration options for Aurora MySQL connections.
+        :param pulumi.Input['SecretBackendConnectionMysqlLegacyArgs'] mysql_legacy: A nested block containing configuration options for legacy MySQL connections.
+        :param pulumi.Input['SecretBackendConnectionMysqlRdsArgs'] mysql_rds: A nested block containing configuration options for RDS MySQL connections.
+        :param pulumi.Input[str] name: A unique name to give the database connection.
+        :param pulumi.Input['SecretBackendConnectionOracleArgs'] oracle: A nested block containing configuration options for Oracle connections.
+        :param pulumi.Input['SecretBackendConnectionPostgresqlArgs'] postgresql: A nested block containing configuration options for PostgreSQL connections.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "backend", backend)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if cassandra is not None:
+            pulumi.set(__self__, "cassandra", cassandra)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if elasticsearch is not None:
+            pulumi.set(__self__, "elasticsearch", elasticsearch)
+        if hana is not None:
+            pulumi.set(__self__, "hana", hana)
+        if mongodb is not None:
+            pulumi.set(__self__, "mongodb", mongodb)
+        if mongodbatlas is not None:
+            pulumi.set(__self__, "mongodbatlas", mongodbatlas)
+        if mssql is not None:
+            pulumi.set(__self__, "mssql", mssql)
+        if mysql is not None:
+            pulumi.set(__self__, "mysql", mysql)
+        if mysql_aurora is not None:
+            pulumi.set(__self__, "mysql_aurora", mysql_aurora)
+        if mysql_legacy is not None:
+            pulumi.set(__self__, "mysql_legacy", mysql_legacy)
+        if mysql_rds is not None:
+            pulumi.set(__self__, "mysql_rds", mysql_rds)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if oracle is not None:
+            pulumi.set(__self__, "oracle", oracle)
+        if postgresql is not None:
+            pulumi.set(__self__, "postgresql", postgresql)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> pulumi.Input[str]:
+        """
+        The unique name of the Vault mount to configure.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: pulumi.Input[str]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @allowed_roles.setter
+    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_roles", value)
+
+    @property
+    @pulumi.getter
+    def cassandra(self) -> Optional[pulumi.Input['SecretBackendConnectionCassandraArgs']]:
+        """
+        A nested block containing configuration options for Cassandra connections.
+        """
+        return pulumi.get(self, "cassandra")
+
+    @cassandra.setter
+    def cassandra(self, value: Optional[pulumi.Input['SecretBackendConnectionCassandraArgs']]):
+        pulumi.set(self, "cassandra", value)
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @data.setter
+    def data(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter
+    def elasticsearch(self) -> Optional[pulumi.Input['SecretBackendConnectionElasticsearchArgs']]:
+        """
+        A nested block containing configuration options for Elasticsearch connections.
+        """
+        return pulumi.get(self, "elasticsearch")
+
+    @elasticsearch.setter
+    def elasticsearch(self, value: Optional[pulumi.Input['SecretBackendConnectionElasticsearchArgs']]):
+        pulumi.set(self, "elasticsearch", value)
+
+    @property
+    @pulumi.getter
+    def hana(self) -> Optional[pulumi.Input['SecretBackendConnectionHanaArgs']]:
+        """
+        A nested block containing configuration options for SAP HanaDB connections.
+        """
+        return pulumi.get(self, "hana")
+
+    @hana.setter
+    def hana(self, value: Optional[pulumi.Input['SecretBackendConnectionHanaArgs']]):
+        pulumi.set(self, "hana", value)
+
+    @property
+    @pulumi.getter
+    def mongodb(self) -> Optional[pulumi.Input['SecretBackendConnectionMongodbArgs']]:
+        """
+        A nested block containing configuration options for MongoDB connections.
+        """
+        return pulumi.get(self, "mongodb")
+
+    @mongodb.setter
+    def mongodb(self, value: Optional[pulumi.Input['SecretBackendConnectionMongodbArgs']]):
+        pulumi.set(self, "mongodb", value)
+
+    @property
+    @pulumi.getter
+    def mongodbatlas(self) -> Optional[pulumi.Input['SecretBackendConnectionMongodbatlasArgs']]:
+        """
+        Connection parameters for the mongodbatlas-database-plugin plugin.
+        """
+        return pulumi.get(self, "mongodbatlas")
+
+    @mongodbatlas.setter
+    def mongodbatlas(self, value: Optional[pulumi.Input['SecretBackendConnectionMongodbatlasArgs']]):
+        pulumi.set(self, "mongodbatlas", value)
+
+    @property
+    @pulumi.getter
+    def mssql(self) -> Optional[pulumi.Input['SecretBackendConnectionMssqlArgs']]:
+        """
+        A nested block containing configuration options for MSSQL connections.
+        """
+        return pulumi.get(self, "mssql")
+
+    @mssql.setter
+    def mssql(self, value: Optional[pulumi.Input['SecretBackendConnectionMssqlArgs']]):
+        pulumi.set(self, "mssql", value)
+
+    @property
+    @pulumi.getter
+    def mysql(self) -> Optional[pulumi.Input['SecretBackendConnectionMysqlArgs']]:
+        """
+        A nested block containing configuration options for MySQL connections.
+        """
+        return pulumi.get(self, "mysql")
+
+    @mysql.setter
+    def mysql(self, value: Optional[pulumi.Input['SecretBackendConnectionMysqlArgs']]):
+        pulumi.set(self, "mysql", value)
+
+    @property
+    @pulumi.getter(name="mysqlAurora")
+    def mysql_aurora(self) -> Optional[pulumi.Input['SecretBackendConnectionMysqlAuroraArgs']]:
+        """
+        A nested block containing configuration options for Aurora MySQL connections.
+        """
+        return pulumi.get(self, "mysql_aurora")
+
+    @mysql_aurora.setter
+    def mysql_aurora(self, value: Optional[pulumi.Input['SecretBackendConnectionMysqlAuroraArgs']]):
+        pulumi.set(self, "mysql_aurora", value)
+
+    @property
+    @pulumi.getter(name="mysqlLegacy")
+    def mysql_legacy(self) -> Optional[pulumi.Input['SecretBackendConnectionMysqlLegacyArgs']]:
+        """
+        A nested block containing configuration options for legacy MySQL connections.
+        """
+        return pulumi.get(self, "mysql_legacy")
+
+    @mysql_legacy.setter
+    def mysql_legacy(self, value: Optional[pulumi.Input['SecretBackendConnectionMysqlLegacyArgs']]):
+        pulumi.set(self, "mysql_legacy", value)
+
+    @property
+    @pulumi.getter(name="mysqlRds")
+    def mysql_rds(self) -> Optional[pulumi.Input['SecretBackendConnectionMysqlRdsArgs']]:
+        """
+        A nested block containing configuration options for RDS MySQL connections.
+        """
+        return pulumi.get(self, "mysql_rds")
+
+    @mysql_rds.setter
+    def mysql_rds(self, value: Optional[pulumi.Input['SecretBackendConnectionMysqlRdsArgs']]):
+        pulumi.set(self, "mysql_rds", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        A unique name to give the database connection.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def oracle(self) -> Optional[pulumi.Input['SecretBackendConnectionOracleArgs']]:
+        """
+        A nested block containing configuration options for Oracle connections.
+        """
+        return pulumi.get(self, "oracle")
+
+    @oracle.setter
+    def oracle(self, value: Optional[pulumi.Input['SecretBackendConnectionOracleArgs']]):
+        pulumi.set(self, "oracle", value)
+
+    @property
+    @pulumi.getter
+    def postgresql(self) -> Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']]:
+        """
+        A nested block containing configuration options for PostgreSQL connections.
+        """
+        return pulumi.get(self, "postgresql")
+
+    @postgresql.setter
+    def postgresql(self, value: Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']]):
+        pulumi.set(self, "postgresql", value)
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @root_rotation_statements.setter
+    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "root_rotation_statements", value)
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
+
+    @verify_connection.setter
+    def verify_connection(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "verify_connection", value)
 
 
 class SecretBackendConnection(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -70,6 +369,57 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: SecretBackendConnectionArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.
+
+        ```sh
+         $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param SecretBackendConnectionArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(SecretBackendConnectionArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 cassandra: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionCassandraArgs']]] = None,
+                 data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 elasticsearch: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']]] = None,
+                 hana: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']]] = None,
+                 mongodb: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbArgs']]] = None,
+                 mongodbatlas: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbatlasArgs']]] = None,
+                 mssql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMssqlArgs']]] = None,
+                 mysql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlArgs']]] = None,
+                 mysql_aurora: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlAuroraArgs']]] = None,
+                 mysql_legacy: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlLegacyArgs']]] = None,
+                 mysql_rds: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlRdsArgs']]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
+                 postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
+                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 verify_connection: Optional[pulumi.Input[bool]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

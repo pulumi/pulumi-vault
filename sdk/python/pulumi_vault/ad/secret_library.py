@@ -5,13 +5,117 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['SecretLibrary']
+__all__ = ['SecretLibraryArgs', 'SecretLibrary']
+
+@pulumi.input_type
+class SecretLibraryArgs:
+    def __init__(__self__, *,
+                 backend: pulumi.Input[str],
+                 service_account_names: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 disable_check_in_enforcement: Optional[pulumi.Input[bool]] = None,
+                 max_ttl: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None):
+        """
+        The set of arguments for constructing a SecretLibrary resource.
+        :param pulumi.Input[str] backend: The mount path for the AD backend.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] service_account_names: The names of all the service accounts that can be checked out from this set. These service accounts must already exist
+               in Active Directory.
+        :param pulumi.Input[bool] disable_check_in_enforcement: Disable enforcing that service accounts must be checked in by the entity or client token that checked them out.
+        :param pulumi.Input[int] max_ttl: The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.
+        :param pulumi.Input[str] name: The name of the set of service accounts.
+        :param pulumi.Input[int] ttl: The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.
+        """
+        pulumi.set(__self__, "backend", backend)
+        pulumi.set(__self__, "service_account_names", service_account_names)
+        if disable_check_in_enforcement is not None:
+            pulumi.set(__self__, "disable_check_in_enforcement", disable_check_in_enforcement)
+        if max_ttl is not None:
+            pulumi.set(__self__, "max_ttl", max_ttl)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> pulumi.Input[str]:
+        """
+        The mount path for the AD backend.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: pulumi.Input[str]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="serviceAccountNames")
+    def service_account_names(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The names of all the service accounts that can be checked out from this set. These service accounts must already exist
+        in Active Directory.
+        """
+        return pulumi.get(self, "service_account_names")
+
+    @service_account_names.setter
+    def service_account_names(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "service_account_names", value)
+
+    @property
+    @pulumi.getter(name="disableCheckInEnforcement")
+    def disable_check_in_enforcement(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable enforcing that service accounts must be checked in by the entity or client token that checked them out.
+        """
+        return pulumi.get(self, "disable_check_in_enforcement")
+
+    @disable_check_in_enforcement.setter
+    def disable_check_in_enforcement(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_check_in_enforcement", value)
+
+    @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @max_ttl.setter
+    def max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_ttl", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the set of service accounts.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ttl", value)
 
 
 class SecretLibrary(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -36,6 +140,38 @@ class SecretLibrary(pulumi.CustomResource):
                in Active Directory.
         :param pulumi.Input[int] ttl: The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: SecretLibraryArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a SecretLibrary resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param SecretLibraryArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(SecretLibraryArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 disable_check_in_enforcement: Optional[pulumi.Input[bool]] = None,
+                 max_ttl: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

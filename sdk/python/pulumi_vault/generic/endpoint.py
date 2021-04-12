@@ -5,13 +5,131 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['Endpoint']
+__all__ = ['EndpointArgs', 'Endpoint']
+
+@pulumi.input_type
+class EndpointArgs:
+    def __init__(__self__, *,
+                 data_json: pulumi.Input[str],
+                 path: pulumi.Input[str],
+                 disable_delete: Optional[pulumi.Input[bool]] = None,
+                 disable_read: Optional[pulumi.Input[bool]] = None,
+                 ignore_absent_fields: Optional[pulumi.Input[bool]] = None,
+                 write_fields: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        The set of arguments for constructing a Endpoint resource.
+        :param pulumi.Input[str] data_json: String containing a JSON-encoded object that will be
+               written to the given path as the secret data.
+        :param pulumi.Input[str] path: The full logical path at which to write the given
+               data. Consult each backend's documentation to see which endpoints
+               support the `PUT` methods and to determine whether they also support
+               `DELETE` and `GET`.
+        :param pulumi.Input[bool] disable_delete: Don't attempt to delete the path from Vault if true
+        :param pulumi.Input[bool] disable_read: True/false. Set this to true if your vault
+               authentication is not able to read the data or if the endpoint does
+               not support the `GET` method. Setting this to `true` will break drift
+               detection. You should set this to `true` for endpoints that are
+               write-only. Defaults to false.
+        :param pulumi.Input[bool] ignore_absent_fields: When reading, disregard fields not present in data_json
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] write_fields: Top-level fields returned by write to persist in state
+        """
+        pulumi.set(__self__, "data_json", data_json)
+        pulumi.set(__self__, "path", path)
+        if disable_delete is not None:
+            pulumi.set(__self__, "disable_delete", disable_delete)
+        if disable_read is not None:
+            pulumi.set(__self__, "disable_read", disable_read)
+        if ignore_absent_fields is not None:
+            pulumi.set(__self__, "ignore_absent_fields", ignore_absent_fields)
+        if write_fields is not None:
+            pulumi.set(__self__, "write_fields", write_fields)
+
+    @property
+    @pulumi.getter(name="dataJson")
+    def data_json(self) -> pulumi.Input[str]:
+        """
+        String containing a JSON-encoded object that will be
+        written to the given path as the secret data.
+        """
+        return pulumi.get(self, "data_json")
+
+    @data_json.setter
+    def data_json(self, value: pulumi.Input[str]):
+        pulumi.set(self, "data_json", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[str]:
+        """
+        The full logical path at which to write the given
+        data. Consult each backend's documentation to see which endpoints
+        support the `PUT` methods and to determine whether they also support
+        `DELETE` and `GET`.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[str]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="disableDelete")
+    def disable_delete(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Don't attempt to delete the path from Vault if true
+        """
+        return pulumi.get(self, "disable_delete")
+
+    @disable_delete.setter
+    def disable_delete(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_delete", value)
+
+    @property
+    @pulumi.getter(name="disableRead")
+    def disable_read(self) -> Optional[pulumi.Input[bool]]:
+        """
+        True/false. Set this to true if your vault
+        authentication is not able to read the data or if the endpoint does
+        not support the `GET` method. Setting this to `true` will break drift
+        detection. You should set this to `true` for endpoints that are
+        write-only. Defaults to false.
+        """
+        return pulumi.get(self, "disable_read")
+
+    @disable_read.setter
+    def disable_read(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_read", value)
+
+    @property
+    @pulumi.getter(name="ignoreAbsentFields")
+    def ignore_absent_fields(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When reading, disregard fields not present in data_json
+        """
+        return pulumi.get(self, "ignore_absent_fields")
+
+    @ignore_absent_fields.setter
+    def ignore_absent_fields(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ignore_absent_fields", value)
+
+    @property
+    @pulumi.getter(name="writeFields")
+    def write_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Top-level fields returned by write to persist in state
+        """
+        return pulumi.get(self, "write_fields")
+
+    @write_fields.setter
+    def write_fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "write_fields", value)
 
 
 class Endpoint(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -46,6 +164,41 @@ class Endpoint(pulumi.CustomResource):
                `DELETE` and `GET`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] write_fields: Top-level fields returned by write to persist in state
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: EndpointArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        Import is not supported for this resource.
+
+        :param str resource_name: The name of the resource.
+        :param EndpointArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(EndpointArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 data_json: Optional[pulumi.Input[str]] = None,
+                 disable_delete: Optional[pulumi.Input[bool]] = None,
+                 disable_read: Optional[pulumi.Input[bool]] = None,
+                 ignore_absent_fields: Optional[pulumi.Input[bool]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 write_fields: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

@@ -22,31 +22,32 @@ func (m *module) Version() semver.Version {
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
 	case "vault:pkiSecret/secretBackend:SecretBackend":
-		r, err = NewSecretBackend(ctx, name, nil, pulumi.URN_(urn))
+		r = &SecretBackend{}
 	case "vault:pkiSecret/secretBackendCert:SecretBackendCert":
-		r, err = NewSecretBackendCert(ctx, name, nil, pulumi.URN_(urn))
+		r = &SecretBackendCert{}
 	case "vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa":
-		r, err = NewSecretBackendConfigCa(ctx, name, nil, pulumi.URN_(urn))
+		r = &SecretBackendConfigCa{}
 	case "vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls":
-		r, err = NewSecretBackendConfigUrls(ctx, name, nil, pulumi.URN_(urn))
+		r = &SecretBackendConfigUrls{}
 	case "vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig":
-		r, err = NewSecretBackendCrlConfig(ctx, name, nil, pulumi.URN_(urn))
+		r = &SecretBackendCrlConfig{}
 	case "vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest":
-		r, err = NewSecretBackendIntermediateCertRequest(ctx, name, nil, pulumi.URN_(urn))
+		r = &SecretBackendIntermediateCertRequest{}
 	case "vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned":
-		r, err = NewSecretBackendIntermediateSetSigned(ctx, name, nil, pulumi.URN_(urn))
+		r = &SecretBackendIntermediateSetSigned{}
 	case "vault:pkiSecret/secretBackendRole:SecretBackendRole":
-		r, err = NewSecretBackendRole(ctx, name, nil, pulumi.URN_(urn))
+		r = &SecretBackendRole{}
 	case "vault:pkiSecret/secretBackendRootCert:SecretBackendRootCert":
-		r, err = NewSecretBackendRootCert(ctx, name, nil, pulumi.URN_(urn))
+		r = &SecretBackendRootCert{}
 	case "vault:pkiSecret/secretBackendRootSignIntermediate:SecretBackendRootSignIntermediate":
-		r, err = NewSecretBackendRootSignIntermediate(ctx, name, nil, pulumi.URN_(urn))
+		r = &SecretBackendRootSignIntermediate{}
 	case "vault:pkiSecret/secretBackendSign:SecretBackendSign":
-		r, err = NewSecretBackendSign(ctx, name, nil, pulumi.URN_(urn))
+		r = &SecretBackendSign{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
 	return
 }
 

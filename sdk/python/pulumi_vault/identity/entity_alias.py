@@ -5,13 +5,67 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['EntityAlias']
+__all__ = ['EntityAliasArgs', 'EntityAlias']
+
+@pulumi.input_type
+class EntityAliasArgs:
+    def __init__(__self__, *,
+                 canonical_id: pulumi.Input[str],
+                 mount_accessor: pulumi.Input[str],
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a EntityAlias resource.
+        :param pulumi.Input[str] canonical_id: Entity ID to which this alias belongs to.
+        :param pulumi.Input[str] mount_accessor: Accessor of the mount to which the alias should belong to.
+        :param pulumi.Input[str] name: Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
+        """
+        pulumi.set(__self__, "canonical_id", canonical_id)
+        pulumi.set(__self__, "mount_accessor", mount_accessor)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="canonicalId")
+    def canonical_id(self) -> pulumi.Input[str]:
+        """
+        Entity ID to which this alias belongs to.
+        """
+        return pulumi.get(self, "canonical_id")
+
+    @canonical_id.setter
+    def canonical_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "canonical_id", value)
+
+    @property
+    @pulumi.getter(name="mountAccessor")
+    def mount_accessor(self) -> pulumi.Input[str]:
+        """
+        Accessor of the mount to which the alias should belong to.
+        """
+        return pulumi.get(self, "mount_accessor")
+
+    @mount_accessor.setter
+    def mount_accessor(self, value: pulumi.Input[str]):
+        pulumi.set(self, "mount_accessor", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 class EntityAlias(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -36,6 +90,42 @@ class EntityAlias(pulumi.CustomResource):
         :param pulumi.Input[str] mount_accessor: Accessor of the mount to which the alias should belong to.
         :param pulumi.Input[str] name: Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: EntityAliasArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        Identity entity alias can be imported using the `id`, e.g.
+
+        ```sh
+         $ pulumi import vault:identity/entityAlias:EntityAlias test "3856fb4d-3c91-dcaf-2401-68f446796bfb"
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param EntityAliasArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(EntityAliasArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 canonical_id: Optional[pulumi.Input[str]] = None,
+                 mount_accessor: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

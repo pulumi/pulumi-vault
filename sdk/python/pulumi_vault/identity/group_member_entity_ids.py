@@ -5,13 +5,68 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['GroupMemberEntityIds']
+__all__ = ['GroupMemberEntityIdsArgs', 'GroupMemberEntityIds']
+
+@pulumi.input_type
+class GroupMemberEntityIdsArgs:
+    def __init__(__self__, *,
+                 group_id: pulumi.Input[str],
+                 exclusive: Optional[pulumi.Input[bool]] = None,
+                 member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        The set of arguments for constructing a GroupMemberEntityIds resource.
+        :param pulumi.Input[str] group_id: Group ID to assign member entities to.
+        :param pulumi.Input[bool] exclusive: Defaults to `true`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
+        """
+        pulumi.set(__self__, "group_id", group_id)
+        if exclusive is not None:
+            pulumi.set(__self__, "exclusive", exclusive)
+        if member_entity_ids is not None:
+            pulumi.set(__self__, "member_entity_ids", member_entity_ids)
+
+    @property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> pulumi.Input[str]:
+        """
+        Group ID to assign member entities to.
+        """
+        return pulumi.get(self, "group_id")
+
+    @group_id.setter
+    def group_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "group_id", value)
+
+    @property
+    @pulumi.getter
+    def exclusive(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defaults to `true`.
+        """
+        return pulumi.get(self, "exclusive")
+
+    @exclusive.setter
+    def exclusive(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "exclusive", value)
+
+    @property
+    @pulumi.getter(name="memberEntityIds")
+    def member_entity_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of member entities that belong to the group
+        """
+        return pulumi.get(self, "member_entity_ids")
+
+    @member_entity_ids.setter
+    def member_entity_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "member_entity_ids", value)
 
 
 class GroupMemberEntityIds(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -77,6 +132,83 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: GroupMemberEntityIdsArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Manages member entities for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
+
+        ## Example Usage
+        ### Exclusive Member Entities
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        internal = vault.identity.Group("internal",
+            type="internal",
+            external_member_entity_ids=True,
+            metadata={
+                "version": "2",
+            })
+        user = vault.identity.Entity("user")
+        members = vault.identity.GroupMemberEntityIds("members",
+            exclusive=True,
+            member_entity_ids=[user.id],
+            group_id=internal.id)
+        ```
+        ### Non-exclusive Member Entities
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        internal = vault.identity.Group("internal",
+            type="internal",
+            external_member_entity_ids=True,
+            metadata={
+                "version": "2",
+            })
+        test_user = vault.identity.Entity("testUser")
+        second_test_user = vault.identity.Entity("secondTestUser")
+        dev_user = vault.identity.Entity("devUser")
+        test = vault.identity.GroupMemberEntityIds("test",
+            member_entity_ids=[
+                test_user.id,
+                second_test_user.id,
+            ],
+            exclusive=False,
+            group_id=internal.id)
+        others = vault.identity.GroupMemberEntityIds("others",
+            member_entity_ids=[dev_user.id],
+            exclusive=False,
+            group_id=internal.id)
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param GroupMemberEntityIdsArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(GroupMemberEntityIdsArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 exclusive: Optional[pulumi.Input[bool]] = None,
+                 group_id: Optional[pulumi.Input[str]] = None,
+                 member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

@@ -22,29 +22,30 @@ func (m *module) Version() semver.Version {
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
 	case "vault:aws/authBackendCert:AuthBackendCert":
-		r, err = NewAuthBackendCert(ctx, name, nil, pulumi.URN_(urn))
+		r = &AuthBackendCert{}
 	case "vault:aws/authBackendClient:AuthBackendClient":
-		r, err = NewAuthBackendClient(ctx, name, nil, pulumi.URN_(urn))
+		r = &AuthBackendClient{}
 	case "vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist":
-		r, err = NewAuthBackendIdentityWhitelist(ctx, name, nil, pulumi.URN_(urn))
+		r = &AuthBackendIdentityWhitelist{}
 	case "vault:aws/authBackendLogin:AuthBackendLogin":
-		r, err = NewAuthBackendLogin(ctx, name, nil, pulumi.URN_(urn))
+		r = &AuthBackendLogin{}
 	case "vault:aws/authBackendRole:AuthBackendRole":
-		r, err = NewAuthBackendRole(ctx, name, nil, pulumi.URN_(urn))
+		r = &AuthBackendRole{}
 	case "vault:aws/authBackendRoleTag:AuthBackendRoleTag":
-		r, err = NewAuthBackendRoleTag(ctx, name, nil, pulumi.URN_(urn))
+		r = &AuthBackendRoleTag{}
 	case "vault:aws/authBackendRoletagBlacklist:AuthBackendRoletagBlacklist":
-		r, err = NewAuthBackendRoletagBlacklist(ctx, name, nil, pulumi.URN_(urn))
+		r = &AuthBackendRoletagBlacklist{}
 	case "vault:aws/authBackendStsRole:AuthBackendStsRole":
-		r, err = NewAuthBackendStsRole(ctx, name, nil, pulumi.URN_(urn))
+		r = &AuthBackendStsRole{}
 	case "vault:aws/secretBackend:SecretBackend":
-		r, err = NewSecretBackend(ctx, name, nil, pulumi.URN_(urn))
+		r = &SecretBackend{}
 	case "vault:aws/secretBackendRole:SecretBackendRole":
-		r, err = NewSecretBackendRole(ctx, name, nil, pulumi.URN_(urn))
+		r = &SecretBackendRole{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
 	return
 }
 

@@ -5,13 +5,129 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['AuthBackendConfig']
+__all__ = ['AuthBackendConfigArgs', 'AuthBackendConfig']
+
+@pulumi.input_type
+class AuthBackendConfigArgs:
+    def __init__(__self__, *,
+                 resource: pulumi.Input[str],
+                 tenant_id: pulumi.Input[str],
+                 backend: Optional[pulumi.Input[str]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_secret: Optional[pulumi.Input[str]] = None,
+                 environment: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a AuthBackendConfig resource.
+        :param pulumi.Input[str] resource: The configured URL for the application registered in
+               Azure Active Directory.
+        :param pulumi.Input[str] tenant_id: The tenant id for the Azure Active Directory
+               organization.
+        :param pulumi.Input[str] backend: The path the Azure auth backend being configured was
+               mounted at.  Defaults to `azure`.
+        :param pulumi.Input[str] client_id: The client id for credentials to query the Azure APIs.
+               Currently read permissions to query compute resources are required.
+        :param pulumi.Input[str] client_secret: The client secret for credentials to query the
+               Azure APIs.
+        :param pulumi.Input[str] environment: The Azure cloud environment. Valid values:
+               AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
+               AzureGermanCloud.  Defaults to `AzurePublicCloud`.
+        """
+        pulumi.set(__self__, "resource", resource)
+        pulumi.set(__self__, "tenant_id", tenant_id)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_secret is not None:
+            pulumi.set(__self__, "client_secret", client_secret)
+        if environment is not None:
+            pulumi.set(__self__, "environment", environment)
+
+    @property
+    @pulumi.getter
+    def resource(self) -> pulumi.Input[str]:
+        """
+        The configured URL for the application registered in
+        Azure Active Directory.
+        """
+        return pulumi.get(self, "resource")
+
+    @resource.setter
+    def resource(self, value: pulumi.Input[str]):
+        pulumi.set(self, "resource", value)
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> pulumi.Input[str]:
+        """
+        The tenant id for the Azure Active Directory
+        organization.
+        """
+        return pulumi.get(self, "tenant_id")
+
+    @tenant_id.setter
+    def tenant_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "tenant_id", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path the Azure auth backend being configured was
+        mounted at.  Defaults to `azure`.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client id for credentials to query the Azure APIs.
+        Currently read permissions to query compute resources are required.
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_id", value)
+
+    @property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client secret for credentials to query the
+        Azure APIs.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @client_secret.setter
+    def client_secret(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_secret", value)
+
+    @property
+    @pulumi.getter
+    def environment(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Azure cloud environment. Valid values:
+        AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
+        AzureGermanCloud.  Defaults to `AzurePublicCloud`.
+        """
+        return pulumi.get(self, "environment")
+
+    @environment.setter
+    def environment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "environment", value)
 
 
 class AuthBackendConfig(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -49,6 +165,45 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param pulumi.Input[str] tenant_id: The tenant id for the Azure Active Directory
                organization.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: AuthBackendConfigArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.
+
+        ```sh
+         $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param AuthBackendConfigArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(AuthBackendConfigArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_secret: Optional[pulumi.Input[str]] = None,
+                 environment: Optional[pulumi.Input[str]] = None,
+                 resource: Optional[pulumi.Input[str]] = None,
+                 tenant_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

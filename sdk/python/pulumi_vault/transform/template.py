@@ -5,13 +5,100 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['Template']
+__all__ = ['TemplateArgs', 'Template']
+
+@pulumi.input_type
+class TemplateArgs:
+    def __init__(__self__, *,
+                 path: pulumi.Input[str],
+                 alphabet: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 pattern: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a Template resource.
+        :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
+        :param pulumi.Input[str] alphabet: The alphabet to use for this template. This is only used during FPE transformations.
+        :param pulumi.Input[str] name: The name of the template.
+        :param pulumi.Input[str] pattern: The pattern used for matching. Currently, only regular expression pattern is supported.
+        :param pulumi.Input[str] type: The pattern type to use for match detection. Currently, only regex is supported.
+        """
+        pulumi.set(__self__, "path", path)
+        if alphabet is not None:
+            pulumi.set(__self__, "alphabet", alphabet)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if pattern is not None:
+            pulumi.set(__self__, "pattern", pattern)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[str]:
+        """
+        Path to where the back-end is mounted within Vault.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[str]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def alphabet(self) -> Optional[pulumi.Input[str]]:
+        """
+        The alphabet to use for this template. This is only used during FPE transformations.
+        """
+        return pulumi.get(self, "alphabet")
+
+    @alphabet.setter
+    def alphabet(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alphabet", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the template.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def pattern(self) -> Optional[pulumi.Input[str]]:
+        """
+        The pattern used for matching. Currently, only regular expression pattern is supported.
+        """
+        return pulumi.get(self, "pattern")
+
+    @pattern.setter
+    def pattern(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pattern", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The pattern type to use for match detection. Currently, only regex is supported.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
 
 
 class Template(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -33,6 +120,37 @@ class Template(pulumi.CustomResource):
         :param pulumi.Input[str] pattern: The pattern used for matching. Currently, only regular expression pattern is supported.
         :param pulumi.Input[str] type: The pattern type to use for match detection. Currently, only regex is supported.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: TemplateArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a Template resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param TemplateArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(TemplateArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 alphabet: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 pattern: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

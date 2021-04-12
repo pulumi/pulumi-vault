@@ -5,13 +5,151 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['SecretBackendRole']
+__all__ = ['SecretBackendRoleArgs', 'SecretBackendRole']
+
+@pulumi.input_type
+class SecretBackendRoleArgs:
+    def __init__(__self__, *,
+                 policies: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 backend: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
+                 max_ttl: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 token_type: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None):
+        """
+        The set of arguments for constructing a SecretBackendRole resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: The list of Consul ACL policies to associate with these roles.
+        :param pulumi.Input[str] backend: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        :param pulumi.Input[bool] local: Indicates that the token should not be replicated globally and instead be local to the current datacenter.
+        :param pulumi.Input[int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
+        :param pulumi.Input[str] name: The name of the Consul secrets engine role to create.
+        :param pulumi.Input[str] path: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
+        :param pulumi.Input[str] token_type: Specifies the type of token to create when using this role. Valid values are "client" or "management".
+        :param pulumi.Input[int] ttl: Specifies the TTL for this role.
+        """
+        pulumi.set(__self__, "policies", policies)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
+        if max_ttl is not None:
+            pulumi.set(__self__, "max_ttl", max_ttl)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if path is not None:
+            warnings.warn("""use `backend` instead""", DeprecationWarning)
+            pulumi.log.warn("""path is deprecated: use `backend` instead""")
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if token_type is not None:
+            pulumi.set(__self__, "token_type", token_type)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The list of Consul ACL policies to associate with these roles.
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "policies", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates that the token should not be replicated globally and instead be local to the current datacenter.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "local", value)
+
+    @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum TTL for leases associated with this role, in seconds.
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @max_ttl.setter
+    def max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_ttl", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the Consul secrets engine role to create.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="tokenType")
+    def token_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the type of token to create when using this role. Valid values are "client" or "management".
+        """
+        return pulumi.get(self, "token_type")
+
+    @token_type.setter
+    def token_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token_type", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the TTL for this role.
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ttl", value)
 
 
 class SecretBackendRole(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -64,6 +202,65 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] token_type: Specifies the type of token to create when using this role. Valid values are "client" or "management".
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: SecretBackendRoleArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Manages a Consul secrets role for a Consul secrets engine in Vault. Consul secret backends can then issue Consul tokens.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.consul.SecretBackend("test",
+            path="consul",
+            description="Manages the Consul backend",
+            address="127.0.0.1:8500",
+            token="4240861b-ce3d-8530-115a-521ff070dd29")
+        example = vault.consul.SecretBackendRole("example",
+            backend=test.path,
+            policies=["example-policy"])
+        ```
+
+        ## Import
+
+        Consul secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
+
+        ```sh
+         $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param SecretBackendRoleArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(SecretBackendRoleArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
+                 max_ttl: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_type: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

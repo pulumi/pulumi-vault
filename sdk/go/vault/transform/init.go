@@ -22,17 +22,18 @@ func (m *module) Version() semver.Version {
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
 	case "vault:transform/alphabet:Alphabet":
-		r, err = NewAlphabet(ctx, name, nil, pulumi.URN_(urn))
+		r = &Alphabet{}
 	case "vault:transform/role:Role":
-		r, err = NewRole(ctx, name, nil, pulumi.URN_(urn))
+		r = &Role{}
 	case "vault:transform/template:Template":
-		r, err = NewTemplate(ctx, name, nil, pulumi.URN_(urn))
+		r = &Template{}
 	case "vault:transform/transformation:Transformation":
-		r, err = NewTransformation(ctx, name, nil, pulumi.URN_(urn))
+		r = &Transformation{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
 	return
 }
 

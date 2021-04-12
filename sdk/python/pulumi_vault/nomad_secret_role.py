@@ -5,13 +5,109 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['NomadSecretRole']
+__all__ = ['NomadSecretRoleArgs', 'NomadSecretRole']
+
+@pulumi.input_type
+class NomadSecretRoleArgs:
+    def __init__(__self__, *,
+                 backend: pulumi.Input[str],
+                 role: pulumi.Input[str],
+                 global_: Optional[pulumi.Input[bool]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a NomadSecretRole resource.
+        :param pulumi.Input[str] backend: The unique path this backend should be mounted at. Must
+               not begin or end with a `/`. Defaults to `nomad`.
+        :param pulumi.Input[str] role: The name to identify this role within the backend.
+               Must be unique within the backend.
+        :param pulumi.Input[bool] global_: Specifies if the generated token should be global. Defaults to 
+               false.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies attached to the generated token. This setting is only used 
+               when `type` is 'client'.
+        :param pulumi.Input[str] type: Specifies the type of token to create when using this role. Valid 
+               settings are 'client' and 'management'. Defaults to 'client'.
+        """
+        pulumi.set(__self__, "backend", backend)
+        pulumi.set(__self__, "role", role)
+        if global_ is not None:
+            pulumi.set(__self__, "global_", global_)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> pulumi.Input[str]:
+        """
+        The unique path this backend should be mounted at. Must
+        not begin or end with a `/`. Defaults to `nomad`.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: pulumi.Input[str]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        """
+        The name to identify this role within the backend.
+        Must be unique within the backend.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter(name="global")
+    def global_(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if the generated token should be global. Defaults to 
+        false.
+        """
+        return pulumi.get(self, "global_")
+
+    @global_.setter
+    def global_(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "global_", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of policies attached to the generated token. This setting is only used 
+        when `type` is 'client'.
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the type of token to create when using this role. Valid 
+        settings are 'client' and 'management'. Defaults to 'client'.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
 
 
 class NomadSecretRole(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -45,6 +141,44 @@ class NomadSecretRole(pulumi.CustomResource):
         :param pulumi.Input[str] type: Specifies the type of token to create when using this role. Valid 
                settings are 'client' and 'management'. Defaults to 'client'.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: NomadSecretRoleArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        Nomad secret role can be imported using the `backend`, e.g.
+
+        ```sh
+         $ pulumi import vault:index/nomadSecretRole:NomadSecretRole bob nomad/role/bob
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param NomadSecretRoleArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(NomadSecretRoleArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 global_: Optional[pulumi.Input[bool]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

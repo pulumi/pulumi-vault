@@ -5,13 +5,67 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['EntityPolicies']
+__all__ = ['EntityPoliciesArgs', 'EntityPolicies']
+
+@pulumi.input_type
+class EntityPoliciesArgs:
+    def __init__(__self__, *,
+                 entity_id: pulumi.Input[str],
+                 policies: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 exclusive: Optional[pulumi.Input[bool]] = None):
+        """
+        The set of arguments for constructing a EntityPolicies resource.
+        :param pulumi.Input[str] entity_id: Entity ID to assign policies to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the entity
+        :param pulumi.Input[bool] exclusive: Defaults to `true`.
+        """
+        pulumi.set(__self__, "entity_id", entity_id)
+        pulumi.set(__self__, "policies", policies)
+        if exclusive is not None:
+            pulumi.set(__self__, "exclusive", exclusive)
+
+    @property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> pulumi.Input[str]:
+        """
+        Entity ID to assign policies to.
+        """
+        return pulumi.get(self, "entity_id")
+
+    @entity_id.setter
+    def entity_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "entity_id", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        List of policies to assign to the entity
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "policies", value)
+
+    @property
+    @pulumi.getter
+    def exclusive(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defaults to `true`.
+        """
+        return pulumi.get(self, "exclusive")
+
+    @exclusive.setter
+    def exclusive(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "exclusive", value)
 
 
 class EntityPolicies(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -66,6 +120,72 @@ class EntityPolicies(pulumi.CustomResource):
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the entity
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: EntityPoliciesArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Manages policies for an Identity Entity for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
+
+        ## Example Usage
+        ### Exclusive Policies
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        entity = vault.identity.Entity("entity", external_policies=True)
+        policies = vault.identity.EntityPolicies("policies",
+            policies=[
+                "default",
+                "test",
+            ],
+            exclusive=True,
+            entity_id=entity.id)
+        ```
+        ### Non-exclusive Policies
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        entity = vault.identity.Entity("entity", external_policies=True)
+        default = vault.identity.EntityPolicies("default",
+            policies=[
+                "default",
+                "test",
+            ],
+            exclusive=False,
+            entity_id=entity.id)
+        others = vault.identity.EntityPolicies("others",
+            policies=["others"],
+            exclusive=False,
+            entity_id=entity.id)
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param EntityPoliciesArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(EntityPoliciesArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 entity_id: Optional[pulumi.Input[str]] = None,
+                 exclusive: Optional[pulumi.Input[bool]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

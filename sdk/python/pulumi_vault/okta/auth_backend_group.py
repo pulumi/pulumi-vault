@@ -5,13 +5,67 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['AuthBackendGroup']
+__all__ = ['AuthBackendGroupArgs', 'AuthBackendGroup']
+
+@pulumi.input_type
+class AuthBackendGroupArgs:
+    def __init__(__self__, *,
+                 group_name: pulumi.Input[str],
+                 path: pulumi.Input[str],
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        The set of arguments for constructing a AuthBackendGroup resource.
+        :param pulumi.Input[str] group_name: Name of the group within the Okta
+        :param pulumi.Input[str] path: The path where the Okta auth backend is mounted
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Vault policies to associate with this group
+        """
+        pulumi.set(__self__, "group_name", group_name)
+        pulumi.set(__self__, "path", path)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> pulumi.Input[str]:
+        """
+        Name of the group within the Okta
+        """
+        return pulumi.get(self, "group_name")
+
+    @group_name.setter
+    def group_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "group_name", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[str]:
+        """
+        The path where the Okta auth backend is mounted
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[str]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Vault policies to associate with this group
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
 
 
 class AuthBackendGroup(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -57,6 +111,63 @@ class AuthBackendGroup(pulumi.CustomResource):
         :param pulumi.Input[str] path: The path where the Okta auth backend is mounted
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Vault policies to associate with this group
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: AuthBackendGroupArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Provides a resource to create a group in an
+        [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.okta.AuthBackend("example",
+            organization="dummy",
+            path="group_okta")
+        foo = vault.okta.AuthBackendGroup("foo",
+            group_name="foo",
+            path=example.path,
+            policies=[
+                "one",
+                "two",
+            ])
+        ```
+
+        ## Import
+
+        Okta authentication backend groups can be imported using the format `backend/groupName` e.g.
+
+        ```sh
+         $ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param AuthBackendGroupArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(AuthBackendGroupArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 group_name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

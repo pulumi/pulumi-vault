@@ -5,13 +5,43 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities, _tables
 
-__all__ = ['Oidc']
+__all__ = ['OidcArgs', 'Oidc']
+
+@pulumi.input_type
+class OidcArgs:
+    def __init__(__self__, *,
+                 issuer: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a Oidc resource.
+        :param pulumi.Input[str] issuer: Issuer URL to be used in the iss claim of the token. If not set, Vault's
+               `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
+               scheme, host, and optionally, port number and path components, but no query or fragment
+               components.
+        """
+        if issuer is not None:
+            pulumi.set(__self__, "issuer", issuer)
+
+    @property
+    @pulumi.getter
+    def issuer(self) -> Optional[pulumi.Input[str]]:
+        """
+        Issuer URL to be used in the iss claim of the token. If not set, Vault's
+        `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
+        scheme, host, and optionally, port number and path components, but no query or fragment
+        components.
+        """
+        return pulumi.get(self, "issuer")
+
+    @issuer.setter
+    def issuer(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "issuer", value)
 
 
 class Oidc(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -43,6 +73,48 @@ class Oidc(pulumi.CustomResource):
                scheme, host, and optionally, port number and path components, but no query or fragment
                components.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: Optional[OidcArgs] = None,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Configure the [Identity Tokens Backend](https://www.vaultproject.io/docs/secrets/identity/index.html#identity-tokens).
+
+        The Identity secrets engine is the identity management solution for Vault. It internally maintains
+        the clients who are recognized by Vault.
+
+        > **NOTE:** Each Vault server may only have one Identity Tokens Backend configuration. Multiple configurations of the resource against the same Vault server will cause a perpetual difference.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        server = vault.identity.Oidc("server", issuer="https://www.acme.com")
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param OidcArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(OidcArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 issuer: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__
