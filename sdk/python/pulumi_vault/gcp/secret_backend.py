@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['SecretBackendArgs', 'SecretBackend']
 
@@ -21,6 +21,116 @@ class SecretBackendArgs:
                  path: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
+        :param pulumi.Input[str] credentials: The GCP service account credentials in JSON format.
+        :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
+               issued by this backend. Defaults to '0'.
+        :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+        :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
+               for credentials issued by this backend. Defaults to '0'.
+        :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
+               not begin or end with a `/`. Defaults to `gcp`.
+        """
+        if credentials is not None:
+            pulumi.set(__self__, "credentials", credentials)
+        if default_lease_ttl_seconds is not None:
+            pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
+        if max_lease_ttl_seconds is not None:
+            pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @property
+    @pulumi.getter
+    def credentials(self) -> Optional[pulumi.Input[str]]:
+        """
+        The GCP service account credentials in JSON format.
+        """
+        return pulumi.get(self, "credentials")
+
+    @credentials.setter
+    def credentials(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "credentials", value)
+
+    @property
+    @pulumi.getter(name="defaultLeaseTtlSeconds")
+    def default_lease_ttl_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        The default TTL for credentials
+        issued by this backend. Defaults to '0'.
+        """
+        return pulumi.get(self, "default_lease_ttl_seconds")
+
+    @default_lease_ttl_seconds.setter
+    def default_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "default_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A human-friendly description for this backend.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "local", value)
+
+    @property
+    @pulumi.getter(name="maxLeaseTtlSeconds")
+    def max_lease_ttl_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum TTL that can be requested
+        for credentials issued by this backend. Defaults to '0'.
+        """
+        return pulumi.get(self, "max_lease_ttl_seconds")
+
+    @max_lease_ttl_seconds.setter
+    def max_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique path this backend should be mounted at. Must
+        not begin or end with a `/`. Defaults to `gcp`.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+
+@pulumi.input_type
+class _SecretBackendState:
+    def __init__(__self__, *,
+                 credentials: Optional[pulumi.Input[str]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 path: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering SecretBackend resources.
         :param pulumi.Input[str] credentials: The GCP service account credentials in JSON format.
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
@@ -195,14 +305,14 @@ class SecretBackend(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SecretBackendArgs.__new__(SecretBackendArgs)
 
-            __props__['credentials'] = credentials
-            __props__['default_lease_ttl_seconds'] = default_lease_ttl_seconds
-            __props__['description'] = description
-            __props__['local'] = local
-            __props__['max_lease_ttl_seconds'] = max_lease_ttl_seconds
-            __props__['path'] = path
+            __props__.__dict__["credentials"] = credentials
+            __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
+            __props__.__dict__["description"] = description
+            __props__.__dict__["local"] = local
+            __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
+            __props__.__dict__["path"] = path
         super(SecretBackend, __self__).__init__(
             'vault:gcp/secretBackend:SecretBackend',
             resource_name,
@@ -238,14 +348,14 @@ class SecretBackend(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SecretBackendState.__new__(_SecretBackendState)
 
-        __props__["credentials"] = credentials
-        __props__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
-        __props__["description"] = description
-        __props__["local"] = local
-        __props__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
-        __props__["path"] = path
+        __props__.__dict__["credentials"] = credentials
+        __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
+        __props__.__dict__["description"] = description
+        __props__.__dict__["local"] = local
+        __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
+        __props__.__dict__["path"] = path
         return SecretBackend(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -298,10 +408,4 @@ class SecretBackend(pulumi.CustomResource):
         not begin or end with a `/`. Defaults to `gcp`.
         """
         return pulumi.get(self, "path")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

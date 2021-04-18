@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['AuthBackendRoleTagArgs', 'AuthBackendRoleTag']
 
@@ -133,6 +133,162 @@ class AuthBackendRoleTagArgs:
         pulumi.set(self, "policies", value)
 
 
+@pulumi.input_type
+class _AuthBackendRoleTagState:
+    def __init__(__self__, *,
+                 allow_instance_migration: Optional[pulumi.Input[bool]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
+                 instance_id: Optional[pulumi.Input[str]] = None,
+                 max_ttl: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 tag_key: Optional[pulumi.Input[str]] = None,
+                 tag_value: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering AuthBackendRoleTag resources.
+        :param pulumi.Input[bool] allow_instance_migration: If set, allows migration of the underlying instances where the client resides. Use with caution.
+        :param pulumi.Input[str] backend: The path to the AWS auth backend to
+               read role tags from, with no leading or trailing `/`s. Defaults to "aws".
+        :param pulumi.Input[bool] disallow_reauthentication: If set, only allows a single token to be granted per instance ID.
+        :param pulumi.Input[str] instance_id: Instance ID for which this tag is intended for. If set, the created tag can only be used by the instance with the given ID.
+        :param pulumi.Input[str] max_ttl: The maximum TTL of the tokens issued using this role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: The policies to be associated with the tag. Must be a subset of the policies associated with the role.
+        :param pulumi.Input[str] role: The name of the AWS auth backend role to read
+               role tags from, with no leading or trailing `/`s.
+        :param pulumi.Input[str] tag_key: The key of the role tag.
+        :param pulumi.Input[str] tag_value: The value to set the role key.
+        """
+        if allow_instance_migration is not None:
+            pulumi.set(__self__, "allow_instance_migration", allow_instance_migration)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if disallow_reauthentication is not None:
+            pulumi.set(__self__, "disallow_reauthentication", disallow_reauthentication)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if max_ttl is not None:
+            pulumi.set(__self__, "max_ttl", max_ttl)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if tag_key is not None:
+            pulumi.set(__self__, "tag_key", tag_key)
+        if tag_value is not None:
+            pulumi.set(__self__, "tag_value", tag_value)
+
+    @property
+    @pulumi.getter(name="allowInstanceMigration")
+    def allow_instance_migration(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, allows migration of the underlying instances where the client resides. Use with caution.
+        """
+        return pulumi.get(self, "allow_instance_migration")
+
+    @allow_instance_migration.setter
+    def allow_instance_migration(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_instance_migration", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path to the AWS auth backend to
+        read role tags from, with no leading or trailing `/`s. Defaults to "aws".
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="disallowReauthentication")
+    def disallow_reauthentication(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, only allows a single token to be granted per instance ID.
+        """
+        return pulumi.get(self, "disallow_reauthentication")
+
+    @disallow_reauthentication.setter
+    def disallow_reauthentication(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disallow_reauthentication", value)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Instance ID for which this tag is intended for. If set, the created tag can only be used by the instance with the given ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "instance_id", value)
+
+    @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        The maximum TTL of the tokens issued using this role.
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @max_ttl.setter
+    def max_ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "max_ttl", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The policies to be associated with the tag. Must be a subset of the policies associated with the role.
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the AWS auth backend role to read
+        role tags from, with no leading or trailing `/`s.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter(name="tagKey")
+    def tag_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key of the role tag.
+        """
+        return pulumi.get(self, "tag_key")
+
+    @tag_key.setter
+    def tag_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tag_key", value)
+
+    @property
+    @pulumi.getter(name="tagValue")
+    def tag_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The value to set the role key.
+        """
+        return pulumi.get(self, "tag_value")
+
+    @tag_value.setter
+    def tag_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tag_value", value)
+
+
 class AuthBackendRoleTag(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -212,19 +368,19 @@ class AuthBackendRoleTag(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = AuthBackendRoleTagArgs.__new__(AuthBackendRoleTagArgs)
 
-            __props__['allow_instance_migration'] = allow_instance_migration
-            __props__['backend'] = backend
-            __props__['disallow_reauthentication'] = disallow_reauthentication
-            __props__['instance_id'] = instance_id
-            __props__['max_ttl'] = max_ttl
-            __props__['policies'] = policies
+            __props__.__dict__["allow_instance_migration"] = allow_instance_migration
+            __props__.__dict__["backend"] = backend
+            __props__.__dict__["disallow_reauthentication"] = disallow_reauthentication
+            __props__.__dict__["instance_id"] = instance_id
+            __props__.__dict__["max_ttl"] = max_ttl
+            __props__.__dict__["policies"] = policies
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
-            __props__['role'] = role
-            __props__['tag_key'] = None
-            __props__['tag_value'] = None
+            __props__.__dict__["role"] = role
+            __props__.__dict__["tag_key"] = None
+            __props__.__dict__["tag_value"] = None
         super(AuthBackendRoleTag, __self__).__init__(
             'vault:aws/authBackendRoleTag:AuthBackendRoleTag',
             resource_name,
@@ -265,17 +421,17 @@ class AuthBackendRoleTag(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _AuthBackendRoleTagState.__new__(_AuthBackendRoleTagState)
 
-        __props__["allow_instance_migration"] = allow_instance_migration
-        __props__["backend"] = backend
-        __props__["disallow_reauthentication"] = disallow_reauthentication
-        __props__["instance_id"] = instance_id
-        __props__["max_ttl"] = max_ttl
-        __props__["policies"] = policies
-        __props__["role"] = role
-        __props__["tag_key"] = tag_key
-        __props__["tag_value"] = tag_value
+        __props__.__dict__["allow_instance_migration"] = allow_instance_migration
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["disallow_reauthentication"] = disallow_reauthentication
+        __props__.__dict__["instance_id"] = instance_id
+        __props__.__dict__["max_ttl"] = max_ttl
+        __props__.__dict__["policies"] = policies
+        __props__.__dict__["role"] = role
+        __props__.__dict__["tag_key"] = tag_key
+        __props__.__dict__["tag_value"] = tag_value
         return AuthBackendRoleTag(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -351,10 +507,4 @@ class AuthBackendRoleTag(pulumi.CustomResource):
         The value to set the role key.
         """
         return pulumi.get(self, "tag_value")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

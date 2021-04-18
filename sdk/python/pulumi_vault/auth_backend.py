@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
@@ -158,6 +158,169 @@ class AuthBackendArgs:
         pulumi.set(self, "tune", value)
 
 
+@pulumi.input_type
+class _AuthBackendState:
+    def __init__(__self__, *,
+                 accessor: Optional[pulumi.Input[str]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 listing_visibility: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering AuthBackend resources.
+        :param pulumi.Input[str] accessor: The accessor for this auth method
+        :param pulumi.Input[int] default_lease_ttl_seconds: (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
+        :param pulumi.Input[str] description: A description of the auth method
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in
+               the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+        :param pulumi.Input[bool] local: Specifies if the auth method is local only.
+        :param pulumi.Input[int] max_lease_ttl_seconds: (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
+        :param pulumi.Input[str] path: The path to mount the auth method — this defaults to the name of the type
+        :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
+        :param pulumi.Input[str] type: The name of the auth method type
+        """
+        if accessor is not None:
+            pulumi.set(__self__, "accessor", accessor)
+        if default_lease_ttl_seconds is not None:
+            warnings.warn("""Use the tune configuration block to avoid forcing creation of new resource on an update""", DeprecationWarning)
+            pulumi.log.warn("""default_lease_ttl_seconds is deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update""")
+        if default_lease_ttl_seconds is not None:
+            pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if listing_visibility is not None:
+            warnings.warn("""Use the tune configuration block to avoid forcing creation of new resource on an update""", DeprecationWarning)
+            pulumi.log.warn("""listing_visibility is deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update""")
+        if listing_visibility is not None:
+            pulumi.set(__self__, "listing_visibility", listing_visibility)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
+        if max_lease_ttl_seconds is not None:
+            warnings.warn("""Use the tune configuration block to avoid forcing creation of new resource on an update""", DeprecationWarning)
+            pulumi.log.warn("""max_lease_ttl_seconds is deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update""")
+        if max_lease_ttl_seconds is not None:
+            pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if tune is not None:
+            pulumi.set(__self__, "tune", tune)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def accessor(self) -> Optional[pulumi.Input[str]]:
+        """
+        The accessor for this auth method
+        """
+        return pulumi.get(self, "accessor")
+
+    @accessor.setter
+    def accessor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "accessor", value)
+
+    @property
+    @pulumi.getter(name="defaultLeaseTtlSeconds")
+    def default_lease_ttl_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
+        """
+        return pulumi.get(self, "default_lease_ttl_seconds")
+
+    @default_lease_ttl_seconds.setter
+    def default_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "default_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the auth method
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="listingVisibility")
+    def listing_visibility(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies whether to show this mount in
+        the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+        """
+        return pulumi.get(self, "listing_visibility")
+
+    @listing_visibility.setter
+    def listing_visibility(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "listing_visibility", value)
+
+    @property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if the auth method is local only.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "local", value)
+
+    @property
+    @pulumi.getter(name="maxLeaseTtlSeconds")
+    def max_lease_ttl_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
+        """
+        return pulumi.get(self, "max_lease_ttl_seconds")
+
+    @max_lease_ttl_seconds.setter
+    def max_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path to mount the auth method — this defaults to the name of the type
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
+        """
+        Extra configuration block. Structure is documented below.
+        """
+        return pulumi.get(self, "tune")
+
+    @tune.setter
+    def tune(self, value: Optional[pulumi.Input['AuthBackendTuneArgs']]):
+        pulumi.set(self, "tune", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the auth method type
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
 class AuthBackend(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -279,28 +442,28 @@ class AuthBackend(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = AuthBackendArgs.__new__(AuthBackendArgs)
 
             if default_lease_ttl_seconds is not None and not opts.urn:
                 warnings.warn("""Use the tune configuration block to avoid forcing creation of new resource on an update""", DeprecationWarning)
                 pulumi.log.warn("""default_lease_ttl_seconds is deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update""")
-            __props__['default_lease_ttl_seconds'] = default_lease_ttl_seconds
-            __props__['description'] = description
+            __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
+            __props__.__dict__["description"] = description
             if listing_visibility is not None and not opts.urn:
                 warnings.warn("""Use the tune configuration block to avoid forcing creation of new resource on an update""", DeprecationWarning)
                 pulumi.log.warn("""listing_visibility is deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update""")
-            __props__['listing_visibility'] = listing_visibility
-            __props__['local'] = local
+            __props__.__dict__["listing_visibility"] = listing_visibility
+            __props__.__dict__["local"] = local
             if max_lease_ttl_seconds is not None and not opts.urn:
                 warnings.warn("""Use the tune configuration block to avoid forcing creation of new resource on an update""", DeprecationWarning)
                 pulumi.log.warn("""max_lease_ttl_seconds is deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update""")
-            __props__['max_lease_ttl_seconds'] = max_lease_ttl_seconds
-            __props__['path'] = path
-            __props__['tune'] = tune
+            __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
+            __props__.__dict__["path"] = path
+            __props__.__dict__["tune"] = tune
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
-            __props__['type'] = type
-            __props__['accessor'] = None
+            __props__.__dict__["type"] = type
+            __props__.__dict__["accessor"] = None
         super(AuthBackend, __self__).__init__(
             'vault:index/authBackend:AuthBackend',
             resource_name,
@@ -340,17 +503,17 @@ class AuthBackend(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _AuthBackendState.__new__(_AuthBackendState)
 
-        __props__["accessor"] = accessor
-        __props__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
-        __props__["description"] = description
-        __props__["listing_visibility"] = listing_visibility
-        __props__["local"] = local
-        __props__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
-        __props__["path"] = path
-        __props__["tune"] = tune
-        __props__["type"] = type
+        __props__.__dict__["accessor"] = accessor
+        __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
+        __props__.__dict__["description"] = description
+        __props__.__dict__["listing_visibility"] = listing_visibility
+        __props__.__dict__["local"] = local
+        __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
+        __props__.__dict__["path"] = path
+        __props__.__dict__["tune"] = tune
+        __props__.__dict__["type"] = type
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -425,10 +588,4 @@ class AuthBackend(pulumi.CustomResource):
         The name of the auth method type
         """
         return pulumi.get(self, "type")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

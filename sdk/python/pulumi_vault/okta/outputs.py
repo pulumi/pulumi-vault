@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = [
     'AuthBackendGroup',
@@ -15,6 +15,23 @@ __all__ = [
 
 @pulumi.output_type
 class AuthBackendGroup(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "groupName":
+            suggest = "group_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AuthBackendGroup. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AuthBackendGroup.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AuthBackendGroup.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  group_name: str,
                  policies: Sequence[str]):
@@ -40,9 +57,6 @@ class AuthBackendGroup(dict):
         List of Vault policies to associate with this user
         """
         return pulumi.get(self, "policies")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -84,8 +98,5 @@ class AuthBackendUser(dict):
         List of Vault policies to associate with this user
         """
         return pulumi.get(self, "policies")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

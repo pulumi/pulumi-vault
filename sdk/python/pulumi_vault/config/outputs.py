@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = [
     'AuthLogins',
@@ -41,12 +41,28 @@ class AuthLogins(dict):
     def parameters(self) -> Optional[Mapping[str, str]]:
         return pulumi.get(self, "parameters")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ClientAuths(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "certFile":
+            suggest = "cert_file"
+        elif key == "keyFile":
+            suggest = "key_file"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClientAuths. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClientAuths.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClientAuths.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  cert_file: str,
                  key_file: str):
@@ -62,9 +78,6 @@ class ClientAuths(dict):
     @pulumi.getter(name="keyFile")
     def key_file(self) -> str:
         return pulumi.get(self, "key_file")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -84,8 +97,5 @@ class Headers(dict):
     @pulumi.getter
     def value(self) -> str:
         return pulumi.get(self, "value")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

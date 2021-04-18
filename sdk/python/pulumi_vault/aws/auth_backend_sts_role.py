@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['AuthBackendStsRoleArgs', 'AuthBackendStsRole']
 
@@ -66,6 +66,66 @@ class AuthBackendStsRoleArgs:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
+
+
+@pulumi.input_type
+class _AuthBackendStsRoleState:
+    def __init__(__self__, *,
+                 account_id: Optional[pulumi.Input[str]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 sts_role: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering AuthBackendStsRole resources.
+        :param pulumi.Input[str] account_id: The AWS account ID to configure the STS role for.
+        :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
+               mounted at.  Defaults to `aws`.
+        :param pulumi.Input[str] sts_role: The STS role to assume when verifying requests made
+               by EC2 instances in the account specified by `account_id`.
+        """
+        if account_id is not None:
+            pulumi.set(__self__, "account_id", account_id)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if sts_role is not None:
+            pulumi.set(__self__, "sts_role", sts_role)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The AWS account ID to configure the STS role for.
+        """
+        return pulumi.get(self, "account_id")
+
+    @account_id.setter
+    def account_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_id", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path the AWS auth backend being configured was
+        mounted at.  Defaults to `aws`.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="stsRole")
+    def sts_role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The STS role to assume when verifying requests made
+        by EC2 instances in the account specified by `account_id`.
+        """
+        return pulumi.get(self, "sts_role")
+
+    @sts_role.setter
+    def sts_role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sts_role", value)
 
 
 class AuthBackendStsRole(pulumi.CustomResource):
@@ -147,15 +207,15 @@ class AuthBackendStsRole(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = AuthBackendStsRoleArgs.__new__(AuthBackendStsRoleArgs)
 
             if account_id is None and not opts.urn:
                 raise TypeError("Missing required property 'account_id'")
-            __props__['account_id'] = account_id
-            __props__['backend'] = backend
+            __props__.__dict__["account_id"] = account_id
+            __props__.__dict__["backend"] = backend
             if sts_role is None and not opts.urn:
                 raise TypeError("Missing required property 'sts_role'")
-            __props__['sts_role'] = sts_role
+            __props__.__dict__["sts_role"] = sts_role
         super(AuthBackendStsRole, __self__).__init__(
             'vault:aws/authBackendStsRole:AuthBackendStsRole',
             resource_name,
@@ -184,11 +244,11 @@ class AuthBackendStsRole(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _AuthBackendStsRoleState.__new__(_AuthBackendStsRoleState)
 
-        __props__["account_id"] = account_id
-        __props__["backend"] = backend
-        __props__["sts_role"] = sts_role
+        __props__.__dict__["account_id"] = account_id
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["sts_role"] = sts_role
         return AuthBackendStsRole(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -216,10 +276,4 @@ class AuthBackendStsRole(pulumi.CustomResource):
         by EC2 instances in the account specified by `account_id`.
         """
         return pulumi.get(self, "sts_role")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

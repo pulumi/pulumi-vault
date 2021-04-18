@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['AuthBackendGroupArgs', 'AuthBackendGroup']
 
@@ -51,6 +51,62 @@ class AuthBackendGroupArgs:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Policies which should be granted to members of the group
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
+
+
+@pulumi.input_type
+class _AuthBackendGroupState:
+    def __init__(__self__, *,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 groupname: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        Input properties used for looking up and filtering AuthBackendGroup resources.
+        :param pulumi.Input[str] backend: Path to the authentication backend
+        :param pulumi.Input[str] groupname: The LDAP groupname
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Policies which should be granted to members of the group
+        """
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if groupname is not None:
+            pulumi.set(__self__, "groupname", groupname)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to the authentication backend
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def groupname(self) -> Optional[pulumi.Input[str]]:
+        """
+        The LDAP groupname
+        """
+        return pulumi.get(self, "groupname")
+
+    @groupname.setter
+    def groupname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "groupname", value)
 
     @property
     @pulumi.getter
@@ -188,13 +244,13 @@ class AuthBackendGroup(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = AuthBackendGroupArgs.__new__(AuthBackendGroupArgs)
 
-            __props__['backend'] = backend
+            __props__.__dict__["backend"] = backend
             if groupname is None and not opts.urn:
                 raise TypeError("Missing required property 'groupname'")
-            __props__['groupname'] = groupname
-            __props__['policies'] = policies
+            __props__.__dict__["groupname"] = groupname
+            __props__.__dict__["policies"] = policies
         super(AuthBackendGroup, __self__).__init__(
             'vault:ldap/authBackendGroup:AuthBackendGroup',
             resource_name,
@@ -221,11 +277,11 @@ class AuthBackendGroup(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _AuthBackendGroupState.__new__(_AuthBackendGroupState)
 
-        __props__["backend"] = backend
-        __props__["groupname"] = groupname
-        __props__["policies"] = policies
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["groupname"] = groupname
+        __props__.__dict__["policies"] = policies
         return AuthBackendGroup(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -251,10 +307,4 @@ class AuthBackendGroup(pulumi.CustomResource):
         Policies which should be granted to members of the group
         """
         return pulumi.get(self, "policies")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

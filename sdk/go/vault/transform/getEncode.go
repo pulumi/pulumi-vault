@@ -4,7 +4,7 @@
 package transform
 
 import (
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // This data source supports the "/transform/encode/{role_name}" Vault endpoint.

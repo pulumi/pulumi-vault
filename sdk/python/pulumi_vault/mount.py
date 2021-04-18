@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['MountArgs', 'Mount']
 
@@ -160,6 +160,174 @@ class MountArgs:
         pulumi.set(self, "seal_wrap", value)
 
 
+@pulumi.input_type
+class _MountState:
+    def __init__(__self__, *,
+                 accessor: Optional[pulumi.Input[str]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 external_entropy_access: Optional[pulumi.Input[bool]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 seal_wrap: Optional[pulumi.Input[bool]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Mount resources.
+        :param pulumi.Input[str] accessor: The accessor for this mount.
+        :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
+        :param pulumi.Input[str] description: Human-friendly description of the mount
+        :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+        :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
+        :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[str] path: Where the secret backend will be mounted
+        :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[str] type: Type of the backend, such as "aws"
+        """
+        if accessor is not None:
+            pulumi.set(__self__, "accessor", accessor)
+        if default_lease_ttl_seconds is not None:
+            pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if external_entropy_access is not None:
+            pulumi.set(__self__, "external_entropy_access", external_entropy_access)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
+        if max_lease_ttl_seconds is not None:
+            pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
+        if options is not None:
+            pulumi.set(__self__, "options", options)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if seal_wrap is not None:
+            pulumi.set(__self__, "seal_wrap", seal_wrap)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def accessor(self) -> Optional[pulumi.Input[str]]:
+        """
+        The accessor for this mount.
+        """
+        return pulumi.get(self, "accessor")
+
+    @accessor.setter
+    def accessor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "accessor", value)
+
+    @property
+    @pulumi.getter(name="defaultLeaseTtlSeconds")
+    def default_lease_ttl_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        Default lease duration for tokens and secrets in seconds
+        """
+        return pulumi.get(self, "default_lease_ttl_seconds")
+
+    @default_lease_ttl_seconds.setter
+    def default_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "default_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-friendly description of the mount
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="externalEntropyAccess")
+    def external_entropy_access(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+        """
+        return pulumi.get(self, "external_entropy_access")
+
+    @external_entropy_access.setter
+    def external_entropy_access(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "external_entropy_access", value)
+
+    @property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "local", value)
+
+    @property
+    @pulumi.getter(name="maxLeaseTtlSeconds")
+    def max_lease_ttl_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum possible lease duration for tokens and secrets in seconds
+        """
+        return pulumi.get(self, "max_lease_ttl_seconds")
+
+    @max_lease_ttl_seconds.setter
+    def max_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter
+    def options(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Specifies mount type specific options that are passed to the backend
+        """
+        return pulumi.get(self, "options")
+
+    @options.setter
+    def options(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "options", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Where the secret backend will be mounted
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="sealWrap")
+    def seal_wrap(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        """
+        return pulumi.get(self, "seal_wrap")
+
+    @seal_wrap.setter
+    def seal_wrap(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "seal_wrap", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of the backend, such as "aws"
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
 class Mount(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -279,22 +447,22 @@ class Mount(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = MountArgs.__new__(MountArgs)
 
-            __props__['default_lease_ttl_seconds'] = default_lease_ttl_seconds
-            __props__['description'] = description
-            __props__['external_entropy_access'] = external_entropy_access
-            __props__['local'] = local
-            __props__['max_lease_ttl_seconds'] = max_lease_ttl_seconds
-            __props__['options'] = options
+            __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
+            __props__.__dict__["description"] = description
+            __props__.__dict__["external_entropy_access"] = external_entropy_access
+            __props__.__dict__["local"] = local
+            __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
+            __props__.__dict__["options"] = options
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
-            __props__['path'] = path
-            __props__['seal_wrap'] = seal_wrap
+            __props__.__dict__["path"] = path
+            __props__.__dict__["seal_wrap"] = seal_wrap
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
-            __props__['type'] = type
-            __props__['accessor'] = None
+            __props__.__dict__["type"] = type
+            __props__.__dict__["accessor"] = None
         super(Mount, __self__).__init__(
             'vault:index/mount:Mount',
             resource_name,
@@ -335,18 +503,18 @@ class Mount(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _MountState.__new__(_MountState)
 
-        __props__["accessor"] = accessor
-        __props__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
-        __props__["description"] = description
-        __props__["external_entropy_access"] = external_entropy_access
-        __props__["local"] = local
-        __props__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
-        __props__["options"] = options
-        __props__["path"] = path
-        __props__["seal_wrap"] = seal_wrap
-        __props__["type"] = type
+        __props__.__dict__["accessor"] = accessor
+        __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
+        __props__.__dict__["description"] = description
+        __props__.__dict__["external_entropy_access"] = external_entropy_access
+        __props__.__dict__["local"] = local
+        __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
+        __props__.__dict__["options"] = options
+        __props__.__dict__["path"] = path
+        __props__.__dict__["seal_wrap"] = seal_wrap
+        __props__.__dict__["type"] = type
         return Mount(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -428,10 +596,4 @@ class Mount(pulumi.CustomResource):
         Type of the backend, such as "aws"
         """
         return pulumi.get(self, "type")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

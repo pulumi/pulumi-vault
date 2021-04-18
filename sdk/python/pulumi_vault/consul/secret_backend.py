@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['SecretBackendArgs', 'SecretBackend']
 
@@ -178,6 +178,176 @@ class SecretBackendArgs:
         pulumi.set(self, "scheme", value)
 
 
+@pulumi.input_type
+class _SecretBackendState:
+    def __init__(__self__, *,
+                 address: Optional[pulumi.Input[str]] = None,
+                 ca_cert: Optional[pulumi.Input[str]] = None,
+                 client_cert: Optional[pulumi.Input[str]] = None,
+                 client_key: Optional[pulumi.Input[str]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 scheme: Optional[pulumi.Input[str]] = None,
+                 token: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering SecretBackend resources.
+        :param pulumi.Input[str] address: Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
+        :param pulumi.Input[str] ca_cert: CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
+        :param pulumi.Input[str] client_cert: Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+        :param pulumi.Input[str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+        :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials issued by this backend.
+        :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
+               for credentials issued by this backend.
+        :param pulumi.Input[str] path: The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
+        :param pulumi.Input[str] scheme: Specifies the URL scheme to use. Defaults to `http`.
+        :param pulumi.Input[str] token: The Consul management token this backend should use to issue new tokens.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if ca_cert is not None:
+            pulumi.set(__self__, "ca_cert", ca_cert)
+        if client_cert is not None:
+            pulumi.set(__self__, "client_cert", client_cert)
+        if client_key is not None:
+            pulumi.set(__self__, "client_key", client_key)
+        if default_lease_ttl_seconds is not None:
+            pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if max_lease_ttl_seconds is not None:
+            pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if scheme is not None:
+            pulumi.set(__self__, "scheme", scheme)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter(name="caCert")
+    def ca_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
+        """
+        return pulumi.get(self, "ca_cert")
+
+    @ca_cert.setter
+    def ca_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_cert", value)
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
+        """
+        return pulumi.get(self, "client_cert")
+
+    @client_cert.setter
+    def client_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_cert", value)
+
+    @property
+    @pulumi.getter(name="clientKey")
+    def client_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+        """
+        return pulumi.get(self, "client_key")
+
+    @client_key.setter
+    def client_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_key", value)
+
+    @property
+    @pulumi.getter(name="defaultLeaseTtlSeconds")
+    def default_lease_ttl_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        The default TTL for credentials issued by this backend.
+        """
+        return pulumi.get(self, "default_lease_ttl_seconds")
+
+    @default_lease_ttl_seconds.setter
+    def default_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "default_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A human-friendly description for this backend.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="maxLeaseTtlSeconds")
+    def max_lease_ttl_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum TTL that can be requested
+        for credentials issued by this backend.
+        """
+        return pulumi.get(self, "max_lease_ttl_seconds")
+
+    @max_lease_ttl_seconds.setter
+    def max_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def scheme(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the URL scheme to use. Defaults to `http`.
+        """
+        return pulumi.get(self, "scheme")
+
+    @scheme.setter
+    def scheme(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scheme", value)
+
+    @property
+    @pulumi.getter
+    def token(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Consul management token this backend should use to issue new tokens.
+        """
+        return pulumi.get(self, "token")
+
+    @token.setter
+    def token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token", value)
+
+
 class SecretBackend(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -277,22 +447,22 @@ class SecretBackend(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SecretBackendArgs.__new__(SecretBackendArgs)
 
             if address is None and not opts.urn:
                 raise TypeError("Missing required property 'address'")
-            __props__['address'] = address
-            __props__['ca_cert'] = ca_cert
-            __props__['client_cert'] = client_cert
-            __props__['client_key'] = client_key
-            __props__['default_lease_ttl_seconds'] = default_lease_ttl_seconds
-            __props__['description'] = description
-            __props__['max_lease_ttl_seconds'] = max_lease_ttl_seconds
-            __props__['path'] = path
-            __props__['scheme'] = scheme
+            __props__.__dict__["address"] = address
+            __props__.__dict__["ca_cert"] = ca_cert
+            __props__.__dict__["client_cert"] = client_cert
+            __props__.__dict__["client_key"] = client_key
+            __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
+            __props__.__dict__["description"] = description
+            __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
+            __props__.__dict__["path"] = path
+            __props__.__dict__["scheme"] = scheme
             if token is None and not opts.urn:
                 raise TypeError("Missing required property 'token'")
-            __props__['token'] = token
+            __props__.__dict__["token"] = token
         super(SecretBackend, __self__).__init__(
             'vault:consul/secretBackend:SecretBackend',
             resource_name,
@@ -334,18 +504,18 @@ class SecretBackend(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SecretBackendState.__new__(_SecretBackendState)
 
-        __props__["address"] = address
-        __props__["ca_cert"] = ca_cert
-        __props__["client_cert"] = client_cert
-        __props__["client_key"] = client_key
-        __props__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
-        __props__["description"] = description
-        __props__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
-        __props__["path"] = path
-        __props__["scheme"] = scheme
-        __props__["token"] = token
+        __props__.__dict__["address"] = address
+        __props__.__dict__["ca_cert"] = ca_cert
+        __props__.__dict__["client_cert"] = client_cert
+        __props__.__dict__["client_key"] = client_key
+        __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
+        __props__.__dict__["description"] = description
+        __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
+        __props__.__dict__["path"] = path
+        __props__.__dict__["scheme"] = scheme
+        __props__.__dict__["token"] = token
         return SecretBackend(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -428,10 +598,4 @@ class SecretBackend(pulumi.CustomResource):
         The Consul management token this backend should use to issue new tokens.
         """
         return pulumi.get(self, "token")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

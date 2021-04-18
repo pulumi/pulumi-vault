@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['AuditArgs', 'Audit']
 
@@ -94,6 +94,94 @@ class AuditArgs:
     @path.setter
     def path(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "path", value)
+
+
+@pulumi.input_type
+class _AuditState:
+    def __init__(__self__, *,
+                 description: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Audit resources.
+        :param pulumi.Input[str] description: Human-friendly description of the audit device.
+        :param pulumi.Input[bool] local: Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Configuration options to pass to the audit device itself.
+        :param pulumi.Input[str] path: The path to mount the audit device. This defaults to the type.
+        :param pulumi.Input[str] type: Type of the audit device, such as 'file'.
+        """
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
+        if options is not None:
+            pulumi.set(__self__, "options", options)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-friendly description of the audit device.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "local", value)
+
+    @property
+    @pulumi.getter
+    def options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Configuration options to pass to the audit device itself.
+        """
+        return pulumi.get(self, "options")
+
+    @options.setter
+    def options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "options", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path to mount the audit device. This defaults to the type.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of the audit device, such as 'file'.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
 
 
 class Audit(pulumi.CustomResource):
@@ -239,17 +327,17 @@ class Audit(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = AuditArgs.__new__(AuditArgs)
 
-            __props__['description'] = description
-            __props__['local'] = local
+            __props__.__dict__["description"] = description
+            __props__.__dict__["local"] = local
             if options is None and not opts.urn:
                 raise TypeError("Missing required property 'options'")
-            __props__['options'] = options
-            __props__['path'] = path
+            __props__.__dict__["options"] = options
+            __props__.__dict__["path"] = path
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
-            __props__['type'] = type
+            __props__.__dict__["type"] = type
         super(Audit, __self__).__init__(
             'vault:index/audit:Audit',
             resource_name,
@@ -280,13 +368,13 @@ class Audit(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _AuditState.__new__(_AuditState)
 
-        __props__["description"] = description
-        __props__["local"] = local
-        __props__["options"] = options
-        __props__["path"] = path
-        __props__["type"] = type
+        __props__.__dict__["description"] = description
+        __props__.__dict__["local"] = local
+        __props__.__dict__["options"] = options
+        __props__.__dict__["path"] = path
+        __props__.__dict__["type"] = type
         return Audit(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -328,10 +416,4 @@ class Audit(pulumi.CustomResource):
         Type of the audit device, such as 'file'.
         """
         return pulumi.get(self, "type")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

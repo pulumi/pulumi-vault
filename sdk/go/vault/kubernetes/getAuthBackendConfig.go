@@ -4,7 +4,7 @@
 package kubernetes
 
 import (
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Reads the Role of an Kubernetes from a Vault server. See the [Vault

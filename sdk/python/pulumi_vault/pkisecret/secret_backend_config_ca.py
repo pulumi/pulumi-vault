@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['SecretBackendConfigCaArgs', 'SecretBackendConfigCa']
 
@@ -45,6 +45,46 @@ class SecretBackendConfigCaArgs:
 
     @pem_bundle.setter
     def pem_bundle(self, value: pulumi.Input[str]):
+        pulumi.set(self, "pem_bundle", value)
+
+
+@pulumi.input_type
+class _SecretBackendConfigCaState:
+    def __init__(__self__, *,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 pem_bundle: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering SecretBackendConfigCa resources.
+        :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
+        :param pulumi.Input[str] pem_bundle: The key and certificate PEM bundle
+        """
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if pem_bundle is not None:
+            pulumi.set(__self__, "pem_bundle", pem_bundle)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The PKI secret backend the resource belongs to.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="pemBundle")
+    def pem_bundle(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key and certificate PEM bundle
+        """
+        return pulumi.get(self, "pem_bundle")
+
+    @pem_bundle.setter
+    def pem_bundle(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "pem_bundle", value)
 
 
@@ -108,14 +148,14 @@ class SecretBackendConfigCa(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SecretBackendConfigCaArgs.__new__(SecretBackendConfigCaArgs)
 
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
-            __props__['backend'] = backend
+            __props__.__dict__["backend"] = backend
             if pem_bundle is None and not opts.urn:
                 raise TypeError("Missing required property 'pem_bundle'")
-            __props__['pem_bundle'] = pem_bundle
+            __props__.__dict__["pem_bundle"] = pem_bundle
         super(SecretBackendConfigCa, __self__).__init__(
             'vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa',
             resource_name,
@@ -140,10 +180,10 @@ class SecretBackendConfigCa(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SecretBackendConfigCaState.__new__(_SecretBackendConfigCaState)
 
-        __props__["backend"] = backend
-        __props__["pem_bundle"] = pem_bundle
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["pem_bundle"] = pem_bundle
         return SecretBackendConfigCa(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -161,10 +201,4 @@ class SecretBackendConfigCa(pulumi.CustomResource):
         The key and certificate PEM bundle
         """
         return pulumi.get(self, "pem_bundle")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

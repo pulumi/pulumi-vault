@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['RgpPolicyArgs', 'RgpPolicy']
 
@@ -62,6 +62,62 @@ class RgpPolicyArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class _RgpPolicyState:
+    def __init__(__self__, *,
+                 enforcement_level: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 policy: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering RgpPolicy resources.
+        :param pulumi.Input[str] enforcement_level: Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
+        :param pulumi.Input[str] name: The name of the policy
+        :param pulumi.Input[str] policy: String containing a Sentinel policy
+        """
+        if enforcement_level is not None:
+            pulumi.set(__self__, "enforcement_level", enforcement_level)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
+
+    @property
+    @pulumi.getter(name="enforcementLevel")
+    def enforcement_level(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
+        """
+        return pulumi.get(self, "enforcement_level")
+
+    @enforcement_level.setter
+    def enforcement_level(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "enforcement_level", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the policy
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        String containing a Sentinel policy
+        """
+        return pulumi.get(self, "policy")
+
+    @policy.setter
+    def policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "policy", value)
 
 
 class RgpPolicy(pulumi.CustomResource):
@@ -163,15 +219,15 @@ class RgpPolicy(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = RgpPolicyArgs.__new__(RgpPolicyArgs)
 
             if enforcement_level is None and not opts.urn:
                 raise TypeError("Missing required property 'enforcement_level'")
-            __props__['enforcement_level'] = enforcement_level
-            __props__['name'] = name
+            __props__.__dict__["enforcement_level"] = enforcement_level
+            __props__.__dict__["name"] = name
             if policy is None and not opts.urn:
                 raise TypeError("Missing required property 'policy'")
-            __props__['policy'] = policy
+            __props__.__dict__["policy"] = policy
         super(RgpPolicy, __self__).__init__(
             'vault:index/rgpPolicy:RgpPolicy',
             resource_name,
@@ -198,11 +254,11 @@ class RgpPolicy(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _RgpPolicyState.__new__(_RgpPolicyState)
 
-        __props__["enforcement_level"] = enforcement_level
-        __props__["name"] = name
-        __props__["policy"] = policy
+        __props__.__dict__["enforcement_level"] = enforcement_level
+        __props__.__dict__["name"] = name
+        __props__.__dict__["policy"] = policy
         return RgpPolicy(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -228,10 +284,4 @@ class RgpPolicy(pulumi.CustomResource):
         String containing a Sentinel policy
         """
         return pulumi.get(self, "policy")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

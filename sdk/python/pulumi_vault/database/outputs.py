@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = [
     'SecretBackendConnectionCassandra',
@@ -25,6 +25,31 @@ __all__ = [
 
 @pulumi.output_type
 class SecretBackendConnectionCassandra(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectTimeout":
+            suggest = "connect_timeout"
+        elif key == "insecureTls":
+            suggest = "insecure_tls"
+        elif key == "pemBundle":
+            suggest = "pem_bundle"
+        elif key == "pemJson":
+            suggest = "pem_json"
+        elif key == "protocolVersion":
+            suggest = "protocol_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionCassandra. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretBackendConnectionCassandra.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretBackendConnectionCassandra.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  connect_timeout: Optional[int] = None,
                  hosts: Optional[Sequence[str]] = None,
@@ -157,9 +182,6 @@ class SecretBackendConnectionCassandra(dict):
         """
         return pulumi.get(self, "username")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class SecretBackendConnectionElasticsearch(dict):
@@ -202,12 +224,32 @@ class SecretBackendConnectionElasticsearch(dict):
         """
         return pulumi.get(self, "username")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class SecretBackendConnectionHana(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionHana. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretBackendConnectionHana.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretBackendConnectionHana.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
@@ -271,13 +313,33 @@ class SecretBackendConnectionHana(dict):
         use.
         """
         return pulumi.get(self, "max_open_connections")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class SecretBackendConnectionMongodb(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionMongodb. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretBackendConnectionMongodb.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretBackendConnectionMongodb.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
@@ -342,12 +404,30 @@ class SecretBackendConnectionMongodb(dict):
         """
         return pulumi.get(self, "max_open_connections")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class SecretBackendConnectionMongodbatlas(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "privateKey":
+            suggest = "private_key"
+        elif key == "projectId":
+            suggest = "project_id"
+        elif key == "publicKey":
+            suggest = "public_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionMongodbatlas. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretBackendConnectionMongodbatlas.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretBackendConnectionMongodbatlas.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  private_key: str,
                  project_id: str,
@@ -371,12 +451,32 @@ class SecretBackendConnectionMongodbatlas(dict):
     def public_key(self) -> str:
         return pulumi.get(self, "public_key")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class SecretBackendConnectionMssql(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionMssql. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretBackendConnectionMssql.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretBackendConnectionMssql.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
@@ -440,13 +540,33 @@ class SecretBackendConnectionMssql(dict):
         use.
         """
         return pulumi.get(self, "max_open_connections")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class SecretBackendConnectionMysql(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionMysql. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretBackendConnectionMysql.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretBackendConnectionMysql.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
@@ -510,13 +630,33 @@ class SecretBackendConnectionMysql(dict):
         use.
         """
         return pulumi.get(self, "max_open_connections")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class SecretBackendConnectionMysqlAurora(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionMysqlAurora. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretBackendConnectionMysqlAurora.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretBackendConnectionMysqlAurora.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
@@ -580,13 +720,33 @@ class SecretBackendConnectionMysqlAurora(dict):
         use.
         """
         return pulumi.get(self, "max_open_connections")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class SecretBackendConnectionMysqlLegacy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionMysqlLegacy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretBackendConnectionMysqlLegacy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretBackendConnectionMysqlLegacy.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
@@ -650,13 +810,33 @@ class SecretBackendConnectionMysqlLegacy(dict):
         use.
         """
         return pulumi.get(self, "max_open_connections")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class SecretBackendConnectionMysqlRds(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionMysqlRds. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretBackendConnectionMysqlRds.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretBackendConnectionMysqlRds.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
@@ -720,13 +900,33 @@ class SecretBackendConnectionMysqlRds(dict):
         use.
         """
         return pulumi.get(self, "max_open_connections")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class SecretBackendConnectionOracle(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionOracle. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretBackendConnectionOracle.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretBackendConnectionOracle.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
@@ -790,13 +990,33 @@ class SecretBackendConnectionOracle(dict):
         use.
         """
         return pulumi.get(self, "max_open_connections")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
 class SecretBackendConnectionPostgresql(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionPostgresql. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretBackendConnectionPostgresql.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretBackendConnectionPostgresql.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
@@ -860,8 +1080,5 @@ class SecretBackendConnectionPostgresql(dict):
         use.
         """
         return pulumi.get(self, "max_open_connections")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

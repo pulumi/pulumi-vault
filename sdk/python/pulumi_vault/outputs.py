@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 from . import outputs
 
 __all__ = [
@@ -21,6 +21,37 @@ __all__ = [
 
 @pulumi.output_type
 class AuthBackendTune(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedResponseHeaders":
+            suggest = "allowed_response_headers"
+        elif key == "auditNonHmacRequestKeys":
+            suggest = "audit_non_hmac_request_keys"
+        elif key == "auditNonHmacResponseKeys":
+            suggest = "audit_non_hmac_response_keys"
+        elif key == "defaultLeaseTtl":
+            suggest = "default_lease_ttl"
+        elif key == "listingVisibility":
+            suggest = "listing_visibility"
+        elif key == "maxLeaseTtl":
+            suggest = "max_lease_ttl"
+        elif key == "passthroughRequestHeaders":
+            suggest = "passthrough_request_headers"
+        elif key == "tokenType":
+            suggest = "token_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AuthBackendTune. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AuthBackendTune.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AuthBackendTune.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  allowed_response_headers: Optional[Sequence[str]] = None,
                  audit_non_hmac_request_keys: Optional[Sequence[str]] = None,
@@ -141,9 +172,6 @@ class AuthBackendTune(dict):
         """
         return pulumi.get(self, "token_type")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ProviderAuthLogin(dict):
@@ -172,12 +200,28 @@ class ProviderAuthLogin(dict):
     def parameters(self) -> Optional[Mapping[str, str]]:
         return pulumi.get(self, "parameters")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ProviderClientAuth(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "certFile":
+            suggest = "cert_file"
+        elif key == "keyFile":
+            suggest = "key_file"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProviderClientAuth. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProviderClientAuth.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProviderClientAuth.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  cert_file: str,
                  key_file: str):
@@ -193,9 +237,6 @@ class ProviderClientAuth(dict):
     @pulumi.getter(name="keyFile")
     def key_file(self) -> str:
         return pulumi.get(self, "key_file")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -215,9 +256,6 @@ class ProviderHeader(dict):
     @pulumi.getter
     def value(self) -> str:
         return pulumi.get(self, "value")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type

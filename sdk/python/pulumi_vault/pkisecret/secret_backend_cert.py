@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['SecretBackendCertArgs', 'SecretBackendCert']
 
@@ -224,6 +224,334 @@ class SecretBackendCertArgs:
         pulumi.set(self, "uri_sans", value)
 
 
+@pulumi.input_type
+class _SecretBackendCertState:
+    def __init__(__self__, *,
+                 alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 auto_renew: Optional[pulumi.Input[bool]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 ca_chain: Optional[pulumi.Input[str]] = None,
+                 certificate: Optional[pulumi.Input[str]] = None,
+                 common_name: Optional[pulumi.Input[str]] = None,
+                 exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
+                 expiration: Optional[pulumi.Input[int]] = None,
+                 format: Optional[pulumi.Input[str]] = None,
+                 ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 issuing_ca: Optional[pulumi.Input[str]] = None,
+                 min_seconds_remaining: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 private_key: Optional[pulumi.Input[str]] = None,
+                 private_key_format: Optional[pulumi.Input[str]] = None,
+                 private_key_type: Optional[pulumi.Input[str]] = None,
+                 serial_number: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[str]] = None,
+                 uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        Input properties used for looking up and filtering SecretBackendCert resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
+        :param pulumi.Input[bool] auto_renew: If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+        :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
+        :param pulumi.Input[str] ca_chain: The CA chain
+        :param pulumi.Input[str] certificate: The certificate
+        :param pulumi.Input[str] common_name: CN of certificate to create
+        :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
+        :param pulumi.Input[int] expiration: The expiration date of the certificate in unix epoch format
+        :param pulumi.Input[str] format: The format of data
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
+        :param pulumi.Input[str] issuing_ca: The issuing CA
+        :param pulumi.Input[int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
+        :param pulumi.Input[str] name: Name of the role to create the certificate against
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
+        :param pulumi.Input[str] private_key: The private key
+        :param pulumi.Input[str] private_key_format: The private key format
+        :param pulumi.Input[str] private_key_type: The private key type
+        :param pulumi.Input[str] serial_number: The serial number
+        :param pulumi.Input[str] ttl: Time to live
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
+        """
+        if alt_names is not None:
+            pulumi.set(__self__, "alt_names", alt_names)
+        if auto_renew is not None:
+            pulumi.set(__self__, "auto_renew", auto_renew)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if ca_chain is not None:
+            pulumi.set(__self__, "ca_chain", ca_chain)
+        if certificate is not None:
+            pulumi.set(__self__, "certificate", certificate)
+        if common_name is not None:
+            pulumi.set(__self__, "common_name", common_name)
+        if exclude_cn_from_sans is not None:
+            pulumi.set(__self__, "exclude_cn_from_sans", exclude_cn_from_sans)
+        if expiration is not None:
+            pulumi.set(__self__, "expiration", expiration)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if ip_sans is not None:
+            pulumi.set(__self__, "ip_sans", ip_sans)
+        if issuing_ca is not None:
+            pulumi.set(__self__, "issuing_ca", issuing_ca)
+        if min_seconds_remaining is not None:
+            pulumi.set(__self__, "min_seconds_remaining", min_seconds_remaining)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if other_sans is not None:
+            pulumi.set(__self__, "other_sans", other_sans)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_format is not None:
+            pulumi.set(__self__, "private_key_format", private_key_format)
+        if private_key_type is not None:
+            pulumi.set(__self__, "private_key_type", private_key_type)
+        if serial_number is not None:
+            pulumi.set(__self__, "serial_number", serial_number)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+        if uri_sans is not None:
+            pulumi.set(__self__, "uri_sans", uri_sans)
+
+    @property
+    @pulumi.getter(name="altNames")
+    def alt_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of alternative names
+        """
+        return pulumi.get(self, "alt_names")
+
+    @alt_names.setter
+    def alt_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "alt_names", value)
+
+    @property
+    @pulumi.getter(name="autoRenew")
+    def auto_renew(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+        """
+        return pulumi.get(self, "auto_renew")
+
+    @auto_renew.setter
+    def auto_renew(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "auto_renew", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The PKI secret backend the resource belongs to.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="caChain")
+    def ca_chain(self) -> Optional[pulumi.Input[str]]:
+        """
+        The CA chain
+        """
+        return pulumi.get(self, "ca_chain")
+
+    @ca_chain.setter
+    def ca_chain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_chain", value)
+
+    @property
+    @pulumi.getter
+    def certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        The certificate
+        """
+        return pulumi.get(self, "certificate")
+
+    @certificate.setter
+    def certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "certificate", value)
+
+    @property
+    @pulumi.getter(name="commonName")
+    def common_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        CN of certificate to create
+        """
+        return pulumi.get(self, "common_name")
+
+    @common_name.setter
+    def common_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "common_name", value)
+
+    @property
+    @pulumi.getter(name="excludeCnFromSans")
+    def exclude_cn_from_sans(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to exclude CN from SANs
+        """
+        return pulumi.get(self, "exclude_cn_from_sans")
+
+    @exclude_cn_from_sans.setter
+    def exclude_cn_from_sans(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "exclude_cn_from_sans", value)
+
+    @property
+    @pulumi.getter
+    def expiration(self) -> Optional[pulumi.Input[int]]:
+        """
+        The expiration date of the certificate in unix epoch format
+        """
+        return pulumi.get(self, "expiration")
+
+    @expiration.setter
+    def expiration(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "expiration", value)
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[pulumi.Input[str]]:
+        """
+        The format of data
+        """
+        return pulumi.get(self, "format")
+
+    @format.setter
+    def format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter(name="ipSans")
+    def ip_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of alternative IPs
+        """
+        return pulumi.get(self, "ip_sans")
+
+    @ip_sans.setter
+    def ip_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ip_sans", value)
+
+    @property
+    @pulumi.getter(name="issuingCa")
+    def issuing_ca(self) -> Optional[pulumi.Input[str]]:
+        """
+        The issuing CA
+        """
+        return pulumi.get(self, "issuing_ca")
+
+    @issuing_ca.setter
+    def issuing_ca(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "issuing_ca", value)
+
+    @property
+    @pulumi.getter(name="minSecondsRemaining")
+    def min_seconds_remaining(self) -> Optional[pulumi.Input[int]]:
+        """
+        Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
+        """
+        return pulumi.get(self, "min_seconds_remaining")
+
+    @min_seconds_remaining.setter
+    def min_seconds_remaining(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min_seconds_remaining", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the role to create the certificate against
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="otherSans")
+    def other_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of other SANs
+        """
+        return pulumi.get(self, "other_sans")
+
+    @other_sans.setter
+    def other_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "other_sans", value)
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private key
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key", value)
+
+    @property
+    @pulumi.getter(name="privateKeyFormat")
+    def private_key_format(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private key format
+        """
+        return pulumi.get(self, "private_key_format")
+
+    @private_key_format.setter
+    def private_key_format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key_format", value)
+
+    @property
+    @pulumi.getter(name="privateKeyType")
+    def private_key_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private key type
+        """
+        return pulumi.get(self, "private_key_type")
+
+    @private_key_type.setter
+    def private_key_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key_type", value)
+
+    @property
+    @pulumi.getter(name="serialNumber")
+    def serial_number(self) -> Optional[pulumi.Input[str]]:
+        """
+        The serial number
+        """
+        return pulumi.get(self, "serial_number")
+
+    @serial_number.setter
+    def serial_number(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "serial_number", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        Time to live
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ttl", value)
+
+    @property
+    @pulumi.getter(name="uriSans")
+    def uri_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of alternative URIs
+        """
+        return pulumi.get(self, "uri_sans")
+
+    @uri_sans.setter
+    def uri_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "uri_sans", value)
+
+
 class SecretBackendCert(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -317,32 +645,32 @@ class SecretBackendCert(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SecretBackendCertArgs.__new__(SecretBackendCertArgs)
 
-            __props__['alt_names'] = alt_names
-            __props__['auto_renew'] = auto_renew
+            __props__.__dict__["alt_names"] = alt_names
+            __props__.__dict__["auto_renew"] = auto_renew
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
-            __props__['backend'] = backend
+            __props__.__dict__["backend"] = backend
             if common_name is None and not opts.urn:
                 raise TypeError("Missing required property 'common_name'")
-            __props__['common_name'] = common_name
-            __props__['exclude_cn_from_sans'] = exclude_cn_from_sans
-            __props__['format'] = format
-            __props__['ip_sans'] = ip_sans
-            __props__['min_seconds_remaining'] = min_seconds_remaining
-            __props__['name'] = name
-            __props__['other_sans'] = other_sans
-            __props__['private_key_format'] = private_key_format
-            __props__['ttl'] = ttl
-            __props__['uri_sans'] = uri_sans
-            __props__['ca_chain'] = None
-            __props__['certificate'] = None
-            __props__['expiration'] = None
-            __props__['issuing_ca'] = None
-            __props__['private_key'] = None
-            __props__['private_key_type'] = None
-            __props__['serial_number'] = None
+            __props__.__dict__["common_name"] = common_name
+            __props__.__dict__["exclude_cn_from_sans"] = exclude_cn_from_sans
+            __props__.__dict__["format"] = format
+            __props__.__dict__["ip_sans"] = ip_sans
+            __props__.__dict__["min_seconds_remaining"] = min_seconds_remaining
+            __props__.__dict__["name"] = name
+            __props__.__dict__["other_sans"] = other_sans
+            __props__.__dict__["private_key_format"] = private_key_format
+            __props__.__dict__["ttl"] = ttl
+            __props__.__dict__["uri_sans"] = uri_sans
+            __props__.__dict__["ca_chain"] = None
+            __props__.__dict__["certificate"] = None
+            __props__.__dict__["expiration"] = None
+            __props__.__dict__["issuing_ca"] = None
+            __props__.__dict__["private_key"] = None
+            __props__.__dict__["private_key_type"] = None
+            __props__.__dict__["serial_number"] = None
         super(SecretBackendCert, __self__).__init__(
             'vault:pkiSecret/secretBackendCert:SecretBackendCert',
             resource_name,
@@ -403,28 +731,28 @@ class SecretBackendCert(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SecretBackendCertState.__new__(_SecretBackendCertState)
 
-        __props__["alt_names"] = alt_names
-        __props__["auto_renew"] = auto_renew
-        __props__["backend"] = backend
-        __props__["ca_chain"] = ca_chain
-        __props__["certificate"] = certificate
-        __props__["common_name"] = common_name
-        __props__["exclude_cn_from_sans"] = exclude_cn_from_sans
-        __props__["expiration"] = expiration
-        __props__["format"] = format
-        __props__["ip_sans"] = ip_sans
-        __props__["issuing_ca"] = issuing_ca
-        __props__["min_seconds_remaining"] = min_seconds_remaining
-        __props__["name"] = name
-        __props__["other_sans"] = other_sans
-        __props__["private_key"] = private_key
-        __props__["private_key_format"] = private_key_format
-        __props__["private_key_type"] = private_key_type
-        __props__["serial_number"] = serial_number
-        __props__["ttl"] = ttl
-        __props__["uri_sans"] = uri_sans
+        __props__.__dict__["alt_names"] = alt_names
+        __props__.__dict__["auto_renew"] = auto_renew
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["ca_chain"] = ca_chain
+        __props__.__dict__["certificate"] = certificate
+        __props__.__dict__["common_name"] = common_name
+        __props__.__dict__["exclude_cn_from_sans"] = exclude_cn_from_sans
+        __props__.__dict__["expiration"] = expiration
+        __props__.__dict__["format"] = format
+        __props__.__dict__["ip_sans"] = ip_sans
+        __props__.__dict__["issuing_ca"] = issuing_ca
+        __props__.__dict__["min_seconds_remaining"] = min_seconds_remaining
+        __props__.__dict__["name"] = name
+        __props__.__dict__["other_sans"] = other_sans
+        __props__.__dict__["private_key"] = private_key
+        __props__.__dict__["private_key_format"] = private_key_format
+        __props__.__dict__["private_key_type"] = private_key_type
+        __props__.__dict__["serial_number"] = serial_number
+        __props__.__dict__["ttl"] = ttl
+        __props__.__dict__["uri_sans"] = uri_sans
         return SecretBackendCert(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -586,10 +914,4 @@ class SecretBackendCert(pulumi.CustomResource):
         List of alternative URIs
         """
         return pulumi.get(self, "uri_sans")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

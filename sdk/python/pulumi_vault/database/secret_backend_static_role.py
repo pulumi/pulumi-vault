@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['SecretBackendStaticRoleArgs', 'SecretBackendStaticRole']
 
@@ -108,6 +108,110 @@ class SecretBackendStaticRoleArgs:
     @rotation_statements.setter
     def rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "rotation_statements", value)
+
+
+@pulumi.input_type
+class _SecretBackendStaticRoleState:
+    def __init__(__self__, *,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 db_name: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering SecretBackendStaticRole resources.
+        :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
+        :param pulumi.Input[str] db_name: The unique name of the database connection to use for the static role.
+        :param pulumi.Input[str] name: A unique name to give the static role.
+        :param pulumi.Input[int] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
+        :param pulumi.Input[str] username: The database username that this static role corresponds to.
+        """
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if db_name is not None:
+            pulumi.set(__self__, "db_name", db_name)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_statements is not None:
+            pulumi.set(__self__, "rotation_statements", rotation_statements)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique name of the Vault mount to configure.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="dbName")
+    def db_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique name of the database connection to use for the static role.
+        """
+        return pulumi.get(self, "db_name")
+
+    @db_name.setter
+    def db_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "db_name", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        A unique name to give the static role.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time Vault should wait before rotating the password, in seconds.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationStatements")
+    def rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Database statements to execute to rotate the password for the configured database user.
+        """
+        return pulumi.get(self, "rotation_statements")
+
+    @rotation_statements.setter
+    def rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "rotation_statements", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The database username that this static role corresponds to.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
 
 
 class SecretBackendStaticRole(pulumi.CustomResource):
@@ -250,22 +354,22 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SecretBackendStaticRoleArgs.__new__(SecretBackendStaticRoleArgs)
 
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
-            __props__['backend'] = backend
+            __props__.__dict__["backend"] = backend
             if db_name is None and not opts.urn:
                 raise TypeError("Missing required property 'db_name'")
-            __props__['db_name'] = db_name
-            __props__['name'] = name
+            __props__.__dict__["db_name"] = db_name
+            __props__.__dict__["name"] = name
             if rotation_period is None and not opts.urn:
                 raise TypeError("Missing required property 'rotation_period'")
-            __props__['rotation_period'] = rotation_period
-            __props__['rotation_statements'] = rotation_statements
+            __props__.__dict__["rotation_period"] = rotation_period
+            __props__.__dict__["rotation_statements"] = rotation_statements
             if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
-            __props__['username'] = username
+            __props__.__dict__["username"] = username
         super(SecretBackendStaticRole, __self__).__init__(
             'vault:database/secretBackendStaticRole:SecretBackendStaticRole',
             resource_name,
@@ -298,14 +402,14 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SecretBackendStaticRoleState.__new__(_SecretBackendStaticRoleState)
 
-        __props__["backend"] = backend
-        __props__["db_name"] = db_name
-        __props__["name"] = name
-        __props__["rotation_period"] = rotation_period
-        __props__["rotation_statements"] = rotation_statements
-        __props__["username"] = username
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["db_name"] = db_name
+        __props__.__dict__["name"] = name
+        __props__.__dict__["rotation_period"] = rotation_period
+        __props__.__dict__["rotation_statements"] = rotation_statements
+        __props__.__dict__["username"] = username
         return SecretBackendStaticRole(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -355,10 +459,4 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         The database username that this static role corresponds to.
         """
         return pulumi.get(self, "username")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

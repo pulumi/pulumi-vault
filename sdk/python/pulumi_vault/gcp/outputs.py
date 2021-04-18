@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = [
     'SecretRolesetBinding',
@@ -39,8 +39,5 @@ class SecretRolesetBinding(dict):
         List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
         """
         return pulumi.get(self, "roles")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

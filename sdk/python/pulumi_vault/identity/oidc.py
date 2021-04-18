@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['OidcArgs', 'Oidc']
 
@@ -16,6 +16,36 @@ class OidcArgs:
                  issuer: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Oidc resource.
+        :param pulumi.Input[str] issuer: Issuer URL to be used in the iss claim of the token. If not set, Vault's
+               `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
+               scheme, host, and optionally, port number and path components, but no query or fragment
+               components.
+        """
+        if issuer is not None:
+            pulumi.set(__self__, "issuer", issuer)
+
+    @property
+    @pulumi.getter
+    def issuer(self) -> Optional[pulumi.Input[str]]:
+        """
+        Issuer URL to be used in the iss claim of the token. If not set, Vault's
+        `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
+        scheme, host, and optionally, port number and path components, but no query or fragment
+        components.
+        """
+        return pulumi.get(self, "issuer")
+
+    @issuer.setter
+    def issuer(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "issuer", value)
+
+
+@pulumi.input_type
+class _OidcState:
+    def __init__(__self__, *,
+                 issuer: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Oidc resources.
         :param pulumi.Input[str] issuer: Issuer URL to be used in the iss claim of the token. If not set, Vault's
                `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
                scheme, host, and optionally, port number and path components, but no query or fragment
@@ -130,9 +160,9 @@ class Oidc(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = OidcArgs.__new__(OidcArgs)
 
-            __props__['issuer'] = issuer
+            __props__.__dict__["issuer"] = issuer
         super(Oidc, __self__).__init__(
             'vault:identity/oidc:Oidc',
             resource_name,
@@ -158,9 +188,9 @@ class Oidc(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _OidcState.__new__(_OidcState)
 
-        __props__["issuer"] = issuer
+        __props__.__dict__["issuer"] = issuer
         return Oidc(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -173,10 +203,4 @@ class Oidc(pulumi.CustomResource):
         components.
         """
         return pulumi.get(self, "issuer")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

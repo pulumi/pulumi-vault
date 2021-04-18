@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['AuthBackendRoleArgs', 'AuthBackendRole']
 
@@ -437,6 +437,434 @@ class AuthBackendRoleArgs:
         pulumi.set(self, "ttl", value)
 
 
+@pulumi.input_type
+class _AuthBackendRoleState:
+    def __init__(__self__, *,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 bound_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_locations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_resource_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_scale_sets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_service_principal_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_subscription_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 max_ttl: Optional[pulumi.Input[int]] = None,
+                 period: Optional[pulumi.Input[int]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+                 token_num_uses: Optional[pulumi.Input[int]] = None,
+                 token_period: Optional[pulumi.Input[int]] = None,
+                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_ttl: Optional[pulumi.Input[int]] = None,
+                 token_type: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None):
+        """
+        Input properties used for looking up and filtering AuthBackendRole resources.
+        :param pulumi.Input[str] backend: Unique name of the auth backend to configure.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_group_ids: If set, defines a constraint on the groups
+               that can perform the login operation that they should be using the group
+               ID specified by this field.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_locations: If set, defines a constraint on the virtual machines
+               that can perform the login operation that the location in their identity
+               document must match the one specified by this field.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_resource_groups: If set, defines a constraint on the virtual
+               machiness that can perform the login operation that they be associated with
+               the resource group that matches the value specified by this field.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_scale_sets: If set, defines a constraint on the virtual
+               machines that can perform the login operation that they must match the scale set
+               specified by this field.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_principal_ids: If set, defines a constraint on the
+               service principals that can perform the login operation that they should be possess
+               the ids specified by this field.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_subscription_ids: If set, defines a constraint on the subscriptions
+               that can perform the login operation to ones which  matches the value specified by this
+               field.
+        :param pulumi.Input[int] max_ttl: The maximum allowed lifetime of tokens
+               issued using this role, provided as a number of seconds.
+        :param pulumi.Input[int] period: If set, indicates that the
+               token generated using this role should never expire. The token should be renewed within the
+               duration specified by this value. At each renewal, the token's TTL will be set to the
+               value of this field. Specified in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings
+               specifying the policies to be set on tokens issued using this role.
+        :param pulumi.Input[str] role: The name of the role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
+               addresses which can authenticate successfully, and ties the resulting token to these blocks
+               as well.
+        :param pulumi.Input[int] token_explicit_max_ttl: If set, will encode an
+               [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+               onto the token in number of seconds. This is a hard cap even if `token_ttl` and
+               `token_max_ttl` would otherwise allow a renewal.
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime for generated tokens in number of seconds.
+               Its current value will be referenced at renewal time.
+        :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
+               generated tokens; otherwise it will be added to the policies set in token_policies.
+        :param pulumi.Input[int] token_num_uses: The
+               [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+               if any, in number of seconds to set on the token.
+        :param pulumi.Input[int] token_period: If set, indicates that the
+               token generated using this role should never expire. The token should be renewed within the
+               duration specified by this value. At each renewal, the token's TTL will be set to the
+               value of this field. Specified in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
+               on the auth method, this list may be supplemented by user/group/other values.
+        :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
+               Its current value will be referenced at renewal time.
+        :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
+               `batch`, or `default` to use the mount's tuned default (which unless changed will be
+               `service` tokens). For token store roles, there are two additional possibilities:
+               `default-service` and `default-batch` which specify the type to return unless the client
+               requests a different type at generation time.
+        :param pulumi.Input[int] ttl: The TTL period of tokens issued
+               using this role, provided as a number of seconds.
+        """
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if bound_group_ids is not None:
+            pulumi.set(__self__, "bound_group_ids", bound_group_ids)
+        if bound_locations is not None:
+            pulumi.set(__self__, "bound_locations", bound_locations)
+        if bound_resource_groups is not None:
+            pulumi.set(__self__, "bound_resource_groups", bound_resource_groups)
+        if bound_scale_sets is not None:
+            pulumi.set(__self__, "bound_scale_sets", bound_scale_sets)
+        if bound_service_principal_ids is not None:
+            pulumi.set(__self__, "bound_service_principal_ids", bound_service_principal_ids)
+        if bound_subscription_ids is not None:
+            pulumi.set(__self__, "bound_subscription_ids", bound_subscription_ids)
+        if max_ttl is not None:
+            warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
+            pulumi.log.warn("""max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2""")
+        if max_ttl is not None:
+            pulumi.set(__self__, "max_ttl", max_ttl)
+        if period is not None:
+            warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
+            pulumi.log.warn("""period is deprecated: use `token_period` instead if you are running Vault >= 1.2""")
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if policies is not None:
+            warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
+            pulumi.log.warn("""policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2""")
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if token_bound_cidrs is not None:
+            pulumi.set(__self__, "token_bound_cidrs", token_bound_cidrs)
+        if token_explicit_max_ttl is not None:
+            pulumi.set(__self__, "token_explicit_max_ttl", token_explicit_max_ttl)
+        if token_max_ttl is not None:
+            pulumi.set(__self__, "token_max_ttl", token_max_ttl)
+        if token_no_default_policy is not None:
+            pulumi.set(__self__, "token_no_default_policy", token_no_default_policy)
+        if token_num_uses is not None:
+            pulumi.set(__self__, "token_num_uses", token_num_uses)
+        if token_period is not None:
+            pulumi.set(__self__, "token_period", token_period)
+        if token_policies is not None:
+            pulumi.set(__self__, "token_policies", token_policies)
+        if token_ttl is not None:
+            pulumi.set(__self__, "token_ttl", token_ttl)
+        if token_type is not None:
+            pulumi.set(__self__, "token_type", token_type)
+        if ttl is not None:
+            warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
+            pulumi.log.warn("""ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2""")
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique name of the auth backend to configure.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="boundGroupIds")
+    def bound_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If set, defines a constraint on the groups
+        that can perform the login operation that they should be using the group
+        ID specified by this field.
+        """
+        return pulumi.get(self, "bound_group_ids")
+
+    @bound_group_ids.setter
+    def bound_group_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_group_ids", value)
+
+    @property
+    @pulumi.getter(name="boundLocations")
+    def bound_locations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If set, defines a constraint on the virtual machines
+        that can perform the login operation that the location in their identity
+        document must match the one specified by this field.
+        """
+        return pulumi.get(self, "bound_locations")
+
+    @bound_locations.setter
+    def bound_locations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_locations", value)
+
+    @property
+    @pulumi.getter(name="boundResourceGroups")
+    def bound_resource_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If set, defines a constraint on the virtual
+        machiness that can perform the login operation that they be associated with
+        the resource group that matches the value specified by this field.
+        """
+        return pulumi.get(self, "bound_resource_groups")
+
+    @bound_resource_groups.setter
+    def bound_resource_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_resource_groups", value)
+
+    @property
+    @pulumi.getter(name="boundScaleSets")
+    def bound_scale_sets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If set, defines a constraint on the virtual
+        machines that can perform the login operation that they must match the scale set
+        specified by this field.
+        """
+        return pulumi.get(self, "bound_scale_sets")
+
+    @bound_scale_sets.setter
+    def bound_scale_sets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_scale_sets", value)
+
+    @property
+    @pulumi.getter(name="boundServicePrincipalIds")
+    def bound_service_principal_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If set, defines a constraint on the
+        service principals that can perform the login operation that they should be possess
+        the ids specified by this field.
+        """
+        return pulumi.get(self, "bound_service_principal_ids")
+
+    @bound_service_principal_ids.setter
+    def bound_service_principal_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_service_principal_ids", value)
+
+    @property
+    @pulumi.getter(name="boundSubscriptionIds")
+    def bound_subscription_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If set, defines a constraint on the subscriptions
+        that can perform the login operation to ones which  matches the value specified by this
+        field.
+        """
+        return pulumi.get(self, "bound_subscription_ids")
+
+    @bound_subscription_ids.setter
+    def bound_subscription_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_subscription_ids", value)
+
+    @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum allowed lifetime of tokens
+        issued using this role, provided as a number of seconds.
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @max_ttl.setter
+    def max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_ttl", value)
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[pulumi.Input[int]]:
+        """
+        If set, indicates that the
+        token generated using this role should never expire. The token should be renewed within the
+        duration specified by this value. At each renewal, the token's TTL will be set to the
+        value of this field. Specified in seconds.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "period", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        An array of strings
+        specifying the policies to be set on tokens issued using this role.
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the role.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter(name="tokenBoundCidrs")
+    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of CIDR blocks; if set, specifies blocks of IP
+        addresses which can authenticate successfully, and ties the resulting token to these blocks
+        as well.
+        """
+        return pulumi.get(self, "token_bound_cidrs")
+
+    @token_bound_cidrs.setter
+    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "token_bound_cidrs", value)
+
+    @property
+    @pulumi.getter(name="tokenExplicitMaxTtl")
+    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        If set, will encode an
+        [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+        onto the token in number of seconds. This is a hard cap even if `token_ttl` and
+        `token_max_ttl` would otherwise allow a renewal.
+        """
+        return pulumi.get(self, "token_explicit_max_ttl")
+
+    @token_explicit_max_ttl.setter
+    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_explicit_max_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenMaxTtl")
+    def token_max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum lifetime for generated tokens in number of seconds.
+        Its current value will be referenced at renewal time.
+        """
+        return pulumi.get(self, "token_max_ttl")
+
+    @token_max_ttl.setter
+    def token_max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_max_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenNoDefaultPolicy")
+    def token_no_default_policy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, the default policy will not be set on
+        generated tokens; otherwise it will be added to the policies set in token_policies.
+        """
+        return pulumi.get(self, "token_no_default_policy")
+
+    @token_no_default_policy.setter
+    def token_no_default_policy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "token_no_default_policy", value)
+
+    @property
+    @pulumi.getter(name="tokenNumUses")
+    def token_num_uses(self) -> Optional[pulumi.Input[int]]:
+        """
+        The
+        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+        if any, in number of seconds to set on the token.
+        """
+        return pulumi.get(self, "token_num_uses")
+
+    @token_num_uses.setter
+    def token_num_uses(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_num_uses", value)
+
+    @property
+    @pulumi.getter(name="tokenPeriod")
+    def token_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        If set, indicates that the
+        token generated using this role should never expire. The token should be renewed within the
+        duration specified by this value. At each renewal, the token's TTL will be set to the
+        value of this field. Specified in seconds.
+        """
+        return pulumi.get(self, "token_period")
+
+    @token_period.setter
+    def token_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_period", value)
+
+    @property
+    @pulumi.getter(name="tokenPolicies")
+    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of policies to encode onto generated tokens. Depending
+        on the auth method, this list may be supplemented by user/group/other values.
+        """
+        return pulumi.get(self, "token_policies")
+
+    @token_policies.setter
+    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "token_policies", value)
+
+    @property
+    @pulumi.getter(name="tokenTtl")
+    def token_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The incremental lifetime for generated tokens in number of seconds.
+        Its current value will be referenced at renewal time.
+        """
+        return pulumi.get(self, "token_ttl")
+
+    @token_ttl.setter
+    def token_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenType")
+    def token_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of token that should be generated. Can be `service`,
+        `batch`, or `default` to use the mount's tuned default (which unless changed will be
+        `service` tokens). For token store roles, there are two additional possibilities:
+        `default-service` and `default-batch` which specify the type to return unless the client
+        requests a different type at generation time.
+        """
+        return pulumi.get(self, "token_type")
+
+    @token_type.setter
+    def token_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token_type", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The TTL period of tokens issued
+        using this role, provided as a number of seconds.
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ttl", value)
+
+
 class AuthBackendRole(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -658,43 +1086,43 @@ class AuthBackendRole(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = AuthBackendRoleArgs.__new__(AuthBackendRoleArgs)
 
-            __props__['backend'] = backend
-            __props__['bound_group_ids'] = bound_group_ids
-            __props__['bound_locations'] = bound_locations
-            __props__['bound_resource_groups'] = bound_resource_groups
-            __props__['bound_scale_sets'] = bound_scale_sets
-            __props__['bound_service_principal_ids'] = bound_service_principal_ids
-            __props__['bound_subscription_ids'] = bound_subscription_ids
+            __props__.__dict__["backend"] = backend
+            __props__.__dict__["bound_group_ids"] = bound_group_ids
+            __props__.__dict__["bound_locations"] = bound_locations
+            __props__.__dict__["bound_resource_groups"] = bound_resource_groups
+            __props__.__dict__["bound_scale_sets"] = bound_scale_sets
+            __props__.__dict__["bound_service_principal_ids"] = bound_service_principal_ids
+            __props__.__dict__["bound_subscription_ids"] = bound_subscription_ids
             if max_ttl is not None and not opts.urn:
                 warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("""max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2""")
-            __props__['max_ttl'] = max_ttl
+            __props__.__dict__["max_ttl"] = max_ttl
             if period is not None and not opts.urn:
                 warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("""period is deprecated: use `token_period` instead if you are running Vault >= 1.2""")
-            __props__['period'] = period
+            __props__.__dict__["period"] = period
             if policies is not None and not opts.urn:
                 warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("""policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2""")
-            __props__['policies'] = policies
+            __props__.__dict__["policies"] = policies
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
-            __props__['role'] = role
-            __props__['token_bound_cidrs'] = token_bound_cidrs
-            __props__['token_explicit_max_ttl'] = token_explicit_max_ttl
-            __props__['token_max_ttl'] = token_max_ttl
-            __props__['token_no_default_policy'] = token_no_default_policy
-            __props__['token_num_uses'] = token_num_uses
-            __props__['token_period'] = token_period
-            __props__['token_policies'] = token_policies
-            __props__['token_ttl'] = token_ttl
-            __props__['token_type'] = token_type
+            __props__.__dict__["role"] = role
+            __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
+            __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
+            __props__.__dict__["token_max_ttl"] = token_max_ttl
+            __props__.__dict__["token_no_default_policy"] = token_no_default_policy
+            __props__.__dict__["token_num_uses"] = token_num_uses
+            __props__.__dict__["token_period"] = token_period
+            __props__.__dict__["token_policies"] = token_policies
+            __props__.__dict__["token_ttl"] = token_ttl
+            __props__.__dict__["token_type"] = token_type
             if ttl is not None and not opts.urn:
                 warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("""ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2""")
-            __props__['ttl'] = ttl
+            __props__.__dict__["ttl"] = ttl
         super(AuthBackendRole, __self__).__init__(
             'vault:azure/authBackendRole:AuthBackendRole',
             resource_name,
@@ -793,29 +1221,29 @@ class AuthBackendRole(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _AuthBackendRoleState.__new__(_AuthBackendRoleState)
 
-        __props__["backend"] = backend
-        __props__["bound_group_ids"] = bound_group_ids
-        __props__["bound_locations"] = bound_locations
-        __props__["bound_resource_groups"] = bound_resource_groups
-        __props__["bound_scale_sets"] = bound_scale_sets
-        __props__["bound_service_principal_ids"] = bound_service_principal_ids
-        __props__["bound_subscription_ids"] = bound_subscription_ids
-        __props__["max_ttl"] = max_ttl
-        __props__["period"] = period
-        __props__["policies"] = policies
-        __props__["role"] = role
-        __props__["token_bound_cidrs"] = token_bound_cidrs
-        __props__["token_explicit_max_ttl"] = token_explicit_max_ttl
-        __props__["token_max_ttl"] = token_max_ttl
-        __props__["token_no_default_policy"] = token_no_default_policy
-        __props__["token_num_uses"] = token_num_uses
-        __props__["token_period"] = token_period
-        __props__["token_policies"] = token_policies
-        __props__["token_ttl"] = token_ttl
-        __props__["token_type"] = token_type
-        __props__["ttl"] = ttl
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["bound_group_ids"] = bound_group_ids
+        __props__.__dict__["bound_locations"] = bound_locations
+        __props__.__dict__["bound_resource_groups"] = bound_resource_groups
+        __props__.__dict__["bound_scale_sets"] = bound_scale_sets
+        __props__.__dict__["bound_service_principal_ids"] = bound_service_principal_ids
+        __props__.__dict__["bound_subscription_ids"] = bound_subscription_ids
+        __props__.__dict__["max_ttl"] = max_ttl
+        __props__.__dict__["period"] = period
+        __props__.__dict__["policies"] = policies
+        __props__.__dict__["role"] = role
+        __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
+        __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
+        __props__.__dict__["token_max_ttl"] = token_max_ttl
+        __props__.__dict__["token_no_default_policy"] = token_no_default_policy
+        __props__.__dict__["token_num_uses"] = token_num_uses
+        __props__.__dict__["token_period"] = token_period
+        __props__.__dict__["token_policies"] = token_policies
+        __props__.__dict__["token_ttl"] = token_ttl
+        __props__.__dict__["token_type"] = token_type
+        __props__.__dict__["ttl"] = ttl
         return AuthBackendRole(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1021,10 +1449,4 @@ class AuthBackendRole(pulumi.CustomResource):
         using this role, provided as a number of seconds.
         """
         return pulumi.get(self, "ttl")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

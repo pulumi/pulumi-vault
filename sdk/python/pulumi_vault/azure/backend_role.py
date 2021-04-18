@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 from . import outputs
 from ._inputs import *
 
@@ -153,6 +153,148 @@ class BackendRoleArgs:
         pulumi.set(self, "ttl", value)
 
 
+@pulumi.input_type
+class _BackendRoleState:
+    def __init__(__self__, *,
+                 application_object_id: Optional[pulumi.Input[str]] = None,
+                 azure_groups: Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]]] = None,
+                 azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 max_ttl: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering BackendRole resources.
+        :param pulumi.Input[str] application_object_id: Application Object ID for an existing service principal that will
+               be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+        :param pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]] azure_groups: List of Azure groups to be assigned to the generated service principal.
+        :param pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]] azure_roles: List of Azure roles to be assigned to the generated service principal.
+        :param pulumi.Input[str] backend: Path to the mounted Azure auth backend
+        :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
+        :param pulumi.Input[str] max_ttl: Specifies the maximum TTL for service principals generated using this role. Accepts time
+               suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+        :param pulumi.Input[str] role: Name of the Azure role
+        :param pulumi.Input[str] ttl: Specifies the default TTL for service principals generated using this role.
+               Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+        """
+        if application_object_id is not None:
+            pulumi.set(__self__, "application_object_id", application_object_id)
+        if azure_groups is not None:
+            pulumi.set(__self__, "azure_groups", azure_groups)
+        if azure_roles is not None:
+            pulumi.set(__self__, "azure_roles", azure_roles)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if max_ttl is not None:
+            pulumi.set(__self__, "max_ttl", max_ttl)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter(name="applicationObjectId")
+    def application_object_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Application Object ID for an existing service principal that will
+        be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+        """
+        return pulumi.get(self, "application_object_id")
+
+    @application_object_id.setter
+    def application_object_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "application_object_id", value)
+
+    @property
+    @pulumi.getter(name="azureGroups")
+    def azure_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]]]:
+        """
+        List of Azure groups to be assigned to the generated service principal.
+        """
+        return pulumi.get(self, "azure_groups")
+
+    @azure_groups.setter
+    def azure_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]]]):
+        pulumi.set(self, "azure_groups", value)
+
+    @property
+    @pulumi.getter(name="azureRoles")
+    def azure_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]]]:
+        """
+        List of Azure roles to be assigned to the generated service principal.
+        """
+        return pulumi.get(self, "azure_roles")
+
+    @azure_roles.setter
+    def azure_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]]]):
+        pulumi.set(self, "azure_roles", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to the mounted Azure auth backend
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-friendly description of the mount for the backend.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the maximum TTL for service principals generated using this role. Accepts time
+        suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @max_ttl.setter
+    def max_ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "max_ttl", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Azure role
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the default TTL for service principals generated using this role.
+        Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ttl", value)
+
+
 class BackendRole(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -234,18 +376,18 @@ class BackendRole(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = BackendRoleArgs.__new__(BackendRoleArgs)
 
-            __props__['application_object_id'] = application_object_id
-            __props__['azure_groups'] = azure_groups
-            __props__['azure_roles'] = azure_roles
-            __props__['backend'] = backend
-            __props__['description'] = description
-            __props__['max_ttl'] = max_ttl
+            __props__.__dict__["application_object_id"] = application_object_id
+            __props__.__dict__["azure_groups"] = azure_groups
+            __props__.__dict__["azure_roles"] = azure_roles
+            __props__.__dict__["backend"] = backend
+            __props__.__dict__["description"] = description
+            __props__.__dict__["max_ttl"] = max_ttl
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
-            __props__['role'] = role
-            __props__['ttl'] = ttl
+            __props__.__dict__["role"] = role
+            __props__.__dict__["ttl"] = ttl
         super(BackendRole, __self__).__init__(
             'vault:azure/backendRole:BackendRole',
             resource_name,
@@ -285,16 +427,16 @@ class BackendRole(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _BackendRoleState.__new__(_BackendRoleState)
 
-        __props__["application_object_id"] = application_object_id
-        __props__["azure_groups"] = azure_groups
-        __props__["azure_roles"] = azure_roles
-        __props__["backend"] = backend
-        __props__["description"] = description
-        __props__["max_ttl"] = max_ttl
-        __props__["role"] = role
-        __props__["ttl"] = ttl
+        __props__.__dict__["application_object_id"] = application_object_id
+        __props__.__dict__["azure_groups"] = azure_groups
+        __props__.__dict__["azure_roles"] = azure_roles
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["description"] = description
+        __props__.__dict__["max_ttl"] = max_ttl
+        __props__.__dict__["role"] = role
+        __props__.__dict__["ttl"] = ttl
         return BackendRole(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -363,10 +505,4 @@ class BackendRole(pulumi.CustomResource):
         Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
         """
         return pulumi.get(self, "ttl")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

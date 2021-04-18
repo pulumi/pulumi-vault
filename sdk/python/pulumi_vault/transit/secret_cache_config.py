@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['SecretCacheConfigArgs', 'SecretCacheConfig']
 
@@ -45,6 +45,46 @@ class SecretCacheConfigArgs:
 
     @size.setter
     def size(self, value: pulumi.Input[int]):
+        pulumi.set(self, "size", value)
+
+
+@pulumi.input_type
+class _SecretCacheConfigState:
+    def __init__(__self__, *,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 size: Optional[pulumi.Input[int]] = None):
+        """
+        Input properties used for looking up and filtering SecretCacheConfig resources.
+        :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[int] size: The number of cache entries. 0 means unlimited.
+        """
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of cache entries. 0 means unlimited.
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "size", value)
 
 
@@ -144,14 +184,14 @@ class SecretCacheConfig(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SecretCacheConfigArgs.__new__(SecretCacheConfigArgs)
 
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
-            __props__['backend'] = backend
+            __props__.__dict__["backend"] = backend
             if size is None and not opts.urn:
                 raise TypeError("Missing required property 'size'")
-            __props__['size'] = size
+            __props__.__dict__["size"] = size
         super(SecretCacheConfig, __self__).__init__(
             'vault:transit/secretCacheConfig:SecretCacheConfig',
             resource_name,
@@ -176,10 +216,10 @@ class SecretCacheConfig(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SecretCacheConfigState.__new__(_SecretCacheConfigState)
 
-        __props__["backend"] = backend
-        __props__["size"] = size
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["size"] = size
         return SecretCacheConfig(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -197,10 +237,4 @@ class SecretCacheConfig(pulumi.CustomResource):
         The number of cache entries. 0 means unlimited.
         """
         return pulumi.get(self, "size")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

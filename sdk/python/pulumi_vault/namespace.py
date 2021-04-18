@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['NamespaceArgs', 'Namespace']
 
@@ -30,6 +30,46 @@ class NamespaceArgs:
 
     @path.setter
     def path(self, value: pulumi.Input[str]):
+        pulumi.set(self, "path", value)
+
+
+@pulumi.input_type
+class _NamespaceState:
+    def __init__(__self__, *,
+                 namespace_id: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Namespace resources.
+        :param pulumi.Input[str] namespace_id: ID of the namepsace.
+        :param pulumi.Input[str] path: The path of the namespace. Must not have a trailing `/`
+        """
+        if namespace_id is not None:
+            pulumi.set(__self__, "namespace_id", namespace_id)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @property
+    @pulumi.getter(name="namespaceId")
+    def namespace_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the namepsace.
+        """
+        return pulumi.get(self, "namespace_id")
+
+    @namespace_id.setter
+    def namespace_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace_id", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path of the namespace. Must not have a trailing `/`
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "path", value)
 
 
@@ -114,12 +154,12 @@ class Namespace(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = NamespaceArgs.__new__(NamespaceArgs)
 
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
-            __props__['path'] = path
-            __props__['namespace_id'] = None
+            __props__.__dict__["path"] = path
+            __props__.__dict__["namespace_id"] = None
         super(Namespace, __self__).__init__(
             'vault:index/namespace:Namespace',
             resource_name,
@@ -144,10 +184,10 @@ class Namespace(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _NamespaceState.__new__(_NamespaceState)
 
-        __props__["namespace_id"] = namespace_id
-        __props__["path"] = path
+        __props__.__dict__["namespace_id"] = namespace_id
+        __props__.__dict__["path"] = path
         return Namespace(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -165,10 +205,4 @@ class Namespace(pulumi.CustomResource):
         The path of the namespace. Must not have a trailing `/`
         """
         return pulumi.get(self, "path")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

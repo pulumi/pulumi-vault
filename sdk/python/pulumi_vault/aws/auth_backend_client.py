@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['AuthBackendClientArgs', 'AuthBackendClient']
 
@@ -23,6 +23,160 @@ class AuthBackendClientArgs:
                  sts_region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AuthBackendClient resource.
+        :param pulumi.Input[str] access_key: The AWS access key that Vault should use for the
+               auth backend.
+        :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
+               mounted at.  Defaults to `aws`.
+        :param pulumi.Input[str] ec2_endpoint: Override the URL Vault uses when making EC2 API
+               calls.
+        :param pulumi.Input[str] iam_endpoint: Override the URL Vault uses when making IAM API
+               calls.
+        :param pulumi.Input[str] iam_server_id_header_value: The value to require in the
+               `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
+               that are used in the IAM auth method.
+        :param pulumi.Input[str] secret_key: The AWS secret key that Vault should use for the
+               auth backend.
+        :param pulumi.Input[str] sts_endpoint: Override the URL Vault uses when making STS API
+               calls.
+        :param pulumi.Input[str] sts_region: Override the default region when making STS API 
+               calls. The `sts_endpoint` argument must be set when using `sts_region`.
+        """
+        if access_key is not None:
+            pulumi.set(__self__, "access_key", access_key)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if ec2_endpoint is not None:
+            pulumi.set(__self__, "ec2_endpoint", ec2_endpoint)
+        if iam_endpoint is not None:
+            pulumi.set(__self__, "iam_endpoint", iam_endpoint)
+        if iam_server_id_header_value is not None:
+            pulumi.set(__self__, "iam_server_id_header_value", iam_server_id_header_value)
+        if secret_key is not None:
+            pulumi.set(__self__, "secret_key", secret_key)
+        if sts_endpoint is not None:
+            pulumi.set(__self__, "sts_endpoint", sts_endpoint)
+        if sts_region is not None:
+            pulumi.set(__self__, "sts_region", sts_region)
+
+    @property
+    @pulumi.getter(name="accessKey")
+    def access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The AWS access key that Vault should use for the
+        auth backend.
+        """
+        return pulumi.get(self, "access_key")
+
+    @access_key.setter
+    def access_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "access_key", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path the AWS auth backend being configured was
+        mounted at.  Defaults to `aws`.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="ec2Endpoint")
+    def ec2_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        Override the URL Vault uses when making EC2 API
+        calls.
+        """
+        return pulumi.get(self, "ec2_endpoint")
+
+    @ec2_endpoint.setter
+    def ec2_endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ec2_endpoint", value)
+
+    @property
+    @pulumi.getter(name="iamEndpoint")
+    def iam_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        Override the URL Vault uses when making IAM API
+        calls.
+        """
+        return pulumi.get(self, "iam_endpoint")
+
+    @iam_endpoint.setter
+    def iam_endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iam_endpoint", value)
+
+    @property
+    @pulumi.getter(name="iamServerIdHeaderValue")
+    def iam_server_id_header_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The value to require in the
+        `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
+        that are used in the IAM auth method.
+        """
+        return pulumi.get(self, "iam_server_id_header_value")
+
+    @iam_server_id_header_value.setter
+    def iam_server_id_header_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iam_server_id_header_value", value)
+
+    @property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The AWS secret key that Vault should use for the
+        auth backend.
+        """
+        return pulumi.get(self, "secret_key")
+
+    @secret_key.setter
+    def secret_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secret_key", value)
+
+    @property
+    @pulumi.getter(name="stsEndpoint")
+    def sts_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        Override the URL Vault uses when making STS API
+        calls.
+        """
+        return pulumi.get(self, "sts_endpoint")
+
+    @sts_endpoint.setter
+    def sts_endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sts_endpoint", value)
+
+    @property
+    @pulumi.getter(name="stsRegion")
+    def sts_region(self) -> Optional[pulumi.Input[str]]:
+        """
+        Override the default region when making STS API 
+        calls. The `sts_endpoint` argument must be set when using `sts_region`.
+        """
+        return pulumi.get(self, "sts_region")
+
+    @sts_region.setter
+    def sts_region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sts_region", value)
+
+
+@pulumi.input_type
+class _AuthBackendClientState:
+    def __init__(__self__, *,
+                 access_key: Optional[pulumi.Input[str]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 ec2_endpoint: Optional[pulumi.Input[str]] = None,
+                 iam_endpoint: Optional[pulumi.Input[str]] = None,
+                 iam_server_id_header_value: Optional[pulumi.Input[str]] = None,
+                 secret_key: Optional[pulumi.Input[str]] = None,
+                 sts_endpoint: Optional[pulumi.Input[str]] = None,
+                 sts_region: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering AuthBackendClient resources.
         :param pulumi.Input[str] access_key: The AWS access key that Vault should use for the
                auth backend.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
@@ -265,16 +419,16 @@ class AuthBackendClient(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = AuthBackendClientArgs.__new__(AuthBackendClientArgs)
 
-            __props__['access_key'] = access_key
-            __props__['backend'] = backend
-            __props__['ec2_endpoint'] = ec2_endpoint
-            __props__['iam_endpoint'] = iam_endpoint
-            __props__['iam_server_id_header_value'] = iam_server_id_header_value
-            __props__['secret_key'] = secret_key
-            __props__['sts_endpoint'] = sts_endpoint
-            __props__['sts_region'] = sts_region
+            __props__.__dict__["access_key"] = access_key
+            __props__.__dict__["backend"] = backend
+            __props__.__dict__["ec2_endpoint"] = ec2_endpoint
+            __props__.__dict__["iam_endpoint"] = iam_endpoint
+            __props__.__dict__["iam_server_id_header_value"] = iam_server_id_header_value
+            __props__.__dict__["secret_key"] = secret_key
+            __props__.__dict__["sts_endpoint"] = sts_endpoint
+            __props__.__dict__["sts_region"] = sts_region
         super(AuthBackendClient, __self__).__init__(
             'vault:aws/authBackendClient:AuthBackendClient',
             resource_name,
@@ -320,16 +474,16 @@ class AuthBackendClient(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _AuthBackendClientState.__new__(_AuthBackendClientState)
 
-        __props__["access_key"] = access_key
-        __props__["backend"] = backend
-        __props__["ec2_endpoint"] = ec2_endpoint
-        __props__["iam_endpoint"] = iam_endpoint
-        __props__["iam_server_id_header_value"] = iam_server_id_header_value
-        __props__["secret_key"] = secret_key
-        __props__["sts_endpoint"] = sts_endpoint
-        __props__["sts_region"] = sts_region
+        __props__.__dict__["access_key"] = access_key
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["ec2_endpoint"] = ec2_endpoint
+        __props__.__dict__["iam_endpoint"] = iam_endpoint
+        __props__.__dict__["iam_server_id_header_value"] = iam_server_id_header_value
+        __props__.__dict__["secret_key"] = secret_key
+        __props__.__dict__["sts_endpoint"] = sts_endpoint
+        __props__.__dict__["sts_region"] = sts_region
         return AuthBackendClient(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -404,10 +558,4 @@ class AuthBackendClient(pulumi.CustomResource):
         calls. The `sts_endpoint` argument must be set when using `sts_region`.
         """
         return pulumi.get(self, "sts_region")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

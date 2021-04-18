@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['NomadSecretRoleArgs', 'NomadSecretRole']
 
@@ -91,6 +91,104 @@ class NomadSecretRoleArgs:
     @policies.setter
     def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "policies", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the type of token to create when using this role. Valid 
+        settings are 'client' and 'management'. Defaults to 'client'.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class _NomadSecretRoleState:
+    def __init__(__self__, *,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 global_: Optional[pulumi.Input[bool]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering NomadSecretRole resources.
+        :param pulumi.Input[str] backend: The unique path this backend should be mounted at. Must
+               not begin or end with a `/`. Defaults to `nomad`.
+        :param pulumi.Input[bool] global_: Specifies if the generated token should be global. Defaults to 
+               false.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies attached to the generated token. This setting is only used 
+               when `type` is 'client'.
+        :param pulumi.Input[str] role: The name to identify this role within the backend.
+               Must be unique within the backend.
+        :param pulumi.Input[str] type: Specifies the type of token to create when using this role. Valid 
+               settings are 'client' and 'management'. Defaults to 'client'.
+        """
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if global_ is not None:
+            pulumi.set(__self__, "global_", global_)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique path this backend should be mounted at. Must
+        not begin or end with a `/`. Defaults to `nomad`.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="global")
+    def global_(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if the generated token should be global. Defaults to 
+        false.
+        """
+        return pulumi.get(self, "global_")
+
+    @global_.setter
+    def global_(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "global_", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of policies attached to the generated token. This setting is only used 
+        when `type` is 'client'.
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name to identify this role within the backend.
+        Must be unique within the backend.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role", value)
 
     @property
     @pulumi.getter
@@ -194,17 +292,17 @@ class NomadSecretRole(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = NomadSecretRoleArgs.__new__(NomadSecretRoleArgs)
 
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
-            __props__['backend'] = backend
-            __props__['global_'] = global_
-            __props__['policies'] = policies
+            __props__.__dict__["backend"] = backend
+            __props__.__dict__["global_"] = global_
+            __props__.__dict__["policies"] = policies
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
-            __props__['role'] = role
-            __props__['type'] = type
+            __props__.__dict__["role"] = role
+            __props__.__dict__["type"] = type
         super(NomadSecretRole, __self__).__init__(
             'vault:index/nomadSecretRole:NomadSecretRole',
             resource_name,
@@ -240,13 +338,13 @@ class NomadSecretRole(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _NomadSecretRoleState.__new__(_NomadSecretRoleState)
 
-        __props__["backend"] = backend
-        __props__["global_"] = global_
-        __props__["policies"] = policies
-        __props__["role"] = role
-        __props__["type"] = type
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["global_"] = global_
+        __props__.__dict__["policies"] = policies
+        __props__.__dict__["role"] = role
+        __props__.__dict__["type"] = type
         return NomadSecretRole(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -293,10 +391,4 @@ class NomadSecretRole(pulumi.CustomResource):
         settings are 'client' and 'management'. Defaults to 'client'.
         """
         return pulumi.get(self, "type")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
