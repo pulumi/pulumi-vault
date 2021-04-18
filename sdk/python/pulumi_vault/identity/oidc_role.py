@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['OidcRoleArgs', 'OidcRole']
 
@@ -66,6 +66,104 @@ class OidcRoleArgs:
     @client_id.setter
     def client_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "client_id", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the OIDC Role to create.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def template(self) -> Optional[pulumi.Input[str]]:
+        """
+        The template string to use for generating tokens. This may be in
+        string-ified JSON or base64 format. See the
+        [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
+        for the template format.
+        """
+        return pulumi.get(self, "template")
+
+    @template.setter
+    def template(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "template", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        TTL of the tokens generated against the role in number of seconds.
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ttl", value)
+
+
+@pulumi.input_type
+class _OidcRoleState:
+    def __init__(__self__, *,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 template: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None):
+        """
+        Input properties used for looking up and filtering OidcRole resources.
+        :param pulumi.Input[str] client_id: The value that will be included in the `aud` field of all the OIDC identity
+               tokens issued by this role
+        :param pulumi.Input[str] key: A configured named key, the key must already exist
+               before tokens can be issued.
+        :param pulumi.Input[str] name: Name of the OIDC Role to create.
+        :param pulumi.Input[str] template: The template string to use for generating tokens. This may be in
+               string-ified JSON or base64 format. See the
+               [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
+               for the template format.
+        :param pulumi.Input[int] ttl: TTL of the tokens generated against the role in number of seconds.
+        """
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if template is not None:
+            pulumi.set(__self__, "template", template)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The value that will be included in the `aud` field of all the OIDC identity
+        tokens issued by this role
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_id", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        A configured named key, the key must already exist
+        before tokens can be issued.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
 
     @property
     @pulumi.getter
@@ -195,15 +293,15 @@ class OidcRole(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = OidcRoleArgs.__new__(OidcRoleArgs)
 
-            __props__['client_id'] = client_id
+            __props__.__dict__["client_id"] = client_id
             if key is None and not opts.urn:
                 raise TypeError("Missing required property 'key'")
-            __props__['key'] = key
-            __props__['name'] = name
-            __props__['template'] = template
-            __props__['ttl'] = ttl
+            __props__.__dict__["key"] = key
+            __props__.__dict__["name"] = name
+            __props__.__dict__["template"] = template
+            __props__.__dict__["ttl"] = ttl
         super(OidcRole, __self__).__init__(
             'vault:identity/oidcRole:OidcRole',
             resource_name,
@@ -239,13 +337,13 @@ class OidcRole(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _OidcRoleState.__new__(_OidcRoleState)
 
-        __props__["client_id"] = client_id
-        __props__["key"] = key
-        __props__["name"] = name
-        __props__["template"] = template
-        __props__["ttl"] = ttl
+        __props__.__dict__["client_id"] = client_id
+        __props__.__dict__["key"] = key
+        __props__.__dict__["name"] = name
+        __props__.__dict__["template"] = template
+        __props__.__dict__["ttl"] = ttl
         return OidcRole(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -292,10 +390,4 @@ class OidcRole(pulumi.CustomResource):
         TTL of the tokens generated against the role in number of seconds.
         """
         return pulumi.get(self, "ttl")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

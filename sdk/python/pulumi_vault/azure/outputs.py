@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = [
     'BackendRoleAzureGroup',
@@ -15,6 +15,25 @@ __all__ = [
 
 @pulumi.output_type
 class BackendRoleAzureGroup(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "groupName":
+            suggest = "group_name"
+        elif key == "objectId":
+            suggest = "object_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BackendRoleAzureGroup. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BackendRoleAzureGroup.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BackendRoleAzureGroup.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  group_name: str,
                  object_id: Optional[str] = None):
@@ -32,12 +51,28 @@ class BackendRoleAzureGroup(dict):
     def object_id(self) -> Optional[str]:
         return pulumi.get(self, "object_id")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class BackendRoleAzureRole(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "roleName":
+            suggest = "role_name"
+        elif key == "roleId":
+            suggest = "role_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BackendRoleAzureRole. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BackendRoleAzureRole.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BackendRoleAzureRole.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  role_name: str,
                  scope: str,
@@ -61,8 +96,5 @@ class BackendRoleAzureRole(dict):
     @pulumi.getter(name="roleId")
     def role_id(self) -> Optional[str]:
         return pulumi.get(self, "role_id")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

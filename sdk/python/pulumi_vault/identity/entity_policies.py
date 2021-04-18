@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['EntityPoliciesArgs', 'EntityPolicies']
 
@@ -62,6 +62,78 @@ class EntityPoliciesArgs:
     @exclusive.setter
     def exclusive(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "exclusive", value)
+
+
+@pulumi.input_type
+class _EntityPoliciesState:
+    def __init__(__self__, *,
+                 entity_id: Optional[pulumi.Input[str]] = None,
+                 entity_name: Optional[pulumi.Input[str]] = None,
+                 exclusive: Optional[pulumi.Input[bool]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        Input properties used for looking up and filtering EntityPolicies resources.
+        :param pulumi.Input[str] entity_id: Entity ID to assign policies to.
+        :param pulumi.Input[str] entity_name: The name of the entity that are assigned the policies.
+        :param pulumi.Input[bool] exclusive: Defaults to `true`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to assign to the entity
+        """
+        if entity_id is not None:
+            pulumi.set(__self__, "entity_id", entity_id)
+        if entity_name is not None:
+            pulumi.set(__self__, "entity_name", entity_name)
+        if exclusive is not None:
+            pulumi.set(__self__, "exclusive", exclusive)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Entity ID to assign policies to.
+        """
+        return pulumi.get(self, "entity_id")
+
+    @entity_id.setter
+    def entity_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "entity_id", value)
+
+    @property
+    @pulumi.getter(name="entityName")
+    def entity_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the entity that are assigned the policies.
+        """
+        return pulumi.get(self, "entity_name")
+
+    @entity_name.setter
+    def entity_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "entity_name", value)
+
+    @property
+    @pulumi.getter
+    def exclusive(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defaults to `true`.
+        """
+        return pulumi.get(self, "exclusive")
+
+    @exclusive.setter
+    def exclusive(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "exclusive", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of policies to assign to the entity
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
 
 
 class EntityPolicies(pulumi.CustomResource):
@@ -201,16 +273,16 @@ class EntityPolicies(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = EntityPoliciesArgs.__new__(EntityPoliciesArgs)
 
             if entity_id is None and not opts.urn:
                 raise TypeError("Missing required property 'entity_id'")
-            __props__['entity_id'] = entity_id
-            __props__['exclusive'] = exclusive
+            __props__.__dict__["entity_id"] = entity_id
+            __props__.__dict__["exclusive"] = exclusive
             if policies is None and not opts.urn:
                 raise TypeError("Missing required property 'policies'")
-            __props__['policies'] = policies
-            __props__['entity_name'] = None
+            __props__.__dict__["policies"] = policies
+            __props__.__dict__["entity_name"] = None
         super(EntityPolicies, __self__).__init__(
             'vault:identity/entityPolicies:EntityPolicies',
             resource_name,
@@ -239,12 +311,12 @@ class EntityPolicies(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _EntityPoliciesState.__new__(_EntityPoliciesState)
 
-        __props__["entity_id"] = entity_id
-        __props__["entity_name"] = entity_name
-        __props__["exclusive"] = exclusive
-        __props__["policies"] = policies
+        __props__.__dict__["entity_id"] = entity_id
+        __props__.__dict__["entity_name"] = entity_name
+        __props__.__dict__["exclusive"] = exclusive
+        __props__.__dict__["policies"] = policies
         return EntityPolicies(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -278,10 +350,4 @@ class EntityPolicies(pulumi.CustomResource):
         List of policies to assign to the entity
         """
         return pulumi.get(self, "policies")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

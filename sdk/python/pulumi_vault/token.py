@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['TokenArgs', 'Token']
 
@@ -242,6 +242,334 @@ class TokenArgs:
         pulumi.set(self, "wrapping_ttl", value)
 
 
+@pulumi.input_type
+class _TokenState:
+    def __init__(__self__, *,
+                 client_token: Optional[pulumi.Input[str]] = None,
+                 display_name: Optional[pulumi.Input[str]] = None,
+                 encrypted_client_token: Optional[pulumi.Input[str]] = None,
+                 explicit_max_ttl: Optional[pulumi.Input[str]] = None,
+                 lease_duration: Optional[pulumi.Input[int]] = None,
+                 lease_started: Optional[pulumi.Input[str]] = None,
+                 no_default_policy: Optional[pulumi.Input[bool]] = None,
+                 no_parent: Optional[pulumi.Input[bool]] = None,
+                 num_uses: Optional[pulumi.Input[int]] = None,
+                 period: Optional[pulumi.Input[str]] = None,
+                 pgp_key: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 renew_increment: Optional[pulumi.Input[int]] = None,
+                 renew_min_lease: Optional[pulumi.Input[int]] = None,
+                 renewable: Optional[pulumi.Input[bool]] = None,
+                 role_name: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[str]] = None,
+                 wrapped_token: Optional[pulumi.Input[str]] = None,
+                 wrapping_accessor: Optional[pulumi.Input[str]] = None,
+                 wrapping_ttl: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Token resources.
+        :param pulumi.Input[str] client_token: String containing the client token if stored in present file
+        :param pulumi.Input[str] display_name: String containing the token display name
+        :param pulumi.Input[str] encrypted_client_token: String containing the client token encrypted with the given `pgp_key` if stored in present file
+        :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token
+        :param pulumi.Input[int] lease_duration: String containing the token lease duration if present in state file
+        :param pulumi.Input[str] lease_started: String containing the token lease started time if present in state file
+        :param pulumi.Input[bool] no_default_policy: Flag to not attach the default policy to this token
+        :param pulumi.Input[bool] no_parent: Flag to create a token without parent
+        :param pulumi.Input[int] num_uses: The number of allowed uses of this token
+        :param pulumi.Input[str] period: The period of this token
+        :param pulumi.Input[str] pgp_key: The PGP key (base64 encoded) to encrypt the token.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to attach to this token
+        :param pulumi.Input[int] renew_increment: The renew increment
+        :param pulumi.Input[int] renew_min_lease: The minimal lease to renew this token
+        :param pulumi.Input[bool] renewable: Flag to allow to renew this token
+        :param pulumi.Input[str] role_name: The token role name
+        :param pulumi.Input[str] ttl: The TTL period of this token
+        :param pulumi.Input[str] wrapped_token: The client wrapped token.
+        :param pulumi.Input[str] wrapping_accessor: The client wrapping accessor.
+        :param pulumi.Input[str] wrapping_ttl: The TTL period of the wrapped token.
+        """
+        if client_token is not None:
+            pulumi.set(__self__, "client_token", client_token)
+        if display_name is not None:
+            pulumi.set(__self__, "display_name", display_name)
+        if encrypted_client_token is not None:
+            pulumi.set(__self__, "encrypted_client_token", encrypted_client_token)
+        if explicit_max_ttl is not None:
+            pulumi.set(__self__, "explicit_max_ttl", explicit_max_ttl)
+        if lease_duration is not None:
+            pulumi.set(__self__, "lease_duration", lease_duration)
+        if lease_started is not None:
+            pulumi.set(__self__, "lease_started", lease_started)
+        if no_default_policy is not None:
+            pulumi.set(__self__, "no_default_policy", no_default_policy)
+        if no_parent is not None:
+            pulumi.set(__self__, "no_parent", no_parent)
+        if num_uses is not None:
+            pulumi.set(__self__, "num_uses", num_uses)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if pgp_key is not None:
+            pulumi.set(__self__, "pgp_key", pgp_key)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+        if renew_increment is not None:
+            pulumi.set(__self__, "renew_increment", renew_increment)
+        if renew_min_lease is not None:
+            pulumi.set(__self__, "renew_min_lease", renew_min_lease)
+        if renewable is not None:
+            pulumi.set(__self__, "renewable", renewable)
+        if role_name is not None:
+            pulumi.set(__self__, "role_name", role_name)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+        if wrapped_token is not None:
+            pulumi.set(__self__, "wrapped_token", wrapped_token)
+        if wrapping_accessor is not None:
+            pulumi.set(__self__, "wrapping_accessor", wrapping_accessor)
+        if wrapping_ttl is not None:
+            pulumi.set(__self__, "wrapping_ttl", wrapping_ttl)
+
+    @property
+    @pulumi.getter(name="clientToken")
+    def client_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        String containing the client token if stored in present file
+        """
+        return pulumi.get(self, "client_token")
+
+    @client_token.setter
+    def client_token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_token", value)
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        String containing the token display name
+        """
+        return pulumi.get(self, "display_name")
+
+    @display_name.setter
+    def display_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "display_name", value)
+
+    @property
+    @pulumi.getter(name="encryptedClientToken")
+    def encrypted_client_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        String containing the client token encrypted with the given `pgp_key` if stored in present file
+        """
+        return pulumi.get(self, "encrypted_client_token")
+
+    @encrypted_client_token.setter
+    def encrypted_client_token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "encrypted_client_token", value)
+
+    @property
+    @pulumi.getter(name="explicitMaxTtl")
+    def explicit_max_ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        The explicit max TTL of this token
+        """
+        return pulumi.get(self, "explicit_max_ttl")
+
+    @explicit_max_ttl.setter
+    def explicit_max_ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "explicit_max_ttl", value)
+
+    @property
+    @pulumi.getter(name="leaseDuration")
+    def lease_duration(self) -> Optional[pulumi.Input[int]]:
+        """
+        String containing the token lease duration if present in state file
+        """
+        return pulumi.get(self, "lease_duration")
+
+    @lease_duration.setter
+    def lease_duration(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "lease_duration", value)
+
+    @property
+    @pulumi.getter(name="leaseStarted")
+    def lease_started(self) -> Optional[pulumi.Input[str]]:
+        """
+        String containing the token lease started time if present in state file
+        """
+        return pulumi.get(self, "lease_started")
+
+    @lease_started.setter
+    def lease_started(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "lease_started", value)
+
+    @property
+    @pulumi.getter(name="noDefaultPolicy")
+    def no_default_policy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to not attach the default policy to this token
+        """
+        return pulumi.get(self, "no_default_policy")
+
+    @no_default_policy.setter
+    def no_default_policy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "no_default_policy", value)
+
+    @property
+    @pulumi.getter(name="noParent")
+    def no_parent(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to create a token without parent
+        """
+        return pulumi.get(self, "no_parent")
+
+    @no_parent.setter
+    def no_parent(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "no_parent", value)
+
+    @property
+    @pulumi.getter(name="numUses")
+    def num_uses(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of allowed uses of this token
+        """
+        return pulumi.get(self, "num_uses")
+
+    @num_uses.setter
+    def num_uses(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "num_uses", value)
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[pulumi.Input[str]]:
+        """
+        The period of this token
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "period", value)
+
+    @property
+    @pulumi.getter(name="pgpKey")
+    def pgp_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The PGP key (base64 encoded) to encrypt the token.
+        """
+        return pulumi.get(self, "pgp_key")
+
+    @pgp_key.setter
+    def pgp_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pgp_key", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of policies to attach to this token
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
+
+    @property
+    @pulumi.getter(name="renewIncrement")
+    def renew_increment(self) -> Optional[pulumi.Input[int]]:
+        """
+        The renew increment
+        """
+        return pulumi.get(self, "renew_increment")
+
+    @renew_increment.setter
+    def renew_increment(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "renew_increment", value)
+
+    @property
+    @pulumi.getter(name="renewMinLease")
+    def renew_min_lease(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minimal lease to renew this token
+        """
+        return pulumi.get(self, "renew_min_lease")
+
+    @renew_min_lease.setter
+    def renew_min_lease(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "renew_min_lease", value)
+
+    @property
+    @pulumi.getter
+    def renewable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to allow to renew this token
+        """
+        return pulumi.get(self, "renewable")
+
+    @renewable.setter
+    def renewable(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "renewable", value)
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The token role name
+        """
+        return pulumi.get(self, "role_name")
+
+    @role_name.setter
+    def role_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_name", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        The TTL period of this token
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ttl", value)
+
+    @property
+    @pulumi.getter(name="wrappedToken")
+    def wrapped_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client wrapped token.
+        """
+        return pulumi.get(self, "wrapped_token")
+
+    @wrapped_token.setter
+    def wrapped_token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wrapped_token", value)
+
+    @property
+    @pulumi.getter(name="wrappingAccessor")
+    def wrapping_accessor(self) -> Optional[pulumi.Input[str]]:
+        """
+        The client wrapping accessor.
+        """
+        return pulumi.get(self, "wrapping_accessor")
+
+    @wrapping_accessor.setter
+    def wrapping_accessor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wrapping_accessor", value)
+
+    @property
+    @pulumi.getter(name="wrappingTtl")
+    def wrapping_ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        The TTL period of the wrapped token.
+        """
+        return pulumi.get(self, "wrapping_ttl")
+
+    @wrapping_ttl.setter
+    def wrapping_ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wrapping_ttl", value)
+
+
 class Token(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -352,28 +680,28 @@ class Token(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = TokenArgs.__new__(TokenArgs)
 
-            __props__['display_name'] = display_name
-            __props__['explicit_max_ttl'] = explicit_max_ttl
-            __props__['no_default_policy'] = no_default_policy
-            __props__['no_parent'] = no_parent
-            __props__['num_uses'] = num_uses
-            __props__['period'] = period
-            __props__['pgp_key'] = pgp_key
-            __props__['policies'] = policies
-            __props__['renew_increment'] = renew_increment
-            __props__['renew_min_lease'] = renew_min_lease
-            __props__['renewable'] = renewable
-            __props__['role_name'] = role_name
-            __props__['ttl'] = ttl
-            __props__['wrapping_ttl'] = wrapping_ttl
-            __props__['client_token'] = None
-            __props__['encrypted_client_token'] = None
-            __props__['lease_duration'] = None
-            __props__['lease_started'] = None
-            __props__['wrapped_token'] = None
-            __props__['wrapping_accessor'] = None
+            __props__.__dict__["display_name"] = display_name
+            __props__.__dict__["explicit_max_ttl"] = explicit_max_ttl
+            __props__.__dict__["no_default_policy"] = no_default_policy
+            __props__.__dict__["no_parent"] = no_parent
+            __props__.__dict__["num_uses"] = num_uses
+            __props__.__dict__["period"] = period
+            __props__.__dict__["pgp_key"] = pgp_key
+            __props__.__dict__["policies"] = policies
+            __props__.__dict__["renew_increment"] = renew_increment
+            __props__.__dict__["renew_min_lease"] = renew_min_lease
+            __props__.__dict__["renewable"] = renewable
+            __props__.__dict__["role_name"] = role_name
+            __props__.__dict__["ttl"] = ttl
+            __props__.__dict__["wrapping_ttl"] = wrapping_ttl
+            __props__.__dict__["client_token"] = None
+            __props__.__dict__["encrypted_client_token"] = None
+            __props__.__dict__["lease_duration"] = None
+            __props__.__dict__["lease_started"] = None
+            __props__.__dict__["wrapped_token"] = None
+            __props__.__dict__["wrapping_accessor"] = None
         super(Token, __self__).__init__(
             'vault:index/token:Token',
             resource_name,
@@ -434,28 +762,28 @@ class Token(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _TokenState.__new__(_TokenState)
 
-        __props__["client_token"] = client_token
-        __props__["display_name"] = display_name
-        __props__["encrypted_client_token"] = encrypted_client_token
-        __props__["explicit_max_ttl"] = explicit_max_ttl
-        __props__["lease_duration"] = lease_duration
-        __props__["lease_started"] = lease_started
-        __props__["no_default_policy"] = no_default_policy
-        __props__["no_parent"] = no_parent
-        __props__["num_uses"] = num_uses
-        __props__["period"] = period
-        __props__["pgp_key"] = pgp_key
-        __props__["policies"] = policies
-        __props__["renew_increment"] = renew_increment
-        __props__["renew_min_lease"] = renew_min_lease
-        __props__["renewable"] = renewable
-        __props__["role_name"] = role_name
-        __props__["ttl"] = ttl
-        __props__["wrapped_token"] = wrapped_token
-        __props__["wrapping_accessor"] = wrapping_accessor
-        __props__["wrapping_ttl"] = wrapping_ttl
+        __props__.__dict__["client_token"] = client_token
+        __props__.__dict__["display_name"] = display_name
+        __props__.__dict__["encrypted_client_token"] = encrypted_client_token
+        __props__.__dict__["explicit_max_ttl"] = explicit_max_ttl
+        __props__.__dict__["lease_duration"] = lease_duration
+        __props__.__dict__["lease_started"] = lease_started
+        __props__.__dict__["no_default_policy"] = no_default_policy
+        __props__.__dict__["no_parent"] = no_parent
+        __props__.__dict__["num_uses"] = num_uses
+        __props__.__dict__["period"] = period
+        __props__.__dict__["pgp_key"] = pgp_key
+        __props__.__dict__["policies"] = policies
+        __props__.__dict__["renew_increment"] = renew_increment
+        __props__.__dict__["renew_min_lease"] = renew_min_lease
+        __props__.__dict__["renewable"] = renewable
+        __props__.__dict__["role_name"] = role_name
+        __props__.__dict__["ttl"] = ttl
+        __props__.__dict__["wrapped_token"] = wrapped_token
+        __props__.__dict__["wrapping_accessor"] = wrapping_accessor
+        __props__.__dict__["wrapping_ttl"] = wrapping_ttl
         return Token(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -617,10 +945,4 @@ class Token(pulumi.CustomResource):
         The TTL period of the wrapped token.
         """
         return pulumi.get(self, "wrapping_ttl")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

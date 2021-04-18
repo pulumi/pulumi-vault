@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['GroupAliasArgs', 'GroupAlias']
 
@@ -60,6 +60,62 @@ class GroupAliasArgs:
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class _GroupAliasState:
+    def __init__(__self__, *,
+                 canonical_id: Optional[pulumi.Input[str]] = None,
+                 mount_accessor: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering GroupAlias resources.
+        :param pulumi.Input[str] canonical_id: ID of the group to which this is an alias.
+        :param pulumi.Input[str] mount_accessor: Mount accessor of the authentication backend to which this alias belongs to.
+        :param pulumi.Input[str] name: Name of the group alias to create.
+        """
+        if canonical_id is not None:
+            pulumi.set(__self__, "canonical_id", canonical_id)
+        if mount_accessor is not None:
+            pulumi.set(__self__, "mount_accessor", mount_accessor)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="canonicalId")
+    def canonical_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the group to which this is an alias.
+        """
+        return pulumi.get(self, "canonical_id")
+
+    @canonical_id.setter
+    def canonical_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "canonical_id", value)
+
+    @property
+    @pulumi.getter(name="mountAccessor")
+    def mount_accessor(self) -> Optional[pulumi.Input[str]]:
+        """
+        Mount accessor of the authentication backend to which this alias belongs to.
+        """
+        return pulumi.get(self, "mount_accessor")
+
+    @mount_accessor.setter
+    def mount_accessor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mount_accessor", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the group alias to create.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
 
@@ -168,17 +224,17 @@ class GroupAlias(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = GroupAliasArgs.__new__(GroupAliasArgs)
 
             if canonical_id is None and not opts.urn:
                 raise TypeError("Missing required property 'canonical_id'")
-            __props__['canonical_id'] = canonical_id
+            __props__.__dict__["canonical_id"] = canonical_id
             if mount_accessor is None and not opts.urn:
                 raise TypeError("Missing required property 'mount_accessor'")
-            __props__['mount_accessor'] = mount_accessor
+            __props__.__dict__["mount_accessor"] = mount_accessor
             if name is None and not opts.urn:
                 raise TypeError("Missing required property 'name'")
-            __props__['name'] = name
+            __props__.__dict__["name"] = name
         super(GroupAlias, __self__).__init__(
             'vault:identity/groupAlias:GroupAlias',
             resource_name,
@@ -205,11 +261,11 @@ class GroupAlias(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _GroupAliasState.__new__(_GroupAliasState)
 
-        __props__["canonical_id"] = canonical_id
-        __props__["mount_accessor"] = mount_accessor
-        __props__["name"] = name
+        __props__.__dict__["canonical_id"] = canonical_id
+        __props__.__dict__["mount_accessor"] = mount_accessor
+        __props__.__dict__["name"] = name
         return GroupAlias(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -235,10 +291,4 @@ class GroupAlias(pulumi.CustomResource):
         Name of the group alias to create.
         """
         return pulumi.get(self, "name")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

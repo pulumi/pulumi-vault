@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['SecretBackendCaArgs', 'SecretBackendCa']
 
@@ -19,6 +19,78 @@ class SecretBackendCaArgs:
                  public_key: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretBackendCa resource.
+        :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted. Defaults to 'ssh'
+        :param pulumi.Input[bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
+        :param pulumi.Input[str] private_key: The private key part the SSH CA key pair; required if generate_signing_key is false.
+        :param pulumi.Input[str] public_key: The public key part the SSH CA key pair; required if generate_signing_key is false.
+        """
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if generate_signing_key is not None:
+            pulumi.set(__self__, "generate_signing_key", generate_signing_key)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path where the SSH secret backend is mounted. Defaults to 'ssh'
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="generateSigningKey")
+    def generate_signing_key(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether Vault should generate the signing key pair internally. Defaults to true
+        """
+        return pulumi.get(self, "generate_signing_key")
+
+    @generate_signing_key.setter
+    def generate_signing_key(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "generate_signing_key", value)
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private key part the SSH CA key pair; required if generate_signing_key is false.
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key", value)
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The public key part the SSH CA key pair; required if generate_signing_key is false.
+        """
+        return pulumi.get(self, "public_key")
+
+    @public_key.setter
+    def public_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "public_key", value)
+
+
+@pulumi.input_type
+class _SecretBackendCaState:
+    def __init__(__self__, *,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 generate_signing_key: Optional[pulumi.Input[bool]] = None,
+                 private_key: Optional[pulumi.Input[str]] = None,
+                 public_key: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering SecretBackendCa resources.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted. Defaults to 'ssh'
         :param pulumi.Input[bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
         :param pulumi.Input[str] private_key: The private key part the SSH CA key pair; required if generate_signing_key is false.
@@ -172,12 +244,12 @@ class SecretBackendCa(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SecretBackendCaArgs.__new__(SecretBackendCaArgs)
 
-            __props__['backend'] = backend
-            __props__['generate_signing_key'] = generate_signing_key
-            __props__['private_key'] = private_key
-            __props__['public_key'] = public_key
+            __props__.__dict__["backend"] = backend
+            __props__.__dict__["generate_signing_key"] = generate_signing_key
+            __props__.__dict__["private_key"] = private_key
+            __props__.__dict__["public_key"] = public_key
         super(SecretBackendCa, __self__).__init__(
             'vault:ssh/secretBackendCa:SecretBackendCa',
             resource_name,
@@ -206,12 +278,12 @@ class SecretBackendCa(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SecretBackendCaState.__new__(_SecretBackendCaState)
 
-        __props__["backend"] = backend
-        __props__["generate_signing_key"] = generate_signing_key
-        __props__["private_key"] = private_key
-        __props__["public_key"] = public_key
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["generate_signing_key"] = generate_signing_key
+        __props__.__dict__["private_key"] = private_key
+        __props__.__dict__["public_key"] = public_key
         return SecretBackendCa(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -245,10 +317,4 @@ class SecretBackendCa(pulumi.CustomResource):
         The public key part the SSH CA key pair; required if generate_signing_key is false.
         """
         return pulumi.get(self, "public_key")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

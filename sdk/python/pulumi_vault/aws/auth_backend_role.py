@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['AuthBackendRoleArgs', 'AuthBackendRole']
 
@@ -675,6 +675,672 @@ class AuthBackendRoleArgs:
         pulumi.set(self, "ttl", value)
 
 
+@pulumi.input_type
+class _AuthBackendRoleState:
+    def __init__(__self__, *,
+                 allow_instance_migration: Optional[pulumi.Input[bool]] = None,
+                 auth_type: Optional[pulumi.Input[str]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 bound_account_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_ami_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_ec2_instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_iam_instance_profile_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_iam_principal_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_iam_role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_vpc_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
+                 inferred_aws_region: Optional[pulumi.Input[str]] = None,
+                 inferred_entity_type: Optional[pulumi.Input[str]] = None,
+                 max_ttl: Optional[pulumi.Input[int]] = None,
+                 period: Optional[pulumi.Input[int]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 resolve_aws_unique_ids: Optional[pulumi.Input[bool]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 role_tag: Optional[pulumi.Input[str]] = None,
+                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+                 token_num_uses: Optional[pulumi.Input[int]] = None,
+                 token_period: Optional[pulumi.Input[int]] = None,
+                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_ttl: Optional[pulumi.Input[int]] = None,
+                 token_type: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None):
+        """
+        Input properties used for looking up and filtering AuthBackendRole resources.
+        :param pulumi.Input[bool] allow_instance_migration: If set to `true`, allows migration of
+               the underlying instance where the client resides.
+        :param pulumi.Input[str] auth_type: The auth type permitted for this role. Valid choices
+               are `ec2` and `iam`. Defaults to `iam`.
+        :param pulumi.Input[str] backend: Unique name of the auth backend to configure.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_account_ids: If set, defines a constraint on the EC2
+               instances that can perform the login operation that they should be using the
+               account ID specified by this field. `auth_type` must be set to `ec2` or
+               `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_ami_ids: If set, defines a constraint on the EC2 instances
+               that can perform the login operation that they should be using the AMI ID
+               specified by this field. `auth_type` must be set to `ec2` or
+               `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_ec2_instance_ids: Only EC2 instances that match this instance ID will be permitted to log in.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_iam_instance_profile_arns: If set, defines a constraint on
+               the EC2 instances that can perform the login operation that they must be
+               associated with an IAM instance profile ARN which has a prefix that matches
+               the value specified by this field. The value is prefix-matched as though it
+               were a glob ending in `*`. `auth_type` must be set to `ec2` or
+               `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_iam_principal_arns: If set, defines the IAM principal that
+               must be authenticated when `auth_type` is set to `iam`. Wildcards are
+               supported at the end of the ARN.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_iam_role_arns: If set, defines a constraint on the EC2
+               instances that can perform the login operation that they must match the IAM
+               role ARN specified by this field. `auth_type` must be set to `ec2` or
+               `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_regions: If set, defines a constraint on the EC2 instances
+               that can perform the login operation that the region in their identity
+               document must match the one specified by this field. `auth_type` must be set
+               to `ec2` or `inferred_entity_type` must be set to `ec2_instance` to use this
+               constraint.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_subnet_ids: If set, defines a constraint on the EC2
+               instances that can perform the login operation that they be associated with
+               the subnet ID that matches the value specified by this field. `auth_type`
+               must be set to `ec2` or `inferred_entity_type` must be set to `ec2_instance`
+               to use this constraint.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_vpc_ids: If set, defines a constraint on the EC2 instances
+               that can perform the login operation that they be associated with the VPC ID
+               that matches the value specified by this field. `auth_type` must be set to
+               `ec2` or `inferred_entity_type` must be set to `ec2_instance` to use this
+               constraint.
+        :param pulumi.Input[bool] disallow_reauthentication: IF set to `true`, only allows a
+               single token to be granted per instance ID. This can only be set when
+               `auth_type` is set to `ec2`.
+        :param pulumi.Input[str] inferred_aws_region: When `inferred_entity_type` is set, this
+               is the region to search for the inferred entities. Required if
+               `inferred_entity_type` is set. This only applies when `auth_type` is set to
+               `iam`.
+        :param pulumi.Input[str] inferred_entity_type: If set, instructs Vault to turn on
+               inferencing. The only valid value is `ec2_instance`, which instructs Vault to
+               infer that the role comes from an EC2 instance in an IAM instance profile.
+               This only applies when `auth_type` is set to `iam`.
+        :param pulumi.Input[int] max_ttl: The maximum allowed lifetime of tokens
+               issued using this role, provided as a number of seconds.
+        :param pulumi.Input[int] period: If set, indicates that the
+               token generated using this role should never expire. The token should be renewed within the
+               duration specified by this value. At each renewal, the token's TTL will be set to the
+               value of this field. Specified in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings
+               specifying the policies to be set on tokens issued using this role.
+        :param pulumi.Input[bool] resolve_aws_unique_ids: Only valid when
+               `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
+               resolved to [AWS Unique
+               IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
+               for the bound principal ARN. This field is ignored when a
+               `bound_iam_principal_arn` ends in a wildcard. Resolving to unique IDs more
+               closely mimics the behavior of AWS services in that if an IAM user or role is
+               deleted and a new one is recreated with the same name, those new users or
+               roles won't get access to roles in Vault that were permissioned to the prior
+               principals of the same name. Defaults to `true`.
+               Once set to `true`, this cannot be changed to `false` without recreating the role.
+        :param pulumi.Input[str] role: The name of the role.
+        :param pulumi.Input[str] role_tag: If set, enable role tags for this role. The value set
+               for this field should be the key of the tag on the EC2 instance. `auth_type`
+               must be set to `ec2` or `inferred_entity_type` must be set to `ec2_instance`
+               to use this constraint.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
+               addresses which can authenticate successfully, and ties the resulting token to these blocks
+               as well.
+        :param pulumi.Input[int] token_explicit_max_ttl: If set, will encode an
+               [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+               onto the token in number of seconds. This is a hard cap even if `token_ttl` and
+               `token_max_ttl` would otherwise allow a renewal.
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime for generated tokens in number of seconds.
+               Its current value will be referenced at renewal time.
+        :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
+               generated tokens; otherwise it will be added to the policies set in token_policies.
+        :param pulumi.Input[int] token_num_uses: The
+               [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+               if any, in number of seconds to set on the token.
+        :param pulumi.Input[int] token_period: If set, indicates that the
+               token generated using this role should never expire. The token should be renewed within the
+               duration specified by this value. At each renewal, the token's TTL will be set to the
+               value of this field. Specified in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
+               on the auth method, this list may be supplemented by user/group/other values.
+        :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
+               Its current value will be referenced at renewal time.
+        :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
+               `batch`, or `default` to use the mount's tuned default (which unless changed will be
+               `service` tokens). For token store roles, there are two additional possibilities:
+               `default-service` and `default-batch` which specify the type to return unless the client
+               requests a different type at generation time.
+        :param pulumi.Input[int] ttl: The TTL period of tokens issued
+               using this role, provided as a number of seconds.
+        """
+        if allow_instance_migration is not None:
+            pulumi.set(__self__, "allow_instance_migration", allow_instance_migration)
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if bound_account_ids is not None:
+            pulumi.set(__self__, "bound_account_ids", bound_account_ids)
+        if bound_ami_ids is not None:
+            pulumi.set(__self__, "bound_ami_ids", bound_ami_ids)
+        if bound_ec2_instance_ids is not None:
+            pulumi.set(__self__, "bound_ec2_instance_ids", bound_ec2_instance_ids)
+        if bound_iam_instance_profile_arns is not None:
+            pulumi.set(__self__, "bound_iam_instance_profile_arns", bound_iam_instance_profile_arns)
+        if bound_iam_principal_arns is not None:
+            pulumi.set(__self__, "bound_iam_principal_arns", bound_iam_principal_arns)
+        if bound_iam_role_arns is not None:
+            pulumi.set(__self__, "bound_iam_role_arns", bound_iam_role_arns)
+        if bound_regions is not None:
+            pulumi.set(__self__, "bound_regions", bound_regions)
+        if bound_subnet_ids is not None:
+            pulumi.set(__self__, "bound_subnet_ids", bound_subnet_ids)
+        if bound_vpc_ids is not None:
+            pulumi.set(__self__, "bound_vpc_ids", bound_vpc_ids)
+        if disallow_reauthentication is not None:
+            pulumi.set(__self__, "disallow_reauthentication", disallow_reauthentication)
+        if inferred_aws_region is not None:
+            pulumi.set(__self__, "inferred_aws_region", inferred_aws_region)
+        if inferred_entity_type is not None:
+            pulumi.set(__self__, "inferred_entity_type", inferred_entity_type)
+        if max_ttl is not None:
+            warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
+            pulumi.log.warn("""max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2""")
+        if max_ttl is not None:
+            pulumi.set(__self__, "max_ttl", max_ttl)
+        if period is not None:
+            warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
+            pulumi.log.warn("""period is deprecated: use `token_period` instead if you are running Vault >= 1.2""")
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if policies is not None:
+            warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
+            pulumi.log.warn("""policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2""")
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+        if resolve_aws_unique_ids is not None:
+            pulumi.set(__self__, "resolve_aws_unique_ids", resolve_aws_unique_ids)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if role_tag is not None:
+            pulumi.set(__self__, "role_tag", role_tag)
+        if token_bound_cidrs is not None:
+            pulumi.set(__self__, "token_bound_cidrs", token_bound_cidrs)
+        if token_explicit_max_ttl is not None:
+            pulumi.set(__self__, "token_explicit_max_ttl", token_explicit_max_ttl)
+        if token_max_ttl is not None:
+            pulumi.set(__self__, "token_max_ttl", token_max_ttl)
+        if token_no_default_policy is not None:
+            pulumi.set(__self__, "token_no_default_policy", token_no_default_policy)
+        if token_num_uses is not None:
+            pulumi.set(__self__, "token_num_uses", token_num_uses)
+        if token_period is not None:
+            pulumi.set(__self__, "token_period", token_period)
+        if token_policies is not None:
+            pulumi.set(__self__, "token_policies", token_policies)
+        if token_ttl is not None:
+            pulumi.set(__self__, "token_ttl", token_ttl)
+        if token_type is not None:
+            pulumi.set(__self__, "token_type", token_type)
+        if ttl is not None:
+            warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
+            pulumi.log.warn("""ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2""")
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter(name="allowInstanceMigration")
+    def allow_instance_migration(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to `true`, allows migration of
+        the underlying instance where the client resides.
+        """
+        return pulumi.get(self, "allow_instance_migration")
+
+    @allow_instance_migration.setter
+    def allow_instance_migration(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_instance_migration", value)
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The auth type permitted for this role. Valid choices
+        are `ec2` and `iam`. Defaults to `iam`.
+        """
+        return pulumi.get(self, "auth_type")
+
+    @auth_type.setter
+    def auth_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auth_type", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique name of the auth backend to configure.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="boundAccountIds")
+    def bound_account_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If set, defines a constraint on the EC2
+        instances that can perform the login operation that they should be using the
+        account ID specified by this field. `auth_type` must be set to `ec2` or
+        `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        """
+        return pulumi.get(self, "bound_account_ids")
+
+    @bound_account_ids.setter
+    def bound_account_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_account_ids", value)
+
+    @property
+    @pulumi.getter(name="boundAmiIds")
+    def bound_ami_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If set, defines a constraint on the EC2 instances
+        that can perform the login operation that they should be using the AMI ID
+        specified by this field. `auth_type` must be set to `ec2` or
+        `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        """
+        return pulumi.get(self, "bound_ami_ids")
+
+    @bound_ami_ids.setter
+    def bound_ami_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_ami_ids", value)
+
+    @property
+    @pulumi.getter(name="boundEc2InstanceIds")
+    def bound_ec2_instance_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Only EC2 instances that match this instance ID will be permitted to log in.
+        """
+        return pulumi.get(self, "bound_ec2_instance_ids")
+
+    @bound_ec2_instance_ids.setter
+    def bound_ec2_instance_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_ec2_instance_ids", value)
+
+    @property
+    @pulumi.getter(name="boundIamInstanceProfileArns")
+    def bound_iam_instance_profile_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If set, defines a constraint on
+        the EC2 instances that can perform the login operation that they must be
+        associated with an IAM instance profile ARN which has a prefix that matches
+        the value specified by this field. The value is prefix-matched as though it
+        were a glob ending in `*`. `auth_type` must be set to `ec2` or
+        `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        """
+        return pulumi.get(self, "bound_iam_instance_profile_arns")
+
+    @bound_iam_instance_profile_arns.setter
+    def bound_iam_instance_profile_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_iam_instance_profile_arns", value)
+
+    @property
+    @pulumi.getter(name="boundIamPrincipalArns")
+    def bound_iam_principal_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If set, defines the IAM principal that
+        must be authenticated when `auth_type` is set to `iam`. Wildcards are
+        supported at the end of the ARN.
+        """
+        return pulumi.get(self, "bound_iam_principal_arns")
+
+    @bound_iam_principal_arns.setter
+    def bound_iam_principal_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_iam_principal_arns", value)
+
+    @property
+    @pulumi.getter(name="boundIamRoleArns")
+    def bound_iam_role_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If set, defines a constraint on the EC2
+        instances that can perform the login operation that they must match the IAM
+        role ARN specified by this field. `auth_type` must be set to `ec2` or
+        `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        """
+        return pulumi.get(self, "bound_iam_role_arns")
+
+    @bound_iam_role_arns.setter
+    def bound_iam_role_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_iam_role_arns", value)
+
+    @property
+    @pulumi.getter(name="boundRegions")
+    def bound_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If set, defines a constraint on the EC2 instances
+        that can perform the login operation that the region in their identity
+        document must match the one specified by this field. `auth_type` must be set
+        to `ec2` or `inferred_entity_type` must be set to `ec2_instance` to use this
+        constraint.
+        """
+        return pulumi.get(self, "bound_regions")
+
+    @bound_regions.setter
+    def bound_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_regions", value)
+
+    @property
+    @pulumi.getter(name="boundSubnetIds")
+    def bound_subnet_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If set, defines a constraint on the EC2
+        instances that can perform the login operation that they be associated with
+        the subnet ID that matches the value specified by this field. `auth_type`
+        must be set to `ec2` or `inferred_entity_type` must be set to `ec2_instance`
+        to use this constraint.
+        """
+        return pulumi.get(self, "bound_subnet_ids")
+
+    @bound_subnet_ids.setter
+    def bound_subnet_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_subnet_ids", value)
+
+    @property
+    @pulumi.getter(name="boundVpcIds")
+    def bound_vpc_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If set, defines a constraint on the EC2 instances
+        that can perform the login operation that they be associated with the VPC ID
+        that matches the value specified by this field. `auth_type` must be set to
+        `ec2` or `inferred_entity_type` must be set to `ec2_instance` to use this
+        constraint.
+        """
+        return pulumi.get(self, "bound_vpc_ids")
+
+    @bound_vpc_ids.setter
+    def bound_vpc_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_vpc_ids", value)
+
+    @property
+    @pulumi.getter(name="disallowReauthentication")
+    def disallow_reauthentication(self) -> Optional[pulumi.Input[bool]]:
+        """
+        IF set to `true`, only allows a
+        single token to be granted per instance ID. This can only be set when
+        `auth_type` is set to `ec2`.
+        """
+        return pulumi.get(self, "disallow_reauthentication")
+
+    @disallow_reauthentication.setter
+    def disallow_reauthentication(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disallow_reauthentication", value)
+
+    @property
+    @pulumi.getter(name="inferredAwsRegion")
+    def inferred_aws_region(self) -> Optional[pulumi.Input[str]]:
+        """
+        When `inferred_entity_type` is set, this
+        is the region to search for the inferred entities. Required if
+        `inferred_entity_type` is set. This only applies when `auth_type` is set to
+        `iam`.
+        """
+        return pulumi.get(self, "inferred_aws_region")
+
+    @inferred_aws_region.setter
+    def inferred_aws_region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "inferred_aws_region", value)
+
+    @property
+    @pulumi.getter(name="inferredEntityType")
+    def inferred_entity_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        If set, instructs Vault to turn on
+        inferencing. The only valid value is `ec2_instance`, which instructs Vault to
+        infer that the role comes from an EC2 instance in an IAM instance profile.
+        This only applies when `auth_type` is set to `iam`.
+        """
+        return pulumi.get(self, "inferred_entity_type")
+
+    @inferred_entity_type.setter
+    def inferred_entity_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "inferred_entity_type", value)
+
+    @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum allowed lifetime of tokens
+        issued using this role, provided as a number of seconds.
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @max_ttl.setter
+    def max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_ttl", value)
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[pulumi.Input[int]]:
+        """
+        If set, indicates that the
+        token generated using this role should never expire. The token should be renewed within the
+        duration specified by this value. At each renewal, the token's TTL will be set to the
+        value of this field. Specified in seconds.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "period", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        An array of strings
+        specifying the policies to be set on tokens issued using this role.
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
+
+    @property
+    @pulumi.getter(name="resolveAwsUniqueIds")
+    def resolve_aws_unique_ids(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Only valid when
+        `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
+        resolved to [AWS Unique
+        IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
+        for the bound principal ARN. This field is ignored when a
+        `bound_iam_principal_arn` ends in a wildcard. Resolving to unique IDs more
+        closely mimics the behavior of AWS services in that if an IAM user or role is
+        deleted and a new one is recreated with the same name, those new users or
+        roles won't get access to roles in Vault that were permissioned to the prior
+        principals of the same name. Defaults to `true`.
+        Once set to `true`, this cannot be changed to `false` without recreating the role.
+        """
+        return pulumi.get(self, "resolve_aws_unique_ids")
+
+    @resolve_aws_unique_ids.setter
+    def resolve_aws_unique_ids(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "resolve_aws_unique_ids", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the role.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter(name="roleTag")
+    def role_tag(self) -> Optional[pulumi.Input[str]]:
+        """
+        If set, enable role tags for this role. The value set
+        for this field should be the key of the tag on the EC2 instance. `auth_type`
+        must be set to `ec2` or `inferred_entity_type` must be set to `ec2_instance`
+        to use this constraint.
+        """
+        return pulumi.get(self, "role_tag")
+
+    @role_tag.setter
+    def role_tag(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_tag", value)
+
+    @property
+    @pulumi.getter(name="tokenBoundCidrs")
+    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of CIDR blocks; if set, specifies blocks of IP
+        addresses which can authenticate successfully, and ties the resulting token to these blocks
+        as well.
+        """
+        return pulumi.get(self, "token_bound_cidrs")
+
+    @token_bound_cidrs.setter
+    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "token_bound_cidrs", value)
+
+    @property
+    @pulumi.getter(name="tokenExplicitMaxTtl")
+    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        If set, will encode an
+        [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+        onto the token in number of seconds. This is a hard cap even if `token_ttl` and
+        `token_max_ttl` would otherwise allow a renewal.
+        """
+        return pulumi.get(self, "token_explicit_max_ttl")
+
+    @token_explicit_max_ttl.setter
+    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_explicit_max_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenMaxTtl")
+    def token_max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum lifetime for generated tokens in number of seconds.
+        Its current value will be referenced at renewal time.
+        """
+        return pulumi.get(self, "token_max_ttl")
+
+    @token_max_ttl.setter
+    def token_max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_max_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenNoDefaultPolicy")
+    def token_no_default_policy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, the default policy will not be set on
+        generated tokens; otherwise it will be added to the policies set in token_policies.
+        """
+        return pulumi.get(self, "token_no_default_policy")
+
+    @token_no_default_policy.setter
+    def token_no_default_policy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "token_no_default_policy", value)
+
+    @property
+    @pulumi.getter(name="tokenNumUses")
+    def token_num_uses(self) -> Optional[pulumi.Input[int]]:
+        """
+        The
+        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+        if any, in number of seconds to set on the token.
+        """
+        return pulumi.get(self, "token_num_uses")
+
+    @token_num_uses.setter
+    def token_num_uses(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_num_uses", value)
+
+    @property
+    @pulumi.getter(name="tokenPeriod")
+    def token_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        If set, indicates that the
+        token generated using this role should never expire. The token should be renewed within the
+        duration specified by this value. At each renewal, the token's TTL will be set to the
+        value of this field. Specified in seconds.
+        """
+        return pulumi.get(self, "token_period")
+
+    @token_period.setter
+    def token_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_period", value)
+
+    @property
+    @pulumi.getter(name="tokenPolicies")
+    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of policies to encode onto generated tokens. Depending
+        on the auth method, this list may be supplemented by user/group/other values.
+        """
+        return pulumi.get(self, "token_policies")
+
+    @token_policies.setter
+    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "token_policies", value)
+
+    @property
+    @pulumi.getter(name="tokenTtl")
+    def token_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The incremental lifetime for generated tokens in number of seconds.
+        Its current value will be referenced at renewal time.
+        """
+        return pulumi.get(self, "token_ttl")
+
+    @token_ttl.setter
+    def token_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenType")
+    def token_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of token that should be generated. Can be `service`,
+        `batch`, or `default` to use the mount's tuned default (which unless changed will be
+        `service` tokens). For token store roles, there are two additional possibilities:
+        `default-service` and `default-batch` which specify the type to return unless the client
+        requests a different type at generation time.
+        """
+        return pulumi.get(self, "token_type")
+
+    @token_type.setter
+    def token_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token_type", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The TTL period of tokens issued
+        using this role, provided as a number of seconds.
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ttl", value)
+
+
 class AuthBackendRole(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -979,53 +1645,53 @@ class AuthBackendRole(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = AuthBackendRoleArgs.__new__(AuthBackendRoleArgs)
 
-            __props__['allow_instance_migration'] = allow_instance_migration
-            __props__['auth_type'] = auth_type
-            __props__['backend'] = backend
-            __props__['bound_account_ids'] = bound_account_ids
-            __props__['bound_ami_ids'] = bound_ami_ids
-            __props__['bound_ec2_instance_ids'] = bound_ec2_instance_ids
-            __props__['bound_iam_instance_profile_arns'] = bound_iam_instance_profile_arns
-            __props__['bound_iam_principal_arns'] = bound_iam_principal_arns
-            __props__['bound_iam_role_arns'] = bound_iam_role_arns
-            __props__['bound_regions'] = bound_regions
-            __props__['bound_subnet_ids'] = bound_subnet_ids
-            __props__['bound_vpc_ids'] = bound_vpc_ids
-            __props__['disallow_reauthentication'] = disallow_reauthentication
-            __props__['inferred_aws_region'] = inferred_aws_region
-            __props__['inferred_entity_type'] = inferred_entity_type
+            __props__.__dict__["allow_instance_migration"] = allow_instance_migration
+            __props__.__dict__["auth_type"] = auth_type
+            __props__.__dict__["backend"] = backend
+            __props__.__dict__["bound_account_ids"] = bound_account_ids
+            __props__.__dict__["bound_ami_ids"] = bound_ami_ids
+            __props__.__dict__["bound_ec2_instance_ids"] = bound_ec2_instance_ids
+            __props__.__dict__["bound_iam_instance_profile_arns"] = bound_iam_instance_profile_arns
+            __props__.__dict__["bound_iam_principal_arns"] = bound_iam_principal_arns
+            __props__.__dict__["bound_iam_role_arns"] = bound_iam_role_arns
+            __props__.__dict__["bound_regions"] = bound_regions
+            __props__.__dict__["bound_subnet_ids"] = bound_subnet_ids
+            __props__.__dict__["bound_vpc_ids"] = bound_vpc_ids
+            __props__.__dict__["disallow_reauthentication"] = disallow_reauthentication
+            __props__.__dict__["inferred_aws_region"] = inferred_aws_region
+            __props__.__dict__["inferred_entity_type"] = inferred_entity_type
             if max_ttl is not None and not opts.urn:
                 warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("""max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2""")
-            __props__['max_ttl'] = max_ttl
+            __props__.__dict__["max_ttl"] = max_ttl
             if period is not None and not opts.urn:
                 warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("""period is deprecated: use `token_period` instead if you are running Vault >= 1.2""")
-            __props__['period'] = period
+            __props__.__dict__["period"] = period
             if policies is not None and not opts.urn:
                 warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("""policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2""")
-            __props__['policies'] = policies
-            __props__['resolve_aws_unique_ids'] = resolve_aws_unique_ids
+            __props__.__dict__["policies"] = policies
+            __props__.__dict__["resolve_aws_unique_ids"] = resolve_aws_unique_ids
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
-            __props__['role'] = role
-            __props__['role_tag'] = role_tag
-            __props__['token_bound_cidrs'] = token_bound_cidrs
-            __props__['token_explicit_max_ttl'] = token_explicit_max_ttl
-            __props__['token_max_ttl'] = token_max_ttl
-            __props__['token_no_default_policy'] = token_no_default_policy
-            __props__['token_num_uses'] = token_num_uses
-            __props__['token_period'] = token_period
-            __props__['token_policies'] = token_policies
-            __props__['token_ttl'] = token_ttl
-            __props__['token_type'] = token_type
+            __props__.__dict__["role"] = role
+            __props__.__dict__["role_tag"] = role_tag
+            __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
+            __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
+            __props__.__dict__["token_max_ttl"] = token_max_ttl
+            __props__.__dict__["token_no_default_policy"] = token_no_default_policy
+            __props__.__dict__["token_num_uses"] = token_num_uses
+            __props__.__dict__["token_period"] = token_period
+            __props__.__dict__["token_policies"] = token_policies
+            __props__.__dict__["token_ttl"] = token_ttl
+            __props__.__dict__["token_type"] = token_type
             if ttl is not None and not opts.urn:
                 warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("""ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2""")
-            __props__['ttl'] = ttl
+            __props__.__dict__["ttl"] = ttl
         super(AuthBackendRole, __self__).__init__(
             'vault:aws/authBackendRole:AuthBackendRole',
             resource_name,
@@ -1183,39 +1849,39 @@ class AuthBackendRole(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _AuthBackendRoleState.__new__(_AuthBackendRoleState)
 
-        __props__["allow_instance_migration"] = allow_instance_migration
-        __props__["auth_type"] = auth_type
-        __props__["backend"] = backend
-        __props__["bound_account_ids"] = bound_account_ids
-        __props__["bound_ami_ids"] = bound_ami_ids
-        __props__["bound_ec2_instance_ids"] = bound_ec2_instance_ids
-        __props__["bound_iam_instance_profile_arns"] = bound_iam_instance_profile_arns
-        __props__["bound_iam_principal_arns"] = bound_iam_principal_arns
-        __props__["bound_iam_role_arns"] = bound_iam_role_arns
-        __props__["bound_regions"] = bound_regions
-        __props__["bound_subnet_ids"] = bound_subnet_ids
-        __props__["bound_vpc_ids"] = bound_vpc_ids
-        __props__["disallow_reauthentication"] = disallow_reauthentication
-        __props__["inferred_aws_region"] = inferred_aws_region
-        __props__["inferred_entity_type"] = inferred_entity_type
-        __props__["max_ttl"] = max_ttl
-        __props__["period"] = period
-        __props__["policies"] = policies
-        __props__["resolve_aws_unique_ids"] = resolve_aws_unique_ids
-        __props__["role"] = role
-        __props__["role_tag"] = role_tag
-        __props__["token_bound_cidrs"] = token_bound_cidrs
-        __props__["token_explicit_max_ttl"] = token_explicit_max_ttl
-        __props__["token_max_ttl"] = token_max_ttl
-        __props__["token_no_default_policy"] = token_no_default_policy
-        __props__["token_num_uses"] = token_num_uses
-        __props__["token_period"] = token_period
-        __props__["token_policies"] = token_policies
-        __props__["token_ttl"] = token_ttl
-        __props__["token_type"] = token_type
-        __props__["ttl"] = ttl
+        __props__.__dict__["allow_instance_migration"] = allow_instance_migration
+        __props__.__dict__["auth_type"] = auth_type
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["bound_account_ids"] = bound_account_ids
+        __props__.__dict__["bound_ami_ids"] = bound_ami_ids
+        __props__.__dict__["bound_ec2_instance_ids"] = bound_ec2_instance_ids
+        __props__.__dict__["bound_iam_instance_profile_arns"] = bound_iam_instance_profile_arns
+        __props__.__dict__["bound_iam_principal_arns"] = bound_iam_principal_arns
+        __props__.__dict__["bound_iam_role_arns"] = bound_iam_role_arns
+        __props__.__dict__["bound_regions"] = bound_regions
+        __props__.__dict__["bound_subnet_ids"] = bound_subnet_ids
+        __props__.__dict__["bound_vpc_ids"] = bound_vpc_ids
+        __props__.__dict__["disallow_reauthentication"] = disallow_reauthentication
+        __props__.__dict__["inferred_aws_region"] = inferred_aws_region
+        __props__.__dict__["inferred_entity_type"] = inferred_entity_type
+        __props__.__dict__["max_ttl"] = max_ttl
+        __props__.__dict__["period"] = period
+        __props__.__dict__["policies"] = policies
+        __props__.__dict__["resolve_aws_unique_ids"] = resolve_aws_unique_ids
+        __props__.__dict__["role"] = role
+        __props__.__dict__["role_tag"] = role_tag
+        __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
+        __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
+        __props__.__dict__["token_max_ttl"] = token_max_ttl
+        __props__.__dict__["token_no_default_policy"] = token_no_default_policy
+        __props__.__dict__["token_num_uses"] = token_num_uses
+        __props__.__dict__["token_period"] = token_period
+        __props__.__dict__["token_policies"] = token_policies
+        __props__.__dict__["token_ttl"] = token_ttl
+        __props__.__dict__["token_type"] = token_type
+        __props__.__dict__["ttl"] = ttl
         return AuthBackendRole(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1540,10 +2206,4 @@ class AuthBackendRole(pulumi.CustomResource):
         using this role, provided as a number of seconds.
         """
         return pulumi.get(self, "ttl")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

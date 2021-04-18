@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['SecretBackendRoleArgs', 'SecretBackendRole']
 
@@ -103,6 +103,212 @@ class SecretBackendRoleArgs:
 
     @credential_type.setter
     def credential_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "credential_type", value)
+
+    @property
+    @pulumi.getter(name="defaultStsTtl")
+    def default_sts_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The default TTL in seconds for STS credentials.
+        When a TTL is not specified when STS credentials are requested,
+        and a default TTL is specified on the role,
+        then this default TTL will be used. Valid only when `credential_type` is one of
+        `assumed_role` or `federation_token`.
+        """
+        return pulumi.get(self, "default_sts_ttl")
+
+    @default_sts_ttl.setter
+    def default_sts_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "default_sts_ttl", value)
+
+    @property
+    @pulumi.getter(name="iamGroups")
+    def iam_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of IAM group names. IAM users generated
+        against this vault role will be added to these IAM Groups. For a credential
+        type of `assumed_role` or `federation_token`, the policies sent to the
+        corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
+        policies from each group in `iam_groups` combined with the `policy_document`
+        and `policy_arns` parameters.
+        """
+        return pulumi.get(self, "iam_groups")
+
+    @iam_groups.setter
+    def iam_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "iam_groups", value)
+
+    @property
+    @pulumi.getter(name="maxStsTtl")
+    def max_sts_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The max allowed TTL in seconds for STS credentials
+        (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
+        one of `assumed_role` or `federation_token`.
+        """
+        return pulumi.get(self, "max_sts_ttl")
+
+    @max_sts_ttl.setter
+    def max_sts_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_sts_ttl", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name to identify this role within the backend.
+        Must be unique within the backend.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="policyArns")
+    def policy_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies a list of AWS managed policy ARNs. The
+        behavior depends on the credential type. With `iam_user`, the policies will be
+        attached to IAM users when they are requested. With `assumed_role` and
+        `federation_token`, the policy ARNs will act as a filter on what the credentials
+        can do, similar to `policy_document`. When `credential_type` is `iam_user` or
+        `federation_token`, at least one of `policy_document` or `policy_arns` must
+        be specified.
+        """
+        return pulumi.get(self, "policy_arns")
+
+    @policy_arns.setter
+    def policy_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policy_arns", value)
+
+    @property
+    @pulumi.getter(name="policyDocument")
+    def policy_document(self) -> Optional[pulumi.Input[str]]:
+        """
+        The IAM policy document for the role. The
+        behavior depends on the credential type. With `iam_user`, the policy document
+        will be attached to the IAM user generated and augment the permissions the IAM
+        user has. With `assumed_role` and `federation_token`, the policy document will
+        act as a filter on what the credentials can do, similar to `policy_arns`.
+        """
+        return pulumi.get(self, "policy_document")
+
+    @policy_document.setter
+    def policy_document(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "policy_document", value)
+
+    @property
+    @pulumi.getter(name="roleArns")
+    def role_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies the ARNs of the AWS roles this Vault role
+        is allowed to assume. Required when `credential_type` is `assumed_role` and
+        prohibited otherwise.
+        """
+        return pulumi.get(self, "role_arns")
+
+    @role_arns.setter
+    def role_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "role_arns", value)
+
+
+@pulumi.input_type
+class _SecretBackendRoleState:
+    def __init__(__self__, *,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 credential_type: Optional[pulumi.Input[str]] = None,
+                 default_sts_ttl: Optional[pulumi.Input[int]] = None,
+                 iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 max_sts_ttl: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 policy_document: Optional[pulumi.Input[str]] = None,
+                 role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        Input properties used for looking up and filtering SecretBackendRole resources.
+        :param pulumi.Input[str] backend: The path the AWS secret backend is mounted at,
+               with no leading or trailing `/`s.
+        :param pulumi.Input[str] credential_type: Specifies the type of credential to be used when
+               retrieving credentials from the role. Must be one of `iam_user`, `assumed_role`, or
+               `federation_token`.
+        :param pulumi.Input[int] default_sts_ttl: The default TTL in seconds for STS credentials.
+               When a TTL is not specified when STS credentials are requested,
+               and a default TTL is specified on the role,
+               then this default TTL will be used. Valid only when `credential_type` is one of
+               `assumed_role` or `federation_token`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] iam_groups: A list of IAM group names. IAM users generated
+               against this vault role will be added to these IAM Groups. For a credential
+               type of `assumed_role` or `federation_token`, the policies sent to the
+               corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
+               policies from each group in `iam_groups` combined with the `policy_document`
+               and `policy_arns` parameters.
+        :param pulumi.Input[int] max_sts_ttl: The max allowed TTL in seconds for STS credentials
+               (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
+               one of `assumed_role` or `federation_token`.
+        :param pulumi.Input[str] name: The name to identify this role within the backend.
+               Must be unique within the backend.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_arns: Specifies a list of AWS managed policy ARNs. The
+               behavior depends on the credential type. With `iam_user`, the policies will be
+               attached to IAM users when they are requested. With `assumed_role` and
+               `federation_token`, the policy ARNs will act as a filter on what the credentials
+               can do, similar to `policy_document`. When `credential_type` is `iam_user` or
+               `federation_token`, at least one of `policy_document` or `policy_arns` must
+               be specified.
+        :param pulumi.Input[str] policy_document: The IAM policy document for the role. The
+               behavior depends on the credential type. With `iam_user`, the policy document
+               will be attached to the IAM user generated and augment the permissions the IAM
+               user has. With `assumed_role` and `federation_token`, the policy document will
+               act as a filter on what the credentials can do, similar to `policy_arns`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_arns: Specifies the ARNs of the AWS roles this Vault role
+               is allowed to assume. Required when `credential_type` is `assumed_role` and
+               prohibited otherwise.
+        """
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if credential_type is not None:
+            pulumi.set(__self__, "credential_type", credential_type)
+        if default_sts_ttl is not None:
+            pulumi.set(__self__, "default_sts_ttl", default_sts_ttl)
+        if iam_groups is not None:
+            pulumi.set(__self__, "iam_groups", iam_groups)
+        if max_sts_ttl is not None:
+            pulumi.set(__self__, "max_sts_ttl", max_sts_ttl)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if policy_arns is not None:
+            pulumi.set(__self__, "policy_arns", policy_arns)
+        if policy_document is not None:
+            pulumi.set(__self__, "policy_document", policy_document)
+        if role_arns is not None:
+            pulumi.set(__self__, "role_arns", role_arns)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path the AWS secret backend is mounted at,
+        with no leading or trailing `/`s.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="credentialType")
+    def credential_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the type of credential to be used when
+        retrieving credentials from the role. Must be one of `iam_user`, `assumed_role`, or
+        `federation_token`.
+        """
+        return pulumi.get(self, "credential_type")
+
+    @credential_type.setter
+    def credential_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "credential_type", value)
 
     @property
@@ -336,21 +542,21 @@ class SecretBackendRole(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SecretBackendRoleArgs.__new__(SecretBackendRoleArgs)
 
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
-            __props__['backend'] = backend
+            __props__.__dict__["backend"] = backend
             if credential_type is None and not opts.urn:
                 raise TypeError("Missing required property 'credential_type'")
-            __props__['credential_type'] = credential_type
-            __props__['default_sts_ttl'] = default_sts_ttl
-            __props__['iam_groups'] = iam_groups
-            __props__['max_sts_ttl'] = max_sts_ttl
-            __props__['name'] = name
-            __props__['policy_arns'] = policy_arns
-            __props__['policy_document'] = policy_document
-            __props__['role_arns'] = role_arns
+            __props__.__dict__["credential_type"] = credential_type
+            __props__.__dict__["default_sts_ttl"] = default_sts_ttl
+            __props__.__dict__["iam_groups"] = iam_groups
+            __props__.__dict__["max_sts_ttl"] = max_sts_ttl
+            __props__.__dict__["name"] = name
+            __props__.__dict__["policy_arns"] = policy_arns
+            __props__.__dict__["policy_document"] = policy_document
+            __props__.__dict__["role_arns"] = role_arns
         super(SecretBackendRole, __self__).__init__(
             'vault:aws/secretBackendRole:SecretBackendRole',
             resource_name,
@@ -416,17 +622,17 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SecretBackendRoleState.__new__(_SecretBackendRoleState)
 
-        __props__["backend"] = backend
-        __props__["credential_type"] = credential_type
-        __props__["default_sts_ttl"] = default_sts_ttl
-        __props__["iam_groups"] = iam_groups
-        __props__["max_sts_ttl"] = max_sts_ttl
-        __props__["name"] = name
-        __props__["policy_arns"] = policy_arns
-        __props__["policy_document"] = policy_document
-        __props__["role_arns"] = role_arns
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["credential_type"] = credential_type
+        __props__.__dict__["default_sts_ttl"] = default_sts_ttl
+        __props__.__dict__["iam_groups"] = iam_groups
+        __props__.__dict__["max_sts_ttl"] = max_sts_ttl
+        __props__.__dict__["name"] = name
+        __props__.__dict__["policy_arns"] = policy_arns
+        __props__.__dict__["policy_document"] = policy_document
+        __props__.__dict__["role_arns"] = role_arns
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -527,10 +733,4 @@ class SecretBackendRole(pulumi.CustomResource):
         prohibited otherwise.
         """
         return pulumi.get(self, "role_arns")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

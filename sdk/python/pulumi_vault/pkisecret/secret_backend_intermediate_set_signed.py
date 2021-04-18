@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['SecretBackendIntermediateSetSignedArgs', 'SecretBackendIntermediateSetSigned']
 
@@ -45,6 +45,46 @@ class SecretBackendIntermediateSetSignedArgs:
 
     @certificate.setter
     def certificate(self, value: pulumi.Input[str]):
+        pulumi.set(self, "certificate", value)
+
+
+@pulumi.input_type
+class _SecretBackendIntermediateSetSignedState:
+    def __init__(__self__, *,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 certificate: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering SecretBackendIntermediateSetSigned resources.
+        :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
+        :param pulumi.Input[str] certificate: The certificate
+        """
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if certificate is not None:
+            pulumi.set(__self__, "certificate", certificate)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The PKI secret backend the resource belongs to.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        The certificate
+        """
+        return pulumi.get(self, "certificate")
+
+    @certificate.setter
+    def certificate(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "certificate", value)
 
 
@@ -108,14 +148,14 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SecretBackendIntermediateSetSignedArgs.__new__(SecretBackendIntermediateSetSignedArgs)
 
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
-            __props__['backend'] = backend
+            __props__.__dict__["backend"] = backend
             if certificate is None and not opts.urn:
                 raise TypeError("Missing required property 'certificate'")
-            __props__['certificate'] = certificate
+            __props__.__dict__["certificate"] = certificate
         super(SecretBackendIntermediateSetSigned, __self__).__init__(
             'vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned',
             resource_name,
@@ -140,10 +180,10 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SecretBackendIntermediateSetSignedState.__new__(_SecretBackendIntermediateSetSignedState)
 
-        __props__["backend"] = backend
-        __props__["certificate"] = certificate
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["certificate"] = certificate
         return SecretBackendIntermediateSetSigned(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -161,10 +201,4 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
         The certificate
         """
         return pulumi.get(self, "certificate")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

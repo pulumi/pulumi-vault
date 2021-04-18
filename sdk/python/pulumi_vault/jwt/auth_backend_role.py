@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['AuthBackendRoleArgs', 'AuthBackendRole']
 
@@ -661,6 +661,659 @@ class AuthBackendRoleArgs:
         pulumi.set(self, "verbose_oidc_logging", value)
 
 
+@pulumi.input_type
+class _AuthBackendRoleState:
+    def __init__(__self__, *,
+                 allowed_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_claims: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 bound_claims_type: Optional[pulumi.Input[str]] = None,
+                 bound_subject: Optional[pulumi.Input[str]] = None,
+                 claim_mappings: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 clock_skew_leeway: Optional[pulumi.Input[int]] = None,
+                 expiration_leeway: Optional[pulumi.Input[int]] = None,
+                 groups_claim: Optional[pulumi.Input[str]] = None,
+                 groups_claim_delimiter_pattern: Optional[pulumi.Input[str]] = None,
+                 max_ttl: Optional[pulumi.Input[int]] = None,
+                 not_before_leeway: Optional[pulumi.Input[int]] = None,
+                 num_uses: Optional[pulumi.Input[int]] = None,
+                 oidc_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 period: Optional[pulumi.Input[int]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 role_name: Optional[pulumi.Input[str]] = None,
+                 role_type: Optional[pulumi.Input[str]] = None,
+                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+                 token_num_uses: Optional[pulumi.Input[int]] = None,
+                 token_period: Optional[pulumi.Input[int]] = None,
+                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_ttl: Optional[pulumi.Input[int]] = None,
+                 token_type: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None,
+                 user_claim: Optional[pulumi.Input[str]] = None,
+                 verbose_oidc_logging: Optional[pulumi.Input[bool]] = None):
+        """
+        Input properties used for looking up and filtering AuthBackendRole resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_redirect_uris: The list of allowed values for redirect_uri during OIDC logins.
+               Required for OIDC roles
+        :param pulumi.Input[str] backend: The unique name of the auth backend to configure.
+               Defaults to `jwt`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (Required for roles of type `jwt`, optional for roles of
+               type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_cidrs: If set, a list of
+               CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+        :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims/values to match against.
+               The expected value may be a single string or a list of strings.
+        :param pulumi.Input[str] bound_claims_type: How to interpret values in the claims/values
+               map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
+               match). Requires Vault 1.4.0 or above.
+        :param pulumi.Input[str] bound_subject: If set, requires that the `sub` claim matches
+               this value.
+        :param pulumi.Input[Mapping[str, Any]] claim_mappings: If set, a map of claims (keys) to be copied
+               to specified metadata fields (values).
+        :param pulumi.Input[int] clock_skew_leeway: The amount of leeway to add to all claims to account for clock skew, in
+               seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+               Only applicable with "jwt" roles.
+        :param pulumi.Input[int] expiration_leeway: The amount of leeway to add to expiration (`exp`) claims to account for
+               clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+               Only applicable with "jwt" roles.
+        :param pulumi.Input[str] groups_claim: The claim to use to uniquely identify
+               the set of groups to which the user belongs; this will be used as the names
+               for the Identity group aliases created due to a successful login. The claim
+               value must be a list of strings.
+        :param pulumi.Input[str] groups_claim_delimiter_pattern: (Optional; Deprecated. This field has been
+               removed since Vault 1.1. If the groups claim is not at the top level, it can
+               now be specified as a [JSONPointer](https://tools.ietf.org/html/rfc6901).)
+               A pattern of delimiters
+               used to allow the groups_claim to live outside of the top-level JWT structure.
+               For instance, a groups_claim of meta/user.name/groups with this field
+               set to // will expect nested structures named meta, user.name, and groups.
+               If this field was set to /./ the groups information would expect to be
+               via nested structures of meta, user, name, and groups.
+        :param pulumi.Input[int] max_ttl: The maximum allowed lifetime of tokens
+               issued using this role, provided as a number of seconds.
+        :param pulumi.Input[int] not_before_leeway: The amount of leeway to add to not before (`nbf`) claims to account for
+               clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+               Only applicable with "jwt" roles.
+        :param pulumi.Input[int] num_uses: If set, puts a use-count
+               limitation on the issued token.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] oidc_scopes: If set, a list of OIDC scopes to be used with an OIDC role.
+               The standard scope "openid" is automatically included and need not be specified.
+        :param pulumi.Input[int] period: If set, indicates that the
+               token generated using this role should never expire. The token should be renewed within the
+               duration specified by this value. At each renewal, the token's TTL will be set to the
+               value of this field. Specified in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings
+               specifying the policies to be set on tokens issued using this role.
+        :param pulumi.Input[str] role_name: The name of the role.
+        :param pulumi.Input[str] role_type: Type of role, either "oidc" (default) or "jwt".
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
+               addresses which can authenticate successfully, and ties the resulting token to these blocks
+               as well.
+        :param pulumi.Input[int] token_explicit_max_ttl: If set, will encode an
+               [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+               onto the token in number of seconds. This is a hard cap even if `token_ttl` and
+               `token_max_ttl` would otherwise allow a renewal.
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime for generated tokens in number of seconds.
+               Its current value will be referenced at renewal time.
+        :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
+               generated tokens; otherwise it will be added to the policies set in token_policies.
+        :param pulumi.Input[int] token_num_uses: The
+               [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+               if any, in number of seconds to set on the token.
+        :param pulumi.Input[int] token_period: If set, indicates that the
+               token generated using this role should never expire. The token should be renewed within the
+               duration specified by this value. At each renewal, the token's TTL will be set to the
+               value of this field. Specified in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
+               on the auth method, this list may be supplemented by user/group/other values.
+        :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
+               Its current value will be referenced at renewal time.
+        :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
+               `batch`, or `default` to use the mount's tuned default (which unless changed will be
+               `service` tokens). For token store roles, there are two additional possibilities:
+               `default-service` and `default-batch` which specify the type to return unless the client
+               requests a different type at generation time.
+        :param pulumi.Input[int] ttl: The TTL period of tokens issued
+               using this role, provided as a number of seconds.
+        :param pulumi.Input[str] user_claim: The claim to use to uniquely identify
+               the user; this will be used as the name for the Identity entity alias created
+               due to a successful login.
+        :param pulumi.Input[bool] verbose_oidc_logging: Log received OIDC tokens and claims when debug-level
+               logging is active. Not recommended in production since sensitive information may be present
+               in OIDC responses.
+        """
+        if allowed_redirect_uris is not None:
+            pulumi.set(__self__, "allowed_redirect_uris", allowed_redirect_uris)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if bound_audiences is not None:
+            pulumi.set(__self__, "bound_audiences", bound_audiences)
+        if bound_cidrs is not None:
+            warnings.warn("""use `token_bound_cidrs` instead if you are running Vault >= 1.2""", DeprecationWarning)
+            pulumi.log.warn("""bound_cidrs is deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2""")
+        if bound_cidrs is not None:
+            pulumi.set(__self__, "bound_cidrs", bound_cidrs)
+        if bound_claims is not None:
+            pulumi.set(__self__, "bound_claims", bound_claims)
+        if bound_claims_type is not None:
+            pulumi.set(__self__, "bound_claims_type", bound_claims_type)
+        if bound_subject is not None:
+            pulumi.set(__self__, "bound_subject", bound_subject)
+        if claim_mappings is not None:
+            pulumi.set(__self__, "claim_mappings", claim_mappings)
+        if clock_skew_leeway is not None:
+            pulumi.set(__self__, "clock_skew_leeway", clock_skew_leeway)
+        if expiration_leeway is not None:
+            pulumi.set(__self__, "expiration_leeway", expiration_leeway)
+        if groups_claim is not None:
+            pulumi.set(__self__, "groups_claim", groups_claim)
+        if groups_claim_delimiter_pattern is not None:
+            warnings.warn("""`groups_claim_delimiter_pattern` has been removed since Vault 1.1. If the groups claim is not at the top level, it can now be specified as a JSONPointer.""", DeprecationWarning)
+            pulumi.log.warn("""groups_claim_delimiter_pattern is deprecated: `groups_claim_delimiter_pattern` has been removed since Vault 1.1. If the groups claim is not at the top level, it can now be specified as a JSONPointer.""")
+        if groups_claim_delimiter_pattern is not None:
+            pulumi.set(__self__, "groups_claim_delimiter_pattern", groups_claim_delimiter_pattern)
+        if max_ttl is not None:
+            warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
+            pulumi.log.warn("""max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2""")
+        if max_ttl is not None:
+            pulumi.set(__self__, "max_ttl", max_ttl)
+        if not_before_leeway is not None:
+            pulumi.set(__self__, "not_before_leeway", not_before_leeway)
+        if num_uses is not None:
+            warnings.warn("""use `token_num_uses` instead if you are running Vault >= 1.2""", DeprecationWarning)
+            pulumi.log.warn("""num_uses is deprecated: use `token_num_uses` instead if you are running Vault >= 1.2""")
+        if num_uses is not None:
+            pulumi.set(__self__, "num_uses", num_uses)
+        if oidc_scopes is not None:
+            pulumi.set(__self__, "oidc_scopes", oidc_scopes)
+        if period is not None:
+            warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
+            pulumi.log.warn("""period is deprecated: use `token_period` instead if you are running Vault >= 1.2""")
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if policies is not None:
+            warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
+            pulumi.log.warn("""policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2""")
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+        if role_name is not None:
+            pulumi.set(__self__, "role_name", role_name)
+        if role_type is not None:
+            pulumi.set(__self__, "role_type", role_type)
+        if token_bound_cidrs is not None:
+            pulumi.set(__self__, "token_bound_cidrs", token_bound_cidrs)
+        if token_explicit_max_ttl is not None:
+            pulumi.set(__self__, "token_explicit_max_ttl", token_explicit_max_ttl)
+        if token_max_ttl is not None:
+            pulumi.set(__self__, "token_max_ttl", token_max_ttl)
+        if token_no_default_policy is not None:
+            pulumi.set(__self__, "token_no_default_policy", token_no_default_policy)
+        if token_num_uses is not None:
+            pulumi.set(__self__, "token_num_uses", token_num_uses)
+        if token_period is not None:
+            pulumi.set(__self__, "token_period", token_period)
+        if token_policies is not None:
+            pulumi.set(__self__, "token_policies", token_policies)
+        if token_ttl is not None:
+            pulumi.set(__self__, "token_ttl", token_ttl)
+        if token_type is not None:
+            pulumi.set(__self__, "token_type", token_type)
+        if ttl is not None:
+            warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
+            pulumi.log.warn("""ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2""")
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+        if user_claim is not None:
+            pulumi.set(__self__, "user_claim", user_claim)
+        if verbose_oidc_logging is not None:
+            pulumi.set(__self__, "verbose_oidc_logging", verbose_oidc_logging)
+
+    @property
+    @pulumi.getter(name="allowedRedirectUris")
+    def allowed_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of allowed values for redirect_uri during OIDC logins.
+        Required for OIDC roles
+        """
+        return pulumi.get(self, "allowed_redirect_uris")
+
+    @allowed_redirect_uris.setter
+    def allowed_redirect_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_redirect_uris", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique name of the auth backend to configure.
+        Defaults to `jwt`.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="boundAudiences")
+    def bound_audiences(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        (Required for roles of type `jwt`, optional for roles of
+        type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+        """
+        return pulumi.get(self, "bound_audiences")
+
+    @bound_audiences.setter
+    def bound_audiences(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_audiences", value)
+
+    @property
+    @pulumi.getter(name="boundCidrs")
+    def bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If set, a list of
+        CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
+        """
+        return pulumi.get(self, "bound_cidrs")
+
+    @bound_cidrs.setter
+    def bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_cidrs", value)
+
+    @property
+    @pulumi.getter(name="boundClaims")
+    def bound_claims(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        If set, a map of claims/values to match against.
+        The expected value may be a single string or a list of strings.
+        """
+        return pulumi.get(self, "bound_claims")
+
+    @bound_claims.setter
+    def bound_claims(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "bound_claims", value)
+
+    @property
+    @pulumi.getter(name="boundClaimsType")
+    def bound_claims_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        How to interpret values in the claims/values
+        map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
+        match). Requires Vault 1.4.0 or above.
+        """
+        return pulumi.get(self, "bound_claims_type")
+
+    @bound_claims_type.setter
+    def bound_claims_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bound_claims_type", value)
+
+    @property
+    @pulumi.getter(name="boundSubject")
+    def bound_subject(self) -> Optional[pulumi.Input[str]]:
+        """
+        If set, requires that the `sub` claim matches
+        this value.
+        """
+        return pulumi.get(self, "bound_subject")
+
+    @bound_subject.setter
+    def bound_subject(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bound_subject", value)
+
+    @property
+    @pulumi.getter(name="claimMappings")
+    def claim_mappings(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        If set, a map of claims (keys) to be copied
+        to specified metadata fields (values).
+        """
+        return pulumi.get(self, "claim_mappings")
+
+    @claim_mappings.setter
+    def claim_mappings(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "claim_mappings", value)
+
+    @property
+    @pulumi.getter(name="clockSkewLeeway")
+    def clock_skew_leeway(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of leeway to add to all claims to account for clock skew, in
+        seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        Only applicable with "jwt" roles.
+        """
+        return pulumi.get(self, "clock_skew_leeway")
+
+    @clock_skew_leeway.setter
+    def clock_skew_leeway(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "clock_skew_leeway", value)
+
+    @property
+    @pulumi.getter(name="expirationLeeway")
+    def expiration_leeway(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of leeway to add to expiration (`exp`) claims to account for
+        clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        Only applicable with "jwt" roles.
+        """
+        return pulumi.get(self, "expiration_leeway")
+
+    @expiration_leeway.setter
+    def expiration_leeway(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "expiration_leeway", value)
+
+    @property
+    @pulumi.getter(name="groupsClaim")
+    def groups_claim(self) -> Optional[pulumi.Input[str]]:
+        """
+        The claim to use to uniquely identify
+        the set of groups to which the user belongs; this will be used as the names
+        for the Identity group aliases created due to a successful login. The claim
+        value must be a list of strings.
+        """
+        return pulumi.get(self, "groups_claim")
+
+    @groups_claim.setter
+    def groups_claim(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "groups_claim", value)
+
+    @property
+    @pulumi.getter(name="groupsClaimDelimiterPattern")
+    def groups_claim_delimiter_pattern(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional; Deprecated. This field has been
+        removed since Vault 1.1. If the groups claim is not at the top level, it can
+        now be specified as a [JSONPointer](https://tools.ietf.org/html/rfc6901).)
+        A pattern of delimiters
+        used to allow the groups_claim to live outside of the top-level JWT structure.
+        For instance, a groups_claim of meta/user.name/groups with this field
+        set to // will expect nested structures named meta, user.name, and groups.
+        If this field was set to /./ the groups information would expect to be
+        via nested structures of meta, user, name, and groups.
+        """
+        return pulumi.get(self, "groups_claim_delimiter_pattern")
+
+    @groups_claim_delimiter_pattern.setter
+    def groups_claim_delimiter_pattern(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "groups_claim_delimiter_pattern", value)
+
+    @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum allowed lifetime of tokens
+        issued using this role, provided as a number of seconds.
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @max_ttl.setter
+    def max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_ttl", value)
+
+    @property
+    @pulumi.getter(name="notBeforeLeeway")
+    def not_before_leeway(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of leeway to add to not before (`nbf`) claims to account for
+        clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        Only applicable with "jwt" roles.
+        """
+        return pulumi.get(self, "not_before_leeway")
+
+    @not_before_leeway.setter
+    def not_before_leeway(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "not_before_leeway", value)
+
+    @property
+    @pulumi.getter(name="numUses")
+    def num_uses(self) -> Optional[pulumi.Input[int]]:
+        """
+        If set, puts a use-count
+        limitation on the issued token.
+        """
+        return pulumi.get(self, "num_uses")
+
+    @num_uses.setter
+    def num_uses(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "num_uses", value)
+
+    @property
+    @pulumi.getter(name="oidcScopes")
+    def oidc_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        If set, a list of OIDC scopes to be used with an OIDC role.
+        The standard scope "openid" is automatically included and need not be specified.
+        """
+        return pulumi.get(self, "oidc_scopes")
+
+    @oidc_scopes.setter
+    def oidc_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "oidc_scopes", value)
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[pulumi.Input[int]]:
+        """
+        If set, indicates that the
+        token generated using this role should never expire. The token should be renewed within the
+        duration specified by this value. At each renewal, the token's TTL will be set to the
+        value of this field. Specified in seconds.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "period", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        An array of strings
+        specifying the policies to be set on tokens issued using this role.
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the role.
+        """
+        return pulumi.get(self, "role_name")
+
+    @role_name.setter
+    def role_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_name", value)
+
+    @property
+    @pulumi.getter(name="roleType")
+    def role_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of role, either "oidc" (default) or "jwt".
+        """
+        return pulumi.get(self, "role_type")
+
+    @role_type.setter
+    def role_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_type", value)
+
+    @property
+    @pulumi.getter(name="tokenBoundCidrs")
+    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of CIDR blocks; if set, specifies blocks of IP
+        addresses which can authenticate successfully, and ties the resulting token to these blocks
+        as well.
+        """
+        return pulumi.get(self, "token_bound_cidrs")
+
+    @token_bound_cidrs.setter
+    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "token_bound_cidrs", value)
+
+    @property
+    @pulumi.getter(name="tokenExplicitMaxTtl")
+    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        If set, will encode an
+        [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+        onto the token in number of seconds. This is a hard cap even if `token_ttl` and
+        `token_max_ttl` would otherwise allow a renewal.
+        """
+        return pulumi.get(self, "token_explicit_max_ttl")
+
+    @token_explicit_max_ttl.setter
+    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_explicit_max_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenMaxTtl")
+    def token_max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum lifetime for generated tokens in number of seconds.
+        Its current value will be referenced at renewal time.
+        """
+        return pulumi.get(self, "token_max_ttl")
+
+    @token_max_ttl.setter
+    def token_max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_max_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenNoDefaultPolicy")
+    def token_no_default_policy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, the default policy will not be set on
+        generated tokens; otherwise it will be added to the policies set in token_policies.
+        """
+        return pulumi.get(self, "token_no_default_policy")
+
+    @token_no_default_policy.setter
+    def token_no_default_policy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "token_no_default_policy", value)
+
+    @property
+    @pulumi.getter(name="tokenNumUses")
+    def token_num_uses(self) -> Optional[pulumi.Input[int]]:
+        """
+        The
+        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+        if any, in number of seconds to set on the token.
+        """
+        return pulumi.get(self, "token_num_uses")
+
+    @token_num_uses.setter
+    def token_num_uses(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_num_uses", value)
+
+    @property
+    @pulumi.getter(name="tokenPeriod")
+    def token_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        If set, indicates that the
+        token generated using this role should never expire. The token should be renewed within the
+        duration specified by this value. At each renewal, the token's TTL will be set to the
+        value of this field. Specified in seconds.
+        """
+        return pulumi.get(self, "token_period")
+
+    @token_period.setter
+    def token_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_period", value)
+
+    @property
+    @pulumi.getter(name="tokenPolicies")
+    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of policies to encode onto generated tokens. Depending
+        on the auth method, this list may be supplemented by user/group/other values.
+        """
+        return pulumi.get(self, "token_policies")
+
+    @token_policies.setter
+    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "token_policies", value)
+
+    @property
+    @pulumi.getter(name="tokenTtl")
+    def token_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The incremental lifetime for generated tokens in number of seconds.
+        Its current value will be referenced at renewal time.
+        """
+        return pulumi.get(self, "token_ttl")
+
+    @token_ttl.setter
+    def token_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenType")
+    def token_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of token that should be generated. Can be `service`,
+        `batch`, or `default` to use the mount's tuned default (which unless changed will be
+        `service` tokens). For token store roles, there are two additional possibilities:
+        `default-service` and `default-batch` which specify the type to return unless the client
+        requests a different type at generation time.
+        """
+        return pulumi.get(self, "token_type")
+
+    @token_type.setter
+    def token_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token_type", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The TTL period of tokens issued
+        using this role, provided as a number of seconds.
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ttl", value)
+
+    @property
+    @pulumi.getter(name="userClaim")
+    def user_claim(self) -> Optional[pulumi.Input[str]]:
+        """
+        The claim to use to uniquely identify
+        the user; this will be used as the name for the Identity entity alias created
+        due to a successful login.
+        """
+        return pulumi.get(self, "user_claim")
+
+    @user_claim.setter
+    def user_claim(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_claim", value)
+
+    @property
+    @pulumi.getter(name="verboseOidcLogging")
+    def verbose_oidc_logging(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Log received OIDC tokens and claims when debug-level
+        logging is active. Not recommended in production since sensitive information may be present
+        in OIDC responses.
+        """
+        return pulumi.get(self, "verbose_oidc_logging")
+
+    @verbose_oidc_logging.setter
+    def verbose_oidc_logging(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "verbose_oidc_logging", value)
+
+
 class AuthBackendRole(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -977,65 +1630,65 @@ class AuthBackendRole(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = AuthBackendRoleArgs.__new__(AuthBackendRoleArgs)
 
-            __props__['allowed_redirect_uris'] = allowed_redirect_uris
-            __props__['backend'] = backend
-            __props__['bound_audiences'] = bound_audiences
+            __props__.__dict__["allowed_redirect_uris"] = allowed_redirect_uris
+            __props__.__dict__["backend"] = backend
+            __props__.__dict__["bound_audiences"] = bound_audiences
             if bound_cidrs is not None and not opts.urn:
                 warnings.warn("""use `token_bound_cidrs` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("""bound_cidrs is deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2""")
-            __props__['bound_cidrs'] = bound_cidrs
-            __props__['bound_claims'] = bound_claims
-            __props__['bound_claims_type'] = bound_claims_type
-            __props__['bound_subject'] = bound_subject
-            __props__['claim_mappings'] = claim_mappings
-            __props__['clock_skew_leeway'] = clock_skew_leeway
-            __props__['expiration_leeway'] = expiration_leeway
-            __props__['groups_claim'] = groups_claim
+            __props__.__dict__["bound_cidrs"] = bound_cidrs
+            __props__.__dict__["bound_claims"] = bound_claims
+            __props__.__dict__["bound_claims_type"] = bound_claims_type
+            __props__.__dict__["bound_subject"] = bound_subject
+            __props__.__dict__["claim_mappings"] = claim_mappings
+            __props__.__dict__["clock_skew_leeway"] = clock_skew_leeway
+            __props__.__dict__["expiration_leeway"] = expiration_leeway
+            __props__.__dict__["groups_claim"] = groups_claim
             if groups_claim_delimiter_pattern is not None and not opts.urn:
                 warnings.warn("""`groups_claim_delimiter_pattern` has been removed since Vault 1.1. If the groups claim is not at the top level, it can now be specified as a JSONPointer.""", DeprecationWarning)
                 pulumi.log.warn("""groups_claim_delimiter_pattern is deprecated: `groups_claim_delimiter_pattern` has been removed since Vault 1.1. If the groups claim is not at the top level, it can now be specified as a JSONPointer.""")
-            __props__['groups_claim_delimiter_pattern'] = groups_claim_delimiter_pattern
+            __props__.__dict__["groups_claim_delimiter_pattern"] = groups_claim_delimiter_pattern
             if max_ttl is not None and not opts.urn:
                 warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("""max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2""")
-            __props__['max_ttl'] = max_ttl
-            __props__['not_before_leeway'] = not_before_leeway
+            __props__.__dict__["max_ttl"] = max_ttl
+            __props__.__dict__["not_before_leeway"] = not_before_leeway
             if num_uses is not None and not opts.urn:
                 warnings.warn("""use `token_num_uses` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("""num_uses is deprecated: use `token_num_uses` instead if you are running Vault >= 1.2""")
-            __props__['num_uses'] = num_uses
-            __props__['oidc_scopes'] = oidc_scopes
+            __props__.__dict__["num_uses"] = num_uses
+            __props__.__dict__["oidc_scopes"] = oidc_scopes
             if period is not None and not opts.urn:
                 warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("""period is deprecated: use `token_period` instead if you are running Vault >= 1.2""")
-            __props__['period'] = period
+            __props__.__dict__["period"] = period
             if policies is not None and not opts.urn:
                 warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("""policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2""")
-            __props__['policies'] = policies
+            __props__.__dict__["policies"] = policies
             if role_name is None and not opts.urn:
                 raise TypeError("Missing required property 'role_name'")
-            __props__['role_name'] = role_name
-            __props__['role_type'] = role_type
-            __props__['token_bound_cidrs'] = token_bound_cidrs
-            __props__['token_explicit_max_ttl'] = token_explicit_max_ttl
-            __props__['token_max_ttl'] = token_max_ttl
-            __props__['token_no_default_policy'] = token_no_default_policy
-            __props__['token_num_uses'] = token_num_uses
-            __props__['token_period'] = token_period
-            __props__['token_policies'] = token_policies
-            __props__['token_ttl'] = token_ttl
-            __props__['token_type'] = token_type
+            __props__.__dict__["role_name"] = role_name
+            __props__.__dict__["role_type"] = role_type
+            __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
+            __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
+            __props__.__dict__["token_max_ttl"] = token_max_ttl
+            __props__.__dict__["token_no_default_policy"] = token_no_default_policy
+            __props__.__dict__["token_num_uses"] = token_num_uses
+            __props__.__dict__["token_period"] = token_period
+            __props__.__dict__["token_policies"] = token_policies
+            __props__.__dict__["token_ttl"] = token_ttl
+            __props__.__dict__["token_type"] = token_type
             if ttl is not None and not opts.urn:
                 warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
                 pulumi.log.warn("""ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2""")
-            __props__['ttl'] = ttl
+            __props__.__dict__["ttl"] = ttl
             if user_claim is None and not opts.urn:
                 raise TypeError("Missing required property 'user_claim'")
-            __props__['user_claim'] = user_claim
-            __props__['verbose_oidc_logging'] = verbose_oidc_logging
+            __props__.__dict__["user_claim"] = user_claim
+            __props__.__dict__["verbose_oidc_logging"] = verbose_oidc_logging
         super(AuthBackendRole, __self__).__init__(
             'vault:jwt/authBackendRole:AuthBackendRole',
             resource_name,
@@ -1176,40 +1829,40 @@ class AuthBackendRole(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _AuthBackendRoleState.__new__(_AuthBackendRoleState)
 
-        __props__["allowed_redirect_uris"] = allowed_redirect_uris
-        __props__["backend"] = backend
-        __props__["bound_audiences"] = bound_audiences
-        __props__["bound_cidrs"] = bound_cidrs
-        __props__["bound_claims"] = bound_claims
-        __props__["bound_claims_type"] = bound_claims_type
-        __props__["bound_subject"] = bound_subject
-        __props__["claim_mappings"] = claim_mappings
-        __props__["clock_skew_leeway"] = clock_skew_leeway
-        __props__["expiration_leeway"] = expiration_leeway
-        __props__["groups_claim"] = groups_claim
-        __props__["groups_claim_delimiter_pattern"] = groups_claim_delimiter_pattern
-        __props__["max_ttl"] = max_ttl
-        __props__["not_before_leeway"] = not_before_leeway
-        __props__["num_uses"] = num_uses
-        __props__["oidc_scopes"] = oidc_scopes
-        __props__["period"] = period
-        __props__["policies"] = policies
-        __props__["role_name"] = role_name
-        __props__["role_type"] = role_type
-        __props__["token_bound_cidrs"] = token_bound_cidrs
-        __props__["token_explicit_max_ttl"] = token_explicit_max_ttl
-        __props__["token_max_ttl"] = token_max_ttl
-        __props__["token_no_default_policy"] = token_no_default_policy
-        __props__["token_num_uses"] = token_num_uses
-        __props__["token_period"] = token_period
-        __props__["token_policies"] = token_policies
-        __props__["token_ttl"] = token_ttl
-        __props__["token_type"] = token_type
-        __props__["ttl"] = ttl
-        __props__["user_claim"] = user_claim
-        __props__["verbose_oidc_logging"] = verbose_oidc_logging
+        __props__.__dict__["allowed_redirect_uris"] = allowed_redirect_uris
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["bound_audiences"] = bound_audiences
+        __props__.__dict__["bound_cidrs"] = bound_cidrs
+        __props__.__dict__["bound_claims"] = bound_claims
+        __props__.__dict__["bound_claims_type"] = bound_claims_type
+        __props__.__dict__["bound_subject"] = bound_subject
+        __props__.__dict__["claim_mappings"] = claim_mappings
+        __props__.__dict__["clock_skew_leeway"] = clock_skew_leeway
+        __props__.__dict__["expiration_leeway"] = expiration_leeway
+        __props__.__dict__["groups_claim"] = groups_claim
+        __props__.__dict__["groups_claim_delimiter_pattern"] = groups_claim_delimiter_pattern
+        __props__.__dict__["max_ttl"] = max_ttl
+        __props__.__dict__["not_before_leeway"] = not_before_leeway
+        __props__.__dict__["num_uses"] = num_uses
+        __props__.__dict__["oidc_scopes"] = oidc_scopes
+        __props__.__dict__["period"] = period
+        __props__.__dict__["policies"] = policies
+        __props__.__dict__["role_name"] = role_name
+        __props__.__dict__["role_type"] = role_type
+        __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
+        __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
+        __props__.__dict__["token_max_ttl"] = token_max_ttl
+        __props__.__dict__["token_no_default_policy"] = token_no_default_policy
+        __props__.__dict__["token_num_uses"] = token_num_uses
+        __props__.__dict__["token_period"] = token_period
+        __props__.__dict__["token_policies"] = token_policies
+        __props__.__dict__["token_ttl"] = token_ttl
+        __props__.__dict__["token_type"] = token_type
+        __props__.__dict__["ttl"] = ttl
+        __props__.__dict__["user_claim"] = user_claim
+        __props__.__dict__["verbose_oidc_logging"] = verbose_oidc_logging
         return AuthBackendRole(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1523,10 +2176,4 @@ class AuthBackendRole(pulumi.CustomResource):
         in OIDC responses.
         """
         return pulumi.get(self, "verbose_oidc_logging")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

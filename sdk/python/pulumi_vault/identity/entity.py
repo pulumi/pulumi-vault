@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['EntityArgs', 'Entity']
 
@@ -20,6 +20,94 @@ class EntityArgs:
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Entity resource.
+        :param pulumi.Input[bool] disabled: True/false Is this entity currently disabled. Defaults to `false`
+        :param pulumi.Input[bool] external_policies: `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: A Map of additional metadata to associate with the user.
+        :param pulumi.Input[str] name: Name of the identity entity to create.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: A list of policies to apply to the entity.
+        """
+        if disabled is not None:
+            pulumi.set(__self__, "disabled", disabled)
+        if external_policies is not None:
+            pulumi.set(__self__, "external_policies", external_policies)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter
+    def disabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        True/false Is this entity currently disabled. Defaults to `false`
+        """
+        return pulumi.get(self, "disabled")
+
+    @disabled.setter
+    def disabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disabled", value)
+
+    @property
+    @pulumi.getter(name="externalPolicies")
+    def external_policies(self) -> Optional[pulumi.Input[bool]]:
+        """
+        `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+        """
+        return pulumi.get(self, "external_policies")
+
+    @external_policies.setter
+    def external_policies(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "external_policies", value)
+
+    @property
+    @pulumi.getter
+    def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A Map of additional metadata to associate with the user.
+        """
+        return pulumi.get(self, "metadata")
+
+    @metadata.setter
+    def metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "metadata", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the identity entity to create.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of policies to apply to the entity.
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
+
+
+@pulumi.input_type
+class _EntityState:
+    def __init__(__self__, *,
+                 disabled: Optional[pulumi.Input[bool]] = None,
+                 external_policies: Optional[pulumi.Input[bool]] = None,
+                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        Input properties used for looking up and filtering Entity resources.
         :param pulumi.Input[bool] disabled: True/false Is this entity currently disabled. Defaults to `false`
         :param pulumi.Input[bool] external_policies: `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: A Map of additional metadata to associate with the user.
@@ -181,13 +269,13 @@ class Entity(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = EntityArgs.__new__(EntityArgs)
 
-            __props__['disabled'] = disabled
-            __props__['external_policies'] = external_policies
-            __props__['metadata'] = metadata
-            __props__['name'] = name
-            __props__['policies'] = policies
+            __props__.__dict__["disabled"] = disabled
+            __props__.__dict__["external_policies"] = external_policies
+            __props__.__dict__["metadata"] = metadata
+            __props__.__dict__["name"] = name
+            __props__.__dict__["policies"] = policies
         super(Entity, __self__).__init__(
             'vault:identity/entity:Entity',
             resource_name,
@@ -218,13 +306,13 @@ class Entity(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _EntityState.__new__(_EntityState)
 
-        __props__["disabled"] = disabled
-        __props__["external_policies"] = external_policies
-        __props__["metadata"] = metadata
-        __props__["name"] = name
-        __props__["policies"] = policies
+        __props__.__dict__["disabled"] = disabled
+        __props__.__dict__["external_policies"] = external_policies
+        __props__.__dict__["metadata"] = metadata
+        __props__.__dict__["name"] = name
+        __props__.__dict__["policies"] = policies
         return Entity(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -266,10 +354,4 @@ class Entity(pulumi.CustomResource):
         A list of policies to apply to the entity.
         """
         return pulumi.get(self, "policies")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

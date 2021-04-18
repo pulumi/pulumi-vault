@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 from . import outputs
 from ._inputs import *
 
@@ -77,6 +77,266 @@ class AuthBackendArgs:
             pulumi.set(__self__, "tune", tune)
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="boundIssuer")
+    def bound_issuer(self) -> Optional[pulumi.Input[str]]:
+        """
+        The value against which to match the iss claim in a JWT
+        """
+        return pulumi.get(self, "bound_issuer")
+
+    @bound_issuer.setter
+    def bound_issuer(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bound_issuer", value)
+
+    @property
+    @pulumi.getter(name="defaultRole")
+    def default_role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The default role to use if none is provided during login
+        """
+        return pulumi.get(self, "default_role")
+
+    @default_role.setter
+    def default_role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_role", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of the auth backend
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="jwksCaPem")
+    def jwks_ca_pem(self) -> Optional[pulumi.Input[str]]:
+        """
+        The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+        """
+        return pulumi.get(self, "jwks_ca_pem")
+
+    @jwks_ca_pem.setter
+    def jwks_ca_pem(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "jwks_ca_pem", value)
+
+    @property
+    @pulumi.getter(name="jwksUrl")
+    def jwks_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
+        """
+        return pulumi.get(self, "jwks_url")
+
+    @jwks_url.setter
+    def jwks_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "jwks_url", value)
+
+    @property
+    @pulumi.getter(name="jwtSupportedAlgs")
+    def jwt_supported_algs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
+        """
+        return pulumi.get(self, "jwt_supported_algs")
+
+    @jwt_supported_algs.setter
+    def jwt_supported_algs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "jwt_supported_algs", value)
+
+    @property
+    @pulumi.getter(name="jwtValidationPubkeys")
+    def jwt_validation_pubkeys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+        """
+        return pulumi.get(self, "jwt_validation_pubkeys")
+
+    @jwt_validation_pubkeys.setter
+    def jwt_validation_pubkeys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "jwt_validation_pubkeys", value)
+
+    @property
+    @pulumi.getter(name="oidcClientId")
+    def oidc_client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client ID used for OIDC backends
+        """
+        return pulumi.get(self, "oidc_client_id")
+
+    @oidc_client_id.setter
+    def oidc_client_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "oidc_client_id", value)
+
+    @property
+    @pulumi.getter(name="oidcClientSecret")
+    def oidc_client_secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client Secret used for OIDC backends
+        """
+        return pulumi.get(self, "oidc_client_secret")
+
+    @oidc_client_secret.setter
+    def oidc_client_secret(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "oidc_client_secret", value)
+
+    @property
+    @pulumi.getter(name="oidcDiscoveryCaPem")
+    def oidc_discovery_ca_pem(self) -> Optional[pulumi.Input[str]]:
+        """
+        The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
+        """
+        return pulumi.get(self, "oidc_discovery_ca_pem")
+
+    @oidc_discovery_ca_pem.setter
+    def oidc_discovery_ca_pem(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "oidc_discovery_ca_pem", value)
+
+    @property
+    @pulumi.getter(name="oidcDiscoveryUrl")
+    def oidc_discovery_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
+        """
+        return pulumi.get(self, "oidc_discovery_url")
+
+    @oidc_discovery_url.setter
+    def oidc_discovery_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "oidc_discovery_url", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to mount the JWT/OIDC auth backend
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="providerConfig")
+    def provider_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Provider specific handling configuration
+        """
+        return pulumi.get(self, "provider_config")
+
+    @provider_config.setter
+    def provider_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "provider_config", value)
+
+    @property
+    @pulumi.getter
+    def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
+        return pulumi.get(self, "tune")
+
+    @tune.setter
+    def tune(self, value: Optional[pulumi.Input['AuthBackendTuneArgs']]):
+        pulumi.set(self, "tune", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class _AuthBackendState:
+    def __init__(__self__, *,
+                 accessor: Optional[pulumi.Input[str]] = None,
+                 bound_issuer: Optional[pulumi.Input[str]] = None,
+                 default_role: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 jwks_ca_pem: Optional[pulumi.Input[str]] = None,
+                 jwks_url: Optional[pulumi.Input[str]] = None,
+                 jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 oidc_client_id: Optional[pulumi.Input[str]] = None,
+                 oidc_client_secret: Optional[pulumi.Input[str]] = None,
+                 oidc_discovery_ca_pem: Optional[pulumi.Input[str]] = None,
+                 oidc_discovery_url: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 provider_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering AuthBackend resources.
+        :param pulumi.Input[str] accessor: The accessor for this auth method
+        :param pulumi.Input[str] bound_issuer: The value against which to match the iss claim in a JWT
+        :param pulumi.Input[str] default_role: The default role to use if none is provided during login
+        :param pulumi.Input[str] description: The description of the auth backend
+        :param pulumi.Input[str] jwks_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+        :param pulumi.Input[str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+        :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
+        :param pulumi.Input[str] oidc_client_secret: Client Secret used for OIDC backends
+        :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
+        :param pulumi.Input[str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
+        :param pulumi.Input[str] path: Path to mount the JWT/OIDC auth backend
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] provider_config: Provider specific handling configuration
+        :param pulumi.Input[str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
+        """
+        if accessor is not None:
+            pulumi.set(__self__, "accessor", accessor)
+        if bound_issuer is not None:
+            pulumi.set(__self__, "bound_issuer", bound_issuer)
+        if default_role is not None:
+            pulumi.set(__self__, "default_role", default_role)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if jwks_ca_pem is not None:
+            pulumi.set(__self__, "jwks_ca_pem", jwks_ca_pem)
+        if jwks_url is not None:
+            pulumi.set(__self__, "jwks_url", jwks_url)
+        if jwt_supported_algs is not None:
+            pulumi.set(__self__, "jwt_supported_algs", jwt_supported_algs)
+        if jwt_validation_pubkeys is not None:
+            pulumi.set(__self__, "jwt_validation_pubkeys", jwt_validation_pubkeys)
+        if oidc_client_id is not None:
+            pulumi.set(__self__, "oidc_client_id", oidc_client_id)
+        if oidc_client_secret is not None:
+            pulumi.set(__self__, "oidc_client_secret", oidc_client_secret)
+        if oidc_discovery_ca_pem is not None:
+            pulumi.set(__self__, "oidc_discovery_ca_pem", oidc_discovery_ca_pem)
+        if oidc_discovery_url is not None:
+            pulumi.set(__self__, "oidc_discovery_url", oidc_discovery_url)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if provider_config is not None:
+            pulumi.set(__self__, "provider_config", provider_config)
+        if tune is not None:
+            pulumi.set(__self__, "tune", tune)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def accessor(self) -> Optional[pulumi.Input[str]]:
+        """
+        The accessor for this auth method
+        """
+        return pulumi.get(self, "accessor")
+
+    @accessor.setter
+    def accessor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "accessor", value)
 
     @property
     @pulumi.getter(name="boundIssuer")
@@ -454,24 +714,24 @@ class AuthBackend(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = AuthBackendArgs.__new__(AuthBackendArgs)
 
-            __props__['bound_issuer'] = bound_issuer
-            __props__['default_role'] = default_role
-            __props__['description'] = description
-            __props__['jwks_ca_pem'] = jwks_ca_pem
-            __props__['jwks_url'] = jwks_url
-            __props__['jwt_supported_algs'] = jwt_supported_algs
-            __props__['jwt_validation_pubkeys'] = jwt_validation_pubkeys
-            __props__['oidc_client_id'] = oidc_client_id
-            __props__['oidc_client_secret'] = oidc_client_secret
-            __props__['oidc_discovery_ca_pem'] = oidc_discovery_ca_pem
-            __props__['oidc_discovery_url'] = oidc_discovery_url
-            __props__['path'] = path
-            __props__['provider_config'] = provider_config
-            __props__['tune'] = tune
-            __props__['type'] = type
-            __props__['accessor'] = None
+            __props__.__dict__["bound_issuer"] = bound_issuer
+            __props__.__dict__["default_role"] = default_role
+            __props__.__dict__["description"] = description
+            __props__.__dict__["jwks_ca_pem"] = jwks_ca_pem
+            __props__.__dict__["jwks_url"] = jwks_url
+            __props__.__dict__["jwt_supported_algs"] = jwt_supported_algs
+            __props__.__dict__["jwt_validation_pubkeys"] = jwt_validation_pubkeys
+            __props__.__dict__["oidc_client_id"] = oidc_client_id
+            __props__.__dict__["oidc_client_secret"] = oidc_client_secret
+            __props__.__dict__["oidc_discovery_ca_pem"] = oidc_discovery_ca_pem
+            __props__.__dict__["oidc_discovery_url"] = oidc_discovery_url
+            __props__.__dict__["path"] = path
+            __props__.__dict__["provider_config"] = provider_config
+            __props__.__dict__["tune"] = tune
+            __props__.__dict__["type"] = type
+            __props__.__dict__["accessor"] = None
         super(AuthBackend, __self__).__init__(
             'vault:jwt/authBackend:AuthBackend',
             resource_name,
@@ -523,24 +783,24 @@ class AuthBackend(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _AuthBackendState.__new__(_AuthBackendState)
 
-        __props__["accessor"] = accessor
-        __props__["bound_issuer"] = bound_issuer
-        __props__["default_role"] = default_role
-        __props__["description"] = description
-        __props__["jwks_ca_pem"] = jwks_ca_pem
-        __props__["jwks_url"] = jwks_url
-        __props__["jwt_supported_algs"] = jwt_supported_algs
-        __props__["jwt_validation_pubkeys"] = jwt_validation_pubkeys
-        __props__["oidc_client_id"] = oidc_client_id
-        __props__["oidc_client_secret"] = oidc_client_secret
-        __props__["oidc_discovery_ca_pem"] = oidc_discovery_ca_pem
-        __props__["oidc_discovery_url"] = oidc_discovery_url
-        __props__["path"] = path
-        __props__["provider_config"] = provider_config
-        __props__["tune"] = tune
-        __props__["type"] = type
+        __props__.__dict__["accessor"] = accessor
+        __props__.__dict__["bound_issuer"] = bound_issuer
+        __props__.__dict__["default_role"] = default_role
+        __props__.__dict__["description"] = description
+        __props__.__dict__["jwks_ca_pem"] = jwks_ca_pem
+        __props__.__dict__["jwks_url"] = jwks_url
+        __props__.__dict__["jwt_supported_algs"] = jwt_supported_algs
+        __props__.__dict__["jwt_validation_pubkeys"] = jwt_validation_pubkeys
+        __props__.__dict__["oidc_client_id"] = oidc_client_id
+        __props__.__dict__["oidc_client_secret"] = oidc_client_secret
+        __props__.__dict__["oidc_discovery_ca_pem"] = oidc_discovery_ca_pem
+        __props__.__dict__["oidc_discovery_url"] = oidc_discovery_url
+        __props__.__dict__["path"] = path
+        __props__.__dict__["provider_config"] = provider_config
+        __props__.__dict__["tune"] = tune
+        __props__.__dict__["type"] = type
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -667,10 +927,4 @@ class AuthBackend(pulumi.CustomResource):
         Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
         """
         return pulumi.get(self, "type")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

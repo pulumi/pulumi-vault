@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['SecretBackendKeyArgs', 'SecretBackendKey']
 
@@ -181,6 +181,294 @@ class SecretBackendKeyArgs:
         pulumi.set(self, "type", value)
 
 
+@pulumi.input_type
+class _SecretBackendKeyState:
+    def __init__(__self__, *,
+                 allow_plaintext_backup: Optional[pulumi.Input[bool]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 convergent_encryption: Optional[pulumi.Input[bool]] = None,
+                 deletion_allowed: Optional[pulumi.Input[bool]] = None,
+                 derived: Optional[pulumi.Input[bool]] = None,
+                 exportable: Optional[pulumi.Input[bool]] = None,
+                 keys: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]] = None,
+                 latest_version: Optional[pulumi.Input[int]] = None,
+                 min_available_version: Optional[pulumi.Input[int]] = None,
+                 min_decryption_version: Optional[pulumi.Input[int]] = None,
+                 min_encryption_version: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 supports_decryption: Optional[pulumi.Input[bool]] = None,
+                 supports_derivation: Optional[pulumi.Input[bool]] = None,
+                 supports_encryption: Optional[pulumi.Input[bool]] = None,
+                 supports_signing: Optional[pulumi.Input[bool]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering SecretBackendKey resources.
+        :param pulumi.Input[bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
+               * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
+        :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
+        :param pulumi.Input[bool] deletion_allowed: Specifies if the key is allowed to be deleted.
+        :param pulumi.Input[bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
+        :param pulumi.Input[bool] exportable: Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]] keys: List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
+               * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
+               * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
+        :param pulumi.Input[int] latest_version: Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
+        :param pulumi.Input[int] min_available_version: Minimum key version available for use. If keys have been archived by increasing `min_decryption_version`, this attribute will reflect that change.
+        :param pulumi.Input[int] min_decryption_version: Minimum key version to use for decryption.
+        :param pulumi.Input[int] min_encryption_version: Minimum key version to use for encryption
+        :param pulumi.Input[str] name: The name to identify this key within the backend. Must be unique within the backend.
+        :param pulumi.Input[bool] supports_decryption: Whether or not the key supports decryption, based on key type.
+        :param pulumi.Input[bool] supports_derivation: Whether or not the key supports derivation, based on key type.
+        :param pulumi.Input[bool] supports_encryption: Whether or not the key supports encryption, based on key type.
+        :param pulumi.Input[bool] supports_signing: Whether or not the key supports signing, based on key type.
+        :param pulumi.Input[str] type: Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
+               * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
+        """
+        if allow_plaintext_backup is not None:
+            pulumi.set(__self__, "allow_plaintext_backup", allow_plaintext_backup)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if convergent_encryption is not None:
+            pulumi.set(__self__, "convergent_encryption", convergent_encryption)
+        if deletion_allowed is not None:
+            pulumi.set(__self__, "deletion_allowed", deletion_allowed)
+        if derived is not None:
+            pulumi.set(__self__, "derived", derived)
+        if exportable is not None:
+            pulumi.set(__self__, "exportable", exportable)
+        if keys is not None:
+            pulumi.set(__self__, "keys", keys)
+        if latest_version is not None:
+            pulumi.set(__self__, "latest_version", latest_version)
+        if min_available_version is not None:
+            pulumi.set(__self__, "min_available_version", min_available_version)
+        if min_decryption_version is not None:
+            pulumi.set(__self__, "min_decryption_version", min_decryption_version)
+        if min_encryption_version is not None:
+            pulumi.set(__self__, "min_encryption_version", min_encryption_version)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if supports_decryption is not None:
+            pulumi.set(__self__, "supports_decryption", supports_decryption)
+        if supports_derivation is not None:
+            pulumi.set(__self__, "supports_derivation", supports_derivation)
+        if supports_encryption is not None:
+            pulumi.set(__self__, "supports_encryption", supports_encryption)
+        if supports_signing is not None:
+            pulumi.set(__self__, "supports_signing", supports_signing)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="allowPlaintextBackup")
+    def allow_plaintext_backup(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
+        * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
+        """
+        return pulumi.get(self, "allow_plaintext_backup")
+
+    @allow_plaintext_backup.setter
+    def allow_plaintext_backup(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_plaintext_backup", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="convergentEncryption")
+    def convergent_encryption(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
+        """
+        return pulumi.get(self, "convergent_encryption")
+
+    @convergent_encryption.setter
+    def convergent_encryption(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "convergent_encryption", value)
+
+    @property
+    @pulumi.getter(name="deletionAllowed")
+    def deletion_allowed(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if the key is allowed to be deleted.
+        """
+        return pulumi.get(self, "deletion_allowed")
+
+    @deletion_allowed.setter
+    def deletion_allowed(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "deletion_allowed", value)
+
+    @property
+    @pulumi.getter
+    def derived(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
+        """
+        return pulumi.get(self, "derived")
+
+    @derived.setter
+    def derived(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "derived", value)
+
+    @property
+    @pulumi.getter
+    def exportable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
+        """
+        return pulumi.get(self, "exportable")
+
+    @exportable.setter
+    def exportable(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "exportable", value)
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]]:
+        """
+        List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
+        * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
+        * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
+        """
+        return pulumi.get(self, "keys")
+
+    @keys.setter
+    def keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]]):
+        pulumi.set(self, "keys", value)
+
+    @property
+    @pulumi.getter(name="latestVersion")
+    def latest_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
+        """
+        return pulumi.get(self, "latest_version")
+
+    @latest_version.setter
+    def latest_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "latest_version", value)
+
+    @property
+    @pulumi.getter(name="minAvailableVersion")
+    def min_available_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        Minimum key version available for use. If keys have been archived by increasing `min_decryption_version`, this attribute will reflect that change.
+        """
+        return pulumi.get(self, "min_available_version")
+
+    @min_available_version.setter
+    def min_available_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min_available_version", value)
+
+    @property
+    @pulumi.getter(name="minDecryptionVersion")
+    def min_decryption_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        Minimum key version to use for decryption.
+        """
+        return pulumi.get(self, "min_decryption_version")
+
+    @min_decryption_version.setter
+    def min_decryption_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min_decryption_version", value)
+
+    @property
+    @pulumi.getter(name="minEncryptionVersion")
+    def min_encryption_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        Minimum key version to use for encryption
+        """
+        return pulumi.get(self, "min_encryption_version")
+
+    @min_encryption_version.setter
+    def min_encryption_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min_encryption_version", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name to identify this key within the backend. Must be unique within the backend.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="supportsDecryption")
+    def supports_decryption(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether or not the key supports decryption, based on key type.
+        """
+        return pulumi.get(self, "supports_decryption")
+
+    @supports_decryption.setter
+    def supports_decryption(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "supports_decryption", value)
+
+    @property
+    @pulumi.getter(name="supportsDerivation")
+    def supports_derivation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether or not the key supports derivation, based on key type.
+        """
+        return pulumi.get(self, "supports_derivation")
+
+    @supports_derivation.setter
+    def supports_derivation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "supports_derivation", value)
+
+    @property
+    @pulumi.getter(name="supportsEncryption")
+    def supports_encryption(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether or not the key supports encryption, based on key type.
+        """
+        return pulumi.get(self, "supports_encryption")
+
+    @supports_encryption.setter
+    def supports_encryption(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "supports_encryption", value)
+
+    @property
+    @pulumi.getter(name="supportsSigning")
+    def supports_signing(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether or not the key supports signing, based on key type.
+        """
+        return pulumi.get(self, "supports_signing")
+
+    @supports_signing.setter
+    def supports_signing(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "supports_signing", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`. 
+        * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
 class SecretBackendKey(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -315,27 +603,27 @@ class SecretBackendKey(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SecretBackendKeyArgs.__new__(SecretBackendKeyArgs)
 
-            __props__['allow_plaintext_backup'] = allow_plaintext_backup
+            __props__.__dict__["allow_plaintext_backup"] = allow_plaintext_backup
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
-            __props__['backend'] = backend
-            __props__['convergent_encryption'] = convergent_encryption
-            __props__['deletion_allowed'] = deletion_allowed
-            __props__['derived'] = derived
-            __props__['exportable'] = exportable
-            __props__['min_decryption_version'] = min_decryption_version
-            __props__['min_encryption_version'] = min_encryption_version
-            __props__['name'] = name
-            __props__['type'] = type
-            __props__['keys'] = None
-            __props__['latest_version'] = None
-            __props__['min_available_version'] = None
-            __props__['supports_decryption'] = None
-            __props__['supports_derivation'] = None
-            __props__['supports_encryption'] = None
-            __props__['supports_signing'] = None
+            __props__.__dict__["backend"] = backend
+            __props__.__dict__["convergent_encryption"] = convergent_encryption
+            __props__.__dict__["deletion_allowed"] = deletion_allowed
+            __props__.__dict__["derived"] = derived
+            __props__.__dict__["exportable"] = exportable
+            __props__.__dict__["min_decryption_version"] = min_decryption_version
+            __props__.__dict__["min_encryption_version"] = min_encryption_version
+            __props__.__dict__["name"] = name
+            __props__.__dict__["type"] = type
+            __props__.__dict__["keys"] = None
+            __props__.__dict__["latest_version"] = None
+            __props__.__dict__["min_available_version"] = None
+            __props__.__dict__["supports_decryption"] = None
+            __props__.__dict__["supports_derivation"] = None
+            __props__.__dict__["supports_encryption"] = None
+            __props__.__dict__["supports_signing"] = None
         super(SecretBackendKey, __self__).__init__(
             'vault:transit/secretBackendKey:SecretBackendKey',
             resource_name,
@@ -394,25 +682,25 @@ class SecretBackendKey(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SecretBackendKeyState.__new__(_SecretBackendKeyState)
 
-        __props__["allow_plaintext_backup"] = allow_plaintext_backup
-        __props__["backend"] = backend
-        __props__["convergent_encryption"] = convergent_encryption
-        __props__["deletion_allowed"] = deletion_allowed
-        __props__["derived"] = derived
-        __props__["exportable"] = exportable
-        __props__["keys"] = keys
-        __props__["latest_version"] = latest_version
-        __props__["min_available_version"] = min_available_version
-        __props__["min_decryption_version"] = min_decryption_version
-        __props__["min_encryption_version"] = min_encryption_version
-        __props__["name"] = name
-        __props__["supports_decryption"] = supports_decryption
-        __props__["supports_derivation"] = supports_derivation
-        __props__["supports_encryption"] = supports_encryption
-        __props__["supports_signing"] = supports_signing
-        __props__["type"] = type
+        __props__.__dict__["allow_plaintext_backup"] = allow_plaintext_backup
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["convergent_encryption"] = convergent_encryption
+        __props__.__dict__["deletion_allowed"] = deletion_allowed
+        __props__.__dict__["derived"] = derived
+        __props__.__dict__["exportable"] = exportable
+        __props__.__dict__["keys"] = keys
+        __props__.__dict__["latest_version"] = latest_version
+        __props__.__dict__["min_available_version"] = min_available_version
+        __props__.__dict__["min_decryption_version"] = min_decryption_version
+        __props__.__dict__["min_encryption_version"] = min_encryption_version
+        __props__.__dict__["name"] = name
+        __props__.__dict__["supports_decryption"] = supports_decryption
+        __props__.__dict__["supports_derivation"] = supports_derivation
+        __props__.__dict__["supports_encryption"] = supports_encryption
+        __props__.__dict__["supports_signing"] = supports_signing
+        __props__.__dict__["type"] = type
         return SecretBackendKey(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -554,10 +842,4 @@ class SecretBackendKey(pulumi.CustomResource):
         * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         """
         return pulumi.get(self, "type")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

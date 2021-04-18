@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['AuthBackendArgs', 'AuthBackend']
 
@@ -23,6 +23,142 @@ class AuthBackendArgs:
                  project_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
+        :param pulumi.Input[str] client_email: The clients email associated with the credentials
+        :param pulumi.Input[str] client_id: The Client ID of the credentials
+        :param pulumi.Input[str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+        :param pulumi.Input[str] description: A description of the auth method.
+        :param pulumi.Input[bool] local: Specifies if the auth method is local only.
+        :param pulumi.Input[str] path: The path to mount the auth method — this defaults to 'gcp'.
+        :param pulumi.Input[str] private_key_id: The ID of the private key from the credentials
+        :param pulumi.Input[str] project_id: The GCP Project ID
+        """
+        if client_email is not None:
+            pulumi.set(__self__, "client_email", client_email)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if credentials is not None:
+            pulumi.set(__self__, "credentials", credentials)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if private_key_id is not None:
+            pulumi.set(__self__, "private_key_id", private_key_id)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter(name="clientEmail")
+    def client_email(self) -> Optional[pulumi.Input[str]]:
+        """
+        The clients email associated with the credentials
+        """
+        return pulumi.get(self, "client_email")
+
+    @client_email.setter
+    def client_email(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_email", value)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Client ID of the credentials
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_id", value)
+
+    @property
+    @pulumi.getter
+    def credentials(self) -> Optional[pulumi.Input[str]]:
+        """
+        A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+        """
+        return pulumi.get(self, "credentials")
+
+    @credentials.setter
+    def credentials(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "credentials", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the auth method.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if the auth method is local only.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "local", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path to mount the auth method — this defaults to 'gcp'.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="privateKeyId")
+    def private_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the private key from the credentials
+        """
+        return pulumi.get(self, "private_key_id")
+
+    @private_key_id.setter
+    def private_key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key_id", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The GCP Project ID
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+
+@pulumi.input_type
+class _AuthBackendState:
+    def __init__(__self__, *,
+                 client_email: Optional[pulumi.Input[str]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 credentials: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 private_key_id: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering AuthBackend resources.
         :param pulumi.Input[str] client_email: The clients email associated with the credentials
         :param pulumi.Input[str] client_id: The Client ID of the credentials
         :param pulumi.Input[str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
@@ -260,16 +396,16 @@ class AuthBackend(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = AuthBackendArgs.__new__(AuthBackendArgs)
 
-            __props__['client_email'] = client_email
-            __props__['client_id'] = client_id
-            __props__['credentials'] = credentials
-            __props__['description'] = description
-            __props__['local'] = local
-            __props__['path'] = path
-            __props__['private_key_id'] = private_key_id
-            __props__['project_id'] = project_id
+            __props__.__dict__["client_email"] = client_email
+            __props__.__dict__["client_id"] = client_id
+            __props__.__dict__["credentials"] = credentials
+            __props__.__dict__["description"] = description
+            __props__.__dict__["local"] = local
+            __props__.__dict__["path"] = path
+            __props__.__dict__["private_key_id"] = private_key_id
+            __props__.__dict__["project_id"] = project_id
         super(AuthBackend, __self__).__init__(
             'vault:gcp/authBackend:AuthBackend',
             resource_name,
@@ -306,16 +442,16 @@ class AuthBackend(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _AuthBackendState.__new__(_AuthBackendState)
 
-        __props__["client_email"] = client_email
-        __props__["client_id"] = client_id
-        __props__["credentials"] = credentials
-        __props__["description"] = description
-        __props__["local"] = local
-        __props__["path"] = path
-        __props__["private_key_id"] = private_key_id
-        __props__["project_id"] = project_id
+        __props__.__dict__["client_email"] = client_email
+        __props__.__dict__["client_id"] = client_id
+        __props__.__dict__["credentials"] = credentials
+        __props__.__dict__["description"] = description
+        __props__.__dict__["local"] = local
+        __props__.__dict__["path"] = path
+        __props__.__dict__["private_key_id"] = private_key_id
+        __props__.__dict__["project_id"] = project_id
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -381,10 +517,4 @@ class AuthBackend(pulumi.CustomResource):
         The GCP Project ID
         """
         return pulumi.get(self, "project_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

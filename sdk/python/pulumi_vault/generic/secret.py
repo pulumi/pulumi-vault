@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['SecretArgs', 'Secret']
 
@@ -76,6 +76,98 @@ class SecretArgs:
     @disable_read.setter
     def disable_read(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "disable_read", value)
+
+
+@pulumi.input_type
+class _SecretState:
+    def __init__(__self__, *,
+                 data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 data_json: Optional[pulumi.Input[str]] = None,
+                 disable_read: Optional[pulumi.Input[bool]] = None,
+                 path: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Secret resources.
+        :param pulumi.Input[Mapping[str, Any]] data: A mapping whose keys are the top-level data keys returned from
+               Vault and whose values are the corresponding values. This map can only
+               represent string data, so any non-string values returned from Vault are
+               serialized as JSON.
+        :param pulumi.Input[str] data_json: String containing a JSON-encoded object that will be
+               written as the secret data at the given path.
+        :param pulumi.Input[bool] disable_read: True/false. Set this to true if your vault
+               authentication is not able to read the data. Setting this to `true` will
+               break drift detection. Defaults to false.
+        :param pulumi.Input[str] path: The full logical path at which to write the given data.
+               To write data into the "generic" secret backend mounted in Vault by default,
+               this should be prefixed with `secret/`. Writing to other backends with this
+               resource is possible; consult each backend's documentation to see which
+               endpoints support the `PUT` and `DELETE` methods.
+        """
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if data_json is not None:
+            pulumi.set(__self__, "data_json", data_json)
+        if disable_read is not None:
+            pulumi.set(__self__, "disable_read", disable_read)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        A mapping whose keys are the top-level data keys returned from
+        Vault and whose values are the corresponding values. This map can only
+        represent string data, so any non-string values returned from Vault are
+        serialized as JSON.
+        """
+        return pulumi.get(self, "data")
+
+    @data.setter
+    def data(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="dataJson")
+    def data_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        String containing a JSON-encoded object that will be
+        written as the secret data at the given path.
+        """
+        return pulumi.get(self, "data_json")
+
+    @data_json.setter
+    def data_json(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "data_json", value)
+
+    @property
+    @pulumi.getter(name="disableRead")
+    def disable_read(self) -> Optional[pulumi.Input[bool]]:
+        """
+        True/false. Set this to true if your vault
+        authentication is not able to read the data. Setting this to `true` will
+        break drift detection. Defaults to false.
+        """
+        return pulumi.get(self, "disable_read")
+
+    @disable_read.setter
+    def disable_read(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_read", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The full logical path at which to write the given data.
+        To write data into the "generic" secret backend mounted in Vault by default,
+        this should be prefixed with `secret/`. Writing to other backends with this
+        resource is possible; consult each backend's documentation to see which
+        endpoints support the `PUT` and `DELETE` methods.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
 
 
 class Secret(pulumi.CustomResource):
@@ -162,16 +254,16 @@ class Secret(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SecretArgs.__new__(SecretArgs)
 
             if data_json is None and not opts.urn:
                 raise TypeError("Missing required property 'data_json'")
-            __props__['data_json'] = data_json
-            __props__['disable_read'] = disable_read
+            __props__.__dict__["data_json"] = data_json
+            __props__.__dict__["disable_read"] = disable_read
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
-            __props__['path'] = path
-            __props__['data'] = None
+            __props__.__dict__["path"] = path
+            __props__.__dict__["data"] = None
         super(Secret, __self__).__init__(
             'vault:generic/secret:Secret',
             resource_name,
@@ -210,12 +302,12 @@ class Secret(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SecretState.__new__(_SecretState)
 
-        __props__["data"] = data
-        __props__["data_json"] = data_json
-        __props__["disable_read"] = disable_read
-        __props__["path"] = path
+        __props__.__dict__["data"] = data
+        __props__.__dict__["data_json"] = data_json
+        __props__.__dict__["disable_read"] = disable_read
+        __props__.__dict__["path"] = path
         return Secret(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -259,10 +351,4 @@ class Secret(pulumi.CustomResource):
         endpoints support the `PUT` and `DELETE` methods.
         """
         return pulumi.get(self, "path")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

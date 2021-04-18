@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['QuotaRateLimitArgs', 'QuotaRateLimit']
 
@@ -75,6 +75,74 @@ class QuotaRateLimitArgs:
     @path.setter
     def path(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "path", value)
+
+
+@pulumi.input_type
+class _QuotaRateLimitState:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 rate: Optional[pulumi.Input[float]] = None):
+        """
+        Input properties used for looking up and filtering QuotaRateLimit resources.
+        :param pulumi.Input[str] name: Name of the rate limit quota
+        :param pulumi.Input[str] path: Path of the mount or namespace to apply the quota. A blank path configures a
+               global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
+               `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
+               Updating this field on an existing quota can have "moving" effects. For example, updating
+               `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
+               a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
+        :param pulumi.Input[float] rate: The maximum number of requests at any given second to be allowed by the quota
+               rule. The `rate` must be positive.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if rate is not None:
+            pulumi.set(__self__, "rate", rate)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the rate limit quota
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path of the mount or namespace to apply the quota. A blank path configures a
+        global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
+        `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
+        Updating this field on an existing quota can have "moving" effects. For example, updating
+        `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
+        a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def rate(self) -> Optional[pulumi.Input[float]]:
+        """
+        The maximum number of requests at any given second to be allowed by the quota
+        rule. The `rate` must be positive.
+        """
+        return pulumi.get(self, "rate")
+
+    @rate.setter
+    def rate(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "rate", value)
 
 
 class QuotaRateLimit(pulumi.CustomResource):
@@ -196,13 +264,13 @@ class QuotaRateLimit(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = QuotaRateLimitArgs.__new__(QuotaRateLimitArgs)
 
-            __props__['name'] = name
-            __props__['path'] = path
+            __props__.__dict__["name"] = name
+            __props__.__dict__["path"] = path
             if rate is None and not opts.urn:
                 raise TypeError("Missing required property 'rate'")
-            __props__['rate'] = rate
+            __props__.__dict__["rate"] = rate
         super(QuotaRateLimit, __self__).__init__(
             'vault:index/quotaRateLimit:QuotaRateLimit',
             resource_name,
@@ -235,11 +303,11 @@ class QuotaRateLimit(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _QuotaRateLimitState.__new__(_QuotaRateLimitState)
 
-        __props__["name"] = name
-        __props__["path"] = path
-        __props__["rate"] = rate
+        __props__.__dict__["name"] = name
+        __props__.__dict__["path"] = path
+        __props__.__dict__["rate"] = rate
         return QuotaRateLimit(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -271,10 +339,4 @@ class QuotaRateLimit(pulumi.CustomResource):
         rule. The `rate` must be positive.
         """
         return pulumi.get(self, "rate")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

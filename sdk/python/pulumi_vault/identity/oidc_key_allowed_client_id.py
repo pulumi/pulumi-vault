@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['OidcKeyAllowedClientIDArgs', 'OidcKeyAllowedClientID']
 
@@ -45,6 +45,46 @@ class OidcKeyAllowedClientIDArgs:
 
     @key_name.setter
     def key_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key_name", value)
+
+
+@pulumi.input_type
+class _OidcKeyAllowedClientIDState:
+    def __init__(__self__, *,
+                 allowed_client_id: Optional[pulumi.Input[str]] = None,
+                 key_name: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering OidcKeyAllowedClientID resources.
+        :param pulumi.Input[str] allowed_client_id: Client ID to allow usage with the OIDC named key
+        :param pulumi.Input[str] key_name: Name of the OIDC Key allow the Client ID.
+        """
+        if allowed_client_id is not None:
+            pulumi.set(__self__, "allowed_client_id", allowed_client_id)
+        if key_name is not None:
+            pulumi.set(__self__, "key_name", key_name)
+
+    @property
+    @pulumi.getter(name="allowedClientId")
+    def allowed_client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client ID to allow usage with the OIDC named key
+        """
+        return pulumi.get(self, "allowed_client_id")
+
+    @allowed_client_id.setter
+    def allowed_client_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "allowed_client_id", value)
+
+    @property
+    @pulumi.getter(name="keyName")
+    def key_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the OIDC Key allow the Client ID.
+        """
+        return pulumi.get(self, "key_name")
+
+    @key_name.setter
+    def key_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "key_name", value)
 
 
@@ -108,14 +148,14 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = OidcKeyAllowedClientIDArgs.__new__(OidcKeyAllowedClientIDArgs)
 
             if allowed_client_id is None and not opts.urn:
                 raise TypeError("Missing required property 'allowed_client_id'")
-            __props__['allowed_client_id'] = allowed_client_id
+            __props__.__dict__["allowed_client_id"] = allowed_client_id
             if key_name is None and not opts.urn:
                 raise TypeError("Missing required property 'key_name'")
-            __props__['key_name'] = key_name
+            __props__.__dict__["key_name"] = key_name
         super(OidcKeyAllowedClientID, __self__).__init__(
             'vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID',
             resource_name,
@@ -140,10 +180,10 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _OidcKeyAllowedClientIDState.__new__(_OidcKeyAllowedClientIDState)
 
-        __props__["allowed_client_id"] = allowed_client_id
-        __props__["key_name"] = key_name
+        __props__.__dict__["allowed_client_id"] = allowed_client_id
+        __props__.__dict__["key_name"] = key_name
         return OidcKeyAllowedClientID(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -161,10 +201,4 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
         Name of the OIDC Key allow the Client ID.
         """
         return pulumi.get(self, "key_name")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

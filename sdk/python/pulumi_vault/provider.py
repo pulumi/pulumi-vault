@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 from ._inputs import *
 
 __all__ = ['ProviderArgs', 'Provider']
@@ -332,40 +332,34 @@ class Provider(pulumi.ProviderResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = ProviderArgs.__new__(ProviderArgs)
 
-            __props__['add_address_to_env'] = add_address_to_env
+            __props__.__dict__["add_address_to_env"] = add_address_to_env
             if address is None and not opts.urn:
                 raise TypeError("Missing required property 'address'")
-            __props__['address'] = address
-            __props__['auth_logins'] = pulumi.Output.from_input(auth_logins).apply(pulumi.runtime.to_json) if auth_logins is not None else None
-            __props__['ca_cert_dir'] = ca_cert_dir
-            __props__['ca_cert_file'] = ca_cert_file
-            __props__['client_auths'] = pulumi.Output.from_input(client_auths).apply(pulumi.runtime.to_json) if client_auths is not None else None
-            __props__['headers'] = pulumi.Output.from_input(headers).apply(pulumi.runtime.to_json) if headers is not None else None
+            __props__.__dict__["address"] = address
+            __props__.__dict__["auth_logins"] = pulumi.Output.from_input(auth_logins).apply(pulumi.runtime.to_json) if auth_logins is not None else None
+            __props__.__dict__["ca_cert_dir"] = ca_cert_dir
+            __props__.__dict__["ca_cert_file"] = ca_cert_file
+            __props__.__dict__["client_auths"] = pulumi.Output.from_input(client_auths).apply(pulumi.runtime.to_json) if client_auths is not None else None
+            __props__.__dict__["headers"] = pulumi.Output.from_input(headers).apply(pulumi.runtime.to_json) if headers is not None else None
             if max_lease_ttl_seconds is None:
                 max_lease_ttl_seconds = (_utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL') or 1200)
-            __props__['max_lease_ttl_seconds'] = pulumi.Output.from_input(max_lease_ttl_seconds).apply(pulumi.runtime.to_json) if max_lease_ttl_seconds is not None else None
+            __props__.__dict__["max_lease_ttl_seconds"] = pulumi.Output.from_input(max_lease_ttl_seconds).apply(pulumi.runtime.to_json) if max_lease_ttl_seconds is not None else None
             if max_retries is None:
                 max_retries = (_utilities.get_env_int('VAULT_MAX_RETRIES') or 2)
-            __props__['max_retries'] = pulumi.Output.from_input(max_retries).apply(pulumi.runtime.to_json) if max_retries is not None else None
-            __props__['namespace'] = namespace
+            __props__.__dict__["max_retries"] = pulumi.Output.from_input(max_retries).apply(pulumi.runtime.to_json) if max_retries is not None else None
+            __props__.__dict__["namespace"] = namespace
             if skip_tls_verify is None:
                 skip_tls_verify = _utilities.get_env_bool('VAULT_SKIP_VERIFY')
-            __props__['skip_tls_verify'] = pulumi.Output.from_input(skip_tls_verify).apply(pulumi.runtime.to_json) if skip_tls_verify is not None else None
+            __props__.__dict__["skip_tls_verify"] = pulumi.Output.from_input(skip_tls_verify).apply(pulumi.runtime.to_json) if skip_tls_verify is not None else None
             if token is None and not opts.urn:
                 raise TypeError("Missing required property 'token'")
-            __props__['token'] = token
-            __props__['token_name'] = token_name
+            __props__.__dict__["token"] = token
+            __props__.__dict__["token_name"] = token_name
         super(Provider, __self__).__init__(
             'vault',
             resource_name,
             __props__,
             opts)
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

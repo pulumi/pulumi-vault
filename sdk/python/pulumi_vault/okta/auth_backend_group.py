@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['AuthBackendGroupArgs', 'AuthBackendGroup']
 
@@ -49,6 +49,62 @@ class AuthBackendGroupArgs:
 
     @path.setter
     def path(self, value: pulumi.Input[str]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Vault policies to associate with this group
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
+
+
+@pulumi.input_type
+class _AuthBackendGroupState:
+    def __init__(__self__, *,
+                 group_name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        Input properties used for looking up and filtering AuthBackendGroup resources.
+        :param pulumi.Input[str] group_name: Name of the group within the Okta
+        :param pulumi.Input[str] path: The path where the Okta auth backend is mounted
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: Vault policies to associate with this group
+        """
+        if group_name is not None:
+            pulumi.set(__self__, "group_name", group_name)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter(name="groupName")
+    def group_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the group within the Okta
+        """
+        return pulumi.get(self, "group_name")
+
+    @group_name.setter
+    def group_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "group_name", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path where the Okta auth backend is mounted
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "path", value)
 
     @property
@@ -183,15 +239,15 @@ class AuthBackendGroup(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = AuthBackendGroupArgs.__new__(AuthBackendGroupArgs)
 
             if group_name is None and not opts.urn:
                 raise TypeError("Missing required property 'group_name'")
-            __props__['group_name'] = group_name
+            __props__.__dict__["group_name"] = group_name
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
-            __props__['path'] = path
-            __props__['policies'] = policies
+            __props__.__dict__["path"] = path
+            __props__.__dict__["policies"] = policies
         super(AuthBackendGroup, __self__).__init__(
             'vault:okta/authBackendGroup:AuthBackendGroup',
             resource_name,
@@ -218,11 +274,11 @@ class AuthBackendGroup(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _AuthBackendGroupState.__new__(_AuthBackendGroupState)
 
-        __props__["group_name"] = group_name
-        __props__["path"] = path
-        __props__["policies"] = policies
+        __props__.__dict__["group_name"] = group_name
+        __props__.__dict__["path"] = path
+        __props__.__dict__["policies"] = policies
         return AuthBackendGroup(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -248,10 +304,4 @@ class AuthBackendGroup(pulumi.CustomResource):
         Vault policies to associate with this group
         """
         return pulumi.get(self, "policies")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['AuthBackendCertArgs', 'AuthBackendCert']
 
@@ -76,6 +76,90 @@ class AuthBackendCertArgs:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Either "pkcs7" or "identity", indicating the type of
+        document which can be verified using the given certificate. Defaults to
+        "pkcs7".
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class _AuthBackendCertState:
+    def __init__(__self__, *,
+                 aws_public_cert: Optional[pulumi.Input[str]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 cert_name: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering AuthBackendCert resources.
+        :param pulumi.Input[str] aws_public_cert: The  Base64 encoded AWS Public key required to
+               verify PKCS7 signature of the EC2 instance metadata. You can find this key in
+               the [AWS
+               documentation](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-identity-documents.html).
+        :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
+               mounted at.  Defaults to `aws`.
+        :param pulumi.Input[str] cert_name: The name of the certificate.
+        :param pulumi.Input[str] type: Either "pkcs7" or "identity", indicating the type of
+               document which can be verified using the given certificate. Defaults to
+               "pkcs7".
+        """
+        if aws_public_cert is not None:
+            pulumi.set(__self__, "aws_public_cert", aws_public_cert)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if cert_name is not None:
+            pulumi.set(__self__, "cert_name", cert_name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="awsPublicCert")
+    def aws_public_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        The  Base64 encoded AWS Public key required to
+        verify PKCS7 signature of the EC2 instance metadata. You can find this key in
+        the [AWS
+        documentation](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-identity-documents.html).
+        """
+        return pulumi.get(self, "aws_public_cert")
+
+    @aws_public_cert.setter
+    def aws_public_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_public_cert", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path the AWS auth backend being configured was
+        mounted at.  Defaults to `aws`.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="certName")
+    def cert_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the certificate.
+        """
+        return pulumi.get(self, "cert_name")
+
+    @cert_name.setter
+    def cert_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_name", value)
 
     @property
     @pulumi.getter
@@ -178,16 +262,16 @@ class AuthBackendCert(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = AuthBackendCertArgs.__new__(AuthBackendCertArgs)
 
             if aws_public_cert is None and not opts.urn:
                 raise TypeError("Missing required property 'aws_public_cert'")
-            __props__['aws_public_cert'] = aws_public_cert
-            __props__['backend'] = backend
+            __props__.__dict__["aws_public_cert"] = aws_public_cert
+            __props__.__dict__["backend"] = backend
             if cert_name is None and not opts.urn:
                 raise TypeError("Missing required property 'cert_name'")
-            __props__['cert_name'] = cert_name
-            __props__['type'] = type
+            __props__.__dict__["cert_name"] = cert_name
+            __props__.__dict__["type"] = type
         super(AuthBackendCert, __self__).__init__(
             'vault:aws/authBackendCert:AuthBackendCert',
             resource_name,
@@ -222,12 +306,12 @@ class AuthBackendCert(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _AuthBackendCertState.__new__(_AuthBackendCertState)
 
-        __props__["aws_public_cert"] = aws_public_cert
-        __props__["backend"] = backend
-        __props__["cert_name"] = cert_name
-        __props__["type"] = type
+        __props__.__dict__["aws_public_cert"] = aws_public_cert
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["cert_name"] = cert_name
+        __props__.__dict__["type"] = type
         return AuthBackendCert(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -267,10 +351,4 @@ class AuthBackendCert(pulumi.CustomResource):
         "pkcs7".
         """
         return pulumi.get(self, "type")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

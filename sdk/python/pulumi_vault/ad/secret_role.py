@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['SecretRoleArgs', 'SecretRole']
 
@@ -64,6 +64,110 @@ class SecretRoleArgs:
 
     @service_account_name.setter
     def service_account_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "service_account_name", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        In seconds, the default password time-to-live.
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ttl", value)
+
+
+@pulumi.input_type
+class _SecretRoleState:
+    def __init__(__self__, *,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 last_vault_rotation: Optional[pulumi.Input[str]] = None,
+                 password_last_set: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 service_account_name: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None):
+        """
+        Input properties used for looking up and filtering SecretRole resources.
+        :param pulumi.Input[str] backend: The mount path for the AD backend.
+        :param pulumi.Input[str] last_vault_rotation: Last time Vault rotated this service account's password.
+        :param pulumi.Input[str] password_last_set: Last time Vault set this service account's password.
+        :param pulumi.Input[str] role: Name of the role.
+        :param pulumi.Input[str] service_account_name: The username/logon name for the service account with which this role will be associated.
+        :param pulumi.Input[int] ttl: In seconds, the default password time-to-live.
+        """
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if last_vault_rotation is not None:
+            pulumi.set(__self__, "last_vault_rotation", last_vault_rotation)
+        if password_last_set is not None:
+            pulumi.set(__self__, "password_last_set", password_last_set)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if service_account_name is not None:
+            pulumi.set(__self__, "service_account_name", service_account_name)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The mount path for the AD backend.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="lastVaultRotation")
+    def last_vault_rotation(self) -> Optional[pulumi.Input[str]]:
+        """
+        Last time Vault rotated this service account's password.
+        """
+        return pulumi.get(self, "last_vault_rotation")
+
+    @last_vault_rotation.setter
+    def last_vault_rotation(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "last_vault_rotation", value)
+
+    @property
+    @pulumi.getter(name="passwordLastSet")
+    def password_last_set(self) -> Optional[pulumi.Input[str]]:
+        """
+        Last time Vault set this service account's password.
+        """
+        return pulumi.get(self, "password_last_set")
+
+    @password_last_set.setter
+    def password_last_set(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password_last_set", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the role.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter(name="serviceAccountName")
+    def service_account_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The username/logon name for the service account with which this role will be associated.
+        """
+        return pulumi.get(self, "service_account_name")
+
+    @service_account_name.setter
+    def service_account_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "service_account_name", value)
 
     @property
@@ -145,20 +249,20 @@ class SecretRole(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SecretRoleArgs.__new__(SecretRoleArgs)
 
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
-            __props__['backend'] = backend
+            __props__.__dict__["backend"] = backend
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
-            __props__['role'] = role
+            __props__.__dict__["role"] = role
             if service_account_name is None and not opts.urn:
                 raise TypeError("Missing required property 'service_account_name'")
-            __props__['service_account_name'] = service_account_name
-            __props__['ttl'] = ttl
-            __props__['last_vault_rotation'] = None
-            __props__['password_last_set'] = None
+            __props__.__dict__["service_account_name"] = service_account_name
+            __props__.__dict__["ttl"] = ttl
+            __props__.__dict__["last_vault_rotation"] = None
+            __props__.__dict__["password_last_set"] = None
         super(SecretRole, __self__).__init__(
             'vault:ad/secretRole:SecretRole',
             resource_name,
@@ -191,14 +295,14 @@ class SecretRole(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SecretRoleState.__new__(_SecretRoleState)
 
-        __props__["backend"] = backend
-        __props__["last_vault_rotation"] = last_vault_rotation
-        __props__["password_last_set"] = password_last_set
-        __props__["role"] = role
-        __props__["service_account_name"] = service_account_name
-        __props__["ttl"] = ttl
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["last_vault_rotation"] = last_vault_rotation
+        __props__.__dict__["password_last_set"] = password_last_set
+        __props__.__dict__["role"] = role
+        __props__.__dict__["service_account_name"] = service_account_name
+        __props__.__dict__["ttl"] = ttl
         return SecretRole(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -248,10 +352,4 @@ class SecretRole(pulumi.CustomResource):
         In seconds, the default password time-to-live.
         """
         return pulumi.get(self, "ttl")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

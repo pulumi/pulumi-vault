@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 from . import outputs
 from ._inputs import *
 
@@ -98,6 +98,126 @@ class SecretRolesetArgs:
     @secret_type.setter
     def secret_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "secret_type", value)
+
+    @property
+    @pulumi.getter(name="tokenScopes")
+    def token_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
+        """
+        return pulumi.get(self, "token_scopes")
+
+    @token_scopes.setter
+    def token_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "token_scopes", value)
+
+
+@pulumi.input_type
+class _SecretRolesetState:
+    def __init__(__self__, *,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 bindings: Optional[pulumi.Input[Sequence[pulumi.Input['SecretRolesetBindingArgs']]]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 roleset: Optional[pulumi.Input[str]] = None,
+                 secret_type: Optional[pulumi.Input[str]] = None,
+                 service_account_email: Optional[pulumi.Input[str]] = None,
+                 token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        Input properties used for looking up and filtering SecretRoleset resources.
+        :param pulumi.Input[str] backend: Path where the GCP Secrets Engine is mounted
+        :param pulumi.Input[Sequence[pulumi.Input['SecretRolesetBindingArgs']]] bindings: Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
+        :param pulumi.Input[str] project: Name of the GCP project that this roleset's service account will belong to.
+        :param pulumi.Input[str] roleset: Name of the Roleset to create
+        :param pulumi.Input[str] secret_type: Type of secret generated for this role set. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
+        :param pulumi.Input[str] service_account_email: Email of the service account created by Vault for this Roleset
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_scopes: List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
+        """
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if bindings is not None:
+            pulumi.set(__self__, "bindings", bindings)
+        if project is not None:
+            pulumi.set(__self__, "project", project)
+        if roleset is not None:
+            pulumi.set(__self__, "roleset", roleset)
+        if secret_type is not None:
+            pulumi.set(__self__, "secret_type", secret_type)
+        if service_account_email is not None:
+            pulumi.set(__self__, "service_account_email", service_account_email)
+        if token_scopes is not None:
+            pulumi.set(__self__, "token_scopes", token_scopes)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path where the GCP Secrets Engine is mounted
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def bindings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretRolesetBindingArgs']]]]:
+        """
+        Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
+        """
+        return pulumi.get(self, "bindings")
+
+    @bindings.setter
+    def bindings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretRolesetBindingArgs']]]]):
+        pulumi.set(self, "bindings", value)
+
+    @property
+    @pulumi.getter
+    def project(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the GCP project that this roleset's service account will belong to.
+        """
+        return pulumi.get(self, "project")
+
+    @project.setter
+    def project(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project", value)
+
+    @property
+    @pulumi.getter
+    def roleset(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Roleset to create
+        """
+        return pulumi.get(self, "roleset")
+
+    @roleset.setter
+    def roleset(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "roleset", value)
+
+    @property
+    @pulumi.getter(name="secretType")
+    def secret_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of secret generated for this role set. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
+        """
+        return pulumi.get(self, "secret_type")
+
+    @secret_type.setter
+    def secret_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secret_type", value)
+
+    @property
+    @pulumi.getter(name="serviceAccountEmail")
+    def service_account_email(self) -> Optional[pulumi.Input[str]]:
+        """
+        Email of the service account created by Vault for this Roleset
+        """
+        return pulumi.get(self, "service_account_email")
+
+    @service_account_email.setter
+    def service_account_email(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_account_email", value)
 
     @property
     @pulumi.getter(name="tokenScopes")
@@ -250,23 +370,23 @@ class SecretRoleset(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SecretRolesetArgs.__new__(SecretRolesetArgs)
 
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
-            __props__['backend'] = backend
+            __props__.__dict__["backend"] = backend
             if bindings is None and not opts.urn:
                 raise TypeError("Missing required property 'bindings'")
-            __props__['bindings'] = bindings
+            __props__.__dict__["bindings"] = bindings
             if project is None and not opts.urn:
                 raise TypeError("Missing required property 'project'")
-            __props__['project'] = project
+            __props__.__dict__["project"] = project
             if roleset is None and not opts.urn:
                 raise TypeError("Missing required property 'roleset'")
-            __props__['roleset'] = roleset
-            __props__['secret_type'] = secret_type
-            __props__['token_scopes'] = token_scopes
-            __props__['service_account_email'] = None
+            __props__.__dict__["roleset"] = roleset
+            __props__.__dict__["secret_type"] = secret_type
+            __props__.__dict__["token_scopes"] = token_scopes
+            __props__.__dict__["service_account_email"] = None
         super(SecretRoleset, __self__).__init__(
             'vault:gcp/secretRoleset:SecretRoleset',
             resource_name,
@@ -301,15 +421,15 @@ class SecretRoleset(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SecretRolesetState.__new__(_SecretRolesetState)
 
-        __props__["backend"] = backend
-        __props__["bindings"] = bindings
-        __props__["project"] = project
-        __props__["roleset"] = roleset
-        __props__["secret_type"] = secret_type
-        __props__["service_account_email"] = service_account_email
-        __props__["token_scopes"] = token_scopes
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["bindings"] = bindings
+        __props__.__dict__["project"] = project
+        __props__.__dict__["roleset"] = roleset
+        __props__.__dict__["secret_type"] = secret_type
+        __props__.__dict__["service_account_email"] = service_account_email
+        __props__.__dict__["token_scopes"] = token_scopes
         return SecretRoleset(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -367,10 +487,4 @@ class SecretRoleset(pulumi.CustomResource):
         List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
         """
         return pulumi.get(self, "token_scopes")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

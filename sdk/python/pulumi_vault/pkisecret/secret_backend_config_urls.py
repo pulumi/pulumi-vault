@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['SecretBackendConfigUrlsArgs', 'SecretBackendConfigUrls']
 
@@ -42,6 +42,78 @@ class SecretBackendConfigUrlsArgs:
 
     @backend.setter
     def backend(self, value: pulumi.Input[str]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="crlDistributionPoints")
+    def crl_distribution_points(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies the URL values for the CRL Distribution Points field.
+        """
+        return pulumi.get(self, "crl_distribution_points")
+
+    @crl_distribution_points.setter
+    def crl_distribution_points(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "crl_distribution_points", value)
+
+    @property
+    @pulumi.getter(name="issuingCertificates")
+    def issuing_certificates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies the URL values for the Issuing Certificate field.
+        """
+        return pulumi.get(self, "issuing_certificates")
+
+    @issuing_certificates.setter
+    def issuing_certificates(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "issuing_certificates", value)
+
+    @property
+    @pulumi.getter(name="ocspServers")
+    def ocsp_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies the URL values for the OCSP Servers field.
+        """
+        return pulumi.get(self, "ocsp_servers")
+
+    @ocsp_servers.setter
+    def ocsp_servers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ocsp_servers", value)
+
+
+@pulumi.input_type
+class _SecretBackendConfigUrlsState:
+    def __init__(__self__, *,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        Input properties used for looking up and filtering SecretBackendConfigUrls resources.
+        :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] issuing_certificates: Specifies the URL values for the Issuing Certificate field.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ocsp_servers: Specifies the URL values for the OCSP Servers field.
+        """
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if crl_distribution_points is not None:
+            pulumi.set(__self__, "crl_distribution_points", crl_distribution_points)
+        if issuing_certificates is not None:
+            pulumi.set(__self__, "issuing_certificates", issuing_certificates)
+        if ocsp_servers is not None:
+            pulumi.set(__self__, "ocsp_servers", ocsp_servers)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
 
     @property
@@ -179,14 +251,14 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SecretBackendConfigUrlsArgs.__new__(SecretBackendConfigUrlsArgs)
 
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
-            __props__['backend'] = backend
-            __props__['crl_distribution_points'] = crl_distribution_points
-            __props__['issuing_certificates'] = issuing_certificates
-            __props__['ocsp_servers'] = ocsp_servers
+            __props__.__dict__["backend"] = backend
+            __props__.__dict__["crl_distribution_points"] = crl_distribution_points
+            __props__.__dict__["issuing_certificates"] = issuing_certificates
+            __props__.__dict__["ocsp_servers"] = ocsp_servers
         super(SecretBackendConfigUrls, __self__).__init__(
             'vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls',
             resource_name,
@@ -215,12 +287,12 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SecretBackendConfigUrlsState.__new__(_SecretBackendConfigUrlsState)
 
-        __props__["backend"] = backend
-        __props__["crl_distribution_points"] = crl_distribution_points
-        __props__["issuing_certificates"] = issuing_certificates
-        __props__["ocsp_servers"] = ocsp_servers
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["crl_distribution_points"] = crl_distribution_points
+        __props__.__dict__["issuing_certificates"] = issuing_certificates
+        __props__.__dict__["ocsp_servers"] = ocsp_servers
         return SecretBackendConfigUrls(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -254,10 +326,4 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         Specifies the URL values for the OCSP Servers field.
         """
         return pulumi.get(self, "ocsp_servers")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

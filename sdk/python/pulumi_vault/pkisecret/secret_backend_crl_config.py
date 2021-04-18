@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['SecretBackendCrlConfigArgs', 'SecretBackendCrlConfig']
 
@@ -38,6 +38,62 @@ class SecretBackendCrlConfigArgs:
 
     @backend.setter
     def backend(self, value: pulumi.Input[str]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter
+    def disable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disables or enables CRL building.
+        """
+        return pulumi.get(self, "disable")
+
+    @disable.setter
+    def disable(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable", value)
+
+    @property
+    @pulumi.getter
+    def expiry(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the time until expiration.
+        """
+        return pulumi.get(self, "expiry")
+
+    @expiry.setter
+    def expiry(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "expiry", value)
+
+
+@pulumi.input_type
+class _SecretBackendCrlConfigState:
+    def __init__(__self__, *,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 disable: Optional[pulumi.Input[bool]] = None,
+                 expiry: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering SecretBackendCrlConfig resources.
+        :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[bool] disable: Disables or enables CRL building.
+        :param pulumi.Input[str] expiry: Specifies the time until expiration.
+        """
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if disable is not None:
+            pulumi.set(__self__, "disable", disable)
+        if expiry is not None:
+            pulumi.set(__self__, "expiry", expiry)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
 
     @property
@@ -164,13 +220,13 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SecretBackendCrlConfigArgs.__new__(SecretBackendCrlConfigArgs)
 
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
-            __props__['backend'] = backend
-            __props__['disable'] = disable
-            __props__['expiry'] = expiry
+            __props__.__dict__["backend"] = backend
+            __props__.__dict__["disable"] = disable
+            __props__.__dict__["expiry"] = expiry
         super(SecretBackendCrlConfig, __self__).__init__(
             'vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig',
             resource_name,
@@ -197,11 +253,11 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SecretBackendCrlConfigState.__new__(_SecretBackendCrlConfigState)
 
-        __props__["backend"] = backend
-        __props__["disable"] = disable
-        __props__["expiry"] = expiry
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["disable"] = disable
+        __props__.__dict__["expiry"] = expiry
         return SecretBackendCrlConfig(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -227,10 +283,4 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         Specifies the time until expiration.
         """
         return pulumi.get(self, "expiry")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

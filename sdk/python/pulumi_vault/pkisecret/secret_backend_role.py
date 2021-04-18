@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['SecretBackendRoleArgs', 'SecretBackendRole']
 
@@ -625,6 +625,622 @@ class SecretBackendRoleArgs:
         pulumi.set(self, "use_csr_sans", value)
 
 
+@pulumi.input_type
+class _SecretBackendRoleState:
+    def __init__(__self__, *,
+                 allow_any_name: Optional[pulumi.Input[bool]] = None,
+                 allow_bare_domains: Optional[pulumi.Input[bool]] = None,
+                 allow_glob_domains: Optional[pulumi.Input[bool]] = None,
+                 allow_ip_sans: Optional[pulumi.Input[bool]] = None,
+                 allow_localhost: Optional[pulumi.Input[bool]] = None,
+                 allow_subdomains: Optional[pulumi.Input[bool]] = None,
+                 allowed_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_domains_template: Optional[pulumi.Input[bool]] = None,
+                 allowed_other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 backend: Optional[pulumi.Input[str]] = None,
+                 basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
+                 client_flag: Optional[pulumi.Input[bool]] = None,
+                 code_signing_flag: Optional[pulumi.Input[bool]] = None,
+                 countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 email_protection_flag: Optional[pulumi.Input[bool]] = None,
+                 enforce_hostnames: Optional[pulumi.Input[bool]] = None,
+                 ext_key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 generate_lease: Optional[pulumi.Input[bool]] = None,
+                 key_bits: Optional[pulumi.Input[int]] = None,
+                 key_type: Optional[pulumi.Input[str]] = None,
+                 key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 localities: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 max_ttl: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 no_store: Optional[pulumi.Input[bool]] = None,
+                 not_before_duration: Optional[pulumi.Input[str]] = None,
+                 organization_unit: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 organizations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 policy_identifiers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 postal_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 provinces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 require_cn: Optional[pulumi.Input[bool]] = None,
+                 server_flag: Optional[pulumi.Input[bool]] = None,
+                 street_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ttl: Optional[pulumi.Input[str]] = None,
+                 use_csr_common_name: Optional[pulumi.Input[bool]] = None,
+                 use_csr_sans: Optional[pulumi.Input[bool]] = None):
+        """
+        Input properties used for looking up and filtering SecretBackendRole resources.
+        :param pulumi.Input[bool] allow_any_name: Flag to allow any name
+        :param pulumi.Input[bool] allow_bare_domains: Flag to allow certificates matching the actual domain
+        :param pulumi.Input[bool] allow_glob_domains: Flag to allow names containing glob patterns.
+        :param pulumi.Input[bool] allow_ip_sans: Flag to allow IP SANs
+        :param pulumi.Input[bool] allow_localhost: Flag to allow certificates for localhost
+        :param pulumi.Input[bool] allow_subdomains: Flag to allow certificates matching subdomains
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_domains: List of allowed domains for certificates
+        :param pulumi.Input[bool] allowed_domains_template: Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_other_sans: Defines allowed custom SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
+        :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
+        :param pulumi.Input[bool] client_flag: Flag to specify certificates for client use
+        :param pulumi.Input[bool] code_signing_flag: Flag to specify certificates for code signing use
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: The country of generated certificates
+        :param pulumi.Input[bool] email_protection_flag: Flag to specify certificates for email protection use
+        :param pulumi.Input[bool] enforce_hostnames: Flag to allow only valid host names
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usages: Specify the allowed extended key usage constraint on issued certificates
+        :param pulumi.Input[bool] generate_lease: Flag to generate leases with certificates
+        :param pulumi.Input[int] key_bits: The number of bits of generated keys
+        :param pulumi.Input[str] key_type: The type of generated keys
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
+        :param pulumi.Input[str] max_ttl: The maximum TTL
+        :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
+        :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
+        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] organizations: The organization of generated certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies IODs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] postal_codes: The postal code of generated certificates
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] provinces: The province of generated certificates
+        :param pulumi.Input[bool] require_cn: Flag to force CN usage
+        :param pulumi.Input[bool] server_flag: Flag to specify certificates for server use
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] street_addresses: The street address of generated certificates
+        :param pulumi.Input[str] ttl: The TTL
+        :param pulumi.Input[bool] use_csr_common_name: Flag to use the CN in the CSR
+        :param pulumi.Input[bool] use_csr_sans: Flag to use the SANs in the CSR
+        """
+        if allow_any_name is not None:
+            pulumi.set(__self__, "allow_any_name", allow_any_name)
+        if allow_bare_domains is not None:
+            pulumi.set(__self__, "allow_bare_domains", allow_bare_domains)
+        if allow_glob_domains is not None:
+            pulumi.set(__self__, "allow_glob_domains", allow_glob_domains)
+        if allow_ip_sans is not None:
+            pulumi.set(__self__, "allow_ip_sans", allow_ip_sans)
+        if allow_localhost is not None:
+            pulumi.set(__self__, "allow_localhost", allow_localhost)
+        if allow_subdomains is not None:
+            pulumi.set(__self__, "allow_subdomains", allow_subdomains)
+        if allowed_domains is not None:
+            pulumi.set(__self__, "allowed_domains", allowed_domains)
+        if allowed_domains_template is not None:
+            pulumi.set(__self__, "allowed_domains_template", allowed_domains_template)
+        if allowed_other_sans is not None:
+            pulumi.set(__self__, "allowed_other_sans", allowed_other_sans)
+        if allowed_uri_sans is not None:
+            pulumi.set(__self__, "allowed_uri_sans", allowed_uri_sans)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if basic_constraints_valid_for_non_ca is not None:
+            pulumi.set(__self__, "basic_constraints_valid_for_non_ca", basic_constraints_valid_for_non_ca)
+        if client_flag is not None:
+            pulumi.set(__self__, "client_flag", client_flag)
+        if code_signing_flag is not None:
+            pulumi.set(__self__, "code_signing_flag", code_signing_flag)
+        if countries is not None:
+            pulumi.set(__self__, "countries", countries)
+        if email_protection_flag is not None:
+            pulumi.set(__self__, "email_protection_flag", email_protection_flag)
+        if enforce_hostnames is not None:
+            pulumi.set(__self__, "enforce_hostnames", enforce_hostnames)
+        if ext_key_usages is not None:
+            pulumi.set(__self__, "ext_key_usages", ext_key_usages)
+        if generate_lease is not None:
+            pulumi.set(__self__, "generate_lease", generate_lease)
+        if key_bits is not None:
+            pulumi.set(__self__, "key_bits", key_bits)
+        if key_type is not None:
+            pulumi.set(__self__, "key_type", key_type)
+        if key_usages is not None:
+            pulumi.set(__self__, "key_usages", key_usages)
+        if localities is not None:
+            pulumi.set(__self__, "localities", localities)
+        if max_ttl is not None:
+            pulumi.set(__self__, "max_ttl", max_ttl)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if no_store is not None:
+            pulumi.set(__self__, "no_store", no_store)
+        if not_before_duration is not None:
+            pulumi.set(__self__, "not_before_duration", not_before_duration)
+        if organization_unit is not None:
+            pulumi.set(__self__, "organization_unit", organization_unit)
+        if organizations is not None:
+            pulumi.set(__self__, "organizations", organizations)
+        if policy_identifiers is not None:
+            pulumi.set(__self__, "policy_identifiers", policy_identifiers)
+        if postal_codes is not None:
+            pulumi.set(__self__, "postal_codes", postal_codes)
+        if provinces is not None:
+            pulumi.set(__self__, "provinces", provinces)
+        if require_cn is not None:
+            pulumi.set(__self__, "require_cn", require_cn)
+        if server_flag is not None:
+            pulumi.set(__self__, "server_flag", server_flag)
+        if street_addresses is not None:
+            pulumi.set(__self__, "street_addresses", street_addresses)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+        if use_csr_common_name is not None:
+            pulumi.set(__self__, "use_csr_common_name", use_csr_common_name)
+        if use_csr_sans is not None:
+            pulumi.set(__self__, "use_csr_sans", use_csr_sans)
+
+    @property
+    @pulumi.getter(name="allowAnyName")
+    def allow_any_name(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to allow any name
+        """
+        return pulumi.get(self, "allow_any_name")
+
+    @allow_any_name.setter
+    def allow_any_name(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_any_name", value)
+
+    @property
+    @pulumi.getter(name="allowBareDomains")
+    def allow_bare_domains(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to allow certificates matching the actual domain
+        """
+        return pulumi.get(self, "allow_bare_domains")
+
+    @allow_bare_domains.setter
+    def allow_bare_domains(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_bare_domains", value)
+
+    @property
+    @pulumi.getter(name="allowGlobDomains")
+    def allow_glob_domains(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to allow names containing glob patterns.
+        """
+        return pulumi.get(self, "allow_glob_domains")
+
+    @allow_glob_domains.setter
+    def allow_glob_domains(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_glob_domains", value)
+
+    @property
+    @pulumi.getter(name="allowIpSans")
+    def allow_ip_sans(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to allow IP SANs
+        """
+        return pulumi.get(self, "allow_ip_sans")
+
+    @allow_ip_sans.setter
+    def allow_ip_sans(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_ip_sans", value)
+
+    @property
+    @pulumi.getter(name="allowLocalhost")
+    def allow_localhost(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to allow certificates for localhost
+        """
+        return pulumi.get(self, "allow_localhost")
+
+    @allow_localhost.setter
+    def allow_localhost(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_localhost", value)
+
+    @property
+    @pulumi.getter(name="allowSubdomains")
+    def allow_subdomains(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to allow certificates matching subdomains
+        """
+        return pulumi.get(self, "allow_subdomains")
+
+    @allow_subdomains.setter
+    def allow_subdomains(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_subdomains", value)
+
+    @property
+    @pulumi.getter(name="allowedDomains")
+    def allowed_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of allowed domains for certificates
+        """
+        return pulumi.get(self, "allowed_domains")
+
+    @allowed_domains.setter
+    def allowed_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_domains", value)
+
+    @property
+    @pulumi.getter(name="allowedDomainsTemplate")
+    def allowed_domains_template(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
+        """
+        return pulumi.get(self, "allowed_domains_template")
+
+    @allowed_domains_template.setter
+    def allowed_domains_template(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allowed_domains_template", value)
+
+    @property
+    @pulumi.getter(name="allowedOtherSans")
+    def allowed_other_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Defines allowed custom SANs
+        """
+        return pulumi.get(self, "allowed_other_sans")
+
+    @allowed_other_sans.setter
+    def allowed_other_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_other_sans", value)
+
+    @property
+    @pulumi.getter(name="allowedUriSans")
+    def allowed_uri_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Defines allowed URI SANs
+        """
+        return pulumi.get(self, "allowed_uri_sans")
+
+    @allowed_uri_sans.setter
+    def allowed_uri_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_uri_sans", value)
+
+    @property
+    @pulumi.getter
+    def backend(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+        """
+        return pulumi.get(self, "backend")
+
+    @backend.setter
+    def backend(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="basicConstraintsValidForNonCa")
+    def basic_constraints_valid_for_non_ca(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to mark basic constraints valid when issuing non-CA certificates
+        """
+        return pulumi.get(self, "basic_constraints_valid_for_non_ca")
+
+    @basic_constraints_valid_for_non_ca.setter
+    def basic_constraints_valid_for_non_ca(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "basic_constraints_valid_for_non_ca", value)
+
+    @property
+    @pulumi.getter(name="clientFlag")
+    def client_flag(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to specify certificates for client use
+        """
+        return pulumi.get(self, "client_flag")
+
+    @client_flag.setter
+    def client_flag(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "client_flag", value)
+
+    @property
+    @pulumi.getter(name="codeSigningFlag")
+    def code_signing_flag(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to specify certificates for code signing use
+        """
+        return pulumi.get(self, "code_signing_flag")
+
+    @code_signing_flag.setter
+    def code_signing_flag(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "code_signing_flag", value)
+
+    @property
+    @pulumi.getter
+    def countries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The country of generated certificates
+        """
+        return pulumi.get(self, "countries")
+
+    @countries.setter
+    def countries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "countries", value)
+
+    @property
+    @pulumi.getter(name="emailProtectionFlag")
+    def email_protection_flag(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to specify certificates for email protection use
+        """
+        return pulumi.get(self, "email_protection_flag")
+
+    @email_protection_flag.setter
+    def email_protection_flag(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "email_protection_flag", value)
+
+    @property
+    @pulumi.getter(name="enforceHostnames")
+    def enforce_hostnames(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to allow only valid host names
+        """
+        return pulumi.get(self, "enforce_hostnames")
+
+    @enforce_hostnames.setter
+    def enforce_hostnames(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enforce_hostnames", value)
+
+    @property
+    @pulumi.getter(name="extKeyUsages")
+    def ext_key_usages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specify the allowed extended key usage constraint on issued certificates
+        """
+        return pulumi.get(self, "ext_key_usages")
+
+    @ext_key_usages.setter
+    def ext_key_usages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ext_key_usages", value)
+
+    @property
+    @pulumi.getter(name="generateLease")
+    def generate_lease(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to generate leases with certificates
+        """
+        return pulumi.get(self, "generate_lease")
+
+    @generate_lease.setter
+    def generate_lease(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "generate_lease", value)
+
+    @property
+    @pulumi.getter(name="keyBits")
+    def key_bits(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of bits of generated keys
+        """
+        return pulumi.get(self, "key_bits")
+
+    @key_bits.setter
+    def key_bits(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "key_bits", value)
+
+    @property
+    @pulumi.getter(name="keyType")
+    def key_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of generated keys
+        """
+        return pulumi.get(self, "key_type")
+
+    @key_type.setter
+    def key_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key_type", value)
+
+    @property
+    @pulumi.getter(name="keyUsages")
+    def key_usages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specify the allowed key usage constraint on issued certificates
+        """
+        return pulumi.get(self, "key_usages")
+
+    @key_usages.setter
+    def key_usages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "key_usages", value)
+
+    @property
+    @pulumi.getter
+    def localities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The locality of generated certificates
+        """
+        return pulumi.get(self, "localities")
+
+    @localities.setter
+    def localities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "localities", value)
+
+    @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        The maximum TTL
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @max_ttl.setter
+    def max_ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "max_ttl", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name to identify this role within the backend. Must be unique within the backend.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="noStore")
+    def no_store(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to not store certificates in the storage backend
+        """
+        return pulumi.get(self, "no_store")
+
+    @no_store.setter
+    def no_store(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "no_store", value)
+
+    @property
+    @pulumi.getter(name="notBeforeDuration")
+    def not_before_duration(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the duration by which to backdate the NotBefore property.
+        """
+        return pulumi.get(self, "not_before_duration")
+
+    @not_before_duration.setter
+    def not_before_duration(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "not_before_duration", value)
+
+    @property
+    @pulumi.getter(name="organizationUnit")
+    def organization_unit(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The organization unit of generated certificates
+        """
+        return pulumi.get(self, "organization_unit")
+
+    @organization_unit.setter
+    def organization_unit(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "organization_unit", value)
+
+    @property
+    @pulumi.getter
+    def organizations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The organization of generated certificates
+        """
+        return pulumi.get(self, "organizations")
+
+    @organizations.setter
+    def organizations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "organizations", value)
+
+    @property
+    @pulumi.getter(name="policyIdentifiers")
+    def policy_identifiers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specify the list of allowed policies IODs
+        """
+        return pulumi.get(self, "policy_identifiers")
+
+    @policy_identifiers.setter
+    def policy_identifiers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policy_identifiers", value)
+
+    @property
+    @pulumi.getter(name="postalCodes")
+    def postal_codes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The postal code of generated certificates
+        """
+        return pulumi.get(self, "postal_codes")
+
+    @postal_codes.setter
+    def postal_codes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "postal_codes", value)
+
+    @property
+    @pulumi.getter
+    def provinces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The province of generated certificates
+        """
+        return pulumi.get(self, "provinces")
+
+    @provinces.setter
+    def provinces(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "provinces", value)
+
+    @property
+    @pulumi.getter(name="requireCn")
+    def require_cn(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to force CN usage
+        """
+        return pulumi.get(self, "require_cn")
+
+    @require_cn.setter
+    def require_cn(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "require_cn", value)
+
+    @property
+    @pulumi.getter(name="serverFlag")
+    def server_flag(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to specify certificates for server use
+        """
+        return pulumi.get(self, "server_flag")
+
+    @server_flag.setter
+    def server_flag(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "server_flag", value)
+
+    @property
+    @pulumi.getter(name="streetAddresses")
+    def street_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The street address of generated certificates
+        """
+        return pulumi.get(self, "street_addresses")
+
+    @street_addresses.setter
+    def street_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "street_addresses", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        The TTL
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ttl", value)
+
+    @property
+    @pulumi.getter(name="useCsrCommonName")
+    def use_csr_common_name(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to use the CN in the CSR
+        """
+        return pulumi.get(self, "use_csr_common_name")
+
+    @use_csr_common_name.setter
+    def use_csr_common_name(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_csr_common_name", value)
+
+    @property
+    @pulumi.getter(name="useCsrSans")
+    def use_csr_sans(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to use the SANs in the CSR
+        """
+        return pulumi.get(self, "use_csr_sans")
+
+    @use_csr_sans.setter
+    def use_csr_sans(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_csr_sans", value)
+
+
 class SecretBackendRole(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -837,48 +1453,48 @@ class SecretBackendRole(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SecretBackendRoleArgs.__new__(SecretBackendRoleArgs)
 
-            __props__['allow_any_name'] = allow_any_name
-            __props__['allow_bare_domains'] = allow_bare_domains
-            __props__['allow_glob_domains'] = allow_glob_domains
-            __props__['allow_ip_sans'] = allow_ip_sans
-            __props__['allow_localhost'] = allow_localhost
-            __props__['allow_subdomains'] = allow_subdomains
-            __props__['allowed_domains'] = allowed_domains
-            __props__['allowed_domains_template'] = allowed_domains_template
-            __props__['allowed_other_sans'] = allowed_other_sans
-            __props__['allowed_uri_sans'] = allowed_uri_sans
+            __props__.__dict__["allow_any_name"] = allow_any_name
+            __props__.__dict__["allow_bare_domains"] = allow_bare_domains
+            __props__.__dict__["allow_glob_domains"] = allow_glob_domains
+            __props__.__dict__["allow_ip_sans"] = allow_ip_sans
+            __props__.__dict__["allow_localhost"] = allow_localhost
+            __props__.__dict__["allow_subdomains"] = allow_subdomains
+            __props__.__dict__["allowed_domains"] = allowed_domains
+            __props__.__dict__["allowed_domains_template"] = allowed_domains_template
+            __props__.__dict__["allowed_other_sans"] = allowed_other_sans
+            __props__.__dict__["allowed_uri_sans"] = allowed_uri_sans
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
-            __props__['backend'] = backend
-            __props__['basic_constraints_valid_for_non_ca'] = basic_constraints_valid_for_non_ca
-            __props__['client_flag'] = client_flag
-            __props__['code_signing_flag'] = code_signing_flag
-            __props__['countries'] = countries
-            __props__['email_protection_flag'] = email_protection_flag
-            __props__['enforce_hostnames'] = enforce_hostnames
-            __props__['ext_key_usages'] = ext_key_usages
-            __props__['generate_lease'] = generate_lease
-            __props__['key_bits'] = key_bits
-            __props__['key_type'] = key_type
-            __props__['key_usages'] = key_usages
-            __props__['localities'] = localities
-            __props__['max_ttl'] = max_ttl
-            __props__['name'] = name
-            __props__['no_store'] = no_store
-            __props__['not_before_duration'] = not_before_duration
-            __props__['organization_unit'] = organization_unit
-            __props__['organizations'] = organizations
-            __props__['policy_identifiers'] = policy_identifiers
-            __props__['postal_codes'] = postal_codes
-            __props__['provinces'] = provinces
-            __props__['require_cn'] = require_cn
-            __props__['server_flag'] = server_flag
-            __props__['street_addresses'] = street_addresses
-            __props__['ttl'] = ttl
-            __props__['use_csr_common_name'] = use_csr_common_name
-            __props__['use_csr_sans'] = use_csr_sans
+            __props__.__dict__["backend"] = backend
+            __props__.__dict__["basic_constraints_valid_for_non_ca"] = basic_constraints_valid_for_non_ca
+            __props__.__dict__["client_flag"] = client_flag
+            __props__.__dict__["code_signing_flag"] = code_signing_flag
+            __props__.__dict__["countries"] = countries
+            __props__.__dict__["email_protection_flag"] = email_protection_flag
+            __props__.__dict__["enforce_hostnames"] = enforce_hostnames
+            __props__.__dict__["ext_key_usages"] = ext_key_usages
+            __props__.__dict__["generate_lease"] = generate_lease
+            __props__.__dict__["key_bits"] = key_bits
+            __props__.__dict__["key_type"] = key_type
+            __props__.__dict__["key_usages"] = key_usages
+            __props__.__dict__["localities"] = localities
+            __props__.__dict__["max_ttl"] = max_ttl
+            __props__.__dict__["name"] = name
+            __props__.__dict__["no_store"] = no_store
+            __props__.__dict__["not_before_duration"] = not_before_duration
+            __props__.__dict__["organization_unit"] = organization_unit
+            __props__.__dict__["organizations"] = organizations
+            __props__.__dict__["policy_identifiers"] = policy_identifiers
+            __props__.__dict__["postal_codes"] = postal_codes
+            __props__.__dict__["provinces"] = provinces
+            __props__.__dict__["require_cn"] = require_cn
+            __props__.__dict__["server_flag"] = server_flag
+            __props__.__dict__["street_addresses"] = street_addresses
+            __props__.__dict__["ttl"] = ttl
+            __props__.__dict__["use_csr_common_name"] = use_csr_common_name
+            __props__.__dict__["use_csr_sans"] = use_csr_sans
         super(SecretBackendRole, __self__).__init__(
             'vault:pkiSecret/secretBackendRole:SecretBackendRole',
             resource_name,
@@ -975,46 +1591,46 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SecretBackendRoleState.__new__(_SecretBackendRoleState)
 
-        __props__["allow_any_name"] = allow_any_name
-        __props__["allow_bare_domains"] = allow_bare_domains
-        __props__["allow_glob_domains"] = allow_glob_domains
-        __props__["allow_ip_sans"] = allow_ip_sans
-        __props__["allow_localhost"] = allow_localhost
-        __props__["allow_subdomains"] = allow_subdomains
-        __props__["allowed_domains"] = allowed_domains
-        __props__["allowed_domains_template"] = allowed_domains_template
-        __props__["allowed_other_sans"] = allowed_other_sans
-        __props__["allowed_uri_sans"] = allowed_uri_sans
-        __props__["backend"] = backend
-        __props__["basic_constraints_valid_for_non_ca"] = basic_constraints_valid_for_non_ca
-        __props__["client_flag"] = client_flag
-        __props__["code_signing_flag"] = code_signing_flag
-        __props__["countries"] = countries
-        __props__["email_protection_flag"] = email_protection_flag
-        __props__["enforce_hostnames"] = enforce_hostnames
-        __props__["ext_key_usages"] = ext_key_usages
-        __props__["generate_lease"] = generate_lease
-        __props__["key_bits"] = key_bits
-        __props__["key_type"] = key_type
-        __props__["key_usages"] = key_usages
-        __props__["localities"] = localities
-        __props__["max_ttl"] = max_ttl
-        __props__["name"] = name
-        __props__["no_store"] = no_store
-        __props__["not_before_duration"] = not_before_duration
-        __props__["organization_unit"] = organization_unit
-        __props__["organizations"] = organizations
-        __props__["policy_identifiers"] = policy_identifiers
-        __props__["postal_codes"] = postal_codes
-        __props__["provinces"] = provinces
-        __props__["require_cn"] = require_cn
-        __props__["server_flag"] = server_flag
-        __props__["street_addresses"] = street_addresses
-        __props__["ttl"] = ttl
-        __props__["use_csr_common_name"] = use_csr_common_name
-        __props__["use_csr_sans"] = use_csr_sans
+        __props__.__dict__["allow_any_name"] = allow_any_name
+        __props__.__dict__["allow_bare_domains"] = allow_bare_domains
+        __props__.__dict__["allow_glob_domains"] = allow_glob_domains
+        __props__.__dict__["allow_ip_sans"] = allow_ip_sans
+        __props__.__dict__["allow_localhost"] = allow_localhost
+        __props__.__dict__["allow_subdomains"] = allow_subdomains
+        __props__.__dict__["allowed_domains"] = allowed_domains
+        __props__.__dict__["allowed_domains_template"] = allowed_domains_template
+        __props__.__dict__["allowed_other_sans"] = allowed_other_sans
+        __props__.__dict__["allowed_uri_sans"] = allowed_uri_sans
+        __props__.__dict__["backend"] = backend
+        __props__.__dict__["basic_constraints_valid_for_non_ca"] = basic_constraints_valid_for_non_ca
+        __props__.__dict__["client_flag"] = client_flag
+        __props__.__dict__["code_signing_flag"] = code_signing_flag
+        __props__.__dict__["countries"] = countries
+        __props__.__dict__["email_protection_flag"] = email_protection_flag
+        __props__.__dict__["enforce_hostnames"] = enforce_hostnames
+        __props__.__dict__["ext_key_usages"] = ext_key_usages
+        __props__.__dict__["generate_lease"] = generate_lease
+        __props__.__dict__["key_bits"] = key_bits
+        __props__.__dict__["key_type"] = key_type
+        __props__.__dict__["key_usages"] = key_usages
+        __props__.__dict__["localities"] = localities
+        __props__.__dict__["max_ttl"] = max_ttl
+        __props__.__dict__["name"] = name
+        __props__.__dict__["no_store"] = no_store
+        __props__.__dict__["not_before_duration"] = not_before_duration
+        __props__.__dict__["organization_unit"] = organization_unit
+        __props__.__dict__["organizations"] = organizations
+        __props__.__dict__["policy_identifiers"] = policy_identifiers
+        __props__.__dict__["postal_codes"] = postal_codes
+        __props__.__dict__["provinces"] = provinces
+        __props__.__dict__["require_cn"] = require_cn
+        __props__.__dict__["server_flag"] = server_flag
+        __props__.__dict__["street_addresses"] = street_addresses
+        __props__.__dict__["ttl"] = ttl
+        __props__.__dict__["use_csr_common_name"] = use_csr_common_name
+        __props__.__dict__["use_csr_sans"] = use_csr_sans
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1320,10 +1936,4 @@ class SecretBackendRole(pulumi.CustomResource):
         Flag to use the SANs in the CSR
         """
         return pulumi.get(self, "use_csr_sans")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

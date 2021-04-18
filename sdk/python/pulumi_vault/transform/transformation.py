@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities, _tables
+from .. import _utilities
 
 __all__ = ['TransformationArgs', 'Transformation']
 
@@ -95,6 +95,142 @@ class TransformationArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def template(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the template to use.
+        """
+        return pulumi.get(self, "template")
+
+    @template.setter
+    def template(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "template", value)
+
+    @property
+    @pulumi.getter
+    def templates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Templates configured for transformation.
+        """
+        return pulumi.get(self, "templates")
+
+    @templates.setter
+    def templates(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "templates", value)
+
+    @property
+    @pulumi.getter(name="tweakSource")
+    def tweak_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source of where the tweak value comes from. Only valid when in FPE mode.
+        """
+        return pulumi.get(self, "tweak_source")
+
+    @tweak_source.setter
+    def tweak_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tweak_source", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of transformation to perform.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class _TransformationState:
+    def __init__(__self__, *,
+                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 masking_character: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 template: Optional[pulumi.Input[str]] = None,
+                 templates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 tweak_source: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Transformation resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: The set of roles allowed to perform this transformation.
+        :param pulumi.Input[str] masking_character: The character used to replace data when in masking mode
+        :param pulumi.Input[str] name: The name of the transformation.
+        :param pulumi.Input[str] path: Path to where the back-end is mounted within Vault.
+        :param pulumi.Input[str] template: The name of the template to use.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] templates: Templates configured for transformation.
+        :param pulumi.Input[str] tweak_source: The source of where the tweak value comes from. Only valid when in FPE mode.
+        :param pulumi.Input[str] type: The type of transformation to perform.
+        """
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if masking_character is not None:
+            pulumi.set(__self__, "masking_character", masking_character)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if template is not None:
+            pulumi.set(__self__, "template", template)
+        if templates is not None:
+            pulumi.set(__self__, "templates", templates)
+        if tweak_source is not None:
+            pulumi.set(__self__, "tweak_source", tweak_source)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The set of roles allowed to perform this transformation.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @allowed_roles.setter
+    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_roles", value)
+
+    @property
+    @pulumi.getter(name="maskingCharacter")
+    def masking_character(self) -> Optional[pulumi.Input[str]]:
+        """
+        The character used to replace data when in masking mode
+        """
+        return pulumi.get(self, "masking_character")
+
+    @masking_character.setter
+    def masking_character(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "masking_character", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the transformation.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to where the back-end is mounted within Vault.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
 
     @property
     @pulumi.getter
@@ -265,18 +401,18 @@ class Transformation(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = TransformationArgs.__new__(TransformationArgs)
 
-            __props__['allowed_roles'] = allowed_roles
-            __props__['masking_character'] = masking_character
-            __props__['name'] = name
+            __props__.__dict__["allowed_roles"] = allowed_roles
+            __props__.__dict__["masking_character"] = masking_character
+            __props__.__dict__["name"] = name
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
-            __props__['path'] = path
-            __props__['template'] = template
-            __props__['templates'] = templates
-            __props__['tweak_source'] = tweak_source
-            __props__['type'] = type
+            __props__.__dict__["path"] = path
+            __props__.__dict__["template"] = template
+            __props__.__dict__["templates"] = templates
+            __props__.__dict__["tweak_source"] = tweak_source
+            __props__.__dict__["type"] = type
         super(Transformation, __self__).__init__(
             'vault:transform/transformation:Transformation',
             resource_name,
@@ -313,16 +449,16 @@ class Transformation(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _TransformationState.__new__(_TransformationState)
 
-        __props__["allowed_roles"] = allowed_roles
-        __props__["masking_character"] = masking_character
-        __props__["name"] = name
-        __props__["path"] = path
-        __props__["template"] = template
-        __props__["templates"] = templates
-        __props__["tweak_source"] = tweak_source
-        __props__["type"] = type
+        __props__.__dict__["allowed_roles"] = allowed_roles
+        __props__.__dict__["masking_character"] = masking_character
+        __props__.__dict__["name"] = name
+        __props__.__dict__["path"] = path
+        __props__.__dict__["template"] = template
+        __props__.__dict__["templates"] = templates
+        __props__.__dict__["tweak_source"] = tweak_source
+        __props__.__dict__["type"] = type
         return Transformation(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -388,10 +524,4 @@ class Transformation(pulumi.CustomResource):
         The type of transformation to perform.
         """
         return pulumi.get(self, "type")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
