@@ -225,9 +225,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  rotation_period: Optional[pulumi.Input[int]] = None,
                  rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         Creates a Database Secret Backend static role in Vault. Database secret backend
         static roles can be used to manage 1-to-1 mapping of a Vault Role to a user in a
@@ -336,15 +334,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  rotation_period: Optional[pulumi.Input[int]] = None,
                  rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):

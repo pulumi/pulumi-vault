@@ -162,9 +162,7 @@ class SecretBackend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  path: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         Creates an PKI Secret Backend for Vault. PKI secret backends can then issue certificates, once a role has been added to
         the backend.
@@ -245,15 +243,7 @@ class SecretBackend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  path: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
