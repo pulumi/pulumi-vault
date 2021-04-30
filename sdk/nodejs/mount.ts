@@ -18,6 +18,31 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const kvv2_example = new vault.Mount("kvv2-example", {
+ *     description: "This is an example KV Version 2 secret engine mount",
+ *     path: "version2-example",
+ *     type: "kv-v2",
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const transit_example = new vault.Mount("transit-example", {
+ *     description: "This is an example transit secret engine mount",
+ *     options: {
+ *         convergent_encryption: false,
+ *     },
+ *     path: "transit-example",
+ *     type: "transit",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Mounts can be imported using the `path`, e.g.

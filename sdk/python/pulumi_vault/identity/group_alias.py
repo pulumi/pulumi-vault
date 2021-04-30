@@ -151,6 +151,14 @@ class GroupAlias(pulumi.CustomResource):
             name="Github_Team_Slug")
         ```
 
+        ## Import
+
+        Group aliases can be imported using the uuid of the alias record, e.g.
+
+        ```sh
+         $ pulumi import vault:identity/groupAlias:GroupAlias alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] canonical_id: ID of the group to which this is an alias.
@@ -184,6 +192,14 @@ class GroupAlias(pulumi.CustomResource):
             canonical_id=group.id,
             mount_accessor=github.accessor,
             name="Github_Team_Slug")
+        ```
+
+        ## Import
+
+        Group aliases can be imported using the uuid of the alias record, e.g.
+
+        ```sh
+         $ pulumi import vault:identity/groupAlias:GroupAlias alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157
         ```
 
         :param str resource_name: The name of the resource.

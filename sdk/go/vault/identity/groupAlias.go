@@ -56,6 +56,14 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// Group aliases can be imported using the uuid of the alias record, e.g.
+//
+// ```sh
+//  $ pulumi import vault:identity/groupAlias:GroupAlias alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157
+// ```
 type GroupAlias struct {
 	pulumi.CustomResourceState
 

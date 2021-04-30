@@ -356,6 +356,29 @@ class Mount(pulumi.CustomResource):
             type="generic")
         ```
 
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        kvv2_example = vault.Mount("kvv2-example",
+            description="This is an example KV Version 2 secret engine mount",
+            path="version2-example",
+            type="kv-v2")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        transit_example = vault.Mount("transit-example",
+            description="This is an example transit secret engine mount",
+            options={
+                "convergent_encryption": False,
+            },
+            path="transit-example",
+            type="transit")
+        ```
+
         ## Import
 
         Mounts can be imported using the `path`, e.g.
@@ -393,6 +416,29 @@ class Mount(pulumi.CustomResource):
             description="This is an example mount",
             path="dummy",
             type="generic")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        kvv2_example = vault.Mount("kvv2-example",
+            description="This is an example KV Version 2 secret engine mount",
+            path="version2-example",
+            type="kv-v2")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        transit_example = vault.Mount("transit-example",
+            description="This is an example transit secret engine mount",
+            options={
+                "convergent_encryption": False,
+            },
+            path="transit-example",
+            type="transit")
         ```
 
         ## Import

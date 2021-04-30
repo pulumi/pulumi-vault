@@ -36,6 +36,55 @@ import (
 // }
 // ```
 //
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := vault.NewMount(ctx, "kvv2_example", &vault.MountArgs{
+// 			Description: pulumi.String("This is an example KV Version 2 secret engine mount"),
+// 			Path:        pulumi.String("version2-example"),
+// 			Type:        pulumi.String("kv-v2"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := vault.NewMount(ctx, "transit_example", &vault.MountArgs{
+// 			Description: pulumi.String("This is an example transit secret engine mount"),
+// 			Options: pulumi.BoolMap{
+// 				"convergent_encryption": pulumi.Bool(false),
+// 			},
+// 			Path: pulumi.String("transit-example"),
+// 			Type: pulumi.String("transit"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // Mounts can be imported using the `path`, e.g.

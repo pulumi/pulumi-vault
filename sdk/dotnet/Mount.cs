@@ -31,6 +31,48 @@ namespace Pulumi.Vault
     /// }
     /// ```
     /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var kvv2_example = new Vault.Mount("kvv2-example", new Vault.MountArgs
+    ///         {
+    ///             Description = "This is an example KV Version 2 secret engine mount",
+    ///             Path = "version2-example",
+    ///             Type = "kv-v2",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var transit_example = new Vault.Mount("transit-example", new Vault.MountArgs
+    ///         {
+    ///             Description = "This is an example transit secret engine mount",
+    ///             Options = 
+    ///             {
+    ///                 { "convergent_encryption", false },
+    ///             },
+    ///             Path = "transit-example",
+    ///             Type = "transit",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Mounts can be imported using the `path`, e.g.
