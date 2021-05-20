@@ -28,6 +28,8 @@ type SecretBackend struct {
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Specifies a custom HTTP IAM endpoint to use.
+	IamEndpoint pulumi.StringPtrOutput `pulumi:"iamEndpoint"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds pulumi.IntOutput `pulumi:"maxLeaseTtlSeconds"`
@@ -39,6 +41,8 @@ type SecretBackend struct {
 	// The AWS Secret Key this backend should use to
 	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
 	SecretKey pulumi.StringPtrOutput `pulumi:"secretKey"`
+	// Specifies a custom HTTP STS endpoint to use.
+	StsEndpoint pulumi.StringPtrOutput `pulumi:"stsEndpoint"`
 }
 
 // NewSecretBackend registers a new resource with the given unique name, arguments, and options.
@@ -78,6 +82,8 @@ type secretBackendState struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
+	// Specifies a custom HTTP IAM endpoint to use.
+	IamEndpoint *string `pulumi:"iamEndpoint"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
@@ -89,6 +95,8 @@ type secretBackendState struct {
 	// The AWS Secret Key this backend should use to
 	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
 	SecretKey *string `pulumi:"secretKey"`
+	// Specifies a custom HTTP STS endpoint to use.
+	StsEndpoint *string `pulumi:"stsEndpoint"`
 }
 
 type SecretBackendState struct {
@@ -100,6 +108,8 @@ type SecretBackendState struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
+	// Specifies a custom HTTP IAM endpoint to use.
+	IamEndpoint pulumi.StringPtrInput
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
@@ -111,6 +121,8 @@ type SecretBackendState struct {
 	// The AWS Secret Key this backend should use to
 	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
 	SecretKey pulumi.StringPtrInput
+	// Specifies a custom HTTP STS endpoint to use.
+	StsEndpoint pulumi.StringPtrInput
 }
 
 func (SecretBackendState) ElementType() reflect.Type {
@@ -126,6 +138,8 @@ type secretBackendArgs struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
+	// Specifies a custom HTTP IAM endpoint to use.
+	IamEndpoint *string `pulumi:"iamEndpoint"`
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
@@ -137,6 +151,8 @@ type secretBackendArgs struct {
 	// The AWS Secret Key this backend should use to
 	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
 	SecretKey *string `pulumi:"secretKey"`
+	// Specifies a custom HTTP STS endpoint to use.
+	StsEndpoint *string `pulumi:"stsEndpoint"`
 }
 
 // The set of arguments for constructing a SecretBackend resource.
@@ -149,6 +165,8 @@ type SecretBackendArgs struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
+	// Specifies a custom HTTP IAM endpoint to use.
+	IamEndpoint pulumi.StringPtrInput
 	// The maximum TTL that can be requested
 	// for credentials issued by this backend.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
@@ -160,6 +178,8 @@ type SecretBackendArgs struct {
 	// The AWS Secret Key this backend should use to
 	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
 	SecretKey pulumi.StringPtrInput
+	// Specifies a custom HTTP STS endpoint to use.
+	StsEndpoint pulumi.StringPtrInput
 }
 
 func (SecretBackendArgs) ElementType() reflect.Type {

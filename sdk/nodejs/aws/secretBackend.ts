@@ -56,6 +56,10 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * Specifies a custom HTTP IAM endpoint to use.
+     */
+    public readonly iamEndpoint!: pulumi.Output<string | undefined>;
+    /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend.
      */
@@ -74,6 +78,10 @@ export class SecretBackend extends pulumi.CustomResource {
      * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
      */
     public readonly secretKey!: pulumi.Output<string | undefined>;
+    /**
+     * Specifies a custom HTTP STS endpoint to use.
+     */
+    public readonly stsEndpoint!: pulumi.Output<string | undefined>;
 
     /**
      * Create a SecretBackend resource with the given unique name, arguments, and options.
@@ -91,19 +99,23 @@ export class SecretBackend extends pulumi.CustomResource {
             inputs["accessKey"] = state ? state.accessKey : undefined;
             inputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
             inputs["description"] = state ? state.description : undefined;
+            inputs["iamEndpoint"] = state ? state.iamEndpoint : undefined;
             inputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             inputs["path"] = state ? state.path : undefined;
             inputs["region"] = state ? state.region : undefined;
             inputs["secretKey"] = state ? state.secretKey : undefined;
+            inputs["stsEndpoint"] = state ? state.stsEndpoint : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
             inputs["accessKey"] = args ? args.accessKey : undefined;
             inputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
             inputs["description"] = args ? args.description : undefined;
+            inputs["iamEndpoint"] = args ? args.iamEndpoint : undefined;
             inputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             inputs["path"] = args ? args.path : undefined;
             inputs["region"] = args ? args.region : undefined;
             inputs["secretKey"] = args ? args.secretKey : undefined;
+            inputs["stsEndpoint"] = args ? args.stsEndpoint : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -131,6 +143,10 @@ export interface SecretBackendState {
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * Specifies a custom HTTP IAM endpoint to use.
+     */
+    readonly iamEndpoint?: pulumi.Input<string>;
+    /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend.
      */
@@ -149,6 +165,10 @@ export interface SecretBackendState {
      * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
      */
     readonly secretKey?: pulumi.Input<string>;
+    /**
+     * Specifies a custom HTTP STS endpoint to use.
+     */
+    readonly stsEndpoint?: pulumi.Input<string>;
 }
 
 /**
@@ -170,6 +190,10 @@ export interface SecretBackendArgs {
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * Specifies a custom HTTP IAM endpoint to use.
+     */
+    readonly iamEndpoint?: pulumi.Input<string>;
+    /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend.
      */
@@ -188,4 +212,8 @@ export interface SecretBackendArgs {
      * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
      */
     readonly secretKey?: pulumi.Input<string>;
+    /**
+     * Specifies a custom HTTP STS endpoint to use.
+     */
+    readonly stsEndpoint?: pulumi.Input<string>;
 }

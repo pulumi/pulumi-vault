@@ -42,6 +42,12 @@ namespace Pulumi.Vault.Aws
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies a custom HTTP IAM endpoint to use.
+        /// </summary>
+        [Output("iamEndpoint")]
+        public Output<string?> IamEndpoint { get; private set; } = null!;
+
+        /// <summary>
         /// The maximum TTL that can be requested
         /// for credentials issued by this backend.
         /// </summary>
@@ -67,6 +73,12 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Output("secretKey")]
         public Output<string?> SecretKey { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies a custom HTTP STS endpoint to use.
+        /// </summary>
+        [Output("stsEndpoint")]
+        public Output<string?> StsEndpoint { get; private set; } = null!;
 
 
         /// <summary>
@@ -135,6 +147,12 @@ namespace Pulumi.Vault.Aws
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Specifies a custom HTTP IAM endpoint to use.
+        /// </summary>
+        [Input("iamEndpoint")]
+        public Input<string>? IamEndpoint { get; set; }
+
+        /// <summary>
         /// The maximum TTL that can be requested
         /// for credentials issued by this backend.
         /// </summary>
@@ -160,6 +178,12 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
+
+        /// <summary>
+        /// Specifies a custom HTTP STS endpoint to use.
+        /// </summary>
+        [Input("stsEndpoint")]
+        public Input<string>? StsEndpoint { get; set; }
 
         public SecretBackendArgs()
         {
@@ -189,6 +213,12 @@ namespace Pulumi.Vault.Aws
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Specifies a custom HTTP IAM endpoint to use.
+        /// </summary>
+        [Input("iamEndpoint")]
+        public Input<string>? IamEndpoint { get; set; }
+
+        /// <summary>
         /// The maximum TTL that can be requested
         /// for credentials issued by this backend.
         /// </summary>
@@ -214,6 +244,12 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
+
+        /// <summary>
+        /// Specifies a custom HTTP STS endpoint to use.
+        /// </summary>
+        [Input("stsEndpoint")]
+        public Input<string>? StsEndpoint { get; set; }
 
         public SecretBackendState()
         {

@@ -4246,6 +4246,10 @@
                     "type": "string",
                     "description": "A human-friendly description for this backend.\n"
                 },
+                "iamEndpoint": {
+                    "type": "string",
+                    "description": "Specifies a custom HTTP IAM endpoint to use.\n"
+                },
                 "maxLeaseTtlSeconds": {
                     "type": "integer",
                     "description": "The maximum TTL that can be requested\nfor credentials issued by this backend.\n"
@@ -4261,6 +4265,10 @@
                 "secretKey": {
                     "type": "string",
                     "description": "The AWS Secret Key this backend should use to\nissue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.\n"
+                },
+                "stsEndpoint": {
+                    "type": "string",
+                    "description": "Specifies a custom HTTP STS endpoint to use.\n"
                 }
             },
             "required": [
@@ -4281,6 +4289,10 @@
                     "type": "string",
                     "description": "A human-friendly description for this backend.\n"
                 },
+                "iamEndpoint": {
+                    "type": "string",
+                    "description": "Specifies a custom HTTP IAM endpoint to use.\n"
+                },
                 "maxLeaseTtlSeconds": {
                     "type": "integer",
                     "description": "The maximum TTL that can be requested\nfor credentials issued by this backend.\n"
@@ -4296,6 +4308,10 @@
                 "secretKey": {
                     "type": "string",
                     "description": "The AWS Secret Key this backend should use to\nissue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.\n"
+                },
+                "stsEndpoint": {
+                    "type": "string",
+                    "description": "Specifies a custom HTTP STS endpoint to use.\n"
                 }
             },
             "stateInputs": {
@@ -4313,6 +4329,10 @@
                         "type": "string",
                         "description": "A human-friendly description for this backend.\n"
                     },
+                    "iamEndpoint": {
+                        "type": "string",
+                        "description": "Specifies a custom HTTP IAM endpoint to use.\n"
+                    },
                     "maxLeaseTtlSeconds": {
                         "type": "integer",
                         "description": "The maximum TTL that can be requested\nfor credentials issued by this backend.\n"
@@ -4328,6 +4348,10 @@
                     "secretKey": {
                         "type": "string",
                         "description": "The AWS Secret Key this backend should use to\nissue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.\n"
+                    },
+                    "stsEndpoint": {
+                        "type": "string",
+                        "description": "Specifies a custom HTTP STS endpoint to use.\n"
                     }
                 },
                 "type": "object"
@@ -17775,7 +17799,7 @@
                 "vault": "Vault"
             },
             "packageReferences": {
-                "Pulumi": "3.*-*",
+                "Pulumi": "3.*",
                 "System.Collections.Immutable": "1.6.0"
             }
         },
@@ -17786,7 +17810,7 @@
         "nodejs": {
             "compatibility": "tfbridge20",
             "dependencies": {
-                "@pulumi/pulumi": "^3.0.0-alpha.0"
+                "@pulumi/pulumi": "^3.0.0"
             },
             "devDependencies": {
                 "@types/mime": "^2.0.0",
@@ -17802,7 +17826,7 @@
             "compatibility": "tfbridge20",
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-vault)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-vault` repo](https://github.com/pulumi/pulumi-vault/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`hashicorp/terraform-provider-vault` repo](https://github.com/hashicorp/terraform-provider-vault/issues).",
             "requires": {
-                "pulumi": "\u003e=3.0.0a1,\u003c4.0.0"
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             }
         }
     }
