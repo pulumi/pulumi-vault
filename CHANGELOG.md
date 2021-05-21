@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v2.20.0 of the Vault Terraform Provider
+_(none)_
 
 ---
+
+## 4.1.0 (2021-05-21)
+* Upgrade to v2.20.0 of the Vault Terraform Provider
 
 ## 4.0.1 (2021-04-30)
 * Upgrade to v2.19.1 of the Vault Terraform Provider
