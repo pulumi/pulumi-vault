@@ -260,12 +260,12 @@ class AuthBackendLogin(pulumi.CustomResource):
         approle = vault.AuthBackend("approle", type="approle")
         example = vault.app_role.AuthBackendRole("example",
             backend=approle.path,
+            role_name="test-role",
             policies=[
                 "default",
                 "dev",
                 "prod",
-            ],
-            role_name="test-role")
+            ])
         id = vault.app_role.AuthBackendRoleSecretID("id",
             backend=approle.path,
             role_name=example.role_name)
@@ -302,12 +302,12 @@ class AuthBackendLogin(pulumi.CustomResource):
         approle = vault.AuthBackend("approle", type="approle")
         example = vault.app_role.AuthBackendRole("example",
             backend=approle.path,
+            role_name="test-role",
             policies=[
                 "default",
                 "dev",
                 "prod",
-            ],
-            role_name="test-role")
+            ])
         id = vault.app_role.AuthBackendRoleSecretID("id",
             backend=approle.path,
             role_name=example.role_name)

@@ -28,17 +28,17 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		userpass, err := vault.NewAuthBackend(ctx, "userpass", &vault.AuthBackendArgs{
-// 			Path: pulumi.String("userpass"),
 // 			Type: pulumi.String("userpass"),
+// 			Path: pulumi.String("userpass"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = vault.NewMfaDuo(ctx, "myDuo", &vault.MfaDuoArgs{
-// 			ApiHostname:    pulumi.String("api-2b5c39f5.duosecurity.com"),
-// 			IntegrationKey: pulumi.String("BIACEUEAXI20BNWTEYXT"),
 // 			MountAccessor:  userpass.Accessor,
 // 			SecretKey:      pulumi.String("8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz"),
+// 			IntegrationKey: pulumi.String("BIACEUEAXI20BNWTEYXT"),
+// 			ApiHostname:    pulumi.String("api-2b5c39f5.duosecurity.com"),
 // 		})
 // 		if err != nil {
 // 			return err

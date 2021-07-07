@@ -21,7 +21,7 @@ import * as utilities from "../utilities";
  *     ou: "My OU",
  *     organization: "My organization",
  * }, {
- *     dependsOn: ["vault_pki_secret_backend_intermediate_cert_request.intermediate"],
+ *     dependsOn: [vault_pki_secret_backend_intermediate_cert_request.intermediate],
  * });
  * ```
  */

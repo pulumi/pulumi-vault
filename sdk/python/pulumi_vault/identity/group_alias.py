@@ -140,15 +140,15 @@ class GroupAlias(pulumi.CustomResource):
         import pulumi_vault as vault
 
         group = vault.identity.Group("group",
-            policies=["test"],
-            type="external")
+            type="external",
+            policies=["test"])
         github = vault.AuthBackend("github",
-            path="github",
-            type="github")
+            type="github",
+            path="github")
         group_alias = vault.identity.GroupAlias("group-alias",
-            canonical_id=group.id,
+            name="Github_Team_Slug",
             mount_accessor=github.accessor,
-            name="Github_Team_Slug")
+            canonical_id=group.id)
         ```
 
         ## Import
@@ -183,15 +183,15 @@ class GroupAlias(pulumi.CustomResource):
         import pulumi_vault as vault
 
         group = vault.identity.Group("group",
-            policies=["test"],
-            type="external")
+            type="external",
+            policies=["test"])
         github = vault.AuthBackend("github",
-            path="github",
-            type="github")
+            type="github",
+            path="github")
         group_alias = vault.identity.GroupAlias("group-alias",
-            canonical_id=group.id,
+            name="Github_Team_Slug",
             mount_accessor=github.accessor,
-            name="Github_Team_Slug")
+            canonical_id=group.id)
         ```
 
         ## Import

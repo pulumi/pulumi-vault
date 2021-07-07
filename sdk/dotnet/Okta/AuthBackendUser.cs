@@ -25,18 +25,18 @@ namespace Pulumi.Vault.Okta
     ///     {
     ///         var example = new Vault.Okta.AuthBackend("example", new Vault.Okta.AuthBackendArgs
     ///         {
-    ///             Organization = "dummy",
     ///             Path = "user_okta",
+    ///             Organization = "dummy",
     ///         });
     ///         var foo = new Vault.Okta.AuthBackendUser("foo", new Vault.Okta.AuthBackendUserArgs
     ///         {
+    ///             Path = example.Path,
+    ///             Username = "foo",
     ///             Groups = 
     ///             {
     ///                 "one",
     ///                 "two",
     ///             },
-    ///             Path = example.Path,
-    ///             Username = "foo",
     ///         });
     ///     }
     /// 

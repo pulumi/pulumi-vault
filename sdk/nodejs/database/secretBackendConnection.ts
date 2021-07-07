@@ -72,7 +72,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      */
     public readonly mongodb!: pulumi.Output<outputs.database.SecretBackendConnectionMongodb | undefined>;
     /**
-     * Connection parameters for the mongodbatlas-database-plugin plugin.
+     * A nested block containing configuration options for MongoDB Atlas connections.
      */
     public readonly mongodbatlas!: pulumi.Output<outputs.database.SecretBackendConnectionMongodbatlas | undefined>;
     /**
@@ -213,7 +213,7 @@ export interface SecretBackendConnectionState {
      */
     readonly mongodb?: pulumi.Input<inputs.database.SecretBackendConnectionMongodb>;
     /**
-     * Connection parameters for the mongodbatlas-database-plugin plugin.
+     * A nested block containing configuration options for MongoDB Atlas connections.
      */
     readonly mongodbatlas?: pulumi.Input<inputs.database.SecretBackendConnectionMongodbatlas>;
     /**
@@ -293,7 +293,7 @@ export interface SecretBackendConnectionArgs {
      */
     readonly mongodb?: pulumi.Input<inputs.database.SecretBackendConnectionMongodb>;
     /**
-     * Connection parameters for the mongodbatlas-database-plugin plugin.
+     * A nested block containing configuration options for MongoDB Atlas connections.
      */
     readonly mongodbatlas?: pulumi.Input<inputs.database.SecretBackendConnectionMongodbatlas>;
     /**

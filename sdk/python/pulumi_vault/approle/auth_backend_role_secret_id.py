@@ -317,20 +317,19 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
         approle = vault.AuthBackend("approle", type="approle")
         example = vault.app_role.AuthBackendRole("example",
             backend=approle.path,
+            role_name="test-role",
             policies=[
                 "default",
                 "dev",
                 "prod",
-            ],
-            role_name="test-role")
+            ])
         id = vault.app_role.AuthBackendRoleSecretID("id",
             backend=approle.path,
-            metadata=\"\"\"{
-          "hello": "world"
-        }
-
-        \"\"\",
-            role_name=example.role_name)
+            role_name=example.role_name,
+            metadata=\"\"\"  {
+            "hello": "world"
+          }
+        \"\"\")
         ```
 
         :param str resource_name: The name of the resource.
@@ -368,20 +367,19 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
         approle = vault.AuthBackend("approle", type="approle")
         example = vault.app_role.AuthBackendRole("example",
             backend=approle.path,
+            role_name="test-role",
             policies=[
                 "default",
                 "dev",
                 "prod",
-            ],
-            role_name="test-role")
+            ])
         id = vault.app_role.AuthBackendRoleSecretID("id",
             backend=approle.path,
-            metadata=\"\"\"{
-          "hello": "world"
-        }
-
-        \"\"\",
-            role_name=example.role_name)
+            role_name=example.role_name,
+            metadata=\"\"\"  {
+            "hello": "world"
+          }
+        \"\"\")
         ```
 
         :param str resource_name: The name of the resource.

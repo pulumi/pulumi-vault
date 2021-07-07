@@ -13,18 +13,22 @@ namespace Pulumi.Vault.Outputs
     [OutputType]
     public sealed class ProviderAuthLogin
     {
+        public readonly string? Method;
         public readonly string? Namespace;
         public readonly ImmutableDictionary<string, string>? Parameters;
         public readonly string Path;
 
         [OutputConstructor]
         private ProviderAuthLogin(
+            string? method,
+
             string? @namespace,
 
             ImmutableDictionary<string, string>? parameters,
 
             string path)
         {
+            Method = method;
             Namespace = @namespace;
             Parameters = parameters;
             Path = path;

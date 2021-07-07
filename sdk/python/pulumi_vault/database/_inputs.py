@@ -424,6 +424,11 @@ class SecretBackendConnectionMongodbatlasArgs:
                  private_key: pulumi.Input[str],
                  project_id: pulumi.Input[str],
                  public_key: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] private_key: The Private Programmatic API Key used to connect with MongoDB Atlas API.
+        :param pulumi.Input[str] project_id: The Project ID the Database User should be created within.
+        :param pulumi.Input[str] public_key: The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+        """
         pulumi.set(__self__, "private_key", private_key)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "public_key", public_key)
@@ -431,6 +436,9 @@ class SecretBackendConnectionMongodbatlasArgs:
     @property
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Input[str]:
+        """
+        The Private Programmatic API Key used to connect with MongoDB Atlas API.
+        """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
@@ -440,6 +448,9 @@ class SecretBackendConnectionMongodbatlasArgs:
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
+        """
+        The Project ID the Database User should be created within.
+        """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -449,6 +460,9 @@ class SecretBackendConnectionMongodbatlasArgs:
     @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> pulumi.Input[str]:
+        """
+        The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+        """
         return pulumi.get(self, "public_key")
 
     @public_key.setter

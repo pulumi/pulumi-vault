@@ -309,14 +309,13 @@ class AuthBackendConfig(pulumi.CustomResource):
         kubernetes = vault.AuthBackend("kubernetes", type="kubernetes")
         example = vault.kubernetes.AuthBackendConfig("example",
             backend=kubernetes.path,
-            disable_iss_validation=True,
-            issuer="api",
+            kubernetes_host="http://example.com:443",
             kubernetes_ca_cert=\"\"\"-----BEGIN CERTIFICATE-----
         example
-        -----END CERTIFICATE-----
-        \"\"\",
-            kubernetes_host="http://example.com:443",
-            token_reviewer_jwt="ZXhhbXBsZQo=")
+        -----END CERTIFICATE-----\"\"\",
+            token_reviewer_jwt="ZXhhbXBsZQo=",
+            issuer="api",
+            disable_iss_validation=True)
         ```
 
         ## Import
@@ -358,14 +357,13 @@ class AuthBackendConfig(pulumi.CustomResource):
         kubernetes = vault.AuthBackend("kubernetes", type="kubernetes")
         example = vault.kubernetes.AuthBackendConfig("example",
             backend=kubernetes.path,
-            disable_iss_validation=True,
-            issuer="api",
+            kubernetes_host="http://example.com:443",
             kubernetes_ca_cert=\"\"\"-----BEGIN CERTIFICATE-----
         example
-        -----END CERTIFICATE-----
-        \"\"\",
-            kubernetes_host="http://example.com:443",
-            token_reviewer_jwt="ZXhhbXBsZQo=")
+        -----END CERTIFICATE-----\"\"\",
+            token_reviewer_jwt="ZXhhbXBsZQo=",
+            issuer="api",
+            disable_iss_validation=True)
         ```
 
         ## Import

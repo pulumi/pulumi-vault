@@ -24,6 +24,7 @@ import (
 // 		examplePolicyDocument, err := vault.GetPolicyDocument(ctx, &vault.GetPolicyDocumentArgs{
 // 			Rules: []vault.GetPolicyDocumentRule{
 // 				vault.GetPolicyDocumentRule{
+// 					Path: "secret/*",
 // 					Capabilities: []string{
 // 						"create",
 // 						"read",
@@ -32,7 +33,6 @@ import (
 // 						"list",
 // 					},
 // 					Description: "allow all on secrets",
-// 					Path:        "secret/*",
 // 				},
 // 			},
 // 		}, nil)

@@ -32,7 +32,7 @@ class SecretBackendArgs:
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
-               not begin or end with a `/`. Defaults to `aws`.
+               not begin or end with a `/`. Defaults to `rabbitmq`.
         :param pulumi.Input[bool] verify_connection: Specifies whether to verify connection URI, username, and password.
                Defaults to `true`.
         """
@@ -129,7 +129,7 @@ class SecretBackendArgs:
     def path(self) -> Optional[pulumi.Input[str]]:
         """
         The unique path this backend should be mounted at. Must
-        not begin or end with a `/`. Defaults to `aws`.
+        not begin or end with a `/`. Defaults to `rabbitmq`.
         """
         return pulumi.get(self, "path")
 
@@ -172,7 +172,7 @@ class _SecretBackendState:
                for credentials issued by this backend.
         :param pulumi.Input[str] password: Specifies the RabbitMQ management administrator password.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
-               not begin or end with a `/`. Defaults to `aws`.
+               not begin or end with a `/`. Defaults to `rabbitmq`.
         :param pulumi.Input[str] username: Specifies the RabbitMQ management administrator username.
         :param pulumi.Input[bool] verify_connection: Specifies whether to verify connection URI, username, and password.
                Defaults to `true`.
@@ -261,7 +261,7 @@ class _SecretBackendState:
     def path(self) -> Optional[pulumi.Input[str]]:
         """
         The unique path this backend should be mounted at. Must
-        not begin or end with a `/`. Defaults to `aws`.
+        not begin or end with a `/`. Defaults to `rabbitmq`.
         """
         return pulumi.get(self, "path")
 
@@ -328,7 +328,7 @@ class SecretBackend(pulumi.CustomResource):
                for credentials issued by this backend.
         :param pulumi.Input[str] password: Specifies the RabbitMQ management administrator password.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
-               not begin or end with a `/`. Defaults to `aws`.
+               not begin or end with a `/`. Defaults to `rabbitmq`.
         :param pulumi.Input[str] username: Specifies the RabbitMQ management administrator username.
         :param pulumi.Input[bool] verify_connection: Specifies whether to verify connection URI, username, and password.
                Defaults to `true`.
@@ -430,7 +430,7 @@ class SecretBackend(pulumi.CustomResource):
                for credentials issued by this backend.
         :param pulumi.Input[str] password: Specifies the RabbitMQ management administrator password.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
-               not begin or end with a `/`. Defaults to `aws`.
+               not begin or end with a `/`. Defaults to `rabbitmq`.
         :param pulumi.Input[str] username: Specifies the RabbitMQ management administrator username.
         :param pulumi.Input[bool] verify_connection: Specifies whether to verify connection URI, username, and password.
                Defaults to `true`.
@@ -496,7 +496,7 @@ class SecretBackend(pulumi.CustomResource):
     def path(self) -> pulumi.Output[Optional[str]]:
         """
         The unique path this backend should be mounted at. Must
-        not begin or end with a `/`. Defaults to `aws`.
+        not begin or end with a `/`. Defaults to `rabbitmq`.
         """
         return pulumi.get(self, "path")
 

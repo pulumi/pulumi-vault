@@ -32,6 +32,7 @@ namespace Pulumi.Vault
         ///             {
         ///                 new Vault.Inputs.GetPolicyDocumentRuleArgs
         ///                 {
+        ///                     Path = "secret/*",
         ///                     Capabilities = 
         ///                     {
         ///                         "create",
@@ -41,7 +42,6 @@ namespace Pulumi.Vault
         ///                         "list",
         ///                     },
         ///                     Description = "allow all on secrets",
-        ///                     Path = "secret/*",
         ///                 },
         ///             },
         ///         }));

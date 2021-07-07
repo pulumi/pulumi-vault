@@ -31,13 +31,13 @@ namespace Pulumi.Vault.AppRole
     ///         var example = new Vault.AppRole.AuthBackendRole("example", new Vault.AppRole.AuthBackendRoleArgs
     ///         {
     ///             Backend = approle.Path,
+    ///             RoleName = "test-role",
     ///             Policies = 
     ///             {
     ///                 "default",
     ///                 "dev",
     ///                 "prod",
     ///             },
-    ///             RoleName = "test-role",
     ///         });
     ///         var id = new Vault.AppRole.AuthBackendRoleSecretID("id", new Vault.AppRole.AuthBackendRoleSecretIDArgs
     ///         {

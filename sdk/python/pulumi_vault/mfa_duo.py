@@ -287,13 +287,13 @@ class MfaDuo(pulumi.CustomResource):
         import pulumi_vault as vault
 
         userpass = vault.AuthBackend("userpass",
-            path="userpass",
-            type="userpass")
+            type="userpass",
+            path="userpass")
         my_duo = vault.MfaDuo("myDuo",
-            api_hostname="api-2b5c39f5.duosecurity.com",
-            integration_key="BIACEUEAXI20BNWTEYXT",
             mount_accessor=userpass.accessor,
-            secret_key="8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz")
+            secret_key="8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz",
+            integration_key="BIACEUEAXI20BNWTEYXT",
+            api_hostname="api-2b5c39f5.duosecurity.com")
         ```
 
         ## Import
@@ -336,13 +336,13 @@ class MfaDuo(pulumi.CustomResource):
         import pulumi_vault as vault
 
         userpass = vault.AuthBackend("userpass",
-            path="userpass",
-            type="userpass")
+            type="userpass",
+            path="userpass")
         my_duo = vault.MfaDuo("myDuo",
-            api_hostname="api-2b5c39f5.duosecurity.com",
-            integration_key="BIACEUEAXI20BNWTEYXT",
             mount_accessor=userpass.accessor,
-            secret_key="8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz")
+            secret_key="8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz",
+            integration_key="BIACEUEAXI20BNWTEYXT",
+            api_hostname="api-2b5c39f5.duosecurity.com")
         ```
 
         ## Import

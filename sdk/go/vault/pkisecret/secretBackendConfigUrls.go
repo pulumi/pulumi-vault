@@ -19,8 +19,6 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
-//
 // 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/pkiSecret"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -28,9 +26,9 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		pki, err := pkiSecret.NewSecretBackend(ctx, "pki", &pkiSecret.SecretBackendArgs{
+// 			Path:                   pulumi.String("pki"),
 // 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
 // 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
-// 			Path:                   pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
 // 		})
 // 		if err != nil {
 // 			return err

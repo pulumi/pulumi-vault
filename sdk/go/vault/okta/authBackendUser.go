@@ -27,19 +27,19 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		example, err := okta.NewAuthBackend(ctx, "example", &okta.AuthBackendArgs{
-// 			Organization: pulumi.String("dummy"),
 // 			Path:         pulumi.String("user_okta"),
+// 			Organization: pulumi.String("dummy"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = okta.NewAuthBackendUser(ctx, "foo", &okta.AuthBackendUserArgs{
+// 			Path:     example.Path,
+// 			Username: pulumi.String("foo"),
 // 			Groups: pulumi.StringArray{
 // 				pulumi.String("one"),
 // 				pulumi.String("two"),
 // 			},
-// 			Path:     example.Path,
-// 			Username: pulumi.String("foo"),
 // 		})
 // 		if err != nil {
 // 			return err

@@ -495,11 +495,11 @@ class SecretBackendKey(pulumi.CustomResource):
         import pulumi_vault as vault
 
         transit = vault.Mount("transit",
-            default_lease_ttl_seconds=3600,
-            description="Example description",
-            max_lease_ttl_seconds=86400,
             path="transit",
-            type="transit")
+            type="transit",
+            description="Example description",
+            default_lease_ttl_seconds=3600,
+            max_lease_ttl_seconds=86400)
         key = vault.transit.SecretBackendKey("key", backend=transit.path)
         ```
 
@@ -542,11 +542,11 @@ class SecretBackendKey(pulumi.CustomResource):
         import pulumi_vault as vault
 
         transit = vault.Mount("transit",
-            default_lease_ttl_seconds=3600,
-            description="Example description",
-            max_lease_ttl_seconds=86400,
             path="transit",
-            type="transit")
+            type="transit",
+            description="Example description",
+            default_lease_ttl_seconds=3600,
+            max_lease_ttl_seconds=86400)
         key = vault.transit.SecretBackendKey("key", backend=transit.path)
         ```
 

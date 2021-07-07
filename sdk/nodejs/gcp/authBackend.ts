@@ -11,12 +11,10 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
  * import * as vault from "@pulumi/vault";
+ * import * from "fs";
  *
- * const gcp = new vault.gcp.AuthBackend("gcp", {
- *     credentials: fs.readFileSync("vault-gcp-credentials.json", "utf-8"),
- * });
+ * const gcp = new vault.gcp.AuthBackend("gcp", {credentials: fs.readFileSync("vault-gcp-credentials.json")});
  * ```
  *
  * ## Import

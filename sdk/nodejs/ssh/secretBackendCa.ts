@@ -14,12 +14,8 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const example = new vault.Mount("example", {
- *     type: "ssh",
- * });
- * const foo = new vault.ssh.SecretBackendCa("foo", {
- *     backend: example.path,
- * });
+ * const example = new vault.Mount("example", {type: "ssh"});
+ * const foo = new vault.ssh.SecretBackendCa("foo", {backend: example.path});
  * ```
  */
 export class SecretBackendCa extends pulumi.CustomResource {

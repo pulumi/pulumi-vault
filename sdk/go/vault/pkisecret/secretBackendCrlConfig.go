@@ -29,18 +29,18 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		pki, err := vault.NewMount(ctx, "pki", &vault.MountArgs{
-// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
-// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
 // 			Path:                   pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
 // 			Type:                   pulumi.String("pki"),
+// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
+// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = pkiSecret.NewSecretBackendCrlConfig(ctx, "crlConfig", &pkiSecret.SecretBackendCrlConfigArgs{
 // 			Backend: pki.Path,
-// 			Disable: pulumi.Bool(false),
 // 			Expiry:  pulumi.String("72h"),
+// 			Disable: pulumi.Bool(false),
 // 		})
 // 		if err != nil {
 // 			return err

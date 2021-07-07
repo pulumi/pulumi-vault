@@ -65,7 +65,7 @@ export class SecretBackend extends pulumi.CustomResource {
     public readonly password!: pulumi.Output<string>;
     /**
      * The unique path this backend should be mounted at. Must
-     * not begin or end with a `/`. Defaults to `aws`.
+     * not begin or end with a `/`. Defaults to `rabbitmq`.
      */
     public readonly path!: pulumi.Output<string | undefined>;
     /**
@@ -154,7 +154,7 @@ export interface SecretBackendState {
     readonly password?: pulumi.Input<string>;
     /**
      * The unique path this backend should be mounted at. Must
-     * not begin or end with a `/`. Defaults to `aws`.
+     * not begin or end with a `/`. Defaults to `rabbitmq`.
      */
     readonly path?: pulumi.Input<string>;
     /**
@@ -196,7 +196,7 @@ export interface SecretBackendArgs {
     readonly password: pulumi.Input<string>;
     /**
      * The unique path this backend should be mounted at. Must
-     * not begin or end with a `/`. Defaults to `aws`.
+     * not begin or end with a `/`. Defaults to `rabbitmq`.
      */
     readonly path?: pulumi.Input<string>;
     /**

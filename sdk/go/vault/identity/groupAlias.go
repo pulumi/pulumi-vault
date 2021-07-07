@@ -29,25 +29,25 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		group, err := identity.NewGroup(ctx, "group", &identity.GroupArgs{
+// 			Type: pulumi.String("external"),
 // 			Policies: pulumi.StringArray{
 // 				pulumi.String("test"),
 // 			},
-// 			Type: pulumi.String("external"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		github, err := vault.NewAuthBackend(ctx, "github", &vault.AuthBackendArgs{
-// 			Path: pulumi.String("github"),
 // 			Type: pulumi.String("github"),
+// 			Path: pulumi.String("github"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = identity.NewGroupAlias(ctx, "group_alias", &identity.GroupAliasArgs{
-// 			CanonicalId:   group.ID(),
-// 			MountAccessor: github.Accessor,
 // 			Name:          pulumi.String("Github_Team_Slug"),
+// 			MountAccessor: github.Accessor,
+// 			CanonicalId:   group.ID(),
 // 		})
 // 		if err != nil {
 // 			return err

@@ -14,24 +14,24 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
  * import * as vault from "@pulumi/vault";
+ * import * from "fs";
  *
  * const project = "my-awesome-project";
  * const gcp = new vault.gcp.SecretBackend("gcp", {
- *     credentials: fs.readFileSync("credentials.json", "utf-8"),
  *     path: "gcp",
+ *     credentials: fs.readFileSync("credentials.json"),
  * });
  * const roleset = new vault.gcp.SecretRoleset("roleset", {
  *     backend: gcp.path,
+ *     roleset: "project_viewer",
+ *     secretType: "access_token",
+ *     project: project,
+ *     tokenScopes: ["https://www.googleapis.com/auth/cloud-platform"],
  *     bindings: [{
  *         resource: `//cloudresourcemanager.googleapis.com/projects/${project}`,
  *         roles: ["roles/viewer"],
  *     }],
- *     project: project,
- *     roleset: "project_viewer",
- *     secretType: "access_token",
- *     tokenScopes: ["https://www.googleapis.com/auth/cloud-platform"],
  * });
  * ```
  *

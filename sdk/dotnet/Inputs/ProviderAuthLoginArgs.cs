@@ -12,6 +12,9 @@ namespace Pulumi.Vault.Inputs
 
     public sealed class ProviderAuthLoginArgs : Pulumi.ResourceArgs
     {
+        [Input("method")]
+        public Input<string>? Method { get; set; }
+
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 

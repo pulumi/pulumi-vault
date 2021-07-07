@@ -14,20 +14,18 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const example = new vault.Mount("example", {
- *     type: "ssh",
- * });
+ * const example = new vault.Mount("example", {type: "ssh"});
  * const foo = new vault.ssh.SecretBackendRole("foo", {
- *     allowUserCertificates: true,
  *     backend: example.path,
  *     keyType: "ca",
+ *     allowUserCertificates: true,
  * });
  * const bar = new vault.ssh.SecretBackendRole("bar", {
- *     allowedUsers: "default,baz",
  *     backend: example.path,
- *     cidrList: "0.0.0.0/0",
- *     defaultUser: "default",
  *     keyType: "otp",
+ *     defaultUser: "default",
+ *     allowedUsers: "default,baz",
+ *     cidrList: "0.0.0.0/0",
  * });
  * ```
  *

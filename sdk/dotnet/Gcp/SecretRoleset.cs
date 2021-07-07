@@ -28,12 +28,19 @@ namespace Pulumi.Vault.Gcp
     ///         var project = "my-awesome-project";
     ///         var gcp = new Vault.Gcp.SecretBackend("gcp", new Vault.Gcp.SecretBackendArgs
     ///         {
-    ///             Credentials = File.ReadAllText("credentials.json"),
     ///             Path = "gcp",
+    ///             Credentials = File.ReadAllText("credentials.json"),
     ///         });
     ///         var roleset = new Vault.Gcp.SecretRoleset("roleset", new Vault.Gcp.SecretRolesetArgs
     ///         {
     ///             Backend = gcp.Path,
+    ///             Roleset = "project_viewer",
+    ///             SecretType = "access_token",
+    ///             Project = project,
+    ///             TokenScopes = 
+    ///             {
+    ///                 "https://www.googleapis.com/auth/cloud-platform",
+    ///             },
     ///             Bindings = 
     ///             {
     ///                 new Vault.Gcp.Inputs.SecretRolesetBindingArgs
@@ -44,13 +51,6 @@ namespace Pulumi.Vault.Gcp
     ///                         "roles/viewer",
     ///                     },
     ///                 },
-    ///             },
-    ///             Project = project,
-    ///             Roleset = "project_viewer",
-    ///             SecretType = "access_token",
-    ///             TokenScopes = 
-    ///             {
-    ///                 "https://www.googleapis.com/auth/cloud-platform",
     ///             },
     ///         });
     ///     }

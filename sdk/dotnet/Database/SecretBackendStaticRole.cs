@@ -31,11 +31,11 @@ namespace Pulumi.Vault.Database
     ///         });
     ///         var postgres = new Vault.Database.SecretBackendConnection("postgres", new Vault.Database.SecretBackendConnectionArgs
     ///         {
+    ///             Backend = db.Path,
     ///             AllowedRoles = 
     ///             {
     ///                 "*",
     ///             },
-    ///             Backend = db.Path,
     ///             Postgresql = new Vault.Database.Inputs.SecretBackendConnectionPostgresqlArgs
     ///             {
     ///                 ConnectionUrl = "postgres://username:password@host:port/database",
@@ -45,12 +45,12 @@ namespace Pulumi.Vault.Database
     ///         {
     ///             Backend = db.Path,
     ///             DbName = postgres.Name,
+    ///             Username = "example",
     ///             RotationPeriod = 3600,
     ///             RotationStatements = 
     ///             {
     ///                 "ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';",
     ///             },
-    ///             Username = "example",
     ///         });
     ///     }
     /// 

@@ -28,6 +28,11 @@ namespace Pulumi.Vault.Generic
         [Input("path", required: true)]
         public string Path { get; set; } = null!;
 
+        /// <summary>
+        /// The version of the secret to read. This is used by the
+        /// Vault KV secrets engine - version 2 to indicate which version of the secret
+        /// to read.
+        /// </summary>
         [Input("version")]
         public int? Version { get; set; }
 

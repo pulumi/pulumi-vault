@@ -24,11 +24,11 @@ namespace Pulumi.Vault.Transit
     ///     {
     ///         var transit = new Vault.Mount("transit", new Vault.MountArgs
     ///         {
-    ///             DefaultLeaseTtlSeconds = 3600,
-    ///             Description = "Example description",
-    ///             MaxLeaseTtlSeconds = 86400,
     ///             Path = "transit",
     ///             Type = "transit",
+    ///             Description = "Example description",
+    ///             DefaultLeaseTtlSeconds = 3600,
+    ///             MaxLeaseTtlSeconds = 86400,
     ///         });
     ///         var cfg = new Vault.Transit.SecretCacheConfig("cfg", new Vault.Transit.SecretCacheConfigArgs
     ///         {

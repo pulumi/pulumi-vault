@@ -14,12 +14,21 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const pki = new vault.pkiSecret.SecretBackend("pki", {
+ *     path: "pki",
  *     defaultLeaseTtlSeconds: 3600,
  *     maxLeaseTtlSeconds: 86400,
- *     path: "%s",
  * });
  * const role = new vault.pkiSecret.SecretBackendRole("role", {
  *     backend: pki.path,
+ *     ttl: 3600,
+ *     allowIpSans: true,
+ *     keyType: "rsa",
+ *     keyBits: 4096,
+ *     allowedDomains: [
+ *         "example.com",
+ *         "my.domain",
+ *     ],
+ *     allowSubdomains: true,
  * });
  * ```
  *

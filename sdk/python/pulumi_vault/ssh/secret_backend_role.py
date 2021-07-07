@@ -768,15 +768,15 @@ class SecretBackendRole(pulumi.CustomResource):
 
         example = vault.Mount("example", type="ssh")
         foo = vault.ssh.SecretBackendRole("foo",
-            allow_user_certificates=True,
             backend=example.path,
-            key_type="ca")
+            key_type="ca",
+            allow_user_certificates=True)
         bar = vault.ssh.SecretBackendRole("bar",
-            allowed_users="default,baz",
             backend=example.path,
-            cidr_list="0.0.0.0/0",
+            key_type="otp",
             default_user="default",
-            key_type="otp")
+            allowed_users="default,baz",
+            cidr_list="0.0.0.0/0")
         ```
 
         ## Import
@@ -830,15 +830,15 @@ class SecretBackendRole(pulumi.CustomResource):
 
         example = vault.Mount("example", type="ssh")
         foo = vault.ssh.SecretBackendRole("foo",
-            allow_user_certificates=True,
             backend=example.path,
-            key_type="ca")
+            key_type="ca",
+            allow_user_certificates=True)
         bar = vault.ssh.SecretBackendRole("bar",
-            allowed_users="default,baz",
             backend=example.path,
-            cidr_list="0.0.0.0/0",
+            key_type="otp",
             default_user="default",
-            key_type="otp")
+            allowed_users="default,baz",
+            cidr_list="0.0.0.0/0")
         ```
 
         ## Import

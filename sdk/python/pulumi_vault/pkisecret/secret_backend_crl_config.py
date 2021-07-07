@@ -140,14 +140,14 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         import pulumi_vault as vault
 
         pki = vault.Mount("pki",
-            default_lease_ttl_seconds=3600,
-            max_lease_ttl_seconds=86400,
             path="%s",
-            type="pki")
+            type="pki",
+            default_lease_ttl_seconds=3600,
+            max_lease_ttl_seconds=86400)
         crl_config = vault.pki_secret.SecretBackendCrlConfig("crlConfig",
             backend=pki.path,
-            disable=False,
-            expiry="72h")
+            expiry="72h",
+            disable=False)
         ```
 
         :param str resource_name: The name of the resource.
@@ -172,14 +172,14 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         import pulumi_vault as vault
 
         pki = vault.Mount("pki",
-            default_lease_ttl_seconds=3600,
-            max_lease_ttl_seconds=86400,
             path="%s",
-            type="pki")
+            type="pki",
+            default_lease_ttl_seconds=3600,
+            max_lease_ttl_seconds=86400)
         crl_config = vault.pki_secret.SecretBackendCrlConfig("crlConfig",
             backend=pki.path,
-            disable=False,
-            expiry="72h")
+            expiry="72h",
+            disable=False)
         ```
 
         :param str resource_name: The name of the resource.

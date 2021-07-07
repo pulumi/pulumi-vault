@@ -177,9 +177,12 @@ class AuthBackendTuneArgs:
 class ProviderAuthLoginArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[str],
+                 method: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         pulumi.set(__self__, "path", path)
+        if method is not None:
+            pulumi.set(__self__, "method", method)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if parameters is not None:
@@ -193,6 +196,15 @@ class ProviderAuthLoginArgs:
     @path.setter
     def path(self, value: pulumi.Input[str]):
         pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def method(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "method")
+
+    @method.setter
+    def method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "method", value)
 
     @property
     @pulumi.getter

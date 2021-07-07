@@ -26,22 +26,22 @@ namespace Pulumi.Vault.Identity
     ///     {
     ///         var @group = new Vault.Identity.Group("group", new Vault.Identity.GroupArgs
     ///         {
+    ///             Type = "external",
     ///             Policies = 
     ///             {
     ///                 "test",
     ///             },
-    ///             Type = "external",
     ///         });
     ///         var github = new Vault.AuthBackend("github", new Vault.AuthBackendArgs
     ///         {
-    ///             Path = "github",
     ///             Type = "github",
+    ///             Path = "github",
     ///         });
     ///         var group_alias = new Vault.Identity.GroupAlias("group-alias", new Vault.Identity.GroupAliasArgs
     ///         {
-    ///             CanonicalId = @group.Id,
-    ///             MountAccessor = github.Accessor,
     ///             Name = "Github_Team_Slug",
+    ///             MountAccessor = github.Accessor,
+    ///             CanonicalId = @group.Id,
     ///         });
     ///     }
     /// 

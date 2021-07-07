@@ -43,6 +43,21 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const pki_example = new vault.Mount("pki-example", {
+ *     description: "This is an example PKI mount",
+ *     options: {
+ *         default_lease_ttl_seconds: 3600,
+ *         max_lease_ttl_seconds: 86400,
+ *     },
+ *     path: "pki-example",
+ *     type: "pki",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Mounts can be imported using the `path`, e.g.

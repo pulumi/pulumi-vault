@@ -315,6 +315,7 @@ func (o AuthBackendTunePtrOutput) TokenType() pulumi.StringPtrOutput {
 }
 
 type ProviderAuthLogin struct {
+	Method     *string           `pulumi:"method"`
 	Namespace  *string           `pulumi:"namespace"`
 	Parameters map[string]string `pulumi:"parameters"`
 	Path       string            `pulumi:"path"`
@@ -332,6 +333,7 @@ type ProviderAuthLoginInput interface {
 }
 
 type ProviderAuthLoginArgs struct {
+	Method     pulumi.StringPtrInput `pulumi:"method"`
 	Namespace  pulumi.StringPtrInput `pulumi:"namespace"`
 	Parameters pulumi.StringMapInput `pulumi:"parameters"`
 	Path       pulumi.StringInput    `pulumi:"path"`
@@ -386,6 +388,10 @@ func (o ProviderAuthLoginOutput) ToProviderAuthLoginOutput() ProviderAuthLoginOu
 
 func (o ProviderAuthLoginOutput) ToProviderAuthLoginOutputWithContext(ctx context.Context) ProviderAuthLoginOutput {
 	return o
+}
+
+func (o ProviderAuthLoginOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLogin) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
 
 func (o ProviderAuthLoginOutput) Namespace() pulumi.StringPtrOutput {

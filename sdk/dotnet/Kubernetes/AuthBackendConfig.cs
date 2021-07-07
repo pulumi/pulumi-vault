@@ -31,14 +31,13 @@ namespace Pulumi.Vault.Kubernetes
     ///         var example = new Vault.Kubernetes.AuthBackendConfig("example", new Vault.Kubernetes.AuthBackendConfigArgs
     ///         {
     ///             Backend = kubernetes.Path,
-    ///             DisableIssValidation = true,
-    ///             Issuer = "api",
+    ///             KubernetesHost = "http://example.com:443",
     ///             KubernetesCaCert = @"-----BEGIN CERTIFICATE-----
     /// example
-    /// -----END CERTIFICATE-----
-    /// ",
-    ///             KubernetesHost = "http://example.com:443",
+    /// -----END CERTIFICATE-----",
     ///             TokenReviewerJwt = "ZXhhbXBsZQo=",
+    ///             Issuer = "api",
+    ///             DisableIssValidation = true,
     ///         });
     ///     }
     /// 

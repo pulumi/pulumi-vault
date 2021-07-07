@@ -15,16 +15,16 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.okta.AuthBackend("example", {
- *     organization: "dummy",
  *     path: "user_okta",
+ *     organization: "dummy",
  * });
  * const foo = new vault.okta.AuthBackendUser("foo", {
+ *     path: example.path,
+ *     username: "foo",
  *     groups: [
  *         "one",
  *         "two",
  *     ],
- *     path: example.path,
- *     username: "foo",
  * });
  * ```
  */

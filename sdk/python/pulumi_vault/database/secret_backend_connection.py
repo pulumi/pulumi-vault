@@ -43,7 +43,7 @@ class SecretBackendConnectionArgs:
         :param pulumi.Input['SecretBackendConnectionElasticsearchArgs'] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input['SecretBackendConnectionHanaArgs'] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input['SecretBackendConnectionMongodbArgs'] mongodb: A nested block containing configuration options for MongoDB connections.
-        :param pulumi.Input['SecretBackendConnectionMongodbatlasArgs'] mongodbatlas: Connection parameters for the mongodbatlas-database-plugin plugin.
+        :param pulumi.Input['SecretBackendConnectionMongodbatlasArgs'] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.
         :param pulumi.Input['SecretBackendConnectionMssqlArgs'] mssql: A nested block containing configuration options for MSSQL connections.
         :param pulumi.Input['SecretBackendConnectionMysqlArgs'] mysql: A nested block containing configuration options for MySQL connections.
         :param pulumi.Input['SecretBackendConnectionMysqlAuroraArgs'] mysql_aurora: A nested block containing configuration options for Aurora MySQL connections.
@@ -181,7 +181,7 @@ class SecretBackendConnectionArgs:
     @pulumi.getter
     def mongodbatlas(self) -> Optional[pulumi.Input['SecretBackendConnectionMongodbatlasArgs']]:
         """
-        Connection parameters for the mongodbatlas-database-plugin plugin.
+        A nested block containing configuration options for MongoDB Atlas connections.
         """
         return pulumi.get(self, "mongodbatlas")
 
@@ -342,7 +342,7 @@ class _SecretBackendConnectionState:
         :param pulumi.Input['SecretBackendConnectionElasticsearchArgs'] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input['SecretBackendConnectionHanaArgs'] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input['SecretBackendConnectionMongodbArgs'] mongodb: A nested block containing configuration options for MongoDB connections.
-        :param pulumi.Input['SecretBackendConnectionMongodbatlasArgs'] mongodbatlas: Connection parameters for the mongodbatlas-database-plugin plugin.
+        :param pulumi.Input['SecretBackendConnectionMongodbatlasArgs'] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.
         :param pulumi.Input['SecretBackendConnectionMssqlArgs'] mssql: A nested block containing configuration options for MSSQL connections.
         :param pulumi.Input['SecretBackendConnectionMysqlArgs'] mysql: A nested block containing configuration options for MySQL connections.
         :param pulumi.Input['SecretBackendConnectionMysqlAuroraArgs'] mysql_aurora: A nested block containing configuration options for Aurora MySQL connections.
@@ -481,7 +481,7 @@ class _SecretBackendConnectionState:
     @pulumi.getter
     def mongodbatlas(self) -> Optional[pulumi.Input['SecretBackendConnectionMongodbatlasArgs']]:
         """
-        Connection parameters for the mongodbatlas-database-plugin plugin.
+        A nested block containing configuration options for MongoDB Atlas connections.
         """
         return pulumi.get(self, "mongodbatlas")
 
@@ -654,7 +654,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbArgs']] mongodb: A nested block containing configuration options for MongoDB connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbatlasArgs']] mongodbatlas: Connection parameters for the mongodbatlas-database-plugin plugin.
+        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbatlasArgs']] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMssqlArgs']] mssql: A nested block containing configuration options for MSSQL connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlArgs']] mysql: A nested block containing configuration options for MySQL connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlAuroraArgs']] mysql_aurora: A nested block containing configuration options for Aurora MySQL connections.
@@ -790,7 +790,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbArgs']] mongodb: A nested block containing configuration options for MongoDB connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbatlasArgs']] mongodbatlas: Connection parameters for the mongodbatlas-database-plugin plugin.
+        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbatlasArgs']] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMssqlArgs']] mssql: A nested block containing configuration options for MSSQL connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlArgs']] mysql: A nested block containing configuration options for MySQL connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlAuroraArgs']] mysql_aurora: A nested block containing configuration options for Aurora MySQL connections.
@@ -888,7 +888,7 @@ class SecretBackendConnection(pulumi.CustomResource):
     @pulumi.getter
     def mongodbatlas(self) -> pulumi.Output[Optional['outputs.SecretBackendConnectionMongodbatlas']]:
         """
-        Connection parameters for the mongodbatlas-database-plugin plugin.
+        A nested block containing configuration options for MongoDB Atlas connections.
         """
         return pulumi.get(self, "mongodbatlas")
 

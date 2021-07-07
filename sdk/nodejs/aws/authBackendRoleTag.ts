@@ -14,12 +14,13 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const aws = new vault.AuthBackend("aws", {
- *     path: "%s",
+ *     path: `%s`,
  *     type: "aws",
  * });
  * const role = new vault.aws.AuthBackendRole("role", {
- *     authType: "ec2",
  *     backend: aws.path,
+ *     role: `%s`,
+ *     authType: "ec2",
  *     boundAccountId: "123456789012",
  *     policies: [
  *         "dev",
@@ -27,19 +28,18 @@ import * as utilities from "../utilities";
  *         "qa",
  *         "test",
  *     ],
- *     role: "%s",
  *     roleTag: "VaultRoleTag",
  * });
  * const test = new vault.aws.AuthBackendRoleTag("test", {
  *     backend: aws.path,
- *     instanceId: "i-1234567",
- *     maxTtl: "1h",
+ *     role: role.role,
  *     policies: [
  *         "prod",
  *         "dev",
  *         "test",
  *     ],
- *     role: role.role,
+ *     maxTtl: "1h",
+ *     instanceId: "i-1234567",
  * });
  * ```
  */

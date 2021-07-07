@@ -13,46 +13,6 @@ namespace Pulumi.Vault.Transit
     {
         /// <summary>
         /// This is a data source which can be used to encrypt plaintext using a Vault Transit key.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var testMount = new Vault.Mount("testMount", new Vault.MountArgs
-        ///         {
-        ///             Description = "This is an example mount",
-        ///             Path = "transit",
-        ///             Type = "transit",
-        ///         });
-        ///         var testSecretBackendKey = new Vault.Transit.SecretBackendKey("testSecretBackendKey", new Vault.Transit.SecretBackendKeyArgs
-        ///         {
-        ///             Backend = testMount.Path,
-        ///         });
-        ///         var testEncrypt = Output.Tuple(testMount.Path, testSecretBackendKey.Name).Apply(values =&gt;
-        ///         {
-        ///             var path = values.Item1;
-        ///             var name = values.Item2;
-        ///             return Vault.Transit.GetEncrypt.InvokeAsync(new Vault.Transit.GetEncryptArgs
-        ///             {
-        ///                 Backend = path,
-        ///                 Key = name,
-        ///                 Plaintext = "foobar",
-        ///             });
-        ///         });
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetEncryptResult> InvokeAsync(GetEncryptArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetEncryptResult>("vault:transit/getEncrypt:getEncrypt", args ?? new GetEncryptArgs(), options.WithVersion());

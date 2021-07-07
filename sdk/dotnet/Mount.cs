@@ -73,6 +73,30 @@ namespace Pulumi.Vault
     /// }
     /// ```
     /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var pki_example = new Vault.Mount("pki-example", new Vault.MountArgs
+    ///         {
+    ///             Description = "This is an example PKI mount",
+    ///             Options = 
+    ///             {
+    ///                 { "default_lease_ttl_seconds", 3600 },
+    ///                 { "max_lease_ttl_seconds", 86400 },
+    ///             },
+    ///             Path = "pki-example",
+    ///             Type = "pki",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Mounts can be imported using the `path`, e.g.

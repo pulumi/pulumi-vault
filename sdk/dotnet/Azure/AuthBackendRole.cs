@@ -33,15 +33,16 @@ namespace Pulumi.Vault.Azure
     ///         var example = new Vault.Azure.AuthBackendRole("example", new Vault.Azure.AuthBackendRoleArgs
     ///         {
     ///             Backend = azure.Path,
-    ///             BoundResourceGroups = 
-    ///             {
-    ///                 "123456789012",
-    ///             },
+    ///             Role = "test-role",
     ///             BoundSubscriptionIds = 
     ///             {
     ///                 "11111111-2222-3333-4444-555555555555",
     ///             },
-    ///             Role = "test-role",
+    ///             BoundResourceGroups = 
+    ///             {
+    ///                 "123456789012",
+    ///             },
+    ///             TokenTtl = 60,
     ///             TokenMaxTtl = 120,
     ///             TokenPolicies = 
     ///             {
@@ -49,7 +50,6 @@ namespace Pulumi.Vault.Azure
     ///                 "dev",
     ///                 "prod",
     ///             },
-    ///             TokenTtl = 60,
     ///         });
     ///     }
     /// 

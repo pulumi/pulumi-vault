@@ -16,12 +16,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const role = pulumi.output(vault.kubernetes.getAuthBackendRole({
+ * const role = vault.kubernetes.getAuthBackendRole({
  *     backend: "my-kubernetes-backend",
  *     roleName: "my-role",
- * }, { async: true }));
- *
- * export const policies = role.policies!;
+ * });
+ * export const policies = role.then(role => role.policies);
  * ```
  */
 export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendRoleResult> {

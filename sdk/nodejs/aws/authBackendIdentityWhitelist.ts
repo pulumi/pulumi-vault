@@ -16,10 +16,8 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const exampleAuthBackend = new vault.AuthBackend("example", {
- *     type: "aws",
- * });
- * const exampleAuthBackendIdentityWhitelist = new vault.aws.AuthBackendIdentityWhitelist("example", {
+ * const exampleAuthBackend = new vault.AuthBackend("exampleAuthBackend", {type: "aws"});
+ * const exampleAuthBackendIdentityWhitelist = new vault.aws.AuthBackendIdentityWhitelist("exampleAuthBackendIdentityWhitelist", {
  *     backend: exampleAuthBackend.path,
  *     safetyBuffer: 3600,
  * });

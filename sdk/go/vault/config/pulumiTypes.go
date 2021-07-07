@@ -11,6 +11,7 @@ import (
 )
 
 type AuthLogins struct {
+	Method     *string           `pulumi:"method"`
 	Namespace  *string           `pulumi:"namespace"`
 	Parameters map[string]string `pulumi:"parameters"`
 	Path       string            `pulumi:"path"`
@@ -28,6 +29,7 @@ type AuthLoginsInput interface {
 }
 
 type AuthLoginsArgs struct {
+	Method     pulumi.StringPtrInput `pulumi:"method"`
 	Namespace  pulumi.StringPtrInput `pulumi:"namespace"`
 	Parameters pulumi.StringMapInput `pulumi:"parameters"`
 	Path       pulumi.StringInput    `pulumi:"path"`
@@ -82,6 +84,10 @@ func (o AuthLoginsOutput) ToAuthLoginsOutput() AuthLoginsOutput {
 
 func (o AuthLoginsOutput) ToAuthLoginsOutputWithContext(ctx context.Context) AuthLoginsOutput {
 	return o
+}
+
+func (o AuthLoginsOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLogins) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
 
 func (o AuthLoginsOutput) Namespace() pulumi.StringPtrOutput {

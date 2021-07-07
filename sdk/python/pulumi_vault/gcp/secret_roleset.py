@@ -257,18 +257,18 @@ class SecretRoleset(pulumi.CustomResource):
 
         project = "my-awesome-project"
         gcp = vault.gcp.SecretBackend("gcp",
-            credentials=(lambda path: open(path).read())("credentials.json"),
-            path="gcp")
+            path="gcp",
+            credentials=(lambda path: open(path).read())("credentials.json"))
         roleset = vault.gcp.SecretRoleset("roleset",
             backend=gcp.path,
+            roleset="project_viewer",
+            secret_type="access_token",
+            project=project,
+            token_scopes=["https://www.googleapis.com/auth/cloud-platform"],
             bindings=[vault.gcp.SecretRolesetBindingArgs(
                 resource=f"//cloudresourcemanager.googleapis.com/projects/{project}",
                 roles=["roles/viewer"],
-            )],
-            project=project,
-            roleset="project_viewer",
-            secret_type="access_token",
-            token_scopes=["https://www.googleapis.com/auth/cloud-platform"])
+            )])
         ```
 
         ## Import
@@ -307,18 +307,18 @@ class SecretRoleset(pulumi.CustomResource):
 
         project = "my-awesome-project"
         gcp = vault.gcp.SecretBackend("gcp",
-            credentials=(lambda path: open(path).read())("credentials.json"),
-            path="gcp")
+            path="gcp",
+            credentials=(lambda path: open(path).read())("credentials.json"))
         roleset = vault.gcp.SecretRoleset("roleset",
             backend=gcp.path,
+            roleset="project_viewer",
+            secret_type="access_token",
+            project=project,
+            token_scopes=["https://www.googleapis.com/auth/cloud-platform"],
             bindings=[vault.gcp.SecretRolesetBindingArgs(
                 resource=f"//cloudresourcemanager.googleapis.com/projects/{project}",
                 roles=["roles/viewer"],
-            )],
-            project=project,
-            roleset="project_viewer",
-            secret_type="access_token",
-            token_scopes=["https://www.googleapis.com/auth/cloud-platform"])
+            )])
         ```
 
         ## Import

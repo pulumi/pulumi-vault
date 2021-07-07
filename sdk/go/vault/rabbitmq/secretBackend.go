@@ -34,7 +34,7 @@ type SecretBackend struct {
 	// Specifies the RabbitMQ management administrator password.
 	Password pulumi.StringOutput `pulumi:"password"`
 	// The unique path this backend should be mounted at. Must
-	// not begin or end with a `/`. Defaults to `aws`.
+	// not begin or end with a `/`. Defaults to `rabbitmq`.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
 	// Specifies the RabbitMQ management administrator username.
 	Username pulumi.StringOutput `pulumi:"username"`
@@ -94,7 +94,7 @@ type secretBackendState struct {
 	// Specifies the RabbitMQ management administrator password.
 	Password *string `pulumi:"password"`
 	// The unique path this backend should be mounted at. Must
-	// not begin or end with a `/`. Defaults to `aws`.
+	// not begin or end with a `/`. Defaults to `rabbitmq`.
 	Path *string `pulumi:"path"`
 	// Specifies the RabbitMQ management administrator username.
 	Username *string `pulumi:"username"`
@@ -117,7 +117,7 @@ type SecretBackendState struct {
 	// Specifies the RabbitMQ management administrator password.
 	Password pulumi.StringPtrInput
 	// The unique path this backend should be mounted at. Must
-	// not begin or end with a `/`. Defaults to `aws`.
+	// not begin or end with a `/`. Defaults to `rabbitmq`.
 	Path pulumi.StringPtrInput
 	// Specifies the RabbitMQ management administrator username.
 	Username pulumi.StringPtrInput
@@ -144,7 +144,7 @@ type secretBackendArgs struct {
 	// Specifies the RabbitMQ management administrator password.
 	Password string `pulumi:"password"`
 	// The unique path this backend should be mounted at. Must
-	// not begin or end with a `/`. Defaults to `aws`.
+	// not begin or end with a `/`. Defaults to `rabbitmq`.
 	Path *string `pulumi:"path"`
 	// Specifies the RabbitMQ management administrator username.
 	Username string `pulumi:"username"`
@@ -168,7 +168,7 @@ type SecretBackendArgs struct {
 	// Specifies the RabbitMQ management administrator password.
 	Password pulumi.StringInput
 	// The unique path this backend should be mounted at. Must
-	// not begin or end with a `/`. Defaults to `aws`.
+	// not begin or end with a `/`. Defaults to `rabbitmq`.
 	Path pulumi.StringPtrInput
 	// Specifies the RabbitMQ management administrator username.
 	Username pulumi.StringInput

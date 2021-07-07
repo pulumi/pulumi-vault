@@ -24,16 +24,16 @@ namespace Pulumi.Vault.PkiSecret
     ///     {
     ///         var pki = new Vault.Mount("pki", new Vault.MountArgs
     ///         {
-    ///             DefaultLeaseTtlSeconds = 3600,
-    ///             MaxLeaseTtlSeconds = 86400,
     ///             Path = "%s",
     ///             Type = "pki",
+    ///             DefaultLeaseTtlSeconds = 3600,
+    ///             MaxLeaseTtlSeconds = 86400,
     ///         });
     ///         var crlConfig = new Vault.PkiSecret.SecretBackendCrlConfig("crlConfig", new Vault.PkiSecret.SecretBackendCrlConfigArgs
     ///         {
     ///             Backend = pki.Path,
-    ///             Disable = false,
     ///             Expiry = "72h",
+    ///             Disable = false,
     ///         });
     ///     }
     /// 

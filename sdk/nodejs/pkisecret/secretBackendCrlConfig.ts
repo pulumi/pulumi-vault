@@ -14,15 +14,15 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const pki = new vault.Mount("pki", {
+ *     path: `%s`,
+ *     type: "pki",
  *     defaultLeaseTtlSeconds: 3600,
  *     maxLeaseTtlSeconds: 86400,
- *     path: "%s",
- *     type: "pki",
  * });
- * const crlConfig = new vault.pkiSecret.SecretBackendCrlConfig("crl_config", {
+ * const crlConfig = new vault.pkiSecret.SecretBackendCrlConfig("crlConfig", {
  *     backend: pki.path,
- *     disable: false,
  *     expiry: "72h",
+ *     disable: false,
  * });
  * ```
  */

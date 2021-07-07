@@ -24,13 +24,23 @@ namespace Pulumi.Vault.PkiSecret
     ///     {
     ///         var pki = new Vault.PkiSecret.SecretBackend("pki", new Vault.PkiSecret.SecretBackendArgs
     ///         {
+    ///             Path = "pki",
     ///             DefaultLeaseTtlSeconds = 3600,
     ///             MaxLeaseTtlSeconds = 86400,
-    ///             Path = "%s",
     ///         });
     ///         var role = new Vault.PkiSecret.SecretBackendRole("role", new Vault.PkiSecret.SecretBackendRoleArgs
     ///         {
     ///             Backend = pki.Path,
+    ///             Ttl = "3600",
+    ///             AllowIpSans = true,
+    ///             KeyType = "rsa",
+    ///             KeyBits = 4096,
+    ///             AllowedDomains = 
+    ///             {
+    ///                 "example.com",
+    ///                 "my.domain",
+    ///             },
+    ///             AllowSubdomains = true,
     ///         });
     ///     }
     /// 

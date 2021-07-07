@@ -173,15 +173,15 @@ class AuthBackendUser(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.okta.AuthBackend("example",
-            organization="dummy",
-            path="user_okta")
+            path="user_okta",
+            organization="dummy")
         foo = vault.okta.AuthBackendUser("foo",
+            path=example.path,
+            username="foo",
             groups=[
                 "one",
                 "two",
-            ],
-            path=example.path,
-            username="foo")
+            ])
         ```
 
         :param str resource_name: The name of the resource.
@@ -208,15 +208,15 @@ class AuthBackendUser(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.okta.AuthBackend("example",
-            organization="dummy",
-            path="user_okta")
+            path="user_okta",
+            organization="dummy")
         foo = vault.okta.AuthBackendUser("foo",
+            path=example.path,
+            username="foo",
             groups=[
                 "one",
                 "two",
-            ],
-            path=example.path,
-            username="foo")
+            ])
         ```
 
         :param str resource_name: The name of the resource.

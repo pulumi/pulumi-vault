@@ -107,6 +107,7 @@ export interface GetPolicyDocumentRuleDeniedParameter {
 }
 
 export interface ProviderAuthLogin {
+    method?: string;
     namespace?: string;
     parameters?: {[key: string]: string};
     path?: string;
@@ -136,6 +137,7 @@ export namespace azure {
 
 export namespace config {
     export interface AuthLogins {
+        method?: string;
         namespace?: string;
         parameters?: {[key: string]: string};
         path: string;
@@ -267,8 +269,17 @@ export namespace database {
     }
 
     export interface SecretBackendConnectionMongodbatlas {
+        /**
+         * The Private Programmatic API Key used to connect with MongoDB Atlas API.
+         */
         privateKey: string;
+        /**
+         * The Project ID the Database User should be created within.
+         */
         projectId: string;
+        /**
+         * The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+         */
         publicKey: string;
     }
 

@@ -27,15 +27,15 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		example, err := okta.NewAuthBackend(ctx, "example", &okta.AuthBackendArgs{
-// 			Organization: pulumi.String("dummy"),
 // 			Path:         pulumi.String("group_okta"),
+// 			Organization: pulumi.String("dummy"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = okta.NewAuthBackendGroup(ctx, "foo", &okta.AuthBackendGroupArgs{
-// 			GroupName: pulumi.String("foo"),
 // 			Path:      example.Path,
+// 			GroupName: pulumi.String("foo"),
 // 			Policies: pulumi.StringArray{
 // 				pulumi.String("one"),
 // 				pulumi.String("two"),
