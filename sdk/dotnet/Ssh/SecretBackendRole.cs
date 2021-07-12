@@ -29,17 +29,17 @@ namespace Pulumi.Vault.Ssh
     ///         });
     ///         var foo = new Vault.Ssh.SecretBackendRole("foo", new Vault.Ssh.SecretBackendRoleArgs
     ///         {
-    ///             AllowUserCertificates = true,
     ///             Backend = example.Path,
     ///             KeyType = "ca",
+    ///             AllowUserCertificates = true,
     ///         });
     ///         var bar = new Vault.Ssh.SecretBackendRole("bar", new Vault.Ssh.SecretBackendRoleArgs
     ///         {
-    ///             AllowedUsers = "default,baz",
     ///             Backend = example.Path,
-    ///             CidrList = "0.0.0.0/0",
-    ///             DefaultUser = "default",
     ///             KeyType = "otp",
+    ///             DefaultUser = "default",
+    ///             AllowedUsers = "default,baz",
+    ///             CidrList = "0.0.0.0/0",
     ///         });
     ///     }
     /// 

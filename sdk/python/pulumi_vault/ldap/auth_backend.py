@@ -17,6 +17,8 @@ class AuthBackendArgs:
                  binddn: Optional[pulumi.Input[str]] = None,
                  bindpass: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
+                 client_tls_cert: Optional[pulumi.Input[str]] = None,
+                 client_tls_key: Optional[pulumi.Input[str]] = None,
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  discoverdn: Optional[pulumi.Input[bool]] = None,
@@ -95,6 +97,10 @@ class AuthBackendArgs:
             pulumi.set(__self__, "bindpass", bindpass)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
+        if client_tls_cert is not None:
+            pulumi.set(__self__, "client_tls_cert", client_tls_cert)
+        if client_tls_key is not None:
+            pulumi.set(__self__, "client_tls_key", client_tls_key)
         if deny_null_bind is not None:
             pulumi.set(__self__, "deny_null_bind", deny_null_bind)
         if description is not None:
@@ -191,6 +197,24 @@ class AuthBackendArgs:
     @certificate.setter
     def certificate(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "certificate", value)
+
+    @property
+    @pulumi.getter(name="clientTlsCert")
+    def client_tls_cert(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "client_tls_cert")
+
+    @client_tls_cert.setter
+    def client_tls_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_tls_cert", value)
+
+    @property
+    @pulumi.getter(name="clientTlsKey")
+    def client_tls_key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "client_tls_key")
+
+    @client_tls_key.setter
+    def client_tls_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_tls_key", value)
 
     @property
     @pulumi.getter(name="denyNullBind")
@@ -500,6 +524,8 @@ class _AuthBackendState:
                  binddn: Optional[pulumi.Input[str]] = None,
                  bindpass: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
+                 client_tls_cert: Optional[pulumi.Input[str]] = None,
+                 client_tls_key: Optional[pulumi.Input[str]] = None,
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  discoverdn: Optional[pulumi.Input[bool]] = None,
@@ -581,6 +607,10 @@ class _AuthBackendState:
             pulumi.set(__self__, "bindpass", bindpass)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
+        if client_tls_cert is not None:
+            pulumi.set(__self__, "client_tls_cert", client_tls_cert)
+        if client_tls_key is not None:
+            pulumi.set(__self__, "client_tls_key", client_tls_key)
         if deny_null_bind is not None:
             pulumi.set(__self__, "deny_null_bind", deny_null_bind)
         if description is not None:
@@ -679,6 +709,24 @@ class _AuthBackendState:
     @certificate.setter
     def certificate(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "certificate", value)
+
+    @property
+    @pulumi.getter(name="clientTlsCert")
+    def client_tls_cert(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "client_tls_cert")
+
+    @client_tls_cert.setter
+    def client_tls_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_tls_cert", value)
+
+    @property
+    @pulumi.getter(name="clientTlsKey")
+    def client_tls_key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "client_tls_key")
+
+    @client_tls_key.setter
+    def client_tls_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_tls_key", value)
 
     @property
     @pulumi.getter(name="denyNullBind")
@@ -1001,6 +1049,8 @@ class AuthBackend(pulumi.CustomResource):
                  binddn: Optional[pulumi.Input[str]] = None,
                  bindpass: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
+                 client_tls_cert: Optional[pulumi.Input[str]] = None,
+                 client_tls_key: Optional[pulumi.Input[str]] = None,
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  discoverdn: Optional[pulumi.Input[bool]] = None,
@@ -1154,6 +1204,8 @@ class AuthBackend(pulumi.CustomResource):
                  binddn: Optional[pulumi.Input[str]] = None,
                  bindpass: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
+                 client_tls_cert: Optional[pulumi.Input[str]] = None,
+                 client_tls_key: Optional[pulumi.Input[str]] = None,
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  discoverdn: Optional[pulumi.Input[bool]] = None,
@@ -1194,6 +1246,8 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["binddn"] = binddn
             __props__.__dict__["bindpass"] = bindpass
             __props__.__dict__["certificate"] = certificate
+            __props__.__dict__["client_tls_cert"] = client_tls_cert
+            __props__.__dict__["client_tls_key"] = client_tls_key
             __props__.__dict__["deny_null_bind"] = deny_null_bind
             __props__.__dict__["description"] = description
             __props__.__dict__["discoverdn"] = discoverdn
@@ -1236,6 +1290,8 @@ class AuthBackend(pulumi.CustomResource):
             binddn: Optional[pulumi.Input[str]] = None,
             bindpass: Optional[pulumi.Input[str]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
+            client_tls_cert: Optional[pulumi.Input[str]] = None,
+            client_tls_key: Optional[pulumi.Input[str]] = None,
             deny_null_bind: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
             discoverdn: Optional[pulumi.Input[bool]] = None,
@@ -1322,6 +1378,8 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["binddn"] = binddn
         __props__.__dict__["bindpass"] = bindpass
         __props__.__dict__["certificate"] = certificate
+        __props__.__dict__["client_tls_cert"] = client_tls_cert
+        __props__.__dict__["client_tls_key"] = client_tls_key
         __props__.__dict__["deny_null_bind"] = deny_null_bind
         __props__.__dict__["description"] = description
         __props__.__dict__["discoverdn"] = discoverdn
@@ -1380,6 +1438,16 @@ class AuthBackend(pulumi.CustomResource):
         Trusted CA to validate TLS certificate
         """
         return pulumi.get(self, "certificate")
+
+    @property
+    @pulumi.getter(name="clientTlsCert")
+    def client_tls_cert(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "client_tls_cert")
+
+    @property
+    @pulumi.getter(name="clientTlsKey")
+    def client_tls_key(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "client_tls_key")
 
     @property
     @pulumi.getter(name="denyNullBind")

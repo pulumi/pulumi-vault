@@ -908,16 +908,16 @@ class AuthBackendRole(pulumi.CustomResource):
         azure = vault.AuthBackend("azure", type="azure")
         example = vault.azure.AuthBackendRole("example",
             backend=azure.path,
-            bound_resource_groups=["123456789012"],
-            bound_subscription_ids=["11111111-2222-3333-4444-555555555555"],
             role="test-role",
+            bound_subscription_ids=["11111111-2222-3333-4444-555555555555"],
+            bound_resource_groups=["123456789012"],
+            token_ttl=60,
             token_max_ttl=120,
             token_policies=[
                 "default",
                 "dev",
                 "prod",
-            ],
-            token_ttl=60)
+            ])
         ```
 
         ## Import
@@ -1010,16 +1010,16 @@ class AuthBackendRole(pulumi.CustomResource):
         azure = vault.AuthBackend("azure", type="azure")
         example = vault.azure.AuthBackendRole("example",
             backend=azure.path,
-            bound_resource_groups=["123456789012"],
-            bound_subscription_ids=["11111111-2222-3333-4444-555555555555"],
             role="test-role",
+            bound_subscription_ids=["11111111-2222-3333-4444-555555555555"],
+            bound_resource_groups=["123456789012"],
+            token_ttl=60,
             token_max_ttl=120,
             token_policies=[
                 "default",
                 "dev",
                 "prod",
-            ],
-            token_ttl=60)
+            ])
         ```
 
         ## Import

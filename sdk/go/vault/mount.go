@@ -85,6 +85,33 @@ import (
 // }
 // ```
 //
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := vault.NewMount(ctx, "pki_example", &vault.MountArgs{
+// 			Description: pulumi.String("This is an example PKI mount"),
+// 			Options: pulumi.Float64Map{
+// 				"default_lease_ttl_seconds": pulumi.Float64(3600),
+// 				"max_lease_ttl_seconds":     pulumi.Float64(86400),
+// 			},
+// 			Path: pulumi.String("pki-example"),
+// 			Type: pulumi.String("pki"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // Mounts can be imported using the `path`, e.g.

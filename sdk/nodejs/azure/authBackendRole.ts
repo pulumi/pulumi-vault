@@ -17,21 +17,19 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const azure = new vault.AuthBackend("azure", {
- *     type: "azure",
- * });
+ * const azure = new vault.AuthBackend("azure", {type: "azure"});
  * const example = new vault.azure.AuthBackendRole("example", {
  *     backend: azure.path,
- *     boundResourceGroups: ["123456789012"],
- *     boundSubscriptionIds: ["11111111-2222-3333-4444-555555555555"],
  *     role: "test-role",
+ *     boundSubscriptionIds: ["11111111-2222-3333-4444-555555555555"],
+ *     boundResourceGroups: ["123456789012"],
+ *     tokenTtl: 60,
  *     tokenMaxTtl: 120,
  *     tokenPolicies: [
  *         "default",
  *         "dev",
  *         "prod",
  *     ],
- *     tokenTtl: 60,
  * });
  * ```
  *

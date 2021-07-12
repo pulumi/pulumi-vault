@@ -9,19 +9,6 @@ import * as utilities from "../utilities";
  * Reads the Role of an Kubernetes from a Vault server. See the [Vault
  * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
  * information.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const config = pulumi.output(vault.kubernetes.getAuthBackendConfig({
- *     backend: "my-kubernetes-backend",
- * }, { async: true }));
- *
- * export const tokenReviewerJwt = config.tokenReviewerJwt;
- * ```
  */
 export function getAuthBackendConfig(args?: GetAuthBackendConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendConfigResult> {
     args = args || {};

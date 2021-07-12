@@ -30,7 +30,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := vault.NewPasswordPolicy(ctx, "alphanumeric", &vault.PasswordPolicyArgs{
-// 			Policy: pulumi.String(fmt.Sprintf("%v%v%v%v%v", "length = 20\n", "rule \"charset\" {\n", "	  charset = \"abcdefghijklmnopqrstuvwxyz0123456789\"\n", "}\n", "\n")),
+// 			Policy: pulumi.String(fmt.Sprintf("%v%v%v%v%v", "    length = 20\n", "    rule \"charset\" {\n", "      charset = \"abcdefghijklmnopqrstuvwxyz0123456789\"\n", "    }\n", "  \n")),
 // 		})
 // 		if err != nil {
 // 			return err

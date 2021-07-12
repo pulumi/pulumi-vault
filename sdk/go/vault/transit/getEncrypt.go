@@ -8,38 +8,6 @@ import (
 )
 
 // This is a data source which can be used to encrypt plaintext using a Vault Transit key.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/transit"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testMount, err := vault.NewMount(ctx, "testMount", &vault.MountArgs{
-// 			Description: pulumi.String("This is an example mount"),
-// 			Path:        pulumi.String("transit"),
-// 			Type:        pulumi.String("transit"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		testSecretBackendKey, err := transit.NewSecretBackendKey(ctx, "testSecretBackendKey", &transit.SecretBackendKeyArgs{
-// 			Backend: testMount.Path,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 func GetEncrypt(ctx *pulumi.Context, args *GetEncryptArgs, opts ...pulumi.InvokeOption) (*GetEncryptResult, error) {
 	var rv GetEncryptResult
 	err := ctx.Invoke("vault:transit/getEncrypt:getEncrypt", args, &rv, opts...)

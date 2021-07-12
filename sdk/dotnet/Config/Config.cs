@@ -78,6 +78,7 @@ namespace Pulumi.Vault
 
              public class AuthLogins
              {
+                public string? Method { get; set; } = null!;
                 public string? Namespace { get; set; } = null!;
                 public ImmutableDictionary<string, string>? Parameters { get; set; } = null!;
                 public string Path { get; set; }

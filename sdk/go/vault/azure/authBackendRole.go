@@ -38,20 +38,20 @@ import (
 // 		}
 // 		_, err = azure.NewAuthBackendRole(ctx, "example", &azure.AuthBackendRoleArgs{
 // 			Backend: azure.Path,
-// 			BoundResourceGroups: pulumi.StringArray{
-// 				pulumi.String("123456789012"),
-// 			},
+// 			Role:    pulumi.String("test-role"),
 // 			BoundSubscriptionIds: pulumi.StringArray{
 // 				pulumi.String("11111111-2222-3333-4444-555555555555"),
 // 			},
-// 			Role:        pulumi.String("test-role"),
+// 			BoundResourceGroups: pulumi.StringArray{
+// 				pulumi.String("123456789012"),
+// 			},
+// 			TokenTtl:    pulumi.Int(60),
 // 			TokenMaxTtl: pulumi.Int(120),
 // 			TokenPolicies: pulumi.StringArray{
 // 				pulumi.String("default"),
 // 				pulumi.String("dev"),
 // 				pulumi.String("prod"),
 // 			},
-// 			TokenTtl: pulumi.Int(60),
 // 		})
 // 		if err != nil {
 // 			return err

@@ -14,11 +14,11 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const pki = new vault.pkiSecret.SecretBackend("pki", {
+ *     path: "pki",
  *     defaultLeaseTtlSeconds: 3600,
  *     maxLeaseTtlSeconds: 86400,
- *     path: "%s",
  * });
- * const configUrls = new vault.pkiSecret.SecretBackendConfigUrls("config_urls", {
+ * const configUrls = new vault.pkiSecret.SecretBackendConfigUrls("configUrls", {
  *     backend: pki.path,
  *     issuingCertificates: ["http://127.0.0.1:8200/v1/pki/ca"],
  * });

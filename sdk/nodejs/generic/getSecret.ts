@@ -31,6 +31,11 @@ export interface GetSecretArgs {
      * to see which endpoints support the `GET` method.
      */
     readonly path: string;
+    /**
+     * The version of the secret to read. This is used by the
+     * Vault KV secrets engine - version 2 to indicate which version of the secret
+     * to read.
+     */
     readonly version?: number;
 }
 

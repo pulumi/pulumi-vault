@@ -18,9 +18,12 @@ __all__ = [
 class AuthLogins(dict):
     def __init__(__self__, *,
                  path: str,
+                 method: Optional[str] = None,
                  namespace: Optional[str] = None,
                  parameters: Optional[Mapping[str, str]] = None):
         pulumi.set(__self__, "path", path)
+        if method is not None:
+            pulumi.set(__self__, "method", method)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if parameters is not None:
@@ -30,6 +33,11 @@ class AuthLogins(dict):
     @pulumi.getter
     def path(self) -> str:
         return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def method(self) -> Optional[str]:
+        return pulumi.get(self, "method")
 
     @property
     @pulumi.getter

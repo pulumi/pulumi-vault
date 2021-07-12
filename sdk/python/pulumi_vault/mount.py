@@ -379,6 +379,20 @@ class Mount(pulumi.CustomResource):
             type="transit")
         ```
 
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        pki_example = vault.Mount("pki-example",
+            description="This is an example PKI mount",
+            options={
+                "default_lease_ttl_seconds": 3600,
+                "max_lease_ttl_seconds": 86400,
+            },
+            path="pki-example",
+            type="pki")
+        ```
+
         ## Import
 
         Mounts can be imported using the `path`, e.g.
@@ -439,6 +453,20 @@ class Mount(pulumi.CustomResource):
             },
             path="transit-example",
             type="transit")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        pki_example = vault.Mount("pki-example",
+            description="This is an example PKI mount",
+            options={
+                "default_lease_ttl_seconds": 3600,
+                "max_lease_ttl_seconds": 86400,
+            },
+            path="pki-example",
+            type="pki")
         ```
 
         ## Import

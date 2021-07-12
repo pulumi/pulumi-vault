@@ -140,11 +140,11 @@ class AuthBackendGroup(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.okta.AuthBackend("example",
-            organization="dummy",
-            path="group_okta")
+            path="group_okta",
+            organization="dummy")
         foo = vault.okta.AuthBackendGroup("foo",
-            group_name="foo",
             path=example.path,
+            group_name="foo",
             policies=[
                 "one",
                 "two",
@@ -182,11 +182,11 @@ class AuthBackendGroup(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.okta.AuthBackend("example",
-            organization="dummy",
-            path="group_okta")
+            path="group_okta",
+            organization="dummy")
         foo = vault.okta.AuthBackendGroup("foo",
-            group_name="foo",
             path=example.path,
+            group_name="foo",
             policies=[
                 "one",
                 "two",

@@ -16,17 +16,17 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const group = new vault.identity.Group("group", {
- *     policies: ["test"],
  *     type: "external",
+ *     policies: ["test"],
  * });
  * const github = new vault.AuthBackend("github", {
- *     path: "github",
  *     type: "github",
+ *     path: "github",
  * });
  * const group_alias = new vault.identity.GroupAlias("group-alias", {
- *     canonicalId: group.id,
- *     mountAccessor: github.accessor,
  *     name: "Github_Team_Slug",
+ *     mountAccessor: github.accessor,
+ *     canonicalId: group.id,
  * });
  * ```
  *

@@ -18,33 +18,36 @@ import * as utilities from "../utilities";
  *
  * const aws = new vault.AuthBackend("aws", {
  *     type: "aws",
+ *     path: "aws",
  * });
- * const exampleAuthBackendClient = new vault.aws.AuthBackendClient("example", {
- *     accessKey: "123456789012",
+ * const exampleAuthBackendClient = new vault.aws.AuthBackendClient("exampleAuthBackendClient", {
  *     backend: aws.path,
+ *     accessKey: "123456789012",
  *     secretKey: "AWSSECRETKEYGOESHERE",
  * });
- * const exampleAuthBackendRole = new vault.aws.AuthBackendRole("example", {
- *     authType: "ec2",
+ * const exampleAuthBackendRole = new vault.aws.AuthBackendRole("exampleAuthBackendRole", {
  *     backend: aws.path,
- *     boundAccountId: "123456789012",
- *     boundAmiId: "ami-8c1be5f6",
- *     boundIamInstanceProfileArn: "arn:aws:iam::123456789012:instance-profile/MyProfile",
- *     boundSubnetId: "vpc-133128f1",
- *     boundVpcId: "vpc-b61106d4",
- *     maxTtl: 120,
  *     role: "test-role",
+ *     authType: "ec2",
+ *     boundAmiId: "ami-8c1be5f6",
+ *     boundAccountId: "123456789012",
+ *     boundVpcId: "vpc-b61106d4",
+ *     boundSubnetId: "vpc-133128f1",
+ *     boundIamInstanceProfileArn: "arn:aws:iam::123456789012:instance-profile/MyProfile",
+ *     ttl: 60,
+ *     maxTtl: 120,
  *     tokenPolicies: [
  *         "default",
  *         "dev",
  *         "prod",
  *     ],
- *     ttl: 60,
- * }, { dependsOn: [exampleAuthBackendClient] });
- * const exampleAuthBackendLogin = new vault.aws.AuthBackendLogin("example", {
- *     backend: vault_auth_backend_example.path,
- *     identity: "BASE64ENCODEDIDENTITYDOCUMENT",
+ * }, {
+ *     dependsOn: ["vault_aws_auth_backend_client.example"],
+ * });
+ * const exampleAuthBackendLogin = new vault.aws.AuthBackendLogin("exampleAuthBackendLogin", {
+ *     backend: vault_auth_backend.example.path,
  *     role: exampleAuthBackendRole.role,
+ *     identity: "BASE64ENCODEDIDENTITYDOCUMENT",
  *     signature: "BASE64ENCODEDSHA256IDENTITYDOCUMENTSIGNATURE",
  * });
  * ```

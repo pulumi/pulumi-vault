@@ -15,25 +15,23 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const approle = new vault.AuthBackend("approle", {
- *     type: "approle",
- * });
+ * const approle = new vault.AuthBackend("approle", {type: "approle"});
  * const example = new vault.appRole.AuthBackendRole("example", {
  *     backend: approle.path,
+ *     roleName: "test-role",
  *     policies: [
  *         "default",
  *         "dev",
  *         "prod",
  *     ],
- *     roleName: "test-role",
  * });
  * const id = new vault.appRole.AuthBackendRoleSecretID("id", {
  *     backend: approle.path,
- *     metadata: `{
- *   "hello": "world"
- * }
- * `,
  *     roleName: example.roleName,
+ *     metadata: `  {
+ *     "hello": "world"
+ *   }
+ * `,
  * });
  * ```
  */

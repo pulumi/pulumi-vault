@@ -36,10 +36,10 @@ import (
 // 			return err
 // 		}
 // 		postgres, err := database.NewSecretBackendConnection(ctx, "postgres", &database.SecretBackendConnectionArgs{
+// 			Backend: db.Path,
 // 			AllowedRoles: pulumi.StringArray{
 // 				pulumi.String("*"),
 // 			},
-// 			Backend: db.Path,
 // 			Postgresql: &database.SecretBackendConnectionPostgresqlArgs{
 // 				ConnectionUrl: pulumi.String("postgres://username:password@host:port/database"),
 // 			},
@@ -50,11 +50,11 @@ import (
 // 		_, err = database.NewSecretBackendStaticRole(ctx, "staticRole", &database.SecretBackendStaticRoleArgs{
 // 			Backend:        db.Path,
 // 			DbName:         postgres.Name,
+// 			Username:       pulumi.String("example"),
 // 			RotationPeriod: pulumi.Int(3600),
 // 			RotationStatements: pulumi.StringArray{
 // 				pulumi.String("ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"),
 // 			},
-// 			Username: pulumi.String("example"),
 // 		})
 // 		if err != nil {
 // 			return err

@@ -27,11 +27,11 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		transit, err := vault.NewMount(ctx, "transit", &vault.MountArgs{
-// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
-// 			Description:            pulumi.String("Example description"),
-// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
 // 			Path:                   pulumi.String("transit"),
 // 			Type:                   pulumi.String("transit"),
+// 			Description:            pulumi.String("Example description"),
+// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
+// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
 // 		})
 // 		if err != nil {
 // 			return err

@@ -37,21 +37,21 @@ import (
 // 			return err
 // 		}
 // 		example, err := appRole.NewAuthBackendRole(ctx, "example", &appRole.AuthBackendRoleArgs{
-// 			Backend: approle.Path,
+// 			Backend:  approle.Path,
+// 			RoleName: pulumi.String("test-role"),
 // 			Policies: pulumi.StringArray{
 // 				pulumi.String("default"),
 // 				pulumi.String("dev"),
 // 				pulumi.String("prod"),
 // 			},
-// 			RoleName: pulumi.String("test-role"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = appRole.NewAuthBackendRoleSecretID(ctx, "id", &appRole.AuthBackendRoleSecretIDArgs{
 // 			Backend:  approle.Path,
-// 			Metadata: pulumi.String(fmt.Sprintf("%v%v%v%v", "{\n", "  \"hello\": \"world\"\n", "}\n", "\n")),
 // 			RoleName: example.RoleName,
+// 			Metadata: pulumi.String(fmt.Sprintf("%v%v%v", "  {\n", "    \"hello\": \"world\"\n", "  }\n")),
 // 		})
 // 		if err != nil {
 // 			return err

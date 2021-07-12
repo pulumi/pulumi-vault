@@ -20,18 +20,18 @@ import * as utilities from "../utilities";
  *     type: "database",
  * });
  * const postgres = new vault.database.SecretBackendConnection("postgres", {
- *     allowedRoles: ["*"],
  *     backend: db.path,
+ *     allowedRoles: ["*"],
  *     postgresql: {
  *         connectionUrl: "postgres://username:password@host:port/database",
  *     },
  * });
- * const staticRole = new vault.database.SecretBackendStaticRole("static_role", {
+ * const staticRole = new vault.database.SecretBackendStaticRole("staticRole", {
  *     backend: db.path,
  *     dbName: postgres.name,
- *     rotationPeriod: 3600,
- *     rotationStatements: ["ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"],
  *     username: "example",
+ *     rotationPeriod: "3600",
+ *     rotationStatements: ["ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"],
  * });
  * ```
  *

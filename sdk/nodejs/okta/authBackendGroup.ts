@@ -15,12 +15,12 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.okta.AuthBackend("example", {
- *     organization: "dummy",
  *     path: "group_okta",
+ *     organization: "dummy",
  * });
  * const foo = new vault.okta.AuthBackendGroup("foo", {
- *     groupName: "foo",
  *     path: example.path,
+ *     groupName: "foo",
  *     policies: [
  *         "one",
  *         "two",

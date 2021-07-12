@@ -73,6 +73,12 @@ namespace Pulumi.Vault.Ldap
         [Output("certificate")]
         public Output<string> Certificate { get; private set; } = null!;
 
+        [Output("clientTlsCert")]
+        public Output<string> ClientTlsCert { get; private set; } = null!;
+
+        [Output("clientTlsKey")]
+        public Output<string> ClientTlsKey { get; private set; } = null!;
+
         [Output("denyNullBind")]
         public Output<bool> DenyNullBind { get; private set; } = null!;
 
@@ -299,6 +305,12 @@ namespace Pulumi.Vault.Ldap
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
 
+        [Input("clientTlsCert")]
+        public Input<string>? ClientTlsCert { get; set; }
+
+        [Input("clientTlsKey")]
+        public Input<string>? ClientTlsKey { get; set; }
+
         [Input("denyNullBind")]
         public Input<bool>? DenyNullBind { get; set; }
 
@@ -503,6 +515,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
+
+        [Input("clientTlsCert")]
+        public Input<string>? ClientTlsCert { get; set; }
+
+        [Input("clientTlsKey")]
+        public Input<string>? ClientTlsKey { get; set; }
 
         [Input("denyNullBind")]
         public Input<bool>? DenyNullBind { get; set; }

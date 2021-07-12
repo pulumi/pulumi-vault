@@ -108,22 +108,6 @@ def get_encrypt(backend: Optional[str] = None,
     """
     This is a data source which can be used to encrypt plaintext using a Vault Transit key.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_vault as vault
-
-    test_mount = vault.Mount("testMount",
-        description="This is an example mount",
-        path="transit",
-        type="transit")
-    test_secret_backend_key = vault.transit.SecretBackendKey("testSecretBackendKey", backend=test_mount.path)
-    test_encrypt = pulumi.Output.all(test_mount.path, test_secret_backend_key.name).apply(lambda path, name: vault.transit.get_encrypt(backend=path,
-        key=name,
-        plaintext="foobar"))
-    ```
-
 
     :param str backend: The path the transit secret backend is mounted at, with no leading or trailing `/`.
     :param str context: Context for key derivation. This is required if key derivation is enabled for this key.

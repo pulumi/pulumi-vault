@@ -16,14 +16,14 @@ import * as utilities from "./utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const userpass = new vault.AuthBackend("userpass", {
- *     path: "userpass",
  *     type: "userpass",
+ *     path: "userpass",
  * });
- * const myDuo = new vault.MfaDuo("my_duo", {
- *     apiHostname: "api-2b5c39f5.duosecurity.com",
- *     integrationKey: "BIACEUEAXI20BNWTEYXT",
+ * const myDuo = new vault.MfaDuo("myDuo", {
  *     mountAccessor: userpass.accessor,
  *     secretKey: "8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz",
+ *     integrationKey: "BIACEUEAXI20BNWTEYXT",
+ *     apiHostname: "api-2b5c39f5.duosecurity.com",
  * });
  * ```
  *

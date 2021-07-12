@@ -77,6 +77,8 @@ export class AuthBackend extends pulumi.CustomResource {
      * Trusted CA to validate TLS certificate
      */
     public readonly certificate!: pulumi.Output<string>;
+    public readonly clientTlsCert!: pulumi.Output<string>;
+    public readonly clientTlsKey!: pulumi.Output<string>;
     public readonly denyNullBind!: pulumi.Output<boolean>;
     /**
      * Description for the LDAP auth backend mount
@@ -207,6 +209,8 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["binddn"] = state ? state.binddn : undefined;
             inputs["bindpass"] = state ? state.bindpass : undefined;
             inputs["certificate"] = state ? state.certificate : undefined;
+            inputs["clientTlsCert"] = state ? state.clientTlsCert : undefined;
+            inputs["clientTlsKey"] = state ? state.clientTlsKey : undefined;
             inputs["denyNullBind"] = state ? state.denyNullBind : undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["discoverdn"] = state ? state.discoverdn : undefined;
@@ -240,6 +244,8 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["binddn"] = args ? args.binddn : undefined;
             inputs["bindpass"] = args ? args.bindpass : undefined;
             inputs["certificate"] = args ? args.certificate : undefined;
+            inputs["clientTlsCert"] = args ? args.clientTlsCert : undefined;
+            inputs["clientTlsKey"] = args ? args.clientTlsKey : undefined;
             inputs["denyNullBind"] = args ? args.denyNullBind : undefined;
             inputs["description"] = args ? args.description : undefined;
             inputs["discoverdn"] = args ? args.discoverdn : undefined;
@@ -294,6 +300,8 @@ export interface AuthBackendState {
      * Trusted CA to validate TLS certificate
      */
     readonly certificate?: pulumi.Input<string>;
+    readonly clientTlsCert?: pulumi.Input<string>;
+    readonly clientTlsKey?: pulumi.Input<string>;
     readonly denyNullBind?: pulumi.Input<boolean>;
     /**
      * Description for the LDAP auth backend mount
@@ -424,6 +432,8 @@ export interface AuthBackendArgs {
      * Trusted CA to validate TLS certificate
      */
     readonly certificate?: pulumi.Input<string>;
+    readonly clientTlsCert?: pulumi.Input<string>;
+    readonly clientTlsKey?: pulumi.Input<string>;
     readonly denyNullBind?: pulumi.Input<boolean>;
     /**
      * Description for the LDAP auth backend mount

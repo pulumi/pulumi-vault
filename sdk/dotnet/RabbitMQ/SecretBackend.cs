@@ -55,7 +55,7 @@ namespace Pulumi.Vault.RabbitMQ
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `aws`.
+        /// not begin or end with a `/`. Defaults to `rabbitmq`.
         /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
@@ -153,7 +153,7 @@ namespace Pulumi.Vault.RabbitMQ
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `aws`.
+        /// not begin or end with a `/`. Defaults to `rabbitmq`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -212,7 +212,7 @@ namespace Pulumi.Vault.RabbitMQ
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `aws`.
+        /// not begin or end with a `/`. Defaults to `rabbitmq`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }

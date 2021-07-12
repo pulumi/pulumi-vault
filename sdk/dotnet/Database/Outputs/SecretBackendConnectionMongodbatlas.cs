@@ -13,8 +13,17 @@ namespace Pulumi.Vault.Database.Outputs
     [OutputType]
     public sealed class SecretBackendConnectionMongodbatlas
     {
+        /// <summary>
+        /// The Private Programmatic API Key used to connect with MongoDB Atlas API.
+        /// </summary>
         public readonly string PrivateKey;
+        /// <summary>
+        /// The Project ID the Database User should be created within.
+        /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+        /// </summary>
         public readonly string PublicKey;
 
         [OutputConstructor]

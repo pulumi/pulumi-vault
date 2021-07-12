@@ -926,9 +926,12 @@ func (o SecretBackendConnectionMongodbPtrOutput) MaxOpenConnections() pulumi.Int
 }
 
 type SecretBackendConnectionMongodbatlas struct {
+	// The Private Programmatic API Key used to connect with MongoDB Atlas API.
 	PrivateKey string `pulumi:"privateKey"`
-	ProjectId  string `pulumi:"projectId"`
-	PublicKey  string `pulumi:"publicKey"`
+	// The Project ID the Database User should be created within.
+	ProjectId string `pulumi:"projectId"`
+	// The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+	PublicKey string `pulumi:"publicKey"`
 }
 
 // SecretBackendConnectionMongodbatlasInput is an input type that accepts SecretBackendConnectionMongodbatlasArgs and SecretBackendConnectionMongodbatlasOutput values.
@@ -943,9 +946,12 @@ type SecretBackendConnectionMongodbatlasInput interface {
 }
 
 type SecretBackendConnectionMongodbatlasArgs struct {
+	// The Private Programmatic API Key used to connect with MongoDB Atlas API.
 	PrivateKey pulumi.StringInput `pulumi:"privateKey"`
-	ProjectId  pulumi.StringInput `pulumi:"projectId"`
-	PublicKey  pulumi.StringInput `pulumi:"publicKey"`
+	// The Project ID the Database User should be created within.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+	PublicKey pulumi.StringInput `pulumi:"publicKey"`
 }
 
 func (SecretBackendConnectionMongodbatlasArgs) ElementType() reflect.Type {
@@ -1024,14 +1030,18 @@ func (o SecretBackendConnectionMongodbatlasOutput) ToSecretBackendConnectionMong
 		return &v
 	}).(SecretBackendConnectionMongodbatlasPtrOutput)
 }
+
+// The Private Programmatic API Key used to connect with MongoDB Atlas API.
 func (o SecretBackendConnectionMongodbatlasOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMongodbatlas) string { return v.PrivateKey }).(pulumi.StringOutput)
 }
 
+// The Project ID the Database User should be created within.
 func (o SecretBackendConnectionMongodbatlasOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMongodbatlas) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
 func (o SecretBackendConnectionMongodbatlasOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMongodbatlas) string { return v.PublicKey }).(pulumi.StringOutput)
 }
@@ -1054,6 +1064,7 @@ func (o SecretBackendConnectionMongodbatlasPtrOutput) Elem() SecretBackendConnec
 	return o.ApplyT(func(v *SecretBackendConnectionMongodbatlas) SecretBackendConnectionMongodbatlas { return *v }).(SecretBackendConnectionMongodbatlasOutput)
 }
 
+// The Private Programmatic API Key used to connect with MongoDB Atlas API.
 func (o SecretBackendConnectionMongodbatlasPtrOutput) PrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMongodbatlas) *string {
 		if v == nil {
@@ -1063,6 +1074,7 @@ func (o SecretBackendConnectionMongodbatlasPtrOutput) PrivateKey() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
+// The Project ID the Database User should be created within.
 func (o SecretBackendConnectionMongodbatlasPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMongodbatlas) *string {
 		if v == nil {
@@ -1072,6 +1084,7 @@ func (o SecretBackendConnectionMongodbatlasPtrOutput) ProjectId() pulumi.StringP
 	}).(pulumi.StringPtrOutput)
 }
 
+// The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
 func (o SecretBackendConnectionMongodbatlasPtrOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMongodbatlas) *string {
 		if v == nil {

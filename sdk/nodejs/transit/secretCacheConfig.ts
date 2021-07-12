@@ -14,11 +14,11 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const transit = new vault.Mount("transit", {
- *     defaultLeaseTtlSeconds: 3600,
- *     description: "Example description",
- *     maxLeaseTtlSeconds: 86400,
  *     path: "transit",
  *     type: "transit",
+ *     description: "Example description",
+ *     defaultLeaseTtlSeconds: 3600,
+ *     maxLeaseTtlSeconds: 86400,
  * });
  * const cfg = new vault.transit.SecretCacheConfig("cfg", {
  *     backend: transit.path,

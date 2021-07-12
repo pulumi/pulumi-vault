@@ -15,18 +15,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const kubernetes = new vault.AuthBackend("kubernetes", {
- *     type: "kubernetes",
- * });
+ * const kubernetes = new vault.AuthBackend("kubernetes", {type: "kubernetes"});
  * const example = new vault.kubernetes.AuthBackendConfig("example", {
  *     backend: kubernetes.path,
- *     disableIssValidation: true,
- *     issuer: "api",
+ *     kubernetesHost: "http://example.com:443",
  *     kubernetesCaCert: `-----BEGIN CERTIFICATE-----
  * example
  * -----END CERTIFICATE-----`,
- *     kubernetesHost: "http://example.com:443",
  *     tokenReviewerJwt: "ZXhhbXBsZQo=",
+ *     issuer: "api",
+ *     disableIssValidation: "true",
  * });
  * ```
  *

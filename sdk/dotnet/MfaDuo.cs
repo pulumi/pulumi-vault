@@ -26,15 +26,15 @@ namespace Pulumi.Vault
     ///     {
     ///         var userpass = new Vault.AuthBackend("userpass", new Vault.AuthBackendArgs
     ///         {
-    ///             Path = "userpass",
     ///             Type = "userpass",
+    ///             Path = "userpass",
     ///         });
     ///         var myDuo = new Vault.MfaDuo("myDuo", new Vault.MfaDuoArgs
     ///         {
-    ///             ApiHostname = "api-2b5c39f5.duosecurity.com",
-    ///             IntegrationKey = "BIACEUEAXI20BNWTEYXT",
     ///             MountAccessor = userpass.Accessor,
     ///             SecretKey = "8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz",
+    ///             IntegrationKey = "BIACEUEAXI20BNWTEYXT",
+    ///             ApiHostname = "api-2b5c39f5.duosecurity.com",
     ///         });
     ///     }
     /// 

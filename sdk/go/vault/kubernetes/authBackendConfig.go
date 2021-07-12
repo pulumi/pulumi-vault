@@ -21,8 +21,6 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
-//
 // 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault"
 // 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/kubernetes"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -38,11 +36,11 @@ import (
 // 		}
 // 		_, err = kubernetes.NewAuthBackendConfig(ctx, "example", &kubernetes.AuthBackendConfigArgs{
 // 			Backend:              kubernetes.Path,
-// 			DisableIssValidation: pulumi.Bool(true),
-// 			Issuer:               pulumi.String("api"),
-// 			KubernetesCaCert:     pulumi.String(fmt.Sprintf("%v%v%v", "-----BEGIN CERTIFICATE-----\n", "example\n", "-----END CERTIFICATE-----\n")),
 // 			KubernetesHost:       pulumi.String("http://example.com:443"),
+// 			KubernetesCaCert:     pulumi.String("-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----"),
 // 			TokenReviewerJwt:     pulumi.String("ZXhhbXBsZQo="),
+// 			Issuer:               pulumi.String("api"),
+// 			DisableIssValidation: pulumi.Bool(true),
 // 		})
 // 		if err != nil {
 // 			return err

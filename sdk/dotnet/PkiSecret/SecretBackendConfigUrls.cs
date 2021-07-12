@@ -24,9 +24,9 @@ namespace Pulumi.Vault.PkiSecret
     ///     {
     ///         var pki = new Vault.PkiSecret.SecretBackend("pki", new Vault.PkiSecret.SecretBackendArgs
     ///         {
+    ///             Path = "pki",
     ///             DefaultLeaseTtlSeconds = 3600,
     ///             MaxLeaseTtlSeconds = 86400,
-    ///             Path = "%s",
     ///         });
     ///         var configUrls = new Vault.PkiSecret.SecretBackendConfigUrls("configUrls", new Vault.PkiSecret.SecretBackendConfigUrlsArgs
     ///         {

@@ -77,6 +77,7 @@ def get_policy_document(rules: Optional[Sequence[pulumi.InputType['GetPolicyDocu
     import pulumi_vault as vault
 
     example_policy_document = vault.get_policy_document(rules=[vault.GetPolicyDocumentRuleArgs(
+        path="secret/*",
         capabilities=[
             "create",
             "read",
@@ -85,7 +86,6 @@ def get_policy_document(rules: Optional[Sequence[pulumi.InputType['GetPolicyDocu
             "list",
         ],
         description="allow all on secrets",
-        path="secret/*",
     )])
     example_policy = vault.Policy("examplePolicy", policy=example_policy_document.hcl)
     ```

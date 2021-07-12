@@ -35,13 +35,13 @@ import (
 // 			return err
 // 		}
 // 		example, err := appRole.NewAuthBackendRole(ctx, "example", &appRole.AuthBackendRoleArgs{
-// 			Backend: approle.Path,
+// 			Backend:  approle.Path,
+// 			RoleName: pulumi.String("test-role"),
 // 			Policies: pulumi.StringArray{
 // 				pulumi.String("default"),
 // 				pulumi.String("dev"),
 // 				pulumi.String("prod"),
 // 			},
-// 			RoleName: pulumi.String("test-role"),
 // 		})
 // 		if err != nil {
 // 			return err

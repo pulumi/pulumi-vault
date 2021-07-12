@@ -107,6 +107,7 @@ export interface GetPolicyDocumentRuleDeniedParameter {
 }
 
 export interface ProviderAuthLogin {
+    method?: pulumi.Input<string>;
     namespace?: pulumi.Input<string>;
     parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     path: pulumi.Input<string>;
@@ -252,8 +253,17 @@ export namespace database {
     }
 
     export interface SecretBackendConnectionMongodbatlas {
+        /**
+         * The Private Programmatic API Key used to connect with MongoDB Atlas API.
+         */
         privateKey: pulumi.Input<string>;
+        /**
+         * The Project ID the Database User should be created within.
+         */
         projectId: pulumi.Input<string>;
+        /**
+         * The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+         */
         publicKey: pulumi.Input<string>;
     }
 

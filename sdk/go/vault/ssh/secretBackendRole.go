@@ -34,19 +34,19 @@ import (
 // 			return err
 // 		}
 // 		_, err = ssh.NewSecretBackendRole(ctx, "foo", &ssh.SecretBackendRoleArgs{
-// 			AllowUserCertificates: pulumi.Bool(true),
 // 			Backend:               example.Path,
 // 			KeyType:               pulumi.String("ca"),
+// 			AllowUserCertificates: pulumi.Bool(true),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = ssh.NewSecretBackendRole(ctx, "bar", &ssh.SecretBackendRoleArgs{
-// 			AllowedUsers: pulumi.String("default,baz"),
 // 			Backend:      example.Path,
-// 			CidrList:     pulumi.String("0.0.0.0/0"),
-// 			DefaultUser:  pulumi.String("default"),
 // 			KeyType:      pulumi.String("otp"),
+// 			DefaultUser:  pulumi.String("default"),
+// 			AllowedUsers: pulumi.String("default,baz"),
+// 			CidrList:     pulumi.String("0.0.0.0/0"),
 // 		})
 // 		if err != nil {
 // 			return err

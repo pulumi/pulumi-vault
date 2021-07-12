@@ -14,15 +14,13 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const transit = new vault.Mount("transit", {
- *     defaultLeaseTtlSeconds: 3600,
- *     description: "Example description",
- *     maxLeaseTtlSeconds: 86400,
  *     path: "transit",
  *     type: "transit",
+ *     description: "Example description",
+ *     defaultLeaseTtlSeconds: 3600,
+ *     maxLeaseTtlSeconds: 86400,
  * });
- * const key = new vault.transit.SecretBackendKey("key", {
- *     backend: transit.path,
- * });
+ * const key = new vault.transit.SecretBackendKey("key", {backend: transit.path});
  * ```
  *
  * ## Import

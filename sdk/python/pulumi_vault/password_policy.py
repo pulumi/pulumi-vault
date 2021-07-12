@@ -108,11 +108,11 @@ class PasswordPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        alphanumeric = vault.PasswordPolicy("alphanumeric", policy=\"\"\"length = 20
-        rule "charset" {
-        	  charset = "abcdefghijklmnopqrstuvwxyz0123456789"
-        }
-
+        alphanumeric = vault.PasswordPolicy("alphanumeric", policy=\"\"\"    length = 20
+            rule "charset" {
+              charset = "abcdefghijklmnopqrstuvwxyz0123456789"
+            }
+          
         \"\"\")
         ```
 
@@ -146,11 +146,11 @@ class PasswordPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        alphanumeric = vault.PasswordPolicy("alphanumeric", policy=\"\"\"length = 20
-        rule "charset" {
-        	  charset = "abcdefghijklmnopqrstuvwxyz0123456789"
-        }
-
+        alphanumeric = vault.PasswordPolicy("alphanumeric", policy=\"\"\"    length = 20
+            rule "charset" {
+              charset = "abcdefghijklmnopqrstuvwxyz0123456789"
+            }
+          
         \"\"\")
         ```
 

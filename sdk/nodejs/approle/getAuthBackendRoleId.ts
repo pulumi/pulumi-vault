@@ -14,12 +14,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const role = pulumi.output(vault.appRole.getAuthBackendRoleId({
+ * const role = vault.appRole.getAuthBackendRoleId({
  *     backend: "my-approle-backend",
  *     roleName: "my-role",
- * }, { async: true }));
- *
- * export const role_id = role.roleId;
+ * });
+ * export const role_id = role.then(role => role.roleId);
  * ```
  */
 export function getAuthBackendRoleId(args: GetAuthBackendRoleIdArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendRoleIdResult> {

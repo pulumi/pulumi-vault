@@ -14,22 +14,22 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const ldap = new vault.ldap.AuthBackend("ldap", {
+ *     path: "ldap",
+ *     url: "ldaps://dc-01.example.org",
+ *     userdn: "OU=Users,OU=Accounts,DC=example,DC=org",
+ *     userattr: "sAMAccountName",
+ *     upndomain: "EXAMPLE.ORG",
  *     discoverdn: false,
  *     groupdn: "OU=Groups,DC=example,DC=org",
  *     groupfilter: "(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
- *     path: "ldap",
- *     upndomain: "EXAMPLE.ORG",
- *     url: "ldaps://dc-01.example.org",
- *     userattr: "sAMAccountName",
- *     userdn: "OU=Users,OU=Accounts,DC=example,DC=org",
  * });
  * const user = new vault.ldap.AuthBackendUser("user", {
- *     backend: ldap.path,
+ *     username: "test-user",
  *     policies: [
  *         "dba",
  *         "sysops",
  *     ],
- *     username: "test-user",
+ *     backend: ldap.path,
  * });
  * ```
  *

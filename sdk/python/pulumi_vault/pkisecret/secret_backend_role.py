@@ -1295,10 +1295,20 @@ class SecretBackendRole(pulumi.CustomResource):
         import pulumi_vault as vault
 
         pki = vault.pki_secret.SecretBackend("pki",
+            path="pki",
             default_lease_ttl_seconds=3600,
-            max_lease_ttl_seconds=86400,
-            path="%s")
-        role = vault.pki_secret.SecretBackendRole("role", backend=pki.path)
+            max_lease_ttl_seconds=86400)
+        role = vault.pki_secret.SecretBackendRole("role",
+            backend=pki.path,
+            ttl="3600",
+            allow_ip_sans=True,
+            key_type="rsa",
+            key_bits=4096,
+            allowed_domains=[
+                "example.com",
+                "my.domain",
+            ],
+            allow_subdomains=True)
         ```
 
         ## Import
@@ -1366,10 +1376,20 @@ class SecretBackendRole(pulumi.CustomResource):
         import pulumi_vault as vault
 
         pki = vault.pki_secret.SecretBackend("pki",
+            path="pki",
             default_lease_ttl_seconds=3600,
-            max_lease_ttl_seconds=86400,
-            path="%s")
-        role = vault.pki_secret.SecretBackendRole("role", backend=pki.path)
+            max_lease_ttl_seconds=86400)
+        role = vault.pki_secret.SecretBackendRole("role",
+            backend=pki.path,
+            ttl="3600",
+            allow_ip_sans=True,
+            key_type="rsa",
+            key_bits=4096,
+            allowed_domains=[
+                "example.com",
+                "my.domain",
+            ],
+            allow_subdomains=True)
         ```
 
         ## Import

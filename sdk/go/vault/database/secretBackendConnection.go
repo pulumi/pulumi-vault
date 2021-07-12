@@ -36,7 +36,7 @@ type SecretBackendConnection struct {
 	Hana SecretBackendConnectionHanaPtrOutput `pulumi:"hana"`
 	// A nested block containing configuration options for MongoDB connections.
 	Mongodb SecretBackendConnectionMongodbPtrOutput `pulumi:"mongodb"`
-	// Connection parameters for the mongodbatlas-database-plugin plugin.
+	// A nested block containing configuration options for MongoDB Atlas connections.
 	Mongodbatlas SecretBackendConnectionMongodbatlasPtrOutput `pulumi:"mongodbatlas"`
 	// A nested block containing configuration options for MSSQL connections.
 	Mssql SecretBackendConnectionMssqlPtrOutput `pulumi:"mssql"`
@@ -108,7 +108,7 @@ type secretBackendConnectionState struct {
 	Hana *SecretBackendConnectionHana `pulumi:"hana"`
 	// A nested block containing configuration options for MongoDB connections.
 	Mongodb *SecretBackendConnectionMongodb `pulumi:"mongodb"`
-	// Connection parameters for the mongodbatlas-database-plugin plugin.
+	// A nested block containing configuration options for MongoDB Atlas connections.
 	Mongodbatlas *SecretBackendConnectionMongodbatlas `pulumi:"mongodbatlas"`
 	// A nested block containing configuration options for MSSQL connections.
 	Mssql *SecretBackendConnectionMssql `pulumi:"mssql"`
@@ -149,7 +149,7 @@ type SecretBackendConnectionState struct {
 	Hana SecretBackendConnectionHanaPtrInput
 	// A nested block containing configuration options for MongoDB connections.
 	Mongodb SecretBackendConnectionMongodbPtrInput
-	// Connection parameters for the mongodbatlas-database-plugin plugin.
+	// A nested block containing configuration options for MongoDB Atlas connections.
 	Mongodbatlas SecretBackendConnectionMongodbatlasPtrInput
 	// A nested block containing configuration options for MSSQL connections.
 	Mssql SecretBackendConnectionMssqlPtrInput
@@ -194,7 +194,7 @@ type secretBackendConnectionArgs struct {
 	Hana *SecretBackendConnectionHana `pulumi:"hana"`
 	// A nested block containing configuration options for MongoDB connections.
 	Mongodb *SecretBackendConnectionMongodb `pulumi:"mongodb"`
-	// Connection parameters for the mongodbatlas-database-plugin plugin.
+	// A nested block containing configuration options for MongoDB Atlas connections.
 	Mongodbatlas *SecretBackendConnectionMongodbatlas `pulumi:"mongodbatlas"`
 	// A nested block containing configuration options for MSSQL connections.
 	Mssql *SecretBackendConnectionMssql `pulumi:"mssql"`
@@ -236,7 +236,7 @@ type SecretBackendConnectionArgs struct {
 	Hana SecretBackendConnectionHanaPtrInput
 	// A nested block containing configuration options for MongoDB connections.
 	Mongodb SecretBackendConnectionMongodbPtrInput
-	// Connection parameters for the mongodbatlas-database-plugin plugin.
+	// A nested block containing configuration options for MongoDB Atlas connections.
 	Mongodbatlas SecretBackendConnectionMongodbatlasPtrInput
 	// A nested block containing configuration options for MSSQL connections.
 	Mssql SecretBackendConnectionMssqlPtrInput

@@ -241,17 +241,17 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             path="postgres",
             type="database")
         postgres = vault.database.SecretBackendConnection("postgres",
-            allowed_roles=["*"],
             backend=db.path,
+            allowed_roles=["*"],
             postgresql=vault.database.SecretBackendConnectionPostgresqlArgs(
                 connection_url="postgres://username:password@host:port/database",
             ))
         static_role = vault.database.SecretBackendStaticRole("staticRole",
             backend=db.path,
             db_name=postgres.name,
+            username="example",
             rotation_period=3600,
-            rotation_statements=["ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"],
-            username="example")
+            rotation_statements=["ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"])
         ```
 
         ## Import
@@ -292,17 +292,17 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             path="postgres",
             type="database")
         postgres = vault.database.SecretBackendConnection("postgres",
-            allowed_roles=["*"],
             backend=db.path,
+            allowed_roles=["*"],
             postgresql=vault.database.SecretBackendConnectionPostgresqlArgs(
                 connection_url="postgres://username:password@host:port/database",
             ))
         static_role = vault.database.SecretBackendStaticRole("staticRole",
             backend=db.path,
             db_name=postgres.name,
+            username="example",
             rotation_period=3600,
-            rotation_statements=["ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"],
-            username="example")
+            rotation_statements=["ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"])
         ```
 
         ## Import

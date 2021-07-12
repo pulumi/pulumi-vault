@@ -33,7 +33,7 @@ import (
 // 			Ou:                pulumi.String("My OU"),
 // 			Organization:      pulumi.String("My organization"),
 // 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			"vault_pki_secret_backend_intermediate_cert_request.intermediate",
+// 			vault_pki_secret_backend_intermediate_cert_request.Intermediate,
 // 		}))
 // 		if err != nil {
 // 			return err

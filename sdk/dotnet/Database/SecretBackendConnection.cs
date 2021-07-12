@@ -65,7 +65,7 @@ namespace Pulumi.Vault.Database
         public Output<Outputs.SecretBackendConnectionMongodb?> Mongodb { get; private set; } = null!;
 
         /// <summary>
-        /// Connection parameters for the mongodbatlas-database-plugin plugin.
+        /// A nested block containing configuration options for MongoDB Atlas connections.
         /// </summary>
         [Output("mongodbatlas")]
         public Output<Outputs.SecretBackendConnectionMongodbatlas?> Mongodbatlas { get; private set; } = null!;
@@ -233,7 +233,7 @@ namespace Pulumi.Vault.Database
         public Input<Inputs.SecretBackendConnectionMongodbArgs>? Mongodb { get; set; }
 
         /// <summary>
-        /// Connection parameters for the mongodbatlas-database-plugin plugin.
+        /// A nested block containing configuration options for MongoDB Atlas connections.
         /// </summary>
         [Input("mongodbatlas")]
         public Input<Inputs.SecretBackendConnectionMongodbatlasArgs>? Mongodbatlas { get; set; }
@@ -368,7 +368,7 @@ namespace Pulumi.Vault.Database
         public Input<Inputs.SecretBackendConnectionMongodbGetArgs>? Mongodb { get; set; }
 
         /// <summary>
-        /// Connection parameters for the mongodbatlas-database-plugin plugin.
+        /// A nested block containing configuration options for MongoDB Atlas connections.
         /// </summary>
         [Input("mongodbatlas")]
         public Input<Inputs.SecretBackendConnectionMongodbatlasGetArgs>? Mongodbatlas { get; set; }

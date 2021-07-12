@@ -60,8 +60,10 @@ type AuthBackend struct {
 	// Password to use with `binddn` when performing user search
 	Bindpass pulumi.StringOutput `pulumi:"bindpass"`
 	// Trusted CA to validate TLS certificate
-	Certificate  pulumi.StringOutput `pulumi:"certificate"`
-	DenyNullBind pulumi.BoolOutput   `pulumi:"denyNullBind"`
+	Certificate   pulumi.StringOutput `pulumi:"certificate"`
+	ClientTlsCert pulumi.StringOutput `pulumi:"clientTlsCert"`
+	ClientTlsKey  pulumi.StringOutput `pulumi:"clientTlsKey"`
+	DenyNullBind  pulumi.BoolOutput   `pulumi:"denyNullBind"`
 	// Description for the LDAP auth backend mount
 	Description pulumi.StringOutput `pulumi:"description"`
 	Discoverdn  pulumi.BoolOutput   `pulumi:"discoverdn"`
@@ -168,8 +170,10 @@ type authBackendState struct {
 	// Password to use with `binddn` when performing user search
 	Bindpass *string `pulumi:"bindpass"`
 	// Trusted CA to validate TLS certificate
-	Certificate  *string `pulumi:"certificate"`
-	DenyNullBind *bool   `pulumi:"denyNullBind"`
+	Certificate   *string `pulumi:"certificate"`
+	ClientTlsCert *string `pulumi:"clientTlsCert"`
+	ClientTlsKey  *string `pulumi:"clientTlsKey"`
+	DenyNullBind  *bool   `pulumi:"denyNullBind"`
 	// Description for the LDAP auth backend mount
 	Description *string `pulumi:"description"`
 	Discoverdn  *bool   `pulumi:"discoverdn"`
@@ -245,8 +249,10 @@ type AuthBackendState struct {
 	// Password to use with `binddn` when performing user search
 	Bindpass pulumi.StringPtrInput
 	// Trusted CA to validate TLS certificate
-	Certificate  pulumi.StringPtrInput
-	DenyNullBind pulumi.BoolPtrInput
+	Certificate   pulumi.StringPtrInput
+	ClientTlsCert pulumi.StringPtrInput
+	ClientTlsKey  pulumi.StringPtrInput
+	DenyNullBind  pulumi.BoolPtrInput
 	// Description for the LDAP auth backend mount
 	Description pulumi.StringPtrInput
 	Discoverdn  pulumi.BoolPtrInput
@@ -324,8 +330,10 @@ type authBackendArgs struct {
 	// Password to use with `binddn` when performing user search
 	Bindpass *string `pulumi:"bindpass"`
 	// Trusted CA to validate TLS certificate
-	Certificate  *string `pulumi:"certificate"`
-	DenyNullBind *bool   `pulumi:"denyNullBind"`
+	Certificate   *string `pulumi:"certificate"`
+	ClientTlsCert *string `pulumi:"clientTlsCert"`
+	ClientTlsKey  *string `pulumi:"clientTlsKey"`
+	DenyNullBind  *bool   `pulumi:"denyNullBind"`
 	// Description for the LDAP auth backend mount
 	Description *string `pulumi:"description"`
 	Discoverdn  *bool   `pulumi:"discoverdn"`
@@ -400,8 +408,10 @@ type AuthBackendArgs struct {
 	// Password to use with `binddn` when performing user search
 	Bindpass pulumi.StringPtrInput
 	// Trusted CA to validate TLS certificate
-	Certificate  pulumi.StringPtrInput
-	DenyNullBind pulumi.BoolPtrInput
+	Certificate   pulumi.StringPtrInput
+	ClientTlsCert pulumi.StringPtrInput
+	ClientTlsKey  pulumi.StringPtrInput
+	DenyNullBind  pulumi.BoolPtrInput
 	// Description for the LDAP auth backend mount
 	Description pulumi.StringPtrInput
 	Discoverdn  pulumi.BoolPtrInput
