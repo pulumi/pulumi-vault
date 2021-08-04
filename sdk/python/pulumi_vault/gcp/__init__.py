@@ -5,6 +5,7 @@
 # Export this package's modules as members:
 from .auth_backend import *
 from .auth_backend_role import *
+from .get_auth_backend_role import *
 from .secret_backend import *
 from .secret_roleset import *
 from ._inputs import *

@@ -332,6 +332,14 @@ class Group(pulumi.CustomResource):
             type="external")
         ```
 
+        ## Import
+
+        Identity group can be imported using the `id`, e.g.
+
+        ```sh
+         $ pulumi import vault:identity/group:Group test 'fcbf1efb-2b69-4209-bed8-811e3475dad3'
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] external_member_entity_ids: `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
@@ -383,6 +391,14 @@ class Group(pulumi.CustomResource):
             },
             policies=["test"],
             type="external")
+        ```
+
+        ## Import
+
+        Identity group can be imported using the `id`, e.g.
+
+        ```sh
+         $ pulumi import vault:identity/group:Group test 'fcbf1efb-2b69-4209-bed8-811e3475dad3'
         ```
 
         :param str resource_name: The name of the resource.

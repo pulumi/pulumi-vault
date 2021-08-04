@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 // Export members:
 export * from "./authBackend";
 export * from "./authBackendRole";
+export * from "./getAuthBackendRole";
 export * from "./secretBackend";
 export * from "./secretRoleset";
 

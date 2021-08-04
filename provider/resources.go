@@ -169,6 +169,7 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_nomad_secret_backend": {Tok: makeResource(mainMod, "NomadSecretBackend")},
 			"vault_nomad_secret_role":    {Tok: makeResource(mainMod, "NomadSecretRole")},
 			"vault_password_policy":      {Tok: makeResource(mainMod, "PasswordPolicy")},
+			"vault_quota_lease_count":    {Tok: makeResource(mainMod, "QuotaLeaseCount")},
 
 			// AD
 			"vault_ad_secret_backend": {Tok: makeResource(adMod, "SecretBackend")},
@@ -408,6 +409,9 @@ func Provider() tfbridge.ProviderInfo {
 
 			// Generic
 			"vault_generic_secret": {Tok: makeDataSource(genericMod, "getSecret")},
+
+			// GCP
+			"vault_gcp_auth_backend_role": {Tok: makeDataSource(gcpMod, "getAuthBackendRole")},
 
 			// Identity
 			"vault_identity_group":  {Tok: makeDataSource(identityMod, "getGroup")},
