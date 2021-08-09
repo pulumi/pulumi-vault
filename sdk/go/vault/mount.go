@@ -96,13 +96,11 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := vault.NewMount(ctx, "pki_example", &vault.MountArgs{
-// 			Description: pulumi.String("This is an example PKI mount"),
-// 			Options: pulumi.Float64Map{
-// 				"default_lease_ttl_seconds": pulumi.Float64(3600),
-// 				"max_lease_ttl_seconds":     pulumi.Float64(86400),
-// 			},
-// 			Path: pulumi.String("pki-example"),
-// 			Type: pulumi.String("pki"),
+// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
+// 			Description:            pulumi.String("This is an example PKI mount"),
+// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
+// 			Path:                   pulumi.String("pki-example"),
+// 			Type:                   pulumi.String("pki"),
 // 		})
 // 		if err != nil {
 // 			return err

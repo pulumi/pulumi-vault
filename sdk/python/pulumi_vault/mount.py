@@ -384,11 +384,9 @@ class Mount(pulumi.CustomResource):
         import pulumi_vault as vault
 
         pki_example = vault.Mount("pki-example",
+            default_lease_ttl_seconds=3600,
             description="This is an example PKI mount",
-            options={
-                "default_lease_ttl_seconds": 3600,
-                "max_lease_ttl_seconds": 86400,
-            },
+            max_lease_ttl_seconds=86400,
             path="pki-example",
             type="pki")
         ```
@@ -460,11 +458,9 @@ class Mount(pulumi.CustomResource):
         import pulumi_vault as vault
 
         pki_example = vault.Mount("pki-example",
+            default_lease_ttl_seconds=3600,
             description="This is an example PKI mount",
-            options={
-                "default_lease_ttl_seconds": 3600,
-                "max_lease_ttl_seconds": 86400,
-            },
+            max_lease_ttl_seconds=86400,
             path="pki-example",
             type="pki")
         ```

@@ -83,12 +83,9 @@ namespace Pulumi.Vault
     ///     {
     ///         var pki_example = new Vault.Mount("pki-example", new Vault.MountArgs
     ///         {
+    ///             DefaultLeaseTtlSeconds = 3600,
     ///             Description = "This is an example PKI mount",
-    ///             Options = 
-    ///             {
-    ///                 { "default_lease_ttl_seconds", 3600 },
-    ///                 { "max_lease_ttl_seconds", 86400 },
-    ///             },
+    ///             MaxLeaseTtlSeconds = 86400,
     ///             Path = "pki-example",
     ///             Type = "pki",
     ///         });

@@ -153,7 +153,13 @@ class GroupAlias(pulumi.CustomResource):
 
         ## Import
 
-        Group aliases can be imported using the uuid of the alias record, e.g.
+        The group alias can be imported with the group alias `id`, for example
+
+        ```sh
+         $ pulumi import vault:identity/groupAlias:GroupAlias group-alias id
+        ```
+
+         Group aliases can also be imported using the UUID of the alias record, e.g.
 
         ```sh
          $ pulumi import vault:identity/groupAlias:GroupAlias alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157
@@ -196,7 +202,13 @@ class GroupAlias(pulumi.CustomResource):
 
         ## Import
 
-        Group aliases can be imported using the uuid of the alias record, e.g.
+        The group alias can be imported with the group alias `id`, for example
+
+        ```sh
+         $ pulumi import vault:identity/groupAlias:GroupAlias group-alias id
+        ```
+
+         Group aliases can also be imported using the UUID of the alias record, e.g.
 
         ```sh
          $ pulumi import vault:identity/groupAlias:GroupAlias alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157

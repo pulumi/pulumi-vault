@@ -48,11 +48,9 @@ import * as utilities from "./utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const pki_example = new vault.Mount("pki-example", {
+ *     defaultLeaseTtlSeconds: 3600,
  *     description: "This is an example PKI mount",
- *     options: {
- *         default_lease_ttl_seconds: 3600,
- *         max_lease_ttl_seconds: 86400,
- *     },
+ *     maxLeaseTtlSeconds: 86400,
  *     path: "pki-example",
  *     type: "pki",
  * });

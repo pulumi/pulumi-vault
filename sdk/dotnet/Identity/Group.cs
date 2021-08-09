@@ -68,6 +68,14 @@ namespace Pulumi.Vault.Identity
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Identity group can be imported using the `id`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:identity/group:Group test 'fcbf1efb-2b69-4209-bed8-811e3475dad3'
+    /// ```
     /// </summary>
     [VaultResourceType("vault:identity/group:Group")]
     public partial class Group : Pulumi.CustomResource
