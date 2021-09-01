@@ -42,6 +42,18 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("maxOpenConnections")]
         public Input<int>? MaxOpenConnections { get; set; }
 
+        /// <summary>
+        /// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        /// </summary>
+        [Input("tlsCa")]
+        public Input<string>? TlsCa { get; set; }
+
+        /// <summary>
+        /// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        /// </summary>
+        [Input("tlsCertificateKey")]
+        public Input<string>? TlsCertificateKey { get; set; }
+
         public SecretBackendConnectionMysqlArgs()
         {
         }

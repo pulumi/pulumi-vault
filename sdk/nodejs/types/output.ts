@@ -331,6 +331,14 @@ export namespace database {
          * use.
          */
         maxOpenConnections?: number;
+        /**
+         * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+         */
+        tlsCa?: string;
+        /**
+         * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+         */
+        tlsCertificateKey?: string;
     }
 
     export interface SecretBackendConnectionMysqlAurora {
@@ -463,6 +471,17 @@ export namespace gcp {
     export interface SecretRolesetBinding {
         /**
          * Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
+         */
+        resource: string;
+        /**
+         * List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
+         */
+        roles: string[];
+    }
+
+    export interface SecretStaticAccountBinding {
+        /**
+         * Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings).
          */
         resource: string;
         /**

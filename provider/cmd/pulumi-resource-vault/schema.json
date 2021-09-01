@@ -573,6 +573,24 @@
                             "mapCase": false
                         }
                     }
+                },
+                "tlsCa": {
+                    "type": "string",
+                    "description": "x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tlsCertificateKey": {
+                    "type": "string",
+                    "description": "x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object"
@@ -787,6 +805,36 @@
                 "resource": {
                     "type": "string",
                     "description": "Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "resource",
+                "roles"
+            ]
+        },
+        "vault:gcp/SecretStaticAccountBinding:SecretStaticAccountBinding": {
+            "properties": {
+                "resource": {
+                    "type": "string",
+                    "description": "Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -6777,6 +6825,129 @@
                 "type": "object"
             }
         },
+        "vault:gcp/secretStaticAccount:SecretStaticAccount": {
+            "description": "Creates a Static Account in the [GCP Secrets Engine](https://www.vaultproject.io/docs/secrets/gcp/index.html) for Vault.\n\nEach [static account](https://www.vaultproject.io/docs/secrets/gcp/index.html#static-accounts) is tied to a separately managed\nService Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings) associated with it.\n\n\n## Import\n\nA static account can be imported using its Vault Path. For example, referencing the example above,\n\n```sh\n $ pulumi import vault:gcp/secretStaticAccount:SecretStaticAccount static_account gcp/static-account/project_viewer\n```\n\n ",
+            "properties": {
+                "backend": {
+                    "type": "string",
+                    "description": "Path where the GCP Secrets Engine is mounted\n"
+                },
+                "bindings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/vault:gcp/SecretStaticAccountBinding:SecretStaticAccountBinding"
+                    },
+                    "description": "Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.\n"
+                },
+                "secretType": {
+                    "type": "string",
+                    "description": "Type of secret generated for this static account. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.\n"
+                },
+                "serviceAccountEmail": {
+                    "type": "string",
+                    "description": "Email of the GCP service account to manage.\n"
+                },
+                "serviceAccountProject": {
+                    "type": "string",
+                    "description": "Project the service account belongs to.\n"
+                },
+                "staticAccount": {
+                    "type": "string",
+                    "description": "Name of the Static Account to create\n"
+                },
+                "tokenScopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of OAuth scopes to assign to `access_token` secrets generated under this static account (`access_token` static accounts only).\n"
+                }
+            },
+            "required": [
+                "backend",
+                "secretType",
+                "serviceAccountEmail",
+                "serviceAccountProject",
+                "staticAccount"
+            ],
+            "inputProperties": {
+                "backend": {
+                    "type": "string",
+                    "description": "Path where the GCP Secrets Engine is mounted\n"
+                },
+                "bindings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/vault:gcp/SecretStaticAccountBinding:SecretStaticAccountBinding"
+                    },
+                    "description": "Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.\n"
+                },
+                "secretType": {
+                    "type": "string",
+                    "description": "Type of secret generated for this static account. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.\n"
+                },
+                "serviceAccountEmail": {
+                    "type": "string",
+                    "description": "Email of the GCP service account to manage.\n"
+                },
+                "staticAccount": {
+                    "type": "string",
+                    "description": "Name of the Static Account to create\n"
+                },
+                "tokenScopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of OAuth scopes to assign to `access_token` secrets generated under this static account (`access_token` static accounts only).\n"
+                }
+            },
+            "requiredInputs": [
+                "backend",
+                "serviceAccountEmail",
+                "staticAccount"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SecretStaticAccount resources.\n",
+                "properties": {
+                    "backend": {
+                        "type": "string",
+                        "description": "Path where the GCP Secrets Engine is mounted\n"
+                    },
+                    "bindings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/vault:gcp/SecretStaticAccountBinding:SecretStaticAccountBinding"
+                        },
+                        "description": "Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.\n"
+                    },
+                    "secretType": {
+                        "type": "string",
+                        "description": "Type of secret generated for this static account. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.\n"
+                    },
+                    "serviceAccountEmail": {
+                        "type": "string",
+                        "description": "Email of the GCP service account to manage.\n"
+                    },
+                    "serviceAccountProject": {
+                        "type": "string",
+                        "description": "Project the service account belongs to.\n"
+                    },
+                    "staticAccount": {
+                        "type": "string",
+                        "description": "Name of the Static Account to create\n"
+                    },
+                    "tokenScopes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of OAuth scopes to assign to `access_token` secrets generated under this static account (`access_token` static accounts only).\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "vault:generic/endpoint:Endpoint": {
             "description": "\n\n\n## Import\n\nImport is not supported for this resource. ",
             "properties": {
@@ -10351,7 +10522,7 @@
             }
         },
         "vault:jwt/authBackend:AuthBackend": {
-            "description": "Provides a resource for managing an\n[JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nManage JWT auth backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.jwt.AuthBackend(\"example\", {\n    boundIssuer: \"https://myco.auth0.com/\",\n    description: \"Demonstration of the Terraform JWT auth backend\",\n    oidcDiscoveryUrl: \"https://myco.auth0.com/\",\n    path: \"jwt\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.jwt.AuthBackend(\"example\",\n    bound_issuer=\"https://myco.auth0.com/\",\n    description=\"Demonstration of the Terraform JWT auth backend\",\n    oidc_discovery_url=\"https://myco.auth0.com/\",\n    path=\"jwt\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.Jwt.AuthBackend(\"example\", new Vault.Jwt.AuthBackendArgs\n        {\n            BoundIssuer = \"https://myco.auth0.com/\",\n            Description = \"Demonstration of the Terraform JWT auth backend\",\n            OidcDiscoveryUrl = \"https://myco.auth0.com/\",\n            Path = \"jwt\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := jwt.NewAuthBackend(ctx, \"example\", \u0026jwt.AuthBackendArgs{\n\t\t\tBoundIssuer:      pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tDescription:      pulumi.String(\"Demonstration of the Terraform JWT auth backend\"),\n\t\t\tOidcDiscoveryUrl: pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tPath:             pulumi.String(\"jwt\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\nManage OIDC auth backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.jwt.AuthBackend(\"example\", {\n    boundIssuer: \"https://myco.auth0.com/\",\n    description: \"Demonstration of the Terraform JWT auth backend\",\n    oidcClientId: \"1234567890\",\n    oidcClientSecret: \"secret123456\",\n    oidcDiscoveryUrl: \"https://myco.auth0.com/\",\n    path: \"oidc\",\n    tune: {\n        listingVisibility: \"unauth\",\n    },\n    type: \"oidc\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.jwt.AuthBackend(\"example\",\n    bound_issuer=\"https://myco.auth0.com/\",\n    description=\"Demonstration of the Terraform JWT auth backend\",\n    oidc_client_id=\"1234567890\",\n    oidc_client_secret=\"secret123456\",\n    oidc_discovery_url=\"https://myco.auth0.com/\",\n    path=\"oidc\",\n    tune=vault.jwt.AuthBackendTuneArgs(\n        listing_visibility=\"unauth\",\n    ),\n    type=\"oidc\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.Jwt.AuthBackend(\"example\", new Vault.Jwt.AuthBackendArgs\n        {\n            BoundIssuer = \"https://myco.auth0.com/\",\n            Description = \"Demonstration of the Terraform JWT auth backend\",\n            OidcClientId = \"1234567890\",\n            OidcClientSecret = \"secret123456\",\n            OidcDiscoveryUrl = \"https://myco.auth0.com/\",\n            Path = \"oidc\",\n            Tune = new Vault.Jwt.Inputs.AuthBackendTuneArgs\n            {\n                ListingVisibility = \"unauth\",\n            },\n            Type = \"oidc\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := jwt.NewAuthBackend(ctx, \"example\", \u0026jwt.AuthBackendArgs{\n\t\t\tBoundIssuer:      pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tDescription:      pulumi.String(\"Demonstration of the Terraform JWT auth backend\"),\n\t\t\tOidcClientId:     pulumi.String(\"1234567890\"),\n\t\t\tOidcClientSecret: pulumi.String(\"secret123456\"),\n\t\t\tOidcDiscoveryUrl: pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tPath:             pulumi.String(\"oidc\"),\n\t\t\tTune: \u0026jwt.AuthBackendTuneArgs{\n\t\t\t\tListingVisibility: pulumi.String(\"unauth\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"oidc\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nJWT auth backend can be imported using the `type`, e.g.\n\n```sh\n $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc\n```\n\n or\n\n```sh\n $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt\n```\n\n ",
+            "description": "Provides a resource for managing an\n[JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nManage JWT auth backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.jwt.AuthBackend(\"example\", {\n    boundIssuer: \"https://myco.auth0.com/\",\n    description: \"Demonstration of the Terraform JWT auth backend\",\n    oidcDiscoveryUrl: \"https://myco.auth0.com/\",\n    path: \"jwt\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.jwt.AuthBackend(\"example\",\n    bound_issuer=\"https://myco.auth0.com/\",\n    description=\"Demonstration of the Terraform JWT auth backend\",\n    oidc_discovery_url=\"https://myco.auth0.com/\",\n    path=\"jwt\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.Jwt.AuthBackend(\"example\", new Vault.Jwt.AuthBackendArgs\n        {\n            BoundIssuer = \"https://myco.auth0.com/\",\n            Description = \"Demonstration of the Terraform JWT auth backend\",\n            OidcDiscoveryUrl = \"https://myco.auth0.com/\",\n            Path = \"jwt\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := jwt.NewAuthBackend(ctx, \"example\", \u0026jwt.AuthBackendArgs{\n\t\t\tBoundIssuer:      pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tDescription:      pulumi.String(\"Demonstration of the Terraform JWT auth backend\"),\n\t\t\tOidcDiscoveryUrl: pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tPath:             pulumi.String(\"jwt\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\nManage OIDC auth backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.jwt.AuthBackend(\"example\", {\n    boundIssuer: \"https://myco.auth0.com/\",\n    description: \"Demonstration of the Terraform JWT auth backend\",\n    oidcClientId: \"1234567890\",\n    oidcClientSecret: \"secret123456\",\n    oidcDiscoveryUrl: \"https://myco.auth0.com/\",\n    path: \"oidc\",\n    tune: {\n        listingVisibility: \"unauth\",\n    },\n    type: \"oidc\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.jwt.AuthBackend(\"example\",\n    bound_issuer=\"https://myco.auth0.com/\",\n    description=\"Demonstration of the Terraform JWT auth backend\",\n    oidc_client_id=\"1234567890\",\n    oidc_client_secret=\"secret123456\",\n    oidc_discovery_url=\"https://myco.auth0.com/\",\n    path=\"oidc\",\n    tune=vault.jwt.AuthBackendTuneArgs(\n        listing_visibility=\"unauth\",\n    ),\n    type=\"oidc\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.Jwt.AuthBackend(\"example\", new Vault.Jwt.AuthBackendArgs\n        {\n            BoundIssuer = \"https://myco.auth0.com/\",\n            Description = \"Demonstration of the Terraform JWT auth backend\",\n            OidcClientId = \"1234567890\",\n            OidcClientSecret = \"secret123456\",\n            OidcDiscoveryUrl = \"https://myco.auth0.com/\",\n            Path = \"oidc\",\n            Tune = new Vault.Jwt.Inputs.AuthBackendTuneArgs\n            {\n                ListingVisibility = \"unauth\",\n            },\n            Type = \"oidc\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := jwt.NewAuthBackend(ctx, \"example\", \u0026jwt.AuthBackendArgs{\n\t\t\tBoundIssuer:      pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tDescription:      pulumi.String(\"Demonstration of the Terraform JWT auth backend\"),\n\t\t\tOidcClientId:     pulumi.String(\"1234567890\"),\n\t\t\tOidcClientSecret: pulumi.String(\"secret123456\"),\n\t\t\tOidcDiscoveryUrl: pulumi.String(\"https://myco.auth0.com/\"),\n\t\t\tPath:             pulumi.String(\"oidc\"),\n\t\t\tTune: \u0026jwt.AuthBackendTuneArgs{\n\t\t\t\tListingVisibility: pulumi.String(\"unauth\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"oidc\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\nConfiguring the auth backend with a `provider_config:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst gsuite = new vault.jwt.AuthBackend(\"gsuite\", {\n    description: \"OIDC backend\",\n    oidcDiscoveryUrl: \"https://accounts.google.com\",\n    path: \"oidc\",\n    providerConfig: {\n        fetch_groups: true,\n        fetch_user_info: true,\n        groups_recurse_max_depth: 1,\n        provider: \"gsuite\",\n    },\n    type: \"oidc\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ngsuite = vault.jwt.AuthBackend(\"gsuite\",\n    description=\"OIDC backend\",\n    oidc_discovery_url=\"https://accounts.google.com\",\n    path=\"oidc\",\n    provider_config={\n        \"fetch_groups\": \"true\",\n        \"fetch_user_info\": \"true\",\n        \"groups_recurse_max_depth\": \"1\",\n        \"provider\": \"gsuite\",\n    },\n    type=\"oidc\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var gsuite = new Vault.Jwt.AuthBackend(\"gsuite\", new Vault.Jwt.AuthBackendArgs\n        {\n            Description = \"OIDC backend\",\n            OidcDiscoveryUrl = \"https://accounts.google.com\",\n            Path = \"oidc\",\n            ProviderConfig = \n            {\n                { \"fetch_groups\", \"true\" },\n                { \"fetch_user_info\", \"true\" },\n                { \"groups_recurse_max_depth\", \"1\" },\n                { \"provider\", \"gsuite\" },\n            },\n            Type = \"oidc\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := jwt.NewAuthBackend(ctx, \"gsuite\", \u0026jwt.AuthBackendArgs{\n\t\t\tDescription:      pulumi.String(\"OIDC backend\"),\n\t\t\tOidcDiscoveryUrl: pulumi.String(\"https://accounts.google.com\"),\n\t\t\tPath:             pulumi.String(\"oidc\"),\n\t\t\tProviderConfig: pulumi.StringMap{\n\t\t\t\t\"fetch_groups\":             pulumi.String(\"true\"),\n\t\t\t\t\"fetch_user_info\":          pulumi.String(\"true\"),\n\t\t\t\t\"groups_recurse_max_depth\": pulumi.String(\"1\"),\n\t\t\t\t\"provider\":                 pulumi.String(\"gsuite\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"oidc\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nJWT auth backend can be imported using the `type`, e.g.\n\n```sh\n $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc\n```\n\n or\n\n```sh\n $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt\n```\n\n ",
             "properties": {
                 "accessor": {
                     "type": "string",
@@ -10416,7 +10587,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Provider specific handling configuration\n"
+                    "description": "Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.\n"
                 },
                 "tune": {
                     "$ref": "#/types/vault:jwt/AuthBackendTune:AuthBackendTune"
@@ -10490,7 +10661,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Provider specific handling configuration\n"
+                    "description": "Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.\n"
                 },
                 "tune": {
                     "$ref": "#/types/vault:jwt/AuthBackendTune:AuthBackendTune"
@@ -10566,7 +10737,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "Provider specific handling configuration\n"
+                        "description": "Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.\n"
                     },
                     "tune": {
                         "$ref": "#/types/vault:jwt/AuthBackendTune:AuthBackendTune"
@@ -12115,7 +12286,7 @@
             }
         },
         "vault:okta/authBackend:AuthBackend": {
-            "description": "Provides a resource for managing an\n[Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.okta.AuthBackend(\"example\", {\n    description: \"Demonstration of the Terraform Okta auth backend\",\n    groups: [{\n        groupName: \"foo\",\n        policies: [\n            \"one\",\n            \"two\",\n        ],\n    }],\n    organization: \"example\",\n    token: \"something that should be kept secret\",\n    users: [{\n        groups: [\"foo\"],\n        username: \"bar\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.okta.AuthBackend(\"example\",\n    description=\"Demonstration of the Terraform Okta auth backend\",\n    groups=[vault.okta.AuthBackendGroupArgs(\n        group_name=\"foo\",\n        policies=[\n            \"one\",\n            \"two\",\n        ],\n    )],\n    organization=\"example\",\n    token=\"something that should be kept secret\",\n    users=[vault.okta.AuthBackendUserArgs(\n        groups=[\"foo\"],\n        username=\"bar\",\n    )])\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.Okta.AuthBackend(\"example\", new Vault.Okta.AuthBackendArgs\n        {\n            Description = \"Demonstration of the Terraform Okta auth backend\",\n            Groups = \n            {\n                new Vault.Okta.Inputs.AuthBackendGroupArgs\n                {\n                    GroupName = \"foo\",\n                    Policies = \n                    {\n                        \"one\",\n                        \"two\",\n                    },\n                },\n            },\n            Organization = \"example\",\n            Token = \"something that should be kept secret\",\n            Users = \n            {\n                new Vault.Okta.Inputs.AuthBackendUserArgs\n                {\n                    Groups = \n                    {\n                        \"foo\",\n                    },\n                    Username = \"bar\",\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/okta\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := okta.NewAuthBackend(ctx, \"example\", \u0026okta.AuthBackendArgs{\n\t\t\tDescription: pulumi.String(\"Demonstration of the Terraform Okta auth backend\"),\n\t\t\tGroups: okta.AuthBackendGroupArray{\n\t\t\t\t\u0026okta.AuthBackendGroupArgs{\n\t\t\t\t\tGroupName: pulumi.String(\"foo\"),\n\t\t\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"one\"),\n\t\t\t\t\t\tpulumi.String(\"two\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tOrganization: pulumi.String(\"example\"),\n\t\t\tToken:        pulumi.String(\"something that should be kept secret\"),\n\t\t\tUsers: okta.AuthBackendUserArray{\n\t\t\t\t\u0026okta.AuthBackendUserArgs{\n\t\t\t\t\tGroups: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"foo\"),\n\t\t\t\t\t},\n\t\t\t\t\tUsername: pulumi.String(\"bar\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Provides a resource for managing an\n[Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.okta.AuthBackend(\"example\", {\n    description: \"Demonstration of the Terraform Okta auth backend\",\n    groups: [{\n        groupName: \"foo\",\n        policies: [\n            \"one\",\n            \"two\",\n        ],\n    }],\n    organization: \"example\",\n    token: \"something that should be kept secret\",\n    users: [{\n        groups: [\"foo\"],\n        username: \"bar\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.okta.AuthBackend(\"example\",\n    description=\"Demonstration of the Terraform Okta auth backend\",\n    groups=[vault.okta.AuthBackendGroupArgs(\n        group_name=\"foo\",\n        policies=[\n            \"one\",\n            \"two\",\n        ],\n    )],\n    organization=\"example\",\n    token=\"something that should be kept secret\",\n    users=[vault.okta.AuthBackendUserArgs(\n        groups=[\"foo\"],\n        username=\"bar\",\n    )])\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.Okta.AuthBackend(\"example\", new Vault.Okta.AuthBackendArgs\n        {\n            Description = \"Demonstration of the Terraform Okta auth backend\",\n            Groups = \n            {\n                new Vault.Okta.Inputs.AuthBackendGroupArgs\n                {\n                    GroupName = \"foo\",\n                    Policies = \n                    {\n                        \"one\",\n                        \"two\",\n                    },\n                },\n            },\n            Organization = \"example\",\n            Token = \"something that should be kept secret\",\n            Users = \n            {\n                new Vault.Okta.Inputs.AuthBackendUserArgs\n                {\n                    Groups = \n                    {\n                        \"foo\",\n                    },\n                    Username = \"bar\",\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/okta\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := okta.NewAuthBackend(ctx, \"example\", \u0026okta.AuthBackendArgs{\n\t\t\tDescription: pulumi.String(\"Demonstration of the Terraform Okta auth backend\"),\n\t\t\tGroups: okta.AuthBackendGroupArray{\n\t\t\t\t\u0026okta.AuthBackendGroupArgs{\n\t\t\t\t\tGroupName: pulumi.String(\"foo\"),\n\t\t\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"one\"),\n\t\t\t\t\t\tpulumi.String(\"two\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tOrganization: pulumi.String(\"example\"),\n\t\t\tToken:        pulumi.String(\"something that should be kept secret\"),\n\t\t\tUsers: okta.AuthBackendUserArray{\n\t\t\t\t\u0026okta.AuthBackendUserArgs{\n\t\t\t\t\tGroups: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"foo\"),\n\t\t\t\t\t},\n\t\t\t\t\tUsername: pulumi.String(\"bar\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nOkta authentication backends can be imported using its `path`, e.g.\n\n```sh\n $ pulumi import vault:okta/authBackend:AuthBackend example okta\n```\n\n ",
             "properties": {
                 "accessor": {
                     "type": "string",

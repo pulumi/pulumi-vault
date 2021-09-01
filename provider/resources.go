@@ -227,10 +227,11 @@ func Provider() tfbridge.ProviderInfo {
 			},
 
 			// GCP
-			"vault_gcp_auth_backend":      {Tok: makeResource(gcpMod, "AuthBackend")},
-			"vault_gcp_auth_backend_role": {Tok: makeResource(gcpMod, "AuthBackendRole")},
-			"vault_gcp_secret_backend":    {Tok: makeResource(gcpMod, "SecretBackend")},
-			"vault_gcp_secret_roleset":    {Tok: makeResource(gcpMod, "SecretRoleset")},
+			"vault_gcp_auth_backend":          {Tok: makeResource(gcpMod, "AuthBackend")},
+			"vault_gcp_auth_backend_role":     {Tok: makeResource(gcpMod, "AuthBackendRole")},
+			"vault_gcp_secret_backend":        {Tok: makeResource(gcpMod, "SecretBackend")},
+			"vault_gcp_secret_roleset":        {Tok: makeResource(gcpMod, "SecretRoleset")},
+			"vault_gcp_secret_static_account": {Tok: makeResource(gcpMod, "SecretStaticAccount")},
 
 			// Generic
 			"vault_generic_endpoint": {Tok: makeResource(genericMod, "Endpoint")},

@@ -116,7 +116,115 @@ func (o SecretRolesetBindingArrayOutput) Index(i pulumi.IntInput) SecretRolesetB
 	}).(SecretRolesetBindingOutput)
 }
 
+type SecretStaticAccountBinding struct {
+	// Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings).
+	Resource string `pulumi:"resource"`
+	// List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
+	Roles []string `pulumi:"roles"`
+}
+
+// SecretStaticAccountBindingInput is an input type that accepts SecretStaticAccountBindingArgs and SecretStaticAccountBindingOutput values.
+// You can construct a concrete instance of `SecretStaticAccountBindingInput` via:
+//
+//          SecretStaticAccountBindingArgs{...}
+type SecretStaticAccountBindingInput interface {
+	pulumi.Input
+
+	ToSecretStaticAccountBindingOutput() SecretStaticAccountBindingOutput
+	ToSecretStaticAccountBindingOutputWithContext(context.Context) SecretStaticAccountBindingOutput
+}
+
+type SecretStaticAccountBindingArgs struct {
+	// Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings).
+	Resource pulumi.StringInput `pulumi:"resource"`
+	// List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
+	Roles pulumi.StringArrayInput `pulumi:"roles"`
+}
+
+func (SecretStaticAccountBindingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretStaticAccountBinding)(nil)).Elem()
+}
+
+func (i SecretStaticAccountBindingArgs) ToSecretStaticAccountBindingOutput() SecretStaticAccountBindingOutput {
+	return i.ToSecretStaticAccountBindingOutputWithContext(context.Background())
+}
+
+func (i SecretStaticAccountBindingArgs) ToSecretStaticAccountBindingOutputWithContext(ctx context.Context) SecretStaticAccountBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretStaticAccountBindingOutput)
+}
+
+// SecretStaticAccountBindingArrayInput is an input type that accepts SecretStaticAccountBindingArray and SecretStaticAccountBindingArrayOutput values.
+// You can construct a concrete instance of `SecretStaticAccountBindingArrayInput` via:
+//
+//          SecretStaticAccountBindingArray{ SecretStaticAccountBindingArgs{...} }
+type SecretStaticAccountBindingArrayInput interface {
+	pulumi.Input
+
+	ToSecretStaticAccountBindingArrayOutput() SecretStaticAccountBindingArrayOutput
+	ToSecretStaticAccountBindingArrayOutputWithContext(context.Context) SecretStaticAccountBindingArrayOutput
+}
+
+type SecretStaticAccountBindingArray []SecretStaticAccountBindingInput
+
+func (SecretStaticAccountBindingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretStaticAccountBinding)(nil)).Elem()
+}
+
+func (i SecretStaticAccountBindingArray) ToSecretStaticAccountBindingArrayOutput() SecretStaticAccountBindingArrayOutput {
+	return i.ToSecretStaticAccountBindingArrayOutputWithContext(context.Background())
+}
+
+func (i SecretStaticAccountBindingArray) ToSecretStaticAccountBindingArrayOutputWithContext(ctx context.Context) SecretStaticAccountBindingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretStaticAccountBindingArrayOutput)
+}
+
+type SecretStaticAccountBindingOutput struct{ *pulumi.OutputState }
+
+func (SecretStaticAccountBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretStaticAccountBinding)(nil)).Elem()
+}
+
+func (o SecretStaticAccountBindingOutput) ToSecretStaticAccountBindingOutput() SecretStaticAccountBindingOutput {
+	return o
+}
+
+func (o SecretStaticAccountBindingOutput) ToSecretStaticAccountBindingOutputWithContext(ctx context.Context) SecretStaticAccountBindingOutput {
+	return o
+}
+
+// Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings).
+func (o SecretStaticAccountBindingOutput) Resource() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretStaticAccountBinding) string { return v.Resource }).(pulumi.StringOutput)
+}
+
+// List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
+func (o SecretStaticAccountBindingOutput) Roles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretStaticAccountBinding) []string { return v.Roles }).(pulumi.StringArrayOutput)
+}
+
+type SecretStaticAccountBindingArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretStaticAccountBindingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretStaticAccountBinding)(nil)).Elem()
+}
+
+func (o SecretStaticAccountBindingArrayOutput) ToSecretStaticAccountBindingArrayOutput() SecretStaticAccountBindingArrayOutput {
+	return o
+}
+
+func (o SecretStaticAccountBindingArrayOutput) ToSecretStaticAccountBindingArrayOutputWithContext(ctx context.Context) SecretStaticAccountBindingArrayOutput {
+	return o
+}
+
+func (o SecretStaticAccountBindingArrayOutput) Index(i pulumi.IntInput) SecretStaticAccountBindingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretStaticAccountBinding {
+		return vs[0].([]SecretStaticAccountBinding)[vs[1].(int)]
+	}).(SecretStaticAccountBindingOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(SecretRolesetBindingOutput{})
 	pulumi.RegisterOutputType(SecretRolesetBindingArrayOutput{})
+	pulumi.RegisterOutputType(SecretStaticAccountBindingOutput{})
+	pulumi.RegisterOutputType(SecretStaticAccountBindingArrayOutput{})
 }

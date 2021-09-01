@@ -73,6 +73,38 @@ import (
 // }
 // ```
 //
+// Configuring the auth backend with a `provider_config:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/jwt"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := jwt.NewAuthBackend(ctx, "gsuite", &jwt.AuthBackendArgs{
+// 			Description:      pulumi.String("OIDC backend"),
+// 			OidcDiscoveryUrl: pulumi.String("https://accounts.google.com"),
+// 			Path:             pulumi.String("oidc"),
+// 			ProviderConfig: pulumi.StringMap{
+// 				"fetch_groups":             pulumi.String("true"),
+// 				"fetch_user_info":          pulumi.String("true"),
+// 				"groups_recurse_max_depth": pulumi.String("1"),
+// 				"provider":                 pulumi.String("gsuite"),
+// 			},
+// 			Type: pulumi.String("oidc"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // JWT auth backend can be imported using the `type`, e.g.
@@ -115,7 +147,7 @@ type AuthBackend struct {
 	OidcDiscoveryUrl pulumi.StringPtrOutput `pulumi:"oidcDiscoveryUrl"`
 	// Path to mount the JWT/OIDC auth backend
 	Path pulumi.StringPtrOutput `pulumi:"path"`
-	// Provider specific handling configuration
+	// Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
 	ProviderConfig pulumi.StringMapOutput `pulumi:"providerConfig"`
 	Tune           AuthBackendTuneOutput  `pulumi:"tune"`
 	// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
@@ -177,7 +209,7 @@ type authBackendState struct {
 	OidcDiscoveryUrl *string `pulumi:"oidcDiscoveryUrl"`
 	// Path to mount the JWT/OIDC auth backend
 	Path *string `pulumi:"path"`
-	// Provider specific handling configuration
+	// Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
 	ProviderConfig map[string]string `pulumi:"providerConfig"`
 	Tune           *AuthBackendTune  `pulumi:"tune"`
 	// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
@@ -211,7 +243,7 @@ type AuthBackendState struct {
 	OidcDiscoveryUrl pulumi.StringPtrInput
 	// Path to mount the JWT/OIDC auth backend
 	Path pulumi.StringPtrInput
-	// Provider specific handling configuration
+	// Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
 	ProviderConfig pulumi.StringMapInput
 	Tune           AuthBackendTunePtrInput
 	// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
@@ -247,7 +279,7 @@ type authBackendArgs struct {
 	OidcDiscoveryUrl *string `pulumi:"oidcDiscoveryUrl"`
 	// Path to mount the JWT/OIDC auth backend
 	Path *string `pulumi:"path"`
-	// Provider specific handling configuration
+	// Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
 	ProviderConfig map[string]string `pulumi:"providerConfig"`
 	Tune           *AuthBackendTune  `pulumi:"tune"`
 	// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
@@ -280,7 +312,7 @@ type AuthBackendArgs struct {
 	OidcDiscoveryUrl pulumi.StringPtrInput
 	// Path to mount the JWT/OIDC auth backend
 	Path pulumi.StringPtrInput
-	// Provider specific handling configuration
+	// Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
 	ProviderConfig pulumi.StringMapInput
 	Tune           AuthBackendTunePtrInput
 	// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
