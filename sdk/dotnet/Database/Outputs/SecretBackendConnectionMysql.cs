@@ -35,6 +35,14 @@ namespace Pulumi.Vault.Database.Outputs
         /// use.
         /// </summary>
         public readonly int? MaxOpenConnections;
+        /// <summary>
+        /// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        /// </summary>
+        public readonly string? TlsCa;
+        /// <summary>
+        /// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        /// </summary>
+        public readonly string? TlsCertificateKey;
 
         [OutputConstructor]
         private SecretBackendConnectionMysql(
@@ -44,12 +52,18 @@ namespace Pulumi.Vault.Database.Outputs
 
             int? maxIdleConnections,
 
-            int? maxOpenConnections)
+            int? maxOpenConnections,
+
+            string? tlsCa,
+
+            string? tlsCertificateKey)
         {
             ConnectionUrl = connectionUrl;
             MaxConnectionLifetime = maxConnectionLifetime;
             MaxIdleConnections = maxIdleConnections;
             MaxOpenConnections = maxOpenConnections;
+            TlsCa = tlsCa;
+            TlsCertificateKey = tlsCertificateKey;
         }
     }
 }

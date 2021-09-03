@@ -45,6 +45,26 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * Configuring the auth backend with a `provider_config:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const gsuite = new vault.jwt.AuthBackend("gsuite", {
+ *     description: "OIDC backend",
+ *     oidcDiscoveryUrl: "https://accounts.google.com",
+ *     path: "oidc",
+ *     providerConfig: {
+ *         fetch_groups: true,
+ *         fetch_user_info: true,
+ *         groups_recurse_max_depth: 1,
+ *         provider: "gsuite",
+ *     },
+ *     type: "oidc",
+ * });
+ * ```
+ *
  * ## Import
  *
  * JWT auth backend can be imported using the `type`, e.g.
@@ -140,7 +160,7 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly path!: pulumi.Output<string | undefined>;
     /**
-     * Provider specific handling configuration
+     * Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
      */
     public readonly providerConfig!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly tune!: pulumi.Output<outputs.jwt.AuthBackendTune>;
@@ -261,7 +281,7 @@ export interface AuthBackendState {
      */
     readonly path?: pulumi.Input<string>;
     /**
-     * Provider specific handling configuration
+     * Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
      */
     readonly providerConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     readonly tune?: pulumi.Input<inputs.jwt.AuthBackendTune>;
@@ -324,7 +344,7 @@ export interface AuthBackendArgs {
      */
     readonly path?: pulumi.Input<string>;
     /**
-     * Provider specific handling configuration
+     * Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
      */
     readonly providerConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     readonly tune?: pulumi.Input<inputs.jwt.AuthBackendTune>;

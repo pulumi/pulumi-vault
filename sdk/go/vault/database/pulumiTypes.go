@@ -1321,6 +1321,10 @@ type SecretBackendConnectionMysql struct {
 	// The maximum number of open connections to
 	// use.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+	TlsCa *string `pulumi:"tlsCa"`
+	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
 }
 
 // SecretBackendConnectionMysqlInput is an input type that accepts SecretBackendConnectionMysqlArgs and SecretBackendConnectionMysqlOutput values.
@@ -1349,6 +1353,10 @@ type SecretBackendConnectionMysqlArgs struct {
 	// The maximum number of open connections to
 	// use.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
+	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
 }
 
 func (SecretBackendConnectionMysqlArgs) ElementType() reflect.Type {
@@ -1454,6 +1462,16 @@ func (o SecretBackendConnectionMysqlOutput) MaxOpenConnections() pulumi.IntPtrOu
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+func (o SecretBackendConnectionMysqlOutput) TlsCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.TlsCa }).(pulumi.StringPtrOutput)
+}
+
+// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+func (o SecretBackendConnectionMysqlOutput) TlsCertificateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionMysqlPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMysqlPtrOutput) ElementType() reflect.Type {
@@ -1516,6 +1534,26 @@ func (o SecretBackendConnectionMysqlPtrOutput) MaxOpenConnections() pulumi.IntPt
 		}
 		return v.MaxOpenConnections
 	}).(pulumi.IntPtrOutput)
+}
+
+// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+func (o SecretBackendConnectionMysqlPtrOutput) TlsCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsCa
+	}).(pulumi.StringPtrOutput)
+}
+
+// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+func (o SecretBackendConnectionMysqlPtrOutput) TlsCertificateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsCertificateKey
+	}).(pulumi.StringPtrOutput)
 }
 
 type SecretBackendConnectionMysqlAurora struct {

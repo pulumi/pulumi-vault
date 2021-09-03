@@ -8,6 +8,7 @@ from .auth_backend_role import *
 from .get_auth_backend_role import *
 from .secret_backend import *
 from .secret_roleset import *
+from .secret_static_account import *
 from ._inputs import *
 from . import outputs
 
@@ -31,6 +32,8 @@ def _register_module():
                 return SecretBackend(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "vault:gcp/secretRoleset:SecretRoleset":
                 return SecretRoleset(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "vault:gcp/secretStaticAccount:SecretStaticAccount":
+                return SecretStaticAccount(name, pulumi.ResourceOptions(urn=urn))
             else:
                 raise Exception(f"unknown resource type {typ}")
 
@@ -40,5 +43,6 @@ def _register_module():
     pulumi.runtime.register_resource_module("vault", "gcp/authBackendRole", _module_instance)
     pulumi.runtime.register_resource_module("vault", "gcp/secretBackend", _module_instance)
     pulumi.runtime.register_resource_module("vault", "gcp/secretRoleset", _module_instance)
+    pulumi.runtime.register_resource_module("vault", "gcp/secretStaticAccount", _module_instance)
 
 _register_module()

@@ -62,6 +62,7 @@
         "gcp/index.ts",
         "gcp/secretBackend.ts",
         "gcp/secretRoleset.ts",
+        "gcp/secretStaticAccount.ts",
         "generic/endpoint.ts",
         "generic/getSecret.ts",
         "generic/index.ts",

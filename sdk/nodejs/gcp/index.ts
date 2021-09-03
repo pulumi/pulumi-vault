@@ -10,12 +10,14 @@ export * from "./authBackendRole";
 export * from "./getAuthBackendRole";
 export * from "./secretBackend";
 export * from "./secretRoleset";
+export * from "./secretStaticAccount";
 
 // Import resources to register:
 import { AuthBackend } from "./authBackend";
 import { AuthBackendRole } from "./authBackendRole";
 import { SecretBackend } from "./secretBackend";
 import { SecretRoleset } from "./secretRoleset";
+import { SecretStaticAccount } from "./secretStaticAccount";
 
 const _module = {
     version: utilities.getVersion(),
@@ -29,6 +31,8 @@ const _module = {
                 return new SecretBackend(name, <any>undefined, { urn })
             case "vault:gcp/secretRoleset:SecretRoleset":
                 return new SecretRoleset(name, <any>undefined, { urn })
+            case "vault:gcp/secretStaticAccount:SecretStaticAccount":
+                return new SecretStaticAccount(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -38,3 +42,4 @@ pulumi.runtime.registerResourceModule("vault", "gcp/authBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "gcp/authBackendRole", _module)
 pulumi.runtime.registerResourceModule("vault", "gcp/secretBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "gcp/secretRoleset", _module)
+pulumi.runtime.registerResourceModule("vault", "gcp/secretStaticAccount", _module)

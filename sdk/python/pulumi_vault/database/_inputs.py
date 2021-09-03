@@ -559,7 +559,9 @@ class SecretBackendConnectionMysqlArgs:
                  connection_url: Optional[pulumi.Input[str]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
-                 max_open_connections: Optional[pulumi.Input[int]] = None):
+                 max_open_connections: Optional[pulumi.Input[int]] = None,
+                 tls_ca: Optional[pulumi.Input[str]] = None,
+                 tls_certificate_key: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] connection_url: A URL containing connection information. See
                the [Vault
@@ -571,6 +573,8 @@ class SecretBackendConnectionMysqlArgs:
                maintain.
         :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                use.
+        :param pulumi.Input[str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        :param pulumi.Input[str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -580,6 +584,10 @@ class SecretBackendConnectionMysqlArgs:
             pulumi.set(__self__, "max_idle_connections", max_idle_connections)
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if tls_ca is not None:
+            pulumi.set(__self__, "tls_ca", tls_ca)
+        if tls_certificate_key is not None:
+            pulumi.set(__self__, "tls_certificate_key", tls_certificate_key)
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -634,6 +642,30 @@ class SecretBackendConnectionMysqlArgs:
     @max_open_connections.setter
     def max_open_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_open_connections", value)
+
+    @property
+    @pulumi.getter(name="tlsCa")
+    def tls_ca(self) -> Optional[pulumi.Input[str]]:
+        """
+        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_ca")
+
+    @tls_ca.setter
+    def tls_ca(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_ca", value)
+
+    @property
+    @pulumi.getter(name="tlsCertificateKey")
+    def tls_certificate_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        """
+        return pulumi.get(self, "tls_certificate_key")
+
+    @tls_certificate_key.setter
+    def tls_certificate_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_certificate_key", value)
 
 
 @pulumi.input_type

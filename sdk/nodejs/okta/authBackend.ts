@@ -32,6 +32,14 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Okta authentication backends can be imported using its `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:okta/authBackend:AuthBackend example okta
+ * ```
  */
 export class AuthBackend extends pulumi.CustomResource {
     /**

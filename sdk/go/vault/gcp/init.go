@@ -29,6 +29,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SecretBackend{}
 	case "vault:gcp/secretRoleset:SecretRoleset":
 		r = &SecretRoleset{}
+	case "vault:gcp/secretStaticAccount:SecretStaticAccount":
+		r = &SecretStaticAccount{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -60,6 +62,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"gcp/secretRoleset",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"gcp/secretStaticAccount",
 		&module{version},
 	)
 }

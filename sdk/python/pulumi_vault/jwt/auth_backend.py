@@ -44,7 +44,7 @@ class AuthBackendArgs:
         :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
         :param pulumi.Input[str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
         :param pulumi.Input[str] path: Path to mount the JWT/OIDC auth backend
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] provider_config: Provider specific handling configuration
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] provider_config: Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
         :param pulumi.Input[str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
         """
         if bound_issuer is not None:
@@ -226,7 +226,7 @@ class AuthBackendArgs:
     @pulumi.getter(name="providerConfig")
     def provider_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Provider specific handling configuration
+        Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
         """
         return pulumi.get(self, "provider_config")
 
@@ -290,7 +290,7 @@ class _AuthBackendState:
         :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
         :param pulumi.Input[str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
         :param pulumi.Input[str] path: Path to mount the JWT/OIDC auth backend
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] provider_config: Provider specific handling configuration
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] provider_config: Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
         :param pulumi.Input[str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
         """
         if accessor is not None:
@@ -486,7 +486,7 @@ class _AuthBackendState:
     @pulumi.getter(name="providerConfig")
     def provider_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Provider specific handling configuration
+        Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
         """
         return pulumi.get(self, "provider_config")
 
@@ -575,6 +575,25 @@ class AuthBackend(pulumi.CustomResource):
             type="oidc")
         ```
 
+        Configuring the auth backend with a `provider_config:
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        gsuite = vault.jwt.AuthBackend("gsuite",
+            description="OIDC backend",
+            oidc_discovery_url="https://accounts.google.com",
+            path="oidc",
+            provider_config={
+                "fetch_groups": "true",
+                "fetch_user_info": "true",
+                "groups_recurse_max_depth": "1",
+                "provider": "gsuite",
+            },
+            type="oidc")
+        ```
+
         ## Import
 
         JWT auth backend can be imported using the `type`, e.g.
@@ -603,7 +622,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
         :param pulumi.Input[str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
         :param pulumi.Input[str] path: Path to mount the JWT/OIDC auth backend
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] provider_config: Provider specific handling configuration
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] provider_config: Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
         :param pulumi.Input[str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
         """
         ...
@@ -647,6 +666,25 @@ class AuthBackend(pulumi.CustomResource):
             tune=vault.jwt.AuthBackendTuneArgs(
                 listing_visibility="unauth",
             ),
+            type="oidc")
+        ```
+
+        Configuring the auth backend with a `provider_config:
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        gsuite = vault.jwt.AuthBackend("gsuite",
+            description="OIDC backend",
+            oidc_discovery_url="https://accounts.google.com",
+            path="oidc",
+            provider_config={
+                "fetch_groups": "true",
+                "fetch_user_info": "true",
+                "groups_recurse_max_depth": "1",
+                "provider": "gsuite",
+            },
             type="oidc")
         ```
 
@@ -768,7 +806,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
         :param pulumi.Input[str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
         :param pulumi.Input[str] path: Path to mount the JWT/OIDC auth backend
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] provider_config: Provider specific handling configuration
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] provider_config: Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
         :param pulumi.Input[str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -901,7 +939,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="providerConfig")
     def provider_config(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        Provider specific handling configuration
+        Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
         """
         return pulumi.get(self, "provider_config")
 

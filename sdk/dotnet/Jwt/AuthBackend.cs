@@ -66,6 +66,35 @@ namespace Pulumi.Vault.Jwt
     /// }
     /// ```
     /// 
+    /// Configuring the auth backend with a `provider_config:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var gsuite = new Vault.Jwt.AuthBackend("gsuite", new Vault.Jwt.AuthBackendArgs
+    ///         {
+    ///             Description = "OIDC backend",
+    ///             OidcDiscoveryUrl = "https://accounts.google.com",
+    ///             Path = "oidc",
+    ///             ProviderConfig = 
+    ///             {
+    ///                 { "fetch_groups", "true" },
+    ///                 { "fetch_user_info", "true" },
+    ///                 { "groups_recurse_max_depth", "1" },
+    ///                 { "provider", "gsuite" },
+    ///             },
+    ///             Type = "oidc",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// JWT auth backend can be imported using the `type`, e.g.
@@ -162,7 +191,7 @@ namespace Pulumi.Vault.Jwt
         public Output<string?> Path { get; private set; } = null!;
 
         /// <summary>
-        /// Provider specific handling configuration
+        /// Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
         /// </summary>
         [Output("providerConfig")]
         public Output<ImmutableDictionary<string, string>?> ProviderConfig { get; private set; } = null!;
@@ -310,7 +339,7 @@ namespace Pulumi.Vault.Jwt
         private InputMap<string>? _providerConfig;
 
         /// <summary>
-        /// Provider specific handling configuration
+        /// Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
         /// </summary>
         public InputMap<string> ProviderConfig
         {
@@ -428,7 +457,7 @@ namespace Pulumi.Vault.Jwt
         private InputMap<string>? _providerConfig;
 
         /// <summary>
-        /// Provider specific handling configuration
+        /// Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
         /// </summary>
         public InputMap<string> ProviderConfig
         {

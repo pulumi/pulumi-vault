@@ -426,6 +426,14 @@ class AuthBackend(pulumi.CustomResource):
             )])
         ```
 
+        ## Import
+
+        Okta authentication backends can be imported using its `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:okta/authBackend:AuthBackend example okta
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] base_url: The Okta url. Examples: oktapreview.com, okta.com
@@ -475,6 +483,14 @@ class AuthBackend(pulumi.CustomResource):
                 groups=["foo"],
                 username="bar",
             )])
+        ```
+
+        ## Import
+
+        Okta authentication backends can be imported using its `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:okta/authBackend:AuthBackend example okta
         ```
 
         :param str resource_name: The name of the resource.
