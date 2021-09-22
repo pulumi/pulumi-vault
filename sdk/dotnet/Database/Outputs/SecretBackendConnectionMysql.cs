@@ -16,7 +16,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// <summary>
         /// A URL containing connection information. See
         /// the [Vault
-        /// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        /// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
         /// for an example.
         /// </summary>
         public readonly string? ConnectionUrl;
@@ -43,6 +43,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         /// </summary>
         public readonly string? TlsCertificateKey;
+        /// <summary>
+        /// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        /// </summary>
+        public readonly string? UsernameTemplate;
 
         [OutputConstructor]
         private SecretBackendConnectionMysql(
@@ -56,7 +60,9 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? tlsCa,
 
-            string? tlsCertificateKey)
+            string? tlsCertificateKey,
+
+            string? usernameTemplate)
         {
             ConnectionUrl = connectionUrl;
             MaxConnectionLifetime = maxConnectionLifetime;
@@ -64,6 +70,7 @@ namespace Pulumi.Vault.Database.Outputs
             MaxOpenConnections = maxOpenConnections;
             TlsCa = tlsCa;
             TlsCertificateKey = tlsCertificateKey;
+            UsernameTemplate = usernameTemplate;
         }
     }
 }

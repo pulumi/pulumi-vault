@@ -66,6 +66,10 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * Specifies if the secret backend is local only.
+     */
+    public readonly local!: pulumi.Output<boolean | undefined>;
+    /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend.
      */
@@ -102,6 +106,7 @@ export class SecretBackend extends pulumi.CustomResource {
             inputs["clientKey"] = state ? state.clientKey : undefined;
             inputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
             inputs["description"] = state ? state.description : undefined;
+            inputs["local"] = state ? state.local : undefined;
             inputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             inputs["path"] = state ? state.path : undefined;
             inputs["scheme"] = state ? state.scheme : undefined;
@@ -120,6 +125,7 @@ export class SecretBackend extends pulumi.CustomResource {
             inputs["clientKey"] = args ? args.clientKey : undefined;
             inputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
             inputs["description"] = args ? args.description : undefined;
+            inputs["local"] = args ? args.local : undefined;
             inputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             inputs["path"] = args ? args.path : undefined;
             inputs["scheme"] = args ? args.scheme : undefined;
@@ -160,6 +166,10 @@ export interface SecretBackendState {
      * A human-friendly description for this backend.
      */
     readonly description?: pulumi.Input<string>;
+    /**
+     * Specifies if the secret backend is local only.
+     */
+    readonly local?: pulumi.Input<boolean>;
     /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend.
@@ -207,6 +217,10 @@ export interface SecretBackendArgs {
      * A human-friendly description for this backend.
      */
     readonly description?: pulumi.Input<string>;
+    /**
+     * Specifies if the secret backend is local only.
+     */
+    readonly local?: pulumi.Input<boolean>;
     /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend.

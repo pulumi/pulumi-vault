@@ -56,6 +56,8 @@ type SecretBackendConnection struct {
 	Postgresql SecretBackendConnectionPostgresqlPtrOutput `pulumi:"postgresql"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayOutput `pulumi:"rootRotationStatements"`
+	// A nested block containing configuration options for Snowflake connections.
+	Snowflake SecretBackendConnectionSnowflakePtrOutput `pulumi:"snowflake"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
 	VerifyConnection pulumi.BoolPtrOutput `pulumi:"verifyConnection"`
@@ -128,6 +130,8 @@ type secretBackendConnectionState struct {
 	Postgresql *SecretBackendConnectionPostgresql `pulumi:"postgresql"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// A nested block containing configuration options for Snowflake connections.
+	Snowflake *SecretBackendConnectionSnowflake `pulumi:"snowflake"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
 	VerifyConnection *bool `pulumi:"verifyConnection"`
@@ -169,6 +173,8 @@ type SecretBackendConnectionState struct {
 	Postgresql SecretBackendConnectionPostgresqlPtrInput
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput
+	// A nested block containing configuration options for Snowflake connections.
+	Snowflake SecretBackendConnectionSnowflakePtrInput
 	// Whether the connection should be verified on
 	// initial configuration or not.
 	VerifyConnection pulumi.BoolPtrInput
@@ -214,6 +220,8 @@ type secretBackendConnectionArgs struct {
 	Postgresql *SecretBackendConnectionPostgresql `pulumi:"postgresql"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// A nested block containing configuration options for Snowflake connections.
+	Snowflake *SecretBackendConnectionSnowflake `pulumi:"snowflake"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
 	VerifyConnection *bool `pulumi:"verifyConnection"`
@@ -256,6 +264,8 @@ type SecretBackendConnectionArgs struct {
 	Postgresql SecretBackendConnectionPostgresqlPtrInput
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput
+	// A nested block containing configuration options for Snowflake connections.
+	Snowflake SecretBackendConnectionSnowflakePtrInput
 	// Whether the connection should be verified on
 	// initial configuration or not.
 	VerifyConnection pulumi.BoolPtrInput

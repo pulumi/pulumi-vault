@@ -161,6 +161,12 @@ namespace Pulumi.Vault.Jwt
         public Output<ImmutableArray<string>> JwtValidationPubkeys { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies if the auth method is local only.
+        /// </summary>
+        [Output("local")]
+        public Output<bool?> Local { get; private set; } = null!;
+
+        /// <summary>
         /// Client ID used for OIDC backends
         /// </summary>
         [Output("oidcClientId")]
@@ -306,6 +312,12 @@ namespace Pulumi.Vault.Jwt
         }
 
         /// <summary>
+        /// Specifies if the auth method is local only.
+        /// </summary>
+        [Input("local")]
+        public Input<bool>? Local { get; set; }
+
+        /// <summary>
         /// Client ID used for OIDC backends
         /// </summary>
         [Input("oidcClientId")]
@@ -422,6 +434,12 @@ namespace Pulumi.Vault.Jwt
             get => _jwtValidationPubkeys ?? (_jwtValidationPubkeys = new InputList<string>());
             set => _jwtValidationPubkeys = value;
         }
+
+        /// <summary>
+        /// Specifies if the auth method is local only.
+        /// </summary>
+        [Input("local")]
+        public Input<bool>? Local { get; set; }
 
         /// <summary>
         /// Client ID used for OIDC backends

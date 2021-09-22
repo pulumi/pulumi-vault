@@ -22,6 +22,7 @@ export * from "./policy";
 export * from "./provider";
 export * from "./quotaLeaseCount";
 export * from "./quotaRateLimit";
+export * from "./raftSnapshotAgentConfig";
 export * from "./rgpPolicy";
 export * from "./token";
 
@@ -90,6 +91,7 @@ import { PasswordPolicy } from "./passwordPolicy";
 import { Policy } from "./policy";
 import { QuotaLeaseCount } from "./quotaLeaseCount";
 import { QuotaRateLimit } from "./quotaRateLimit";
+import { RaftSnapshotAgentConfig } from "./raftSnapshotAgentConfig";
 import { RgpPolicy } from "./rgpPolicy";
 import { Token } from "./token";
 
@@ -123,6 +125,8 @@ const _module = {
                 return new QuotaLeaseCount(name, <any>undefined, { urn })
             case "vault:index/quotaRateLimit:QuotaRateLimit":
                 return new QuotaRateLimit(name, <any>undefined, { urn })
+            case "vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig":
+                return new RaftSnapshotAgentConfig(name, <any>undefined, { urn })
             case "vault:index/rgpPolicy:RgpPolicy":
                 return new RgpPolicy(name, <any>undefined, { urn })
             case "vault:index/token:Token":
@@ -145,6 +149,7 @@ pulumi.runtime.registerResourceModule("vault", "index/passwordPolicy", _module)
 pulumi.runtime.registerResourceModule("vault", "index/policy", _module)
 pulumi.runtime.registerResourceModule("vault", "index/quotaLeaseCount", _module)
 pulumi.runtime.registerResourceModule("vault", "index/quotaRateLimit", _module)
+pulumi.runtime.registerResourceModule("vault", "index/raftSnapshotAgentConfig", _module)
 pulumi.runtime.registerResourceModule("vault", "index/rgpPolicy", _module)
 pulumi.runtime.registerResourceModule("vault", "index/token", _module)
 

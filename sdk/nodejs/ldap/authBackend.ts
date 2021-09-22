@@ -102,6 +102,10 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly insecureTls!: pulumi.Output<boolean>;
     /**
+     * Specifies if the auth method is local only.
+     */
+    public readonly local!: pulumi.Output<boolean | undefined>;
+    /**
      * Path to mount the LDAP auth backend under
      */
     public readonly path!: pulumi.Output<string | undefined>;
@@ -218,6 +222,7 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["groupdn"] = state ? state.groupdn : undefined;
             inputs["groupfilter"] = state ? state.groupfilter : undefined;
             inputs["insecureTls"] = state ? state.insecureTls : undefined;
+            inputs["local"] = state ? state.local : undefined;
             inputs["path"] = state ? state.path : undefined;
             inputs["starttls"] = state ? state.starttls : undefined;
             inputs["tlsMaxVersion"] = state ? state.tlsMaxVersion : undefined;
@@ -253,6 +258,7 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["groupdn"] = args ? args.groupdn : undefined;
             inputs["groupfilter"] = args ? args.groupfilter : undefined;
             inputs["insecureTls"] = args ? args.insecureTls : undefined;
+            inputs["local"] = args ? args.local : undefined;
             inputs["path"] = args ? args.path : undefined;
             inputs["starttls"] = args ? args.starttls : undefined;
             inputs["tlsMaxVersion"] = args ? args.tlsMaxVersion : undefined;
@@ -324,6 +330,10 @@ export interface AuthBackendState {
      * Control whether or TLS certificates must be validated
      */
     readonly insecureTls?: pulumi.Input<boolean>;
+    /**
+     * Specifies if the auth method is local only.
+     */
+    readonly local?: pulumi.Input<boolean>;
     /**
      * Path to mount the LDAP auth backend under
      */
@@ -456,6 +466,10 @@ export interface AuthBackendArgs {
      * Control whether or TLS certificates must be validated
      */
     readonly insecureTls?: pulumi.Input<boolean>;
+    /**
+     * Specifies if the auth method is local only.
+     */
+    readonly local?: pulumi.Input<boolean>;
     /**
      * Path to mount the LDAP auth backend under
      */

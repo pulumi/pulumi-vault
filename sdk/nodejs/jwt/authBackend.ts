@@ -140,6 +140,10 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly jwtValidationPubkeys!: pulumi.Output<string[] | undefined>;
     /**
+     * Specifies if the auth method is local only.
+     */
+    public readonly local!: pulumi.Output<boolean | undefined>;
+    /**
      * Client ID used for OIDC backends
      */
     public readonly oidcClientId!: pulumi.Output<string | undefined>;
@@ -190,6 +194,7 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["jwksUrl"] = state ? state.jwksUrl : undefined;
             inputs["jwtSupportedAlgs"] = state ? state.jwtSupportedAlgs : undefined;
             inputs["jwtValidationPubkeys"] = state ? state.jwtValidationPubkeys : undefined;
+            inputs["local"] = state ? state.local : undefined;
             inputs["oidcClientId"] = state ? state.oidcClientId : undefined;
             inputs["oidcClientSecret"] = state ? state.oidcClientSecret : undefined;
             inputs["oidcDiscoveryCaPem"] = state ? state.oidcDiscoveryCaPem : undefined;
@@ -207,6 +212,7 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["jwksUrl"] = args ? args.jwksUrl : undefined;
             inputs["jwtSupportedAlgs"] = args ? args.jwtSupportedAlgs : undefined;
             inputs["jwtValidationPubkeys"] = args ? args.jwtValidationPubkeys : undefined;
+            inputs["local"] = args ? args.local : undefined;
             inputs["oidcClientId"] = args ? args.oidcClientId : undefined;
             inputs["oidcClientSecret"] = args ? args.oidcClientSecret : undefined;
             inputs["oidcDiscoveryCaPem"] = args ? args.oidcDiscoveryCaPem : undefined;
@@ -260,6 +266,10 @@ export interface AuthBackendState {
      * A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
      */
     readonly jwtValidationPubkeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies if the auth method is local only.
+     */
+    readonly local?: pulumi.Input<boolean>;
     /**
      * Client ID used for OIDC backends
      */
@@ -323,6 +333,10 @@ export interface AuthBackendArgs {
      * A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
      */
     readonly jwtValidationPubkeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies if the auth method is local only.
+     */
+    readonly local?: pulumi.Input<boolean>;
     /**
      * Client ID used for OIDC backends
      */

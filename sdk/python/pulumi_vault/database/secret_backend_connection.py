@@ -32,6 +32,7 @@ class SecretBackendConnectionArgs:
                  oracle: Optional[pulumi.Input['SecretBackendConnectionOracleArgs']] = None,
                  postgresql: Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 snowflake: Optional[pulumi.Input['SecretBackendConnectionSnowflakeArgs']] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a SecretBackendConnection resource.
@@ -53,6 +54,7 @@ class SecretBackendConnectionArgs:
         :param pulumi.Input['SecretBackendConnectionOracleArgs'] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input['SecretBackendConnectionPostgresqlArgs'] postgresql: A nested block containing configuration options for PostgreSQL connections.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input['SecretBackendConnectionSnowflakeArgs'] snowflake: A nested block containing configuration options for Snowflake connections.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -89,6 +91,8 @@ class SecretBackendConnectionArgs:
             pulumi.set(__self__, "postgresql", postgresql)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if snowflake is not None:
+            pulumi.set(__self__, "snowflake", snowflake)
         if verify_connection is not None:
             pulumi.set(__self__, "verify_connection", verify_connection)
 
@@ -298,6 +302,18 @@ class SecretBackendConnectionArgs:
         pulumi.set(self, "root_rotation_statements", value)
 
     @property
+    @pulumi.getter
+    def snowflake(self) -> Optional[pulumi.Input['SecretBackendConnectionSnowflakeArgs']]:
+        """
+        A nested block containing configuration options for Snowflake connections.
+        """
+        return pulumi.get(self, "snowflake")
+
+    @snowflake.setter
+    def snowflake(self, value: Optional[pulumi.Input['SecretBackendConnectionSnowflakeArgs']]):
+        pulumi.set(self, "snowflake", value)
+
+    @property
     @pulumi.getter(name="verifyConnection")
     def verify_connection(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -331,6 +347,7 @@ class _SecretBackendConnectionState:
                  oracle: Optional[pulumi.Input['SecretBackendConnectionOracleArgs']] = None,
                  postgresql: Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 snowflake: Optional[pulumi.Input['SecretBackendConnectionSnowflakeArgs']] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering SecretBackendConnection resources.
@@ -352,6 +369,7 @@ class _SecretBackendConnectionState:
         :param pulumi.Input['SecretBackendConnectionOracleArgs'] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input['SecretBackendConnectionPostgresqlArgs'] postgresql: A nested block containing configuration options for PostgreSQL connections.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input['SecretBackendConnectionSnowflakeArgs'] snowflake: A nested block containing configuration options for Snowflake connections.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -389,6 +407,8 @@ class _SecretBackendConnectionState:
             pulumi.set(__self__, "postgresql", postgresql)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if snowflake is not None:
+            pulumi.set(__self__, "snowflake", snowflake)
         if verify_connection is not None:
             pulumi.set(__self__, "verify_connection", verify_connection)
 
@@ -598,6 +618,18 @@ class _SecretBackendConnectionState:
         pulumi.set(self, "root_rotation_statements", value)
 
     @property
+    @pulumi.getter
+    def snowflake(self) -> Optional[pulumi.Input['SecretBackendConnectionSnowflakeArgs']]:
+        """
+        A nested block containing configuration options for Snowflake connections.
+        """
+        return pulumi.get(self, "snowflake")
+
+    @snowflake.setter
+    def snowflake(self, value: Optional[pulumi.Input['SecretBackendConnectionSnowflakeArgs']]):
+        pulumi.set(self, "snowflake", value)
+
+    @property
     @pulumi.getter(name="verifyConnection")
     def verify_connection(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -633,6 +665,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
                  postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 snowflake: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
@@ -664,6 +697,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']] postgresql: A nested block containing configuration options for PostgreSQL connections.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']] snowflake: A nested block containing configuration options for Snowflake connections.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -714,6 +748,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
                  postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 snowflake: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         if opts is None:
@@ -746,6 +781,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             __props__.__dict__["oracle"] = oracle
             __props__.__dict__["postgresql"] = postgresql
             __props__.__dict__["root_rotation_statements"] = root_rotation_statements
+            __props__.__dict__["snowflake"] = snowflake
             __props__.__dict__["verify_connection"] = verify_connection
         super(SecretBackendConnection, __self__).__init__(
             'vault:database/secretBackendConnection:SecretBackendConnection',
@@ -774,6 +810,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
             postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
             root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            snowflake: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']]] = None,
             verify_connection: Optional[pulumi.Input[bool]] = None) -> 'SecretBackendConnection':
         """
         Get an existing SecretBackendConnection resource's state with the given name, id, and optional extra
@@ -800,6 +837,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']] postgresql: A nested block containing configuration options for PostgreSQL connections.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']] snowflake: A nested block containing configuration options for Snowflake connections.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -824,6 +862,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         __props__.__dict__["oracle"] = oracle
         __props__.__dict__["postgresql"] = postgresql
         __props__.__dict__["root_rotation_statements"] = root_rotation_statements
+        __props__.__dict__["snowflake"] = snowflake
         __props__.__dict__["verify_connection"] = verify_connection
         return SecretBackendConnection(resource_name, opts=opts, __props__=__props__)
 
@@ -963,6 +1002,14 @@ class SecretBackendConnection(pulumi.CustomResource):
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter
+    def snowflake(self) -> pulumi.Output[Optional['outputs.SecretBackendConnectionSnowflake']]:
+        """
+        A nested block containing configuration options for Snowflake connections.
+        """
+        return pulumi.get(self, "snowflake")
 
     @property
     @pulumi.getter(name="verifyConnection")

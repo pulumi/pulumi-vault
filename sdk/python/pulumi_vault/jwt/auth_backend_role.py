@@ -59,8 +59,9 @@ class AuthBackendRoleArgs:
                type `oidc`) List of `aud` claims to match against. Any match is sufficient.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_cidrs: If set, a list of
                CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-        :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims/values to match against.
-               The expected value may be a single string or a list of strings.
+        :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims to values to match against.
+               A claim's value must be a string, which may contain one value or multiple
+               comma-separated values, e.g. `"red"` or `"red,green,blue"`.
         :param pulumi.Input[str] bound_claims_type: How to interpret values in the claims/values
                map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
                match). Requires Vault 1.4.0 or above.
@@ -302,8 +303,9 @@ class AuthBackendRoleArgs:
     @pulumi.getter(name="boundClaims")
     def bound_claims(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        If set, a map of claims/values to match against.
-        The expected value may be a single string or a list of strings.
+        If set, a map of claims to values to match against.
+        A claim's value must be a string, which may contain one value or multiple
+        comma-separated values, e.g. `"red"` or `"red,green,blue"`.
         """
         return pulumi.get(self, "bound_claims")
 
@@ -706,8 +708,9 @@ class _AuthBackendRoleState:
                type `oidc`) List of `aud` claims to match against. Any match is sufficient.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_cidrs: If set, a list of
                CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-        :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims/values to match against.
-               The expected value may be a single string or a list of strings.
+        :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims to values to match against.
+               A claim's value must be a string, which may contain one value or multiple
+               comma-separated values, e.g. `"red"` or `"red,green,blue"`.
         :param pulumi.Input[str] bound_claims_type: How to interpret values in the claims/values
                map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
                match). Requires Vault 1.4.0 or above.
@@ -929,8 +932,9 @@ class _AuthBackendRoleState:
     @pulumi.getter(name="boundClaims")
     def bound_claims(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
-        If set, a map of claims/values to match against.
-        The expected value may be a single string or a list of strings.
+        If set, a map of claims to values to match against.
+        A claim's value must be a string, which may contain one value or multiple
+        comma-separated values, e.g. `"red"` or `"red,green,blue"`.
         """
         return pulumi.get(self, "bound_claims")
 
@@ -1375,6 +1379,9 @@ class AuthBackendRole(pulumi.CustomResource):
                 "prod",
             ],
             bound_audiences=["https://myco.test"],
+            bound_claims={
+                "color": "red,green,blue",
+            },
             user_claim="https://vault/user",
             role_type="jwt")
         ```
@@ -1419,8 +1426,9 @@ class AuthBackendRole(pulumi.CustomResource):
                type `oidc`) List of `aud` claims to match against. Any match is sufficient.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_cidrs: If set, a list of
                CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-        :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims/values to match against.
-               The expected value may be a single string or a list of strings.
+        :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims to values to match against.
+               A claim's value must be a string, which may contain one value or multiple
+               comma-separated values, e.g. `"red"` or `"red,green,blue"`.
         :param pulumi.Input[str] bound_claims_type: How to interpret values in the claims/values
                map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
                match). Requires Vault 1.4.0 or above.
@@ -1529,6 +1537,9 @@ class AuthBackendRole(pulumi.CustomResource):
                 "prod",
             ],
             bound_audiences=["https://myco.test"],
+            bound_claims={
+                "color": "red,green,blue",
+            },
             user_claim="https://vault/user",
             role_type="jwt")
         ```
@@ -1736,8 +1747,9 @@ class AuthBackendRole(pulumi.CustomResource):
                type `oidc`) List of `aud` claims to match against. Any match is sufficient.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_cidrs: If set, a list of
                CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-        :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims/values to match against.
-               The expected value may be a single string or a list of strings.
+        :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims to values to match against.
+               A claim's value must be a string, which may contain one value or multiple
+               comma-separated values, e.g. `"red"` or `"red,green,blue"`.
         :param pulumi.Input[str] bound_claims_type: How to interpret values in the claims/values
                map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
                match). Requires Vault 1.4.0 or above.
@@ -1895,8 +1907,9 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="boundClaims")
     def bound_claims(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
         """
-        If set, a map of claims/values to match against.
-        The expected value may be a single string or a list of strings.
+        If set, a map of claims to values to match against.
+        A claim's value must be a string, which may contain one value or multiple
+        comma-separated values, e.g. `"red"` or `"red,green,blue"`.
         """
         return pulumi.get(self, "bound_claims")
 

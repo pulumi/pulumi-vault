@@ -112,6 +112,10 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      */
     public readonly rootRotationStatements!: pulumi.Output<string[] | undefined>;
     /**
+     * A nested block containing configuration options for Snowflake connections.
+     */
+    public readonly snowflake!: pulumi.Output<outputs.database.SecretBackendConnectionSnowflake | undefined>;
+    /**
      * Whether the connection should be verified on
      * initial configuration or not.
      */
@@ -147,6 +151,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             inputs["oracle"] = state ? state.oracle : undefined;
             inputs["postgresql"] = state ? state.postgresql : undefined;
             inputs["rootRotationStatements"] = state ? state.rootRotationStatements : undefined;
+            inputs["snowflake"] = state ? state.snowflake : undefined;
             inputs["verifyConnection"] = state ? state.verifyConnection : undefined;
         } else {
             const args = argsOrState as SecretBackendConnectionArgs | undefined;
@@ -170,6 +175,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             inputs["oracle"] = args ? args.oracle : undefined;
             inputs["postgresql"] = args ? args.postgresql : undefined;
             inputs["rootRotationStatements"] = args ? args.rootRotationStatements : undefined;
+            inputs["snowflake"] = args ? args.snowflake : undefined;
             inputs["verifyConnection"] = args ? args.verifyConnection : undefined;
         }
         if (!opts.version) {
@@ -253,6 +259,10 @@ export interface SecretBackendConnectionState {
      */
     readonly rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * A nested block containing configuration options for Snowflake connections.
+     */
+    readonly snowflake?: pulumi.Input<inputs.database.SecretBackendConnectionSnowflake>;
+    /**
      * Whether the connection should be verified on
      * initial configuration or not.
      */
@@ -332,6 +342,10 @@ export interface SecretBackendConnectionArgs {
      * A list of database statements to be executed to rotate the root user's credentials.
      */
     readonly rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A nested block containing configuration options for Snowflake connections.
+     */
+    readonly snowflake?: pulumi.Input<inputs.database.SecretBackendConnectionSnowflake>;
     /**
      * Whether the connection should be verified on
      * initial configuration or not.

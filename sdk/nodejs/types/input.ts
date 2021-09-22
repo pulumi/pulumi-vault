@@ -181,7 +181,7 @@ export namespace database {
          */
         tls?: pulumi.Input<boolean>;
         /**
-         * The username to be used in the connection.
+         * The username to be used in the connection (the account admin level).
          */
         username?: pulumi.Input<string>;
     }
@@ -197,7 +197,7 @@ export namespace database {
          */
         url: pulumi.Input<string>;
         /**
-         * The username to be used in the connection.
+         * The username to be used in the connection (the account admin level).
          */
         username: pulumi.Input<string>;
     }
@@ -206,7 +206,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -231,7 +231,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -250,6 +250,10 @@ export namespace database {
          * use.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionMongodbatlas {
@@ -271,7 +275,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -290,13 +294,17 @@ export namespace database {
          * use.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionMysql {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -323,13 +331,17 @@ export namespace database {
          * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
          */
         tlsCertificateKey?: pulumi.Input<string>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionMysqlAurora {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -348,13 +360,17 @@ export namespace database {
          * use.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionMysqlLegacy {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -373,13 +389,17 @@ export namespace database {
          * use.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionMysqlRds {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -398,13 +418,17 @@ export namespace database {
          * use.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionOracle {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -423,13 +447,17 @@ export namespace database {
          * use.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionPostgresql {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
@@ -448,6 +476,47 @@ export namespace database {
          * use.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
+    }
+
+    export interface SecretBackendConnectionSnowflake {
+        /**
+         * A URL containing connection information. See
+         * the [Vault
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * for an example.
+         */
+        connectionUrl?: pulumi.Input<string>;
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: pulumi.Input<number>;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: pulumi.Input<number>;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: pulumi.Input<string>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
     }
 }
 

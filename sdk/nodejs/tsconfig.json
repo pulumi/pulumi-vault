@@ -130,6 +130,7 @@
         "rabbitmq/index.ts",
         "rabbitmq/secretBackend.ts",
         "rabbitmq/secretBackendRole.ts",
+        "raftSnapshotAgentConfig.ts",
         "rgpPolicy.ts",
         "ssh/index.ts",
         "ssh/secretBackendCa.ts",

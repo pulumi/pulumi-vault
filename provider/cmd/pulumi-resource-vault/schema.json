@@ -329,7 +329,7 @@
                 },
                 "username": {
                     "type": "string",
-                    "description": "The username to be used in the connection.\n",
+                    "description": "The username to be used in the connection (the account admin level).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -361,7 +361,7 @@
                 },
                 "username": {
                     "type": "string",
-                    "description": "The username to be used in the connection.\n",
+                    "description": "The username to be used in the connection (the account admin level).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -380,7 +380,7 @@
             "properties": {
                 "connectionUrl": {
                     "type": "string",
-                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)\nfor an example.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -421,7 +421,7 @@
             "properties": {
                 "connectionUrl": {
                     "type": "string",
-                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)\nfor an example.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -449,6 +449,15 @@
                 "maxOpenConnections": {
                     "type": "integer",
                     "description": "The maximum number of open connections to\nuse.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "usernameTemplate": {
+                    "type": "string",
+                    "description": "- [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -499,7 +508,7 @@
             "properties": {
                 "connectionUrl": {
                     "type": "string",
-                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)\nfor an example.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -532,6 +541,15 @@
                             "mapCase": false
                         }
                     }
+                },
+                "usernameTemplate": {
+                    "type": "string",
+                    "description": "- [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object"
@@ -540,7 +558,7 @@
             "properties": {
                 "connectionUrl": {
                     "type": "string",
-                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)\nfor an example.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -591,6 +609,15 @@
                             "mapCase": false
                         }
                     }
+                },
+                "usernameTemplate": {
+                    "type": "string",
+                    "description": "- [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object"
@@ -599,7 +626,7 @@
             "properties": {
                 "connectionUrl": {
                     "type": "string",
-                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)\nfor an example.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -627,6 +654,15 @@
                 "maxOpenConnections": {
                     "type": "integer",
                     "description": "The maximum number of open connections to\nuse.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "usernameTemplate": {
+                    "type": "string",
+                    "description": "- [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -640,7 +676,7 @@
             "properties": {
                 "connectionUrl": {
                     "type": "string",
-                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)\nfor an example.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -668,6 +704,15 @@
                 "maxOpenConnections": {
                     "type": "integer",
                     "description": "The maximum number of open connections to\nuse.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "usernameTemplate": {
+                    "type": "string",
+                    "description": "- [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -681,7 +726,7 @@
             "properties": {
                 "connectionUrl": {
                     "type": "string",
-                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)\nfor an example.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -709,6 +754,15 @@
                 "maxOpenConnections": {
                     "type": "integer",
                     "description": "The maximum number of open connections to\nuse.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "usernameTemplate": {
+                    "type": "string",
+                    "description": "- [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -722,7 +776,7 @@
             "properties": {
                 "connectionUrl": {
                     "type": "string",
-                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)\nfor an example.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -750,6 +804,15 @@
                 "maxOpenConnections": {
                     "type": "integer",
                     "description": "The maximum number of open connections to\nuse.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "usernameTemplate": {
+                    "type": "string",
+                    "description": "- [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -763,7 +826,7 @@
             "properties": {
                 "connectionUrl": {
                     "type": "string",
-                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)\nfor an example.\n",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)\nfor an example.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -791,6 +854,83 @@
                 "maxOpenConnections": {
                     "type": "integer",
                     "description": "The maximum number of open connections to\nuse.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "usernameTemplate": {
+                    "type": "string",
+                    "description": "- [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "vault:database/SecretBackendConnectionSnowflake:SecretBackendConnectionSnowflake": {
+            "properties": {
+                "connectionUrl": {
+                    "type": "string",
+                    "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)\nfor an example.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maxConnectionLifetime": {
+                    "type": "integer",
+                    "description": "The maximum number of seconds to keep\na connection alive for.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maxIdleConnections": {
+                    "type": "integer",
+                    "description": "The maximum number of idle connections to\nmaintain.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maxOpenConnections": {
+                    "type": "integer",
+                    "description": "The maximum number of open connections to\nuse.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password to be used in the connection.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username to be used in the connection (the account admin level).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "usernameTemplate": {
+                    "type": "string",
+                    "description": "- [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -5298,6 +5438,10 @@
                     "type": "string",
                     "description": "A human-friendly description for this backend.\n"
                 },
+                "local": {
+                    "type": "boolean",
+                    "description": "Specifies if the secret backend is local only.\n"
+                },
                 "maxLeaseTtlSeconds": {
                     "type": "integer",
                     "description": "The maximum TTL that can be requested\nfor credentials issued by this backend.\n"
@@ -5343,6 +5487,10 @@
                 "description": {
                     "type": "string",
                     "description": "A human-friendly description for this backend.\n"
+                },
+                "local": {
+                    "type": "boolean",
+                    "description": "Specifies if the secret backend is local only.\n"
                 },
                 "maxLeaseTtlSeconds": {
                     "type": "integer",
@@ -5391,6 +5539,10 @@
                     "description": {
                         "type": "string",
                         "description": "A human-friendly description for this backend.\n"
+                    },
+                    "local": {
+                        "type": "boolean",
+                        "description": "Specifies if the secret backend is local only.\n"
                     },
                     "maxLeaseTtlSeconds": {
                         "type": "integer",
@@ -5620,6 +5772,10 @@
                     },
                     "description": "A list of database statements to be executed to rotate the root user's credentials.\n"
                 },
+                "snowflake": {
+                    "$ref": "#/types/vault:database/SecretBackendConnectionSnowflake:SecretBackendConnectionSnowflake",
+                    "description": "A nested block containing configuration options for Snowflake connections.\n"
+                },
                 "verifyConnection": {
                     "type": "boolean",
                     "description": "Whether the connection should be verified on\ninitial configuration or not.\n"
@@ -5706,6 +5862,10 @@
                         "type": "string"
                     },
                     "description": "A list of database statements to be executed to rotate the root user's credentials.\n"
+                },
+                "snowflake": {
+                    "$ref": "#/types/vault:database/SecretBackendConnectionSnowflake:SecretBackendConnectionSnowflake",
+                    "description": "A nested block containing configuration options for Snowflake connections.\n"
                 },
                 "verifyConnection": {
                     "type": "boolean",
@@ -5794,6 +5954,10 @@
                             "type": "string"
                         },
                         "description": "A list of database statements to be executed to rotate the root user's credentials.\n"
+                    },
+                    "snowflake": {
+                        "$ref": "#/types/vault:database/SecretBackendConnectionSnowflake:SecretBackendConnectionSnowflake",
+                        "description": "A nested block containing configuration options for Snowflake connections.\n"
                     },
                     "verifyConnection": {
                         "type": "boolean",
@@ -10214,6 +10378,354 @@
                 "type": "object"
             }
         },
+        "vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig": {
+            "description": "\n\n\n## Import\n\nRaft Snapshot Agent Configurations can be imported using the `name`, e.g.\n\n```sh\n $ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local\n```\n\n ",
+            "properties": {
+                "awsAccessKeyId": {
+                    "type": "string",
+                    "description": "AWS access key ID.\n"
+                },
+                "awsS3Bucket": {
+                    "type": "string",
+                    "description": "`\u003crequired\u003e` - S3 bucket to write snapshots to.\n"
+                },
+                "awsS3DisableTls": {
+                    "type": "boolean",
+                    "description": "Disable TLS for the S3 endpoint. This\nshould only be used for testing purposes, typically in conjunction with\n`aws_s3_endpoint`.\n"
+                },
+                "awsS3EnableKms": {
+                    "type": "boolean",
+                    "description": "Use KMS to encrypt bucket contents.\n"
+                },
+                "awsS3Endpoint": {
+                    "type": "string",
+                    "description": "AWS endpoint. This is typically only set when\nusing a non-AWS S3 implementation like Minio.\n"
+                },
+                "awsS3ForcePathStyle": {
+                    "type": "boolean",
+                    "description": "Use the endpoint/bucket URL style\ninstead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.\n"
+                },
+                "awsS3KmsKey": {
+                    "type": "string",
+                    "description": "Use named KMS key, when `aws_s3_enable_kms = true`\n"
+                },
+                "awsS3Region": {
+                    "type": "string",
+                    "description": "`\u003crequired\u003e` - AWS region bucket is in.\n"
+                },
+                "awsS3ServerSideEncryption": {
+                    "type": "boolean",
+                    "description": "Use AES256 to encrypt bucket contents.\n"
+                },
+                "awsSecretAccessKey": {
+                    "type": "string",
+                    "description": "AWS secret access key.\n"
+                },
+                "awsSessionToken": {
+                    "type": "string",
+                    "description": "AWS session token.\n"
+                },
+                "azureAccountKey": {
+                    "type": "string",
+                    "description": "Azure account key.\n"
+                },
+                "azureAccountName": {
+                    "type": "string",
+                    "description": "Azure account name.\n"
+                },
+                "azureBlobEnvironment": {
+                    "type": "string",
+                    "description": "Azure blob environment.\n"
+                },
+                "azureContainerName": {
+                    "type": "string",
+                    "description": "`\u003crequired\u003e` - Azure container name to write\nsnapshots to.\n"
+                },
+                "azureEndpoint": {
+                    "type": "string",
+                    "description": "Azure blob storage endpoint. This is typically\nonly set when using a non-Azure implementation like Azurite.\n"
+                },
+                "filePrefix": {
+                    "type": "string",
+                    "description": "Within the directory or bucket\nprefix given by `path_prefix`, the file or object name of snapshot files\nwill start with this string.\n"
+                },
+                "googleDisableTls": {
+                    "type": "boolean",
+                    "description": "Disable TLS for the GCS endpoint. This\nshould only be used for testing purposes, typically in conjunction with\n`google_endpoint`.\n"
+                },
+                "googleEndpoint": {
+                    "type": "string",
+                    "description": "GCS endpoint. This is typically only set when\nusing a non-Google GCS implementation like fake-gcs-server.\n"
+                },
+                "googleGcsBucket": {
+                    "type": "string",
+                    "description": "`\u003crequired\u003e` - GCS bucket to write snapshots to.\n"
+                },
+                "googleServiceAccountKey": {
+                    "type": "string",
+                    "description": "Google service account key in JSON format. \nThe raw value looks like this:\n"
+                },
+                "intervalSeconds": {
+                    "type": "integer",
+                    "description": "`\u003crequired\u003e` - Time (in seconds) between snapshots.\n"
+                },
+                "localMaxSpace": {
+                    "type": "integer",
+                    "description": "For `storage_type = local`, the maximum\nspace, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough\nspace left in this allowance.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "`\u003crequired\u003e` – Name of the configuration to modify.\n"
+                },
+                "pathPrefix": {
+                    "type": "string",
+                    "description": "`\u003crequired\u003e` - For `storage_type = \"local\"`, the directory to\nwrite the snapshots in. For cloud storage types, the bucket prefix to use.\nTypes `azure-s3` and `google-gcs` require a trailing `/` (slash).\nTypes `local` and `aws-s3` the trailing `/` is optional.\n"
+                },
+                "retain": {
+                    "type": "integer",
+                    "description": "How many snapshots are to be kept; when writing a\nsnapshot, if there are more snapshots already stored than this number, the\noldest ones will be deleted.\n"
+                },
+                "storageType": {
+                    "type": "string",
+                    "description": "`\u003crequired\u003e` - One of \"local\", \"azure-blob\", \"aws-s3\",\nor \"google-gcs\". The remaining parameters described below are all specific to\nthe selected `storage_type` and prefixed accordingly.\n"
+                }
+            },
+            "required": [
+                "intervalSeconds",
+                "name",
+                "pathPrefix",
+                "storageType"
+            ],
+            "inputProperties": {
+                "awsAccessKeyId": {
+                    "type": "string",
+                    "description": "AWS access key ID.\n"
+                },
+                "awsS3Bucket": {
+                    "type": "string",
+                    "description": "`\u003crequired\u003e` - S3 bucket to write snapshots to.\n"
+                },
+                "awsS3DisableTls": {
+                    "type": "boolean",
+                    "description": "Disable TLS for the S3 endpoint. This\nshould only be used for testing purposes, typically in conjunction with\n`aws_s3_endpoint`.\n"
+                },
+                "awsS3EnableKms": {
+                    "type": "boolean",
+                    "description": "Use KMS to encrypt bucket contents.\n"
+                },
+                "awsS3Endpoint": {
+                    "type": "string",
+                    "description": "AWS endpoint. This is typically only set when\nusing a non-AWS S3 implementation like Minio.\n"
+                },
+                "awsS3ForcePathStyle": {
+                    "type": "boolean",
+                    "description": "Use the endpoint/bucket URL style\ninstead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.\n"
+                },
+                "awsS3KmsKey": {
+                    "type": "string",
+                    "description": "Use named KMS key, when `aws_s3_enable_kms = true`\n"
+                },
+                "awsS3Region": {
+                    "type": "string",
+                    "description": "`\u003crequired\u003e` - AWS region bucket is in.\n"
+                },
+                "awsS3ServerSideEncryption": {
+                    "type": "boolean",
+                    "description": "Use AES256 to encrypt bucket contents.\n"
+                },
+                "awsSecretAccessKey": {
+                    "type": "string",
+                    "description": "AWS secret access key.\n"
+                },
+                "awsSessionToken": {
+                    "type": "string",
+                    "description": "AWS session token.\n"
+                },
+                "azureAccountKey": {
+                    "type": "string",
+                    "description": "Azure account key.\n"
+                },
+                "azureAccountName": {
+                    "type": "string",
+                    "description": "Azure account name.\n"
+                },
+                "azureBlobEnvironment": {
+                    "type": "string",
+                    "description": "Azure blob environment.\n"
+                },
+                "azureContainerName": {
+                    "type": "string",
+                    "description": "`\u003crequired\u003e` - Azure container name to write\nsnapshots to.\n"
+                },
+                "azureEndpoint": {
+                    "type": "string",
+                    "description": "Azure blob storage endpoint. This is typically\nonly set when using a non-Azure implementation like Azurite.\n"
+                },
+                "filePrefix": {
+                    "type": "string",
+                    "description": "Within the directory or bucket\nprefix given by `path_prefix`, the file or object name of snapshot files\nwill start with this string.\n"
+                },
+                "googleDisableTls": {
+                    "type": "boolean",
+                    "description": "Disable TLS for the GCS endpoint. This\nshould only be used for testing purposes, typically in conjunction with\n`google_endpoint`.\n"
+                },
+                "googleEndpoint": {
+                    "type": "string",
+                    "description": "GCS endpoint. This is typically only set when\nusing a non-Google GCS implementation like fake-gcs-server.\n"
+                },
+                "googleGcsBucket": {
+                    "type": "string",
+                    "description": "`\u003crequired\u003e` - GCS bucket to write snapshots to.\n"
+                },
+                "googleServiceAccountKey": {
+                    "type": "string",
+                    "description": "Google service account key in JSON format. \nThe raw value looks like this:\n"
+                },
+                "intervalSeconds": {
+                    "type": "integer",
+                    "description": "`\u003crequired\u003e` - Time (in seconds) between snapshots.\n"
+                },
+                "localMaxSpace": {
+                    "type": "integer",
+                    "description": "For `storage_type = local`, the maximum\nspace, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough\nspace left in this allowance.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "`\u003crequired\u003e` – Name of the configuration to modify.\n"
+                },
+                "pathPrefix": {
+                    "type": "string",
+                    "description": "`\u003crequired\u003e` - For `storage_type = \"local\"`, the directory to\nwrite the snapshots in. For cloud storage types, the bucket prefix to use.\nTypes `azure-s3` and `google-gcs` require a trailing `/` (slash).\nTypes `local` and `aws-s3` the trailing `/` is optional.\n"
+                },
+                "retain": {
+                    "type": "integer",
+                    "description": "How many snapshots are to be kept; when writing a\nsnapshot, if there are more snapshots already stored than this number, the\noldest ones will be deleted.\n"
+                },
+                "storageType": {
+                    "type": "string",
+                    "description": "`\u003crequired\u003e` - One of \"local\", \"azure-blob\", \"aws-s3\",\nor \"google-gcs\". The remaining parameters described below are all specific to\nthe selected `storage_type` and prefixed accordingly.\n"
+                }
+            },
+            "requiredInputs": [
+                "intervalSeconds",
+                "pathPrefix",
+                "storageType"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RaftSnapshotAgentConfig resources.\n",
+                "properties": {
+                    "awsAccessKeyId": {
+                        "type": "string",
+                        "description": "AWS access key ID.\n"
+                    },
+                    "awsS3Bucket": {
+                        "type": "string",
+                        "description": "`\u003crequired\u003e` - S3 bucket to write snapshots to.\n"
+                    },
+                    "awsS3DisableTls": {
+                        "type": "boolean",
+                        "description": "Disable TLS for the S3 endpoint. This\nshould only be used for testing purposes, typically in conjunction with\n`aws_s3_endpoint`.\n"
+                    },
+                    "awsS3EnableKms": {
+                        "type": "boolean",
+                        "description": "Use KMS to encrypt bucket contents.\n"
+                    },
+                    "awsS3Endpoint": {
+                        "type": "string",
+                        "description": "AWS endpoint. This is typically only set when\nusing a non-AWS S3 implementation like Minio.\n"
+                    },
+                    "awsS3ForcePathStyle": {
+                        "type": "boolean",
+                        "description": "Use the endpoint/bucket URL style\ninstead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.\n"
+                    },
+                    "awsS3KmsKey": {
+                        "type": "string",
+                        "description": "Use named KMS key, when `aws_s3_enable_kms = true`\n"
+                    },
+                    "awsS3Region": {
+                        "type": "string",
+                        "description": "`\u003crequired\u003e` - AWS region bucket is in.\n"
+                    },
+                    "awsS3ServerSideEncryption": {
+                        "type": "boolean",
+                        "description": "Use AES256 to encrypt bucket contents.\n"
+                    },
+                    "awsSecretAccessKey": {
+                        "type": "string",
+                        "description": "AWS secret access key.\n"
+                    },
+                    "awsSessionToken": {
+                        "type": "string",
+                        "description": "AWS session token.\n"
+                    },
+                    "azureAccountKey": {
+                        "type": "string",
+                        "description": "Azure account key.\n"
+                    },
+                    "azureAccountName": {
+                        "type": "string",
+                        "description": "Azure account name.\n"
+                    },
+                    "azureBlobEnvironment": {
+                        "type": "string",
+                        "description": "Azure blob environment.\n"
+                    },
+                    "azureContainerName": {
+                        "type": "string",
+                        "description": "`\u003crequired\u003e` - Azure container name to write\nsnapshots to.\n"
+                    },
+                    "azureEndpoint": {
+                        "type": "string",
+                        "description": "Azure blob storage endpoint. This is typically\nonly set when using a non-Azure implementation like Azurite.\n"
+                    },
+                    "filePrefix": {
+                        "type": "string",
+                        "description": "Within the directory or bucket\nprefix given by `path_prefix`, the file or object name of snapshot files\nwill start with this string.\n"
+                    },
+                    "googleDisableTls": {
+                        "type": "boolean",
+                        "description": "Disable TLS for the GCS endpoint. This\nshould only be used for testing purposes, typically in conjunction with\n`google_endpoint`.\n"
+                    },
+                    "googleEndpoint": {
+                        "type": "string",
+                        "description": "GCS endpoint. This is typically only set when\nusing a non-Google GCS implementation like fake-gcs-server.\n"
+                    },
+                    "googleGcsBucket": {
+                        "type": "string",
+                        "description": "`\u003crequired\u003e` - GCS bucket to write snapshots to.\n"
+                    },
+                    "googleServiceAccountKey": {
+                        "type": "string",
+                        "description": "Google service account key in JSON format. \nThe raw value looks like this:\n"
+                    },
+                    "intervalSeconds": {
+                        "type": "integer",
+                        "description": "`\u003crequired\u003e` - Time (in seconds) between snapshots.\n"
+                    },
+                    "localMaxSpace": {
+                        "type": "integer",
+                        "description": "For `storage_type = local`, the maximum\nspace, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough\nspace left in this allowance.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "`\u003crequired\u003e` – Name of the configuration to modify.\n"
+                    },
+                    "pathPrefix": {
+                        "type": "string",
+                        "description": "`\u003crequired\u003e` - For `storage_type = \"local\"`, the directory to\nwrite the snapshots in. For cloud storage types, the bucket prefix to use.\nTypes `azure-s3` and `google-gcs` require a trailing `/` (slash).\nTypes `local` and `aws-s3` the trailing `/` is optional.\n"
+                    },
+                    "retain": {
+                        "type": "integer",
+                        "description": "How many snapshots are to be kept; when writing a\nsnapshot, if there are more snapshots already stored than this number, the\noldest ones will be deleted.\n"
+                    },
+                    "storageType": {
+                        "type": "string",
+                        "description": "`\u003crequired\u003e` - One of \"local\", \"azure-blob\", \"aws-s3\",\nor \"google-gcs\". The remaining parameters described below are all specific to\nthe selected `storage_type` and prefixed accordingly.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "vault:index/rgpPolicy:RgpPolicy": {
             "description": "Provides a resource to manage Role Governing Policy (RGP) via [Sentinel](https://www.vaultproject.io/docs/enterprise/sentinel/index.html).\n\n**Note** this feature is available only with Vault Enterprise.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst allow_all = new vault.RgpPolicy(\"allow-all\", {\n    enforcementLevel: \"soft-mandatory\",\n    policy: `main = rule {\n  true\n}\n`,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nallow_all = vault.RgpPolicy(\"allow-all\",\n    enforcement_level=\"soft-mandatory\",\n    policy=\"\"\"main = rule {\n  true\n}\n\n\"\"\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var allow_all = new Vault.RgpPolicy(\"allow-all\", new Vault.RgpPolicyArgs\n        {\n            EnforcementLevel = \"soft-mandatory\",\n            Policy = @\"main = rule {\n  true\n}\n\n\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v4/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewRgpPolicy(ctx, \"allow_all\", \u0026vault.RgpPolicyArgs{\n\t\t\tEnforcementLevel: pulumi.String(\"soft-mandatory\"),\n\t\t\tPolicy:           pulumi.String(fmt.Sprintf(\"%v%v%v%v\", \"main = rule {\\n\", \"  true\\n\", \"}\\n\", \"\\n\")),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
@@ -10562,6 +11074,10 @@
                     },
                     "description": "A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`\n"
                 },
+                "local": {
+                    "type": "boolean",
+                    "description": "Specifies if the auth method is local only.\n"
+                },
                 "oidcClientId": {
                     "type": "string",
                     "description": "Client ID used for OIDC backends\n"
@@ -10635,6 +11151,10 @@
                         "type": "string"
                     },
                     "description": "A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`\n"
+                },
+                "local": {
+                    "type": "boolean",
+                    "description": "Specifies if the auth method is local only.\n"
                 },
                 "oidcClientId": {
                     "type": "string",
@@ -10712,6 +11232,10 @@
                         },
                         "description": "A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`\n"
                     },
+                    "local": {
+                        "type": "boolean",
+                        "description": "Specifies if the auth method is local only.\n"
+                    },
                     "oidcClientId": {
                         "type": "string",
                         "description": "Client ID used for OIDC backends\n"
@@ -10751,7 +11275,7 @@
             }
         },
         "vault:jwt/authBackendRole:AuthBackendRole": {
-            "description": "Manages an JWT/OIDC auth backend role in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/jwt.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nRole for JWT backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst jwt = new vault.jwt.AuthBackend(\"jwt\", {path: \"jwt\"});\nconst example = new vault.jwt.AuthBackendRole(\"example\", {\n    backend: jwt.path,\n    roleName: \"test-role\",\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    boundAudiences: [\"https://myco.test\"],\n    userClaim: \"https://vault/user\",\n    roleType: \"jwt\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\njwt = vault.jwt.AuthBackend(\"jwt\", path=\"jwt\")\nexample = vault.jwt.AuthBackendRole(\"example\",\n    backend=jwt.path,\n    role_name=\"test-role\",\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    bound_audiences=[\"https://myco.test\"],\n    user_claim=\"https://vault/user\",\n    role_type=\"jwt\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var jwt = new Vault.Jwt.AuthBackend(\"jwt\", new Vault.Jwt.AuthBackendArgs\n        {\n            Path = \"jwt\",\n        });\n        var example = new Vault.Jwt.AuthBackendRole(\"example\", new Vault.Jwt.AuthBackendRoleArgs\n        {\n            Backend = jwt.Path,\n            RoleName = \"test-role\",\n            TokenPolicies = \n            {\n                \"default\",\n                \"dev\",\n                \"prod\",\n            },\n            BoundAudiences = \n            {\n                \"https://myco.test\",\n            },\n            UserClaim = \"https://vault/user\",\n            RoleType = \"jwt\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tjwt, err := jwt.NewAuthBackend(ctx, \"jwt\", \u0026jwt.AuthBackendArgs{\n\t\t\tPath: pulumi.String(\"jwt\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = jwt.NewAuthBackendRole(ctx, \"example\", \u0026jwt.AuthBackendRoleArgs{\n\t\t\tBackend:  jwt.Path,\n\t\t\tRoleName: pulumi.String(\"test-role\"),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"default\"),\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"prod\"),\n\t\t\t},\n\t\t\tBoundAudiences: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"https://myco.test\"),\n\t\t\t},\n\t\t\tUserClaim: pulumi.String(\"https://vault/user\"),\n\t\t\tRoleType:  pulumi.String(\"jwt\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\nRole for OIDC backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst oidc = new vault.jwt.AuthBackend(\"oidc\", {\n    path: \"oidc\",\n    defaultRole: \"test-role\",\n});\nconst example = new vault.jwt.AuthBackendRole(\"example\", {\n    backend: oidc.path,\n    roleName: \"test-role\",\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    userClaim: \"https://vault/user\",\n    roleType: \"oidc\",\n    allowedRedirectUris: [\"http://localhost:8200/ui/vault/auth/oidc/oidc/callback\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\noidc = vault.jwt.AuthBackend(\"oidc\",\n    path=\"oidc\",\n    default_role=\"test-role\")\nexample = vault.jwt.AuthBackendRole(\"example\",\n    backend=oidc.path,\n    role_name=\"test-role\",\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    user_claim=\"https://vault/user\",\n    role_type=\"oidc\",\n    allowed_redirect_uris=[\"http://localhost:8200/ui/vault/auth/oidc/oidc/callback\"])\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var oidc = new Vault.Jwt.AuthBackend(\"oidc\", new Vault.Jwt.AuthBackendArgs\n        {\n            Path = \"oidc\",\n            DefaultRole = \"test-role\",\n        });\n        var example = new Vault.Jwt.AuthBackendRole(\"example\", new Vault.Jwt.AuthBackendRoleArgs\n        {\n            Backend = oidc.Path,\n            RoleName = \"test-role\",\n            TokenPolicies = \n            {\n                \"default\",\n                \"dev\",\n                \"prod\",\n            },\n            UserClaim = \"https://vault/user\",\n            RoleType = \"oidc\",\n            AllowedRedirectUris = \n            {\n                \"http://localhost:8200/ui/vault/auth/oidc/oidc/callback\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\toidc, err := jwt.NewAuthBackend(ctx, \"oidc\", \u0026jwt.AuthBackendArgs{\n\t\t\tPath:        pulumi.String(\"oidc\"),\n\t\t\tDefaultRole: pulumi.String(\"test-role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = jwt.NewAuthBackendRole(ctx, \"example\", \u0026jwt.AuthBackendRoleArgs{\n\t\t\tBackend:  oidc.Path,\n\t\t\tRoleName: pulumi.String(\"test-role\"),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"default\"),\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"prod\"),\n\t\t\t},\n\t\t\tUserClaim: pulumi.String(\"https://vault/user\"),\n\t\t\tRoleType:  pulumi.String(\"oidc\"),\n\t\t\tAllowedRedirectUris: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"http://localhost:8200/ui/vault/auth/oidc/oidc/callback\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nJWT authentication backend roles can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:jwt/authBackendRole:AuthBackendRole example auth/jwt/role/test-role\n```\n\n ",
+            "description": "Manages an JWT/OIDC auth backend role in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/jwt.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nRole for JWT backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst jwt = new vault.jwt.AuthBackend(\"jwt\", {path: \"jwt\"});\nconst example = new vault.jwt.AuthBackendRole(\"example\", {\n    backend: jwt.path,\n    roleName: \"test-role\",\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    boundAudiences: [\"https://myco.test\"],\n    boundClaims: {\n        color: \"red,green,blue\",\n    },\n    userClaim: \"https://vault/user\",\n    roleType: \"jwt\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\njwt = vault.jwt.AuthBackend(\"jwt\", path=\"jwt\")\nexample = vault.jwt.AuthBackendRole(\"example\",\n    backend=jwt.path,\n    role_name=\"test-role\",\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    bound_audiences=[\"https://myco.test\"],\n    bound_claims={\n        \"color\": \"red,green,blue\",\n    },\n    user_claim=\"https://vault/user\",\n    role_type=\"jwt\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var jwt = new Vault.Jwt.AuthBackend(\"jwt\", new Vault.Jwt.AuthBackendArgs\n        {\n            Path = \"jwt\",\n        });\n        var example = new Vault.Jwt.AuthBackendRole(\"example\", new Vault.Jwt.AuthBackendRoleArgs\n        {\n            Backend = jwt.Path,\n            RoleName = \"test-role\",\n            TokenPolicies = \n            {\n                \"default\",\n                \"dev\",\n                \"prod\",\n            },\n            BoundAudiences = \n            {\n                \"https://myco.test\",\n            },\n            BoundClaims = \n            {\n                { \"color\", \"red,green,blue\" },\n            },\n            UserClaim = \"https://vault/user\",\n            RoleType = \"jwt\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tjwt, err := jwt.NewAuthBackend(ctx, \"jwt\", \u0026jwt.AuthBackendArgs{\n\t\t\tPath: pulumi.String(\"jwt\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = jwt.NewAuthBackendRole(ctx, \"example\", \u0026jwt.AuthBackendRoleArgs{\n\t\t\tBackend:  jwt.Path,\n\t\t\tRoleName: pulumi.String(\"test-role\"),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"default\"),\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"prod\"),\n\t\t\t},\n\t\t\tBoundAudiences: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"https://myco.test\"),\n\t\t\t},\n\t\t\tBoundClaims: pulumi.StringMap{\n\t\t\t\t\"color\": pulumi.String(\"red,green,blue\"),\n\t\t\t},\n\t\t\tUserClaim: pulumi.String(\"https://vault/user\"),\n\t\t\tRoleType:  pulumi.String(\"jwt\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\nRole for OIDC backend:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst oidc = new vault.jwt.AuthBackend(\"oidc\", {\n    path: \"oidc\",\n    defaultRole: \"test-role\",\n});\nconst example = new vault.jwt.AuthBackendRole(\"example\", {\n    backend: oidc.path,\n    roleName: \"test-role\",\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    userClaim: \"https://vault/user\",\n    roleType: \"oidc\",\n    allowedRedirectUris: [\"http://localhost:8200/ui/vault/auth/oidc/oidc/callback\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\noidc = vault.jwt.AuthBackend(\"oidc\",\n    path=\"oidc\",\n    default_role=\"test-role\")\nexample = vault.jwt.AuthBackendRole(\"example\",\n    backend=oidc.path,\n    role_name=\"test-role\",\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    user_claim=\"https://vault/user\",\n    role_type=\"oidc\",\n    allowed_redirect_uris=[\"http://localhost:8200/ui/vault/auth/oidc/oidc/callback\"])\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var oidc = new Vault.Jwt.AuthBackend(\"oidc\", new Vault.Jwt.AuthBackendArgs\n        {\n            Path = \"oidc\",\n            DefaultRole = \"test-role\",\n        });\n        var example = new Vault.Jwt.AuthBackendRole(\"example\", new Vault.Jwt.AuthBackendRoleArgs\n        {\n            Backend = oidc.Path,\n            RoleName = \"test-role\",\n            TokenPolicies = \n            {\n                \"default\",\n                \"dev\",\n                \"prod\",\n            },\n            UserClaim = \"https://vault/user\",\n            RoleType = \"oidc\",\n            AllowedRedirectUris = \n            {\n                \"http://localhost:8200/ui/vault/auth/oidc/oidc/callback\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\toidc, err := jwt.NewAuthBackend(ctx, \"oidc\", \u0026jwt.AuthBackendArgs{\n\t\t\tPath:        pulumi.String(\"oidc\"),\n\t\t\tDefaultRole: pulumi.String(\"test-role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = jwt.NewAuthBackendRole(ctx, \"example\", \u0026jwt.AuthBackendRoleArgs{\n\t\t\tBackend:  oidc.Path,\n\t\t\tRoleName: pulumi.String(\"test-role\"),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"default\"),\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"prod\"),\n\t\t\t},\n\t\t\tUserClaim: pulumi.String(\"https://vault/user\"),\n\t\t\tRoleType:  pulumi.String(\"oidc\"),\n\t\t\tAllowedRedirectUris: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"http://localhost:8200/ui/vault/auth/oidc/oidc/callback\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nJWT authentication backend roles can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:jwt/authBackendRole:AuthBackendRole example auth/jwt/role/test-role\n```\n\n ",
             "properties": {
                 "allowedRedirectUris": {
                     "type": "array",
@@ -10784,7 +11308,7 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "If set, a map of claims/values to match against.\nThe expected value may be a single string or a list of strings.\n"
+                    "description": "If set, a map of claims to values to match against.\nA claim's value must be a string, which may contain one value or multiple\ncomma-separated values, e.g. `\"red\"` or `\"red,green,blue\"`.\n"
                 },
                 "boundClaimsType": {
                     "type": "string",
@@ -10954,7 +11478,7 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
-                    "description": "If set, a map of claims/values to match against.\nThe expected value may be a single string or a list of strings.\n"
+                    "description": "If set, a map of claims to values to match against.\nA claim's value must be a string, which may contain one value or multiple\ncomma-separated values, e.g. `\"red\"` or `\"red,green,blue\"`.\n"
                 },
                 "boundClaimsType": {
                     "type": "string",
@@ -11124,7 +11648,7 @@
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
                         },
-                        "description": "If set, a map of claims/values to match against.\nThe expected value may be a single string or a list of strings.\n"
+                        "description": "If set, a map of claims to values to match against.\nA claim's value must be a string, which may contain one value or multiple\ncomma-separated values, e.g. `\"red\"` or `\"red,green,blue\"`.\n"
                     },
                     "boundClaimsType": {
                         "type": "string",
@@ -11771,6 +12295,10 @@
                     "type": "boolean",
                     "description": "Control whether or TLS certificates must be validated\n"
                 },
+                "local": {
+                    "type": "boolean",
+                    "description": "Specifies if the auth method is local only.\n"
+                },
                 "path": {
                     "type": "string",
                     "description": "Path to mount the LDAP auth backend under\n"
@@ -11918,6 +12446,10 @@
                     "type": "boolean",
                     "description": "Control whether or TLS certificates must be validated\n"
                 },
+                "local": {
+                    "type": "boolean",
+                    "description": "Specifies if the auth method is local only.\n"
+                },
                 "path": {
                     "type": "string",
                     "description": "Path to mount the LDAP auth backend under\n"
@@ -12050,6 +12582,10 @@
                     "insecureTls": {
                         "type": "boolean",
                         "description": "Control whether or TLS certificates must be validated\n"
+                    },
+                    "local": {
+                        "type": "boolean",
+                        "description": "Specifies if the auth method is local only.\n"
                     },
                     "path": {
                         "type": "string",

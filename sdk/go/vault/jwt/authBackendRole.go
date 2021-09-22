@@ -46,6 +46,9 @@ import (
 // 			BoundAudiences: pulumi.StringArray{
 // 				pulumi.String("https://myco.test"),
 // 			},
+// 			BoundClaims: pulumi.StringMap{
+// 				"color": pulumi.String("red,green,blue"),
+// 			},
 // 			UserClaim: pulumi.String("https://vault/user"),
 // 			RoleType:  pulumi.String("jwt"),
 // 		})
@@ -122,8 +125,9 @@ type AuthBackendRole struct {
 	//
 	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs pulumi.StringArrayOutput `pulumi:"boundCidrs"`
-	// If set, a map of claims/values to match against.
-	// The expected value may be a single string or a list of strings.
+	// If set, a map of claims to values to match against.
+	// A claim's value must be a string, which may contain one value or multiple
+	// comma-separated values, e.g. `"red"` or `"red,green,blue"`.
 	BoundClaims pulumi.MapOutput `pulumi:"boundClaims"`
 	// How to interpret values in the claims/values
 	// map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
@@ -293,8 +297,9 @@ type authBackendRoleState struct {
 	//
 	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs []string `pulumi:"boundCidrs"`
-	// If set, a map of claims/values to match against.
-	// The expected value may be a single string or a list of strings.
+	// If set, a map of claims to values to match against.
+	// A claim's value must be a string, which may contain one value or multiple
+	// comma-separated values, e.g. `"red"` or `"red,green,blue"`.
 	BoundClaims map[string]interface{} `pulumi:"boundClaims"`
 	// How to interpret values in the claims/values
 	// map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
@@ -430,8 +435,9 @@ type AuthBackendRoleState struct {
 	//
 	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs pulumi.StringArrayInput
-	// If set, a map of claims/values to match against.
-	// The expected value may be a single string or a list of strings.
+	// If set, a map of claims to values to match against.
+	// A claim's value must be a string, which may contain one value or multiple
+	// comma-separated values, e.g. `"red"` or `"red,green,blue"`.
 	BoundClaims pulumi.MapInput
 	// How to interpret values in the claims/values
 	// map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
@@ -571,8 +577,9 @@ type authBackendRoleArgs struct {
 	//
 	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs []string `pulumi:"boundCidrs"`
-	// If set, a map of claims/values to match against.
-	// The expected value may be a single string or a list of strings.
+	// If set, a map of claims to values to match against.
+	// A claim's value must be a string, which may contain one value or multiple
+	// comma-separated values, e.g. `"red"` or `"red,green,blue"`.
 	BoundClaims map[string]interface{} `pulumi:"boundClaims"`
 	// How to interpret values in the claims/values
 	// map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
@@ -709,8 +716,9 @@ type AuthBackendRoleArgs struct {
 	//
 	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
 	BoundCidrs pulumi.StringArrayInput
-	// If set, a map of claims/values to match against.
-	// The expected value may be a single string or a list of strings.
+	// If set, a map of claims to values to match against.
+	// A claim's value must be a string, which may contain one value or multiple
+	// comma-separated values, e.g. `"red"` or `"red,green,blue"`.
 	BoundClaims pulumi.MapInput
 	// How to interpret values in the claims/values
 	// map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard

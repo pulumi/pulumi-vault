@@ -16,7 +16,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// <summary>
         /// A URL containing connection information. See
         /// the [Vault
-        /// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        /// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
         /// for an example.
         /// </summary>
         public readonly string? ConnectionUrl;
@@ -35,6 +35,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// use.
         /// </summary>
         public readonly int? MaxOpenConnections;
+        /// <summary>
+        /// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        /// </summary>
+        public readonly string? UsernameTemplate;
 
         [OutputConstructor]
         private SecretBackendConnectionPostgresql(
@@ -44,12 +48,15 @@ namespace Pulumi.Vault.Database.Outputs
 
             int? maxIdleConnections,
 
-            int? maxOpenConnections)
+            int? maxOpenConnections,
+
+            string? usernameTemplate)
         {
             ConnectionUrl = connectionUrl;
             MaxConnectionLifetime = maxConnectionLifetime;
             MaxIdleConnections = maxIdleConnections;
             MaxOpenConnections = maxOpenConnections;
+            UsernameTemplate = usernameTemplate;
         }
     }
 }

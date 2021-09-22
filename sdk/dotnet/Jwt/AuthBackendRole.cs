@@ -44,6 +44,10 @@ namespace Pulumi.Vault.Jwt
     ///             {
     ///                 "https://myco.test",
     ///             },
+    ///             BoundClaims = 
+    ///             {
+    ///                 { "color", "red,green,blue" },
+    ///             },
     ///             UserClaim = "https://vault/user",
     ///             RoleType = "jwt",
     ///         });
@@ -129,8 +133,9 @@ namespace Pulumi.Vault.Jwt
         public Output<ImmutableArray<string>> BoundCidrs { get; private set; } = null!;
 
         /// <summary>
-        /// If set, a map of claims/values to match against.
-        /// The expected value may be a single string or a list of strings.
+        /// If set, a map of claims to values to match against.
+        /// A claim's value must be a string, which may contain one value or multiple
+        /// comma-separated values, e.g. `"red"` or `"red,green,blue"`.
         /// </summary>
         [Output("boundClaims")]
         public Output<ImmutableDictionary<string, object>?> BoundClaims { get; private set; } = null!;
@@ -445,8 +450,9 @@ namespace Pulumi.Vault.Jwt
         private InputMap<object>? _boundClaims;
 
         /// <summary>
-        /// If set, a map of claims/values to match against.
-        /// The expected value may be a single string or a list of strings.
+        /// If set, a map of claims to values to match against.
+        /// A claim's value must be a string, which may contain one value or multiple
+        /// comma-separated values, e.g. `"red"` or `"red,green,blue"`.
         /// </summary>
         public InputMap<object> BoundClaims
         {
@@ -756,8 +762,9 @@ namespace Pulumi.Vault.Jwt
         private InputMap<object>? _boundClaims;
 
         /// <summary>
-        /// If set, a map of claims/values to match against.
-        /// The expected value may be a single string or a list of strings.
+        /// If set, a map of claims to values to match against.
+        /// A claim's value must be a string, which may contain one value or multiple
+        /// comma-separated values, e.g. `"red"` or `"red,green,blue"`.
         /// </summary>
         public InputMap<object> BoundClaims
         {

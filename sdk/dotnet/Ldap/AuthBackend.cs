@@ -116,6 +116,12 @@ namespace Pulumi.Vault.Ldap
         public Output<bool> InsecureTls { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies if the auth method is local only.
+        /// </summary>
+        [Output("local")]
+        public Output<bool?> Local { get; private set; } = null!;
+
+        /// <summary>
         /// Path to mount the LDAP auth backend under
         /// </summary>
         [Output("path")]
@@ -348,6 +354,12 @@ namespace Pulumi.Vault.Ldap
         public Input<bool>? InsecureTls { get; set; }
 
         /// <summary>
+        /// Specifies if the auth method is local only.
+        /// </summary>
+        [Input("local")]
+        public Input<bool>? Local { get; set; }
+
+        /// <summary>
         /// Path to mount the LDAP auth backend under
         /// </summary>
         [Input("path")]
@@ -557,6 +569,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("insecureTls")]
         public Input<bool>? InsecureTls { get; set; }
+
+        /// <summary>
+        /// Specifies if the auth method is local only.
+        /// </summary>
+        [Input("local")]
+        public Input<bool>? Local { get; set; }
 
         /// <summary>
         /// Path to mount the LDAP auth backend under

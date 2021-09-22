@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Database.Inputs
 {
 
-    public sealed class SecretBackendConnectionHanaGetArgs : Pulumi.ResourceArgs
+    public sealed class SecretBackendConnectionSnowflakeArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// A URL containing connection information. See
@@ -42,7 +42,25 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("maxOpenConnections")]
         public Input<int>? MaxOpenConnections { get; set; }
 
-        public SecretBackendConnectionHanaGetArgs()
+        /// <summary>
+        /// The password to be used in the connection.
+        /// </summary>
+        [Input("password")]
+        public Input<string>? Password { get; set; }
+
+        /// <summary>
+        /// The username to be used in the connection (the account admin level).
+        /// </summary>
+        [Input("username")]
+        public Input<string>? Username { get; set; }
+
+        /// <summary>
+        /// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        /// </summary>
+        [Input("usernameTemplate")]
+        public Input<string>? UsernameTemplate { get; set; }
+
+        public SecretBackendConnectionSnowflakeArgs()
         {
         }
     }

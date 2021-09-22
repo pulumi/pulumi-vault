@@ -58,6 +58,12 @@ namespace Pulumi.Vault.Consul
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies if the secret backend is local only.
+        /// </summary>
+        [Output("local")]
+        public Output<bool?> Local { get; private set; } = null!;
+
+        /// <summary>
         /// The maximum TTL that can be requested
         /// for credentials issued by this backend.
         /// </summary>
@@ -165,6 +171,12 @@ namespace Pulumi.Vault.Consul
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Specifies if the secret backend is local only.
+        /// </summary>
+        [Input("local")]
+        public Input<bool>? Local { get; set; }
+
+        /// <summary>
         /// The maximum TTL that can be requested
         /// for credentials issued by this backend.
         /// </summary>
@@ -231,6 +243,12 @@ namespace Pulumi.Vault.Consul
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// Specifies if the secret backend is local only.
+        /// </summary>
+        [Input("local")]
+        public Input<bool>? Local { get; set; }
 
         /// <summary>
         /// The maximum TTL that can be requested

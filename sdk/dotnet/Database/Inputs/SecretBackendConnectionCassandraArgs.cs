@@ -77,7 +77,7 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<bool>? Tls { get; set; }
 
         /// <summary>
-        /// The username to be used in the connection.
+        /// The username to be used in the connection (the account admin level).
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
