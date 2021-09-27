@@ -15,7 +15,7 @@ namespace Pulumi.Vault.Database.Inputs
         /// <summary>
         /// A URL containing connection information. See
         /// the [Vault
-        /// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        /// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
         /// for an example.
         /// </summary>
         [Input("connectionUrl")]
@@ -41,6 +41,12 @@ namespace Pulumi.Vault.Database.Inputs
         /// </summary>
         [Input("maxOpenConnections")]
         public Input<int>? MaxOpenConnections { get; set; }
+
+        /// <summary>
+        /// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        /// </summary>
+        [Input("usernameTemplate")]
+        public Input<string>? UsernameTemplate { get; set; }
 
         public SecretBackendConnectionOracleArgs()
         {

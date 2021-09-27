@@ -26,6 +26,7 @@ class AuthBackendArgs:
                  groupdn: Optional[pulumi.Input[str]] = None,
                  groupfilter: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
                  tls_max_version: Optional[pulumi.Input[str]] = None,
@@ -54,6 +55,7 @@ class AuthBackendArgs:
         :param pulumi.Input[str] groupdn: Base DN under which to perform group search
         :param pulumi.Input[str] groupfilter: Go template used to construct group membership query
         :param pulumi.Input[bool] insecure_tls: Control whether or TLS certificates must be validated
+        :param pulumi.Input[bool] local: Specifies if the auth method is local only.
         :param pulumi.Input[str] path: Path to mount the LDAP auth backend under
         :param pulumi.Input[bool] starttls: Control use of TLS when conecting to LDAP
         :param pulumi.Input[str] tls_max_version: Maximum acceptable version of TLS
@@ -115,6 +117,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "groupfilter", groupfilter)
         if insecure_tls is not None:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if starttls is not None:
@@ -293,6 +297,18 @@ class AuthBackendArgs:
     @insecure_tls.setter
     def insecure_tls(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "insecure_tls", value)
+
+    @property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if the auth method is local only.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "local", value)
 
     @property
     @pulumi.getter
@@ -533,6 +549,7 @@ class _AuthBackendState:
                  groupdn: Optional[pulumi.Input[str]] = None,
                  groupfilter: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
                  tls_max_version: Optional[pulumi.Input[str]] = None,
@@ -562,6 +579,7 @@ class _AuthBackendState:
         :param pulumi.Input[str] groupdn: Base DN under which to perform group search
         :param pulumi.Input[str] groupfilter: Go template used to construct group membership query
         :param pulumi.Input[bool] insecure_tls: Control whether or TLS certificates must be validated
+        :param pulumi.Input[bool] local: Specifies if the auth method is local only.
         :param pulumi.Input[str] path: Path to mount the LDAP auth backend under
         :param pulumi.Input[bool] starttls: Control use of TLS when conecting to LDAP
         :param pulumi.Input[str] tls_max_version: Maximum acceptable version of TLS
@@ -625,6 +643,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "groupfilter", groupfilter)
         if insecure_tls is not None:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if starttls is not None:
@@ -805,6 +825,18 @@ class _AuthBackendState:
     @insecure_tls.setter
     def insecure_tls(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "insecure_tls", value)
+
+    @property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if the auth method is local only.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "local", value)
 
     @property
     @pulumi.getter
@@ -1058,6 +1090,7 @@ class AuthBackend(pulumi.CustomResource):
                  groupdn: Optional[pulumi.Input[str]] = None,
                  groupfilter: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
                  tls_max_version: Optional[pulumi.Input[str]] = None,
@@ -1115,6 +1148,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] groupdn: Base DN under which to perform group search
         :param pulumi.Input[str] groupfilter: Go template used to construct group membership query
         :param pulumi.Input[bool] insecure_tls: Control whether or TLS certificates must be validated
+        :param pulumi.Input[bool] local: Specifies if the auth method is local only.
         :param pulumi.Input[str] path: Path to mount the LDAP auth backend under
         :param pulumi.Input[bool] starttls: Control use of TLS when conecting to LDAP
         :param pulumi.Input[str] tls_max_version: Maximum acceptable version of TLS
@@ -1213,6 +1247,7 @@ class AuthBackend(pulumi.CustomResource):
                  groupdn: Optional[pulumi.Input[str]] = None,
                  groupfilter: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
                  tls_max_version: Optional[pulumi.Input[str]] = None,
@@ -1255,6 +1290,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["groupdn"] = groupdn
             __props__.__dict__["groupfilter"] = groupfilter
             __props__.__dict__["insecure_tls"] = insecure_tls
+            __props__.__dict__["local"] = local
             __props__.__dict__["path"] = path
             __props__.__dict__["starttls"] = starttls
             __props__.__dict__["tls_max_version"] = tls_max_version
@@ -1299,6 +1335,7 @@ class AuthBackend(pulumi.CustomResource):
             groupdn: Optional[pulumi.Input[str]] = None,
             groupfilter: Optional[pulumi.Input[str]] = None,
             insecure_tls: Optional[pulumi.Input[bool]] = None,
+            local: Optional[pulumi.Input[bool]] = None,
             path: Optional[pulumi.Input[str]] = None,
             starttls: Optional[pulumi.Input[bool]] = None,
             tls_max_version: Optional[pulumi.Input[str]] = None,
@@ -1333,6 +1370,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] groupdn: Base DN under which to perform group search
         :param pulumi.Input[str] groupfilter: Go template used to construct group membership query
         :param pulumi.Input[bool] insecure_tls: Control whether or TLS certificates must be validated
+        :param pulumi.Input[bool] local: Specifies if the auth method is local only.
         :param pulumi.Input[str] path: Path to mount the LDAP auth backend under
         :param pulumi.Input[bool] starttls: Control use of TLS when conecting to LDAP
         :param pulumi.Input[str] tls_max_version: Maximum acceptable version of TLS
@@ -1387,6 +1425,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["groupdn"] = groupdn
         __props__.__dict__["groupfilter"] = groupfilter
         __props__.__dict__["insecure_tls"] = insecure_tls
+        __props__.__dict__["local"] = local
         __props__.__dict__["path"] = path
         __props__.__dict__["starttls"] = starttls
         __props__.__dict__["tls_max_version"] = tls_max_version
@@ -1498,6 +1537,14 @@ class AuthBackend(pulumi.CustomResource):
         Control whether or TLS certificates must be validated
         """
         return pulumi.get(self, "insecure_tls")
+
+    @property
+    @pulumi.getter
+    def local(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Specifies if the auth method is local only.
+        """
+        return pulumi.get(self, "local")
 
     @property
     @pulumi.getter

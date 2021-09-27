@@ -75,6 +75,8 @@ type AuthBackend struct {
 	Groupfilter pulumi.StringOutput `pulumi:"groupfilter"`
 	// Control whether or TLS certificates must be validated
 	InsecureTls pulumi.BoolOutput `pulumi:"insecureTls"`
+	// Specifies if the auth method is local only.
+	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// Path to mount the LDAP auth backend under
 	Path pulumi.StringPtrOutput `pulumi:"path"`
 	// Control use of TLS when conecting to LDAP
@@ -185,6 +187,8 @@ type authBackendState struct {
 	Groupfilter *string `pulumi:"groupfilter"`
 	// Control whether or TLS certificates must be validated
 	InsecureTls *bool `pulumi:"insecureTls"`
+	// Specifies if the auth method is local only.
+	Local *bool `pulumi:"local"`
 	// Path to mount the LDAP auth backend under
 	Path *string `pulumi:"path"`
 	// Control use of TLS when conecting to LDAP
@@ -264,6 +268,8 @@ type AuthBackendState struct {
 	Groupfilter pulumi.StringPtrInput
 	// Control whether or TLS certificates must be validated
 	InsecureTls pulumi.BoolPtrInput
+	// Specifies if the auth method is local only.
+	Local pulumi.BoolPtrInput
 	// Path to mount the LDAP auth backend under
 	Path pulumi.StringPtrInput
 	// Control use of TLS when conecting to LDAP
@@ -345,6 +351,8 @@ type authBackendArgs struct {
 	Groupfilter *string `pulumi:"groupfilter"`
 	// Control whether or TLS certificates must be validated
 	InsecureTls *bool `pulumi:"insecureTls"`
+	// Specifies if the auth method is local only.
+	Local *bool `pulumi:"local"`
 	// Path to mount the LDAP auth backend under
 	Path *string `pulumi:"path"`
 	// Control use of TLS when conecting to LDAP
@@ -423,6 +431,8 @@ type AuthBackendArgs struct {
 	Groupfilter pulumi.StringPtrInput
 	// Control whether or TLS certificates must be validated
 	InsecureTls pulumi.BoolPtrInput
+	// Specifies if the auth method is local only.
+	Local pulumi.BoolPtrInput
 	// Path to mount the LDAP auth backend under
 	Path pulumi.StringPtrInput
 	// Control use of TLS when conecting to LDAP

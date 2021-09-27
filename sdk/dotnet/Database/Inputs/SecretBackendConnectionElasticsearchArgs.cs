@@ -26,7 +26,7 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<string> Url { get; set; } = null!;
 
         /// <summary>
-        /// The username to be used in the connection.
+        /// The username to be used in the connection (the account admin level).
         /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;

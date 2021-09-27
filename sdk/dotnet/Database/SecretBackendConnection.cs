@@ -125,6 +125,12 @@ namespace Pulumi.Vault.Database
         public Output<ImmutableArray<string>> RootRotationStatements { get; private set; } = null!;
 
         /// <summary>
+        /// A nested block containing configuration options for Snowflake connections.
+        /// </summary>
+        [Output("snowflake")]
+        public Output<Outputs.SecretBackendConnectionSnowflake?> Snowflake { get; private set; } = null!;
+
+        /// <summary>
         /// Whether the connection should be verified on
         /// initial configuration or not.
         /// </summary>
@@ -299,6 +305,12 @@ namespace Pulumi.Vault.Database
         }
 
         /// <summary>
+        /// A nested block containing configuration options for Snowflake connections.
+        /// </summary>
+        [Input("snowflake")]
+        public Input<Inputs.SecretBackendConnectionSnowflakeArgs>? Snowflake { get; set; }
+
+        /// <summary>
         /// Whether the connection should be verified on
         /// initial configuration or not.
         /// </summary>
@@ -432,6 +444,12 @@ namespace Pulumi.Vault.Database
             get => _rootRotationStatements ?? (_rootRotationStatements = new InputList<string>());
             set => _rootRotationStatements = value;
         }
+
+        /// <summary>
+        /// A nested block containing configuration options for Snowflake connections.
+        /// </summary>
+        [Input("snowflake")]
+        public Input<Inputs.SecretBackendConnectionSnowflakeGetArgs>? Snowflake { get; set; }
 
         /// <summary>
         /// Whether the connection should be verified on

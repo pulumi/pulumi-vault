@@ -33,7 +33,7 @@ type SecretBackendConnectionCassandra struct {
 	ProtocolVersion *int `pulumi:"protocolVersion"`
 	// Whether to use TLS when connecting to Cassandra.
 	Tls *bool `pulumi:"tls"`
-	// The username to be used in the connection.
+	// The username to be used in the connection (the account admin level).
 	Username *string `pulumi:"username"`
 }
 
@@ -71,7 +71,7 @@ type SecretBackendConnectionCassandraArgs struct {
 	ProtocolVersion pulumi.IntPtrInput `pulumi:"protocolVersion"`
 	// Whether to use TLS when connecting to Cassandra.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
-	// The username to be used in the connection.
+	// The username to be used in the connection (the account admin level).
 	Username pulumi.StringPtrInput `pulumi:"username"`
 }
 
@@ -201,7 +201,7 @@ func (o SecretBackendConnectionCassandraOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
 
-// The username to be used in the connection.
+// The username to be used in the connection (the account admin level).
 func (o SecretBackendConnectionCassandraOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
@@ -318,7 +318,7 @@ func (o SecretBackendConnectionCassandraPtrOutput) Tls() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The username to be used in the connection.
+// The username to be used in the connection (the account admin level).
 func (o SecretBackendConnectionCassandraPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCassandra) *string {
 		if v == nil {
@@ -334,7 +334,7 @@ type SecretBackendConnectionElasticsearch struct {
 	// The URL for Elasticsearch's API. https requires certificate
 	// by trusted CA if used.
 	Url string `pulumi:"url"`
-	// The username to be used in the connection.
+	// The username to be used in the connection (the account admin level).
 	Username string `pulumi:"username"`
 }
 
@@ -355,7 +355,7 @@ type SecretBackendConnectionElasticsearchArgs struct {
 	// The URL for Elasticsearch's API. https requires certificate
 	// by trusted CA if used.
 	Url pulumi.StringInput `pulumi:"url"`
-	// The username to be used in the connection.
+	// The username to be used in the connection (the account admin level).
 	Username pulumi.StringInput `pulumi:"username"`
 }
 
@@ -447,7 +447,7 @@ func (o SecretBackendConnectionElasticsearchOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) string { return v.Url }).(pulumi.StringOutput)
 }
 
-// The username to be used in the connection.
+// The username to be used in the connection (the account admin level).
 func (o SecretBackendConnectionElasticsearchOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -491,7 +491,7 @@ func (o SecretBackendConnectionElasticsearchPtrOutput) Url() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// The username to be used in the connection.
+// The username to be used in the connection (the account admin level).
 func (o SecretBackendConnectionElasticsearchPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *string {
 		if v == nil {
@@ -504,7 +504,7 @@ func (o SecretBackendConnectionElasticsearchPtrOutput) Username() pulumi.StringP
 type SecretBackendConnectionHana struct {
 	// A URL containing connection information. See
 	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// The maximum number of seconds to keep
@@ -532,7 +532,7 @@ type SecretBackendConnectionHanaInput interface {
 type SecretBackendConnectionHanaArgs struct {
 	// A URL containing connection information. See
 	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// The maximum number of seconds to keep
@@ -625,7 +625,7 @@ func (o SecretBackendConnectionHanaOutput) ToSecretBackendConnectionHanaPtrOutpu
 
 // A URL containing connection information. See
 // the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 // for an example.
 func (o SecretBackendConnectionHanaOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionHana) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
@@ -669,7 +669,7 @@ func (o SecretBackendConnectionHanaPtrOutput) Elem() SecretBackendConnectionHana
 
 // A URL containing connection information. See
 // the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 // for an example.
 func (o SecretBackendConnectionHanaPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionHana) *string {
@@ -716,7 +716,7 @@ func (o SecretBackendConnectionHanaPtrOutput) MaxOpenConnections() pulumi.IntPtr
 type SecretBackendConnectionMongodb struct {
 	// A URL containing connection information. See
 	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// The maximum number of seconds to keep
@@ -728,6 +728,8 @@ type SecretBackendConnectionMongodb struct {
 	// The maximum number of open connections to
 	// use.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
 // SecretBackendConnectionMongodbInput is an input type that accepts SecretBackendConnectionMongodbArgs and SecretBackendConnectionMongodbOutput values.
@@ -744,7 +746,7 @@ type SecretBackendConnectionMongodbInput interface {
 type SecretBackendConnectionMongodbArgs struct {
 	// A URL containing connection information. See
 	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// The maximum number of seconds to keep
@@ -756,6 +758,8 @@ type SecretBackendConnectionMongodbArgs struct {
 	// The maximum number of open connections to
 	// use.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
 func (SecretBackendConnectionMongodbArgs) ElementType() reflect.Type {
@@ -837,7 +841,7 @@ func (o SecretBackendConnectionMongodbOutput) ToSecretBackendConnectionMongodbPt
 
 // A URL containing connection information. See
 // the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMongodbOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
@@ -861,6 +865,11 @@ func (o SecretBackendConnectionMongodbOutput) MaxOpenConnections() pulumi.IntPtr
 	return o.ApplyT(func(v SecretBackendConnectionMongodb) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionMongodbOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionMongodbPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMongodbPtrOutput) ElementType() reflect.Type {
@@ -881,7 +890,7 @@ func (o SecretBackendConnectionMongodbPtrOutput) Elem() SecretBackendConnectionM
 
 // A URL containing connection information. See
 // the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMongodbPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMongodb) *string {
@@ -923,6 +932,16 @@ func (o SecretBackendConnectionMongodbPtrOutput) MaxOpenConnections() pulumi.Int
 		}
 		return v.MaxOpenConnections
 	}).(pulumi.IntPtrOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionMongodbPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMongodb) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UsernameTemplate
+	}).(pulumi.StringPtrOutput)
 }
 
 type SecretBackendConnectionMongodbatlas struct {
@@ -1097,7 +1116,7 @@ func (o SecretBackendConnectionMongodbatlasPtrOutput) PublicKey() pulumi.StringP
 type SecretBackendConnectionMssql struct {
 	// A URL containing connection information. See
 	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// The maximum number of seconds to keep
@@ -1109,6 +1128,8 @@ type SecretBackendConnectionMssql struct {
 	// The maximum number of open connections to
 	// use.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
 // SecretBackendConnectionMssqlInput is an input type that accepts SecretBackendConnectionMssqlArgs and SecretBackendConnectionMssqlOutput values.
@@ -1125,7 +1146,7 @@ type SecretBackendConnectionMssqlInput interface {
 type SecretBackendConnectionMssqlArgs struct {
 	// A URL containing connection information. See
 	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// The maximum number of seconds to keep
@@ -1137,6 +1158,8 @@ type SecretBackendConnectionMssqlArgs struct {
 	// The maximum number of open connections to
 	// use.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
 func (SecretBackendConnectionMssqlArgs) ElementType() reflect.Type {
@@ -1218,7 +1241,7 @@ func (o SecretBackendConnectionMssqlOutput) ToSecretBackendConnectionMssqlPtrOut
 
 // A URL containing connection information. See
 // the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMssqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
@@ -1242,6 +1265,11 @@ func (o SecretBackendConnectionMssqlOutput) MaxOpenConnections() pulumi.IntPtrOu
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionMssqlOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMssql) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionMssqlPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMssqlPtrOutput) ElementType() reflect.Type {
@@ -1262,7 +1290,7 @@ func (o SecretBackendConnectionMssqlPtrOutput) Elem() SecretBackendConnectionMss
 
 // A URL containing connection information. See
 // the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMssqlPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMssql) *string {
@@ -1306,10 +1334,20 @@ func (o SecretBackendConnectionMssqlPtrOutput) MaxOpenConnections() pulumi.IntPt
 	}).(pulumi.IntPtrOutput)
 }
 
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionMssqlPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMssql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UsernameTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionMysql struct {
 	// A URL containing connection information. See
 	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// The maximum number of seconds to keep
@@ -1325,6 +1363,8 @@ type SecretBackendConnectionMysql struct {
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
 // SecretBackendConnectionMysqlInput is an input type that accepts SecretBackendConnectionMysqlArgs and SecretBackendConnectionMysqlOutput values.
@@ -1341,7 +1381,7 @@ type SecretBackendConnectionMysqlInput interface {
 type SecretBackendConnectionMysqlArgs struct {
 	// A URL containing connection information. See
 	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// The maximum number of seconds to keep
@@ -1357,6 +1397,8 @@ type SecretBackendConnectionMysqlArgs struct {
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
 func (SecretBackendConnectionMysqlArgs) ElementType() reflect.Type {
@@ -1438,7 +1480,7 @@ func (o SecretBackendConnectionMysqlOutput) ToSecretBackendConnectionMysqlPtrOut
 
 // A URL containing connection information. See
 // the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMysqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
@@ -1472,6 +1514,11 @@ func (o SecretBackendConnectionMysqlOutput) TlsCertificateKey() pulumi.StringPtr
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
 }
 
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionMysqlOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionMysqlPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMysqlPtrOutput) ElementType() reflect.Type {
@@ -1492,7 +1539,7 @@ func (o SecretBackendConnectionMysqlPtrOutput) Elem() SecretBackendConnectionMys
 
 // A URL containing connection information. See
 // the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMysqlPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysql) *string {
@@ -1556,10 +1603,20 @@ func (o SecretBackendConnectionMysqlPtrOutput) TlsCertificateKey() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionMysqlPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UsernameTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionMysqlAurora struct {
 	// A URL containing connection information. See
 	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// The maximum number of seconds to keep
@@ -1571,6 +1628,8 @@ type SecretBackendConnectionMysqlAurora struct {
 	// The maximum number of open connections to
 	// use.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
 // SecretBackendConnectionMysqlAuroraInput is an input type that accepts SecretBackendConnectionMysqlAuroraArgs and SecretBackendConnectionMysqlAuroraOutput values.
@@ -1587,7 +1646,7 @@ type SecretBackendConnectionMysqlAuroraInput interface {
 type SecretBackendConnectionMysqlAuroraArgs struct {
 	// A URL containing connection information. See
 	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// The maximum number of seconds to keep
@@ -1599,6 +1658,8 @@ type SecretBackendConnectionMysqlAuroraArgs struct {
 	// The maximum number of open connections to
 	// use.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
 func (SecretBackendConnectionMysqlAuroraArgs) ElementType() reflect.Type {
@@ -1680,7 +1741,7 @@ func (o SecretBackendConnectionMysqlAuroraOutput) ToSecretBackendConnectionMysql
 
 // A URL containing connection information. See
 // the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMysqlAuroraOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
@@ -1704,6 +1765,11 @@ func (o SecretBackendConnectionMysqlAuroraOutput) MaxOpenConnections() pulumi.In
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionMysqlAuroraOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionMysqlAuroraPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMysqlAuroraPtrOutput) ElementType() reflect.Type {
@@ -1724,7 +1790,7 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) Elem() SecretBackendConnect
 
 // A URL containing connection information. See
 // the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *string {
@@ -1768,10 +1834,20 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) MaxOpenConnections() pulumi
 	}).(pulumi.IntPtrOutput)
 }
 
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionMysqlAuroraPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UsernameTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionMysqlLegacy struct {
 	// A URL containing connection information. See
 	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// The maximum number of seconds to keep
@@ -1783,6 +1859,8 @@ type SecretBackendConnectionMysqlLegacy struct {
 	// The maximum number of open connections to
 	// use.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
 // SecretBackendConnectionMysqlLegacyInput is an input type that accepts SecretBackendConnectionMysqlLegacyArgs and SecretBackendConnectionMysqlLegacyOutput values.
@@ -1799,7 +1877,7 @@ type SecretBackendConnectionMysqlLegacyInput interface {
 type SecretBackendConnectionMysqlLegacyArgs struct {
 	// A URL containing connection information. See
 	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// The maximum number of seconds to keep
@@ -1811,6 +1889,8 @@ type SecretBackendConnectionMysqlLegacyArgs struct {
 	// The maximum number of open connections to
 	// use.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
 func (SecretBackendConnectionMysqlLegacyArgs) ElementType() reflect.Type {
@@ -1892,7 +1972,7 @@ func (o SecretBackendConnectionMysqlLegacyOutput) ToSecretBackendConnectionMysql
 
 // A URL containing connection information. See
 // the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMysqlLegacyOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
@@ -1916,6 +1996,11 @@ func (o SecretBackendConnectionMysqlLegacyOutput) MaxOpenConnections() pulumi.In
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionMysqlLegacyOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionMysqlLegacyPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMysqlLegacyPtrOutput) ElementType() reflect.Type {
@@ -1936,7 +2021,7 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) Elem() SecretBackendConnect
 
 // A URL containing connection information. See
 // the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *string {
@@ -1980,10 +2065,20 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) MaxOpenConnections() pulumi
 	}).(pulumi.IntPtrOutput)
 }
 
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionMysqlLegacyPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UsernameTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionMysqlRds struct {
 	// A URL containing connection information. See
 	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// The maximum number of seconds to keep
@@ -1995,6 +2090,8 @@ type SecretBackendConnectionMysqlRds struct {
 	// The maximum number of open connections to
 	// use.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
 // SecretBackendConnectionMysqlRdsInput is an input type that accepts SecretBackendConnectionMysqlRdsArgs and SecretBackendConnectionMysqlRdsOutput values.
@@ -2011,7 +2108,7 @@ type SecretBackendConnectionMysqlRdsInput interface {
 type SecretBackendConnectionMysqlRdsArgs struct {
 	// A URL containing connection information. See
 	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// The maximum number of seconds to keep
@@ -2023,6 +2120,8 @@ type SecretBackendConnectionMysqlRdsArgs struct {
 	// The maximum number of open connections to
 	// use.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
 func (SecretBackendConnectionMysqlRdsArgs) ElementType() reflect.Type {
@@ -2104,7 +2203,7 @@ func (o SecretBackendConnectionMysqlRdsOutput) ToSecretBackendConnectionMysqlRds
 
 // A URL containing connection information. See
 // the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMysqlRdsOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
@@ -2128,6 +2227,11 @@ func (o SecretBackendConnectionMysqlRdsOutput) MaxOpenConnections() pulumi.IntPt
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionMysqlRdsOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionMysqlRdsPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMysqlRdsPtrOutput) ElementType() reflect.Type {
@@ -2148,7 +2252,7 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) Elem() SecretBackendConnection
 
 // A URL containing connection information. See
 // the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 // for an example.
 func (o SecretBackendConnectionMysqlRdsPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *string {
@@ -2192,10 +2296,20 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) MaxOpenConnections() pulumi.In
 	}).(pulumi.IntPtrOutput)
 }
 
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionMysqlRdsPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UsernameTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionOracle struct {
 	// A URL containing connection information. See
 	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// The maximum number of seconds to keep
@@ -2207,6 +2321,8 @@ type SecretBackendConnectionOracle struct {
 	// The maximum number of open connections to
 	// use.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
 // SecretBackendConnectionOracleInput is an input type that accepts SecretBackendConnectionOracleArgs and SecretBackendConnectionOracleOutput values.
@@ -2223,7 +2339,7 @@ type SecretBackendConnectionOracleInput interface {
 type SecretBackendConnectionOracleArgs struct {
 	// A URL containing connection information. See
 	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// The maximum number of seconds to keep
@@ -2235,6 +2351,8 @@ type SecretBackendConnectionOracleArgs struct {
 	// The maximum number of open connections to
 	// use.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
 func (SecretBackendConnectionOracleArgs) ElementType() reflect.Type {
@@ -2316,7 +2434,7 @@ func (o SecretBackendConnectionOracleOutput) ToSecretBackendConnectionOraclePtrO
 
 // A URL containing connection information. See
 // the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 // for an example.
 func (o SecretBackendConnectionOracleOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
@@ -2340,6 +2458,11 @@ func (o SecretBackendConnectionOracleOutput) MaxOpenConnections() pulumi.IntPtrO
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionOracleOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionOracle) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionOraclePtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionOraclePtrOutput) ElementType() reflect.Type {
@@ -2360,7 +2483,7 @@ func (o SecretBackendConnectionOraclePtrOutput) Elem() SecretBackendConnectionOr
 
 // A URL containing connection information. See
 // the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 // for an example.
 func (o SecretBackendConnectionOraclePtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionOracle) *string {
@@ -2404,10 +2527,20 @@ func (o SecretBackendConnectionOraclePtrOutput) MaxOpenConnections() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionOraclePtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionOracle) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UsernameTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionPostgresql struct {
 	// A URL containing connection information. See
 	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// The maximum number of seconds to keep
@@ -2419,6 +2552,8 @@ type SecretBackendConnectionPostgresql struct {
 	// The maximum number of open connections to
 	// use.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
 // SecretBackendConnectionPostgresqlInput is an input type that accepts SecretBackendConnectionPostgresqlArgs and SecretBackendConnectionPostgresqlOutput values.
@@ -2435,7 +2570,7 @@ type SecretBackendConnectionPostgresqlInput interface {
 type SecretBackendConnectionPostgresqlArgs struct {
 	// A URL containing connection information. See
 	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// The maximum number of seconds to keep
@@ -2447,6 +2582,8 @@ type SecretBackendConnectionPostgresqlArgs struct {
 	// The maximum number of open connections to
 	// use.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
 func (SecretBackendConnectionPostgresqlArgs) ElementType() reflect.Type {
@@ -2528,7 +2665,7 @@ func (o SecretBackendConnectionPostgresqlOutput) ToSecretBackendConnectionPostgr
 
 // A URL containing connection information. See
 // the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 // for an example.
 func (o SecretBackendConnectionPostgresqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
@@ -2552,6 +2689,11 @@ func (o SecretBackendConnectionPostgresqlOutput) MaxOpenConnections() pulumi.Int
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionPostgresqlOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionPostgresqlPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionPostgresqlPtrOutput) ElementType() reflect.Type {
@@ -2572,7 +2714,7 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) Elem() SecretBackendConnecti
 
 // A URL containing connection information. See
 // the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 // for an example.
 func (o SecretBackendConnectionPostgresqlPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *string {
@@ -2616,6 +2758,285 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) MaxOpenConnections() pulumi.
 	}).(pulumi.IntPtrOutput)
 }
 
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionPostgresqlPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UsernameTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
+type SecretBackendConnectionSnowflake struct {
+	// A URL containing connection information. See
+	// the [Vault
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	// for an example.
+	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// The password to be used in the connection.
+	Password *string `pulumi:"password"`
+	// The username to be used in the connection (the account admin level).
+	Username *string `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
+}
+
+// SecretBackendConnectionSnowflakeInput is an input type that accepts SecretBackendConnectionSnowflakeArgs and SecretBackendConnectionSnowflakeOutput values.
+// You can construct a concrete instance of `SecretBackendConnectionSnowflakeInput` via:
+//
+//          SecretBackendConnectionSnowflakeArgs{...}
+type SecretBackendConnectionSnowflakeInput interface {
+	pulumi.Input
+
+	ToSecretBackendConnectionSnowflakeOutput() SecretBackendConnectionSnowflakeOutput
+	ToSecretBackendConnectionSnowflakeOutputWithContext(context.Context) SecretBackendConnectionSnowflakeOutput
+}
+
+type SecretBackendConnectionSnowflakeArgs struct {
+	// A URL containing connection information. See
+	// the [Vault
+	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	// for an example.
+	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	// The password to be used in the connection.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringPtrInput `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
+}
+
+func (SecretBackendConnectionSnowflakeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConnectionSnowflake)(nil)).Elem()
+}
+
+func (i SecretBackendConnectionSnowflakeArgs) ToSecretBackendConnectionSnowflakeOutput() SecretBackendConnectionSnowflakeOutput {
+	return i.ToSecretBackendConnectionSnowflakeOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConnectionSnowflakeArgs) ToSecretBackendConnectionSnowflakeOutputWithContext(ctx context.Context) SecretBackendConnectionSnowflakeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionSnowflakeOutput)
+}
+
+func (i SecretBackendConnectionSnowflakeArgs) ToSecretBackendConnectionSnowflakePtrOutput() SecretBackendConnectionSnowflakePtrOutput {
+	return i.ToSecretBackendConnectionSnowflakePtrOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConnectionSnowflakeArgs) ToSecretBackendConnectionSnowflakePtrOutputWithContext(ctx context.Context) SecretBackendConnectionSnowflakePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionSnowflakeOutput).ToSecretBackendConnectionSnowflakePtrOutputWithContext(ctx)
+}
+
+// SecretBackendConnectionSnowflakePtrInput is an input type that accepts SecretBackendConnectionSnowflakeArgs, SecretBackendConnectionSnowflakePtr and SecretBackendConnectionSnowflakePtrOutput values.
+// You can construct a concrete instance of `SecretBackendConnectionSnowflakePtrInput` via:
+//
+//          SecretBackendConnectionSnowflakeArgs{...}
+//
+//  or:
+//
+//          nil
+type SecretBackendConnectionSnowflakePtrInput interface {
+	pulumi.Input
+
+	ToSecretBackendConnectionSnowflakePtrOutput() SecretBackendConnectionSnowflakePtrOutput
+	ToSecretBackendConnectionSnowflakePtrOutputWithContext(context.Context) SecretBackendConnectionSnowflakePtrOutput
+}
+
+type secretBackendConnectionSnowflakePtrType SecretBackendConnectionSnowflakeArgs
+
+func SecretBackendConnectionSnowflakePtr(v *SecretBackendConnectionSnowflakeArgs) SecretBackendConnectionSnowflakePtrInput {
+	return (*secretBackendConnectionSnowflakePtrType)(v)
+}
+
+func (*secretBackendConnectionSnowflakePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendConnectionSnowflake)(nil)).Elem()
+}
+
+func (i *secretBackendConnectionSnowflakePtrType) ToSecretBackendConnectionSnowflakePtrOutput() SecretBackendConnectionSnowflakePtrOutput {
+	return i.ToSecretBackendConnectionSnowflakePtrOutputWithContext(context.Background())
+}
+
+func (i *secretBackendConnectionSnowflakePtrType) ToSecretBackendConnectionSnowflakePtrOutputWithContext(ctx context.Context) SecretBackendConnectionSnowflakePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionSnowflakePtrOutput)
+}
+
+type SecretBackendConnectionSnowflakeOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendConnectionSnowflakeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConnectionSnowflake)(nil)).Elem()
+}
+
+func (o SecretBackendConnectionSnowflakeOutput) ToSecretBackendConnectionSnowflakeOutput() SecretBackendConnectionSnowflakeOutput {
+	return o
+}
+
+func (o SecretBackendConnectionSnowflakeOutput) ToSecretBackendConnectionSnowflakeOutputWithContext(ctx context.Context) SecretBackendConnectionSnowflakeOutput {
+	return o
+}
+
+func (o SecretBackendConnectionSnowflakeOutput) ToSecretBackendConnectionSnowflakePtrOutput() SecretBackendConnectionSnowflakePtrOutput {
+	return o.ToSecretBackendConnectionSnowflakePtrOutputWithContext(context.Background())
+}
+
+func (o SecretBackendConnectionSnowflakeOutput) ToSecretBackendConnectionSnowflakePtrOutputWithContext(ctx context.Context) SecretBackendConnectionSnowflakePtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *SecretBackendConnectionSnowflake {
+		return &v
+	}).(SecretBackendConnectionSnowflakePtrOutput)
+}
+
+// A URL containing connection information. See
+// the [Vault
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+// for an example.
+func (o SecretBackendConnectionSnowflakeOutput) ConnectionUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of seconds to keep
+// a connection alive for.
+func (o SecretBackendConnectionSnowflakeOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of idle connections to
+// maintain.
+func (o SecretBackendConnectionSnowflakeOutput) MaxIdleConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of open connections to
+// use.
+func (o SecretBackendConnectionSnowflakeOutput) MaxOpenConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretBackendConnectionSnowflakeOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretBackendConnectionSnowflakeOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionSnowflakeOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
+type SecretBackendConnectionSnowflakePtrOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendConnectionSnowflakePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendConnectionSnowflake)(nil)).Elem()
+}
+
+func (o SecretBackendConnectionSnowflakePtrOutput) ToSecretBackendConnectionSnowflakePtrOutput() SecretBackendConnectionSnowflakePtrOutput {
+	return o
+}
+
+func (o SecretBackendConnectionSnowflakePtrOutput) ToSecretBackendConnectionSnowflakePtrOutputWithContext(ctx context.Context) SecretBackendConnectionSnowflakePtrOutput {
+	return o
+}
+
+func (o SecretBackendConnectionSnowflakePtrOutput) Elem() SecretBackendConnectionSnowflakeOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) SecretBackendConnectionSnowflake { return *v }).(SecretBackendConnectionSnowflakeOutput)
+}
+
+// A URL containing connection information. See
+// the [Vault
+// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+// for an example.
+func (o SecretBackendConnectionSnowflakePtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ConnectionUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of seconds to keep
+// a connection alive for.
+func (o SecretBackendConnectionSnowflakePtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxConnectionLifetime
+	}).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of idle connections to
+// maintain.
+func (o SecretBackendConnectionSnowflakePtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxIdleConnections
+	}).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of open connections to
+// use.
+func (o SecretBackendConnectionSnowflakePtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxOpenConnections
+	}).(pulumi.IntPtrOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretBackendConnectionSnowflakePtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretBackendConnectionSnowflakePtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionSnowflakePtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UsernameTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(SecretBackendConnectionCassandraOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionCassandraPtrOutput{})
@@ -2641,4 +3062,6 @@ func init() {
 	pulumi.RegisterOutputType(SecretBackendConnectionOraclePtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionPostgresqlOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionPostgresqlPtrOutput{})
+	pulumi.RegisterOutputType(SecretBackendConnectionSnowflakeOutput{})
+	pulumi.RegisterOutputType(SecretBackendConnectionSnowflakePtrOutput{})
 }

@@ -137,6 +137,8 @@ type AuthBackend struct {
 	JwtSupportedAlgs pulumi.StringArrayOutput `pulumi:"jwtSupportedAlgs"`
 	// A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
 	JwtValidationPubkeys pulumi.StringArrayOutput `pulumi:"jwtValidationPubkeys"`
+	// Specifies if the auth method is local only.
+	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// Client ID used for OIDC backends
 	OidcClientId pulumi.StringPtrOutput `pulumi:"oidcClientId"`
 	// Client Secret used for OIDC backends
@@ -199,6 +201,8 @@ type authBackendState struct {
 	JwtSupportedAlgs []string `pulumi:"jwtSupportedAlgs"`
 	// A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
 	JwtValidationPubkeys []string `pulumi:"jwtValidationPubkeys"`
+	// Specifies if the auth method is local only.
+	Local *bool `pulumi:"local"`
 	// Client ID used for OIDC backends
 	OidcClientId *string `pulumi:"oidcClientId"`
 	// Client Secret used for OIDC backends
@@ -233,6 +237,8 @@ type AuthBackendState struct {
 	JwtSupportedAlgs pulumi.StringArrayInput
 	// A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
 	JwtValidationPubkeys pulumi.StringArrayInput
+	// Specifies if the auth method is local only.
+	Local pulumi.BoolPtrInput
 	// Client ID used for OIDC backends
 	OidcClientId pulumi.StringPtrInput
 	// Client Secret used for OIDC backends
@@ -269,6 +275,8 @@ type authBackendArgs struct {
 	JwtSupportedAlgs []string `pulumi:"jwtSupportedAlgs"`
 	// A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
 	JwtValidationPubkeys []string `pulumi:"jwtValidationPubkeys"`
+	// Specifies if the auth method is local only.
+	Local *bool `pulumi:"local"`
 	// Client ID used for OIDC backends
 	OidcClientId *string `pulumi:"oidcClientId"`
 	// Client Secret used for OIDC backends
@@ -302,6 +310,8 @@ type AuthBackendArgs struct {
 	JwtSupportedAlgs pulumi.StringArrayInput
 	// A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
 	JwtValidationPubkeys pulumi.StringArrayInput
+	// Specifies if the auth method is local only.
+	Local pulumi.BoolPtrInput
 	// Client ID used for OIDC backends
 	OidcClientId pulumi.StringPtrInput
 	// Client Secret used for OIDC backends

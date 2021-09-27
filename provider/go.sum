@@ -900,6 +900,8 @@ github.com/hashicorp/terraform-provider-vault v1.9.1-0.20210723194811-980e6ee1ab
 github.com/hashicorp/terraform-provider-vault v1.9.1-0.20210723194811-980e6ee1abfa/go.mod h1:NwuFWPgdBQZ1Ki01iByWy+aGbVqsFoYKQjAjPmP70Xc=
 github.com/hashicorp/terraform-provider-vault v1.9.1-0.20210818155952-5d8751bb4867 h1:cwJNbMG8CNrsWa3FlA/K8xox7Rjdy9Ijj8zSd44UiiQ=
 github.com/hashicorp/terraform-provider-vault v1.9.1-0.20210818155952-5d8751bb4867/go.mod h1:DcYA3r6P3Pf5fd6qaoZ7Cx6HV6JF5QKkbtsZ52Wuwy8=
+github.com/hashicorp/terraform-provider-vault v1.9.1-0.20210915180734-eca3fa6fa12a h1:k6vbgz549pMzlIvhLm44ytbisgVzMsa3v+MjstQaAiE=
+github.com/hashicorp/terraform-provider-vault v1.9.1-0.20210915180734-eca3fa6fa12a/go.mod h1:DcYA3r6P3Pf5fd6qaoZ7Cx6HV6JF5QKkbtsZ52Wuwy8=
 github.com/hashicorp/terraform-svchost v0.0.0-20191011084731-65d371908596 h1:hjyO2JsNZUKT1ym+FAdlBEkGPevazYsmVgIMw7dVELg=
 github.com/hashicorp/terraform-svchost v0.0.0-20191011084731-65d371908596/go.mod h1:kNDNcF7sN4DocDLBkQYz73HGKwN1ANB1blq4lIYLYvg=
 github.com/hashicorp/terraform-svchost v0.0.0-20191119180714-d2e4933b9136 h1:81Dg7SK6Q5vzqFItO8e1iIF2Nj8bLXV23NXjEgbev/s=

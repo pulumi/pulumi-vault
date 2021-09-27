@@ -197,7 +197,7 @@ export namespace database {
          */
         tls?: boolean;
         /**
-         * The username to be used in the connection.
+         * The username to be used in the connection (the account admin level).
          */
         username?: string;
     }
@@ -213,7 +213,7 @@ export namespace database {
          */
         url: string;
         /**
-         * The username to be used in the connection.
+         * The username to be used in the connection (the account admin level).
          */
         username: string;
     }
@@ -222,7 +222,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -247,7 +247,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -266,6 +266,10 @@ export namespace database {
          * use.
          */
         maxOpenConnections?: number;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
     }
 
     export interface SecretBackendConnectionMongodbatlas {
@@ -287,7 +291,7 @@ export namespace database {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -306,13 +310,17 @@ export namespace database {
          * use.
          */
         maxOpenConnections?: number;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
     }
 
     export interface SecretBackendConnectionMysql {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -339,13 +347,17 @@ export namespace database {
          * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
          */
         tlsCertificateKey?: string;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
     }
 
     export interface SecretBackendConnectionMysqlAurora {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -364,13 +376,17 @@ export namespace database {
          * use.
          */
         maxOpenConnections?: number;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
     }
 
     export interface SecretBackendConnectionMysqlLegacy {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -389,13 +405,17 @@ export namespace database {
          * use.
          */
         maxOpenConnections?: number;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
     }
 
     export interface SecretBackendConnectionMysqlRds {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -414,13 +434,17 @@ export namespace database {
          * use.
          */
         maxOpenConnections?: number;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
     }
 
     export interface SecretBackendConnectionOracle {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -439,13 +463,17 @@ export namespace database {
          * use.
          */
         maxOpenConnections?: number;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
     }
 
     export interface SecretBackendConnectionPostgresql {
         /**
          * A URL containing connection information. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -464,6 +492,47 @@ export namespace database {
          * use.
          */
         maxOpenConnections?: number;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
+    }
+
+    export interface SecretBackendConnectionSnowflake {
+        /**
+         * A URL containing connection information. See
+         * the [Vault
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * for an example.
+         */
+        connectionUrl?: string;
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: number;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: number;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: number;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: string;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: string;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
     }
 }
 

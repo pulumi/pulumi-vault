@@ -20,6 +20,7 @@ class SecretBackendArgs:
                  client_key: Optional[pulumi.Input[str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  scheme: Optional[pulumi.Input[str]] = None):
@@ -32,6 +33,7 @@ class SecretBackendArgs:
         :param pulumi.Input[str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials issued by this backend.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] local: Specifies if the secret backend is local only.
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
         :param pulumi.Input[str] path: The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
@@ -49,6 +51,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
             pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
         if path is not None:
@@ -141,6 +145,18 @@ class SecretBackendArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if the secret backend is local only.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "local", value)
+
+    @property
     @pulumi.getter(name="maxLeaseTtlSeconds")
     def max_lease_ttl_seconds(self) -> Optional[pulumi.Input[int]]:
         """
@@ -187,6 +203,7 @@ class _SecretBackendState:
                  client_key: Optional[pulumi.Input[str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  scheme: Optional[pulumi.Input[str]] = None,
@@ -199,6 +216,7 @@ class _SecretBackendState:
         :param pulumi.Input[str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials issued by this backend.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] local: Specifies if the secret backend is local only.
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
         :param pulumi.Input[str] path: The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
@@ -217,6 +235,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
             pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
         if path is not None:
@@ -299,6 +319,18 @@ class _SecretBackendState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if the secret backend is local only.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "local", value)
+
+    @property
     @pulumi.getter(name="maxLeaseTtlSeconds")
     def max_lease_ttl_seconds(self) -> Optional[pulumi.Input[int]]:
         """
@@ -359,6 +391,7 @@ class SecretBackend(pulumi.CustomResource):
                  client_key: Optional[pulumi.Input[str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  scheme: Optional[pulumi.Input[str]] = None,
@@ -381,6 +414,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials issued by this backend.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] local: Specifies if the secret backend is local only.
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
         :param pulumi.Input[str] path: The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
@@ -423,6 +457,7 @@ class SecretBackend(pulumi.CustomResource):
                  client_key: Optional[pulumi.Input[str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  scheme: Optional[pulumi.Input[str]] = None,
@@ -447,6 +482,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["client_key"] = client_key
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
             __props__.__dict__["description"] = description
+            __props__.__dict__["local"] = local
             __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
             __props__.__dict__["path"] = path
             __props__.__dict__["scheme"] = scheme
@@ -469,6 +505,7 @@ class SecretBackend(pulumi.CustomResource):
             client_key: Optional[pulumi.Input[str]] = None,
             default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            local: Optional[pulumi.Input[bool]] = None,
             max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             path: Optional[pulumi.Input[str]] = None,
             scheme: Optional[pulumi.Input[str]] = None,
@@ -486,6 +523,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials issued by this backend.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] local: Specifies if the secret backend is local only.
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
         :param pulumi.Input[str] path: The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
@@ -502,6 +540,7 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["client_key"] = client_key
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__.__dict__["description"] = description
+        __props__.__dict__["local"] = local
         __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
         __props__.__dict__["path"] = path
         __props__.__dict__["scheme"] = scheme
@@ -555,6 +594,14 @@ class SecretBackend(pulumi.CustomResource):
         A human-friendly description for this backend.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def local(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Specifies if the secret backend is local only.
+        """
+        return pulumi.get(self, "local")
 
     @property
     @pulumi.getter(name="maxLeaseTtlSeconds")

@@ -23,7 +23,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string Url;
         /// <summary>
-        /// The username to be used in the connection.
+        /// The username to be used in the connection (the account admin level).
         /// </summary>
         public readonly string Username;
 

@@ -54,7 +54,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly bool? Tls;
         /// <summary>
-        /// The username to be used in the connection.
+        /// The username to be used in the connection (the account admin level).
         /// </summary>
         public readonly string? Username;
 

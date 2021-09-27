@@ -22,6 +22,7 @@ class AuthBackendArgs:
                  jwks_url: Optional[pulumi.Input[str]] = None,
                  jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
                  oidc_client_id: Optional[pulumi.Input[str]] = None,
                  oidc_client_secret: Optional[pulumi.Input[str]] = None,
                  oidc_discovery_ca_pem: Optional[pulumi.Input[str]] = None,
@@ -39,6 +40,7 @@ class AuthBackendArgs:
         :param pulumi.Input[str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+        :param pulumi.Input[bool] local: Specifies if the auth method is local only.
         :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
         :param pulumi.Input[str] oidc_client_secret: Client Secret used for OIDC backends
         :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
@@ -61,6 +63,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "jwt_supported_algs", jwt_supported_algs)
         if jwt_validation_pubkeys is not None:
             pulumi.set(__self__, "jwt_validation_pubkeys", jwt_validation_pubkeys)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
         if oidc_client_id is not None:
             pulumi.set(__self__, "oidc_client_id", oidc_client_id)
         if oidc_client_secret is not None:
@@ -161,6 +165,18 @@ class AuthBackendArgs:
     @jwt_validation_pubkeys.setter
     def jwt_validation_pubkeys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "jwt_validation_pubkeys", value)
+
+    @property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if the auth method is local only.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "local", value)
 
     @property
     @pulumi.getter(name="oidcClientId")
@@ -267,6 +283,7 @@ class _AuthBackendState:
                  jwks_url: Optional[pulumi.Input[str]] = None,
                  jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
                  oidc_client_id: Optional[pulumi.Input[str]] = None,
                  oidc_client_secret: Optional[pulumi.Input[str]] = None,
                  oidc_discovery_ca_pem: Optional[pulumi.Input[str]] = None,
@@ -285,6 +302,7 @@ class _AuthBackendState:
         :param pulumi.Input[str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+        :param pulumi.Input[bool] local: Specifies if the auth method is local only.
         :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
         :param pulumi.Input[str] oidc_client_secret: Client Secret used for OIDC backends
         :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
@@ -309,6 +327,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "jwt_supported_algs", jwt_supported_algs)
         if jwt_validation_pubkeys is not None:
             pulumi.set(__self__, "jwt_validation_pubkeys", jwt_validation_pubkeys)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
         if oidc_client_id is not None:
             pulumi.set(__self__, "oidc_client_id", oidc_client_id)
         if oidc_client_secret is not None:
@@ -423,6 +443,18 @@ class _AuthBackendState:
         pulumi.set(self, "jwt_validation_pubkeys", value)
 
     @property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if the auth method is local only.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "local", value)
+
+    @property
     @pulumi.getter(name="oidcClientId")
     def oidc_client_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -528,6 +560,7 @@ class AuthBackend(pulumi.CustomResource):
                  jwks_url: Optional[pulumi.Input[str]] = None,
                  jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
                  oidc_client_id: Optional[pulumi.Input[str]] = None,
                  oidc_client_secret: Optional[pulumi.Input[str]] = None,
                  oidc_discovery_ca_pem: Optional[pulumi.Input[str]] = None,
@@ -617,6 +650,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+        :param pulumi.Input[bool] local: Specifies if the auth method is local only.
         :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
         :param pulumi.Input[str] oidc_client_secret: Client Secret used for OIDC backends
         :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
@@ -724,6 +758,7 @@ class AuthBackend(pulumi.CustomResource):
                  jwks_url: Optional[pulumi.Input[str]] = None,
                  jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 local: Optional[pulumi.Input[bool]] = None,
                  oidc_client_id: Optional[pulumi.Input[str]] = None,
                  oidc_client_secret: Optional[pulumi.Input[str]] = None,
                  oidc_discovery_ca_pem: Optional[pulumi.Input[str]] = None,
@@ -751,6 +786,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["jwks_url"] = jwks_url
             __props__.__dict__["jwt_supported_algs"] = jwt_supported_algs
             __props__.__dict__["jwt_validation_pubkeys"] = jwt_validation_pubkeys
+            __props__.__dict__["local"] = local
             __props__.__dict__["oidc_client_id"] = oidc_client_id
             __props__.__dict__["oidc_client_secret"] = oidc_client_secret
             __props__.__dict__["oidc_discovery_ca_pem"] = oidc_discovery_ca_pem
@@ -778,6 +814,7 @@ class AuthBackend(pulumi.CustomResource):
             jwks_url: Optional[pulumi.Input[str]] = None,
             jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            local: Optional[pulumi.Input[bool]] = None,
             oidc_client_id: Optional[pulumi.Input[str]] = None,
             oidc_client_secret: Optional[pulumi.Input[str]] = None,
             oidc_discovery_ca_pem: Optional[pulumi.Input[str]] = None,
@@ -801,6 +838,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+        :param pulumi.Input[bool] local: Specifies if the auth method is local only.
         :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
         :param pulumi.Input[str] oidc_client_secret: Client Secret used for OIDC backends
         :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
@@ -821,6 +859,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["jwks_url"] = jwks_url
         __props__.__dict__["jwt_supported_algs"] = jwt_supported_algs
         __props__.__dict__["jwt_validation_pubkeys"] = jwt_validation_pubkeys
+        __props__.__dict__["local"] = local
         __props__.__dict__["oidc_client_id"] = oidc_client_id
         __props__.__dict__["oidc_client_secret"] = oidc_client_secret
         __props__.__dict__["oidc_discovery_ca_pem"] = oidc_discovery_ca_pem
@@ -894,6 +933,14 @@ class AuthBackend(pulumi.CustomResource):
         A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
         """
         return pulumi.get(self, "jwt_validation_pubkeys")
+
+    @property
+    @pulumi.getter
+    def local(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Specifies if the auth method is local only.
+        """
+        return pulumi.get(self, "local")
 
     @property
     @pulumi.getter(name="oidcClientId")

@@ -20,6 +20,7 @@ from .policy import *
 from .provider import *
 from .quota_lease_count import *
 from .quota_rate_limit import *
+from .raft_snapshot_agent_config import *
 from .rgp_policy import *
 from .token import *
 from ._inputs import *
@@ -89,6 +90,8 @@ def _register_module():
                 return QuotaLeaseCount(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "vault:index/quotaRateLimit:QuotaRateLimit":
                 return QuotaRateLimit(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig":
+                return RaftSnapshotAgentConfig(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "vault:index/rgpPolicy:RgpPolicy":
                 return RgpPolicy(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "vault:index/token:Token":
@@ -111,6 +114,7 @@ def _register_module():
     pulumi.runtime.register_resource_module("vault", "index/policy", _module_instance)
     pulumi.runtime.register_resource_module("vault", "index/quotaLeaseCount", _module_instance)
     pulumi.runtime.register_resource_module("vault", "index/quotaRateLimit", _module_instance)
+    pulumi.runtime.register_resource_module("vault", "index/raftSnapshotAgentConfig", _module_instance)
     pulumi.runtime.register_resource_module("vault", "index/rgpPolicy", _module_instance)
     pulumi.runtime.register_resource_module("vault", "index/token", _module_instance)
 

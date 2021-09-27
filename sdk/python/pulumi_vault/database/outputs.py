@@ -21,6 +21,7 @@ __all__ = [
     'SecretBackendConnectionMysqlRds',
     'SecretBackendConnectionOracle',
     'SecretBackendConnectionPostgresql',
+    'SecretBackendConnectionSnowflake',
 ]
 
 @pulumi.output_type
@@ -75,7 +76,7 @@ class SecretBackendConnectionCassandra(dict):
                part of the host.
         :param int protocol_version: The CQL protocol version to use.
         :param bool tls: Whether to use TLS when connecting to Cassandra.
-        :param str username: The username to be used in the connection.
+        :param str username: The username to be used in the connection (the account admin level).
         """
         if connect_timeout is not None:
             pulumi.set(__self__, "connect_timeout", connect_timeout)
@@ -178,7 +179,7 @@ class SecretBackendConnectionCassandra(dict):
     @pulumi.getter
     def username(self) -> Optional[str]:
         """
-        The username to be used in the connection.
+        The username to be used in the connection (the account admin level).
         """
         return pulumi.get(self, "username")
 
@@ -193,7 +194,7 @@ class SecretBackendConnectionElasticsearch(dict):
         :param str password: The password to be used in the connection.
         :param str url: The URL for Elasticsearch's API. https requires certificate
                by trusted CA if used.
-        :param str username: The username to be used in the connection.
+        :param str username: The username to be used in the connection (the account admin level).
         """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "url", url)
@@ -220,7 +221,7 @@ class SecretBackendConnectionElasticsearch(dict):
     @pulumi.getter
     def username(self) -> str:
         """
-        The username to be used in the connection.
+        The username to be used in the connection (the account admin level).
         """
         return pulumi.get(self, "username")
 
@@ -258,7 +259,7 @@ class SecretBackendConnectionHana(dict):
         """
         :param str connection_url: A URL containing connection information. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
                for an example.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
@@ -282,7 +283,7 @@ class SecretBackendConnectionHana(dict):
         """
         A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -328,6 +329,8 @@ class SecretBackendConnectionMongodb(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionMongodb. Access the value via the '{suggest}' property getter instead.")
@@ -344,11 +347,12 @@ class SecretBackendConnectionMongodb(dict):
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
-                 max_open_connections: Optional[int] = None):
+                 max_open_connections: Optional[int] = None,
+                 username_template: Optional[str] = None):
         """
         :param str connection_url: A URL containing connection information. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
                for an example.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
@@ -356,6 +360,7 @@ class SecretBackendConnectionMongodb(dict):
                maintain.
         :param int max_open_connections: The maximum number of open connections to
                use.
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -365,6 +370,8 @@ class SecretBackendConnectionMongodb(dict):
             pulumi.set(__self__, "max_idle_connections", max_idle_connections)
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -372,7 +379,7 @@ class SecretBackendConnectionMongodb(dict):
         """
         A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -403,6 +410,14 @@ class SecretBackendConnectionMongodb(dict):
         use.
         """
         return pulumi.get(self, "max_open_connections")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
 
 
 @pulumi.output_type
@@ -479,6 +494,8 @@ class SecretBackendConnectionMssql(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionMssql. Access the value via the '{suggest}' property getter instead.")
@@ -495,11 +512,12 @@ class SecretBackendConnectionMssql(dict):
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
-                 max_open_connections: Optional[int] = None):
+                 max_open_connections: Optional[int] = None,
+                 username_template: Optional[str] = None):
         """
         :param str connection_url: A URL containing connection information. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
                for an example.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
@@ -507,6 +525,7 @@ class SecretBackendConnectionMssql(dict):
                maintain.
         :param int max_open_connections: The maximum number of open connections to
                use.
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -516,6 +535,8 @@ class SecretBackendConnectionMssql(dict):
             pulumi.set(__self__, "max_idle_connections", max_idle_connections)
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -523,7 +544,7 @@ class SecretBackendConnectionMssql(dict):
         """
         A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -555,6 +576,14 @@ class SecretBackendConnectionMssql(dict):
         """
         return pulumi.get(self, "max_open_connections")
 
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
 
 @pulumi.output_type
 class SecretBackendConnectionMysql(dict):
@@ -573,6 +602,8 @@ class SecretBackendConnectionMysql(dict):
             suggest = "tls_ca"
         elif key == "tlsCertificateKey":
             suggest = "tls_certificate_key"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionMysql. Access the value via the '{suggest}' property getter instead.")
@@ -591,11 +622,12 @@ class SecretBackendConnectionMysql(dict):
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
                  tls_ca: Optional[str] = None,
-                 tls_certificate_key: Optional[str] = None):
+                 tls_certificate_key: Optional[str] = None,
+                 username_template: Optional[str] = None):
         """
         :param str connection_url: A URL containing connection information. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
                for an example.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
@@ -605,6 +637,7 @@ class SecretBackendConnectionMysql(dict):
                use.
         :param str tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param str tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -618,6 +651,8 @@ class SecretBackendConnectionMysql(dict):
             pulumi.set(__self__, "tls_ca", tls_ca)
         if tls_certificate_key is not None:
             pulumi.set(__self__, "tls_certificate_key", tls_certificate_key)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -625,7 +660,7 @@ class SecretBackendConnectionMysql(dict):
         """
         A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -673,6 +708,14 @@ class SecretBackendConnectionMysql(dict):
         """
         return pulumi.get(self, "tls_certificate_key")
 
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
 
 @pulumi.output_type
 class SecretBackendConnectionMysqlAurora(dict):
@@ -687,6 +730,8 @@ class SecretBackendConnectionMysqlAurora(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionMysqlAurora. Access the value via the '{suggest}' property getter instead.")
@@ -703,11 +748,12 @@ class SecretBackendConnectionMysqlAurora(dict):
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
-                 max_open_connections: Optional[int] = None):
+                 max_open_connections: Optional[int] = None,
+                 username_template: Optional[str] = None):
         """
         :param str connection_url: A URL containing connection information. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
                for an example.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
@@ -715,6 +761,7 @@ class SecretBackendConnectionMysqlAurora(dict):
                maintain.
         :param int max_open_connections: The maximum number of open connections to
                use.
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -724,6 +771,8 @@ class SecretBackendConnectionMysqlAurora(dict):
             pulumi.set(__self__, "max_idle_connections", max_idle_connections)
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -731,7 +780,7 @@ class SecretBackendConnectionMysqlAurora(dict):
         """
         A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -763,6 +812,14 @@ class SecretBackendConnectionMysqlAurora(dict):
         """
         return pulumi.get(self, "max_open_connections")
 
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
 
 @pulumi.output_type
 class SecretBackendConnectionMysqlLegacy(dict):
@@ -777,6 +834,8 @@ class SecretBackendConnectionMysqlLegacy(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionMysqlLegacy. Access the value via the '{suggest}' property getter instead.")
@@ -793,11 +852,12 @@ class SecretBackendConnectionMysqlLegacy(dict):
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
-                 max_open_connections: Optional[int] = None):
+                 max_open_connections: Optional[int] = None,
+                 username_template: Optional[str] = None):
         """
         :param str connection_url: A URL containing connection information. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
                for an example.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
@@ -805,6 +865,7 @@ class SecretBackendConnectionMysqlLegacy(dict):
                maintain.
         :param int max_open_connections: The maximum number of open connections to
                use.
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -814,6 +875,8 @@ class SecretBackendConnectionMysqlLegacy(dict):
             pulumi.set(__self__, "max_idle_connections", max_idle_connections)
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -821,7 +884,7 @@ class SecretBackendConnectionMysqlLegacy(dict):
         """
         A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -853,6 +916,14 @@ class SecretBackendConnectionMysqlLegacy(dict):
         """
         return pulumi.get(self, "max_open_connections")
 
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
 
 @pulumi.output_type
 class SecretBackendConnectionMysqlRds(dict):
@@ -867,6 +938,8 @@ class SecretBackendConnectionMysqlRds(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionMysqlRds. Access the value via the '{suggest}' property getter instead.")
@@ -883,11 +956,12 @@ class SecretBackendConnectionMysqlRds(dict):
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
-                 max_open_connections: Optional[int] = None):
+                 max_open_connections: Optional[int] = None,
+                 username_template: Optional[str] = None):
         """
         :param str connection_url: A URL containing connection information. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
                for an example.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
@@ -895,6 +969,7 @@ class SecretBackendConnectionMysqlRds(dict):
                maintain.
         :param int max_open_connections: The maximum number of open connections to
                use.
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -904,6 +979,8 @@ class SecretBackendConnectionMysqlRds(dict):
             pulumi.set(__self__, "max_idle_connections", max_idle_connections)
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -911,7 +988,7 @@ class SecretBackendConnectionMysqlRds(dict):
         """
         A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -943,6 +1020,14 @@ class SecretBackendConnectionMysqlRds(dict):
         """
         return pulumi.get(self, "max_open_connections")
 
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
 
 @pulumi.output_type
 class SecretBackendConnectionOracle(dict):
@@ -957,6 +1042,8 @@ class SecretBackendConnectionOracle(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionOracle. Access the value via the '{suggest}' property getter instead.")
@@ -973,11 +1060,12 @@ class SecretBackendConnectionOracle(dict):
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
-                 max_open_connections: Optional[int] = None):
+                 max_open_connections: Optional[int] = None,
+                 username_template: Optional[str] = None):
         """
         :param str connection_url: A URL containing connection information. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
                for an example.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
@@ -985,6 +1073,7 @@ class SecretBackendConnectionOracle(dict):
                maintain.
         :param int max_open_connections: The maximum number of open connections to
                use.
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -994,6 +1083,8 @@ class SecretBackendConnectionOracle(dict):
             pulumi.set(__self__, "max_idle_connections", max_idle_connections)
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -1001,7 +1092,7 @@ class SecretBackendConnectionOracle(dict):
         """
         A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -1033,6 +1124,14 @@ class SecretBackendConnectionOracle(dict):
         """
         return pulumi.get(self, "max_open_connections")
 
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
 
 @pulumi.output_type
 class SecretBackendConnectionPostgresql(dict):
@@ -1047,6 +1146,8 @@ class SecretBackendConnectionPostgresql(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionPostgresql. Access the value via the '{suggest}' property getter instead.")
@@ -1063,11 +1164,12 @@ class SecretBackendConnectionPostgresql(dict):
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
-                 max_open_connections: Optional[int] = None):
+                 max_open_connections: Optional[int] = None,
+                 username_template: Optional[str] = None):
         """
         :param str connection_url: A URL containing connection information. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
                for an example.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
@@ -1075,6 +1177,7 @@ class SecretBackendConnectionPostgresql(dict):
                maintain.
         :param int max_open_connections: The maximum number of open connections to
                use.
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -1084,6 +1187,8 @@ class SecretBackendConnectionPostgresql(dict):
             pulumi.set(__self__, "max_idle_connections", max_idle_connections)
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -1091,7 +1196,7 @@ class SecretBackendConnectionPostgresql(dict):
         """
         A URL containing connection information. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -1122,5 +1227,141 @@ class SecretBackendConnectionPostgresql(dict):
         use.
         """
         return pulumi.get(self, "max_open_connections")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+
+@pulumi.output_type
+class SecretBackendConnectionSnowflake(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionSnowflake. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretBackendConnectionSnowflake.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretBackendConnectionSnowflake.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 connection_url: Optional[str] = None,
+                 max_connection_lifetime: Optional[int] = None,
+                 max_idle_connections: Optional[int] = None,
+                 max_open_connections: Optional[int] = None,
+                 password: Optional[str] = None,
+                 username: Optional[str] = None,
+                 username_template: Optional[str] = None):
+        """
+        :param str connection_url: A URL containing connection information. See
+               the [Vault
+               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+               for an example.
+        :param int max_connection_lifetime: The maximum number of seconds to keep
+               a connection alive for.
+        :param int max_idle_connections: The maximum number of idle connections to
+               maintain.
+        :param int max_open_connections: The maximum number of open connections to
+               use.
+        :param str password: The password to be used in the connection.
+        :param str username: The username to be used in the connection (the account admin level).
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        if connection_url is not None:
+            pulumi.set(__self__, "connection_url", connection_url)
+        if max_connection_lifetime is not None:
+            pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
+        if max_idle_connections is not None:
+            pulumi.set(__self__, "max_idle_connections", max_idle_connections)
+        if max_open_connections is not None:
+            pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
+
+    @property
+    @pulumi.getter(name="connectionUrl")
+    def connection_url(self) -> Optional[str]:
+        """
+        A URL containing connection information. See
+        the [Vault
+        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        for an example.
+        """
+        return pulumi.get(self, "connection_url")
+
+    @property
+    @pulumi.getter(name="maxConnectionLifetime")
+    def max_connection_lifetime(self) -> Optional[int]:
+        """
+        The maximum number of seconds to keep
+        a connection alive for.
+        """
+        return pulumi.get(self, "max_connection_lifetime")
+
+    @property
+    @pulumi.getter(name="maxIdleConnections")
+    def max_idle_connections(self) -> Optional[int]:
+        """
+        The maximum number of idle connections to
+        maintain.
+        """
+        return pulumi.get(self, "max_idle_connections")
+
+    @property
+    @pulumi.getter(name="maxOpenConnections")
+    def max_open_connections(self) -> Optional[int]:
+        """
+        The maximum number of open connections to
+        use.
+        """
+        return pulumi.get(self, "max_open_connections")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
 
 

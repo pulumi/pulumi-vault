@@ -11,7 +11,7 @@ namespace Pulumi.Vault.Database.Outputs
 {
 
     [OutputType]
-    public sealed class SecretBackendConnectionMysqlLegacy
+    public sealed class SecretBackendConnectionSnowflake
     {
         /// <summary>
         /// A URL containing connection information. See
@@ -36,12 +36,20 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly int? MaxOpenConnections;
         /// <summary>
+        /// The password to be used in the connection.
+        /// </summary>
+        public readonly string? Password;
+        /// <summary>
+        /// The username to be used in the connection (the account admin level).
+        /// </summary>
+        public readonly string? Username;
+        /// <summary>
         /// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         /// </summary>
         public readonly string? UsernameTemplate;
 
         [OutputConstructor]
-        private SecretBackendConnectionMysqlLegacy(
+        private SecretBackendConnectionSnowflake(
             string? connectionUrl,
 
             int? maxConnectionLifetime,
@@ -50,12 +58,18 @@ namespace Pulumi.Vault.Database.Outputs
 
             int? maxOpenConnections,
 
+            string? password,
+
+            string? username,
+
             string? usernameTemplate)
         {
             ConnectionUrl = connectionUrl;
             MaxConnectionLifetime = maxConnectionLifetime;
             MaxIdleConnections = maxIdleConnections;
             MaxOpenConnections = maxOpenConnections;
+            Password = password;
+            Username = username;
             UsernameTemplate = usernameTemplate;
         }
     }

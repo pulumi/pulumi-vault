@@ -27,6 +27,9 @@ import * as utilities from "../utilities";
  *         "prod",
  *     ],
  *     boundAudiences: ["https://myco.test"],
+ *     boundClaims: {
+ *         color: "red,green,blue",
+ *     },
  *     userClaim: "https://vault/user",
  *     roleType: "jwt",
  * });
@@ -115,8 +118,9 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly boundCidrs!: pulumi.Output<string[] | undefined>;
     /**
-     * If set, a map of claims/values to match against.
-     * The expected value may be a single string or a list of strings.
+     * If set, a map of claims to values to match against.
+     * A claim's value must be a string, which may contain one value or multiple
+     * comma-separated values, e.g. `"red"` or `"red,green,blue"`.
      */
     public readonly boundClaims!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
@@ -411,8 +415,9 @@ export interface AuthBackendRoleState {
      */
     readonly boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * If set, a map of claims/values to match against.
-     * The expected value may be a single string or a list of strings.
+     * If set, a map of claims to values to match against.
+     * A claim's value must be a string, which may contain one value or multiple
+     * comma-separated values, e.g. `"red"` or `"red,green,blue"`.
      */
     readonly boundClaims?: pulumi.Input<{[key: string]: any}>;
     /**
@@ -615,8 +620,9 @@ export interface AuthBackendRoleArgs {
      */
     readonly boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * If set, a map of claims/values to match against.
-     * The expected value may be a single string or a list of strings.
+     * If set, a map of claims to values to match against.
+     * A claim's value must be a string, which may contain one value or multiple
+     * comma-separated values, e.g. `"red"` or `"red,green,blue"`.
      */
     readonly boundClaims?: pulumi.Input<{[key: string]: any}>;
     /**
