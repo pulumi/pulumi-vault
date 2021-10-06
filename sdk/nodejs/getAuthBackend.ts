@@ -61,7 +61,7 @@ export interface GetAuthBackendResult {
      */
     readonly id: string;
     /**
-     * Speficies whether to show this mount in the UI-specific listing endpoint.
+     * Specifies whether to show this mount in the UI-specific listing endpoint.
      */
     readonly listingVisibility: string;
     /**

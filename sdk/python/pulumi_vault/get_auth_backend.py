@@ -84,7 +84,7 @@ class GetAuthBackendResult:
     @pulumi.getter(name="listingVisibility")
     def listing_visibility(self) -> str:
         """
-        Speficies whether to show this mount in the UI-specific listing endpoint.
+        Specifies whether to show this mount in the UI-specific listing endpoint.
         """
         return pulumi.get(self, "listing_visibility")
 

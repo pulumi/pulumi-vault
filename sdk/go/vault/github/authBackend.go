@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a Github Auth mount in a Vault server. See the [Vault
+// Manages a GitHub Auth mount in a Vault server. See the [Vault
 // documentation](https://www.vaultproject.io/docs/auth/github/) for more
 // information.
 //
@@ -40,7 +40,7 @@ import (
 //
 // ## Import
 //
-// Github authentication mounts can be imported using the `path`, e.g.
+// GitHub authentication mounts can be imported using the `path`, e.g.
 //
 // ```sh
 //  $ pulumi import vault:github/authBackend:AuthBackend example github
@@ -103,8 +103,9 @@ type AuthBackend struct {
 	// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
 	//
 	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl  pulumi.StringPtrOutput `pulumi:"ttl"`
-	Tune AuthBackendTuneOutput  `pulumi:"tune"`
+	Ttl pulumi.StringPtrOutput `pulumi:"ttl"`
+	// Extra configuration block. Structure is documented below.
+	Tune AuthBackendTuneOutput `pulumi:"tune"`
 }
 
 // NewAuthBackend registers a new resource with the given unique name, arguments, and options.
@@ -194,7 +195,8 @@ type authBackendState struct {
 	// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
 	//
 	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl  *string          `pulumi:"ttl"`
+	Ttl *string `pulumi:"ttl"`
+	// Extra configuration block. Structure is documented below.
 	Tune *AuthBackendTune `pulumi:"tune"`
 }
 
@@ -254,7 +256,8 @@ type AuthBackendState struct {
 	// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
 	//
 	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl  pulumi.StringPtrInput
+	Ttl pulumi.StringPtrInput
+	// Extra configuration block. Structure is documented below.
 	Tune AuthBackendTunePtrInput
 }
 
@@ -316,7 +319,8 @@ type authBackendArgs struct {
 	// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
 	//
 	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl  *string          `pulumi:"ttl"`
+	Ttl *string `pulumi:"ttl"`
+	// Extra configuration block. Structure is documented below.
 	Tune *AuthBackendTune `pulumi:"tune"`
 }
 
@@ -375,7 +379,8 @@ type AuthBackendArgs struct {
 	// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
 	//
 	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl  pulumi.StringPtrInput
+	Ttl pulumi.StringPtrInput
+	// Extra configuration block. Structure is documented below.
 	Tune AuthBackendTunePtrInput
 }
 

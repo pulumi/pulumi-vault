@@ -45,7 +45,7 @@ class AuthBackendRoleArgs:
                that can perform the login operation that the location in their identity
                document must match the one specified by this field.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_resource_groups: If set, defines a constraint on the virtual
-               machiness that can perform the login operation that they be associated with
+               machines that can perform the login operation that they be associated with
                the resource group that matches the value specified by this field.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_scale_sets: If set, defines a constraint on the virtual
                machines that can perform the login operation that they must match the scale set
@@ -205,7 +205,7 @@ class AuthBackendRoleArgs:
     def bound_resource_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         If set, defines a constraint on the virtual
-        machiness that can perform the login operation that they be associated with
+        machines that can perform the login operation that they be associated with
         the resource group that matches the value specified by this field.
         """
         return pulumi.get(self, "bound_resource_groups")
@@ -471,7 +471,7 @@ class _AuthBackendRoleState:
                that can perform the login operation that the location in their identity
                document must match the one specified by this field.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_resource_groups: If set, defines a constraint on the virtual
-               machiness that can perform the login operation that they be associated with
+               machines that can perform the login operation that they be associated with
                the resource group that matches the value specified by this field.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_scale_sets: If set, defines a constraint on the virtual
                machines that can perform the login operation that they must match the scale set
@@ -621,7 +621,7 @@ class _AuthBackendRoleState:
     def bound_resource_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         If set, defines a constraint on the virtual
-        machiness that can perform the login operation that they be associated with
+        machines that can perform the login operation that they be associated with
         the resource group that matches the value specified by this field.
         """
         return pulumi.get(self, "bound_resource_groups")
@@ -938,7 +938,7 @@ class AuthBackendRole(pulumi.CustomResource):
                that can perform the login operation that the location in their identity
                document must match the one specified by this field.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_resource_groups: If set, defines a constraint on the virtual
-               machiness that can perform the login operation that they be associated with
+               machines that can perform the login operation that they be associated with
                the resource group that matches the value specified by this field.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_scale_sets: If set, defines a constraint on the virtual
                machines that can perform the login operation that they must match the scale set
@@ -1159,7 +1159,7 @@ class AuthBackendRole(pulumi.CustomResource):
                that can perform the login operation that the location in their identity
                document must match the one specified by this field.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_resource_groups: If set, defines a constraint on the virtual
-               machiness that can perform the login operation that they be associated with
+               machines that can perform the login operation that they be associated with
                the resource group that matches the value specified by this field.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_scale_sets: If set, defines a constraint on the virtual
                machines that can perform the login operation that they must match the scale set
@@ -1269,7 +1269,7 @@ class AuthBackendRole(pulumi.CustomResource):
     def bound_resource_groups(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         If set, defines a constraint on the virtual
-        machiness that can perform the login operation that they be associated with
+        machines that can perform the login operation that they be associated with
         the resource group that matches the value specified by this field.
         """
         return pulumi.get(self, "bound_resource_groups")

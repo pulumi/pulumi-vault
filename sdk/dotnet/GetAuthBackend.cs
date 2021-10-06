@@ -74,7 +74,7 @@ namespace Pulumi.Vault
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Speficies whether to show this mount in the UI-specific listing endpoint.
+        /// Specifies whether to show this mount in the UI-specific listing endpoint.
         /// </summary>
         public readonly string ListingVisibility;
         /// <summary>

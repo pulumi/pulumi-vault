@@ -82,7 +82,7 @@ type AuthBackendRole struct {
 	// document must match the one specified by this field.
 	BoundLocations pulumi.StringArrayOutput `pulumi:"boundLocations"`
 	// If set, defines a constraint on the virtual
-	// machiness that can perform the login operation that they be associated with
+	// machines that can perform the login operation that they be associated with
 	// the resource group that matches the value specified by this field.
 	BoundResourceGroups pulumi.StringArrayOutput `pulumi:"boundResourceGroups"`
 	// If set, defines a constraint on the virtual
@@ -202,7 +202,7 @@ type authBackendRoleState struct {
 	// document must match the one specified by this field.
 	BoundLocations []string `pulumi:"boundLocations"`
 	// If set, defines a constraint on the virtual
-	// machiness that can perform the login operation that they be associated with
+	// machines that can perform the login operation that they be associated with
 	// the resource group that matches the value specified by this field.
 	BoundResourceGroups []string `pulumi:"boundResourceGroups"`
 	// If set, defines a constraint on the virtual
@@ -291,7 +291,7 @@ type AuthBackendRoleState struct {
 	// document must match the one specified by this field.
 	BoundLocations pulumi.StringArrayInput
 	// If set, defines a constraint on the virtual
-	// machiness that can perform the login operation that they be associated with
+	// machines that can perform the login operation that they be associated with
 	// the resource group that matches the value specified by this field.
 	BoundResourceGroups pulumi.StringArrayInput
 	// If set, defines a constraint on the virtual
@@ -384,7 +384,7 @@ type authBackendRoleArgs struct {
 	// document must match the one specified by this field.
 	BoundLocations []string `pulumi:"boundLocations"`
 	// If set, defines a constraint on the virtual
-	// machiness that can perform the login operation that they be associated with
+	// machines that can perform the login operation that they be associated with
 	// the resource group that matches the value specified by this field.
 	BoundResourceGroups []string `pulumi:"boundResourceGroups"`
 	// If set, defines a constraint on the virtual
@@ -474,7 +474,7 @@ type AuthBackendRoleArgs struct {
 	// document must match the one specified by this field.
 	BoundLocations pulumi.StringArrayInput
 	// If set, defines a constraint on the virtual
-	// machiness that can perform the login operation that they be associated with
+	// machines that can perform the login operation that they be associated with
 	// the resource group that matches the value specified by this field.
 	BoundResourceGroups pulumi.StringArrayInput
 	// If set, defines a constraint on the virtual

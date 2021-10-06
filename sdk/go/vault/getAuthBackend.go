@@ -54,7 +54,7 @@ type LookupAuthBackendResult struct {
 	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Speficies whether to show this mount in the UI-specific listing endpoint.
+	// Specifies whether to show this mount in the UI-specific listing endpoint.
 	ListingVisibility string `pulumi:"listingVisibility"`
 	// Specifies if the auth method is local only.
 	Local bool `pulumi:"local"`

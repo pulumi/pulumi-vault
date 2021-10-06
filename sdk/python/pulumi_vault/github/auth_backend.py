@@ -68,6 +68,7 @@ class AuthBackendArgs:
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
         :param pulumi.Input[str] ttl: (Optional; Deprecated, use `token_ttl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
                using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
+        :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
         """
         pulumi.set(__self__, "organization", organization)
         if base_url is not None:
@@ -310,6 +311,9 @@ class AuthBackendArgs:
     @property
     @pulumi.getter
     def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
+        """
+        Extra configuration block. Structure is documented below.
+        """
         return pulumi.get(self, "tune")
 
     @tune.setter
@@ -375,6 +379,7 @@ class _AuthBackendState:
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
         :param pulumi.Input[str] ttl: (Optional; Deprecated, use `token_ttl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
                using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
+        :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
@@ -632,6 +637,9 @@ class _AuthBackendState:
     @property
     @pulumi.getter
     def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
+        """
+        Extra configuration block. Structure is documented below.
+        """
         return pulumi.get(self, "tune")
 
     @tune.setter
@@ -662,7 +670,7 @@ class AuthBackend(pulumi.CustomResource):
                  tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
                  __props__=None):
         """
-        Manages a Github Auth mount in a Vault server. See the [Vault
+        Manages a GitHub Auth mount in a Vault server. See the [Vault
         documentation](https://www.vaultproject.io/docs/auth/github/) for more
         information.
 
@@ -677,7 +685,7 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Import
 
-        Github authentication mounts can be imported using the `path`, e.g.
+        GitHub authentication mounts can be imported using the `path`, e.g.
 
         ```sh
          $ pulumi import vault:github/authBackend:AuthBackend example github
@@ -720,6 +728,7 @@ class AuthBackend(pulumi.CustomResource):
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
         :param pulumi.Input[str] ttl: (Optional; Deprecated, use `token_ttl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
                using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
+        :param pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']] tune: Extra configuration block. Structure is documented below.
         """
         ...
     @overload
@@ -728,7 +737,7 @@ class AuthBackend(pulumi.CustomResource):
                  args: AuthBackendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a Github Auth mount in a Vault server. See the [Vault
+        Manages a GitHub Auth mount in a Vault server. See the [Vault
         documentation](https://www.vaultproject.io/docs/auth/github/) for more
         information.
 
@@ -743,7 +752,7 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Import
 
-        Github authentication mounts can be imported using the `path`, e.g.
+        GitHub authentication mounts can be imported using the `path`, e.g.
 
         ```sh
          $ pulumi import vault:github/authBackend:AuthBackend example github
@@ -887,6 +896,7 @@ class AuthBackend(pulumi.CustomResource):
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
         :param pulumi.Input[str] ttl: (Optional; Deprecated, use `token_ttl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
                using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
+        :param pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']] tune: Extra configuration block. Structure is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1062,5 +1072,8 @@ class AuthBackend(pulumi.CustomResource):
     @property
     @pulumi.getter
     def tune(self) -> pulumi.Output['outputs.AuthBackendTune']:
+        """
+        Extra configuration block. Structure is documented below.
+        """
         return pulumi.get(self, "tune")
 
