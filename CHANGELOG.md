@@ -2,10 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v2.24.1 of the Vault Terraform Provider
-* Add import support to `vault.okta.authBackendUser`
+_(none)_
 
 ---
+
+## 4.5.1 (2021-10-06)
+* Upgrade to v2.24.1 of the Vault Terraform Provider
+* Add import support to `vault.okta.authBackendUser`
 
 ## 4.5.0 (2021-09-27)
 * Upgrade to v2.24.0 of the Vault Terraform Provider
