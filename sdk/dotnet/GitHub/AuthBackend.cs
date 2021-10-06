@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.GitHub
 {
     /// <summary>
-    /// Manages a Github Auth mount in a Vault server. See the [Vault
+    /// Manages a GitHub Auth mount in a Vault server. See the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/github/) for more
     /// information.
     /// 
@@ -35,7 +35,7 @@ namespace Pulumi.Vault.GitHub
     /// 
     /// ## Import
     /// 
-    /// Github authentication mounts can be imported using the `path`, e.g.
+    /// GitHub authentication mounts can be imported using the `path`, e.g.
     /// 
     /// ```sh
     ///  $ pulumi import vault:github/authBackend:AuthBackend example github
@@ -160,6 +160,9 @@ namespace Pulumi.Vault.GitHub
         [Output("ttl")]
         public Output<string?> Ttl { get; private set; } = null!;
 
+        /// <summary>
+        /// Extra configuration block. Structure is documented below.
+        /// </summary>
         [Output("tune")]
         public Output<Outputs.AuthBackendTune> Tune { get; private set; } = null!;
 
@@ -331,6 +334,9 @@ namespace Pulumi.Vault.GitHub
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }
 
+        /// <summary>
+        /// Extra configuration block. Structure is documented below.
+        /// </summary>
         [Input("tune")]
         public Input<Inputs.AuthBackendTuneArgs>? Tune { get; set; }
 
@@ -469,6 +475,9 @@ namespace Pulumi.Vault.GitHub
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }
 
+        /// <summary>
+        /// Extra configuration block. Structure is documented below.
+        /// </summary>
         [Input("tune")]
         public Input<Inputs.AuthBackendTuneGetArgs>? Tune { get; set; }
 

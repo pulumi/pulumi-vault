@@ -184,6 +184,14 @@ class AuthBackendUser(pulumi.CustomResource):
             ])
         ```
 
+        ## Import
+
+        Okta authentication backend users can be imported using its `path/user` ID format, e.g.
+
+        ```sh
+         $ pulumi import vault:okta/authBackendUser:AuthBackendUser example okta/foo
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] groups: List of Okta groups to associate with this user
@@ -217,6 +225,14 @@ class AuthBackendUser(pulumi.CustomResource):
                 "one",
                 "two",
             ])
+        ```
+
+        ## Import
+
+        Okta authentication backend users can be imported using its `path/user` ID format, e.g.
+
+        ```sh
+         $ pulumi import vault:okta/authBackendUser:AuthBackendUser example okta/foo
         ```
 
         :param str resource_name: The name of the resource.

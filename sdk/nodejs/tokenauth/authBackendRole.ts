@@ -106,7 +106,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly period!: pulumi.Output<string | undefined>;
     /**
-     * Wether to disable the ability of the token to be renewed past its initial TTL.
+     * Whether to disable the ability of the token to be renewed past its initial TTL.
      */
     public readonly renewable!: pulumi.Output<boolean | undefined>;
     /**
@@ -273,7 +273,7 @@ export interface AuthBackendRoleState {
      */
     readonly period?: pulumi.Input<string>;
     /**
-     * Wether to disable the ability of the token to be renewed past its initial TTL.
+     * Whether to disable the ability of the token to be renewed past its initial TTL.
      */
     readonly renewable?: pulumi.Input<boolean>;
     /**
@@ -379,7 +379,7 @@ export interface AuthBackendRoleArgs {
      */
     readonly period?: pulumi.Input<string>;
     /**
-     * Wether to disable the ability of the token to be renewed past its initial TTL.
+     * Whether to disable the ability of the token to be renewed past its initial TTL.
      */
     readonly renewable?: pulumi.Input<boolean>;
     /**

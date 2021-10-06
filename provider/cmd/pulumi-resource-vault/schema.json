@@ -4837,7 +4837,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "If set, defines a constraint on the virtual\nmachiness that can perform the login operation that they be associated with\nthe resource group that matches the value specified by this field.\n"
+                    "description": "If set, defines a constraint on the virtual\nmachines that can perform the login operation that they be associated with\nthe resource group that matches the value specified by this field.\n"
                 },
                 "boundScaleSets": {
                     "type": "array",
@@ -4957,7 +4957,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "If set, defines a constraint on the virtual\nmachiness that can perform the login operation that they be associated with\nthe resource group that matches the value specified by this field.\n"
+                    "description": "If set, defines a constraint on the virtual\nmachines that can perform the login operation that they be associated with\nthe resource group that matches the value specified by this field.\n"
                 },
                 "boundScaleSets": {
                     "type": "array",
@@ -5079,7 +5079,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "If set, defines a constraint on the virtual\nmachiness that can perform the login operation that they be associated with\nthe resource group that matches the value specified by this field.\n"
+                        "description": "If set, defines a constraint on the virtual\nmachines that can perform the login operation that they be associated with\nthe resource group that matches the value specified by this field.\n"
                     },
                     "boundScaleSets": {
                         "type": "array",
@@ -7311,7 +7311,7 @@
             }
         },
         "vault:github/authBackend:AuthBackend": {
-            "description": "Manages a Github Auth mount in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/github/) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.github.AuthBackend(\"example\", {\n    organization: \"myorg\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.github.AuthBackend(\"example\", organization=\"myorg\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.GitHub.AuthBackend(\"example\", new Vault.GitHub.AuthBackendArgs\n        {\n            Organization = \"myorg\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/github\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := github.NewAuthBackend(ctx, \"example\", \u0026github.AuthBackendArgs{\n\t\t\tOrganization: pulumi.String(\"myorg\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nGithub authentication mounts can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:github/authBackend:AuthBackend example github\n```\n\n ",
+            "description": "Manages a GitHub Auth mount in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/github/) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.github.AuthBackend(\"example\", {\n    organization: \"myorg\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.github.AuthBackend(\"example\", organization=\"myorg\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.GitHub.AuthBackend(\"example\", new Vault.GitHub.AuthBackendArgs\n        {\n            Organization = \"myorg\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/github\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := github.NewAuthBackend(ctx, \"example\", \u0026github.AuthBackendArgs{\n\t\t\tOrganization: pulumi.String(\"myorg\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nGitHub authentication mounts can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:github/authBackend:AuthBackend example github\n```\n\n ",
             "properties": {
                 "accessor": {
                     "type": "string",
@@ -7386,7 +7386,8 @@
                     "deprecationMessage": "use `token_ttl` instead if you are running Vault \u003e= 1.2"
                 },
                 "tune": {
-                    "$ref": "#/types/vault:github/AuthBackendTune:AuthBackendTune"
+                    "$ref": "#/types/vault:github/AuthBackendTune:AuthBackendTune",
+                    "description": "Extra configuration block. Structure is documented below.\n"
                 }
             },
             "required": [
@@ -7464,7 +7465,8 @@
                     "deprecationMessage": "use `token_ttl` instead if you are running Vault \u003e= 1.2"
                 },
                 "tune": {
-                    "$ref": "#/types/vault:github/AuthBackendTune:AuthBackendTune"
+                    "$ref": "#/types/vault:github/AuthBackendTune:AuthBackendTune",
+                    "description": "Extra configuration block. Structure is documented below.\n"
                 }
             },
             "requiredInputs": [
@@ -7546,7 +7548,8 @@
                         "deprecationMessage": "use `token_ttl` instead if you are running Vault \u003e= 1.2"
                     },
                     "tune": {
-                        "$ref": "#/types/vault:github/AuthBackendTune:AuthBackendTune"
+                        "$ref": "#/types/vault:github/AuthBackendTune:AuthBackendTune",
+                        "description": "Extra configuration block. Structure is documented below.\n"
                     }
                 },
                 "type": "object"
@@ -13056,7 +13059,7 @@
             }
         },
         "vault:okta/authBackendUser:AuthBackendUser": {
-            "description": "Provides a resource to create a user in an\n[Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.okta.AuthBackend(\"example\", {\n    path: \"user_okta\",\n    organization: \"dummy\",\n});\nconst foo = new vault.okta.AuthBackendUser(\"foo\", {\n    path: example.path,\n    username: \"foo\",\n    groups: [\n        \"one\",\n        \"two\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.okta.AuthBackend(\"example\",\n    path=\"user_okta\",\n    organization=\"dummy\")\nfoo = vault.okta.AuthBackendUser(\"foo\",\n    path=example.path,\n    username=\"foo\",\n    groups=[\n        \"one\",\n        \"two\",\n    ])\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.Okta.AuthBackend(\"example\", new Vault.Okta.AuthBackendArgs\n        {\n            Path = \"user_okta\",\n            Organization = \"dummy\",\n        });\n        var foo = new Vault.Okta.AuthBackendUser(\"foo\", new Vault.Okta.AuthBackendUserArgs\n        {\n            Path = example.Path,\n            Username = \"foo\",\n            Groups = \n            {\n                \"one\",\n                \"two\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/okta\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := okta.NewAuthBackend(ctx, \"example\", \u0026okta.AuthBackendArgs{\n\t\t\tPath:         pulumi.String(\"user_okta\"),\n\t\t\tOrganization: pulumi.String(\"dummy\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = okta.NewAuthBackendUser(ctx, \"foo\", \u0026okta.AuthBackendUserArgs{\n\t\t\tPath:     example.Path,\n\t\t\tUsername: pulumi.String(\"foo\"),\n\t\t\tGroups: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"one\"),\n\t\t\t\tpulumi.String(\"two\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Provides a resource to create a user in an\n[Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.okta.AuthBackend(\"example\", {\n    path: \"user_okta\",\n    organization: \"dummy\",\n});\nconst foo = new vault.okta.AuthBackendUser(\"foo\", {\n    path: example.path,\n    username: \"foo\",\n    groups: [\n        \"one\",\n        \"two\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.okta.AuthBackend(\"example\",\n    path=\"user_okta\",\n    organization=\"dummy\")\nfoo = vault.okta.AuthBackendUser(\"foo\",\n    path=example.path,\n    username=\"foo\",\n    groups=[\n        \"one\",\n        \"two\",\n    ])\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Vault.Okta.AuthBackend(\"example\", new Vault.Okta.AuthBackendArgs\n        {\n            Path = \"user_okta\",\n            Organization = \"dummy\",\n        });\n        var foo = new Vault.Okta.AuthBackendUser(\"foo\", new Vault.Okta.AuthBackendUserArgs\n        {\n            Path = example.Path,\n            Username = \"foo\",\n            Groups = \n            {\n                \"one\",\n                \"two\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/okta\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := okta.NewAuthBackend(ctx, \"example\", \u0026okta.AuthBackendArgs{\n\t\t\tPath:         pulumi.String(\"user_okta\"),\n\t\t\tOrganization: pulumi.String(\"dummy\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = okta.NewAuthBackendUser(ctx, \"foo\", \u0026okta.AuthBackendUserArgs{\n\t\t\tPath:     example.Path,\n\t\t\tUsername: pulumi.String(\"foo\"),\n\t\t\tGroups: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"one\"),\n\t\t\t\tpulumi.String(\"two\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nOkta authentication backend users can be imported using its `path/user` ID format, e.g.\n\n```sh\n $ pulumi import vault:okta/authBackendUser:AuthBackendUser example okta/foo\n```\n\n ",
             "properties": {
                 "groups": {
                     "type": "array",
@@ -16223,7 +16226,7 @@
                 },
                 "renewable": {
                     "type": "boolean",
-                    "description": "Wether to disable the ability of the token to be renewed past its initial TTL.\n"
+                    "description": "Whether to disable the ability of the token to be renewed past its initial TTL.\n"
                 },
                 "roleName": {
                     "type": "string",
@@ -16318,7 +16321,7 @@
                 },
                 "renewable": {
                     "type": "boolean",
-                    "description": "Wether to disable the ability of the token to be renewed past its initial TTL.\n"
+                    "description": "Whether to disable the ability of the token to be renewed past its initial TTL.\n"
                 },
                 "roleName": {
                     "type": "string",
@@ -16415,7 +16418,7 @@
                     },
                     "renewable": {
                         "type": "boolean",
-                        "description": "Wether to disable the ability of the token to be renewed past its initial TTL.\n"
+                        "description": "Whether to disable the ability of the token to be renewed past its initial TTL.\n"
                     },
                     "roleName": {
                         "type": "string",
@@ -17980,7 +17983,7 @@
                     },
                     "listingVisibility": {
                         "type": "string",
-                        "description": "Speficies whether to show this mount in the UI-specific listing endpoint.\n"
+                        "description": "Specifies whether to show this mount in the UI-specific listing endpoint.\n"
                     },
                     "local": {
                         "type": "boolean",

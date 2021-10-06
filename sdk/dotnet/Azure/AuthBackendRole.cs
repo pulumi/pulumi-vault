@@ -91,7 +91,7 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// If set, defines a constraint on the virtual
-        /// machiness that can perform the login operation that they be associated with
+        /// machines that can perform the login operation that they be associated with
         /// the resource group that matches the value specified by this field.
         /// </summary>
         [Output("boundResourceGroups")]
@@ -314,7 +314,7 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// If set, defines a constraint on the virtual
-        /// machiness that can perform the login operation that they be associated with
+        /// machines that can perform the login operation that they be associated with
         /// the resource group that matches the value specified by this field.
         /// </summary>
         public InputList<string> BoundResourceGroups
@@ -538,7 +538,7 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// If set, defines a constraint on the virtual
-        /// machiness that can perform the login operation that they be associated with
+        /// machines that can perform the login operation that they be associated with
         /// the resource group that matches the value specified by this field.
         /// </summary>
         public InputList<string> BoundResourceGroups

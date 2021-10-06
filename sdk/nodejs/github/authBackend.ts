@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
- * Manages a Github Auth mount in a Vault server. See the [Vault
+ * Manages a GitHub Auth mount in a Vault server. See the [Vault
  * documentation](https://www.vaultproject.io/docs/auth/github/) for more
  * information.
  *
@@ -23,7 +23,7 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * Github authentication mounts can be imported using the `path`, e.g.
+ * GitHub authentication mounts can be imported using the `path`, e.g.
  *
  * ```sh
  *  $ pulumi import vault:github/authBackend:AuthBackend example github
@@ -145,6 +145,9 @@ export class AuthBackend extends pulumi.CustomResource {
      * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
      */
     public readonly ttl!: pulumi.Output<string | undefined>;
+    /**
+     * Extra configuration block. Structure is documented below.
+     */
     public readonly tune!: pulumi.Output<outputs.github.AuthBackendTune>;
 
     /**
@@ -299,6 +302,9 @@ export interface AuthBackendState {
      * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
      */
     readonly ttl?: pulumi.Input<string>;
+    /**
+     * Extra configuration block. Structure is documented below.
+     */
     readonly tune?: pulumi.Input<inputs.github.AuthBackendTune>;
 }
 
@@ -390,5 +396,8 @@ export interface AuthBackendArgs {
      * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
      */
     readonly ttl?: pulumi.Input<string>;
+    /**
+     * Extra configuration block. Structure is documented below.
+     */
     readonly tune?: pulumi.Input<inputs.github.AuthBackendTune>;
 }

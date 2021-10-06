@@ -87,7 +87,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
     public readonly boundLocations!: pulumi.Output<string[] | undefined>;
     /**
      * If set, defines a constraint on the virtual
-     * machiness that can perform the login operation that they be associated with
+     * machines that can perform the login operation that they be associated with
      * the resource group that matches the value specified by this field.
      */
     public readonly boundResourceGroups!: pulumi.Output<string[] | undefined>;
@@ -288,7 +288,7 @@ export interface AuthBackendRoleState {
     readonly boundLocations?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, defines a constraint on the virtual
-     * machiness that can perform the login operation that they be associated with
+     * machines that can perform the login operation that they be associated with
      * the resource group that matches the value specified by this field.
      */
     readonly boundResourceGroups?: pulumi.Input<pulumi.Input<string>[]>;
@@ -422,7 +422,7 @@ export interface AuthBackendRoleArgs {
     readonly boundLocations?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, defines a constraint on the virtual
-     * machiness that can perform the login operation that they be associated with
+     * machines that can perform the login operation that they be associated with
      * the resource group that matches the value specified by this field.
      */
     readonly boundResourceGroups?: pulumi.Input<pulumi.Input<string>[]>;

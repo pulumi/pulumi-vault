@@ -85,7 +85,7 @@ type AuthBackendRole struct {
 	//
 	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period pulumi.StringPtrOutput `pulumi:"period"`
-	// Wether to disable the ability of the token to be renewed past its initial TTL.
+	// Whether to disable the ability of the token to be renewed past its initial TTL.
 	Renewable pulumi.BoolPtrOutput `pulumi:"renewable"`
 	// The name of the role.
 	RoleName pulumi.StringOutput `pulumi:"roleName"`
@@ -183,7 +183,7 @@ type authBackendRoleState struct {
 	//
 	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period *string `pulumi:"period"`
-	// Wether to disable the ability of the token to be renewed past its initial TTL.
+	// Whether to disable the ability of the token to be renewed past its initial TTL.
 	Renewable *bool `pulumi:"renewable"`
 	// The name of the role.
 	RoleName *string `pulumi:"roleName"`
@@ -250,7 +250,7 @@ type AuthBackendRoleState struct {
 	//
 	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period pulumi.StringPtrInput
-	// Wether to disable the ability of the token to be renewed past its initial TTL.
+	// Whether to disable the ability of the token to be renewed past its initial TTL.
 	Renewable pulumi.BoolPtrInput
 	// The name of the role.
 	RoleName pulumi.StringPtrInput
@@ -321,7 +321,7 @@ type authBackendRoleArgs struct {
 	//
 	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period *string `pulumi:"period"`
-	// Wether to disable the ability of the token to be renewed past its initial TTL.
+	// Whether to disable the ability of the token to be renewed past its initial TTL.
 	Renewable *bool `pulumi:"renewable"`
 	// The name of the role.
 	RoleName string `pulumi:"roleName"`
@@ -389,7 +389,7 @@ type AuthBackendRoleArgs struct {
 	//
 	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
 	Period pulumi.StringPtrInput
-	// Wether to disable the ability of the token to be renewed past its initial TTL.
+	// Whether to disable the ability of the token to be renewed past its initial TTL.
 	Renewable pulumi.BoolPtrInput
 	// The name of the role.
 	RoleName pulumi.StringInput

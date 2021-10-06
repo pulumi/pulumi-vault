@@ -2,7 +2,8 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Upgrade to v2.24.1 of the Vault Terraform Provider
+* Add import support to `vault.okta.authBackendUser`
 
 ---
 
