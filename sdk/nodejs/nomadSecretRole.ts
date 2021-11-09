@@ -114,27 +114,27 @@ export interface NomadSecretRoleState {
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `nomad`.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * Specifies if the generated token should be global. Defaults to 
      * false.
      */
-    readonly global?: pulumi.Input<boolean>;
+    global?: pulumi.Input<boolean>;
     /**
      * List of policies attached to the generated token. This setting is only used 
      * when `type` is 'client'.
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    readonly role?: pulumi.Input<string>;
+    role?: pulumi.Input<string>;
     /**
      * Specifies the type of token to create when using this role. Valid 
      * settings are 'client' and 'management'. Defaults to 'client'.
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }
 
 /**
@@ -145,25 +145,25 @@ export interface NomadSecretRoleArgs {
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `nomad`.
      */
-    readonly backend: pulumi.Input<string>;
+    backend: pulumi.Input<string>;
     /**
      * Specifies if the generated token should be global. Defaults to 
      * false.
      */
-    readonly global?: pulumi.Input<boolean>;
+    global?: pulumi.Input<boolean>;
     /**
      * List of policies attached to the generated token. This setting is only used 
      * when `type` is 'client'.
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    readonly role: pulumi.Input<string>;
+    role: pulumi.Input<string>;
     /**
      * Specifies the type of token to create when using this role. Valid 
      * settings are 'client' and 'management'. Defaults to 'client'.
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }

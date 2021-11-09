@@ -151,7 +151,7 @@ func (o AuthBackendTuneOutput) ToAuthBackendTunePtrOutput() AuthBackendTunePtrOu
 }
 
 func (o AuthBackendTuneOutput) ToAuthBackendTunePtrOutputWithContext(ctx context.Context) AuthBackendTunePtrOutput {
-	return o.ApplyT(func(v AuthBackendTune) *AuthBackendTune {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AuthBackendTune) *AuthBackendTune {
 		return &v
 	}).(AuthBackendTunePtrOutput)
 }
@@ -221,7 +221,13 @@ func (o AuthBackendTunePtrOutput) ToAuthBackendTunePtrOutputWithContext(ctx cont
 }
 
 func (o AuthBackendTunePtrOutput) Elem() AuthBackendTuneOutput {
-	return o.ApplyT(func(v *AuthBackendTune) AuthBackendTune { return *v }).(AuthBackendTuneOutput)
+	return o.ApplyT(func(v *AuthBackendTune) AuthBackendTune {
+		if v != nil {
+			return *v
+		}
+		var ret AuthBackendTune
+		return ret
+	}).(AuthBackendTuneOutput)
 }
 
 // List of headers to whitelist and allowing
@@ -999,6 +1005,20 @@ func (o GetPolicyDocumentRuleDeniedParameterArrayOutput) Index(i pulumi.IntInput
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendTuneInput)(nil)).Elem(), AuthBackendTuneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendTunePtrInput)(nil)).Elem(), AuthBackendTuneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAuthLoginInput)(nil)).Elem(), ProviderAuthLoginArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAuthLoginArrayInput)(nil)).Elem(), ProviderAuthLoginArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderClientAuthInput)(nil)).Elem(), ProviderClientAuthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderClientAuthArrayInput)(nil)).Elem(), ProviderClientAuthArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderHeaderInput)(nil)).Elem(), ProviderHeaderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderHeaderArrayInput)(nil)).Elem(), ProviderHeaderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyDocumentRuleInput)(nil)).Elem(), GetPolicyDocumentRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyDocumentRuleArrayInput)(nil)).Elem(), GetPolicyDocumentRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyDocumentRuleAllowedParameterInput)(nil)).Elem(), GetPolicyDocumentRuleAllowedParameterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyDocumentRuleAllowedParameterArrayInput)(nil)).Elem(), GetPolicyDocumentRuleAllowedParameterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyDocumentRuleDeniedParameterInput)(nil)).Elem(), GetPolicyDocumentRuleDeniedParameterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyDocumentRuleDeniedParameterArrayInput)(nil)).Elem(), GetPolicyDocumentRuleDeniedParameterArray{})
 	pulumi.RegisterOutputType(AuthBackendTuneOutput{})
 	pulumi.RegisterOutputType(AuthBackendTunePtrOutput{})
 	pulumi.RegisterOutputType(ProviderAuthLoginOutput{})

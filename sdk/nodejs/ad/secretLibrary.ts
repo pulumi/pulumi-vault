@@ -106,28 +106,28 @@ export interface SecretLibraryState {
     /**
      * The mount path for the AD backend.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * Disable enforcing that service accounts must be checked in by the entity or client token that checked them out.
      */
-    readonly disableCheckInEnforcement?: pulumi.Input<boolean>;
+    disableCheckInEnforcement?: pulumi.Input<boolean>;
     /**
      * The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.
      */
-    readonly maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number>;
     /**
      * The name of the set of service accounts.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The names of all the service accounts that can be checked out from this set. These service accounts must already exist
      * in Active Directory.
      */
-    readonly serviceAccountNames?: pulumi.Input<pulumi.Input<string>[]>;
+    serviceAccountNames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.
      */
-    readonly ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number>;
 }
 
 /**
@@ -137,26 +137,26 @@ export interface SecretLibraryArgs {
     /**
      * The mount path for the AD backend.
      */
-    readonly backend: pulumi.Input<string>;
+    backend: pulumi.Input<string>;
     /**
      * Disable enforcing that service accounts must be checked in by the entity or client token that checked them out.
      */
-    readonly disableCheckInEnforcement?: pulumi.Input<boolean>;
+    disableCheckInEnforcement?: pulumi.Input<boolean>;
     /**
      * The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.
      */
-    readonly maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number>;
     /**
      * The name of the set of service accounts.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The names of all the service accounts that can be checked out from this set. These service accounts must already exist
      * in Active Directory.
      */
-    readonly serviceAccountNames: pulumi.Input<pulumi.Input<string>[]>;
+    serviceAccountNames: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.
      */
-    readonly ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number>;
 }

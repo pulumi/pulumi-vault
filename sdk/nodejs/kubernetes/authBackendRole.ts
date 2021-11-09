@@ -265,40 +265,40 @@ export interface AuthBackendRoleState {
     /**
      * Audience claim to verify in the JWT.
      */
-    readonly audience?: pulumi.Input<string>;
+    audience?: pulumi.Input<string>;
     /**
      * Unique name of the kubernetes backend to configure.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * If set, a list of
      * CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
      *
      * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
      */
-    readonly boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and boundServiceAccountNamespaces can not be "*".
      */
-    readonly boundServiceAccountNames?: pulumi.Input<pulumi.Input<string>[]>;
+    boundServiceAccountNames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
      */
-    readonly boundServiceAccountNamespaces?: pulumi.Input<pulumi.Input<string>[]>;
+    boundServiceAccountNamespaces?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The maximum allowed lifetime of tokens
      * issued using this role, provided as a number of seconds.
      *
      * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
      */
-    readonly maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number>;
     /**
      * If set, puts a use-count
      * limitation on the issued token.
      *
      * @deprecated use `token_num_uses` instead if you are running Vault >= 1.2
      */
-    readonly numUses?: pulumi.Input<number>;
+    numUses?: pulumi.Input<number>;
     /**
      * If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
@@ -307,64 +307,64 @@ export interface AuthBackendRoleState {
      *
      * @deprecated use `token_period` instead if you are running Vault >= 1.2
      */
-    readonly period?: pulumi.Input<number>;
+    period?: pulumi.Input<number>;
     /**
      * An array of strings
      * specifying the policies to be set on tokens issued using this role.
      *
      * @deprecated use `token_policies` instead if you are running Vault >= 1.2
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Name of the role.
      */
-    readonly roleName?: pulumi.Input<string>;
+    roleName?: pulumi.Input<string>;
     /**
      * List of CIDR blocks; if set, specifies blocks of IP
      * addresses which can authenticate successfully, and ties the resulting token to these blocks
      * as well.
      */
-    readonly tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, will encode an
      * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
      * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
      * `tokenMaxTtl` would otherwise allow a renewal.
      */
-    readonly tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number>;
     /**
      * The maximum lifetime for generated tokens in number of seconds.
      * Its current value will be referenced at renewal time.
      */
-    readonly tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number>;
     /**
      * If set, the default policy will not be set on
      * generated tokens; otherwise it will be added to the policies set in token_policies.
      */
-    readonly tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
     /**
      * The
      * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
      * if any, in number of seconds to set on the token.
      */
-    readonly tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number>;
     /**
      * If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
      * value of this field. Specified in seconds.
      */
-    readonly tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number>;
     /**
      * List of policies to encode onto generated tokens. Depending
      * on the auth method, this list may be supplemented by user/group/other values.
      */
-    readonly tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The incremental lifetime for generated tokens in number of seconds.
      * Its current value will be referenced at renewal time.
      */
-    readonly tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number>;
     /**
      * The type of token that should be generated. Can be `service`,
      * `batch`, or `default` to use the mount's tuned default (which unless changed will be
@@ -372,14 +372,14 @@ export interface AuthBackendRoleState {
      * `default-service` and `default-batch` which specify the type to return unless the client
      * requests a different type at generation time.
      */
-    readonly tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string>;
     /**
      * The TTL period of tokens issued
      * using this role, provided as a number of seconds.
      *
      * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
      */
-    readonly ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number>;
 }
 
 /**
@@ -389,40 +389,40 @@ export interface AuthBackendRoleArgs {
     /**
      * Audience claim to verify in the JWT.
      */
-    readonly audience?: pulumi.Input<string>;
+    audience?: pulumi.Input<string>;
     /**
      * Unique name of the kubernetes backend to configure.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * If set, a list of
      * CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
      *
      * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
      */
-    readonly boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and boundServiceAccountNamespaces can not be "*".
      */
-    readonly boundServiceAccountNames: pulumi.Input<pulumi.Input<string>[]>;
+    boundServiceAccountNames: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
      */
-    readonly boundServiceAccountNamespaces: pulumi.Input<pulumi.Input<string>[]>;
+    boundServiceAccountNamespaces: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The maximum allowed lifetime of tokens
      * issued using this role, provided as a number of seconds.
      *
      * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
      */
-    readonly maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number>;
     /**
      * If set, puts a use-count
      * limitation on the issued token.
      *
      * @deprecated use `token_num_uses` instead if you are running Vault >= 1.2
      */
-    readonly numUses?: pulumi.Input<number>;
+    numUses?: pulumi.Input<number>;
     /**
      * If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
@@ -431,64 +431,64 @@ export interface AuthBackendRoleArgs {
      *
      * @deprecated use `token_period` instead if you are running Vault >= 1.2
      */
-    readonly period?: pulumi.Input<number>;
+    period?: pulumi.Input<number>;
     /**
      * An array of strings
      * specifying the policies to be set on tokens issued using this role.
      *
      * @deprecated use `token_policies` instead if you are running Vault >= 1.2
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Name of the role.
      */
-    readonly roleName: pulumi.Input<string>;
+    roleName: pulumi.Input<string>;
     /**
      * List of CIDR blocks; if set, specifies blocks of IP
      * addresses which can authenticate successfully, and ties the resulting token to these blocks
      * as well.
      */
-    readonly tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, will encode an
      * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
      * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
      * `tokenMaxTtl` would otherwise allow a renewal.
      */
-    readonly tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number>;
     /**
      * The maximum lifetime for generated tokens in number of seconds.
      * Its current value will be referenced at renewal time.
      */
-    readonly tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number>;
     /**
      * If set, the default policy will not be set on
      * generated tokens; otherwise it will be added to the policies set in token_policies.
      */
-    readonly tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
     /**
      * The
      * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
      * if any, in number of seconds to set on the token.
      */
-    readonly tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number>;
     /**
      * If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
      * value of this field. Specified in seconds.
      */
-    readonly tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number>;
     /**
      * List of policies to encode onto generated tokens. Depending
      * on the auth method, this list may be supplemented by user/group/other values.
      */
-    readonly tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The incremental lifetime for generated tokens in number of seconds.
      * Its current value will be referenced at renewal time.
      */
-    readonly tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number>;
     /**
      * The type of token that should be generated. Can be `service`,
      * `batch`, or `default` to use the mount's tuned default (which unless changed will be
@@ -496,12 +496,12 @@ export interface AuthBackendRoleArgs {
      * `default-service` and `default-batch` which specify the type to return unless the client
      * requests a different type at generation time.
      */
-    readonly tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string>;
     /**
      * The TTL period of tokens issued
      * using this role, provided as a number of seconds.
      *
      * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
      */
-    readonly ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number>;
 }

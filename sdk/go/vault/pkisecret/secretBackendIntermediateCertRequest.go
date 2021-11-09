@@ -344,7 +344,7 @@ type SecretBackendIntermediateCertRequestArrayInput interface {
 type SecretBackendIntermediateCertRequestArray []SecretBackendIntermediateCertRequestInput
 
 func (SecretBackendIntermediateCertRequestArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SecretBackendIntermediateCertRequest)(nil))
+	return reflect.TypeOf((*[]*SecretBackendIntermediateCertRequest)(nil)).Elem()
 }
 
 func (i SecretBackendIntermediateCertRequestArray) ToSecretBackendIntermediateCertRequestArrayOutput() SecretBackendIntermediateCertRequestArrayOutput {
@@ -369,7 +369,7 @@ type SecretBackendIntermediateCertRequestMapInput interface {
 type SecretBackendIntermediateCertRequestMap map[string]SecretBackendIntermediateCertRequestInput
 
 func (SecretBackendIntermediateCertRequestMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SecretBackendIntermediateCertRequest)(nil))
+	return reflect.TypeOf((*map[string]*SecretBackendIntermediateCertRequest)(nil)).Elem()
 }
 
 func (i SecretBackendIntermediateCertRequestMap) ToSecretBackendIntermediateCertRequestMapOutput() SecretBackendIntermediateCertRequestMapOutput {
@@ -380,9 +380,7 @@ func (i SecretBackendIntermediateCertRequestMap) ToSecretBackendIntermediateCert
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIntermediateCertRequestMapOutput)
 }
 
-type SecretBackendIntermediateCertRequestOutput struct {
-	*pulumi.OutputState
-}
+type SecretBackendIntermediateCertRequestOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendIntermediateCertRequestOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretBackendIntermediateCertRequest)(nil))
@@ -401,14 +399,12 @@ func (o SecretBackendIntermediateCertRequestOutput) ToSecretBackendIntermediateC
 }
 
 func (o SecretBackendIntermediateCertRequestOutput) ToSecretBackendIntermediateCertRequestPtrOutputWithContext(ctx context.Context) SecretBackendIntermediateCertRequestPtrOutput {
-	return o.ApplyT(func(v SecretBackendIntermediateCertRequest) *SecretBackendIntermediateCertRequest {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendIntermediateCertRequest) *SecretBackendIntermediateCertRequest {
 		return &v
 	}).(SecretBackendIntermediateCertRequestPtrOutput)
 }
 
-type SecretBackendIntermediateCertRequestPtrOutput struct {
-	*pulumi.OutputState
-}
+type SecretBackendIntermediateCertRequestPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendIntermediateCertRequestPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretBackendIntermediateCertRequest)(nil))
@@ -420,6 +416,16 @@ func (o SecretBackendIntermediateCertRequestPtrOutput) ToSecretBackendIntermedia
 
 func (o SecretBackendIntermediateCertRequestPtrOutput) ToSecretBackendIntermediateCertRequestPtrOutputWithContext(ctx context.Context) SecretBackendIntermediateCertRequestPtrOutput {
 	return o
+}
+
+func (o SecretBackendIntermediateCertRequestPtrOutput) Elem() SecretBackendIntermediateCertRequestOutput {
+	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) SecretBackendIntermediateCertRequest {
+		if v != nil {
+			return *v
+		}
+		var ret SecretBackendIntermediateCertRequest
+		return ret
+	}).(SecretBackendIntermediateCertRequestOutput)
 }
 
 type SecretBackendIntermediateCertRequestArrayOutput struct{ *pulumi.OutputState }
@@ -463,6 +469,10 @@ func (o SecretBackendIntermediateCertRequestMapOutput) MapIndex(k pulumi.StringI
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendIntermediateCertRequestInput)(nil)).Elem(), &SecretBackendIntermediateCertRequest{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendIntermediateCertRequestPtrInput)(nil)).Elem(), &SecretBackendIntermediateCertRequest{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendIntermediateCertRequestArrayInput)(nil)).Elem(), SecretBackendIntermediateCertRequestArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendIntermediateCertRequestMapInput)(nil)).Elem(), SecretBackendIntermediateCertRequestMap{})
 	pulumi.RegisterOutputType(SecretBackendIntermediateCertRequestOutput{})
 	pulumi.RegisterOutputType(SecretBackendIntermediateCertRequestPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendIntermediateCertRequestArrayOutput{})

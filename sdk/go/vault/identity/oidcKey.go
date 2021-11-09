@@ -198,7 +198,7 @@ type OidcKeyArrayInput interface {
 type OidcKeyArray []OidcKeyInput
 
 func (OidcKeyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*OidcKey)(nil))
+	return reflect.TypeOf((*[]*OidcKey)(nil)).Elem()
 }
 
 func (i OidcKeyArray) ToOidcKeyArrayOutput() OidcKeyArrayOutput {
@@ -223,7 +223,7 @@ type OidcKeyMapInput interface {
 type OidcKeyMap map[string]OidcKeyInput
 
 func (OidcKeyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*OidcKey)(nil))
+	return reflect.TypeOf((*map[string]*OidcKey)(nil)).Elem()
 }
 
 func (i OidcKeyMap) ToOidcKeyMapOutput() OidcKeyMapOutput {
@@ -234,9 +234,7 @@ func (i OidcKeyMap) ToOidcKeyMapOutputWithContext(ctx context.Context) OidcKeyMa
 	return pulumi.ToOutputWithContext(ctx, i).(OidcKeyMapOutput)
 }
 
-type OidcKeyOutput struct {
-	*pulumi.OutputState
-}
+type OidcKeyOutput struct{ *pulumi.OutputState }
 
 func (OidcKeyOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*OidcKey)(nil))
@@ -255,14 +253,12 @@ func (o OidcKeyOutput) ToOidcKeyPtrOutput() OidcKeyPtrOutput {
 }
 
 func (o OidcKeyOutput) ToOidcKeyPtrOutputWithContext(ctx context.Context) OidcKeyPtrOutput {
-	return o.ApplyT(func(v OidcKey) *OidcKey {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v OidcKey) *OidcKey {
 		return &v
 	}).(OidcKeyPtrOutput)
 }
 
-type OidcKeyPtrOutput struct {
-	*pulumi.OutputState
-}
+type OidcKeyPtrOutput struct{ *pulumi.OutputState }
 
 func (OidcKeyPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**OidcKey)(nil))
@@ -274,6 +270,16 @@ func (o OidcKeyPtrOutput) ToOidcKeyPtrOutput() OidcKeyPtrOutput {
 
 func (o OidcKeyPtrOutput) ToOidcKeyPtrOutputWithContext(ctx context.Context) OidcKeyPtrOutput {
 	return o
+}
+
+func (o OidcKeyPtrOutput) Elem() OidcKeyOutput {
+	return o.ApplyT(func(v *OidcKey) OidcKey {
+		if v != nil {
+			return *v
+		}
+		var ret OidcKey
+		return ret
+	}).(OidcKeyOutput)
 }
 
 type OidcKeyArrayOutput struct{ *pulumi.OutputState }
@@ -317,6 +323,10 @@ func (o OidcKeyMapOutput) MapIndex(k pulumi.StringInput) OidcKeyOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*OidcKeyInput)(nil)).Elem(), &OidcKey{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OidcKeyPtrInput)(nil)).Elem(), &OidcKey{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OidcKeyArrayInput)(nil)).Elem(), OidcKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OidcKeyMapInput)(nil)).Elem(), OidcKeyMap{})
 	pulumi.RegisterOutputType(OidcKeyOutput{})
 	pulumi.RegisterOutputType(OidcKeyPtrOutput{})
 	pulumi.RegisterOutputType(OidcKeyArrayOutput{})

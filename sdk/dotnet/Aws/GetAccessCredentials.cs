@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Vault.Aws
 {
@@ -13,6 +14,9 @@ namespace Pulumi.Vault.Aws
     {
         public static Task<GetAccessCredentialsResult> InvokeAsync(GetAccessCredentialsArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:aws/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsArgs(), options.WithVersion());
+
+        public static Output<GetAccessCredentialsResult> Invoke(GetAccessCredentialsInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetAccessCredentialsResult>("vault:aws/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsInvokeArgs(), options.WithVersion());
     }
 
 
@@ -61,6 +65,55 @@ namespace Pulumi.Vault.Aws
         public string? Type { get; set; }
 
         public GetAccessCredentialsArgs()
+        {
+        }
+    }
+
+    public sealed class GetAccessCredentialsInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The path to the AWS secret backend to
+        /// read credentials from, with no leading or trailing `/`s.
+        /// </summary>
+        [Input("backend", required: true)]
+        public Input<string> Backend { get; set; } = null!;
+
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// The name of the AWS secret backend role to read
+        /// credentials from, with no leading or trailing `/`s.
+        /// </summary>
+        [Input("role", required: true)]
+        public Input<string> Role { get; set; } = null!;
+
+        /// <summary>
+        /// The specific AWS ARN to use
+        /// from the configured role. If the role does not have multiple ARNs, this does
+        /// not need to be specified.
+        /// </summary>
+        [Input("roleArn")]
+        public Input<string>? RoleArn { get; set; }
+
+        /// <summary>
+        /// Specifies the TTL for the use of the STS token. This
+        /// is specified as a string with a duration suffix. Valid only when
+        /// `credential_type` is `assumed_role` or `federation_token`
+        /// </summary>
+        [Input("ttl")]
+        public Input<string>? Ttl { get; set; }
+
+        /// <summary>
+        /// The type of credentials to read. Defaults
+        /// to `"creds"`, which just returns an AWS Access Key ID and Secret
+        /// Key. Can also be set to `"sts"`, which will return a security token
+        /// in addition to the keys.
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
+        public GetAccessCredentialsInvokeArgs()
         {
         }
     }

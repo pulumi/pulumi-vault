@@ -264,132 +264,132 @@ export interface RaftSnapshotAgentConfigState {
     /**
      * AWS access key ID.
      */
-    readonly awsAccessKeyId?: pulumi.Input<string>;
+    awsAccessKeyId?: pulumi.Input<string>;
     /**
      * `<required>` - S3 bucket to write snapshots to.
      */
-    readonly awsS3Bucket?: pulumi.Input<string>;
+    awsS3Bucket?: pulumi.Input<string>;
     /**
      * Disable TLS for the S3 endpoint. This
      * should only be used for testing purposes, typically in conjunction with
      * `awsS3Endpoint`.
      */
-    readonly awsS3DisableTls?: pulumi.Input<boolean>;
+    awsS3DisableTls?: pulumi.Input<boolean>;
     /**
      * Use KMS to encrypt bucket contents.
      */
-    readonly awsS3EnableKms?: pulumi.Input<boolean>;
+    awsS3EnableKms?: pulumi.Input<boolean>;
     /**
      * AWS endpoint. This is typically only set when
      * using a non-AWS S3 implementation like Minio.
      */
-    readonly awsS3Endpoint?: pulumi.Input<string>;
+    awsS3Endpoint?: pulumi.Input<string>;
     /**
      * Use the endpoint/bucket URL style
      * instead of bucket.endpoint. May be needed when setting `awsS3Endpoint`.
      */
-    readonly awsS3ForcePathStyle?: pulumi.Input<boolean>;
+    awsS3ForcePathStyle?: pulumi.Input<boolean>;
     /**
      * Use named KMS key, when `awsS3EnableKms = true`
      */
-    readonly awsS3KmsKey?: pulumi.Input<string>;
+    awsS3KmsKey?: pulumi.Input<string>;
     /**
      * `<required>` - AWS region bucket is in.
      */
-    readonly awsS3Region?: pulumi.Input<string>;
+    awsS3Region?: pulumi.Input<string>;
     /**
      * Use AES256 to encrypt bucket contents.
      */
-    readonly awsS3ServerSideEncryption?: pulumi.Input<boolean>;
+    awsS3ServerSideEncryption?: pulumi.Input<boolean>;
     /**
      * AWS secret access key.
      */
-    readonly awsSecretAccessKey?: pulumi.Input<string>;
+    awsSecretAccessKey?: pulumi.Input<string>;
     /**
      * AWS session token.
      */
-    readonly awsSessionToken?: pulumi.Input<string>;
+    awsSessionToken?: pulumi.Input<string>;
     /**
      * Azure account key.
      */
-    readonly azureAccountKey?: pulumi.Input<string>;
+    azureAccountKey?: pulumi.Input<string>;
     /**
      * Azure account name.
      */
-    readonly azureAccountName?: pulumi.Input<string>;
+    azureAccountName?: pulumi.Input<string>;
     /**
      * Azure blob environment.
      */
-    readonly azureBlobEnvironment?: pulumi.Input<string>;
+    azureBlobEnvironment?: pulumi.Input<string>;
     /**
      * `<required>` - Azure container name to write
      * snapshots to.
      */
-    readonly azureContainerName?: pulumi.Input<string>;
+    azureContainerName?: pulumi.Input<string>;
     /**
      * Azure blob storage endpoint. This is typically
      * only set when using a non-Azure implementation like Azurite.
      */
-    readonly azureEndpoint?: pulumi.Input<string>;
+    azureEndpoint?: pulumi.Input<string>;
     /**
      * Within the directory or bucket
      * prefix given by `pathPrefix`, the file or object name of snapshot files
      * will start with this string.
      */
-    readonly filePrefix?: pulumi.Input<string>;
+    filePrefix?: pulumi.Input<string>;
     /**
      * Disable TLS for the GCS endpoint. This
      * should only be used for testing purposes, typically in conjunction with
      * `googleEndpoint`.
      */
-    readonly googleDisableTls?: pulumi.Input<boolean>;
+    googleDisableTls?: pulumi.Input<boolean>;
     /**
      * GCS endpoint. This is typically only set when
      * using a non-Google GCS implementation like fake-gcs-server.
      */
-    readonly googleEndpoint?: pulumi.Input<string>;
+    googleEndpoint?: pulumi.Input<string>;
     /**
      * `<required>` - GCS bucket to write snapshots to.
      */
-    readonly googleGcsBucket?: pulumi.Input<string>;
+    googleGcsBucket?: pulumi.Input<string>;
     /**
      * Google service account key in JSON format. 
      * The raw value looks like this:
      */
-    readonly googleServiceAccountKey?: pulumi.Input<string>;
+    googleServiceAccountKey?: pulumi.Input<string>;
     /**
      * `<required>` - Time (in seconds) between snapshots.
      */
-    readonly intervalSeconds?: pulumi.Input<number>;
+    intervalSeconds?: pulumi.Input<number>;
     /**
      * For `storageType = local`, the maximum
      * space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
      * space left in this allowance.
      */
-    readonly localMaxSpace?: pulumi.Input<number>;
+    localMaxSpace?: pulumi.Input<number>;
     /**
      * `<required>` – Name of the configuration to modify.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * `<required>` - For `storageType = "local"`, the directory to
      * write the snapshots in. For cloud storage types, the bucket prefix to use.
      * Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
      * Types `local` and `aws-s3` the trailing `/` is optional.
      */
-    readonly pathPrefix?: pulumi.Input<string>;
+    pathPrefix?: pulumi.Input<string>;
     /**
      * How many snapshots are to be kept; when writing a
      * snapshot, if there are more snapshots already stored than this number, the
      * oldest ones will be deleted.
      */
-    readonly retain?: pulumi.Input<number>;
+    retain?: pulumi.Input<number>;
     /**
      * `<required>` - One of "local", "azure-blob", "aws-s3",
      * or "google-gcs". The remaining parameters described below are all specific to
      * the selected `storageType` and prefixed accordingly.
      */
-    readonly storageType?: pulumi.Input<string>;
+    storageType?: pulumi.Input<string>;
 }
 
 /**
@@ -399,130 +399,130 @@ export interface RaftSnapshotAgentConfigArgs {
     /**
      * AWS access key ID.
      */
-    readonly awsAccessKeyId?: pulumi.Input<string>;
+    awsAccessKeyId?: pulumi.Input<string>;
     /**
      * `<required>` - S3 bucket to write snapshots to.
      */
-    readonly awsS3Bucket?: pulumi.Input<string>;
+    awsS3Bucket?: pulumi.Input<string>;
     /**
      * Disable TLS for the S3 endpoint. This
      * should only be used for testing purposes, typically in conjunction with
      * `awsS3Endpoint`.
      */
-    readonly awsS3DisableTls?: pulumi.Input<boolean>;
+    awsS3DisableTls?: pulumi.Input<boolean>;
     /**
      * Use KMS to encrypt bucket contents.
      */
-    readonly awsS3EnableKms?: pulumi.Input<boolean>;
+    awsS3EnableKms?: pulumi.Input<boolean>;
     /**
      * AWS endpoint. This is typically only set when
      * using a non-AWS S3 implementation like Minio.
      */
-    readonly awsS3Endpoint?: pulumi.Input<string>;
+    awsS3Endpoint?: pulumi.Input<string>;
     /**
      * Use the endpoint/bucket URL style
      * instead of bucket.endpoint. May be needed when setting `awsS3Endpoint`.
      */
-    readonly awsS3ForcePathStyle?: pulumi.Input<boolean>;
+    awsS3ForcePathStyle?: pulumi.Input<boolean>;
     /**
      * Use named KMS key, when `awsS3EnableKms = true`
      */
-    readonly awsS3KmsKey?: pulumi.Input<string>;
+    awsS3KmsKey?: pulumi.Input<string>;
     /**
      * `<required>` - AWS region bucket is in.
      */
-    readonly awsS3Region?: pulumi.Input<string>;
+    awsS3Region?: pulumi.Input<string>;
     /**
      * Use AES256 to encrypt bucket contents.
      */
-    readonly awsS3ServerSideEncryption?: pulumi.Input<boolean>;
+    awsS3ServerSideEncryption?: pulumi.Input<boolean>;
     /**
      * AWS secret access key.
      */
-    readonly awsSecretAccessKey?: pulumi.Input<string>;
+    awsSecretAccessKey?: pulumi.Input<string>;
     /**
      * AWS session token.
      */
-    readonly awsSessionToken?: pulumi.Input<string>;
+    awsSessionToken?: pulumi.Input<string>;
     /**
      * Azure account key.
      */
-    readonly azureAccountKey?: pulumi.Input<string>;
+    azureAccountKey?: pulumi.Input<string>;
     /**
      * Azure account name.
      */
-    readonly azureAccountName?: pulumi.Input<string>;
+    azureAccountName?: pulumi.Input<string>;
     /**
      * Azure blob environment.
      */
-    readonly azureBlobEnvironment?: pulumi.Input<string>;
+    azureBlobEnvironment?: pulumi.Input<string>;
     /**
      * `<required>` - Azure container name to write
      * snapshots to.
      */
-    readonly azureContainerName?: pulumi.Input<string>;
+    azureContainerName?: pulumi.Input<string>;
     /**
      * Azure blob storage endpoint. This is typically
      * only set when using a non-Azure implementation like Azurite.
      */
-    readonly azureEndpoint?: pulumi.Input<string>;
+    azureEndpoint?: pulumi.Input<string>;
     /**
      * Within the directory or bucket
      * prefix given by `pathPrefix`, the file or object name of snapshot files
      * will start with this string.
      */
-    readonly filePrefix?: pulumi.Input<string>;
+    filePrefix?: pulumi.Input<string>;
     /**
      * Disable TLS for the GCS endpoint. This
      * should only be used for testing purposes, typically in conjunction with
      * `googleEndpoint`.
      */
-    readonly googleDisableTls?: pulumi.Input<boolean>;
+    googleDisableTls?: pulumi.Input<boolean>;
     /**
      * GCS endpoint. This is typically only set when
      * using a non-Google GCS implementation like fake-gcs-server.
      */
-    readonly googleEndpoint?: pulumi.Input<string>;
+    googleEndpoint?: pulumi.Input<string>;
     /**
      * `<required>` - GCS bucket to write snapshots to.
      */
-    readonly googleGcsBucket?: pulumi.Input<string>;
+    googleGcsBucket?: pulumi.Input<string>;
     /**
      * Google service account key in JSON format. 
      * The raw value looks like this:
      */
-    readonly googleServiceAccountKey?: pulumi.Input<string>;
+    googleServiceAccountKey?: pulumi.Input<string>;
     /**
      * `<required>` - Time (in seconds) between snapshots.
      */
-    readonly intervalSeconds: pulumi.Input<number>;
+    intervalSeconds: pulumi.Input<number>;
     /**
      * For `storageType = local`, the maximum
      * space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
      * space left in this allowance.
      */
-    readonly localMaxSpace?: pulumi.Input<number>;
+    localMaxSpace?: pulumi.Input<number>;
     /**
      * `<required>` – Name of the configuration to modify.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * `<required>` - For `storageType = "local"`, the directory to
      * write the snapshots in. For cloud storage types, the bucket prefix to use.
      * Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
      * Types `local` and `aws-s3` the trailing `/` is optional.
      */
-    readonly pathPrefix: pulumi.Input<string>;
+    pathPrefix: pulumi.Input<string>;
     /**
      * How many snapshots are to be kept; when writing a
      * snapshot, if there are more snapshots already stored than this number, the
      * oldest ones will be deleted.
      */
-    readonly retain?: pulumi.Input<number>;
+    retain?: pulumi.Input<number>;
     /**
      * `<required>` - One of "local", "azure-blob", "aws-s3",
      * or "google-gcs". The remaining parameters described below are all specific to
      * the selected `storageType` and prefixed accordingly.
      */
-    readonly storageType: pulumi.Input<string>;
+    storageType: pulumi.Input<string>;
 }

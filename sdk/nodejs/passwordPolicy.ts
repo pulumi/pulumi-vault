@@ -106,11 +106,11 @@ export interface PasswordPolicyState {
     /**
      * The name of the password policy.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * String containing a password policy.
      */
-    readonly policy?: pulumi.Input<string>;
+    policy?: pulumi.Input<string>;
 }
 
 /**
@@ -120,9 +120,9 @@ export interface PasswordPolicyArgs {
     /**
      * The name of the password policy.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * String containing a password policy.
      */
-    readonly policy: pulumi.Input<string>;
+    policy: pulumi.Input<string>;
 }

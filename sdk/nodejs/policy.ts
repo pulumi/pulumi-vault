@@ -101,11 +101,11 @@ export interface PolicyState {
     /**
      * The name of the policy
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * String containing a Vault policy
      */
-    readonly policy?: pulumi.Input<string>;
+    policy?: pulumi.Input<string>;
 }
 
 /**
@@ -115,9 +115,9 @@ export interface PolicyArgs {
     /**
      * The name of the policy
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * String containing a Vault policy
      */
-    readonly policy: pulumi.Input<string>;
+    policy: pulumi.Input<string>;
 }

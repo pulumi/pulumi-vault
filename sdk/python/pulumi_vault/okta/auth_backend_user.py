@@ -8,10 +8,10 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
-__all__ = ['AuthBackendUserArgs', 'AuthBackendUser']
+__all__ = ['AuthBackendUserInitArgs', 'AuthBackendUser']
 
 @pulumi.input_type
-class AuthBackendUserArgs:
+class AuthBackendUserInitArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[str],
                  username: pulumi.Input[str],
@@ -203,7 +203,7 @@ class AuthBackendUser(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: AuthBackendUserArgs,
+                 args: AuthBackendUserInitArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource to create a user in an
@@ -236,12 +236,12 @@ class AuthBackendUser(pulumi.CustomResource):
         ```
 
         :param str resource_name: The name of the resource.
-        :param AuthBackendUserArgs args: The arguments to use to populate this resource's properties.
+        :param AuthBackendUserInitArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(AuthBackendUserArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(AuthBackendUserInitArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -264,7 +264,7 @@ class AuthBackendUser(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = AuthBackendUserArgs.__new__(AuthBackendUserArgs)
+            __props__ = AuthBackendUserInitArgs.__new__(AuthBackendUserInitArgs)
 
             __props__.__dict__["groups"] = groups
             if path is None and not opts.urn:

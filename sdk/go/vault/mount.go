@@ -71,8 +71,8 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := vault.NewMount(ctx, "transit_example", &vault.MountArgs{
 // 			Description: pulumi.String("This is an example transit secret engine mount"),
-// 			Options: pulumi.BoolMap{
-// 				"convergent_encryption": pulumi.Bool(false),
+// 			Options: pulumi.AnyMap{
+// 				"convergent_encryption": pulumi.Any(false),
 // 			},
 // 			Path: pulumi.String("transit-example"),
 // 			Type: pulumi.String("transit"),
@@ -335,7 +335,7 @@ type MountArrayInput interface {
 type MountArray []MountInput
 
 func (MountArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*Mount)(nil))
+	return reflect.TypeOf((*[]*Mount)(nil)).Elem()
 }
 
 func (i MountArray) ToMountArrayOutput() MountArrayOutput {
@@ -360,7 +360,7 @@ type MountMapInput interface {
 type MountMap map[string]MountInput
 
 func (MountMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*Mount)(nil))
+	return reflect.TypeOf((*map[string]*Mount)(nil)).Elem()
 }
 
 func (i MountMap) ToMountMapOutput() MountMapOutput {
@@ -371,9 +371,7 @@ func (i MountMap) ToMountMapOutputWithContext(ctx context.Context) MountMapOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(MountMapOutput)
 }
 
-type MountOutput struct {
-	*pulumi.OutputState
-}
+type MountOutput struct{ *pulumi.OutputState }
 
 func (MountOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Mount)(nil))
@@ -392,14 +390,12 @@ func (o MountOutput) ToMountPtrOutput() MountPtrOutput {
 }
 
 func (o MountOutput) ToMountPtrOutputWithContext(ctx context.Context) MountPtrOutput {
-	return o.ApplyT(func(v Mount) *Mount {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Mount) *Mount {
 		return &v
 	}).(MountPtrOutput)
 }
 
-type MountPtrOutput struct {
-	*pulumi.OutputState
-}
+type MountPtrOutput struct{ *pulumi.OutputState }
 
 func (MountPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Mount)(nil))
@@ -411,6 +407,16 @@ func (o MountPtrOutput) ToMountPtrOutput() MountPtrOutput {
 
 func (o MountPtrOutput) ToMountPtrOutputWithContext(ctx context.Context) MountPtrOutput {
 	return o
+}
+
+func (o MountPtrOutput) Elem() MountOutput {
+	return o.ApplyT(func(v *Mount) Mount {
+		if v != nil {
+			return *v
+		}
+		var ret Mount
+		return ret
+	}).(MountOutput)
 }
 
 type MountArrayOutput struct{ *pulumi.OutputState }
@@ -454,6 +460,10 @@ func (o MountMapOutput) MapIndex(k pulumi.StringInput) MountOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*MountInput)(nil)).Elem(), &Mount{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MountPtrInput)(nil)).Elem(), &Mount{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MountArrayInput)(nil)).Elem(), MountArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MountMapInput)(nil)).Elem(), MountMap{})
 	pulumi.RegisterOutputType(MountOutput{})
 	pulumi.RegisterOutputType(MountPtrOutput{})
 	pulumi.RegisterOutputType(MountArrayOutput{})

@@ -217,6 +217,10 @@ func (o BackendRoleAzureRoleArrayOutput) Index(i pulumi.IntInput) BackendRoleAzu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*BackendRoleAzureGroupInput)(nil)).Elem(), BackendRoleAzureGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackendRoleAzureGroupArrayInput)(nil)).Elem(), BackendRoleAzureGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackendRoleAzureRoleInput)(nil)).Elem(), BackendRoleAzureRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackendRoleAzureRoleArrayInput)(nil)).Elem(), BackendRoleAzureRoleArray{})
 	pulumi.RegisterOutputType(BackendRoleAzureGroupOutput{})
 	pulumi.RegisterOutputType(BackendRoleAzureGroupArrayOutput{})
 	pulumi.RegisterOutputType(BackendRoleAzureRoleOutput{})

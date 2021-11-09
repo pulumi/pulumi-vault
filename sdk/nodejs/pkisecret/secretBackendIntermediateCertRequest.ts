@@ -204,91 +204,91 @@ export interface SecretBackendIntermediateCertRequestState {
     /**
      * List of alternative names
      */
-    readonly altNames?: pulumi.Input<pulumi.Input<string>[]>;
+    altNames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The PKI secret backend the resource belongs to.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * CN of intermediate to create
      */
-    readonly commonName?: pulumi.Input<string>;
+    commonName?: pulumi.Input<string>;
     /**
      * The country
      */
-    readonly country?: pulumi.Input<string>;
+    country?: pulumi.Input<string>;
     /**
      * The CSR
      */
-    readonly csr?: pulumi.Input<string>;
+    csr?: pulumi.Input<string>;
     /**
      * Flag to exclude CN from SANs
      */
-    readonly excludeCnFromSans?: pulumi.Input<boolean>;
+    excludeCnFromSans?: pulumi.Input<boolean>;
     /**
      * The format of data
      */
-    readonly format?: pulumi.Input<string>;
+    format?: pulumi.Input<string>;
     /**
      * List of alternative IPs
      */
-    readonly ipSans?: pulumi.Input<pulumi.Input<string>[]>;
+    ipSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The number of bits to use
      */
-    readonly keyBits?: pulumi.Input<number>;
+    keyBits?: pulumi.Input<number>;
     /**
      * The desired key type
      */
-    readonly keyType?: pulumi.Input<string>;
+    keyType?: pulumi.Input<string>;
     /**
      * The locality
      */
-    readonly locality?: pulumi.Input<string>;
+    locality?: pulumi.Input<string>;
     /**
      * The organization
      */
-    readonly organization?: pulumi.Input<string>;
+    organization?: pulumi.Input<string>;
     /**
      * List of other SANs
      */
-    readonly otherSans?: pulumi.Input<pulumi.Input<string>[]>;
+    otherSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The organization unit
      */
-    readonly ou?: pulumi.Input<string>;
+    ou?: pulumi.Input<string>;
     /**
      * The postal code
      */
-    readonly postalCode?: pulumi.Input<string>;
+    postalCode?: pulumi.Input<string>;
     /**
      * The private key
      */
-    readonly privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string>;
     /**
      * The private key format
      */
-    readonly privateKeyFormat?: pulumi.Input<string>;
+    privateKeyFormat?: pulumi.Input<string>;
     /**
      * The private key type
      */
-    readonly privateKeyType?: pulumi.Input<string>;
+    privateKeyType?: pulumi.Input<string>;
     /**
      * The province
      */
-    readonly province?: pulumi.Input<string>;
+    province?: pulumi.Input<string>;
     /**
      * The street address
      */
-    readonly streetAddress?: pulumi.Input<string>;
+    streetAddress?: pulumi.Input<string>;
     /**
      * Type of intermediate to create. Must be either \"exported\" or \"internal\"
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
     /**
      * List of alternative URIs
      */
-    readonly uriSans?: pulumi.Input<pulumi.Input<string>[]>;
+    uriSans?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -298,77 +298,77 @@ export interface SecretBackendIntermediateCertRequestArgs {
     /**
      * List of alternative names
      */
-    readonly altNames?: pulumi.Input<pulumi.Input<string>[]>;
+    altNames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The PKI secret backend the resource belongs to.
      */
-    readonly backend: pulumi.Input<string>;
+    backend: pulumi.Input<string>;
     /**
      * CN of intermediate to create
      */
-    readonly commonName: pulumi.Input<string>;
+    commonName: pulumi.Input<string>;
     /**
      * The country
      */
-    readonly country?: pulumi.Input<string>;
+    country?: pulumi.Input<string>;
     /**
      * Flag to exclude CN from SANs
      */
-    readonly excludeCnFromSans?: pulumi.Input<boolean>;
+    excludeCnFromSans?: pulumi.Input<boolean>;
     /**
      * The format of data
      */
-    readonly format?: pulumi.Input<string>;
+    format?: pulumi.Input<string>;
     /**
      * List of alternative IPs
      */
-    readonly ipSans?: pulumi.Input<pulumi.Input<string>[]>;
+    ipSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The number of bits to use
      */
-    readonly keyBits?: pulumi.Input<number>;
+    keyBits?: pulumi.Input<number>;
     /**
      * The desired key type
      */
-    readonly keyType?: pulumi.Input<string>;
+    keyType?: pulumi.Input<string>;
     /**
      * The locality
      */
-    readonly locality?: pulumi.Input<string>;
+    locality?: pulumi.Input<string>;
     /**
      * The organization
      */
-    readonly organization?: pulumi.Input<string>;
+    organization?: pulumi.Input<string>;
     /**
      * List of other SANs
      */
-    readonly otherSans?: pulumi.Input<pulumi.Input<string>[]>;
+    otherSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The organization unit
      */
-    readonly ou?: pulumi.Input<string>;
+    ou?: pulumi.Input<string>;
     /**
      * The postal code
      */
-    readonly postalCode?: pulumi.Input<string>;
+    postalCode?: pulumi.Input<string>;
     /**
      * The private key format
      */
-    readonly privateKeyFormat?: pulumi.Input<string>;
+    privateKeyFormat?: pulumi.Input<string>;
     /**
      * The province
      */
-    readonly province?: pulumi.Input<string>;
+    province?: pulumi.Input<string>;
     /**
      * The street address
      */
-    readonly streetAddress?: pulumi.Input<string>;
+    streetAddress?: pulumi.Input<string>;
     /**
      * Type of intermediate to create. Must be either \"exported\" or \"internal\"
      */
-    readonly type: pulumi.Input<string>;
+    type: pulumi.Input<string>;
     /**
      * List of alternative URIs
      */
-    readonly uriSans?: pulumi.Input<pulumi.Input<string>[]>;
+    uriSans?: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -119,15 +119,15 @@ export interface AuthBackendGroupState {
     /**
      * Name of the group within the Okta
      */
-    readonly groupName?: pulumi.Input<string>;
+    groupName?: pulumi.Input<string>;
     /**
      * The path where the Okta auth backend is mounted
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * Vault policies to associate with this group
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -137,13 +137,13 @@ export interface AuthBackendGroupArgs {
     /**
      * Name of the group within the Okta
      */
-    readonly groupName: pulumi.Input<string>;
+    groupName: pulumi.Input<string>;
     /**
      * The path where the Okta auth backend is mounted
      */
-    readonly path: pulumi.Input<string>;
+    path: pulumi.Input<string>;
     /**
      * Vault policies to associate with this group
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
 }

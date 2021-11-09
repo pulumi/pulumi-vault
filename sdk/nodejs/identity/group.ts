@@ -157,35 +157,35 @@ export interface GroupState {
     /**
      * `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
      */
-    readonly externalMemberEntityIds?: pulumi.Input<boolean>;
+    externalMemberEntityIds?: pulumi.Input<boolean>;
     /**
      * `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
      */
-    readonly externalPolicies?: pulumi.Input<boolean>;
+    externalPolicies?: pulumi.Input<boolean>;
     /**
      * A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
      */
-    readonly memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
+    memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
      */
-    readonly memberGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    memberGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * A Map of additional metadata to associate with the group.
      */
-    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Name of the identity group to create.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * A list of policies to apply to the group.
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Type of the group, internal or external. Defaults to `internal`.
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }
 
 /**
@@ -195,33 +195,33 @@ export interface GroupArgs {
     /**
      * `false` by default. If set to `true`, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a decoupled manner.
      */
-    readonly externalMemberEntityIds?: pulumi.Input<boolean>;
+    externalMemberEntityIds?: pulumi.Input<boolean>;
     /**
      * `false` by default. If set to `true`, this resource will ignore any policies returned from Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage policies for this group in a decoupled manner.
      */
-    readonly externalPolicies?: pulumi.Input<boolean>;
+    externalPolicies?: pulumi.Input<boolean>;
     /**
      * A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
      */
-    readonly memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
+    memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
      */
-    readonly memberGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    memberGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * A Map of additional metadata to associate with the group.
      */
-    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Name of the identity group to create.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * A list of policies to apply to the group.
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Type of the group, internal or external. Defaults to `internal`.
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }

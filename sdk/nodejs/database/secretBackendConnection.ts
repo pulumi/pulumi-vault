@@ -193,80 +193,80 @@ export interface SecretBackendConnectionState {
      * A list of roles that are allowed to use this
      * connection.
      */
-    readonly allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The unique name of the Vault mount to configure.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * A nested block containing configuration options for Cassandra connections.
      */
-    readonly cassandra?: pulumi.Input<inputs.database.SecretBackendConnectionCassandra>;
+    cassandra?: pulumi.Input<inputs.database.SecretBackendConnectionCassandra>;
     /**
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      */
-    readonly data?: pulumi.Input<{[key: string]: any}>;
+    data?: pulumi.Input<{[key: string]: any}>;
     /**
      * A nested block containing configuration options for Elasticsearch connections.
      */
-    readonly elasticsearch?: pulumi.Input<inputs.database.SecretBackendConnectionElasticsearch>;
+    elasticsearch?: pulumi.Input<inputs.database.SecretBackendConnectionElasticsearch>;
     /**
      * A nested block containing configuration options for SAP HanaDB connections.
      */
-    readonly hana?: pulumi.Input<inputs.database.SecretBackendConnectionHana>;
+    hana?: pulumi.Input<inputs.database.SecretBackendConnectionHana>;
     /**
      * A nested block containing configuration options for MongoDB connections.
      */
-    readonly mongodb?: pulumi.Input<inputs.database.SecretBackendConnectionMongodb>;
+    mongodb?: pulumi.Input<inputs.database.SecretBackendConnectionMongodb>;
     /**
      * A nested block containing configuration options for MongoDB Atlas connections.
      */
-    readonly mongodbatlas?: pulumi.Input<inputs.database.SecretBackendConnectionMongodbatlas>;
+    mongodbatlas?: pulumi.Input<inputs.database.SecretBackendConnectionMongodbatlas>;
     /**
      * A nested block containing configuration options for MSSQL connections.
      */
-    readonly mssql?: pulumi.Input<inputs.database.SecretBackendConnectionMssql>;
+    mssql?: pulumi.Input<inputs.database.SecretBackendConnectionMssql>;
     /**
      * A nested block containing configuration options for MySQL connections.
      */
-    readonly mysql?: pulumi.Input<inputs.database.SecretBackendConnectionMysql>;
+    mysql?: pulumi.Input<inputs.database.SecretBackendConnectionMysql>;
     /**
      * A nested block containing configuration options for Aurora MySQL connections.
      */
-    readonly mysqlAurora?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlAurora>;
+    mysqlAurora?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlAurora>;
     /**
      * A nested block containing configuration options for legacy MySQL connections.
      */
-    readonly mysqlLegacy?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlLegacy>;
+    mysqlLegacy?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlLegacy>;
     /**
      * A nested block containing configuration options for RDS MySQL connections.
      */
-    readonly mysqlRds?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlRds>;
+    mysqlRds?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlRds>;
     /**
      * A unique name to give the database connection.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * A nested block containing configuration options for Oracle connections.
      */
-    readonly oracle?: pulumi.Input<inputs.database.SecretBackendConnectionOracle>;
+    oracle?: pulumi.Input<inputs.database.SecretBackendConnectionOracle>;
     /**
      * A nested block containing configuration options for PostgreSQL connections.
      */
-    readonly postgresql?: pulumi.Input<inputs.database.SecretBackendConnectionPostgresql>;
+    postgresql?: pulumi.Input<inputs.database.SecretBackendConnectionPostgresql>;
     /**
      * A list of database statements to be executed to rotate the root user's credentials.
      */
-    readonly rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * A nested block containing configuration options for Snowflake connections.
      */
-    readonly snowflake?: pulumi.Input<inputs.database.SecretBackendConnectionSnowflake>;
+    snowflake?: pulumi.Input<inputs.database.SecretBackendConnectionSnowflake>;
     /**
      * Whether the connection should be verified on
      * initial configuration or not.
      */
-    readonly verifyConnection?: pulumi.Input<boolean>;
+    verifyConnection?: pulumi.Input<boolean>;
 }
 
 /**
@@ -277,78 +277,78 @@ export interface SecretBackendConnectionArgs {
      * A list of roles that are allowed to use this
      * connection.
      */
-    readonly allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The unique name of the Vault mount to configure.
      */
-    readonly backend: pulumi.Input<string>;
+    backend: pulumi.Input<string>;
     /**
      * A nested block containing configuration options for Cassandra connections.
      */
-    readonly cassandra?: pulumi.Input<inputs.database.SecretBackendConnectionCassandra>;
+    cassandra?: pulumi.Input<inputs.database.SecretBackendConnectionCassandra>;
     /**
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      */
-    readonly data?: pulumi.Input<{[key: string]: any}>;
+    data?: pulumi.Input<{[key: string]: any}>;
     /**
      * A nested block containing configuration options for Elasticsearch connections.
      */
-    readonly elasticsearch?: pulumi.Input<inputs.database.SecretBackendConnectionElasticsearch>;
+    elasticsearch?: pulumi.Input<inputs.database.SecretBackendConnectionElasticsearch>;
     /**
      * A nested block containing configuration options for SAP HanaDB connections.
      */
-    readonly hana?: pulumi.Input<inputs.database.SecretBackendConnectionHana>;
+    hana?: pulumi.Input<inputs.database.SecretBackendConnectionHana>;
     /**
      * A nested block containing configuration options for MongoDB connections.
      */
-    readonly mongodb?: pulumi.Input<inputs.database.SecretBackendConnectionMongodb>;
+    mongodb?: pulumi.Input<inputs.database.SecretBackendConnectionMongodb>;
     /**
      * A nested block containing configuration options for MongoDB Atlas connections.
      */
-    readonly mongodbatlas?: pulumi.Input<inputs.database.SecretBackendConnectionMongodbatlas>;
+    mongodbatlas?: pulumi.Input<inputs.database.SecretBackendConnectionMongodbatlas>;
     /**
      * A nested block containing configuration options for MSSQL connections.
      */
-    readonly mssql?: pulumi.Input<inputs.database.SecretBackendConnectionMssql>;
+    mssql?: pulumi.Input<inputs.database.SecretBackendConnectionMssql>;
     /**
      * A nested block containing configuration options for MySQL connections.
      */
-    readonly mysql?: pulumi.Input<inputs.database.SecretBackendConnectionMysql>;
+    mysql?: pulumi.Input<inputs.database.SecretBackendConnectionMysql>;
     /**
      * A nested block containing configuration options for Aurora MySQL connections.
      */
-    readonly mysqlAurora?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlAurora>;
+    mysqlAurora?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlAurora>;
     /**
      * A nested block containing configuration options for legacy MySQL connections.
      */
-    readonly mysqlLegacy?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlLegacy>;
+    mysqlLegacy?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlLegacy>;
     /**
      * A nested block containing configuration options for RDS MySQL connections.
      */
-    readonly mysqlRds?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlRds>;
+    mysqlRds?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlRds>;
     /**
      * A unique name to give the database connection.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * A nested block containing configuration options for Oracle connections.
      */
-    readonly oracle?: pulumi.Input<inputs.database.SecretBackendConnectionOracle>;
+    oracle?: pulumi.Input<inputs.database.SecretBackendConnectionOracle>;
     /**
      * A nested block containing configuration options for PostgreSQL connections.
      */
-    readonly postgresql?: pulumi.Input<inputs.database.SecretBackendConnectionPostgresql>;
+    postgresql?: pulumi.Input<inputs.database.SecretBackendConnectionPostgresql>;
     /**
      * A list of database statements to be executed to rotate the root user's credentials.
      */
-    readonly rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * A nested block containing configuration options for Snowflake connections.
      */
-    readonly snowflake?: pulumi.Input<inputs.database.SecretBackendConnectionSnowflake>;
+    snowflake?: pulumi.Input<inputs.database.SecretBackendConnectionSnowflake>;
     /**
      * Whether the connection should be verified on
      * initial configuration or not.
      */
-    readonly verifyConnection?: pulumi.Input<boolean>;
+    verifyConnection?: pulumi.Input<boolean>;
 }

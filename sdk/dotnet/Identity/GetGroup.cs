@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Vault.Identity
 {
@@ -13,6 +14,9 @@ namespace Pulumi.Vault.Identity
     {
         public static Task<GetGroupResult> InvokeAsync(GetGroupArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("vault:identity/getGroup:getGroup", args ?? new GetGroupArgs(), options.WithVersion());
+
+        public static Output<GetGroupResult> Invoke(GetGroupInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetGroupResult>("vault:identity/getGroup:getGroup", args ?? new GetGroupInvokeArgs(), options.WithVersion());
     }
 
 
@@ -51,6 +55,45 @@ namespace Pulumi.Vault.Identity
         public string? GroupName { get; set; }
 
         public GetGroupArgs()
+        {
+        }
+    }
+
+    public sealed class GetGroupInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// ID of the alias.
+        /// </summary>
+        [Input("aliasId")]
+        public Input<string>? AliasId { get; set; }
+
+        /// <summary>
+        /// Accessor of the mount to which the alias belongs to.
+        /// This should be supplied in conjunction with `alias_name`.
+        /// </summary>
+        [Input("aliasMountAccessor")]
+        public Input<string>? AliasMountAccessor { get; set; }
+
+        /// <summary>
+        /// Name of the alias. This should be supplied in conjunction with
+        /// `alias_mount_accessor`.
+        /// </summary>
+        [Input("aliasName")]
+        public Input<string>? AliasName { get; set; }
+
+        /// <summary>
+        /// ID of the group.
+        /// </summary>
+        [Input("groupId")]
+        public Input<string>? GroupId { get; set; }
+
+        /// <summary>
+        /// Name of the group.
+        /// </summary>
+        [Input("groupName")]
+        public Input<string>? GroupName { get; set; }
+
+        public GetGroupInvokeArgs()
         {
         }
     }

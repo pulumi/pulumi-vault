@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Vault
 {
@@ -37,6 +38,33 @@ namespace Pulumi.Vault
         /// </summary>
         public static Task<GetAuthBackendResult> InvokeAsync(GetAuthBackendArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendResult>("vault:index/getAuthBackend:getAuthBackend", args ?? new GetAuthBackendArgs(), options.WithVersion());
+
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var example = Output.Create(Vault.GetAuthBackend.InvokeAsync(new Vault.GetAuthBackendArgs
+        ///         {
+        ///             Path = "userpass",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetAuthBackendResult> Invoke(GetAuthBackendInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetAuthBackendResult>("vault:index/getAuthBackend:getAuthBackend", args ?? new GetAuthBackendInvokeArgs(), options.WithVersion());
     }
 
 
@@ -49,6 +77,19 @@ namespace Pulumi.Vault
         public string Path { get; set; } = null!;
 
         public GetAuthBackendArgs()
+        {
+        }
+    }
+
+    public sealed class GetAuthBackendInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The auth backend mount point.
+        /// </summary>
+        [Input("path", required: true)]
+        public Input<string> Path { get; set; } = null!;
+
+        public GetAuthBackendInvokeArgs()
         {
         }
     }

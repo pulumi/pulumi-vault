@@ -106,15 +106,15 @@ export interface RoleState {
     /**
      * The name of the role.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * A comma separated string or slice of transformations to use.
      */
-    readonly transformations?: pulumi.Input<pulumi.Input<string>[]>;
+    transformations?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -124,13 +124,13 @@ export interface RoleArgs {
     /**
      * The name of the role.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
-    readonly path: pulumi.Input<string>;
+    path: pulumi.Input<string>;
     /**
      * A comma separated string or slice of transformations to use.
      */
-    readonly transformations?: pulumi.Input<pulumi.Input<string>[]>;
+    transformations?: pulumi.Input<pulumi.Input<string>[]>;
 }

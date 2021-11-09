@@ -12,6 +12,56 @@ import (
 )
 
 // Provides a resource to create a role in an [Cert auth backend within Vault](https://www.vaultproject.io/docs/auth/cert.html).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"io/ioutil"
+//
+// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func readFileOrPanic(path string) pulumi.StringPtrInput {
+// 	data, err := ioutil.ReadFile(path)
+// 	if err != nil {
+// 		panic(err.Error())
+// 	}
+// 	return pulumi.String(string(data))
+// }
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		certAuthBackend, err := vault.NewAuthBackend(ctx, "certAuthBackend", &vault.AuthBackendArgs{
+// 			Path: pulumi.String("cert"),
+// 			Type: pulumi.String("cert"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = vault.NewCertAuthBackendRole(ctx, "certCertAuthBackendRole", &vault.CertAuthBackendRoleArgs{
+// 			Certificate: readFileOrPanic("/path/to/certs/ca-cert.pem"),
+// 			Backend:     certAuthBackend.Path,
+// 			AllowedNames: pulumi.StringArray{
+// 				pulumi.String("foo.example.org"),
+// 				pulumi.String("baz.example.org"),
+// 			},
+// 			TokenTtl:    pulumi.Int(300),
+// 			TokenMaxTtl: pulumi.Int(600),
+// 			TokenPolicies: pulumi.StringArray{
+// 				pulumi.String("foo"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type CertAuthBackendRole struct {
 	pulumi.CustomResourceState
 
@@ -556,7 +606,7 @@ type CertAuthBackendRoleArrayInput interface {
 type CertAuthBackendRoleArray []CertAuthBackendRoleInput
 
 func (CertAuthBackendRoleArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*CertAuthBackendRole)(nil))
+	return reflect.TypeOf((*[]*CertAuthBackendRole)(nil)).Elem()
 }
 
 func (i CertAuthBackendRoleArray) ToCertAuthBackendRoleArrayOutput() CertAuthBackendRoleArrayOutput {
@@ -581,7 +631,7 @@ type CertAuthBackendRoleMapInput interface {
 type CertAuthBackendRoleMap map[string]CertAuthBackendRoleInput
 
 func (CertAuthBackendRoleMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*CertAuthBackendRole)(nil))
+	return reflect.TypeOf((*map[string]*CertAuthBackendRole)(nil)).Elem()
 }
 
 func (i CertAuthBackendRoleMap) ToCertAuthBackendRoleMapOutput() CertAuthBackendRoleMapOutput {
@@ -592,9 +642,7 @@ func (i CertAuthBackendRoleMap) ToCertAuthBackendRoleMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(CertAuthBackendRoleMapOutput)
 }
 
-type CertAuthBackendRoleOutput struct {
-	*pulumi.OutputState
-}
+type CertAuthBackendRoleOutput struct{ *pulumi.OutputState }
 
 func (CertAuthBackendRoleOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*CertAuthBackendRole)(nil))
@@ -613,14 +661,12 @@ func (o CertAuthBackendRoleOutput) ToCertAuthBackendRolePtrOutput() CertAuthBack
 }
 
 func (o CertAuthBackendRoleOutput) ToCertAuthBackendRolePtrOutputWithContext(ctx context.Context) CertAuthBackendRolePtrOutput {
-	return o.ApplyT(func(v CertAuthBackendRole) *CertAuthBackendRole {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CertAuthBackendRole) *CertAuthBackendRole {
 		return &v
 	}).(CertAuthBackendRolePtrOutput)
 }
 
-type CertAuthBackendRolePtrOutput struct {
-	*pulumi.OutputState
-}
+type CertAuthBackendRolePtrOutput struct{ *pulumi.OutputState }
 
 func (CertAuthBackendRolePtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**CertAuthBackendRole)(nil))
@@ -632,6 +678,16 @@ func (o CertAuthBackendRolePtrOutput) ToCertAuthBackendRolePtrOutput() CertAuthB
 
 func (o CertAuthBackendRolePtrOutput) ToCertAuthBackendRolePtrOutputWithContext(ctx context.Context) CertAuthBackendRolePtrOutput {
 	return o
+}
+
+func (o CertAuthBackendRolePtrOutput) Elem() CertAuthBackendRoleOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) CertAuthBackendRole {
+		if v != nil {
+			return *v
+		}
+		var ret CertAuthBackendRole
+		return ret
+	}).(CertAuthBackendRoleOutput)
 }
 
 type CertAuthBackendRoleArrayOutput struct{ *pulumi.OutputState }
@@ -675,6 +731,10 @@ func (o CertAuthBackendRoleMapOutput) MapIndex(k pulumi.StringInput) CertAuthBac
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CertAuthBackendRoleInput)(nil)).Elem(), &CertAuthBackendRole{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertAuthBackendRolePtrInput)(nil)).Elem(), &CertAuthBackendRole{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertAuthBackendRoleArrayInput)(nil)).Elem(), CertAuthBackendRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertAuthBackendRoleMapInput)(nil)).Elem(), CertAuthBackendRoleMap{})
 	pulumi.RegisterOutputType(CertAuthBackendRoleOutput{})
 	pulumi.RegisterOutputType(CertAuthBackendRolePtrOutput{})
 	pulumi.RegisterOutputType(CertAuthBackendRoleArrayOutput{})

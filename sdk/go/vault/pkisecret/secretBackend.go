@@ -205,7 +205,7 @@ type SecretBackendArrayInput interface {
 type SecretBackendArray []SecretBackendInput
 
 func (SecretBackendArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SecretBackend)(nil))
+	return reflect.TypeOf((*[]*SecretBackend)(nil)).Elem()
 }
 
 func (i SecretBackendArray) ToSecretBackendArrayOutput() SecretBackendArrayOutput {
@@ -230,7 +230,7 @@ type SecretBackendMapInput interface {
 type SecretBackendMap map[string]SecretBackendInput
 
 func (SecretBackendMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SecretBackend)(nil))
+	return reflect.TypeOf((*map[string]*SecretBackend)(nil)).Elem()
 }
 
 func (i SecretBackendMap) ToSecretBackendMapOutput() SecretBackendMapOutput {
@@ -241,9 +241,7 @@ func (i SecretBackendMap) ToSecretBackendMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendMapOutput)
 }
 
-type SecretBackendOutput struct {
-	*pulumi.OutputState
-}
+type SecretBackendOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretBackend)(nil))
@@ -262,14 +260,12 @@ func (o SecretBackendOutput) ToSecretBackendPtrOutput() SecretBackendPtrOutput {
 }
 
 func (o SecretBackendOutput) ToSecretBackendPtrOutputWithContext(ctx context.Context) SecretBackendPtrOutput {
-	return o.ApplyT(func(v SecretBackend) *SecretBackend {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackend) *SecretBackend {
 		return &v
 	}).(SecretBackendPtrOutput)
 }
 
-type SecretBackendPtrOutput struct {
-	*pulumi.OutputState
-}
+type SecretBackendPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretBackend)(nil))
@@ -281,6 +277,16 @@ func (o SecretBackendPtrOutput) ToSecretBackendPtrOutput() SecretBackendPtrOutpu
 
 func (o SecretBackendPtrOutput) ToSecretBackendPtrOutputWithContext(ctx context.Context) SecretBackendPtrOutput {
 	return o
+}
+
+func (o SecretBackendPtrOutput) Elem() SecretBackendOutput {
+	return o.ApplyT(func(v *SecretBackend) SecretBackend {
+		if v != nil {
+			return *v
+		}
+		var ret SecretBackend
+		return ret
+	}).(SecretBackendOutput)
 }
 
 type SecretBackendArrayOutput struct{ *pulumi.OutputState }
@@ -324,6 +330,10 @@ func (o SecretBackendMapOutput) MapIndex(k pulumi.StringInput) SecretBackendOutp
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendInput)(nil)).Elem(), &SecretBackend{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendPtrInput)(nil)).Elem(), &SecretBackend{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendArrayInput)(nil)).Elem(), SecretBackendArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendMapInput)(nil)).Elem(), SecretBackendMap{})
 	pulumi.RegisterOutputType(SecretBackendOutput{})
 	pulumi.RegisterOutputType(SecretBackendPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendArrayOutput{})

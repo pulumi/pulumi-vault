@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -37,35 +36,35 @@ export interface GetEncodeArgs {
     /**
      * Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
      */
-    readonly batchInputs?: {[key: string]: any}[];
+    batchInputs?: {[key: string]: any}[];
     /**
      * The result of encoding a batch.
      */
-    readonly batchResults?: {[key: string]: any}[];
+    batchResults?: {[key: string]: any}[];
     /**
      * The result of encoding a value.
      */
-    readonly encodedValue?: string;
+    encodedValue?: string;
     /**
      * Path to where the back-end is mounted within Vault.
      */
-    readonly path: string;
+    path: string;
     /**
      * The name of the role.
      */
-    readonly roleName: string;
+    roleName: string;
     /**
      * The transformation to perform. If no value is provided and the role contains a single transformation, this value will be inferred from the role.
      */
-    readonly transformation?: string;
+    transformation?: string;
     /**
      * The tweak value to use. Only applicable for FPE transformations
      */
-    readonly tweak?: string;
+    tweak?: string;
     /**
      * The value in which to encode.
      */
-    readonly value?: string;
+    value?: string;
 }
 
 /**
@@ -84,4 +83,46 @@ export interface GetEncodeResult {
     readonly transformation?: string;
     readonly tweak?: string;
     readonly value?: string;
+}
+
+export function getEncodeOutput(args: GetEncodeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEncodeResult> {
+    return pulumi.output(args).apply(a => getEncode(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getEncode.
+ */
+export interface GetEncodeOutputArgs {
+    /**
+     * Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
+     */
+    batchInputs?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
+    /**
+     * The result of encoding a batch.
+     */
+    batchResults?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
+    /**
+     * The result of encoding a value.
+     */
+    encodedValue?: pulumi.Input<string>;
+    /**
+     * Path to where the back-end is mounted within Vault.
+     */
+    path: pulumi.Input<string>;
+    /**
+     * The name of the role.
+     */
+    roleName: pulumi.Input<string>;
+    /**
+     * The transformation to perform. If no value is provided and the role contains a single transformation, this value will be inferred from the role.
+     */
+    transformation?: pulumi.Input<string>;
+    /**
+     * The tweak value to use. Only applicable for FPE transformations
+     */
+    tweak?: pulumi.Input<string>;
+    /**
+     * The value in which to encode.
+     */
+    value?: pulumi.Input<string>;
 }

@@ -15,6 +15,54 @@ namespace Pulumi.Vault.Gcp
     /// Each [static account](https://www.vaultproject.io/docs/secrets/gcp/index.html#static-accounts) is tied to a separately managed
     /// Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings) associated with it.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.IO;
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var @this = new Gcp.ServiceAccount.Account("this", new Gcp.ServiceAccount.AccountArgs
+    ///         {
+    ///             AccountId = "my-awesome-account",
+    ///         });
+    ///         var gcp = new Vault.Gcp.SecretBackend("gcp", new Vault.Gcp.SecretBackendArgs
+    ///         {
+    ///             Path = "gcp",
+    ///             Credentials = File.ReadAllText("credentials.json"),
+    ///         });
+    ///         var staticAccount = new Vault.Gcp.SecretStaticAccount("staticAccount", new Vault.Gcp.SecretStaticAccountArgs
+    ///         {
+    ///             Backend = gcp.Path,
+    ///             StaticAccount = "project_viewer",
+    ///             SecretType = "access_token",
+    ///             TokenScopes = 
+    ///             {
+    ///                 "https://www.googleapis.com/auth/cloud-platform",
+    ///             },
+    ///             ServiceAccountEmail = @this.Email,
+    ///             Bindings = 
+    ///             {
+    ///                 new Vault.Gcp.Inputs.SecretStaticAccountBindingArgs
+    ///                 {
+    ///                     Resource = @this.Project.Apply(project =&gt; $"//cloudresourcemanager.googleapis.com/projects/{project}"),
+    ///                     Roles = 
+    ///                     {
+    ///                         "roles/viewer",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// A static account can be imported using its Vault Path. For example, referencing the example above,

@@ -5,57 +5,149 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
-let __config = new pulumi.Config("vault");
+declare var exports: any;
+const __config = new pulumi.Config("vault");
 
 /**
  * If true, adds the value of the `address` argument to the Terraform process environment.
  */
-export let addAddressToEnv: string | undefined = __config.get("addAddressToEnv");
+export declare const addAddressToEnv: string | undefined;
+Object.defineProperty(exports, "addAddressToEnv", {
+    get() {
+        return __config.get("addAddressToEnv");
+    },
+    enumerable: true,
+});
+
 /**
  * URL of the root of the target Vault server.
  */
-export let address: string | undefined = __config.get("address");
+export declare const address: string | undefined;
+Object.defineProperty(exports, "address", {
+    get() {
+        return __config.get("address");
+    },
+    enumerable: true,
+});
+
 /**
  * Login to vault with an existing auth method using auth/<mount>/login
  */
-export let authLogins: outputs.config.AuthLogins[] | undefined = __config.getObject<outputs.config.AuthLogins[]>("authLogins");
+export declare const authLogins: outputs.config.AuthLogins[] | undefined;
+Object.defineProperty(exports, "authLogins", {
+    get() {
+        return __config.getObject<outputs.config.AuthLogins[]>("authLogins");
+    },
+    enumerable: true,
+});
+
 /**
  * Path to directory containing CA certificate files to validate the server's certificate.
  */
-export let caCertDir: string | undefined = __config.get("caCertDir");
+export declare const caCertDir: string | undefined;
+Object.defineProperty(exports, "caCertDir", {
+    get() {
+        return __config.get("caCertDir");
+    },
+    enumerable: true,
+});
+
 /**
  * Path to a CA certificate file to validate the server's certificate.
  */
-export let caCertFile: string | undefined = __config.get("caCertFile");
+export declare const caCertFile: string | undefined;
+Object.defineProperty(exports, "caCertFile", {
+    get() {
+        return __config.get("caCertFile");
+    },
+    enumerable: true,
+});
+
 /**
  * Client authentication credentials.
  */
-export let clientAuths: outputs.config.ClientAuths[] | undefined = __config.getObject<outputs.config.ClientAuths[]>("clientAuths");
+export declare const clientAuths: outputs.config.ClientAuths[] | undefined;
+Object.defineProperty(exports, "clientAuths", {
+    get() {
+        return __config.getObject<outputs.config.ClientAuths[]>("clientAuths");
+    },
+    enumerable: true,
+});
+
 /**
  * The headers to send with each Vault request.
  */
-export let headers: outputs.config.Headers[] | undefined = __config.getObject<outputs.config.Headers[]>("headers");
+export declare const headers: outputs.config.Headers[] | undefined;
+Object.defineProperty(exports, "headers", {
+    get() {
+        return __config.getObject<outputs.config.Headers[]>("headers");
+    },
+    enumerable: true,
+});
+
 /**
  * Maximum TTL for secret leases requested by this provider
  */
-export let maxLeaseTtlSeconds: number | undefined = __config.getObject<number>("maxLeaseTtlSeconds") || (<any>utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 1200);
+export declare const maxLeaseTtlSeconds: number;
+Object.defineProperty(exports, "maxLeaseTtlSeconds", {
+    get() {
+        return __config.getObject<number>("maxLeaseTtlSeconds") ?? (<any>utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 1200);
+    },
+    enumerable: true,
+});
+
 /**
  * Maximum number of retries when a 5xx error code is encountered.
  */
-export let maxRetries: number | undefined = __config.getObject<number>("maxRetries") || (<any>utilities.getEnvNumber("VAULT_MAX_RETRIES") || 2);
+export declare const maxRetries: number;
+Object.defineProperty(exports, "maxRetries", {
+    get() {
+        return __config.getObject<number>("maxRetries") ?? (<any>utilities.getEnvNumber("VAULT_MAX_RETRIES") || 2);
+    },
+    enumerable: true,
+});
+
 /**
  * The namespace to use. Available only for Vault Enterprise
  */
-export let namespace: string | undefined = __config.get("namespace");
+export declare const namespace: string | undefined;
+Object.defineProperty(exports, "namespace", {
+    get() {
+        return __config.get("namespace");
+    },
+    enumerable: true,
+});
+
 /**
  * Set this to true only if the target Vault server is an insecure development instance.
  */
-export let skipTlsVerify: boolean | undefined = __config.getObject<boolean>("skipTlsVerify") || <any>utilities.getEnvBoolean("VAULT_SKIP_VERIFY");
+export declare const skipTlsVerify: boolean | undefined;
+Object.defineProperty(exports, "skipTlsVerify", {
+    get() {
+        return __config.getObject<boolean>("skipTlsVerify") ?? <any>utilities.getEnvBoolean("VAULT_SKIP_VERIFY");
+    },
+    enumerable: true,
+});
+
 /**
  * Token to use to authenticate to Vault.
  */
-export let token: string | undefined = __config.get("token");
+export declare const token: string | undefined;
+Object.defineProperty(exports, "token", {
+    get() {
+        return __config.get("token");
+    },
+    enumerable: true,
+});
+
 /**
  * Token name to use for creating the Vault child token.
  */
-export let tokenName: string | undefined = __config.get("tokenName");
+export declare const tokenName: string | undefined;
+Object.defineProperty(exports, "tokenName", {
+    get() {
+        return __config.get("tokenName");
+    },
+    enumerable: true,
+});
+

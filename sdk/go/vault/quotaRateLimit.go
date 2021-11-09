@@ -228,7 +228,7 @@ type QuotaRateLimitArrayInput interface {
 type QuotaRateLimitArray []QuotaRateLimitInput
 
 func (QuotaRateLimitArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*QuotaRateLimit)(nil))
+	return reflect.TypeOf((*[]*QuotaRateLimit)(nil)).Elem()
 }
 
 func (i QuotaRateLimitArray) ToQuotaRateLimitArrayOutput() QuotaRateLimitArrayOutput {
@@ -253,7 +253,7 @@ type QuotaRateLimitMapInput interface {
 type QuotaRateLimitMap map[string]QuotaRateLimitInput
 
 func (QuotaRateLimitMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*QuotaRateLimit)(nil))
+	return reflect.TypeOf((*map[string]*QuotaRateLimit)(nil)).Elem()
 }
 
 func (i QuotaRateLimitMap) ToQuotaRateLimitMapOutput() QuotaRateLimitMapOutput {
@@ -264,9 +264,7 @@ func (i QuotaRateLimitMap) ToQuotaRateLimitMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(QuotaRateLimitMapOutput)
 }
 
-type QuotaRateLimitOutput struct {
-	*pulumi.OutputState
-}
+type QuotaRateLimitOutput struct{ *pulumi.OutputState }
 
 func (QuotaRateLimitOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*QuotaRateLimit)(nil))
@@ -285,14 +283,12 @@ func (o QuotaRateLimitOutput) ToQuotaRateLimitPtrOutput() QuotaRateLimitPtrOutpu
 }
 
 func (o QuotaRateLimitOutput) ToQuotaRateLimitPtrOutputWithContext(ctx context.Context) QuotaRateLimitPtrOutput {
-	return o.ApplyT(func(v QuotaRateLimit) *QuotaRateLimit {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v QuotaRateLimit) *QuotaRateLimit {
 		return &v
 	}).(QuotaRateLimitPtrOutput)
 }
 
-type QuotaRateLimitPtrOutput struct {
-	*pulumi.OutputState
-}
+type QuotaRateLimitPtrOutput struct{ *pulumi.OutputState }
 
 func (QuotaRateLimitPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**QuotaRateLimit)(nil))
@@ -304,6 +300,16 @@ func (o QuotaRateLimitPtrOutput) ToQuotaRateLimitPtrOutput() QuotaRateLimitPtrOu
 
 func (o QuotaRateLimitPtrOutput) ToQuotaRateLimitPtrOutputWithContext(ctx context.Context) QuotaRateLimitPtrOutput {
 	return o
+}
+
+func (o QuotaRateLimitPtrOutput) Elem() QuotaRateLimitOutput {
+	return o.ApplyT(func(v *QuotaRateLimit) QuotaRateLimit {
+		if v != nil {
+			return *v
+		}
+		var ret QuotaRateLimit
+		return ret
+	}).(QuotaRateLimitOutput)
 }
 
 type QuotaRateLimitArrayOutput struct{ *pulumi.OutputState }
@@ -347,6 +353,10 @@ func (o QuotaRateLimitMapOutput) MapIndex(k pulumi.StringInput) QuotaRateLimitOu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*QuotaRateLimitInput)(nil)).Elem(), &QuotaRateLimit{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuotaRateLimitPtrInput)(nil)).Elem(), &QuotaRateLimit{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuotaRateLimitArrayInput)(nil)).Elem(), QuotaRateLimitArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuotaRateLimitMapInput)(nil)).Elem(), QuotaRateLimitMap{})
 	pulumi.RegisterOutputType(QuotaRateLimitOutput{})
 	pulumi.RegisterOutputType(QuotaRateLimitPtrOutput{})
 	pulumi.RegisterOutputType(QuotaRateLimitArrayOutput{})

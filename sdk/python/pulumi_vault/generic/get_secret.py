@@ -12,6 +12,7 @@ __all__ = [
     'GetSecretResult',
     'AwaitableGetSecretResult',
     'get_secret',
+    'get_secret_output',
 ]
 
 @pulumi.output_type
@@ -166,3 +167,22 @@ def get_secret(path: Optional[str] = None,
         lease_start_time=__ret__.lease_start_time,
         path=__ret__.path,
         version=__ret__.version)
+
+
+@_utilities.lift_output_func(get_secret)
+def get_secret_output(path: Optional[pulumi.Input[str]] = None,
+                      version: Optional[pulumi.Input[Optional[int]]] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretResult]:
+    """
+    Use this data source to access information about an existing resource.
+
+    :param str path: The full logical path from which to request data.
+           To read data from the "generic" secret backend mounted in Vault by
+           default, this should be prefixed with `secret/`. Reading from other backends
+           with this data source is possible; consult each backend's documentation
+           to see which endpoints support the `GET` method.
+    :param int version: The version of the secret to read. This is used by the
+           Vault KV secrets engine - version 2 to indicate which version of the secret
+           to read.
+    """
+    ...

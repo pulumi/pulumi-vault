@@ -214,7 +214,7 @@ type AuthBackendIdentityWhitelistArrayInput interface {
 type AuthBackendIdentityWhitelistArray []AuthBackendIdentityWhitelistInput
 
 func (AuthBackendIdentityWhitelistArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*AuthBackendIdentityWhitelist)(nil))
+	return reflect.TypeOf((*[]*AuthBackendIdentityWhitelist)(nil)).Elem()
 }
 
 func (i AuthBackendIdentityWhitelistArray) ToAuthBackendIdentityWhitelistArrayOutput() AuthBackendIdentityWhitelistArrayOutput {
@@ -239,7 +239,7 @@ type AuthBackendIdentityWhitelistMapInput interface {
 type AuthBackendIdentityWhitelistMap map[string]AuthBackendIdentityWhitelistInput
 
 func (AuthBackendIdentityWhitelistMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*AuthBackendIdentityWhitelist)(nil))
+	return reflect.TypeOf((*map[string]*AuthBackendIdentityWhitelist)(nil)).Elem()
 }
 
 func (i AuthBackendIdentityWhitelistMap) ToAuthBackendIdentityWhitelistMapOutput() AuthBackendIdentityWhitelistMapOutput {
@@ -250,9 +250,7 @@ func (i AuthBackendIdentityWhitelistMap) ToAuthBackendIdentityWhitelistMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendIdentityWhitelistMapOutput)
 }
 
-type AuthBackendIdentityWhitelistOutput struct {
-	*pulumi.OutputState
-}
+type AuthBackendIdentityWhitelistOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendIdentityWhitelistOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*AuthBackendIdentityWhitelist)(nil))
@@ -271,14 +269,12 @@ func (o AuthBackendIdentityWhitelistOutput) ToAuthBackendIdentityWhitelistPtrOut
 }
 
 func (o AuthBackendIdentityWhitelistOutput) ToAuthBackendIdentityWhitelistPtrOutputWithContext(ctx context.Context) AuthBackendIdentityWhitelistPtrOutput {
-	return o.ApplyT(func(v AuthBackendIdentityWhitelist) *AuthBackendIdentityWhitelist {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AuthBackendIdentityWhitelist) *AuthBackendIdentityWhitelist {
 		return &v
 	}).(AuthBackendIdentityWhitelistPtrOutput)
 }
 
-type AuthBackendIdentityWhitelistPtrOutput struct {
-	*pulumi.OutputState
-}
+type AuthBackendIdentityWhitelistPtrOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendIdentityWhitelistPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**AuthBackendIdentityWhitelist)(nil))
@@ -290,6 +286,16 @@ func (o AuthBackendIdentityWhitelistPtrOutput) ToAuthBackendIdentityWhitelistPtr
 
 func (o AuthBackendIdentityWhitelistPtrOutput) ToAuthBackendIdentityWhitelistPtrOutputWithContext(ctx context.Context) AuthBackendIdentityWhitelistPtrOutput {
 	return o
+}
+
+func (o AuthBackendIdentityWhitelistPtrOutput) Elem() AuthBackendIdentityWhitelistOutput {
+	return o.ApplyT(func(v *AuthBackendIdentityWhitelist) AuthBackendIdentityWhitelist {
+		if v != nil {
+			return *v
+		}
+		var ret AuthBackendIdentityWhitelist
+		return ret
+	}).(AuthBackendIdentityWhitelistOutput)
 }
 
 type AuthBackendIdentityWhitelistArrayOutput struct{ *pulumi.OutputState }
@@ -333,6 +339,10 @@ func (o AuthBackendIdentityWhitelistMapOutput) MapIndex(k pulumi.StringInput) Au
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendIdentityWhitelistInput)(nil)).Elem(), &AuthBackendIdentityWhitelist{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendIdentityWhitelistPtrInput)(nil)).Elem(), &AuthBackendIdentityWhitelist{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendIdentityWhitelistArrayInput)(nil)).Elem(), AuthBackendIdentityWhitelistArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendIdentityWhitelistMapInput)(nil)).Elem(), AuthBackendIdentityWhitelistMap{})
 	pulumi.RegisterOutputType(AuthBackendIdentityWhitelistOutput{})
 	pulumi.RegisterOutputType(AuthBackendIdentityWhitelistPtrOutput{})
 	pulumi.RegisterOutputType(AuthBackendIdentityWhitelistArrayOutput{})

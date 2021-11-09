@@ -130,15 +130,15 @@ export interface GroupAliasState {
     /**
      * ID of the group to which this is an alias.
      */
-    readonly canonicalId?: pulumi.Input<string>;
+    canonicalId?: pulumi.Input<string>;
     /**
      * Mount accessor of the authentication backend to which this alias belongs to.
      */
-    readonly mountAccessor?: pulumi.Input<string>;
+    mountAccessor?: pulumi.Input<string>;
     /**
      * Name of the group alias to create.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
 }
 
 /**
@@ -148,13 +148,13 @@ export interface GroupAliasArgs {
     /**
      * ID of the group to which this is an alias.
      */
-    readonly canonicalId: pulumi.Input<string>;
+    canonicalId: pulumi.Input<string>;
     /**
      * Mount accessor of the authentication backend to which this alias belongs to.
      */
-    readonly mountAccessor: pulumi.Input<string>;
+    mountAccessor: pulumi.Input<string>;
     /**
      * Name of the group alias to create.
      */
-    readonly name: pulumi.Input<string>;
+    name: pulumi.Input<string>;
 }

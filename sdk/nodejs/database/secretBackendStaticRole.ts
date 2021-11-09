@@ -150,27 +150,27 @@ export interface SecretBackendStaticRoleState {
     /**
      * The unique name of the Vault mount to configure.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * The unique name of the database connection to use for the static role.
      */
-    readonly dbName?: pulumi.Input<string>;
+    dbName?: pulumi.Input<string>;
     /**
      * A unique name to give the static role.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The amount of time Vault should wait before rotating the password, in seconds.
      */
-    readonly rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number>;
     /**
      * Database statements to execute to rotate the password for the configured database user.
      */
-    readonly rotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    rotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The database username that this static role corresponds to.
      */
-    readonly username?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
 }
 
 /**
@@ -180,25 +180,25 @@ export interface SecretBackendStaticRoleArgs {
     /**
      * The unique name of the Vault mount to configure.
      */
-    readonly backend: pulumi.Input<string>;
+    backend: pulumi.Input<string>;
     /**
      * The unique name of the database connection to use for the static role.
      */
-    readonly dbName: pulumi.Input<string>;
+    dbName: pulumi.Input<string>;
     /**
      * A unique name to give the static role.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The amount of time Vault should wait before rotating the password, in seconds.
      */
-    readonly rotationPeriod: pulumi.Input<number>;
+    rotationPeriod: pulumi.Input<number>;
     /**
      * Database statements to execute to rotate the password for the configured database user.
      */
-    readonly rotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    rotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The database username that this static role corresponds to.
      */
-    readonly username: pulumi.Input<string>;
+    username: pulumi.Input<string>;
 }

@@ -147,19 +147,19 @@ export interface GroupPoliciesState {
     /**
      * Defaults to `true`.
      */
-    readonly exclusive?: pulumi.Input<boolean>;
+    exclusive?: pulumi.Input<boolean>;
     /**
      * Group ID to assign policies to.
      */
-    readonly groupId?: pulumi.Input<string>;
+    groupId?: pulumi.Input<string>;
     /**
      * The name of the group that are assigned the policies.
      */
-    readonly groupName?: pulumi.Input<string>;
+    groupName?: pulumi.Input<string>;
     /**
      * List of policies to assign to the group
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -169,13 +169,13 @@ export interface GroupPoliciesArgs {
     /**
      * Defaults to `true`.
      */
-    readonly exclusive?: pulumi.Input<boolean>;
+    exclusive?: pulumi.Input<boolean>;
     /**
      * Group ID to assign policies to.
      */
-    readonly groupId: pulumi.Input<string>;
+    groupId: pulumi.Input<string>;
     /**
      * List of policies to assign to the group
      */
-    readonly policies: pulumi.Input<pulumi.Input<string>[]>;
+    policies: pulumi.Input<pulumi.Input<string>[]>;
 }

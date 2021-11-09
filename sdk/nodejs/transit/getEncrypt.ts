@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -32,23 +31,23 @@ export interface GetEncryptArgs {
     /**
      * The path the transit secret backend is mounted at, with no leading or trailing `/`.
      */
-    readonly backend: string;
+    backend: string;
     /**
      * Context for key derivation. This is required if key derivation is enabled for this key.
      */
-    readonly context?: string;
+    context?: string;
     /**
      * Specifies the name of the transit key to encrypt against.
      */
-    readonly key: string;
+    key: string;
     /**
      * The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `minEncryptionVersion`, if set.
      */
-    readonly keyVersion?: number;
+    keyVersion?: number;
     /**
      * Plaintext to be encoded.
      */
-    readonly plaintext: string;
+    plaintext: string;
 }
 
 /**
@@ -68,4 +67,34 @@ export interface GetEncryptResult {
     readonly key: string;
     readonly keyVersion?: number;
     readonly plaintext: string;
+}
+
+export function getEncryptOutput(args: GetEncryptOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEncryptResult> {
+    return pulumi.output(args).apply(a => getEncrypt(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getEncrypt.
+ */
+export interface GetEncryptOutputArgs {
+    /**
+     * The path the transit secret backend is mounted at, with no leading or trailing `/`.
+     */
+    backend: pulumi.Input<string>;
+    /**
+     * Context for key derivation. This is required if key derivation is enabled for this key.
+     */
+    context?: pulumi.Input<string>;
+    /**
+     * Specifies the name of the transit key to encrypt against.
+     */
+    key: pulumi.Input<string>;
+    /**
+     * The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `minEncryptionVersion`, if set.
+     */
+    keyVersion?: pulumi.Input<number>;
+    /**
+     * Plaintext to be encoded.
+     */
+    plaintext: pulumi.Input<string>;
 }

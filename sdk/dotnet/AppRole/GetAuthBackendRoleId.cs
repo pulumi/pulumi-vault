@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Vault.AppRole
 {
@@ -43,6 +44,39 @@ namespace Pulumi.Vault.AppRole
         /// </summary>
         public static Task<GetAuthBackendRoleIdResult> InvokeAsync(GetAuthBackendRoleIdArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleIdResult>("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args ?? new GetAuthBackendRoleIdArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Reads the Role ID of an AppRole from a Vault server.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var role = Output.Create(Vault.AppRole.GetAuthBackendRoleId.InvokeAsync(new Vault.AppRole.GetAuthBackendRoleIdArgs
+        ///         {
+        ///             Backend = "my-approle-backend",
+        ///             RoleName = "my-role",
+        ///         }));
+        ///         this.Role_id = role.Apply(role =&gt; role.RoleId);
+        ///     }
+        /// 
+        ///     [Output("role-id")]
+        ///     public Output&lt;string&gt; Role_id { get; set; }
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetAuthBackendRoleIdResult> Invoke(GetAuthBackendRoleIdInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleIdResult>("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args ?? new GetAuthBackendRoleIdInvokeArgs(), options.WithVersion());
     }
 
 
@@ -62,6 +96,26 @@ namespace Pulumi.Vault.AppRole
         public string RoleName { get; set; } = null!;
 
         public GetAuthBackendRoleIdArgs()
+        {
+        }
+    }
+
+    public sealed class GetAuthBackendRoleIdInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The unique name for the AppRole backend the role to
+        /// retrieve a RoleID for resides in. Defaults to "approle".
+        /// </summary>
+        [Input("backend")]
+        public Input<string>? Backend { get; set; }
+
+        /// <summary>
+        /// The name of the role to retrieve the Role ID for.
+        /// </summary>
+        [Input("roleName", required: true)]
+        public Input<string> RoleName { get; set; } = null!;
+
+        public GetAuthBackendRoleIdInvokeArgs()
         {
         }
     }

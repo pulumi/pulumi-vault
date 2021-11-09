@@ -9,86 +9,100 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 
-__all__ = [
-    'add_address_to_env',
-    'address',
-    'auth_logins',
-    'ca_cert_dir',
-    'ca_cert_file',
-    'client_auths',
-    'headers',
-    'max_lease_ttl_seconds',
-    'max_retries',
-    'namespace',
-    'skip_tls_verify',
-    'token',
-    'token_name',
-]
+import types
 
 __config__ = pulumi.Config('vault')
 
-add_address_to_env = __config__.get('addAddressToEnv')
-"""
-If true, adds the value of the `address` argument to the Terraform process environment.
-"""
 
-address = __config__.get('address')
-"""
-URL of the root of the target Vault server.
-"""
+class _ExportableConfig(types.ModuleType):
+    @property
+    def add_address_to_env(self) -> Optional[str]:
+        """
+        If true, adds the value of the `address` argument to the Terraform process environment.
+        """
+        return __config__.get('addAddressToEnv')
 
-auth_logins = __config__.get('authLogins')
-"""
-Login to vault with an existing auth method using auth/<mount>/login
-"""
+    @property
+    def address(self) -> Optional[str]:
+        """
+        URL of the root of the target Vault server.
+        """
+        return __config__.get('address')
 
-ca_cert_dir = __config__.get('caCertDir')
-"""
-Path to directory containing CA certificate files to validate the server's certificate.
-"""
+    @property
+    def auth_logins(self) -> Optional[str]:
+        """
+        Login to vault with an existing auth method using auth/<mount>/login
+        """
+        return __config__.get('authLogins')
 
-ca_cert_file = __config__.get('caCertFile')
-"""
-Path to a CA certificate file to validate the server's certificate.
-"""
+    @property
+    def ca_cert_dir(self) -> Optional[str]:
+        """
+        Path to directory containing CA certificate files to validate the server's certificate.
+        """
+        return __config__.get('caCertDir')
 
-client_auths = __config__.get('clientAuths')
-"""
-Client authentication credentials.
-"""
+    @property
+    def ca_cert_file(self) -> Optional[str]:
+        """
+        Path to a CA certificate file to validate the server's certificate.
+        """
+        return __config__.get('caCertFile')
 
-headers = __config__.get('headers')
-"""
-The headers to send with each Vault request.
-"""
+    @property
+    def client_auths(self) -> Optional[str]:
+        """
+        Client authentication credentials.
+        """
+        return __config__.get('clientAuths')
 
-max_lease_ttl_seconds = __config__.get('maxLeaseTtlSeconds') or (_utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL') or 1200)
-"""
-Maximum TTL for secret leases requested by this provider
-"""
+    @property
+    def headers(self) -> Optional[str]:
+        """
+        The headers to send with each Vault request.
+        """
+        return __config__.get('headers')
 
-max_retries = __config__.get('maxRetries') or (_utilities.get_env_int('VAULT_MAX_RETRIES') or 2)
-"""
-Maximum number of retries when a 5xx error code is encountered.
-"""
+    @property
+    def max_lease_ttl_seconds(self) -> int:
+        """
+        Maximum TTL for secret leases requested by this provider
+        """
+        return __config__.get_int('maxLeaseTtlSeconds') or (_utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL') or 1200)
 
-namespace = __config__.get('namespace')
-"""
-The namespace to use. Available only for Vault Enterprise
-"""
+    @property
+    def max_retries(self) -> int:
+        """
+        Maximum number of retries when a 5xx error code is encountered.
+        """
+        return __config__.get_int('maxRetries') or (_utilities.get_env_int('VAULT_MAX_RETRIES') or 2)
 
-skip_tls_verify = __config__.get('skipTlsVerify') or _utilities.get_env_bool('VAULT_SKIP_VERIFY')
-"""
-Set this to true only if the target Vault server is an insecure development instance.
-"""
+    @property
+    def namespace(self) -> Optional[str]:
+        """
+        The namespace to use. Available only for Vault Enterprise
+        """
+        return __config__.get('namespace')
 
-token = __config__.get('token')
-"""
-Token to use to authenticate to Vault.
-"""
+    @property
+    def skip_tls_verify(self) -> Optional[bool]:
+        """
+        Set this to true only if the target Vault server is an insecure development instance.
+        """
+        return __config__.get_bool('skipTlsVerify') or _utilities.get_env_bool('VAULT_SKIP_VERIFY')
 
-token_name = __config__.get('tokenName')
-"""
-Token name to use for creating the Vault child token.
-"""
+    @property
+    def token(self) -> Optional[str]:
+        """
+        Token to use to authenticate to Vault.
+        """
+        return __config__.get('token')
+
+    @property
+    def token_name(self) -> Optional[str]:
+        """
+        Token name to use for creating the Vault child token.
+        """
+        return __config__.get('tokenName')
 

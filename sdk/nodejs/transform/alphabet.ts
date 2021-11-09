@@ -105,15 +105,15 @@ export interface AlphabetState {
     /**
      * A string of characters that contains the alphabet set.
      */
-    readonly alphabet?: pulumi.Input<string>;
+    alphabet?: pulumi.Input<string>;
     /**
      * The name of the alphabet.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
 }
 
 /**
@@ -123,13 +123,13 @@ export interface AlphabetArgs {
     /**
      * A string of characters that contains the alphabet set.
      */
-    readonly alphabet?: pulumi.Input<string>;
+    alphabet?: pulumi.Input<string>;
     /**
      * The name of the alphabet.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
-    readonly path: pulumi.Input<string>;
+    path: pulumi.Input<string>;
 }

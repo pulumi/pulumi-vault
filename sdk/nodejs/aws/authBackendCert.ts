@@ -111,22 +111,22 @@ export interface AuthBackendCertState {
      * the [AWS
      * documentation](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-identity-documents.html).
      */
-    readonly awsPublicCert?: pulumi.Input<string>;
+    awsPublicCert?: pulumi.Input<string>;
     /**
      * The path the AWS auth backend being configured was
      * mounted at.  Defaults to `aws`.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * The name of the certificate.
      */
-    readonly certName?: pulumi.Input<string>;
+    certName?: pulumi.Input<string>;
     /**
      * Either "pkcs7" or "identity", indicating the type of
      * document which can be verified using the given certificate. Defaults to
      * "pkcs7".
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }
 
 /**
@@ -139,20 +139,20 @@ export interface AuthBackendCertArgs {
      * the [AWS
      * documentation](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-identity-documents.html).
      */
-    readonly awsPublicCert: pulumi.Input<string>;
+    awsPublicCert: pulumi.Input<string>;
     /**
      * The path the AWS auth backend being configured was
      * mounted at.  Defaults to `aws`.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * The name of the certificate.
      */
-    readonly certName: pulumi.Input<string>;
+    certName: pulumi.Input<string>;
     /**
      * Either "pkcs7" or "identity", indicating the type of
      * document which can be verified using the given certificate. Defaults to
      * "pkcs7".
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }

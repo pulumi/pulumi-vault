@@ -4,6 +4,9 @@
 package kubernetes
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -51,4 +54,90 @@ type LookupAuthBackendConfigResult struct {
 	KubernetesHost string `pulumi:"kubernetesHost"`
 	// Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys []string `pulumi:"pemKeys"`
+}
+
+func LookupAuthBackendConfigOutput(ctx *pulumi.Context, args LookupAuthBackendConfigOutputArgs, opts ...pulumi.InvokeOption) LookupAuthBackendConfigResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupAuthBackendConfigResult, error) {
+			args := v.(LookupAuthBackendConfigArgs)
+			r, err := LookupAuthBackendConfig(ctx, &args, opts...)
+			return *r, err
+		}).(LookupAuthBackendConfigResultOutput)
+}
+
+// A collection of arguments for invoking getAuthBackendConfig.
+type LookupAuthBackendConfigOutputArgs struct {
+	// The unique name for the Kubernetes backend the config to
+	// retrieve Role attributes for resides in. Defaults to "kubernetes".
+	Backend              pulumi.StringPtrInput `pulumi:"backend"`
+	DisableIssValidation pulumi.BoolPtrInput   `pulumi:"disableIssValidation"`
+	DisableLocalCaJwt    pulumi.BoolPtrInput   `pulumi:"disableLocalCaJwt"`
+	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+	Issuer pulumi.StringPtrInput `pulumi:"issuer"`
+	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
+	KubernetesCaCert pulumi.StringPtrInput `pulumi:"kubernetesCaCert"`
+	// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
+	KubernetesHost pulumi.StringPtrInput `pulumi:"kubernetesHost"`
+	// Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
+	PemKeys pulumi.StringArrayInput `pulumi:"pemKeys"`
+}
+
+func (LookupAuthBackendConfigOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAuthBackendConfigArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getAuthBackendConfig.
+type LookupAuthBackendConfigResultOutput struct{ *pulumi.OutputState }
+
+func (LookupAuthBackendConfigResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAuthBackendConfigResult)(nil)).Elem()
+}
+
+func (o LookupAuthBackendConfigResultOutput) ToLookupAuthBackendConfigResultOutput() LookupAuthBackendConfigResultOutput {
+	return o
+}
+
+func (o LookupAuthBackendConfigResultOutput) ToLookupAuthBackendConfigResultOutputWithContext(ctx context.Context) LookupAuthBackendConfigResultOutput {
+	return o
+}
+
+func (o LookupAuthBackendConfigResultOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupAuthBackendConfigResult) *string { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupAuthBackendConfigResultOutput) DisableIssValidation() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupAuthBackendConfigResult) bool { return v.DisableIssValidation }).(pulumi.BoolOutput)
+}
+
+func (o LookupAuthBackendConfigResultOutput) DisableLocalCaJwt() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupAuthBackendConfigResult) bool { return v.DisableLocalCaJwt }).(pulumi.BoolOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupAuthBackendConfigResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAuthBackendConfigResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+func (o LookupAuthBackendConfigResultOutput) Issuer() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAuthBackendConfigResult) string { return v.Issuer }).(pulumi.StringOutput)
+}
+
+// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
+func (o LookupAuthBackendConfigResultOutput) KubernetesCaCert() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAuthBackendConfigResult) string { return v.KubernetesCaCert }).(pulumi.StringOutput)
+}
+
+// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
+func (o LookupAuthBackendConfigResultOutput) KubernetesHost() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAuthBackendConfigResult) string { return v.KubernetesHost }).(pulumi.StringOutput)
+}
+
+// Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
+func (o LookupAuthBackendConfigResultOutput) PemKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupAuthBackendConfigResult) []string { return v.PemKeys }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupAuthBackendConfigResultOutput{})
 }

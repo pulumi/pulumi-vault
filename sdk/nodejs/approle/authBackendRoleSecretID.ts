@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const approle = new vault.AuthBackend("approle", {type: "approle"});
- * const example = new vault.appRole.AuthBackendRole("example", {
+ * const example = new vault.approle.AuthBackendRole("example", {
  *     backend: approle.path,
  *     roleName: "test-role",
  *     policies: [
@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  *         "prod",
  *     ],
  * });
- * const id = new vault.appRole.AuthBackendRoleSecretID("id", {
+ * const id = new vault.approle.AuthBackendRoleSecretID("id", {
  *     backend: approle.path,
  *     roleName: example.roleName,
  *     metadata: `  {
@@ -158,46 +158,46 @@ export interface AuthBackendRoleSecretIDState {
     /**
      * The unique ID for this SecretID that can be safely logged.
      */
-    readonly accessor?: pulumi.Input<string>;
+    accessor?: pulumi.Input<string>;
     /**
      * Unique name of the auth backend to configure.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * If set, specifies blocks of IP addresses which can
      * perform the login operation using this SecretID.
      */
-    readonly cidrLists?: pulumi.Input<pulumi.Input<string>[]>;
+    cidrLists?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * A JSON-encoded string containing metadata in
      * key-value pairs to be set on tokens issued with this SecretID.
      */
-    readonly metadata?: pulumi.Input<string>;
+    metadata?: pulumi.Input<string>;
     /**
      * The name of the role to create the SecretID for.
      */
-    readonly roleName?: pulumi.Input<string>;
+    roleName?: pulumi.Input<string>;
     /**
      * The SecretID to be created. If set, uses "Push"
      * mode.  Defaults to Vault auto-generating SecretIDs.
      */
-    readonly secretId?: pulumi.Input<string>;
+    secretId?: pulumi.Input<string>;
     /**
      * The unique ID for the response-wrapped SecretID that can
      * be safely logged.
      */
-    readonly wrappingAccessor?: pulumi.Input<string>;
+    wrappingAccessor?: pulumi.Input<string>;
     /**
      * The token used to retrieve a response-wrapped SecretID.
      */
-    readonly wrappingToken?: pulumi.Input<string>;
+    wrappingToken?: pulumi.Input<string>;
     /**
      * If set, the SecretID response will be
      * [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
      * and available for the duration specified. Only a single unwrapping of the
      * token is allowed.
      */
-    readonly wrappingTtl?: pulumi.Input<string>;
+    wrappingTtl?: pulumi.Input<string>;
 }
 
 /**
@@ -207,31 +207,31 @@ export interface AuthBackendRoleSecretIDArgs {
     /**
      * Unique name of the auth backend to configure.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * If set, specifies blocks of IP addresses which can
      * perform the login operation using this SecretID.
      */
-    readonly cidrLists?: pulumi.Input<pulumi.Input<string>[]>;
+    cidrLists?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * A JSON-encoded string containing metadata in
      * key-value pairs to be set on tokens issued with this SecretID.
      */
-    readonly metadata?: pulumi.Input<string>;
+    metadata?: pulumi.Input<string>;
     /**
      * The name of the role to create the SecretID for.
      */
-    readonly roleName: pulumi.Input<string>;
+    roleName: pulumi.Input<string>;
     /**
      * The SecretID to be created. If set, uses "Push"
      * mode.  Defaults to Vault auto-generating SecretIDs.
      */
-    readonly secretId?: pulumi.Input<string>;
+    secretId?: pulumi.Input<string>;
     /**
      * If set, the SecretID response will be
      * [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
      * and available for the duration specified. Only a single unwrapping of the
      * token is allowed.
      */
-    readonly wrappingTtl?: pulumi.Input<string>;
+    wrappingTtl?: pulumi.Input<string>;
 }

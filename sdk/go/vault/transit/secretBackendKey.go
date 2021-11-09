@@ -331,7 +331,7 @@ type SecretBackendKeyArrayInput interface {
 type SecretBackendKeyArray []SecretBackendKeyInput
 
 func (SecretBackendKeyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SecretBackendKey)(nil))
+	return reflect.TypeOf((*[]*SecretBackendKey)(nil)).Elem()
 }
 
 func (i SecretBackendKeyArray) ToSecretBackendKeyArrayOutput() SecretBackendKeyArrayOutput {
@@ -356,7 +356,7 @@ type SecretBackendKeyMapInput interface {
 type SecretBackendKeyMap map[string]SecretBackendKeyInput
 
 func (SecretBackendKeyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SecretBackendKey)(nil))
+	return reflect.TypeOf((*map[string]*SecretBackendKey)(nil)).Elem()
 }
 
 func (i SecretBackendKeyMap) ToSecretBackendKeyMapOutput() SecretBackendKeyMapOutput {
@@ -367,9 +367,7 @@ func (i SecretBackendKeyMap) ToSecretBackendKeyMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendKeyMapOutput)
 }
 
-type SecretBackendKeyOutput struct {
-	*pulumi.OutputState
-}
+type SecretBackendKeyOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendKeyOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretBackendKey)(nil))
@@ -388,14 +386,12 @@ func (o SecretBackendKeyOutput) ToSecretBackendKeyPtrOutput() SecretBackendKeyPt
 }
 
 func (o SecretBackendKeyOutput) ToSecretBackendKeyPtrOutputWithContext(ctx context.Context) SecretBackendKeyPtrOutput {
-	return o.ApplyT(func(v SecretBackendKey) *SecretBackendKey {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendKey) *SecretBackendKey {
 		return &v
 	}).(SecretBackendKeyPtrOutput)
 }
 
-type SecretBackendKeyPtrOutput struct {
-	*pulumi.OutputState
-}
+type SecretBackendKeyPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendKeyPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretBackendKey)(nil))
@@ -407,6 +403,16 @@ func (o SecretBackendKeyPtrOutput) ToSecretBackendKeyPtrOutput() SecretBackendKe
 
 func (o SecretBackendKeyPtrOutput) ToSecretBackendKeyPtrOutputWithContext(ctx context.Context) SecretBackendKeyPtrOutput {
 	return o
+}
+
+func (o SecretBackendKeyPtrOutput) Elem() SecretBackendKeyOutput {
+	return o.ApplyT(func(v *SecretBackendKey) SecretBackendKey {
+		if v != nil {
+			return *v
+		}
+		var ret SecretBackendKey
+		return ret
+	}).(SecretBackendKeyOutput)
 }
 
 type SecretBackendKeyArrayOutput struct{ *pulumi.OutputState }
@@ -450,6 +456,10 @@ func (o SecretBackendKeyMapOutput) MapIndex(k pulumi.StringInput) SecretBackendK
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendKeyInput)(nil)).Elem(), &SecretBackendKey{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendKeyPtrInput)(nil)).Elem(), &SecretBackendKey{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendKeyArrayInput)(nil)).Elem(), SecretBackendKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendKeyMapInput)(nil)).Elem(), SecretBackendKeyMap{})
 	pulumi.RegisterOutputType(SecretBackendKeyOutput{})
 	pulumi.RegisterOutputType(SecretBackendKeyPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendKeyArrayOutput{})

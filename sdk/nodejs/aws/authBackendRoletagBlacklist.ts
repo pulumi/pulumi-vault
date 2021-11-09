@@ -105,18 +105,18 @@ export interface AuthBackendRoletagBlacklistState {
      * The path the AWS auth backend being configured was
      * mounted at.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * If set to true, disables the periodic
      * tidying of the roletag blacklist entries. Defaults to false.
      */
-    readonly disablePeriodicTidy?: pulumi.Input<boolean>;
+    disablePeriodicTidy?: pulumi.Input<boolean>;
     /**
      * The amount of extra time that must have passed
      * beyond the roletag expiration, before it is removed from the backend storage.
      * Defaults to 259,200 seconds, or 72 hours.
      */
-    readonly safetyBuffer?: pulumi.Input<number>;
+    safetyBuffer?: pulumi.Input<number>;
 }
 
 /**
@@ -127,16 +127,16 @@ export interface AuthBackendRoletagBlacklistArgs {
      * The path the AWS auth backend being configured was
      * mounted at.
      */
-    readonly backend: pulumi.Input<string>;
+    backend: pulumi.Input<string>;
     /**
      * If set to true, disables the periodic
      * tidying of the roletag blacklist entries. Defaults to false.
      */
-    readonly disablePeriodicTidy?: pulumi.Input<boolean>;
+    disablePeriodicTidy?: pulumi.Input<boolean>;
     /**
      * The amount of extra time that must have passed
      * beyond the roletag expiration, before it is removed from the backend storage.
      * Defaults to 259,200 seconds, or 72 hours.
      */
-    readonly safetyBuffer?: pulumi.Input<number>;
+    safetyBuffer?: pulumi.Input<number>;
 }

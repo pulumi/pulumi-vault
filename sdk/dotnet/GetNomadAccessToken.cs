@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Vault
 {
@@ -13,6 +14,9 @@ namespace Pulumi.Vault
     {
         public static Task<GetNomadAccessTokenResult> InvokeAsync(GetNomadAccessTokenArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetNomadAccessTokenResult>("vault:index/getNomadAccessToken:getNomadAccessToken", args ?? new GetNomadAccessTokenArgs(), options.WithVersion());
+
+        public static Output<GetNomadAccessTokenResult> Invoke(GetNomadAccessTokenInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetNomadAccessTokenResult>("vault:index/getNomadAccessToken:getNomadAccessToken", args ?? new GetNomadAccessTokenInvokeArgs(), options.WithVersion());
     }
 
 
@@ -33,6 +37,27 @@ namespace Pulumi.Vault
         public string Role { get; set; } = null!;
 
         public GetNomadAccessTokenArgs()
+        {
+        }
+    }
+
+    public sealed class GetNomadAccessTokenInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The path to the Nomad secret backend to
+        /// read credentials from, with no leading or trailing `/`s.
+        /// </summary>
+        [Input("backend", required: true)]
+        public Input<string> Backend { get; set; } = null!;
+
+        /// <summary>
+        /// The name of the Nomad secret backend role to generate
+        /// a token for, with no leading or trailing `/`s.
+        /// </summary>
+        [Input("role", required: true)]
+        public Input<string> Role { get; set; } = null!;
+
+        public GetNomadAccessTokenInvokeArgs()
         {
         }
     }

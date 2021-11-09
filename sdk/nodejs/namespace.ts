@@ -94,11 +94,11 @@ export interface NamespaceState {
     /**
      * ID of the namepsace.
      */
-    readonly namespaceId?: pulumi.Input<string>;
+    namespaceId?: pulumi.Input<string>;
     /**
      * The path of the namespace. Must not have a trailing `/`
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
 }
 
 /**
@@ -108,5 +108,5 @@ export interface NamespaceArgs {
     /**
      * The path of the namespace. Must not have a trailing `/`
      */
-    readonly path: pulumi.Input<string>;
+    path: pulumi.Input<string>;
 }

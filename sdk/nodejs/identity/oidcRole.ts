@@ -111,27 +111,27 @@ export interface OidcRoleState {
      * The value that will be included in the `aud` field of all the OIDC identity
      * tokens issued by this role
      */
-    readonly clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * A configured named key, the key must already exist
      * before tokens can be issued.
      */
-    readonly key?: pulumi.Input<string>;
+    key?: pulumi.Input<string>;
     /**
      * Name of the OIDC Role to create.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The template string to use for generating tokens. This may be in
      * string-ified JSON or base64 format. See the
      * [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
      * for the template format.
      */
-    readonly template?: pulumi.Input<string>;
+    template?: pulumi.Input<string>;
     /**
      * TTL of the tokens generated against the role in number of seconds.
      */
-    readonly ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number>;
 }
 
 /**
@@ -142,25 +142,25 @@ export interface OidcRoleArgs {
      * The value that will be included in the `aud` field of all the OIDC identity
      * tokens issued by this role
      */
-    readonly clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * A configured named key, the key must already exist
      * before tokens can be issued.
      */
-    readonly key: pulumi.Input<string>;
+    key: pulumi.Input<string>;
     /**
      * Name of the OIDC Role to create.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The template string to use for generating tokens. This may be in
      * string-ified JSON or base64 format. See the
      * [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
      * for the template format.
      */
-    readonly template?: pulumi.Input<string>;
+    template?: pulumi.Input<string>;
     /**
      * TTL of the tokens generated against the role in number of seconds.
      */
-    readonly ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number>;
 }

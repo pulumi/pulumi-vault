@@ -4,6 +4,9 @@
 package aws
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -64,4 +67,124 @@ type GetAccessCredentialsResult struct {
 	SecurityToken string  `pulumi:"securityToken"`
 	Ttl           *string `pulumi:"ttl"`
 	Type          *string `pulumi:"type"`
+}
+
+func GetAccessCredentialsOutput(ctx *pulumi.Context, args GetAccessCredentialsOutputArgs, opts ...pulumi.InvokeOption) GetAccessCredentialsResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetAccessCredentialsResult, error) {
+			args := v.(GetAccessCredentialsArgs)
+			r, err := GetAccessCredentials(ctx, &args, opts...)
+			return *r, err
+		}).(GetAccessCredentialsResultOutput)
+}
+
+// A collection of arguments for invoking getAccessCredentials.
+type GetAccessCredentialsOutputArgs struct {
+	// The path to the AWS secret backend to
+	// read credentials from, with no leading or trailing `/`s.
+	Backend pulumi.StringInput    `pulumi:"backend"`
+	Region  pulumi.StringPtrInput `pulumi:"region"`
+	// The name of the AWS secret backend role to read
+	// credentials from, with no leading or trailing `/`s.
+	Role pulumi.StringInput `pulumi:"role"`
+	// The specific AWS ARN to use
+	// from the configured role. If the role does not have multiple ARNs, this does
+	// not need to be specified.
+	RoleArn pulumi.StringPtrInput `pulumi:"roleArn"`
+	// Specifies the TTL for the use of the STS token. This
+	// is specified as a string with a duration suffix. Valid only when
+	// `credentialType` is `assumedRole` or `federationToken`
+	Ttl pulumi.StringPtrInput `pulumi:"ttl"`
+	// The type of credentials to read. Defaults
+	// to `"creds"`, which just returns an AWS Access Key ID and Secret
+	// Key. Can also be set to `"sts"`, which will return a security token
+	// in addition to the keys.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (GetAccessCredentialsOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccessCredentialsArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getAccessCredentials.
+type GetAccessCredentialsResultOutput struct{ *pulumi.OutputState }
+
+func (GetAccessCredentialsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccessCredentialsResult)(nil)).Elem()
+}
+
+func (o GetAccessCredentialsResultOutput) ToGetAccessCredentialsResultOutput() GetAccessCredentialsResultOutput {
+	return o
+}
+
+func (o GetAccessCredentialsResultOutput) ToGetAccessCredentialsResultOutputWithContext(ctx context.Context) GetAccessCredentialsResultOutput {
+	return o
+}
+
+// The AWS Access Key ID returned by Vault.
+func (o GetAccessCredentialsResultOutput) AccessKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.AccessKey }).(pulumi.StringOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.Backend }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetAccessCredentialsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The duration of the secret lease, in seconds relative
+// to the time the data was requested. Once this time has passed any plan
+// generated with this data may fail to apply.
+func (o GetAccessCredentialsResultOutput) LeaseDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) int { return v.LeaseDuration }).(pulumi.IntOutput)
+}
+
+// The lease identifier assigned by Vault.
+func (o GetAccessCredentialsResultOutput) LeaseId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.LeaseId }).(pulumi.StringOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) LeaseRenewable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) bool { return v.LeaseRenewable }).(pulumi.BoolOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) LeaseStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.LeaseStartTime }).(pulumi.StringOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.Role }).(pulumi.StringOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) RoleArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) *string { return v.RoleArn }).(pulumi.StringPtrOutput)
+}
+
+// The AWS Secret Key returned by Vault.
+func (o GetAccessCredentialsResultOutput) SecretKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.SecretKey }).(pulumi.StringOutput)
+}
+
+// The STS token returned by Vault, if any.
+func (o GetAccessCredentialsResultOutput) SecurityToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.SecurityToken }).(pulumi.StringOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) Ttl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) *string { return v.Ttl }).(pulumi.StringPtrOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetAccessCredentialsResultOutput{})
 }

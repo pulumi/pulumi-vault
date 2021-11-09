@@ -293,7 +293,7 @@ type NomadSecretBackendArrayInput interface {
 type NomadSecretBackendArray []NomadSecretBackendInput
 
 func (NomadSecretBackendArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*NomadSecretBackend)(nil))
+	return reflect.TypeOf((*[]*NomadSecretBackend)(nil)).Elem()
 }
 
 func (i NomadSecretBackendArray) ToNomadSecretBackendArrayOutput() NomadSecretBackendArrayOutput {
@@ -318,7 +318,7 @@ type NomadSecretBackendMapInput interface {
 type NomadSecretBackendMap map[string]NomadSecretBackendInput
 
 func (NomadSecretBackendMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*NomadSecretBackend)(nil))
+	return reflect.TypeOf((*map[string]*NomadSecretBackend)(nil)).Elem()
 }
 
 func (i NomadSecretBackendMap) ToNomadSecretBackendMapOutput() NomadSecretBackendMapOutput {
@@ -329,9 +329,7 @@ func (i NomadSecretBackendMap) ToNomadSecretBackendMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(NomadSecretBackendMapOutput)
 }
 
-type NomadSecretBackendOutput struct {
-	*pulumi.OutputState
-}
+type NomadSecretBackendOutput struct{ *pulumi.OutputState }
 
 func (NomadSecretBackendOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*NomadSecretBackend)(nil))
@@ -350,14 +348,12 @@ func (o NomadSecretBackendOutput) ToNomadSecretBackendPtrOutput() NomadSecretBac
 }
 
 func (o NomadSecretBackendOutput) ToNomadSecretBackendPtrOutputWithContext(ctx context.Context) NomadSecretBackendPtrOutput {
-	return o.ApplyT(func(v NomadSecretBackend) *NomadSecretBackend {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NomadSecretBackend) *NomadSecretBackend {
 		return &v
 	}).(NomadSecretBackendPtrOutput)
 }
 
-type NomadSecretBackendPtrOutput struct {
-	*pulumi.OutputState
-}
+type NomadSecretBackendPtrOutput struct{ *pulumi.OutputState }
 
 func (NomadSecretBackendPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**NomadSecretBackend)(nil))
@@ -369,6 +365,16 @@ func (o NomadSecretBackendPtrOutput) ToNomadSecretBackendPtrOutput() NomadSecret
 
 func (o NomadSecretBackendPtrOutput) ToNomadSecretBackendPtrOutputWithContext(ctx context.Context) NomadSecretBackendPtrOutput {
 	return o
+}
+
+func (o NomadSecretBackendPtrOutput) Elem() NomadSecretBackendOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) NomadSecretBackend {
+		if v != nil {
+			return *v
+		}
+		var ret NomadSecretBackend
+		return ret
+	}).(NomadSecretBackendOutput)
 }
 
 type NomadSecretBackendArrayOutput struct{ *pulumi.OutputState }
@@ -412,6 +418,10 @@ func (o NomadSecretBackendMapOutput) MapIndex(k pulumi.StringInput) NomadSecretB
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*NomadSecretBackendInput)(nil)).Elem(), &NomadSecretBackend{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NomadSecretBackendPtrInput)(nil)).Elem(), &NomadSecretBackend{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NomadSecretBackendArrayInput)(nil)).Elem(), NomadSecretBackendArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NomadSecretBackendMapInput)(nil)).Elem(), NomadSecretBackendMap{})
 	pulumi.RegisterOutputType(NomadSecretBackendOutput{})
 	pulumi.RegisterOutputType(NomadSecretBackendPtrOutput{})
 	pulumi.RegisterOutputType(NomadSecretBackendArrayOutput{})

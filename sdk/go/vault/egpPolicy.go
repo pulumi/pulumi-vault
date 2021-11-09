@@ -208,7 +208,7 @@ type EgpPolicyArrayInput interface {
 type EgpPolicyArray []EgpPolicyInput
 
 func (EgpPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*EgpPolicy)(nil))
+	return reflect.TypeOf((*[]*EgpPolicy)(nil)).Elem()
 }
 
 func (i EgpPolicyArray) ToEgpPolicyArrayOutput() EgpPolicyArrayOutput {
@@ -233,7 +233,7 @@ type EgpPolicyMapInput interface {
 type EgpPolicyMap map[string]EgpPolicyInput
 
 func (EgpPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*EgpPolicy)(nil))
+	return reflect.TypeOf((*map[string]*EgpPolicy)(nil)).Elem()
 }
 
 func (i EgpPolicyMap) ToEgpPolicyMapOutput() EgpPolicyMapOutput {
@@ -244,9 +244,7 @@ func (i EgpPolicyMap) ToEgpPolicyMapOutputWithContext(ctx context.Context) EgpPo
 	return pulumi.ToOutputWithContext(ctx, i).(EgpPolicyMapOutput)
 }
 
-type EgpPolicyOutput struct {
-	*pulumi.OutputState
-}
+type EgpPolicyOutput struct{ *pulumi.OutputState }
 
 func (EgpPolicyOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*EgpPolicy)(nil))
@@ -265,14 +263,12 @@ func (o EgpPolicyOutput) ToEgpPolicyPtrOutput() EgpPolicyPtrOutput {
 }
 
 func (o EgpPolicyOutput) ToEgpPolicyPtrOutputWithContext(ctx context.Context) EgpPolicyPtrOutput {
-	return o.ApplyT(func(v EgpPolicy) *EgpPolicy {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EgpPolicy) *EgpPolicy {
 		return &v
 	}).(EgpPolicyPtrOutput)
 }
 
-type EgpPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
+type EgpPolicyPtrOutput struct{ *pulumi.OutputState }
 
 func (EgpPolicyPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**EgpPolicy)(nil))
@@ -284,6 +280,16 @@ func (o EgpPolicyPtrOutput) ToEgpPolicyPtrOutput() EgpPolicyPtrOutput {
 
 func (o EgpPolicyPtrOutput) ToEgpPolicyPtrOutputWithContext(ctx context.Context) EgpPolicyPtrOutput {
 	return o
+}
+
+func (o EgpPolicyPtrOutput) Elem() EgpPolicyOutput {
+	return o.ApplyT(func(v *EgpPolicy) EgpPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret EgpPolicy
+		return ret
+	}).(EgpPolicyOutput)
 }
 
 type EgpPolicyArrayOutput struct{ *pulumi.OutputState }
@@ -327,6 +333,10 @@ func (o EgpPolicyMapOutput) MapIndex(k pulumi.StringInput) EgpPolicyOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*EgpPolicyInput)(nil)).Elem(), &EgpPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EgpPolicyPtrInput)(nil)).Elem(), &EgpPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EgpPolicyArrayInput)(nil)).Elem(), EgpPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EgpPolicyMapInput)(nil)).Elem(), EgpPolicyMap{})
 	pulumi.RegisterOutputType(EgpPolicyOutput{})
 	pulumi.RegisterOutputType(EgpPolicyPtrOutput{})
 	pulumi.RegisterOutputType(EgpPolicyArrayOutput{})

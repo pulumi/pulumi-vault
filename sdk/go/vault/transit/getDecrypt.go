@@ -4,6 +4,9 @@
 package transit
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -64,4 +67,74 @@ type GetDecryptResult struct {
 	Key string `pulumi:"key"`
 	// Decrypted plaintext returned from Vault
 	Plaintext string `pulumi:"plaintext"`
+}
+
+func GetDecryptOutput(ctx *pulumi.Context, args GetDecryptOutputArgs, opts ...pulumi.InvokeOption) GetDecryptResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetDecryptResult, error) {
+			args := v.(GetDecryptArgs)
+			r, err := GetDecrypt(ctx, &args, opts...)
+			return *r, err
+		}).(GetDecryptResultOutput)
+}
+
+// A collection of arguments for invoking getDecrypt.
+type GetDecryptOutputArgs struct {
+	// The path the transit secret backend is mounted at, with no leading or trailing `/`.
+	Backend pulumi.StringInput `pulumi:"backend"`
+	// Ciphertext to be decoded.
+	Ciphertext pulumi.StringInput `pulumi:"ciphertext"`
+	// Context for key derivation. This is required if key derivation is enabled for this key.
+	Context pulumi.StringPtrInput `pulumi:"context"`
+	// Specifies the name of the transit key to decrypt against.
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (GetDecryptOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDecryptArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getDecrypt.
+type GetDecryptResultOutput struct{ *pulumi.OutputState }
+
+func (GetDecryptResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDecryptResult)(nil)).Elem()
+}
+
+func (o GetDecryptResultOutput) ToGetDecryptResultOutput() GetDecryptResultOutput {
+	return o
+}
+
+func (o GetDecryptResultOutput) ToGetDecryptResultOutputWithContext(ctx context.Context) GetDecryptResultOutput {
+	return o
+}
+
+func (o GetDecryptResultOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDecryptResult) string { return v.Backend }).(pulumi.StringOutput)
+}
+
+func (o GetDecryptResultOutput) Ciphertext() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDecryptResult) string { return v.Ciphertext }).(pulumi.StringOutput)
+}
+
+func (o GetDecryptResultOutput) Context() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDecryptResult) *string { return v.Context }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetDecryptResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDecryptResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetDecryptResultOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDecryptResult) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Decrypted plaintext returned from Vault
+func (o GetDecryptResultOutput) Plaintext() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDecryptResult) string { return v.Plaintext }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetDecryptResultOutput{})
 }

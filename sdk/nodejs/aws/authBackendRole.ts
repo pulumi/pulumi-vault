@@ -380,34 +380,34 @@ export interface AuthBackendRoleState {
      * If set to `true`, allows migration of
      * the underlying instance where the client resides.
      */
-    readonly allowInstanceMigration?: pulumi.Input<boolean>;
+    allowInstanceMigration?: pulumi.Input<boolean>;
     /**
      * The auth type permitted for this role. Valid choices
      * are `ec2` and `iam`. Defaults to `iam`.
      */
-    readonly authType?: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
     /**
      * Unique name of the auth backend to configure.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * If set, defines a constraint on the EC2
      * instances that can perform the login operation that they should be using the
      * account ID specified by this field. `authType` must be set to `ec2` or
      * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      */
-    readonly boundAccountIds?: pulumi.Input<pulumi.Input<string>[]>;
+    boundAccountIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, defines a constraint on the EC2 instances
      * that can perform the login operation that they should be using the AMI ID
      * specified by this field. `authType` must be set to `ec2` or
      * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      */
-    readonly boundAmiIds?: pulumi.Input<pulumi.Input<string>[]>;
+    boundAmiIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Only EC2 instances that match this instance ID will be permitted to log in.
      */
-    readonly boundEc2InstanceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    boundEc2InstanceIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, defines a constraint on
      * the EC2 instances that can perform the login operation that they must be
@@ -416,20 +416,20 @@ export interface AuthBackendRoleState {
      * were a glob ending in `*`. `authType` must be set to `ec2` or
      * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      */
-    readonly boundIamInstanceProfileArns?: pulumi.Input<pulumi.Input<string>[]>;
+    boundIamInstanceProfileArns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, defines the IAM principal that
      * must be authenticated when `authType` is set to `iam`. Wildcards are
      * supported at the end of the ARN.
      */
-    readonly boundIamPrincipalArns?: pulumi.Input<pulumi.Input<string>[]>;
+    boundIamPrincipalArns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, defines a constraint on the EC2
      * instances that can perform the login operation that they must match the IAM
      * role ARN specified by this field. `authType` must be set to `ec2` or
      * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      */
-    readonly boundIamRoleArns?: pulumi.Input<pulumi.Input<string>[]>;
+    boundIamRoleArns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, defines a constraint on the EC2 instances
      * that can perform the login operation that the region in their identity
@@ -437,7 +437,7 @@ export interface AuthBackendRoleState {
      * to `ec2` or `inferredEntityType` must be set to `ec2Instance` to use this
      * constraint.
      */
-    readonly boundRegions?: pulumi.Input<pulumi.Input<string>[]>;
+    boundRegions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, defines a constraint on the EC2
      * instances that can perform the login operation that they be associated with
@@ -445,7 +445,7 @@ export interface AuthBackendRoleState {
      * must be set to `ec2` or `inferredEntityType` must be set to `ec2Instance`
      * to use this constraint.
      */
-    readonly boundSubnetIds?: pulumi.Input<pulumi.Input<string>[]>;
+    boundSubnetIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, defines a constraint on the EC2 instances
      * that can perform the login operation that they be associated with the VPC ID
@@ -453,34 +453,34 @@ export interface AuthBackendRoleState {
      * `ec2` or `inferredEntityType` must be set to `ec2Instance` to use this
      * constraint.
      */
-    readonly boundVpcIds?: pulumi.Input<pulumi.Input<string>[]>;
+    boundVpcIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * IF set to `true`, only allows a
      * single token to be granted per instance ID. This can only be set when
      * `authType` is set to `ec2`.
      */
-    readonly disallowReauthentication?: pulumi.Input<boolean>;
+    disallowReauthentication?: pulumi.Input<boolean>;
     /**
      * When `inferredEntityType` is set, this
      * is the region to search for the inferred entities. Required if
      * `inferredEntityType` is set. This only applies when `authType` is set to
      * `iam`.
      */
-    readonly inferredAwsRegion?: pulumi.Input<string>;
+    inferredAwsRegion?: pulumi.Input<string>;
     /**
      * If set, instructs Vault to turn on
      * inferencing. The only valid value is `ec2Instance`, which instructs Vault to
      * infer that the role comes from an EC2 instance in an IAM instance profile.
      * This only applies when `authType` is set to `iam`.
      */
-    readonly inferredEntityType?: pulumi.Input<string>;
+    inferredEntityType?: pulumi.Input<string>;
     /**
      * The maximum allowed lifetime of tokens
      * issued using this role, provided as a number of seconds.
      *
      * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
      */
-    readonly maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number>;
     /**
      * If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
@@ -489,14 +489,14 @@ export interface AuthBackendRoleState {
      *
      * @deprecated use `token_period` instead if you are running Vault >= 1.2
      */
-    readonly period?: pulumi.Input<number>;
+    period?: pulumi.Input<number>;
     /**
      * An array of strings
      * specifying the policies to be set on tokens issued using this role.
      *
      * @deprecated use `token_policies` instead if you are running Vault >= 1.2
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Only valid when
      * `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
@@ -510,64 +510,64 @@ export interface AuthBackendRoleState {
      * principals of the same name. Defaults to `true`.
      * Once set to `true`, this cannot be changed to `false` without recreating the role.
      */
-    readonly resolveAwsUniqueIds?: pulumi.Input<boolean>;
+    resolveAwsUniqueIds?: pulumi.Input<boolean>;
     /**
      * The name of the role.
      */
-    readonly role?: pulumi.Input<string>;
+    role?: pulumi.Input<string>;
     /**
      * If set, enable role tags for this role. The value set
      * for this field should be the key of the tag on the EC2 instance. `authType`
      * must be set to `ec2` or `inferredEntityType` must be set to `ec2Instance`
      * to use this constraint.
      */
-    readonly roleTag?: pulumi.Input<string>;
+    roleTag?: pulumi.Input<string>;
     /**
      * List of CIDR blocks; if set, specifies blocks of IP
      * addresses which can authenticate successfully, and ties the resulting token to these blocks
      * as well.
      */
-    readonly tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, will encode an
      * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
      * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
      * `tokenMaxTtl` would otherwise allow a renewal.
      */
-    readonly tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number>;
     /**
      * The maximum lifetime for generated tokens in number of seconds.
      * Its current value will be referenced at renewal time.
      */
-    readonly tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number>;
     /**
      * If set, the default policy will not be set on
      * generated tokens; otherwise it will be added to the policies set in token_policies.
      */
-    readonly tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
     /**
      * The
      * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
      * if any, in number of seconds to set on the token.
      */
-    readonly tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number>;
     /**
      * If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
      * value of this field. Specified in seconds.
      */
-    readonly tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number>;
     /**
      * List of policies to encode onto generated tokens. Depending
      * on the auth method, this list may be supplemented by user/group/other values.
      */
-    readonly tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The incremental lifetime for generated tokens in number of seconds.
      * Its current value will be referenced at renewal time.
      */
-    readonly tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number>;
     /**
      * The type of token that should be generated. Can be `service`,
      * `batch`, or `default` to use the mount's tuned default (which unless changed will be
@@ -575,14 +575,14 @@ export interface AuthBackendRoleState {
      * `default-service` and `default-batch` which specify the type to return unless the client
      * requests a different type at generation time.
      */
-    readonly tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string>;
     /**
      * The TTL period of tokens issued
      * using this role, provided as a number of seconds.
      *
      * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
      */
-    readonly ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number>;
 }
 
 /**
@@ -593,34 +593,34 @@ export interface AuthBackendRoleArgs {
      * If set to `true`, allows migration of
      * the underlying instance where the client resides.
      */
-    readonly allowInstanceMigration?: pulumi.Input<boolean>;
+    allowInstanceMigration?: pulumi.Input<boolean>;
     /**
      * The auth type permitted for this role. Valid choices
      * are `ec2` and `iam`. Defaults to `iam`.
      */
-    readonly authType?: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
     /**
      * Unique name of the auth backend to configure.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * If set, defines a constraint on the EC2
      * instances that can perform the login operation that they should be using the
      * account ID specified by this field. `authType` must be set to `ec2` or
      * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      */
-    readonly boundAccountIds?: pulumi.Input<pulumi.Input<string>[]>;
+    boundAccountIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, defines a constraint on the EC2 instances
      * that can perform the login operation that they should be using the AMI ID
      * specified by this field. `authType` must be set to `ec2` or
      * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      */
-    readonly boundAmiIds?: pulumi.Input<pulumi.Input<string>[]>;
+    boundAmiIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Only EC2 instances that match this instance ID will be permitted to log in.
      */
-    readonly boundEc2InstanceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    boundEc2InstanceIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, defines a constraint on
      * the EC2 instances that can perform the login operation that they must be
@@ -629,20 +629,20 @@ export interface AuthBackendRoleArgs {
      * were a glob ending in `*`. `authType` must be set to `ec2` or
      * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      */
-    readonly boundIamInstanceProfileArns?: pulumi.Input<pulumi.Input<string>[]>;
+    boundIamInstanceProfileArns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, defines the IAM principal that
      * must be authenticated when `authType` is set to `iam`. Wildcards are
      * supported at the end of the ARN.
      */
-    readonly boundIamPrincipalArns?: pulumi.Input<pulumi.Input<string>[]>;
+    boundIamPrincipalArns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, defines a constraint on the EC2
      * instances that can perform the login operation that they must match the IAM
      * role ARN specified by this field. `authType` must be set to `ec2` or
      * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      */
-    readonly boundIamRoleArns?: pulumi.Input<pulumi.Input<string>[]>;
+    boundIamRoleArns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, defines a constraint on the EC2 instances
      * that can perform the login operation that the region in their identity
@@ -650,7 +650,7 @@ export interface AuthBackendRoleArgs {
      * to `ec2` or `inferredEntityType` must be set to `ec2Instance` to use this
      * constraint.
      */
-    readonly boundRegions?: pulumi.Input<pulumi.Input<string>[]>;
+    boundRegions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, defines a constraint on the EC2
      * instances that can perform the login operation that they be associated with
@@ -658,7 +658,7 @@ export interface AuthBackendRoleArgs {
      * must be set to `ec2` or `inferredEntityType` must be set to `ec2Instance`
      * to use this constraint.
      */
-    readonly boundSubnetIds?: pulumi.Input<pulumi.Input<string>[]>;
+    boundSubnetIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, defines a constraint on the EC2 instances
      * that can perform the login operation that they be associated with the VPC ID
@@ -666,34 +666,34 @@ export interface AuthBackendRoleArgs {
      * `ec2` or `inferredEntityType` must be set to `ec2Instance` to use this
      * constraint.
      */
-    readonly boundVpcIds?: pulumi.Input<pulumi.Input<string>[]>;
+    boundVpcIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * IF set to `true`, only allows a
      * single token to be granted per instance ID. This can only be set when
      * `authType` is set to `ec2`.
      */
-    readonly disallowReauthentication?: pulumi.Input<boolean>;
+    disallowReauthentication?: pulumi.Input<boolean>;
     /**
      * When `inferredEntityType` is set, this
      * is the region to search for the inferred entities. Required if
      * `inferredEntityType` is set. This only applies when `authType` is set to
      * `iam`.
      */
-    readonly inferredAwsRegion?: pulumi.Input<string>;
+    inferredAwsRegion?: pulumi.Input<string>;
     /**
      * If set, instructs Vault to turn on
      * inferencing. The only valid value is `ec2Instance`, which instructs Vault to
      * infer that the role comes from an EC2 instance in an IAM instance profile.
      * This only applies when `authType` is set to `iam`.
      */
-    readonly inferredEntityType?: pulumi.Input<string>;
+    inferredEntityType?: pulumi.Input<string>;
     /**
      * The maximum allowed lifetime of tokens
      * issued using this role, provided as a number of seconds.
      *
      * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
      */
-    readonly maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number>;
     /**
      * If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
@@ -702,14 +702,14 @@ export interface AuthBackendRoleArgs {
      *
      * @deprecated use `token_period` instead if you are running Vault >= 1.2
      */
-    readonly period?: pulumi.Input<number>;
+    period?: pulumi.Input<number>;
     /**
      * An array of strings
      * specifying the policies to be set on tokens issued using this role.
      *
      * @deprecated use `token_policies` instead if you are running Vault >= 1.2
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Only valid when
      * `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
@@ -723,64 +723,64 @@ export interface AuthBackendRoleArgs {
      * principals of the same name. Defaults to `true`.
      * Once set to `true`, this cannot be changed to `false` without recreating the role.
      */
-    readonly resolveAwsUniqueIds?: pulumi.Input<boolean>;
+    resolveAwsUniqueIds?: pulumi.Input<boolean>;
     /**
      * The name of the role.
      */
-    readonly role: pulumi.Input<string>;
+    role: pulumi.Input<string>;
     /**
      * If set, enable role tags for this role. The value set
      * for this field should be the key of the tag on the EC2 instance. `authType`
      * must be set to `ec2` or `inferredEntityType` must be set to `ec2Instance`
      * to use this constraint.
      */
-    readonly roleTag?: pulumi.Input<string>;
+    roleTag?: pulumi.Input<string>;
     /**
      * List of CIDR blocks; if set, specifies blocks of IP
      * addresses which can authenticate successfully, and ties the resulting token to these blocks
      * as well.
      */
-    readonly tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, will encode an
      * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
      * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
      * `tokenMaxTtl` would otherwise allow a renewal.
      */
-    readonly tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number>;
     /**
      * The maximum lifetime for generated tokens in number of seconds.
      * Its current value will be referenced at renewal time.
      */
-    readonly tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number>;
     /**
      * If set, the default policy will not be set on
      * generated tokens; otherwise it will be added to the policies set in token_policies.
      */
-    readonly tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
     /**
      * The
      * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
      * if any, in number of seconds to set on the token.
      */
-    readonly tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number>;
     /**
      * If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
      * value of this field. Specified in seconds.
      */
-    readonly tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number>;
     /**
      * List of policies to encode onto generated tokens. Depending
      * on the auth method, this list may be supplemented by user/group/other values.
      */
-    readonly tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The incremental lifetime for generated tokens in number of seconds.
      * Its current value will be referenced at renewal time.
      */
-    readonly tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number>;
     /**
      * The type of token that should be generated. Can be `service`,
      * `batch`, or `default` to use the mount's tuned default (which unless changed will be
@@ -788,12 +788,12 @@ export interface AuthBackendRoleArgs {
      * `default-service` and `default-batch` which specify the type to return unless the client
      * requests a different type at generation time.
      */
-    readonly tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string>;
     /**
      * The TTL period of tokens issued
      * using this role, provided as a number of seconds.
      *
      * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
      */
-    readonly ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number>;
 }

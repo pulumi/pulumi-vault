@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 export function getNomadAccessToken(args: GetNomadAccessTokenArgs, opts?: pulumi.InvokeOptions): Promise<GetNomadAccessTokenResult> {
@@ -27,12 +26,12 @@ export interface GetNomadAccessTokenArgs {
      * The path to the Nomad secret backend to
      * read credentials from, with no leading or trailing `/`s.
      */
-    readonly backend: string;
+    backend: string;
     /**
      * The name of the Nomad secret backend role to generate
      * a token for, with no leading or trailing `/`s.
      */
-    readonly role: string;
+    role: string;
 }
 
 /**
@@ -54,4 +53,24 @@ export interface GetNomadAccessTokenResult {
      * The token to be used when making requests to Nomad and should be kept private.
      */
     readonly secretId: string;
+}
+
+export function getNomadAccessTokenOutput(args: GetNomadAccessTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNomadAccessTokenResult> {
+    return pulumi.output(args).apply(a => getNomadAccessToken(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getNomadAccessToken.
+ */
+export interface GetNomadAccessTokenOutputArgs {
+    /**
+     * The path to the Nomad secret backend to
+     * read credentials from, with no leading or trailing `/`s.
+     */
+    backend: pulumi.Input<string>;
+    /**
+     * The name of the Nomad secret backend role to generate
+     * a token for, with no leading or trailing `/`s.
+     */
+    role: pulumi.Input<string>;
 }

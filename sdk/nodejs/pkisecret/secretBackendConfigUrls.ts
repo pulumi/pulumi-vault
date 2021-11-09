@@ -13,12 +13,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const pki = new vault.pkiSecret.SecretBackend("pki", {
+ * const pki = new vault.pkisecret.SecretBackend("pki", {
  *     path: "pki",
  *     defaultLeaseTtlSeconds: 3600,
  *     maxLeaseTtlSeconds: 86400,
  * });
- * const configUrls = new vault.pkiSecret.SecretBackendConfigUrls("configUrls", {
+ * const configUrls = new vault.pkisecret.SecretBackendConfigUrls("configUrls", {
  *     backend: pki.path,
  *     issuingCertificates: ["http://127.0.0.1:8200/v1/pki/ca"],
  * });
@@ -110,19 +110,19 @@ export interface SecretBackendConfigUrlsState {
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * Specifies the URL values for the CRL Distribution Points field.
      */
-    readonly crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[]>;
+    crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the URL values for the Issuing Certificate field.
      */
-    readonly issuingCertificates?: pulumi.Input<pulumi.Input<string>[]>;
+    issuingCertificates?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the URL values for the OCSP Servers field.
      */
-    readonly ocspServers?: pulumi.Input<pulumi.Input<string>[]>;
+    ocspServers?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -132,17 +132,17 @@ export interface SecretBackendConfigUrlsArgs {
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
-    readonly backend: pulumi.Input<string>;
+    backend: pulumi.Input<string>;
     /**
      * Specifies the URL values for the CRL Distribution Points field.
      */
-    readonly crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[]>;
+    crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the URL values for the Issuing Certificate field.
      */
-    readonly issuingCertificates?: pulumi.Input<pulumi.Input<string>[]>;
+    issuingCertificates?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the URL values for the OCSP Servers field.
      */
-    readonly ocspServers?: pulumi.Input<pulumi.Input<string>[]>;
+    ocspServers?: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -160,13 +160,13 @@ export interface SecretBackendRoleState {
      * The path the AWS secret backend is mounted at,
      * with no leading or trailing `/`s.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * Specifies the type of credential to be used when
      * retrieving credentials from the role. Must be one of `iamUser`, `assumedRole`, or
      * `federationToken`.
      */
-    readonly credentialType?: pulumi.Input<string>;
+    credentialType?: pulumi.Input<string>;
     /**
      * The default TTL in seconds for STS credentials.
      * When a TTL is not specified when STS credentials are requested,
@@ -174,7 +174,7 @@ export interface SecretBackendRoleState {
      * then this default TTL will be used. Valid only when `credentialType` is one of
      * `assumedRole` or `federationToken`.
      */
-    readonly defaultStsTtl?: pulumi.Input<number>;
+    defaultStsTtl?: pulumi.Input<number>;
     /**
      * A list of IAM group names. IAM users generated
      * against this vault role will be added to these IAM Groups. For a credential
@@ -183,18 +183,18 @@ export interface SecretBackendRoleState {
      * policies from each group in `iamGroups` combined with the `policyDocument`
      * and `policyArns` parameters.
      */
-    readonly iamGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    iamGroups?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The max allowed TTL in seconds for STS credentials
      * (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
      * one of `assumedRole` or `federationToken`.
      */
-    readonly maxStsTtl?: pulumi.Input<number>;
+    maxStsTtl?: pulumi.Input<number>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Specifies a list of AWS managed policy ARNs. The
      * behavior depends on the credential type. With `iamUser`, the policies will be
@@ -204,7 +204,7 @@ export interface SecretBackendRoleState {
      * `federationToken`, at least one of `policyDocument` or `policyArns` must
      * be specified.
      */
-    readonly policyArns?: pulumi.Input<pulumi.Input<string>[]>;
+    policyArns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The IAM policy document for the role. The
      * behavior depends on the credential type. With `iamUser`, the policy document
@@ -212,13 +212,13 @@ export interface SecretBackendRoleState {
      * user has. With `assumedRole` and `federationToken`, the policy document will
      * act as a filter on what the credentials can do, similar to `policyArns`.
      */
-    readonly policyDocument?: pulumi.Input<string>;
+    policyDocument?: pulumi.Input<string>;
     /**
      * Specifies the ARNs of the AWS roles this Vault role
      * is allowed to assume. Required when `credentialType` is `assumedRole` and
      * prohibited otherwise.
      */
-    readonly roleArns?: pulumi.Input<pulumi.Input<string>[]>;
+    roleArns?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -229,13 +229,13 @@ export interface SecretBackendRoleArgs {
      * The path the AWS secret backend is mounted at,
      * with no leading or trailing `/`s.
      */
-    readonly backend: pulumi.Input<string>;
+    backend: pulumi.Input<string>;
     /**
      * Specifies the type of credential to be used when
      * retrieving credentials from the role. Must be one of `iamUser`, `assumedRole`, or
      * `federationToken`.
      */
-    readonly credentialType: pulumi.Input<string>;
+    credentialType: pulumi.Input<string>;
     /**
      * The default TTL in seconds for STS credentials.
      * When a TTL is not specified when STS credentials are requested,
@@ -243,7 +243,7 @@ export interface SecretBackendRoleArgs {
      * then this default TTL will be used. Valid only when `credentialType` is one of
      * `assumedRole` or `federationToken`.
      */
-    readonly defaultStsTtl?: pulumi.Input<number>;
+    defaultStsTtl?: pulumi.Input<number>;
     /**
      * A list of IAM group names. IAM users generated
      * against this vault role will be added to these IAM Groups. For a credential
@@ -252,18 +252,18 @@ export interface SecretBackendRoleArgs {
      * policies from each group in `iamGroups` combined with the `policyDocument`
      * and `policyArns` parameters.
      */
-    readonly iamGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    iamGroups?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The max allowed TTL in seconds for STS credentials
      * (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
      * one of `assumedRole` or `federationToken`.
      */
-    readonly maxStsTtl?: pulumi.Input<number>;
+    maxStsTtl?: pulumi.Input<number>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Specifies a list of AWS managed policy ARNs. The
      * behavior depends on the credential type. With `iamUser`, the policies will be
@@ -273,7 +273,7 @@ export interface SecretBackendRoleArgs {
      * `federationToken`, at least one of `policyDocument` or `policyArns` must
      * be specified.
      */
-    readonly policyArns?: pulumi.Input<pulumi.Input<string>[]>;
+    policyArns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The IAM policy document for the role. The
      * behavior depends on the credential type. With `iamUser`, the policy document
@@ -281,11 +281,11 @@ export interface SecretBackendRoleArgs {
      * user has. With `assumedRole` and `federationToken`, the policy document will
      * act as a filter on what the credentials can do, similar to `policyArns`.
      */
-    readonly policyDocument?: pulumi.Input<string>;
+    policyDocument?: pulumi.Input<string>;
     /**
      * Specifies the ARNs of the AWS roles this Vault role
      * is allowed to assume. Required when `credentialType` is `assumedRole` and
      * prohibited otherwise.
      */
-    readonly roleArns?: pulumi.Input<pulumi.Input<string>[]>;
+    roleArns?: pulumi.Input<pulumi.Input<string>[]>;
 }

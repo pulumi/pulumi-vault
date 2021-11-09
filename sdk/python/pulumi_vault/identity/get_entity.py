@@ -13,6 +13,7 @@ __all__ = [
     'GetEntityResult',
     'AwaitableGetEntityResult',
     'get_entity',
+    'get_entity_output',
 ]
 
 @pulumi.output_type
@@ -281,3 +282,24 @@ def get_entity(alias_id: Optional[str] = None,
         metadata=__ret__.metadata,
         namespace_id=__ret__.namespace_id,
         policies=__ret__.policies)
+
+
+@_utilities.lift_output_func(get_entity)
+def get_entity_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
+                      alias_mount_accessor: Optional[pulumi.Input[Optional[str]]] = None,
+                      alias_name: Optional[pulumi.Input[Optional[str]]] = None,
+                      entity_id: Optional[pulumi.Input[Optional[str]]] = None,
+                      entity_name: Optional[pulumi.Input[Optional[str]]] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEntityResult]:
+    """
+    Use this data source to access information about an existing resource.
+
+    :param str alias_id: ID of the alias.
+    :param str alias_mount_accessor: Accessor of the mount to which the alias belongs to.
+           This should be supplied in conjunction with `alias_name`.
+    :param str alias_name: Name of the alias. This should be supplied in conjunction with
+           `alias_mount_accessor`.
+    :param str entity_id: ID of the entity.
+    :param str entity_name: Name of the entity.
+    """
+    ...

@@ -12,6 +12,7 @@ __all__ = [
     'GetNomadAccessTokenResult',
     'AwaitableGetNomadAccessTokenResult',
     'get_nomad_access_token',
+    'get_nomad_access_token_output',
 ]
 
 @pulumi.output_type
@@ -111,3 +112,18 @@ def get_nomad_access_token(backend: Optional[str] = None,
         id=__ret__.id,
         role=__ret__.role,
         secret_id=__ret__.secret_id)
+
+
+@_utilities.lift_output_func(get_nomad_access_token)
+def get_nomad_access_token_output(backend: Optional[pulumi.Input[str]] = None,
+                                  role: Optional[pulumi.Input[str]] = None,
+                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNomadAccessTokenResult]:
+    """
+    Use this data source to access information about an existing resource.
+
+    :param str backend: The path to the Nomad secret backend to
+           read credentials from, with no leading or trailing `/`s.
+    :param str role: The name of the Nomad secret backend role to generate
+           a token for, with no leading or trailing `/`s.
+    """
+    ...

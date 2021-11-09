@@ -293,109 +293,109 @@ export interface AuthBackendState {
     /**
      * The accessor for this auth mount.
      */
-    readonly accessor?: pulumi.Input<string>;
+    accessor?: pulumi.Input<string>;
     /**
      * DN of object to bind when performing user search
      */
-    readonly binddn?: pulumi.Input<string>;
+    binddn?: pulumi.Input<string>;
     /**
      * Password to use with `binddn` when performing user search
      */
-    readonly bindpass?: pulumi.Input<string>;
+    bindpass?: pulumi.Input<string>;
     /**
      * Trusted CA to validate TLS certificate
      */
-    readonly certificate?: pulumi.Input<string>;
-    readonly clientTlsCert?: pulumi.Input<string>;
-    readonly clientTlsKey?: pulumi.Input<string>;
-    readonly denyNullBind?: pulumi.Input<boolean>;
+    certificate?: pulumi.Input<string>;
+    clientTlsCert?: pulumi.Input<string>;
+    clientTlsKey?: pulumi.Input<string>;
+    denyNullBind?: pulumi.Input<boolean>;
     /**
      * Description for the LDAP auth backend mount
      */
-    readonly description?: pulumi.Input<string>;
-    readonly discoverdn?: pulumi.Input<boolean>;
+    description?: pulumi.Input<string>;
+    discoverdn?: pulumi.Input<boolean>;
     /**
      * LDAP attribute to follow on objects returned by groupfilter
      */
-    readonly groupattr?: pulumi.Input<string>;
+    groupattr?: pulumi.Input<string>;
     /**
      * Base DN under which to perform group search
      */
-    readonly groupdn?: pulumi.Input<string>;
+    groupdn?: pulumi.Input<string>;
     /**
      * Go template used to construct group membership query
      */
-    readonly groupfilter?: pulumi.Input<string>;
+    groupfilter?: pulumi.Input<string>;
     /**
      * Control whether or TLS certificates must be validated
      */
-    readonly insecureTls?: pulumi.Input<boolean>;
+    insecureTls?: pulumi.Input<boolean>;
     /**
      * Specifies if the auth method is local only.
      */
-    readonly local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean>;
     /**
      * Path to mount the LDAP auth backend under
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * Control use of TLS when conecting to LDAP
      */
-    readonly starttls?: pulumi.Input<boolean>;
+    starttls?: pulumi.Input<boolean>;
     /**
      * Maximum acceptable version of TLS
      */
-    readonly tlsMaxVersion?: pulumi.Input<string>;
+    tlsMaxVersion?: pulumi.Input<string>;
     /**
      * Minimum acceptable version of TLS
      */
-    readonly tlsMinVersion?: pulumi.Input<string>;
+    tlsMinVersion?: pulumi.Input<string>;
     /**
      * List of CIDR blocks; if set, specifies blocks of IP
      * addresses which can authenticate successfully, and ties the resulting token to these blocks
      * as well.
      */
-    readonly tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, will encode an
      * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
      * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
      * `tokenMaxTtl` would otherwise allow a renewal.
      */
-    readonly tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number>;
     /**
      * The maximum lifetime for generated tokens in number of seconds.
      * Its current value will be referenced at renewal time.
      */
-    readonly tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number>;
     /**
      * If set, the default policy will not be set on
      * generated tokens; otherwise it will be added to the policies set in token_policies.
      */
-    readonly tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
     /**
      * The
      * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
      * if any, in number of seconds to set on the token.
      */
-    readonly tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number>;
     /**
      * If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
      * value of this field. Specified in seconds.
      */
-    readonly tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number>;
     /**
      * List of policies to encode onto generated tokens. Depending
      * on the auth method, this list may be supplemented by user/group/other values.
      */
-    readonly tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The incremental lifetime for generated tokens in number of seconds.
      * Its current value will be referenced at renewal time.
      */
-    readonly tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number>;
     /**
      * The type of token that should be generated. Can be `service`,
      * `batch`, or `default` to use the mount's tuned default (which unless changed will be
@@ -403,27 +403,27 @@ export interface AuthBackendState {
      * `default-service` and `default-batch` which specify the type to return unless the client
      * requests a different type at generation time.
      */
-    readonly tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string>;
     /**
      * The userPrincipalDomain used to construct UPN string
      */
-    readonly upndomain?: pulumi.Input<string>;
+    upndomain?: pulumi.Input<string>;
     /**
      * The URL of the LDAP server
      */
-    readonly url?: pulumi.Input<string>;
+    url?: pulumi.Input<string>;
     /**
      * Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
      */
-    readonly useTokenGroups?: pulumi.Input<boolean>;
+    useTokenGroups?: pulumi.Input<boolean>;
     /**
      * Attribute on user object matching username passed in
      */
-    readonly userattr?: pulumi.Input<string>;
+    userattr?: pulumi.Input<string>;
     /**
      * Base DN under which to perform user search
      */
-    readonly userdn?: pulumi.Input<string>;
+    userdn?: pulumi.Input<string>;
 }
 
 /**
@@ -433,105 +433,105 @@ export interface AuthBackendArgs {
     /**
      * DN of object to bind when performing user search
      */
-    readonly binddn?: pulumi.Input<string>;
+    binddn?: pulumi.Input<string>;
     /**
      * Password to use with `binddn` when performing user search
      */
-    readonly bindpass?: pulumi.Input<string>;
+    bindpass?: pulumi.Input<string>;
     /**
      * Trusted CA to validate TLS certificate
      */
-    readonly certificate?: pulumi.Input<string>;
-    readonly clientTlsCert?: pulumi.Input<string>;
-    readonly clientTlsKey?: pulumi.Input<string>;
-    readonly denyNullBind?: pulumi.Input<boolean>;
+    certificate?: pulumi.Input<string>;
+    clientTlsCert?: pulumi.Input<string>;
+    clientTlsKey?: pulumi.Input<string>;
+    denyNullBind?: pulumi.Input<boolean>;
     /**
      * Description for the LDAP auth backend mount
      */
-    readonly description?: pulumi.Input<string>;
-    readonly discoverdn?: pulumi.Input<boolean>;
+    description?: pulumi.Input<string>;
+    discoverdn?: pulumi.Input<boolean>;
     /**
      * LDAP attribute to follow on objects returned by groupfilter
      */
-    readonly groupattr?: pulumi.Input<string>;
+    groupattr?: pulumi.Input<string>;
     /**
      * Base DN under which to perform group search
      */
-    readonly groupdn?: pulumi.Input<string>;
+    groupdn?: pulumi.Input<string>;
     /**
      * Go template used to construct group membership query
      */
-    readonly groupfilter?: pulumi.Input<string>;
+    groupfilter?: pulumi.Input<string>;
     /**
      * Control whether or TLS certificates must be validated
      */
-    readonly insecureTls?: pulumi.Input<boolean>;
+    insecureTls?: pulumi.Input<boolean>;
     /**
      * Specifies if the auth method is local only.
      */
-    readonly local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean>;
     /**
      * Path to mount the LDAP auth backend under
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * Control use of TLS when conecting to LDAP
      */
-    readonly starttls?: pulumi.Input<boolean>;
+    starttls?: pulumi.Input<boolean>;
     /**
      * Maximum acceptable version of TLS
      */
-    readonly tlsMaxVersion?: pulumi.Input<string>;
+    tlsMaxVersion?: pulumi.Input<string>;
     /**
      * Minimum acceptable version of TLS
      */
-    readonly tlsMinVersion?: pulumi.Input<string>;
+    tlsMinVersion?: pulumi.Input<string>;
     /**
      * List of CIDR blocks; if set, specifies blocks of IP
      * addresses which can authenticate successfully, and ties the resulting token to these blocks
      * as well.
      */
-    readonly tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, will encode an
      * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
      * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
      * `tokenMaxTtl` would otherwise allow a renewal.
      */
-    readonly tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number>;
     /**
      * The maximum lifetime for generated tokens in number of seconds.
      * Its current value will be referenced at renewal time.
      */
-    readonly tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number>;
     /**
      * If set, the default policy will not be set on
      * generated tokens; otherwise it will be added to the policies set in token_policies.
      */
-    readonly tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
     /**
      * The
      * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
      * if any, in number of seconds to set on the token.
      */
-    readonly tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number>;
     /**
      * If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
      * value of this field. Specified in seconds.
      */
-    readonly tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number>;
     /**
      * List of policies to encode onto generated tokens. Depending
      * on the auth method, this list may be supplemented by user/group/other values.
      */
-    readonly tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The incremental lifetime for generated tokens in number of seconds.
      * Its current value will be referenced at renewal time.
      */
-    readonly tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number>;
     /**
      * The type of token that should be generated. Can be `service`,
      * `batch`, or `default` to use the mount's tuned default (which unless changed will be
@@ -539,25 +539,25 @@ export interface AuthBackendArgs {
      * `default-service` and `default-batch` which specify the type to return unless the client
      * requests a different type at generation time.
      */
-    readonly tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string>;
     /**
      * The userPrincipalDomain used to construct UPN string
      */
-    readonly upndomain?: pulumi.Input<string>;
+    upndomain?: pulumi.Input<string>;
     /**
      * The URL of the LDAP server
      */
-    readonly url: pulumi.Input<string>;
+    url: pulumi.Input<string>;
     /**
      * Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
      */
-    readonly useTokenGroups?: pulumi.Input<boolean>;
+    useTokenGroups?: pulumi.Input<boolean>;
     /**
      * Attribute on user object matching username passed in
      */
-    readonly userattr?: pulumi.Input<string>;
+    userattr?: pulumi.Input<string>;
     /**
      * Base DN under which to perform user search
      */
-    readonly userdn?: pulumi.Input<string>;
+    userdn?: pulumi.Input<string>;
 }

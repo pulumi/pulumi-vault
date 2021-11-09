@@ -189,6 +189,8 @@ func (o GetEntityAliasTypeArrayOutput) Index(i pulumi.IntInput) GetEntityAliasTy
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEntityAliasTypeInput)(nil)).Elem(), GetEntityAliasTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEntityAliasTypeArrayInput)(nil)).Elem(), GetEntityAliasTypeArray{})
 	pulumi.RegisterOutputType(GetEntityAliasTypeOutput{})
 	pulumi.RegisterOutputType(GetEntityAliasTypeArrayOutput{})
 }

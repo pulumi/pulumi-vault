@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 export function getGroup(args?: GetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetGroupResult> {
@@ -30,25 +29,25 @@ export interface GetGroupArgs {
     /**
      * ID of the alias.
      */
-    readonly aliasId?: string;
+    aliasId?: string;
     /**
      * Accessor of the mount to which the alias belongs to.
      * This should be supplied in conjunction with `aliasName`.
      */
-    readonly aliasMountAccessor?: string;
+    aliasMountAccessor?: string;
     /**
      * Name of the alias. This should be supplied in conjunction with
      * `aliasMountAccessor`.
      */
-    readonly aliasName?: string;
+    aliasName?: string;
     /**
      * ID of the group.
      */
-    readonly groupId?: string;
+    groupId?: string;
     /**
      * Name of the group.
      */
-    readonly groupName?: string;
+    groupName?: string;
 }
 
 /**
@@ -137,4 +136,36 @@ export interface GetGroupResult {
      * Type of group
      */
     readonly type: string;
+}
+
+export function getGroupOutput(args?: GetGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGroupResult> {
+    return pulumi.output(args).apply(a => getGroup(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getGroup.
+ */
+export interface GetGroupOutputArgs {
+    /**
+     * ID of the alias.
+     */
+    aliasId?: pulumi.Input<string>;
+    /**
+     * Accessor of the mount to which the alias belongs to.
+     * This should be supplied in conjunction with `aliasName`.
+     */
+    aliasMountAccessor?: pulumi.Input<string>;
+    /**
+     * Name of the alias. This should be supplied in conjunction with
+     * `aliasMountAccessor`.
+     */
+    aliasName?: pulumi.Input<string>;
+    /**
+     * ID of the group.
+     */
+    groupId?: pulumi.Input<string>;
+    /**
+     * Name of the group.
+     */
+    groupName?: pulumi.Input<string>;
 }

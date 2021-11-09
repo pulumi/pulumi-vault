@@ -12,6 +12,7 @@ __all__ = [
     'GetAccessCredentialsResult',
     'AwaitableGetAccessCredentialsResult',
     'get_access_credentials',
+    'get_access_credentials_output',
 ]
 
 @pulumi.output_type
@@ -123,3 +124,18 @@ def get_access_credentials(backend: Optional[str] = None,
         last_password=__ret__.last_password,
         role=__ret__.role,
         username=__ret__.username)
+
+
+@_utilities.lift_output_func(get_access_credentials)
+def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
+                                  role: Optional[pulumi.Input[str]] = None,
+                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccessCredentialsResult]:
+    """
+    Use this data source to access information about an existing resource.
+
+    :param str backend: The path to the AD secret backend to
+           read credentials from, with no leading or trailing `/`s.
+    :param str role: The name of the AD secret backend role to read
+           credentials from, with no leading or trailing `/`s.
+    """
+    ...

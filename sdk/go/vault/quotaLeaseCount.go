@@ -230,7 +230,7 @@ type QuotaLeaseCountArrayInput interface {
 type QuotaLeaseCountArray []QuotaLeaseCountInput
 
 func (QuotaLeaseCountArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*QuotaLeaseCount)(nil))
+	return reflect.TypeOf((*[]*QuotaLeaseCount)(nil)).Elem()
 }
 
 func (i QuotaLeaseCountArray) ToQuotaLeaseCountArrayOutput() QuotaLeaseCountArrayOutput {
@@ -255,7 +255,7 @@ type QuotaLeaseCountMapInput interface {
 type QuotaLeaseCountMap map[string]QuotaLeaseCountInput
 
 func (QuotaLeaseCountMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*QuotaLeaseCount)(nil))
+	return reflect.TypeOf((*map[string]*QuotaLeaseCount)(nil)).Elem()
 }
 
 func (i QuotaLeaseCountMap) ToQuotaLeaseCountMapOutput() QuotaLeaseCountMapOutput {
@@ -266,9 +266,7 @@ func (i QuotaLeaseCountMap) ToQuotaLeaseCountMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(QuotaLeaseCountMapOutput)
 }
 
-type QuotaLeaseCountOutput struct {
-	*pulumi.OutputState
-}
+type QuotaLeaseCountOutput struct{ *pulumi.OutputState }
 
 func (QuotaLeaseCountOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*QuotaLeaseCount)(nil))
@@ -287,14 +285,12 @@ func (o QuotaLeaseCountOutput) ToQuotaLeaseCountPtrOutput() QuotaLeaseCountPtrOu
 }
 
 func (o QuotaLeaseCountOutput) ToQuotaLeaseCountPtrOutputWithContext(ctx context.Context) QuotaLeaseCountPtrOutput {
-	return o.ApplyT(func(v QuotaLeaseCount) *QuotaLeaseCount {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v QuotaLeaseCount) *QuotaLeaseCount {
 		return &v
 	}).(QuotaLeaseCountPtrOutput)
 }
 
-type QuotaLeaseCountPtrOutput struct {
-	*pulumi.OutputState
-}
+type QuotaLeaseCountPtrOutput struct{ *pulumi.OutputState }
 
 func (QuotaLeaseCountPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**QuotaLeaseCount)(nil))
@@ -306,6 +302,16 @@ func (o QuotaLeaseCountPtrOutput) ToQuotaLeaseCountPtrOutput() QuotaLeaseCountPt
 
 func (o QuotaLeaseCountPtrOutput) ToQuotaLeaseCountPtrOutputWithContext(ctx context.Context) QuotaLeaseCountPtrOutput {
 	return o
+}
+
+func (o QuotaLeaseCountPtrOutput) Elem() QuotaLeaseCountOutput {
+	return o.ApplyT(func(v *QuotaLeaseCount) QuotaLeaseCount {
+		if v != nil {
+			return *v
+		}
+		var ret QuotaLeaseCount
+		return ret
+	}).(QuotaLeaseCountOutput)
 }
 
 type QuotaLeaseCountArrayOutput struct{ *pulumi.OutputState }
@@ -349,6 +355,10 @@ func (o QuotaLeaseCountMapOutput) MapIndex(k pulumi.StringInput) QuotaLeaseCount
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*QuotaLeaseCountInput)(nil)).Elem(), &QuotaLeaseCount{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuotaLeaseCountPtrInput)(nil)).Elem(), &QuotaLeaseCount{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuotaLeaseCountArrayInput)(nil)).Elem(), QuotaLeaseCountArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuotaLeaseCountMapInput)(nil)).Elem(), QuotaLeaseCountMap{})
 	pulumi.RegisterOutputType(QuotaLeaseCountOutput{})
 	pulumi.RegisterOutputType(QuotaLeaseCountPtrOutput{})
 	pulumi.RegisterOutputType(QuotaLeaseCountArrayOutput{})

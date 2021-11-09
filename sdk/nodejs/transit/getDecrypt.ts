@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -18,7 +17,7 @@ import * as utilities from "../utilities";
  *     backend: "transit",
  *     ciphertext: "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
  *     key: "test",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getDecrypt(args: GetDecryptArgs, opts?: pulumi.InvokeOptions): Promise<GetDecryptResult> {
@@ -44,19 +43,19 @@ export interface GetDecryptArgs {
     /**
      * The path the transit secret backend is mounted at, with no leading or trailing `/`.
      */
-    readonly backend: string;
+    backend: string;
     /**
      * Ciphertext to be decoded.
      */
-    readonly ciphertext: string;
+    ciphertext: string;
     /**
      * Context for key derivation. This is required if key derivation is enabled for this key.
      */
-    readonly context?: string;
+    context?: string;
     /**
      * Specifies the name of the transit key to decrypt against.
      */
-    readonly key: string;
+    key: string;
 }
 
 /**
@@ -75,4 +74,30 @@ export interface GetDecryptResult {
      * Decrypted plaintext returned from Vault
      */
     readonly plaintext: string;
+}
+
+export function getDecryptOutput(args: GetDecryptOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDecryptResult> {
+    return pulumi.output(args).apply(a => getDecrypt(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getDecrypt.
+ */
+export interface GetDecryptOutputArgs {
+    /**
+     * The path the transit secret backend is mounted at, with no leading or trailing `/`.
+     */
+    backend: pulumi.Input<string>;
+    /**
+     * Ciphertext to be decoded.
+     */
+    ciphertext: pulumi.Input<string>;
+    /**
+     * Context for key derivation. This is required if key derivation is enabled for this key.
+     */
+    context?: pulumi.Input<string>;
+    /**
+     * Specifies the name of the transit key to decrypt against.
+     */
+    key: pulumi.Input<string>;
 }

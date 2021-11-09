@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -60,82 +59,82 @@ export interface GetAuthBackendRoleArgs {
     /**
      * (Optional) Audience claim to verify in the JWT.
      */
-    readonly audience?: string;
+    audience?: string;
     /**
      * The unique name for the Kubernetes backend the role to
      * retrieve Role attributes for resides in. Defaults to "kubernetes".
      */
-    readonly backend?: string;
+    backend?: string;
     /**
      * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
      */
-    readonly boundCidrs?: string[];
+    boundCidrs?: string[];
     /**
      * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
      */
-    readonly maxTtl?: number;
+    maxTtl?: number;
     /**
      * @deprecated use `token_num_uses` instead if you are running Vault >= 1.2
      */
-    readonly numUses?: number;
+    numUses?: number;
     /**
      * @deprecated use `token_period` instead if you are running Vault >= 1.2
      */
-    readonly period?: number;
+    period?: number;
     /**
      * @deprecated use `token_policies` instead if you are running Vault >= 1.2
      */
-    readonly policies?: string[];
+    policies?: string[];
     /**
      * The name of the role to retrieve the Role attributes for.
      */
-    readonly roleName: string;
+    roleName: string;
     /**
      * List of CIDR blocks; if set, specifies blocks of IP
      * addresses which can authenticate successfully, and ties the resulting token to these blocks
      * as well.
      */
-    readonly tokenBoundCidrs?: string[];
+    tokenBoundCidrs?: string[];
     /**
      * If set, will encode an
      * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
      * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
      * `tokenMaxTtl` would otherwise allow a renewal.
      */
-    readonly tokenExplicitMaxTtl?: number;
+    tokenExplicitMaxTtl?: number;
     /**
      * The maximum lifetime for generated tokens in number of seconds.
      * Its current value will be referenced at renewal time.
      */
-    readonly tokenMaxTtl?: number;
+    tokenMaxTtl?: number;
     /**
      * If set, the default policy will not be set on
      * generated tokens; otherwise it will be added to the policies set in token_policies.
      */
-    readonly tokenNoDefaultPolicy?: boolean;
+    tokenNoDefaultPolicy?: boolean;
     /**
      * The
      * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
      * if any, in number of seconds to set on the token.
      */
-    readonly tokenNumUses?: number;
+    tokenNumUses?: number;
     /**
      * (Optional) If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
      * value of this field. Specified in seconds.
      */
-    readonly tokenPeriod?: number;
+    tokenPeriod?: number;
     /**
      * List of policies to encode onto generated tokens. Depending
      * on the auth method, this list may be supplemented by user/group/other values.
      */
-    readonly tokenPolicies?: string[];
+    tokenPolicies?: string[];
     /**
      * The incremental lifetime for generated tokens in number of seconds.
      * Its current value will be referenced at renewal time.
      */
-    readonly tokenTtl?: number;
+    tokenTtl?: number;
     /**
      * The type of token that should be generated. Can be `service`,
      * `batch`, or `default` to use the mount's tuned default (which unless changed will be
@@ -143,11 +142,11 @@ export interface GetAuthBackendRoleArgs {
      * `default-service` and `default-batch` which specify the type to return unless the client
      * requests a different type at generation time.
      */
-    readonly tokenType?: string;
+    tokenType?: string;
     /**
      * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
      */
-    readonly ttl?: number;
+    ttl?: number;
 }
 
 /**
@@ -250,4 +249,105 @@ export interface GetAuthBackendRoleResult {
      * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
      */
     readonly ttl?: number;
+}
+
+export function getAuthBackendRoleOutput(args: GetAuthBackendRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendRoleResult> {
+    return pulumi.output(args).apply(a => getAuthBackendRole(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAuthBackendRole.
+ */
+export interface GetAuthBackendRoleOutputArgs {
+    /**
+     * (Optional) Audience claim to verify in the JWT.
+     */
+    audience?: pulumi.Input<string>;
+    /**
+     * The unique name for the Kubernetes backend the role to
+     * retrieve Role attributes for resides in. Defaults to "kubernetes".
+     */
+    backend?: pulumi.Input<string>;
+    /**
+     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
+     */
+    boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
+     */
+    maxTtl?: pulumi.Input<number>;
+    /**
+     * @deprecated use `token_num_uses` instead if you are running Vault >= 1.2
+     */
+    numUses?: pulumi.Input<number>;
+    /**
+     * @deprecated use `token_period` instead if you are running Vault >= 1.2
+     */
+    period?: pulumi.Input<number>;
+    /**
+     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
+     */
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The name of the role to retrieve the Role attributes for.
+     */
+    roleName: pulumi.Input<string>;
+    /**
+     * List of CIDR blocks; if set, specifies blocks of IP
+     * addresses which can authenticate successfully, and ties the resulting token to these blocks
+     * as well.
+     */
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * If set, will encode an
+     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+     * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+     * `tokenMaxTtl` would otherwise allow a renewal.
+     */
+    tokenExplicitMaxTtl?: pulumi.Input<number>;
+    /**
+     * The maximum lifetime for generated tokens in number of seconds.
+     * Its current value will be referenced at renewal time.
+     */
+    tokenMaxTtl?: pulumi.Input<number>;
+    /**
+     * If set, the default policy will not be set on
+     * generated tokens; otherwise it will be added to the policies set in token_policies.
+     */
+    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    /**
+     * The
+     * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+     * if any, in number of seconds to set on the token.
+     */
+    tokenNumUses?: pulumi.Input<number>;
+    /**
+     * (Optional) If set, indicates that the
+     * token generated using this role should never expire. The token should be renewed within the
+     * duration specified by this value. At each renewal, the token's TTL will be set to the
+     * value of this field. Specified in seconds.
+     */
+    tokenPeriod?: pulumi.Input<number>;
+    /**
+     * List of policies to encode onto generated tokens. Depending
+     * on the auth method, this list may be supplemented by user/group/other values.
+     */
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The incremental lifetime for generated tokens in number of seconds.
+     * Its current value will be referenced at renewal time.
+     */
+    tokenTtl?: pulumi.Input<number>;
+    /**
+     * The type of token that should be generated. Can be `service`,
+     * `batch`, or `default` to use the mount's tuned default (which unless changed will be
+     * `service` tokens). For token store roles, there are two additional possibilities:
+     * `default-service` and `default-batch` which specify the type to return unless the client
+     * requests a different type at generation time.
+     */
+    tokenType?: pulumi.Input<string>;
+    /**
+     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
+     */
+    ttl?: pulumi.Input<number>;
 }

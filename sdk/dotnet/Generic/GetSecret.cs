@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Vault.Generic
 {
@@ -13,6 +14,9 @@ namespace Pulumi.Vault.Generic
     {
         public static Task<GetSecretResult> InvokeAsync(GetSecretArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetSecretResult>("vault:generic/getSecret:getSecret", args ?? new GetSecretArgs(), options.WithVersion());
+
+        public static Output<GetSecretResult> Invoke(GetSecretInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetSecretResult>("vault:generic/getSecret:getSecret", args ?? new GetSecretInvokeArgs(), options.WithVersion());
     }
 
 
@@ -37,6 +41,31 @@ namespace Pulumi.Vault.Generic
         public int? Version { get; set; }
 
         public GetSecretArgs()
+        {
+        }
+    }
+
+    public sealed class GetSecretInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The full logical path from which to request data.
+        /// To read data from the "generic" secret backend mounted in Vault by
+        /// default, this should be prefixed with `secret/`. Reading from other backends
+        /// with this data source is possible; consult each backend's documentation
+        /// to see which endpoints support the `GET` method.
+        /// </summary>
+        [Input("path", required: true)]
+        public Input<string> Path { get; set; } = null!;
+
+        /// <summary>
+        /// The version of the secret to read. This is used by the
+        /// Vault KV secrets engine - version 2 to indicate which version of the secret
+        /// to read.
+        /// </summary>
+        [Input("version")]
+        public Input<int>? Version { get; set; }
+
+        public GetSecretInvokeArgs()
         {
         }
     }

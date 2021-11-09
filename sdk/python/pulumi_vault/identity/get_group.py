@@ -12,6 +12,7 @@ __all__ = [
     'GetGroupResult',
     'AwaitableGetGroupResult',
     'get_group',
+    'get_group_output',
 ]
 
 @pulumi.output_type
@@ -358,3 +359,24 @@ def get_group(alias_id: Optional[str] = None,
         parent_group_ids=__ret__.parent_group_ids,
         policies=__ret__.policies,
         type=__ret__.type)
+
+
+@_utilities.lift_output_func(get_group)
+def get_group_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
+                     alias_mount_accessor: Optional[pulumi.Input[Optional[str]]] = None,
+                     alias_name: Optional[pulumi.Input[Optional[str]]] = None,
+                     group_id: Optional[pulumi.Input[Optional[str]]] = None,
+                     group_name: Optional[pulumi.Input[Optional[str]]] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGroupResult]:
+    """
+    Use this data source to access information about an existing resource.
+
+    :param str alias_id: ID of the alias.
+    :param str alias_mount_accessor: Accessor of the mount to which the alias belongs to.
+           This should be supplied in conjunction with `alias_name`.
+    :param str alias_name: Name of the alias. This should be supplied in conjunction with
+           `alias_mount_accessor`.
+    :param str group_id: ID of the group.
+    :param str group_name: Name of the group.
+    """
+    ...

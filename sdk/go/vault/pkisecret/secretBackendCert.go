@@ -305,7 +305,7 @@ type SecretBackendCertArrayInput interface {
 type SecretBackendCertArray []SecretBackendCertInput
 
 func (SecretBackendCertArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SecretBackendCert)(nil))
+	return reflect.TypeOf((*[]*SecretBackendCert)(nil)).Elem()
 }
 
 func (i SecretBackendCertArray) ToSecretBackendCertArrayOutput() SecretBackendCertArrayOutput {
@@ -330,7 +330,7 @@ type SecretBackendCertMapInput interface {
 type SecretBackendCertMap map[string]SecretBackendCertInput
 
 func (SecretBackendCertMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SecretBackendCert)(nil))
+	return reflect.TypeOf((*map[string]*SecretBackendCert)(nil)).Elem()
 }
 
 func (i SecretBackendCertMap) ToSecretBackendCertMapOutput() SecretBackendCertMapOutput {
@@ -341,9 +341,7 @@ func (i SecretBackendCertMap) ToSecretBackendCertMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCertMapOutput)
 }
 
-type SecretBackendCertOutput struct {
-	*pulumi.OutputState
-}
+type SecretBackendCertOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendCertOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretBackendCert)(nil))
@@ -362,14 +360,12 @@ func (o SecretBackendCertOutput) ToSecretBackendCertPtrOutput() SecretBackendCer
 }
 
 func (o SecretBackendCertOutput) ToSecretBackendCertPtrOutputWithContext(ctx context.Context) SecretBackendCertPtrOutput {
-	return o.ApplyT(func(v SecretBackendCert) *SecretBackendCert {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendCert) *SecretBackendCert {
 		return &v
 	}).(SecretBackendCertPtrOutput)
 }
 
-type SecretBackendCertPtrOutput struct {
-	*pulumi.OutputState
-}
+type SecretBackendCertPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendCertPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretBackendCert)(nil))
@@ -381,6 +377,16 @@ func (o SecretBackendCertPtrOutput) ToSecretBackendCertPtrOutput() SecretBackend
 
 func (o SecretBackendCertPtrOutput) ToSecretBackendCertPtrOutputWithContext(ctx context.Context) SecretBackendCertPtrOutput {
 	return o
+}
+
+func (o SecretBackendCertPtrOutput) Elem() SecretBackendCertOutput {
+	return o.ApplyT(func(v *SecretBackendCert) SecretBackendCert {
+		if v != nil {
+			return *v
+		}
+		var ret SecretBackendCert
+		return ret
+	}).(SecretBackendCertOutput)
 }
 
 type SecretBackendCertArrayOutput struct{ *pulumi.OutputState }
@@ -424,6 +430,10 @@ func (o SecretBackendCertMapOutput) MapIndex(k pulumi.StringInput) SecretBackend
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendCertInput)(nil)).Elem(), &SecretBackendCert{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendCertPtrInput)(nil)).Elem(), &SecretBackendCert{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendCertArrayInput)(nil)).Elem(), SecretBackendCertArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendCertMapInput)(nil)).Elem(), SecretBackendCertMap{})
 	pulumi.RegisterOutputType(SecretBackendCertOutput{})
 	pulumi.RegisterOutputType(SecretBackendCertPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendCertArrayOutput{})

@@ -139,35 +139,35 @@ export interface TransformationState {
     /**
      * The set of roles allowed to perform this transformation.
      */
-    readonly allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The character used to replace data when in masking mode
      */
-    readonly maskingCharacter?: pulumi.Input<string>;
+    maskingCharacter?: pulumi.Input<string>;
     /**
      * The name of the transformation.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * The name of the template to use.
      */
-    readonly template?: pulumi.Input<string>;
+    template?: pulumi.Input<string>;
     /**
      * Templates configured for transformation.
      */
-    readonly templates?: pulumi.Input<pulumi.Input<string>[]>;
+    templates?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The source of where the tweak value comes from. Only valid when in FPE mode.
      */
-    readonly tweakSource?: pulumi.Input<string>;
+    tweakSource?: pulumi.Input<string>;
     /**
      * The type of transformation to perform.
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }
 
 /**
@@ -177,33 +177,33 @@ export interface TransformationArgs {
     /**
      * The set of roles allowed to perform this transformation.
      */
-    readonly allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The character used to replace data when in masking mode
      */
-    readonly maskingCharacter?: pulumi.Input<string>;
+    maskingCharacter?: pulumi.Input<string>;
     /**
      * The name of the transformation.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
-    readonly path: pulumi.Input<string>;
+    path: pulumi.Input<string>;
     /**
      * The name of the template to use.
      */
-    readonly template?: pulumi.Input<string>;
+    template?: pulumi.Input<string>;
     /**
      * Templates configured for transformation.
      */
-    readonly templates?: pulumi.Input<pulumi.Input<string>[]>;
+    templates?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The source of where the tweak value comes from. Only valid when in FPE mode.
      */
-    readonly tweakSource?: pulumi.Input<string>;
+    tweakSource?: pulumi.Input<string>;
     /**
      * The type of transformation to perform.
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }

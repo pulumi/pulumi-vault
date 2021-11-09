@@ -107,15 +107,15 @@ export interface RgpPolicyState {
     /**
      * Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
      */
-    readonly enforcementLevel?: pulumi.Input<string>;
+    enforcementLevel?: pulumi.Input<string>;
     /**
      * The name of the policy
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * String containing a Sentinel policy
      */
-    readonly policy?: pulumi.Input<string>;
+    policy?: pulumi.Input<string>;
 }
 
 /**
@@ -125,13 +125,13 @@ export interface RgpPolicyArgs {
     /**
      * Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
      */
-    readonly enforcementLevel: pulumi.Input<string>;
+    enforcementLevel: pulumi.Input<string>;
     /**
      * The name of the policy
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * String containing a Sentinel policy
      */
-    readonly policy: pulumi.Input<string>;
+    policy: pulumi.Input<string>;
 }

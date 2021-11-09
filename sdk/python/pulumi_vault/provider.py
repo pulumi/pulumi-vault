@@ -353,3 +353,59 @@ class Provider(pulumi.ProviderResource):
             __props__,
             opts)
 
+    @property
+    @pulumi.getter(name="addAddressToEnv")
+    def add_address_to_env(self) -> pulumi.Output[Optional[str]]:
+        """
+        If true, adds the value of the `address` argument to the Terraform process environment.
+        """
+        return pulumi.get(self, "add_address_to_env")
+
+    @property
+    @pulumi.getter
+    def address(self) -> pulumi.Output[str]:
+        """
+        URL of the root of the target Vault server.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter(name="caCertDir")
+    def ca_cert_dir(self) -> pulumi.Output[Optional[str]]:
+        """
+        Path to directory containing CA certificate files to validate the server's certificate.
+        """
+        return pulumi.get(self, "ca_cert_dir")
+
+    @property
+    @pulumi.getter(name="caCertFile")
+    def ca_cert_file(self) -> pulumi.Output[Optional[str]]:
+        """
+        Path to a CA certificate file to validate the server's certificate.
+        """
+        return pulumi.get(self, "ca_cert_file")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Output[Optional[str]]:
+        """
+        The namespace to use. Available only for Vault Enterprise
+        """
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
+    def token(self) -> pulumi.Output[str]:
+        """
+        Token to use to authenticate to Vault.
+        """
+        return pulumi.get(self, "token")
+
+    @property
+    @pulumi.getter(name="tokenName")
+    def token_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        Token name to use for creating the Vault child token.
+        """
+        return pulumi.get(self, "token_name")
+

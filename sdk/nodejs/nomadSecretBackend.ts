@@ -157,60 +157,60 @@ export interface NomadSecretBackendState {
      * Specifies the address of the Nomad instance, provided
      * as "protocol://host:port" like "http://127.0.0.1:4646".
      */
-    readonly address?: pulumi.Input<string>;
+    address?: pulumi.Input<string>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `nomad`.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * CA certificate to use when verifying the Nomad server certificate, must be
      * x509 PEM encoded.
      */
-    readonly caCert?: pulumi.Input<string>;
+    caCert?: pulumi.Input<string>;
     /**
      * Client certificate to provide to the Nomad server, must be x509 PEM encoded.
      */
-    readonly clientCert?: pulumi.Input<string>;
+    clientCert?: pulumi.Input<string>;
     /**
      * Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
      */
-    readonly clientKey?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string>;
     /**
      * Default lease duration for secrets in seconds.
      */
-    readonly defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * Human-friendly description of the mount for the Active Directory backend.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.
      */
-    readonly local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean>;
     /**
      * Maximum possible lease duration for secrets in seconds.
      */
-    readonly maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * Specifies the maximum length to use for the name of the Nomad token
      * generated with Generate Credential. If omitted, 0 is used and ignored, defaulting to the max value allowed
      * by the Nomad version.
      */
-    readonly maxTokenNameLength?: pulumi.Input<number>;
+    maxTokenNameLength?: pulumi.Input<number>;
     /**
      * Maximum possible lease duration for secrets in seconds.
      */
-    readonly maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number>;
     /**
      * Specifies the Nomad Management token to use.
      */
-    readonly token?: pulumi.Input<string>;
+    token?: pulumi.Input<string>;
     /**
      * Specifies the ttl of the lease for the generated token.
      */
-    readonly ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number>;
 }
 
 /**
@@ -221,58 +221,58 @@ export interface NomadSecretBackendArgs {
      * Specifies the address of the Nomad instance, provided
      * as "protocol://host:port" like "http://127.0.0.1:4646".
      */
-    readonly address?: pulumi.Input<string>;
+    address?: pulumi.Input<string>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `nomad`.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * CA certificate to use when verifying the Nomad server certificate, must be
      * x509 PEM encoded.
      */
-    readonly caCert?: pulumi.Input<string>;
+    caCert?: pulumi.Input<string>;
     /**
      * Client certificate to provide to the Nomad server, must be x509 PEM encoded.
      */
-    readonly clientCert?: pulumi.Input<string>;
+    clientCert?: pulumi.Input<string>;
     /**
      * Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
      */
-    readonly clientKey?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string>;
     /**
      * Default lease duration for secrets in seconds.
      */
-    readonly defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * Human-friendly description of the mount for the Active Directory backend.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.
      */
-    readonly local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean>;
     /**
      * Maximum possible lease duration for secrets in seconds.
      */
-    readonly maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * Specifies the maximum length to use for the name of the Nomad token
      * generated with Generate Credential. If omitted, 0 is used and ignored, defaulting to the max value allowed
      * by the Nomad version.
      */
-    readonly maxTokenNameLength?: pulumi.Input<number>;
+    maxTokenNameLength?: pulumi.Input<number>;
     /**
      * Maximum possible lease duration for secrets in seconds.
      */
-    readonly maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number>;
     /**
      * Specifies the Nomad Management token to use.
      */
-    readonly token?: pulumi.Input<string>;
+    token?: pulumi.Input<string>;
     /**
      * Specifies the ttl of the lease for the generated token.
      */
-    readonly ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number>;
 }

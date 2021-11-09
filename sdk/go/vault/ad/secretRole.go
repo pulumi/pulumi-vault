@@ -188,7 +188,7 @@ type SecretRoleArrayInput interface {
 type SecretRoleArray []SecretRoleInput
 
 func (SecretRoleArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SecretRole)(nil))
+	return reflect.TypeOf((*[]*SecretRole)(nil)).Elem()
 }
 
 func (i SecretRoleArray) ToSecretRoleArrayOutput() SecretRoleArrayOutput {
@@ -213,7 +213,7 @@ type SecretRoleMapInput interface {
 type SecretRoleMap map[string]SecretRoleInput
 
 func (SecretRoleMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SecretRole)(nil))
+	return reflect.TypeOf((*map[string]*SecretRole)(nil)).Elem()
 }
 
 func (i SecretRoleMap) ToSecretRoleMapOutput() SecretRoleMapOutput {
@@ -224,9 +224,7 @@ func (i SecretRoleMap) ToSecretRoleMapOutputWithContext(ctx context.Context) Sec
 	return pulumi.ToOutputWithContext(ctx, i).(SecretRoleMapOutput)
 }
 
-type SecretRoleOutput struct {
-	*pulumi.OutputState
-}
+type SecretRoleOutput struct{ *pulumi.OutputState }
 
 func (SecretRoleOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretRole)(nil))
@@ -245,14 +243,12 @@ func (o SecretRoleOutput) ToSecretRolePtrOutput() SecretRolePtrOutput {
 }
 
 func (o SecretRoleOutput) ToSecretRolePtrOutputWithContext(ctx context.Context) SecretRolePtrOutput {
-	return o.ApplyT(func(v SecretRole) *SecretRole {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretRole) *SecretRole {
 		return &v
 	}).(SecretRolePtrOutput)
 }
 
-type SecretRolePtrOutput struct {
-	*pulumi.OutputState
-}
+type SecretRolePtrOutput struct{ *pulumi.OutputState }
 
 func (SecretRolePtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretRole)(nil))
@@ -264,6 +260,16 @@ func (o SecretRolePtrOutput) ToSecretRolePtrOutput() SecretRolePtrOutput {
 
 func (o SecretRolePtrOutput) ToSecretRolePtrOutputWithContext(ctx context.Context) SecretRolePtrOutput {
 	return o
+}
+
+func (o SecretRolePtrOutput) Elem() SecretRoleOutput {
+	return o.ApplyT(func(v *SecretRole) SecretRole {
+		if v != nil {
+			return *v
+		}
+		var ret SecretRole
+		return ret
+	}).(SecretRoleOutput)
 }
 
 type SecretRoleArrayOutput struct{ *pulumi.OutputState }
@@ -307,6 +313,10 @@ func (o SecretRoleMapOutput) MapIndex(k pulumi.StringInput) SecretRoleOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretRoleInput)(nil)).Elem(), &SecretRole{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretRolePtrInput)(nil)).Elem(), &SecretRole{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretRoleArrayInput)(nil)).Elem(), SecretRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretRoleMapInput)(nil)).Elem(), SecretRoleMap{})
 	pulumi.RegisterOutputType(SecretRoleOutput{})
 	pulumi.RegisterOutputType(SecretRolePtrOutput{})
 	pulumi.RegisterOutputType(SecretRoleArrayOutput{})

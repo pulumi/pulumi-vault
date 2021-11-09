@@ -122,33 +122,33 @@ export interface AuthBackendConfigState {
      * The path the Azure auth backend being configured was
      * mounted at.  Defaults to `azure`.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * The client id for credentials to query the Azure APIs.
      * Currently read permissions to query compute resources are required.
      */
-    readonly clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * The client secret for credentials to query the
      * Azure APIs.
      */
-    readonly clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
     /**
      * The Azure cloud environment. Valid values:
      * AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
      * AzureGermanCloud.  Defaults to `AzurePublicCloud`.
      */
-    readonly environment?: pulumi.Input<string>;
+    environment?: pulumi.Input<string>;
     /**
      * The configured URL for the application registered in
      * Azure Active Directory.
      */
-    readonly resource?: pulumi.Input<string>;
+    resource?: pulumi.Input<string>;
     /**
      * The tenant id for the Azure Active Directory
      * organization.
      */
-    readonly tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string>;
 }
 
 /**
@@ -159,31 +159,31 @@ export interface AuthBackendConfigArgs {
      * The path the Azure auth backend being configured was
      * mounted at.  Defaults to `azure`.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * The client id for credentials to query the Azure APIs.
      * Currently read permissions to query compute resources are required.
      */
-    readonly clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * The client secret for credentials to query the
      * Azure APIs.
      */
-    readonly clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
     /**
      * The Azure cloud environment. Valid values:
      * AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
      * AzureGermanCloud.  Defaults to `AzurePublicCloud`.
      */
-    readonly environment?: pulumi.Input<string>;
+    environment?: pulumi.Input<string>;
     /**
      * The configured URL for the application registered in
      * Azure Active Directory.
      */
-    readonly resource: pulumi.Input<string>;
+    resource: pulumi.Input<string>;
     /**
      * The tenant id for the Azure Active Directory
      * organization.
      */
-    readonly tenantId: pulumi.Input<string>;
+    tenantId: pulumi.Input<string>;
 }

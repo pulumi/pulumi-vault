@@ -4,6 +4,9 @@
 package transit
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -42,4 +45,80 @@ type GetEncryptResult struct {
 	Key        string `pulumi:"key"`
 	KeyVersion *int   `pulumi:"keyVersion"`
 	Plaintext  string `pulumi:"plaintext"`
+}
+
+func GetEncryptOutput(ctx *pulumi.Context, args GetEncryptOutputArgs, opts ...pulumi.InvokeOption) GetEncryptResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetEncryptResult, error) {
+			args := v.(GetEncryptArgs)
+			r, err := GetEncrypt(ctx, &args, opts...)
+			return *r, err
+		}).(GetEncryptResultOutput)
+}
+
+// A collection of arguments for invoking getEncrypt.
+type GetEncryptOutputArgs struct {
+	// The path the transit secret backend is mounted at, with no leading or trailing `/`.
+	Backend pulumi.StringInput `pulumi:"backend"`
+	// Context for key derivation. This is required if key derivation is enabled for this key.
+	Context pulumi.StringPtrInput `pulumi:"context"`
+	// Specifies the name of the transit key to encrypt against.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `minEncryptionVersion`, if set.
+	KeyVersion pulumi.IntPtrInput `pulumi:"keyVersion"`
+	// Plaintext to be encoded.
+	Plaintext pulumi.StringInput `pulumi:"plaintext"`
+}
+
+func (GetEncryptOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEncryptArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getEncrypt.
+type GetEncryptResultOutput struct{ *pulumi.OutputState }
+
+func (GetEncryptResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEncryptResult)(nil)).Elem()
+}
+
+func (o GetEncryptResultOutput) ToGetEncryptResultOutput() GetEncryptResultOutput {
+	return o
+}
+
+func (o GetEncryptResultOutput) ToGetEncryptResultOutputWithContext(ctx context.Context) GetEncryptResultOutput {
+	return o
+}
+
+func (o GetEncryptResultOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptResult) string { return v.Backend }).(pulumi.StringOutput)
+}
+
+// Encrypted ciphertext returned from Vault
+func (o GetEncryptResultOutput) Ciphertext() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptResult) string { return v.Ciphertext }).(pulumi.StringOutput)
+}
+
+func (o GetEncryptResultOutput) Context() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetEncryptResult) *string { return v.Context }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetEncryptResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetEncryptResultOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptResult) string { return v.Key }).(pulumi.StringOutput)
+}
+
+func (o GetEncryptResultOutput) KeyVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetEncryptResult) *int { return v.KeyVersion }).(pulumi.IntPtrOutput)
+}
+
+func (o GetEncryptResultOutput) Plaintext() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptResult) string { return v.Plaintext }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetEncryptResultOutput{})
 }

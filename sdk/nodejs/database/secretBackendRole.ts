@@ -142,46 +142,46 @@ export interface SecretBackendRoleState {
     /**
      * The unique name of the Vault mount to configure.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * The database statements to execute when
      * creating a user.
      */
-    readonly creationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    creationStatements?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The unique name of the database connection to use for
      * the role.
      */
-    readonly dbName?: pulumi.Input<string>;
+    dbName?: pulumi.Input<string>;
     /**
      * The default number of seconds for leases for this
      * role.
      */
-    readonly defaultTtl?: pulumi.Input<number>;
+    defaultTtl?: pulumi.Input<number>;
     /**
      * The maximum number of seconds for leases for this
      * role.
      */
-    readonly maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number>;
     /**
      * A unique name to give the role.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The database statements to execute when
      * renewing a user.
      */
-    readonly renewStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    renewStatements?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The database statements to execute when
      * revoking a user.
      */
-    readonly revocationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    revocationStatements?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The database statements to execute when
      * rolling back creation due to an error.
      */
-    readonly rollbackStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    rollbackStatements?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -191,44 +191,44 @@ export interface SecretBackendRoleArgs {
     /**
      * The unique name of the Vault mount to configure.
      */
-    readonly backend: pulumi.Input<string>;
+    backend: pulumi.Input<string>;
     /**
      * The database statements to execute when
      * creating a user.
      */
-    readonly creationStatements: pulumi.Input<pulumi.Input<string>[]>;
+    creationStatements: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The unique name of the database connection to use for
      * the role.
      */
-    readonly dbName: pulumi.Input<string>;
+    dbName: pulumi.Input<string>;
     /**
      * The default number of seconds for leases for this
      * role.
      */
-    readonly defaultTtl?: pulumi.Input<number>;
+    defaultTtl?: pulumi.Input<number>;
     /**
      * The maximum number of seconds for leases for this
      * role.
      */
-    readonly maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number>;
     /**
      * A unique name to give the role.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The database statements to execute when
      * renewing a user.
      */
-    readonly renewStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    renewStatements?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The database statements to execute when
      * revoking a user.
      */
-    readonly revocationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    revocationStatements?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The database statements to execute when
      * rolling back creation due to an error.
      */
-    readonly rollbackStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    rollbackStatements?: pulumi.Input<pulumi.Input<string>[]>;
 }

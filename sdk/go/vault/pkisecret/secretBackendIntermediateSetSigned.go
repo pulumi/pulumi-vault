@@ -153,7 +153,7 @@ type SecretBackendIntermediateSetSignedArrayInput interface {
 type SecretBackendIntermediateSetSignedArray []SecretBackendIntermediateSetSignedInput
 
 func (SecretBackendIntermediateSetSignedArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SecretBackendIntermediateSetSigned)(nil))
+	return reflect.TypeOf((*[]*SecretBackendIntermediateSetSigned)(nil)).Elem()
 }
 
 func (i SecretBackendIntermediateSetSignedArray) ToSecretBackendIntermediateSetSignedArrayOutput() SecretBackendIntermediateSetSignedArrayOutput {
@@ -178,7 +178,7 @@ type SecretBackendIntermediateSetSignedMapInput interface {
 type SecretBackendIntermediateSetSignedMap map[string]SecretBackendIntermediateSetSignedInput
 
 func (SecretBackendIntermediateSetSignedMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SecretBackendIntermediateSetSigned)(nil))
+	return reflect.TypeOf((*map[string]*SecretBackendIntermediateSetSigned)(nil)).Elem()
 }
 
 func (i SecretBackendIntermediateSetSignedMap) ToSecretBackendIntermediateSetSignedMapOutput() SecretBackendIntermediateSetSignedMapOutput {
@@ -189,9 +189,7 @@ func (i SecretBackendIntermediateSetSignedMap) ToSecretBackendIntermediateSetSig
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendIntermediateSetSignedMapOutput)
 }
 
-type SecretBackendIntermediateSetSignedOutput struct {
-	*pulumi.OutputState
-}
+type SecretBackendIntermediateSetSignedOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendIntermediateSetSignedOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretBackendIntermediateSetSigned)(nil))
@@ -210,14 +208,12 @@ func (o SecretBackendIntermediateSetSignedOutput) ToSecretBackendIntermediateSet
 }
 
 func (o SecretBackendIntermediateSetSignedOutput) ToSecretBackendIntermediateSetSignedPtrOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedPtrOutput {
-	return o.ApplyT(func(v SecretBackendIntermediateSetSigned) *SecretBackendIntermediateSetSigned {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendIntermediateSetSigned) *SecretBackendIntermediateSetSigned {
 		return &v
 	}).(SecretBackendIntermediateSetSignedPtrOutput)
 }
 
-type SecretBackendIntermediateSetSignedPtrOutput struct {
-	*pulumi.OutputState
-}
+type SecretBackendIntermediateSetSignedPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendIntermediateSetSignedPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretBackendIntermediateSetSigned)(nil))
@@ -229,6 +225,16 @@ func (o SecretBackendIntermediateSetSignedPtrOutput) ToSecretBackendIntermediate
 
 func (o SecretBackendIntermediateSetSignedPtrOutput) ToSecretBackendIntermediateSetSignedPtrOutputWithContext(ctx context.Context) SecretBackendIntermediateSetSignedPtrOutput {
 	return o
+}
+
+func (o SecretBackendIntermediateSetSignedPtrOutput) Elem() SecretBackendIntermediateSetSignedOutput {
+	return o.ApplyT(func(v *SecretBackendIntermediateSetSigned) SecretBackendIntermediateSetSigned {
+		if v != nil {
+			return *v
+		}
+		var ret SecretBackendIntermediateSetSigned
+		return ret
+	}).(SecretBackendIntermediateSetSignedOutput)
 }
 
 type SecretBackendIntermediateSetSignedArrayOutput struct{ *pulumi.OutputState }
@@ -272,6 +278,10 @@ func (o SecretBackendIntermediateSetSignedMapOutput) MapIndex(k pulumi.StringInp
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendIntermediateSetSignedInput)(nil)).Elem(), &SecretBackendIntermediateSetSigned{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendIntermediateSetSignedPtrInput)(nil)).Elem(), &SecretBackendIntermediateSetSigned{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendIntermediateSetSignedArrayInput)(nil)).Elem(), SecretBackendIntermediateSetSignedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendIntermediateSetSignedMapInput)(nil)).Elem(), SecretBackendIntermediateSetSignedMap{})
 	pulumi.RegisterOutputType(SecretBackendIntermediateSetSignedOutput{})
 	pulumi.RegisterOutputType(SecretBackendIntermediateSetSignedPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendIntermediateSetSignedArrayOutput{})

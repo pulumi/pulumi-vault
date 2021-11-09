@@ -12,6 +12,7 @@ __all__ = [
     'GetAuthBackendResult',
     'AwaitableGetAuthBackendResult',
     'get_auth_backend',
+    'get_auth_backend_output',
 ]
 
 @pulumi.output_type
@@ -168,3 +169,22 @@ def get_auth_backend(path: Optional[str] = None,
         max_lease_ttl_seconds=__ret__.max_lease_ttl_seconds,
         path=__ret__.path,
         type=__ret__.type)
+
+
+@_utilities.lift_output_func(get_auth_backend)
+def get_auth_backend_output(path: Optional[pulumi.Input[str]] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthBackendResult]:
+    """
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    example = vault.get_auth_backend(path="userpass")
+    ```
+
+
+    :param str path: The auth backend mount point.
+    """
+    ...

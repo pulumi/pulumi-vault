@@ -118,15 +118,15 @@ export interface AuthBackendGroupState {
     /**
      * Path to the authentication backend
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * The LDAP groupname
      */
-    readonly groupname?: pulumi.Input<string>;
+    groupname?: pulumi.Input<string>;
     /**
      * Policies which should be granted to members of the group
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -136,13 +136,13 @@ export interface AuthBackendGroupArgs {
     /**
      * Path to the authentication backend
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * The LDAP groupname
      */
-    readonly groupname: pulumi.Input<string>;
+    groupname: pulumi.Input<string>;
     /**
      * Policies which should be granted to members of the group
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
 }

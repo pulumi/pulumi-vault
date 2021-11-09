@@ -121,11 +121,11 @@ export interface QuotaLeaseCountState {
      * The maximum number of leases to be allowed by the quota
      * rule. The `maxLeases` must be positive.
      */
-    readonly maxLeases?: pulumi.Input<number>;
+    maxLeases?: pulumi.Input<number>;
     /**
      * Name of the rate limit quota
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Path of the mount or namespace to apply the quota. A blank path configures a
      * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
@@ -134,7 +134,7 @@ export interface QuotaLeaseCountState {
      * `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
      * a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
 }
 
 /**
@@ -145,11 +145,11 @@ export interface QuotaLeaseCountArgs {
      * The maximum number of leases to be allowed by the quota
      * rule. The `maxLeases` must be positive.
      */
-    readonly maxLeases: pulumi.Input<number>;
+    maxLeases: pulumi.Input<number>;
     /**
      * Name of the rate limit quota
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Path of the mount or namespace to apply the quota. A blank path configures a
      * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
@@ -158,5 +158,5 @@ export interface QuotaLeaseCountArgs {
      * `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
      * a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
 }

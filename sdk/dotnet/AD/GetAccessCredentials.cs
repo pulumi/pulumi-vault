@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Vault.AD
 {
@@ -13,6 +14,9 @@ namespace Pulumi.Vault.AD
     {
         public static Task<GetAccessCredentialsResult> InvokeAsync(GetAccessCredentialsArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:ad/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsArgs(), options.WithVersion());
+
+        public static Output<GetAccessCredentialsResult> Invoke(GetAccessCredentialsInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetAccessCredentialsResult>("vault:ad/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsInvokeArgs(), options.WithVersion());
     }
 
 
@@ -33,6 +37,27 @@ namespace Pulumi.Vault.AD
         public string Role { get; set; } = null!;
 
         public GetAccessCredentialsArgs()
+        {
+        }
+    }
+
+    public sealed class GetAccessCredentialsInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The path to the AD secret backend to
+        /// read credentials from, with no leading or trailing `/`s.
+        /// </summary>
+        [Input("backend", required: true)]
+        public Input<string> Backend { get; set; } = null!;
+
+        /// <summary>
+        /// The name of the AD secret backend role to read
+        /// credentials from, with no leading or trailing `/`s.
+        /// </summary>
+        [Input("role", required: true)]
+        public Input<string> Role { get; set; } = null!;
+
+        public GetAccessCredentialsInvokeArgs()
         {
         }
     }

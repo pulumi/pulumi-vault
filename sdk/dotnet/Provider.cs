@@ -19,6 +19,49 @@ namespace Pulumi.Vault
     public partial class Provider : Pulumi.ProviderResource
     {
         /// <summary>
+        /// If true, adds the value of the `address` argument to the Terraform process environment.
+        /// </summary>
+        [Output("addAddressToEnv")]
+        public Output<string?> AddAddressToEnv { get; private set; } = null!;
+
+        /// <summary>
+        /// URL of the root of the target Vault server.
+        /// </summary>
+        [Output("address")]
+        public Output<string> Address { get; private set; } = null!;
+
+        /// <summary>
+        /// Path to directory containing CA certificate files to validate the server's certificate.
+        /// </summary>
+        [Output("caCertDir")]
+        public Output<string?> CaCertDir { get; private set; } = null!;
+
+        /// <summary>
+        /// Path to a CA certificate file to validate the server's certificate.
+        /// </summary>
+        [Output("caCertFile")]
+        public Output<string?> CaCertFile { get; private set; } = null!;
+
+        /// <summary>
+        /// The namespace to use. Available only for Vault Enterprise
+        /// </summary>
+        [Output("namespace")]
+        public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
+        /// Token to use to authenticate to Vault.
+        /// </summary>
+        [Output("token")]
+        public Output<string> Token { get; private set; } = null!;
+
+        /// <summary>
+        /// Token name to use for creating the Vault child token.
+        /// </summary>
+        [Output("tokenName")]
+        public Output<string?> TokenName { get; private set; } = null!;
+
+
+        /// <summary>
         /// Create a Provider resource with the given unique name, arguments, and options.
         /// </summary>
         ///

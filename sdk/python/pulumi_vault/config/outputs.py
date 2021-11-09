@@ -52,25 +52,6 @@ class AuthLogins(dict):
 
 @pulumi.output_type
 class ClientAuths(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "certFile":
-            suggest = "cert_file"
-        elif key == "keyFile":
-            suggest = "key_file"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ClientAuths. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ClientAuths.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ClientAuths.__key_warning(key)
-        return super().get(key, default)
-
     def __init__(__self__, *,
                  cert_file: str,
                  key_file: str):

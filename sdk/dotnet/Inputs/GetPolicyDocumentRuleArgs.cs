@@ -10,41 +10,41 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Inputs
 {
 
-    public sealed class GetPolicyDocumentRuleArgs : Pulumi.InvokeArgs
+    public sealed class GetPolicyDocumentRuleInputArgs : Pulumi.ResourceArgs
     {
         [Input("allowedParameters")]
-        private List<Inputs.GetPolicyDocumentRuleAllowedParameterArgs>? _allowedParameters;
+        private InputList<Inputs.GetPolicyDocumentRuleAllowedParameterInputArgs>? _allowedParameters;
 
         /// <summary>
         /// Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
         /// </summary>
-        public List<Inputs.GetPolicyDocumentRuleAllowedParameterArgs> AllowedParameters
+        public InputList<Inputs.GetPolicyDocumentRuleAllowedParameterInputArgs> AllowedParameters
         {
-            get => _allowedParameters ?? (_allowedParameters = new List<Inputs.GetPolicyDocumentRuleAllowedParameterArgs>());
+            get => _allowedParameters ?? (_allowedParameters = new InputList<Inputs.GetPolicyDocumentRuleAllowedParameterInputArgs>());
             set => _allowedParameters = value;
         }
 
         [Input("capabilities", required: true)]
-        private List<string>? _capabilities;
+        private InputList<string>? _capabilities;
 
         /// <summary>
         /// A list of capabilities that this rule apply to `path`. For example, ["read", "write"].
         /// </summary>
-        public List<string> Capabilities
+        public InputList<string> Capabilities
         {
-            get => _capabilities ?? (_capabilities = new List<string>());
+            get => _capabilities ?? (_capabilities = new InputList<string>());
             set => _capabilities = value;
         }
 
         [Input("deniedParameters")]
-        private List<Inputs.GetPolicyDocumentRuleDeniedParameterArgs>? _deniedParameters;
+        private InputList<Inputs.GetPolicyDocumentRuleDeniedParameterInputArgs>? _deniedParameters;
 
         /// <summary>
         /// Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.
         /// </summary>
-        public List<Inputs.GetPolicyDocumentRuleDeniedParameterArgs> DeniedParameters
+        public InputList<Inputs.GetPolicyDocumentRuleDeniedParameterInputArgs> DeniedParameters
         {
-            get => _deniedParameters ?? (_deniedParameters = new List<Inputs.GetPolicyDocumentRuleDeniedParameterArgs>());
+            get => _deniedParameters ?? (_deniedParameters = new InputList<Inputs.GetPolicyDocumentRuleDeniedParameterInputArgs>());
             set => _deniedParameters = value;
         }
 
@@ -52,39 +52,39 @@ namespace Pulumi.Vault.Inputs
         /// Description of the rule. Will be added as a comment to rendered rule.
         /// </summary>
         [Input("description")]
-        public string? Description { get; set; }
+        public Input<string>? Description { get; set; }
 
         /// <summary>
         /// The maximum allowed TTL that clients can specify for a wrapped response.
         /// </summary>
         [Input("maxWrappingTtl")]
-        public string? MaxWrappingTtl { get; set; }
+        public Input<string>? MaxWrappingTtl { get; set; }
 
         /// <summary>
         /// The minimum allowed TTL that clients can specify for a wrapped response.
         /// </summary>
         [Input("minWrappingTtl")]
-        public string? MinWrappingTtl { get; set; }
+        public Input<string>? MinWrappingTtl { get; set; }
 
         /// <summary>
         /// A path in Vault that this rule applies to.
         /// </summary>
         [Input("path", required: true)]
-        public string Path { get; set; } = null!;
+        public Input<string> Path { get; set; } = null!;
 
         [Input("requiredParameters")]
-        private List<string>? _requiredParameters;
+        private InputList<string>? _requiredParameters;
 
         /// <summary>
         /// A list of parameters that must be specified.
         /// </summary>
-        public List<string> RequiredParameters
+        public InputList<string> RequiredParameters
         {
-            get => _requiredParameters ?? (_requiredParameters = new List<string>());
+            get => _requiredParameters ?? (_requiredParameters = new InputList<string>());
             set => _requiredParameters = value;
         }
 
-        public GetPolicyDocumentRuleArgs()
+        public GetPolicyDocumentRuleInputArgs()
         {
         }
     }

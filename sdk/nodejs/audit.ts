@@ -140,23 +140,23 @@ export interface AuditState {
     /**
      * Human-friendly description of the audit device.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
      */
-    readonly local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean>;
     /**
      * Configuration options to pass to the audit device itself.
      */
-    readonly options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The path to mount the audit device. This defaults to the type.
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * Type of the audit device, such as 'file'.
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }
 
 /**
@@ -166,21 +166,21 @@ export interface AuditArgs {
     /**
      * Human-friendly description of the audit device.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
      */
-    readonly local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean>;
     /**
      * Configuration options to pass to the audit device itself.
      */
-    readonly options: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    options: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The path to mount the audit device. This defaults to the type.
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * Type of the audit device, such as 'file'.
      */
-    readonly type: pulumi.Input<string>;
+    type: pulumi.Input<string>;
 }

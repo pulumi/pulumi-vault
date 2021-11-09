@@ -123,6 +123,8 @@ func (o SecretBackendRoleVhostArrayOutput) Index(i pulumi.IntInput) SecretBacken
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRoleVhostInput)(nil)).Elem(), SecretBackendRoleVhostArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRoleVhostArrayInput)(nil)).Elem(), SecretBackendRoleVhostArray{})
 	pulumi.RegisterOutputType(SecretBackendRoleVhostOutput{})
 	pulumi.RegisterOutputType(SecretBackendRoleVhostArrayOutput{})
 }

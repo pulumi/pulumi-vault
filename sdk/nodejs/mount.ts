@@ -189,43 +189,43 @@ export interface MountState {
     /**
      * The accessor for this mount.
      */
-    readonly accessor?: pulumi.Input<string>;
+    accessor?: pulumi.Input<string>;
     /**
      * Default lease duration for tokens and secrets in seconds
      */
-    readonly defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * Human-friendly description of the mount
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
      */
-    readonly externalEntropyAccess?: pulumi.Input<boolean>;
+    externalEntropyAccess?: pulumi.Input<boolean>;
     /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */
-    readonly local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean>;
     /**
      * Maximum possible lease duration for tokens and secrets in seconds
      */
-    readonly maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    readonly options?: pulumi.Input<{[key: string]: any}>;
+    options?: pulumi.Input<{[key: string]: any}>;
     /**
      * Where the secret backend will be mounted
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
-    readonly sealWrap?: pulumi.Input<boolean>;
+    sealWrap?: pulumi.Input<boolean>;
     /**
      * Type of the backend, such as "aws"
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }
 
 /**
@@ -235,37 +235,37 @@ export interface MountArgs {
     /**
      * Default lease duration for tokens and secrets in seconds
      */
-    readonly defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * Human-friendly description of the mount
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
      */
-    readonly externalEntropyAccess?: pulumi.Input<boolean>;
+    externalEntropyAccess?: pulumi.Input<boolean>;
     /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */
-    readonly local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean>;
     /**
      * Maximum possible lease duration for tokens and secrets in seconds
      */
-    readonly maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    readonly options?: pulumi.Input<{[key: string]: any}>;
+    options?: pulumi.Input<{[key: string]: any}>;
     /**
      * Where the secret backend will be mounted
      */
-    readonly path: pulumi.Input<string>;
+    path: pulumi.Input<string>;
     /**
      * Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
-    readonly sealWrap?: pulumi.Input<boolean>;
+    sealWrap?: pulumi.Input<boolean>;
     /**
      * Type of the backend, such as "aws"
      */
-    readonly type: pulumi.Input<string>;
+    type: pulumi.Input<string>;
 }

@@ -258,7 +258,7 @@ type AuthBackendClientArrayInput interface {
 type AuthBackendClientArray []AuthBackendClientInput
 
 func (AuthBackendClientArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*AuthBackendClient)(nil))
+	return reflect.TypeOf((*[]*AuthBackendClient)(nil)).Elem()
 }
 
 func (i AuthBackendClientArray) ToAuthBackendClientArrayOutput() AuthBackendClientArrayOutput {
@@ -283,7 +283,7 @@ type AuthBackendClientMapInput interface {
 type AuthBackendClientMap map[string]AuthBackendClientInput
 
 func (AuthBackendClientMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*AuthBackendClient)(nil))
+	return reflect.TypeOf((*map[string]*AuthBackendClient)(nil)).Elem()
 }
 
 func (i AuthBackendClientMap) ToAuthBackendClientMapOutput() AuthBackendClientMapOutput {
@@ -294,9 +294,7 @@ func (i AuthBackendClientMap) ToAuthBackendClientMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendClientMapOutput)
 }
 
-type AuthBackendClientOutput struct {
-	*pulumi.OutputState
-}
+type AuthBackendClientOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendClientOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*AuthBackendClient)(nil))
@@ -315,14 +313,12 @@ func (o AuthBackendClientOutput) ToAuthBackendClientPtrOutput() AuthBackendClien
 }
 
 func (o AuthBackendClientOutput) ToAuthBackendClientPtrOutputWithContext(ctx context.Context) AuthBackendClientPtrOutput {
-	return o.ApplyT(func(v AuthBackendClient) *AuthBackendClient {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AuthBackendClient) *AuthBackendClient {
 		return &v
 	}).(AuthBackendClientPtrOutput)
 }
 
-type AuthBackendClientPtrOutput struct {
-	*pulumi.OutputState
-}
+type AuthBackendClientPtrOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendClientPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**AuthBackendClient)(nil))
@@ -334,6 +330,16 @@ func (o AuthBackendClientPtrOutput) ToAuthBackendClientPtrOutput() AuthBackendCl
 
 func (o AuthBackendClientPtrOutput) ToAuthBackendClientPtrOutputWithContext(ctx context.Context) AuthBackendClientPtrOutput {
 	return o
+}
+
+func (o AuthBackendClientPtrOutput) Elem() AuthBackendClientOutput {
+	return o.ApplyT(func(v *AuthBackendClient) AuthBackendClient {
+		if v != nil {
+			return *v
+		}
+		var ret AuthBackendClient
+		return ret
+	}).(AuthBackendClientOutput)
 }
 
 type AuthBackendClientArrayOutput struct{ *pulumi.OutputState }
@@ -377,6 +383,10 @@ func (o AuthBackendClientMapOutput) MapIndex(k pulumi.StringInput) AuthBackendCl
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendClientInput)(nil)).Elem(), &AuthBackendClient{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendClientPtrInput)(nil)).Elem(), &AuthBackendClient{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendClientArrayInput)(nil)).Elem(), AuthBackendClientArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendClientMapInput)(nil)).Elem(), AuthBackendClientMap{})
 	pulumi.RegisterOutputType(AuthBackendClientOutput{})
 	pulumi.RegisterOutputType(AuthBackendClientPtrOutput{})
 	pulumi.RegisterOutputType(AuthBackendClientArrayOutput{})

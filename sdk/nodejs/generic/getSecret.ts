@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 export function getSecret(args: GetSecretArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretResult> {
@@ -30,13 +29,13 @@ export interface GetSecretArgs {
      * with this data source is possible; consult each backend's documentation
      * to see which endpoints support the `GET` method.
      */
-    readonly path: string;
+    path: string;
     /**
      * The version of the secret to read. This is used by the
      * Vault KV secrets engine - version 2 to indicate which version of the secret
      * to read.
      */
-    readonly version?: number;
+    version?: number;
 }
 
 /**
@@ -73,4 +72,28 @@ export interface GetSecretResult {
     readonly leaseStartTime: string;
     readonly path: string;
     readonly version?: number;
+}
+
+export function getSecretOutput(args: GetSecretOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretResult> {
+    return pulumi.output(args).apply(a => getSecret(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getSecret.
+ */
+export interface GetSecretOutputArgs {
+    /**
+     * The full logical path from which to request data.
+     * To read data from the "generic" secret backend mounted in Vault by
+     * default, this should be prefixed with `secret/`. Reading from other backends
+     * with this data source is possible; consult each backend's documentation
+     * to see which endpoints support the `GET` method.
+     */
+    path: pulumi.Input<string>;
+    /**
+     * The version of the secret to read. This is used by the
+     * Vault KV secrets engine - version 2 to indicate which version of the secret
+     * to read.
+     */
+    version?: pulumi.Input<number>;
 }

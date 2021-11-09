@@ -337,7 +337,7 @@ type SecretBackendConnectionArrayInput interface {
 type SecretBackendConnectionArray []SecretBackendConnectionInput
 
 func (SecretBackendConnectionArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SecretBackendConnection)(nil))
+	return reflect.TypeOf((*[]*SecretBackendConnection)(nil)).Elem()
 }
 
 func (i SecretBackendConnectionArray) ToSecretBackendConnectionArrayOutput() SecretBackendConnectionArrayOutput {
@@ -362,7 +362,7 @@ type SecretBackendConnectionMapInput interface {
 type SecretBackendConnectionMap map[string]SecretBackendConnectionInput
 
 func (SecretBackendConnectionMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SecretBackendConnection)(nil))
+	return reflect.TypeOf((*map[string]*SecretBackendConnection)(nil)).Elem()
 }
 
 func (i SecretBackendConnectionMap) ToSecretBackendConnectionMapOutput() SecretBackendConnectionMapOutput {
@@ -373,9 +373,7 @@ func (i SecretBackendConnectionMap) ToSecretBackendConnectionMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionMapOutput)
 }
 
-type SecretBackendConnectionOutput struct {
-	*pulumi.OutputState
-}
+type SecretBackendConnectionOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretBackendConnection)(nil))
@@ -394,14 +392,12 @@ func (o SecretBackendConnectionOutput) ToSecretBackendConnectionPtrOutput() Secr
 }
 
 func (o SecretBackendConnectionOutput) ToSecretBackendConnectionPtrOutputWithContext(ctx context.Context) SecretBackendConnectionPtrOutput {
-	return o.ApplyT(func(v SecretBackendConnection) *SecretBackendConnection {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnection) *SecretBackendConnection {
 		return &v
 	}).(SecretBackendConnectionPtrOutput)
 }
 
-type SecretBackendConnectionPtrOutput struct {
-	*pulumi.OutputState
-}
+type SecretBackendConnectionPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretBackendConnection)(nil))
@@ -413,6 +409,16 @@ func (o SecretBackendConnectionPtrOutput) ToSecretBackendConnectionPtrOutput() S
 
 func (o SecretBackendConnectionPtrOutput) ToSecretBackendConnectionPtrOutputWithContext(ctx context.Context) SecretBackendConnectionPtrOutput {
 	return o
+}
+
+func (o SecretBackendConnectionPtrOutput) Elem() SecretBackendConnectionOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnection {
+		if v != nil {
+			return *v
+		}
+		var ret SecretBackendConnection
+		return ret
+	}).(SecretBackendConnectionOutput)
 }
 
 type SecretBackendConnectionArrayOutput struct{ *pulumi.OutputState }
@@ -456,6 +462,10 @@ func (o SecretBackendConnectionMapOutput) MapIndex(k pulumi.StringInput) SecretB
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionInput)(nil)).Elem(), &SecretBackendConnection{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionPtrInput)(nil)).Elem(), &SecretBackendConnection{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionArrayInput)(nil)).Elem(), SecretBackendConnectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionMapInput)(nil)).Elem(), SecretBackendConnectionMap{})
 	pulumi.RegisterOutputType(SecretBackendConnectionOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionArrayOutput{})

@@ -125,19 +125,19 @@ export interface AuthBackendUserState {
     /**
      * List of Okta groups to associate with this user
      */
-    readonly groups?: pulumi.Input<pulumi.Input<string>[]>;
+    groups?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The path where the Okta auth backend is mounted
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * List of Vault policies to associate with this user
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Name of the user within Okta
      */
-    readonly username?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
 }
 
 /**
@@ -147,17 +147,17 @@ export interface AuthBackendUserArgs {
     /**
      * List of Okta groups to associate with this user
      */
-    readonly groups?: pulumi.Input<pulumi.Input<string>[]>;
+    groups?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The path where the Okta auth backend is mounted
      */
-    readonly path: pulumi.Input<string>;
+    path: pulumi.Input<string>;
     /**
      * List of Vault policies to associate with this user
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Name of the user within Okta
      */
-    readonly username: pulumi.Input<string>;
+    username: pulumi.Input<string>;
 }

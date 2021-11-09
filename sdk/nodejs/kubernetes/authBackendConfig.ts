@@ -146,35 +146,35 @@ export interface AuthBackendConfigState {
     /**
      * Unique name of the kubernetes backend to configure.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
      */
-    readonly disableIssValidation?: pulumi.Input<boolean>;
+    disableIssValidation?: pulumi.Input<boolean>;
     /**
      * Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
      */
-    readonly disableLocalCaJwt?: pulumi.Input<boolean>;
+    disableLocalCaJwt?: pulumi.Input<boolean>;
     /**
      * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
      */
-    readonly issuer?: pulumi.Input<string>;
+    issuer?: pulumi.Input<string>;
     /**
      * PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
      */
-    readonly kubernetesCaCert?: pulumi.Input<string>;
+    kubernetesCaCert?: pulumi.Input<string>;
     /**
      * Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
      */
-    readonly kubernetesHost?: pulumi.Input<string>;
+    kubernetesHost?: pulumi.Input<string>;
     /**
      * List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */
-    readonly pemKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    pemKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
      */
-    readonly tokenReviewerJwt?: pulumi.Input<string>;
+    tokenReviewerJwt?: pulumi.Input<string>;
 }
 
 /**
@@ -184,33 +184,33 @@ export interface AuthBackendConfigArgs {
     /**
      * Unique name of the kubernetes backend to configure.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
      */
-    readonly disableIssValidation?: pulumi.Input<boolean>;
+    disableIssValidation?: pulumi.Input<boolean>;
     /**
      * Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
      */
-    readonly disableLocalCaJwt?: pulumi.Input<boolean>;
+    disableLocalCaJwt?: pulumi.Input<boolean>;
     /**
      * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
      */
-    readonly issuer?: pulumi.Input<string>;
+    issuer?: pulumi.Input<string>;
     /**
      * PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
      */
-    readonly kubernetesCaCert?: pulumi.Input<string>;
+    kubernetesCaCert?: pulumi.Input<string>;
     /**
      * Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
      */
-    readonly kubernetesHost: pulumi.Input<string>;
+    kubernetesHost: pulumi.Input<string>;
     /**
      * List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */
-    readonly pemKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    pemKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
      */
-    readonly tokenReviewerJwt?: pulumi.Input<string>;
+    tokenReviewerJwt?: pulumi.Input<string>;
 }
