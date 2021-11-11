@@ -12,6 +12,7 @@ __all__ = [
     'GetAuthBackendRoleIdResult',
     'AwaitableGetAuthBackendRoleIdResult',
     'get_auth_backend_role_id',
+    'get_auth_backend_role_id_output',
 ]
 
 @pulumi.output_type
@@ -108,3 +109,29 @@ def get_auth_backend_role_id(backend: Optional[str] = None,
         id=__ret__.id,
         role_id=__ret__.role_id,
         role_name=__ret__.role_name)
+
+
+@_utilities.lift_output_func(get_auth_backend_role_id)
+def get_auth_backend_role_id_output(backend: Optional[pulumi.Input[Optional[str]]] = None,
+                                    role_name: Optional[pulumi.Input[str]] = None,
+                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthBackendRoleIdResult]:
+    """
+    Reads the Role ID of an AppRole from a Vault server.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    role = vault.appRole.get_auth_backend_role_id(backend="my-approle-backend",
+        role_name="my-role")
+    pulumi.export("role-id", role.role_id)
+    ```
+
+
+    :param str backend: The unique name for the AppRole backend the role to
+           retrieve a RoleID for resides in. Defaults to "approle".
+    :param str role_name: The name of the role to retrieve the Role ID for.
+    """
+    ...

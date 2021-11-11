@@ -12,6 +12,7 @@ __all__ = [
     'GetAuthBackendConfigResult',
     'AwaitableGetAuthBackendConfigResult',
     'get_auth_backend_config',
+    'get_auth_backend_config_output',
 ]
 
 @pulumi.output_type
@@ -161,3 +162,28 @@ def get_auth_backend_config(backend: Optional[str] = None,
         kubernetes_ca_cert=__ret__.kubernetes_ca_cert,
         kubernetes_host=__ret__.kubernetes_host,
         pem_keys=__ret__.pem_keys)
+
+
+@_utilities.lift_output_func(get_auth_backend_config)
+def get_auth_backend_config_output(backend: Optional[pulumi.Input[Optional[str]]] = None,
+                                   disable_iss_validation: Optional[pulumi.Input[Optional[bool]]] = None,
+                                   disable_local_ca_jwt: Optional[pulumi.Input[Optional[bool]]] = None,
+                                   issuer: Optional[pulumi.Input[Optional[str]]] = None,
+                                   kubernetes_ca_cert: Optional[pulumi.Input[Optional[str]]] = None,
+                                   kubernetes_host: Optional[pulumi.Input[Optional[str]]] = None,
+                                   pem_keys: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthBackendConfigResult]:
+    """
+    Reads the Role of an Kubernetes from a Vault server. See the [Vault
+    documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
+    information.
+
+
+    :param str backend: The unique name for the Kubernetes backend the config to
+           retrieve Role attributes for resides in. Defaults to "kubernetes".
+    :param str issuer: Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+    :param str kubernetes_ca_cert: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
+    :param str kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
+    :param Sequence[str] pem_keys: Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
+    """
+    ...

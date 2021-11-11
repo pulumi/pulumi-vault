@@ -189,70 +189,70 @@ export interface UserState {
      * Path where the github auth backend is mounted. Defaults to `github`
      * if not specified.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * An array of strings specifying the policies to be set on tokens issued
      * using this role.
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      *
      * @deprecated This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
      */
-    readonly tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      *
      * @deprecated This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
      */
-    readonly tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number>;
     /**
      * The maximum lifetime of the generated token
      *
      * @deprecated This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
      */
-    readonly tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      *
      * @deprecated This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
      */
-    readonly tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      *
      * @deprecated This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
      */
-    readonly tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number>;
     /**
      * Generated Token's Period
      *
      * @deprecated This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
      */
-    readonly tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number>;
     /**
      * Generated Token's Policies
      *
      * @deprecated This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
      */
-    readonly tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The initial ttl of the token to generate in seconds
      *
      * @deprecated This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
      */
-    readonly tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number>;
     /**
      * The type of token to generate, service or batch
      *
      * @deprecated This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
      */
-    readonly tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string>;
     /**
      * GitHub user name.
      */
-    readonly user?: pulumi.Input<string>;
+    user?: pulumi.Input<string>;
 }
 
 /**
@@ -263,68 +263,68 @@ export interface UserArgs {
      * Path where the github auth backend is mounted. Defaults to `github`
      * if not specified.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * An array of strings specifying the policies to be set on tokens issued
      * using this role.
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      *
      * @deprecated This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
      */
-    readonly tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      *
      * @deprecated This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
      */
-    readonly tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number>;
     /**
      * The maximum lifetime of the generated token
      *
      * @deprecated This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
      */
-    readonly tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      *
      * @deprecated This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
      */
-    readonly tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      *
      * @deprecated This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
      */
-    readonly tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number>;
     /**
      * Generated Token's Period
      *
      * @deprecated This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
      */
-    readonly tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number>;
     /**
      * Generated Token's Policies
      *
      * @deprecated This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
      */
-    readonly tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The initial ttl of the token to generate in seconds
      *
      * @deprecated This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
      */
-    readonly tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number>;
     /**
      * The type of token to generate, service or batch
      *
      * @deprecated This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.
      */
-    readonly tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string>;
     /**
      * GitHub user name.
      */
-    readonly user: pulumi.Input<string>;
+    user: pulumi.Input<string>;
 }

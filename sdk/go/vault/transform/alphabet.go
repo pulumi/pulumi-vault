@@ -195,7 +195,7 @@ type AlphabetArrayInput interface {
 type AlphabetArray []AlphabetInput
 
 func (AlphabetArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*Alphabet)(nil))
+	return reflect.TypeOf((*[]*Alphabet)(nil)).Elem()
 }
 
 func (i AlphabetArray) ToAlphabetArrayOutput() AlphabetArrayOutput {
@@ -220,7 +220,7 @@ type AlphabetMapInput interface {
 type AlphabetMap map[string]AlphabetInput
 
 func (AlphabetMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*Alphabet)(nil))
+	return reflect.TypeOf((*map[string]*Alphabet)(nil)).Elem()
 }
 
 func (i AlphabetMap) ToAlphabetMapOutput() AlphabetMapOutput {
@@ -231,9 +231,7 @@ func (i AlphabetMap) ToAlphabetMapOutputWithContext(ctx context.Context) Alphabe
 	return pulumi.ToOutputWithContext(ctx, i).(AlphabetMapOutput)
 }
 
-type AlphabetOutput struct {
-	*pulumi.OutputState
-}
+type AlphabetOutput struct{ *pulumi.OutputState }
 
 func (AlphabetOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Alphabet)(nil))
@@ -252,14 +250,12 @@ func (o AlphabetOutput) ToAlphabetPtrOutput() AlphabetPtrOutput {
 }
 
 func (o AlphabetOutput) ToAlphabetPtrOutputWithContext(ctx context.Context) AlphabetPtrOutput {
-	return o.ApplyT(func(v Alphabet) *Alphabet {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Alphabet) *Alphabet {
 		return &v
 	}).(AlphabetPtrOutput)
 }
 
-type AlphabetPtrOutput struct {
-	*pulumi.OutputState
-}
+type AlphabetPtrOutput struct{ *pulumi.OutputState }
 
 func (AlphabetPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Alphabet)(nil))
@@ -271,6 +267,16 @@ func (o AlphabetPtrOutput) ToAlphabetPtrOutput() AlphabetPtrOutput {
 
 func (o AlphabetPtrOutput) ToAlphabetPtrOutputWithContext(ctx context.Context) AlphabetPtrOutput {
 	return o
+}
+
+func (o AlphabetPtrOutput) Elem() AlphabetOutput {
+	return o.ApplyT(func(v *Alphabet) Alphabet {
+		if v != nil {
+			return *v
+		}
+		var ret Alphabet
+		return ret
+	}).(AlphabetOutput)
 }
 
 type AlphabetArrayOutput struct{ *pulumi.OutputState }
@@ -314,6 +320,10 @@ func (o AlphabetMapOutput) MapIndex(k pulumi.StringInput) AlphabetOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AlphabetInput)(nil)).Elem(), &Alphabet{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlphabetPtrInput)(nil)).Elem(), &Alphabet{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlphabetArrayInput)(nil)).Elem(), AlphabetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlphabetMapInput)(nil)).Elem(), AlphabetMap{})
 	pulumi.RegisterOutputType(AlphabetOutput{})
 	pulumi.RegisterOutputType(AlphabetPtrOutput{})
 	pulumi.RegisterOutputType(AlphabetArrayOutput{})

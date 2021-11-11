@@ -232,6 +232,10 @@ func (o AuthBackendUserTypeArrayOutput) Index(i pulumi.IntInput) AuthBackendUser
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendGroupTypeInput)(nil)).Elem(), AuthBackendGroupTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendGroupTypeArrayInput)(nil)).Elem(), AuthBackendGroupTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendUserTypeInput)(nil)).Elem(), AuthBackendUserTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendUserTypeArrayInput)(nil)).Elem(), AuthBackendUserTypeArray{})
 	pulumi.RegisterOutputType(AuthBackendGroupTypeOutput{})
 	pulumi.RegisterOutputType(AuthBackendGroupTypeArrayOutput{})
 	pulumi.RegisterOutputType(AuthBackendUserTypeOutput{})

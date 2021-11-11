@@ -14,6 +14,7 @@ __all__ = [
     'GetPolicyDocumentResult',
     'AwaitableGetPolicyDocumentResult',
     'get_policy_document',
+    'get_policy_document_output',
 ]
 
 @pulumi.output_type
@@ -102,3 +103,32 @@ def get_policy_document(rules: Optional[Sequence[pulumi.InputType['GetPolicyDocu
         hcl=__ret__.hcl,
         id=__ret__.id,
         rules=__ret__.rules)
+
+
+@_utilities.lift_output_func(get_policy_document)
+def get_policy_document_output(rules: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetPolicyDocumentRuleArgs']]]]] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPolicyDocumentResult]:
+    """
+    This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `Policy` resource.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    example_policy_document = vault.get_policy_document(rules=[vault.GetPolicyDocumentRuleArgs(
+        path="secret/*",
+        capabilities=[
+            "create",
+            "read",
+            "update",
+            "delete",
+            "list",
+        ],
+        description="allow all on secrets",
+    )])
+    example_policy = vault.Policy("examplePolicy", policy=example_policy_document.hcl)
+    ```
+    """
+    ...

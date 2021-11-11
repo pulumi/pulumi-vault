@@ -131,11 +131,11 @@ export interface EndpointState {
      * String containing a JSON-encoded object that will be
      * written to the given path as the secret data.
      */
-    readonly dataJson?: pulumi.Input<string>;
+    dataJson?: pulumi.Input<string>;
     /**
      * Don't attempt to delete the path from Vault if true
      */
-    readonly disableDelete?: pulumi.Input<boolean>;
+    disableDelete?: pulumi.Input<boolean>;
     /**
      * True/false. Set this to true if your vault
      * authentication is not able to read the data or if the endpoint does
@@ -143,30 +143,30 @@ export interface EndpointState {
      * detection. You should set this to `true` for endpoints that are
      * write-only. Defaults to false.
      */
-    readonly disableRead?: pulumi.Input<boolean>;
+    disableRead?: pulumi.Input<boolean>;
     /**
      * When reading, disregard fields not present in data_json
      */
-    readonly ignoreAbsentFields?: pulumi.Input<boolean>;
+    ignoreAbsentFields?: pulumi.Input<boolean>;
     /**
      * The full logical path at which to write the given
      * data. Consult each backend's documentation to see which endpoints
      * support the `PUT` methods and to determine whether they also support
      * `DELETE` and `GET`.
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * Map of strings returned by write operation
      */
-    readonly writeData?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    writeData?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * JSON data returned by write operation
      */
-    readonly writeDataJson?: pulumi.Input<string>;
+    writeDataJson?: pulumi.Input<string>;
     /**
      * Top-level fields returned by write to persist in state
      */
-    readonly writeFields?: pulumi.Input<pulumi.Input<string>[]>;
+    writeFields?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -177,11 +177,11 @@ export interface EndpointArgs {
      * String containing a JSON-encoded object that will be
      * written to the given path as the secret data.
      */
-    readonly dataJson: pulumi.Input<string>;
+    dataJson: pulumi.Input<string>;
     /**
      * Don't attempt to delete the path from Vault if true
      */
-    readonly disableDelete?: pulumi.Input<boolean>;
+    disableDelete?: pulumi.Input<boolean>;
     /**
      * True/false. Set this to true if your vault
      * authentication is not able to read the data or if the endpoint does
@@ -189,20 +189,20 @@ export interface EndpointArgs {
      * detection. You should set this to `true` for endpoints that are
      * write-only. Defaults to false.
      */
-    readonly disableRead?: pulumi.Input<boolean>;
+    disableRead?: pulumi.Input<boolean>;
     /**
      * When reading, disregard fields not present in data_json
      */
-    readonly ignoreAbsentFields?: pulumi.Input<boolean>;
+    ignoreAbsentFields?: pulumi.Input<boolean>;
     /**
      * The full logical path at which to write the given
      * data. Consult each backend's documentation to see which endpoints
      * support the `PUT` methods and to determine whether they also support
      * `DELETE` and `GET`.
      */
-    readonly path: pulumi.Input<string>;
+    path: pulumi.Input<string>;
     /**
      * Top-level fields returned by write to persist in state
      */
-    readonly writeFields?: pulumi.Input<pulumi.Input<string>[]>;
+    writeFields?: pulumi.Input<pulumi.Input<string>[]>;
 }

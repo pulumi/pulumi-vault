@@ -135,19 +135,19 @@ export interface EntityPoliciesState {
     /**
      * Entity ID to assign policies to.
      */
-    readonly entityId?: pulumi.Input<string>;
+    entityId?: pulumi.Input<string>;
     /**
      * The name of the entity that are assigned the policies.
      */
-    readonly entityName?: pulumi.Input<string>;
+    entityName?: pulumi.Input<string>;
     /**
      * Defaults to `true`.
      */
-    readonly exclusive?: pulumi.Input<boolean>;
+    exclusive?: pulumi.Input<boolean>;
     /**
      * List of policies to assign to the entity
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -157,13 +157,13 @@ export interface EntityPoliciesArgs {
     /**
      * Entity ID to assign policies to.
      */
-    readonly entityId: pulumi.Input<string>;
+    entityId: pulumi.Input<string>;
     /**
      * Defaults to `true`.
      */
-    readonly exclusive?: pulumi.Input<boolean>;
+    exclusive?: pulumi.Input<boolean>;
     /**
      * List of policies to assign to the entity
      */
-    readonly policies: pulumi.Input<pulumi.Input<string>[]>;
+    policies: pulumi.Input<pulumi.Input<string>[]>;
 }

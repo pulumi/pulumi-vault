@@ -15,6 +15,62 @@ import (
 //
 // Each Roleset is [tied](https://www.vaultproject.io/docs/secrets/gcp/index.html#service-accounts-are-tied-to-rolesets) to a Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings) associated with it.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+// 	"io/ioutil"
+//
+// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/gcp"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func readFileOrPanic(path string) pulumi.StringPtrInput {
+// 	data, err := ioutil.ReadFile(path)
+// 	if err != nil {
+// 		panic(err.Error())
+// 	}
+// 	return pulumi.String(string(data))
+// }
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		project := "my-awesome-project"
+// 		gcp, err := gcp.NewSecretBackend(ctx, "gcp", &gcp.SecretBackendArgs{
+// 			Path:        pulumi.String("gcp"),
+// 			Credentials: readFileOrPanic("credentials.json"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = gcp.NewSecretRoleset(ctx, "roleset", &gcp.SecretRolesetArgs{
+// 			Backend:    gcp.Path,
+// 			Roleset:    pulumi.String("project_viewer"),
+// 			SecretType: pulumi.String("access_token"),
+// 			Project:    pulumi.String(project),
+// 			TokenScopes: pulumi.StringArray{
+// 				pulumi.String("https://www.googleapis.com/auth/cloud-platform"),
+// 			},
+// 			Bindings: gcp.SecretRolesetBindingArray{
+// 				&gcp.SecretRolesetBindingArgs{
+// 					Resource: pulumi.String(fmt.Sprintf("%v%v", "//cloudresourcemanager.googleapis.com/projects/", project)),
+// 					Roles: pulumi.StringArray{
+// 						pulumi.String("roles/viewer"),
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // A roleset can be imported using its Vault Path. For example, referencing the example above,
@@ -216,7 +272,7 @@ type SecretRolesetArrayInput interface {
 type SecretRolesetArray []SecretRolesetInput
 
 func (SecretRolesetArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SecretRoleset)(nil))
+	return reflect.TypeOf((*[]*SecretRoleset)(nil)).Elem()
 }
 
 func (i SecretRolesetArray) ToSecretRolesetArrayOutput() SecretRolesetArrayOutput {
@@ -241,7 +297,7 @@ type SecretRolesetMapInput interface {
 type SecretRolesetMap map[string]SecretRolesetInput
 
 func (SecretRolesetMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SecretRoleset)(nil))
+	return reflect.TypeOf((*map[string]*SecretRoleset)(nil)).Elem()
 }
 
 func (i SecretRolesetMap) ToSecretRolesetMapOutput() SecretRolesetMapOutput {
@@ -252,9 +308,7 @@ func (i SecretRolesetMap) ToSecretRolesetMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretRolesetMapOutput)
 }
 
-type SecretRolesetOutput struct {
-	*pulumi.OutputState
-}
+type SecretRolesetOutput struct{ *pulumi.OutputState }
 
 func (SecretRolesetOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretRoleset)(nil))
@@ -273,14 +327,12 @@ func (o SecretRolesetOutput) ToSecretRolesetPtrOutput() SecretRolesetPtrOutput {
 }
 
 func (o SecretRolesetOutput) ToSecretRolesetPtrOutputWithContext(ctx context.Context) SecretRolesetPtrOutput {
-	return o.ApplyT(func(v SecretRoleset) *SecretRoleset {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretRoleset) *SecretRoleset {
 		return &v
 	}).(SecretRolesetPtrOutput)
 }
 
-type SecretRolesetPtrOutput struct {
-	*pulumi.OutputState
-}
+type SecretRolesetPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretRolesetPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretRoleset)(nil))
@@ -292,6 +344,16 @@ func (o SecretRolesetPtrOutput) ToSecretRolesetPtrOutput() SecretRolesetPtrOutpu
 
 func (o SecretRolesetPtrOutput) ToSecretRolesetPtrOutputWithContext(ctx context.Context) SecretRolesetPtrOutput {
 	return o
+}
+
+func (o SecretRolesetPtrOutput) Elem() SecretRolesetOutput {
+	return o.ApplyT(func(v *SecretRoleset) SecretRoleset {
+		if v != nil {
+			return *v
+		}
+		var ret SecretRoleset
+		return ret
+	}).(SecretRolesetOutput)
 }
 
 type SecretRolesetArrayOutput struct{ *pulumi.OutputState }
@@ -335,6 +397,10 @@ func (o SecretRolesetMapOutput) MapIndex(k pulumi.StringInput) SecretRolesetOutp
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretRolesetInput)(nil)).Elem(), &SecretRoleset{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretRolesetPtrInput)(nil)).Elem(), &SecretRoleset{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretRolesetArrayInput)(nil)).Elem(), SecretRolesetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretRolesetMapInput)(nil)).Elem(), SecretRolesetMap{})
 	pulumi.RegisterOutputType(SecretRolesetOutput{})
 	pulumi.RegisterOutputType(SecretRolesetPtrOutput{})
 	pulumi.RegisterOutputType(SecretRolesetArrayOutput{})

@@ -130,43 +130,43 @@ export interface AuthBackendClientState {
      * The AWS access key that Vault should use for the
      * auth backend.
      */
-    readonly accessKey?: pulumi.Input<string>;
+    accessKey?: pulumi.Input<string>;
     /**
      * The path the AWS auth backend being configured was
      * mounted at.  Defaults to `aws`.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * Override the URL Vault uses when making EC2 API
      * calls.
      */
-    readonly ec2Endpoint?: pulumi.Input<string>;
+    ec2Endpoint?: pulumi.Input<string>;
     /**
      * Override the URL Vault uses when making IAM API
      * calls.
      */
-    readonly iamEndpoint?: pulumi.Input<string>;
+    iamEndpoint?: pulumi.Input<string>;
     /**
      * The value to require in the
      * `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
      * that are used in the IAM auth method.
      */
-    readonly iamServerIdHeaderValue?: pulumi.Input<string>;
+    iamServerIdHeaderValue?: pulumi.Input<string>;
     /**
      * The AWS secret key that Vault should use for the
      * auth backend.
      */
-    readonly secretKey?: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string>;
     /**
      * Override the URL Vault uses when making STS API
      * calls.
      */
-    readonly stsEndpoint?: pulumi.Input<string>;
+    stsEndpoint?: pulumi.Input<string>;
     /**
      * Override the default region when making STS API 
      * calls. The `stsEndpoint` argument must be set when using `stsRegion`.
      */
-    readonly stsRegion?: pulumi.Input<string>;
+    stsRegion?: pulumi.Input<string>;
 }
 
 /**
@@ -177,41 +177,41 @@ export interface AuthBackendClientArgs {
      * The AWS access key that Vault should use for the
      * auth backend.
      */
-    readonly accessKey?: pulumi.Input<string>;
+    accessKey?: pulumi.Input<string>;
     /**
      * The path the AWS auth backend being configured was
      * mounted at.  Defaults to `aws`.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * Override the URL Vault uses when making EC2 API
      * calls.
      */
-    readonly ec2Endpoint?: pulumi.Input<string>;
+    ec2Endpoint?: pulumi.Input<string>;
     /**
      * Override the URL Vault uses when making IAM API
      * calls.
      */
-    readonly iamEndpoint?: pulumi.Input<string>;
+    iamEndpoint?: pulumi.Input<string>;
     /**
      * The value to require in the
      * `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
      * that are used in the IAM auth method.
      */
-    readonly iamServerIdHeaderValue?: pulumi.Input<string>;
+    iamServerIdHeaderValue?: pulumi.Input<string>;
     /**
      * The AWS secret key that Vault should use for the
      * auth backend.
      */
-    readonly secretKey?: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string>;
     /**
      * Override the URL Vault uses when making STS API
      * calls.
      */
-    readonly stsEndpoint?: pulumi.Input<string>;
+    stsEndpoint?: pulumi.Input<string>;
     /**
      * Override the default region when making STS API 
      * calls. The `stsEndpoint` argument must be set when using `stsRegion`.
      */
-    readonly stsRegion?: pulumi.Input<string>;
+    stsRegion?: pulumi.Input<string>;
 }

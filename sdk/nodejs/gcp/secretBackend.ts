@@ -102,30 +102,30 @@ export interface SecretBackendState {
     /**
      * The GCP service account credentials in JSON format.
      */
-    readonly credentials?: pulumi.Input<string>;
+    credentials?: pulumi.Input<string>;
     /**
      * The default TTL for credentials
      * issued by this backend. Defaults to '0'.
      */
-    readonly defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * A human-friendly description for this backend.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */
-    readonly local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean>;
     /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend. Defaults to '0'.
      */
-    readonly maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `gcp`.
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
 }
 
 /**
@@ -135,28 +135,28 @@ export interface SecretBackendArgs {
     /**
      * The GCP service account credentials in JSON format.
      */
-    readonly credentials?: pulumi.Input<string>;
+    credentials?: pulumi.Input<string>;
     /**
      * The default TTL for credentials
      * issued by this backend. Defaults to '0'.
      */
-    readonly defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * A human-friendly description for this backend.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */
-    readonly local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean>;
     /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend. Defaults to '0'.
      */
-    readonly maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `gcp`.
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
 }

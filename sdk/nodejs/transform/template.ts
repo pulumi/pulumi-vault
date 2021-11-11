@@ -96,23 +96,23 @@ export interface TemplateState {
     /**
      * The alphabet to use for this template. This is only used during FPE transformations.
      */
-    readonly alphabet?: pulumi.Input<string>;
+    alphabet?: pulumi.Input<string>;
     /**
      * The name of the template.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * The pattern used for matching. Currently, only regular expression pattern is supported.
      */
-    readonly pattern?: pulumi.Input<string>;
+    pattern?: pulumi.Input<string>;
     /**
      * The pattern type to use for match detection. Currently, only regex is supported.
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }
 
 /**
@@ -122,21 +122,21 @@ export interface TemplateArgs {
     /**
      * The alphabet to use for this template. This is only used during FPE transformations.
      */
-    readonly alphabet?: pulumi.Input<string>;
+    alphabet?: pulumi.Input<string>;
     /**
      * The name of the template.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
-    readonly path: pulumi.Input<string>;
+    path: pulumi.Input<string>;
     /**
      * The pattern used for matching. Currently, only regular expression pattern is supported.
      */
-    readonly pattern?: pulumi.Input<string>;
+    pattern?: pulumi.Input<string>;
     /**
      * The pattern type to use for match detection. Currently, only regex is supported.
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }

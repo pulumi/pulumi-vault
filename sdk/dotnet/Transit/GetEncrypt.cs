@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Vault.Transit
 {
@@ -16,6 +17,12 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         public static Task<GetEncryptResult> InvokeAsync(GetEncryptArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetEncryptResult>("vault:transit/getEncrypt:getEncrypt", args ?? new GetEncryptArgs(), options.WithVersion());
+
+        /// <summary>
+        /// This is a data source which can be used to encrypt plaintext using a Vault Transit key.
+        /// </summary>
+        public static Output<GetEncryptResult> Invoke(GetEncryptInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetEncryptResult>("vault:transit/getEncrypt:getEncrypt", args ?? new GetEncryptInvokeArgs(), options.WithVersion());
     }
 
 
@@ -52,6 +59,43 @@ namespace Pulumi.Vault.Transit
         public string Plaintext { get; set; } = null!;
 
         public GetEncryptArgs()
+        {
+        }
+    }
+
+    public sealed class GetEncryptInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The path the transit secret backend is mounted at, with no leading or trailing `/`.
+        /// </summary>
+        [Input("backend", required: true)]
+        public Input<string> Backend { get; set; } = null!;
+
+        /// <summary>
+        /// Context for key derivation. This is required if key derivation is enabled for this key.
+        /// </summary>
+        [Input("context")]
+        public Input<string>? Context { get; set; }
+
+        /// <summary>
+        /// Specifies the name of the transit key to encrypt against.
+        /// </summary>
+        [Input("key", required: true)]
+        public Input<string> Key { get; set; } = null!;
+
+        /// <summary>
+        /// The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `min_encryption_version`, if set.
+        /// </summary>
+        [Input("keyVersion")]
+        public Input<int>? KeyVersion { get; set; }
+
+        /// <summary>
+        /// Plaintext to be encoded.
+        /// </summary>
+        [Input("plaintext", required: true)]
+        public Input<string> Plaintext { get; set; } = null!;
+
+        public GetEncryptInvokeArgs()
         {
         }
     }

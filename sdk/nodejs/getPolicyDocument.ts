@@ -48,7 +48,7 @@ export function getPolicyDocument(args?: GetPolicyDocumentArgs, opts?: pulumi.In
  * A collection of arguments for invoking getPolicyDocument.
  */
 export interface GetPolicyDocumentArgs {
-    readonly rules?: inputs.GetPolicyDocumentRule[];
+    rules?: inputs.GetPolicyDocumentRule[];
 }
 
 /**
@@ -64,4 +64,15 @@ export interface GetPolicyDocumentResult {
      */
     readonly id: string;
     readonly rules: outputs.GetPolicyDocumentRule[];
+}
+
+export function getPolicyDocumentOutput(args?: GetPolicyDocumentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPolicyDocumentResult> {
+    return pulumi.output(args).apply(a => getPolicyDocument(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getPolicyDocument.
+ */
+export interface GetPolicyDocumentOutputArgs {
+    rules?: pulumi.Input<pulumi.Input<inputs.GetPolicyDocumentRuleArgs>[]>;
 }

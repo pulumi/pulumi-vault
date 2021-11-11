@@ -192,7 +192,7 @@ type RgpPolicyArrayInput interface {
 type RgpPolicyArray []RgpPolicyInput
 
 func (RgpPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RgpPolicy)(nil))
+	return reflect.TypeOf((*[]*RgpPolicy)(nil)).Elem()
 }
 
 func (i RgpPolicyArray) ToRgpPolicyArrayOutput() RgpPolicyArrayOutput {
@@ -217,7 +217,7 @@ type RgpPolicyMapInput interface {
 type RgpPolicyMap map[string]RgpPolicyInput
 
 func (RgpPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RgpPolicy)(nil))
+	return reflect.TypeOf((*map[string]*RgpPolicy)(nil)).Elem()
 }
 
 func (i RgpPolicyMap) ToRgpPolicyMapOutput() RgpPolicyMapOutput {
@@ -228,9 +228,7 @@ func (i RgpPolicyMap) ToRgpPolicyMapOutputWithContext(ctx context.Context) RgpPo
 	return pulumi.ToOutputWithContext(ctx, i).(RgpPolicyMapOutput)
 }
 
-type RgpPolicyOutput struct {
-	*pulumi.OutputState
-}
+type RgpPolicyOutput struct{ *pulumi.OutputState }
 
 func (RgpPolicyOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RgpPolicy)(nil))
@@ -249,14 +247,12 @@ func (o RgpPolicyOutput) ToRgpPolicyPtrOutput() RgpPolicyPtrOutput {
 }
 
 func (o RgpPolicyOutput) ToRgpPolicyPtrOutputWithContext(ctx context.Context) RgpPolicyPtrOutput {
-	return o.ApplyT(func(v RgpPolicy) *RgpPolicy {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RgpPolicy) *RgpPolicy {
 		return &v
 	}).(RgpPolicyPtrOutput)
 }
 
-type RgpPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
+type RgpPolicyPtrOutput struct{ *pulumi.OutputState }
 
 func (RgpPolicyPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RgpPolicy)(nil))
@@ -268,6 +264,16 @@ func (o RgpPolicyPtrOutput) ToRgpPolicyPtrOutput() RgpPolicyPtrOutput {
 
 func (o RgpPolicyPtrOutput) ToRgpPolicyPtrOutputWithContext(ctx context.Context) RgpPolicyPtrOutput {
 	return o
+}
+
+func (o RgpPolicyPtrOutput) Elem() RgpPolicyOutput {
+	return o.ApplyT(func(v *RgpPolicy) RgpPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret RgpPolicy
+		return ret
+	}).(RgpPolicyOutput)
 }
 
 type RgpPolicyArrayOutput struct{ *pulumi.OutputState }
@@ -311,6 +317,10 @@ func (o RgpPolicyMapOutput) MapIndex(k pulumi.StringInput) RgpPolicyOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RgpPolicyInput)(nil)).Elem(), &RgpPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RgpPolicyPtrInput)(nil)).Elem(), &RgpPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RgpPolicyArrayInput)(nil)).Elem(), RgpPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RgpPolicyMapInput)(nil)).Elem(), RgpPolicyMap{})
 	pulumi.RegisterOutputType(RgpPolicyOutput{})
 	pulumi.RegisterOutputType(RgpPolicyPtrOutput{})
 	pulumi.RegisterOutputType(RgpPolicyArrayOutput{})

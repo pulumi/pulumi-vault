@@ -98,17 +98,17 @@ export interface AuthBackendStsRoleState {
     /**
      * The AWS account ID to configure the STS role for.
      */
-    readonly accountId?: pulumi.Input<string>;
+    accountId?: pulumi.Input<string>;
     /**
      * The path the AWS auth backend being configured was
      * mounted at.  Defaults to `aws`.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * The STS role to assume when verifying requests made
      * by EC2 instances in the account specified by `accountId`.
      */
-    readonly stsRole?: pulumi.Input<string>;
+    stsRole?: pulumi.Input<string>;
 }
 
 /**
@@ -118,15 +118,15 @@ export interface AuthBackendStsRoleArgs {
     /**
      * The AWS account ID to configure the STS role for.
      */
-    readonly accountId: pulumi.Input<string>;
+    accountId: pulumi.Input<string>;
     /**
      * The path the AWS auth backend being configured was
      * mounted at.  Defaults to `aws`.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * The STS role to assume when verifying requests made
      * by EC2 instances in the account specified by `accountId`.
      */
-    readonly stsRole: pulumi.Input<string>;
+    stsRole: pulumi.Input<string>;
 }

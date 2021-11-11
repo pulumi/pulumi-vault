@@ -16,6 +16,70 @@ import (
 // Each [static account](https://www.vaultproject.io/docs/secrets/gcp/index.html#static-accounts) is tied to a separately managed
 // Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings) associated with it.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+// 	"io/ioutil"
+//
+// 	"github.com/pulumi/pulumi-gcp/sdk/v5/go/gcp/serviceAccount"
+// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/gcp"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func readFileOrPanic(path string) pulumi.StringPtrInput {
+// 	data, err := ioutil.ReadFile(path)
+// 	if err != nil {
+// 		panic(err.Error())
+// 	}
+// 	return pulumi.String(string(data))
+// }
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		this, err := serviceAccount.NewAccount(ctx, "this", &serviceAccount.AccountArgs{
+// 			AccountId: pulumi.String("my-awesome-account"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		gcp, err := gcp.NewSecretBackend(ctx, "gcp", &gcp.SecretBackendArgs{
+// 			Path:        pulumi.String("gcp"),
+// 			Credentials: readFileOrPanic("credentials.json"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = gcp.NewSecretStaticAccount(ctx, "staticAccount", &gcp.SecretStaticAccountArgs{
+// 			Backend:       gcp.Path,
+// 			StaticAccount: pulumi.String("project_viewer"),
+// 			SecretType:    pulumi.String("access_token"),
+// 			TokenScopes: pulumi.StringArray{
+// 				pulumi.String("https://www.googleapis.com/auth/cloud-platform"),
+// 			},
+// 			ServiceAccountEmail: this.Email,
+// 			Bindings: gcp.SecretStaticAccountBindingArray{
+// 				&gcp.SecretStaticAccountBindingArgs{
+// 					Resource: this.Project.ApplyT(func(project string) (string, error) {
+// 						return fmt.Sprintf("%v%v", "//cloudresourcemanager.googleapis.com/projects/", project), nil
+// 					}).(pulumi.StringOutput),
+// 					Roles: pulumi.StringArray{
+// 						pulumi.String("roles/viewer"),
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // A static account can be imported using its Vault Path. For example, referencing the example above,
@@ -214,7 +278,7 @@ type SecretStaticAccountArrayInput interface {
 type SecretStaticAccountArray []SecretStaticAccountInput
 
 func (SecretStaticAccountArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SecretStaticAccount)(nil))
+	return reflect.TypeOf((*[]*SecretStaticAccount)(nil)).Elem()
 }
 
 func (i SecretStaticAccountArray) ToSecretStaticAccountArrayOutput() SecretStaticAccountArrayOutput {
@@ -239,7 +303,7 @@ type SecretStaticAccountMapInput interface {
 type SecretStaticAccountMap map[string]SecretStaticAccountInput
 
 func (SecretStaticAccountMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SecretStaticAccount)(nil))
+	return reflect.TypeOf((*map[string]*SecretStaticAccount)(nil)).Elem()
 }
 
 func (i SecretStaticAccountMap) ToSecretStaticAccountMapOutput() SecretStaticAccountMapOutput {
@@ -250,9 +314,7 @@ func (i SecretStaticAccountMap) ToSecretStaticAccountMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SecretStaticAccountMapOutput)
 }
 
-type SecretStaticAccountOutput struct {
-	*pulumi.OutputState
-}
+type SecretStaticAccountOutput struct{ *pulumi.OutputState }
 
 func (SecretStaticAccountOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretStaticAccount)(nil))
@@ -271,14 +333,12 @@ func (o SecretStaticAccountOutput) ToSecretStaticAccountPtrOutput() SecretStatic
 }
 
 func (o SecretStaticAccountOutput) ToSecretStaticAccountPtrOutputWithContext(ctx context.Context) SecretStaticAccountPtrOutput {
-	return o.ApplyT(func(v SecretStaticAccount) *SecretStaticAccount {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretStaticAccount) *SecretStaticAccount {
 		return &v
 	}).(SecretStaticAccountPtrOutput)
 }
 
-type SecretStaticAccountPtrOutput struct {
-	*pulumi.OutputState
-}
+type SecretStaticAccountPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretStaticAccountPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretStaticAccount)(nil))
@@ -290,6 +350,16 @@ func (o SecretStaticAccountPtrOutput) ToSecretStaticAccountPtrOutput() SecretSta
 
 func (o SecretStaticAccountPtrOutput) ToSecretStaticAccountPtrOutputWithContext(ctx context.Context) SecretStaticAccountPtrOutput {
 	return o
+}
+
+func (o SecretStaticAccountPtrOutput) Elem() SecretStaticAccountOutput {
+	return o.ApplyT(func(v *SecretStaticAccount) SecretStaticAccount {
+		if v != nil {
+			return *v
+		}
+		var ret SecretStaticAccount
+		return ret
+	}).(SecretStaticAccountOutput)
 }
 
 type SecretStaticAccountArrayOutput struct{ *pulumi.OutputState }
@@ -333,6 +403,10 @@ func (o SecretStaticAccountMapOutput) MapIndex(k pulumi.StringInput) SecretStati
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretStaticAccountInput)(nil)).Elem(), &SecretStaticAccount{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretStaticAccountPtrInput)(nil)).Elem(), &SecretStaticAccount{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretStaticAccountArrayInput)(nil)).Elem(), SecretStaticAccountArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretStaticAccountMapInput)(nil)).Elem(), SecretStaticAccountMap{})
 	pulumi.RegisterOutputType(SecretStaticAccountOutput{})
 	pulumi.RegisterOutputType(SecretStaticAccountPtrOutput{})
 	pulumi.RegisterOutputType(SecretStaticAccountArrayOutput{})

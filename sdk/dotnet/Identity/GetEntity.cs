@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Vault.Identity
 {
@@ -13,6 +14,9 @@ namespace Pulumi.Vault.Identity
     {
         public static Task<GetEntityResult> InvokeAsync(GetEntityArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? new GetEntityArgs(), options.WithVersion());
+
+        public static Output<GetEntityResult> Invoke(GetEntityInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? new GetEntityInvokeArgs(), options.WithVersion());
     }
 
 
@@ -51,6 +55,45 @@ namespace Pulumi.Vault.Identity
         public string? EntityName { get; set; }
 
         public GetEntityArgs()
+        {
+        }
+    }
+
+    public sealed class GetEntityInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// ID of the alias.
+        /// </summary>
+        [Input("aliasId")]
+        public Input<string>? AliasId { get; set; }
+
+        /// <summary>
+        /// Accessor of the mount to which the alias belongs to.
+        /// This should be supplied in conjunction with `alias_name`.
+        /// </summary>
+        [Input("aliasMountAccessor")]
+        public Input<string>? AliasMountAccessor { get; set; }
+
+        /// <summary>
+        /// Name of the alias. This should be supplied in conjunction with
+        /// `alias_mount_accessor`.
+        /// </summary>
+        [Input("aliasName")]
+        public Input<string>? AliasName { get; set; }
+
+        /// <summary>
+        /// ID of the entity.
+        /// </summary>
+        [Input("entityId")]
+        public Input<string>? EntityId { get; set; }
+
+        /// <summary>
+        /// Name of the entity.
+        /// </summary>
+        [Input("entityName")]
+        public Input<string>? EntityName { get; set; }
+
+        public GetEntityInvokeArgs()
         {
         }
     }

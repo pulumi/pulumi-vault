@@ -4,6 +4,9 @@
 package vault
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,7 +22,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.LookupAuthBackend(ctx, &vault.LookupAuthBackendArgs{
+// 		_, err := vault.LookupAuthBackend(ctx, &GetAuthBackendArgs{
 // 			Path: "userpass",
 // 		}, nil)
 // 		if err != nil {
@@ -63,4 +66,86 @@ type LookupAuthBackendResult struct {
 	Path               string `pulumi:"path"`
 	// The name of the auth method type.
 	Type string `pulumi:"type"`
+}
+
+func LookupAuthBackendOutput(ctx *pulumi.Context, args LookupAuthBackendOutputArgs, opts ...pulumi.InvokeOption) LookupAuthBackendResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupAuthBackendResult, error) {
+			args := v.(LookupAuthBackendArgs)
+			r, err := LookupAuthBackend(ctx, &args, opts...)
+			return *r, err
+		}).(LookupAuthBackendResultOutput)
+}
+
+// A collection of arguments for invoking getAuthBackend.
+type LookupAuthBackendOutputArgs struct {
+	// The auth backend mount point.
+	Path pulumi.StringInput `pulumi:"path"`
+}
+
+func (LookupAuthBackendOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAuthBackendArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getAuthBackend.
+type LookupAuthBackendResultOutput struct{ *pulumi.OutputState }
+
+func (LookupAuthBackendResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAuthBackendResult)(nil)).Elem()
+}
+
+func (o LookupAuthBackendResultOutput) ToLookupAuthBackendResultOutput() LookupAuthBackendResultOutput {
+	return o
+}
+
+func (o LookupAuthBackendResultOutput) ToLookupAuthBackendResultOutputWithContext(ctx context.Context) LookupAuthBackendResultOutput {
+	return o
+}
+
+// The accessor for this auth method
+func (o LookupAuthBackendResultOutput) Accessor() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAuthBackendResult) string { return v.Accessor }).(pulumi.StringOutput)
+}
+
+// The default lease duration in seconds.
+func (o LookupAuthBackendResultOutput) DefaultLeaseTtlSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupAuthBackendResult) int { return v.DefaultLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// A description of the auth method.
+func (o LookupAuthBackendResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAuthBackendResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupAuthBackendResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAuthBackendResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Specifies whether to show this mount in the UI-specific listing endpoint.
+func (o LookupAuthBackendResultOutput) ListingVisibility() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAuthBackendResult) string { return v.ListingVisibility }).(pulumi.StringOutput)
+}
+
+// Specifies if the auth method is local only.
+func (o LookupAuthBackendResultOutput) Local() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupAuthBackendResult) bool { return v.Local }).(pulumi.BoolOutput)
+}
+
+// The maximum lease duration in seconds.
+func (o LookupAuthBackendResultOutput) MaxLeaseTtlSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupAuthBackendResult) int { return v.MaxLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+func (o LookupAuthBackendResultOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAuthBackendResult) string { return v.Path }).(pulumi.StringOutput)
+}
+
+// The name of the auth method type.
+func (o LookupAuthBackendResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAuthBackendResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupAuthBackendResultOutput{})
 }

@@ -106,25 +106,25 @@ export interface OidcKeyState {
      * Signing algorithm to use. Signing algorithm to use.
      * Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
      */
-    readonly algorithm?: pulumi.Input<string>;
+    algorithm?: pulumi.Input<string>;
     /**
      * Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
      * allowed.
      */
-    readonly allowedClientIds?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedClientIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Name of the OIDC Key to create.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * How often to generate a new signing key in number of seconds
      */
-    readonly rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number>;
     /**
      * "Controls how long the public portion of a signing key will be
      * available for verification after being rotated in seconds.
      */
-    readonly verificationTtl?: pulumi.Input<number>;
+    verificationTtl?: pulumi.Input<number>;
 }
 
 /**
@@ -135,23 +135,23 @@ export interface OidcKeyArgs {
      * Signing algorithm to use. Signing algorithm to use.
      * Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
      */
-    readonly algorithm?: pulumi.Input<string>;
+    algorithm?: pulumi.Input<string>;
     /**
      * Array of role client ids allowed to use this key for signing. If empty, no roles are allowed. If "*", all roles are
      * allowed.
      */
-    readonly allowedClientIds?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedClientIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Name of the OIDC Key to create.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * How often to generate a new signing key in number of seconds
      */
-    readonly rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number>;
     /**
      * "Controls how long the public portion of a signing key will be
      * available for verification after being rotated in seconds.
      */
-    readonly verificationTtl?: pulumi.Input<number>;
+    verificationTtl?: pulumi.Input<number>;
 }

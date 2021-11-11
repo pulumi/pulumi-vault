@@ -102,23 +102,23 @@ export interface EntityState {
     /**
      * True/false Is this entity currently disabled. Defaults to `false`
      */
-    readonly disabled?: pulumi.Input<boolean>;
+    disabled?: pulumi.Input<boolean>;
     /**
      * `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
      */
-    readonly externalPolicies?: pulumi.Input<boolean>;
+    externalPolicies?: pulumi.Input<boolean>;
     /**
      * A Map of additional metadata to associate with the user.
      */
-    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Name of the identity entity to create.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * A list of policies to apply to the entity.
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -128,21 +128,21 @@ export interface EntityArgs {
     /**
      * True/false Is this entity currently disabled. Defaults to `false`
      */
-    readonly disabled?: pulumi.Input<boolean>;
+    disabled?: pulumi.Input<boolean>;
     /**
      * `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
      */
-    readonly externalPolicies?: pulumi.Input<boolean>;
+    externalPolicies?: pulumi.Input<boolean>;
     /**
      * A Map of additional metadata to associate with the user.
      */
-    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Name of the identity entity to create.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * A list of policies to apply to the entity.
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -174,52 +174,52 @@ export interface AuthBackendState {
     /**
      * The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
      */
-    readonly accessor?: pulumi.Input<string>;
+    accessor?: pulumi.Input<string>;
     /**
      * The Okta url. Examples: oktapreview.com, okta.com
      */
-    readonly baseUrl?: pulumi.Input<string>;
+    baseUrl?: pulumi.Input<string>;
     /**
      * When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
      */
-    readonly bypassOktaMfa?: pulumi.Input<boolean>;
+    bypassOktaMfa?: pulumi.Input<boolean>;
     /**
      * The description of the auth backend
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Associate Okta groups with policies within Vault.
      * See below for more details.
      */
-    readonly groups?: pulumi.Input<pulumi.Input<inputs.okta.AuthBackendGroup>[]>;
+    groups?: pulumi.Input<pulumi.Input<inputs.okta.AuthBackendGroup>[]>;
     /**
      * Maximum duration after which authentication will be expired
      * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
      */
-    readonly maxTtl?: pulumi.Input<string>;
+    maxTtl?: pulumi.Input<string>;
     /**
      * The Okta organization. This will be the first part of the url `https://XXX.okta.com`
      */
-    readonly organization?: pulumi.Input<string>;
+    organization?: pulumi.Input<string>;
     /**
      * Path to mount the Okta auth backend
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * The Okta API token. This is required to query Okta for user group membership.
      * If this is not supplied only locally configured groups will be enabled.
      */
-    readonly token?: pulumi.Input<string>;
+    token?: pulumi.Input<string>;
     /**
      * Duration after which authentication will be expired.
      * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
      */
-    readonly ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string>;
     /**
      * Associate Okta users with groups or policies within Vault.
      * See below for more details.
      */
-    readonly users?: pulumi.Input<pulumi.Input<inputs.okta.AuthBackendUser>[]>;
+    users?: pulumi.Input<pulumi.Input<inputs.okta.AuthBackendUser>[]>;
 }
 
 /**
@@ -229,46 +229,46 @@ export interface AuthBackendArgs {
     /**
      * The Okta url. Examples: oktapreview.com, okta.com
      */
-    readonly baseUrl?: pulumi.Input<string>;
+    baseUrl?: pulumi.Input<string>;
     /**
      * When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
      */
-    readonly bypassOktaMfa?: pulumi.Input<boolean>;
+    bypassOktaMfa?: pulumi.Input<boolean>;
     /**
      * The description of the auth backend
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Associate Okta groups with policies within Vault.
      * See below for more details.
      */
-    readonly groups?: pulumi.Input<pulumi.Input<inputs.okta.AuthBackendGroup>[]>;
+    groups?: pulumi.Input<pulumi.Input<inputs.okta.AuthBackendGroup>[]>;
     /**
      * Maximum duration after which authentication will be expired
      * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
      */
-    readonly maxTtl?: pulumi.Input<string>;
+    maxTtl?: pulumi.Input<string>;
     /**
      * The Okta organization. This will be the first part of the url `https://XXX.okta.com`
      */
-    readonly organization: pulumi.Input<string>;
+    organization: pulumi.Input<string>;
     /**
      * Path to mount the Okta auth backend
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * The Okta API token. This is required to query Okta for user group membership.
      * If this is not supplied only locally configured groups will be enabled.
      */
-    readonly token?: pulumi.Input<string>;
+    token?: pulumi.Input<string>;
     /**
      * Duration after which authentication will be expired.
      * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
      */
-    readonly ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string>;
     /**
      * Associate Okta users with groups or policies within Vault.
      * See below for more details.
      */
-    readonly users?: pulumi.Input<pulumi.Input<inputs.okta.AuthBackendUser>[]>;
+    users?: pulumi.Input<pulumi.Input<inputs.okta.AuthBackendUser>[]>;
 }

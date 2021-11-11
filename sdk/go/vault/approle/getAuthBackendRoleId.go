@@ -4,6 +4,9 @@
 package approle
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -22,7 +25,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		opt0 := "my-approle-backend"
-// 		role, err := appRole.GetAuthBackendRoleId(ctx, &appRole.GetAuthBackendRoleIdArgs{
+// 		role, err := appRole.GetAuthBackendRoleId(ctx, &approle.GetAuthBackendRoleIdArgs{
 // 			Backend:  &opt0,
 // 			RoleName: "my-role",
 // 		}, nil)
@@ -60,4 +63,63 @@ type GetAuthBackendRoleIdResult struct {
 	// The RoleID of the role.
 	RoleId   string `pulumi:"roleId"`
 	RoleName string `pulumi:"roleName"`
+}
+
+func GetAuthBackendRoleIdOutput(ctx *pulumi.Context, args GetAuthBackendRoleIdOutputArgs, opts ...pulumi.InvokeOption) GetAuthBackendRoleIdResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetAuthBackendRoleIdResult, error) {
+			args := v.(GetAuthBackendRoleIdArgs)
+			r, err := GetAuthBackendRoleId(ctx, &args, opts...)
+			return *r, err
+		}).(GetAuthBackendRoleIdResultOutput)
+}
+
+// A collection of arguments for invoking getAuthBackendRoleId.
+type GetAuthBackendRoleIdOutputArgs struct {
+	// The unique name for the AppRole backend the role to
+	// retrieve a RoleID for resides in. Defaults to "approle".
+	Backend pulumi.StringPtrInput `pulumi:"backend"`
+	// The name of the role to retrieve the Role ID for.
+	RoleName pulumi.StringInput `pulumi:"roleName"`
+}
+
+func (GetAuthBackendRoleIdOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAuthBackendRoleIdArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getAuthBackendRoleId.
+type GetAuthBackendRoleIdResultOutput struct{ *pulumi.OutputState }
+
+func (GetAuthBackendRoleIdResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAuthBackendRoleIdResult)(nil)).Elem()
+}
+
+func (o GetAuthBackendRoleIdResultOutput) ToGetAuthBackendRoleIdResultOutput() GetAuthBackendRoleIdResultOutput {
+	return o
+}
+
+func (o GetAuthBackendRoleIdResultOutput) ToGetAuthBackendRoleIdResultOutputWithContext(ctx context.Context) GetAuthBackendRoleIdResultOutput {
+	return o
+}
+
+func (o GetAuthBackendRoleIdResultOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAuthBackendRoleIdResult) *string { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetAuthBackendRoleIdResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAuthBackendRoleIdResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The RoleID of the role.
+func (o GetAuthBackendRoleIdResultOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAuthBackendRoleIdResult) string { return v.RoleId }).(pulumi.StringOutput)
+}
+
+func (o GetAuthBackendRoleIdResultOutput) RoleName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAuthBackendRoleIdResult) string { return v.RoleName }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetAuthBackendRoleIdResultOutput{})
 }

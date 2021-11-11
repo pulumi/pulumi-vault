@@ -145,19 +145,19 @@ export interface GroupMemberEntityIdsState {
     /**
      * Defaults to `true`.
      */
-    readonly exclusive?: pulumi.Input<boolean>;
+    exclusive?: pulumi.Input<boolean>;
     /**
      * Group ID to assign member entities to.
      */
-    readonly groupId?: pulumi.Input<string>;
+    groupId?: pulumi.Input<string>;
     /**
      * The name of the group that are assigned the member entities.
      */
-    readonly groupName?: pulumi.Input<string>;
+    groupName?: pulumi.Input<string>;
     /**
      * List of member entities that belong to the group
      */
-    readonly memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
+    memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -167,13 +167,13 @@ export interface GroupMemberEntityIdsArgs {
     /**
      * Defaults to `true`.
      */
-    readonly exclusive?: pulumi.Input<boolean>;
+    exclusive?: pulumi.Input<boolean>;
     /**
      * Group ID to assign member entities to.
      */
-    readonly groupId: pulumi.Input<string>;
+    groupId: pulumi.Input<string>;
     /**
      * List of member entities that belong to the group
      */
-    readonly memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
+    memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
 }

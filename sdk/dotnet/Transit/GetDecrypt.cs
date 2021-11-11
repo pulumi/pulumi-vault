@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Vault.Transit
 {
@@ -41,6 +42,37 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         public static Task<GetDecryptResult> InvokeAsync(GetDecryptArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDecryptResult>("vault:transit/getDecrypt:getDecrypt", args ?? new GetDecryptArgs(), options.WithVersion());
+
+        /// <summary>
+        /// This is a data source which can be used to decrypt ciphertext using a Vault Transit key.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var test = Output.Create(Vault.Transit.GetDecrypt.InvokeAsync(new Vault.Transit.GetDecryptArgs
+        ///         {
+        ///             Backend = "transit",
+        ///             Ciphertext = "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
+        ///             Key = "test",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetDecryptResult> Invoke(GetDecryptInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetDecryptResult>("vault:transit/getDecrypt:getDecrypt", args ?? new GetDecryptInvokeArgs(), options.WithVersion());
     }
 
 
@@ -71,6 +103,37 @@ namespace Pulumi.Vault.Transit
         public string Key { get; set; } = null!;
 
         public GetDecryptArgs()
+        {
+        }
+    }
+
+    public sealed class GetDecryptInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The path the transit secret backend is mounted at, with no leading or trailing `/`.
+        /// </summary>
+        [Input("backend", required: true)]
+        public Input<string> Backend { get; set; } = null!;
+
+        /// <summary>
+        /// Ciphertext to be decoded.
+        /// </summary>
+        [Input("ciphertext", required: true)]
+        public Input<string> Ciphertext { get; set; } = null!;
+
+        /// <summary>
+        /// Context for key derivation. This is required if key derivation is enabled for this key.
+        /// </summary>
+        [Input("context")]
+        public Input<string>? Context { get; set; }
+
+        /// <summary>
+        /// Specifies the name of the transit key to decrypt against.
+        /// </summary>
+        [Input("key", required: true)]
+        public Input<string> Key { get; set; } = null!;
+
+        public GetDecryptInvokeArgs()
         {
         }
     }

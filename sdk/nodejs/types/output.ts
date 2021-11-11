@@ -106,22 +106,6 @@ export interface GetPolicyDocumentRuleDeniedParameter {
     values: string[];
 }
 
-export interface ProviderAuthLogin {
-    method?: string;
-    namespace?: string;
-    parameters?: {[key: string]: string};
-    path?: string;
-}
-
-export interface ProviderClientAuth {
-    certFile?: string;
-    keyFile?: string;
-}
-
-export interface ProviderHeader {
-    name?: string;
-    value?: string;
-}
 export namespace azure {
     export interface BackendRoleAzureGroup {
         groupName: string;
@@ -133,6 +117,7 @@ export namespace azure {
         roleName: string;
         scope: string;
     }
+
 }
 
 export namespace config {
@@ -152,6 +137,7 @@ export namespace config {
         name: string;
         value: string;
     }
+
 }
 
 export namespace database {
@@ -534,6 +520,7 @@ export namespace database {
          */
         usernameTemplate?: string;
     }
+
 }
 
 export namespace gcp {
@@ -558,6 +545,7 @@ export namespace gcp {
          */
         roles: string[];
     }
+
 }
 
 export namespace github {
@@ -605,6 +593,7 @@ export namespace github {
          */
         tokenType?: string;
     }
+
 }
 
 export namespace identity {
@@ -650,6 +639,7 @@ export namespace identity {
          */
         name: string;
     }
+
 }
 
 export namespace jwt {
@@ -697,6 +687,7 @@ export namespace jwt {
          */
         tokenType?: string;
     }
+
 }
 
 export namespace okta {
@@ -725,6 +716,7 @@ export namespace okta {
          */
         username: string;
     }
+
 }
 
 export namespace rabbitMq {
@@ -734,4 +726,5 @@ export namespace rabbitMq {
         read: string;
         write: string;
     }
+
 }

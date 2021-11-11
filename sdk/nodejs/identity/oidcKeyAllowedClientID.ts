@@ -81,11 +81,11 @@ export interface OidcKeyAllowedClientIDState {
     /**
      * Client ID to allow usage with the OIDC named key
      */
-    readonly allowedClientId?: pulumi.Input<string>;
+    allowedClientId?: pulumi.Input<string>;
     /**
      * Name of the OIDC Key allow the Client ID.
      */
-    readonly keyName?: pulumi.Input<string>;
+    keyName?: pulumi.Input<string>;
 }
 
 /**
@@ -95,9 +95,9 @@ export interface OidcKeyAllowedClientIDArgs {
     /**
      * Client ID to allow usage with the OIDC named key
      */
-    readonly allowedClientId: pulumi.Input<string>;
+    allowedClientId: pulumi.Input<string>;
     /**
      * Name of the OIDC Key allow the Client ID.
      */
-    readonly keyName: pulumi.Input<string>;
+    keyName: pulumi.Input<string>;
 }

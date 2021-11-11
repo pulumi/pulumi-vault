@@ -7,6 +7,8 @@
 Pulumi.*.yaml
 **/node_modules/
 
+.DS_Store
+
 **/command-output/
 
 .idea/

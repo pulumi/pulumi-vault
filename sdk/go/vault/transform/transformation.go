@@ -251,7 +251,7 @@ type TransformationArrayInput interface {
 type TransformationArray []TransformationInput
 
 func (TransformationArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*Transformation)(nil))
+	return reflect.TypeOf((*[]*Transformation)(nil)).Elem()
 }
 
 func (i TransformationArray) ToTransformationArrayOutput() TransformationArrayOutput {
@@ -276,7 +276,7 @@ type TransformationMapInput interface {
 type TransformationMap map[string]TransformationInput
 
 func (TransformationMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*Transformation)(nil))
+	return reflect.TypeOf((*map[string]*Transformation)(nil)).Elem()
 }
 
 func (i TransformationMap) ToTransformationMapOutput() TransformationMapOutput {
@@ -287,9 +287,7 @@ func (i TransformationMap) ToTransformationMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(TransformationMapOutput)
 }
 
-type TransformationOutput struct {
-	*pulumi.OutputState
-}
+type TransformationOutput struct{ *pulumi.OutputState }
 
 func (TransformationOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Transformation)(nil))
@@ -308,14 +306,12 @@ func (o TransformationOutput) ToTransformationPtrOutput() TransformationPtrOutpu
 }
 
 func (o TransformationOutput) ToTransformationPtrOutputWithContext(ctx context.Context) TransformationPtrOutput {
-	return o.ApplyT(func(v Transformation) *Transformation {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Transformation) *Transformation {
 		return &v
 	}).(TransformationPtrOutput)
 }
 
-type TransformationPtrOutput struct {
-	*pulumi.OutputState
-}
+type TransformationPtrOutput struct{ *pulumi.OutputState }
 
 func (TransformationPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Transformation)(nil))
@@ -327,6 +323,16 @@ func (o TransformationPtrOutput) ToTransformationPtrOutput() TransformationPtrOu
 
 func (o TransformationPtrOutput) ToTransformationPtrOutputWithContext(ctx context.Context) TransformationPtrOutput {
 	return o
+}
+
+func (o TransformationPtrOutput) Elem() TransformationOutput {
+	return o.ApplyT(func(v *Transformation) Transformation {
+		if v != nil {
+			return *v
+		}
+		var ret Transformation
+		return ret
+	}).(TransformationOutput)
 }
 
 type TransformationArrayOutput struct{ *pulumi.OutputState }
@@ -370,6 +376,10 @@ func (o TransformationMapOutput) MapIndex(k pulumi.StringInput) TransformationOu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*TransformationInput)(nil)).Elem(), &Transformation{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TransformationPtrInput)(nil)).Elem(), &Transformation{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TransformationArrayInput)(nil)).Elem(), TransformationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TransformationMapInput)(nil)).Elem(), TransformationMap{})
 	pulumi.RegisterOutputType(TransformationOutput{})
 	pulumi.RegisterOutputType(TransformationPtrOutput{})
 	pulumi.RegisterOutputType(TransformationArrayOutput{})

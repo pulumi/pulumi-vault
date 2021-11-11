@@ -10,27 +10,27 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Inputs
 {
 
-    public sealed class GetPolicyDocumentRuleDeniedParameterArgs : Pulumi.InvokeArgs
+    public sealed class GetPolicyDocumentRuleDeniedParameterInputArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// name of permitted or denied parameter.
         /// </summary>
         [Input("key", required: true)]
-        public string Key { get; set; } = null!;
+        public Input<string> Key { get; set; } = null!;
 
         [Input("values", required: true)]
-        private List<string>? _values;
+        private InputList<string>? _values;
 
         /// <summary>
         /// list of values what are permitted or denied by policy rule.
         /// </summary>
-        public List<string> Values
+        public InputList<string> Values
         {
-            get => _values ?? (_values = new List<string>());
+            get => _values ?? (_values = new InputList<string>());
             set => _values = value;
         }
 
-        public GetPolicyDocumentRuleDeniedParameterArgs()
+        public GetPolicyDocumentRuleDeniedParameterInputArgs()
         {
         }
     }

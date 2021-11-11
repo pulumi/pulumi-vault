@@ -118,7 +118,7 @@ export interface QuotaRateLimitState {
     /**
      * Name of the rate limit quota
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Path of the mount or namespace to apply the quota. A blank path configures a
      * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
@@ -127,12 +127,12 @@ export interface QuotaRateLimitState {
      * `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
      * a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * The maximum number of requests at any given second to be allowed by the quota
      * rule. The `rate` must be positive.
      */
-    readonly rate?: pulumi.Input<number>;
+    rate?: pulumi.Input<number>;
 }
 
 /**
@@ -142,7 +142,7 @@ export interface QuotaRateLimitArgs {
     /**
      * Name of the rate limit quota
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Path of the mount or namespace to apply the quota. A blank path configures a
      * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
@@ -151,10 +151,10 @@ export interface QuotaRateLimitArgs {
      * `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
      * a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * The maximum number of requests at any given second to be allowed by the quota
      * rule. The `rate` must be positive.
      */
-    readonly rate: pulumi.Input<number>;
+    rate: pulumi.Input<number>;
 }

@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessCredentialsResult> {
@@ -31,37 +30,37 @@ export interface GetAccessCredentialsArgs {
      * The path to the Azure secret backend to
      * read credentials from, with no leading or trailing `/`s.
      */
-    readonly backend: string;
+    backend: string;
     /**
      * If 'validate_creds' is true, 
      * the number of seconds after which to give up validating credentials. Defaults
      * to 1,200 (20 minutes).
      */
-    readonly maxCredValidationSeconds?: number;
+    maxCredValidationSeconds?: number;
     /**
      * If 'validate_creds' is true, 
      * the number of seconds to wait between each test of generated credentials.
      * Defaults to 7.
      */
-    readonly numSecondsBetweenTests?: number;
+    numSecondsBetweenTests?: number;
     /**
      * If 'validate_creds' is true, 
      * the number of sequential successes required to validate generated
      * credentials. Defaults to 8.
      */
-    readonly numSequentialSuccesses?: number;
+    numSequentialSuccesses?: number;
     /**
      * The name of the Azure secret backend role to read
      * credentials from, with no leading or trailing `/`s.
      */
-    readonly role: string;
+    role: string;
     /**
      * Whether generated credentials should be 
      * validated before being returned. Defaults to `false`, which returns
      * credentials without checking whether they have fully propagated throughout
      * Azure Active Directory. Designating `true` activates testing.
      */
-    readonly validateCreds?: boolean;
+    validateCreds?: boolean;
 }
 
 /**
@@ -98,4 +97,49 @@ export interface GetAccessCredentialsResult {
     readonly numSequentialSuccesses?: number;
     readonly role: string;
     readonly validateCreds?: boolean;
+}
+
+export function getAccessCredentialsOutput(args: GetAccessCredentialsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccessCredentialsResult> {
+    return pulumi.output(args).apply(a => getAccessCredentials(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAccessCredentials.
+ */
+export interface GetAccessCredentialsOutputArgs {
+    /**
+     * The path to the Azure secret backend to
+     * read credentials from, with no leading or trailing `/`s.
+     */
+    backend: pulumi.Input<string>;
+    /**
+     * If 'validate_creds' is true, 
+     * the number of seconds after which to give up validating credentials. Defaults
+     * to 1,200 (20 minutes).
+     */
+    maxCredValidationSeconds?: pulumi.Input<number>;
+    /**
+     * If 'validate_creds' is true, 
+     * the number of seconds to wait between each test of generated credentials.
+     * Defaults to 7.
+     */
+    numSecondsBetweenTests?: pulumi.Input<number>;
+    /**
+     * If 'validate_creds' is true, 
+     * the number of sequential successes required to validate generated
+     * credentials. Defaults to 8.
+     */
+    numSequentialSuccesses?: pulumi.Input<number>;
+    /**
+     * The name of the Azure secret backend role to read
+     * credentials from, with no leading or trailing `/`s.
+     */
+    role: pulumi.Input<string>;
+    /**
+     * Whether generated credentials should be 
+     * validated before being returned. Defaults to `false`, which returns
+     * credentials without checking whether they have fully propagated throughout
+     * Azure Active Directory. Designating `true` activates testing.
+     */
+    validateCreds?: pulumi.Input<boolean>;
 }

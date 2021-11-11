@@ -111,18 +111,18 @@ export interface AuthBackendIdentityWhitelistState {
     /**
      * The path of the AWS backend being configured.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * If set to true, disables the periodic
      * tidying of the identity-whitelist entries.
      */
-    readonly disablePeriodicTidy?: pulumi.Input<boolean>;
+    disablePeriodicTidy?: pulumi.Input<boolean>;
     /**
      * The amount of extra time, in minutes, that must
      * have passed beyond the roletag expiration, before it is removed from the
      * backend storage.
      */
-    readonly safetyBuffer?: pulumi.Input<number>;
+    safetyBuffer?: pulumi.Input<number>;
 }
 
 /**
@@ -132,16 +132,16 @@ export interface AuthBackendIdentityWhitelistArgs {
     /**
      * The path of the AWS backend being configured.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * If set to true, disables the periodic
      * tidying of the identity-whitelist entries.
      */
-    readonly disablePeriodicTidy?: pulumi.Input<boolean>;
+    disablePeriodicTidy?: pulumi.Input<boolean>;
     /**
      * The amount of extra time, in minutes, that must
      * have passed beyond the roletag expiration, before it is removed from the
      * backend storage.
      */
-    readonly safetyBuffer?: pulumi.Input<number>;
+    safetyBuffer?: pulumi.Input<number>;
 }

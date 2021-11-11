@@ -518,7 +518,7 @@ type RaftSnapshotAgentConfigArrayInput interface {
 type RaftSnapshotAgentConfigArray []RaftSnapshotAgentConfigInput
 
 func (RaftSnapshotAgentConfigArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RaftSnapshotAgentConfig)(nil))
+	return reflect.TypeOf((*[]*RaftSnapshotAgentConfig)(nil)).Elem()
 }
 
 func (i RaftSnapshotAgentConfigArray) ToRaftSnapshotAgentConfigArrayOutput() RaftSnapshotAgentConfigArrayOutput {
@@ -543,7 +543,7 @@ type RaftSnapshotAgentConfigMapInput interface {
 type RaftSnapshotAgentConfigMap map[string]RaftSnapshotAgentConfigInput
 
 func (RaftSnapshotAgentConfigMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RaftSnapshotAgentConfig)(nil))
+	return reflect.TypeOf((*map[string]*RaftSnapshotAgentConfig)(nil)).Elem()
 }
 
 func (i RaftSnapshotAgentConfigMap) ToRaftSnapshotAgentConfigMapOutput() RaftSnapshotAgentConfigMapOutput {
@@ -554,9 +554,7 @@ func (i RaftSnapshotAgentConfigMap) ToRaftSnapshotAgentConfigMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(RaftSnapshotAgentConfigMapOutput)
 }
 
-type RaftSnapshotAgentConfigOutput struct {
-	*pulumi.OutputState
-}
+type RaftSnapshotAgentConfigOutput struct{ *pulumi.OutputState }
 
 func (RaftSnapshotAgentConfigOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*RaftSnapshotAgentConfig)(nil))
@@ -575,14 +573,12 @@ func (o RaftSnapshotAgentConfigOutput) ToRaftSnapshotAgentConfigPtrOutput() Raft
 }
 
 func (o RaftSnapshotAgentConfigOutput) ToRaftSnapshotAgentConfigPtrOutputWithContext(ctx context.Context) RaftSnapshotAgentConfigPtrOutput {
-	return o.ApplyT(func(v RaftSnapshotAgentConfig) *RaftSnapshotAgentConfig {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RaftSnapshotAgentConfig) *RaftSnapshotAgentConfig {
 		return &v
 	}).(RaftSnapshotAgentConfigPtrOutput)
 }
 
-type RaftSnapshotAgentConfigPtrOutput struct {
-	*pulumi.OutputState
-}
+type RaftSnapshotAgentConfigPtrOutput struct{ *pulumi.OutputState }
 
 func (RaftSnapshotAgentConfigPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**RaftSnapshotAgentConfig)(nil))
@@ -594,6 +590,16 @@ func (o RaftSnapshotAgentConfigPtrOutput) ToRaftSnapshotAgentConfigPtrOutput() R
 
 func (o RaftSnapshotAgentConfigPtrOutput) ToRaftSnapshotAgentConfigPtrOutputWithContext(ctx context.Context) RaftSnapshotAgentConfigPtrOutput {
 	return o
+}
+
+func (o RaftSnapshotAgentConfigPtrOutput) Elem() RaftSnapshotAgentConfigOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) RaftSnapshotAgentConfig {
+		if v != nil {
+			return *v
+		}
+		var ret RaftSnapshotAgentConfig
+		return ret
+	}).(RaftSnapshotAgentConfigOutput)
 }
 
 type RaftSnapshotAgentConfigArrayOutput struct{ *pulumi.OutputState }
@@ -637,6 +643,10 @@ func (o RaftSnapshotAgentConfigMapOutput) MapIndex(k pulumi.StringInput) RaftSna
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RaftSnapshotAgentConfigInput)(nil)).Elem(), &RaftSnapshotAgentConfig{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RaftSnapshotAgentConfigPtrInput)(nil)).Elem(), &RaftSnapshotAgentConfig{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RaftSnapshotAgentConfigArrayInput)(nil)).Elem(), RaftSnapshotAgentConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RaftSnapshotAgentConfigMapInput)(nil)).Elem(), RaftSnapshotAgentConfigMap{})
 	pulumi.RegisterOutputType(RaftSnapshotAgentConfigOutput{})
 	pulumi.RegisterOutputType(RaftSnapshotAgentConfigPtrOutput{})
 	pulumi.RegisterOutputType(RaftSnapshotAgentConfigArrayOutput{})

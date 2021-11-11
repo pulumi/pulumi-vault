@@ -30,25 +30,25 @@ export interface GetEntityArgs {
     /**
      * ID of the alias.
      */
-    readonly aliasId?: string;
+    aliasId?: string;
     /**
      * Accessor of the mount to which the alias belongs to.
      * This should be supplied in conjunction with `aliasName`.
      */
-    readonly aliasMountAccessor?: string;
+    aliasMountAccessor?: string;
     /**
      * Name of the alias. This should be supplied in conjunction with
      * `aliasMountAccessor`.
      */
-    readonly aliasName?: string;
+    aliasName?: string;
     /**
      * ID of the entity.
      */
-    readonly entityId?: string;
+    entityId?: string;
     /**
      * Name of the entity.
      */
-    readonly entityName?: string;
+    entityName?: string;
 }
 
 /**
@@ -113,4 +113,36 @@ export interface GetEntityResult {
      * List of policies attached to the entity
      */
     readonly policies: string[];
+}
+
+export function getEntityOutput(args?: GetEntityOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEntityResult> {
+    return pulumi.output(args).apply(a => getEntity(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getEntity.
+ */
+export interface GetEntityOutputArgs {
+    /**
+     * ID of the alias.
+     */
+    aliasId?: pulumi.Input<string>;
+    /**
+     * Accessor of the mount to which the alias belongs to.
+     * This should be supplied in conjunction with `aliasName`.
+     */
+    aliasMountAccessor?: pulumi.Input<string>;
+    /**
+     * Name of the alias. This should be supplied in conjunction with
+     * `aliasMountAccessor`.
+     */
+    aliasName?: pulumi.Input<string>;
+    /**
+     * ID of the entity.
+     */
+    entityId?: pulumi.Input<string>;
+    /**
+     * Name of the entity.
+     */
+    entityName?: pulumi.Input<string>;
 }

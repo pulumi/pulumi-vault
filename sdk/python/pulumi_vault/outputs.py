@@ -11,9 +11,6 @@ from . import outputs
 
 __all__ = [
     'AuthBackendTune',
-    'ProviderAuthLogin',
-    'ProviderClientAuth',
-    'ProviderHeader',
     'GetPolicyDocumentRuleResult',
     'GetPolicyDocumentRuleAllowedParameterResult',
     'GetPolicyDocumentRuleDeniedParameterResult',
@@ -171,99 +168,6 @@ class AuthBackendTune(dict):
         the mount. Valid values are "default-service", "default-batch", "service", "batch".
         """
         return pulumi.get(self, "token_type")
-
-
-@pulumi.output_type
-class ProviderAuthLogin(dict):
-    def __init__(__self__, *,
-                 path: str,
-                 method: Optional[str] = None,
-                 namespace: Optional[str] = None,
-                 parameters: Optional[Mapping[str, str]] = None):
-        pulumi.set(__self__, "path", path)
-        if method is not None:
-            pulumi.set(__self__, "method", method)
-        if namespace is not None:
-            pulumi.set(__self__, "namespace", namespace)
-        if parameters is not None:
-            pulumi.set(__self__, "parameters", parameters)
-
-    @property
-    @pulumi.getter
-    def path(self) -> str:
-        return pulumi.get(self, "path")
-
-    @property
-    @pulumi.getter
-    def method(self) -> Optional[str]:
-        return pulumi.get(self, "method")
-
-    @property
-    @pulumi.getter
-    def namespace(self) -> Optional[str]:
-        return pulumi.get(self, "namespace")
-
-    @property
-    @pulumi.getter
-    def parameters(self) -> Optional[Mapping[str, str]]:
-        return pulumi.get(self, "parameters")
-
-
-@pulumi.output_type
-class ProviderClientAuth(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "certFile":
-            suggest = "cert_file"
-        elif key == "keyFile":
-            suggest = "key_file"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ProviderClientAuth. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ProviderClientAuth.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ProviderClientAuth.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 cert_file: str,
-                 key_file: str):
-        pulumi.set(__self__, "cert_file", cert_file)
-        pulumi.set(__self__, "key_file", key_file)
-
-    @property
-    @pulumi.getter(name="certFile")
-    def cert_file(self) -> str:
-        return pulumi.get(self, "cert_file")
-
-    @property
-    @pulumi.getter(name="keyFile")
-    def key_file(self) -> str:
-        return pulumi.get(self, "key_file")
-
-
-@pulumi.output_type
-class ProviderHeader(dict):
-    def __init__(__self__, *,
-                 name: str,
-                 value: str):
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def value(self) -> str:
-        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

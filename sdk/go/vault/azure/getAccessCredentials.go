@@ -4,6 +4,9 @@
 package azure
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -65,4 +68,122 @@ type GetAccessCredentialsResult struct {
 	NumSequentialSuccesses   *int   `pulumi:"numSequentialSuccesses"`
 	Role                     string `pulumi:"role"`
 	ValidateCreds            *bool  `pulumi:"validateCreds"`
+}
+
+func GetAccessCredentialsOutput(ctx *pulumi.Context, args GetAccessCredentialsOutputArgs, opts ...pulumi.InvokeOption) GetAccessCredentialsResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetAccessCredentialsResult, error) {
+			args := v.(GetAccessCredentialsArgs)
+			r, err := GetAccessCredentials(ctx, &args, opts...)
+			return *r, err
+		}).(GetAccessCredentialsResultOutput)
+}
+
+// A collection of arguments for invoking getAccessCredentials.
+type GetAccessCredentialsOutputArgs struct {
+	// The path to the Azure secret backend to
+	// read credentials from, with no leading or trailing `/`s.
+	Backend pulumi.StringInput `pulumi:"backend"`
+	// If 'validate_creds' is true,
+	// the number of seconds after which to give up validating credentials. Defaults
+	// to 1,200 (20 minutes).
+	MaxCredValidationSeconds pulumi.IntPtrInput `pulumi:"maxCredValidationSeconds"`
+	// If 'validate_creds' is true,
+	// the number of seconds to wait between each test of generated credentials.
+	// Defaults to 7.
+	NumSecondsBetweenTests pulumi.IntPtrInput `pulumi:"numSecondsBetweenTests"`
+	// If 'validate_creds' is true,
+	// the number of sequential successes required to validate generated
+	// credentials. Defaults to 8.
+	NumSequentialSuccesses pulumi.IntPtrInput `pulumi:"numSequentialSuccesses"`
+	// The name of the Azure secret backend role to read
+	// credentials from, with no leading or trailing `/`s.
+	Role pulumi.StringInput `pulumi:"role"`
+	// Whether generated credentials should be
+	// validated before being returned. Defaults to `false`, which returns
+	// credentials without checking whether they have fully propagated throughout
+	// Azure Active Directory. Designating `true` activates testing.
+	ValidateCreds pulumi.BoolPtrInput `pulumi:"validateCreds"`
+}
+
+func (GetAccessCredentialsOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccessCredentialsArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getAccessCredentials.
+type GetAccessCredentialsResultOutput struct{ *pulumi.OutputState }
+
+func (GetAccessCredentialsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccessCredentialsResult)(nil)).Elem()
+}
+
+func (o GetAccessCredentialsResultOutput) ToGetAccessCredentialsResultOutput() GetAccessCredentialsResultOutput {
+	return o
+}
+
+func (o GetAccessCredentialsResultOutput) ToGetAccessCredentialsResultOutputWithContext(ctx context.Context) GetAccessCredentialsResultOutput {
+	return o
+}
+
+func (o GetAccessCredentialsResultOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.Backend }).(pulumi.StringOutput)
+}
+
+// The client id for credentials to query the Azure APIs.
+func (o GetAccessCredentialsResultOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// The client secret for credentials to query the Azure APIs.
+func (o GetAccessCredentialsResultOutput) ClientSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetAccessCredentialsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The duration of the secret lease, in seconds relative
+// to the time the data was requested. Once this time has passed any plan
+// generated with this data may fail to apply.
+func (o GetAccessCredentialsResultOutput) LeaseDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) int { return v.LeaseDuration }).(pulumi.IntOutput)
+}
+
+// The lease identifier assigned by Vault.
+func (o GetAccessCredentialsResultOutput) LeaseId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.LeaseId }).(pulumi.StringOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) LeaseRenewable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) bool { return v.LeaseRenewable }).(pulumi.BoolOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) LeaseStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.LeaseStartTime }).(pulumi.StringOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) MaxCredValidationSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) *int { return v.MaxCredValidationSeconds }).(pulumi.IntPtrOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) NumSecondsBetweenTests() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) *int { return v.NumSecondsBetweenTests }).(pulumi.IntPtrOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) NumSequentialSuccesses() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) *int { return v.NumSequentialSuccesses }).(pulumi.IntPtrOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.Role }).(pulumi.StringOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) ValidateCreds() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) *bool { return v.ValidateCreds }).(pulumi.BoolPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetAccessCredentialsResultOutput{})
 }

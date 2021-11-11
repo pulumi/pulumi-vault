@@ -189,7 +189,7 @@ type SecretCacheConfigArrayInput interface {
 type SecretCacheConfigArray []SecretCacheConfigInput
 
 func (SecretCacheConfigArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SecretCacheConfig)(nil))
+	return reflect.TypeOf((*[]*SecretCacheConfig)(nil)).Elem()
 }
 
 func (i SecretCacheConfigArray) ToSecretCacheConfigArrayOutput() SecretCacheConfigArrayOutput {
@@ -214,7 +214,7 @@ type SecretCacheConfigMapInput interface {
 type SecretCacheConfigMap map[string]SecretCacheConfigInput
 
 func (SecretCacheConfigMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SecretCacheConfig)(nil))
+	return reflect.TypeOf((*map[string]*SecretCacheConfig)(nil)).Elem()
 }
 
 func (i SecretCacheConfigMap) ToSecretCacheConfigMapOutput() SecretCacheConfigMapOutput {
@@ -225,9 +225,7 @@ func (i SecretCacheConfigMap) ToSecretCacheConfigMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretCacheConfigMapOutput)
 }
 
-type SecretCacheConfigOutput struct {
-	*pulumi.OutputState
-}
+type SecretCacheConfigOutput struct{ *pulumi.OutputState }
 
 func (SecretCacheConfigOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretCacheConfig)(nil))
@@ -246,14 +244,12 @@ func (o SecretCacheConfigOutput) ToSecretCacheConfigPtrOutput() SecretCacheConfi
 }
 
 func (o SecretCacheConfigOutput) ToSecretCacheConfigPtrOutputWithContext(ctx context.Context) SecretCacheConfigPtrOutput {
-	return o.ApplyT(func(v SecretCacheConfig) *SecretCacheConfig {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretCacheConfig) *SecretCacheConfig {
 		return &v
 	}).(SecretCacheConfigPtrOutput)
 }
 
-type SecretCacheConfigPtrOutput struct {
-	*pulumi.OutputState
-}
+type SecretCacheConfigPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretCacheConfigPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretCacheConfig)(nil))
@@ -265,6 +261,16 @@ func (o SecretCacheConfigPtrOutput) ToSecretCacheConfigPtrOutput() SecretCacheCo
 
 func (o SecretCacheConfigPtrOutput) ToSecretCacheConfigPtrOutputWithContext(ctx context.Context) SecretCacheConfigPtrOutput {
 	return o
+}
+
+func (o SecretCacheConfigPtrOutput) Elem() SecretCacheConfigOutput {
+	return o.ApplyT(func(v *SecretCacheConfig) SecretCacheConfig {
+		if v != nil {
+			return *v
+		}
+		var ret SecretCacheConfig
+		return ret
+	}).(SecretCacheConfigOutput)
 }
 
 type SecretCacheConfigArrayOutput struct{ *pulumi.OutputState }
@@ -308,6 +314,10 @@ func (o SecretCacheConfigMapOutput) MapIndex(k pulumi.StringInput) SecretCacheCo
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretCacheConfigInput)(nil)).Elem(), &SecretCacheConfig{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretCacheConfigPtrInput)(nil)).Elem(), &SecretCacheConfig{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretCacheConfigArrayInput)(nil)).Elem(), SecretCacheConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretCacheConfigMapInput)(nil)).Elem(), SecretCacheConfigMap{})
 	pulumi.RegisterOutputType(SecretCacheConfigOutput{})
 	pulumi.RegisterOutputType(SecretCacheConfigPtrOutput{})
 	pulumi.RegisterOutputType(SecretCacheConfigArrayOutput{})

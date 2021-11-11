@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -43,11 +42,11 @@ export interface GetAuthBackendRoleIdArgs {
      * The unique name for the AppRole backend the role to
      * retrieve a RoleID for resides in. Defaults to "approle".
      */
-    readonly backend?: string;
+    backend?: string;
     /**
      * The name of the role to retrieve the Role ID for.
      */
-    readonly roleName: string;
+    roleName: string;
 }
 
 /**
@@ -64,4 +63,23 @@ export interface GetAuthBackendRoleIdResult {
      */
     readonly roleId: string;
     readonly roleName: string;
+}
+
+export function getAuthBackendRoleIdOutput(args: GetAuthBackendRoleIdOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendRoleIdResult> {
+    return pulumi.output(args).apply(a => getAuthBackendRoleId(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAuthBackendRoleId.
+ */
+export interface GetAuthBackendRoleIdOutputArgs {
+    /**
+     * The unique name for the AppRole backend the role to
+     * retrieve a RoleID for resides in. Defaults to "approle".
+     */
+    backend?: pulumi.Input<string>;
+    /**
+     * The name of the role to retrieve the Role ID for.
+     */
+    roleName: pulumi.Input<string>;
 }

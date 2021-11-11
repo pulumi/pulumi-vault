@@ -180,75 +180,75 @@ export interface SecretBackendSignState {
     /**
      * List of alternative names
      */
-    readonly altNames?: pulumi.Input<pulumi.Input<string>[]>;
+    altNames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
      */
-    readonly autoRenew?: pulumi.Input<boolean>;
+    autoRenew?: pulumi.Input<boolean>;
     /**
      * The PKI secret backend the resource belongs to.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * The CA chain
      */
-    readonly caChains?: pulumi.Input<pulumi.Input<string>[]>;
+    caChains?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The certificate
      */
-    readonly certificate?: pulumi.Input<string>;
+    certificate?: pulumi.Input<string>;
     /**
      * CN of certificate to create
      */
-    readonly commonName?: pulumi.Input<string>;
+    commonName?: pulumi.Input<string>;
     /**
      * The CSR
      */
-    readonly csr?: pulumi.Input<string>;
+    csr?: pulumi.Input<string>;
     /**
      * Flag to exclude CN from SANs
      */
-    readonly excludeCnFromSans?: pulumi.Input<boolean>;
+    excludeCnFromSans?: pulumi.Input<boolean>;
     /**
      * The expiration date of the certificate in unix epoch format
      */
-    readonly expiration?: pulumi.Input<number>;
+    expiration?: pulumi.Input<number>;
     /**
      * The format of data
      */
-    readonly format?: pulumi.Input<string>;
+    format?: pulumi.Input<string>;
     /**
      * List of alternative IPs
      */
-    readonly ipSans?: pulumi.Input<pulumi.Input<string>[]>;
+    ipSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The issuing CA
      */
-    readonly issuingCa?: pulumi.Input<string>;
+    issuingCa?: pulumi.Input<string>;
     /**
      * Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
      */
-    readonly minSecondsRemaining?: pulumi.Input<number>;
+    minSecondsRemaining?: pulumi.Input<number>;
     /**
      * Name of the role to create the certificate against
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * List of other SANs
      */
-    readonly otherSans?: pulumi.Input<pulumi.Input<string>[]>;
+    otherSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The serial
      */
-    readonly serial?: pulumi.Input<string>;
+    serial?: pulumi.Input<string>;
     /**
      * Time to live
      */
-    readonly ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string>;
     /**
      * List of alterative URIs
      */
-    readonly uriSans?: pulumi.Input<pulumi.Input<string>[]>;
+    uriSans?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -258,53 +258,53 @@ export interface SecretBackendSignArgs {
     /**
      * List of alternative names
      */
-    readonly altNames?: pulumi.Input<pulumi.Input<string>[]>;
+    altNames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
      */
-    readonly autoRenew?: pulumi.Input<boolean>;
+    autoRenew?: pulumi.Input<boolean>;
     /**
      * The PKI secret backend the resource belongs to.
      */
-    readonly backend: pulumi.Input<string>;
+    backend: pulumi.Input<string>;
     /**
      * CN of certificate to create
      */
-    readonly commonName: pulumi.Input<string>;
+    commonName: pulumi.Input<string>;
     /**
      * The CSR
      */
-    readonly csr: pulumi.Input<string>;
+    csr: pulumi.Input<string>;
     /**
      * Flag to exclude CN from SANs
      */
-    readonly excludeCnFromSans?: pulumi.Input<boolean>;
+    excludeCnFromSans?: pulumi.Input<boolean>;
     /**
      * The format of data
      */
-    readonly format?: pulumi.Input<string>;
+    format?: pulumi.Input<string>;
     /**
      * List of alternative IPs
      */
-    readonly ipSans?: pulumi.Input<pulumi.Input<string>[]>;
+    ipSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
      */
-    readonly minSecondsRemaining?: pulumi.Input<number>;
+    minSecondsRemaining?: pulumi.Input<number>;
     /**
      * Name of the role to create the certificate against
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * List of other SANs
      */
-    readonly otherSans?: pulumi.Input<pulumi.Input<string>[]>;
+    otherSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Time to live
      */
-    readonly ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string>;
     /**
      * List of alterative URIs
      */
-    readonly uriSans?: pulumi.Input<pulumi.Input<string>[]>;
+    uriSans?: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -103,20 +103,20 @@ export interface SecretBackendRoleState {
      * The path the RabbitMQ secret backend is mounted at,
      * with no leading or trailing `/`s.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Specifies a comma-separated RabbitMQ management tags.
      */
-    readonly tags?: pulumi.Input<string>;
+    tags?: pulumi.Input<string>;
     /**
      * Specifies a map of virtual hosts to permissions.
      */
-    readonly vhosts?: pulumi.Input<pulumi.Input<inputs.rabbitMq.SecretBackendRoleVhost>[]>;
+    vhosts?: pulumi.Input<pulumi.Input<inputs.rabbitMq.SecretBackendRoleVhost>[]>;
 }
 
 /**
@@ -127,18 +127,18 @@ export interface SecretBackendRoleArgs {
      * The path the RabbitMQ secret backend is mounted at,
      * with no leading or trailing `/`s.
      */
-    readonly backend: pulumi.Input<string>;
+    backend: pulumi.Input<string>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Specifies a comma-separated RabbitMQ management tags.
      */
-    readonly tags?: pulumi.Input<string>;
+    tags?: pulumi.Input<string>;
     /**
      * Specifies a map of virtual hosts to permissions.
      */
-    readonly vhosts?: pulumi.Input<pulumi.Input<inputs.rabbitMq.SecretBackendRoleVhost>[]>;
+    vhosts?: pulumi.Input<pulumi.Input<inputs.rabbitMq.SecretBackendRoleVhost>[]>;
 }

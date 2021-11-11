@@ -248,7 +248,7 @@ type EntityPoliciesArrayInput interface {
 type EntityPoliciesArray []EntityPoliciesInput
 
 func (EntityPoliciesArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*EntityPolicies)(nil))
+	return reflect.TypeOf((*[]*EntityPolicies)(nil)).Elem()
 }
 
 func (i EntityPoliciesArray) ToEntityPoliciesArrayOutput() EntityPoliciesArrayOutput {
@@ -273,7 +273,7 @@ type EntityPoliciesMapInput interface {
 type EntityPoliciesMap map[string]EntityPoliciesInput
 
 func (EntityPoliciesMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*EntityPolicies)(nil))
+	return reflect.TypeOf((*map[string]*EntityPolicies)(nil)).Elem()
 }
 
 func (i EntityPoliciesMap) ToEntityPoliciesMapOutput() EntityPoliciesMapOutput {
@@ -284,9 +284,7 @@ func (i EntityPoliciesMap) ToEntityPoliciesMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(EntityPoliciesMapOutput)
 }
 
-type EntityPoliciesOutput struct {
-	*pulumi.OutputState
-}
+type EntityPoliciesOutput struct{ *pulumi.OutputState }
 
 func (EntityPoliciesOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*EntityPolicies)(nil))
@@ -305,14 +303,12 @@ func (o EntityPoliciesOutput) ToEntityPoliciesPtrOutput() EntityPoliciesPtrOutpu
 }
 
 func (o EntityPoliciesOutput) ToEntityPoliciesPtrOutputWithContext(ctx context.Context) EntityPoliciesPtrOutput {
-	return o.ApplyT(func(v EntityPolicies) *EntityPolicies {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EntityPolicies) *EntityPolicies {
 		return &v
 	}).(EntityPoliciesPtrOutput)
 }
 
-type EntityPoliciesPtrOutput struct {
-	*pulumi.OutputState
-}
+type EntityPoliciesPtrOutput struct{ *pulumi.OutputState }
 
 func (EntityPoliciesPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**EntityPolicies)(nil))
@@ -324,6 +320,16 @@ func (o EntityPoliciesPtrOutput) ToEntityPoliciesPtrOutput() EntityPoliciesPtrOu
 
 func (o EntityPoliciesPtrOutput) ToEntityPoliciesPtrOutputWithContext(ctx context.Context) EntityPoliciesPtrOutput {
 	return o
+}
+
+func (o EntityPoliciesPtrOutput) Elem() EntityPoliciesOutput {
+	return o.ApplyT(func(v *EntityPolicies) EntityPolicies {
+		if v != nil {
+			return *v
+		}
+		var ret EntityPolicies
+		return ret
+	}).(EntityPoliciesOutput)
 }
 
 type EntityPoliciesArrayOutput struct{ *pulumi.OutputState }
@@ -367,6 +373,10 @@ func (o EntityPoliciesMapOutput) MapIndex(k pulumi.StringInput) EntityPoliciesOu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*EntityPoliciesInput)(nil)).Elem(), &EntityPolicies{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EntityPoliciesPtrInput)(nil)).Elem(), &EntityPolicies{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EntityPoliciesArrayInput)(nil)).Elem(), EntityPoliciesArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EntityPoliciesMapInput)(nil)).Elem(), EntityPoliciesMap{})
 	pulumi.RegisterOutputType(EntityPoliciesOutput{})
 	pulumi.RegisterOutputType(EntityPoliciesPtrOutput{})
 	pulumi.RegisterOutputType(EntityPoliciesArrayOutput{})

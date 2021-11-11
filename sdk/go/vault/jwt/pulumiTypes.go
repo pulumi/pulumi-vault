@@ -151,7 +151,7 @@ func (o AuthBackendTuneOutput) ToAuthBackendTunePtrOutput() AuthBackendTunePtrOu
 }
 
 func (o AuthBackendTuneOutput) ToAuthBackendTunePtrOutputWithContext(ctx context.Context) AuthBackendTunePtrOutput {
-	return o.ApplyT(func(v AuthBackendTune) *AuthBackendTune {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AuthBackendTune) *AuthBackendTune {
 		return &v
 	}).(AuthBackendTunePtrOutput)
 }
@@ -221,7 +221,13 @@ func (o AuthBackendTunePtrOutput) ToAuthBackendTunePtrOutputWithContext(ctx cont
 }
 
 func (o AuthBackendTunePtrOutput) Elem() AuthBackendTuneOutput {
-	return o.ApplyT(func(v *AuthBackendTune) AuthBackendTune { return *v }).(AuthBackendTuneOutput)
+	return o.ApplyT(func(v *AuthBackendTune) AuthBackendTune {
+		if v != nil {
+			return *v
+		}
+		var ret AuthBackendTune
+		return ret
+	}).(AuthBackendTuneOutput)
 }
 
 // List of headers to whitelist and allowing
@@ -315,6 +321,8 @@ func (o AuthBackendTunePtrOutput) TokenType() pulumi.StringPtrOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendTuneInput)(nil)).Elem(), AuthBackendTuneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendTunePtrInput)(nil)).Elem(), AuthBackendTuneArgs{})
 	pulumi.RegisterOutputType(AuthBackendTuneOutput{})
 	pulumi.RegisterOutputType(AuthBackendTunePtrOutput{})
 }

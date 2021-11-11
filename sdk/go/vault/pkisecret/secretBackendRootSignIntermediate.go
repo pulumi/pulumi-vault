@@ -391,7 +391,7 @@ type SecretBackendRootSignIntermediateArrayInput interface {
 type SecretBackendRootSignIntermediateArray []SecretBackendRootSignIntermediateInput
 
 func (SecretBackendRootSignIntermediateArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SecretBackendRootSignIntermediate)(nil))
+	return reflect.TypeOf((*[]*SecretBackendRootSignIntermediate)(nil)).Elem()
 }
 
 func (i SecretBackendRootSignIntermediateArray) ToSecretBackendRootSignIntermediateArrayOutput() SecretBackendRootSignIntermediateArrayOutput {
@@ -416,7 +416,7 @@ type SecretBackendRootSignIntermediateMapInput interface {
 type SecretBackendRootSignIntermediateMap map[string]SecretBackendRootSignIntermediateInput
 
 func (SecretBackendRootSignIntermediateMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SecretBackendRootSignIntermediate)(nil))
+	return reflect.TypeOf((*map[string]*SecretBackendRootSignIntermediate)(nil)).Elem()
 }
 
 func (i SecretBackendRootSignIntermediateMap) ToSecretBackendRootSignIntermediateMapOutput() SecretBackendRootSignIntermediateMapOutput {
@@ -427,9 +427,7 @@ func (i SecretBackendRootSignIntermediateMap) ToSecretBackendRootSignIntermediat
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRootSignIntermediateMapOutput)
 }
 
-type SecretBackendRootSignIntermediateOutput struct {
-	*pulumi.OutputState
-}
+type SecretBackendRootSignIntermediateOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRootSignIntermediateOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SecretBackendRootSignIntermediate)(nil))
@@ -448,14 +446,12 @@ func (o SecretBackendRootSignIntermediateOutput) ToSecretBackendRootSignIntermed
 }
 
 func (o SecretBackendRootSignIntermediateOutput) ToSecretBackendRootSignIntermediatePtrOutputWithContext(ctx context.Context) SecretBackendRootSignIntermediatePtrOutput {
-	return o.ApplyT(func(v SecretBackendRootSignIntermediate) *SecretBackendRootSignIntermediate {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendRootSignIntermediate) *SecretBackendRootSignIntermediate {
 		return &v
 	}).(SecretBackendRootSignIntermediatePtrOutput)
 }
 
-type SecretBackendRootSignIntermediatePtrOutput struct {
-	*pulumi.OutputState
-}
+type SecretBackendRootSignIntermediatePtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRootSignIntermediatePtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SecretBackendRootSignIntermediate)(nil))
@@ -467,6 +463,16 @@ func (o SecretBackendRootSignIntermediatePtrOutput) ToSecretBackendRootSignInter
 
 func (o SecretBackendRootSignIntermediatePtrOutput) ToSecretBackendRootSignIntermediatePtrOutputWithContext(ctx context.Context) SecretBackendRootSignIntermediatePtrOutput {
 	return o
+}
+
+func (o SecretBackendRootSignIntermediatePtrOutput) Elem() SecretBackendRootSignIntermediateOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) SecretBackendRootSignIntermediate {
+		if v != nil {
+			return *v
+		}
+		var ret SecretBackendRootSignIntermediate
+		return ret
+	}).(SecretBackendRootSignIntermediateOutput)
 }
 
 type SecretBackendRootSignIntermediateArrayOutput struct{ *pulumi.OutputState }
@@ -510,6 +516,10 @@ func (o SecretBackendRootSignIntermediateMapOutput) MapIndex(k pulumi.StringInpu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRootSignIntermediateInput)(nil)).Elem(), &SecretBackendRootSignIntermediate{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRootSignIntermediatePtrInput)(nil)).Elem(), &SecretBackendRootSignIntermediate{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRootSignIntermediateArrayInput)(nil)).Elem(), SecretBackendRootSignIntermediateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRootSignIntermediateMapInput)(nil)).Elem(), SecretBackendRootSignIntermediateMap{})
 	pulumi.RegisterOutputType(SecretBackendRootSignIntermediateOutput{})
 	pulumi.RegisterOutputType(SecretBackendRootSignIntermediatePtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendRootSignIntermediateArrayOutput{})

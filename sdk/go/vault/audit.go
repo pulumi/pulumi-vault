@@ -246,7 +246,7 @@ type AuditArrayInput interface {
 type AuditArray []AuditInput
 
 func (AuditArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*Audit)(nil))
+	return reflect.TypeOf((*[]*Audit)(nil)).Elem()
 }
 
 func (i AuditArray) ToAuditArrayOutput() AuditArrayOutput {
@@ -271,7 +271,7 @@ type AuditMapInput interface {
 type AuditMap map[string]AuditInput
 
 func (AuditMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*Audit)(nil))
+	return reflect.TypeOf((*map[string]*Audit)(nil)).Elem()
 }
 
 func (i AuditMap) ToAuditMapOutput() AuditMapOutput {
@@ -282,9 +282,7 @@ func (i AuditMap) ToAuditMapOutputWithContext(ctx context.Context) AuditMapOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(AuditMapOutput)
 }
 
-type AuditOutput struct {
-	*pulumi.OutputState
-}
+type AuditOutput struct{ *pulumi.OutputState }
 
 func (AuditOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*Audit)(nil))
@@ -303,14 +301,12 @@ func (o AuditOutput) ToAuditPtrOutput() AuditPtrOutput {
 }
 
 func (o AuditOutput) ToAuditPtrOutputWithContext(ctx context.Context) AuditPtrOutput {
-	return o.ApplyT(func(v Audit) *Audit {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Audit) *Audit {
 		return &v
 	}).(AuditPtrOutput)
 }
 
-type AuditPtrOutput struct {
-	*pulumi.OutputState
-}
+type AuditPtrOutput struct{ *pulumi.OutputState }
 
 func (AuditPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**Audit)(nil))
@@ -322,6 +318,16 @@ func (o AuditPtrOutput) ToAuditPtrOutput() AuditPtrOutput {
 
 func (o AuditPtrOutput) ToAuditPtrOutputWithContext(ctx context.Context) AuditPtrOutput {
 	return o
+}
+
+func (o AuditPtrOutput) Elem() AuditOutput {
+	return o.ApplyT(func(v *Audit) Audit {
+		if v != nil {
+			return *v
+		}
+		var ret Audit
+		return ret
+	}).(AuditOutput)
 }
 
 type AuditArrayOutput struct{ *pulumi.OutputState }
@@ -365,6 +371,10 @@ func (o AuditMapOutput) MapIndex(k pulumi.StringInput) AuditOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AuditInput)(nil)).Elem(), &Audit{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuditPtrInput)(nil)).Elem(), &Audit{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuditArrayInput)(nil)).Elem(), AuditArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuditMapInput)(nil)).Elem(), AuditMap{})
 	pulumi.RegisterOutputType(AuditOutput{})
 	pulumi.RegisterOutputType(AuditPtrOutput{})
 	pulumi.RegisterOutputType(AuditArrayOutput{})

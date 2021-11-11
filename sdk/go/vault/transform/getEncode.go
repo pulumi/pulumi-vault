@@ -4,6 +4,9 @@
 package transform
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -51,4 +54,93 @@ type GetEncodeResult struct {
 	Transformation *string `pulumi:"transformation"`
 	Tweak          *string `pulumi:"tweak"`
 	Value          *string `pulumi:"value"`
+}
+
+func GetEncodeOutput(ctx *pulumi.Context, args GetEncodeOutputArgs, opts ...pulumi.InvokeOption) GetEncodeResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetEncodeResult, error) {
+			args := v.(GetEncodeArgs)
+			r, err := GetEncode(ctx, &args, opts...)
+			return *r, err
+		}).(GetEncodeResultOutput)
+}
+
+// A collection of arguments for invoking getEncode.
+type GetEncodeOutputArgs struct {
+	// Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
+	BatchInputs pulumi.MapArrayInput `pulumi:"batchInputs"`
+	// The result of encoding a batch.
+	BatchResults pulumi.MapArrayInput `pulumi:"batchResults"`
+	// The result of encoding a value.
+	EncodedValue pulumi.StringPtrInput `pulumi:"encodedValue"`
+	// Path to where the back-end is mounted within Vault.
+	Path pulumi.StringInput `pulumi:"path"`
+	// The name of the role.
+	RoleName pulumi.StringInput `pulumi:"roleName"`
+	// The transformation to perform. If no value is provided and the role contains a single transformation, this value will be inferred from the role.
+	Transformation pulumi.StringPtrInput `pulumi:"transformation"`
+	// The tweak value to use. Only applicable for FPE transformations
+	Tweak pulumi.StringPtrInput `pulumi:"tweak"`
+	// The value in which to encode.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (GetEncodeOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEncodeArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getEncode.
+type GetEncodeResultOutput struct{ *pulumi.OutputState }
+
+func (GetEncodeResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEncodeResult)(nil)).Elem()
+}
+
+func (o GetEncodeResultOutput) ToGetEncodeResultOutput() GetEncodeResultOutput {
+	return o
+}
+
+func (o GetEncodeResultOutput) ToGetEncodeResultOutputWithContext(ctx context.Context) GetEncodeResultOutput {
+	return o
+}
+
+func (o GetEncodeResultOutput) BatchInputs() pulumi.MapArrayOutput {
+	return o.ApplyT(func(v GetEncodeResult) []map[string]interface{} { return v.BatchInputs }).(pulumi.MapArrayOutput)
+}
+
+func (o GetEncodeResultOutput) BatchResults() pulumi.MapArrayOutput {
+	return o.ApplyT(func(v GetEncodeResult) []map[string]interface{} { return v.BatchResults }).(pulumi.MapArrayOutput)
+}
+
+func (o GetEncodeResultOutput) EncodedValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncodeResult) string { return v.EncodedValue }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetEncodeResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncodeResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetEncodeResultOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncodeResult) string { return v.Path }).(pulumi.StringOutput)
+}
+
+func (o GetEncodeResultOutput) RoleName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncodeResult) string { return v.RoleName }).(pulumi.StringOutput)
+}
+
+func (o GetEncodeResultOutput) Transformation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetEncodeResult) *string { return v.Transformation }).(pulumi.StringPtrOutput)
+}
+
+func (o GetEncodeResultOutput) Tweak() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetEncodeResult) *string { return v.Tweak }).(pulumi.StringPtrOutput)
+}
+
+func (o GetEncodeResultOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetEncodeResult) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetEncodeResultOutput{})
 }

@@ -323,6 +323,12 @@ func (o HeadersArrayOutput) Index(i pulumi.IntInput) HeadersOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginsInput)(nil)).Elem(), AuthLoginsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginsArrayInput)(nil)).Elem(), AuthLoginsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthsInput)(nil)).Elem(), ClientAuthsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthsArrayInput)(nil)).Elem(), ClientAuthsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HeadersInput)(nil)).Elem(), HeadersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HeadersArrayInput)(nil)).Elem(), HeadersArray{})
 	pulumi.RegisterOutputType(AuthLoginsOutput{})
 	pulumi.RegisterOutputType(AuthLoginsArrayOutput{})
 	pulumi.RegisterOutputType(ClientAuthsOutput{})

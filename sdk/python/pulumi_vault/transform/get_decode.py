@@ -12,6 +12,7 @@ __all__ = [
     'GetDecodeResult',
     'AwaitableGetDecodeResult',
     'get_decode',
+    'get_decode_output',
 ]
 
 @pulumi.output_type
@@ -163,3 +164,31 @@ def get_decode(batch_inputs: Optional[Sequence[Mapping[str, Any]]] = None,
         transformation=__ret__.transformation,
         tweak=__ret__.tweak,
         value=__ret__.value)
+
+
+@_utilities.lift_output_func(get_decode)
+def get_decode_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapping[str, Any]]]]] = None,
+                      batch_results: Optional[pulumi.Input[Optional[Sequence[Mapping[str, Any]]]]] = None,
+                      decoded_value: Optional[pulumi.Input[Optional[str]]] = None,
+                      path: Optional[pulumi.Input[str]] = None,
+                      role_name: Optional[pulumi.Input[str]] = None,
+                      transformation: Optional[pulumi.Input[Optional[str]]] = None,
+                      tweak: Optional[pulumi.Input[Optional[str]]] = None,
+                      value: Optional[pulumi.Input[Optional[str]]] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDecodeResult]:
+    """
+    This data source supports the "/transform/decode/{role_name}" Vault endpoint.
+
+    It decodes the provided value using a named role.
+
+
+    :param Sequence[Mapping[str, Any]] batch_inputs: Specifies a list of items to be decoded in a single batch. If this parameter is set, the top-level parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
+    :param Sequence[Mapping[str, Any]] batch_results: The result of decoding a batch.
+    :param str decoded_value: The result of decoding a value.
+    :param str path: Path to where the back-end is mounted within Vault.
+    :param str role_name: The name of the role.
+    :param str transformation: The transformation to perform. If no value is provided and the role contains a single transformation, this value will be inferred from the role.
+    :param str tweak: The tweak value to use. Only applicable for FPE transformations
+    :param str value: The value in which to decode.
+    """
+    ...

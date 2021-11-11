@@ -4,6 +4,9 @@
 package vault
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -37,4 +40,70 @@ type GetNomadAccessTokenResult struct {
 	Role string `pulumi:"role"`
 	// The token to be used when making requests to Nomad and should be kept private.
 	SecretId string `pulumi:"secretId"`
+}
+
+func GetNomadAccessTokenOutput(ctx *pulumi.Context, args GetNomadAccessTokenOutputArgs, opts ...pulumi.InvokeOption) GetNomadAccessTokenResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetNomadAccessTokenResult, error) {
+			args := v.(GetNomadAccessTokenArgs)
+			r, err := GetNomadAccessToken(ctx, &args, opts...)
+			return *r, err
+		}).(GetNomadAccessTokenResultOutput)
+}
+
+// A collection of arguments for invoking getNomadAccessToken.
+type GetNomadAccessTokenOutputArgs struct {
+	// The path to the Nomad secret backend to
+	// read credentials from, with no leading or trailing `/`s.
+	Backend pulumi.StringInput `pulumi:"backend"`
+	// The name of the Nomad secret backend role to generate
+	// a token for, with no leading or trailing `/`s.
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (GetNomadAccessTokenOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNomadAccessTokenArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getNomadAccessToken.
+type GetNomadAccessTokenResultOutput struct{ *pulumi.OutputState }
+
+func (GetNomadAccessTokenResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNomadAccessTokenResult)(nil)).Elem()
+}
+
+func (o GetNomadAccessTokenResultOutput) ToGetNomadAccessTokenResultOutput() GetNomadAccessTokenResultOutput {
+	return o
+}
+
+func (o GetNomadAccessTokenResultOutput) ToGetNomadAccessTokenResultOutputWithContext(ctx context.Context) GetNomadAccessTokenResultOutput {
+	return o
+}
+
+// The public identifier for a specific token. It can be used
+// to look up information about a token or to revoke a token.
+func (o GetNomadAccessTokenResultOutput) AccessorId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNomadAccessTokenResult) string { return v.AccessorId }).(pulumi.StringOutput)
+}
+
+func (o GetNomadAccessTokenResultOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNomadAccessTokenResult) string { return v.Backend }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetNomadAccessTokenResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNomadAccessTokenResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetNomadAccessTokenResultOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNomadAccessTokenResult) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The token to be used when making requests to Nomad and should be kept private.
+func (o GetNomadAccessTokenResultOutput) SecretId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNomadAccessTokenResult) string { return v.SecretId }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetNomadAccessTokenResultOutput{})
 }

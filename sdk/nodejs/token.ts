@@ -192,83 +192,83 @@ export interface TokenState {
     /**
      * String containing the client token if stored in present file
      */
-    readonly clientToken?: pulumi.Input<string>;
+    clientToken?: pulumi.Input<string>;
     /**
      * String containing the token display name
      */
-    readonly displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string>;
     /**
      * String containing the client token encrypted with the given `pgpKey` if stored in present file
      */
-    readonly encryptedClientToken?: pulumi.Input<string>;
+    encryptedClientToken?: pulumi.Input<string>;
     /**
      * The explicit max TTL of this token
      */
-    readonly explicitMaxTtl?: pulumi.Input<string>;
+    explicitMaxTtl?: pulumi.Input<string>;
     /**
      * String containing the token lease duration if present in state file
      */
-    readonly leaseDuration?: pulumi.Input<number>;
+    leaseDuration?: pulumi.Input<number>;
     /**
      * String containing the token lease started time if present in state file
      */
-    readonly leaseStarted?: pulumi.Input<string>;
+    leaseStarted?: pulumi.Input<string>;
     /**
      * Flag to not attach the default policy to this token
      */
-    readonly noDefaultPolicy?: pulumi.Input<boolean>;
+    noDefaultPolicy?: pulumi.Input<boolean>;
     /**
      * Flag to create a token without parent
      */
-    readonly noParent?: pulumi.Input<boolean>;
+    noParent?: pulumi.Input<boolean>;
     /**
      * The number of allowed uses of this token
      */
-    readonly numUses?: pulumi.Input<number>;
+    numUses?: pulumi.Input<number>;
     /**
      * The period of this token
      */
-    readonly period?: pulumi.Input<string>;
+    period?: pulumi.Input<string>;
     /**
      * The PGP key (base64 encoded) to encrypt the token.
      */
-    readonly pgpKey?: pulumi.Input<string>;
+    pgpKey?: pulumi.Input<string>;
     /**
      * List of policies to attach to this token
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The renew increment
      */
-    readonly renewIncrement?: pulumi.Input<number>;
+    renewIncrement?: pulumi.Input<number>;
     /**
      * The minimal lease to renew this token
      */
-    readonly renewMinLease?: pulumi.Input<number>;
+    renewMinLease?: pulumi.Input<number>;
     /**
      * Flag to allow to renew this token
      */
-    readonly renewable?: pulumi.Input<boolean>;
+    renewable?: pulumi.Input<boolean>;
     /**
      * The token role name
      */
-    readonly roleName?: pulumi.Input<string>;
+    roleName?: pulumi.Input<string>;
     /**
      * The TTL period of this token
      */
-    readonly ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string>;
     /**
      * The client wrapped token.
      */
-    readonly wrappedToken?: pulumi.Input<string>;
+    wrappedToken?: pulumi.Input<string>;
     /**
      * The client wrapping accessor.
      */
-    readonly wrappingAccessor?: pulumi.Input<string>;
+    wrappingAccessor?: pulumi.Input<string>;
     /**
      * The TTL period of the wrapped token.
      */
-    readonly wrappingTtl?: pulumi.Input<string>;
+    wrappingTtl?: pulumi.Input<string>;
 }
 
 /**
@@ -278,57 +278,57 @@ export interface TokenArgs {
     /**
      * String containing the token display name
      */
-    readonly displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string>;
     /**
      * The explicit max TTL of this token
      */
-    readonly explicitMaxTtl?: pulumi.Input<string>;
+    explicitMaxTtl?: pulumi.Input<string>;
     /**
      * Flag to not attach the default policy to this token
      */
-    readonly noDefaultPolicy?: pulumi.Input<boolean>;
+    noDefaultPolicy?: pulumi.Input<boolean>;
     /**
      * Flag to create a token without parent
      */
-    readonly noParent?: pulumi.Input<boolean>;
+    noParent?: pulumi.Input<boolean>;
     /**
      * The number of allowed uses of this token
      */
-    readonly numUses?: pulumi.Input<number>;
+    numUses?: pulumi.Input<number>;
     /**
      * The period of this token
      */
-    readonly period?: pulumi.Input<string>;
+    period?: pulumi.Input<string>;
     /**
      * The PGP key (base64 encoded) to encrypt the token.
      */
-    readonly pgpKey?: pulumi.Input<string>;
+    pgpKey?: pulumi.Input<string>;
     /**
      * List of policies to attach to this token
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The renew increment
      */
-    readonly renewIncrement?: pulumi.Input<number>;
+    renewIncrement?: pulumi.Input<number>;
     /**
      * The minimal lease to renew this token
      */
-    readonly renewMinLease?: pulumi.Input<number>;
+    renewMinLease?: pulumi.Input<number>;
     /**
      * Flag to allow to renew this token
      */
-    readonly renewable?: pulumi.Input<boolean>;
+    renewable?: pulumi.Input<boolean>;
     /**
      * The token role name
      */
-    readonly roleName?: pulumi.Input<string>;
+    roleName?: pulumi.Input<string>;
     /**
      * The TTL period of this token
      */
-    readonly ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string>;
     /**
      * The TTL period of the wrapped token.
      */
-    readonly wrappingTtl?: pulumi.Input<string>;
+    wrappingTtl?: pulumi.Input<string>;
 }

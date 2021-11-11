@@ -223,6 +223,10 @@ func (o SecretStaticAccountBindingArrayOutput) Index(i pulumi.IntInput) SecretSt
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretRolesetBindingInput)(nil)).Elem(), SecretRolesetBindingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretRolesetBindingArrayInput)(nil)).Elem(), SecretRolesetBindingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretStaticAccountBindingInput)(nil)).Elem(), SecretStaticAccountBindingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretStaticAccountBindingArrayInput)(nil)).Elem(), SecretStaticAccountBindingArray{})
 	pulumi.RegisterOutputType(SecretRolesetBindingOutput{})
 	pulumi.RegisterOutputType(SecretRolesetBindingArrayOutput{})
 	pulumi.RegisterOutputType(SecretStaticAccountBindingOutput{})

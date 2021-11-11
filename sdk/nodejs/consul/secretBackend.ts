@@ -145,48 +145,48 @@ export interface SecretBackendState {
     /**
      * Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
      */
-    readonly address?: pulumi.Input<string>;
+    address?: pulumi.Input<string>;
     /**
      * CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
      */
-    readonly caCert?: pulumi.Input<string>;
+    caCert?: pulumi.Input<string>;
     /**
      * Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
      */
-    readonly clientCert?: pulumi.Input<string>;
+    clientCert?: pulumi.Input<string>;
     /**
      * Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
      */
-    readonly clientKey?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string>;
     /**
      * The default TTL for credentials issued by this backend.
      */
-    readonly defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * A human-friendly description for this backend.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Specifies if the secret backend is local only.
      */
-    readonly local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean>;
     /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend.
      */
-    readonly maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * Specifies the URL scheme to use. Defaults to `http`.
      */
-    readonly scheme?: pulumi.Input<string>;
+    scheme?: pulumi.Input<string>;
     /**
      * The Consul management token this backend should use to issue new tokens.
      */
-    readonly token?: pulumi.Input<string>;
+    token?: pulumi.Input<string>;
 }
 
 /**
@@ -196,46 +196,46 @@ export interface SecretBackendArgs {
     /**
      * Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
      */
-    readonly address: pulumi.Input<string>;
+    address: pulumi.Input<string>;
     /**
      * CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
      */
-    readonly caCert?: pulumi.Input<string>;
+    caCert?: pulumi.Input<string>;
     /**
      * Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_key.
      */
-    readonly clientCert?: pulumi.Input<string>;
+    clientCert?: pulumi.Input<string>;
     /**
      * Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
      */
-    readonly clientKey?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string>;
     /**
      * The default TTL for credentials issued by this backend.
      */
-    readonly defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * A human-friendly description for this backend.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Specifies if the secret backend is local only.
      */
-    readonly local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean>;
     /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend.
      */
-    readonly maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `consul`.
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * Specifies the URL scheme to use. Defaults to `http`.
      */
-    readonly scheme?: pulumi.Input<string>;
+    scheme?: pulumi.Input<string>;
     /**
      * The Consul management token this backend should use to issue new tokens.
      */
-    readonly token: pulumi.Input<string>;
+    token: pulumi.Input<string>;
 }

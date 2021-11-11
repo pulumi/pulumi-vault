@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Vault.Transform
 {
@@ -18,6 +19,14 @@ namespace Pulumi.Vault.Transform
         /// </summary>
         public static Task<GetDecodeResult> InvokeAsync(GetDecodeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDecodeResult>("vault:transform/getDecode:getDecode", args ?? new GetDecodeArgs(), options.WithVersion());
+
+        /// <summary>
+        /// This data source supports the "/transform/decode/{role_name}" Vault endpoint.
+        /// 
+        /// It decodes the provided value using a named role.
+        /// </summary>
+        public static Output<GetDecodeResult> Invoke(GetDecodeInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetDecodeResult>("vault:transform/getDecode:getDecode", args ?? new GetDecodeInvokeArgs(), options.WithVersion());
     }
 
 
@@ -84,6 +93,73 @@ namespace Pulumi.Vault.Transform
         public string? Value { get; set; }
 
         public GetDecodeArgs()
+        {
+        }
+    }
+
+    public sealed class GetDecodeInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("batchInputs")]
+        private InputList<ImmutableDictionary<string, object>>? _batchInputs;
+
+        /// <summary>
+        /// Specifies a list of items to be decoded in a single batch. If this parameter is set, the top-level parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
+        /// </summary>
+        public InputList<ImmutableDictionary<string, object>> BatchInputs
+        {
+            get => _batchInputs ?? (_batchInputs = new InputList<ImmutableDictionary<string, object>>());
+            set => _batchInputs = value;
+        }
+
+        [Input("batchResults")]
+        private InputList<ImmutableDictionary<string, object>>? _batchResults;
+
+        /// <summary>
+        /// The result of decoding a batch.
+        /// </summary>
+        public InputList<ImmutableDictionary<string, object>> BatchResults
+        {
+            get => _batchResults ?? (_batchResults = new InputList<ImmutableDictionary<string, object>>());
+            set => _batchResults = value;
+        }
+
+        /// <summary>
+        /// The result of decoding a value.
+        /// </summary>
+        [Input("decodedValue")]
+        public Input<string>? DecodedValue { get; set; }
+
+        /// <summary>
+        /// Path to where the back-end is mounted within Vault.
+        /// </summary>
+        [Input("path", required: true)]
+        public Input<string> Path { get; set; } = null!;
+
+        /// <summary>
+        /// The name of the role.
+        /// </summary>
+        [Input("roleName", required: true)]
+        public Input<string> RoleName { get; set; } = null!;
+
+        /// <summary>
+        /// The transformation to perform. If no value is provided and the role contains a single transformation, this value will be inferred from the role.
+        /// </summary>
+        [Input("transformation")]
+        public Input<string>? Transformation { get; set; }
+
+        /// <summary>
+        /// The tweak value to use. Only applicable for FPE transformations
+        /// </summary>
+        [Input("tweak")]
+        public Input<string>? Tweak { get; set; }
+
+        /// <summary>
+        /// The value in which to decode.
+        /// </summary>
+        [Input("value")]
+        public Input<string>? Value { get; set; }
+
+        public GetDecodeInvokeArgs()
         {
         }
     }

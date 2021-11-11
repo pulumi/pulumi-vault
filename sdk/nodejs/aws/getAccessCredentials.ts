@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessCredentialsResult> {
@@ -31,32 +30,32 @@ export interface GetAccessCredentialsArgs {
      * The path to the AWS secret backend to
      * read credentials from, with no leading or trailing `/`s.
      */
-    readonly backend: string;
-    readonly region?: string;
+    backend: string;
+    region?: string;
     /**
      * The name of the AWS secret backend role to read
      * credentials from, with no leading or trailing `/`s.
      */
-    readonly role: string;
+    role: string;
     /**
      * The specific AWS ARN to use
      * from the configured role. If the role does not have multiple ARNs, this does
      * not need to be specified.
      */
-    readonly roleArn?: string;
+    roleArn?: string;
     /**
      * Specifies the TTL for the use of the STS token. This
      * is specified as a string with a duration suffix. Valid only when
      * `credentialType` is `assumedRole` or `federationToken`
      */
-    readonly ttl?: string;
+    ttl?: string;
     /**
      * The type of credentials to read. Defaults
      * to `"creds"`, which just returns an AWS Access Key ID and Secret
      * Key. Can also be set to `"sts"`, which will return a security token
      * in addition to the keys.
      */
-    readonly type?: string;
+    type?: string;
 }
 
 /**
@@ -97,4 +96,44 @@ export interface GetAccessCredentialsResult {
     readonly securityToken: string;
     readonly ttl?: string;
     readonly type?: string;
+}
+
+export function getAccessCredentialsOutput(args: GetAccessCredentialsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccessCredentialsResult> {
+    return pulumi.output(args).apply(a => getAccessCredentials(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAccessCredentials.
+ */
+export interface GetAccessCredentialsOutputArgs {
+    /**
+     * The path to the AWS secret backend to
+     * read credentials from, with no leading or trailing `/`s.
+     */
+    backend: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
+    /**
+     * The name of the AWS secret backend role to read
+     * credentials from, with no leading or trailing `/`s.
+     */
+    role: pulumi.Input<string>;
+    /**
+     * The specific AWS ARN to use
+     * from the configured role. If the role does not have multiple ARNs, this does
+     * not need to be specified.
+     */
+    roleArn?: pulumi.Input<string>;
+    /**
+     * Specifies the TTL for the use of the STS token. This
+     * is specified as a string with a duration suffix. Valid only when
+     * `credentialType` is `assumedRole` or `federationToken`
+     */
+    ttl?: pulumi.Input<string>;
+    /**
+     * The type of credentials to read. Defaults
+     * to `"creds"`, which just returns an AWS Access Key ID and Secret
+     * Key. Can also be set to `"sts"`, which will return a security token
+     * in addition to the keys.
+     */
+    type?: pulumi.Input<string>;
 }

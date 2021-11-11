@@ -4,6 +4,9 @@
 package kubernetes
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -164,4 +167,216 @@ type LookupAuthBackendRoleResult struct {
 	TokenType *string `pulumi:"tokenType"`
 	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
 	Ttl *int `pulumi:"ttl"`
+}
+
+func LookupAuthBackendRoleOutput(ctx *pulumi.Context, args LookupAuthBackendRoleOutputArgs, opts ...pulumi.InvokeOption) LookupAuthBackendRoleResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupAuthBackendRoleResult, error) {
+			args := v.(LookupAuthBackendRoleArgs)
+			r, err := LookupAuthBackendRole(ctx, &args, opts...)
+			return *r, err
+		}).(LookupAuthBackendRoleResultOutput)
+}
+
+// A collection of arguments for invoking getAuthBackendRole.
+type LookupAuthBackendRoleOutputArgs struct {
+	// (Optional) Audience claim to verify in the JWT.
+	Audience pulumi.StringPtrInput `pulumi:"audience"`
+	// The unique name for the Kubernetes backend the role to
+	// retrieve Role attributes for resides in. Defaults to "kubernetes".
+	Backend pulumi.StringPtrInput `pulumi:"backend"`
+	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
+	BoundCidrs pulumi.StringArrayInput `pulumi:"boundCidrs"`
+	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
+	MaxTtl pulumi.IntPtrInput `pulumi:"maxTtl"`
+	// Deprecated: use `token_num_uses` instead if you are running Vault >= 1.2
+	NumUses pulumi.IntPtrInput `pulumi:"numUses"`
+	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
+	Period pulumi.IntPtrInput `pulumi:"period"`
+	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
+	Policies pulumi.StringArrayInput `pulumi:"policies"`
+	// The name of the role to retrieve the Role attributes for.
+	RoleName pulumi.StringInput `pulumi:"roleName"`
+	// List of CIDR blocks; if set, specifies blocks of IP
+	// addresses which can authenticate successfully, and ties the resulting token to these blocks
+	// as well.
+	TokenBoundCidrs pulumi.StringArrayInput `pulumi:"tokenBoundCidrs"`
+	// If set, will encode an
+	// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+	// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+	// `tokenMaxTtl` would otherwise allow a renewal.
+	TokenExplicitMaxTtl pulumi.IntPtrInput `pulumi:"tokenExplicitMaxTtl"`
+	// The maximum lifetime for generated tokens in number of seconds.
+	// Its current value will be referenced at renewal time.
+	TokenMaxTtl pulumi.IntPtrInput `pulumi:"tokenMaxTtl"`
+	// If set, the default policy will not be set on
+	// generated tokens; otherwise it will be added to the policies set in token_policies.
+	TokenNoDefaultPolicy pulumi.BoolPtrInput `pulumi:"tokenNoDefaultPolicy"`
+	// The
+	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+	// if any, in number of seconds to set on the token.
+	TokenNumUses pulumi.IntPtrInput `pulumi:"tokenNumUses"`
+	// (Optional) If set, indicates that the
+	// token generated using this role should never expire. The token should be renewed within the
+	// duration specified by this value. At each renewal, the token's TTL will be set to the
+	// value of this field. Specified in seconds.
+	TokenPeriod pulumi.IntPtrInput `pulumi:"tokenPeriod"`
+	// List of policies to encode onto generated tokens. Depending
+	// on the auth method, this list may be supplemented by user/group/other values.
+	TokenPolicies pulumi.StringArrayInput `pulumi:"tokenPolicies"`
+	// The incremental lifetime for generated tokens in number of seconds.
+	// Its current value will be referenced at renewal time.
+	TokenTtl pulumi.IntPtrInput `pulumi:"tokenTtl"`
+	// The type of token that should be generated. Can be `service`,
+	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
+	// `service` tokens). For token store roles, there are two additional possibilities:
+	// `default-service` and `default-batch` which specify the type to return unless the client
+	// requests a different type at generation time.
+	TokenType pulumi.StringPtrInput `pulumi:"tokenType"`
+	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
+	Ttl pulumi.IntPtrInput `pulumi:"ttl"`
+}
+
+func (LookupAuthBackendRoleOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAuthBackendRoleArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getAuthBackendRole.
+type LookupAuthBackendRoleResultOutput struct{ *pulumi.OutputState }
+
+func (LookupAuthBackendRoleResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAuthBackendRoleResult)(nil)).Elem()
+}
+
+func (o LookupAuthBackendRoleResultOutput) ToLookupAuthBackendRoleResultOutput() LookupAuthBackendRoleResultOutput {
+	return o
+}
+
+func (o LookupAuthBackendRoleResultOutput) ToLookupAuthBackendRoleResultOutputWithContext(ctx context.Context) LookupAuthBackendRoleResultOutput {
+	return o
+}
+
+// (Optional) Audience claim to verify in the JWT.
+func (o LookupAuthBackendRoleResultOutput) Audience() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) *string { return v.Audience }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupAuthBackendRoleResultOutput) Backend() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) *string { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
+func (o LookupAuthBackendRoleResultOutput) BoundCidrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) []string { return v.BoundCidrs }).(pulumi.StringArrayOutput)
+}
+
+// List of service account names able to access this role. If set to "*" all names are allowed, both this and boundServiceAccountNamespaces can not be "*".
+func (o LookupAuthBackendRoleResultOutput) BoundServiceAccountNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) []string { return v.BoundServiceAccountNames }).(pulumi.StringArrayOutput)
+}
+
+// List of namespaces allowed to access this role. If set to "*" all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
+func (o LookupAuthBackendRoleResultOutput) BoundServiceAccountNamespaces() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) []string { return v.BoundServiceAccountNamespaces }).(pulumi.StringArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupAuthBackendRoleResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
+func (o LookupAuthBackendRoleResultOutput) MaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) *int { return v.MaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// Deprecated: use `token_num_uses` instead if you are running Vault >= 1.2
+func (o LookupAuthBackendRoleResultOutput) NumUses() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) *int { return v.NumUses }).(pulumi.IntPtrOutput)
+}
+
+// Deprecated: use `token_period` instead if you are running Vault >= 1.2
+func (o LookupAuthBackendRoleResultOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) *int { return v.Period }).(pulumi.IntPtrOutput)
+}
+
+// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
+func (o LookupAuthBackendRoleResultOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) []string { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupAuthBackendRoleResultOutput) RoleName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) string { return v.RoleName }).(pulumi.StringOutput)
+}
+
+// List of CIDR blocks; if set, specifies blocks of IP
+// addresses which can authenticate successfully, and ties the resulting token to these blocks
+// as well.
+func (o LookupAuthBackendRoleResultOutput) TokenBoundCidrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) []string { return v.TokenBoundCidrs }).(pulumi.StringArrayOutput)
+}
+
+// If set, will encode an
+// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
+// onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+// `tokenMaxTtl` would otherwise allow a renewal.
+func (o LookupAuthBackendRoleResultOutput) TokenExplicitMaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) *int { return v.TokenExplicitMaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// The maximum lifetime for generated tokens in number of seconds.
+// Its current value will be referenced at renewal time.
+func (o LookupAuthBackendRoleResultOutput) TokenMaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) *int { return v.TokenMaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// If set, the default policy will not be set on
+// generated tokens; otherwise it will be added to the policies set in token_policies.
+func (o LookupAuthBackendRoleResultOutput) TokenNoDefaultPolicy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) *bool { return v.TokenNoDefaultPolicy }).(pulumi.BoolPtrOutput)
+}
+
+// The
+// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
+// if any, in number of seconds to set on the token.
+func (o LookupAuthBackendRoleResultOutput) TokenNumUses() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) *int { return v.TokenNumUses }).(pulumi.IntPtrOutput)
+}
+
+// (Optional) If set, indicates that the
+// token generated using this role should never expire. The token should be renewed within the
+// duration specified by this value. At each renewal, the token's TTL will be set to the
+// value of this field. Specified in seconds.
+func (o LookupAuthBackendRoleResultOutput) TokenPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) *int { return v.TokenPeriod }).(pulumi.IntPtrOutput)
+}
+
+// List of policies to encode onto generated tokens. Depending
+// on the auth method, this list may be supplemented by user/group/other values.
+func (o LookupAuthBackendRoleResultOutput) TokenPolicies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) []string { return v.TokenPolicies }).(pulumi.StringArrayOutput)
+}
+
+// The incremental lifetime for generated tokens in number of seconds.
+// Its current value will be referenced at renewal time.
+func (o LookupAuthBackendRoleResultOutput) TokenTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) *int { return v.TokenTtl }).(pulumi.IntPtrOutput)
+}
+
+// The type of token that should be generated. Can be `service`,
+// `batch`, or `default` to use the mount's tuned default (which unless changed will be
+// `service` tokens). For token store roles, there are two additional possibilities:
+// `default-service` and `default-batch` which specify the type to return unless the client
+// requests a different type at generation time.
+func (o LookupAuthBackendRoleResultOutput) TokenType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) *string { return v.TokenType }).(pulumi.StringPtrOutput)
+}
+
+// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
+func (o LookupAuthBackendRoleResultOutput) Ttl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) *int { return v.Ttl }).(pulumi.IntPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupAuthBackendRoleResultOutput{})
 }

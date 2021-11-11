@@ -103,11 +103,11 @@ export interface SecretCacheConfigState {
     /**
      * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * The number of cache entries. 0 means unlimited.
      */
-    readonly size?: pulumi.Input<number>;
+    size?: pulumi.Input<number>;
 }
 
 /**
@@ -117,9 +117,9 @@ export interface SecretCacheConfigArgs {
     /**
      * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
      */
-    readonly backend: pulumi.Input<string>;
+    backend: pulumi.Input<string>;
     /**
      * The number of cache entries. 0 means unlimited.
      */
-    readonly size: pulumi.Input<number>;
+    size: pulumi.Input<number>;
 }

@@ -94,7 +94,7 @@ export interface OidcState {
      * scheme, host, and optionally, port number and path components, but no query or fragment
      * components.
      */
-    readonly issuer?: pulumi.Input<string>;
+    issuer?: pulumi.Input<string>;
 }
 
 /**
@@ -107,5 +107,5 @@ export interface OidcArgs {
      * scheme, host, and optionally, port number and path components, but no query or fragment
      * components.
      */
-    readonly issuer?: pulumi.Input<string>;
+    issuer?: pulumi.Input<string>;
 }

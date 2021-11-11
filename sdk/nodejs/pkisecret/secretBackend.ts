@@ -115,19 +115,19 @@ export interface SecretBackendState {
     /**
      * The default TTL for credentials issued by this backend.
      */
-    readonly defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * A human-friendly description for this backend.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * The maximum TTL that can be requested for credentials issued by this backend.
      */
-    readonly maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * The unique path this backend should be mounted at. Must not begin or end with a `/`.
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
 }
 
 /**
@@ -137,17 +137,17 @@ export interface SecretBackendArgs {
     /**
      * The default TTL for credentials issued by this backend.
      */
-    readonly defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * A human-friendly description for this backend.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * The maximum TTL that can be requested for credentials issued by this backend.
      */
-    readonly maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * The unique path this backend should be mounted at. Must not begin or end with a `/`.
      */
-    readonly path: pulumi.Input<string>;
+    path: pulumi.Input<string>;
 }

@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -38,25 +37,25 @@ export interface GetAuthBackendConfigArgs {
      * The unique name for the Kubernetes backend the config to
      * retrieve Role attributes for resides in. Defaults to "kubernetes".
      */
-    readonly backend?: string;
-    readonly disableIssValidation?: boolean;
-    readonly disableLocalCaJwt?: boolean;
+    backend?: string;
+    disableIssValidation?: boolean;
+    disableLocalCaJwt?: boolean;
     /**
      * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
      */
-    readonly issuer?: string;
+    issuer?: string;
     /**
      * PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
      */
-    readonly kubernetesCaCert?: string;
+    kubernetesCaCert?: string;
     /**
      * Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
      */
-    readonly kubernetesHost?: string;
+    kubernetesHost?: string;
     /**
      * Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */
-    readonly pemKeys?: string[];
+    pemKeys?: string[];
 }
 
 /**
@@ -86,4 +85,37 @@ export interface GetAuthBackendConfigResult {
      * Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */
     readonly pemKeys: string[];
+}
+
+export function getAuthBackendConfigOutput(args?: GetAuthBackendConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendConfigResult> {
+    return pulumi.output(args).apply(a => getAuthBackendConfig(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAuthBackendConfig.
+ */
+export interface GetAuthBackendConfigOutputArgs {
+    /**
+     * The unique name for the Kubernetes backend the config to
+     * retrieve Role attributes for resides in. Defaults to "kubernetes".
+     */
+    backend?: pulumi.Input<string>;
+    disableIssValidation?: pulumi.Input<boolean>;
+    disableLocalCaJwt?: pulumi.Input<boolean>;
+    /**
+     * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+     */
+    issuer?: pulumi.Input<string>;
+    /**
+     * PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
+     */
+    kubernetesCaCert?: pulumi.Input<string>;
+    /**
+     * Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
+     */
+    kubernetesHost?: pulumi.Input<string>;
+    /**
+     * Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
+     */
+    pemKeys?: pulumi.Input<pulumi.Input<string>[]>;
 }

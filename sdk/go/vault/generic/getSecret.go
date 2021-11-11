@@ -4,6 +4,9 @@
 package generic
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -52,4 +55,97 @@ type LookupSecretResult struct {
 	LeaseStartTime string `pulumi:"leaseStartTime"`
 	Path           string `pulumi:"path"`
 	Version        *int   `pulumi:"version"`
+}
+
+func LookupSecretOutput(ctx *pulumi.Context, args LookupSecretOutputArgs, opts ...pulumi.InvokeOption) LookupSecretResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSecretResult, error) {
+			args := v.(LookupSecretArgs)
+			r, err := LookupSecret(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSecretResultOutput)
+}
+
+// A collection of arguments for invoking getSecret.
+type LookupSecretOutputArgs struct {
+	// The full logical path from which to request data.
+	// To read data from the "generic" secret backend mounted in Vault by
+	// default, this should be prefixed with `secret/`. Reading from other backends
+	// with this data source is possible; consult each backend's documentation
+	// to see which endpoints support the `GET` method.
+	Path pulumi.StringInput `pulumi:"path"`
+	// The version of the secret to read. This is used by the
+	// Vault KV secrets engine - version 2 to indicate which version of the secret
+	// to read.
+	Version pulumi.IntPtrInput `pulumi:"version"`
+}
+
+func (LookupSecretOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSecretArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getSecret.
+type LookupSecretResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSecretResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSecretResult)(nil)).Elem()
+}
+
+func (o LookupSecretResultOutput) ToLookupSecretResultOutput() LookupSecretResultOutput {
+	return o
+}
+
+func (o LookupSecretResultOutput) ToLookupSecretResultOutputWithContext(ctx context.Context) LookupSecretResultOutput {
+	return o
+}
+
+// A mapping whose keys are the top-level data keys returned from
+// Vault and whose values are the corresponding values. This map can only
+// represent string data, so any non-string values returned from Vault are
+// serialized as JSON.
+func (o LookupSecretResultOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v LookupSecretResult) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// A string containing the full data payload retrieved from
+// Vault, serialized in JSON format.
+func (o LookupSecretResultOutput) DataJson() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSecretResult) string { return v.DataJson }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSecretResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSecretResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The duration of the secret lease, in seconds relative
+// to the time the data was requested. Once this time has passed any plan
+// generated with this data may fail to apply.
+func (o LookupSecretResultOutput) LeaseDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSecretResult) int { return v.LeaseDuration }).(pulumi.IntOutput)
+}
+
+// The lease identifier assigned by Vault, if any.
+func (o LookupSecretResultOutput) LeaseId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSecretResult) string { return v.LeaseId }).(pulumi.StringOutput)
+}
+
+func (o LookupSecretResultOutput) LeaseRenewable() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupSecretResult) bool { return v.LeaseRenewable }).(pulumi.BoolOutput)
+}
+
+func (o LookupSecretResultOutput) LeaseStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSecretResult) string { return v.LeaseStartTime }).(pulumi.StringOutput)
+}
+
+func (o LookupSecretResultOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSecretResult) string { return v.Path }).(pulumi.StringOutput)
+}
+
+func (o LookupSecretResultOutput) Version() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupSecretResult) *int { return v.Version }).(pulumi.IntPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSecretResultOutput{})
 }

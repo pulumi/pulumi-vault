@@ -81,11 +81,11 @@ export interface SecretBackendIntermediateSetSignedState {
     /**
      * The PKI secret backend the resource belongs to.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * The certificate
      */
-    readonly certificate?: pulumi.Input<string>;
+    certificate?: pulumi.Input<string>;
 }
 
 /**
@@ -95,9 +95,9 @@ export interface SecretBackendIntermediateSetSignedArgs {
     /**
      * The PKI secret backend the resource belongs to.
      */
-    readonly backend: pulumi.Input<string>;
+    backend: pulumi.Input<string>;
     /**
      * The certificate
      */
-    readonly certificate: pulumi.Input<string>;
+    certificate: pulumi.Input<string>;
 }

@@ -26,6 +26,34 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === Provider.__pulumiType;
     }
 
+    /**
+     * If true, adds the value of the `address` argument to the Terraform process environment.
+     */
+    public readonly addAddressToEnv!: pulumi.Output<string | undefined>;
+    /**
+     * URL of the root of the target Vault server.
+     */
+    public readonly address!: pulumi.Output<string>;
+    /**
+     * Path to directory containing CA certificate files to validate the server's certificate.
+     */
+    public readonly caCertDir!: pulumi.Output<string | undefined>;
+    /**
+     * Path to a CA certificate file to validate the server's certificate.
+     */
+    public readonly caCertFile!: pulumi.Output<string | undefined>;
+    /**
+     * The namespace to use. Available only for Vault Enterprise
+     */
+    public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
+     * Token to use to authenticate to Vault.
+     */
+    public readonly token!: pulumi.Output<string>;
+    /**
+     * Token name to use for creating the Vault child token.
+     */
+    public readonly tokenName!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -72,53 +100,53 @@ export interface ProviderArgs {
     /**
      * If true, adds the value of the `address` argument to the Terraform process environment.
      */
-    readonly addAddressToEnv?: pulumi.Input<string>;
+    addAddressToEnv?: pulumi.Input<string>;
     /**
      * URL of the root of the target Vault server.
      */
-    readonly address: pulumi.Input<string>;
+    address: pulumi.Input<string>;
     /**
      * Login to vault with an existing auth method using auth/<mount>/login
      */
-    readonly authLogins?: pulumi.Input<pulumi.Input<inputs.ProviderAuthLogin>[]>;
+    authLogins?: pulumi.Input<pulumi.Input<inputs.ProviderAuthLogin>[]>;
     /**
      * Path to directory containing CA certificate files to validate the server's certificate.
      */
-    readonly caCertDir?: pulumi.Input<string>;
+    caCertDir?: pulumi.Input<string>;
     /**
      * Path to a CA certificate file to validate the server's certificate.
      */
-    readonly caCertFile?: pulumi.Input<string>;
+    caCertFile?: pulumi.Input<string>;
     /**
      * Client authentication credentials.
      */
-    readonly clientAuths?: pulumi.Input<pulumi.Input<inputs.ProviderClientAuth>[]>;
+    clientAuths?: pulumi.Input<pulumi.Input<inputs.ProviderClientAuth>[]>;
     /**
      * The headers to send with each Vault request.
      */
-    readonly headers?: pulumi.Input<pulumi.Input<inputs.ProviderHeader>[]>;
+    headers?: pulumi.Input<pulumi.Input<inputs.ProviderHeader>[]>;
     /**
      * Maximum TTL for secret leases requested by this provider
      */
-    readonly maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * Maximum number of retries when a 5xx error code is encountered.
      */
-    readonly maxRetries?: pulumi.Input<number>;
+    maxRetries?: pulumi.Input<number>;
     /**
      * The namespace to use. Available only for Vault Enterprise
      */
-    readonly namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string>;
     /**
      * Set this to true only if the target Vault server is an insecure development instance.
      */
-    readonly skipTlsVerify?: pulumi.Input<boolean>;
+    skipTlsVerify?: pulumi.Input<boolean>;
     /**
      * Token to use to authenticate to Vault.
      */
-    readonly token: pulumi.Input<string>;
+    token: pulumi.Input<string>;
     /**
      * Token name to use for creating the Vault child token.
      */
-    readonly tokenName?: pulumi.Input<string>;
+    tokenName?: pulumi.Input<string>;
 }

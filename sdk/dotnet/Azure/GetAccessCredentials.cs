@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Vault.Azure
 {
@@ -13,6 +14,9 @@ namespace Pulumi.Vault.Azure
     {
         public static Task<GetAccessCredentialsResult> InvokeAsync(GetAccessCredentialsArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:azure/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsArgs(), options.WithVersion());
+
+        public static Output<GetAccessCredentialsResult> Invoke(GetAccessCredentialsInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetAccessCredentialsResult>("vault:azure/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsInvokeArgs(), options.WithVersion());
     }
 
 
@@ -66,6 +70,60 @@ namespace Pulumi.Vault.Azure
         public bool? ValidateCreds { get; set; }
 
         public GetAccessCredentialsArgs()
+        {
+        }
+    }
+
+    public sealed class GetAccessCredentialsInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The path to the Azure secret backend to
+        /// read credentials from, with no leading or trailing `/`s.
+        /// </summary>
+        [Input("backend", required: true)]
+        public Input<string> Backend { get; set; } = null!;
+
+        /// <summary>
+        /// If 'validate_creds' is true, 
+        /// the number of seconds after which to give up validating credentials. Defaults
+        /// to 1,200 (20 minutes).
+        /// </summary>
+        [Input("maxCredValidationSeconds")]
+        public Input<int>? MaxCredValidationSeconds { get; set; }
+
+        /// <summary>
+        /// If 'validate_creds' is true, 
+        /// the number of seconds to wait between each test of generated credentials.
+        /// Defaults to 7.
+        /// </summary>
+        [Input("numSecondsBetweenTests")]
+        public Input<int>? NumSecondsBetweenTests { get; set; }
+
+        /// <summary>
+        /// If 'validate_creds' is true, 
+        /// the number of sequential successes required to validate generated
+        /// credentials. Defaults to 8.
+        /// </summary>
+        [Input("numSequentialSuccesses")]
+        public Input<int>? NumSequentialSuccesses { get; set; }
+
+        /// <summary>
+        /// The name of the Azure secret backend role to read
+        /// credentials from, with no leading or trailing `/`s.
+        /// </summary>
+        [Input("role", required: true)]
+        public Input<string> Role { get; set; } = null!;
+
+        /// <summary>
+        /// Whether generated credentials should be 
+        /// validated before being returned. Defaults to `false`, which returns
+        /// credentials without checking whether they have fully propagated throughout
+        /// Azure Active Directory. Designating `true` activates testing.
+        /// </summary>
+        [Input("validateCreds")]
+        public Input<bool>? ValidateCreds { get; set; }
+
+        public GetAccessCredentialsInvokeArgs()
         {
         }
     }

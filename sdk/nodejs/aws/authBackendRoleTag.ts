@@ -161,41 +161,41 @@ export interface AuthBackendRoleTagState {
     /**
      * If set, allows migration of the underlying instances where the client resides. Use with caution.
      */
-    readonly allowInstanceMigration?: pulumi.Input<boolean>;
+    allowInstanceMigration?: pulumi.Input<boolean>;
     /**
      * The path to the AWS auth backend to
      * read role tags from, with no leading or trailing `/`s. Defaults to "aws".
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * If set, only allows a single token to be granted per instance ID.
      */
-    readonly disallowReauthentication?: pulumi.Input<boolean>;
+    disallowReauthentication?: pulumi.Input<boolean>;
     /**
      * Instance ID for which this tag is intended for. If set, the created tag can only be used by the instance with the given ID.
      */
-    readonly instanceId?: pulumi.Input<string>;
+    instanceId?: pulumi.Input<string>;
     /**
      * The maximum TTL of the tokens issued using this role.
      */
-    readonly maxTtl?: pulumi.Input<string>;
+    maxTtl?: pulumi.Input<string>;
     /**
      * The policies to be associated with the tag. Must be a subset of the policies associated with the role.
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name of the AWS auth backend role to read
      * role tags from, with no leading or trailing `/`s.
      */
-    readonly role?: pulumi.Input<string>;
+    role?: pulumi.Input<string>;
     /**
      * The key of the role tag.
      */
-    readonly tagKey?: pulumi.Input<string>;
+    tagKey?: pulumi.Input<string>;
     /**
      * The value to set the role key.
      */
-    readonly tagValue?: pulumi.Input<string>;
+    tagValue?: pulumi.Input<string>;
 }
 
 /**
@@ -205,31 +205,31 @@ export interface AuthBackendRoleTagArgs {
     /**
      * If set, allows migration of the underlying instances where the client resides. Use with caution.
      */
-    readonly allowInstanceMigration?: pulumi.Input<boolean>;
+    allowInstanceMigration?: pulumi.Input<boolean>;
     /**
      * The path to the AWS auth backend to
      * read role tags from, with no leading or trailing `/`s. Defaults to "aws".
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * If set, only allows a single token to be granted per instance ID.
      */
-    readonly disallowReauthentication?: pulumi.Input<boolean>;
+    disallowReauthentication?: pulumi.Input<boolean>;
     /**
      * Instance ID for which this tag is intended for. If set, the created tag can only be used by the instance with the given ID.
      */
-    readonly instanceId?: pulumi.Input<string>;
+    instanceId?: pulumi.Input<string>;
     /**
      * The maximum TTL of the tokens issued using this role.
      */
-    readonly maxTtl?: pulumi.Input<string>;
+    maxTtl?: pulumi.Input<string>;
     /**
      * The policies to be associated with the tag. Must be a subset of the policies associated with the role.
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name of the AWS auth backend role to read
      * role tags from, with no leading or trailing `/`s.
      */
-    readonly role: pulumi.Input<string>;
+    role: pulumi.Input<string>;
 }

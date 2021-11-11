@@ -251,6 +251,29 @@ class SecretStaticAccount(pulumi.CustomResource):
         Each [static account](https://www.vaultproject.io/docs/secrets/gcp/index.html#static-accounts) is tied to a separately managed
         Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings) associated with it.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+        import pulumi_vault as vault
+
+        this = gcp.service_account.Account("this", account_id="my-awesome-account")
+        gcp = vault.gcp.SecretBackend("gcp",
+            path="gcp",
+            credentials=(lambda path: open(path).read())("credentials.json"))
+        static_account = vault.gcp.SecretStaticAccount("staticAccount",
+            backend=gcp.path,
+            static_account="project_viewer",
+            secret_type="access_token",
+            token_scopes=["https://www.googleapis.com/auth/cloud-platform"],
+            service_account_email=this.email,
+            bindings=[vault.gcp.SecretStaticAccountBindingArgs(
+                resource=this.project.apply(lambda project: f"//cloudresourcemanager.googleapis.com/projects/{project}"),
+                roles=["roles/viewer"],
+            )])
+        ```
+
         ## Import
 
         A static account can be imported using its Vault Path. For example, referencing the example above,
@@ -279,6 +302,29 @@ class SecretStaticAccount(pulumi.CustomResource):
 
         Each [static account](https://www.vaultproject.io/docs/secrets/gcp/index.html#static-accounts) is tied to a separately managed
         Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings) associated with it.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+        import pulumi_vault as vault
+
+        this = gcp.service_account.Account("this", account_id="my-awesome-account")
+        gcp = vault.gcp.SecretBackend("gcp",
+            path="gcp",
+            credentials=(lambda path: open(path).read())("credentials.json"))
+        static_account = vault.gcp.SecretStaticAccount("staticAccount",
+            backend=gcp.path,
+            static_account="project_viewer",
+            secret_type="access_token",
+            token_scopes=["https://www.googleapis.com/auth/cloud-platform"],
+            service_account_email=this.email,
+            bindings=[vault.gcp.SecretStaticAccountBindingArgs(
+                resource=this.project.apply(lambda project: f"//cloudresourcemanager.googleapis.com/projects/{project}"),
+                roles=["roles/viewer"],
+            )])
+        ```
 
         ## Import
 

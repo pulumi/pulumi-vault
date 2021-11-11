@@ -309,142 +309,142 @@ export interface SecretBackendState {
      * Use anonymous binds when performing LDAP group searches
      * (if true the initial credentials will still be used for the initial connection test).
      */
-    readonly anonymousGroupSearch?: pulumi.Input<boolean>;
+    anonymousGroupSearch?: pulumi.Input<boolean>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `ad`.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * Distinguished name of object to bind when performing user and group search.
      */
-    readonly binddn?: pulumi.Input<string>;
+    binddn?: pulumi.Input<string>;
     /**
      * Password to use along with binddn when performing user search.
      */
-    readonly bindpass?: pulumi.Input<string>;
+    bindpass?: pulumi.Input<string>;
     /**
      * If set, user and group names assigned to policies within the
      * backend will be case sensitive. Otherwise, names will be normalized to lower case.
      */
-    readonly caseSensitiveNames?: pulumi.Input<boolean>;
+    caseSensitiveNames?: pulumi.Input<boolean>;
     /**
      * CA certificate to use when verifying LDAP server certificate, must be
      * x509 PEM encoded.
      */
-    readonly certificate?: pulumi.Input<string>;
+    certificate?: pulumi.Input<string>;
     /**
      * Client certificate to provide to the LDAP server, must be x509 PEM encoded.
      */
-    readonly clientTlsCert?: pulumi.Input<string>;
+    clientTlsCert?: pulumi.Input<string>;
     /**
      * Client certificate key to provide to the LDAP server, must be x509 PEM encoded.
      */
-    readonly clientTlsKey?: pulumi.Input<string>;
+    clientTlsKey?: pulumi.Input<string>;
     /**
      * Default lease duration for secrets in seconds.
      */
-    readonly defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * Denies an unauthenticated LDAP bind request if the user's password is empty;
      * defaults to true.
      */
-    readonly denyNullBind?: pulumi.Input<boolean>;
+    denyNullBind?: pulumi.Input<boolean>;
     /**
      * Human-friendly description of the mount for the Active Directory backend.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Use anonymous bind to discover the bind Distinguished Name of a user.
      */
-    readonly discoverdn?: pulumi.Input<boolean>;
+    discoverdn?: pulumi.Input<boolean>;
     /**
      * Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix". This
      * setting is deprecated and should instead use `passwordPolicy`.
      *
      * @deprecated Formatter is deprecated and password_policy should be used with Vault >= 1.5.
      */
-    readonly formatter?: pulumi.Input<string>;
+    formatter?: pulumi.Input<string>;
     /**
      * LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
      * user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
      */
-    readonly groupattr?: pulumi.Input<string>;
+    groupattr?: pulumi.Input<string>;
     /**
      * LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org).
      */
-    readonly groupdn?: pulumi.Input<string>;
+    groupdn?: pulumi.Input<string>;
     /**
      * Go template for querying group membership of user (optional) The template can access
      * the following context variables: UserDN, Username. Defaults to `(|(memberUid={{.Username}})(member={{.UserDN}})(uniqueMember={{.UserDN}}))`
      */
-    readonly groupfilter?: pulumi.Input<string>;
+    groupfilter?: pulumi.Input<string>;
     /**
      * Skip LDAP server SSL Certificate verification. This is not recommended for production.
      * Defaults to `false`.
      */
-    readonly insecureTls?: pulumi.Input<boolean>;
+    insecureTls?: pulumi.Input<boolean>;
     /**
      * The number of seconds after a Vault rotation where, if Active Directory
      * shows a later rotation, it should be considered out-of-band
      */
-    readonly lastRotationTolerance?: pulumi.Input<number>;
+    lastRotationTolerance?: pulumi.Input<number>;
     /**
      * The desired length of passwords that Vault generates. This
      * setting is deprecated and should instead use `passwordPolicy`.
      *
      * @deprecated Length is deprecated and password_policy should be used with Vault >= 1.5.
      */
-    readonly length?: pulumi.Input<number>;
+    length?: pulumi.Input<number>;
     /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.
      */
-    readonly local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean>;
     /**
      * Maximum possible lease duration for secrets in seconds.
      */
-    readonly maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * In seconds, the maximum password time-to-live.
      */
-    readonly maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number>;
     /**
      * Name of the password policy to use to generate passwords.
      */
-    readonly passwordPolicy?: pulumi.Input<string>;
+    passwordPolicy?: pulumi.Input<string>;
     /**
      * Timeout, in seconds, for the connection when making requests against the server
      * before returning back an error.
      */
-    readonly requestTimeout?: pulumi.Input<number>;
+    requestTimeout?: pulumi.Input<number>;
     /**
      * Issue a StartTLS command after establishing unencrypted connection.
      */
-    readonly starttls?: pulumi.Input<boolean>;
+    starttls?: pulumi.Input<boolean>;
     /**
      * Maximum TLS version to use. Accepted values are `tls10`, `tls11`,
      * `tls12` or `tls13`. Defaults to `tls12`.
      */
-    readonly tlsMaxVersion?: pulumi.Input<string>;
+    tlsMaxVersion?: pulumi.Input<string>;
     /**
      * Minimum TLS version to use. Accepted values are `tls10`, `tls11`,
      * `tls12` or `tls13`. Defaults to `tls12`.
      */
-    readonly tlsMinVersion?: pulumi.Input<string>;
+    tlsMinVersion?: pulumi.Input<string>;
     /**
      * In seconds, the default password time-to-live.
      */
-    readonly ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number>;
     /**
      * Enables userPrincipalDomain login with [username]@UPNDomain.
      */
-    readonly upndomain?: pulumi.Input<string>;
+    upndomain?: pulumi.Input<string>;
     /**
      * LDAP URL to connect to. Multiple URLs can be specified by concatenating
      * them with commas; they will be tried in-order. Defaults to `ldap://127.0.0.1`.
      */
-    readonly url?: pulumi.Input<string>;
+    url?: pulumi.Input<string>;
     /**
      * In Vault 1.1.1 a fix for handling group CN values of
      * different cases unfortunately introduced a regression that could cause previously defined groups
@@ -453,20 +453,20 @@ export interface SecretBackendState {
      * compatibility. It is enabled by default if the config is upgraded but disabled by default on
      * new configurations.
      */
-    readonly usePre111GroupCnBehavior?: pulumi.Input<boolean>;
+    usePre111GroupCnBehavior?: pulumi.Input<boolean>;
     /**
      * If true, use the Active Directory tokenGroups constructed attribute of the
      * user to find the group memberships. This will find all security groups including nested ones.
      */
-    readonly useTokenGroups?: pulumi.Input<boolean>;
+    useTokenGroups?: pulumi.Input<boolean>;
     /**
      * Attribute used when searching users. Defaults to `cn`.
      */
-    readonly userattr?: pulumi.Input<string>;
+    userattr?: pulumi.Input<string>;
     /**
      * LDAP domain to use for users (eg: ou=People,dc=example,dc=org)`.
      */
-    readonly userdn?: pulumi.Input<string>;
+    userdn?: pulumi.Input<string>;
 }
 
 /**
@@ -477,142 +477,142 @@ export interface SecretBackendArgs {
      * Use anonymous binds when performing LDAP group searches
      * (if true the initial credentials will still be used for the initial connection test).
      */
-    readonly anonymousGroupSearch?: pulumi.Input<boolean>;
+    anonymousGroupSearch?: pulumi.Input<boolean>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `ad`.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * Distinguished name of object to bind when performing user and group search.
      */
-    readonly binddn: pulumi.Input<string>;
+    binddn: pulumi.Input<string>;
     /**
      * Password to use along with binddn when performing user search.
      */
-    readonly bindpass: pulumi.Input<string>;
+    bindpass: pulumi.Input<string>;
     /**
      * If set, user and group names assigned to policies within the
      * backend will be case sensitive. Otherwise, names will be normalized to lower case.
      */
-    readonly caseSensitiveNames?: pulumi.Input<boolean>;
+    caseSensitiveNames?: pulumi.Input<boolean>;
     /**
      * CA certificate to use when verifying LDAP server certificate, must be
      * x509 PEM encoded.
      */
-    readonly certificate?: pulumi.Input<string>;
+    certificate?: pulumi.Input<string>;
     /**
      * Client certificate to provide to the LDAP server, must be x509 PEM encoded.
      */
-    readonly clientTlsCert?: pulumi.Input<string>;
+    clientTlsCert?: pulumi.Input<string>;
     /**
      * Client certificate key to provide to the LDAP server, must be x509 PEM encoded.
      */
-    readonly clientTlsKey?: pulumi.Input<string>;
+    clientTlsKey?: pulumi.Input<string>;
     /**
      * Default lease duration for secrets in seconds.
      */
-    readonly defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * Denies an unauthenticated LDAP bind request if the user's password is empty;
      * defaults to true.
      */
-    readonly denyNullBind?: pulumi.Input<boolean>;
+    denyNullBind?: pulumi.Input<boolean>;
     /**
      * Human-friendly description of the mount for the Active Directory backend.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Use anonymous bind to discover the bind Distinguished Name of a user.
      */
-    readonly discoverdn?: pulumi.Input<boolean>;
+    discoverdn?: pulumi.Input<boolean>;
     /**
      * Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix". This
      * setting is deprecated and should instead use `passwordPolicy`.
      *
      * @deprecated Formatter is deprecated and password_policy should be used with Vault >= 1.5.
      */
-    readonly formatter?: pulumi.Input<string>;
+    formatter?: pulumi.Input<string>;
     /**
      * LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
      * user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
      */
-    readonly groupattr?: pulumi.Input<string>;
+    groupattr?: pulumi.Input<string>;
     /**
      * LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org).
      */
-    readonly groupdn?: pulumi.Input<string>;
+    groupdn?: pulumi.Input<string>;
     /**
      * Go template for querying group membership of user (optional) The template can access
      * the following context variables: UserDN, Username. Defaults to `(|(memberUid={{.Username}})(member={{.UserDN}})(uniqueMember={{.UserDN}}))`
      */
-    readonly groupfilter?: pulumi.Input<string>;
+    groupfilter?: pulumi.Input<string>;
     /**
      * Skip LDAP server SSL Certificate verification. This is not recommended for production.
      * Defaults to `false`.
      */
-    readonly insecureTls?: pulumi.Input<boolean>;
+    insecureTls?: pulumi.Input<boolean>;
     /**
      * The number of seconds after a Vault rotation where, if Active Directory
      * shows a later rotation, it should be considered out-of-band
      */
-    readonly lastRotationTolerance?: pulumi.Input<number>;
+    lastRotationTolerance?: pulumi.Input<number>;
     /**
      * The desired length of passwords that Vault generates. This
      * setting is deprecated and should instead use `passwordPolicy`.
      *
      * @deprecated Length is deprecated and password_policy should be used with Vault >= 1.5.
      */
-    readonly length?: pulumi.Input<number>;
+    length?: pulumi.Input<number>;
     /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.
      */
-    readonly local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean>;
     /**
      * Maximum possible lease duration for secrets in seconds.
      */
-    readonly maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * In seconds, the maximum password time-to-live.
      */
-    readonly maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number>;
     /**
      * Name of the password policy to use to generate passwords.
      */
-    readonly passwordPolicy?: pulumi.Input<string>;
+    passwordPolicy?: pulumi.Input<string>;
     /**
      * Timeout, in seconds, for the connection when making requests against the server
      * before returning back an error.
      */
-    readonly requestTimeout?: pulumi.Input<number>;
+    requestTimeout?: pulumi.Input<number>;
     /**
      * Issue a StartTLS command after establishing unencrypted connection.
      */
-    readonly starttls?: pulumi.Input<boolean>;
+    starttls?: pulumi.Input<boolean>;
     /**
      * Maximum TLS version to use. Accepted values are `tls10`, `tls11`,
      * `tls12` or `tls13`. Defaults to `tls12`.
      */
-    readonly tlsMaxVersion?: pulumi.Input<string>;
+    tlsMaxVersion?: pulumi.Input<string>;
     /**
      * Minimum TLS version to use. Accepted values are `tls10`, `tls11`,
      * `tls12` or `tls13`. Defaults to `tls12`.
      */
-    readonly tlsMinVersion?: pulumi.Input<string>;
+    tlsMinVersion?: pulumi.Input<string>;
     /**
      * In seconds, the default password time-to-live.
      */
-    readonly ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number>;
     /**
      * Enables userPrincipalDomain login with [username]@UPNDomain.
      */
-    readonly upndomain?: pulumi.Input<string>;
+    upndomain?: pulumi.Input<string>;
     /**
      * LDAP URL to connect to. Multiple URLs can be specified by concatenating
      * them with commas; they will be tried in-order. Defaults to `ldap://127.0.0.1`.
      */
-    readonly url?: pulumi.Input<string>;
+    url?: pulumi.Input<string>;
     /**
      * In Vault 1.1.1 a fix for handling group CN values of
      * different cases unfortunately introduced a regression that could cause previously defined groups
@@ -621,18 +621,18 @@ export interface SecretBackendArgs {
      * compatibility. It is enabled by default if the config is upgraded but disabled by default on
      * new configurations.
      */
-    readonly usePre111GroupCnBehavior?: pulumi.Input<boolean>;
+    usePre111GroupCnBehavior?: pulumi.Input<boolean>;
     /**
      * If true, use the Active Directory tokenGroups constructed attribute of the
      * user to find the group memberships. This will find all security groups including nested ones.
      */
-    readonly useTokenGroups?: pulumi.Input<boolean>;
+    useTokenGroups?: pulumi.Input<boolean>;
     /**
      * Attribute used when searching users. Defaults to `cn`.
      */
-    readonly userattr?: pulumi.Input<string>;
+    userattr?: pulumi.Input<string>;
     /**
      * LDAP domain to use for users (eg: ou=People,dc=example,dc=org)`.
      */
-    readonly userdn?: pulumi.Input<string>;
+    userdn?: pulumi.Input<string>;
 }

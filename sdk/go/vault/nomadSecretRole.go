@@ -215,7 +215,7 @@ type NomadSecretRoleArrayInput interface {
 type NomadSecretRoleArray []NomadSecretRoleInput
 
 func (NomadSecretRoleArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*NomadSecretRole)(nil))
+	return reflect.TypeOf((*[]*NomadSecretRole)(nil)).Elem()
 }
 
 func (i NomadSecretRoleArray) ToNomadSecretRoleArrayOutput() NomadSecretRoleArrayOutput {
@@ -240,7 +240,7 @@ type NomadSecretRoleMapInput interface {
 type NomadSecretRoleMap map[string]NomadSecretRoleInput
 
 func (NomadSecretRoleMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*NomadSecretRole)(nil))
+	return reflect.TypeOf((*map[string]*NomadSecretRole)(nil)).Elem()
 }
 
 func (i NomadSecretRoleMap) ToNomadSecretRoleMapOutput() NomadSecretRoleMapOutput {
@@ -251,9 +251,7 @@ func (i NomadSecretRoleMap) ToNomadSecretRoleMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(NomadSecretRoleMapOutput)
 }
 
-type NomadSecretRoleOutput struct {
-	*pulumi.OutputState
-}
+type NomadSecretRoleOutput struct{ *pulumi.OutputState }
 
 func (NomadSecretRoleOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*NomadSecretRole)(nil))
@@ -272,14 +270,12 @@ func (o NomadSecretRoleOutput) ToNomadSecretRolePtrOutput() NomadSecretRolePtrOu
 }
 
 func (o NomadSecretRoleOutput) ToNomadSecretRolePtrOutputWithContext(ctx context.Context) NomadSecretRolePtrOutput {
-	return o.ApplyT(func(v NomadSecretRole) *NomadSecretRole {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NomadSecretRole) *NomadSecretRole {
 		return &v
 	}).(NomadSecretRolePtrOutput)
 }
 
-type NomadSecretRolePtrOutput struct {
-	*pulumi.OutputState
-}
+type NomadSecretRolePtrOutput struct{ *pulumi.OutputState }
 
 func (NomadSecretRolePtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**NomadSecretRole)(nil))
@@ -291,6 +287,16 @@ func (o NomadSecretRolePtrOutput) ToNomadSecretRolePtrOutput() NomadSecretRolePt
 
 func (o NomadSecretRolePtrOutput) ToNomadSecretRolePtrOutputWithContext(ctx context.Context) NomadSecretRolePtrOutput {
 	return o
+}
+
+func (o NomadSecretRolePtrOutput) Elem() NomadSecretRoleOutput {
+	return o.ApplyT(func(v *NomadSecretRole) NomadSecretRole {
+		if v != nil {
+			return *v
+		}
+		var ret NomadSecretRole
+		return ret
+	}).(NomadSecretRoleOutput)
 }
 
 type NomadSecretRoleArrayOutput struct{ *pulumi.OutputState }
@@ -334,6 +340,10 @@ func (o NomadSecretRoleMapOutput) MapIndex(k pulumi.StringInput) NomadSecretRole
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*NomadSecretRoleInput)(nil)).Elem(), &NomadSecretRole{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NomadSecretRolePtrInput)(nil)).Elem(), &NomadSecretRole{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NomadSecretRoleArrayInput)(nil)).Elem(), NomadSecretRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NomadSecretRoleMapInput)(nil)).Elem(), NomadSecretRoleMap{})
 	pulumi.RegisterOutputType(NomadSecretRoleOutput{})
 	pulumi.RegisterOutputType(NomadSecretRolePtrOutput{})
 	pulumi.RegisterOutputType(NomadSecretRoleArrayOutput{})

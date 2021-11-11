@@ -12,6 +12,7 @@ __all__ = [
     'GetAccessCredentialsResult',
     'AwaitableGetAccessCredentialsResult',
     'get_access_credentials',
+    'get_access_credentials_output',
 ]
 
 @pulumi.output_type
@@ -229,3 +230,32 @@ def get_access_credentials(backend: Optional[str] = None,
         security_token=__ret__.security_token,
         ttl=__ret__.ttl,
         type=__ret__.type)
+
+
+@_utilities.lift_output_func(get_access_credentials)
+def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
+                                  region: Optional[pulumi.Input[Optional[str]]] = None,
+                                  role: Optional[pulumi.Input[str]] = None,
+                                  role_arn: Optional[pulumi.Input[Optional[str]]] = None,
+                                  ttl: Optional[pulumi.Input[Optional[str]]] = None,
+                                  type: Optional[pulumi.Input[Optional[str]]] = None,
+                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccessCredentialsResult]:
+    """
+    Use this data source to access information about an existing resource.
+
+    :param str backend: The path to the AWS secret backend to
+           read credentials from, with no leading or trailing `/`s.
+    :param str role: The name of the AWS secret backend role to read
+           credentials from, with no leading or trailing `/`s.
+    :param str role_arn: The specific AWS ARN to use
+           from the configured role. If the role does not have multiple ARNs, this does
+           not need to be specified.
+    :param str ttl: Specifies the TTL for the use of the STS token. This
+           is specified as a string with a duration suffix. Valid only when
+           `credential_type` is `assumed_role` or `federation_token`
+    :param str type: The type of credentials to read. Defaults
+           to `"creds"`, which just returns an AWS Access Key ID and Secret
+           Key. Can also be set to `"sts"`, which will return a security token
+           in addition to the keys.
+    """
+    ...

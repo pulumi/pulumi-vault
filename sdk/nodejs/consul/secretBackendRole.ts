@@ -145,37 +145,37 @@ export interface SecretBackendRoleState {
     /**
      * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * Indicates that the token should not be replicated globally and instead be local to the current datacenter.
      */
-    readonly local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean>;
     /**
      * Maximum TTL for leases associated with this role, in seconds.
      */
-    readonly maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number>;
     /**
      * The name of the Consul secrets engine role to create.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
      *
      * @deprecated use `backend` instead
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * The list of Consul ACL policies to associate with these roles.
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the type of token to create when using this role. Valid values are "client" or "management".
      */
-    readonly tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string>;
     /**
      * Specifies the TTL for this role.
      */
-    readonly ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number>;
 }
 
 /**
@@ -185,35 +185,35 @@ export interface SecretBackendRoleArgs {
     /**
      * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * Indicates that the token should not be replicated globally and instead be local to the current datacenter.
      */
-    readonly local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean>;
     /**
      * Maximum TTL for leases associated with this role, in seconds.
      */
-    readonly maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number>;
     /**
      * The name of the Consul secrets engine role to create.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
      *
      * @deprecated use `backend` instead
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * The list of Consul ACL policies to associate with these roles.
      */
-    readonly policies: pulumi.Input<pulumi.Input<string>[]>;
+    policies: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the type of token to create when using this role. Valid values are "client" or "management".
      */
-    readonly tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string>;
     /**
      * Specifies the TTL for this role.
      */
-    readonly ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number>;
 }

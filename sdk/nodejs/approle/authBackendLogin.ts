@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const approle = new vault.AuthBackend("approle", {type: "approle"});
- * const example = new vault.appRole.AuthBackendRole("example", {
+ * const example = new vault.approle.AuthBackendRole("example", {
  *     backend: approle.path,
  *     roleName: "test-role",
  *     policies: [
@@ -25,11 +25,11 @@ import * as utilities from "../utilities";
  *         "prod",
  *     ],
  * });
- * const id = new vault.appRole.AuthBackendRoleSecretID("id", {
+ * const id = new vault.approle.AuthBackendRoleSecretID("id", {
  *     backend: approle.path,
  *     roleName: example.roleName,
  * });
- * const login = new vault.appRole.AuthBackendLogin("login", {
+ * const login = new vault.approle.AuthBackendLogin("login", {
  *     backend: approle.path,
  *     roleId: example.roleId,
  *     secretId: id.secretId,
@@ -159,44 +159,44 @@ export interface AuthBackendLoginState {
     /**
      * The accessor for the token.
      */
-    readonly accessor?: pulumi.Input<string>;
+    accessor?: pulumi.Input<string>;
     /**
      * The unique path of the Vault backend to log in with.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * The Vault token created.
      */
-    readonly clientToken?: pulumi.Input<string>;
+    clientToken?: pulumi.Input<string>;
     /**
      * How long the token is valid for, in seconds.
      */
-    readonly leaseDuration?: pulumi.Input<number>;
+    leaseDuration?: pulumi.Input<number>;
     /**
      * The date and time the lease started, in RFC 3339 format.
      */
-    readonly leaseStarted?: pulumi.Input<string>;
+    leaseStarted?: pulumi.Input<string>;
     /**
      * The metadata associated with the token.
      */
-    readonly metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * A list of policies applied to the token.
      */
-    readonly policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Whether the token is renewable or not.
      */
-    readonly renewable?: pulumi.Input<boolean>;
+    renewable?: pulumi.Input<boolean>;
     /**
      * The ID of the role to log in with.
      */
-    readonly roleId?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string>;
     /**
      * The secret ID of the role to log in with. Required
      * unless `bindSecretId` is set to false on the role.
      */
-    readonly secretId?: pulumi.Input<string>;
+    secretId?: pulumi.Input<string>;
 }
 
 /**
@@ -206,14 +206,14 @@ export interface AuthBackendLoginArgs {
     /**
      * The unique path of the Vault backend to log in with.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * The ID of the role to log in with.
      */
-    readonly roleId: pulumi.Input<string>;
+    roleId: pulumi.Input<string>;
     /**
      * The secret ID of the role to log in with. Required
      * unless `bindSecretId` is set to false on the role.
      */
-    readonly secretId?: pulumi.Input<string>;
+    secretId?: pulumi.Input<string>;
 }

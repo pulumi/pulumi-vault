@@ -81,11 +81,11 @@ export interface SecretBackendConfigCaState {
     /**
      * The PKI secret backend the resource belongs to.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * The key and certificate PEM bundle
      */
-    readonly pemBundle?: pulumi.Input<string>;
+    pemBundle?: pulumi.Input<string>;
 }
 
 /**
@@ -95,9 +95,9 @@ export interface SecretBackendConfigCaArgs {
     /**
      * The PKI secret backend the resource belongs to.
      */
-    readonly backend: pulumi.Input<string>;
+    backend: pulumi.Input<string>;
     /**
      * The key and certificate PEM bundle
      */
-    readonly pemBundle: pulumi.Input<string>;
+    pemBundle: pulumi.Input<string>;
 }

@@ -12,6 +12,7 @@ __all__ = [
     'GetAccessCredentialsResult',
     'AwaitableGetAccessCredentialsResult',
     'get_access_credentials',
+    'get_access_credentials_output',
 ]
 
 @pulumi.output_type
@@ -219,3 +220,35 @@ def get_access_credentials(backend: Optional[str] = None,
         num_sequential_successes=__ret__.num_sequential_successes,
         role=__ret__.role,
         validate_creds=__ret__.validate_creds)
+
+
+@_utilities.lift_output_func(get_access_credentials)
+def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
+                                  max_cred_validation_seconds: Optional[pulumi.Input[Optional[int]]] = None,
+                                  num_seconds_between_tests: Optional[pulumi.Input[Optional[int]]] = None,
+                                  num_sequential_successes: Optional[pulumi.Input[Optional[int]]] = None,
+                                  role: Optional[pulumi.Input[str]] = None,
+                                  validate_creds: Optional[pulumi.Input[Optional[bool]]] = None,
+                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccessCredentialsResult]:
+    """
+    Use this data source to access information about an existing resource.
+
+    :param str backend: The path to the Azure secret backend to
+           read credentials from, with no leading or trailing `/`s.
+    :param int max_cred_validation_seconds: If 'validate_creds' is true, 
+           the number of seconds after which to give up validating credentials. Defaults
+           to 1,200 (20 minutes).
+    :param int num_seconds_between_tests: If 'validate_creds' is true, 
+           the number of seconds to wait between each test of generated credentials.
+           Defaults to 7.
+    :param int num_sequential_successes: If 'validate_creds' is true, 
+           the number of sequential successes required to validate generated
+           credentials. Defaults to 8.
+    :param str role: The name of the Azure secret backend role to read
+           credentials from, with no leading or trailing `/`s.
+    :param bool validate_creds: Whether generated credentials should be 
+           validated before being returned. Defaults to `false`, which returns
+           credentials without checking whether they have fully propagated throughout
+           Azure Active Directory. Designating `true` activates testing.
+    """
+    ...

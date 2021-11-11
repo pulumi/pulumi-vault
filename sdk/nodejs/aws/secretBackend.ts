@@ -132,43 +132,43 @@ export interface SecretBackendState {
      * The AWS Access Key ID this backend should use to
      * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
      */
-    readonly accessKey?: pulumi.Input<string>;
+    accessKey?: pulumi.Input<string>;
     /**
      * The default TTL for credentials
      * issued by this backend.
      */
-    readonly defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * A human-friendly description for this backend.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Specifies a custom HTTP IAM endpoint to use.
      */
-    readonly iamEndpoint?: pulumi.Input<string>;
+    iamEndpoint?: pulumi.Input<string>;
     /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend.
      */
-    readonly maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `aws`.
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * The AWS region for API calls. Defaults to `us-east-1`.
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * The AWS Secret Key this backend should use to
      * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
      */
-    readonly secretKey?: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string>;
     /**
      * Specifies a custom HTTP STS endpoint to use.
      */
-    readonly stsEndpoint?: pulumi.Input<string>;
+    stsEndpoint?: pulumi.Input<string>;
 }
 
 /**
@@ -179,41 +179,41 @@ export interface SecretBackendArgs {
      * The AWS Access Key ID this backend should use to
      * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
      */
-    readonly accessKey?: pulumi.Input<string>;
+    accessKey?: pulumi.Input<string>;
     /**
      * The default TTL for credentials
      * issued by this backend.
      */
-    readonly defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * A human-friendly description for this backend.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Specifies a custom HTTP IAM endpoint to use.
      */
-    readonly iamEndpoint?: pulumi.Input<string>;
+    iamEndpoint?: pulumi.Input<string>;
     /**
      * The maximum TTL that can be requested
      * for credentials issued by this backend.
      */
-    readonly maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `aws`.
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
     /**
      * The AWS region for API calls. Defaults to `us-east-1`.
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * The AWS Secret Key this backend should use to
      * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
      */
-    readonly secretKey?: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string>;
     /**
      * Specifies a custom HTTP STS endpoint to use.
      */
-    readonly stsEndpoint?: pulumi.Input<string>;
+    stsEndpoint?: pulumi.Input<string>;
 }

@@ -11,6 +11,32 @@ import * as utilities from "../utilities";
  * Each [static account](https://www.vaultproject.io/docs/secrets/gcp/index.html#static-accounts) is tied to a separately managed
  * Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings) associated with it.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * import * as vault from "@pulumi/vault";
+ * import * from "fs";
+ *
+ * const _this = new gcp.serviceaccount.Account("this", {accountId: "my-awesome-account"});
+ * const gcp = new vault.gcp.SecretBackend("gcp", {
+ *     path: "gcp",
+ *     credentials: fs.readFileSync("credentials.json"),
+ * });
+ * const staticAccount = new vault.gcp.SecretStaticAccount("staticAccount", {
+ *     backend: gcp.path,
+ *     staticAccount: "project_viewer",
+ *     secretType: "access_token",
+ *     tokenScopes: ["https://www.googleapis.com/auth/cloud-platform"],
+ *     serviceAccountEmail: _this.email,
+ *     bindings: [{
+ *         resource: pulumi.interpolate`//cloudresourcemanager.googleapis.com/projects/${_this.project}`,
+ *         roles: ["roles/viewer"],
+ *     }],
+ * });
+ * ```
+ *
  * ## Import
  *
  * A static account can be imported using its Vault Path. For example, referencing the example above,
@@ -129,31 +155,31 @@ export interface SecretStaticAccountState {
     /**
      * Path where the GCP Secrets Engine is mounted
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
      */
-    readonly bindings?: pulumi.Input<pulumi.Input<inputs.gcp.SecretStaticAccountBinding>[]>;
+    bindings?: pulumi.Input<pulumi.Input<inputs.gcp.SecretStaticAccountBinding>[]>;
     /**
      * Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      */
-    readonly secretType?: pulumi.Input<string>;
+    secretType?: pulumi.Input<string>;
     /**
      * Email of the GCP service account to manage.
      */
-    readonly serviceAccountEmail?: pulumi.Input<string>;
+    serviceAccountEmail?: pulumi.Input<string>;
     /**
      * Project the service account belongs to.
      */
-    readonly serviceAccountProject?: pulumi.Input<string>;
+    serviceAccountProject?: pulumi.Input<string>;
     /**
      * Name of the Static Account to create
      */
-    readonly staticAccount?: pulumi.Input<string>;
+    staticAccount?: pulumi.Input<string>;
     /**
      * List of OAuth scopes to assign to `accessToken` secrets generated under this static account (`accessToken` static accounts only).
      */
-    readonly tokenScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenScopes?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -163,25 +189,25 @@ export interface SecretStaticAccountArgs {
     /**
      * Path where the GCP Secrets Engine is mounted
      */
-    readonly backend: pulumi.Input<string>;
+    backend: pulumi.Input<string>;
     /**
      * Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
      */
-    readonly bindings?: pulumi.Input<pulumi.Input<inputs.gcp.SecretStaticAccountBinding>[]>;
+    bindings?: pulumi.Input<pulumi.Input<inputs.gcp.SecretStaticAccountBinding>[]>;
     /**
      * Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      */
-    readonly secretType?: pulumi.Input<string>;
+    secretType?: pulumi.Input<string>;
     /**
      * Email of the GCP service account to manage.
      */
-    readonly serviceAccountEmail: pulumi.Input<string>;
+    serviceAccountEmail: pulumi.Input<string>;
     /**
      * Name of the Static Account to create
      */
-    readonly staticAccount: pulumi.Input<string>;
+    staticAccount: pulumi.Input<string>;
     /**
      * List of OAuth scopes to assign to `accessToken` secrets generated under this static account (`accessToken` static accounts only).
      */
-    readonly tokenScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenScopes?: pulumi.Input<pulumi.Input<string>[]>;
 }

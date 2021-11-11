@@ -4,6 +4,9 @@
 package ad
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,4 +41,74 @@ type GetAccessCredentialsResult struct {
 	Role         string `pulumi:"role"`
 	// The Active Directory service account username.
 	Username string `pulumi:"username"`
+}
+
+func GetAccessCredentialsOutput(ctx *pulumi.Context, args GetAccessCredentialsOutputArgs, opts ...pulumi.InvokeOption) GetAccessCredentialsResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetAccessCredentialsResult, error) {
+			args := v.(GetAccessCredentialsArgs)
+			r, err := GetAccessCredentials(ctx, &args, opts...)
+			return *r, err
+		}).(GetAccessCredentialsResultOutput)
+}
+
+// A collection of arguments for invoking getAccessCredentials.
+type GetAccessCredentialsOutputArgs struct {
+	// The path to the AD secret backend to
+	// read credentials from, with no leading or trailing `/`s.
+	Backend pulumi.StringInput `pulumi:"backend"`
+	// The name of the AD secret backend role to read
+	// credentials from, with no leading or trailing `/`s.
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (GetAccessCredentialsOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccessCredentialsArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getAccessCredentials.
+type GetAccessCredentialsResultOutput struct{ *pulumi.OutputState }
+
+func (GetAccessCredentialsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccessCredentialsResult)(nil)).Elem()
+}
+
+func (o GetAccessCredentialsResultOutput) ToGetAccessCredentialsResultOutput() GetAccessCredentialsResultOutput {
+	return o
+}
+
+func (o GetAccessCredentialsResultOutput) ToGetAccessCredentialsResultOutputWithContext(ctx context.Context) GetAccessCredentialsResultOutput {
+	return o
+}
+
+func (o GetAccessCredentialsResultOutput) Backend() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.Backend }).(pulumi.StringOutput)
+}
+
+// The current set password on the Active Directory service account.
+func (o GetAccessCredentialsResultOutput) CurrentPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.CurrentPassword }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetAccessCredentialsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The current set password on the Active Directory service account, provided because AD is eventually consistent.
+func (o GetAccessCredentialsResultOutput) LastPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.LastPassword }).(pulumi.StringOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The Active Directory service account username.
+func (o GetAccessCredentialsResultOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.Username }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetAccessCredentialsResultOutput{})
 }

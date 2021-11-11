@@ -115,18 +115,18 @@ export interface SecretState {
      * represent string data, so any non-string values returned from Vault are
      * serialized as JSON.
      */
-    readonly data?: pulumi.Input<{[key: string]: any}>;
+    data?: pulumi.Input<{[key: string]: any}>;
     /**
      * String containing a JSON-encoded object that will be
      * written as the secret data at the given path.
      */
-    readonly dataJson?: pulumi.Input<string>;
+    dataJson?: pulumi.Input<string>;
     /**
      * True/false. Set this to true if your vault
      * authentication is not able to read the data. Setting this to `true` will
      * break drift detection. Defaults to false.
      */
-    readonly disableRead?: pulumi.Input<boolean>;
+    disableRead?: pulumi.Input<boolean>;
     /**
      * The full logical path at which to write the given data.
      * To write data into the "generic" secret backend mounted in Vault by default,
@@ -134,7 +134,7 @@ export interface SecretState {
      * resource is possible; consult each backend's documentation to see which
      * endpoints support the `PUT` and `DELETE` methods.
      */
-    readonly path?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
 }
 
 /**
@@ -145,13 +145,13 @@ export interface SecretArgs {
      * String containing a JSON-encoded object that will be
      * written as the secret data at the given path.
      */
-    readonly dataJson: pulumi.Input<string>;
+    dataJson: pulumi.Input<string>;
     /**
      * True/false. Set this to true if your vault
      * authentication is not able to read the data. Setting this to `true` will
      * break drift detection. Defaults to false.
      */
-    readonly disableRead?: pulumi.Input<boolean>;
+    disableRead?: pulumi.Input<boolean>;
     /**
      * The full logical path at which to write the given data.
      * To write data into the "generic" secret backend mounted in Vault by default,
@@ -159,5 +159,5 @@ export interface SecretArgs {
      * resource is possible; consult each backend's documentation to see which
      * endpoints support the `PUT` and `DELETE` methods.
      */
-    readonly path: pulumi.Input<string>;
+    path: pulumi.Input<string>;
 }

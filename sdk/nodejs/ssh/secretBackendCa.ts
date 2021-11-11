@@ -101,19 +101,19 @@ export interface SecretBackendCaState {
     /**
      * The path where the SSH secret backend is mounted. Defaults to 'ssh'
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * Whether Vault should generate the signing key pair internally. Defaults to true
      */
-    readonly generateSigningKey?: pulumi.Input<boolean>;
+    generateSigningKey?: pulumi.Input<boolean>;
     /**
      * The private key part the SSH CA key pair; required if generateSigningKey is false.
      */
-    readonly privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string>;
     /**
      * The public key part the SSH CA key pair; required if generateSigningKey is false.
      */
-    readonly publicKey?: pulumi.Input<string>;
+    publicKey?: pulumi.Input<string>;
 }
 
 /**
@@ -123,17 +123,17 @@ export interface SecretBackendCaArgs {
     /**
      * The path where the SSH secret backend is mounted. Defaults to 'ssh'
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * Whether Vault should generate the signing key pair internally. Defaults to true
      */
-    readonly generateSigningKey?: pulumi.Input<boolean>;
+    generateSigningKey?: pulumi.Input<boolean>;
     /**
      * The private key part the SSH CA key pair; required if generateSigningKey is false.
      */
-    readonly privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string>;
     /**
      * The public key part the SSH CA key pair; required if generateSigningKey is false.
      */
-    readonly publicKey?: pulumi.Input<string>;
+    publicKey?: pulumi.Input<string>;
 }

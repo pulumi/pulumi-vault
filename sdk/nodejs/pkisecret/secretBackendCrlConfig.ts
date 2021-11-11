@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  *     defaultLeaseTtlSeconds: 3600,
  *     maxLeaseTtlSeconds: 86400,
  * });
- * const crlConfig = new vault.pkiSecret.SecretBackendCrlConfig("crlConfig", {
+ * const crlConfig = new vault.pkisecret.SecretBackendCrlConfig("crlConfig", {
  *     backend: pki.path,
  *     expiry: "72h",
  *     disable: false,
@@ -106,15 +106,15 @@ export interface SecretBackendCrlConfigState {
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * Disables or enables CRL building.
      */
-    readonly disable?: pulumi.Input<boolean>;
+    disable?: pulumi.Input<boolean>;
     /**
      * Specifies the time until expiration.
      */
-    readonly expiry?: pulumi.Input<string>;
+    expiry?: pulumi.Input<string>;
 }
 
 /**
@@ -124,13 +124,13 @@ export interface SecretBackendCrlConfigArgs {
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
-    readonly backend: pulumi.Input<string>;
+    backend: pulumi.Input<string>;
     /**
      * Disables or enables CRL building.
      */
-    readonly disable?: pulumi.Input<boolean>;
+    disable?: pulumi.Input<boolean>;
     /**
      * Specifies the time until expiration.
      */
-    readonly expiry?: pulumi.Input<string>;
+    expiry?: pulumi.Input<string>;
 }

@@ -96,15 +96,15 @@ export interface EntityAliasState {
     /**
      * Entity ID to which this alias belongs to.
      */
-    readonly canonicalId?: pulumi.Input<string>;
+    canonicalId?: pulumi.Input<string>;
     /**
      * Accessor of the mount to which the alias should belong to.
      */
-    readonly mountAccessor?: pulumi.Input<string>;
+    mountAccessor?: pulumi.Input<string>;
     /**
      * Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
 }
 
 /**
@@ -114,13 +114,13 @@ export interface EntityAliasArgs {
     /**
      * Entity ID to which this alias belongs to.
      */
-    readonly canonicalId: pulumi.Input<string>;
+    canonicalId: pulumi.Input<string>;
     /**
      * Accessor of the mount to which the alias should belong to.
      */
-    readonly mountAccessor: pulumi.Input<string>;
+    mountAccessor: pulumi.Input<string>;
     /**
      * Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
 }

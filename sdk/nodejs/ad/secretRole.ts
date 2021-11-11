@@ -108,27 +108,27 @@ export interface SecretRoleState {
     /**
      * The mount path for the AD backend.
      */
-    readonly backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string>;
     /**
      * Last time Vault rotated this service account's password.
      */
-    readonly lastVaultRotation?: pulumi.Input<string>;
+    lastVaultRotation?: pulumi.Input<string>;
     /**
      * Last time Vault set this service account's password.
      */
-    readonly passwordLastSet?: pulumi.Input<string>;
+    passwordLastSet?: pulumi.Input<string>;
     /**
      * Name of the role.
      */
-    readonly role?: pulumi.Input<string>;
+    role?: pulumi.Input<string>;
     /**
      * The username/logon name for the service account with which this role will be associated.
      */
-    readonly serviceAccountName?: pulumi.Input<string>;
+    serviceAccountName?: pulumi.Input<string>;
     /**
      * In seconds, the default password time-to-live.
      */
-    readonly ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number>;
 }
 
 /**
@@ -138,17 +138,17 @@ export interface SecretRoleArgs {
     /**
      * The mount path for the AD backend.
      */
-    readonly backend: pulumi.Input<string>;
+    backend: pulumi.Input<string>;
     /**
      * Name of the role.
      */
-    readonly role: pulumi.Input<string>;
+    role: pulumi.Input<string>;
     /**
      * The username/logon name for the service account with which this role will be associated.
      */
-    readonly serviceAccountName: pulumi.Input<string>;
+    serviceAccountName: pulumi.Input<string>;
     /**
      * In seconds, the default password time-to-live.
      */
-    readonly ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number>;
 }

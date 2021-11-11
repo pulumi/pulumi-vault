@@ -208,7 +208,7 @@ type AuthBackendGroupArrayInput interface {
 type AuthBackendGroupArray []AuthBackendGroupInput
 
 func (AuthBackendGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*AuthBackendGroup)(nil))
+	return reflect.TypeOf((*[]*AuthBackendGroup)(nil)).Elem()
 }
 
 func (i AuthBackendGroupArray) ToAuthBackendGroupArrayOutput() AuthBackendGroupArrayOutput {
@@ -233,7 +233,7 @@ type AuthBackendGroupMapInput interface {
 type AuthBackendGroupMap map[string]AuthBackendGroupInput
 
 func (AuthBackendGroupMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*AuthBackendGroup)(nil))
+	return reflect.TypeOf((*map[string]*AuthBackendGroup)(nil)).Elem()
 }
 
 func (i AuthBackendGroupMap) ToAuthBackendGroupMapOutput() AuthBackendGroupMapOutput {
@@ -244,9 +244,7 @@ func (i AuthBackendGroupMap) ToAuthBackendGroupMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendGroupMapOutput)
 }
 
-type AuthBackendGroupOutput struct {
-	*pulumi.OutputState
-}
+type AuthBackendGroupOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendGroupOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*AuthBackendGroup)(nil))
@@ -265,14 +263,12 @@ func (o AuthBackendGroupOutput) ToAuthBackendGroupPtrOutput() AuthBackendGroupPt
 }
 
 func (o AuthBackendGroupOutput) ToAuthBackendGroupPtrOutputWithContext(ctx context.Context) AuthBackendGroupPtrOutput {
-	return o.ApplyT(func(v AuthBackendGroup) *AuthBackendGroup {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AuthBackendGroup) *AuthBackendGroup {
 		return &v
 	}).(AuthBackendGroupPtrOutput)
 }
 
-type AuthBackendGroupPtrOutput struct {
-	*pulumi.OutputState
-}
+type AuthBackendGroupPtrOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendGroupPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**AuthBackendGroup)(nil))
@@ -284,6 +280,16 @@ func (o AuthBackendGroupPtrOutput) ToAuthBackendGroupPtrOutput() AuthBackendGrou
 
 func (o AuthBackendGroupPtrOutput) ToAuthBackendGroupPtrOutputWithContext(ctx context.Context) AuthBackendGroupPtrOutput {
 	return o
+}
+
+func (o AuthBackendGroupPtrOutput) Elem() AuthBackendGroupOutput {
+	return o.ApplyT(func(v *AuthBackendGroup) AuthBackendGroup {
+		if v != nil {
+			return *v
+		}
+		var ret AuthBackendGroup
+		return ret
+	}).(AuthBackendGroupOutput)
 }
 
 type AuthBackendGroupArrayOutput struct{ *pulumi.OutputState }
@@ -327,6 +333,10 @@ func (o AuthBackendGroupMapOutput) MapIndex(k pulumi.StringInput) AuthBackendGro
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendGroupInput)(nil)).Elem(), &AuthBackendGroup{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendGroupPtrInput)(nil)).Elem(), &AuthBackendGroup{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendGroupArrayInput)(nil)).Elem(), AuthBackendGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendGroupMapInput)(nil)).Elem(), AuthBackendGroupMap{})
 	pulumi.RegisterOutputType(AuthBackendGroupOutput{})
 	pulumi.RegisterOutputType(AuthBackendGroupPtrOutput{})
 	pulumi.RegisterOutputType(AuthBackendGroupArrayOutput{})

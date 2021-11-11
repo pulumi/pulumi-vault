@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -14,7 +13,7 @@ import * as utilities from "./utilities";
  *
  * const example = pulumi.output(vault.getAuthBackend({
  *     path: "userpass",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getAuthBackend(args: GetAuthBackendArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendResult> {
@@ -37,7 +36,7 @@ export interface GetAuthBackendArgs {
     /**
      * The auth backend mount point.
      */
-    readonly path: string;
+    path: string;
 }
 
 /**
@@ -77,4 +76,18 @@ export interface GetAuthBackendResult {
      * The name of the auth method type.
      */
     readonly type: string;
+}
+
+export function getAuthBackendOutput(args: GetAuthBackendOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendResult> {
+    return pulumi.output(args).apply(a => getAuthBackend(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAuthBackend.
+ */
+export interface GetAuthBackendOutputArgs {
+    /**
+     * The auth backend mount point.
+     */
+    path: pulumi.Input<string>;
 }
