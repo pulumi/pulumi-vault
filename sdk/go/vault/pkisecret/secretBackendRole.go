@@ -19,14 +19,16 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/pkiSecret"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		pki, err := pkiSecret.NewSecretBackend(ctx, "pki", &pkiSecret.SecretBackendArgs{
+// 		pki, err := vault.NewMount(ctx, "pki", &vault.MountArgs{
 // 			Path:                   pulumi.String("pki"),
+// 			Type:                   pulumi.String("pki"),
 // 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
 // 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
 // 		})

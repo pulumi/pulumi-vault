@@ -111,13 +111,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly boundAudiences!: pulumi.Output<string[] | undefined>;
     /**
-     * If set, a list of
-     * CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-     *
-     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
-     */
-    public readonly boundCidrs!: pulumi.Output<string[] | undefined>;
-    /**
      * If set, a map of claims to values to match against.
      * A claim's value must be a string, which may contain one value or multiple
      * comma-separated values, e.g. `"red"` or `"red,green,blue"`.
@@ -146,6 +139,10 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly clockSkewLeeway!: pulumi.Output<number | undefined>;
     /**
+     * Disable bound claim value parsing. Useful when values contain commas.
+     */
+    public readonly disableBoundClaimsParsing!: pulumi.Output<boolean | undefined>;
+    /**
      * The amount of leeway to add to expiration (`exp`) claims to account for
      * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
@@ -159,60 +156,16 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly groupsClaim!: pulumi.Output<string | undefined>;
     /**
-     * (Optional; Deprecated. This field has been
-     * removed since Vault 1.1. If the groups claim is not at the top level, it can
-     * now be specified as a [JSONPointer](https://tools.ietf.org/html/rfc6901).)
-     * A pattern of delimiters
-     * used to allow the groupsClaim to live outside of the top-level JWT structure.
-     * For instance, a groupsClaim of meta/user.name/groups with this field
-     * set to // will expect nested structures named meta, user.name, and groups.
-     * If this field was set to /./ the groups information would expect to be
-     * via nested structures of meta, user, name, and groups.
-     *
-     * @deprecated `groups_claim_delimiter_pattern` has been removed since Vault 1.1. If the groups claim is not at the top level, it can now be specified as a JSONPointer.
-     */
-    public readonly groupsClaimDelimiterPattern!: pulumi.Output<string | undefined>;
-    /**
-     * The maximum allowed lifetime of tokens
-     * issued using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
-     */
-    public readonly maxTtl!: pulumi.Output<number | undefined>;
-    /**
      * The amount of leeway to add to not before (`nbf`) claims to account for
      * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
      */
     public readonly notBeforeLeeway!: pulumi.Output<number | undefined>;
     /**
-     * If set, puts a use-count
-     * limitation on the issued token.
-     *
-     * @deprecated use `token_num_uses` instead if you are running Vault >= 1.2
-     */
-    public readonly numUses!: pulumi.Output<number | undefined>;
-    /**
      * If set, a list of OIDC scopes to be used with an OIDC role.
      * The standard scope "openid" is automatically included and need not be specified.
      */
     public readonly oidcScopes!: pulumi.Output<string[] | undefined>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    public readonly period!: pulumi.Output<number | undefined>;
-    /**
-     * An array of strings
-     * specifying the policies to be set on tokens issued using this role.
-     *
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    public readonly policies!: pulumi.Output<string[] | undefined>;
     /**
      * The name of the role.
      */
@@ -276,13 +229,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly tokenType!: pulumi.Output<string | undefined>;
     /**
-     * The TTL period of tokens issued
-     * using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
-     */
-    public readonly ttl!: pulumi.Output<number | undefined>;
-    /**
      * The claim to use to uniquely identify
      * the user; this will be used as the name for the Identity entity alias created
      * due to a successful login.
@@ -311,21 +257,16 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["allowedRedirectUris"] = state ? state.allowedRedirectUris : undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["boundAudiences"] = state ? state.boundAudiences : undefined;
-            inputs["boundCidrs"] = state ? state.boundCidrs : undefined;
             inputs["boundClaims"] = state ? state.boundClaims : undefined;
             inputs["boundClaimsType"] = state ? state.boundClaimsType : undefined;
             inputs["boundSubject"] = state ? state.boundSubject : undefined;
             inputs["claimMappings"] = state ? state.claimMappings : undefined;
             inputs["clockSkewLeeway"] = state ? state.clockSkewLeeway : undefined;
+            inputs["disableBoundClaimsParsing"] = state ? state.disableBoundClaimsParsing : undefined;
             inputs["expirationLeeway"] = state ? state.expirationLeeway : undefined;
             inputs["groupsClaim"] = state ? state.groupsClaim : undefined;
-            inputs["groupsClaimDelimiterPattern"] = state ? state.groupsClaimDelimiterPattern : undefined;
-            inputs["maxTtl"] = state ? state.maxTtl : undefined;
             inputs["notBeforeLeeway"] = state ? state.notBeforeLeeway : undefined;
-            inputs["numUses"] = state ? state.numUses : undefined;
             inputs["oidcScopes"] = state ? state.oidcScopes : undefined;
-            inputs["period"] = state ? state.period : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
             inputs["roleName"] = state ? state.roleName : undefined;
             inputs["roleType"] = state ? state.roleType : undefined;
             inputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
@@ -337,7 +278,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
             inputs["tokenTtl"] = state ? state.tokenTtl : undefined;
             inputs["tokenType"] = state ? state.tokenType : undefined;
-            inputs["ttl"] = state ? state.ttl : undefined;
             inputs["userClaim"] = state ? state.userClaim : undefined;
             inputs["verboseOidcLogging"] = state ? state.verboseOidcLogging : undefined;
         } else {
@@ -351,21 +291,16 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["allowedRedirectUris"] = args ? args.allowedRedirectUris : undefined;
             inputs["backend"] = args ? args.backend : undefined;
             inputs["boundAudiences"] = args ? args.boundAudiences : undefined;
-            inputs["boundCidrs"] = args ? args.boundCidrs : undefined;
             inputs["boundClaims"] = args ? args.boundClaims : undefined;
             inputs["boundClaimsType"] = args ? args.boundClaimsType : undefined;
             inputs["boundSubject"] = args ? args.boundSubject : undefined;
             inputs["claimMappings"] = args ? args.claimMappings : undefined;
             inputs["clockSkewLeeway"] = args ? args.clockSkewLeeway : undefined;
+            inputs["disableBoundClaimsParsing"] = args ? args.disableBoundClaimsParsing : undefined;
             inputs["expirationLeeway"] = args ? args.expirationLeeway : undefined;
             inputs["groupsClaim"] = args ? args.groupsClaim : undefined;
-            inputs["groupsClaimDelimiterPattern"] = args ? args.groupsClaimDelimiterPattern : undefined;
-            inputs["maxTtl"] = args ? args.maxTtl : undefined;
             inputs["notBeforeLeeway"] = args ? args.notBeforeLeeway : undefined;
-            inputs["numUses"] = args ? args.numUses : undefined;
             inputs["oidcScopes"] = args ? args.oidcScopes : undefined;
-            inputs["period"] = args ? args.period : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
             inputs["roleName"] = args ? args.roleName : undefined;
             inputs["roleType"] = args ? args.roleType : undefined;
             inputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
@@ -377,7 +312,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
             inputs["tokenTtl"] = args ? args.tokenTtl : undefined;
             inputs["tokenType"] = args ? args.tokenType : undefined;
-            inputs["ttl"] = args ? args.ttl : undefined;
             inputs["userClaim"] = args ? args.userClaim : undefined;
             inputs["verboseOidcLogging"] = args ? args.verboseOidcLogging : undefined;
         }
@@ -408,13 +342,6 @@ export interface AuthBackendRoleState {
      */
     boundAudiences?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * If set, a list of
-     * CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-     *
-     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
-     */
-    boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
      * If set, a map of claims to values to match against.
      * A claim's value must be a string, which may contain one value or multiple
      * comma-separated values, e.g. `"red"` or `"red,green,blue"`.
@@ -443,6 +370,10 @@ export interface AuthBackendRoleState {
      */
     clockSkewLeeway?: pulumi.Input<number>;
     /**
+     * Disable bound claim value parsing. Useful when values contain commas.
+     */
+    disableBoundClaimsParsing?: pulumi.Input<boolean>;
+    /**
      * The amount of leeway to add to expiration (`exp`) claims to account for
      * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
@@ -456,60 +387,16 @@ export interface AuthBackendRoleState {
      */
     groupsClaim?: pulumi.Input<string>;
     /**
-     * (Optional; Deprecated. This field has been
-     * removed since Vault 1.1. If the groups claim is not at the top level, it can
-     * now be specified as a [JSONPointer](https://tools.ietf.org/html/rfc6901).)
-     * A pattern of delimiters
-     * used to allow the groupsClaim to live outside of the top-level JWT structure.
-     * For instance, a groupsClaim of meta/user.name/groups with this field
-     * set to // will expect nested structures named meta, user.name, and groups.
-     * If this field was set to /./ the groups information would expect to be
-     * via nested structures of meta, user, name, and groups.
-     *
-     * @deprecated `groups_claim_delimiter_pattern` has been removed since Vault 1.1. If the groups claim is not at the top level, it can now be specified as a JSONPointer.
-     */
-    groupsClaimDelimiterPattern?: pulumi.Input<string>;
-    /**
-     * The maximum allowed lifetime of tokens
-     * issued using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
-     */
-    maxTtl?: pulumi.Input<number>;
-    /**
      * The amount of leeway to add to not before (`nbf`) claims to account for
      * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
      */
     notBeforeLeeway?: pulumi.Input<number>;
     /**
-     * If set, puts a use-count
-     * limitation on the issued token.
-     *
-     * @deprecated use `token_num_uses` instead if you are running Vault >= 1.2
-     */
-    numUses?: pulumi.Input<number>;
-    /**
      * If set, a list of OIDC scopes to be used with an OIDC role.
      * The standard scope "openid" is automatically included and need not be specified.
      */
     oidcScopes?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    period?: pulumi.Input<number>;
-    /**
-     * An array of strings
-     * specifying the policies to be set on tokens issued using this role.
-     *
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name of the role.
      */
@@ -573,13 +460,6 @@ export interface AuthBackendRoleState {
      */
     tokenType?: pulumi.Input<string>;
     /**
-     * The TTL period of tokens issued
-     * using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
-     */
-    ttl?: pulumi.Input<number>;
-    /**
      * The claim to use to uniquely identify
      * the user; this will be used as the name for the Identity entity alias created
      * due to a successful login.
@@ -613,13 +493,6 @@ export interface AuthBackendRoleArgs {
      */
     boundAudiences?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * If set, a list of
-     * CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-     *
-     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
-     */
-    boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
      * If set, a map of claims to values to match against.
      * A claim's value must be a string, which may contain one value or multiple
      * comma-separated values, e.g. `"red"` or `"red,green,blue"`.
@@ -648,6 +521,10 @@ export interface AuthBackendRoleArgs {
      */
     clockSkewLeeway?: pulumi.Input<number>;
     /**
+     * Disable bound claim value parsing. Useful when values contain commas.
+     */
+    disableBoundClaimsParsing?: pulumi.Input<boolean>;
+    /**
      * The amount of leeway to add to expiration (`exp`) claims to account for
      * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
@@ -661,60 +538,16 @@ export interface AuthBackendRoleArgs {
      */
     groupsClaim?: pulumi.Input<string>;
     /**
-     * (Optional; Deprecated. This field has been
-     * removed since Vault 1.1. If the groups claim is not at the top level, it can
-     * now be specified as a [JSONPointer](https://tools.ietf.org/html/rfc6901).)
-     * A pattern of delimiters
-     * used to allow the groupsClaim to live outside of the top-level JWT structure.
-     * For instance, a groupsClaim of meta/user.name/groups with this field
-     * set to // will expect nested structures named meta, user.name, and groups.
-     * If this field was set to /./ the groups information would expect to be
-     * via nested structures of meta, user, name, and groups.
-     *
-     * @deprecated `groups_claim_delimiter_pattern` has been removed since Vault 1.1. If the groups claim is not at the top level, it can now be specified as a JSONPointer.
-     */
-    groupsClaimDelimiterPattern?: pulumi.Input<string>;
-    /**
-     * The maximum allowed lifetime of tokens
-     * issued using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
-     */
-    maxTtl?: pulumi.Input<number>;
-    /**
      * The amount of leeway to add to not before (`nbf`) claims to account for
      * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
      */
     notBeforeLeeway?: pulumi.Input<number>;
     /**
-     * If set, puts a use-count
-     * limitation on the issued token.
-     *
-     * @deprecated use `token_num_uses` instead if you are running Vault >= 1.2
-     */
-    numUses?: pulumi.Input<number>;
-    /**
      * If set, a list of OIDC scopes to be used with an OIDC role.
      * The standard scope "openid" is automatically included and need not be specified.
      */
     oidcScopes?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    period?: pulumi.Input<number>;
-    /**
-     * An array of strings
-     * specifying the policies to be set on tokens issued using this role.
-     *
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name of the role.
      */
@@ -777,13 +610,6 @@ export interface AuthBackendRoleArgs {
      * requests a different type at generation time.
      */
     tokenType?: pulumi.Input<string>;
-    /**
-     * The TTL period of tokens issued
-     * using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
-     */
-    ttl?: pulumi.Input<number>;
     /**
      * The claim to use to uniquely identify
      * the user; this will be used as the name for the Identity entity alias created

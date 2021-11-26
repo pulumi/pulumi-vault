@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const root = new vault.pkisecret.SecretBackendRootSignIntermediate("root", {
- *     backend: vault_pki_secret_backend.root.path,
+ *     backend: vault_mount.root.path,
  *     csr: vault_pki_secret_backend_intermediate_cert_request.intermediate.csr,
  *     commonName: "Intermediate CA",
  *     excludeCnFromSans: true,

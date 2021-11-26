@@ -32,6 +32,42 @@ namespace Pulumi.Vault
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Namespaces can be imported using its `name` as accessor id
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:index/namespace:Namespace example &lt;name&gt;
+    /// ```
+    /// 
+    ///  If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. provider "vault" {
+    /// 
+    /// # Configuration options
+    /// 
+    ///  namespace = "example"
+    /// 
+    ///  alias
+    /// 
+    ///  = "example" } resource vault_namespace "example2" {
+    /// 
+    ///  provider = vault.example }
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:index/namespace:Namespace example2 example2
+    /// ```
+    /// 
+    ///  $ terraform state show vault_namespace.example2 # vault_namespace.example2 resource "vault_namespace" "example2" {
+    /// 
+    ///  id
+    /// 
+    ///  = "example/example2/"
+    /// 
+    ///  namespace_id = &lt;known after import&gt;
+    /// 
+    ///  path
+    /// 
+    ///  = "example2" }
     /// </summary>
     [VaultResourceType("vault:index/namespace:Namespace")]
     public partial class Namespace : Pulumi.CustomResource

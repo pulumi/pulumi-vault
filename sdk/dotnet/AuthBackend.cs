@@ -52,35 +52,16 @@ namespace Pulumi.Vault
         public Output<string> Accessor { get; private set; } = null!;
 
         /// <summary>
-        /// (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version &gt;= 1.8) The default lease duration in seconds.
-        /// </summary>
-        [Output("defaultLeaseTtlSeconds")]
-        public Output<int> DefaultLeaseTtlSeconds { get; private set; } = null!;
-
-        /// <summary>
         /// A description of the auth method
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies whether to show this mount in
-        /// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
-        /// </summary>
-        [Output("listingVisibility")]
-        public Output<string> ListingVisibility { get; private set; } = null!;
-
-        /// <summary>
         /// Specifies if the auth method is local only.
         /// </summary>
         [Output("local")]
         public Output<bool?> Local { get; private set; } = null!;
-
-        /// <summary>
-        /// (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version &gt;= 1.8) The maximum lease duration in seconds.
-        /// </summary>
-        [Output("maxLeaseTtlSeconds")]
-        public Output<int> MaxLeaseTtlSeconds { get; private set; } = null!;
 
         /// <summary>
         /// The path to mount the auth method — this defaults to the name of the type
@@ -147,35 +128,16 @@ namespace Pulumi.Vault
     public sealed class AuthBackendArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version &gt;= 1.8) The default lease duration in seconds.
-        /// </summary>
-        [Input("defaultLeaseTtlSeconds")]
-        public Input<int>? DefaultLeaseTtlSeconds { get; set; }
-
-        /// <summary>
         /// A description of the auth method
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Specifies whether to show this mount in
-        /// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
-        /// </summary>
-        [Input("listingVisibility")]
-        public Input<string>? ListingVisibility { get; set; }
-
-        /// <summary>
         /// Specifies if the auth method is local only.
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
-
-        /// <summary>
-        /// (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version &gt;= 1.8) The maximum lease duration in seconds.
-        /// </summary>
-        [Input("maxLeaseTtlSeconds")]
-        public Input<int>? MaxLeaseTtlSeconds { get; set; }
 
         /// <summary>
         /// The path to mount the auth method — this defaults to the name of the type
@@ -209,35 +171,16 @@ namespace Pulumi.Vault
         public Input<string>? Accessor { get; set; }
 
         /// <summary>
-        /// (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version &gt;= 1.8) The default lease duration in seconds.
-        /// </summary>
-        [Input("defaultLeaseTtlSeconds")]
-        public Input<int>? DefaultLeaseTtlSeconds { get; set; }
-
-        /// <summary>
         /// A description of the auth method
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Specifies whether to show this mount in
-        /// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
-        /// </summary>
-        [Input("listingVisibility")]
-        public Input<string>? ListingVisibility { get; set; }
-
-        /// <summary>
         /// Specifies if the auth method is local only.
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
-
-        /// <summary>
-        /// (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version &gt;= 1.8) The maximum lease duration in seconds.
-        /// </summary>
-        [Input("maxLeaseTtlSeconds")]
-        public Input<int>? MaxLeaseTtlSeconds { get; set; }
 
         /// <summary>
         /// The path to mount the auth method — this defaults to the name of the type

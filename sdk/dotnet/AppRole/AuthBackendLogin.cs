@@ -13,47 +13,6 @@ namespace Pulumi.Vault.AppRole
     /// Logs into Vault using the AppRole auth backend. See the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/approle) for more
     /// information.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var approle = new Vault.AuthBackend("approle", new Vault.AuthBackendArgs
-    ///         {
-    ///             Type = "approle",
-    ///         });
-    ///         var example = new Vault.AppRole.AuthBackendRole("example", new Vault.AppRole.AuthBackendRoleArgs
-    ///         {
-    ///             Backend = approle.Path,
-    ///             RoleName = "test-role",
-    ///             Policies = 
-    ///             {
-    ///                 "default",
-    ///                 "dev",
-    ///                 "prod",
-    ///             },
-    ///         });
-    ///         var id = new Vault.AppRole.AuthBackendRoleSecretID("id", new Vault.AppRole.AuthBackendRoleSecretIDArgs
-    ///         {
-    ///             Backend = approle.Path,
-    ///             RoleName = example.RoleName,
-    ///         });
-    ///         var login = new Vault.AppRole.AuthBackendLogin("login", new Vault.AppRole.AuthBackendLoginArgs
-    ///         {
-    ///             Backend = approle.Path,
-    ///             RoleId = example.RoleId,
-    ///             SecretId = id.SecretId,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
     /// </summary>
     [VaultResourceType("vault:appRole/authBackendLogin:AuthBackendLogin")]
     public partial class AuthBackendLogin : Pulumi.CustomResource

@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-vault/sdk/v4
+module github.com/pulumi/pulumi-vault/sdk/v5
 
 go 1.15
 

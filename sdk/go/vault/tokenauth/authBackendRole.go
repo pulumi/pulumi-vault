@@ -15,41 +15,6 @@ import (
 // documentation](https://www.vaultproject.io/docs/auth/token.html) for more
 // information.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/tokenauth"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := tokenauth.NewAuthBackendRole(ctx, "example", &tokenauth.AuthBackendRoleArgs{
-// 			AllowedPolicies: pulumi.StringArray{
-// 				pulumi.String("dev"),
-// 				pulumi.String("test"),
-// 			},
-// 			DisallowedPolicies: pulumi.StringArray{
-// 				pulumi.String("default"),
-// 			},
-// 			ExplicitMaxTtl: pulumi.String("115200"),
-// 			Orphan:         pulumi.Bool(true),
-// 			PathSuffix:     pulumi.String("path-suffix"),
-// 			Period:         pulumi.String("86400"),
-// 			Renewable:      pulumi.Bool(true),
-// 			RoleName:       pulumi.String("my-role"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
 // ## Import
 //
 // Token auth backend roles can be imported with `auth/token/roles/` followed by the `role_name`, e.g.
@@ -62,29 +27,12 @@ type AuthBackendRole struct {
 
 	// List of allowed policies for given role.
 	AllowedPolicies pulumi.StringArrayOutput `pulumi:"allowedPolicies"`
-	// If set, a list of
-	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-	//
-	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
-	BoundCidrs pulumi.StringArrayOutput `pulumi:"boundCidrs"`
 	// List of disallowed policies for given role.
 	DisallowedPolicies pulumi.StringArrayOutput `pulumi:"disallowedPolicies"`
-	// If set, the
-	// token will have an explicit max TTL set upon it.
-	//
-	// Deprecated: use `token_explicit_max_ttl` instead if you are running Vault >= 1.2
-	ExplicitMaxTtl pulumi.StringPtrOutput `pulumi:"explicitMaxTtl"`
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan pulumi.BoolPtrOutput `pulumi:"orphan"`
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
 	PathSuffix pulumi.StringPtrOutput `pulumi:"pathSuffix"`
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
-	//
-	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
-	Period pulumi.StringPtrOutput `pulumi:"period"`
 	// Whether to disable the ability of the token to be renewed past its initial TTL.
 	Renewable pulumi.BoolPtrOutput `pulumi:"renewable"`
 	// The name of the role.
@@ -160,29 +108,12 @@ func GetAuthBackendRole(ctx *pulumi.Context,
 type authBackendRoleState struct {
 	// List of allowed policies for given role.
 	AllowedPolicies []string `pulumi:"allowedPolicies"`
-	// If set, a list of
-	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-	//
-	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
-	BoundCidrs []string `pulumi:"boundCidrs"`
 	// List of disallowed policies for given role.
 	DisallowedPolicies []string `pulumi:"disallowedPolicies"`
-	// If set, the
-	// token will have an explicit max TTL set upon it.
-	//
-	// Deprecated: use `token_explicit_max_ttl` instead if you are running Vault >= 1.2
-	ExplicitMaxTtl *string `pulumi:"explicitMaxTtl"`
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan *bool `pulumi:"orphan"`
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
 	PathSuffix *string `pulumi:"pathSuffix"`
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
-	//
-	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
-	Period *string `pulumi:"period"`
 	// Whether to disable the ability of the token to be renewed past its initial TTL.
 	Renewable *bool `pulumi:"renewable"`
 	// The name of the role.
@@ -227,29 +158,12 @@ type authBackendRoleState struct {
 type AuthBackendRoleState struct {
 	// List of allowed policies for given role.
 	AllowedPolicies pulumi.StringArrayInput
-	// If set, a list of
-	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-	//
-	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
-	BoundCidrs pulumi.StringArrayInput
 	// List of disallowed policies for given role.
 	DisallowedPolicies pulumi.StringArrayInput
-	// If set, the
-	// token will have an explicit max TTL set upon it.
-	//
-	// Deprecated: use `token_explicit_max_ttl` instead if you are running Vault >= 1.2
-	ExplicitMaxTtl pulumi.StringPtrInput
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan pulumi.BoolPtrInput
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
 	PathSuffix pulumi.StringPtrInput
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
-	//
-	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
-	Period pulumi.StringPtrInput
 	// Whether to disable the ability of the token to be renewed past its initial TTL.
 	Renewable pulumi.BoolPtrInput
 	// The name of the role.
@@ -298,29 +212,12 @@ func (AuthBackendRoleState) ElementType() reflect.Type {
 type authBackendRoleArgs struct {
 	// List of allowed policies for given role.
 	AllowedPolicies []string `pulumi:"allowedPolicies"`
-	// If set, a list of
-	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-	//
-	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
-	BoundCidrs []string `pulumi:"boundCidrs"`
 	// List of disallowed policies for given role.
 	DisallowedPolicies []string `pulumi:"disallowedPolicies"`
-	// If set, the
-	// token will have an explicit max TTL set upon it.
-	//
-	// Deprecated: use `token_explicit_max_ttl` instead if you are running Vault >= 1.2
-	ExplicitMaxTtl *string `pulumi:"explicitMaxTtl"`
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan *bool `pulumi:"orphan"`
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
 	PathSuffix *string `pulumi:"pathSuffix"`
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
-	//
-	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
-	Period *string `pulumi:"period"`
 	// Whether to disable the ability of the token to be renewed past its initial TTL.
 	Renewable *bool `pulumi:"renewable"`
 	// The name of the role.
@@ -366,29 +263,12 @@ type authBackendRoleArgs struct {
 type AuthBackendRoleArgs struct {
 	// List of allowed policies for given role.
 	AllowedPolicies pulumi.StringArrayInput
-	// If set, a list of
-	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-	//
-	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
-	BoundCidrs pulumi.StringArrayInput
 	// List of disallowed policies for given role.
 	DisallowedPolicies pulumi.StringArrayInput
-	// If set, the
-	// token will have an explicit max TTL set upon it.
-	//
-	// Deprecated: use `token_explicit_max_ttl` instead if you are running Vault >= 1.2
-	ExplicitMaxTtl pulumi.StringPtrInput
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan pulumi.BoolPtrInput
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
 	PathSuffix pulumi.StringPtrInput
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
-	//
-	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
-	Period pulumi.StringPtrInput
 	// Whether to disable the ability of the token to be renewed past its initial TTL.
 	Renewable pulumi.BoolPtrInput
 	// The name of the role.

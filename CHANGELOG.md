@@ -2,7 +2,8 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Upgrade to v3.0.1 of the Vault Terraform Provider
+  * **PLEASE NOTE:** There are a summary of the breaking changes to the underlying provider can be found [in the Terraform upgrade guide](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/guides/version_3_upgrade)
 
 ---
 

@@ -763,7 +763,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         import pulumi_vault as vault
 
         root = vault.pki_secret.SecretBackendRootSignIntermediate("root",
-            backend=vault_pki_secret_backend["root"]["path"],
+            backend=vault_mount["root"]["path"],
             csr=vault_pki_secret_backend_intermediate_cert_request["intermediate"]["csr"],
             common_name="Intermediate CA",
             exclude_cn_from_sans=True,
@@ -811,7 +811,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         import pulumi_vault as vault
 
         root = vault.pki_secret.SecretBackendRootSignIntermediate("root",
-            backend=vault_pki_secret_backend["root"]["path"],
+            backend=vault_mount["root"]["path"],
             csr=vault_pki_secret_backend_intermediate_cert_request["intermediate"]["csr"],
             common_name="Intermediate CA",
             exclude_cn_from_sans=True,

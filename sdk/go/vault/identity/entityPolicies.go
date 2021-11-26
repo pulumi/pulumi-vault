@@ -20,7 +20,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/identity"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -53,7 +53,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/identity"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //

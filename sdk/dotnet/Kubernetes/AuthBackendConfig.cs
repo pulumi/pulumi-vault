@@ -74,7 +74,7 @@ namespace Pulumi.Vault.Kubernetes
         public Output<bool> DisableLocalCaJwt { get; private set; } = null!;
 
         /// <summary>
-        /// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+        /// JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         /// </summary>
         [Output("issuer")]
         public Output<string?> Issuer { get; private set; } = null!;
@@ -168,7 +168,7 @@ namespace Pulumi.Vault.Kubernetes
         public Input<bool>? DisableLocalCaJwt { get; set; }
 
         /// <summary>
-        /// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+        /// JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         /// </summary>
         [Input("issuer")]
         public Input<string>? Issuer { get; set; }
@@ -229,7 +229,7 @@ namespace Pulumi.Vault.Kubernetes
         public Input<bool>? DisableLocalCaJwt { get; set; }
 
         /// <summary>
-        /// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+        /// JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         /// </summary>
         [Input("issuer")]
         public Input<string>? Issuer { get; set; }

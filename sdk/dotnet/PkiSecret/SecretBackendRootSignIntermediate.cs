@@ -24,7 +24,7 @@ namespace Pulumi.Vault.PkiSecret
     ///     {
     ///         var root = new Vault.PkiSecret.SecretBackendRootSignIntermediate("root", new Vault.PkiSecret.SecretBackendRootSignIntermediateArgs
     ///         {
-    ///             Backend = vault_pki_secret_backend.Root.Path,
+    ///             Backend = vault_mount.Root.Path,
     ///             Csr = vault_pki_secret_backend_intermediate_cert_request.Intermediate.Csr,
     ///             CommonName = "Intermediate CA",
     ///             ExcludeCnFromSans = true,

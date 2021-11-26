@@ -21,8 +21,8 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/kubernetes"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -73,37 +73,10 @@ type AuthBackendRole struct {
 	Audience pulumi.StringPtrOutput `pulumi:"audience"`
 	// Unique name of the kubernetes backend to configure.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
-	// If set, a list of
-	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-	//
-	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
-	BoundCidrs pulumi.StringArrayOutput `pulumi:"boundCidrs"`
 	// List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and boundServiceAccountNamespaces can not be "*".
 	BoundServiceAccountNames pulumi.StringArrayOutput `pulumi:"boundServiceAccountNames"`
 	// List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
 	BoundServiceAccountNamespaces pulumi.StringArrayOutput `pulumi:"boundServiceAccountNamespaces"`
-	// The maximum allowed lifetime of tokens
-	// issued using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
-	MaxTtl pulumi.IntPtrOutput `pulumi:"maxTtl"`
-	// If set, puts a use-count
-	// limitation on the issued token.
-	//
-	// Deprecated: use `token_num_uses` instead if you are running Vault >= 1.2
-	NumUses pulumi.IntPtrOutput `pulumi:"numUses"`
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
-	//
-	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
-	Period pulumi.IntPtrOutput `pulumi:"period"`
-	// An array of strings
-	// specifying the policies to be set on tokens issued using this role.
-	//
-	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
-	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// Name of the role.
 	RoleName pulumi.StringOutput `pulumi:"roleName"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -142,11 +115,6 @@ type AuthBackendRole struct {
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
 	TokenType pulumi.StringPtrOutput `pulumi:"tokenType"`
-	// The TTL period of tokens issued
-	// using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl pulumi.IntPtrOutput `pulumi:"ttl"`
 }
 
 // NewAuthBackendRole registers a new resource with the given unique name, arguments, and options.
@@ -191,37 +159,10 @@ type authBackendRoleState struct {
 	Audience *string `pulumi:"audience"`
 	// Unique name of the kubernetes backend to configure.
 	Backend *string `pulumi:"backend"`
-	// If set, a list of
-	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-	//
-	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
-	BoundCidrs []string `pulumi:"boundCidrs"`
 	// List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and boundServiceAccountNamespaces can not be "*".
 	BoundServiceAccountNames []string `pulumi:"boundServiceAccountNames"`
 	// List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
 	BoundServiceAccountNamespaces []string `pulumi:"boundServiceAccountNamespaces"`
-	// The maximum allowed lifetime of tokens
-	// issued using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
-	MaxTtl *int `pulumi:"maxTtl"`
-	// If set, puts a use-count
-	// limitation on the issued token.
-	//
-	// Deprecated: use `token_num_uses` instead if you are running Vault >= 1.2
-	NumUses *int `pulumi:"numUses"`
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
-	//
-	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
-	Period *int `pulumi:"period"`
-	// An array of strings
-	// specifying the policies to be set on tokens issued using this role.
-	//
-	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
-	Policies []string `pulumi:"policies"`
 	// Name of the role.
 	RoleName *string `pulumi:"roleName"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -260,11 +201,6 @@ type authBackendRoleState struct {
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
 	TokenType *string `pulumi:"tokenType"`
-	// The TTL period of tokens issued
-	// using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl *int `pulumi:"ttl"`
 }
 
 type AuthBackendRoleState struct {
@@ -272,37 +208,10 @@ type AuthBackendRoleState struct {
 	Audience pulumi.StringPtrInput
 	// Unique name of the kubernetes backend to configure.
 	Backend pulumi.StringPtrInput
-	// If set, a list of
-	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-	//
-	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
-	BoundCidrs pulumi.StringArrayInput
 	// List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and boundServiceAccountNamespaces can not be "*".
 	BoundServiceAccountNames pulumi.StringArrayInput
 	// List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
 	BoundServiceAccountNamespaces pulumi.StringArrayInput
-	// The maximum allowed lifetime of tokens
-	// issued using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
-	MaxTtl pulumi.IntPtrInput
-	// If set, puts a use-count
-	// limitation on the issued token.
-	//
-	// Deprecated: use `token_num_uses` instead if you are running Vault >= 1.2
-	NumUses pulumi.IntPtrInput
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
-	//
-	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
-	Period pulumi.IntPtrInput
-	// An array of strings
-	// specifying the policies to be set on tokens issued using this role.
-	//
-	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
-	Policies pulumi.StringArrayInput
 	// Name of the role.
 	RoleName pulumi.StringPtrInput
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -341,11 +250,6 @@ type AuthBackendRoleState struct {
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
 	TokenType pulumi.StringPtrInput
-	// The TTL period of tokens issued
-	// using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl pulumi.IntPtrInput
 }
 
 func (AuthBackendRoleState) ElementType() reflect.Type {
@@ -357,37 +261,10 @@ type authBackendRoleArgs struct {
 	Audience *string `pulumi:"audience"`
 	// Unique name of the kubernetes backend to configure.
 	Backend *string `pulumi:"backend"`
-	// If set, a list of
-	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-	//
-	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
-	BoundCidrs []string `pulumi:"boundCidrs"`
 	// List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and boundServiceAccountNamespaces can not be "*".
 	BoundServiceAccountNames []string `pulumi:"boundServiceAccountNames"`
 	// List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
 	BoundServiceAccountNamespaces []string `pulumi:"boundServiceAccountNamespaces"`
-	// The maximum allowed lifetime of tokens
-	// issued using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
-	MaxTtl *int `pulumi:"maxTtl"`
-	// If set, puts a use-count
-	// limitation on the issued token.
-	//
-	// Deprecated: use `token_num_uses` instead if you are running Vault >= 1.2
-	NumUses *int `pulumi:"numUses"`
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
-	//
-	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
-	Period *int `pulumi:"period"`
-	// An array of strings
-	// specifying the policies to be set on tokens issued using this role.
-	//
-	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
-	Policies []string `pulumi:"policies"`
 	// Name of the role.
 	RoleName string `pulumi:"roleName"`
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -426,11 +303,6 @@ type authBackendRoleArgs struct {
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
 	TokenType *string `pulumi:"tokenType"`
-	// The TTL period of tokens issued
-	// using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl *int `pulumi:"ttl"`
 }
 
 // The set of arguments for constructing a AuthBackendRole resource.
@@ -439,37 +311,10 @@ type AuthBackendRoleArgs struct {
 	Audience pulumi.StringPtrInput
 	// Unique name of the kubernetes backend to configure.
 	Backend pulumi.StringPtrInput
-	// If set, a list of
-	// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-	//
-	// Deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2
-	BoundCidrs pulumi.StringArrayInput
 	// List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and boundServiceAccountNamespaces can not be "*".
 	BoundServiceAccountNames pulumi.StringArrayInput
 	// List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
 	BoundServiceAccountNamespaces pulumi.StringArrayInput
-	// The maximum allowed lifetime of tokens
-	// issued using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
-	MaxTtl pulumi.IntPtrInput
-	// If set, puts a use-count
-	// limitation on the issued token.
-	//
-	// Deprecated: use `token_num_uses` instead if you are running Vault >= 1.2
-	NumUses pulumi.IntPtrInput
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
-	//
-	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
-	Period pulumi.IntPtrInput
-	// An array of strings
-	// specifying the policies to be set on tokens issued using this role.
-	//
-	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
-	Policies pulumi.StringArrayInput
 	// Name of the role.
 	RoleName pulumi.StringInput
 	// List of CIDR blocks; if set, specifies blocks of IP
@@ -508,11 +353,6 @@ type AuthBackendRoleArgs struct {
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
 	TokenType pulumi.StringPtrInput
-	// The TTL period of tokens issued
-	// using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl pulumi.IntPtrInput
 }
 
 func (AuthBackendRoleArgs) ElementType() reflect.Type {

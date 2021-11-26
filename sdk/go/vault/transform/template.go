@@ -16,6 +16,12 @@ type Template struct {
 
 	// The alphabet to use for this template. This is only used during FPE transformations.
 	Alphabet pulumi.StringPtrOutput `pulumi:"alphabet"`
+	// - Optional mapping of name to regular expression template, used to customize
+	//   the decoded output. (requires Vault Enterprise 1.9+)
+	DecodeFormats pulumi.MapOutput `pulumi:"decodeFormats"`
+	// - The regular expression template used to format encoded values.
+	//   (requires Vault Enterprise 1.9+)
+	EncodeFormat pulumi.StringPtrOutput `pulumi:"encodeFormat"`
 	// The name of the template.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Path to where the back-end is mounted within Vault.
@@ -60,6 +66,12 @@ func GetTemplate(ctx *pulumi.Context,
 type templateState struct {
 	// The alphabet to use for this template. This is only used during FPE transformations.
 	Alphabet *string `pulumi:"alphabet"`
+	// - Optional mapping of name to regular expression template, used to customize
+	//   the decoded output. (requires Vault Enterprise 1.9+)
+	DecodeFormats map[string]interface{} `pulumi:"decodeFormats"`
+	// - The regular expression template used to format encoded values.
+	//   (requires Vault Enterprise 1.9+)
+	EncodeFormat *string `pulumi:"encodeFormat"`
 	// The name of the template.
 	Name *string `pulumi:"name"`
 	// Path to where the back-end is mounted within Vault.
@@ -73,6 +85,12 @@ type templateState struct {
 type TemplateState struct {
 	// The alphabet to use for this template. This is only used during FPE transformations.
 	Alphabet pulumi.StringPtrInput
+	// - Optional mapping of name to regular expression template, used to customize
+	//   the decoded output. (requires Vault Enterprise 1.9+)
+	DecodeFormats pulumi.MapInput
+	// - The regular expression template used to format encoded values.
+	//   (requires Vault Enterprise 1.9+)
+	EncodeFormat pulumi.StringPtrInput
 	// The name of the template.
 	Name pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
@@ -90,6 +108,12 @@ func (TemplateState) ElementType() reflect.Type {
 type templateArgs struct {
 	// The alphabet to use for this template. This is only used during FPE transformations.
 	Alphabet *string `pulumi:"alphabet"`
+	// - Optional mapping of name to regular expression template, used to customize
+	//   the decoded output. (requires Vault Enterprise 1.9+)
+	DecodeFormats map[string]interface{} `pulumi:"decodeFormats"`
+	// - The regular expression template used to format encoded values.
+	//   (requires Vault Enterprise 1.9+)
+	EncodeFormat *string `pulumi:"encodeFormat"`
 	// The name of the template.
 	Name *string `pulumi:"name"`
 	// Path to where the back-end is mounted within Vault.
@@ -104,6 +128,12 @@ type templateArgs struct {
 type TemplateArgs struct {
 	// The alphabet to use for this template. This is only used during FPE transformations.
 	Alphabet pulumi.StringPtrInput
+	// - Optional mapping of name to regular expression template, used to customize
+	//   the decoded output. (requires Vault Enterprise 1.9+)
+	DecodeFormats pulumi.MapInput
+	// - The regular expression template used to format encoded values.
+	//   (requires Vault Enterprise 1.9+)
+	EncodeFormat pulumi.StringPtrInput
 	// The name of the template.
 	Name pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.

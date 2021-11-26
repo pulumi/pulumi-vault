@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./secretBackend";
 export * from "./secretBackendCert";
 export * from "./secretBackendConfigCa";
 export * from "./secretBackendConfigUrls";
@@ -18,7 +17,6 @@ export * from "./secretBackendRootSignIntermediate";
 export * from "./secretBackendSign";
 
 // Import resources to register:
-import { SecretBackend } from "./secretBackend";
 import { SecretBackendCert } from "./secretBackendCert";
 import { SecretBackendConfigCa } from "./secretBackendConfigCa";
 import { SecretBackendConfigUrls } from "./secretBackendConfigUrls";
@@ -34,8 +32,6 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "vault:pkiSecret/secretBackend:SecretBackend":
-                return new SecretBackend(name, <any>undefined, { urn })
             case "vault:pkiSecret/secretBackendCert:SecretBackendCert":
                 return new SecretBackendCert(name, <any>undefined, { urn })
             case "vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa":
@@ -61,7 +57,6 @@ const _module = {
         }
     },
 };
-pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendCert", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendConfigCa", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendConfigUrls", _module)

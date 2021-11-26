@@ -15,16 +15,7 @@ class TeamArgs:
     def __init__(__self__, *,
                  team: pulumi.Input[str],
                  backend: Optional[pulumi.Input[str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[int]] = None,
-                 token_period: Optional[pulumi.Input[int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[int]] = None,
-                 token_type: Optional[pulumi.Input[str]] = None):
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Team resource.
         :param pulumi.Input[str] team: GitHub team name in "slugified" format.
@@ -32,66 +23,12 @@ class TeamArgs:
                if not specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings specifying the policies to be set on tokens
                issued using this role.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
-        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
-        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
-        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
-        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
-        :param pulumi.Input[int] token_period: Generated Token's Period
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
-        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
-        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         """
         pulumi.set(__self__, "team", team)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
-        if token_bound_cidrs is not None:
-            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-            pulumi.log.warn("""token_bound_cidrs is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-        if token_bound_cidrs is not None:
-            pulumi.set(__self__, "token_bound_cidrs", token_bound_cidrs)
-        if token_explicit_max_ttl is not None:
-            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-            pulumi.log.warn("""token_explicit_max_ttl is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-        if token_explicit_max_ttl is not None:
-            pulumi.set(__self__, "token_explicit_max_ttl", token_explicit_max_ttl)
-        if token_max_ttl is not None:
-            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-            pulumi.log.warn("""token_max_ttl is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-        if token_max_ttl is not None:
-            pulumi.set(__self__, "token_max_ttl", token_max_ttl)
-        if token_no_default_policy is not None:
-            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-            pulumi.log.warn("""token_no_default_policy is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-        if token_no_default_policy is not None:
-            pulumi.set(__self__, "token_no_default_policy", token_no_default_policy)
-        if token_num_uses is not None:
-            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-            pulumi.log.warn("""token_num_uses is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-        if token_num_uses is not None:
-            pulumi.set(__self__, "token_num_uses", token_num_uses)
-        if token_period is not None:
-            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-            pulumi.log.warn("""token_period is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-        if token_period is not None:
-            pulumi.set(__self__, "token_period", token_period)
-        if token_policies is not None:
-            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-            pulumi.log.warn("""token_policies is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-        if token_policies is not None:
-            pulumi.set(__self__, "token_policies", token_policies)
-        if token_ttl is not None:
-            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-            pulumi.log.warn("""token_ttl is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-        if token_ttl is not None:
-            pulumi.set(__self__, "token_ttl", token_ttl)
-        if token_type is not None:
-            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-            pulumi.log.warn("""token_type is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-        if token_type is not None:
-            pulumi.set(__self__, "token_type", token_type)
 
     @property
     @pulumi.getter
@@ -131,130 +68,13 @@ class TeamArgs:
     def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "policies", value)
 
-    @property
-    @pulumi.getter(name="tokenBoundCidrs")
-    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Specifies the blocks of IP addresses which are allowed to use the generated token
-        """
-        return pulumi.get(self, "token_bound_cidrs")
-
-    @token_bound_cidrs.setter
-    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "token_bound_cidrs", value)
-
-    @property
-    @pulumi.getter(name="tokenExplicitMaxTtl")
-    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[int]]:
-        """
-        Generated Token's Explicit Maximum TTL in seconds
-        """
-        return pulumi.get(self, "token_explicit_max_ttl")
-
-    @token_explicit_max_ttl.setter
-    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "token_explicit_max_ttl", value)
-
-    @property
-    @pulumi.getter(name="tokenMaxTtl")
-    def token_max_ttl(self) -> Optional[pulumi.Input[int]]:
-        """
-        The maximum lifetime of the generated token
-        """
-        return pulumi.get(self, "token_max_ttl")
-
-    @token_max_ttl.setter
-    def token_max_ttl(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "token_max_ttl", value)
-
-    @property
-    @pulumi.getter(name="tokenNoDefaultPolicy")
-    def token_no_default_policy(self) -> Optional[pulumi.Input[bool]]:
-        """
-        If true, the 'default' policy will not automatically be added to generated tokens
-        """
-        return pulumi.get(self, "token_no_default_policy")
-
-    @token_no_default_policy.setter
-    def token_no_default_policy(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "token_no_default_policy", value)
-
-    @property
-    @pulumi.getter(name="tokenNumUses")
-    def token_num_uses(self) -> Optional[pulumi.Input[int]]:
-        """
-        The maximum number of times a token may be used, a value of zero means unlimited
-        """
-        return pulumi.get(self, "token_num_uses")
-
-    @token_num_uses.setter
-    def token_num_uses(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "token_num_uses", value)
-
-    @property
-    @pulumi.getter(name="tokenPeriod")
-    def token_period(self) -> Optional[pulumi.Input[int]]:
-        """
-        Generated Token's Period
-        """
-        return pulumi.get(self, "token_period")
-
-    @token_period.setter
-    def token_period(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "token_period", value)
-
-    @property
-    @pulumi.getter(name="tokenPolicies")
-    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Generated Token's Policies
-        """
-        return pulumi.get(self, "token_policies")
-
-    @token_policies.setter
-    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "token_policies", value)
-
-    @property
-    @pulumi.getter(name="tokenTtl")
-    def token_ttl(self) -> Optional[pulumi.Input[int]]:
-        """
-        The initial ttl of the token to generate in seconds
-        """
-        return pulumi.get(self, "token_ttl")
-
-    @token_ttl.setter
-    def token_ttl(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "token_ttl", value)
-
-    @property
-    @pulumi.getter(name="tokenType")
-    def token_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        The type of token to generate, service or batch
-        """
-        return pulumi.get(self, "token_type")
-
-    @token_type.setter
-    def token_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "token_type", value)
-
 
 @pulumi.input_type
 class _TeamState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 team: Optional[pulumi.Input[str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[int]] = None,
-                 token_period: Optional[pulumi.Input[int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[int]] = None,
-                 token_type: Optional[pulumi.Input[str]] = None):
+                 team: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Team resources.
         :param pulumi.Input[str] backend: Path where the github auth backend is mounted. Defaults to `github`
@@ -262,15 +82,6 @@ class _TeamState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings specifying the policies to be set on tokens
                issued using this role.
         :param pulumi.Input[str] team: GitHub team name in "slugified" format.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
-        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
-        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
-        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
-        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
-        :param pulumi.Input[int] token_period: Generated Token's Period
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
-        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
-        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -278,51 +89,6 @@ class _TeamState:
             pulumi.set(__self__, "policies", policies)
         if team is not None:
             pulumi.set(__self__, "team", team)
-        if token_bound_cidrs is not None:
-            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-            pulumi.log.warn("""token_bound_cidrs is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-        if token_bound_cidrs is not None:
-            pulumi.set(__self__, "token_bound_cidrs", token_bound_cidrs)
-        if token_explicit_max_ttl is not None:
-            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-            pulumi.log.warn("""token_explicit_max_ttl is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-        if token_explicit_max_ttl is not None:
-            pulumi.set(__self__, "token_explicit_max_ttl", token_explicit_max_ttl)
-        if token_max_ttl is not None:
-            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-            pulumi.log.warn("""token_max_ttl is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-        if token_max_ttl is not None:
-            pulumi.set(__self__, "token_max_ttl", token_max_ttl)
-        if token_no_default_policy is not None:
-            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-            pulumi.log.warn("""token_no_default_policy is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-        if token_no_default_policy is not None:
-            pulumi.set(__self__, "token_no_default_policy", token_no_default_policy)
-        if token_num_uses is not None:
-            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-            pulumi.log.warn("""token_num_uses is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-        if token_num_uses is not None:
-            pulumi.set(__self__, "token_num_uses", token_num_uses)
-        if token_period is not None:
-            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-            pulumi.log.warn("""token_period is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-        if token_period is not None:
-            pulumi.set(__self__, "token_period", token_period)
-        if token_policies is not None:
-            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-            pulumi.log.warn("""token_policies is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-        if token_policies is not None:
-            pulumi.set(__self__, "token_policies", token_policies)
-        if token_ttl is not None:
-            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-            pulumi.log.warn("""token_ttl is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-        if token_ttl is not None:
-            pulumi.set(__self__, "token_ttl", token_ttl)
-        if token_type is not None:
-            warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-            pulumi.log.warn("""token_type is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-        if token_type is not None:
-            pulumi.set(__self__, "token_type", token_type)
 
     @property
     @pulumi.getter
@@ -362,114 +128,6 @@ class _TeamState:
     def team(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "team", value)
 
-    @property
-    @pulumi.getter(name="tokenBoundCidrs")
-    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Specifies the blocks of IP addresses which are allowed to use the generated token
-        """
-        return pulumi.get(self, "token_bound_cidrs")
-
-    @token_bound_cidrs.setter
-    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "token_bound_cidrs", value)
-
-    @property
-    @pulumi.getter(name="tokenExplicitMaxTtl")
-    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[int]]:
-        """
-        Generated Token's Explicit Maximum TTL in seconds
-        """
-        return pulumi.get(self, "token_explicit_max_ttl")
-
-    @token_explicit_max_ttl.setter
-    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "token_explicit_max_ttl", value)
-
-    @property
-    @pulumi.getter(name="tokenMaxTtl")
-    def token_max_ttl(self) -> Optional[pulumi.Input[int]]:
-        """
-        The maximum lifetime of the generated token
-        """
-        return pulumi.get(self, "token_max_ttl")
-
-    @token_max_ttl.setter
-    def token_max_ttl(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "token_max_ttl", value)
-
-    @property
-    @pulumi.getter(name="tokenNoDefaultPolicy")
-    def token_no_default_policy(self) -> Optional[pulumi.Input[bool]]:
-        """
-        If true, the 'default' policy will not automatically be added to generated tokens
-        """
-        return pulumi.get(self, "token_no_default_policy")
-
-    @token_no_default_policy.setter
-    def token_no_default_policy(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "token_no_default_policy", value)
-
-    @property
-    @pulumi.getter(name="tokenNumUses")
-    def token_num_uses(self) -> Optional[pulumi.Input[int]]:
-        """
-        The maximum number of times a token may be used, a value of zero means unlimited
-        """
-        return pulumi.get(self, "token_num_uses")
-
-    @token_num_uses.setter
-    def token_num_uses(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "token_num_uses", value)
-
-    @property
-    @pulumi.getter(name="tokenPeriod")
-    def token_period(self) -> Optional[pulumi.Input[int]]:
-        """
-        Generated Token's Period
-        """
-        return pulumi.get(self, "token_period")
-
-    @token_period.setter
-    def token_period(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "token_period", value)
-
-    @property
-    @pulumi.getter(name="tokenPolicies")
-    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Generated Token's Policies
-        """
-        return pulumi.get(self, "token_policies")
-
-    @token_policies.setter
-    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "token_policies", value)
-
-    @property
-    @pulumi.getter(name="tokenTtl")
-    def token_ttl(self) -> Optional[pulumi.Input[int]]:
-        """
-        The initial ttl of the token to generate in seconds
-        """
-        return pulumi.get(self, "token_ttl")
-
-    @token_ttl.setter
-    def token_ttl(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "token_ttl", value)
-
-    @property
-    @pulumi.getter(name="tokenType")
-    def token_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        The type of token to generate, service or batch
-        """
-        return pulumi.get(self, "token_type")
-
-    @token_type.setter
-    def token_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "token_type", value)
-
 
 class Team(pulumi.CustomResource):
     @overload
@@ -479,15 +137,6 @@ class Team(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  team: Optional[pulumi.Input[str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[int]] = None,
-                 token_period: Optional[pulumi.Input[int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[int]] = None,
-                 token_type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Manages policy mappings for Github Teams authenticated via Github. See the [Vault
@@ -525,15 +174,6 @@ class Team(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings specifying the policies to be set on tokens
                issued using this role.
         :param pulumi.Input[str] team: GitHub team name in "slugified" format.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
-        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
-        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
-        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
-        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
-        :param pulumi.Input[int] token_period: Generated Token's Period
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
-        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
-        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         """
         ...
     @overload
@@ -588,15 +228,6 @@ class Team(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  team: Optional[pulumi.Input[str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[int]] = None,
-                 token_period: Optional[pulumi.Input[int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[int]] = None,
-                 token_type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -614,42 +245,6 @@ class Team(pulumi.CustomResource):
             if team is None and not opts.urn:
                 raise TypeError("Missing required property 'team'")
             __props__.__dict__["team"] = team
-            if token_bound_cidrs is not None and not opts.urn:
-                warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-                pulumi.log.warn("""token_bound_cidrs is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-            __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
-            if token_explicit_max_ttl is not None and not opts.urn:
-                warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-                pulumi.log.warn("""token_explicit_max_ttl is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-            __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
-            if token_max_ttl is not None and not opts.urn:
-                warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-                pulumi.log.warn("""token_max_ttl is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-            __props__.__dict__["token_max_ttl"] = token_max_ttl
-            if token_no_default_policy is not None and not opts.urn:
-                warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-                pulumi.log.warn("""token_no_default_policy is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-            __props__.__dict__["token_no_default_policy"] = token_no_default_policy
-            if token_num_uses is not None and not opts.urn:
-                warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-                pulumi.log.warn("""token_num_uses is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-            __props__.__dict__["token_num_uses"] = token_num_uses
-            if token_period is not None and not opts.urn:
-                warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-                pulumi.log.warn("""token_period is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-            __props__.__dict__["token_period"] = token_period
-            if token_policies is not None and not opts.urn:
-                warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-                pulumi.log.warn("""token_policies is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-            __props__.__dict__["token_policies"] = token_policies
-            if token_ttl is not None and not opts.urn:
-                warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-                pulumi.log.warn("""token_ttl is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-            __props__.__dict__["token_ttl"] = token_ttl
-            if token_type is not None and not opts.urn:
-                warnings.warn("""This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""", DeprecationWarning)
-                pulumi.log.warn("""token_type is deprecated: This parameter should be moved to the Github Auth backend config block. It does nothing in a user/team block.""")
-            __props__.__dict__["token_type"] = token_type
         super(Team, __self__).__init__(
             'vault:github/team:Team',
             resource_name,
@@ -662,16 +257,7 @@ class Team(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            team: Optional[pulumi.Input[str]] = None,
-            token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
-            token_max_ttl: Optional[pulumi.Input[int]] = None,
-            token_no_default_policy: Optional[pulumi.Input[bool]] = None,
-            token_num_uses: Optional[pulumi.Input[int]] = None,
-            token_period: Optional[pulumi.Input[int]] = None,
-            token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            token_ttl: Optional[pulumi.Input[int]] = None,
-            token_type: Optional[pulumi.Input[str]] = None) -> 'Team':
+            team: Optional[pulumi.Input[str]] = None) -> 'Team':
         """
         Get an existing Team resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -684,15 +270,6 @@ class Team(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings specifying the policies to be set on tokens
                issued using this role.
         :param pulumi.Input[str] team: GitHub team name in "slugified" format.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
-        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
-        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
-        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
-        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
-        :param pulumi.Input[int] token_period: Generated Token's Period
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
-        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
-        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -701,15 +278,6 @@ class Team(pulumi.CustomResource):
         __props__.__dict__["backend"] = backend
         __props__.__dict__["policies"] = policies
         __props__.__dict__["team"] = team
-        __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
-        __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
-        __props__.__dict__["token_max_ttl"] = token_max_ttl
-        __props__.__dict__["token_no_default_policy"] = token_no_default_policy
-        __props__.__dict__["token_num_uses"] = token_num_uses
-        __props__.__dict__["token_period"] = token_period
-        __props__.__dict__["token_policies"] = token_policies
-        __props__.__dict__["token_ttl"] = token_ttl
-        __props__.__dict__["token_type"] = token_type
         return Team(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -737,76 +305,4 @@ class Team(pulumi.CustomResource):
         GitHub team name in "slugified" format.
         """
         return pulumi.get(self, "team")
-
-    @property
-    @pulumi.getter(name="tokenBoundCidrs")
-    def token_bound_cidrs(self) -> pulumi.Output[Optional[Sequence[str]]]:
-        """
-        Specifies the blocks of IP addresses which are allowed to use the generated token
-        """
-        return pulumi.get(self, "token_bound_cidrs")
-
-    @property
-    @pulumi.getter(name="tokenExplicitMaxTtl")
-    def token_explicit_max_ttl(self) -> pulumi.Output[Optional[int]]:
-        """
-        Generated Token's Explicit Maximum TTL in seconds
-        """
-        return pulumi.get(self, "token_explicit_max_ttl")
-
-    @property
-    @pulumi.getter(name="tokenMaxTtl")
-    def token_max_ttl(self) -> pulumi.Output[Optional[int]]:
-        """
-        The maximum lifetime of the generated token
-        """
-        return pulumi.get(self, "token_max_ttl")
-
-    @property
-    @pulumi.getter(name="tokenNoDefaultPolicy")
-    def token_no_default_policy(self) -> pulumi.Output[Optional[bool]]:
-        """
-        If true, the 'default' policy will not automatically be added to generated tokens
-        """
-        return pulumi.get(self, "token_no_default_policy")
-
-    @property
-    @pulumi.getter(name="tokenNumUses")
-    def token_num_uses(self) -> pulumi.Output[Optional[int]]:
-        """
-        The maximum number of times a token may be used, a value of zero means unlimited
-        """
-        return pulumi.get(self, "token_num_uses")
-
-    @property
-    @pulumi.getter(name="tokenPeriod")
-    def token_period(self) -> pulumi.Output[Optional[int]]:
-        """
-        Generated Token's Period
-        """
-        return pulumi.get(self, "token_period")
-
-    @property
-    @pulumi.getter(name="tokenPolicies")
-    def token_policies(self) -> pulumi.Output[Optional[Sequence[str]]]:
-        """
-        Generated Token's Policies
-        """
-        return pulumi.get(self, "token_policies")
-
-    @property
-    @pulumi.getter(name="tokenTtl")
-    def token_ttl(self) -> pulumi.Output[Optional[int]]:
-        """
-        The initial ttl of the token to generate in seconds
-        """
-        return pulumi.get(self, "token_ttl")
-
-    @property
-    @pulumi.getter(name="tokenType")
-    def token_type(self) -> pulumi.Output[Optional[str]]:
-        """
-        The type of token to generate, service or batch
-        """
-        return pulumi.get(self, "token_type")
 

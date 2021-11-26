@@ -14,39 +14,6 @@ namespace Pulumi.Vault.TokenAuth
     /// documentation](https://www.vaultproject.io/docs/auth/token.html) for more
     /// information.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var example = new Vault.TokenAuth.AuthBackendRole("example", new Vault.TokenAuth.AuthBackendRoleArgs
-    ///         {
-    ///             AllowedPolicies = 
-    ///             {
-    ///                 "dev",
-    ///                 "test",
-    ///             },
-    ///             DisallowedPolicies = 
-    ///             {
-    ///                 "default",
-    ///             },
-    ///             ExplicitMaxTtl = "115200",
-    ///             Orphan = true,
-    ///             PathSuffix = "path-suffix",
-    ///             Period = "86400",
-    ///             Renewable = true,
-    ///             RoleName = "my-role",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Token auth backend roles can be imported with `auth/token/roles/` followed by the `role_name`, e.g.
@@ -65,24 +32,10 @@ namespace Pulumi.Vault.TokenAuth
         public Output<ImmutableArray<string>> AllowedPolicies { get; private set; } = null!;
 
         /// <summary>
-        /// If set, a list of
-        /// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-        /// </summary>
-        [Output("boundCidrs")]
-        public Output<ImmutableArray<string>> BoundCidrs { get; private set; } = null!;
-
-        /// <summary>
         /// List of disallowed policies for given role.
         /// </summary>
         [Output("disallowedPolicies")]
         public Output<ImmutableArray<string>> DisallowedPolicies { get; private set; } = null!;
-
-        /// <summary>
-        /// If set, the
-        /// token will have an explicit max TTL set upon it.
-        /// </summary>
-        [Output("explicitMaxTtl")]
-        public Output<string?> ExplicitMaxTtl { get; private set; } = null!;
 
         /// <summary>
         /// If true, tokens created against this policy will be orphan tokens.
@@ -95,15 +48,6 @@ namespace Pulumi.Vault.TokenAuth
         /// </summary>
         [Output("pathSuffix")]
         public Output<string?> PathSuffix { get; private set; } = null!;
-
-        /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
-        /// </summary>
-        [Output("period")]
-        public Output<string?> Period { get; private set; } = null!;
 
         /// <summary>
         /// Whether to disable the ability of the token to be renewed past its initial TTL.
@@ -246,20 +190,6 @@ namespace Pulumi.Vault.TokenAuth
             set => _allowedPolicies = value;
         }
 
-        [Input("boundCidrs")]
-        private InputList<string>? _boundCidrs;
-
-        /// <summary>
-        /// If set, a list of
-        /// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-        /// </summary>
-        [Obsolete(@"use `token_bound_cidrs` instead if you are running Vault >= 1.2")]
-        public InputList<string> BoundCidrs
-        {
-            get => _boundCidrs ?? (_boundCidrs = new InputList<string>());
-            set => _boundCidrs = value;
-        }
-
         [Input("disallowedPolicies")]
         private InputList<string>? _disallowedPolicies;
 
@@ -273,13 +203,6 @@ namespace Pulumi.Vault.TokenAuth
         }
 
         /// <summary>
-        /// If set, the
-        /// token will have an explicit max TTL set upon it.
-        /// </summary>
-        [Input("explicitMaxTtl")]
-        public Input<string>? ExplicitMaxTtl { get; set; }
-
-        /// <summary>
         /// If true, tokens created against this policy will be orphan tokens.
         /// </summary>
         [Input("orphan")]
@@ -290,15 +213,6 @@ namespace Pulumi.Vault.TokenAuth
         /// </summary>
         [Input("pathSuffix")]
         public Input<string>? PathSuffix { get; set; }
-
-        /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
-        /// </summary>
-        [Input("period")]
-        public Input<string>? Period { get; set; }
 
         /// <summary>
         /// Whether to disable the ability of the token to be renewed past its initial TTL.
@@ -414,20 +328,6 @@ namespace Pulumi.Vault.TokenAuth
             set => _allowedPolicies = value;
         }
 
-        [Input("boundCidrs")]
-        private InputList<string>? _boundCidrs;
-
-        /// <summary>
-        /// If set, a list of
-        /// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-        /// </summary>
-        [Obsolete(@"use `token_bound_cidrs` instead if you are running Vault >= 1.2")]
-        public InputList<string> BoundCidrs
-        {
-            get => _boundCidrs ?? (_boundCidrs = new InputList<string>());
-            set => _boundCidrs = value;
-        }
-
         [Input("disallowedPolicies")]
         private InputList<string>? _disallowedPolicies;
 
@@ -441,13 +341,6 @@ namespace Pulumi.Vault.TokenAuth
         }
 
         /// <summary>
-        /// If set, the
-        /// token will have an explicit max TTL set upon it.
-        /// </summary>
-        [Input("explicitMaxTtl")]
-        public Input<string>? ExplicitMaxTtl { get; set; }
-
-        /// <summary>
         /// If true, tokens created against this policy will be orphan tokens.
         /// </summary>
         [Input("orphan")]
@@ -458,15 +351,6 @@ namespace Pulumi.Vault.TokenAuth
         /// </summary>
         [Input("pathSuffix")]
         public Input<string>? PathSuffix { get; set; }
-
-        /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
-        /// </summary>
-        [Input("period")]
-        public Input<string>? Period { get; set; }
 
         /// <summary>
         /// Whether to disable the ability of the token to be renewed past its initial TTL.

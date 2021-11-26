@@ -175,29 +175,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly inferredEntityType!: pulumi.Output<string | undefined>;
     /**
-     * The maximum allowed lifetime of tokens
-     * issued using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
-     */
-    public readonly maxTtl!: pulumi.Output<number | undefined>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    public readonly period!: pulumi.Output<number | undefined>;
-    /**
-     * An array of strings
-     * specifying the policies to be set on tokens issued using this role.
-     *
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    public readonly policies!: pulumi.Output<string[] | undefined>;
-    /**
      * Only valid when
      * `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
      * resolved to [AWS Unique
@@ -276,13 +253,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * requests a different type at generation time.
      */
     public readonly tokenType!: pulumi.Output<string | undefined>;
-    /**
-     * The TTL period of tokens issued
-     * using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
-     */
-    public readonly ttl!: pulumi.Output<number | undefined>;
 
     /**
      * Create a AuthBackendRole resource with the given unique name, arguments, and options.
@@ -312,9 +282,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["disallowReauthentication"] = state ? state.disallowReauthentication : undefined;
             inputs["inferredAwsRegion"] = state ? state.inferredAwsRegion : undefined;
             inputs["inferredEntityType"] = state ? state.inferredEntityType : undefined;
-            inputs["maxTtl"] = state ? state.maxTtl : undefined;
-            inputs["period"] = state ? state.period : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
             inputs["resolveAwsUniqueIds"] = state ? state.resolveAwsUniqueIds : undefined;
             inputs["role"] = state ? state.role : undefined;
             inputs["roleTag"] = state ? state.roleTag : undefined;
@@ -327,7 +294,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
             inputs["tokenTtl"] = state ? state.tokenTtl : undefined;
             inputs["tokenType"] = state ? state.tokenType : undefined;
-            inputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
             if ((!args || args.role === undefined) && !opts.urn) {
@@ -348,9 +314,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["disallowReauthentication"] = args ? args.disallowReauthentication : undefined;
             inputs["inferredAwsRegion"] = args ? args.inferredAwsRegion : undefined;
             inputs["inferredEntityType"] = args ? args.inferredEntityType : undefined;
-            inputs["maxTtl"] = args ? args.maxTtl : undefined;
-            inputs["period"] = args ? args.period : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
             inputs["resolveAwsUniqueIds"] = args ? args.resolveAwsUniqueIds : undefined;
             inputs["role"] = args ? args.role : undefined;
             inputs["roleTag"] = args ? args.roleTag : undefined;
@@ -363,7 +326,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
             inputs["tokenTtl"] = args ? args.tokenTtl : undefined;
             inputs["tokenType"] = args ? args.tokenType : undefined;
-            inputs["ttl"] = args ? args.ttl : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -475,29 +437,6 @@ export interface AuthBackendRoleState {
      */
     inferredEntityType?: pulumi.Input<string>;
     /**
-     * The maximum allowed lifetime of tokens
-     * issued using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
-     */
-    maxTtl?: pulumi.Input<number>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    period?: pulumi.Input<number>;
-    /**
-     * An array of strings
-     * specifying the policies to be set on tokens issued using this role.
-     *
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
      * Only valid when
      * `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
      * resolved to [AWS Unique
@@ -576,13 +515,6 @@ export interface AuthBackendRoleState {
      * requests a different type at generation time.
      */
     tokenType?: pulumi.Input<string>;
-    /**
-     * The TTL period of tokens issued
-     * using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
-     */
-    ttl?: pulumi.Input<number>;
 }
 
 /**
@@ -688,29 +620,6 @@ export interface AuthBackendRoleArgs {
      */
     inferredEntityType?: pulumi.Input<string>;
     /**
-     * The maximum allowed lifetime of tokens
-     * issued using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
-     */
-    maxTtl?: pulumi.Input<number>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    period?: pulumi.Input<number>;
-    /**
-     * An array of strings
-     * specifying the policies to be set on tokens issued using this role.
-     *
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
      * Only valid when
      * `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
      * resolved to [AWS Unique
@@ -789,11 +698,4 @@ export interface AuthBackendRoleArgs {
      * requests a different type at generation time.
      */
     tokenType?: pulumi.Input<string>;
-    /**
-     * The TTL period of tokens issued
-     * using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
-     */
-    ttl?: pulumi.Input<number>;
 }

@@ -19,22 +19,14 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/pkiSecret"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		pki, err := pkiSecret.NewSecretBackend(ctx, "pki", &pkiSecret.SecretBackendArgs{
-// 			Path:                   pulumi.String("pki"),
-// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
-// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = pkiSecret.NewSecretBackendConfigUrls(ctx, "configUrls", &pkiSecret.SecretBackendConfigUrlsArgs{
-// 			Backend: pki.Path,
+// 		_, err := pkiSecret.NewSecretBackendConfigUrls(ctx, "configUrls", &pkiSecret.SecretBackendConfigUrlsArgs{
+// 			Backend: pulumi.Any(vault_mount.Pki.Path),
 // 			IssuingCertificates: pulumi.StringArray{
 // 				pulumi.String("http://127.0.0.1:8200/v1/pki/ca"),
 // 			},

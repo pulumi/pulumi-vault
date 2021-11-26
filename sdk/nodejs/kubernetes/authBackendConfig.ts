@@ -77,7 +77,7 @@ export class AuthBackendConfig extends pulumi.CustomResource {
      */
     public readonly disableLocalCaJwt!: pulumi.Output<boolean>;
     /**
-     * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+     * JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
      */
     public readonly issuer!: pulumi.Output<string | undefined>;
     /**
@@ -156,7 +156,7 @@ export interface AuthBackendConfigState {
      */
     disableLocalCaJwt?: pulumi.Input<boolean>;
     /**
-     * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+     * JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
      */
     issuer?: pulumi.Input<string>;
     /**
@@ -194,7 +194,7 @@ export interface AuthBackendConfigArgs {
      */
     disableLocalCaJwt?: pulumi.Input<boolean>;
     /**
-     * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+     * JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
      */
     issuer?: pulumi.Input<string>;
     /**

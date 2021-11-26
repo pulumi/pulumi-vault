@@ -13,13 +13,8 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const pki = new vault.pkisecret.SecretBackend("pki", {
- *     path: "pki",
- *     defaultLeaseTtlSeconds: 3600,
- *     maxLeaseTtlSeconds: 86400,
- * });
  * const configUrls = new vault.pkisecret.SecretBackendConfigUrls("configUrls", {
- *     backend: pki.path,
+ *     backend: vault_mount.pki.path,
  *     issuingCertificates: ["http://127.0.0.1:8200/v1/pki/ca"],
  * });
  * ```

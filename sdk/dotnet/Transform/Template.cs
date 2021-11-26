@@ -19,6 +19,20 @@ namespace Pulumi.Vault.Transform
         public Output<string?> Alphabet { get; private set; } = null!;
 
         /// <summary>
+        /// - Optional mapping of name to regular expression template, used to customize
+        /// the decoded output. (requires Vault Enterprise 1.9+)
+        /// </summary>
+        [Output("decodeFormats")]
+        public Output<ImmutableDictionary<string, object>?> DecodeFormats { get; private set; } = null!;
+
+        /// <summary>
+        /// - The regular expression template used to format encoded values.
+        /// (requires Vault Enterprise 1.9+)
+        /// </summary>
+        [Output("encodeFormat")]
+        public Output<string?> EncodeFormat { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the template.
         /// </summary>
         [Output("name")]
@@ -94,6 +108,26 @@ namespace Pulumi.Vault.Transform
         [Input("alphabet")]
         public Input<string>? Alphabet { get; set; }
 
+        [Input("decodeFormats")]
+        private InputMap<object>? _decodeFormats;
+
+        /// <summary>
+        /// - Optional mapping of name to regular expression template, used to customize
+        /// the decoded output. (requires Vault Enterprise 1.9+)
+        /// </summary>
+        public InputMap<object> DecodeFormats
+        {
+            get => _decodeFormats ?? (_decodeFormats = new InputMap<object>());
+            set => _decodeFormats = value;
+        }
+
+        /// <summary>
+        /// - The regular expression template used to format encoded values.
+        /// (requires Vault Enterprise 1.9+)
+        /// </summary>
+        [Input("encodeFormat")]
+        public Input<string>? EncodeFormat { get; set; }
+
         /// <summary>
         /// The name of the template.
         /// </summary>
@@ -130,6 +164,26 @@ namespace Pulumi.Vault.Transform
         /// </summary>
         [Input("alphabet")]
         public Input<string>? Alphabet { get; set; }
+
+        [Input("decodeFormats")]
+        private InputMap<object>? _decodeFormats;
+
+        /// <summary>
+        /// - Optional mapping of name to regular expression template, used to customize
+        /// the decoded output. (requires Vault Enterprise 1.9+)
+        /// </summary>
+        public InputMap<object> DecodeFormats
+        {
+            get => _decodeFormats ?? (_decodeFormats = new InputMap<object>());
+            set => _decodeFormats = value;
+        }
+
+        /// <summary>
+        /// - The regular expression template used to format encoded values.
+        /// (requires Vault Enterprise 1.9+)
+        /// </summary>
+        [Input("encodeFormat")]
+        public Input<string>? EncodeFormat { get; set; }
 
         /// <summary>
         /// The name of the template.

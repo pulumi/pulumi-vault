@@ -17,7 +17,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -50,23 +50,10 @@ type AuthBackend struct {
 
 	// The accessor for this auth method
 	Accessor pulumi.StringOutput `pulumi:"accessor"`
-	// (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
-	//
-	// Deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update
-	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// A description of the auth method
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Specifies whether to show this mount in
-	// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
-	//
-	// Deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update
-	ListingVisibility pulumi.StringOutput `pulumi:"listingVisibility"`
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
-	// (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
-	//
-	// Deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update
-	MaxLeaseTtlSeconds pulumi.IntOutput `pulumi:"maxLeaseTtlSeconds"`
 	// The path to mount the auth method — this defaults to the name of the type
 	Path pulumi.StringOutput `pulumi:"path"`
 	// Extra configuration block. Structure is documented below.
@@ -109,23 +96,10 @@ func GetAuthBackend(ctx *pulumi.Context,
 type authBackendState struct {
 	// The accessor for this auth method
 	Accessor *string `pulumi:"accessor"`
-	// (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
-	//
-	// Deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update
-	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A description of the auth method
 	Description *string `pulumi:"description"`
-	// Specifies whether to show this mount in
-	// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
-	//
-	// Deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update
-	ListingVisibility *string `pulumi:"listingVisibility"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
-	// (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
-	//
-	// Deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update
-	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
 	// The path to mount the auth method — this defaults to the name of the type
 	Path *string `pulumi:"path"`
 	// Extra configuration block. Structure is documented below.
@@ -137,23 +111,10 @@ type authBackendState struct {
 type AuthBackendState struct {
 	// The accessor for this auth method
 	Accessor pulumi.StringPtrInput
-	// (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
-	//
-	// Deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update
-	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A description of the auth method
 	Description pulumi.StringPtrInput
-	// Specifies whether to show this mount in
-	// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
-	//
-	// Deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update
-	ListingVisibility pulumi.StringPtrInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
-	// (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
-	//
-	// Deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update
-	MaxLeaseTtlSeconds pulumi.IntPtrInput
 	// The path to mount the auth method — this defaults to the name of the type
 	Path pulumi.StringPtrInput
 	// Extra configuration block. Structure is documented below.
@@ -167,23 +128,10 @@ func (AuthBackendState) ElementType() reflect.Type {
 }
 
 type authBackendArgs struct {
-	// (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
-	//
-	// Deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update
-	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A description of the auth method
 	Description *string `pulumi:"description"`
-	// Specifies whether to show this mount in
-	// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
-	//
-	// Deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update
-	ListingVisibility *string `pulumi:"listingVisibility"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
-	// (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
-	//
-	// Deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update
-	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
 	// The path to mount the auth method — this defaults to the name of the type
 	Path *string `pulumi:"path"`
 	// Extra configuration block. Structure is documented below.
@@ -194,23 +142,10 @@ type authBackendArgs struct {
 
 // The set of arguments for constructing a AuthBackend resource.
 type AuthBackendArgs struct {
-	// (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
-	//
-	// Deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update
-	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A description of the auth method
 	Description pulumi.StringPtrInput
-	// Specifies whether to show this mount in
-	// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
-	//
-	// Deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update
-	ListingVisibility pulumi.StringPtrInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
-	// (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
-	//
-	// Deprecated: Use the tune configuration block to avoid forcing creation of new resource on an update
-	MaxLeaseTtlSeconds pulumi.IntPtrInput
 	// The path to mount the auth method — this defaults to the name of the type
 	Path pulumi.StringPtrInput
 	// Extra configuration block. Structure is documented below.

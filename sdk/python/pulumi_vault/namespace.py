@@ -94,6 +94,42 @@ class Namespace(pulumi.CustomResource):
         ns1 = vault.Namespace("ns1", path="ns1")
         ```
 
+        ## Import
+
+        Namespaces can be imported using its `name` as accessor id
+
+        ```sh
+         $ pulumi import vault:index/namespace:Namespace example <name>
+        ```
+
+         If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. provider "vault" {
+
+        # Configuration options
+
+         namespace = "example"
+
+         alias
+
+         = "example" } resource vault_namespace "example2" {
+
+         provider = vault.example }
+
+        ```sh
+         $ pulumi import vault:index/namespace:Namespace example2 example2
+        ```
+
+         $ terraform state show vault_namespace.example2 # vault_namespace.example2 resource "vault_namespace" "example2" {
+
+         id
+
+         = "example/example2/"
+
+         namespace_id = <known after import>
+
+         path
+
+         = "example2" }
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] path: The path of the namespace. Must not have a trailing `/`
@@ -117,6 +153,42 @@ class Namespace(pulumi.CustomResource):
 
         ns1 = vault.Namespace("ns1", path="ns1")
         ```
+
+        ## Import
+
+        Namespaces can be imported using its `name` as accessor id
+
+        ```sh
+         $ pulumi import vault:index/namespace:Namespace example <name>
+        ```
+
+         If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. provider "vault" {
+
+        # Configuration options
+
+         namespace = "example"
+
+         alias
+
+         = "example" } resource vault_namespace "example2" {
+
+         provider = vault.example }
+
+        ```sh
+         $ pulumi import vault:index/namespace:Namespace example2 example2
+        ```
+
+         $ terraform state show vault_namespace.example2 # vault_namespace.example2 resource "vault_namespace" "example2" {
+
+         id
+
+         = "example/example2/"
+
+         namespace_id = <known after import>
+
+         path
+
+         = "example2" }
 
         :param str resource_name: The name of the resource.
         :param NamespaceArgs args: The arguments to use to populate this resource's properties.

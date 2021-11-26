@@ -78,12 +78,6 @@ namespace Pulumi.Vault.Consul
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
-        /// </summary>
-        [Output("path")]
-        public Output<string?> Path { get; private set; } = null!;
-
-        /// <summary>
         /// The list of Consul ACL policies to associate with these roles.
         /// </summary>
         [Output("policies")]
@@ -171,12 +165,6 @@ namespace Pulumi.Vault.Consul
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
-        /// </summary>
-        [Input("path")]
-        public Input<string>? Path { get; set; }
-
         [Input("policies", required: true)]
         private InputList<string>? _policies;
 
@@ -231,12 +219,6 @@ namespace Pulumi.Vault.Consul
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
-
-        /// <summary>
-        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
-        /// </summary>
-        [Input("path")]
-        public Input<string>? Path { get; set; }
 
         [Input("policies")]
         private InputList<string>? _policies;

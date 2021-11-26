@@ -78,13 +78,6 @@ namespace Pulumi.Vault.Kubernetes
         public Output<string?> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// If set, a list of
-        /// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-        /// </summary>
-        [Output("boundCidrs")]
-        public Output<ImmutableArray<string>> BoundCidrs { get; private set; } = null!;
-
-        /// <summary>
         /// List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
         /// </summary>
         [Output("boundServiceAccountNames")]
@@ -95,36 +88,6 @@ namespace Pulumi.Vault.Kubernetes
         /// </summary>
         [Output("boundServiceAccountNamespaces")]
         public Output<ImmutableArray<string>> BoundServiceAccountNamespaces { get; private set; } = null!;
-
-        /// <summary>
-        /// The maximum allowed lifetime of tokens
-        /// issued using this role, provided as a number of seconds.
-        /// </summary>
-        [Output("maxTtl")]
-        public Output<int?> MaxTtl { get; private set; } = null!;
-
-        /// <summary>
-        /// If set, puts a use-count
-        /// limitation on the issued token.
-        /// </summary>
-        [Output("numUses")]
-        public Output<int?> NumUses { get; private set; } = null!;
-
-        /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
-        /// </summary>
-        [Output("period")]
-        public Output<int?> Period { get; private set; } = null!;
-
-        /// <summary>
-        /// An array of strings
-        /// specifying the policies to be set on tokens issued using this role.
-        /// </summary>
-        [Output("policies")]
-        public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
 
         /// <summary>
         /// Name of the role.
@@ -204,13 +167,6 @@ namespace Pulumi.Vault.Kubernetes
         [Output("tokenType")]
         public Output<string?> TokenType { get; private set; } = null!;
 
-        /// <summary>
-        /// The TTL period of tokens issued
-        /// using this role, provided as a number of seconds.
-        /// </summary>
-        [Output("ttl")]
-        public Output<int?> Ttl { get; private set; } = null!;
-
 
         /// <summary>
         /// Create a AuthBackendRole resource with the given unique name, arguments, and options.
@@ -269,20 +225,6 @@ namespace Pulumi.Vault.Kubernetes
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
-        [Input("boundCidrs")]
-        private InputList<string>? _boundCidrs;
-
-        /// <summary>
-        /// If set, a list of
-        /// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-        /// </summary>
-        [Obsolete(@"use `token_bound_cidrs` instead if you are running Vault >= 1.2")]
-        public InputList<string> BoundCidrs
-        {
-            get => _boundCidrs ?? (_boundCidrs = new InputList<string>());
-            set => _boundCidrs = value;
-        }
-
         [Input("boundServiceAccountNames", required: true)]
         private InputList<string>? _boundServiceAccountNames;
 
@@ -305,43 +247,6 @@ namespace Pulumi.Vault.Kubernetes
         {
             get => _boundServiceAccountNamespaces ?? (_boundServiceAccountNamespaces = new InputList<string>());
             set => _boundServiceAccountNamespaces = value;
-        }
-
-        /// <summary>
-        /// The maximum allowed lifetime of tokens
-        /// issued using this role, provided as a number of seconds.
-        /// </summary>
-        [Input("maxTtl")]
-        public Input<int>? MaxTtl { get; set; }
-
-        /// <summary>
-        /// If set, puts a use-count
-        /// limitation on the issued token.
-        /// </summary>
-        [Input("numUses")]
-        public Input<int>? NumUses { get; set; }
-
-        /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
-        /// </summary>
-        [Input("period")]
-        public Input<int>? Period { get; set; }
-
-        [Input("policies")]
-        private InputList<string>? _policies;
-
-        /// <summary>
-        /// An array of strings
-        /// specifying the policies to be set on tokens issued using this role.
-        /// </summary>
-        [Obsolete(@"use `token_policies` instead if you are running Vault >= 1.2")]
-        public InputList<string> Policies
-        {
-            get => _policies ?? (_policies = new InputList<string>());
-            set => _policies = value;
         }
 
         /// <summary>
@@ -434,13 +339,6 @@ namespace Pulumi.Vault.Kubernetes
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
 
-        /// <summary>
-        /// The TTL period of tokens issued
-        /// using this role, provided as a number of seconds.
-        /// </summary>
-        [Input("ttl")]
-        public Input<int>? Ttl { get; set; }
-
         public AuthBackendRoleArgs()
         {
         }
@@ -459,20 +357,6 @@ namespace Pulumi.Vault.Kubernetes
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
-
-        [Input("boundCidrs")]
-        private InputList<string>? _boundCidrs;
-
-        /// <summary>
-        /// If set, a list of
-        /// CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-        /// </summary>
-        [Obsolete(@"use `token_bound_cidrs` instead if you are running Vault >= 1.2")]
-        public InputList<string> BoundCidrs
-        {
-            get => _boundCidrs ?? (_boundCidrs = new InputList<string>());
-            set => _boundCidrs = value;
-        }
 
         [Input("boundServiceAccountNames")]
         private InputList<string>? _boundServiceAccountNames;
@@ -496,43 +380,6 @@ namespace Pulumi.Vault.Kubernetes
         {
             get => _boundServiceAccountNamespaces ?? (_boundServiceAccountNamespaces = new InputList<string>());
             set => _boundServiceAccountNamespaces = value;
-        }
-
-        /// <summary>
-        /// The maximum allowed lifetime of tokens
-        /// issued using this role, provided as a number of seconds.
-        /// </summary>
-        [Input("maxTtl")]
-        public Input<int>? MaxTtl { get; set; }
-
-        /// <summary>
-        /// If set, puts a use-count
-        /// limitation on the issued token.
-        /// </summary>
-        [Input("numUses")]
-        public Input<int>? NumUses { get; set; }
-
-        /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
-        /// </summary>
-        [Input("period")]
-        public Input<int>? Period { get; set; }
-
-        [Input("policies")]
-        private InputList<string>? _policies;
-
-        /// <summary>
-        /// An array of strings
-        /// specifying the policies to be set on tokens issued using this role.
-        /// </summary>
-        [Obsolete(@"use `token_policies` instead if you are running Vault >= 1.2")]
-        public InputList<string> Policies
-        {
-            get => _policies ?? (_policies = new InputList<string>());
-            set => _policies = value;
         }
 
         /// <summary>
@@ -624,13 +471,6 @@ namespace Pulumi.Vault.Kubernetes
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
-
-        /// <summary>
-        /// The TTL period of tokens issued
-        /// using this role, provided as a number of seconds.
-        /// </summary>
-        [Input("ttl")]
-        public Input<int>? Ttl { get; set; }
 
         public AuthBackendRoleState()
         {

@@ -22,15 +22,9 @@ namespace Pulumi.Vault.PkiSecret
     /// {
     ///     public MyStack()
     ///     {
-    ///         var pki = new Vault.PkiSecret.SecretBackend("pki", new Vault.PkiSecret.SecretBackendArgs
-    ///         {
-    ///             Path = "pki",
-    ///             DefaultLeaseTtlSeconds = 3600,
-    ///             MaxLeaseTtlSeconds = 86400,
-    ///         });
     ///         var configUrls = new Vault.PkiSecret.SecretBackendConfigUrls("configUrls", new Vault.PkiSecret.SecretBackendConfigUrlsArgs
     ///         {
-    ///             Backend = pki.Path,
+    ///             Backend = vault_mount.Pki.Path,
     ///             IssuingCertificates = 
     ///             {
     ///                 "http://127.0.0.1:8200/v1/pki/ca",

@@ -21,12 +21,8 @@ class CertAuthBackendRoleArgs:
                  allowed_organization_units: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
-                 bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
-                 max_ttl: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 period: Optional[pulumi.Input[str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -36,8 +32,7 @@ class CertAuthBackendRoleArgs:
                  token_period: Optional[pulumi.Input[int]] = None,
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_ttl: Optional[pulumi.Input[int]] = None,
-                 token_type: Optional[pulumi.Input[str]] = None,
-                 ttl: Optional[pulumi.Input[str]] = None):
+                 token_type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CertAuthBackendRole resource.
         :param pulumi.Input[str] certificate: CA certificate used to validate client certificates
@@ -48,18 +43,8 @@ class CertAuthBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_organization_units: Allowed organization units for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Allowed URIs for authenticated client certificates
         :param pulumi.Input[str] backend: Path to the mounted Cert auth backend
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_cidrs: Restriction usage of the
-               certificates to client IPs falling within the range of the specified CIDRs
         :param pulumi.Input[str] display_name: The name to display on tokens issued under this role.
-        :param pulumi.Input[str] max_ttl: The maximum allowed lifetime of tokens
-               issued using this role, provided as a number of seconds.
         :param pulumi.Input[str] name: Name of the role
-        :param pulumi.Input[str] period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings
-               specifying the policies to be set on tokens issued using this role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] required_extensions: TLS extensions required on client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -88,8 +73,6 @@ class CertAuthBackendRoleArgs:
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
-        :param pulumi.Input[str] ttl: The TTL period of tokens issued
-               using this role, provided as a number of seconds.
         """
         pulumi.set(__self__, "certificate", certificate)
         if allowed_common_names is not None:
@@ -106,30 +89,10 @@ class CertAuthBackendRoleArgs:
             pulumi.set(__self__, "allowed_uri_sans", allowed_uri_sans)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
-        if bound_cidrs is not None:
-            warnings.warn("""use `token_bound_cidrs` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""bound_cidrs is deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2""")
-        if bound_cidrs is not None:
-            pulumi.set(__self__, "bound_cidrs", bound_cidrs)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
-        if max_ttl is not None:
-            warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2""")
-        if max_ttl is not None:
-            pulumi.set(__self__, "max_ttl", max_ttl)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if period is not None:
-            warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""period is deprecated: use `token_period` instead if you are running Vault >= 1.2""")
-        if period is not None:
-            pulumi.set(__self__, "period", period)
-        if policies is not None:
-            warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2""")
-        if policies is not None:
-            pulumi.set(__self__, "policies", policies)
         if required_extensions is not None:
             pulumi.set(__self__, "required_extensions", required_extensions)
         if token_bound_cidrs is not None:
@@ -150,11 +113,6 @@ class CertAuthBackendRoleArgs:
             pulumi.set(__self__, "token_ttl", token_ttl)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
-        if ttl is not None:
-            warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2""")
-        if ttl is not None:
-            pulumi.set(__self__, "ttl", ttl)
 
     @property
     @pulumi.getter
@@ -253,19 +211,6 @@ class CertAuthBackendRoleArgs:
         pulumi.set(self, "backend", value)
 
     @property
-    @pulumi.getter(name="boundCidrs")
-    def bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Restriction usage of the
-        certificates to client IPs falling within the range of the specified CIDRs
-        """
-        return pulumi.get(self, "bound_cidrs")
-
-    @bound_cidrs.setter
-    def bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "bound_cidrs", value)
-
-    @property
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -278,19 +223,6 @@ class CertAuthBackendRoleArgs:
         pulumi.set(self, "display_name", value)
 
     @property
-    @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[str]]:
-        """
-        The maximum allowed lifetime of tokens
-        issued using this role, provided as a number of seconds.
-        """
-        return pulumi.get(self, "max_ttl")
-
-    @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "max_ttl", value)
-
-    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -301,34 +233,6 @@ class CertAuthBackendRoleArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[str]]:
-        """
-        If set, indicates that the
-        token generated using this role should never expire. The token should be renewed within the
-        duration specified by this value. At each renewal, the token's TTL will be set to the
-        value of this field. Specified in seconds.
-        """
-        return pulumi.get(self, "period")
-
-    @period.setter
-    def period(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "period", value)
-
-    @property
-    @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        An array of strings
-        specifying the policies to be set on tokens issued using this role.
-        """
-        return pulumi.get(self, "policies")
-
-    @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "policies", value)
 
     @property
     @pulumi.getter(name="requiredExtensions")
@@ -468,19 +372,6 @@ class CertAuthBackendRoleArgs:
     def token_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "token_type", value)
 
-    @property
-    @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[str]]:
-        """
-        The TTL period of tokens issued
-        using this role, provided as a number of seconds.
-        """
-        return pulumi.get(self, "ttl")
-
-    @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "ttl", value)
-
 
 @pulumi.input_type
 class _CertAuthBackendRoleState:
@@ -492,13 +383,9 @@ class _CertAuthBackendRoleState:
                  allowed_organization_units: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
-                 bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
-                 max_ttl: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 period: Optional[pulumi.Input[str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -508,8 +395,7 @@ class _CertAuthBackendRoleState:
                  token_period: Optional[pulumi.Input[int]] = None,
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_ttl: Optional[pulumi.Input[int]] = None,
-                 token_type: Optional[pulumi.Input[str]] = None,
-                 ttl: Optional[pulumi.Input[str]] = None):
+                 token_type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering CertAuthBackendRole resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_common_names: Allowed the common names for authenticated client certificates
@@ -519,19 +405,9 @@ class _CertAuthBackendRoleState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_organization_units: Allowed organization units for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Allowed URIs for authenticated client certificates
         :param pulumi.Input[str] backend: Path to the mounted Cert auth backend
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_cidrs: Restriction usage of the
-               certificates to client IPs falling within the range of the specified CIDRs
         :param pulumi.Input[str] certificate: CA certificate used to validate client certificates
         :param pulumi.Input[str] display_name: The name to display on tokens issued under this role.
-        :param pulumi.Input[str] max_ttl: The maximum allowed lifetime of tokens
-               issued using this role, provided as a number of seconds.
         :param pulumi.Input[str] name: Name of the role
-        :param pulumi.Input[str] period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings
-               specifying the policies to be set on tokens issued using this role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] required_extensions: TLS extensions required on client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -560,8 +436,6 @@ class _CertAuthBackendRoleState:
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
-        :param pulumi.Input[str] ttl: The TTL period of tokens issued
-               using this role, provided as a number of seconds.
         """
         if allowed_common_names is not None:
             pulumi.set(__self__, "allowed_common_names", allowed_common_names)
@@ -577,32 +451,12 @@ class _CertAuthBackendRoleState:
             pulumi.set(__self__, "allowed_uri_sans", allowed_uri_sans)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
-        if bound_cidrs is not None:
-            warnings.warn("""use `token_bound_cidrs` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""bound_cidrs is deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2""")
-        if bound_cidrs is not None:
-            pulumi.set(__self__, "bound_cidrs", bound_cidrs)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
-        if max_ttl is not None:
-            warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2""")
-        if max_ttl is not None:
-            pulumi.set(__self__, "max_ttl", max_ttl)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if period is not None:
-            warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""period is deprecated: use `token_period` instead if you are running Vault >= 1.2""")
-        if period is not None:
-            pulumi.set(__self__, "period", period)
-        if policies is not None:
-            warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2""")
-        if policies is not None:
-            pulumi.set(__self__, "policies", policies)
         if required_extensions is not None:
             pulumi.set(__self__, "required_extensions", required_extensions)
         if token_bound_cidrs is not None:
@@ -623,11 +477,6 @@ class _CertAuthBackendRoleState:
             pulumi.set(__self__, "token_ttl", token_ttl)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
-        if ttl is not None:
-            warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2""")
-        if ttl is not None:
-            pulumi.set(__self__, "ttl", ttl)
 
     @property
     @pulumi.getter(name="allowedCommonNames")
@@ -714,19 +563,6 @@ class _CertAuthBackendRoleState:
         pulumi.set(self, "backend", value)
 
     @property
-    @pulumi.getter(name="boundCidrs")
-    def bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Restriction usage of the
-        certificates to client IPs falling within the range of the specified CIDRs
-        """
-        return pulumi.get(self, "bound_cidrs")
-
-    @bound_cidrs.setter
-    def bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "bound_cidrs", value)
-
-    @property
     @pulumi.getter
     def certificate(self) -> Optional[pulumi.Input[str]]:
         """
@@ -751,19 +587,6 @@ class _CertAuthBackendRoleState:
         pulumi.set(self, "display_name", value)
 
     @property
-    @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[str]]:
-        """
-        The maximum allowed lifetime of tokens
-        issued using this role, provided as a number of seconds.
-        """
-        return pulumi.get(self, "max_ttl")
-
-    @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "max_ttl", value)
-
-    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -774,34 +597,6 @@ class _CertAuthBackendRoleState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[str]]:
-        """
-        If set, indicates that the
-        token generated using this role should never expire. The token should be renewed within the
-        duration specified by this value. At each renewal, the token's TTL will be set to the
-        value of this field. Specified in seconds.
-        """
-        return pulumi.get(self, "period")
-
-    @period.setter
-    def period(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "period", value)
-
-    @property
-    @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        An array of strings
-        specifying the policies to be set on tokens issued using this role.
-        """
-        return pulumi.get(self, "policies")
-
-    @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "policies", value)
 
     @property
     @pulumi.getter(name="requiredExtensions")
@@ -941,19 +736,6 @@ class _CertAuthBackendRoleState:
     def token_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "token_type", value)
 
-    @property
-    @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[str]]:
-        """
-        The TTL period of tokens issued
-        using this role, provided as a number of seconds.
-        """
-        return pulumi.get(self, "ttl")
-
-    @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "ttl", value)
-
 
 class CertAuthBackendRole(pulumi.CustomResource):
     @overload
@@ -967,13 +749,9 @@ class CertAuthBackendRole(pulumi.CustomResource):
                  allowed_organization_units: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
-                 bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
-                 max_ttl: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 period: Optional[pulumi.Input[str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -984,7 +762,6 @@ class CertAuthBackendRole(pulumi.CustomResource):
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_ttl: Optional[pulumi.Input[int]] = None,
                  token_type: Optional[pulumi.Input[str]] = None,
-                 ttl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a resource to create a role in an [Cert auth backend within Vault](https://www.vaultproject.io/docs/auth/cert.html).
@@ -1019,19 +796,9 @@ class CertAuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_organization_units: Allowed organization units for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Allowed URIs for authenticated client certificates
         :param pulumi.Input[str] backend: Path to the mounted Cert auth backend
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_cidrs: Restriction usage of the
-               certificates to client IPs falling within the range of the specified CIDRs
         :param pulumi.Input[str] certificate: CA certificate used to validate client certificates
         :param pulumi.Input[str] display_name: The name to display on tokens issued under this role.
-        :param pulumi.Input[str] max_ttl: The maximum allowed lifetime of tokens
-               issued using this role, provided as a number of seconds.
         :param pulumi.Input[str] name: Name of the role
-        :param pulumi.Input[str] period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings
-               specifying the policies to be set on tokens issued using this role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] required_extensions: TLS extensions required on client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -1060,8 +827,6 @@ class CertAuthBackendRole(pulumi.CustomResource):
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
-        :param pulumi.Input[str] ttl: The TTL period of tokens issued
-               using this role, provided as a number of seconds.
         """
         ...
     @overload
@@ -1115,13 +880,9 @@ class CertAuthBackendRole(pulumi.CustomResource):
                  allowed_organization_units: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
-                 bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
-                 max_ttl: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 period: Optional[pulumi.Input[str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -1132,7 +893,6 @@ class CertAuthBackendRole(pulumi.CustomResource):
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_ttl: Optional[pulumi.Input[int]] = None,
                  token_type: Optional[pulumi.Input[str]] = None,
-                 ttl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -1152,27 +912,11 @@ class CertAuthBackendRole(pulumi.CustomResource):
             __props__.__dict__["allowed_organization_units"] = allowed_organization_units
             __props__.__dict__["allowed_uri_sans"] = allowed_uri_sans
             __props__.__dict__["backend"] = backend
-            if bound_cidrs is not None and not opts.urn:
-                warnings.warn("""use `token_bound_cidrs` instead if you are running Vault >= 1.2""", DeprecationWarning)
-                pulumi.log.warn("""bound_cidrs is deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2""")
-            __props__.__dict__["bound_cidrs"] = bound_cidrs
             if certificate is None and not opts.urn:
                 raise TypeError("Missing required property 'certificate'")
             __props__.__dict__["certificate"] = certificate
             __props__.__dict__["display_name"] = display_name
-            if max_ttl is not None and not opts.urn:
-                warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-                pulumi.log.warn("""max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2""")
-            __props__.__dict__["max_ttl"] = max_ttl
             __props__.__dict__["name"] = name
-            if period is not None and not opts.urn:
-                warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
-                pulumi.log.warn("""period is deprecated: use `token_period` instead if you are running Vault >= 1.2""")
-            __props__.__dict__["period"] = period
-            if policies is not None and not opts.urn:
-                warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
-                pulumi.log.warn("""policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2""")
-            __props__.__dict__["policies"] = policies
             __props__.__dict__["required_extensions"] = required_extensions
             __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
             __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
@@ -1183,10 +927,6 @@ class CertAuthBackendRole(pulumi.CustomResource):
             __props__.__dict__["token_policies"] = token_policies
             __props__.__dict__["token_ttl"] = token_ttl
             __props__.__dict__["token_type"] = token_type
-            if ttl is not None and not opts.urn:
-                warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-                pulumi.log.warn("""ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2""")
-            __props__.__dict__["ttl"] = ttl
         super(CertAuthBackendRole, __self__).__init__(
             'vault:index/certAuthBackendRole:CertAuthBackendRole',
             resource_name,
@@ -1204,13 +944,9 @@ class CertAuthBackendRole(pulumi.CustomResource):
             allowed_organization_units: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             backend: Optional[pulumi.Input[str]] = None,
-            bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
             display_name: Optional[pulumi.Input[str]] = None,
-            max_ttl: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            period: Optional[pulumi.Input[str]] = None,
-            policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -1220,8 +956,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
             token_period: Optional[pulumi.Input[int]] = None,
             token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             token_ttl: Optional[pulumi.Input[int]] = None,
-            token_type: Optional[pulumi.Input[str]] = None,
-            ttl: Optional[pulumi.Input[str]] = None) -> 'CertAuthBackendRole':
+            token_type: Optional[pulumi.Input[str]] = None) -> 'CertAuthBackendRole':
         """
         Get an existing CertAuthBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1236,19 +971,9 @@ class CertAuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_organization_units: Allowed organization units for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Allowed URIs for authenticated client certificates
         :param pulumi.Input[str] backend: Path to the mounted Cert auth backend
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_cidrs: Restriction usage of the
-               certificates to client IPs falling within the range of the specified CIDRs
         :param pulumi.Input[str] certificate: CA certificate used to validate client certificates
         :param pulumi.Input[str] display_name: The name to display on tokens issued under this role.
-        :param pulumi.Input[str] max_ttl: The maximum allowed lifetime of tokens
-               issued using this role, provided as a number of seconds.
         :param pulumi.Input[str] name: Name of the role
-        :param pulumi.Input[str] period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings
-               specifying the policies to be set on tokens issued using this role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] required_extensions: TLS extensions required on client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
                addresses which can authenticate successfully, and ties the resulting token to these blocks
@@ -1277,8 +1002,6 @@ class CertAuthBackendRole(pulumi.CustomResource):
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
-        :param pulumi.Input[str] ttl: The TTL period of tokens issued
-               using this role, provided as a number of seconds.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1291,13 +1014,9 @@ class CertAuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["allowed_organization_units"] = allowed_organization_units
         __props__.__dict__["allowed_uri_sans"] = allowed_uri_sans
         __props__.__dict__["backend"] = backend
-        __props__.__dict__["bound_cidrs"] = bound_cidrs
         __props__.__dict__["certificate"] = certificate
         __props__.__dict__["display_name"] = display_name
-        __props__.__dict__["max_ttl"] = max_ttl
         __props__.__dict__["name"] = name
-        __props__.__dict__["period"] = period
-        __props__.__dict__["policies"] = policies
         __props__.__dict__["required_extensions"] = required_extensions
         __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
         __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
@@ -1308,7 +1027,6 @@ class CertAuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["token_policies"] = token_policies
         __props__.__dict__["token_ttl"] = token_ttl
         __props__.__dict__["token_type"] = token_type
-        __props__.__dict__["ttl"] = ttl
         return CertAuthBackendRole(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1368,15 +1086,6 @@ class CertAuthBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "backend")
 
     @property
-    @pulumi.getter(name="boundCidrs")
-    def bound_cidrs(self) -> pulumi.Output[Sequence[str]]:
-        """
-        Restriction usage of the
-        certificates to client IPs falling within the range of the specified CIDRs
-        """
-        return pulumi.get(self, "bound_cidrs")
-
-    @property
     @pulumi.getter
     def certificate(self) -> pulumi.Output[str]:
         """
@@ -1393,41 +1102,12 @@ class CertAuthBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "display_name")
 
     @property
-    @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> pulumi.Output[str]:
-        """
-        The maximum allowed lifetime of tokens
-        issued using this role, provided as a number of seconds.
-        """
-        return pulumi.get(self, "max_ttl")
-
-    @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
         Name of the role
         """
         return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def period(self) -> pulumi.Output[str]:
-        """
-        If set, indicates that the
-        token generated using this role should never expire. The token should be renewed within the
-        duration specified by this value. At each renewal, the token's TTL will be set to the
-        value of this field. Specified in seconds.
-        """
-        return pulumi.get(self, "period")
-
-    @property
-    @pulumi.getter
-    def policies(self) -> pulumi.Output[Sequence[str]]:
-        """
-        An array of strings
-        specifying the policies to be set on tokens issued using this role.
-        """
-        return pulumi.get(self, "policies")
 
     @property
     @pulumi.getter(name="requiredExtensions")
@@ -1526,13 +1206,4 @@ class CertAuthBackendRole(pulumi.CustomResource):
         requests a different type at generation time.
         """
         return pulumi.get(self, "token_type")
-
-    @property
-    @pulumi.getter
-    def ttl(self) -> pulumi.Output[str]:
-        """
-        The TTL period of tokens issued
-        using this role, provided as a number of seconds.
-        """
-        return pulumi.get(self, "ttl")
 
