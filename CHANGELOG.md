@@ -2,10 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v3.0.1 of the Vault Terraform Provider
-  * **PLEASE NOTE:** There are a summary of the breaking changes to the underlying provider can be found [in the Terraform upgrade guide](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/guides/version_3_upgrade)
+_(none)_
 
 ---
+
+## 5.0.0 (2021-11-30)
+* Upgrade to v3.0.1 of the Vault Terraform Provider
+  * **PLEASE NOTE:** There are a summary of the breaking changes to the underlying provider can be found [in the Terraform upgrade guide](https://registry.terraform.io/providers/hashicorp/vault/latest/docs/guides/version_3_upgrade)
 
 ## 4.6.0 (2021-11-11)
 * Upgrade to terraform-bridge 3.11.0
