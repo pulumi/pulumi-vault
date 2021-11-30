@@ -19,7 +19,6 @@ class TokenArgs:
                  no_parent: Optional[pulumi.Input[bool]] = None,
                  num_uses: Optional[pulumi.Input[int]] = None,
                  period: Optional[pulumi.Input[str]] = None,
-                 pgp_key: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  renew_increment: Optional[pulumi.Input[int]] = None,
                  renew_min_lease: Optional[pulumi.Input[int]] = None,
@@ -35,7 +34,6 @@ class TokenArgs:
         :param pulumi.Input[bool] no_parent: Flag to create a token without parent
         :param pulumi.Input[int] num_uses: The number of allowed uses of this token
         :param pulumi.Input[str] period: The period of this token
-        :param pulumi.Input[str] pgp_key: The PGP key (base64 encoded) to encrypt the token.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to attach to this token
         :param pulumi.Input[int] renew_increment: The renew increment
         :param pulumi.Input[int] renew_min_lease: The minimal lease to renew this token
@@ -56,8 +54,6 @@ class TokenArgs:
             pulumi.set(__self__, "num_uses", num_uses)
         if period is not None:
             pulumi.set(__self__, "period", period)
-        if pgp_key is not None:
-            pulumi.set(__self__, "pgp_key", pgp_key)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
         if renew_increment is not None:
@@ -144,18 +140,6 @@ class TokenArgs:
     @period.setter
     def period(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "period", value)
-
-    @property
-    @pulumi.getter(name="pgpKey")
-    def pgp_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        The PGP key (base64 encoded) to encrypt the token.
-        """
-        return pulumi.get(self, "pgp_key")
-
-    @pgp_key.setter
-    def pgp_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "pgp_key", value)
 
     @property
     @pulumi.getter
@@ -247,7 +231,6 @@ class _TokenState:
     def __init__(__self__, *,
                  client_token: Optional[pulumi.Input[str]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
-                 encrypted_client_token: Optional[pulumi.Input[str]] = None,
                  explicit_max_ttl: Optional[pulumi.Input[str]] = None,
                  lease_duration: Optional[pulumi.Input[int]] = None,
                  lease_started: Optional[pulumi.Input[str]] = None,
@@ -255,7 +238,6 @@ class _TokenState:
                  no_parent: Optional[pulumi.Input[bool]] = None,
                  num_uses: Optional[pulumi.Input[int]] = None,
                  period: Optional[pulumi.Input[str]] = None,
-                 pgp_key: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  renew_increment: Optional[pulumi.Input[int]] = None,
                  renew_min_lease: Optional[pulumi.Input[int]] = None,
@@ -269,7 +251,6 @@ class _TokenState:
         Input properties used for looking up and filtering Token resources.
         :param pulumi.Input[str] client_token: String containing the client token if stored in present file
         :param pulumi.Input[str] display_name: String containing the token display name
-        :param pulumi.Input[str] encrypted_client_token: String containing the client token encrypted with the given `pgp_key` if stored in present file
         :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token
         :param pulumi.Input[int] lease_duration: String containing the token lease duration if present in state file
         :param pulumi.Input[str] lease_started: String containing the token lease started time if present in state file
@@ -277,7 +258,6 @@ class _TokenState:
         :param pulumi.Input[bool] no_parent: Flag to create a token without parent
         :param pulumi.Input[int] num_uses: The number of allowed uses of this token
         :param pulumi.Input[str] period: The period of this token
-        :param pulumi.Input[str] pgp_key: The PGP key (base64 encoded) to encrypt the token.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to attach to this token
         :param pulumi.Input[int] renew_increment: The renew increment
         :param pulumi.Input[int] renew_min_lease: The minimal lease to renew this token
@@ -292,8 +272,6 @@ class _TokenState:
             pulumi.set(__self__, "client_token", client_token)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
-        if encrypted_client_token is not None:
-            pulumi.set(__self__, "encrypted_client_token", encrypted_client_token)
         if explicit_max_ttl is not None:
             pulumi.set(__self__, "explicit_max_ttl", explicit_max_ttl)
         if lease_duration is not None:
@@ -308,8 +286,6 @@ class _TokenState:
             pulumi.set(__self__, "num_uses", num_uses)
         if period is not None:
             pulumi.set(__self__, "period", period)
-        if pgp_key is not None:
-            pulumi.set(__self__, "pgp_key", pgp_key)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
         if renew_increment is not None:
@@ -352,18 +328,6 @@ class _TokenState:
     @display_name.setter
     def display_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "display_name", value)
-
-    @property
-    @pulumi.getter(name="encryptedClientToken")
-    def encrypted_client_token(self) -> Optional[pulumi.Input[str]]:
-        """
-        String containing the client token encrypted with the given `pgp_key` if stored in present file
-        """
-        return pulumi.get(self, "encrypted_client_token")
-
-    @encrypted_client_token.setter
-    def encrypted_client_token(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "encrypted_client_token", value)
 
     @property
     @pulumi.getter(name="explicitMaxTtl")
@@ -448,18 +412,6 @@ class _TokenState:
     @period.setter
     def period(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "period", value)
-
-    @property
-    @pulumi.getter(name="pgpKey")
-    def pgp_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        The PGP key (base64 encoded) to encrypt the token.
-        """
-        return pulumi.get(self, "pgp_key")
-
-    @pgp_key.setter
-    def pgp_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "pgp_key", value)
 
     @property
     @pulumi.getter
@@ -581,7 +533,6 @@ class Token(pulumi.CustomResource):
                  no_parent: Optional[pulumi.Input[bool]] = None,
                  num_uses: Optional[pulumi.Input[int]] = None,
                  period: Optional[pulumi.Input[str]] = None,
-                 pgp_key: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  renew_increment: Optional[pulumi.Input[int]] = None,
                  renew_min_lease: Optional[pulumi.Input[int]] = None,
@@ -607,7 +558,6 @@ class Token(pulumi.CustomResource):
         :param pulumi.Input[bool] no_parent: Flag to create a token without parent
         :param pulumi.Input[int] num_uses: The number of allowed uses of this token
         :param pulumi.Input[str] period: The period of this token
-        :param pulumi.Input[str] pgp_key: The PGP key (base64 encoded) to encrypt the token.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to attach to this token
         :param pulumi.Input[int] renew_increment: The renew increment
         :param pulumi.Input[int] renew_min_lease: The minimal lease to renew this token
@@ -652,7 +602,6 @@ class Token(pulumi.CustomResource):
                  no_parent: Optional[pulumi.Input[bool]] = None,
                  num_uses: Optional[pulumi.Input[int]] = None,
                  period: Optional[pulumi.Input[str]] = None,
-                 pgp_key: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  renew_increment: Optional[pulumi.Input[int]] = None,
                  renew_min_lease: Optional[pulumi.Input[int]] = None,
@@ -678,7 +627,6 @@ class Token(pulumi.CustomResource):
             __props__.__dict__["no_parent"] = no_parent
             __props__.__dict__["num_uses"] = num_uses
             __props__.__dict__["period"] = period
-            __props__.__dict__["pgp_key"] = pgp_key
             __props__.__dict__["policies"] = policies
             __props__.__dict__["renew_increment"] = renew_increment
             __props__.__dict__["renew_min_lease"] = renew_min_lease
@@ -687,7 +635,6 @@ class Token(pulumi.CustomResource):
             __props__.__dict__["ttl"] = ttl
             __props__.__dict__["wrapping_ttl"] = wrapping_ttl
             __props__.__dict__["client_token"] = None
-            __props__.__dict__["encrypted_client_token"] = None
             __props__.__dict__["lease_duration"] = None
             __props__.__dict__["lease_started"] = None
             __props__.__dict__["wrapped_token"] = None
@@ -704,7 +651,6 @@ class Token(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             client_token: Optional[pulumi.Input[str]] = None,
             display_name: Optional[pulumi.Input[str]] = None,
-            encrypted_client_token: Optional[pulumi.Input[str]] = None,
             explicit_max_ttl: Optional[pulumi.Input[str]] = None,
             lease_duration: Optional[pulumi.Input[int]] = None,
             lease_started: Optional[pulumi.Input[str]] = None,
@@ -712,7 +658,6 @@ class Token(pulumi.CustomResource):
             no_parent: Optional[pulumi.Input[bool]] = None,
             num_uses: Optional[pulumi.Input[int]] = None,
             period: Optional[pulumi.Input[str]] = None,
-            pgp_key: Optional[pulumi.Input[str]] = None,
             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             renew_increment: Optional[pulumi.Input[int]] = None,
             renew_min_lease: Optional[pulumi.Input[int]] = None,
@@ -731,7 +676,6 @@ class Token(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_token: String containing the client token if stored in present file
         :param pulumi.Input[str] display_name: String containing the token display name
-        :param pulumi.Input[str] encrypted_client_token: String containing the client token encrypted with the given `pgp_key` if stored in present file
         :param pulumi.Input[str] explicit_max_ttl: The explicit max TTL of this token
         :param pulumi.Input[int] lease_duration: String containing the token lease duration if present in state file
         :param pulumi.Input[str] lease_started: String containing the token lease started time if present in state file
@@ -739,7 +683,6 @@ class Token(pulumi.CustomResource):
         :param pulumi.Input[bool] no_parent: Flag to create a token without parent
         :param pulumi.Input[int] num_uses: The number of allowed uses of this token
         :param pulumi.Input[str] period: The period of this token
-        :param pulumi.Input[str] pgp_key: The PGP key (base64 encoded) to encrypt the token.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies to attach to this token
         :param pulumi.Input[int] renew_increment: The renew increment
         :param pulumi.Input[int] renew_min_lease: The minimal lease to renew this token
@@ -756,7 +699,6 @@ class Token(pulumi.CustomResource):
 
         __props__.__dict__["client_token"] = client_token
         __props__.__dict__["display_name"] = display_name
-        __props__.__dict__["encrypted_client_token"] = encrypted_client_token
         __props__.__dict__["explicit_max_ttl"] = explicit_max_ttl
         __props__.__dict__["lease_duration"] = lease_duration
         __props__.__dict__["lease_started"] = lease_started
@@ -764,7 +706,6 @@ class Token(pulumi.CustomResource):
         __props__.__dict__["no_parent"] = no_parent
         __props__.__dict__["num_uses"] = num_uses
         __props__.__dict__["period"] = period
-        __props__.__dict__["pgp_key"] = pgp_key
         __props__.__dict__["policies"] = policies
         __props__.__dict__["renew_increment"] = renew_increment
         __props__.__dict__["renew_min_lease"] = renew_min_lease
@@ -791,14 +732,6 @@ class Token(pulumi.CustomResource):
         String containing the token display name
         """
         return pulumi.get(self, "display_name")
-
-    @property
-    @pulumi.getter(name="encryptedClientToken")
-    def encrypted_client_token(self) -> pulumi.Output[str]:
-        """
-        String containing the client token encrypted with the given `pgp_key` if stored in present file
-        """
-        return pulumi.get(self, "encrypted_client_token")
 
     @property
     @pulumi.getter(name="explicitMaxTtl")
@@ -855,14 +788,6 @@ class Token(pulumi.CustomResource):
         The period of this token
         """
         return pulumi.get(self, "period")
-
-    @property
-    @pulumi.getter(name="pgpKey")
-    def pgp_key(self) -> pulumi.Output[Optional[str]]:
-        """
-        The PGP key (base64 encoded) to encrypt the token.
-        """
-        return pulumi.get(self, "pgp_key")
 
     @property
     @pulumi.getter

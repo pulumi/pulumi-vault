@@ -24,9 +24,9 @@ import * as utilities from "../utilities";
  *     explicitMaxTtl: "115200",
  *     orphan: true,
  *     pathSuffix: "path-suffix",
- *     period: "86400",
  *     renewable: true,
  *     roleName: "my-role",
+ *     tokenPeriod: 86400,
  * });
  * ```
  *
@@ -71,23 +71,9 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly allowedPolicies!: pulumi.Output<string[] | undefined>;
     /**
-     * If set, a list of
-     * CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-     *
-     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
-     */
-    public readonly boundCidrs!: pulumi.Output<string[] | undefined>;
-    /**
      * List of disallowed policies for given role.
      */
     public readonly disallowedPolicies!: pulumi.Output<string[] | undefined>;
-    /**
-     * If set, the
-     * token will have an explicit max TTL set upon it.
-     *
-     * @deprecated use `token_explicit_max_ttl` instead if you are running Vault >= 1.2
-     */
-    public readonly explicitMaxTtl!: pulumi.Output<string | undefined>;
     /**
      * If true, tokens created against this policy will be orphan tokens.
      */
@@ -96,15 +82,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * Tokens created against this role will have the given suffix as part of their path in addition to the role name.
      */
     public readonly pathSuffix!: pulumi.Output<string | undefined>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    public readonly period!: pulumi.Output<string | undefined>;
     /**
      * Whether to disable the ability of the token to be renewed past its initial TTL.
      */
@@ -181,12 +158,9 @@ export class AuthBackendRole extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleState | undefined;
             inputs["allowedPolicies"] = state ? state.allowedPolicies : undefined;
-            inputs["boundCidrs"] = state ? state.boundCidrs : undefined;
             inputs["disallowedPolicies"] = state ? state.disallowedPolicies : undefined;
-            inputs["explicitMaxTtl"] = state ? state.explicitMaxTtl : undefined;
             inputs["orphan"] = state ? state.orphan : undefined;
             inputs["pathSuffix"] = state ? state.pathSuffix : undefined;
-            inputs["period"] = state ? state.period : undefined;
             inputs["renewable"] = state ? state.renewable : undefined;
             inputs["roleName"] = state ? state.roleName : undefined;
             inputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
@@ -204,12 +178,9 @@ export class AuthBackendRole extends pulumi.CustomResource {
                 throw new Error("Missing required property 'roleName'");
             }
             inputs["allowedPolicies"] = args ? args.allowedPolicies : undefined;
-            inputs["boundCidrs"] = args ? args.boundCidrs : undefined;
             inputs["disallowedPolicies"] = args ? args.disallowedPolicies : undefined;
-            inputs["explicitMaxTtl"] = args ? args.explicitMaxTtl : undefined;
             inputs["orphan"] = args ? args.orphan : undefined;
             inputs["pathSuffix"] = args ? args.pathSuffix : undefined;
-            inputs["period"] = args ? args.period : undefined;
             inputs["renewable"] = args ? args.renewable : undefined;
             inputs["roleName"] = args ? args.roleName : undefined;
             inputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
@@ -238,23 +209,9 @@ export interface AuthBackendRoleState {
      */
     allowedPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * If set, a list of
-     * CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-     *
-     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
-     */
-    boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
      * List of disallowed policies for given role.
      */
     disallowedPolicies?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * If set, the
-     * token will have an explicit max TTL set upon it.
-     *
-     * @deprecated use `token_explicit_max_ttl` instead if you are running Vault >= 1.2
-     */
-    explicitMaxTtl?: pulumi.Input<string>;
     /**
      * If true, tokens created against this policy will be orphan tokens.
      */
@@ -263,15 +220,6 @@ export interface AuthBackendRoleState {
      * Tokens created against this role will have the given suffix as part of their path in addition to the role name.
      */
     pathSuffix?: pulumi.Input<string>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    period?: pulumi.Input<string>;
     /**
      * Whether to disable the ability of the token to be renewed past its initial TTL.
      */
@@ -344,23 +292,9 @@ export interface AuthBackendRoleArgs {
      */
     allowedPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * If set, a list of
-     * CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-     *
-     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
-     */
-    boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
      * List of disallowed policies for given role.
      */
     disallowedPolicies?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * If set, the
-     * token will have an explicit max TTL set upon it.
-     *
-     * @deprecated use `token_explicit_max_ttl` instead if you are running Vault >= 1.2
-     */
-    explicitMaxTtl?: pulumi.Input<string>;
     /**
      * If true, tokens created against this policy will be orphan tokens.
      */
@@ -369,15 +303,6 @@ export interface AuthBackendRoleArgs {
      * Tokens created against this role will have the given suffix as part of their path in addition to the role name.
      */
     pathSuffix?: pulumi.Input<string>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    period?: pulumi.Input<string>;
     /**
      * Whether to disable the ability of the token to be renewed past its initial TTL.
      */

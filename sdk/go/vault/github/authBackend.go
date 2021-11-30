@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/github"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/github"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -56,11 +56,6 @@ type AuthBackend struct {
 	// Specifies the description of the mount.
 	// This overrides the current stored value, if any.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// (Optional; Deprecated, use `tokenMaxTtl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
-	// issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
-	MaxTtl pulumi.StringPtrOutput `pulumi:"maxTtl"`
 	// The organization configured users must be part of.
 	Organization pulumi.StringOutput `pulumi:"organization"`
 	// Path where the auth backend is mounted. Defaults to `auth/github`
@@ -99,11 +94,6 @@ type AuthBackend struct {
 	// Specifies the type of tokens that should be returned by
 	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType pulumi.StringPtrOutput `pulumi:"tokenType"`
-	// (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
-	// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl pulumi.StringPtrOutput `pulumi:"ttl"`
 	// Extra configuration block. Structure is documented below.
 	Tune AuthBackendTuneOutput `pulumi:"tune"`
 }
@@ -148,11 +138,6 @@ type authBackendState struct {
 	// Specifies the description of the mount.
 	// This overrides the current stored value, if any.
 	Description *string `pulumi:"description"`
-	// (Optional; Deprecated, use `tokenMaxTtl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
-	// issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
-	MaxTtl *string `pulumi:"maxTtl"`
 	// The organization configured users must be part of.
 	Organization *string `pulumi:"organization"`
 	// Path where the auth backend is mounted. Defaults to `auth/github`
@@ -191,11 +176,6 @@ type authBackendState struct {
 	// Specifies the type of tokens that should be returned by
 	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType *string `pulumi:"tokenType"`
-	// (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
-	// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl *string `pulumi:"ttl"`
 	// Extra configuration block. Structure is documented below.
 	Tune *AuthBackendTune `pulumi:"tune"`
 }
@@ -209,11 +189,6 @@ type AuthBackendState struct {
 	// Specifies the description of the mount.
 	// This overrides the current stored value, if any.
 	Description pulumi.StringPtrInput
-	// (Optional; Deprecated, use `tokenMaxTtl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
-	// issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
-	MaxTtl pulumi.StringPtrInput
 	// The organization configured users must be part of.
 	Organization pulumi.StringPtrInput
 	// Path where the auth backend is mounted. Defaults to `auth/github`
@@ -252,11 +227,6 @@ type AuthBackendState struct {
 	// Specifies the type of tokens that should be returned by
 	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType pulumi.StringPtrInput
-	// (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
-	// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl pulumi.StringPtrInput
 	// Extra configuration block. Structure is documented below.
 	Tune AuthBackendTunePtrInput
 }
@@ -272,11 +242,6 @@ type authBackendArgs struct {
 	// Specifies the description of the mount.
 	// This overrides the current stored value, if any.
 	Description *string `pulumi:"description"`
-	// (Optional; Deprecated, use `tokenMaxTtl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
-	// issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
-	MaxTtl *string `pulumi:"maxTtl"`
 	// The organization configured users must be part of.
 	Organization string `pulumi:"organization"`
 	// Path where the auth backend is mounted. Defaults to `auth/github`
@@ -315,11 +280,6 @@ type authBackendArgs struct {
 	// Specifies the type of tokens that should be returned by
 	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType *string `pulumi:"tokenType"`
-	// (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
-	// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl *string `pulumi:"ttl"`
 	// Extra configuration block. Structure is documented below.
 	Tune *AuthBackendTune `pulumi:"tune"`
 }
@@ -332,11 +292,6 @@ type AuthBackendArgs struct {
 	// Specifies the description of the mount.
 	// This overrides the current stored value, if any.
 	Description pulumi.StringPtrInput
-	// (Optional; Deprecated, use `tokenMaxTtl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
-	// issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
-	MaxTtl pulumi.StringPtrInput
 	// The organization configured users must be part of.
 	Organization pulumi.StringInput
 	// Path where the auth backend is mounted. Defaults to `auth/github`
@@ -375,11 +330,6 @@ type AuthBackendArgs struct {
 	// Specifies the type of tokens that should be returned by
 	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType pulumi.StringPtrInput
-	// (Optional; Deprecated, use `tokenTtl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
-	// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl pulumi.StringPtrInput
 	// Extra configuration block. Structure is documented below.
 	Tune AuthBackendTunePtrInput
 }

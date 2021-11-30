@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -37,6 +37,42 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// Namespaces can be imported using its `name` as accessor id
+//
+// ```sh
+//  $ pulumi import vault:index/namespace:Namespace example <name>
+// ```
+//
+//  If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. provider "vault" {
+//
+// # Configuration options
+//
+//  namespace = "example"
+//
+//  alias
+//
+//  = "example" } resource vault_namespace "example2" {
+//
+//  provider = vault.example }
+//
+// ```sh
+//  $ pulumi import vault:index/namespace:Namespace example2 example2
+// ```
+//
+//  $ terraform state show vault_namespace.example2 # vault_namespace.example2 resource "vault_namespace" "example2" {
+//
+//  id
+//
+//  = "example/example2/"
+//
+//  namespace_id = <known after import>
+//
+//  path
+//
+//  = "example2" }
 type Namespace struct {
 	pulumi.CustomResourceState
 

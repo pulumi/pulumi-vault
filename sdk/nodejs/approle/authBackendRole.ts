@@ -74,29 +74,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly bindSecretId!: pulumi.Output<boolean | undefined>;
     /**
-     * If set,
-     * specifies blocks of IP addresses which can perform the login operation.
-     *
-     * @deprecated use `secret_id_bound_cidrs` instead
-     */
-    public readonly boundCidrLists!: pulumi.Output<string[] | undefined>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    public readonly period!: pulumi.Output<number | undefined>;
-    /**
-     * An array of strings
-     * specifying the policies to be set on tokens issued using this role.
-     *
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    public readonly policies!: pulumi.Output<string[] | undefined>;
-    /**
      * The RoleID of this role. If not specified, one will be
      * auto-generated.
      */
@@ -191,9 +168,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
             const state = argsOrState as AuthBackendRoleState | undefined;
             inputs["backend"] = state ? state.backend : undefined;
             inputs["bindSecretId"] = state ? state.bindSecretId : undefined;
-            inputs["boundCidrLists"] = state ? state.boundCidrLists : undefined;
-            inputs["period"] = state ? state.period : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
             inputs["roleId"] = state ? state.roleId : undefined;
             inputs["roleName"] = state ? state.roleName : undefined;
             inputs["secretIdBoundCidrs"] = state ? state.secretIdBoundCidrs : undefined;
@@ -215,9 +189,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
             }
             inputs["backend"] = args ? args.backend : undefined;
             inputs["bindSecretId"] = args ? args.bindSecretId : undefined;
-            inputs["boundCidrLists"] = args ? args.boundCidrLists : undefined;
-            inputs["period"] = args ? args.period : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
             inputs["roleId"] = args ? args.roleId : undefined;
             inputs["roleName"] = args ? args.roleName : undefined;
             inputs["secretIdBoundCidrs"] = args ? args.secretIdBoundCidrs : undefined;
@@ -254,29 +225,6 @@ export interface AuthBackendRoleState {
      * presented when logging in using this AppRole. Defaults to `true`.
      */
     bindSecretId?: pulumi.Input<boolean>;
-    /**
-     * If set,
-     * specifies blocks of IP addresses which can perform the login operation.
-     *
-     * @deprecated use `secret_id_bound_cidrs` instead
-     */
-    boundCidrLists?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    period?: pulumi.Input<number>;
-    /**
-     * An array of strings
-     * specifying the policies to be set on tokens issued using this role.
-     *
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The RoleID of this role. If not specified, one will be
      * auto-generated.
@@ -372,29 +320,6 @@ export interface AuthBackendRoleArgs {
      * presented when logging in using this AppRole. Defaults to `true`.
      */
     bindSecretId?: pulumi.Input<boolean>;
-    /**
-     * If set,
-     * specifies blocks of IP addresses which can perform the login operation.
-     *
-     * @deprecated use `secret_id_bound_cidrs` instead
-     */
-    boundCidrLists?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    period?: pulumi.Input<number>;
-    /**
-     * An array of strings
-     * specifying the policies to be set on tokens issued using this role.
-     *
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The RoleID of this role. If not specified, one will be
      * auto-generated.

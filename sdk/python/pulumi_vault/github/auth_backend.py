@@ -18,7 +18,6 @@ class AuthBackendArgs:
                  organization: pulumi.Input[str],
                  base_url: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 max_ttl: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -29,7 +28,6 @@ class AuthBackendArgs:
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_ttl: Optional[pulumi.Input[int]] = None,
                  token_type: Optional[pulumi.Input[str]] = None,
-                 ttl: Optional[pulumi.Input[str]] = None,
                  tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
@@ -38,8 +36,6 @@ class AuthBackendArgs:
                are running GitHub Enterprise or an API-compatible authentication server.
         :param pulumi.Input[str] description: Specifies the description of the mount.
                This overrides the current stored value, if any.
-        :param pulumi.Input[str] max_ttl: (Optional; Deprecated, use `token_max_ttl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
-               issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[str] path: Path where the auth backend is mounted. Defaults to `auth/github`
                if not specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: (Optional) List of CIDR blocks; if set, specifies blocks of IP
@@ -66,8 +62,6 @@ class AuthBackendArgs:
                Its current value will be referenced at renewal time.
         :param pulumi.Input[str] token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
-        :param pulumi.Input[str] ttl: (Optional; Deprecated, use `token_ttl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
-               using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
         """
         pulumi.set(__self__, "organization", organization)
@@ -75,11 +69,6 @@ class AuthBackendArgs:
             pulumi.set(__self__, "base_url", base_url)
         if description is not None:
             pulumi.set(__self__, "description", description)
-        if max_ttl is not None:
-            warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2""")
-        if max_ttl is not None:
-            pulumi.set(__self__, "max_ttl", max_ttl)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if token_bound_cidrs is not None:
@@ -100,11 +89,6 @@ class AuthBackendArgs:
             pulumi.set(__self__, "token_ttl", token_ttl)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
-        if ttl is not None:
-            warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2""")
-        if ttl is not None:
-            pulumi.set(__self__, "ttl", ttl)
         if tune is not None:
             pulumi.set(__self__, "tune", tune)
 
@@ -145,19 +129,6 @@ class AuthBackendArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
-
-    @property
-    @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Optional; Deprecated, use `token_max_ttl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
-        issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-        """
-        return pulumi.get(self, "max_ttl")
-
-    @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "max_ttl", value)
 
     @property
     @pulumi.getter
@@ -297,19 +268,6 @@ class AuthBackendArgs:
 
     @property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Optional; Deprecated, use `token_ttl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
-        using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-        """
-        return pulumi.get(self, "ttl")
-
-    @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "ttl", value)
-
-    @property
-    @pulumi.getter
     def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
         """
         Extra configuration block. Structure is documented below.
@@ -327,7 +285,6 @@ class _AuthBackendState:
                  accessor: Optional[pulumi.Input[str]] = None,
                  base_url: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 max_ttl: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -339,7 +296,6 @@ class _AuthBackendState:
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_ttl: Optional[pulumi.Input[int]] = None,
                  token_type: Optional[pulumi.Input[str]] = None,
-                 ttl: Optional[pulumi.Input[str]] = None,
                  tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
@@ -348,8 +304,6 @@ class _AuthBackendState:
                are running GitHub Enterprise or an API-compatible authentication server.
         :param pulumi.Input[str] description: Specifies the description of the mount.
                This overrides the current stored value, if any.
-        :param pulumi.Input[str] max_ttl: (Optional; Deprecated, use `token_max_ttl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
-               issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[str] organization: The organization configured users must be part of.
         :param pulumi.Input[str] path: Path where the auth backend is mounted. Defaults to `auth/github`
                if not specified.
@@ -377,8 +331,6 @@ class _AuthBackendState:
                Its current value will be referenced at renewal time.
         :param pulumi.Input[str] token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
-        :param pulumi.Input[str] ttl: (Optional; Deprecated, use `token_ttl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
-               using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
         """
         if accessor is not None:
@@ -387,11 +339,6 @@ class _AuthBackendState:
             pulumi.set(__self__, "base_url", base_url)
         if description is not None:
             pulumi.set(__self__, "description", description)
-        if max_ttl is not None:
-            warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2""")
-        if max_ttl is not None:
-            pulumi.set(__self__, "max_ttl", max_ttl)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
         if path is not None:
@@ -414,11 +361,6 @@ class _AuthBackendState:
             pulumi.set(__self__, "token_ttl", token_ttl)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
-        if ttl is not None:
-            warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2""")
-        if ttl is not None:
-            pulumi.set(__self__, "ttl", ttl)
         if tune is not None:
             pulumi.set(__self__, "tune", tune)
 
@@ -459,19 +401,6 @@ class _AuthBackendState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
-
-    @property
-    @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Optional; Deprecated, use `token_max_ttl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
-        issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-        """
-        return pulumi.get(self, "max_ttl")
-
-    @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "max_ttl", value)
 
     @property
     @pulumi.getter
@@ -623,19 +552,6 @@ class _AuthBackendState:
 
     @property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[str]]:
-        """
-        (Optional; Deprecated, use `token_ttl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
-        using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-        """
-        return pulumi.get(self, "ttl")
-
-    @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "ttl", value)
-
-    @property
-    @pulumi.getter
     def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
         """
         Extra configuration block. Structure is documented below.
@@ -654,7 +570,6 @@ class AuthBackend(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  base_url: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 max_ttl: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -666,7 +581,6 @@ class AuthBackend(pulumi.CustomResource):
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_ttl: Optional[pulumi.Input[int]] = None,
                  token_type: Optional[pulumi.Input[str]] = None,
-                 ttl: Optional[pulumi.Input[str]] = None,
                  tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
                  __props__=None):
         """
@@ -697,8 +611,6 @@ class AuthBackend(pulumi.CustomResource):
                are running GitHub Enterprise or an API-compatible authentication server.
         :param pulumi.Input[str] description: Specifies the description of the mount.
                This overrides the current stored value, if any.
-        :param pulumi.Input[str] max_ttl: (Optional; Deprecated, use `token_max_ttl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
-               issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[str] organization: The organization configured users must be part of.
         :param pulumi.Input[str] path: Path where the auth backend is mounted. Defaults to `auth/github`
                if not specified.
@@ -726,8 +638,6 @@ class AuthBackend(pulumi.CustomResource):
                Its current value will be referenced at renewal time.
         :param pulumi.Input[str] token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
-        :param pulumi.Input[str] ttl: (Optional; Deprecated, use `token_ttl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
-               using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']] tune: Extra configuration block. Structure is documented below.
         """
         ...
@@ -775,7 +685,6 @@ class AuthBackend(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  base_url: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 max_ttl: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -787,7 +696,6 @@ class AuthBackend(pulumi.CustomResource):
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_ttl: Optional[pulumi.Input[int]] = None,
                  token_type: Optional[pulumi.Input[str]] = None,
-                 ttl: Optional[pulumi.Input[str]] = None,
                  tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
                  __props__=None):
         if opts is None:
@@ -803,10 +711,6 @@ class AuthBackend(pulumi.CustomResource):
 
             __props__.__dict__["base_url"] = base_url
             __props__.__dict__["description"] = description
-            if max_ttl is not None and not opts.urn:
-                warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-                pulumi.log.warn("""max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2""")
-            __props__.__dict__["max_ttl"] = max_ttl
             if organization is None and not opts.urn:
                 raise TypeError("Missing required property 'organization'")
             __props__.__dict__["organization"] = organization
@@ -820,10 +724,6 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["token_policies"] = token_policies
             __props__.__dict__["token_ttl"] = token_ttl
             __props__.__dict__["token_type"] = token_type
-            if ttl is not None and not opts.urn:
-                warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-                pulumi.log.warn("""ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2""")
-            __props__.__dict__["ttl"] = ttl
             __props__.__dict__["tune"] = tune
             __props__.__dict__["accessor"] = None
         super(AuthBackend, __self__).__init__(
@@ -839,7 +739,6 @@ class AuthBackend(pulumi.CustomResource):
             accessor: Optional[pulumi.Input[str]] = None,
             base_url: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
-            max_ttl: Optional[pulumi.Input[str]] = None,
             organization: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -851,7 +750,6 @@ class AuthBackend(pulumi.CustomResource):
             token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             token_ttl: Optional[pulumi.Input[int]] = None,
             token_type: Optional[pulumi.Input[str]] = None,
-            ttl: Optional[pulumi.Input[str]] = None,
             tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
@@ -865,8 +763,6 @@ class AuthBackend(pulumi.CustomResource):
                are running GitHub Enterprise or an API-compatible authentication server.
         :param pulumi.Input[str] description: Specifies the description of the mount.
                This overrides the current stored value, if any.
-        :param pulumi.Input[str] max_ttl: (Optional; Deprecated, use `token_max_ttl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
-               issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[str] organization: The organization configured users must be part of.
         :param pulumi.Input[str] path: Path where the auth backend is mounted. Defaults to `auth/github`
                if not specified.
@@ -894,8 +790,6 @@ class AuthBackend(pulumi.CustomResource):
                Its current value will be referenced at renewal time.
         :param pulumi.Input[str] token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
-        :param pulumi.Input[str] ttl: (Optional; Deprecated, use `token_ttl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
-               using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']] tune: Extra configuration block. Structure is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -905,7 +799,6 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["accessor"] = accessor
         __props__.__dict__["base_url"] = base_url
         __props__.__dict__["description"] = description
-        __props__.__dict__["max_ttl"] = max_ttl
         __props__.__dict__["organization"] = organization
         __props__.__dict__["path"] = path
         __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
@@ -917,7 +810,6 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["token_policies"] = token_policies
         __props__.__dict__["token_ttl"] = token_ttl
         __props__.__dict__["token_type"] = token_type
-        __props__.__dict__["ttl"] = ttl
         __props__.__dict__["tune"] = tune
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
@@ -946,15 +838,6 @@ class AuthBackend(pulumi.CustomResource):
         This overrides the current stored value, if any.
         """
         return pulumi.get(self, "description")
-
-    @property
-    @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> pulumi.Output[Optional[str]]:
-        """
-        (Optional; Deprecated, use `token_max_ttl` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens
-        issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-        """
-        return pulumi.get(self, "max_ttl")
 
     @property
     @pulumi.getter
@@ -1059,15 +942,6 @@ class AuthBackend(pulumi.CustomResource):
         the mount. Valid values are "default-service", "default-batch", "service", "batch".
         """
         return pulumi.get(self, "token_type")
-
-    @property
-    @pulumi.getter
-    def ttl(self) -> pulumi.Output[Optional[str]]:
-        """
-        (Optional; Deprecated, use `token_ttl` instead if you are running Vault >= 1.2) The TTL period of tokens issued
-        using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-        """
-        return pulumi.get(self, "ttl")
 
     @property
     @pulumi.getter

@@ -16,33 +16,6 @@ namespace Pulumi.Vault.Kubernetes
         /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
         /// documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
         /// information.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var role = Output.Create(Vault.Kubernetes.GetAuthBackendRole.InvokeAsync(new Vault.Kubernetes.GetAuthBackendRoleArgs
-        ///         {
-        ///             Backend = "my-kubernetes-backend",
-        ///             RoleName = "my-role",
-        ///         }));
-        ///         this.Policies = role.Apply(role =&gt; role.Policies);
-        ///     }
-        /// 
-        ///     [Output("policies")]
-        ///     public Output&lt;string&gt; Policies { get; set; }
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetAuthBackendRoleResult> InvokeAsync(GetAuthBackendRoleArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleResult>("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleArgs(), options.WithVersion());
@@ -51,33 +24,6 @@ namespace Pulumi.Vault.Kubernetes
         /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
         /// documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
         /// information.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var role = Output.Create(Vault.Kubernetes.GetAuthBackendRole.InvokeAsync(new Vault.Kubernetes.GetAuthBackendRoleArgs
-        ///         {
-        ///             Backend = "my-kubernetes-backend",
-        ///             RoleName = "my-role",
-        ///         }));
-        ///         this.Policies = role.Apply(role =&gt; role.Policies);
-        ///     }
-        /// 
-        ///     [Output("policies")]
-        ///     public Output&lt;string&gt; Policies { get; set; }
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetAuthBackendRoleResult> Invoke(GetAuthBackendRoleInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleResult>("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleInvokeArgs(), options.WithVersion());
@@ -98,33 +44,6 @@ namespace Pulumi.Vault.Kubernetes
         /// </summary>
         [Input("backend")]
         public string? Backend { get; set; }
-
-        [Input("boundCidrs")]
-        private List<string>? _boundCidrs;
-        [Obsolete(@"use `token_bound_cidrs` instead if you are running Vault >= 1.2")]
-        public List<string> BoundCidrs
-        {
-            get => _boundCidrs ?? (_boundCidrs = new List<string>());
-            set => _boundCidrs = value;
-        }
-
-        [Input("maxTtl")]
-        public int? MaxTtl { get; set; }
-
-        [Input("numUses")]
-        public int? NumUses { get; set; }
-
-        [Input("period")]
-        public int? Period { get; set; }
-
-        [Input("policies")]
-        private List<string>? _policies;
-        [Obsolete(@"use `token_policies` instead if you are running Vault >= 1.2")]
-        public List<string> Policies
-        {
-            get => _policies ?? (_policies = new List<string>());
-            set => _policies = value;
-        }
 
         /// <summary>
         /// The name of the role to retrieve the Role attributes for.
@@ -216,9 +135,6 @@ namespace Pulumi.Vault.Kubernetes
         [Input("tokenType")]
         public string? TokenType { get; set; }
 
-        [Input("ttl")]
-        public int? Ttl { get; set; }
-
         public GetAuthBackendRoleArgs()
         {
         }
@@ -238,33 +154,6 @@ namespace Pulumi.Vault.Kubernetes
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
-
-        [Input("boundCidrs")]
-        private InputList<string>? _boundCidrs;
-        [Obsolete(@"use `token_bound_cidrs` instead if you are running Vault >= 1.2")]
-        public InputList<string> BoundCidrs
-        {
-            get => _boundCidrs ?? (_boundCidrs = new InputList<string>());
-            set => _boundCidrs = value;
-        }
-
-        [Input("maxTtl")]
-        public Input<int>? MaxTtl { get; set; }
-
-        [Input("numUses")]
-        public Input<int>? NumUses { get; set; }
-
-        [Input("period")]
-        public Input<int>? Period { get; set; }
-
-        [Input("policies")]
-        private InputList<string>? _policies;
-        [Obsolete(@"use `token_policies` instead if you are running Vault >= 1.2")]
-        public InputList<string> Policies
-        {
-            get => _policies ?? (_policies = new InputList<string>());
-            set => _policies = value;
-        }
 
         /// <summary>
         /// The name of the role to retrieve the Role attributes for.
@@ -356,9 +245,6 @@ namespace Pulumi.Vault.Kubernetes
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
 
-        [Input("ttl")]
-        public Input<int>? Ttl { get; set; }
-
         public GetAuthBackendRoleInvokeArgs()
         {
         }
@@ -373,7 +259,6 @@ namespace Pulumi.Vault.Kubernetes
         /// </summary>
         public readonly string? Audience;
         public readonly string? Backend;
-        public readonly ImmutableArray<string> BoundCidrs;
         /// <summary>
         /// List of service account names able to access this role. If set to "*" all names are allowed, both this and bound_service_account_namespaces can not be "*".
         /// </summary>
@@ -386,10 +271,6 @@ namespace Pulumi.Vault.Kubernetes
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        public readonly int? MaxTtl;
-        public readonly int? NumUses;
-        public readonly int? Period;
-        public readonly ImmutableArray<string> Policies;
         public readonly string RoleName;
         /// <summary>
         /// List of CIDR blocks; if set, specifies blocks of IP
@@ -445,7 +326,6 @@ namespace Pulumi.Vault.Kubernetes
         /// requests a different type at generation time.
         /// </summary>
         public readonly string? TokenType;
-        public readonly int? Ttl;
 
         [OutputConstructor]
         private GetAuthBackendRoleResult(
@@ -453,21 +333,11 @@ namespace Pulumi.Vault.Kubernetes
 
             string? backend,
 
-            ImmutableArray<string> boundCidrs,
-
             ImmutableArray<string> boundServiceAccountNames,
 
             ImmutableArray<string> boundServiceAccountNamespaces,
 
             string id,
-
-            int? maxTtl,
-
-            int? numUses,
-
-            int? period,
-
-            ImmutableArray<string> policies,
 
             string roleName,
 
@@ -487,20 +357,13 @@ namespace Pulumi.Vault.Kubernetes
 
             int? tokenTtl,
 
-            string? tokenType,
-
-            int? ttl)
+            string? tokenType)
         {
             Audience = audience;
             Backend = backend;
-            BoundCidrs = boundCidrs;
             BoundServiceAccountNames = boundServiceAccountNames;
             BoundServiceAccountNamespaces = boundServiceAccountNamespaces;
             Id = id;
-            MaxTtl = maxTtl;
-            NumUses = numUses;
-            Period = period;
-            Policies = policies;
             RoleName = roleName;
             TokenBoundCidrs = tokenBoundCidrs;
             TokenExplicitMaxTtl = tokenExplicitMaxTtl;
@@ -511,7 +374,6 @@ namespace Pulumi.Vault.Kubernetes
             TokenPolicies = tokenPolicies;
             TokenTtl = tokenTtl;
             TokenType = tokenType;
-            Ttl = ttl;
         }
     }
 }

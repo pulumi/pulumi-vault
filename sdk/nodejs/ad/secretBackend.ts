@@ -95,13 +95,6 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly discoverdn!: pulumi.Output<boolean | undefined>;
     /**
-     * Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix". This
-     * setting is deprecated and should instead use `passwordPolicy`.
-     *
-     * @deprecated Formatter is deprecated and password_policy should be used with Vault >= 1.5.
-     */
-    public readonly formatter!: pulumi.Output<string>;
-    /**
      * LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
      * user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
      */
@@ -125,13 +118,6 @@ export class SecretBackend extends pulumi.CustomResource {
      * shows a later rotation, it should be considered out-of-band
      */
     public readonly lastRotationTolerance!: pulumi.Output<number>;
-    /**
-     * The desired length of passwords that Vault generates. This
-     * setting is deprecated and should instead use `passwordPolicy`.
-     *
-     * @deprecated Length is deprecated and password_policy should be used with Vault >= 1.5.
-     */
-    public readonly length!: pulumi.Output<number>;
     /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.
@@ -229,13 +215,11 @@ export class SecretBackend extends pulumi.CustomResource {
             inputs["denyNullBind"] = state ? state.denyNullBind : undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["discoverdn"] = state ? state.discoverdn : undefined;
-            inputs["formatter"] = state ? state.formatter : undefined;
             inputs["groupattr"] = state ? state.groupattr : undefined;
             inputs["groupdn"] = state ? state.groupdn : undefined;
             inputs["groupfilter"] = state ? state.groupfilter : undefined;
             inputs["insecureTls"] = state ? state.insecureTls : undefined;
             inputs["lastRotationTolerance"] = state ? state.lastRotationTolerance : undefined;
-            inputs["length"] = state ? state.length : undefined;
             inputs["local"] = state ? state.local : undefined;
             inputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             inputs["maxTtl"] = state ? state.maxTtl : undefined;
@@ -271,13 +255,11 @@ export class SecretBackend extends pulumi.CustomResource {
             inputs["denyNullBind"] = args ? args.denyNullBind : undefined;
             inputs["description"] = args ? args.description : undefined;
             inputs["discoverdn"] = args ? args.discoverdn : undefined;
-            inputs["formatter"] = args ? args.formatter : undefined;
             inputs["groupattr"] = args ? args.groupattr : undefined;
             inputs["groupdn"] = args ? args.groupdn : undefined;
             inputs["groupfilter"] = args ? args.groupfilter : undefined;
             inputs["insecureTls"] = args ? args.insecureTls : undefined;
             inputs["lastRotationTolerance"] = args ? args.lastRotationTolerance : undefined;
-            inputs["length"] = args ? args.length : undefined;
             inputs["local"] = args ? args.local : undefined;
             inputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             inputs["maxTtl"] = args ? args.maxTtl : undefined;
@@ -359,13 +341,6 @@ export interface SecretBackendState {
      */
     discoverdn?: pulumi.Input<boolean>;
     /**
-     * Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix". This
-     * setting is deprecated and should instead use `passwordPolicy`.
-     *
-     * @deprecated Formatter is deprecated and password_policy should be used with Vault >= 1.5.
-     */
-    formatter?: pulumi.Input<string>;
-    /**
      * LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
      * user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
      */
@@ -389,13 +364,6 @@ export interface SecretBackendState {
      * shows a later rotation, it should be considered out-of-band
      */
     lastRotationTolerance?: pulumi.Input<number>;
-    /**
-     * The desired length of passwords that Vault generates. This
-     * setting is deprecated and should instead use `passwordPolicy`.
-     *
-     * @deprecated Length is deprecated and password_policy should be used with Vault >= 1.5.
-     */
-    length?: pulumi.Input<number>;
     /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.
@@ -527,13 +495,6 @@ export interface SecretBackendArgs {
      */
     discoverdn?: pulumi.Input<boolean>;
     /**
-     * Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix". This
-     * setting is deprecated and should instead use `passwordPolicy`.
-     *
-     * @deprecated Formatter is deprecated and password_policy should be used with Vault >= 1.5.
-     */
-    formatter?: pulumi.Input<string>;
-    /**
      * LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
      * user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
      */
@@ -557,13 +518,6 @@ export interface SecretBackendArgs {
      * shows a later rotation, it should be considered out-of-band
      */
     lastRotationTolerance?: pulumi.Input<number>;
-    /**
-     * The desired length of passwords that Vault generates. This
-     * setting is deprecated and should instead use `passwordPolicy`.
-     *
-     * @deprecated Length is deprecated and password_policy should be used with Vault >= 1.5.
-     */
-    length?: pulumi.Input<number>;
     /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.

@@ -37,6 +37,16 @@ export class Template extends pulumi.CustomResource {
      */
     public readonly alphabet!: pulumi.Output<string | undefined>;
     /**
+     * - Optional mapping of name to regular expression template, used to customize
+     * the decoded output. (requires Vault Enterprise 1.9+)
+     */
+    public readonly decodeFormats!: pulumi.Output<{[key: string]: any} | undefined>;
+    /**
+     * - The regular expression template used to format encoded values.
+     * (requires Vault Enterprise 1.9+)
+     */
+    public readonly encodeFormat!: pulumi.Output<string | undefined>;
+    /**
      * The name of the template.
      */
     public readonly name!: pulumi.Output<string>;
@@ -67,6 +77,8 @@ export class Template extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as TemplateState | undefined;
             inputs["alphabet"] = state ? state.alphabet : undefined;
+            inputs["decodeFormats"] = state ? state.decodeFormats : undefined;
+            inputs["encodeFormat"] = state ? state.encodeFormat : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["path"] = state ? state.path : undefined;
             inputs["pattern"] = state ? state.pattern : undefined;
@@ -77,6 +89,8 @@ export class Template extends pulumi.CustomResource {
                 throw new Error("Missing required property 'path'");
             }
             inputs["alphabet"] = args ? args.alphabet : undefined;
+            inputs["decodeFormats"] = args ? args.decodeFormats : undefined;
+            inputs["encodeFormat"] = args ? args.encodeFormat : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["path"] = args ? args.path : undefined;
             inputs["pattern"] = args ? args.pattern : undefined;
@@ -97,6 +111,16 @@ export interface TemplateState {
      * The alphabet to use for this template. This is only used during FPE transformations.
      */
     alphabet?: pulumi.Input<string>;
+    /**
+     * - Optional mapping of name to regular expression template, used to customize
+     * the decoded output. (requires Vault Enterprise 1.9+)
+     */
+    decodeFormats?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * - The regular expression template used to format encoded values.
+     * (requires Vault Enterprise 1.9+)
+     */
+    encodeFormat?: pulumi.Input<string>;
     /**
      * The name of the template.
      */
@@ -123,6 +147,16 @@ export interface TemplateArgs {
      * The alphabet to use for this template. This is only used during FPE transformations.
      */
     alphabet?: pulumi.Input<string>;
+    /**
+     * - Optional mapping of name to regular expression template, used to customize
+     * the decoded output. (requires Vault Enterprise 1.9+)
+     */
+    decodeFormats?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * - The regular expression template used to format encoded values.
+     * (requires Vault Enterprise 1.9+)
+     */
+    encodeFormat?: pulumi.Input<string>;
     /**
      * The name of the template.
      */

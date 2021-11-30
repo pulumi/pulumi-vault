@@ -70,29 +70,6 @@ namespace Pulumi.Vault.AppRole
         public Output<bool?> BindSecretId { get; private set; } = null!;
 
         /// <summary>
-        /// If set,
-        /// specifies blocks of IP addresses which can perform the login operation.
-        /// </summary>
-        [Output("boundCidrLists")]
-        public Output<ImmutableArray<string>> BoundCidrLists { get; private set; } = null!;
-
-        /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
-        /// </summary>
-        [Output("period")]
-        public Output<int?> Period { get; private set; } = null!;
-
-        /// <summary>
-        /// An array of strings
-        /// specifying the policies to be set on tokens issued using this role.
-        /// </summary>
-        [Output("policies")]
-        public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
-
-        /// <summary>
         /// The RoleID of this role. If not specified, one will be
         /// auto-generated.
         /// </summary>
@@ -259,43 +236,6 @@ namespace Pulumi.Vault.AppRole
         [Input("bindSecretId")]
         public Input<bool>? BindSecretId { get; set; }
 
-        [Input("boundCidrLists")]
-        private InputList<string>? _boundCidrLists;
-
-        /// <summary>
-        /// If set,
-        /// specifies blocks of IP addresses which can perform the login operation.
-        /// </summary>
-        [Obsolete(@"use `secret_id_bound_cidrs` instead")]
-        public InputList<string> BoundCidrLists
-        {
-            get => _boundCidrLists ?? (_boundCidrLists = new InputList<string>());
-            set => _boundCidrLists = value;
-        }
-
-        /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
-        /// </summary>
-        [Input("period")]
-        public Input<int>? Period { get; set; }
-
-        [Input("policies")]
-        private InputList<string>? _policies;
-
-        /// <summary>
-        /// An array of strings
-        /// specifying the policies to be set on tokens issued using this role.
-        /// </summary>
-        [Obsolete(@"use `token_policies` instead if you are running Vault >= 1.2")]
-        public InputList<string> Policies
-        {
-            get => _policies ?? (_policies = new InputList<string>());
-            set => _policies = value;
-        }
-
         /// <summary>
         /// The RoleID of this role. If not specified, one will be
         /// auto-generated.
@@ -441,43 +381,6 @@ namespace Pulumi.Vault.AppRole
         /// </summary>
         [Input("bindSecretId")]
         public Input<bool>? BindSecretId { get; set; }
-
-        [Input("boundCidrLists")]
-        private InputList<string>? _boundCidrLists;
-
-        /// <summary>
-        /// If set,
-        /// specifies blocks of IP addresses which can perform the login operation.
-        /// </summary>
-        [Obsolete(@"use `secret_id_bound_cidrs` instead")]
-        public InputList<string> BoundCidrLists
-        {
-            get => _boundCidrLists ?? (_boundCidrLists = new InputList<string>());
-            set => _boundCidrLists = value;
-        }
-
-        /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
-        /// </summary>
-        [Input("period")]
-        public Input<int>? Period { get; set; }
-
-        [Input("policies")]
-        private InputList<string>? _policies;
-
-        /// <summary>
-        /// An array of strings
-        /// specifying the policies to be set on tokens issued using this role.
-        /// </summary>
-        [Obsolete(@"use `token_policies` instead if you are running Vault >= 1.2")]
-        public InputList<string> Policies
-        {
-            get => _policies ?? (_policies = new InputList<string>());
-            set => _policies = value;
-        }
 
         /// <summary>
         /// The RoleID of this role. If not specified, one will be

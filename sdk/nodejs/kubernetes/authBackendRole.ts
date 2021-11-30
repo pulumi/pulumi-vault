@@ -76,13 +76,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
-     * If set, a list of
-     * CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-     *
-     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
-     */
-    public readonly boundCidrs!: pulumi.Output<string[] | undefined>;
-    /**
      * List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and boundServiceAccountNamespaces can not be "*".
      */
     public readonly boundServiceAccountNames!: pulumi.Output<string[]>;
@@ -90,36 +83,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
      */
     public readonly boundServiceAccountNamespaces!: pulumi.Output<string[]>;
-    /**
-     * The maximum allowed lifetime of tokens
-     * issued using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
-     */
-    public readonly maxTtl!: pulumi.Output<number | undefined>;
-    /**
-     * If set, puts a use-count
-     * limitation on the issued token.
-     *
-     * @deprecated use `token_num_uses` instead if you are running Vault >= 1.2
-     */
-    public readonly numUses!: pulumi.Output<number | undefined>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    public readonly period!: pulumi.Output<number | undefined>;
-    /**
-     * An array of strings
-     * specifying the policies to be set on tokens issued using this role.
-     *
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    public readonly policies!: pulumi.Output<string[] | undefined>;
     /**
      * Name of the role.
      */
@@ -178,13 +141,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * requests a different type at generation time.
      */
     public readonly tokenType!: pulumi.Output<string | undefined>;
-    /**
-     * The TTL period of tokens issued
-     * using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
-     */
-    public readonly ttl!: pulumi.Output<number | undefined>;
 
     /**
      * Create a AuthBackendRole resource with the given unique name, arguments, and options.
@@ -201,13 +157,8 @@ export class AuthBackendRole extends pulumi.CustomResource {
             const state = argsOrState as AuthBackendRoleState | undefined;
             inputs["audience"] = state ? state.audience : undefined;
             inputs["backend"] = state ? state.backend : undefined;
-            inputs["boundCidrs"] = state ? state.boundCidrs : undefined;
             inputs["boundServiceAccountNames"] = state ? state.boundServiceAccountNames : undefined;
             inputs["boundServiceAccountNamespaces"] = state ? state.boundServiceAccountNamespaces : undefined;
-            inputs["maxTtl"] = state ? state.maxTtl : undefined;
-            inputs["numUses"] = state ? state.numUses : undefined;
-            inputs["period"] = state ? state.period : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
             inputs["roleName"] = state ? state.roleName : undefined;
             inputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
             inputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
@@ -218,7 +169,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
             inputs["tokenTtl"] = state ? state.tokenTtl : undefined;
             inputs["tokenType"] = state ? state.tokenType : undefined;
-            inputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
             if ((!args || args.boundServiceAccountNames === undefined) && !opts.urn) {
@@ -232,13 +182,8 @@ export class AuthBackendRole extends pulumi.CustomResource {
             }
             inputs["audience"] = args ? args.audience : undefined;
             inputs["backend"] = args ? args.backend : undefined;
-            inputs["boundCidrs"] = args ? args.boundCidrs : undefined;
             inputs["boundServiceAccountNames"] = args ? args.boundServiceAccountNames : undefined;
             inputs["boundServiceAccountNamespaces"] = args ? args.boundServiceAccountNamespaces : undefined;
-            inputs["maxTtl"] = args ? args.maxTtl : undefined;
-            inputs["numUses"] = args ? args.numUses : undefined;
-            inputs["period"] = args ? args.period : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
             inputs["roleName"] = args ? args.roleName : undefined;
             inputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
             inputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
@@ -249,7 +194,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
             inputs["tokenTtl"] = args ? args.tokenTtl : undefined;
             inputs["tokenType"] = args ? args.tokenType : undefined;
-            inputs["ttl"] = args ? args.ttl : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -271,13 +215,6 @@ export interface AuthBackendRoleState {
      */
     backend?: pulumi.Input<string>;
     /**
-     * If set, a list of
-     * CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-     *
-     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
-     */
-    boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
      * List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and boundServiceAccountNamespaces can not be "*".
      */
     boundServiceAccountNames?: pulumi.Input<pulumi.Input<string>[]>;
@@ -285,36 +222,6 @@ export interface AuthBackendRoleState {
      * List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
      */
     boundServiceAccountNamespaces?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The maximum allowed lifetime of tokens
-     * issued using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
-     */
-    maxTtl?: pulumi.Input<number>;
-    /**
-     * If set, puts a use-count
-     * limitation on the issued token.
-     *
-     * @deprecated use `token_num_uses` instead if you are running Vault >= 1.2
-     */
-    numUses?: pulumi.Input<number>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    period?: pulumi.Input<number>;
-    /**
-     * An array of strings
-     * specifying the policies to be set on tokens issued using this role.
-     *
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Name of the role.
      */
@@ -373,13 +280,6 @@ export interface AuthBackendRoleState {
      * requests a different type at generation time.
      */
     tokenType?: pulumi.Input<string>;
-    /**
-     * The TTL period of tokens issued
-     * using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
-     */
-    ttl?: pulumi.Input<number>;
 }
 
 /**
@@ -395,13 +295,6 @@ export interface AuthBackendRoleArgs {
      */
     backend?: pulumi.Input<string>;
     /**
-     * If set, a list of
-     * CIDRs valid as the source address for login requests. This value is also encoded into any resulting token.
-     *
-     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
-     */
-    boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
      * List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and boundServiceAccountNamespaces can not be "*".
      */
     boundServiceAccountNames: pulumi.Input<pulumi.Input<string>[]>;
@@ -409,36 +302,6 @@ export interface AuthBackendRoleArgs {
      * List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
      */
     boundServiceAccountNamespaces: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The maximum allowed lifetime of tokens
-     * issued using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
-     */
-    maxTtl?: pulumi.Input<number>;
-    /**
-     * If set, puts a use-count
-     * limitation on the issued token.
-     *
-     * @deprecated use `token_num_uses` instead if you are running Vault >= 1.2
-     */
-    numUses?: pulumi.Input<number>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    period?: pulumi.Input<number>;
-    /**
-     * An array of strings
-     * specifying the policies to be set on tokens issued using this role.
-     *
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Name of the role.
      */
@@ -497,11 +360,4 @@ export interface AuthBackendRoleArgs {
      * requests a different type at generation time.
      */
     tokenType?: pulumi.Input<string>;
-    /**
-     * The TTL period of tokens issued
-     * using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
-     */
-    ttl?: pulumi.Input<number>;
 }

@@ -29,9 +29,6 @@ class AuthBackendRoleArgs:
                  disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
                  inferred_aws_region: Optional[pulumi.Input[str]] = None,
                  inferred_entity_type: Optional[pulumi.Input[str]] = None,
-                 max_ttl: Optional[pulumi.Input[int]] = None,
-                 period: Optional[pulumi.Input[int]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  resolve_aws_unique_ids: Optional[pulumi.Input[bool]] = None,
                  role_tag: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -42,8 +39,7 @@ class AuthBackendRoleArgs:
                  token_period: Optional[pulumi.Input[int]] = None,
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_ttl: Optional[pulumi.Input[int]] = None,
-                 token_type: Optional[pulumi.Input[str]] = None,
-                 ttl: Optional[pulumi.Input[int]] = None):
+                 token_type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AuthBackendRole resource.
         :param pulumi.Input[str] role: The name of the role.
@@ -100,14 +96,6 @@ class AuthBackendRoleArgs:
                inferencing. The only valid value is `ec2_instance`, which instructs Vault to
                infer that the role comes from an EC2 instance in an IAM instance profile.
                This only applies when `auth_type` is set to `iam`.
-        :param pulumi.Input[int] max_ttl: The maximum allowed lifetime of tokens
-               issued using this role, provided as a number of seconds.
-        :param pulumi.Input[int] period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings
-               specifying the policies to be set on tokens issued using this role.
         :param pulumi.Input[bool] resolve_aws_unique_ids: Only valid when
                `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
                resolved to [AWS Unique
@@ -150,8 +138,6 @@ class AuthBackendRoleArgs:
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
-        :param pulumi.Input[int] ttl: The TTL period of tokens issued
-               using this role, provided as a number of seconds.
         """
         pulumi.set(__self__, "role", role)
         if allow_instance_migration is not None:
@@ -184,21 +170,6 @@ class AuthBackendRoleArgs:
             pulumi.set(__self__, "inferred_aws_region", inferred_aws_region)
         if inferred_entity_type is not None:
             pulumi.set(__self__, "inferred_entity_type", inferred_entity_type)
-        if max_ttl is not None:
-            warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2""")
-        if max_ttl is not None:
-            pulumi.set(__self__, "max_ttl", max_ttl)
-        if period is not None:
-            warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""period is deprecated: use `token_period` instead if you are running Vault >= 1.2""")
-        if period is not None:
-            pulumi.set(__self__, "period", period)
-        if policies is not None:
-            warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2""")
-        if policies is not None:
-            pulumi.set(__self__, "policies", policies)
         if resolve_aws_unique_ids is not None:
             pulumi.set(__self__, "resolve_aws_unique_ids", resolve_aws_unique_ids)
         if role_tag is not None:
@@ -221,11 +192,6 @@ class AuthBackendRoleArgs:
             pulumi.set(__self__, "token_ttl", token_ttl)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
-        if ttl is not None:
-            warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2""")
-        if ttl is not None:
-            pulumi.set(__self__, "ttl", ttl)
 
     @property
     @pulumi.getter
@@ -458,47 +424,6 @@ class AuthBackendRoleArgs:
         pulumi.set(self, "inferred_entity_type", value)
 
     @property
-    @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[int]]:
-        """
-        The maximum allowed lifetime of tokens
-        issued using this role, provided as a number of seconds.
-        """
-        return pulumi.get(self, "max_ttl")
-
-    @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "max_ttl", value)
-
-    @property
-    @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[int]]:
-        """
-        If set, indicates that the
-        token generated using this role should never expire. The token should be renewed within the
-        duration specified by this value. At each renewal, the token's TTL will be set to the
-        value of this field. Specified in seconds.
-        """
-        return pulumi.get(self, "period")
-
-    @period.setter
-    def period(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "period", value)
-
-    @property
-    @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        An array of strings
-        specifying the policies to be set on tokens issued using this role.
-        """
-        return pulumi.get(self, "policies")
-
-    @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "policies", value)
-
-    @property
     @pulumi.getter(name="resolveAwsUniqueIds")
     def resolve_aws_unique_ids(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -661,19 +586,6 @@ class AuthBackendRoleArgs:
     def token_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "token_type", value)
 
-    @property
-    @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[int]]:
-        """
-        The TTL period of tokens issued
-        using this role, provided as a number of seconds.
-        """
-        return pulumi.get(self, "ttl")
-
-    @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "ttl", value)
-
 
 @pulumi.input_type
 class _AuthBackendRoleState:
@@ -693,9 +605,6 @@ class _AuthBackendRoleState:
                  disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
                  inferred_aws_region: Optional[pulumi.Input[str]] = None,
                  inferred_entity_type: Optional[pulumi.Input[str]] = None,
-                 max_ttl: Optional[pulumi.Input[int]] = None,
-                 period: Optional[pulumi.Input[int]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  resolve_aws_unique_ids: Optional[pulumi.Input[bool]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  role_tag: Optional[pulumi.Input[str]] = None,
@@ -707,8 +616,7 @@ class _AuthBackendRoleState:
                  token_period: Optional[pulumi.Input[int]] = None,
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_ttl: Optional[pulumi.Input[int]] = None,
-                 token_type: Optional[pulumi.Input[str]] = None,
-                 ttl: Optional[pulumi.Input[int]] = None):
+                 token_type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRole resources.
         :param pulumi.Input[bool] allow_instance_migration: If set to `true`, allows migration of
@@ -764,14 +672,6 @@ class _AuthBackendRoleState:
                inferencing. The only valid value is `ec2_instance`, which instructs Vault to
                infer that the role comes from an EC2 instance in an IAM instance profile.
                This only applies when `auth_type` is set to `iam`.
-        :param pulumi.Input[int] max_ttl: The maximum allowed lifetime of tokens
-               issued using this role, provided as a number of seconds.
-        :param pulumi.Input[int] period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings
-               specifying the policies to be set on tokens issued using this role.
         :param pulumi.Input[bool] resolve_aws_unique_ids: Only valid when
                `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
                resolved to [AWS Unique
@@ -815,8 +715,6 @@ class _AuthBackendRoleState:
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
-        :param pulumi.Input[int] ttl: The TTL period of tokens issued
-               using this role, provided as a number of seconds.
         """
         if allow_instance_migration is not None:
             pulumi.set(__self__, "allow_instance_migration", allow_instance_migration)
@@ -848,21 +746,6 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "inferred_aws_region", inferred_aws_region)
         if inferred_entity_type is not None:
             pulumi.set(__self__, "inferred_entity_type", inferred_entity_type)
-        if max_ttl is not None:
-            warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2""")
-        if max_ttl is not None:
-            pulumi.set(__self__, "max_ttl", max_ttl)
-        if period is not None:
-            warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""period is deprecated: use `token_period` instead if you are running Vault >= 1.2""")
-        if period is not None:
-            pulumi.set(__self__, "period", period)
-        if policies is not None:
-            warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2""")
-        if policies is not None:
-            pulumi.set(__self__, "policies", policies)
         if resolve_aws_unique_ids is not None:
             pulumi.set(__self__, "resolve_aws_unique_ids", resolve_aws_unique_ids)
         if role is not None:
@@ -887,11 +770,6 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "token_ttl", token_ttl)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
-        if ttl is not None:
-            warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2""")
-        if ttl is not None:
-            pulumi.set(__self__, "ttl", ttl)
 
     @property
     @pulumi.getter(name="allowInstanceMigration")
@@ -1112,47 +990,6 @@ class _AuthBackendRoleState:
         pulumi.set(self, "inferred_entity_type", value)
 
     @property
-    @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[int]]:
-        """
-        The maximum allowed lifetime of tokens
-        issued using this role, provided as a number of seconds.
-        """
-        return pulumi.get(self, "max_ttl")
-
-    @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "max_ttl", value)
-
-    @property
-    @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[int]]:
-        """
-        If set, indicates that the
-        token generated using this role should never expire. The token should be renewed within the
-        duration specified by this value. At each renewal, the token's TTL will be set to the
-        value of this field. Specified in seconds.
-        """
-        return pulumi.get(self, "period")
-
-    @period.setter
-    def period(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "period", value)
-
-    @property
-    @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        An array of strings
-        specifying the policies to be set on tokens issued using this role.
-        """
-        return pulumi.get(self, "policies")
-
-    @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "policies", value)
-
-    @property
     @pulumi.getter(name="resolveAwsUniqueIds")
     def resolve_aws_unique_ids(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -1327,19 +1164,6 @@ class _AuthBackendRoleState:
     def token_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "token_type", value)
 
-    @property
-    @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[int]]:
-        """
-        The TTL period of tokens issued
-        using this role, provided as a number of seconds.
-        """
-        return pulumi.get(self, "ttl")
-
-    @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "ttl", value)
-
 
 class AuthBackendRole(pulumi.CustomResource):
     @overload
@@ -1361,9 +1185,6 @@ class AuthBackendRole(pulumi.CustomResource):
                  disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
                  inferred_aws_region: Optional[pulumi.Input[str]] = None,
                  inferred_entity_type: Optional[pulumi.Input[str]] = None,
-                 max_ttl: Optional[pulumi.Input[int]] = None,
-                 period: Optional[pulumi.Input[int]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  resolve_aws_unique_ids: Optional[pulumi.Input[bool]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  role_tag: Optional[pulumi.Input[str]] = None,
@@ -1376,7 +1197,6 @@ class AuthBackendRole(pulumi.CustomResource):
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_ttl: Optional[pulumi.Input[int]] = None,
                  token_type: Optional[pulumi.Input[str]] = None,
-                 ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
         Manages an AWS auth backend role in a Vault server. Roles constrain the
@@ -1476,14 +1296,6 @@ class AuthBackendRole(pulumi.CustomResource):
                inferencing. The only valid value is `ec2_instance`, which instructs Vault to
                infer that the role comes from an EC2 instance in an IAM instance profile.
                This only applies when `auth_type` is set to `iam`.
-        :param pulumi.Input[int] max_ttl: The maximum allowed lifetime of tokens
-               issued using this role, provided as a number of seconds.
-        :param pulumi.Input[int] period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings
-               specifying the policies to be set on tokens issued using this role.
         :param pulumi.Input[bool] resolve_aws_unique_ids: Only valid when
                `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
                resolved to [AWS Unique
@@ -1527,8 +1339,6 @@ class AuthBackendRole(pulumi.CustomResource):
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
-        :param pulumi.Input[int] ttl: The TTL period of tokens issued
-               using this role, provided as a number of seconds.
         """
         ...
     @overload
@@ -1609,9 +1419,6 @@ class AuthBackendRole(pulumi.CustomResource):
                  disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
                  inferred_aws_region: Optional[pulumi.Input[str]] = None,
                  inferred_entity_type: Optional[pulumi.Input[str]] = None,
-                 max_ttl: Optional[pulumi.Input[int]] = None,
-                 period: Optional[pulumi.Input[int]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  resolve_aws_unique_ids: Optional[pulumi.Input[bool]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  role_tag: Optional[pulumi.Input[str]] = None,
@@ -1624,7 +1431,6 @@ class AuthBackendRole(pulumi.CustomResource):
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_ttl: Optional[pulumi.Input[int]] = None,
                  token_type: Optional[pulumi.Input[str]] = None,
-                 ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -1652,18 +1458,6 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__.__dict__["disallow_reauthentication"] = disallow_reauthentication
             __props__.__dict__["inferred_aws_region"] = inferred_aws_region
             __props__.__dict__["inferred_entity_type"] = inferred_entity_type
-            if max_ttl is not None and not opts.urn:
-                warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-                pulumi.log.warn("""max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2""")
-            __props__.__dict__["max_ttl"] = max_ttl
-            if period is not None and not opts.urn:
-                warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
-                pulumi.log.warn("""period is deprecated: use `token_period` instead if you are running Vault >= 1.2""")
-            __props__.__dict__["period"] = period
-            if policies is not None and not opts.urn:
-                warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
-                pulumi.log.warn("""policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2""")
-            __props__.__dict__["policies"] = policies
             __props__.__dict__["resolve_aws_unique_ids"] = resolve_aws_unique_ids
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
@@ -1678,10 +1472,6 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__.__dict__["token_policies"] = token_policies
             __props__.__dict__["token_ttl"] = token_ttl
             __props__.__dict__["token_type"] = token_type
-            if ttl is not None and not opts.urn:
-                warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-                pulumi.log.warn("""ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2""")
-            __props__.__dict__["ttl"] = ttl
         super(AuthBackendRole, __self__).__init__(
             'vault:aws/authBackendRole:AuthBackendRole',
             resource_name,
@@ -1707,9 +1497,6 @@ class AuthBackendRole(pulumi.CustomResource):
             disallow_reauthentication: Optional[pulumi.Input[bool]] = None,
             inferred_aws_region: Optional[pulumi.Input[str]] = None,
             inferred_entity_type: Optional[pulumi.Input[str]] = None,
-            max_ttl: Optional[pulumi.Input[int]] = None,
-            period: Optional[pulumi.Input[int]] = None,
-            policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             resolve_aws_unique_ids: Optional[pulumi.Input[bool]] = None,
             role: Optional[pulumi.Input[str]] = None,
             role_tag: Optional[pulumi.Input[str]] = None,
@@ -1721,8 +1508,7 @@ class AuthBackendRole(pulumi.CustomResource):
             token_period: Optional[pulumi.Input[int]] = None,
             token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             token_ttl: Optional[pulumi.Input[int]] = None,
-            token_type: Optional[pulumi.Input[str]] = None,
-            ttl: Optional[pulumi.Input[int]] = None) -> 'AuthBackendRole':
+            token_type: Optional[pulumi.Input[str]] = None) -> 'AuthBackendRole':
         """
         Get an existing AuthBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1783,14 +1569,6 @@ class AuthBackendRole(pulumi.CustomResource):
                inferencing. The only valid value is `ec2_instance`, which instructs Vault to
                infer that the role comes from an EC2 instance in an IAM instance profile.
                This only applies when `auth_type` is set to `iam`.
-        :param pulumi.Input[int] max_ttl: The maximum allowed lifetime of tokens
-               issued using this role, provided as a number of seconds.
-        :param pulumi.Input[int] period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings
-               specifying the policies to be set on tokens issued using this role.
         :param pulumi.Input[bool] resolve_aws_unique_ids: Only valid when
                `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
                resolved to [AWS Unique
@@ -1834,8 +1612,6 @@ class AuthBackendRole(pulumi.CustomResource):
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
-        :param pulumi.Input[int] ttl: The TTL period of tokens issued
-               using this role, provided as a number of seconds.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1856,9 +1632,6 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["disallow_reauthentication"] = disallow_reauthentication
         __props__.__dict__["inferred_aws_region"] = inferred_aws_region
         __props__.__dict__["inferred_entity_type"] = inferred_entity_type
-        __props__.__dict__["max_ttl"] = max_ttl
-        __props__.__dict__["period"] = period
-        __props__.__dict__["policies"] = policies
         __props__.__dict__["resolve_aws_unique_ids"] = resolve_aws_unique_ids
         __props__.__dict__["role"] = role
         __props__.__dict__["role_tag"] = role_tag
@@ -1871,7 +1644,6 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["token_policies"] = token_policies
         __props__.__dict__["token_ttl"] = token_ttl
         __props__.__dict__["token_type"] = token_type
-        __props__.__dict__["ttl"] = ttl
         return AuthBackendRole(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -2033,35 +1805,6 @@ class AuthBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "inferred_entity_type")
 
     @property
-    @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> pulumi.Output[Optional[int]]:
-        """
-        The maximum allowed lifetime of tokens
-        issued using this role, provided as a number of seconds.
-        """
-        return pulumi.get(self, "max_ttl")
-
-    @property
-    @pulumi.getter
-    def period(self) -> pulumi.Output[Optional[int]]:
-        """
-        If set, indicates that the
-        token generated using this role should never expire. The token should be renewed within the
-        duration specified by this value. At each renewal, the token's TTL will be set to the
-        value of this field. Specified in seconds.
-        """
-        return pulumi.get(self, "period")
-
-    @property
-    @pulumi.getter
-    def policies(self) -> pulumi.Output[Optional[Sequence[str]]]:
-        """
-        An array of strings
-        specifying the policies to be set on tokens issued using this role.
-        """
-        return pulumi.get(self, "policies")
-
-    @property
     @pulumi.getter(name="resolveAwsUniqueIds")
     def resolve_aws_unique_ids(self) -> pulumi.Output[Optional[bool]]:
         """
@@ -2187,13 +1930,4 @@ class AuthBackendRole(pulumi.CustomResource):
         requests a different type at generation time.
         """
         return pulumi.get(self, "token_type")
-
-    @property
-    @pulumi.getter
-    def ttl(self) -> pulumi.Output[Optional[int]]:
-        """
-        The TTL period of tokens issued
-        using this role, provided as a number of seconds.
-        """
-        return pulumi.get(self, "ttl")
 

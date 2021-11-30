@@ -16,9 +16,6 @@ class AuthBackendRoleArgs:
                  role_name: pulumi.Input[str],
                  backend: Optional[pulumi.Input[str]] = None,
                  bind_secret_id: Optional[pulumi.Input[bool]] = None,
-                 bound_cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 period: Optional[pulumi.Input[int]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  role_id: Optional[pulumi.Input[str]] = None,
                  secret_id_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  secret_id_num_uses: Optional[pulumi.Input[int]] = None,
@@ -39,14 +36,6 @@ class AuthBackendRoleArgs:
                Defaults to `approle`.
         :param pulumi.Input[bool] bind_secret_id: Whether or not to require `secret_id` to be
                presented when logging in using this AppRole. Defaults to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_cidr_lists: If set,
-               specifies blocks of IP addresses which can perform the login operation.
-        :param pulumi.Input[int] period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings
-               specifying the policies to be set on tokens issued using this role.
         :param pulumi.Input[str] role_id: The RoleID of this role. If not specified, one will be
                auto-generated.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] secret_id_bound_cidrs: If set,
@@ -89,21 +78,6 @@ class AuthBackendRoleArgs:
             pulumi.set(__self__, "backend", backend)
         if bind_secret_id is not None:
             pulumi.set(__self__, "bind_secret_id", bind_secret_id)
-        if bound_cidr_lists is not None:
-            warnings.warn("""use `secret_id_bound_cidrs` instead""", DeprecationWarning)
-            pulumi.log.warn("""bound_cidr_lists is deprecated: use `secret_id_bound_cidrs` instead""")
-        if bound_cidr_lists is not None:
-            pulumi.set(__self__, "bound_cidr_lists", bound_cidr_lists)
-        if period is not None:
-            warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""period is deprecated: use `token_period` instead if you are running Vault >= 1.2""")
-        if period is not None:
-            pulumi.set(__self__, "period", period)
-        if policies is not None:
-            warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2""")
-        if policies is not None:
-            pulumi.set(__self__, "policies", policies)
         if role_id is not None:
             pulumi.set(__self__, "role_id", role_id)
         if secret_id_bound_cidrs is not None:
@@ -168,47 +142,6 @@ class AuthBackendRoleArgs:
     @bind_secret_id.setter
     def bind_secret_id(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "bind_secret_id", value)
-
-    @property
-    @pulumi.getter(name="boundCidrLists")
-    def bound_cidr_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        If set,
-        specifies blocks of IP addresses which can perform the login operation.
-        """
-        return pulumi.get(self, "bound_cidr_lists")
-
-    @bound_cidr_lists.setter
-    def bound_cidr_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "bound_cidr_lists", value)
-
-    @property
-    @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[int]]:
-        """
-        If set, indicates that the
-        token generated using this role should never expire. The token should be renewed within the
-        duration specified by this value. At each renewal, the token's TTL will be set to the
-        value of this field. Specified in seconds.
-        """
-        return pulumi.get(self, "period")
-
-    @period.setter
-    def period(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "period", value)
-
-    @property
-    @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        An array of strings
-        specifying the policies to be set on tokens issued using this role.
-        """
-        return pulumi.get(self, "policies")
-
-    @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "policies", value)
 
     @property
     @pulumi.getter(name="roleId")
@@ -395,9 +328,6 @@ class _AuthBackendRoleState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  bind_secret_id: Optional[pulumi.Input[bool]] = None,
-                 bound_cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 period: Optional[pulumi.Input[int]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  role_id: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  secret_id_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -418,14 +348,6 @@ class _AuthBackendRoleState:
                Defaults to `approle`.
         :param pulumi.Input[bool] bind_secret_id: Whether or not to require `secret_id` to be
                presented when logging in using this AppRole. Defaults to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_cidr_lists: If set,
-               specifies blocks of IP addresses which can perform the login operation.
-        :param pulumi.Input[int] period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings
-               specifying the policies to be set on tokens issued using this role.
         :param pulumi.Input[str] role_id: The RoleID of this role. If not specified, one will be
                auto-generated.
         :param pulumi.Input[str] role_name: The name of the role.
@@ -468,21 +390,6 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "backend", backend)
         if bind_secret_id is not None:
             pulumi.set(__self__, "bind_secret_id", bind_secret_id)
-        if bound_cidr_lists is not None:
-            warnings.warn("""use `secret_id_bound_cidrs` instead""", DeprecationWarning)
-            pulumi.log.warn("""bound_cidr_lists is deprecated: use `secret_id_bound_cidrs` instead""")
-        if bound_cidr_lists is not None:
-            pulumi.set(__self__, "bound_cidr_lists", bound_cidr_lists)
-        if period is not None:
-            warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""period is deprecated: use `token_period` instead if you are running Vault >= 1.2""")
-        if period is not None:
-            pulumi.set(__self__, "period", period)
-        if policies is not None:
-            warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2""")
-        if policies is not None:
-            pulumi.set(__self__, "policies", policies)
         if role_id is not None:
             pulumi.set(__self__, "role_id", role_id)
         if role_name is not None:
@@ -537,47 +444,6 @@ class _AuthBackendRoleState:
     @bind_secret_id.setter
     def bind_secret_id(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "bind_secret_id", value)
-
-    @property
-    @pulumi.getter(name="boundCidrLists")
-    def bound_cidr_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        If set,
-        specifies blocks of IP addresses which can perform the login operation.
-        """
-        return pulumi.get(self, "bound_cidr_lists")
-
-    @bound_cidr_lists.setter
-    def bound_cidr_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "bound_cidr_lists", value)
-
-    @property
-    @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[int]]:
-        """
-        If set, indicates that the
-        token generated using this role should never expire. The token should be renewed within the
-        duration specified by this value. At each renewal, the token's TTL will be set to the
-        value of this field. Specified in seconds.
-        """
-        return pulumi.get(self, "period")
-
-    @period.setter
-    def period(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "period", value)
-
-    @property
-    @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        An array of strings
-        specifying the policies to be set on tokens issued using this role.
-        """
-        return pulumi.get(self, "policies")
-
-    @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "policies", value)
 
     @property
     @pulumi.getter(name="roleId")
@@ -778,9 +644,6 @@ class AuthBackendRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  bind_secret_id: Optional[pulumi.Input[bool]] = None,
-                 bound_cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 period: Optional[pulumi.Input[int]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  role_id: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  secret_id_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -832,14 +695,6 @@ class AuthBackendRole(pulumi.CustomResource):
                Defaults to `approle`.
         :param pulumi.Input[bool] bind_secret_id: Whether or not to require `secret_id` to be
                presented when logging in using this AppRole. Defaults to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_cidr_lists: If set,
-               specifies blocks of IP addresses which can perform the login operation.
-        :param pulumi.Input[int] period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings
-               specifying the policies to be set on tokens issued using this role.
         :param pulumi.Input[str] role_id: The RoleID of this role. If not specified, one will be
                auto-generated.
         :param pulumi.Input[str] role_name: The name of the role.
@@ -931,9 +786,6 @@ class AuthBackendRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  bind_secret_id: Optional[pulumi.Input[bool]] = None,
-                 bound_cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 period: Optional[pulumi.Input[int]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  role_id: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  secret_id_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -962,18 +814,6 @@ class AuthBackendRole(pulumi.CustomResource):
 
             __props__.__dict__["backend"] = backend
             __props__.__dict__["bind_secret_id"] = bind_secret_id
-            if bound_cidr_lists is not None and not opts.urn:
-                warnings.warn("""use `secret_id_bound_cidrs` instead""", DeprecationWarning)
-                pulumi.log.warn("""bound_cidr_lists is deprecated: use `secret_id_bound_cidrs` instead""")
-            __props__.__dict__["bound_cidr_lists"] = bound_cidr_lists
-            if period is not None and not opts.urn:
-                warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
-                pulumi.log.warn("""period is deprecated: use `token_period` instead if you are running Vault >= 1.2""")
-            __props__.__dict__["period"] = period
-            if policies is not None and not opts.urn:
-                warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
-                pulumi.log.warn("""policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2""")
-            __props__.__dict__["policies"] = policies
             __props__.__dict__["role_id"] = role_id
             if role_name is None and not opts.urn:
                 raise TypeError("Missing required property 'role_name'")
@@ -1002,9 +842,6 @@ class AuthBackendRole(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             bind_secret_id: Optional[pulumi.Input[bool]] = None,
-            bound_cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            period: Optional[pulumi.Input[int]] = None,
-            policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             role_id: Optional[pulumi.Input[str]] = None,
             role_name: Optional[pulumi.Input[str]] = None,
             secret_id_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1030,14 +867,6 @@ class AuthBackendRole(pulumi.CustomResource):
                Defaults to `approle`.
         :param pulumi.Input[bool] bind_secret_id: Whether or not to require `secret_id` to be
                presented when logging in using this AppRole. Defaults to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_cidr_lists: If set,
-               specifies blocks of IP addresses which can perform the login operation.
-        :param pulumi.Input[int] period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: An array of strings
-               specifying the policies to be set on tokens issued using this role.
         :param pulumi.Input[str] role_id: The RoleID of this role. If not specified, one will be
                auto-generated.
         :param pulumi.Input[str] role_name: The name of the role.
@@ -1082,9 +911,6 @@ class AuthBackendRole(pulumi.CustomResource):
 
         __props__.__dict__["backend"] = backend
         __props__.__dict__["bind_secret_id"] = bind_secret_id
-        __props__.__dict__["bound_cidr_lists"] = bound_cidr_lists
-        __props__.__dict__["period"] = period
-        __props__.__dict__["policies"] = policies
         __props__.__dict__["role_id"] = role_id
         __props__.__dict__["role_name"] = role_name
         __props__.__dict__["secret_id_bound_cidrs"] = secret_id_bound_cidrs
@@ -1118,35 +944,6 @@ class AuthBackendRole(pulumi.CustomResource):
         presented when logging in using this AppRole. Defaults to `true`.
         """
         return pulumi.get(self, "bind_secret_id")
-
-    @property
-    @pulumi.getter(name="boundCidrLists")
-    def bound_cidr_lists(self) -> pulumi.Output[Optional[Sequence[str]]]:
-        """
-        If set,
-        specifies blocks of IP addresses which can perform the login operation.
-        """
-        return pulumi.get(self, "bound_cidr_lists")
-
-    @property
-    @pulumi.getter
-    def period(self) -> pulumi.Output[Optional[int]]:
-        """
-        If set, indicates that the
-        token generated using this role should never expire. The token should be renewed within the
-        duration specified by this value. At each renewal, the token's TTL will be set to the
-        value of this field. Specified in seconds.
-        """
-        return pulumi.get(self, "period")
-
-    @property
-    @pulumi.getter
-    def policies(self) -> pulumi.Output[Optional[Sequence[str]]]:
-        """
-        An array of strings
-        specifying the policies to be set on tokens issued using this role.
-        """
-        return pulumi.get(self, "policies")
 
     @property
     @pulumi.getter(name="roleId")

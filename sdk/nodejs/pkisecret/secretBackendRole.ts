@@ -13,8 +13,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const pki = new vault.pkisecret.SecretBackend("pki", {
+ * const pki = new vault.Mount("pki", {
  *     path: "pki",
+ *     type: "pki",
  *     defaultLeaseTtlSeconds: 3600,
  *     maxLeaseTtlSeconds: 86400,
  * });

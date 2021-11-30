@@ -8,19 +8,6 @@ import * as utilities from "../utilities";
  * Reads the Role of an Kubernetes from a Vault server. See the [Vault
  * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
  * information.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const role = vault.kubernetes.getAuthBackendRole({
- *     backend: "my-kubernetes-backend",
- *     roleName: "my-role",
- * });
- * export const policies = role.then(role => role.policies);
- * ```
  */
 export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendRoleResult> {
     if (!opts) {
@@ -33,11 +20,6 @@ export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.I
     return pulumi.runtime.invoke("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", {
         "audience": args.audience,
         "backend": args.backend,
-        "boundCidrs": args.boundCidrs,
-        "maxTtl": args.maxTtl,
-        "numUses": args.numUses,
-        "period": args.period,
-        "policies": args.policies,
         "roleName": args.roleName,
         "tokenBoundCidrs": args.tokenBoundCidrs,
         "tokenExplicitMaxTtl": args.tokenExplicitMaxTtl,
@@ -48,7 +30,6 @@ export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.I
         "tokenPolicies": args.tokenPolicies,
         "tokenTtl": args.tokenTtl,
         "tokenType": args.tokenType,
-        "ttl": args.ttl,
     }, opts);
 }
 
@@ -65,26 +46,6 @@ export interface GetAuthBackendRoleArgs {
      * retrieve Role attributes for resides in. Defaults to "kubernetes".
      */
     backend?: string;
-    /**
-     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
-     */
-    boundCidrs?: string[];
-    /**
-     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
-     */
-    maxTtl?: number;
-    /**
-     * @deprecated use `token_num_uses` instead if you are running Vault >= 1.2
-     */
-    numUses?: number;
-    /**
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    period?: number;
-    /**
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    policies?: string[];
     /**
      * The name of the role to retrieve the Role attributes for.
      */
@@ -143,10 +104,6 @@ export interface GetAuthBackendRoleArgs {
      * requests a different type at generation time.
      */
     tokenType?: string;
-    /**
-     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
-     */
-    ttl?: number;
 }
 
 /**
@@ -159,10 +116,6 @@ export interface GetAuthBackendRoleResult {
     readonly audience?: string;
     readonly backend?: string;
     /**
-     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
-     */
-    readonly boundCidrs?: string[];
-    /**
      * List of service account names able to access this role. If set to "*" all names are allowed, both this and boundServiceAccountNamespaces can not be "*".
      */
     readonly boundServiceAccountNames: string[];
@@ -174,22 +127,6 @@ export interface GetAuthBackendRoleResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
-     */
-    readonly maxTtl?: number;
-    /**
-     * @deprecated use `token_num_uses` instead if you are running Vault >= 1.2
-     */
-    readonly numUses?: number;
-    /**
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    readonly period?: number;
-    /**
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    readonly policies?: string[];
     readonly roleName: string;
     /**
      * List of CIDR blocks; if set, specifies blocks of IP
@@ -245,10 +182,6 @@ export interface GetAuthBackendRoleResult {
      * requests a different type at generation time.
      */
     readonly tokenType?: string;
-    /**
-     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
-     */
-    readonly ttl?: number;
 }
 
 export function getAuthBackendRoleOutput(args: GetAuthBackendRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendRoleResult> {
@@ -268,26 +201,6 @@ export interface GetAuthBackendRoleOutputArgs {
      * retrieve Role attributes for resides in. Defaults to "kubernetes".
      */
     backend?: pulumi.Input<string>;
-    /**
-     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
-     */
-    boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
-     */
-    maxTtl?: pulumi.Input<number>;
-    /**
-     * @deprecated use `token_num_uses` instead if you are running Vault >= 1.2
-     */
-    numUses?: pulumi.Input<number>;
-    /**
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    period?: pulumi.Input<number>;
-    /**
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name of the role to retrieve the Role attributes for.
      */
@@ -346,8 +259,4 @@ export interface GetAuthBackendRoleOutputArgs {
      * requests a different type at generation time.
      */
     tokenType?: pulumi.Input<string>;
-    /**
-     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
-     */
-    ttl?: pulumi.Input<number>;
 }

@@ -1294,8 +1294,9 @@ class SecretBackendRole(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        pki = vault.pki_secret.SecretBackend("pki",
+        pki = vault.Mount("pki",
             path="pki",
+            type="pki",
             default_lease_ttl_seconds=3600,
             max_lease_ttl_seconds=86400)
         role = vault.pki_secret.SecretBackendRole("role",
@@ -1375,8 +1376,9 @@ class SecretBackendRole(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        pki = vault.pki_secret.SecretBackend("pki",
+        pki = vault.Mount("pki",
             path="pki",
+            type="pki",
             default_lease_ttl_seconds=3600,
             max_lease_ttl_seconds=86400)
         role = vault.pki_secret.SecretBackendRole("role",

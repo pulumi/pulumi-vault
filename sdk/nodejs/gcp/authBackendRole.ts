@@ -99,29 +99,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly maxJwtExp!: pulumi.Output<string>;
     /**
-     * The maximum allowed lifetime of tokens
-     * issued using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
-     */
-    public readonly maxTtl!: pulumi.Output<string>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    public readonly period!: pulumi.Output<string>;
-    /**
-     * An array of strings
-     * specifying the policies to be set on tokens issued using this role.
-     *
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    public readonly policies!: pulumi.Output<string[]>;
-    /**
      * Name of the GCP role
      */
     public readonly role!: pulumi.Output<string>;
@@ -180,13 +157,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly tokenType!: pulumi.Output<string | undefined>;
     /**
-     * The TTL period of tokens issued
-     * using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
-     */
-    public readonly ttl!: pulumi.Output<string>;
-    /**
      * Type of GCP authentication role (either `gce` or `iam`)
      */
     public readonly type!: pulumi.Output<string>;
@@ -214,9 +184,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["boundServiceAccounts"] = state ? state.boundServiceAccounts : undefined;
             inputs["boundZones"] = state ? state.boundZones : undefined;
             inputs["maxJwtExp"] = state ? state.maxJwtExp : undefined;
-            inputs["maxTtl"] = state ? state.maxTtl : undefined;
-            inputs["period"] = state ? state.period : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
             inputs["role"] = state ? state.role : undefined;
             inputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
             inputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
@@ -227,7 +194,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
             inputs["tokenTtl"] = state ? state.tokenTtl : undefined;
             inputs["tokenType"] = state ? state.tokenType : undefined;
-            inputs["ttl"] = state ? state.ttl : undefined;
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
@@ -247,9 +213,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["boundServiceAccounts"] = args ? args.boundServiceAccounts : undefined;
             inputs["boundZones"] = args ? args.boundZones : undefined;
             inputs["maxJwtExp"] = args ? args.maxJwtExp : undefined;
-            inputs["maxTtl"] = args ? args.maxTtl : undefined;
-            inputs["period"] = args ? args.period : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
             inputs["role"] = args ? args.role : undefined;
             inputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
             inputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
@@ -260,7 +223,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
             inputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
             inputs["tokenTtl"] = args ? args.tokenTtl : undefined;
             inputs["tokenType"] = args ? args.tokenType : undefined;
-            inputs["ttl"] = args ? args.ttl : undefined;
             inputs["type"] = args ? args.type : undefined;
         }
         if (!opts.version) {
@@ -311,29 +273,6 @@ export interface AuthBackendRoleState {
      * The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
      */
     maxJwtExp?: pulumi.Input<string>;
-    /**
-     * The maximum allowed lifetime of tokens
-     * issued using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
-     */
-    maxTtl?: pulumi.Input<string>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    period?: pulumi.Input<string>;
-    /**
-     * An array of strings
-     * specifying the policies to be set on tokens issued using this role.
-     *
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Name of the GCP role
      */
@@ -393,13 +332,6 @@ export interface AuthBackendRoleState {
      */
     tokenType?: pulumi.Input<string>;
     /**
-     * The TTL period of tokens issued
-     * using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
-     */
-    ttl?: pulumi.Input<string>;
-    /**
      * Type of GCP authentication role (either `gce` or `iam`)
      */
     type?: pulumi.Input<string>;
@@ -446,29 +378,6 @@ export interface AuthBackendRoleArgs {
      * The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
      */
     maxJwtExp?: pulumi.Input<string>;
-    /**
-     * The maximum allowed lifetime of tokens
-     * issued using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
-     */
-    maxTtl?: pulumi.Input<string>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    period?: pulumi.Input<string>;
-    /**
-     * An array of strings
-     * specifying the policies to be set on tokens issued using this role.
-     *
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Name of the GCP role
      */
@@ -527,13 +436,6 @@ export interface AuthBackendRoleArgs {
      * requests a different type at generation time.
      */
     tokenType?: pulumi.Input<string>;
-    /**
-     * The TTL period of tokens issued
-     * using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
-     */
-    ttl?: pulumi.Input<string>;
     /**
      * Type of GCP authentication role (either `gce` or `iam`)
      */

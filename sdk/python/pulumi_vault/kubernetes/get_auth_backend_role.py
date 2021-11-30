@@ -20,20 +20,13 @@ class GetAuthBackendRoleResult:
     """
     A collection of values returned by getAuthBackendRole.
     """
-    def __init__(__self__, audience=None, backend=None, bound_cidrs=None, bound_service_account_names=None, bound_service_account_namespaces=None, id=None, max_ttl=None, num_uses=None, period=None, policies=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, ttl=None):
+    def __init__(__self__, audience=None, backend=None, bound_service_account_names=None, bound_service_account_namespaces=None, id=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None):
         if audience and not isinstance(audience, str):
             raise TypeError("Expected argument 'audience' to be a str")
         pulumi.set(__self__, "audience", audience)
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         pulumi.set(__self__, "backend", backend)
-        if bound_cidrs and not isinstance(bound_cidrs, list):
-            raise TypeError("Expected argument 'bound_cidrs' to be a list")
-        if bound_cidrs is not None:
-            warnings.warn("""use `token_bound_cidrs` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""bound_cidrs is deprecated: use `token_bound_cidrs` instead if you are running Vault >= 1.2""")
-
-        pulumi.set(__self__, "bound_cidrs", bound_cidrs)
         if bound_service_account_names and not isinstance(bound_service_account_names, list):
             raise TypeError("Expected argument 'bound_service_account_names' to be a list")
         pulumi.set(__self__, "bound_service_account_names", bound_service_account_names)
@@ -43,34 +36,6 @@ class GetAuthBackendRoleResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if max_ttl and not isinstance(max_ttl, int):
-            raise TypeError("Expected argument 'max_ttl' to be a int")
-        if max_ttl is not None:
-            warnings.warn("""use `token_max_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""max_ttl is deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2""")
-
-        pulumi.set(__self__, "max_ttl", max_ttl)
-        if num_uses and not isinstance(num_uses, int):
-            raise TypeError("Expected argument 'num_uses' to be a int")
-        if num_uses is not None:
-            warnings.warn("""use `token_num_uses` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""num_uses is deprecated: use `token_num_uses` instead if you are running Vault >= 1.2""")
-
-        pulumi.set(__self__, "num_uses", num_uses)
-        if period and not isinstance(period, int):
-            raise TypeError("Expected argument 'period' to be a int")
-        if period is not None:
-            warnings.warn("""use `token_period` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""period is deprecated: use `token_period` instead if you are running Vault >= 1.2""")
-
-        pulumi.set(__self__, "period", period)
-        if policies and not isinstance(policies, list):
-            raise TypeError("Expected argument 'policies' to be a list")
-        if policies is not None:
-            warnings.warn("""use `token_policies` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""policies is deprecated: use `token_policies` instead if you are running Vault >= 1.2""")
-
-        pulumi.set(__self__, "policies", policies)
         if role_name and not isinstance(role_name, str):
             raise TypeError("Expected argument 'role_name' to be a str")
         pulumi.set(__self__, "role_name", role_name)
@@ -101,13 +66,6 @@ class GetAuthBackendRoleResult:
         if token_type and not isinstance(token_type, str):
             raise TypeError("Expected argument 'token_type' to be a str")
         pulumi.set(__self__, "token_type", token_type)
-        if ttl and not isinstance(ttl, int):
-            raise TypeError("Expected argument 'ttl' to be a int")
-        if ttl is not None:
-            warnings.warn("""use `token_ttl` instead if you are running Vault >= 1.2""", DeprecationWarning)
-            pulumi.log.warn("""ttl is deprecated: use `token_ttl` instead if you are running Vault >= 1.2""")
-
-        pulumi.set(__self__, "ttl", ttl)
 
     @property
     @pulumi.getter
@@ -121,11 +79,6 @@ class GetAuthBackendRoleResult:
     @pulumi.getter
     def backend(self) -> Optional[str]:
         return pulumi.get(self, "backend")
-
-    @property
-    @pulumi.getter(name="boundCidrs")
-    def bound_cidrs(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "bound_cidrs")
 
     @property
     @pulumi.getter(name="boundServiceAccountNames")
@@ -150,26 +103,6 @@ class GetAuthBackendRoleResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[int]:
-        return pulumi.get(self, "max_ttl")
-
-    @property
-    @pulumi.getter(name="numUses")
-    def num_uses(self) -> Optional[int]:
-        return pulumi.get(self, "num_uses")
-
-    @property
-    @pulumi.getter
-    def period(self) -> Optional[int]:
-        return pulumi.get(self, "period")
-
-    @property
-    @pulumi.getter
-    def policies(self) -> Optional[Sequence[str]]:
-        return pulumi.get(self, "policies")
 
     @property
     @pulumi.getter(name="roleName")
@@ -266,11 +199,6 @@ class GetAuthBackendRoleResult:
         """
         return pulumi.get(self, "token_type")
 
-    @property
-    @pulumi.getter
-    def ttl(self) -> Optional[int]:
-        return pulumi.get(self, "ttl")
-
 
 class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
     # pylint: disable=using-constant-test
@@ -280,14 +208,9 @@ class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
         return GetAuthBackendRoleResult(
             audience=self.audience,
             backend=self.backend,
-            bound_cidrs=self.bound_cidrs,
             bound_service_account_names=self.bound_service_account_names,
             bound_service_account_namespaces=self.bound_service_account_namespaces,
             id=self.id,
-            max_ttl=self.max_ttl,
-            num_uses=self.num_uses,
-            period=self.period,
-            policies=self.policies,
             role_name=self.role_name,
             token_bound_cidrs=self.token_bound_cidrs,
             token_explicit_max_ttl=self.token_explicit_max_ttl,
@@ -297,17 +220,11 @@ class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
             token_period=self.token_period,
             token_policies=self.token_policies,
             token_ttl=self.token_ttl,
-            token_type=self.token_type,
-            ttl=self.ttl)
+            token_type=self.token_type)
 
 
 def get_auth_backend_role(audience: Optional[str] = None,
                           backend: Optional[str] = None,
-                          bound_cidrs: Optional[Sequence[str]] = None,
-                          max_ttl: Optional[int] = None,
-                          num_uses: Optional[int] = None,
-                          period: Optional[int] = None,
-                          policies: Optional[Sequence[str]] = None,
                           role_name: Optional[str] = None,
                           token_bound_cidrs: Optional[Sequence[str]] = None,
                           token_explicit_max_ttl: Optional[int] = None,
@@ -318,23 +235,11 @@ def get_auth_backend_role(audience: Optional[str] = None,
                           token_policies: Optional[Sequence[str]] = None,
                           token_ttl: Optional[int] = None,
                           token_type: Optional[str] = None,
-                          ttl: Optional[int] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuthBackendRoleResult:
     """
     Reads the Role of an Kubernetes from a Vault server. See the [Vault
     documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
     information.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_vault as vault
-
-    role = vault.kubernetes.get_auth_backend_role(backend="my-kubernetes-backend",
-        role_name="my-role")
-    pulumi.export("policies", role.policies)
-    ```
 
 
     :param str audience: (Optional) Audience claim to verify in the JWT.
@@ -372,11 +277,6 @@ def get_auth_backend_role(audience: Optional[str] = None,
     __args__ = dict()
     __args__['audience'] = audience
     __args__['backend'] = backend
-    __args__['boundCidrs'] = bound_cidrs
-    __args__['maxTtl'] = max_ttl
-    __args__['numUses'] = num_uses
-    __args__['period'] = period
-    __args__['policies'] = policies
     __args__['roleName'] = role_name
     __args__['tokenBoundCidrs'] = token_bound_cidrs
     __args__['tokenExplicitMaxTtl'] = token_explicit_max_ttl
@@ -387,7 +287,6 @@ def get_auth_backend_role(audience: Optional[str] = None,
     __args__['tokenPolicies'] = token_policies
     __args__['tokenTtl'] = token_ttl
     __args__['tokenType'] = token_type
-    __args__['ttl'] = ttl
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
@@ -397,14 +296,9 @@ def get_auth_backend_role(audience: Optional[str] = None,
     return AwaitableGetAuthBackendRoleResult(
         audience=__ret__.audience,
         backend=__ret__.backend,
-        bound_cidrs=__ret__.bound_cidrs,
         bound_service_account_names=__ret__.bound_service_account_names,
         bound_service_account_namespaces=__ret__.bound_service_account_namespaces,
         id=__ret__.id,
-        max_ttl=__ret__.max_ttl,
-        num_uses=__ret__.num_uses,
-        period=__ret__.period,
-        policies=__ret__.policies,
         role_name=__ret__.role_name,
         token_bound_cidrs=__ret__.token_bound_cidrs,
         token_explicit_max_ttl=__ret__.token_explicit_max_ttl,
@@ -414,18 +308,12 @@ def get_auth_backend_role(audience: Optional[str] = None,
         token_period=__ret__.token_period,
         token_policies=__ret__.token_policies,
         token_ttl=__ret__.token_ttl,
-        token_type=__ret__.token_type,
-        ttl=__ret__.ttl)
+        token_type=__ret__.token_type)
 
 
 @_utilities.lift_output_func(get_auth_backend_role)
 def get_auth_backend_role_output(audience: Optional[pulumi.Input[Optional[str]]] = None,
                                  backend: Optional[pulumi.Input[Optional[str]]] = None,
-                                 bound_cidrs: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
-                                 max_ttl: Optional[pulumi.Input[Optional[int]]] = None,
-                                 num_uses: Optional[pulumi.Input[Optional[int]]] = None,
-                                 period: Optional[pulumi.Input[Optional[int]]] = None,
-                                 policies: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                  role_name: Optional[pulumi.Input[str]] = None,
                                  token_bound_cidrs: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                  token_explicit_max_ttl: Optional[pulumi.Input[Optional[int]]] = None,
@@ -436,23 +324,11 @@ def get_auth_backend_role_output(audience: Optional[pulumi.Input[Optional[str]]]
                                  token_policies: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                  token_ttl: Optional[pulumi.Input[Optional[int]]] = None,
                                  token_type: Optional[pulumi.Input[Optional[str]]] = None,
-                                 ttl: Optional[pulumi.Input[Optional[int]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthBackendRoleResult]:
     """
     Reads the Role of an Kubernetes from a Vault server. See the [Vault
     documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
     information.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_vault as vault
-
-    role = vault.kubernetes.get_auth_backend_role(backend="my-kubernetes-backend",
-        role_name="my-role")
-    pulumi.export("policies", role.policies)
-    ```
 
 
     :param str audience: (Optional) Audience claim to verify in the JWT.

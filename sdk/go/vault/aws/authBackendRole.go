@@ -23,8 +23,8 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/aws"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/aws"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -154,23 +154,6 @@ type AuthBackendRole struct {
 	// infer that the role comes from an EC2 instance in an IAM instance profile.
 	// This only applies when `authType` is set to `iam`.
 	InferredEntityType pulumi.StringPtrOutput `pulumi:"inferredEntityType"`
-	// The maximum allowed lifetime of tokens
-	// issued using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
-	MaxTtl pulumi.IntPtrOutput `pulumi:"maxTtl"`
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
-	//
-	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
-	Period pulumi.IntPtrOutput `pulumi:"period"`
-	// An array of strings
-	// specifying the policies to be set on tokens issued using this role.
-	//
-	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
-	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// Only valid when
 	// `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
 	// resolved to [AWS Unique
@@ -226,11 +209,6 @@ type AuthBackendRole struct {
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
 	TokenType pulumi.StringPtrOutput `pulumi:"tokenType"`
-	// The TTL period of tokens issued
-	// using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl pulumi.IntPtrOutput `pulumi:"ttl"`
 }
 
 // NewAuthBackendRole registers a new resource with the given unique name, arguments, and options.
@@ -333,23 +311,6 @@ type authBackendRoleState struct {
 	// infer that the role comes from an EC2 instance in an IAM instance profile.
 	// This only applies when `authType` is set to `iam`.
 	InferredEntityType *string `pulumi:"inferredEntityType"`
-	// The maximum allowed lifetime of tokens
-	// issued using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
-	MaxTtl *int `pulumi:"maxTtl"`
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
-	//
-	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
-	Period *int `pulumi:"period"`
-	// An array of strings
-	// specifying the policies to be set on tokens issued using this role.
-	//
-	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
-	Policies []string `pulumi:"policies"`
 	// Only valid when
 	// `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
 	// resolved to [AWS Unique
@@ -405,11 +366,6 @@ type authBackendRoleState struct {
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
 	TokenType *string `pulumi:"tokenType"`
-	// The TTL period of tokens issued
-	// using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl *int `pulumi:"ttl"`
 }
 
 type AuthBackendRoleState struct {
@@ -481,23 +437,6 @@ type AuthBackendRoleState struct {
 	// infer that the role comes from an EC2 instance in an IAM instance profile.
 	// This only applies when `authType` is set to `iam`.
 	InferredEntityType pulumi.StringPtrInput
-	// The maximum allowed lifetime of tokens
-	// issued using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
-	MaxTtl pulumi.IntPtrInput
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
-	//
-	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
-	Period pulumi.IntPtrInput
-	// An array of strings
-	// specifying the policies to be set on tokens issued using this role.
-	//
-	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
-	Policies pulumi.StringArrayInput
 	// Only valid when
 	// `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
 	// resolved to [AWS Unique
@@ -553,11 +492,6 @@ type AuthBackendRoleState struct {
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
 	TokenType pulumi.StringPtrInput
-	// The TTL period of tokens issued
-	// using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl pulumi.IntPtrInput
 }
 
 func (AuthBackendRoleState) ElementType() reflect.Type {
@@ -633,23 +567,6 @@ type authBackendRoleArgs struct {
 	// infer that the role comes from an EC2 instance in an IAM instance profile.
 	// This only applies when `authType` is set to `iam`.
 	InferredEntityType *string `pulumi:"inferredEntityType"`
-	// The maximum allowed lifetime of tokens
-	// issued using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
-	MaxTtl *int `pulumi:"maxTtl"`
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
-	//
-	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
-	Period *int `pulumi:"period"`
-	// An array of strings
-	// specifying the policies to be set on tokens issued using this role.
-	//
-	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
-	Policies []string `pulumi:"policies"`
 	// Only valid when
 	// `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
 	// resolved to [AWS Unique
@@ -705,11 +622,6 @@ type authBackendRoleArgs struct {
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
 	TokenType *string `pulumi:"tokenType"`
-	// The TTL period of tokens issued
-	// using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl *int `pulumi:"ttl"`
 }
 
 // The set of arguments for constructing a AuthBackendRole resource.
@@ -782,23 +694,6 @@ type AuthBackendRoleArgs struct {
 	// infer that the role comes from an EC2 instance in an IAM instance profile.
 	// This only applies when `authType` is set to `iam`.
 	InferredEntityType pulumi.StringPtrInput
-	// The maximum allowed lifetime of tokens
-	// issued using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_max_ttl` instead if you are running Vault >= 1.2
-	MaxTtl pulumi.IntPtrInput
-	// If set, indicates that the
-	// token generated using this role should never expire. The token should be renewed within the
-	// duration specified by this value. At each renewal, the token's TTL will be set to the
-	// value of this field. Specified in seconds.
-	//
-	// Deprecated: use `token_period` instead if you are running Vault >= 1.2
-	Period pulumi.IntPtrInput
-	// An array of strings
-	// specifying the policies to be set on tokens issued using this role.
-	//
-	// Deprecated: use `token_policies` instead if you are running Vault >= 1.2
-	Policies pulumi.StringArrayInput
 	// Only valid when
 	// `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
 	// resolved to [AWS Unique
@@ -854,11 +749,6 @@ type AuthBackendRoleArgs struct {
 	// `default-service` and `default-batch` which specify the type to return unless the client
 	// requests a different type at generation time.
 	TokenType pulumi.StringPtrInput
-	// The TTL period of tokens issued
-	// using this role, provided as a number of seconds.
-	//
-	// Deprecated: use `token_ttl` instead if you are running Vault >= 1.2
-	Ttl pulumi.IntPtrInput
 }
 
 func (AuthBackendRoleArgs) ElementType() reflect.Type {

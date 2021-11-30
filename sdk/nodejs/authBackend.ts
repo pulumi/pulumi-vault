@@ -62,32 +62,13 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public /*out*/ readonly accessor!: pulumi.Output<string>;
     /**
-     * (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
-     *
-     * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
-     */
-    public readonly defaultLeaseTtlSeconds!: pulumi.Output<number>;
-    /**
      * A description of the auth method
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * Specifies whether to show this mount in
-     * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
-     *
-     * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
-     */
-    public readonly listingVisibility!: pulumi.Output<string>;
-    /**
      * Specifies if the auth method is local only.
      */
     public readonly local!: pulumi.Output<boolean | undefined>;
-    /**
-     * (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
-     *
-     * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
-     */
-    public readonly maxLeaseTtlSeconds!: pulumi.Output<number>;
     /**
      * The path to mount the auth method — this defaults to the name of the type
      */
@@ -115,11 +96,8 @@ export class AuthBackend extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AuthBackendState | undefined;
             inputs["accessor"] = state ? state.accessor : undefined;
-            inputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
             inputs["description"] = state ? state.description : undefined;
-            inputs["listingVisibility"] = state ? state.listingVisibility : undefined;
             inputs["local"] = state ? state.local : undefined;
-            inputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             inputs["path"] = state ? state.path : undefined;
             inputs["tune"] = state ? state.tune : undefined;
             inputs["type"] = state ? state.type : undefined;
@@ -128,11 +106,8 @@ export class AuthBackend extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
             inputs["description"] = args ? args.description : undefined;
-            inputs["listingVisibility"] = args ? args.listingVisibility : undefined;
             inputs["local"] = args ? args.local : undefined;
-            inputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             inputs["path"] = args ? args.path : undefined;
             inputs["tune"] = args ? args.tune : undefined;
             inputs["type"] = args ? args.type : undefined;
@@ -154,32 +129,13 @@ export interface AuthBackendState {
      */
     accessor?: pulumi.Input<string>;
     /**
-     * (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
-     *
-     * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
-     */
-    defaultLeaseTtlSeconds?: pulumi.Input<number>;
-    /**
      * A description of the auth method
      */
     description?: pulumi.Input<string>;
     /**
-     * Specifies whether to show this mount in
-     * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
-     *
-     * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
-     */
-    listingVisibility?: pulumi.Input<string>;
-    /**
      * Specifies if the auth method is local only.
      */
     local?: pulumi.Input<boolean>;
-    /**
-     * (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
-     *
-     * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
-     */
-    maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * The path to mount the auth method — this defaults to the name of the type
      */
@@ -199,32 +155,13 @@ export interface AuthBackendState {
  */
 export interface AuthBackendArgs {
     /**
-     * (Optional; Deprecated, use `tune.default_lease_ttl` if you are using Vault provider version >= 1.8) The default lease duration in seconds.
-     *
-     * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
-     */
-    defaultLeaseTtlSeconds?: pulumi.Input<number>;
-    /**
      * A description of the auth method
      */
     description?: pulumi.Input<string>;
     /**
-     * Specifies whether to show this mount in
-     * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
-     *
-     * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
-     */
-    listingVisibility?: pulumi.Input<string>;
-    /**
      * Specifies if the auth method is local only.
      */
     local?: pulumi.Input<boolean>;
-    /**
-     * (Optional; Deprecated, use `tune.max_lease_ttl` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.
-     *
-     * @deprecated Use the tune configuration block to avoid forcing creation of new resource on an update
-     */
-    maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
      * The path to mount the auth method — this defaults to the name of the type
      */

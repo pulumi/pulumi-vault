@@ -22,9 +22,10 @@ namespace Pulumi.Vault.PkiSecret
     /// {
     ///     public MyStack()
     ///     {
-    ///         var pki = new Vault.PkiSecret.SecretBackend("pki", new Vault.PkiSecret.SecretBackendArgs
+    ///         var pki = new Vault.Mount("pki", new Vault.MountArgs
     ///         {
     ///             Path = "pki",
+    ///             Type = "pki",
     ///             DefaultLeaseTtlSeconds = 3600,
     ///             MaxLeaseTtlSeconds = 86400,
     ///         });

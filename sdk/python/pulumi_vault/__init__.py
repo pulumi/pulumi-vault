@@ -22,6 +22,7 @@ from .policy import *
 from .provider import *
 from .quota_lease_count import *
 from .quota_rate_limit import *
+from .raft_autopilot import *
 from .raft_snapshot_agent_config import *
 from .rgp_policy import *
 from .token import *
@@ -583,6 +584,14 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "index/raftAutopilot",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/raftAutopilot:RaftAutopilot": "RaftAutopilot"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "index/raftSnapshotAgentConfig",
   "fqn": "pulumi_vault",
   "classes": {
@@ -683,14 +692,6 @@ _utilities.register(
   "fqn": "pulumi_vault.okta",
   "classes": {
    "vault:okta/authBackendUser:AuthBackendUser": "AuthBackendUser"
-  }
- },
- {
-  "pkg": "vault",
-  "mod": "pkiSecret/secretBackend",
-  "fqn": "pulumi_vault.pkisecret",
-  "classes": {
-   "vault:pkiSecret/secretBackend:SecretBackend": "SecretBackend"
   }
  },
  {

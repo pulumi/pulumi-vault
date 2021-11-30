@@ -88,13 +88,6 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
-     * Restriction usage of the
-     * certificates to client IPs falling within the range of the specified CIDRs
-     *
-     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
-     */
-    public readonly boundCidrs!: pulumi.Output<string[]>;
-    /**
      * CA certificate used to validate client certificates
      */
     public readonly certificate!: pulumi.Output<string>;
@@ -103,32 +96,9 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
      */
     public readonly displayName!: pulumi.Output<string>;
     /**
-     * The maximum allowed lifetime of tokens
-     * issued using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
-     */
-    public readonly maxTtl!: pulumi.Output<string>;
-    /**
      * Name of the role
      */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    public readonly period!: pulumi.Output<string>;
-    /**
-     * An array of strings
-     * specifying the policies to be set on tokens issued using this role.
-     *
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    public readonly policies!: pulumi.Output<string[]>;
     /**
      * TLS extensions required on client certificates
      */
@@ -187,13 +157,6 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
      * requests a different type at generation time.
      */
     public readonly tokenType!: pulumi.Output<string | undefined>;
-    /**
-     * The TTL period of tokens issued
-     * using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
-     */
-    public readonly ttl!: pulumi.Output<string>;
 
     /**
      * Create a CertAuthBackendRole resource with the given unique name, arguments, and options.
@@ -215,13 +178,9 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
             inputs["allowedOrganizationUnits"] = state ? state.allowedOrganizationUnits : undefined;
             inputs["allowedUriSans"] = state ? state.allowedUriSans : undefined;
             inputs["backend"] = state ? state.backend : undefined;
-            inputs["boundCidrs"] = state ? state.boundCidrs : undefined;
             inputs["certificate"] = state ? state.certificate : undefined;
             inputs["displayName"] = state ? state.displayName : undefined;
-            inputs["maxTtl"] = state ? state.maxTtl : undefined;
             inputs["name"] = state ? state.name : undefined;
-            inputs["period"] = state ? state.period : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
             inputs["requiredExtensions"] = state ? state.requiredExtensions : undefined;
             inputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
             inputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
@@ -232,7 +191,6 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
             inputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
             inputs["tokenTtl"] = state ? state.tokenTtl : undefined;
             inputs["tokenType"] = state ? state.tokenType : undefined;
-            inputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as CertAuthBackendRoleArgs | undefined;
             if ((!args || args.certificate === undefined) && !opts.urn) {
@@ -245,13 +203,9 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
             inputs["allowedOrganizationUnits"] = args ? args.allowedOrganizationUnits : undefined;
             inputs["allowedUriSans"] = args ? args.allowedUriSans : undefined;
             inputs["backend"] = args ? args.backend : undefined;
-            inputs["boundCidrs"] = args ? args.boundCidrs : undefined;
             inputs["certificate"] = args ? args.certificate : undefined;
             inputs["displayName"] = args ? args.displayName : undefined;
-            inputs["maxTtl"] = args ? args.maxTtl : undefined;
             inputs["name"] = args ? args.name : undefined;
-            inputs["period"] = args ? args.period : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
             inputs["requiredExtensions"] = args ? args.requiredExtensions : undefined;
             inputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
             inputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
@@ -262,7 +216,6 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
             inputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
             inputs["tokenTtl"] = args ? args.tokenTtl : undefined;
             inputs["tokenType"] = args ? args.tokenType : undefined;
-            inputs["ttl"] = args ? args.ttl : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -304,13 +257,6 @@ export interface CertAuthBackendRoleState {
      */
     backend?: pulumi.Input<string>;
     /**
-     * Restriction usage of the
-     * certificates to client IPs falling within the range of the specified CIDRs
-     *
-     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
-     */
-    boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
      * CA certificate used to validate client certificates
      */
     certificate?: pulumi.Input<string>;
@@ -319,32 +265,9 @@ export interface CertAuthBackendRoleState {
      */
     displayName?: pulumi.Input<string>;
     /**
-     * The maximum allowed lifetime of tokens
-     * issued using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
-     */
-    maxTtl?: pulumi.Input<string>;
-    /**
      * Name of the role
      */
     name?: pulumi.Input<string>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    period?: pulumi.Input<string>;
-    /**
-     * An array of strings
-     * specifying the policies to be set on tokens issued using this role.
-     *
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * TLS extensions required on client certificates
      */
@@ -403,13 +326,6 @@ export interface CertAuthBackendRoleState {
      * requests a different type at generation time.
      */
     tokenType?: pulumi.Input<string>;
-    /**
-     * The TTL period of tokens issued
-     * using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
-     */
-    ttl?: pulumi.Input<string>;
 }
 
 /**
@@ -445,13 +361,6 @@ export interface CertAuthBackendRoleArgs {
      */
     backend?: pulumi.Input<string>;
     /**
-     * Restriction usage of the
-     * certificates to client IPs falling within the range of the specified CIDRs
-     *
-     * @deprecated use `token_bound_cidrs` instead if you are running Vault >= 1.2
-     */
-    boundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
      * CA certificate used to validate client certificates
      */
     certificate: pulumi.Input<string>;
@@ -460,32 +369,9 @@ export interface CertAuthBackendRoleArgs {
      */
     displayName?: pulumi.Input<string>;
     /**
-     * The maximum allowed lifetime of tokens
-     * issued using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_max_ttl` instead if you are running Vault >= 1.2
-     */
-    maxTtl?: pulumi.Input<string>;
-    /**
      * Name of the role
      */
     name?: pulumi.Input<string>;
-    /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token's TTL will be set to the
-     * value of this field. Specified in seconds.
-     *
-     * @deprecated use `token_period` instead if you are running Vault >= 1.2
-     */
-    period?: pulumi.Input<string>;
-    /**
-     * An array of strings
-     * specifying the policies to be set on tokens issued using this role.
-     *
-     * @deprecated use `token_policies` instead if you are running Vault >= 1.2
-     */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * TLS extensions required on client certificates
      */
@@ -544,11 +430,4 @@ export interface CertAuthBackendRoleArgs {
      * requests a different type at generation time.
      */
     tokenType?: pulumi.Input<string>;
-    /**
-     * The TTL period of tokens issued
-     * using this role, provided as a number of seconds.
-     *
-     * @deprecated use `token_ttl` instead if you are running Vault >= 1.2
-     */
-    ttl?: pulumi.Input<string>;
 }

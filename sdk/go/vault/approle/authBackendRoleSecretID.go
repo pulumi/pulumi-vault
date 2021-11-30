@@ -14,52 +14,6 @@ import (
 // Manages an AppRole auth backend SecretID in a Vault server. See the [Vault
 // documentation](https://www.vaultproject.io/docs/auth/approle) for more
 // information.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"fmt"
-//
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/appRole"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		approle, err := vault.NewAuthBackend(ctx, "approle", &vault.AuthBackendArgs{
-// 			Type: pulumi.String("approle"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		example, err := appRole.NewAuthBackendRole(ctx, "example", &appRole.AuthBackendRoleArgs{
-// 			Backend:  approle.Path,
-// 			RoleName: pulumi.String("test-role"),
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("default"),
-// 				pulumi.String("dev"),
-// 				pulumi.String("prod"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = appRole.NewAuthBackendRoleSecretID(ctx, "id", &appRole.AuthBackendRoleSecretIDArgs{
-// 			Backend:  approle.Path,
-// 			RoleName: example.RoleName,
-// 			Metadata: pulumi.String(fmt.Sprintf("%v%v%v", "  {\n", "    \"hello\": \"world\"\n", "  }\n")),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type AuthBackendRoleSecretID struct {
 	pulumi.CustomResourceState
 

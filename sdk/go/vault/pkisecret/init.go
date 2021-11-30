@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault"
+	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,8 +21,6 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "vault:pkiSecret/secretBackend:SecretBackend":
-		r = &SecretBackend{}
 	case "vault:pkiSecret/secretBackendCert:SecretBackendCert":
 		r = &SecretBackendCert{}
 	case "vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa":
@@ -56,11 +54,6 @@ func init() {
 	if err != nil {
 		fmt.Printf("failed to determine package version. defaulting to v1: %v\n", err)
 	}
-	pulumi.RegisterResourceModule(
-		"vault",
-		"pkiSecret/secretBackend",
-		&module{version},
-	)
 	pulumi.RegisterResourceModule(
 		"vault",
 		"pkiSecret/secretBackendCert",

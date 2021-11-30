@@ -25,8 +25,8 @@ import (
 	"github.com/hashicorp/terraform-provider-vault/vault"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
-	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
-	"github.com/pulumi/pulumi-vault/provider/v4/pkg/version"
+	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
+	"github.com/pulumi/pulumi-vault/provider/v5/pkg/version"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 )
@@ -109,7 +109,7 @@ func Provider() tfbridge.ProviderInfo {
 	for name, resource := range generated.ResourceRegistry {
 		generatedProvider.RegisterResource(name, resource)
 	}
-	p := shimv1.NewProvider(generatedProvider.SchemaProvider())
+	p := shimv2.NewProvider(generatedProvider.SchemaProvider())
 
 	prov := tfbridge.ProviderInfo{
 		P:           p,
@@ -171,6 +171,7 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_password_policy":            {Tok: makeResource(mainMod, "PasswordPolicy")},
 			"vault_quota_lease_count":          {Tok: makeResource(mainMod, "QuotaLeaseCount")},
 			"vault_raft_snapshot_agent_config": {Tok: makeResource(mainMod, "RaftSnapshotAgentConfig")},
+			"vault_raft_autopilot":             {Tok: makeResource(mainMod, "RaftAutopilot")},
 
 			// AD
 			"vault_ad_secret_backend": {Tok: makeResource(adMod, "SecretBackend")},
@@ -317,7 +318,6 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_okta_auth_backend_user":  {Tok: makeResource(oktaMod, "AuthBackendUser")},
 
 			// PKI
-			"vault_pki_secret_backend":             {Tok: makeResource(pkiSecretMod, "SecretBackend")},
 			"vault_pki_secret_backend_cert":        {Tok: makeResource(pkiSecretMod, "SecretBackendCert")},
 			"vault_pki_secret_backend_config_ca":   {Tok: makeResource(pkiSecretMod, "SecretBackendConfigCa")},
 			"vault_pki_secret_backend_config_urls": {Tok: makeResource(pkiSecretMod, "SecretBackendConfigUrls")},

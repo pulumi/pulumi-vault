@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/consul"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/consul"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -66,10 +66,6 @@ type SecretBackendRole struct {
 	MaxTtl pulumi.IntPtrOutput `pulumi:"maxTtl"`
 	// The name of the Consul secrets engine role to create.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
-	//
-	// Deprecated: use `backend` instead
-	Path pulumi.StringPtrOutput `pulumi:"path"`
 	// The list of Consul ACL policies to associate with these roles.
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// Specifies the type of token to create when using this role. Valid values are "client" or "management".
@@ -118,10 +114,6 @@ type secretBackendRoleState struct {
 	MaxTtl *int `pulumi:"maxTtl"`
 	// The name of the Consul secrets engine role to create.
 	Name *string `pulumi:"name"`
-	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
-	//
-	// Deprecated: use `backend` instead
-	Path *string `pulumi:"path"`
 	// The list of Consul ACL policies to associate with these roles.
 	Policies []string `pulumi:"policies"`
 	// Specifies the type of token to create when using this role. Valid values are "client" or "management".
@@ -139,10 +131,6 @@ type SecretBackendRoleState struct {
 	MaxTtl pulumi.IntPtrInput
 	// The name of the Consul secrets engine role to create.
 	Name pulumi.StringPtrInput
-	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
-	//
-	// Deprecated: use `backend` instead
-	Path pulumi.StringPtrInput
 	// The list of Consul ACL policies to associate with these roles.
 	Policies pulumi.StringArrayInput
 	// Specifies the type of token to create when using this role. Valid values are "client" or "management".
@@ -164,10 +152,6 @@ type secretBackendRoleArgs struct {
 	MaxTtl *int `pulumi:"maxTtl"`
 	// The name of the Consul secrets engine role to create.
 	Name *string `pulumi:"name"`
-	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
-	//
-	// Deprecated: use `backend` instead
-	Path *string `pulumi:"path"`
 	// The list of Consul ACL policies to associate with these roles.
 	Policies []string `pulumi:"policies"`
 	// Specifies the type of token to create when using this role. Valid values are "client" or "management".
@@ -186,10 +170,6 @@ type SecretBackendRoleArgs struct {
 	MaxTtl pulumi.IntPtrInput
 	// The name of the Consul secrets engine role to create.
 	Name pulumi.StringPtrInput
-	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. **Deprecated**
-	//
-	// Deprecated: use `backend` instead
-	Path pulumi.StringPtrInput
 	// The list of Consul ACL policies to associate with these roles.
 	Policies pulumi.StringArrayInput
 	// Specifies the type of token to create when using this role. Valid values are "client" or "management".

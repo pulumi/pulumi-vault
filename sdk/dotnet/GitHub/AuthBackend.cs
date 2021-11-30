@@ -65,13 +65,6 @@ namespace Pulumi.Vault.GitHub
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// (Optional; Deprecated, use `token_max_ttl` instead if you are running Vault &gt;= 1.2) The maximum allowed lifetime of tokens
-        /// issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-        /// </summary>
-        [Output("maxTtl")]
-        public Output<string?> MaxTtl { get; private set; } = null!;
-
-        /// <summary>
         /// The organization configured users must be part of.
         /// </summary>
         [Output("organization")]
@@ -154,13 +147,6 @@ namespace Pulumi.Vault.GitHub
         public Output<string?> TokenType { get; private set; } = null!;
 
         /// <summary>
-        /// (Optional; Deprecated, use `token_ttl` instead if you are running Vault &gt;= 1.2) The TTL period of tokens issued
-        /// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-        /// </summary>
-        [Output("ttl")]
-        public Output<string?> Ttl { get; private set; } = null!;
-
-        /// <summary>
         /// Extra configuration block. Structure is documented below.
         /// </summary>
         [Output("tune")]
@@ -225,13 +211,6 @@ namespace Pulumi.Vault.GitHub
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
-
-        /// <summary>
-        /// (Optional; Deprecated, use `token_max_ttl` instead if you are running Vault &gt;= 1.2) The maximum allowed lifetime of tokens
-        /// issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-        /// </summary>
-        [Input("maxTtl")]
-        public Input<string>? MaxTtl { get; set; }
 
         /// <summary>
         /// The organization configured users must be part of.
@@ -328,13 +307,6 @@ namespace Pulumi.Vault.GitHub
         public Input<string>? TokenType { get; set; }
 
         /// <summary>
-        /// (Optional; Deprecated, use `token_ttl` instead if you are running Vault &gt;= 1.2) The TTL period of tokens issued
-        /// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-        /// </summary>
-        [Input("ttl")]
-        public Input<string>? Ttl { get; set; }
-
-        /// <summary>
         /// Extra configuration block. Structure is documented below.
         /// </summary>
         [Input("tune")]
@@ -366,13 +338,6 @@ namespace Pulumi.Vault.GitHub
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
-
-        /// <summary>
-        /// (Optional; Deprecated, use `token_max_ttl` instead if you are running Vault &gt;= 1.2) The maximum allowed lifetime of tokens
-        /// issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-        /// </summary>
-        [Input("maxTtl")]
-        public Input<string>? MaxTtl { get; set; }
 
         /// <summary>
         /// The organization configured users must be part of.
@@ -467,13 +432,6 @@ namespace Pulumi.Vault.GitHub
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
-
-        /// <summary>
-        /// (Optional; Deprecated, use `token_ttl` instead if you are running Vault &gt;= 1.2) The TTL period of tokens issued
-        /// using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).
-        /// </summary>
-        [Input("ttl")]
-        public Input<string>? Ttl { get; set; }
 
         /// <summary>
         /// Extra configuration block. Structure is documented below.

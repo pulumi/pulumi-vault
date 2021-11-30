@@ -81,29 +81,6 @@ namespace Pulumi.Vault.Gcp
         public Output<string> MaxJwtExp { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum allowed lifetime of tokens
-        /// issued using this role, provided as a number of seconds.
-        /// </summary>
-        [Output("maxTtl")]
-        public Output<string> MaxTtl { get; private set; } = null!;
-
-        /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
-        /// </summary>
-        [Output("period")]
-        public Output<string> Period { get; private set; } = null!;
-
-        /// <summary>
-        /// An array of strings
-        /// specifying the policies to be set on tokens issued using this role.
-        /// </summary>
-        [Output("policies")]
-        public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
-
-        /// <summary>
         /// Name of the GCP role
         /// </summary>
         [Output("role")]
@@ -180,13 +157,6 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Output("tokenType")]
         public Output<string?> TokenType { get; private set; } = null!;
-
-        /// <summary>
-        /// The TTL period of tokens issued
-        /// using this role, provided as a number of seconds.
-        /// </summary>
-        [Output("ttl")]
-        public Output<string> Ttl { get; private set; } = null!;
 
         /// <summary>
         /// Type of GCP authentication role (either `gce` or `iam`)
@@ -334,36 +304,6 @@ namespace Pulumi.Vault.Gcp
         public Input<string>? MaxJwtExp { get; set; }
 
         /// <summary>
-        /// The maximum allowed lifetime of tokens
-        /// issued using this role, provided as a number of seconds.
-        /// </summary>
-        [Input("maxTtl")]
-        public Input<string>? MaxTtl { get; set; }
-
-        /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
-        /// </summary>
-        [Input("period")]
-        public Input<string>? Period { get; set; }
-
-        [Input("policies")]
-        private InputList<string>? _policies;
-
-        /// <summary>
-        /// An array of strings
-        /// specifying the policies to be set on tokens issued using this role.
-        /// </summary>
-        [Obsolete(@"use `token_policies` instead if you are running Vault >= 1.2")]
-        public InputList<string> Policies
-        {
-            get => _policies ?? (_policies = new InputList<string>());
-            set => _policies = value;
-        }
-
-        /// <summary>
         /// Name of the GCP role
         /// </summary>
         [Input("role", required: true)]
@@ -452,13 +392,6 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
-
-        /// <summary>
-        /// The TTL period of tokens issued
-        /// using this role, provided as a number of seconds.
-        /// </summary>
-        [Input("ttl")]
-        public Input<string>? Ttl { get; set; }
 
         /// <summary>
         /// Type of GCP authentication role (either `gce` or `iam`)
@@ -567,36 +500,6 @@ namespace Pulumi.Vault.Gcp
         public Input<string>? MaxJwtExp { get; set; }
 
         /// <summary>
-        /// The maximum allowed lifetime of tokens
-        /// issued using this role, provided as a number of seconds.
-        /// </summary>
-        [Input("maxTtl")]
-        public Input<string>? MaxTtl { get; set; }
-
-        /// <summary>
-        /// If set, indicates that the
-        /// token generated using this role should never expire. The token should be renewed within the
-        /// duration specified by this value. At each renewal, the token's TTL will be set to the
-        /// value of this field. Specified in seconds.
-        /// </summary>
-        [Input("period")]
-        public Input<string>? Period { get; set; }
-
-        [Input("policies")]
-        private InputList<string>? _policies;
-
-        /// <summary>
-        /// An array of strings
-        /// specifying the policies to be set on tokens issued using this role.
-        /// </summary>
-        [Obsolete(@"use `token_policies` instead if you are running Vault >= 1.2")]
-        public InputList<string> Policies
-        {
-            get => _policies ?? (_policies = new InputList<string>());
-            set => _policies = value;
-        }
-
-        /// <summary>
         /// Name of the GCP role
         /// </summary>
         [Input("role")]
@@ -685,13 +588,6 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
-
-        /// <summary>
-        /// The TTL period of tokens issued
-        /// using this role, provided as a number of seconds.
-        /// </summary>
-        [Input("ttl")]
-        public Input<string>? Ttl { get; set; }
 
         /// <summary>
         /// Type of GCP authentication role (either `gce` or `iam`)

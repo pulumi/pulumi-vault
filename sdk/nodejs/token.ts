@@ -50,10 +50,6 @@ export class Token extends pulumi.CustomResource {
      */
     public readonly displayName!: pulumi.Output<string | undefined>;
     /**
-     * String containing the client token encrypted with the given `pgpKey` if stored in present file
-     */
-    public /*out*/ readonly encryptedClientToken!: pulumi.Output<string>;
-    /**
      * The explicit max TTL of this token
      */
     public readonly explicitMaxTtl!: pulumi.Output<string | undefined>;
@@ -81,10 +77,6 @@ export class Token extends pulumi.CustomResource {
      * The period of this token
      */
     public readonly period!: pulumi.Output<string | undefined>;
-    /**
-     * The PGP key (base64 encoded) to encrypt the token.
-     */
-    public readonly pgpKey!: pulumi.Output<string | undefined>;
     /**
      * List of policies to attach to this token
      */
@@ -137,7 +129,6 @@ export class Token extends pulumi.CustomResource {
             const state = argsOrState as TokenState | undefined;
             inputs["clientToken"] = state ? state.clientToken : undefined;
             inputs["displayName"] = state ? state.displayName : undefined;
-            inputs["encryptedClientToken"] = state ? state.encryptedClientToken : undefined;
             inputs["explicitMaxTtl"] = state ? state.explicitMaxTtl : undefined;
             inputs["leaseDuration"] = state ? state.leaseDuration : undefined;
             inputs["leaseStarted"] = state ? state.leaseStarted : undefined;
@@ -145,7 +136,6 @@ export class Token extends pulumi.CustomResource {
             inputs["noParent"] = state ? state.noParent : undefined;
             inputs["numUses"] = state ? state.numUses : undefined;
             inputs["period"] = state ? state.period : undefined;
-            inputs["pgpKey"] = state ? state.pgpKey : undefined;
             inputs["policies"] = state ? state.policies : undefined;
             inputs["renewIncrement"] = state ? state.renewIncrement : undefined;
             inputs["renewMinLease"] = state ? state.renewMinLease : undefined;
@@ -163,7 +153,6 @@ export class Token extends pulumi.CustomResource {
             inputs["noParent"] = args ? args.noParent : undefined;
             inputs["numUses"] = args ? args.numUses : undefined;
             inputs["period"] = args ? args.period : undefined;
-            inputs["pgpKey"] = args ? args.pgpKey : undefined;
             inputs["policies"] = args ? args.policies : undefined;
             inputs["renewIncrement"] = args ? args.renewIncrement : undefined;
             inputs["renewMinLease"] = args ? args.renewMinLease : undefined;
@@ -172,7 +161,6 @@ export class Token extends pulumi.CustomResource {
             inputs["ttl"] = args ? args.ttl : undefined;
             inputs["wrappingTtl"] = args ? args.wrappingTtl : undefined;
             inputs["clientToken"] = undefined /*out*/;
-            inputs["encryptedClientToken"] = undefined /*out*/;
             inputs["leaseDuration"] = undefined /*out*/;
             inputs["leaseStarted"] = undefined /*out*/;
             inputs["wrappedToken"] = undefined /*out*/;
@@ -197,10 +185,6 @@ export interface TokenState {
      * String containing the token display name
      */
     displayName?: pulumi.Input<string>;
-    /**
-     * String containing the client token encrypted with the given `pgpKey` if stored in present file
-     */
-    encryptedClientToken?: pulumi.Input<string>;
     /**
      * The explicit max TTL of this token
      */
@@ -229,10 +213,6 @@ export interface TokenState {
      * The period of this token
      */
     period?: pulumi.Input<string>;
-    /**
-     * The PGP key (base64 encoded) to encrypt the token.
-     */
-    pgpKey?: pulumi.Input<string>;
     /**
      * List of policies to attach to this token
      */
@@ -299,10 +279,6 @@ export interface TokenArgs {
      * The period of this token
      */
     period?: pulumi.Input<string>;
-    /**
-     * The PGP key (base64 encoded) to encrypt the token.
-     */
-    pgpKey?: pulumi.Input<string>;
     /**
      * List of policies to attach to this token
      */

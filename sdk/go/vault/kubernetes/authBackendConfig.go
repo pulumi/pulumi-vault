@@ -21,8 +21,8 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault"
-// 	"github.com/pulumi/pulumi-vault/sdk/v4/go/vault/kubernetes"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -66,7 +66,7 @@ type AuthBackendConfig struct {
 	DisableIssValidation pulumi.BoolOutput `pulumi:"disableIssValidation"`
 	// Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
 	DisableLocalCaJwt pulumi.BoolOutput `pulumi:"disableLocalCaJwt"`
-	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+	// JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
 	Issuer pulumi.StringPtrOutput `pulumi:"issuer"`
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
 	KubernetesCaCert pulumi.StringPtrOutput `pulumi:"kubernetesCaCert"`
@@ -116,7 +116,7 @@ type authBackendConfigState struct {
 	DisableIssValidation *bool `pulumi:"disableIssValidation"`
 	// Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
 	DisableLocalCaJwt *bool `pulumi:"disableLocalCaJwt"`
-	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+	// JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
 	Issuer *string `pulumi:"issuer"`
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
 	KubernetesCaCert *string `pulumi:"kubernetesCaCert"`
@@ -135,7 +135,7 @@ type AuthBackendConfigState struct {
 	DisableIssValidation pulumi.BoolPtrInput
 	// Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
 	DisableLocalCaJwt pulumi.BoolPtrInput
-	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+	// JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
 	Issuer pulumi.StringPtrInput
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
 	KubernetesCaCert pulumi.StringPtrInput
@@ -158,7 +158,7 @@ type authBackendConfigArgs struct {
 	DisableIssValidation *bool `pulumi:"disableIssValidation"`
 	// Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
 	DisableLocalCaJwt *bool `pulumi:"disableLocalCaJwt"`
-	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+	// JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
 	Issuer *string `pulumi:"issuer"`
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
 	KubernetesCaCert *string `pulumi:"kubernetesCaCert"`
@@ -178,7 +178,7 @@ type AuthBackendConfigArgs struct {
 	DisableIssValidation pulumi.BoolPtrInput
 	// Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
 	DisableLocalCaJwt pulumi.BoolPtrInput
-	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
+	// JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
 	Issuer pulumi.StringPtrInput
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
 	KubernetesCaCert pulumi.StringPtrInput
