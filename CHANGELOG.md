@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade terraform-provider-vault to 3.1.1
+_(none)_
 
 ---
+
+## 5.1.0 (2021-12-30)
+* Upgrade terraform-provider-vault to 3.1.1
 
 ## 5.0.0 (2021-11-30)
 * Upgrade to v3.0.1 of the Vault Terraform Provider
