@@ -13,6 +13,45 @@ namespace Pulumi.Vault.AppRole
     /// Manages an AppRole auth backend SecretID in a Vault server. See the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/approle) for more
     /// information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var approle = new Vault.AuthBackend("approle", new Vault.AuthBackendArgs
+    ///         {
+    ///             Type = "approle",
+    ///         });
+    ///         var example = new Vault.AppRole.AuthBackendRole("example", new Vault.AppRole.AuthBackendRoleArgs
+    ///         {
+    ///             Backend = approle.Path,
+    ///             RoleName = "test-role",
+    ///             TokenPolicies = 
+    ///             {
+    ///                 "default",
+    ///                 "dev",
+    ///                 "prod",
+    ///             },
+    ///         });
+    ///         var id = new Vault.AppRole.AuthBackendRoleSecretID("id", new Vault.AppRole.AuthBackendRoleSecretIDArgs
+    ///         {
+    ///             Backend = approle.Path,
+    ///             RoleName = example.RoleName,
+    ///             Metadata = @"  {
+    ///     ""hello"": ""world""
+    ///   }
+    /// ",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     [VaultResourceType("vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID")]
     public partial class AuthBackendRoleSecretID : Pulumi.CustomResource

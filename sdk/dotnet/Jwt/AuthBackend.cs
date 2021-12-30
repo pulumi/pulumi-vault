@@ -167,6 +167,12 @@ namespace Pulumi.Vault.Jwt
         public Output<bool?> Local { get; private set; } = null!;
 
         /// <summary>
+        /// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+        /// </summary>
+        [Output("namespaceInState")]
+        public Output<bool?> NamespaceInState { get; private set; } = null!;
+
+        /// <summary>
         /// Client ID used for OIDC backends
         /// </summary>
         [Output("oidcClientId")]
@@ -189,6 +195,18 @@ namespace Pulumi.Vault.Jwt
         /// </summary>
         [Output("oidcDiscoveryUrl")]
         public Output<string?> OidcDiscoveryUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+        /// </summary>
+        [Output("oidcResponseMode")]
+        public Output<string?> OidcResponseMode { get; private set; } = null!;
+
+        /// <summary>
+        /// List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
+        /// </summary>
+        [Output("oidcResponseTypes")]
+        public Output<ImmutableArray<string>> OidcResponseTypes { get; private set; } = null!;
 
         /// <summary>
         /// Path to mount the JWT/OIDC auth backend
@@ -318,6 +336,12 @@ namespace Pulumi.Vault.Jwt
         public Input<bool>? Local { get; set; }
 
         /// <summary>
+        /// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+        /// </summary>
+        [Input("namespaceInState")]
+        public Input<bool>? NamespaceInState { get; set; }
+
+        /// <summary>
         /// Client ID used for OIDC backends
         /// </summary>
         [Input("oidcClientId")]
@@ -340,6 +364,24 @@ namespace Pulumi.Vault.Jwt
         /// </summary>
         [Input("oidcDiscoveryUrl")]
         public Input<string>? OidcDiscoveryUrl { get; set; }
+
+        /// <summary>
+        /// The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+        /// </summary>
+        [Input("oidcResponseMode")]
+        public Input<string>? OidcResponseMode { get; set; }
+
+        [Input("oidcResponseTypes")]
+        private InputList<string>? _oidcResponseTypes;
+
+        /// <summary>
+        /// List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
+        /// </summary>
+        public InputList<string> OidcResponseTypes
+        {
+            get => _oidcResponseTypes ?? (_oidcResponseTypes = new InputList<string>());
+            set => _oidcResponseTypes = value;
+        }
 
         /// <summary>
         /// Path to mount the JWT/OIDC auth backend
@@ -442,6 +484,12 @@ namespace Pulumi.Vault.Jwt
         public Input<bool>? Local { get; set; }
 
         /// <summary>
+        /// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+        /// </summary>
+        [Input("namespaceInState")]
+        public Input<bool>? NamespaceInState { get; set; }
+
+        /// <summary>
         /// Client ID used for OIDC backends
         /// </summary>
         [Input("oidcClientId")]
@@ -464,6 +512,24 @@ namespace Pulumi.Vault.Jwt
         /// </summary>
         [Input("oidcDiscoveryUrl")]
         public Input<string>? OidcDiscoveryUrl { get; set; }
+
+        /// <summary>
+        /// The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+        /// </summary>
+        [Input("oidcResponseMode")]
+        public Input<string>? OidcResponseMode { get; set; }
+
+        [Input("oidcResponseTypes")]
+        private InputList<string>? _oidcResponseTypes;
+
+        /// <summary>
+        /// List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
+        /// </summary>
+        public InputList<string> OidcResponseTypes
+        {
+            get => _oidcResponseTypes ?? (_oidcResponseTypes = new InputList<string>());
+            set => _oidcResponseTypes = value;
+        }
 
         /// <summary>
         /// Path to mount the JWT/OIDC auth backend

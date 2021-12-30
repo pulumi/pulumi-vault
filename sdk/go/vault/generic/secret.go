@@ -29,7 +29,12 @@ type Secret struct {
 	// String containing a JSON-encoded object that will be
 	// written as the secret data at the given path.
 	DataJson pulumi.StringOutput `pulumi:"dataJson"`
-	// True/false. Set this to true if your vault
+	// true/false.  Only applicable for kv-v2 stores.
+	// If set to `true`, permanently deletes all versions for
+	// the specified key. The default behavior is to only delete the latest version of the
+	// secret.
+	DeleteAllVersions pulumi.BoolPtrOutput `pulumi:"deleteAllVersions"`
+	// true/false. Set this to true if your vault
 	// authentication is not able to read the data. Setting this to `true` will
 	// break drift detection. Defaults to false.
 	DisableRead pulumi.BoolPtrOutput `pulumi:"disableRead"`
@@ -84,7 +89,12 @@ type secretState struct {
 	// String containing a JSON-encoded object that will be
 	// written as the secret data at the given path.
 	DataJson *string `pulumi:"dataJson"`
-	// True/false. Set this to true if your vault
+	// true/false.  Only applicable for kv-v2 stores.
+	// If set to `true`, permanently deletes all versions for
+	// the specified key. The default behavior is to only delete the latest version of the
+	// secret.
+	DeleteAllVersions *bool `pulumi:"deleteAllVersions"`
+	// true/false. Set this to true if your vault
 	// authentication is not able to read the data. Setting this to `true` will
 	// break drift detection. Defaults to false.
 	DisableRead *bool `pulumi:"disableRead"`
@@ -105,7 +115,12 @@ type SecretState struct {
 	// String containing a JSON-encoded object that will be
 	// written as the secret data at the given path.
 	DataJson pulumi.StringPtrInput
-	// True/false. Set this to true if your vault
+	// true/false.  Only applicable for kv-v2 stores.
+	// If set to `true`, permanently deletes all versions for
+	// the specified key. The default behavior is to only delete the latest version of the
+	// secret.
+	DeleteAllVersions pulumi.BoolPtrInput
+	// true/false. Set this to true if your vault
 	// authentication is not able to read the data. Setting this to `true` will
 	// break drift detection. Defaults to false.
 	DisableRead pulumi.BoolPtrInput
@@ -125,7 +140,12 @@ type secretArgs struct {
 	// String containing a JSON-encoded object that will be
 	// written as the secret data at the given path.
 	DataJson string `pulumi:"dataJson"`
-	// True/false. Set this to true if your vault
+	// true/false.  Only applicable for kv-v2 stores.
+	// If set to `true`, permanently deletes all versions for
+	// the specified key. The default behavior is to only delete the latest version of the
+	// secret.
+	DeleteAllVersions *bool `pulumi:"deleteAllVersions"`
+	// true/false. Set this to true if your vault
 	// authentication is not able to read the data. Setting this to `true` will
 	// break drift detection. Defaults to false.
 	DisableRead *bool `pulumi:"disableRead"`
@@ -142,7 +162,12 @@ type SecretArgs struct {
 	// String containing a JSON-encoded object that will be
 	// written as the secret data at the given path.
 	DataJson pulumi.StringInput
-	// True/false. Set this to true if your vault
+	// true/false.  Only applicable for kv-v2 stores.
+	// If set to `true`, permanently deletes all versions for
+	// the specified key. The default behavior is to only delete the latest version of the
+	// secret.
+	DeleteAllVersions pulumi.BoolPtrInput
+	// true/false. Set this to true if your vault
 	// authentication is not able to read the data. Setting this to `true` will
 	// break drift detection. Defaults to false.
 	DisableRead pulumi.BoolPtrInput

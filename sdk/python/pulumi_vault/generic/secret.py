@@ -15,6 +15,7 @@ class SecretArgs:
     def __init__(__self__, *,
                  data_json: pulumi.Input[str],
                  path: pulumi.Input[str],
+                 delete_all_versions: Optional[pulumi.Input[bool]] = None,
                  disable_read: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Secret resource.
@@ -25,12 +26,18 @@ class SecretArgs:
                this should be prefixed with `secret/`. Writing to other backends with this
                resource is possible; consult each backend's documentation to see which
                endpoints support the `PUT` and `DELETE` methods.
-        :param pulumi.Input[bool] disable_read: True/false. Set this to true if your vault
+        :param pulumi.Input[bool] delete_all_versions: true/false.  Only applicable for kv-v2 stores.
+               If set to `true`, permanently deletes all versions for
+               the specified key. The default behavior is to only delete the latest version of the
+               secret.
+        :param pulumi.Input[bool] disable_read: true/false. Set this to true if your vault
                authentication is not able to read the data. Setting this to `true` will
                break drift detection. Defaults to false.
         """
         pulumi.set(__self__, "data_json", data_json)
         pulumi.set(__self__, "path", path)
+        if delete_all_versions is not None:
+            pulumi.set(__self__, "delete_all_versions", delete_all_versions)
         if disable_read is not None:
             pulumi.set(__self__, "disable_read", disable_read)
 
@@ -64,10 +71,25 @@ class SecretArgs:
         pulumi.set(self, "path", value)
 
     @property
+    @pulumi.getter(name="deleteAllVersions")
+    def delete_all_versions(self) -> Optional[pulumi.Input[bool]]:
+        """
+        true/false.  Only applicable for kv-v2 stores.
+        If set to `true`, permanently deletes all versions for
+        the specified key. The default behavior is to only delete the latest version of the
+        secret.
+        """
+        return pulumi.get(self, "delete_all_versions")
+
+    @delete_all_versions.setter
+    def delete_all_versions(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "delete_all_versions", value)
+
+    @property
     @pulumi.getter(name="disableRead")
     def disable_read(self) -> Optional[pulumi.Input[bool]]:
         """
-        True/false. Set this to true if your vault
+        true/false. Set this to true if your vault
         authentication is not able to read the data. Setting this to `true` will
         break drift detection. Defaults to false.
         """
@@ -83,6 +105,7 @@ class _SecretState:
     def __init__(__self__, *,
                  data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  data_json: Optional[pulumi.Input[str]] = None,
+                 delete_all_versions: Optional[pulumi.Input[bool]] = None,
                  disable_read: Optional[pulumi.Input[bool]] = None,
                  path: Optional[pulumi.Input[str]] = None):
         """
@@ -93,7 +116,11 @@ class _SecretState:
                serialized as JSON.
         :param pulumi.Input[str] data_json: String containing a JSON-encoded object that will be
                written as the secret data at the given path.
-        :param pulumi.Input[bool] disable_read: True/false. Set this to true if your vault
+        :param pulumi.Input[bool] delete_all_versions: true/false.  Only applicable for kv-v2 stores.
+               If set to `true`, permanently deletes all versions for
+               the specified key. The default behavior is to only delete the latest version of the
+               secret.
+        :param pulumi.Input[bool] disable_read: true/false. Set this to true if your vault
                authentication is not able to read the data. Setting this to `true` will
                break drift detection. Defaults to false.
         :param pulumi.Input[str] path: The full logical path at which to write the given data.
@@ -106,6 +133,8 @@ class _SecretState:
             pulumi.set(__self__, "data", data)
         if data_json is not None:
             pulumi.set(__self__, "data_json", data_json)
+        if delete_all_versions is not None:
+            pulumi.set(__self__, "delete_all_versions", delete_all_versions)
         if disable_read is not None:
             pulumi.set(__self__, "disable_read", disable_read)
         if path is not None:
@@ -140,10 +169,25 @@ class _SecretState:
         pulumi.set(self, "data_json", value)
 
     @property
+    @pulumi.getter(name="deleteAllVersions")
+    def delete_all_versions(self) -> Optional[pulumi.Input[bool]]:
+        """
+        true/false.  Only applicable for kv-v2 stores.
+        If set to `true`, permanently deletes all versions for
+        the specified key. The default behavior is to only delete the latest version of the
+        secret.
+        """
+        return pulumi.get(self, "delete_all_versions")
+
+    @delete_all_versions.setter
+    def delete_all_versions(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "delete_all_versions", value)
+
+    @property
     @pulumi.getter(name="disableRead")
     def disable_read(self) -> Optional[pulumi.Input[bool]]:
         """
-        True/false. Set this to true if your vault
+        true/false. Set this to true if your vault
         authentication is not able to read the data. Setting this to `true` will
         break drift detection. Defaults to false.
         """
@@ -176,6 +220,7 @@ class Secret(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  data_json: Optional[pulumi.Input[str]] = None,
+                 delete_all_versions: Optional[pulumi.Input[bool]] = None,
                  disable_read: Optional[pulumi.Input[bool]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -192,7 +237,11 @@ class Secret(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] data_json: String containing a JSON-encoded object that will be
                written as the secret data at the given path.
-        :param pulumi.Input[bool] disable_read: True/false. Set this to true if your vault
+        :param pulumi.Input[bool] delete_all_versions: true/false.  Only applicable for kv-v2 stores.
+               If set to `true`, permanently deletes all versions for
+               the specified key. The default behavior is to only delete the latest version of the
+               secret.
+        :param pulumi.Input[bool] disable_read: true/false. Set this to true if your vault
                authentication is not able to read the data. Setting this to `true` will
                break drift detection. Defaults to false.
         :param pulumi.Input[str] path: The full logical path at which to write the given data.
@@ -232,6 +281,7 @@ class Secret(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  data_json: Optional[pulumi.Input[str]] = None,
+                 delete_all_versions: Optional[pulumi.Input[bool]] = None,
                  disable_read: Optional[pulumi.Input[bool]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -249,6 +299,7 @@ class Secret(pulumi.CustomResource):
             if data_json is None and not opts.urn:
                 raise TypeError("Missing required property 'data_json'")
             __props__.__dict__["data_json"] = data_json
+            __props__.__dict__["delete_all_versions"] = delete_all_versions
             __props__.__dict__["disable_read"] = disable_read
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
@@ -266,6 +317,7 @@ class Secret(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             data_json: Optional[pulumi.Input[str]] = None,
+            delete_all_versions: Optional[pulumi.Input[bool]] = None,
             disable_read: Optional[pulumi.Input[bool]] = None,
             path: Optional[pulumi.Input[str]] = None) -> 'Secret':
         """
@@ -281,7 +333,11 @@ class Secret(pulumi.CustomResource):
                serialized as JSON.
         :param pulumi.Input[str] data_json: String containing a JSON-encoded object that will be
                written as the secret data at the given path.
-        :param pulumi.Input[bool] disable_read: True/false. Set this to true if your vault
+        :param pulumi.Input[bool] delete_all_versions: true/false.  Only applicable for kv-v2 stores.
+               If set to `true`, permanently deletes all versions for
+               the specified key. The default behavior is to only delete the latest version of the
+               secret.
+        :param pulumi.Input[bool] disable_read: true/false. Set this to true if your vault
                authentication is not able to read the data. Setting this to `true` will
                break drift detection. Defaults to false.
         :param pulumi.Input[str] path: The full logical path at which to write the given data.
@@ -296,6 +352,7 @@ class Secret(pulumi.CustomResource):
 
         __props__.__dict__["data"] = data
         __props__.__dict__["data_json"] = data_json
+        __props__.__dict__["delete_all_versions"] = delete_all_versions
         __props__.__dict__["disable_read"] = disable_read
         __props__.__dict__["path"] = path
         return Secret(resource_name, opts=opts, __props__=__props__)
@@ -321,10 +378,21 @@ class Secret(pulumi.CustomResource):
         return pulumi.get(self, "data_json")
 
     @property
+    @pulumi.getter(name="deleteAllVersions")
+    def delete_all_versions(self) -> pulumi.Output[Optional[bool]]:
+        """
+        true/false.  Only applicable for kv-v2 stores.
+        If set to `true`, permanently deletes all versions for
+        the specified key. The default behavior is to only delete the latest version of the
+        secret.
+        """
+        return pulumi.get(self, "delete_all_versions")
+
+    @property
     @pulumi.getter(name="disableRead")
     def disable_read(self) -> pulumi.Output[Optional[bool]]:
         """
-        True/false. Set this to true if your vault
+        true/false. Set this to true if your vault
         authentication is not able to read the data. Setting this to `true` will
         break drift detection. Defaults to false.
         """

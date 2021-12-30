@@ -731,6 +731,330 @@ func (o SecretBackendConnectionHanaPtrOutput) MaxOpenConnections() pulumi.IntPtr
 	}).(pulumi.IntPtrOutput)
 }
 
+type SecretBackendConnectionInfluxdb struct {
+	// The number of seconds to use as a connection
+	// timeout.
+	ConnectTimeout *int `pulumi:"connectTimeout"`
+	// The host to connect to.
+	Host string `pulumi:"host"`
+	// Whether to skip verification of the server
+	// certificate when using TLS.
+	InsecureTls *bool `pulumi:"insecureTls"`
+	// The password to be used in the connection.
+	Password string `pulumi:"password"`
+	// Concatenated PEM blocks configuring the certificate
+	// chain.
+	PemBundle *string `pulumi:"pemBundle"`
+	// A JSON structure configuring the certificate chain.
+	PemJson *string `pulumi:"pemJson"`
+	// The default port to connect to if no port is specified as
+	// part of the host.
+	Port *int `pulumi:"port"`
+	// Whether to use TLS when connecting to Cassandra.
+	Tls *bool `pulumi:"tls"`
+	// The username to be used in the connection (the account admin level).
+	Username string `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
+}
+
+// SecretBackendConnectionInfluxdbInput is an input type that accepts SecretBackendConnectionInfluxdbArgs and SecretBackendConnectionInfluxdbOutput values.
+// You can construct a concrete instance of `SecretBackendConnectionInfluxdbInput` via:
+//
+//          SecretBackendConnectionInfluxdbArgs{...}
+type SecretBackendConnectionInfluxdbInput interface {
+	pulumi.Input
+
+	ToSecretBackendConnectionInfluxdbOutput() SecretBackendConnectionInfluxdbOutput
+	ToSecretBackendConnectionInfluxdbOutputWithContext(context.Context) SecretBackendConnectionInfluxdbOutput
+}
+
+type SecretBackendConnectionInfluxdbArgs struct {
+	// The number of seconds to use as a connection
+	// timeout.
+	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
+	// The host to connect to.
+	Host pulumi.StringInput `pulumi:"host"`
+	// Whether to skip verification of the server
+	// certificate when using TLS.
+	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
+	// The password to be used in the connection.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Concatenated PEM blocks configuring the certificate
+	// chain.
+	PemBundle pulumi.StringPtrInput `pulumi:"pemBundle"`
+	// A JSON structure configuring the certificate chain.
+	PemJson pulumi.StringPtrInput `pulumi:"pemJson"`
+	// The default port to connect to if no port is specified as
+	// part of the host.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Whether to use TLS when connecting to Cassandra.
+	Tls pulumi.BoolPtrInput `pulumi:"tls"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringInput `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
+}
+
+func (SecretBackendConnectionInfluxdbArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConnectionInfluxdb)(nil)).Elem()
+}
+
+func (i SecretBackendConnectionInfluxdbArgs) ToSecretBackendConnectionInfluxdbOutput() SecretBackendConnectionInfluxdbOutput {
+	return i.ToSecretBackendConnectionInfluxdbOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConnectionInfluxdbArgs) ToSecretBackendConnectionInfluxdbOutputWithContext(ctx context.Context) SecretBackendConnectionInfluxdbOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionInfluxdbOutput)
+}
+
+func (i SecretBackendConnectionInfluxdbArgs) ToSecretBackendConnectionInfluxdbPtrOutput() SecretBackendConnectionInfluxdbPtrOutput {
+	return i.ToSecretBackendConnectionInfluxdbPtrOutputWithContext(context.Background())
+}
+
+func (i SecretBackendConnectionInfluxdbArgs) ToSecretBackendConnectionInfluxdbPtrOutputWithContext(ctx context.Context) SecretBackendConnectionInfluxdbPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionInfluxdbOutput).ToSecretBackendConnectionInfluxdbPtrOutputWithContext(ctx)
+}
+
+// SecretBackendConnectionInfluxdbPtrInput is an input type that accepts SecretBackendConnectionInfluxdbArgs, SecretBackendConnectionInfluxdbPtr and SecretBackendConnectionInfluxdbPtrOutput values.
+// You can construct a concrete instance of `SecretBackendConnectionInfluxdbPtrInput` via:
+//
+//          SecretBackendConnectionInfluxdbArgs{...}
+//
+//  or:
+//
+//          nil
+type SecretBackendConnectionInfluxdbPtrInput interface {
+	pulumi.Input
+
+	ToSecretBackendConnectionInfluxdbPtrOutput() SecretBackendConnectionInfluxdbPtrOutput
+	ToSecretBackendConnectionInfluxdbPtrOutputWithContext(context.Context) SecretBackendConnectionInfluxdbPtrOutput
+}
+
+type secretBackendConnectionInfluxdbPtrType SecretBackendConnectionInfluxdbArgs
+
+func SecretBackendConnectionInfluxdbPtr(v *SecretBackendConnectionInfluxdbArgs) SecretBackendConnectionInfluxdbPtrInput {
+	return (*secretBackendConnectionInfluxdbPtrType)(v)
+}
+
+func (*secretBackendConnectionInfluxdbPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendConnectionInfluxdb)(nil)).Elem()
+}
+
+func (i *secretBackendConnectionInfluxdbPtrType) ToSecretBackendConnectionInfluxdbPtrOutput() SecretBackendConnectionInfluxdbPtrOutput {
+	return i.ToSecretBackendConnectionInfluxdbPtrOutputWithContext(context.Background())
+}
+
+func (i *secretBackendConnectionInfluxdbPtrType) ToSecretBackendConnectionInfluxdbPtrOutputWithContext(ctx context.Context) SecretBackendConnectionInfluxdbPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendConnectionInfluxdbPtrOutput)
+}
+
+type SecretBackendConnectionInfluxdbOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendConnectionInfluxdbOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretBackendConnectionInfluxdb)(nil)).Elem()
+}
+
+func (o SecretBackendConnectionInfluxdbOutput) ToSecretBackendConnectionInfluxdbOutput() SecretBackendConnectionInfluxdbOutput {
+	return o
+}
+
+func (o SecretBackendConnectionInfluxdbOutput) ToSecretBackendConnectionInfluxdbOutputWithContext(ctx context.Context) SecretBackendConnectionInfluxdbOutput {
+	return o
+}
+
+func (o SecretBackendConnectionInfluxdbOutput) ToSecretBackendConnectionInfluxdbPtrOutput() SecretBackendConnectionInfluxdbPtrOutput {
+	return o.ToSecretBackendConnectionInfluxdbPtrOutputWithContext(context.Background())
+}
+
+func (o SecretBackendConnectionInfluxdbOutput) ToSecretBackendConnectionInfluxdbPtrOutputWithContext(ctx context.Context) SecretBackendConnectionInfluxdbPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendConnectionInfluxdb) *SecretBackendConnectionInfluxdb {
+		return &v
+	}).(SecretBackendConnectionInfluxdbPtrOutput)
+}
+
+// The number of seconds to use as a connection
+// timeout.
+func (o SecretBackendConnectionInfluxdbOutput) ConnectTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
+}
+
+// The host to connect to.
+func (o SecretBackendConnectionInfluxdbOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// Whether to skip verification of the server
+// certificate when using TLS.
+func (o SecretBackendConnectionInfluxdbOutput) InsecureTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretBackendConnectionInfluxdbOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Concatenated PEM blocks configuring the certificate
+// chain.
+func (o SecretBackendConnectionInfluxdbOutput) PemBundle() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) *string { return v.PemBundle }).(pulumi.StringPtrOutput)
+}
+
+// A JSON structure configuring the certificate chain.
+func (o SecretBackendConnectionInfluxdbOutput) PemJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) *string { return v.PemJson }).(pulumi.StringPtrOutput)
+}
+
+// The default port to connect to if no port is specified as
+// part of the host.
+func (o SecretBackendConnectionInfluxdbOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// Whether to use TLS when connecting to Cassandra.
+func (o SecretBackendConnectionInfluxdbOutput) Tls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretBackendConnectionInfluxdbOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) string { return v.Username }).(pulumi.StringOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionInfluxdbOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
+type SecretBackendConnectionInfluxdbPtrOutput struct{ *pulumi.OutputState }
+
+func (SecretBackendConnectionInfluxdbPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretBackendConnectionInfluxdb)(nil)).Elem()
+}
+
+func (o SecretBackendConnectionInfluxdbPtrOutput) ToSecretBackendConnectionInfluxdbPtrOutput() SecretBackendConnectionInfluxdbPtrOutput {
+	return o
+}
+
+func (o SecretBackendConnectionInfluxdbPtrOutput) ToSecretBackendConnectionInfluxdbPtrOutputWithContext(ctx context.Context) SecretBackendConnectionInfluxdbPtrOutput {
+	return o
+}
+
+func (o SecretBackendConnectionInfluxdbPtrOutput) Elem() SecretBackendConnectionInfluxdbOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) SecretBackendConnectionInfluxdb {
+		if v != nil {
+			return *v
+		}
+		var ret SecretBackendConnectionInfluxdb
+		return ret
+	}).(SecretBackendConnectionInfluxdbOutput)
+}
+
+// The number of seconds to use as a connection
+// timeout.
+func (o SecretBackendConnectionInfluxdbPtrOutput) ConnectTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ConnectTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+// The host to connect to.
+func (o SecretBackendConnectionInfluxdbPtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether to skip verification of the server
+// certificate when using TLS.
+func (o SecretBackendConnectionInfluxdbPtrOutput) InsecureTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.InsecureTls
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretBackendConnectionInfluxdbPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// Concatenated PEM blocks configuring the certificate
+// chain.
+func (o SecretBackendConnectionInfluxdbPtrOutput) PemBundle() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PemBundle
+	}).(pulumi.StringPtrOutput)
+}
+
+// A JSON structure configuring the certificate chain.
+func (o SecretBackendConnectionInfluxdbPtrOutput) PemJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PemJson
+	}).(pulumi.StringPtrOutput)
+}
+
+// The default port to connect to if no port is specified as
+// part of the host.
+func (o SecretBackendConnectionInfluxdbPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+// Whether to use TLS when connecting to Cassandra.
+func (o SecretBackendConnectionInfluxdbPtrOutput) Tls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Tls
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretBackendConnectionInfluxdbPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionInfluxdbPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UsernameTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionMongodb struct {
 	// A URL containing connection information. See
 	// the [Vault
@@ -1149,6 +1473,11 @@ type SecretBackendConnectionMssql struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// For Vault v1.9+. Set to true when the target is a
+	// Contained Database, e.g. AzureSQL.
+	// See the [Vault
+	// docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+	ContainedDb *bool `pulumi:"containedDb"`
 	// The maximum number of seconds to keep
 	// a connection alive for.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
@@ -1179,6 +1508,11 @@ type SecretBackendConnectionMssqlArgs struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// For Vault v1.9+. Set to true when the target is a
+	// Contained Database, e.g. AzureSQL.
+	// See the [Vault
+	// docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+	ContainedDb pulumi.BoolPtrInput `pulumi:"containedDb"`
 	// The maximum number of seconds to keep
 	// a connection alive for.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
@@ -1277,6 +1611,14 @@ func (o SecretBackendConnectionMssqlOutput) ConnectionUrl() pulumi.StringPtrOutp
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
+// For Vault v1.9+. Set to true when the target is a
+// Contained Database, e.g. AzureSQL.
+// See the [Vault
+// docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+func (o SecretBackendConnectionMssqlOutput) ContainedDb() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMssql) *bool { return v.ContainedDb }).(pulumi.BoolPtrOutput)
+}
+
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionMssqlOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
@@ -1335,6 +1677,19 @@ func (o SecretBackendConnectionMssqlPtrOutput) ConnectionUrl() pulumi.StringPtrO
 		}
 		return v.ConnectionUrl
 	}).(pulumi.StringPtrOutput)
+}
+
+// For Vault v1.9+. Set to true when the target is a
+// Contained Database, e.g. AzureSQL.
+// See the [Vault
+// docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+func (o SecretBackendConnectionMssqlPtrOutput) ContainedDb() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMssql) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ContainedDb
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The maximum number of seconds to keep
@@ -3122,6 +3477,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionElasticsearchPtrInput)(nil)).Elem(), SecretBackendConnectionElasticsearchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionHanaInput)(nil)).Elem(), SecretBackendConnectionHanaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionHanaPtrInput)(nil)).Elem(), SecretBackendConnectionHanaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionInfluxdbInput)(nil)).Elem(), SecretBackendConnectionInfluxdbArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionInfluxdbPtrInput)(nil)).Elem(), SecretBackendConnectionInfluxdbArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionMongodbInput)(nil)).Elem(), SecretBackendConnectionMongodbArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionMongodbPtrInput)(nil)).Elem(), SecretBackendConnectionMongodbArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionMongodbatlasInput)(nil)).Elem(), SecretBackendConnectionMongodbatlasArgs{})
@@ -3148,6 +3505,8 @@ func init() {
 	pulumi.RegisterOutputType(SecretBackendConnectionElasticsearchPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionHanaOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionHanaPtrOutput{})
+	pulumi.RegisterOutputType(SecretBackendConnectionInfluxdbOutput{})
+	pulumi.RegisterOutputType(SecretBackendConnectionInfluxdbPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionMongodbOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionMongodbPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionMongodbatlasOutput{})

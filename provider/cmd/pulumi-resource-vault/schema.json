@@ -53,7 +53,7 @@
             },
             "maxLeaseTtlSeconds": {
                 "type": "integer",
-                "description": "Maximum TTL for secret leases requested by this provider\n",
+                "description": "Maximum TTL for secret leases requested by this provider.\n",
                 "default": 1200,
                 "defaultInfo": {
                     "environment": [
@@ -71,9 +71,17 @@
                     ]
                 }
             },
+            "maxRetriesCcc": {
+                "type": "integer",
+                "description": "Maximum number of retries for Client Controlled Consistency related operations\n"
+            },
             "namespace": {
                 "type": "string",
-                "description": "The namespace to use. Available only for Vault Enterprise\n"
+                "description": "The namespace to use. Available only for Vault Enterprise.\n"
+            },
+            "skipChildToken": {
+                "type": "boolean",
+                "description": "Set this to true to prevent the creation of ephemeral child token used by this provider.\n"
             },
             "skipTlsVerify": {
                 "type": "boolean",
@@ -417,6 +425,106 @@
             },
             "type": "object"
         },
+        "vault:database/SecretBackendConnectionInfluxdb:SecretBackendConnectionInfluxdb": {
+            "properties": {
+                "connectTimeout": {
+                    "type": "integer",
+                    "description": "The number of seconds to use as a connection\ntimeout.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "host": {
+                    "type": "string",
+                    "description": "The host to connect to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "insecureTls": {
+                    "type": "boolean",
+                    "description": "Whether to skip verification of the server\ncertificate when using TLS.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password to be used in the connection.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "pemBundle": {
+                    "type": "string",
+                    "description": "Concatenated PEM blocks configuring the certificate\nchain.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "pemJson": {
+                    "type": "string",
+                    "description": "A JSON structure configuring the certificate chain.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The default port to connect to if no port is specified as\npart of the host.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tls": {
+                    "type": "boolean",
+                    "description": "Whether to use TLS when connecting to Cassandra.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username to be used in the connection (the account admin level).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "usernameTemplate": {
+                    "type": "string",
+                    "description": "- [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "host",
+                "password",
+                "username"
+            ]
+        },
         "vault:database/SecretBackendConnectionMongodb:SecretBackendConnectionMongodb": {
             "properties": {
                 "connectionUrl": {
@@ -509,6 +617,15 @@
                 "connectionUrl": {
                     "type": "string",
                     "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)\nfor an example.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "containedDb": {
+                    "type": "boolean",
+                    "description": "For Vault v1.9+. Set to true when the target is a\nContained Database, e.g. AzureSQL.\nSee the [Vault\ndocs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1804,15 +1921,23 @@
             },
             "maxLeaseTtlSeconds": {
                 "type": "integer",
-                "description": "Maximum TTL for secret leases requested by this provider\n"
+                "description": "Maximum TTL for secret leases requested by this provider.\n"
             },
             "maxRetries": {
                 "type": "integer",
                 "description": "Maximum number of retries when a 5xx error code is encountered.\n"
             },
+            "maxRetriesCcc": {
+                "type": "integer",
+                "description": "Maximum number of retries for Client Controlled Consistency related operations\n"
+            },
             "namespace": {
                 "type": "string",
-                "description": "The namespace to use. Available only for Vault Enterprise\n"
+                "description": "The namespace to use. Available only for Vault Enterprise.\n"
+            },
+            "skipChildToken": {
+                "type": "boolean",
+                "description": "Set this to true to prevent the creation of ephemeral child token used by this provider.\n"
             },
             "skipTlsVerify": {
                 "type": "boolean",
@@ -1871,7 +1996,7 @@
             },
             "maxLeaseTtlSeconds": {
                 "type": "integer",
-                "description": "Maximum TTL for secret leases requested by this provider\n",
+                "description": "Maximum TTL for secret leases requested by this provider.\n",
                 "default": 1200,
                 "defaultInfo": {
                     "environment": [
@@ -1889,9 +2014,17 @@
                     ]
                 }
             },
+            "maxRetriesCcc": {
+                "type": "integer",
+                "description": "Maximum number of retries for Client Controlled Consistency related operations\n"
+            },
             "namespace": {
                 "type": "string",
-                "description": "The namespace to use. Available only for Vault Enterprise\n"
+                "description": "The namespace to use. Available only for Vault Enterprise.\n"
+            },
+            "skipChildToken": {
+                "type": "boolean",
+                "description": "Set this to true to prevent the creation of ephemeral child token used by this provider.\n"
             },
             "skipTlsVerify": {
                 "type": "boolean",
@@ -2437,30 +2570,31 @@
             }
         },
         "vault:ad/secretRole:SecretRole": {
+            "description": "\n\n\n## Import\n\nAD secret backend roles can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob\n```\n\n ",
             "properties": {
                 "backend": {
                     "type": "string",
-                    "description": "The mount path for the AD backend.\n"
+                    "description": "The path the AD secret backend is mounted at,\nwith no leading or trailing `/`s.\n"
                 },
                 "lastVaultRotation": {
                     "type": "string",
-                    "description": "Last time Vault rotated this service account's password.\n"
+                    "description": "Timestamp of the last password rotation by Vault.\n"
                 },
                 "passwordLastSet": {
                     "type": "string",
-                    "description": "Last time Vault set this service account's password.\n"
+                    "description": "Timestamp of the last password set by Vault.\n"
                 },
                 "role": {
                     "type": "string",
-                    "description": "Name of the role.\n"
+                    "description": "The name to identify this role within the backend.\nMust be unique within the backend.\n"
                 },
                 "serviceAccountName": {
                     "type": "string",
-                    "description": "The username/logon name for the service account with which this role will be associated.\n"
+                    "description": "Specifies the name of the Active Directory service\naccount mapped to this role.\n"
                 },
                 "ttl": {
                     "type": "integer",
-                    "description": "In seconds, the default password time-to-live.\n"
+                    "description": "The password time-to-live in seconds. Defaults to the configuration\nttl if not provided.\n"
                 }
             },
             "required": [
@@ -2473,19 +2607,19 @@
             "inputProperties": {
                 "backend": {
                     "type": "string",
-                    "description": "The mount path for the AD backend.\n"
+                    "description": "The path the AD secret backend is mounted at,\nwith no leading or trailing `/`s.\n"
                 },
                 "role": {
                     "type": "string",
-                    "description": "Name of the role.\n"
+                    "description": "The name to identify this role within the backend.\nMust be unique within the backend.\n"
                 },
                 "serviceAccountName": {
                     "type": "string",
-                    "description": "The username/logon name for the service account with which this role will be associated.\n"
+                    "description": "Specifies the name of the Active Directory service\naccount mapped to this role.\n"
                 },
                 "ttl": {
                     "type": "integer",
-                    "description": "In seconds, the default password time-to-live.\n"
+                    "description": "The password time-to-live in seconds. Defaults to the configuration\nttl if not provided.\n"
                 }
             },
             "requiredInputs": [
@@ -2498,27 +2632,27 @@
                 "properties": {
                     "backend": {
                         "type": "string",
-                        "description": "The mount path for the AD backend.\n"
+                        "description": "The path the AD secret backend is mounted at,\nwith no leading or trailing `/`s.\n"
                     },
                     "lastVaultRotation": {
                         "type": "string",
-                        "description": "Last time Vault rotated this service account's password.\n"
+                        "description": "Timestamp of the last password rotation by Vault.\n"
                     },
                     "passwordLastSet": {
                         "type": "string",
-                        "description": "Last time Vault set this service account's password.\n"
+                        "description": "Timestamp of the last password set by Vault.\n"
                     },
                     "role": {
                         "type": "string",
-                        "description": "Name of the role.\n"
+                        "description": "The name to identify this role within the backend.\nMust be unique within the backend.\n"
                     },
                     "serviceAccountName": {
                         "type": "string",
-                        "description": "The username/logon name for the service account with which this role will be associated.\n"
+                        "description": "Specifies the name of the Active Directory service\naccount mapped to this role.\n"
                     },
                     "ttl": {
                         "type": "integer",
-                        "description": "In seconds, the default password time-to-live.\n"
+                        "description": "The password time-to-live in seconds. Defaults to the configuration\nttl if not provided.\n"
                     }
                 },
                 "type": "object"
@@ -2708,7 +2842,7 @@
             }
         },
         "vault:appRole/authBackendLogin:AuthBackendLogin": {
-            "description": "Logs into Vault using the AppRole auth backend. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/approle) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst approle = new vault.AuthBackend(\"approle\", {type: \"approle\"});\nconst example = new vault.approle.AuthBackendRole(\"example\", {\n    backend: approle.path,\n    roleName: \"test-role\",\n    policies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n});\nconst id = new vault.approle.AuthBackendRoleSecretID(\"id\", {\n    backend: approle.path,\n    roleName: example.roleName,\n});\nconst login = new vault.approle.AuthBackendLogin(\"login\", {\n    backend: approle.path,\n    roleId: example.roleId,\n    secretId: id.secretId,\n});\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Logs into Vault using the AppRole auth backend. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/approle) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst approle = new vault.AuthBackend(\"approle\", {type: \"approle\"});\nconst example = new vault.approle.AuthBackendRole(\"example\", {\n    backend: approle.path,\n    roleName: \"test-role\",\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n});\nconst id = new vault.approle.AuthBackendRoleSecretID(\"id\", {\n    backend: approle.path,\n    roleName: example.roleName,\n});\nconst login = new vault.approle.AuthBackendLogin(\"login\", {\n    backend: approle.path,\n    roleId: example.roleId,\n    secretId: id.secretId,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\napprole = vault.AuthBackend(\"approle\", type=\"approle\")\nexample = vault.app_role.AuthBackendRole(\"example\",\n    backend=approle.path,\n    role_name=\"test-role\",\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ])\nid = vault.app_role.AuthBackendRoleSecretID(\"id\",\n    backend=approle.path,\n    role_name=example.role_name)\nlogin = vault.app_role.AuthBackendLogin(\"login\",\n    backend=approle.path,\n    role_id=example.role_id,\n    secret_id=id.secret_id)\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var approle = new Vault.AuthBackend(\"approle\", new Vault.AuthBackendArgs\n        {\n            Type = \"approle\",\n        });\n        var example = new Vault.AppRole.AuthBackendRole(\"example\", new Vault.AppRole.AuthBackendRoleArgs\n        {\n            Backend = approle.Path,\n            RoleName = \"test-role\",\n            TokenPolicies = \n            {\n                \"default\",\n                \"dev\",\n                \"prod\",\n            },\n        });\n        var id = new Vault.AppRole.AuthBackendRoleSecretID(\"id\", new Vault.AppRole.AuthBackendRoleSecretIDArgs\n        {\n            Backend = approle.Path,\n            RoleName = example.RoleName,\n        });\n        var login = new Vault.AppRole.AuthBackendLogin(\"login\", new Vault.AppRole.AuthBackendLoginArgs\n        {\n            Backend = approle.Path,\n            RoleId = example.RoleId,\n            SecretId = id.SecretId,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/appRole\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tapprole, err := vault.NewAuthBackend(ctx, \"approle\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"approle\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample, err := appRole.NewAuthBackendRole(ctx, \"example\", \u0026appRole.AuthBackendRoleArgs{\n\t\t\tBackend:  approle.Path,\n\t\t\tRoleName: pulumi.String(\"test-role\"),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"default\"),\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"prod\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tid, err := appRole.NewAuthBackendRoleSecretID(ctx, \"id\", \u0026appRole.AuthBackendRoleSecretIDArgs{\n\t\t\tBackend:  approle.Path,\n\t\t\tRoleName: example.RoleName,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = appRole.NewAuthBackendLogin(ctx, \"login\", \u0026appRole.AuthBackendLoginArgs{\n\t\t\tBackend:  approle.Path,\n\t\t\tRoleId:   example.RoleId,\n\t\t\tSecretId: id.SecretId,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "accessor": {
                     "type": "string",
@@ -3077,7 +3211,7 @@
             }
         },
         "vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID": {
-            "description": "Manages an AppRole auth backend SecretID in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/approle) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst approle = new vault.AuthBackend(\"approle\", {type: \"approle\"});\nconst example = new vault.approle.AuthBackendRole(\"example\", {\n    backend: approle.path,\n    roleName: \"test-role\",\n    policies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n});\nconst id = new vault.approle.AuthBackendRoleSecretID(\"id\", {\n    backend: approle.path,\n    roleName: example.roleName,\n    metadata: `  {\n    \"hello\": \"world\"\n  }\n`,\n});\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages an AppRole auth backend SecretID in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/approle) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst approle = new vault.AuthBackend(\"approle\", {type: \"approle\"});\nconst example = new vault.approle.AuthBackendRole(\"example\", {\n    backend: approle.path,\n    roleName: \"test-role\",\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n});\nconst id = new vault.approle.AuthBackendRoleSecretID(\"id\", {\n    backend: approle.path,\n    roleName: example.roleName,\n    metadata: `  {\n    \"hello\": \"world\"\n  }\n`,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\napprole = vault.AuthBackend(\"approle\", type=\"approle\")\nexample = vault.app_role.AuthBackendRole(\"example\",\n    backend=approle.path,\n    role_name=\"test-role\",\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ])\nid = vault.app_role.AuthBackendRoleSecretID(\"id\",\n    backend=approle.path,\n    role_name=example.role_name,\n    metadata=\"\"\"  {\n    \"hello\": \"world\"\n  }\n\"\"\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var approle = new Vault.AuthBackend(\"approle\", new Vault.AuthBackendArgs\n        {\n            Type = \"approle\",\n        });\n        var example = new Vault.AppRole.AuthBackendRole(\"example\", new Vault.AppRole.AuthBackendRoleArgs\n        {\n            Backend = approle.Path,\n            RoleName = \"test-role\",\n            TokenPolicies = \n            {\n                \"default\",\n                \"dev\",\n                \"prod\",\n            },\n        });\n        var id = new Vault.AppRole.AuthBackendRoleSecretID(\"id\", new Vault.AppRole.AuthBackendRoleSecretIDArgs\n        {\n            Backend = approle.Path,\n            RoleName = example.RoleName,\n            Metadata = @\"  {\n    \"\"hello\"\": \"\"world\"\"\n  }\n\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/appRole\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tapprole, err := vault.NewAuthBackend(ctx, \"approle\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"approle\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample, err := appRole.NewAuthBackendRole(ctx, \"example\", \u0026appRole.AuthBackendRoleArgs{\n\t\t\tBackend:  approle.Path,\n\t\t\tRoleName: pulumi.String(\"test-role\"),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"default\"),\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"prod\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = appRole.NewAuthBackendRoleSecretID(ctx, \"id\", \u0026appRole.AuthBackendRoleSecretIDArgs{\n\t\t\tBackend:  approle.Path,\n\t\t\tRoleName: example.RoleName,\n\t\t\tMetadata: pulumi.String(fmt.Sprintf(\"%v%v%v\", \"  {\\n\", \"    \\\"hello\\\": \\\"world\\\"\\n\", \"  }\\n\")),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "accessor": {
                     "type": "string",
@@ -5544,6 +5678,10 @@
                     "$ref": "#/types/vault:database/SecretBackendConnectionHana:SecretBackendConnectionHana",
                     "description": "A nested block containing configuration options for SAP HanaDB connections.\n"
                 },
+                "influxdb": {
+                    "$ref": "#/types/vault:database/SecretBackendConnectionInfluxdb:SecretBackendConnectionInfluxdb",
+                    "description": "A nested block containing configuration options for InfluxDB connections.\n"
+                },
                 "mongodb": {
                     "$ref": "#/types/vault:database/SecretBackendConnectionMongodb:SecretBackendConnectionMongodb",
                     "description": "A nested block containing configuration options for MongoDB connections.\n"
@@ -5634,6 +5772,10 @@
                 "hana": {
                     "$ref": "#/types/vault:database/SecretBackendConnectionHana:SecretBackendConnectionHana",
                     "description": "A nested block containing configuration options for SAP HanaDB connections.\n"
+                },
+                "influxdb": {
+                    "$ref": "#/types/vault:database/SecretBackendConnectionInfluxdb:SecretBackendConnectionInfluxdb",
+                    "description": "A nested block containing configuration options for InfluxDB connections.\n"
                 },
                 "mongodb": {
                     "$ref": "#/types/vault:database/SecretBackendConnectionMongodb:SecretBackendConnectionMongodb",
@@ -5726,6 +5868,10 @@
                     "hana": {
                         "$ref": "#/types/vault:database/SecretBackendConnectionHana:SecretBackendConnectionHana",
                         "description": "A nested block containing configuration options for SAP HanaDB connections.\n"
+                    },
+                    "influxdb": {
+                        "$ref": "#/types/vault:database/SecretBackendConnectionInfluxdb:SecretBackendConnectionInfluxdb",
+                        "description": "A nested block containing configuration options for InfluxDB connections.\n"
                     },
                     "mongodb": {
                         "$ref": "#/types/vault:database/SecretBackendConnectionMongodb:SecretBackendConnectionMongodb",
@@ -6998,9 +7144,13 @@
                     "type": "string",
                     "description": "String containing a JSON-encoded object that will be\nwritten as the secret data at the given path.\n"
                 },
+                "deleteAllVersions": {
+                    "type": "boolean",
+                    "description": "true/false.  Only applicable for kv-v2 stores.\nIf set to `true`, permanently deletes all versions for\nthe specified key. The default behavior is to only delete the latest version of the\nsecret.\n"
+                },
                 "disableRead": {
                     "type": "boolean",
-                    "description": "True/false. Set this to true if your vault\nauthentication is not able to read the data. Setting this to `true` will\nbreak drift detection. Defaults to false.\n"
+                    "description": "true/false. Set this to true if your vault\nauthentication is not able to read the data. Setting this to `true` will\nbreak drift detection. Defaults to false.\n"
                 },
                 "path": {
                     "type": "string",
@@ -7017,9 +7167,13 @@
                     "type": "string",
                     "description": "String containing a JSON-encoded object that will be\nwritten as the secret data at the given path.\n"
                 },
+                "deleteAllVersions": {
+                    "type": "boolean",
+                    "description": "true/false.  Only applicable for kv-v2 stores.\nIf set to `true`, permanently deletes all versions for\nthe specified key. The default behavior is to only delete the latest version of the\nsecret.\n"
+                },
                 "disableRead": {
                     "type": "boolean",
-                    "description": "True/false. Set this to true if your vault\nauthentication is not able to read the data. Setting this to `true` will\nbreak drift detection. Defaults to false.\n"
+                    "description": "true/false. Set this to true if your vault\nauthentication is not able to read the data. Setting this to `true` will\nbreak drift detection. Defaults to false.\n"
                 },
                 "path": {
                     "type": "string",
@@ -7044,9 +7198,13 @@
                         "type": "string",
                         "description": "String containing a JSON-encoded object that will be\nwritten as the secret data at the given path.\n"
                     },
+                    "deleteAllVersions": {
+                        "type": "boolean",
+                        "description": "true/false.  Only applicable for kv-v2 stores.\nIf set to `true`, permanently deletes all versions for\nthe specified key. The default behavior is to only delete the latest version of the\nsecret.\n"
+                    },
                     "disableRead": {
                         "type": "boolean",
-                        "description": "True/false. Set this to true if your vault\nauthentication is not able to read the data. Setting this to `true` will\nbreak drift detection. Defaults to false.\n"
+                        "description": "true/false. Set this to true if your vault\nauthentication is not able to read the data. Setting this to `true` will\nbreak drift detection. Defaults to false.\n"
                     },
                     "path": {
                         "type": "string",
@@ -7530,6 +7688,13 @@
                     "type": "string",
                     "description": "Entity ID to which this alias belongs to.\n"
                 },
+                "customMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Custom metadata to be associated with this alias.\n"
+                },
                 "mountAccessor": {
                     "type": "string",
                     "description": "Accessor of the mount to which the alias should belong to.\n"
@@ -7548,6 +7713,13 @@
                 "canonicalId": {
                     "type": "string",
                     "description": "Entity ID to which this alias belongs to.\n"
+                },
+                "customMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Custom metadata to be associated with this alias.\n"
                 },
                 "mountAccessor": {
                     "type": "string",
@@ -7568,6 +7740,13 @@
                     "canonicalId": {
                         "type": "string",
                         "description": "Entity ID to which this alias belongs to.\n"
+                    },
+                    "customMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Custom metadata to be associated with this alias.\n"
                     },
                     "mountAccessor": {
                         "type": "string",
@@ -10409,6 +10588,10 @@
                     "type": "boolean",
                     "description": "Specifies if the auth method is local only.\n"
                 },
+                "namespaceInState": {
+                    "type": "boolean",
+                    "description": "Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs\n"
+                },
                 "oidcClientId": {
                     "type": "string",
                     "description": "Client ID used for OIDC backends\n"
@@ -10424,6 +10607,17 @@
                 "oidcDiscoveryUrl": {
                     "type": "string",
                     "description": "The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`\n"
+                },
+                "oidcResponseMode": {
+                    "type": "string",
+                    "description": "The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.\n"
+                },
+                "oidcResponseTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `[\"code\"]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.\n"
                 },
                 "path": {
                     "type": "string",
@@ -10487,6 +10681,10 @@
                     "type": "boolean",
                     "description": "Specifies if the auth method is local only.\n"
                 },
+                "namespaceInState": {
+                    "type": "boolean",
+                    "description": "Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs\n"
+                },
                 "oidcClientId": {
                     "type": "string",
                     "description": "Client ID used for OIDC backends\n"
@@ -10502,6 +10700,17 @@
                 "oidcDiscoveryUrl": {
                     "type": "string",
                     "description": "The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`\n"
+                },
+                "oidcResponseMode": {
+                    "type": "string",
+                    "description": "The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.\n"
+                },
+                "oidcResponseTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `[\"code\"]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.\n"
                 },
                 "path": {
                     "type": "string",
@@ -10567,6 +10776,10 @@
                         "type": "boolean",
                         "description": "Specifies if the auth method is local only.\n"
                     },
+                    "namespaceInState": {
+                        "type": "boolean",
+                        "description": "Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs\n"
+                    },
                     "oidcClientId": {
                         "type": "string",
                         "description": "Client ID used for OIDC backends\n"
@@ -10582,6 +10795,17 @@
                     "oidcDiscoveryUrl": {
                         "type": "string",
                         "description": "The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`\n"
+                    },
+                    "oidcResponseMode": {
+                        "type": "string",
+                        "description": "The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.\n"
+                    },
+                    "oidcResponseTypes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `[\"code\"]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.\n"
                     },
                     "path": {
                         "type": "string",

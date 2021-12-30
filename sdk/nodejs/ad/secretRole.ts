@@ -4,6 +4,15 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Import
+ *
+ * AD secret backend roles can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
+ * ```
+ */
 export class SecretRole extends pulumi.CustomResource {
     /**
      * Get an existing SecretRole resource's state with the given name, ID, and optional extra
@@ -33,27 +42,31 @@ export class SecretRole extends pulumi.CustomResource {
     }
 
     /**
-     * The mount path for the AD backend.
+     * The path the AD secret backend is mounted at,
+     * with no leading or trailing `/`s.
      */
     public readonly backend!: pulumi.Output<string>;
     /**
-     * Last time Vault rotated this service account's password.
+     * Timestamp of the last password rotation by Vault.
      */
     public /*out*/ readonly lastVaultRotation!: pulumi.Output<string>;
     /**
-     * Last time Vault set this service account's password.
+     * Timestamp of the last password set by Vault.
      */
     public /*out*/ readonly passwordLastSet!: pulumi.Output<string>;
     /**
-     * Name of the role.
+     * The name to identify this role within the backend.
+     * Must be unique within the backend.
      */
     public readonly role!: pulumi.Output<string>;
     /**
-     * The username/logon name for the service account with which this role will be associated.
+     * Specifies the name of the Active Directory service
+     * account mapped to this role.
      */
     public readonly serviceAccountName!: pulumi.Output<string>;
     /**
-     * In seconds, the default password time-to-live.
+     * The password time-to-live in seconds. Defaults to the configuration
+     * ttl if not provided.
      */
     public readonly ttl!: pulumi.Output<number | undefined>;
 
@@ -106,27 +119,31 @@ export class SecretRole extends pulumi.CustomResource {
  */
 export interface SecretRoleState {
     /**
-     * The mount path for the AD backend.
+     * The path the AD secret backend is mounted at,
+     * with no leading or trailing `/`s.
      */
     backend?: pulumi.Input<string>;
     /**
-     * Last time Vault rotated this service account's password.
+     * Timestamp of the last password rotation by Vault.
      */
     lastVaultRotation?: pulumi.Input<string>;
     /**
-     * Last time Vault set this service account's password.
+     * Timestamp of the last password set by Vault.
      */
     passwordLastSet?: pulumi.Input<string>;
     /**
-     * Name of the role.
+     * The name to identify this role within the backend.
+     * Must be unique within the backend.
      */
     role?: pulumi.Input<string>;
     /**
-     * The username/logon name for the service account with which this role will be associated.
+     * Specifies the name of the Active Directory service
+     * account mapped to this role.
      */
     serviceAccountName?: pulumi.Input<string>;
     /**
-     * In seconds, the default password time-to-live.
+     * The password time-to-live in seconds. Defaults to the configuration
+     * ttl if not provided.
      */
     ttl?: pulumi.Input<number>;
 }
@@ -136,19 +153,23 @@ export interface SecretRoleState {
  */
 export interface SecretRoleArgs {
     /**
-     * The mount path for the AD backend.
+     * The path the AD secret backend is mounted at,
+     * with no leading or trailing `/`s.
      */
     backend: pulumi.Input<string>;
     /**
-     * Name of the role.
+     * The name to identify this role within the backend.
+     * Must be unique within the backend.
      */
     role: pulumi.Input<string>;
     /**
-     * The username/logon name for the service account with which this role will be associated.
+     * Specifies the name of the Active Directory service
+     * account mapped to this role.
      */
     serviceAccountName: pulumi.Input<string>;
     /**
-     * In seconds, the default password time-to-live.
+     * The password time-to-live in seconds. Defaults to the configuration
+     * ttl if not provided.
      */
     ttl?: pulumi.Input<number>;
 }

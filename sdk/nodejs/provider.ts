@@ -43,7 +43,7 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly caCertFile!: pulumi.Output<string | undefined>;
     /**
-     * The namespace to use. Available only for Vault Enterprise
+     * The namespace to use. Available only for Vault Enterprise.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
@@ -81,7 +81,9 @@ export class Provider extends pulumi.ProviderResource {
             inputs["headers"] = pulumi.output(args ? args.headers : undefined).apply(JSON.stringify);
             inputs["maxLeaseTtlSeconds"] = pulumi.output((args ? args.maxLeaseTtlSeconds : undefined) ?? (<any>utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 1200)).apply(JSON.stringify);
             inputs["maxRetries"] = pulumi.output((args ? args.maxRetries : undefined) ?? (<any>utilities.getEnvNumber("VAULT_MAX_RETRIES") || 2)).apply(JSON.stringify);
+            inputs["maxRetriesCcc"] = pulumi.output(args ? args.maxRetriesCcc : undefined).apply(JSON.stringify);
             inputs["namespace"] = args ? args.namespace : undefined;
+            inputs["skipChildToken"] = pulumi.output(args ? args.skipChildToken : undefined).apply(JSON.stringify);
             inputs["skipTlsVerify"] = pulumi.output((args ? args.skipTlsVerify : undefined) ?? <any>utilities.getEnvBoolean("VAULT_SKIP_VERIFY")).apply(JSON.stringify);
             inputs["token"] = args ? args.token : undefined;
             inputs["tokenName"] = args ? args.tokenName : undefined;
@@ -126,7 +128,7 @@ export interface ProviderArgs {
      */
     headers?: pulumi.Input<pulumi.Input<inputs.ProviderHeader>[]>;
     /**
-     * Maximum TTL for secret leases requested by this provider
+     * Maximum TTL for secret leases requested by this provider.
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
@@ -134,9 +136,17 @@ export interface ProviderArgs {
      */
     maxRetries?: pulumi.Input<number>;
     /**
-     * The namespace to use. Available only for Vault Enterprise
+     * Maximum number of retries for Client Controlled Consistency related operations
+     */
+    maxRetriesCcc?: pulumi.Input<number>;
+    /**
+     * The namespace to use. Available only for Vault Enterprise.
      */
     namespace?: pulumi.Input<string>;
+    /**
+     * Set this to true to prevent the creation of ephemeral child token used by this provider.
+     */
+    skipChildToken?: pulumi.Input<boolean>;
     /**
      * Set this to true only if the target Vault server is an insecure development instance.
      */

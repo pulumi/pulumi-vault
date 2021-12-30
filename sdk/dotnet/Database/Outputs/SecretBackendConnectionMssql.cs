@@ -21,6 +21,13 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? ConnectionUrl;
         /// <summary>
+        /// For Vault v1.9+. Set to true when the target is a
+        /// Contained Database, e.g. AzureSQL.
+        /// See the [Vault
+        /// docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+        /// </summary>
+        public readonly bool? ContainedDb;
+        /// <summary>
         /// The maximum number of seconds to keep
         /// a connection alive for.
         /// </summary>
@@ -44,6 +51,8 @@ namespace Pulumi.Vault.Database.Outputs
         private SecretBackendConnectionMssql(
             string? connectionUrl,
 
+            bool? containedDb,
+
             int? maxConnectionLifetime,
 
             int? maxIdleConnections,
@@ -53,6 +62,7 @@ namespace Pulumi.Vault.Database.Outputs
             string? usernameTemplate)
         {
             ConnectionUrl = connectionUrl;
+            ContainedDb = containedDb;
             MaxConnectionLifetime = maxConnectionLifetime;
             MaxIdleConnections = maxIdleConnections;
             MaxOpenConnections = maxOpenConnections;

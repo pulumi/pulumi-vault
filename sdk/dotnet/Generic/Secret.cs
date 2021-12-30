@@ -38,7 +38,16 @@ namespace Pulumi.Vault.Generic
         public Output<string> DataJson { get; private set; } = null!;
 
         /// <summary>
-        /// True/false. Set this to true if your vault
+        /// true/false.  Only applicable for kv-v2 stores.
+        /// If set to `true`, permanently deletes all versions for
+        /// the specified key. The default behavior is to only delete the latest version of the
+        /// secret.
+        /// </summary>
+        [Output("deleteAllVersions")]
+        public Output<bool?> DeleteAllVersions { get; private set; } = null!;
+
+        /// <summary>
+        /// true/false. Set this to true if your vault
         /// authentication is not able to read the data. Setting this to `true` will
         /// break drift detection. Defaults to false.
         /// </summary>
@@ -109,7 +118,16 @@ namespace Pulumi.Vault.Generic
         public Input<string> DataJson { get; set; } = null!;
 
         /// <summary>
-        /// True/false. Set this to true if your vault
+        /// true/false.  Only applicable for kv-v2 stores.
+        /// If set to `true`, permanently deletes all versions for
+        /// the specified key. The default behavior is to only delete the latest version of the
+        /// secret.
+        /// </summary>
+        [Input("deleteAllVersions")]
+        public Input<bool>? DeleteAllVersions { get; set; }
+
+        /// <summary>
+        /// true/false. Set this to true if your vault
         /// authentication is not able to read the data. Setting this to `true` will
         /// break drift detection. Defaults to false.
         /// </summary>
@@ -156,7 +174,16 @@ namespace Pulumi.Vault.Generic
         public Input<string>? DataJson { get; set; }
 
         /// <summary>
-        /// True/false. Set this to true if your vault
+        /// true/false.  Only applicable for kv-v2 stores.
+        /// If set to `true`, permanently deletes all versions for
+        /// the specified key. The default behavior is to only delete the latest version of the
+        /// secret.
+        /// </summary>
+        [Input("deleteAllVersions")]
+        public Input<bool>? DeleteAllVersions { get; set; }
+
+        /// <summary>
+        /// true/false. Set this to true if your vault
         /// authentication is not able to read the data. Setting this to `true` will
         /// break drift detection. Defaults to false.
         /// </summary>

@@ -144,6 +144,10 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly local!: pulumi.Output<boolean | undefined>;
     /**
+     * Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+     */
+    public readonly namespaceInState!: pulumi.Output<boolean | undefined>;
+    /**
      * Client ID used for OIDC backends
      */
     public readonly oidcClientId!: pulumi.Output<string | undefined>;
@@ -159,6 +163,14 @@ export class AuthBackend extends pulumi.CustomResource {
      * The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
      */
     public readonly oidcDiscoveryUrl!: pulumi.Output<string | undefined>;
+    /**
+     * The response mode to be used in the OAuth2 request. Allowed values are `query` and `formPost`. Defaults to `query`. If using Vault namespaces, and `oidcResponseMode` is `formPost`, then `namespaceInState` should be set to `false`.
+     */
+    public readonly oidcResponseMode!: pulumi.Output<string | undefined>;
+    /**
+     * List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
+     */
+    public readonly oidcResponseTypes!: pulumi.Output<string[] | undefined>;
     /**
      * Path to mount the JWT/OIDC auth backend
      */
@@ -195,10 +207,13 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["jwtSupportedAlgs"] = state ? state.jwtSupportedAlgs : undefined;
             inputs["jwtValidationPubkeys"] = state ? state.jwtValidationPubkeys : undefined;
             inputs["local"] = state ? state.local : undefined;
+            inputs["namespaceInState"] = state ? state.namespaceInState : undefined;
             inputs["oidcClientId"] = state ? state.oidcClientId : undefined;
             inputs["oidcClientSecret"] = state ? state.oidcClientSecret : undefined;
             inputs["oidcDiscoveryCaPem"] = state ? state.oidcDiscoveryCaPem : undefined;
             inputs["oidcDiscoveryUrl"] = state ? state.oidcDiscoveryUrl : undefined;
+            inputs["oidcResponseMode"] = state ? state.oidcResponseMode : undefined;
+            inputs["oidcResponseTypes"] = state ? state.oidcResponseTypes : undefined;
             inputs["path"] = state ? state.path : undefined;
             inputs["providerConfig"] = state ? state.providerConfig : undefined;
             inputs["tune"] = state ? state.tune : undefined;
@@ -213,10 +228,13 @@ export class AuthBackend extends pulumi.CustomResource {
             inputs["jwtSupportedAlgs"] = args ? args.jwtSupportedAlgs : undefined;
             inputs["jwtValidationPubkeys"] = args ? args.jwtValidationPubkeys : undefined;
             inputs["local"] = args ? args.local : undefined;
+            inputs["namespaceInState"] = args ? args.namespaceInState : undefined;
             inputs["oidcClientId"] = args ? args.oidcClientId : undefined;
             inputs["oidcClientSecret"] = args ? args.oidcClientSecret : undefined;
             inputs["oidcDiscoveryCaPem"] = args ? args.oidcDiscoveryCaPem : undefined;
             inputs["oidcDiscoveryUrl"] = args ? args.oidcDiscoveryUrl : undefined;
+            inputs["oidcResponseMode"] = args ? args.oidcResponseMode : undefined;
+            inputs["oidcResponseTypes"] = args ? args.oidcResponseTypes : undefined;
             inputs["path"] = args ? args.path : undefined;
             inputs["providerConfig"] = args ? args.providerConfig : undefined;
             inputs["tune"] = args ? args.tune : undefined;
@@ -271,6 +289,10 @@ export interface AuthBackendState {
      */
     local?: pulumi.Input<boolean>;
     /**
+     * Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+     */
+    namespaceInState?: pulumi.Input<boolean>;
+    /**
      * Client ID used for OIDC backends
      */
     oidcClientId?: pulumi.Input<string>;
@@ -286,6 +308,14 @@ export interface AuthBackendState {
      * The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
      */
     oidcDiscoveryUrl?: pulumi.Input<string>;
+    /**
+     * The response mode to be used in the OAuth2 request. Allowed values are `query` and `formPost`. Defaults to `query`. If using Vault namespaces, and `oidcResponseMode` is `formPost`, then `namespaceInState` should be set to `false`.
+     */
+    oidcResponseMode?: pulumi.Input<string>;
+    /**
+     * List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
+     */
+    oidcResponseTypes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Path to mount the JWT/OIDC auth backend
      */
@@ -338,6 +368,10 @@ export interface AuthBackendArgs {
      */
     local?: pulumi.Input<boolean>;
     /**
+     * Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+     */
+    namespaceInState?: pulumi.Input<boolean>;
+    /**
      * Client ID used for OIDC backends
      */
     oidcClientId?: pulumi.Input<string>;
@@ -353,6 +387,14 @@ export interface AuthBackendArgs {
      * The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
      */
     oidcDiscoveryUrl?: pulumi.Input<string>;
+    /**
+     * The response mode to be used in the OAuth2 request. Allowed values are `query` and `formPost`. Defaults to `query`. If using Vault namespaces, and `oidcResponseMode` is `formPost`, then `namespaceInState` should be set to `false`.
+     */
+    oidcResponseMode?: pulumi.Input<string>;
+    /**
+     * List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
+     */
+    oidcResponseTypes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Path to mount the JWT/OIDC auth backend
      */

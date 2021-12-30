@@ -23,10 +23,13 @@ class AuthBackendArgs:
                  jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace_in_state: Optional[pulumi.Input[bool]] = None,
                  oidc_client_id: Optional[pulumi.Input[str]] = None,
                  oidc_client_secret: Optional[pulumi.Input[str]] = None,
                  oidc_discovery_ca_pem: Optional[pulumi.Input[str]] = None,
                  oidc_discovery_url: Optional[pulumi.Input[str]] = None,
+                 oidc_response_mode: Optional[pulumi.Input[str]] = None,
+                 oidc_response_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  provider_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None,
@@ -41,10 +44,13 @@ class AuthBackendArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
+        :param pulumi.Input[bool] namespace_in_state: Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
         :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
         :param pulumi.Input[str] oidc_client_secret: Client Secret used for OIDC backends
         :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
         :param pulumi.Input[str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
+        :param pulumi.Input[str] oidc_response_mode: The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] oidc_response_types: List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
         :param pulumi.Input[str] path: Path to mount the JWT/OIDC auth backend
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] provider_config: Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
         :param pulumi.Input[str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
@@ -65,6 +71,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "jwt_validation_pubkeys", jwt_validation_pubkeys)
         if local is not None:
             pulumi.set(__self__, "local", local)
+        if namespace_in_state is not None:
+            pulumi.set(__self__, "namespace_in_state", namespace_in_state)
         if oidc_client_id is not None:
             pulumi.set(__self__, "oidc_client_id", oidc_client_id)
         if oidc_client_secret is not None:
@@ -73,6 +81,10 @@ class AuthBackendArgs:
             pulumi.set(__self__, "oidc_discovery_ca_pem", oidc_discovery_ca_pem)
         if oidc_discovery_url is not None:
             pulumi.set(__self__, "oidc_discovery_url", oidc_discovery_url)
+        if oidc_response_mode is not None:
+            pulumi.set(__self__, "oidc_response_mode", oidc_response_mode)
+        if oidc_response_types is not None:
+            pulumi.set(__self__, "oidc_response_types", oidc_response_types)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if provider_config is not None:
@@ -179,6 +191,18 @@ class AuthBackendArgs:
         pulumi.set(self, "local", value)
 
     @property
+    @pulumi.getter(name="namespaceInState")
+    def namespace_in_state(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+        """
+        return pulumi.get(self, "namespace_in_state")
+
+    @namespace_in_state.setter
+    def namespace_in_state(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "namespace_in_state", value)
+
+    @property
     @pulumi.getter(name="oidcClientId")
     def oidc_client_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -225,6 +249,30 @@ class AuthBackendArgs:
     @oidc_discovery_url.setter
     def oidc_discovery_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "oidc_discovery_url", value)
+
+    @property
+    @pulumi.getter(name="oidcResponseMode")
+    def oidc_response_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+        """
+        return pulumi.get(self, "oidc_response_mode")
+
+    @oidc_response_mode.setter
+    def oidc_response_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "oidc_response_mode", value)
+
+    @property
+    @pulumi.getter(name="oidcResponseTypes")
+    def oidc_response_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
+        """
+        return pulumi.get(self, "oidc_response_types")
+
+    @oidc_response_types.setter
+    def oidc_response_types(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "oidc_response_types", value)
 
     @property
     @pulumi.getter
@@ -284,10 +332,13 @@ class _AuthBackendState:
                  jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace_in_state: Optional[pulumi.Input[bool]] = None,
                  oidc_client_id: Optional[pulumi.Input[str]] = None,
                  oidc_client_secret: Optional[pulumi.Input[str]] = None,
                  oidc_discovery_ca_pem: Optional[pulumi.Input[str]] = None,
                  oidc_discovery_url: Optional[pulumi.Input[str]] = None,
+                 oidc_response_mode: Optional[pulumi.Input[str]] = None,
+                 oidc_response_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  provider_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None,
@@ -303,10 +354,13 @@ class _AuthBackendState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
+        :param pulumi.Input[bool] namespace_in_state: Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
         :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
         :param pulumi.Input[str] oidc_client_secret: Client Secret used for OIDC backends
         :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
         :param pulumi.Input[str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
+        :param pulumi.Input[str] oidc_response_mode: The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] oidc_response_types: List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
         :param pulumi.Input[str] path: Path to mount the JWT/OIDC auth backend
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] provider_config: Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
         :param pulumi.Input[str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
@@ -329,6 +383,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "jwt_validation_pubkeys", jwt_validation_pubkeys)
         if local is not None:
             pulumi.set(__self__, "local", local)
+        if namespace_in_state is not None:
+            pulumi.set(__self__, "namespace_in_state", namespace_in_state)
         if oidc_client_id is not None:
             pulumi.set(__self__, "oidc_client_id", oidc_client_id)
         if oidc_client_secret is not None:
@@ -337,6 +393,10 @@ class _AuthBackendState:
             pulumi.set(__self__, "oidc_discovery_ca_pem", oidc_discovery_ca_pem)
         if oidc_discovery_url is not None:
             pulumi.set(__self__, "oidc_discovery_url", oidc_discovery_url)
+        if oidc_response_mode is not None:
+            pulumi.set(__self__, "oidc_response_mode", oidc_response_mode)
+        if oidc_response_types is not None:
+            pulumi.set(__self__, "oidc_response_types", oidc_response_types)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if provider_config is not None:
@@ -455,6 +515,18 @@ class _AuthBackendState:
         pulumi.set(self, "local", value)
 
     @property
+    @pulumi.getter(name="namespaceInState")
+    def namespace_in_state(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+        """
+        return pulumi.get(self, "namespace_in_state")
+
+    @namespace_in_state.setter
+    def namespace_in_state(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "namespace_in_state", value)
+
+    @property
     @pulumi.getter(name="oidcClientId")
     def oidc_client_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -501,6 +573,30 @@ class _AuthBackendState:
     @oidc_discovery_url.setter
     def oidc_discovery_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "oidc_discovery_url", value)
+
+    @property
+    @pulumi.getter(name="oidcResponseMode")
+    def oidc_response_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+        """
+        return pulumi.get(self, "oidc_response_mode")
+
+    @oidc_response_mode.setter
+    def oidc_response_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "oidc_response_mode", value)
+
+    @property
+    @pulumi.getter(name="oidcResponseTypes")
+    def oidc_response_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
+        """
+        return pulumi.get(self, "oidc_response_types")
+
+    @oidc_response_types.setter
+    def oidc_response_types(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "oidc_response_types", value)
 
     @property
     @pulumi.getter
@@ -561,10 +657,13 @@ class AuthBackend(pulumi.CustomResource):
                  jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace_in_state: Optional[pulumi.Input[bool]] = None,
                  oidc_client_id: Optional[pulumi.Input[str]] = None,
                  oidc_client_secret: Optional[pulumi.Input[str]] = None,
                  oidc_discovery_ca_pem: Optional[pulumi.Input[str]] = None,
                  oidc_discovery_url: Optional[pulumi.Input[str]] = None,
+                 oidc_response_mode: Optional[pulumi.Input[str]] = None,
+                 oidc_response_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  provider_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
@@ -651,10 +750,13 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
+        :param pulumi.Input[bool] namespace_in_state: Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
         :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
         :param pulumi.Input[str] oidc_client_secret: Client Secret used for OIDC backends
         :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
         :param pulumi.Input[str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
+        :param pulumi.Input[str] oidc_response_mode: The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] oidc_response_types: List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
         :param pulumi.Input[str] path: Path to mount the JWT/OIDC auth backend
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] provider_config: Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
         :param pulumi.Input[str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
@@ -759,10 +861,13 @@ class AuthBackend(pulumi.CustomResource):
                  jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
+                 namespace_in_state: Optional[pulumi.Input[bool]] = None,
                  oidc_client_id: Optional[pulumi.Input[str]] = None,
                  oidc_client_secret: Optional[pulumi.Input[str]] = None,
                  oidc_discovery_ca_pem: Optional[pulumi.Input[str]] = None,
                  oidc_discovery_url: Optional[pulumi.Input[str]] = None,
+                 oidc_response_mode: Optional[pulumi.Input[str]] = None,
+                 oidc_response_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  provider_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
@@ -787,10 +892,13 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["jwt_supported_algs"] = jwt_supported_algs
             __props__.__dict__["jwt_validation_pubkeys"] = jwt_validation_pubkeys
             __props__.__dict__["local"] = local
+            __props__.__dict__["namespace_in_state"] = namespace_in_state
             __props__.__dict__["oidc_client_id"] = oidc_client_id
             __props__.__dict__["oidc_client_secret"] = oidc_client_secret
             __props__.__dict__["oidc_discovery_ca_pem"] = oidc_discovery_ca_pem
             __props__.__dict__["oidc_discovery_url"] = oidc_discovery_url
+            __props__.__dict__["oidc_response_mode"] = oidc_response_mode
+            __props__.__dict__["oidc_response_types"] = oidc_response_types
             __props__.__dict__["path"] = path
             __props__.__dict__["provider_config"] = provider_config
             __props__.__dict__["tune"] = tune
@@ -815,10 +923,13 @@ class AuthBackend(pulumi.CustomResource):
             jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             local: Optional[pulumi.Input[bool]] = None,
+            namespace_in_state: Optional[pulumi.Input[bool]] = None,
             oidc_client_id: Optional[pulumi.Input[str]] = None,
             oidc_client_secret: Optional[pulumi.Input[str]] = None,
             oidc_discovery_ca_pem: Optional[pulumi.Input[str]] = None,
             oidc_discovery_url: Optional[pulumi.Input[str]] = None,
+            oidc_response_mode: Optional[pulumi.Input[str]] = None,
+            oidc_response_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             path: Optional[pulumi.Input[str]] = None,
             provider_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
@@ -839,10 +950,13 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
+        :param pulumi.Input[bool] namespace_in_state: Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
         :param pulumi.Input[str] oidc_client_id: Client ID used for OIDC backends
         :param pulumi.Input[str] oidc_client_secret: Client Secret used for OIDC backends
         :param pulumi.Input[str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
         :param pulumi.Input[str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
+        :param pulumi.Input[str] oidc_response_mode: The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] oidc_response_types: List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
         :param pulumi.Input[str] path: Path to mount the JWT/OIDC auth backend
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] provider_config: Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
         :param pulumi.Input[str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
@@ -860,10 +974,13 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["jwt_supported_algs"] = jwt_supported_algs
         __props__.__dict__["jwt_validation_pubkeys"] = jwt_validation_pubkeys
         __props__.__dict__["local"] = local
+        __props__.__dict__["namespace_in_state"] = namespace_in_state
         __props__.__dict__["oidc_client_id"] = oidc_client_id
         __props__.__dict__["oidc_client_secret"] = oidc_client_secret
         __props__.__dict__["oidc_discovery_ca_pem"] = oidc_discovery_ca_pem
         __props__.__dict__["oidc_discovery_url"] = oidc_discovery_url
+        __props__.__dict__["oidc_response_mode"] = oidc_response_mode
+        __props__.__dict__["oidc_response_types"] = oidc_response_types
         __props__.__dict__["path"] = path
         __props__.__dict__["provider_config"] = provider_config
         __props__.__dict__["tune"] = tune
@@ -943,6 +1060,14 @@ class AuthBackend(pulumi.CustomResource):
         return pulumi.get(self, "local")
 
     @property
+    @pulumi.getter(name="namespaceInState")
+    def namespace_in_state(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+        """
+        return pulumi.get(self, "namespace_in_state")
+
+    @property
     @pulumi.getter(name="oidcClientId")
     def oidc_client_id(self) -> pulumi.Output[Optional[str]]:
         """
@@ -973,6 +1098,22 @@ class AuthBackend(pulumi.CustomResource):
         The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
         """
         return pulumi.get(self, "oidc_discovery_url")
+
+    @property
+    @pulumi.getter(name="oidcResponseMode")
+    def oidc_response_mode(self) -> pulumi.Output[Optional[str]]:
+        """
+        The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+        """
+        return pulumi.get(self, "oidc_response_mode")
+
+    @property
+    @pulumi.getter(name="oidcResponseTypes")
+    def oidc_response_types(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
+        """
+        return pulumi.get(self, "oidc_response_types")
 
     @property
     @pulumi.getter

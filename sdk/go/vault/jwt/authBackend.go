@@ -139,6 +139,8 @@ type AuthBackend struct {
 	JwtValidationPubkeys pulumi.StringArrayOutput `pulumi:"jwtValidationPubkeys"`
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
+	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+	NamespaceInState pulumi.BoolPtrOutput `pulumi:"namespaceInState"`
 	// Client ID used for OIDC backends
 	OidcClientId pulumi.StringPtrOutput `pulumi:"oidcClientId"`
 	// Client Secret used for OIDC backends
@@ -147,6 +149,10 @@ type AuthBackend struct {
 	OidcDiscoveryCaPem pulumi.StringPtrOutput `pulumi:"oidcDiscoveryCaPem"`
 	// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
 	OidcDiscoveryUrl pulumi.StringPtrOutput `pulumi:"oidcDiscoveryUrl"`
+	// The response mode to be used in the OAuth2 request. Allowed values are `query` and `formPost`. Defaults to `query`. If using Vault namespaces, and `oidcResponseMode` is `formPost`, then `namespaceInState` should be set to `false`.
+	OidcResponseMode pulumi.StringPtrOutput `pulumi:"oidcResponseMode"`
+	// List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
+	OidcResponseTypes pulumi.StringArrayOutput `pulumi:"oidcResponseTypes"`
 	// Path to mount the JWT/OIDC auth backend
 	Path pulumi.StringPtrOutput `pulumi:"path"`
 	// Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
@@ -203,6 +209,8 @@ type authBackendState struct {
 	JwtValidationPubkeys []string `pulumi:"jwtValidationPubkeys"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
+	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+	NamespaceInState *bool `pulumi:"namespaceInState"`
 	// Client ID used for OIDC backends
 	OidcClientId *string `pulumi:"oidcClientId"`
 	// Client Secret used for OIDC backends
@@ -211,6 +219,10 @@ type authBackendState struct {
 	OidcDiscoveryCaPem *string `pulumi:"oidcDiscoveryCaPem"`
 	// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
 	OidcDiscoveryUrl *string `pulumi:"oidcDiscoveryUrl"`
+	// The response mode to be used in the OAuth2 request. Allowed values are `query` and `formPost`. Defaults to `query`. If using Vault namespaces, and `oidcResponseMode` is `formPost`, then `namespaceInState` should be set to `false`.
+	OidcResponseMode *string `pulumi:"oidcResponseMode"`
+	// List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
+	OidcResponseTypes []string `pulumi:"oidcResponseTypes"`
 	// Path to mount the JWT/OIDC auth backend
 	Path *string `pulumi:"path"`
 	// Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
@@ -239,6 +251,8 @@ type AuthBackendState struct {
 	JwtValidationPubkeys pulumi.StringArrayInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
+	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+	NamespaceInState pulumi.BoolPtrInput
 	// Client ID used for OIDC backends
 	OidcClientId pulumi.StringPtrInput
 	// Client Secret used for OIDC backends
@@ -247,6 +261,10 @@ type AuthBackendState struct {
 	OidcDiscoveryCaPem pulumi.StringPtrInput
 	// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
 	OidcDiscoveryUrl pulumi.StringPtrInput
+	// The response mode to be used in the OAuth2 request. Allowed values are `query` and `formPost`. Defaults to `query`. If using Vault namespaces, and `oidcResponseMode` is `formPost`, then `namespaceInState` should be set to `false`.
+	OidcResponseMode pulumi.StringPtrInput
+	// List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
+	OidcResponseTypes pulumi.StringArrayInput
 	// Path to mount the JWT/OIDC auth backend
 	Path pulumi.StringPtrInput
 	// Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
@@ -277,6 +295,8 @@ type authBackendArgs struct {
 	JwtValidationPubkeys []string `pulumi:"jwtValidationPubkeys"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
+	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+	NamespaceInState *bool `pulumi:"namespaceInState"`
 	// Client ID used for OIDC backends
 	OidcClientId *string `pulumi:"oidcClientId"`
 	// Client Secret used for OIDC backends
@@ -285,6 +305,10 @@ type authBackendArgs struct {
 	OidcDiscoveryCaPem *string `pulumi:"oidcDiscoveryCaPem"`
 	// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
 	OidcDiscoveryUrl *string `pulumi:"oidcDiscoveryUrl"`
+	// The response mode to be used in the OAuth2 request. Allowed values are `query` and `formPost`. Defaults to `query`. If using Vault namespaces, and `oidcResponseMode` is `formPost`, then `namespaceInState` should be set to `false`.
+	OidcResponseMode *string `pulumi:"oidcResponseMode"`
+	// List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
+	OidcResponseTypes []string `pulumi:"oidcResponseTypes"`
 	// Path to mount the JWT/OIDC auth backend
 	Path *string `pulumi:"path"`
 	// Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
@@ -312,6 +336,8 @@ type AuthBackendArgs struct {
 	JwtValidationPubkeys pulumi.StringArrayInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
+	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
+	NamespaceInState pulumi.BoolPtrInput
 	// Client ID used for OIDC backends
 	OidcClientId pulumi.StringPtrInput
 	// Client Secret used for OIDC backends
@@ -320,6 +346,10 @@ type AuthBackendArgs struct {
 	OidcDiscoveryCaPem pulumi.StringPtrInput
 	// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
 	OidcDiscoveryUrl pulumi.StringPtrInput
+	// The response mode to be used in the OAuth2 request. Allowed values are `query` and `formPost`. Defaults to `query`. If using Vault namespaces, and `oidcResponseMode` is `formPost`, then `namespaceInState` should be set to `false`.
+	OidcResponseMode pulumi.StringPtrInput
+	// List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
+	OidcResponseTypes pulumi.StringArrayInput
 	// Path to mount the JWT/OIDC auth backend
 	Path pulumi.StringPtrInput
 	// Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.

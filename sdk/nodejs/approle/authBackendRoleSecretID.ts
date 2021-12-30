@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  * const example = new vault.approle.AuthBackendRole("example", {
  *     backend: approle.path,
  *     roleName: "test-role",
- *     policies: [
+ *     tokenPolicies: [
  *         "default",
  *         "dev",
  *         "prod",

@@ -46,7 +46,7 @@ The headers to send with each Vault request.
 
 maxLeaseTtlSeconds: int
 """
-Maximum TTL for secret leases requested by this provider
+Maximum TTL for secret leases requested by this provider.
 """
 
 maxRetries: int
@@ -54,9 +54,19 @@ maxRetries: int
 Maximum number of retries when a 5xx error code is encountered.
 """
 
+maxRetriesCcc: Optional[int]
+"""
+Maximum number of retries for Client Controlled Consistency related operations
+"""
+
 namespace: Optional[str]
 """
-The namespace to use. Available only for Vault Enterprise
+The namespace to use. Available only for Vault Enterprise.
+"""
+
+skipChildToken: Optional[bool]
+"""
+Set this to true to prevent the creation of ephemeral child token used by this provider.
 """
 
 skipTlsVerify: Optional[bool]

@@ -26,7 +26,7 @@ type Provider struct {
 	CaCertDir pulumi.StringPtrOutput `pulumi:"caCertDir"`
 	// Path to a CA certificate file to validate the server's certificate.
 	CaCertFile pulumi.StringPtrOutput `pulumi:"caCertFile"`
-	// The namespace to use. Available only for Vault Enterprise
+	// The namespace to use. Available only for Vault Enterprise.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Token to use to authenticate to Vault.
 	Token pulumi.StringOutput `pulumi:"token"`
@@ -79,12 +79,16 @@ type providerArgs struct {
 	ClientAuths []ProviderClientAuth `pulumi:"clientAuths"`
 	// The headers to send with each Vault request.
 	Headers []ProviderHeader `pulumi:"headers"`
-	// Maximum TTL for secret leases requested by this provider
+	// Maximum TTL for secret leases requested by this provider.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
 	// Maximum number of retries when a 5xx error code is encountered.
 	MaxRetries *int `pulumi:"maxRetries"`
-	// The namespace to use. Available only for Vault Enterprise
+	// Maximum number of retries for Client Controlled Consistency related operations
+	MaxRetriesCcc *int `pulumi:"maxRetriesCcc"`
+	// The namespace to use. Available only for Vault Enterprise.
 	Namespace *string `pulumi:"namespace"`
+	// Set this to true to prevent the creation of ephemeral child token used by this provider.
+	SkipChildToken *bool `pulumi:"skipChildToken"`
 	// Set this to true only if the target Vault server is an insecure development instance.
 	SkipTlsVerify *bool `pulumi:"skipTlsVerify"`
 	// Token to use to authenticate to Vault.
@@ -109,12 +113,16 @@ type ProviderArgs struct {
 	ClientAuths ProviderClientAuthArrayInput
 	// The headers to send with each Vault request.
 	Headers ProviderHeaderArrayInput
-	// Maximum TTL for secret leases requested by this provider
+	// Maximum TTL for secret leases requested by this provider.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
 	// Maximum number of retries when a 5xx error code is encountered.
 	MaxRetries pulumi.IntPtrInput
-	// The namespace to use. Available only for Vault Enterprise
+	// Maximum number of retries for Client Controlled Consistency related operations
+	MaxRetriesCcc pulumi.IntPtrInput
+	// The namespace to use. Available only for Vault Enterprise.
 	Namespace pulumi.StringPtrInput
+	// Set this to true to prevent the creation of ephemeral child token used by this provider.
+	SkipChildToken pulumi.BoolPtrInput
 	// Set this to true only if the target Vault server is an insecure development instance.
 	SkipTlsVerify pulumi.BoolPtrInput
 	// Token to use to authenticate to Vault.

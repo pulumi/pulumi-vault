@@ -284,6 +284,53 @@ export namespace database {
         maxOpenConnections?: pulumi.Input<number>;
     }
 
+    export interface SecretBackendConnectionInfluxdb {
+        /**
+         * The number of seconds to use as a connection
+         * timeout.
+         */
+        connectTimeout?: pulumi.Input<number>;
+        /**
+         * The host to connect to.
+         */
+        host: pulumi.Input<string>;
+        /**
+         * Whether to skip verification of the server
+         * certificate when using TLS.
+         */
+        insecureTls?: pulumi.Input<boolean>;
+        /**
+         * The password to be used in the connection.
+         */
+        password: pulumi.Input<string>;
+        /**
+         * Concatenated PEM blocks configuring the certificate
+         * chain.
+         */
+        pemBundle?: pulumi.Input<string>;
+        /**
+         * A JSON structure configuring the certificate chain.
+         */
+        pemJson?: pulumi.Input<string>;
+        /**
+         * The default port to connect to if no port is specified as
+         * part of the host.
+         */
+        port?: pulumi.Input<number>;
+        /**
+         * Whether to use TLS when connecting to Cassandra.
+         */
+        tls?: pulumi.Input<boolean>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username: pulumi.Input<string>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
+    }
+
     export interface SecretBackendConnectionMongodb {
         /**
          * A URL containing connection information. See
@@ -336,6 +383,13 @@ export namespace database {
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
+        /**
+         * For Vault v1.9+. Set to true when the target is a
+         * Contained Database, e.g. AzureSQL.
+         * See the [Vault
+         * docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+         */
+        containedDb?: pulumi.Input<boolean>;
         /**
          * The maximum number of seconds to keep
          * a connection alive for.

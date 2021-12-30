@@ -24,7 +24,9 @@ class ProviderArgs:
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderHeaderArgs']]]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_retries: Optional[pulumi.Input[int]] = None,
+                 max_retries_ccc: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 skip_child_token: Optional[pulumi.Input[bool]] = None,
                  skip_tls_verify: Optional[pulumi.Input[bool]] = None,
                  token_name: Optional[pulumi.Input[str]] = None):
         """
@@ -37,9 +39,11 @@ class ProviderArgs:
         :param pulumi.Input[str] ca_cert_file: Path to a CA certificate file to validate the server's certificate.
         :param pulumi.Input[Sequence[pulumi.Input['ProviderClientAuthArgs']]] client_auths: Client authentication credentials.
         :param pulumi.Input[Sequence[pulumi.Input['ProviderHeaderArgs']]] headers: The headers to send with each Vault request.
-        :param pulumi.Input[int] max_lease_ttl_seconds: Maximum TTL for secret leases requested by this provider
+        :param pulumi.Input[int] max_lease_ttl_seconds: Maximum TTL for secret leases requested by this provider.
         :param pulumi.Input[int] max_retries: Maximum number of retries when a 5xx error code is encountered.
-        :param pulumi.Input[str] namespace: The namespace to use. Available only for Vault Enterprise
+        :param pulumi.Input[int] max_retries_ccc: Maximum number of retries for Client Controlled Consistency related operations
+        :param pulumi.Input[str] namespace: The namespace to use. Available only for Vault Enterprise.
+        :param pulumi.Input[bool] skip_child_token: Set this to true to prevent the creation of ephemeral child token used by this provider.
         :param pulumi.Input[bool] skip_tls_verify: Set this to true only if the target Vault server is an insecure development instance.
         :param pulumi.Input[str] token_name: Token name to use for creating the Vault child token.
         """
@@ -65,8 +69,12 @@ class ProviderArgs:
             max_retries = (_utilities.get_env_int('VAULT_MAX_RETRIES') or 2)
         if max_retries is not None:
             pulumi.set(__self__, "max_retries", max_retries)
+        if max_retries_ccc is not None:
+            pulumi.set(__self__, "max_retries_ccc", max_retries_ccc)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if skip_child_token is not None:
+            pulumi.set(__self__, "skip_child_token", skip_child_token)
         if skip_tls_verify is None:
             skip_tls_verify = _utilities.get_env_bool('VAULT_SKIP_VERIFY')
         if skip_tls_verify is not None:
@@ -174,7 +182,7 @@ class ProviderArgs:
     @pulumi.getter(name="maxLeaseTtlSeconds")
     def max_lease_ttl_seconds(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum TTL for secret leases requested by this provider
+        Maximum TTL for secret leases requested by this provider.
         """
         return pulumi.get(self, "max_lease_ttl_seconds")
 
@@ -195,16 +203,40 @@ class ProviderArgs:
         pulumi.set(self, "max_retries", value)
 
     @property
+    @pulumi.getter(name="maxRetriesCcc")
+    def max_retries_ccc(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of retries for Client Controlled Consistency related operations
+        """
+        return pulumi.get(self, "max_retries_ccc")
+
+    @max_retries_ccc.setter
+    def max_retries_ccc(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_retries_ccc", value)
+
+    @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
         """
-        The namespace to use. Available only for Vault Enterprise
+        The namespace to use. Available only for Vault Enterprise.
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
     def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter(name="skipChildToken")
+    def skip_child_token(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set this to true to prevent the creation of ephemeral child token used by this provider.
+        """
+        return pulumi.get(self, "skip_child_token")
+
+    @skip_child_token.setter
+    def skip_child_token(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_child_token", value)
 
     @property
     @pulumi.getter(name="skipTlsVerify")
@@ -245,7 +277,9 @@ class Provider(pulumi.ProviderResource):
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderHeaderArgs']]]]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_retries: Optional[pulumi.Input[int]] = None,
+                 max_retries_ccc: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 skip_child_token: Optional[pulumi.Input[bool]] = None,
                  skip_tls_verify: Optional[pulumi.Input[bool]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  token_name: Optional[pulumi.Input[str]] = None,
@@ -265,9 +299,11 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[str] ca_cert_file: Path to a CA certificate file to validate the server's certificate.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderClientAuthArgs']]]] client_auths: Client authentication credentials.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderHeaderArgs']]]] headers: The headers to send with each Vault request.
-        :param pulumi.Input[int] max_lease_ttl_seconds: Maximum TTL for secret leases requested by this provider
+        :param pulumi.Input[int] max_lease_ttl_seconds: Maximum TTL for secret leases requested by this provider.
         :param pulumi.Input[int] max_retries: Maximum number of retries when a 5xx error code is encountered.
-        :param pulumi.Input[str] namespace: The namespace to use. Available only for Vault Enterprise
+        :param pulumi.Input[int] max_retries_ccc: Maximum number of retries for Client Controlled Consistency related operations
+        :param pulumi.Input[str] namespace: The namespace to use. Available only for Vault Enterprise.
+        :param pulumi.Input[bool] skip_child_token: Set this to true to prevent the creation of ephemeral child token used by this provider.
         :param pulumi.Input[bool] skip_tls_verify: Set this to true only if the target Vault server is an insecure development instance.
         :param pulumi.Input[str] token: Token to use to authenticate to Vault.
         :param pulumi.Input[str] token_name: Token name to use for creating the Vault child token.
@@ -308,7 +344,9 @@ class Provider(pulumi.ProviderResource):
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderHeaderArgs']]]]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_retries: Optional[pulumi.Input[int]] = None,
+                 max_retries_ccc: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 skip_child_token: Optional[pulumi.Input[bool]] = None,
                  skip_tls_verify: Optional[pulumi.Input[bool]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  token_name: Optional[pulumi.Input[str]] = None,
@@ -339,7 +377,9 @@ class Provider(pulumi.ProviderResource):
             if max_retries is None:
                 max_retries = (_utilities.get_env_int('VAULT_MAX_RETRIES') or 2)
             __props__.__dict__["max_retries"] = pulumi.Output.from_input(max_retries).apply(pulumi.runtime.to_json) if max_retries is not None else None
+            __props__.__dict__["max_retries_ccc"] = pulumi.Output.from_input(max_retries_ccc).apply(pulumi.runtime.to_json) if max_retries_ccc is not None else None
             __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["skip_child_token"] = pulumi.Output.from_input(skip_child_token).apply(pulumi.runtime.to_json) if skip_child_token is not None else None
             if skip_tls_verify is None:
                 skip_tls_verify = _utilities.get_env_bool('VAULT_SKIP_VERIFY')
             __props__.__dict__["skip_tls_verify"] = pulumi.Output.from_input(skip_tls_verify).apply(pulumi.runtime.to_json) if skip_tls_verify is not None else None
@@ -389,7 +429,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter
     def namespace(self) -> pulumi.Output[Optional[str]]:
         """
-        The namespace to use. Available only for Vault Enterprise
+        The namespace to use. Available only for Vault Enterprise.
         """
         return pulumi.get(self, "namespace")
 

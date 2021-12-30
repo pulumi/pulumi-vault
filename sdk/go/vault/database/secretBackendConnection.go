@@ -34,6 +34,8 @@ type SecretBackendConnection struct {
 	Elasticsearch SecretBackendConnectionElasticsearchPtrOutput `pulumi:"elasticsearch"`
 	// A nested block containing configuration options for SAP HanaDB connections.
 	Hana SecretBackendConnectionHanaPtrOutput `pulumi:"hana"`
+	// A nested block containing configuration options for InfluxDB connections.
+	Influxdb SecretBackendConnectionInfluxdbPtrOutput `pulumi:"influxdb"`
 	// A nested block containing configuration options for MongoDB connections.
 	Mongodb SecretBackendConnectionMongodbPtrOutput `pulumi:"mongodb"`
 	// A nested block containing configuration options for MongoDB Atlas connections.
@@ -108,6 +110,8 @@ type secretBackendConnectionState struct {
 	Elasticsearch *SecretBackendConnectionElasticsearch `pulumi:"elasticsearch"`
 	// A nested block containing configuration options for SAP HanaDB connections.
 	Hana *SecretBackendConnectionHana `pulumi:"hana"`
+	// A nested block containing configuration options for InfluxDB connections.
+	Influxdb *SecretBackendConnectionInfluxdb `pulumi:"influxdb"`
 	// A nested block containing configuration options for MongoDB connections.
 	Mongodb *SecretBackendConnectionMongodb `pulumi:"mongodb"`
 	// A nested block containing configuration options for MongoDB Atlas connections.
@@ -151,6 +155,8 @@ type SecretBackendConnectionState struct {
 	Elasticsearch SecretBackendConnectionElasticsearchPtrInput
 	// A nested block containing configuration options for SAP HanaDB connections.
 	Hana SecretBackendConnectionHanaPtrInput
+	// A nested block containing configuration options for InfluxDB connections.
+	Influxdb SecretBackendConnectionInfluxdbPtrInput
 	// A nested block containing configuration options for MongoDB connections.
 	Mongodb SecretBackendConnectionMongodbPtrInput
 	// A nested block containing configuration options for MongoDB Atlas connections.
@@ -198,6 +204,8 @@ type secretBackendConnectionArgs struct {
 	Elasticsearch *SecretBackendConnectionElasticsearch `pulumi:"elasticsearch"`
 	// A nested block containing configuration options for SAP HanaDB connections.
 	Hana *SecretBackendConnectionHana `pulumi:"hana"`
+	// A nested block containing configuration options for InfluxDB connections.
+	Influxdb *SecretBackendConnectionInfluxdb `pulumi:"influxdb"`
 	// A nested block containing configuration options for MongoDB connections.
 	Mongodb *SecretBackendConnectionMongodb `pulumi:"mongodb"`
 	// A nested block containing configuration options for MongoDB Atlas connections.
@@ -242,6 +250,8 @@ type SecretBackendConnectionArgs struct {
 	Elasticsearch SecretBackendConnectionElasticsearchPtrInput
 	// A nested block containing configuration options for SAP HanaDB connections.
 	Hana SecretBackendConnectionHanaPtrInput
+	// A nested block containing configuration options for InfluxDB connections.
+	Influxdb SecretBackendConnectionInfluxdbPtrInput
 	// A nested block containing configuration options for MongoDB connections.
 	Mongodb SecretBackendConnectionMongodbPtrInput
 	// A nested block containing configuration options for MongoDB Atlas connections.

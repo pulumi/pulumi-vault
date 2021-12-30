@@ -86,7 +86,7 @@ Object.defineProperty(exports, "headers", {
 });
 
 /**
- * Maximum TTL for secret leases requested by this provider
+ * Maximum TTL for secret leases requested by this provider.
  */
 export declare const maxLeaseTtlSeconds: number;
 Object.defineProperty(exports, "maxLeaseTtlSeconds", {
@@ -108,12 +108,34 @@ Object.defineProperty(exports, "maxRetries", {
 });
 
 /**
- * The namespace to use. Available only for Vault Enterprise
+ * Maximum number of retries for Client Controlled Consistency related operations
+ */
+export declare const maxRetriesCcc: number | undefined;
+Object.defineProperty(exports, "maxRetriesCcc", {
+    get() {
+        return __config.getObject<number>("maxRetriesCcc");
+    },
+    enumerable: true,
+});
+
+/**
+ * The namespace to use. Available only for Vault Enterprise.
  */
 export declare const namespace: string | undefined;
 Object.defineProperty(exports, "namespace", {
     get() {
         return __config.get("namespace");
+    },
+    enumerable: true,
+});
+
+/**
+ * Set this to true to prevent the creation of ephemeral child token used by this provider.
+ */
+export declare const skipChildToken: boolean | undefined;
+Object.defineProperty(exports, "skipChildToken", {
+    get() {
+        return __config.getObject<boolean>("skipChildToken");
     },
     enumerable: true,
 });

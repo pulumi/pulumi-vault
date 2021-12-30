@@ -12,6 +12,7 @@ __all__ = [
     'SecretBackendConnectionCassandraArgs',
     'SecretBackendConnectionElasticsearchArgs',
     'SecretBackendConnectionHanaArgs',
+    'SecretBackendConnectionInfluxdbArgs',
     'SecretBackendConnectionMongodbArgs',
     'SecretBackendConnectionMongodbatlasArgs',
     'SecretBackendConnectionMssqlArgs',
@@ -337,6 +338,178 @@ class SecretBackendConnectionHanaArgs:
 
 
 @pulumi.input_type
+class SecretBackendConnectionInfluxdbArgs:
+    def __init__(__self__, *,
+                 host: pulumi.Input[str],
+                 password: pulumi.Input[str],
+                 username: pulumi.Input[str],
+                 connect_timeout: Optional[pulumi.Input[int]] = None,
+                 insecure_tls: Optional[pulumi.Input[bool]] = None,
+                 pem_bundle: Optional[pulumi.Input[str]] = None,
+                 pem_json: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
+                 tls: Optional[pulumi.Input[bool]] = None,
+                 username_template: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] host: The host to connect to.
+        :param pulumi.Input[str] password: The password to be used in the connection.
+        :param pulumi.Input[str] username: The username to be used in the connection (the account admin level).
+        :param pulumi.Input[int] connect_timeout: The number of seconds to use as a connection
+               timeout.
+        :param pulumi.Input[bool] insecure_tls: Whether to skip verification of the server
+               certificate when using TLS.
+        :param pulumi.Input[str] pem_bundle: Concatenated PEM blocks configuring the certificate
+               chain.
+        :param pulumi.Input[str] pem_json: A JSON structure configuring the certificate chain.
+        :param pulumi.Input[int] port: The default port to connect to if no port is specified as
+               part of the host.
+        :param pulumi.Input[bool] tls: Whether to use TLS when connecting to Cassandra.
+        :param pulumi.Input[str] username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "username", username)
+        if connect_timeout is not None:
+            pulumi.set(__self__, "connect_timeout", connect_timeout)
+        if insecure_tls is not None:
+            pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if pem_bundle is not None:
+            pulumi.set(__self__, "pem_bundle", pem_bundle)
+        if pem_json is not None:
+            pulumi.set(__self__, "pem_json", pem_json)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if tls is not None:
+            pulumi.set(__self__, "tls", tls)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
+
+    @property
+    @pulumi.getter
+    def host(self) -> pulumi.Input[str]:
+        """
+        The host to connect to.
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: pulumi.Input[str]):
+        pulumi.set(self, "host", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> pulumi.Input[str]:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: pulumi.Input[str]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[str]:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[str]):
+        pulumi.set(self, "username", value)
+
+    @property
+    @pulumi.getter(name="connectTimeout")
+    def connect_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of seconds to use as a connection
+        timeout.
+        """
+        return pulumi.get(self, "connect_timeout")
+
+    @connect_timeout.setter
+    def connect_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "connect_timeout", value)
+
+    @property
+    @pulumi.getter(name="insecureTls")
+    def insecure_tls(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to skip verification of the server
+        certificate when using TLS.
+        """
+        return pulumi.get(self, "insecure_tls")
+
+    @insecure_tls.setter
+    def insecure_tls(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "insecure_tls", value)
+
+    @property
+    @pulumi.getter(name="pemBundle")
+    def pem_bundle(self) -> Optional[pulumi.Input[str]]:
+        """
+        Concatenated PEM blocks configuring the certificate
+        chain.
+        """
+        return pulumi.get(self, "pem_bundle")
+
+    @pem_bundle.setter
+    def pem_bundle(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pem_bundle", value)
+
+    @property
+    @pulumi.getter(name="pemJson")
+    def pem_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        A JSON structure configuring the certificate chain.
+        """
+        return pulumi.get(self, "pem_json")
+
+    @pem_json.setter
+    def pem_json(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pem_json", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The default port to connect to if no port is specified as
+        part of the host.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter
+    def tls(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to use TLS when connecting to Cassandra.
+        """
+        return pulumi.get(self, "tls")
+
+    @tls.setter
+    def tls(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "tls", value)
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[pulumi.Input[str]]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+    @username_template.setter
+    def username_template(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username_template", value)
+
+
+@pulumi.input_type
 class SecretBackendConnectionMongodbArgs:
     def __init__(__self__, *,
                  connection_url: Optional[pulumi.Input[str]] = None,
@@ -491,6 +664,7 @@ class SecretBackendConnectionMongodbatlasArgs:
 class SecretBackendConnectionMssqlArgs:
     def __init__(__self__, *,
                  connection_url: Optional[pulumi.Input[str]] = None,
+                 contained_db: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
@@ -500,6 +674,10 @@ class SecretBackendConnectionMssqlArgs:
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
                for an example.
+        :param pulumi.Input[bool] contained_db: For Vault v1.9+. Set to true when the target is a
+               Contained Database, e.g. AzureSQL.
+               See the [Vault
+               docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
         :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
         :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
@@ -510,6 +688,8 @@ class SecretBackendConnectionMssqlArgs:
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
+        if contained_db is not None:
+            pulumi.set(__self__, "contained_db", contained_db)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -533,6 +713,21 @@ class SecretBackendConnectionMssqlArgs:
     @connection_url.setter
     def connection_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "connection_url", value)
+
+    @property
+    @pulumi.getter(name="containedDb")
+    def contained_db(self) -> Optional[pulumi.Input[bool]]:
+        """
+        For Vault v1.9+. Set to true when the target is a
+        Contained Database, e.g. AzureSQL.
+        See the [Vault
+        docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+        """
+        return pulumi.get(self, "contained_db")
+
+    @contained_db.setter
+    def contained_db(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "contained_db", value)
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")

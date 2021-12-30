@@ -11,20 +11,31 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Import
+//
+// AD secret backend roles can be imported using the `path`, e.g.
+//
+// ```sh
+//  $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
+// ```
 type SecretRole struct {
 	pulumi.CustomResourceState
 
-	// The mount path for the AD backend.
+	// The path the AD secret backend is mounted at,
+	// with no leading or trailing `/`s.
 	Backend pulumi.StringOutput `pulumi:"backend"`
-	// Last time Vault rotated this service account's password.
+	// Timestamp of the last password rotation by Vault.
 	LastVaultRotation pulumi.StringOutput `pulumi:"lastVaultRotation"`
-	// Last time Vault set this service account's password.
+	// Timestamp of the last password set by Vault.
 	PasswordLastSet pulumi.StringOutput `pulumi:"passwordLastSet"`
-	// Name of the role.
+	// The name to identify this role within the backend.
+	// Must be unique within the backend.
 	Role pulumi.StringOutput `pulumi:"role"`
-	// The username/logon name for the service account with which this role will be associated.
+	// Specifies the name of the Active Directory service
+	// account mapped to this role.
 	ServiceAccountName pulumi.StringOutput `pulumi:"serviceAccountName"`
-	// In seconds, the default password time-to-live.
+	// The password time-to-live in seconds. Defaults to the configuration
+	// ttl if not provided.
 	Ttl pulumi.IntPtrOutput `pulumi:"ttl"`
 }
 
@@ -66,32 +77,40 @@ func GetSecretRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretRole resources.
 type secretRoleState struct {
-	// The mount path for the AD backend.
+	// The path the AD secret backend is mounted at,
+	// with no leading or trailing `/`s.
 	Backend *string `pulumi:"backend"`
-	// Last time Vault rotated this service account's password.
+	// Timestamp of the last password rotation by Vault.
 	LastVaultRotation *string `pulumi:"lastVaultRotation"`
-	// Last time Vault set this service account's password.
+	// Timestamp of the last password set by Vault.
 	PasswordLastSet *string `pulumi:"passwordLastSet"`
-	// Name of the role.
+	// The name to identify this role within the backend.
+	// Must be unique within the backend.
 	Role *string `pulumi:"role"`
-	// The username/logon name for the service account with which this role will be associated.
+	// Specifies the name of the Active Directory service
+	// account mapped to this role.
 	ServiceAccountName *string `pulumi:"serviceAccountName"`
-	// In seconds, the default password time-to-live.
+	// The password time-to-live in seconds. Defaults to the configuration
+	// ttl if not provided.
 	Ttl *int `pulumi:"ttl"`
 }
 
 type SecretRoleState struct {
-	// The mount path for the AD backend.
+	// The path the AD secret backend is mounted at,
+	// with no leading or trailing `/`s.
 	Backend pulumi.StringPtrInput
-	// Last time Vault rotated this service account's password.
+	// Timestamp of the last password rotation by Vault.
 	LastVaultRotation pulumi.StringPtrInput
-	// Last time Vault set this service account's password.
+	// Timestamp of the last password set by Vault.
 	PasswordLastSet pulumi.StringPtrInput
-	// Name of the role.
+	// The name to identify this role within the backend.
+	// Must be unique within the backend.
 	Role pulumi.StringPtrInput
-	// The username/logon name for the service account with which this role will be associated.
+	// Specifies the name of the Active Directory service
+	// account mapped to this role.
 	ServiceAccountName pulumi.StringPtrInput
-	// In seconds, the default password time-to-live.
+	// The password time-to-live in seconds. Defaults to the configuration
+	// ttl if not provided.
 	Ttl pulumi.IntPtrInput
 }
 
@@ -100,25 +119,33 @@ func (SecretRoleState) ElementType() reflect.Type {
 }
 
 type secretRoleArgs struct {
-	// The mount path for the AD backend.
+	// The path the AD secret backend is mounted at,
+	// with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
-	// Name of the role.
+	// The name to identify this role within the backend.
+	// Must be unique within the backend.
 	Role string `pulumi:"role"`
-	// The username/logon name for the service account with which this role will be associated.
+	// Specifies the name of the Active Directory service
+	// account mapped to this role.
 	ServiceAccountName string `pulumi:"serviceAccountName"`
-	// In seconds, the default password time-to-live.
+	// The password time-to-live in seconds. Defaults to the configuration
+	// ttl if not provided.
 	Ttl *int `pulumi:"ttl"`
 }
 
 // The set of arguments for constructing a SecretRole resource.
 type SecretRoleArgs struct {
-	// The mount path for the AD backend.
+	// The path the AD secret backend is mounted at,
+	// with no leading or trailing `/`s.
 	Backend pulumi.StringInput
-	// Name of the role.
+	// The name to identify this role within the backend.
+	// Must be unique within the backend.
 	Role pulumi.StringInput
-	// The username/logon name for the service account with which this role will be associated.
+	// Specifies the name of the Active Directory service
+	// account mapped to this role.
 	ServiceAccountName pulumi.StringInput
-	// In seconds, the default password time-to-live.
+	// The password time-to-live in seconds. Defaults to the configuration
+	// ttl if not provided.
 	Ttl pulumi.IntPtrInput
 }
 
