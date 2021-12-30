@@ -9,41 +9,54 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.AD
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// AD secret backend roles can be imported using the `path`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
+    /// ```
+    /// </summary>
     [VaultResourceType("vault:ad/secretRole:SecretRole")]
     public partial class SecretRole : Pulumi.CustomResource
     {
         /// <summary>
-        /// The mount path for the AD backend.
+        /// The path the AD secret backend is mounted at,
+        /// with no leading or trailing `/`s.
         /// </summary>
         [Output("backend")]
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// Last time Vault rotated this service account's password.
+        /// Timestamp of the last password rotation by Vault.
         /// </summary>
         [Output("lastVaultRotation")]
         public Output<string> LastVaultRotation { get; private set; } = null!;
 
         /// <summary>
-        /// Last time Vault set this service account's password.
+        /// Timestamp of the last password set by Vault.
         /// </summary>
         [Output("passwordLastSet")]
         public Output<string> PasswordLastSet { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the role.
+        /// The name to identify this role within the backend.
+        /// Must be unique within the backend.
         /// </summary>
         [Output("role")]
         public Output<string> Role { get; private set; } = null!;
 
         /// <summary>
-        /// The username/logon name for the service account with which this role will be associated.
+        /// Specifies the name of the Active Directory service
+        /// account mapped to this role.
         /// </summary>
         [Output("serviceAccountName")]
         public Output<string> ServiceAccountName { get; private set; } = null!;
 
         /// <summary>
-        /// In seconds, the default password time-to-live.
+        /// The password time-to-live in seconds. Defaults to the configuration
+        /// ttl if not provided.
         /// </summary>
         [Output("ttl")]
         public Output<int?> Ttl { get; private set; } = null!;
@@ -95,25 +108,29 @@ namespace Pulumi.Vault.AD
     public sealed class SecretRoleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The mount path for the AD backend.
+        /// The path the AD secret backend is mounted at,
+        /// with no leading or trailing `/`s.
         /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
-        /// Name of the role.
+        /// The name to identify this role within the backend.
+        /// Must be unique within the backend.
         /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
         /// <summary>
-        /// The username/logon name for the service account with which this role will be associated.
+        /// Specifies the name of the Active Directory service
+        /// account mapped to this role.
         /// </summary>
         [Input("serviceAccountName", required: true)]
         public Input<string> ServiceAccountName { get; set; } = null!;
 
         /// <summary>
-        /// In seconds, the default password time-to-live.
+        /// The password time-to-live in seconds. Defaults to the configuration
+        /// ttl if not provided.
         /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
@@ -126,37 +143,41 @@ namespace Pulumi.Vault.AD
     public sealed class SecretRoleState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The mount path for the AD backend.
+        /// The path the AD secret backend is mounted at,
+        /// with no leading or trailing `/`s.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// Last time Vault rotated this service account's password.
+        /// Timestamp of the last password rotation by Vault.
         /// </summary>
         [Input("lastVaultRotation")]
         public Input<string>? LastVaultRotation { get; set; }
 
         /// <summary>
-        /// Last time Vault set this service account's password.
+        /// Timestamp of the last password set by Vault.
         /// </summary>
         [Input("passwordLastSet")]
         public Input<string>? PasswordLastSet { get; set; }
 
         /// <summary>
-        /// Name of the role.
+        /// The name to identify this role within the backend.
+        /// Must be unique within the backend.
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
 
         /// <summary>
-        /// The username/logon name for the service account with which this role will be associated.
+        /// Specifies the name of the Active Directory service
+        /// account mapped to this role.
         /// </summary>
         [Input("serviceAccountName")]
         public Input<string>? ServiceAccountName { get; set; }
 
         /// <summary>
-        /// In seconds, the default password time-to-live.
+        /// The password time-to-live in seconds. Defaults to the configuration
+        /// ttl if not provided.
         /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }

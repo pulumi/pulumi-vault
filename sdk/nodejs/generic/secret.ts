@@ -54,7 +54,14 @@ export class Secret extends pulumi.CustomResource {
      */
     public readonly dataJson!: pulumi.Output<string>;
     /**
-     * True/false. Set this to true if your vault
+     * true/false.  Only applicable for kv-v2 stores.
+     * If set to `true`, permanently deletes all versions for
+     * the specified key. The default behavior is to only delete the latest version of the
+     * secret.
+     */
+    public readonly deleteAllVersions!: pulumi.Output<boolean | undefined>;
+    /**
+     * true/false. Set this to true if your vault
      * authentication is not able to read the data. Setting this to `true` will
      * break drift detection. Defaults to false.
      */
@@ -83,6 +90,7 @@ export class Secret extends pulumi.CustomResource {
             const state = argsOrState as SecretState | undefined;
             inputs["data"] = state ? state.data : undefined;
             inputs["dataJson"] = state ? state.dataJson : undefined;
+            inputs["deleteAllVersions"] = state ? state.deleteAllVersions : undefined;
             inputs["disableRead"] = state ? state.disableRead : undefined;
             inputs["path"] = state ? state.path : undefined;
         } else {
@@ -94,6 +102,7 @@ export class Secret extends pulumi.CustomResource {
                 throw new Error("Missing required property 'path'");
             }
             inputs["dataJson"] = args ? args.dataJson : undefined;
+            inputs["deleteAllVersions"] = args ? args.deleteAllVersions : undefined;
             inputs["disableRead"] = args ? args.disableRead : undefined;
             inputs["path"] = args ? args.path : undefined;
             inputs["data"] = undefined /*out*/;
@@ -122,7 +131,14 @@ export interface SecretState {
      */
     dataJson?: pulumi.Input<string>;
     /**
-     * True/false. Set this to true if your vault
+     * true/false.  Only applicable for kv-v2 stores.
+     * If set to `true`, permanently deletes all versions for
+     * the specified key. The default behavior is to only delete the latest version of the
+     * secret.
+     */
+    deleteAllVersions?: pulumi.Input<boolean>;
+    /**
+     * true/false. Set this to true if your vault
      * authentication is not able to read the data. Setting this to `true` will
      * break drift detection. Defaults to false.
      */
@@ -147,7 +163,14 @@ export interface SecretArgs {
      */
     dataJson: pulumi.Input<string>;
     /**
-     * True/false. Set this to true if your vault
+     * true/false.  Only applicable for kv-v2 stores.
+     * If set to `true`, permanently deletes all versions for
+     * the specified key. The default behavior is to only delete the latest version of the
+     * secret.
+     */
+    deleteAllVersions?: pulumi.Input<boolean>;
+    /**
+     * true/false. Set this to true if your vault
      * authentication is not able to read the data. Setting this to `true` will
      * break drift detection. Defaults to false.
      */

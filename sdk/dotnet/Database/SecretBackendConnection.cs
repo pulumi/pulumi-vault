@@ -59,6 +59,12 @@ namespace Pulumi.Vault.Database
         public Output<Outputs.SecretBackendConnectionHana?> Hana { get; private set; } = null!;
 
         /// <summary>
+        /// A nested block containing configuration options for InfluxDB connections.
+        /// </summary>
+        [Output("influxdb")]
+        public Output<Outputs.SecretBackendConnectionInfluxdb?> Influxdb { get; private set; } = null!;
+
+        /// <summary>
         /// A nested block containing configuration options for MongoDB connections.
         /// </summary>
         [Output("mongodb")]
@@ -233,6 +239,12 @@ namespace Pulumi.Vault.Database
         public Input<Inputs.SecretBackendConnectionHanaArgs>? Hana { get; set; }
 
         /// <summary>
+        /// A nested block containing configuration options for InfluxDB connections.
+        /// </summary>
+        [Input("influxdb")]
+        public Input<Inputs.SecretBackendConnectionInfluxdbArgs>? Influxdb { get; set; }
+
+        /// <summary>
         /// A nested block containing configuration options for MongoDB connections.
         /// </summary>
         [Input("mongodb")]
@@ -372,6 +384,12 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Input("hana")]
         public Input<Inputs.SecretBackendConnectionHanaGetArgs>? Hana { get; set; }
+
+        /// <summary>
+        /// A nested block containing configuration options for InfluxDB connections.
+        /// </summary>
+        [Input("influxdb")]
+        public Input<Inputs.SecretBackendConnectionInfluxdbGetArgs>? Influxdb { get; set; }
 
         /// <summary>
         /// A nested block containing configuration options for MongoDB connections.

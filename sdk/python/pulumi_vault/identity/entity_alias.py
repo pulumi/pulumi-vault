@@ -15,15 +15,19 @@ class EntityAliasArgs:
     def __init__(__self__, *,
                  canonical_id: pulumi.Input[str],
                  mount_accessor: pulumi.Input[str],
+                 custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a EntityAlias resource.
         :param pulumi.Input[str] canonical_id: Entity ID to which this alias belongs to.
         :param pulumi.Input[str] mount_accessor: Accessor of the mount to which the alias should belong to.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_metadata: Custom metadata to be associated with this alias.
         :param pulumi.Input[str] name: Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
         """
         pulumi.set(__self__, "canonical_id", canonical_id)
         pulumi.set(__self__, "mount_accessor", mount_accessor)
+        if custom_metadata is not None:
+            pulumi.set(__self__, "custom_metadata", custom_metadata)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -52,6 +56,18 @@ class EntityAliasArgs:
         pulumi.set(self, "mount_accessor", value)
 
     @property
+    @pulumi.getter(name="customMetadata")
+    def custom_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Custom metadata to be associated with this alias.
+        """
+        return pulumi.get(self, "custom_metadata")
+
+    @custom_metadata.setter
+    def custom_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "custom_metadata", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -68,16 +84,20 @@ class EntityAliasArgs:
 class _EntityAliasState:
     def __init__(__self__, *,
                  canonical_id: Optional[pulumi.Input[str]] = None,
+                 custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  mount_accessor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering EntityAlias resources.
         :param pulumi.Input[str] canonical_id: Entity ID to which this alias belongs to.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_metadata: Custom metadata to be associated with this alias.
         :param pulumi.Input[str] mount_accessor: Accessor of the mount to which the alias should belong to.
         :param pulumi.Input[str] name: Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
         """
         if canonical_id is not None:
             pulumi.set(__self__, "canonical_id", canonical_id)
+        if custom_metadata is not None:
+            pulumi.set(__self__, "custom_metadata", custom_metadata)
         if mount_accessor is not None:
             pulumi.set(__self__, "mount_accessor", mount_accessor)
         if name is not None:
@@ -94,6 +114,18 @@ class _EntityAliasState:
     @canonical_id.setter
     def canonical_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "canonical_id", value)
+
+    @property
+    @pulumi.getter(name="customMetadata")
+    def custom_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Custom metadata to be associated with this alias.
+        """
+        return pulumi.get(self, "custom_metadata")
+
+    @custom_metadata.setter
+    def custom_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "custom_metadata", value)
 
     @property
     @pulumi.getter(name="mountAccessor")
@@ -126,6 +158,7 @@ class EntityAlias(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  canonical_id: Optional[pulumi.Input[str]] = None,
+                 custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  mount_accessor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -141,6 +174,7 @@ class EntityAlias(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] canonical_id: Entity ID to which this alias belongs to.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_metadata: Custom metadata to be associated with this alias.
         :param pulumi.Input[str] mount_accessor: Accessor of the mount to which the alias should belong to.
         :param pulumi.Input[str] name: Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
         """
@@ -175,6 +209,7 @@ class EntityAlias(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  canonical_id: Optional[pulumi.Input[str]] = None,
+                 custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  mount_accessor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -192,6 +227,7 @@ class EntityAlias(pulumi.CustomResource):
             if canonical_id is None and not opts.urn:
                 raise TypeError("Missing required property 'canonical_id'")
             __props__.__dict__["canonical_id"] = canonical_id
+            __props__.__dict__["custom_metadata"] = custom_metadata
             if mount_accessor is None and not opts.urn:
                 raise TypeError("Missing required property 'mount_accessor'")
             __props__.__dict__["mount_accessor"] = mount_accessor
@@ -207,6 +243,7 @@ class EntityAlias(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             canonical_id: Optional[pulumi.Input[str]] = None,
+            custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             mount_accessor: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None) -> 'EntityAlias':
         """
@@ -217,6 +254,7 @@ class EntityAlias(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] canonical_id: Entity ID to which this alias belongs to.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_metadata: Custom metadata to be associated with this alias.
         :param pulumi.Input[str] mount_accessor: Accessor of the mount to which the alias should belong to.
         :param pulumi.Input[str] name: Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
         """
@@ -225,6 +263,7 @@ class EntityAlias(pulumi.CustomResource):
         __props__ = _EntityAliasState.__new__(_EntityAliasState)
 
         __props__.__dict__["canonical_id"] = canonical_id
+        __props__.__dict__["custom_metadata"] = custom_metadata
         __props__.__dict__["mount_accessor"] = mount_accessor
         __props__.__dict__["name"] = name
         return EntityAlias(resource_name, opts=opts, __props__=__props__)
@@ -236,6 +275,14 @@ class EntityAlias(pulumi.CustomResource):
         Entity ID to which this alias belongs to.
         """
         return pulumi.get(self, "canonical_id")
+
+    @property
+    @pulumi.getter(name="customMetadata")
+    def custom_metadata(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Custom metadata to be associated with this alias.
+        """
+        return pulumi.get(self, "custom_metadata")
 
     @property
     @pulumi.getter(name="mountAccessor")

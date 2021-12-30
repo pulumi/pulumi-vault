@@ -104,7 +104,7 @@ namespace Pulumi.Vault
 
         private static readonly __Value<int?> _maxLeaseTtlSeconds = new __Value<int?>(() => __config.GetInt32("maxLeaseTtlSeconds") ?? Utilities.GetEnvInt32("TERRAFORM_VAULT_MAX_TTL") ?? 1200);
         /// <summary>
-        /// Maximum TTL for secret leases requested by this provider
+        /// Maximum TTL for secret leases requested by this provider.
         /// </summary>
         public static int? MaxLeaseTtlSeconds
         {
@@ -122,14 +122,34 @@ namespace Pulumi.Vault
             set => _maxRetries.Set(value);
         }
 
+        private static readonly __Value<int?> _maxRetriesCcc = new __Value<int?>(() => __config.GetInt32("maxRetriesCcc"));
+        /// <summary>
+        /// Maximum number of retries for Client Controlled Consistency related operations
+        /// </summary>
+        public static int? MaxRetriesCcc
+        {
+            get => _maxRetriesCcc.Get();
+            set => _maxRetriesCcc.Set(value);
+        }
+
         private static readonly __Value<string?> _namespace = new __Value<string?>(() => __config.Get("namespace"));
         /// <summary>
-        /// The namespace to use. Available only for Vault Enterprise
+        /// The namespace to use. Available only for Vault Enterprise.
         /// </summary>
         public static string? Namespace
         {
             get => _namespace.Get();
             set => _namespace.Set(value);
+        }
+
+        private static readonly __Value<bool?> _skipChildToken = new __Value<bool?>(() => __config.GetBoolean("skipChildToken"));
+        /// <summary>
+        /// Set this to true to prevent the creation of ephemeral child token used by this provider.
+        /// </summary>
+        public static bool? SkipChildToken
+        {
+            get => _skipChildToken.Get();
+            set => _skipChildToken.Set(value);
         }
 
         private static readonly __Value<bool?> _skipTlsVerify = new __Value<bool?>(() => __config.GetBoolean("skipTlsVerify") ?? Utilities.GetEnvBoolean("VAULT_SKIP_VERIFY"));

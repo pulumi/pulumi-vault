@@ -43,7 +43,7 @@ func GetHeaders(ctx *pulumi.Context) string {
 	return config.Get(ctx, "vault:headers")
 }
 
-// Maximum TTL for secret leases requested by this provider
+// Maximum TTL for secret leases requested by this provider.
 func GetMaxLeaseTtlSeconds(ctx *pulumi.Context) int {
 	v, err := config.TryInt(ctx, "vault:maxLeaseTtlSeconds")
 	if err == nil {
@@ -61,9 +61,19 @@ func GetMaxRetries(ctx *pulumi.Context) int {
 	return getEnvOrDefault(2, parseEnvInt, "VAULT_MAX_RETRIES").(int)
 }
 
-// The namespace to use. Available only for Vault Enterprise
+// Maximum number of retries for Client Controlled Consistency related operations
+func GetMaxRetriesCcc(ctx *pulumi.Context) int {
+	return config.GetInt(ctx, "vault:maxRetriesCcc")
+}
+
+// The namespace to use. Available only for Vault Enterprise.
 func GetNamespace(ctx *pulumi.Context) string {
 	return config.Get(ctx, "vault:namespace")
+}
+
+// Set this to true to prevent the creation of ephemeral child token used by this provider.
+func GetSkipChildToken(ctx *pulumi.Context) bool {
+	return config.GetBool(ctx, "vault:skipChildToken")
 }
 
 // Set this to true only if the target Vault server is an insecure development instance.

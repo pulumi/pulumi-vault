@@ -23,6 +23,8 @@ type EntityAlias struct {
 
 	// Entity ID to which this alias belongs to.
 	CanonicalId pulumi.StringOutput `pulumi:"canonicalId"`
+	// Custom metadata to be associated with this alias.
+	CustomMetadata pulumi.StringMapOutput `pulumi:"customMetadata"`
 	// Accessor of the mount to which the alias should belong to.
 	MountAccessor pulumi.StringOutput `pulumi:"mountAccessor"`
 	// Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
@@ -66,6 +68,8 @@ func GetEntityAlias(ctx *pulumi.Context,
 type entityAliasState struct {
 	// Entity ID to which this alias belongs to.
 	CanonicalId *string `pulumi:"canonicalId"`
+	// Custom metadata to be associated with this alias.
+	CustomMetadata map[string]string `pulumi:"customMetadata"`
 	// Accessor of the mount to which the alias should belong to.
 	MountAccessor *string `pulumi:"mountAccessor"`
 	// Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
@@ -75,6 +79,8 @@ type entityAliasState struct {
 type EntityAliasState struct {
 	// Entity ID to which this alias belongs to.
 	CanonicalId pulumi.StringPtrInput
+	// Custom metadata to be associated with this alias.
+	CustomMetadata pulumi.StringMapInput
 	// Accessor of the mount to which the alias should belong to.
 	MountAccessor pulumi.StringPtrInput
 	// Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
@@ -88,6 +94,8 @@ func (EntityAliasState) ElementType() reflect.Type {
 type entityAliasArgs struct {
 	// Entity ID to which this alias belongs to.
 	CanonicalId string `pulumi:"canonicalId"`
+	// Custom metadata to be associated with this alias.
+	CustomMetadata map[string]string `pulumi:"customMetadata"`
 	// Accessor of the mount to which the alias should belong to.
 	MountAccessor string `pulumi:"mountAccessor"`
 	// Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
@@ -98,6 +106,8 @@ type entityAliasArgs struct {
 type EntityAliasArgs struct {
 	// Entity ID to which this alias belongs to.
 	CanonicalId pulumi.StringInput
+	// Custom metadata to be associated with this alias.
+	CustomMetadata pulumi.StringMapInput
 	// Accessor of the mount to which the alias should belong to.
 	MountAccessor pulumi.StringInput
 	// Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.

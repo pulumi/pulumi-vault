@@ -68,6 +68,10 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      */
     public readonly hana!: pulumi.Output<outputs.database.SecretBackendConnectionHana | undefined>;
     /**
+     * A nested block containing configuration options for InfluxDB connections.
+     */
+    public readonly influxdb!: pulumi.Output<outputs.database.SecretBackendConnectionInfluxdb | undefined>;
+    /**
      * A nested block containing configuration options for MongoDB connections.
      */
     public readonly mongodb!: pulumi.Output<outputs.database.SecretBackendConnectionMongodb | undefined>;
@@ -140,6 +144,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             inputs["data"] = state ? state.data : undefined;
             inputs["elasticsearch"] = state ? state.elasticsearch : undefined;
             inputs["hana"] = state ? state.hana : undefined;
+            inputs["influxdb"] = state ? state.influxdb : undefined;
             inputs["mongodb"] = state ? state.mongodb : undefined;
             inputs["mongodbatlas"] = state ? state.mongodbatlas : undefined;
             inputs["mssql"] = state ? state.mssql : undefined;
@@ -164,6 +169,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             inputs["data"] = args ? args.data : undefined;
             inputs["elasticsearch"] = args ? args.elasticsearch : undefined;
             inputs["hana"] = args ? args.hana : undefined;
+            inputs["influxdb"] = args ? args.influxdb : undefined;
             inputs["mongodb"] = args ? args.mongodb : undefined;
             inputs["mongodbatlas"] = args ? args.mongodbatlas : undefined;
             inputs["mssql"] = args ? args.mssql : undefined;
@@ -214,6 +220,10 @@ export interface SecretBackendConnectionState {
      * A nested block containing configuration options for SAP HanaDB connections.
      */
     hana?: pulumi.Input<inputs.database.SecretBackendConnectionHana>;
+    /**
+     * A nested block containing configuration options for InfluxDB connections.
+     */
+    influxdb?: pulumi.Input<inputs.database.SecretBackendConnectionInfluxdb>;
     /**
      * A nested block containing configuration options for MongoDB connections.
      */
@@ -298,6 +308,10 @@ export interface SecretBackendConnectionArgs {
      * A nested block containing configuration options for SAP HanaDB connections.
      */
     hana?: pulumi.Input<inputs.database.SecretBackendConnectionHana>;
+    /**
+     * A nested block containing configuration options for InfluxDB connections.
+     */
+    influxdb?: pulumi.Input<inputs.database.SecretBackendConnectionInfluxdb>;
     /**
      * A nested block containing configuration options for MongoDB connections.
      */

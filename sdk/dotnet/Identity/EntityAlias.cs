@@ -28,6 +28,12 @@ namespace Pulumi.Vault.Identity
         public Output<string> CanonicalId { get; private set; } = null!;
 
         /// <summary>
+        /// Custom metadata to be associated with this alias.
+        /// </summary>
+        [Output("customMetadata")]
+        public Output<ImmutableDictionary<string, string>?> CustomMetadata { get; private set; } = null!;
+
+        /// <summary>
         /// Accessor of the mount to which the alias should belong to.
         /// </summary>
         [Output("mountAccessor")]
@@ -91,6 +97,18 @@ namespace Pulumi.Vault.Identity
         [Input("canonicalId", required: true)]
         public Input<string> CanonicalId { get; set; } = null!;
 
+        [Input("customMetadata")]
+        private InputMap<string>? _customMetadata;
+
+        /// <summary>
+        /// Custom metadata to be associated with this alias.
+        /// </summary>
+        public InputMap<string> CustomMetadata
+        {
+            get => _customMetadata ?? (_customMetadata = new InputMap<string>());
+            set => _customMetadata = value;
+        }
+
         /// <summary>
         /// Accessor of the mount to which the alias should belong to.
         /// </summary>
@@ -115,6 +133,18 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         [Input("canonicalId")]
         public Input<string>? CanonicalId { get; set; }
+
+        [Input("customMetadata")]
+        private InputMap<string>? _customMetadata;
+
+        /// <summary>
+        /// Custom metadata to be associated with this alias.
+        /// </summary>
+        public InputMap<string> CustomMetadata
+        {
+            get => _customMetadata ?? (_customMetadata = new InputMap<string>());
+            set => _customMetadata = value;
+        }
 
         /// <summary>
         /// Accessor of the mount to which the alias should belong to.

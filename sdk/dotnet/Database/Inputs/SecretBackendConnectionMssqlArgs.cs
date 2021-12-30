@@ -22,6 +22,15 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<string>? ConnectionUrl { get; set; }
 
         /// <summary>
+        /// For Vault v1.9+. Set to true when the target is a
+        /// Contained Database, e.g. AzureSQL.
+        /// See the [Vault
+        /// docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+        /// </summary>
+        [Input("containedDb")]
+        public Input<bool>? ContainedDb { get; set; }
+
+        /// <summary>
         /// The maximum number of seconds to keep
         /// a connection alive for.
         /// </summary>

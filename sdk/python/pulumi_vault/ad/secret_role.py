@@ -19,10 +19,14 @@ class SecretRoleArgs:
                  ttl: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a SecretRole resource.
-        :param pulumi.Input[str] backend: The mount path for the AD backend.
-        :param pulumi.Input[str] role: Name of the role.
-        :param pulumi.Input[str] service_account_name: The username/logon name for the service account with which this role will be associated.
-        :param pulumi.Input[int] ttl: In seconds, the default password time-to-live.
+        :param pulumi.Input[str] backend: The path the AD secret backend is mounted at,
+               with no leading or trailing `/`s.
+        :param pulumi.Input[str] role: The name to identify this role within the backend.
+               Must be unique within the backend.
+        :param pulumi.Input[str] service_account_name: Specifies the name of the Active Directory service
+               account mapped to this role.
+        :param pulumi.Input[int] ttl: The password time-to-live in seconds. Defaults to the configuration
+               ttl if not provided.
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "role", role)
@@ -34,7 +38,8 @@ class SecretRoleArgs:
     @pulumi.getter
     def backend(self) -> pulumi.Input[str]:
         """
-        The mount path for the AD backend.
+        The path the AD secret backend is mounted at,
+        with no leading or trailing `/`s.
         """
         return pulumi.get(self, "backend")
 
@@ -46,7 +51,8 @@ class SecretRoleArgs:
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
         """
-        Name of the role.
+        The name to identify this role within the backend.
+        Must be unique within the backend.
         """
         return pulumi.get(self, "role")
 
@@ -58,7 +64,8 @@ class SecretRoleArgs:
     @pulumi.getter(name="serviceAccountName")
     def service_account_name(self) -> pulumi.Input[str]:
         """
-        The username/logon name for the service account with which this role will be associated.
+        Specifies the name of the Active Directory service
+        account mapped to this role.
         """
         return pulumi.get(self, "service_account_name")
 
@@ -70,7 +77,8 @@ class SecretRoleArgs:
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        In seconds, the default password time-to-live.
+        The password time-to-live in seconds. Defaults to the configuration
+        ttl if not provided.
         """
         return pulumi.get(self, "ttl")
 
@@ -90,12 +98,16 @@ class _SecretRoleState:
                  ttl: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering SecretRole resources.
-        :param pulumi.Input[str] backend: The mount path for the AD backend.
-        :param pulumi.Input[str] last_vault_rotation: Last time Vault rotated this service account's password.
-        :param pulumi.Input[str] password_last_set: Last time Vault set this service account's password.
-        :param pulumi.Input[str] role: Name of the role.
-        :param pulumi.Input[str] service_account_name: The username/logon name for the service account with which this role will be associated.
-        :param pulumi.Input[int] ttl: In seconds, the default password time-to-live.
+        :param pulumi.Input[str] backend: The path the AD secret backend is mounted at,
+               with no leading or trailing `/`s.
+        :param pulumi.Input[str] last_vault_rotation: Timestamp of the last password rotation by Vault.
+        :param pulumi.Input[str] password_last_set: Timestamp of the last password set by Vault.
+        :param pulumi.Input[str] role: The name to identify this role within the backend.
+               Must be unique within the backend.
+        :param pulumi.Input[str] service_account_name: Specifies the name of the Active Directory service
+               account mapped to this role.
+        :param pulumi.Input[int] ttl: The password time-to-live in seconds. Defaults to the configuration
+               ttl if not provided.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -114,7 +126,8 @@ class _SecretRoleState:
     @pulumi.getter
     def backend(self) -> Optional[pulumi.Input[str]]:
         """
-        The mount path for the AD backend.
+        The path the AD secret backend is mounted at,
+        with no leading or trailing `/`s.
         """
         return pulumi.get(self, "backend")
 
@@ -126,7 +139,7 @@ class _SecretRoleState:
     @pulumi.getter(name="lastVaultRotation")
     def last_vault_rotation(self) -> Optional[pulumi.Input[str]]:
         """
-        Last time Vault rotated this service account's password.
+        Timestamp of the last password rotation by Vault.
         """
         return pulumi.get(self, "last_vault_rotation")
 
@@ -138,7 +151,7 @@ class _SecretRoleState:
     @pulumi.getter(name="passwordLastSet")
     def password_last_set(self) -> Optional[pulumi.Input[str]]:
         """
-        Last time Vault set this service account's password.
+        Timestamp of the last password set by Vault.
         """
         return pulumi.get(self, "password_last_set")
 
@@ -150,7 +163,8 @@ class _SecretRoleState:
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the role.
+        The name to identify this role within the backend.
+        Must be unique within the backend.
         """
         return pulumi.get(self, "role")
 
@@ -162,7 +176,8 @@ class _SecretRoleState:
     @pulumi.getter(name="serviceAccountName")
     def service_account_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The username/logon name for the service account with which this role will be associated.
+        Specifies the name of the Active Directory service
+        account mapped to this role.
         """
         return pulumi.get(self, "service_account_name")
 
@@ -174,7 +189,8 @@ class _SecretRoleState:
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        In seconds, the default password time-to-live.
+        The password time-to-live in seconds. Defaults to the configuration
+        ttl if not provided.
         """
         return pulumi.get(self, "ttl")
 
@@ -194,13 +210,24 @@ class SecretRole(pulumi.CustomResource):
                  ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Create a SecretRole resource with the given unique name, props, and options.
+        ## Import
+
+        AD secret backend roles can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend: The mount path for the AD backend.
-        :param pulumi.Input[str] role: Name of the role.
-        :param pulumi.Input[str] service_account_name: The username/logon name for the service account with which this role will be associated.
-        :param pulumi.Input[int] ttl: In seconds, the default password time-to-live.
+        :param pulumi.Input[str] backend: The path the AD secret backend is mounted at,
+               with no leading or trailing `/`s.
+        :param pulumi.Input[str] role: The name to identify this role within the backend.
+               Must be unique within the backend.
+        :param pulumi.Input[str] service_account_name: Specifies the name of the Active Directory service
+               account mapped to this role.
+        :param pulumi.Input[int] ttl: The password time-to-live in seconds. Defaults to the configuration
+               ttl if not provided.
         """
         ...
     @overload
@@ -209,7 +236,14 @@ class SecretRole(pulumi.CustomResource):
                  args: SecretRoleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a SecretRole resource with the given unique name, props, and options.
+        ## Import
+
+        AD secret backend roles can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
+        ```
+
         :param str resource_name: The name of the resource.
         :param SecretRoleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -276,12 +310,16 @@ class SecretRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend: The mount path for the AD backend.
-        :param pulumi.Input[str] last_vault_rotation: Last time Vault rotated this service account's password.
-        :param pulumi.Input[str] password_last_set: Last time Vault set this service account's password.
-        :param pulumi.Input[str] role: Name of the role.
-        :param pulumi.Input[str] service_account_name: The username/logon name for the service account with which this role will be associated.
-        :param pulumi.Input[int] ttl: In seconds, the default password time-to-live.
+        :param pulumi.Input[str] backend: The path the AD secret backend is mounted at,
+               with no leading or trailing `/`s.
+        :param pulumi.Input[str] last_vault_rotation: Timestamp of the last password rotation by Vault.
+        :param pulumi.Input[str] password_last_set: Timestamp of the last password set by Vault.
+        :param pulumi.Input[str] role: The name to identify this role within the backend.
+               Must be unique within the backend.
+        :param pulumi.Input[str] service_account_name: Specifies the name of the Active Directory service
+               account mapped to this role.
+        :param pulumi.Input[int] ttl: The password time-to-live in seconds. Defaults to the configuration
+               ttl if not provided.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -299,7 +337,8 @@ class SecretRole(pulumi.CustomResource):
     @pulumi.getter
     def backend(self) -> pulumi.Output[str]:
         """
-        The mount path for the AD backend.
+        The path the AD secret backend is mounted at,
+        with no leading or trailing `/`s.
         """
         return pulumi.get(self, "backend")
 
@@ -307,7 +346,7 @@ class SecretRole(pulumi.CustomResource):
     @pulumi.getter(name="lastVaultRotation")
     def last_vault_rotation(self) -> pulumi.Output[str]:
         """
-        Last time Vault rotated this service account's password.
+        Timestamp of the last password rotation by Vault.
         """
         return pulumi.get(self, "last_vault_rotation")
 
@@ -315,7 +354,7 @@ class SecretRole(pulumi.CustomResource):
     @pulumi.getter(name="passwordLastSet")
     def password_last_set(self) -> pulumi.Output[str]:
         """
-        Last time Vault set this service account's password.
+        Timestamp of the last password set by Vault.
         """
         return pulumi.get(self, "password_last_set")
 
@@ -323,7 +362,8 @@ class SecretRole(pulumi.CustomResource):
     @pulumi.getter
     def role(self) -> pulumi.Output[str]:
         """
-        Name of the role.
+        The name to identify this role within the backend.
+        Must be unique within the backend.
         """
         return pulumi.get(self, "role")
 
@@ -331,7 +371,8 @@ class SecretRole(pulumi.CustomResource):
     @pulumi.getter(name="serviceAccountName")
     def service_account_name(self) -> pulumi.Output[str]:
         """
-        The username/logon name for the service account with which this role will be associated.
+        Specifies the name of the Active Directory service
+        account mapped to this role.
         """
         return pulumi.get(self, "service_account_name")
 
@@ -339,7 +380,8 @@ class SecretRole(pulumi.CustomResource):
     @pulumi.getter
     def ttl(self) -> pulumi.Output[Optional[int]]:
         """
-        In seconds, the default password time-to-live.
+        The password time-to-live in seconds. Defaults to the configuration
+        ttl if not provided.
         """
         return pulumi.get(self, "ttl")
 

@@ -308,6 +308,30 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
         documentation](https://www.vaultproject.io/docs/auth/approle) for more
         information.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        approle = vault.AuthBackend("approle", type="approle")
+        example = vault.app_role.AuthBackendRole("example",
+            backend=approle.path,
+            role_name="test-role",
+            token_policies=[
+                "default",
+                "dev",
+                "prod",
+            ])
+        id = vault.app_role.AuthBackendRoleSecretID("id",
+            backend=approle.path,
+            role_name=example.role_name,
+            metadata=\"\"\"  {
+            "hello": "world"
+          }
+        \"\"\")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Unique name of the auth backend to configure.
@@ -333,6 +357,30 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
         Manages an AppRole auth backend SecretID in a Vault server. See the [Vault
         documentation](https://www.vaultproject.io/docs/auth/approle) for more
         information.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        approle = vault.AuthBackend("approle", type="approle")
+        example = vault.app_role.AuthBackendRole("example",
+            backend=approle.path,
+            role_name="test-role",
+            token_policies=[
+                "default",
+                "dev",
+                "prod",
+            ])
+        id = vault.app_role.AuthBackendRoleSecretID("id",
+            backend=approle.path,
+            role_name=example.role_name,
+            metadata=\"\"\"  {
+            "hello": "world"
+          }
+        \"\"\")
+        ```
 
         :param str resource_name: The name of the resource.
         :param AuthBackendRoleSecretIDArgs args: The arguments to use to populate this resource's properties.

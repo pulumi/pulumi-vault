@@ -46,6 +46,10 @@ export class EntityAlias extends pulumi.CustomResource {
      */
     public readonly canonicalId!: pulumi.Output<string>;
     /**
+     * Custom metadata to be associated with this alias.
+     */
+    public readonly customMetadata!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * Accessor of the mount to which the alias should belong to.
      */
     public readonly mountAccessor!: pulumi.Output<string>;
@@ -68,6 +72,7 @@ export class EntityAlias extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as EntityAliasState | undefined;
             inputs["canonicalId"] = state ? state.canonicalId : undefined;
+            inputs["customMetadata"] = state ? state.customMetadata : undefined;
             inputs["mountAccessor"] = state ? state.mountAccessor : undefined;
             inputs["name"] = state ? state.name : undefined;
         } else {
@@ -79,6 +84,7 @@ export class EntityAlias extends pulumi.CustomResource {
                 throw new Error("Missing required property 'mountAccessor'");
             }
             inputs["canonicalId"] = args ? args.canonicalId : undefined;
+            inputs["customMetadata"] = args ? args.customMetadata : undefined;
             inputs["mountAccessor"] = args ? args.mountAccessor : undefined;
             inputs["name"] = args ? args.name : undefined;
         }
@@ -98,6 +104,10 @@ export interface EntityAliasState {
      */
     canonicalId?: pulumi.Input<string>;
     /**
+     * Custom metadata to be associated with this alias.
+     */
+    customMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
      * Accessor of the mount to which the alias should belong to.
      */
     mountAccessor?: pulumi.Input<string>;
@@ -115,6 +125,10 @@ export interface EntityAliasArgs {
      * Entity ID to which this alias belongs to.
      */
     canonicalId: pulumi.Input<string>;
+    /**
+     * Custom metadata to be associated with this alias.
+     */
+    customMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Accessor of the mount to which the alias should belong to.
      */

@@ -43,7 +43,7 @@ namespace Pulumi.Vault
         public Output<string?> CaCertFile { get; private set; } = null!;
 
         /// <summary>
-        /// The namespace to use. Available only for Vault Enterprise
+        /// The namespace to use. Available only for Vault Enterprise.
         /// </summary>
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
@@ -149,7 +149,7 @@ namespace Pulumi.Vault
         }
 
         /// <summary>
-        /// Maximum TTL for secret leases requested by this provider
+        /// Maximum TTL for secret leases requested by this provider.
         /// </summary>
         [Input("maxLeaseTtlSeconds", json: true)]
         public Input<int>? MaxLeaseTtlSeconds { get; set; }
@@ -161,10 +161,22 @@ namespace Pulumi.Vault
         public Input<int>? MaxRetries { get; set; }
 
         /// <summary>
-        /// The namespace to use. Available only for Vault Enterprise
+        /// Maximum number of retries for Client Controlled Consistency related operations
+        /// </summary>
+        [Input("maxRetriesCcc", json: true)]
+        public Input<int>? MaxRetriesCcc { get; set; }
+
+        /// <summary>
+        /// The namespace to use. Available only for Vault Enterprise.
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// Set this to true to prevent the creation of ephemeral child token used by this provider.
+        /// </summary>
+        [Input("skipChildToken", json: true)]
+        public Input<bool>? SkipChildToken { get; set; }
 
         /// <summary>
         /// Set this to true only if the target Vault server is an insecure development instance.

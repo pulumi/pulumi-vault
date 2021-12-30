@@ -67,7 +67,7 @@ class _ExportableConfig(types.ModuleType):
     @property
     def max_lease_ttl_seconds(self) -> int:
         """
-        Maximum TTL for secret leases requested by this provider
+        Maximum TTL for secret leases requested by this provider.
         """
         return __config__.get_int('maxLeaseTtlSeconds') or (_utilities.get_env_int('TERRAFORM_VAULT_MAX_TTL') or 1200)
 
@@ -79,11 +79,25 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get_int('maxRetries') or (_utilities.get_env_int('VAULT_MAX_RETRIES') or 2)
 
     @property
+    def max_retries_ccc(self) -> Optional[int]:
+        """
+        Maximum number of retries for Client Controlled Consistency related operations
+        """
+        return __config__.get_int('maxRetriesCcc')
+
+    @property
     def namespace(self) -> Optional[str]:
         """
-        The namespace to use. Available only for Vault Enterprise
+        The namespace to use. Available only for Vault Enterprise.
         """
         return __config__.get('namespace')
+
+    @property
+    def skip_child_token(self) -> Optional[bool]:
+        """
+        Set this to true to prevent the creation of ephemeral child token used by this provider.
+        """
+        return __config__.get_bool('skipChildToken')
 
     @property
     def skip_tls_verify(self) -> Optional[bool]:

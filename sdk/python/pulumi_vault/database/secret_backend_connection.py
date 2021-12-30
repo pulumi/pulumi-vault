@@ -21,6 +21,7 @@ class SecretBackendConnectionArgs:
                  data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  elasticsearch: Optional[pulumi.Input['SecretBackendConnectionElasticsearchArgs']] = None,
                  hana: Optional[pulumi.Input['SecretBackendConnectionHanaArgs']] = None,
+                 influxdb: Optional[pulumi.Input['SecretBackendConnectionInfluxdbArgs']] = None,
                  mongodb: Optional[pulumi.Input['SecretBackendConnectionMongodbArgs']] = None,
                  mongodbatlas: Optional[pulumi.Input['SecretBackendConnectionMongodbatlasArgs']] = None,
                  mssql: Optional[pulumi.Input['SecretBackendConnectionMssqlArgs']] = None,
@@ -43,6 +44,7 @@ class SecretBackendConnectionArgs:
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         :param pulumi.Input['SecretBackendConnectionElasticsearchArgs'] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input['SecretBackendConnectionHanaArgs'] hana: A nested block containing configuration options for SAP HanaDB connections.
+        :param pulumi.Input['SecretBackendConnectionInfluxdbArgs'] influxdb: A nested block containing configuration options for InfluxDB connections.
         :param pulumi.Input['SecretBackendConnectionMongodbArgs'] mongodb: A nested block containing configuration options for MongoDB connections.
         :param pulumi.Input['SecretBackendConnectionMongodbatlasArgs'] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.
         :param pulumi.Input['SecretBackendConnectionMssqlArgs'] mssql: A nested block containing configuration options for MSSQL connections.
@@ -69,6 +71,8 @@ class SecretBackendConnectionArgs:
             pulumi.set(__self__, "elasticsearch", elasticsearch)
         if hana is not None:
             pulumi.set(__self__, "hana", hana)
+        if influxdb is not None:
+            pulumi.set(__self__, "influxdb", influxdb)
         if mongodb is not None:
             pulumi.set(__self__, "mongodb", mongodb)
         if mongodbatlas is not None:
@@ -168,6 +172,18 @@ class SecretBackendConnectionArgs:
     @hana.setter
     def hana(self, value: Optional[pulumi.Input['SecretBackendConnectionHanaArgs']]):
         pulumi.set(self, "hana", value)
+
+    @property
+    @pulumi.getter
+    def influxdb(self) -> Optional[pulumi.Input['SecretBackendConnectionInfluxdbArgs']]:
+        """
+        A nested block containing configuration options for InfluxDB connections.
+        """
+        return pulumi.get(self, "influxdb")
+
+    @influxdb.setter
+    def influxdb(self, value: Optional[pulumi.Input['SecretBackendConnectionInfluxdbArgs']]):
+        pulumi.set(self, "influxdb", value)
 
     @property
     @pulumi.getter
@@ -336,6 +352,7 @@ class _SecretBackendConnectionState:
                  data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  elasticsearch: Optional[pulumi.Input['SecretBackendConnectionElasticsearchArgs']] = None,
                  hana: Optional[pulumi.Input['SecretBackendConnectionHanaArgs']] = None,
+                 influxdb: Optional[pulumi.Input['SecretBackendConnectionInfluxdbArgs']] = None,
                  mongodb: Optional[pulumi.Input['SecretBackendConnectionMongodbArgs']] = None,
                  mongodbatlas: Optional[pulumi.Input['SecretBackendConnectionMongodbatlasArgs']] = None,
                  mssql: Optional[pulumi.Input['SecretBackendConnectionMssqlArgs']] = None,
@@ -358,6 +375,7 @@ class _SecretBackendConnectionState:
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         :param pulumi.Input['SecretBackendConnectionElasticsearchArgs'] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input['SecretBackendConnectionHanaArgs'] hana: A nested block containing configuration options for SAP HanaDB connections.
+        :param pulumi.Input['SecretBackendConnectionInfluxdbArgs'] influxdb: A nested block containing configuration options for InfluxDB connections.
         :param pulumi.Input['SecretBackendConnectionMongodbArgs'] mongodb: A nested block containing configuration options for MongoDB connections.
         :param pulumi.Input['SecretBackendConnectionMongodbatlasArgs'] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.
         :param pulumi.Input['SecretBackendConnectionMssqlArgs'] mssql: A nested block containing configuration options for MSSQL connections.
@@ -385,6 +403,8 @@ class _SecretBackendConnectionState:
             pulumi.set(__self__, "elasticsearch", elasticsearch)
         if hana is not None:
             pulumi.set(__self__, "hana", hana)
+        if influxdb is not None:
+            pulumi.set(__self__, "influxdb", influxdb)
         if mongodb is not None:
             pulumi.set(__self__, "mongodb", mongodb)
         if mongodbatlas is not None:
@@ -484,6 +504,18 @@ class _SecretBackendConnectionState:
     @hana.setter
     def hana(self, value: Optional[pulumi.Input['SecretBackendConnectionHanaArgs']]):
         pulumi.set(self, "hana", value)
+
+    @property
+    @pulumi.getter
+    def influxdb(self) -> Optional[pulumi.Input['SecretBackendConnectionInfluxdbArgs']]:
+        """
+        A nested block containing configuration options for InfluxDB connections.
+        """
+        return pulumi.get(self, "influxdb")
+
+    @influxdb.setter
+    def influxdb(self, value: Optional[pulumi.Input['SecretBackendConnectionInfluxdbArgs']]):
+        pulumi.set(self, "influxdb", value)
 
     @property
     @pulumi.getter
@@ -654,6 +686,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  elasticsearch: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']]] = None,
                  hana: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']]] = None,
+                 influxdb: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionInfluxdbArgs']]] = None,
                  mongodb: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbArgs']]] = None,
                  mongodbatlas: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbatlasArgs']]] = None,
                  mssql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMssqlArgs']]] = None,
@@ -686,6 +719,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']] hana: A nested block containing configuration options for SAP HanaDB connections.
+        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionInfluxdbArgs']] influxdb: A nested block containing configuration options for InfluxDB connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbArgs']] mongodb: A nested block containing configuration options for MongoDB connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbatlasArgs']] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMssqlArgs']] mssql: A nested block containing configuration options for MSSQL connections.
@@ -737,6 +771,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  elasticsearch: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']]] = None,
                  hana: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']]] = None,
+                 influxdb: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionInfluxdbArgs']]] = None,
                  mongodb: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbArgs']]] = None,
                  mongodbatlas: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbatlasArgs']]] = None,
                  mssql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMssqlArgs']]] = None,
@@ -770,6 +805,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             __props__.__dict__["data"] = data
             __props__.__dict__["elasticsearch"] = elasticsearch
             __props__.__dict__["hana"] = hana
+            __props__.__dict__["influxdb"] = influxdb
             __props__.__dict__["mongodb"] = mongodb
             __props__.__dict__["mongodbatlas"] = mongodbatlas
             __props__.__dict__["mssql"] = mssql
@@ -799,6 +835,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             elasticsearch: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']]] = None,
             hana: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']]] = None,
+            influxdb: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionInfluxdbArgs']]] = None,
             mongodb: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbArgs']]] = None,
             mongodbatlas: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbatlasArgs']]] = None,
             mssql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMssqlArgs']]] = None,
@@ -826,6 +863,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']] hana: A nested block containing configuration options for SAP HanaDB connections.
+        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionInfluxdbArgs']] influxdb: A nested block containing configuration options for InfluxDB connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbArgs']] mongodb: A nested block containing configuration options for MongoDB connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbatlasArgs']] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMssqlArgs']] mssql: A nested block containing configuration options for MSSQL connections.
@@ -851,6 +889,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         __props__.__dict__["data"] = data
         __props__.__dict__["elasticsearch"] = elasticsearch
         __props__.__dict__["hana"] = hana
+        __props__.__dict__["influxdb"] = influxdb
         __props__.__dict__["mongodb"] = mongodb
         __props__.__dict__["mongodbatlas"] = mongodbatlas
         __props__.__dict__["mssql"] = mssql
@@ -914,6 +953,14 @@ class SecretBackendConnection(pulumi.CustomResource):
         A nested block containing configuration options for SAP HanaDB connections.
         """
         return pulumi.get(self, "hana")
+
+    @property
+    @pulumi.getter
+    def influxdb(self) -> pulumi.Output[Optional['outputs.SecretBackendConnectionInfluxdb']]:
+        """
+        A nested block containing configuration options for InfluxDB connections.
+        """
+        return pulumi.get(self, "influxdb")
 
     @property
     @pulumi.getter
