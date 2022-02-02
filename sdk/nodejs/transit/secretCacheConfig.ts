@@ -72,12 +72,12 @@ export class SecretCacheConfig extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretCacheConfigArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretCacheConfigArgs | SecretCacheConfigState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretCacheConfigState | undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["size"] = state ? state.size : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["size"] = state ? state.size : undefined;
         } else {
             const args = argsOrState as SecretCacheConfigArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -86,13 +86,11 @@ export class SecretCacheConfig extends pulumi.CustomResource {
             if ((!args || args.size === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'size'");
             }
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["size"] = args ? args.size : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["size"] = args ? args.size : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretCacheConfig.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretCacheConfig.__pulumiType, name, resourceInputs, opts);
     }
 }
 

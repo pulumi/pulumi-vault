@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Vault
 {
@@ -37,7 +36,7 @@ namespace Pulumi.Vault
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAuthBackendResult> InvokeAsync(GetAuthBackendArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendResult>("vault:index/getAuthBackend:getAuthBackend", args ?? new GetAuthBackendArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendResult>("vault:index/getAuthBackend:getAuthBackend", args ?? new GetAuthBackendArgs(), options.WithDefaults());
 
         /// <summary>
         /// {{% examples %}}
@@ -64,7 +63,7 @@ namespace Pulumi.Vault
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetAuthBackendResult> Invoke(GetAuthBackendInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAuthBackendResult>("vault:index/getAuthBackend:getAuthBackend", args ?? new GetAuthBackendInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetAuthBackendResult>("vault:index/getAuthBackend:getAuthBackend", args ?? new GetAuthBackendInvokeArgs(), options.WithDefaults());
     }
 
 

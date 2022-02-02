@@ -79,16 +79,16 @@ export class SecretRole extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretRoleArgs | SecretRoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretRoleState | undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["lastVaultRotation"] = state ? state.lastVaultRotation : undefined;
-            inputs["passwordLastSet"] = state ? state.passwordLastSet : undefined;
-            inputs["role"] = state ? state.role : undefined;
-            inputs["serviceAccountName"] = state ? state.serviceAccountName : undefined;
-            inputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["lastVaultRotation"] = state ? state.lastVaultRotation : undefined;
+            resourceInputs["passwordLastSet"] = state ? state.passwordLastSet : undefined;
+            resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["serviceAccountName"] = state ? state.serviceAccountName : undefined;
+            resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as SecretRoleArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -100,17 +100,15 @@ export class SecretRole extends pulumi.CustomResource {
             if ((!args || args.serviceAccountName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serviceAccountName'");
             }
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["role"] = args ? args.role : undefined;
-            inputs["serviceAccountName"] = args ? args.serviceAccountName : undefined;
-            inputs["ttl"] = args ? args.ttl : undefined;
-            inputs["lastVaultRotation"] = undefined /*out*/;
-            inputs["passwordLastSet"] = undefined /*out*/;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["serviceAccountName"] = args ? args.serviceAccountName : undefined;
+            resourceInputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["lastVaultRotation"] = undefined /*out*/;
+            resourceInputs["passwordLastSet"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretRole.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretRole.__pulumiType, name, resourceInputs, opts);
     }
 }
 

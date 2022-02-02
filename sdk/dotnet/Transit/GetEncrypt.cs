@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Vault.Transit
 {
@@ -16,13 +15,13 @@ namespace Pulumi.Vault.Transit
         /// This is a data source which can be used to encrypt plaintext using a Vault Transit key.
         /// </summary>
         public static Task<GetEncryptResult> InvokeAsync(GetEncryptArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetEncryptResult>("vault:transit/getEncrypt:getEncrypt", args ?? new GetEncryptArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetEncryptResult>("vault:transit/getEncrypt:getEncrypt", args ?? new GetEncryptArgs(), options.WithDefaults());
 
         /// <summary>
         /// This is a data source which can be used to encrypt plaintext using a Vault Transit key.
         /// </summary>
         public static Output<GetEncryptResult> Invoke(GetEncryptInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetEncryptResult>("vault:transit/getEncrypt:getEncrypt", args ?? new GetEncryptInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetEncryptResult>("vault:transit/getEncrypt:getEncrypt", args ?? new GetEncryptInvokeArgs(), options.WithDefaults());
     }
 
 

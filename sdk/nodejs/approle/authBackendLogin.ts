@@ -115,40 +115,38 @@ export class AuthBackendLogin extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuthBackendLoginArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendLoginArgs | AuthBackendLoginState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendLoginState | undefined;
-            inputs["accessor"] = state ? state.accessor : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["clientToken"] = state ? state.clientToken : undefined;
-            inputs["leaseDuration"] = state ? state.leaseDuration : undefined;
-            inputs["leaseStarted"] = state ? state.leaseStarted : undefined;
-            inputs["metadata"] = state ? state.metadata : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
-            inputs["renewable"] = state ? state.renewable : undefined;
-            inputs["roleId"] = state ? state.roleId : undefined;
-            inputs["secretId"] = state ? state.secretId : undefined;
+            resourceInputs["accessor"] = state ? state.accessor : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["clientToken"] = state ? state.clientToken : undefined;
+            resourceInputs["leaseDuration"] = state ? state.leaseDuration : undefined;
+            resourceInputs["leaseStarted"] = state ? state.leaseStarted : undefined;
+            resourceInputs["metadata"] = state ? state.metadata : undefined;
+            resourceInputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["renewable"] = state ? state.renewable : undefined;
+            resourceInputs["roleId"] = state ? state.roleId : undefined;
+            resourceInputs["secretId"] = state ? state.secretId : undefined;
         } else {
             const args = argsOrState as AuthBackendLoginArgs | undefined;
             if ((!args || args.roleId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleId'");
             }
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["roleId"] = args ? args.roleId : undefined;
-            inputs["secretId"] = args ? args.secretId : undefined;
-            inputs["accessor"] = undefined /*out*/;
-            inputs["clientToken"] = undefined /*out*/;
-            inputs["leaseDuration"] = undefined /*out*/;
-            inputs["leaseStarted"] = undefined /*out*/;
-            inputs["metadata"] = undefined /*out*/;
-            inputs["policies"] = undefined /*out*/;
-            inputs["renewable"] = undefined /*out*/;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["roleId"] = args ? args.roleId : undefined;
+            resourceInputs["secretId"] = args ? args.secretId : undefined;
+            resourceInputs["accessor"] = undefined /*out*/;
+            resourceInputs["clientToken"] = undefined /*out*/;
+            resourceInputs["leaseDuration"] = undefined /*out*/;
+            resourceInputs["leaseStarted"] = undefined /*out*/;
+            resourceInputs["metadata"] = undefined /*out*/;
+            resourceInputs["policies"] = undefined /*out*/;
+            resourceInputs["renewable"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackendLogin.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackendLogin.__pulumiType, name, resourceInputs, opts);
     }
 }
 

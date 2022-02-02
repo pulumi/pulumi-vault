@@ -103,15 +103,15 @@ export class Audit extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuditArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuditArgs | AuditState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuditState | undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["local"] = state ? state.local : undefined;
-            inputs["options"] = state ? state.options : undefined;
-            inputs["path"] = state ? state.path : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["local"] = state ? state.local : undefined;
+            resourceInputs["options"] = state ? state.options : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as AuditArgs | undefined;
             if ((!args || args.options === undefined) && !opts.urn) {
@@ -120,16 +120,14 @@ export class Audit extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["description"] = args ? args.description : undefined;
-            inputs["local"] = args ? args.local : undefined;
-            inputs["options"] = args ? args.options : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["type"] = args ? args.type : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["local"] = args ? args.local : undefined;
+            resourceInputs["options"] = args ? args.options : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Audit.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Audit.__pulumiType, name, resourceInputs, opts);
     }
 }
 

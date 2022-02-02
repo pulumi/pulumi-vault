@@ -171,7 +171,7 @@ type BackendRoleInput interface {
 }
 
 func (*BackendRole) ElementType() reflect.Type {
-	return reflect.TypeOf((*BackendRole)(nil))
+	return reflect.TypeOf((**BackendRole)(nil)).Elem()
 }
 
 func (i *BackendRole) ToBackendRoleOutput() BackendRoleOutput {
@@ -180,35 +180,6 @@ func (i *BackendRole) ToBackendRoleOutput() BackendRoleOutput {
 
 func (i *BackendRole) ToBackendRoleOutputWithContext(ctx context.Context) BackendRoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BackendRoleOutput)
-}
-
-func (i *BackendRole) ToBackendRolePtrOutput() BackendRolePtrOutput {
-	return i.ToBackendRolePtrOutputWithContext(context.Background())
-}
-
-func (i *BackendRole) ToBackendRolePtrOutputWithContext(ctx context.Context) BackendRolePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendRolePtrOutput)
-}
-
-type BackendRolePtrInput interface {
-	pulumi.Input
-
-	ToBackendRolePtrOutput() BackendRolePtrOutput
-	ToBackendRolePtrOutputWithContext(ctx context.Context) BackendRolePtrOutput
-}
-
-type backendRolePtrType BackendRoleArgs
-
-func (*backendRolePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**BackendRole)(nil))
-}
-
-func (i *backendRolePtrType) ToBackendRolePtrOutput() BackendRolePtrOutput {
-	return i.ToBackendRolePtrOutputWithContext(context.Background())
-}
-
-func (i *backendRolePtrType) ToBackendRolePtrOutputWithContext(ctx context.Context) BackendRolePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(BackendRolePtrOutput)
 }
 
 // BackendRoleArrayInput is an input type that accepts BackendRoleArray and BackendRoleArrayOutput values.
@@ -264,7 +235,7 @@ func (i BackendRoleMap) ToBackendRoleMapOutputWithContext(ctx context.Context) B
 type BackendRoleOutput struct{ *pulumi.OutputState }
 
 func (BackendRoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*BackendRole)(nil))
+	return reflect.TypeOf((**BackendRole)(nil)).Elem()
 }
 
 func (o BackendRoleOutput) ToBackendRoleOutput() BackendRoleOutput {
@@ -275,44 +246,10 @@ func (o BackendRoleOutput) ToBackendRoleOutputWithContext(ctx context.Context) B
 	return o
 }
 
-func (o BackendRoleOutput) ToBackendRolePtrOutput() BackendRolePtrOutput {
-	return o.ToBackendRolePtrOutputWithContext(context.Background())
-}
-
-func (o BackendRoleOutput) ToBackendRolePtrOutputWithContext(ctx context.Context) BackendRolePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackendRole) *BackendRole {
-		return &v
-	}).(BackendRolePtrOutput)
-}
-
-type BackendRolePtrOutput struct{ *pulumi.OutputState }
-
-func (BackendRolePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**BackendRole)(nil))
-}
-
-func (o BackendRolePtrOutput) ToBackendRolePtrOutput() BackendRolePtrOutput {
-	return o
-}
-
-func (o BackendRolePtrOutput) ToBackendRolePtrOutputWithContext(ctx context.Context) BackendRolePtrOutput {
-	return o
-}
-
-func (o BackendRolePtrOutput) Elem() BackendRoleOutput {
-	return o.ApplyT(func(v *BackendRole) BackendRole {
-		if v != nil {
-			return *v
-		}
-		var ret BackendRole
-		return ret
-	}).(BackendRoleOutput)
-}
-
 type BackendRoleArrayOutput struct{ *pulumi.OutputState }
 
 func (BackendRoleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]BackendRole)(nil))
+	return reflect.TypeOf((*[]*BackendRole)(nil)).Elem()
 }
 
 func (o BackendRoleArrayOutput) ToBackendRoleArrayOutput() BackendRoleArrayOutput {
@@ -324,15 +261,15 @@ func (o BackendRoleArrayOutput) ToBackendRoleArrayOutputWithContext(ctx context.
 }
 
 func (o BackendRoleArrayOutput) Index(i pulumi.IntInput) BackendRoleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BackendRole {
-		return vs[0].([]BackendRole)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *BackendRole {
+		return vs[0].([]*BackendRole)[vs[1].(int)]
 	}).(BackendRoleOutput)
 }
 
 type BackendRoleMapOutput struct{ *pulumi.OutputState }
 
 func (BackendRoleMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]BackendRole)(nil))
+	return reflect.TypeOf((*map[string]*BackendRole)(nil)).Elem()
 }
 
 func (o BackendRoleMapOutput) ToBackendRoleMapOutput() BackendRoleMapOutput {
@@ -344,18 +281,16 @@ func (o BackendRoleMapOutput) ToBackendRoleMapOutputWithContext(ctx context.Cont
 }
 
 func (o BackendRoleMapOutput) MapIndex(k pulumi.StringInput) BackendRoleOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) BackendRole {
-		return vs[0].(map[string]BackendRole)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *BackendRole {
+		return vs[0].(map[string]*BackendRole)[vs[1].(string)]
 	}).(BackendRoleOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BackendRoleInput)(nil)).Elem(), &BackendRole{})
-	pulumi.RegisterInputType(reflect.TypeOf((*BackendRolePtrInput)(nil)).Elem(), &BackendRole{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackendRoleArrayInput)(nil)).Elem(), BackendRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackendRoleMapInput)(nil)).Elem(), BackendRoleMap{})
 	pulumi.RegisterOutputType(BackendRoleOutput{})
-	pulumi.RegisterOutputType(BackendRolePtrOutput{})
 	pulumi.RegisterOutputType(BackendRoleArrayOutput{})
 	pulumi.RegisterOutputType(BackendRoleMapOutput{})
 }

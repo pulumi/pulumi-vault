@@ -90,26 +90,24 @@ export class QuotaLeaseCount extends pulumi.CustomResource {
      */
     constructor(name: string, args: QuotaLeaseCountArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: QuotaLeaseCountArgs | QuotaLeaseCountState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as QuotaLeaseCountState | undefined;
-            inputs["maxLeases"] = state ? state.maxLeases : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["path"] = state ? state.path : undefined;
+            resourceInputs["maxLeases"] = state ? state.maxLeases : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
         } else {
             const args = argsOrState as QuotaLeaseCountArgs | undefined;
             if ((!args || args.maxLeases === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'maxLeases'");
             }
-            inputs["maxLeases"] = args ? args.maxLeases : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["path"] = args ? args.path : undefined;
+            resourceInputs["maxLeases"] = args ? args.maxLeases : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(QuotaLeaseCount.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(QuotaLeaseCount.__pulumiType, name, resourceInputs, opts);
     }
 }
 

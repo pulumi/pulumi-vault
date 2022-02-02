@@ -67,16 +67,16 @@ export class SecretLibrary extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretLibraryArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretLibraryArgs | SecretLibraryState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretLibraryState | undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["disableCheckInEnforcement"] = state ? state.disableCheckInEnforcement : undefined;
-            inputs["maxTtl"] = state ? state.maxTtl : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["serviceAccountNames"] = state ? state.serviceAccountNames : undefined;
-            inputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["disableCheckInEnforcement"] = state ? state.disableCheckInEnforcement : undefined;
+            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["serviceAccountNames"] = state ? state.serviceAccountNames : undefined;
+            resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as SecretLibraryArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -85,17 +85,15 @@ export class SecretLibrary extends pulumi.CustomResource {
             if ((!args || args.serviceAccountNames === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serviceAccountNames'");
             }
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["disableCheckInEnforcement"] = args ? args.disableCheckInEnforcement : undefined;
-            inputs["maxTtl"] = args ? args.maxTtl : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["serviceAccountNames"] = args ? args.serviceAccountNames : undefined;
-            inputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["disableCheckInEnforcement"] = args ? args.disableCheckInEnforcement : undefined;
+            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["serviceAccountNames"] = args ? args.serviceAccountNames : undefined;
+            resourceInputs["ttl"] = args ? args.ttl : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretLibrary.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretLibrary.__pulumiType, name, resourceInputs, opts);
     }
 }
 

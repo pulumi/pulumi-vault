@@ -84,23 +84,21 @@ export class AuthBackendIdentityWhitelist extends pulumi.CustomResource {
      */
     constructor(name: string, args?: AuthBackendIdentityWhitelistArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendIdentityWhitelistArgs | AuthBackendIdentityWhitelistState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendIdentityWhitelistState | undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["disablePeriodicTidy"] = state ? state.disablePeriodicTidy : undefined;
-            inputs["safetyBuffer"] = state ? state.safetyBuffer : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["disablePeriodicTidy"] = state ? state.disablePeriodicTidy : undefined;
+            resourceInputs["safetyBuffer"] = state ? state.safetyBuffer : undefined;
         } else {
             const args = argsOrState as AuthBackendIdentityWhitelistArgs | undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["disablePeriodicTidy"] = args ? args.disablePeriodicTidy : undefined;
-            inputs["safetyBuffer"] = args ? args.safetyBuffer : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["disablePeriodicTidy"] = args ? args.disablePeriodicTidy : undefined;
+            resourceInputs["safetyBuffer"] = args ? args.safetyBuffer : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackendIdentityWhitelist.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackendIdentityWhitelist.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -320,7 +320,7 @@ type SecretBackendRootCertInput interface {
 }
 
 func (*SecretBackendRootCert) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendRootCert)(nil))
+	return reflect.TypeOf((**SecretBackendRootCert)(nil)).Elem()
 }
 
 func (i *SecretBackendRootCert) ToSecretBackendRootCertOutput() SecretBackendRootCertOutput {
@@ -329,35 +329,6 @@ func (i *SecretBackendRootCert) ToSecretBackendRootCertOutput() SecretBackendRoo
 
 func (i *SecretBackendRootCert) ToSecretBackendRootCertOutputWithContext(ctx context.Context) SecretBackendRootCertOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRootCertOutput)
-}
-
-func (i *SecretBackendRootCert) ToSecretBackendRootCertPtrOutput() SecretBackendRootCertPtrOutput {
-	return i.ToSecretBackendRootCertPtrOutputWithContext(context.Background())
-}
-
-func (i *SecretBackendRootCert) ToSecretBackendRootCertPtrOutputWithContext(ctx context.Context) SecretBackendRootCertPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRootCertPtrOutput)
-}
-
-type SecretBackendRootCertPtrInput interface {
-	pulumi.Input
-
-	ToSecretBackendRootCertPtrOutput() SecretBackendRootCertPtrOutput
-	ToSecretBackendRootCertPtrOutputWithContext(ctx context.Context) SecretBackendRootCertPtrOutput
-}
-
-type secretBackendRootCertPtrType SecretBackendRootCertArgs
-
-func (*secretBackendRootCertPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecretBackendRootCert)(nil))
-}
-
-func (i *secretBackendRootCertPtrType) ToSecretBackendRootCertPtrOutput() SecretBackendRootCertPtrOutput {
-	return i.ToSecretBackendRootCertPtrOutputWithContext(context.Background())
-}
-
-func (i *secretBackendRootCertPtrType) ToSecretBackendRootCertPtrOutputWithContext(ctx context.Context) SecretBackendRootCertPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRootCertPtrOutput)
 }
 
 // SecretBackendRootCertArrayInput is an input type that accepts SecretBackendRootCertArray and SecretBackendRootCertArrayOutput values.
@@ -413,7 +384,7 @@ func (i SecretBackendRootCertMap) ToSecretBackendRootCertMapOutputWithContext(ct
 type SecretBackendRootCertOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRootCertOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendRootCert)(nil))
+	return reflect.TypeOf((**SecretBackendRootCert)(nil)).Elem()
 }
 
 func (o SecretBackendRootCertOutput) ToSecretBackendRootCertOutput() SecretBackendRootCertOutput {
@@ -424,44 +395,10 @@ func (o SecretBackendRootCertOutput) ToSecretBackendRootCertOutputWithContext(ct
 	return o
 }
 
-func (o SecretBackendRootCertOutput) ToSecretBackendRootCertPtrOutput() SecretBackendRootCertPtrOutput {
-	return o.ToSecretBackendRootCertPtrOutputWithContext(context.Background())
-}
-
-func (o SecretBackendRootCertOutput) ToSecretBackendRootCertPtrOutputWithContext(ctx context.Context) SecretBackendRootCertPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendRootCert) *SecretBackendRootCert {
-		return &v
-	}).(SecretBackendRootCertPtrOutput)
-}
-
-type SecretBackendRootCertPtrOutput struct{ *pulumi.OutputState }
-
-func (SecretBackendRootCertPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecretBackendRootCert)(nil))
-}
-
-func (o SecretBackendRootCertPtrOutput) ToSecretBackendRootCertPtrOutput() SecretBackendRootCertPtrOutput {
-	return o
-}
-
-func (o SecretBackendRootCertPtrOutput) ToSecretBackendRootCertPtrOutputWithContext(ctx context.Context) SecretBackendRootCertPtrOutput {
-	return o
-}
-
-func (o SecretBackendRootCertPtrOutput) Elem() SecretBackendRootCertOutput {
-	return o.ApplyT(func(v *SecretBackendRootCert) SecretBackendRootCert {
-		if v != nil {
-			return *v
-		}
-		var ret SecretBackendRootCert
-		return ret
-	}).(SecretBackendRootCertOutput)
-}
-
 type SecretBackendRootCertArrayOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRootCertArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SecretBackendRootCert)(nil))
+	return reflect.TypeOf((*[]*SecretBackendRootCert)(nil)).Elem()
 }
 
 func (o SecretBackendRootCertArrayOutput) ToSecretBackendRootCertArrayOutput() SecretBackendRootCertArrayOutput {
@@ -473,15 +410,15 @@ func (o SecretBackendRootCertArrayOutput) ToSecretBackendRootCertArrayOutputWith
 }
 
 func (o SecretBackendRootCertArrayOutput) Index(i pulumi.IntInput) SecretBackendRootCertOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretBackendRootCert {
-		return vs[0].([]SecretBackendRootCert)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendRootCert {
+		return vs[0].([]*SecretBackendRootCert)[vs[1].(int)]
 	}).(SecretBackendRootCertOutput)
 }
 
 type SecretBackendRootCertMapOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRootCertMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SecretBackendRootCert)(nil))
+	return reflect.TypeOf((*map[string]*SecretBackendRootCert)(nil)).Elem()
 }
 
 func (o SecretBackendRootCertMapOutput) ToSecretBackendRootCertMapOutput() SecretBackendRootCertMapOutput {
@@ -493,18 +430,16 @@ func (o SecretBackendRootCertMapOutput) ToSecretBackendRootCertMapOutputWithCont
 }
 
 func (o SecretBackendRootCertMapOutput) MapIndex(k pulumi.StringInput) SecretBackendRootCertOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SecretBackendRootCert {
-		return vs[0].(map[string]SecretBackendRootCert)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SecretBackendRootCert {
+		return vs[0].(map[string]*SecretBackendRootCert)[vs[1].(string)]
 	}).(SecretBackendRootCertOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRootCertInput)(nil)).Elem(), &SecretBackendRootCert{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRootCertPtrInput)(nil)).Elem(), &SecretBackendRootCert{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRootCertArrayInput)(nil)).Elem(), SecretBackendRootCertArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRootCertMapInput)(nil)).Elem(), SecretBackendRootCertMap{})
 	pulumi.RegisterOutputType(SecretBackendRootCertOutput{})
-	pulumi.RegisterOutputType(SecretBackendRootCertPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendRootCertArrayOutput{})
 	pulumi.RegisterOutputType(SecretBackendRootCertMapOutput{})
 }

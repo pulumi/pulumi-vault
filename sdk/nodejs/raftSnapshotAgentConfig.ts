@@ -180,37 +180,37 @@ export class RaftSnapshotAgentConfig extends pulumi.CustomResource {
      */
     constructor(name: string, args: RaftSnapshotAgentConfigArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RaftSnapshotAgentConfigArgs | RaftSnapshotAgentConfigState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RaftSnapshotAgentConfigState | undefined;
-            inputs["awsAccessKeyId"] = state ? state.awsAccessKeyId : undefined;
-            inputs["awsS3Bucket"] = state ? state.awsS3Bucket : undefined;
-            inputs["awsS3DisableTls"] = state ? state.awsS3DisableTls : undefined;
-            inputs["awsS3EnableKms"] = state ? state.awsS3EnableKms : undefined;
-            inputs["awsS3Endpoint"] = state ? state.awsS3Endpoint : undefined;
-            inputs["awsS3ForcePathStyle"] = state ? state.awsS3ForcePathStyle : undefined;
-            inputs["awsS3KmsKey"] = state ? state.awsS3KmsKey : undefined;
-            inputs["awsS3Region"] = state ? state.awsS3Region : undefined;
-            inputs["awsS3ServerSideEncryption"] = state ? state.awsS3ServerSideEncryption : undefined;
-            inputs["awsSecretAccessKey"] = state ? state.awsSecretAccessKey : undefined;
-            inputs["awsSessionToken"] = state ? state.awsSessionToken : undefined;
-            inputs["azureAccountKey"] = state ? state.azureAccountKey : undefined;
-            inputs["azureAccountName"] = state ? state.azureAccountName : undefined;
-            inputs["azureBlobEnvironment"] = state ? state.azureBlobEnvironment : undefined;
-            inputs["azureContainerName"] = state ? state.azureContainerName : undefined;
-            inputs["azureEndpoint"] = state ? state.azureEndpoint : undefined;
-            inputs["filePrefix"] = state ? state.filePrefix : undefined;
-            inputs["googleDisableTls"] = state ? state.googleDisableTls : undefined;
-            inputs["googleEndpoint"] = state ? state.googleEndpoint : undefined;
-            inputs["googleGcsBucket"] = state ? state.googleGcsBucket : undefined;
-            inputs["googleServiceAccountKey"] = state ? state.googleServiceAccountKey : undefined;
-            inputs["intervalSeconds"] = state ? state.intervalSeconds : undefined;
-            inputs["localMaxSpace"] = state ? state.localMaxSpace : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["pathPrefix"] = state ? state.pathPrefix : undefined;
-            inputs["retain"] = state ? state.retain : undefined;
-            inputs["storageType"] = state ? state.storageType : undefined;
+            resourceInputs["awsAccessKeyId"] = state ? state.awsAccessKeyId : undefined;
+            resourceInputs["awsS3Bucket"] = state ? state.awsS3Bucket : undefined;
+            resourceInputs["awsS3DisableTls"] = state ? state.awsS3DisableTls : undefined;
+            resourceInputs["awsS3EnableKms"] = state ? state.awsS3EnableKms : undefined;
+            resourceInputs["awsS3Endpoint"] = state ? state.awsS3Endpoint : undefined;
+            resourceInputs["awsS3ForcePathStyle"] = state ? state.awsS3ForcePathStyle : undefined;
+            resourceInputs["awsS3KmsKey"] = state ? state.awsS3KmsKey : undefined;
+            resourceInputs["awsS3Region"] = state ? state.awsS3Region : undefined;
+            resourceInputs["awsS3ServerSideEncryption"] = state ? state.awsS3ServerSideEncryption : undefined;
+            resourceInputs["awsSecretAccessKey"] = state ? state.awsSecretAccessKey : undefined;
+            resourceInputs["awsSessionToken"] = state ? state.awsSessionToken : undefined;
+            resourceInputs["azureAccountKey"] = state ? state.azureAccountKey : undefined;
+            resourceInputs["azureAccountName"] = state ? state.azureAccountName : undefined;
+            resourceInputs["azureBlobEnvironment"] = state ? state.azureBlobEnvironment : undefined;
+            resourceInputs["azureContainerName"] = state ? state.azureContainerName : undefined;
+            resourceInputs["azureEndpoint"] = state ? state.azureEndpoint : undefined;
+            resourceInputs["filePrefix"] = state ? state.filePrefix : undefined;
+            resourceInputs["googleDisableTls"] = state ? state.googleDisableTls : undefined;
+            resourceInputs["googleEndpoint"] = state ? state.googleEndpoint : undefined;
+            resourceInputs["googleGcsBucket"] = state ? state.googleGcsBucket : undefined;
+            resourceInputs["googleServiceAccountKey"] = state ? state.googleServiceAccountKey : undefined;
+            resourceInputs["intervalSeconds"] = state ? state.intervalSeconds : undefined;
+            resourceInputs["localMaxSpace"] = state ? state.localMaxSpace : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["pathPrefix"] = state ? state.pathPrefix : undefined;
+            resourceInputs["retain"] = state ? state.retain : undefined;
+            resourceInputs["storageType"] = state ? state.storageType : undefined;
         } else {
             const args = argsOrState as RaftSnapshotAgentConfigArgs | undefined;
             if ((!args || args.intervalSeconds === undefined) && !opts.urn) {
@@ -222,38 +222,36 @@ export class RaftSnapshotAgentConfig extends pulumi.CustomResource {
             if ((!args || args.storageType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'storageType'");
             }
-            inputs["awsAccessKeyId"] = args ? args.awsAccessKeyId : undefined;
-            inputs["awsS3Bucket"] = args ? args.awsS3Bucket : undefined;
-            inputs["awsS3DisableTls"] = args ? args.awsS3DisableTls : undefined;
-            inputs["awsS3EnableKms"] = args ? args.awsS3EnableKms : undefined;
-            inputs["awsS3Endpoint"] = args ? args.awsS3Endpoint : undefined;
-            inputs["awsS3ForcePathStyle"] = args ? args.awsS3ForcePathStyle : undefined;
-            inputs["awsS3KmsKey"] = args ? args.awsS3KmsKey : undefined;
-            inputs["awsS3Region"] = args ? args.awsS3Region : undefined;
-            inputs["awsS3ServerSideEncryption"] = args ? args.awsS3ServerSideEncryption : undefined;
-            inputs["awsSecretAccessKey"] = args ? args.awsSecretAccessKey : undefined;
-            inputs["awsSessionToken"] = args ? args.awsSessionToken : undefined;
-            inputs["azureAccountKey"] = args ? args.azureAccountKey : undefined;
-            inputs["azureAccountName"] = args ? args.azureAccountName : undefined;
-            inputs["azureBlobEnvironment"] = args ? args.azureBlobEnvironment : undefined;
-            inputs["azureContainerName"] = args ? args.azureContainerName : undefined;
-            inputs["azureEndpoint"] = args ? args.azureEndpoint : undefined;
-            inputs["filePrefix"] = args ? args.filePrefix : undefined;
-            inputs["googleDisableTls"] = args ? args.googleDisableTls : undefined;
-            inputs["googleEndpoint"] = args ? args.googleEndpoint : undefined;
-            inputs["googleGcsBucket"] = args ? args.googleGcsBucket : undefined;
-            inputs["googleServiceAccountKey"] = args ? args.googleServiceAccountKey : undefined;
-            inputs["intervalSeconds"] = args ? args.intervalSeconds : undefined;
-            inputs["localMaxSpace"] = args ? args.localMaxSpace : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["pathPrefix"] = args ? args.pathPrefix : undefined;
-            inputs["retain"] = args ? args.retain : undefined;
-            inputs["storageType"] = args ? args.storageType : undefined;
+            resourceInputs["awsAccessKeyId"] = args ? args.awsAccessKeyId : undefined;
+            resourceInputs["awsS3Bucket"] = args ? args.awsS3Bucket : undefined;
+            resourceInputs["awsS3DisableTls"] = args ? args.awsS3DisableTls : undefined;
+            resourceInputs["awsS3EnableKms"] = args ? args.awsS3EnableKms : undefined;
+            resourceInputs["awsS3Endpoint"] = args ? args.awsS3Endpoint : undefined;
+            resourceInputs["awsS3ForcePathStyle"] = args ? args.awsS3ForcePathStyle : undefined;
+            resourceInputs["awsS3KmsKey"] = args ? args.awsS3KmsKey : undefined;
+            resourceInputs["awsS3Region"] = args ? args.awsS3Region : undefined;
+            resourceInputs["awsS3ServerSideEncryption"] = args ? args.awsS3ServerSideEncryption : undefined;
+            resourceInputs["awsSecretAccessKey"] = args ? args.awsSecretAccessKey : undefined;
+            resourceInputs["awsSessionToken"] = args ? args.awsSessionToken : undefined;
+            resourceInputs["azureAccountKey"] = args ? args.azureAccountKey : undefined;
+            resourceInputs["azureAccountName"] = args ? args.azureAccountName : undefined;
+            resourceInputs["azureBlobEnvironment"] = args ? args.azureBlobEnvironment : undefined;
+            resourceInputs["azureContainerName"] = args ? args.azureContainerName : undefined;
+            resourceInputs["azureEndpoint"] = args ? args.azureEndpoint : undefined;
+            resourceInputs["filePrefix"] = args ? args.filePrefix : undefined;
+            resourceInputs["googleDisableTls"] = args ? args.googleDisableTls : undefined;
+            resourceInputs["googleEndpoint"] = args ? args.googleEndpoint : undefined;
+            resourceInputs["googleGcsBucket"] = args ? args.googleGcsBucket : undefined;
+            resourceInputs["googleServiceAccountKey"] = args ? args.googleServiceAccountKey : undefined;
+            resourceInputs["intervalSeconds"] = args ? args.intervalSeconds : undefined;
+            resourceInputs["localMaxSpace"] = args ? args.localMaxSpace : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["pathPrefix"] = args ? args.pathPrefix : undefined;
+            resourceInputs["retain"] = args ? args.retain : undefined;
+            resourceInputs["storageType"] = args ? args.storageType : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RaftSnapshotAgentConfig.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RaftSnapshotAgentConfig.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -96,21 +96,21 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretBackendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendArgs | SecretBackendState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendState | undefined;
-            inputs["address"] = state ? state.address : undefined;
-            inputs["caCert"] = state ? state.caCert : undefined;
-            inputs["clientCert"] = state ? state.clientCert : undefined;
-            inputs["clientKey"] = state ? state.clientKey : undefined;
-            inputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["local"] = state ? state.local : undefined;
-            inputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
-            inputs["path"] = state ? state.path : undefined;
-            inputs["scheme"] = state ? state.scheme : undefined;
-            inputs["token"] = state ? state.token : undefined;
+            resourceInputs["address"] = state ? state.address : undefined;
+            resourceInputs["caCert"] = state ? state.caCert : undefined;
+            resourceInputs["clientCert"] = state ? state.clientCert : undefined;
+            resourceInputs["clientKey"] = state ? state.clientKey : undefined;
+            resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["local"] = state ? state.local : undefined;
+            resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["scheme"] = state ? state.scheme : undefined;
+            resourceInputs["token"] = state ? state.token : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
             if ((!args || args.address === undefined) && !opts.urn) {
@@ -119,22 +119,20 @@ export class SecretBackend extends pulumi.CustomResource {
             if ((!args || args.token === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'token'");
             }
-            inputs["address"] = args ? args.address : undefined;
-            inputs["caCert"] = args ? args.caCert : undefined;
-            inputs["clientCert"] = args ? args.clientCert : undefined;
-            inputs["clientKey"] = args ? args.clientKey : undefined;
-            inputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["local"] = args ? args.local : undefined;
-            inputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["scheme"] = args ? args.scheme : undefined;
-            inputs["token"] = args ? args.token : undefined;
+            resourceInputs["address"] = args ? args.address : undefined;
+            resourceInputs["caCert"] = args ? args.caCert : undefined;
+            resourceInputs["clientCert"] = args ? args.clientCert : undefined;
+            resourceInputs["clientKey"] = args ? args.clientKey : undefined;
+            resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["local"] = args ? args.local : undefined;
+            resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["scheme"] = args ? args.scheme : undefined;
+            resourceInputs["token"] = args ? args.token : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretBackend.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretBackend.__pulumiType, name, resourceInputs, opts);
     }
 }
 

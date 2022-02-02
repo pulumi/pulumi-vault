@@ -73,28 +73,26 @@ export class SecretBackendConfigUrls extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretBackendConfigUrlsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendConfigUrlsArgs | SecretBackendConfigUrlsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendConfigUrlsState | undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["crlDistributionPoints"] = state ? state.crlDistributionPoints : undefined;
-            inputs["issuingCertificates"] = state ? state.issuingCertificates : undefined;
-            inputs["ocspServers"] = state ? state.ocspServers : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["crlDistributionPoints"] = state ? state.crlDistributionPoints : undefined;
+            resourceInputs["issuingCertificates"] = state ? state.issuingCertificates : undefined;
+            resourceInputs["ocspServers"] = state ? state.ocspServers : undefined;
         } else {
             const args = argsOrState as SecretBackendConfigUrlsArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["crlDistributionPoints"] = args ? args.crlDistributionPoints : undefined;
-            inputs["issuingCertificates"] = args ? args.issuingCertificates : undefined;
-            inputs["ocspServers"] = args ? args.ocspServers : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["crlDistributionPoints"] = args ? args.crlDistributionPoints : undefined;
+            resourceInputs["issuingCertificates"] = args ? args.issuingCertificates : undefined;
+            resourceInputs["ocspServers"] = args ? args.ocspServers : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretBackendConfigUrls.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretBackendConfigUrls.__pulumiType, name, resourceInputs, opts);
     }
 }
 

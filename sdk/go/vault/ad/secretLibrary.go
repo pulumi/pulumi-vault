@@ -144,7 +144,7 @@ type SecretLibraryInput interface {
 }
 
 func (*SecretLibrary) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretLibrary)(nil))
+	return reflect.TypeOf((**SecretLibrary)(nil)).Elem()
 }
 
 func (i *SecretLibrary) ToSecretLibraryOutput() SecretLibraryOutput {
@@ -153,35 +153,6 @@ func (i *SecretLibrary) ToSecretLibraryOutput() SecretLibraryOutput {
 
 func (i *SecretLibrary) ToSecretLibraryOutputWithContext(ctx context.Context) SecretLibraryOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretLibraryOutput)
-}
-
-func (i *SecretLibrary) ToSecretLibraryPtrOutput() SecretLibraryPtrOutput {
-	return i.ToSecretLibraryPtrOutputWithContext(context.Background())
-}
-
-func (i *SecretLibrary) ToSecretLibraryPtrOutputWithContext(ctx context.Context) SecretLibraryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretLibraryPtrOutput)
-}
-
-type SecretLibraryPtrInput interface {
-	pulumi.Input
-
-	ToSecretLibraryPtrOutput() SecretLibraryPtrOutput
-	ToSecretLibraryPtrOutputWithContext(ctx context.Context) SecretLibraryPtrOutput
-}
-
-type secretLibraryPtrType SecretLibraryArgs
-
-func (*secretLibraryPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecretLibrary)(nil))
-}
-
-func (i *secretLibraryPtrType) ToSecretLibraryPtrOutput() SecretLibraryPtrOutput {
-	return i.ToSecretLibraryPtrOutputWithContext(context.Background())
-}
-
-func (i *secretLibraryPtrType) ToSecretLibraryPtrOutputWithContext(ctx context.Context) SecretLibraryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretLibraryPtrOutput)
 }
 
 // SecretLibraryArrayInput is an input type that accepts SecretLibraryArray and SecretLibraryArrayOutput values.
@@ -237,7 +208,7 @@ func (i SecretLibraryMap) ToSecretLibraryMapOutputWithContext(ctx context.Contex
 type SecretLibraryOutput struct{ *pulumi.OutputState }
 
 func (SecretLibraryOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretLibrary)(nil))
+	return reflect.TypeOf((**SecretLibrary)(nil)).Elem()
 }
 
 func (o SecretLibraryOutput) ToSecretLibraryOutput() SecretLibraryOutput {
@@ -248,44 +219,10 @@ func (o SecretLibraryOutput) ToSecretLibraryOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o SecretLibraryOutput) ToSecretLibraryPtrOutput() SecretLibraryPtrOutput {
-	return o.ToSecretLibraryPtrOutputWithContext(context.Background())
-}
-
-func (o SecretLibraryOutput) ToSecretLibraryPtrOutputWithContext(ctx context.Context) SecretLibraryPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretLibrary) *SecretLibrary {
-		return &v
-	}).(SecretLibraryPtrOutput)
-}
-
-type SecretLibraryPtrOutput struct{ *pulumi.OutputState }
-
-func (SecretLibraryPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecretLibrary)(nil))
-}
-
-func (o SecretLibraryPtrOutput) ToSecretLibraryPtrOutput() SecretLibraryPtrOutput {
-	return o
-}
-
-func (o SecretLibraryPtrOutput) ToSecretLibraryPtrOutputWithContext(ctx context.Context) SecretLibraryPtrOutput {
-	return o
-}
-
-func (o SecretLibraryPtrOutput) Elem() SecretLibraryOutput {
-	return o.ApplyT(func(v *SecretLibrary) SecretLibrary {
-		if v != nil {
-			return *v
-		}
-		var ret SecretLibrary
-		return ret
-	}).(SecretLibraryOutput)
-}
-
 type SecretLibraryArrayOutput struct{ *pulumi.OutputState }
 
 func (SecretLibraryArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SecretLibrary)(nil))
+	return reflect.TypeOf((*[]*SecretLibrary)(nil)).Elem()
 }
 
 func (o SecretLibraryArrayOutput) ToSecretLibraryArrayOutput() SecretLibraryArrayOutput {
@@ -297,15 +234,15 @@ func (o SecretLibraryArrayOutput) ToSecretLibraryArrayOutputWithContext(ctx cont
 }
 
 func (o SecretLibraryArrayOutput) Index(i pulumi.IntInput) SecretLibraryOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretLibrary {
-		return vs[0].([]SecretLibrary)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretLibrary {
+		return vs[0].([]*SecretLibrary)[vs[1].(int)]
 	}).(SecretLibraryOutput)
 }
 
 type SecretLibraryMapOutput struct{ *pulumi.OutputState }
 
 func (SecretLibraryMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SecretLibrary)(nil))
+	return reflect.TypeOf((*map[string]*SecretLibrary)(nil)).Elem()
 }
 
 func (o SecretLibraryMapOutput) ToSecretLibraryMapOutput() SecretLibraryMapOutput {
@@ -317,18 +254,16 @@ func (o SecretLibraryMapOutput) ToSecretLibraryMapOutputWithContext(ctx context.
 }
 
 func (o SecretLibraryMapOutput) MapIndex(k pulumi.StringInput) SecretLibraryOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SecretLibrary {
-		return vs[0].(map[string]SecretLibrary)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SecretLibrary {
+		return vs[0].(map[string]*SecretLibrary)[vs[1].(string)]
 	}).(SecretLibraryOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretLibraryInput)(nil)).Elem(), &SecretLibrary{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SecretLibraryPtrInput)(nil)).Elem(), &SecretLibrary{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretLibraryArrayInput)(nil)).Elem(), SecretLibraryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretLibraryMapInput)(nil)).Elem(), SecretLibraryMap{})
 	pulumi.RegisterOutputType(SecretLibraryOutput{})
-	pulumi.RegisterOutputType(SecretLibraryPtrOutput{})
 	pulumi.RegisterOutputType(SecretLibraryArrayOutput{})
 	pulumi.RegisterOutputType(SecretLibraryMapOutput{})
 }

@@ -129,7 +129,7 @@ type EntityInput interface {
 }
 
 func (*Entity) ElementType() reflect.Type {
-	return reflect.TypeOf((*Entity)(nil))
+	return reflect.TypeOf((**Entity)(nil)).Elem()
 }
 
 func (i *Entity) ToEntityOutput() EntityOutput {
@@ -138,35 +138,6 @@ func (i *Entity) ToEntityOutput() EntityOutput {
 
 func (i *Entity) ToEntityOutputWithContext(ctx context.Context) EntityOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EntityOutput)
-}
-
-func (i *Entity) ToEntityPtrOutput() EntityPtrOutput {
-	return i.ToEntityPtrOutputWithContext(context.Background())
-}
-
-func (i *Entity) ToEntityPtrOutputWithContext(ctx context.Context) EntityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EntityPtrOutput)
-}
-
-type EntityPtrInput interface {
-	pulumi.Input
-
-	ToEntityPtrOutput() EntityPtrOutput
-	ToEntityPtrOutputWithContext(ctx context.Context) EntityPtrOutput
-}
-
-type entityPtrType EntityArgs
-
-func (*entityPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**Entity)(nil))
-}
-
-func (i *entityPtrType) ToEntityPtrOutput() EntityPtrOutput {
-	return i.ToEntityPtrOutputWithContext(context.Background())
-}
-
-func (i *entityPtrType) ToEntityPtrOutputWithContext(ctx context.Context) EntityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EntityPtrOutput)
 }
 
 // EntityArrayInput is an input type that accepts EntityArray and EntityArrayOutput values.
@@ -222,7 +193,7 @@ func (i EntityMap) ToEntityMapOutputWithContext(ctx context.Context) EntityMapOu
 type EntityOutput struct{ *pulumi.OutputState }
 
 func (EntityOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Entity)(nil))
+	return reflect.TypeOf((**Entity)(nil)).Elem()
 }
 
 func (o EntityOutput) ToEntityOutput() EntityOutput {
@@ -233,44 +204,10 @@ func (o EntityOutput) ToEntityOutputWithContext(ctx context.Context) EntityOutpu
 	return o
 }
 
-func (o EntityOutput) ToEntityPtrOutput() EntityPtrOutput {
-	return o.ToEntityPtrOutputWithContext(context.Background())
-}
-
-func (o EntityOutput) ToEntityPtrOutputWithContext(ctx context.Context) EntityPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v Entity) *Entity {
-		return &v
-	}).(EntityPtrOutput)
-}
-
-type EntityPtrOutput struct{ *pulumi.OutputState }
-
-func (EntityPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**Entity)(nil))
-}
-
-func (o EntityPtrOutput) ToEntityPtrOutput() EntityPtrOutput {
-	return o
-}
-
-func (o EntityPtrOutput) ToEntityPtrOutputWithContext(ctx context.Context) EntityPtrOutput {
-	return o
-}
-
-func (o EntityPtrOutput) Elem() EntityOutput {
-	return o.ApplyT(func(v *Entity) Entity {
-		if v != nil {
-			return *v
-		}
-		var ret Entity
-		return ret
-	}).(EntityOutput)
-}
-
 type EntityArrayOutput struct{ *pulumi.OutputState }
 
 func (EntityArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Entity)(nil))
+	return reflect.TypeOf((*[]*Entity)(nil)).Elem()
 }
 
 func (o EntityArrayOutput) ToEntityArrayOutput() EntityArrayOutput {
@@ -282,15 +219,15 @@ func (o EntityArrayOutput) ToEntityArrayOutputWithContext(ctx context.Context) E
 }
 
 func (o EntityArrayOutput) Index(i pulumi.IntInput) EntityOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Entity {
-		return vs[0].([]Entity)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Entity {
+		return vs[0].([]*Entity)[vs[1].(int)]
 	}).(EntityOutput)
 }
 
 type EntityMapOutput struct{ *pulumi.OutputState }
 
 func (EntityMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]Entity)(nil))
+	return reflect.TypeOf((*map[string]*Entity)(nil)).Elem()
 }
 
 func (o EntityMapOutput) ToEntityMapOutput() EntityMapOutput {
@@ -302,18 +239,16 @@ func (o EntityMapOutput) ToEntityMapOutputWithContext(ctx context.Context) Entit
 }
 
 func (o EntityMapOutput) MapIndex(k pulumi.StringInput) EntityOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) Entity {
-		return vs[0].(map[string]Entity)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Entity {
+		return vs[0].(map[string]*Entity)[vs[1].(string)]
 	}).(EntityOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*EntityInput)(nil)).Elem(), &Entity{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EntityPtrInput)(nil)).Elem(), &Entity{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EntityArrayInput)(nil)).Elem(), EntityArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EntityMapInput)(nil)).Elem(), EntityMap{})
 	pulumi.RegisterOutputType(EntityOutput{})
-	pulumi.RegisterOutputType(EntityPtrOutput{})
 	pulumi.RegisterOutputType(EntityArrayOutput{})
 	pulumi.RegisterOutputType(EntityMapOutput{})
 }

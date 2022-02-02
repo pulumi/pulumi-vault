@@ -65,13 +65,13 @@ export class AuthBackendStsRole extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuthBackendStsRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendStsRoleArgs | AuthBackendStsRoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendStsRoleState | undefined;
-            inputs["accountId"] = state ? state.accountId : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["stsRole"] = state ? state.stsRole : undefined;
+            resourceInputs["accountId"] = state ? state.accountId : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["stsRole"] = state ? state.stsRole : undefined;
         } else {
             const args = argsOrState as AuthBackendStsRoleArgs | undefined;
             if ((!args || args.accountId === undefined) && !opts.urn) {
@@ -80,14 +80,12 @@ export class AuthBackendStsRole extends pulumi.CustomResource {
             if ((!args || args.stsRole === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'stsRole'");
             }
-            inputs["accountId"] = args ? args.accountId : undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["stsRole"] = args ? args.stsRole : undefined;
+            resourceInputs["accountId"] = args ? args.accountId : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["stsRole"] = args ? args.stsRole : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackendStsRole.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackendStsRole.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -36,9 +36,7 @@ export function getPolicyDocument(args?: GetPolicyDocumentArgs, opts?: pulumi.In
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:index/getPolicyDocument:getPolicyDocument", {
         "rules": args.rules,
     }, opts);

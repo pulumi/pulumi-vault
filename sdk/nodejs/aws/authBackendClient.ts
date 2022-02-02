@@ -92,33 +92,31 @@ export class AuthBackendClient extends pulumi.CustomResource {
      */
     constructor(name: string, args?: AuthBackendClientArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendClientArgs | AuthBackendClientState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendClientState | undefined;
-            inputs["accessKey"] = state ? state.accessKey : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["ec2Endpoint"] = state ? state.ec2Endpoint : undefined;
-            inputs["iamEndpoint"] = state ? state.iamEndpoint : undefined;
-            inputs["iamServerIdHeaderValue"] = state ? state.iamServerIdHeaderValue : undefined;
-            inputs["secretKey"] = state ? state.secretKey : undefined;
-            inputs["stsEndpoint"] = state ? state.stsEndpoint : undefined;
-            inputs["stsRegion"] = state ? state.stsRegion : undefined;
+            resourceInputs["accessKey"] = state ? state.accessKey : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["ec2Endpoint"] = state ? state.ec2Endpoint : undefined;
+            resourceInputs["iamEndpoint"] = state ? state.iamEndpoint : undefined;
+            resourceInputs["iamServerIdHeaderValue"] = state ? state.iamServerIdHeaderValue : undefined;
+            resourceInputs["secretKey"] = state ? state.secretKey : undefined;
+            resourceInputs["stsEndpoint"] = state ? state.stsEndpoint : undefined;
+            resourceInputs["stsRegion"] = state ? state.stsRegion : undefined;
         } else {
             const args = argsOrState as AuthBackendClientArgs | undefined;
-            inputs["accessKey"] = args ? args.accessKey : undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["ec2Endpoint"] = args ? args.ec2Endpoint : undefined;
-            inputs["iamEndpoint"] = args ? args.iamEndpoint : undefined;
-            inputs["iamServerIdHeaderValue"] = args ? args.iamServerIdHeaderValue : undefined;
-            inputs["secretKey"] = args ? args.secretKey : undefined;
-            inputs["stsEndpoint"] = args ? args.stsEndpoint : undefined;
-            inputs["stsRegion"] = args ? args.stsRegion : undefined;
+            resourceInputs["accessKey"] = args ? args.accessKey : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["ec2Endpoint"] = args ? args.ec2Endpoint : undefined;
+            resourceInputs["iamEndpoint"] = args ? args.iamEndpoint : undefined;
+            resourceInputs["iamServerIdHeaderValue"] = args ? args.iamServerIdHeaderValue : undefined;
+            resourceInputs["secretKey"] = args ? args.secretKey : undefined;
+            resourceInputs["stsEndpoint"] = args ? args.stsEndpoint : undefined;
+            resourceInputs["stsRegion"] = args ? args.stsRegion : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackendClient.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackendClient.__pulumiType, name, resourceInputs, opts);
     }
 }
 

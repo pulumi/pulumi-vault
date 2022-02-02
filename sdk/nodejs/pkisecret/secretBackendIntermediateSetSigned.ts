@@ -50,12 +50,12 @@ export class SecretBackendIntermediateSetSigned extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretBackendIntermediateSetSignedArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendIntermediateSetSignedArgs | SecretBackendIntermediateSetSignedState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendIntermediateSetSignedState | undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["certificate"] = state ? state.certificate : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["certificate"] = state ? state.certificate : undefined;
         } else {
             const args = argsOrState as SecretBackendIntermediateSetSignedArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -64,13 +64,11 @@ export class SecretBackendIntermediateSetSigned extends pulumi.CustomResource {
             if ((!args || args.certificate === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'certificate'");
             }
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["certificate"] = args ? args.certificate : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["certificate"] = args ? args.certificate : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretBackendIntermediateSetSigned.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretBackendIntermediateSetSigned.__pulumiType, name, resourceInputs, opts);
     }
 }
 

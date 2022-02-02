@@ -75,26 +75,24 @@ export class Alphabet extends pulumi.CustomResource {
      */
     constructor(name: string, args: AlphabetArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AlphabetArgs | AlphabetState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AlphabetState | undefined;
-            inputs["alphabet"] = state ? state.alphabet : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["path"] = state ? state.path : undefined;
+            resourceInputs["alphabet"] = state ? state.alphabet : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
         } else {
             const args = argsOrState as AlphabetArgs | undefined;
             if ((!args || args.path === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            inputs["alphabet"] = args ? args.alphabet : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["path"] = args ? args.path : undefined;
+            resourceInputs["alphabet"] = args ? args.alphabet : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Alphabet.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Alphabet.__pulumiType, name, resourceInputs, opts);
     }
 }
 

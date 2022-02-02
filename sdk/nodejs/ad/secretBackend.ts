@@ -199,42 +199,42 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretBackendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendArgs | SecretBackendState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendState | undefined;
-            inputs["anonymousGroupSearch"] = state ? state.anonymousGroupSearch : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["binddn"] = state ? state.binddn : undefined;
-            inputs["bindpass"] = state ? state.bindpass : undefined;
-            inputs["caseSensitiveNames"] = state ? state.caseSensitiveNames : undefined;
-            inputs["certificate"] = state ? state.certificate : undefined;
-            inputs["clientTlsCert"] = state ? state.clientTlsCert : undefined;
-            inputs["clientTlsKey"] = state ? state.clientTlsKey : undefined;
-            inputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
-            inputs["denyNullBind"] = state ? state.denyNullBind : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["discoverdn"] = state ? state.discoverdn : undefined;
-            inputs["groupattr"] = state ? state.groupattr : undefined;
-            inputs["groupdn"] = state ? state.groupdn : undefined;
-            inputs["groupfilter"] = state ? state.groupfilter : undefined;
-            inputs["insecureTls"] = state ? state.insecureTls : undefined;
-            inputs["lastRotationTolerance"] = state ? state.lastRotationTolerance : undefined;
-            inputs["local"] = state ? state.local : undefined;
-            inputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
-            inputs["maxTtl"] = state ? state.maxTtl : undefined;
-            inputs["passwordPolicy"] = state ? state.passwordPolicy : undefined;
-            inputs["requestTimeout"] = state ? state.requestTimeout : undefined;
-            inputs["starttls"] = state ? state.starttls : undefined;
-            inputs["tlsMaxVersion"] = state ? state.tlsMaxVersion : undefined;
-            inputs["tlsMinVersion"] = state ? state.tlsMinVersion : undefined;
-            inputs["ttl"] = state ? state.ttl : undefined;
-            inputs["upndomain"] = state ? state.upndomain : undefined;
-            inputs["url"] = state ? state.url : undefined;
-            inputs["usePre111GroupCnBehavior"] = state ? state.usePre111GroupCnBehavior : undefined;
-            inputs["useTokenGroups"] = state ? state.useTokenGroups : undefined;
-            inputs["userattr"] = state ? state.userattr : undefined;
-            inputs["userdn"] = state ? state.userdn : undefined;
+            resourceInputs["anonymousGroupSearch"] = state ? state.anonymousGroupSearch : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["binddn"] = state ? state.binddn : undefined;
+            resourceInputs["bindpass"] = state ? state.bindpass : undefined;
+            resourceInputs["caseSensitiveNames"] = state ? state.caseSensitiveNames : undefined;
+            resourceInputs["certificate"] = state ? state.certificate : undefined;
+            resourceInputs["clientTlsCert"] = state ? state.clientTlsCert : undefined;
+            resourceInputs["clientTlsKey"] = state ? state.clientTlsKey : undefined;
+            resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
+            resourceInputs["denyNullBind"] = state ? state.denyNullBind : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["discoverdn"] = state ? state.discoverdn : undefined;
+            resourceInputs["groupattr"] = state ? state.groupattr : undefined;
+            resourceInputs["groupdn"] = state ? state.groupdn : undefined;
+            resourceInputs["groupfilter"] = state ? state.groupfilter : undefined;
+            resourceInputs["insecureTls"] = state ? state.insecureTls : undefined;
+            resourceInputs["lastRotationTolerance"] = state ? state.lastRotationTolerance : undefined;
+            resourceInputs["local"] = state ? state.local : undefined;
+            resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
+            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
+            resourceInputs["passwordPolicy"] = state ? state.passwordPolicy : undefined;
+            resourceInputs["requestTimeout"] = state ? state.requestTimeout : undefined;
+            resourceInputs["starttls"] = state ? state.starttls : undefined;
+            resourceInputs["tlsMaxVersion"] = state ? state.tlsMaxVersion : undefined;
+            resourceInputs["tlsMinVersion"] = state ? state.tlsMinVersion : undefined;
+            resourceInputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["upndomain"] = state ? state.upndomain : undefined;
+            resourceInputs["url"] = state ? state.url : undefined;
+            resourceInputs["usePre111GroupCnBehavior"] = state ? state.usePre111GroupCnBehavior : undefined;
+            resourceInputs["useTokenGroups"] = state ? state.useTokenGroups : undefined;
+            resourceInputs["userattr"] = state ? state.userattr : undefined;
+            resourceInputs["userdn"] = state ? state.userdn : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
             if ((!args || args.binddn === undefined) && !opts.urn) {
@@ -243,43 +243,41 @@ export class SecretBackend extends pulumi.CustomResource {
             if ((!args || args.bindpass === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'bindpass'");
             }
-            inputs["anonymousGroupSearch"] = args ? args.anonymousGroupSearch : undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["binddn"] = args ? args.binddn : undefined;
-            inputs["bindpass"] = args ? args.bindpass : undefined;
-            inputs["caseSensitiveNames"] = args ? args.caseSensitiveNames : undefined;
-            inputs["certificate"] = args ? args.certificate : undefined;
-            inputs["clientTlsCert"] = args ? args.clientTlsCert : undefined;
-            inputs["clientTlsKey"] = args ? args.clientTlsKey : undefined;
-            inputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
-            inputs["denyNullBind"] = args ? args.denyNullBind : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["discoverdn"] = args ? args.discoverdn : undefined;
-            inputs["groupattr"] = args ? args.groupattr : undefined;
-            inputs["groupdn"] = args ? args.groupdn : undefined;
-            inputs["groupfilter"] = args ? args.groupfilter : undefined;
-            inputs["insecureTls"] = args ? args.insecureTls : undefined;
-            inputs["lastRotationTolerance"] = args ? args.lastRotationTolerance : undefined;
-            inputs["local"] = args ? args.local : undefined;
-            inputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
-            inputs["maxTtl"] = args ? args.maxTtl : undefined;
-            inputs["passwordPolicy"] = args ? args.passwordPolicy : undefined;
-            inputs["requestTimeout"] = args ? args.requestTimeout : undefined;
-            inputs["starttls"] = args ? args.starttls : undefined;
-            inputs["tlsMaxVersion"] = args ? args.tlsMaxVersion : undefined;
-            inputs["tlsMinVersion"] = args ? args.tlsMinVersion : undefined;
-            inputs["ttl"] = args ? args.ttl : undefined;
-            inputs["upndomain"] = args ? args.upndomain : undefined;
-            inputs["url"] = args ? args.url : undefined;
-            inputs["usePre111GroupCnBehavior"] = args ? args.usePre111GroupCnBehavior : undefined;
-            inputs["useTokenGroups"] = args ? args.useTokenGroups : undefined;
-            inputs["userattr"] = args ? args.userattr : undefined;
-            inputs["userdn"] = args ? args.userdn : undefined;
+            resourceInputs["anonymousGroupSearch"] = args ? args.anonymousGroupSearch : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["binddn"] = args ? args.binddn : undefined;
+            resourceInputs["bindpass"] = args ? args.bindpass : undefined;
+            resourceInputs["caseSensitiveNames"] = args ? args.caseSensitiveNames : undefined;
+            resourceInputs["certificate"] = args ? args.certificate : undefined;
+            resourceInputs["clientTlsCert"] = args ? args.clientTlsCert : undefined;
+            resourceInputs["clientTlsKey"] = args ? args.clientTlsKey : undefined;
+            resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
+            resourceInputs["denyNullBind"] = args ? args.denyNullBind : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["discoverdn"] = args ? args.discoverdn : undefined;
+            resourceInputs["groupattr"] = args ? args.groupattr : undefined;
+            resourceInputs["groupdn"] = args ? args.groupdn : undefined;
+            resourceInputs["groupfilter"] = args ? args.groupfilter : undefined;
+            resourceInputs["insecureTls"] = args ? args.insecureTls : undefined;
+            resourceInputs["lastRotationTolerance"] = args ? args.lastRotationTolerance : undefined;
+            resourceInputs["local"] = args ? args.local : undefined;
+            resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
+            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
+            resourceInputs["passwordPolicy"] = args ? args.passwordPolicy : undefined;
+            resourceInputs["requestTimeout"] = args ? args.requestTimeout : undefined;
+            resourceInputs["starttls"] = args ? args.starttls : undefined;
+            resourceInputs["tlsMaxVersion"] = args ? args.tlsMaxVersion : undefined;
+            resourceInputs["tlsMinVersion"] = args ? args.tlsMinVersion : undefined;
+            resourceInputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["upndomain"] = args ? args.upndomain : undefined;
+            resourceInputs["url"] = args ? args.url : undefined;
+            resourceInputs["usePre111GroupCnBehavior"] = args ? args.usePre111GroupCnBehavior : undefined;
+            resourceInputs["useTokenGroups"] = args ? args.useTokenGroups : undefined;
+            resourceInputs["userattr"] = args ? args.userattr : undefined;
+            resourceInputs["userdn"] = args ? args.userdn : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretBackend.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretBackend.__pulumiType, name, resourceInputs, opts);
     }
 }
 

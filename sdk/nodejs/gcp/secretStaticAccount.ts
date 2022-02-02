@@ -111,17 +111,17 @@ export class SecretStaticAccount extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretStaticAccountArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretStaticAccountArgs | SecretStaticAccountState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretStaticAccountState | undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["bindings"] = state ? state.bindings : undefined;
-            inputs["secretType"] = state ? state.secretType : undefined;
-            inputs["serviceAccountEmail"] = state ? state.serviceAccountEmail : undefined;
-            inputs["serviceAccountProject"] = state ? state.serviceAccountProject : undefined;
-            inputs["staticAccount"] = state ? state.staticAccount : undefined;
-            inputs["tokenScopes"] = state ? state.tokenScopes : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["bindings"] = state ? state.bindings : undefined;
+            resourceInputs["secretType"] = state ? state.secretType : undefined;
+            resourceInputs["serviceAccountEmail"] = state ? state.serviceAccountEmail : undefined;
+            resourceInputs["serviceAccountProject"] = state ? state.serviceAccountProject : undefined;
+            resourceInputs["staticAccount"] = state ? state.staticAccount : undefined;
+            resourceInputs["tokenScopes"] = state ? state.tokenScopes : undefined;
         } else {
             const args = argsOrState as SecretStaticAccountArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -133,18 +133,16 @@ export class SecretStaticAccount extends pulumi.CustomResource {
             if ((!args || args.staticAccount === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'staticAccount'");
             }
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["bindings"] = args ? args.bindings : undefined;
-            inputs["secretType"] = args ? args.secretType : undefined;
-            inputs["serviceAccountEmail"] = args ? args.serviceAccountEmail : undefined;
-            inputs["staticAccount"] = args ? args.staticAccount : undefined;
-            inputs["tokenScopes"] = args ? args.tokenScopes : undefined;
-            inputs["serviceAccountProject"] = undefined /*out*/;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["bindings"] = args ? args.bindings : undefined;
+            resourceInputs["secretType"] = args ? args.secretType : undefined;
+            resourceInputs["serviceAccountEmail"] = args ? args.serviceAccountEmail : undefined;
+            resourceInputs["staticAccount"] = args ? args.staticAccount : undefined;
+            resourceInputs["tokenScopes"] = args ? args.tokenScopes : undefined;
+            resourceInputs["serviceAccountProject"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretStaticAccount.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretStaticAccount.__pulumiType, name, resourceInputs, opts);
     }
 }
 

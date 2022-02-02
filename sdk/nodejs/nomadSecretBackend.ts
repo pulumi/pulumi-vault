@@ -109,43 +109,41 @@ export class NomadSecretBackend extends pulumi.CustomResource {
      */
     constructor(name: string, args?: NomadSecretBackendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: NomadSecretBackendArgs | NomadSecretBackendState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NomadSecretBackendState | undefined;
-            inputs["address"] = state ? state.address : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["caCert"] = state ? state.caCert : undefined;
-            inputs["clientCert"] = state ? state.clientCert : undefined;
-            inputs["clientKey"] = state ? state.clientKey : undefined;
-            inputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["local"] = state ? state.local : undefined;
-            inputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
-            inputs["maxTokenNameLength"] = state ? state.maxTokenNameLength : undefined;
-            inputs["maxTtl"] = state ? state.maxTtl : undefined;
-            inputs["token"] = state ? state.token : undefined;
-            inputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["address"] = state ? state.address : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["caCert"] = state ? state.caCert : undefined;
+            resourceInputs["clientCert"] = state ? state.clientCert : undefined;
+            resourceInputs["clientKey"] = state ? state.clientKey : undefined;
+            resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["local"] = state ? state.local : undefined;
+            resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
+            resourceInputs["maxTokenNameLength"] = state ? state.maxTokenNameLength : undefined;
+            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
+            resourceInputs["token"] = state ? state.token : undefined;
+            resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as NomadSecretBackendArgs | undefined;
-            inputs["address"] = args ? args.address : undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["caCert"] = args ? args.caCert : undefined;
-            inputs["clientCert"] = args ? args.clientCert : undefined;
-            inputs["clientKey"] = args ? args.clientKey : undefined;
-            inputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["local"] = args ? args.local : undefined;
-            inputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
-            inputs["maxTokenNameLength"] = args ? args.maxTokenNameLength : undefined;
-            inputs["maxTtl"] = args ? args.maxTtl : undefined;
-            inputs["token"] = args ? args.token : undefined;
-            inputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["address"] = args ? args.address : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["caCert"] = args ? args.caCert : undefined;
+            resourceInputs["clientCert"] = args ? args.clientCert : undefined;
+            resourceInputs["clientKey"] = args ? args.clientKey : undefined;
+            resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["local"] = args ? args.local : undefined;
+            resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
+            resourceInputs["maxTokenNameLength"] = args ? args.maxTokenNameLength : undefined;
+            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
+            resourceInputs["token"] = args ? args.token : undefined;
+            resourceInputs["ttl"] = args ? args.ttl : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(NomadSecretBackend.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(NomadSecretBackend.__pulumiType, name, resourceInputs, opts);
     }
 }
 

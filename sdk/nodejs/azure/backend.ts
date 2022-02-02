@@ -70,17 +70,17 @@ export class Backend extends pulumi.CustomResource {
      */
     constructor(name: string, args: BackendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: BackendArgs | BackendState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BackendState | undefined;
-            inputs["clientId"] = state ? state.clientId : undefined;
-            inputs["clientSecret"] = state ? state.clientSecret : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["environment"] = state ? state.environment : undefined;
-            inputs["path"] = state ? state.path : undefined;
-            inputs["subscriptionId"] = state ? state.subscriptionId : undefined;
-            inputs["tenantId"] = state ? state.tenantId : undefined;
+            resourceInputs["clientId"] = state ? state.clientId : undefined;
+            resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["environment"] = state ? state.environment : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["subscriptionId"] = state ? state.subscriptionId : undefined;
+            resourceInputs["tenantId"] = state ? state.tenantId : undefined;
         } else {
             const args = argsOrState as BackendArgs | undefined;
             if ((!args || args.subscriptionId === undefined) && !opts.urn) {
@@ -89,18 +89,16 @@ export class Backend extends pulumi.CustomResource {
             if ((!args || args.tenantId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'tenantId'");
             }
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["clientSecret"] = args ? args.clientSecret : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["environment"] = args ? args.environment : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["subscriptionId"] = args ? args.subscriptionId : undefined;
-            inputs["tenantId"] = args ? args.tenantId : undefined;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["clientSecret"] = args ? args.clientSecret : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["environment"] = args ? args.environment : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["subscriptionId"] = args ? args.subscriptionId : undefined;
+            resourceInputs["tenantId"] = args ? args.tenantId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Backend.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Backend.__pulumiType, name, resourceInputs, opts);
     }
 }
 

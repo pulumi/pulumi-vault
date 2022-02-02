@@ -141,54 +141,52 @@ export class SecretBackendKey extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretBackendKeyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendKeyArgs | SecretBackendKeyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendKeyState | undefined;
-            inputs["allowPlaintextBackup"] = state ? state.allowPlaintextBackup : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["convergentEncryption"] = state ? state.convergentEncryption : undefined;
-            inputs["deletionAllowed"] = state ? state.deletionAllowed : undefined;
-            inputs["derived"] = state ? state.derived : undefined;
-            inputs["exportable"] = state ? state.exportable : undefined;
-            inputs["keys"] = state ? state.keys : undefined;
-            inputs["latestVersion"] = state ? state.latestVersion : undefined;
-            inputs["minAvailableVersion"] = state ? state.minAvailableVersion : undefined;
-            inputs["minDecryptionVersion"] = state ? state.minDecryptionVersion : undefined;
-            inputs["minEncryptionVersion"] = state ? state.minEncryptionVersion : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["supportsDecryption"] = state ? state.supportsDecryption : undefined;
-            inputs["supportsDerivation"] = state ? state.supportsDerivation : undefined;
-            inputs["supportsEncryption"] = state ? state.supportsEncryption : undefined;
-            inputs["supportsSigning"] = state ? state.supportsSigning : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["allowPlaintextBackup"] = state ? state.allowPlaintextBackup : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["convergentEncryption"] = state ? state.convergentEncryption : undefined;
+            resourceInputs["deletionAllowed"] = state ? state.deletionAllowed : undefined;
+            resourceInputs["derived"] = state ? state.derived : undefined;
+            resourceInputs["exportable"] = state ? state.exportable : undefined;
+            resourceInputs["keys"] = state ? state.keys : undefined;
+            resourceInputs["latestVersion"] = state ? state.latestVersion : undefined;
+            resourceInputs["minAvailableVersion"] = state ? state.minAvailableVersion : undefined;
+            resourceInputs["minDecryptionVersion"] = state ? state.minDecryptionVersion : undefined;
+            resourceInputs["minEncryptionVersion"] = state ? state.minEncryptionVersion : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["supportsDecryption"] = state ? state.supportsDecryption : undefined;
+            resourceInputs["supportsDerivation"] = state ? state.supportsDerivation : undefined;
+            resourceInputs["supportsEncryption"] = state ? state.supportsEncryption : undefined;
+            resourceInputs["supportsSigning"] = state ? state.supportsSigning : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as SecretBackendKeyArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            inputs["allowPlaintextBackup"] = args ? args.allowPlaintextBackup : undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["convergentEncryption"] = args ? args.convergentEncryption : undefined;
-            inputs["deletionAllowed"] = args ? args.deletionAllowed : undefined;
-            inputs["derived"] = args ? args.derived : undefined;
-            inputs["exportable"] = args ? args.exportable : undefined;
-            inputs["minDecryptionVersion"] = args ? args.minDecryptionVersion : undefined;
-            inputs["minEncryptionVersion"] = args ? args.minEncryptionVersion : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["keys"] = undefined /*out*/;
-            inputs["latestVersion"] = undefined /*out*/;
-            inputs["minAvailableVersion"] = undefined /*out*/;
-            inputs["supportsDecryption"] = undefined /*out*/;
-            inputs["supportsDerivation"] = undefined /*out*/;
-            inputs["supportsEncryption"] = undefined /*out*/;
-            inputs["supportsSigning"] = undefined /*out*/;
+            resourceInputs["allowPlaintextBackup"] = args ? args.allowPlaintextBackup : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["convergentEncryption"] = args ? args.convergentEncryption : undefined;
+            resourceInputs["deletionAllowed"] = args ? args.deletionAllowed : undefined;
+            resourceInputs["derived"] = args ? args.derived : undefined;
+            resourceInputs["exportable"] = args ? args.exportable : undefined;
+            resourceInputs["minDecryptionVersion"] = args ? args.minDecryptionVersion : undefined;
+            resourceInputs["minEncryptionVersion"] = args ? args.minEncryptionVersion : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["keys"] = undefined /*out*/;
+            resourceInputs["latestVersion"] = undefined /*out*/;
+            resourceInputs["minAvailableVersion"] = undefined /*out*/;
+            resourceInputs["supportsDecryption"] = undefined /*out*/;
+            resourceInputs["supportsDerivation"] = undefined /*out*/;
+            resourceInputs["supportsEncryption"] = undefined /*out*/;
+            resourceInputs["supportsSigning"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretBackendKey.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretBackendKey.__pulumiType, name, resourceInputs, opts);
     }
 }
 

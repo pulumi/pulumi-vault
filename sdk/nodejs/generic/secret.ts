@@ -84,15 +84,15 @@ export class Secret extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretArgs | SecretState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretState | undefined;
-            inputs["data"] = state ? state.data : undefined;
-            inputs["dataJson"] = state ? state.dataJson : undefined;
-            inputs["deleteAllVersions"] = state ? state.deleteAllVersions : undefined;
-            inputs["disableRead"] = state ? state.disableRead : undefined;
-            inputs["path"] = state ? state.path : undefined;
+            resourceInputs["data"] = state ? state.data : undefined;
+            resourceInputs["dataJson"] = state ? state.dataJson : undefined;
+            resourceInputs["deleteAllVersions"] = state ? state.deleteAllVersions : undefined;
+            resourceInputs["disableRead"] = state ? state.disableRead : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
         } else {
             const args = argsOrState as SecretArgs | undefined;
             if ((!args || args.dataJson === undefined) && !opts.urn) {
@@ -101,16 +101,14 @@ export class Secret extends pulumi.CustomResource {
             if ((!args || args.path === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            inputs["dataJson"] = args ? args.dataJson : undefined;
-            inputs["deleteAllVersions"] = args ? args.deleteAllVersions : undefined;
-            inputs["disableRead"] = args ? args.disableRead : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["data"] = undefined /*out*/;
+            resourceInputs["dataJson"] = args ? args.dataJson : undefined;
+            resourceInputs["deleteAllVersions"] = args ? args.deleteAllVersions : undefined;
+            resourceInputs["disableRead"] = args ? args.disableRead : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["data"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Secret.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Secret.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -76,30 +76,28 @@ export class OidcRole extends pulumi.CustomResource {
      */
     constructor(name: string, args: OidcRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: OidcRoleArgs | OidcRoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OidcRoleState | undefined;
-            inputs["clientId"] = state ? state.clientId : undefined;
-            inputs["key"] = state ? state.key : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["template"] = state ? state.template : undefined;
-            inputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["clientId"] = state ? state.clientId : undefined;
+            resourceInputs["key"] = state ? state.key : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["template"] = state ? state.template : undefined;
+            resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as OidcRoleArgs | undefined;
             if ((!args || args.key === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'key'");
             }
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["key"] = args ? args.key : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["template"] = args ? args.template : undefined;
-            inputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["key"] = args ? args.key : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["template"] = args ? args.template : undefined;
+            resourceInputs["ttl"] = args ? args.ttl : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(OidcRole.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(OidcRole.__pulumiType, name, resourceInputs, opts);
     }
 }
 

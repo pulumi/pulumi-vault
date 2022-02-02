@@ -134,60 +134,58 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretBackendConnectionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendConnectionArgs | SecretBackendConnectionState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendConnectionState | undefined;
-            inputs["allowedRoles"] = state ? state.allowedRoles : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["cassandra"] = state ? state.cassandra : undefined;
-            inputs["data"] = state ? state.data : undefined;
-            inputs["elasticsearch"] = state ? state.elasticsearch : undefined;
-            inputs["hana"] = state ? state.hana : undefined;
-            inputs["influxdb"] = state ? state.influxdb : undefined;
-            inputs["mongodb"] = state ? state.mongodb : undefined;
-            inputs["mongodbatlas"] = state ? state.mongodbatlas : undefined;
-            inputs["mssql"] = state ? state.mssql : undefined;
-            inputs["mysql"] = state ? state.mysql : undefined;
-            inputs["mysqlAurora"] = state ? state.mysqlAurora : undefined;
-            inputs["mysqlLegacy"] = state ? state.mysqlLegacy : undefined;
-            inputs["mysqlRds"] = state ? state.mysqlRds : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["oracle"] = state ? state.oracle : undefined;
-            inputs["postgresql"] = state ? state.postgresql : undefined;
-            inputs["rootRotationStatements"] = state ? state.rootRotationStatements : undefined;
-            inputs["snowflake"] = state ? state.snowflake : undefined;
-            inputs["verifyConnection"] = state ? state.verifyConnection : undefined;
+            resourceInputs["allowedRoles"] = state ? state.allowedRoles : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["cassandra"] = state ? state.cassandra : undefined;
+            resourceInputs["data"] = state ? state.data : undefined;
+            resourceInputs["elasticsearch"] = state ? state.elasticsearch : undefined;
+            resourceInputs["hana"] = state ? state.hana : undefined;
+            resourceInputs["influxdb"] = state ? state.influxdb : undefined;
+            resourceInputs["mongodb"] = state ? state.mongodb : undefined;
+            resourceInputs["mongodbatlas"] = state ? state.mongodbatlas : undefined;
+            resourceInputs["mssql"] = state ? state.mssql : undefined;
+            resourceInputs["mysql"] = state ? state.mysql : undefined;
+            resourceInputs["mysqlAurora"] = state ? state.mysqlAurora : undefined;
+            resourceInputs["mysqlLegacy"] = state ? state.mysqlLegacy : undefined;
+            resourceInputs["mysqlRds"] = state ? state.mysqlRds : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["oracle"] = state ? state.oracle : undefined;
+            resourceInputs["postgresql"] = state ? state.postgresql : undefined;
+            resourceInputs["rootRotationStatements"] = state ? state.rootRotationStatements : undefined;
+            resourceInputs["snowflake"] = state ? state.snowflake : undefined;
+            resourceInputs["verifyConnection"] = state ? state.verifyConnection : undefined;
         } else {
             const args = argsOrState as SecretBackendConnectionArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            inputs["allowedRoles"] = args ? args.allowedRoles : undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["cassandra"] = args ? args.cassandra : undefined;
-            inputs["data"] = args ? args.data : undefined;
-            inputs["elasticsearch"] = args ? args.elasticsearch : undefined;
-            inputs["hana"] = args ? args.hana : undefined;
-            inputs["influxdb"] = args ? args.influxdb : undefined;
-            inputs["mongodb"] = args ? args.mongodb : undefined;
-            inputs["mongodbatlas"] = args ? args.mongodbatlas : undefined;
-            inputs["mssql"] = args ? args.mssql : undefined;
-            inputs["mysql"] = args ? args.mysql : undefined;
-            inputs["mysqlAurora"] = args ? args.mysqlAurora : undefined;
-            inputs["mysqlLegacy"] = args ? args.mysqlLegacy : undefined;
-            inputs["mysqlRds"] = args ? args.mysqlRds : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["oracle"] = args ? args.oracle : undefined;
-            inputs["postgresql"] = args ? args.postgresql : undefined;
-            inputs["rootRotationStatements"] = args ? args.rootRotationStatements : undefined;
-            inputs["snowflake"] = args ? args.snowflake : undefined;
-            inputs["verifyConnection"] = args ? args.verifyConnection : undefined;
+            resourceInputs["allowedRoles"] = args ? args.allowedRoles : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["cassandra"] = args ? args.cassandra : undefined;
+            resourceInputs["data"] = args ? args.data : undefined;
+            resourceInputs["elasticsearch"] = args ? args.elasticsearch : undefined;
+            resourceInputs["hana"] = args ? args.hana : undefined;
+            resourceInputs["influxdb"] = args ? args.influxdb : undefined;
+            resourceInputs["mongodb"] = args ? args.mongodb : undefined;
+            resourceInputs["mongodbatlas"] = args ? args.mongodbatlas : undefined;
+            resourceInputs["mssql"] = args ? args.mssql : undefined;
+            resourceInputs["mysql"] = args ? args.mysql : undefined;
+            resourceInputs["mysqlAurora"] = args ? args.mysqlAurora : undefined;
+            resourceInputs["mysqlLegacy"] = args ? args.mysqlLegacy : undefined;
+            resourceInputs["mysqlRds"] = args ? args.mysqlRds : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["oracle"] = args ? args.oracle : undefined;
+            resourceInputs["postgresql"] = args ? args.postgresql : undefined;
+            resourceInputs["rootRotationStatements"] = args ? args.rootRotationStatements : undefined;
+            resourceInputs["snowflake"] = args ? args.snowflake : undefined;
+            resourceInputs["verifyConnection"] = args ? args.verifyConnection : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretBackendConnection.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretBackendConnection.__pulumiType, name, resourceInputs, opts);
     }
 }
 

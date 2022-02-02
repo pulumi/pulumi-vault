@@ -78,24 +78,22 @@ export class PasswordPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args: PasswordPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: PasswordPolicyArgs | PasswordPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PasswordPolicyState | undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["policy"] = state ? state.policy : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["policy"] = state ? state.policy : undefined;
         } else {
             const args = argsOrState as PasswordPolicyArgs | undefined;
             if ((!args || args.policy === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'policy'");
             }
-            inputs["name"] = args ? args.name : undefined;
-            inputs["policy"] = args ? args.policy : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["policy"] = args ? args.policy : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(PasswordPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(PasswordPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

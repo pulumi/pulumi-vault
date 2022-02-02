@@ -263,74 +263,72 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuthBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendRoleArgs | AuthBackendRoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleState | undefined;
-            inputs["allowInstanceMigration"] = state ? state.allowInstanceMigration : undefined;
-            inputs["authType"] = state ? state.authType : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["boundAccountIds"] = state ? state.boundAccountIds : undefined;
-            inputs["boundAmiIds"] = state ? state.boundAmiIds : undefined;
-            inputs["boundEc2InstanceIds"] = state ? state.boundEc2InstanceIds : undefined;
-            inputs["boundIamInstanceProfileArns"] = state ? state.boundIamInstanceProfileArns : undefined;
-            inputs["boundIamPrincipalArns"] = state ? state.boundIamPrincipalArns : undefined;
-            inputs["boundIamRoleArns"] = state ? state.boundIamRoleArns : undefined;
-            inputs["boundRegions"] = state ? state.boundRegions : undefined;
-            inputs["boundSubnetIds"] = state ? state.boundSubnetIds : undefined;
-            inputs["boundVpcIds"] = state ? state.boundVpcIds : undefined;
-            inputs["disallowReauthentication"] = state ? state.disallowReauthentication : undefined;
-            inputs["inferredAwsRegion"] = state ? state.inferredAwsRegion : undefined;
-            inputs["inferredEntityType"] = state ? state.inferredEntityType : undefined;
-            inputs["resolveAwsUniqueIds"] = state ? state.resolveAwsUniqueIds : undefined;
-            inputs["role"] = state ? state.role : undefined;
-            inputs["roleTag"] = state ? state.roleTag : undefined;
-            inputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
-            inputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
-            inputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
-            inputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
-            inputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
-            inputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
-            inputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
-            inputs["tokenTtl"] = state ? state.tokenTtl : undefined;
-            inputs["tokenType"] = state ? state.tokenType : undefined;
+            resourceInputs["allowInstanceMigration"] = state ? state.allowInstanceMigration : undefined;
+            resourceInputs["authType"] = state ? state.authType : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["boundAccountIds"] = state ? state.boundAccountIds : undefined;
+            resourceInputs["boundAmiIds"] = state ? state.boundAmiIds : undefined;
+            resourceInputs["boundEc2InstanceIds"] = state ? state.boundEc2InstanceIds : undefined;
+            resourceInputs["boundIamInstanceProfileArns"] = state ? state.boundIamInstanceProfileArns : undefined;
+            resourceInputs["boundIamPrincipalArns"] = state ? state.boundIamPrincipalArns : undefined;
+            resourceInputs["boundIamRoleArns"] = state ? state.boundIamRoleArns : undefined;
+            resourceInputs["boundRegions"] = state ? state.boundRegions : undefined;
+            resourceInputs["boundSubnetIds"] = state ? state.boundSubnetIds : undefined;
+            resourceInputs["boundVpcIds"] = state ? state.boundVpcIds : undefined;
+            resourceInputs["disallowReauthentication"] = state ? state.disallowReauthentication : undefined;
+            resourceInputs["inferredAwsRegion"] = state ? state.inferredAwsRegion : undefined;
+            resourceInputs["inferredEntityType"] = state ? state.inferredEntityType : undefined;
+            resourceInputs["resolveAwsUniqueIds"] = state ? state.resolveAwsUniqueIds : undefined;
+            resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["roleTag"] = state ? state.roleTag : undefined;
+            resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
+            resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
+            resourceInputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
+            resourceInputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
+            resourceInputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
+            resourceInputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
+            resourceInputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
+            resourceInputs["tokenTtl"] = state ? state.tokenTtl : undefined;
+            resourceInputs["tokenType"] = state ? state.tokenType : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
             if ((!args || args.role === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            inputs["allowInstanceMigration"] = args ? args.allowInstanceMigration : undefined;
-            inputs["authType"] = args ? args.authType : undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["boundAccountIds"] = args ? args.boundAccountIds : undefined;
-            inputs["boundAmiIds"] = args ? args.boundAmiIds : undefined;
-            inputs["boundEc2InstanceIds"] = args ? args.boundEc2InstanceIds : undefined;
-            inputs["boundIamInstanceProfileArns"] = args ? args.boundIamInstanceProfileArns : undefined;
-            inputs["boundIamPrincipalArns"] = args ? args.boundIamPrincipalArns : undefined;
-            inputs["boundIamRoleArns"] = args ? args.boundIamRoleArns : undefined;
-            inputs["boundRegions"] = args ? args.boundRegions : undefined;
-            inputs["boundSubnetIds"] = args ? args.boundSubnetIds : undefined;
-            inputs["boundVpcIds"] = args ? args.boundVpcIds : undefined;
-            inputs["disallowReauthentication"] = args ? args.disallowReauthentication : undefined;
-            inputs["inferredAwsRegion"] = args ? args.inferredAwsRegion : undefined;
-            inputs["inferredEntityType"] = args ? args.inferredEntityType : undefined;
-            inputs["resolveAwsUniqueIds"] = args ? args.resolveAwsUniqueIds : undefined;
-            inputs["role"] = args ? args.role : undefined;
-            inputs["roleTag"] = args ? args.roleTag : undefined;
-            inputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
-            inputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
-            inputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
-            inputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
-            inputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
-            inputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
-            inputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
-            inputs["tokenTtl"] = args ? args.tokenTtl : undefined;
-            inputs["tokenType"] = args ? args.tokenType : undefined;
+            resourceInputs["allowInstanceMigration"] = args ? args.allowInstanceMigration : undefined;
+            resourceInputs["authType"] = args ? args.authType : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["boundAccountIds"] = args ? args.boundAccountIds : undefined;
+            resourceInputs["boundAmiIds"] = args ? args.boundAmiIds : undefined;
+            resourceInputs["boundEc2InstanceIds"] = args ? args.boundEc2InstanceIds : undefined;
+            resourceInputs["boundIamInstanceProfileArns"] = args ? args.boundIamInstanceProfileArns : undefined;
+            resourceInputs["boundIamPrincipalArns"] = args ? args.boundIamPrincipalArns : undefined;
+            resourceInputs["boundIamRoleArns"] = args ? args.boundIamRoleArns : undefined;
+            resourceInputs["boundRegions"] = args ? args.boundRegions : undefined;
+            resourceInputs["boundSubnetIds"] = args ? args.boundSubnetIds : undefined;
+            resourceInputs["boundVpcIds"] = args ? args.boundVpcIds : undefined;
+            resourceInputs["disallowReauthentication"] = args ? args.disallowReauthentication : undefined;
+            resourceInputs["inferredAwsRegion"] = args ? args.inferredAwsRegion : undefined;
+            resourceInputs["inferredEntityType"] = args ? args.inferredEntityType : undefined;
+            resourceInputs["resolveAwsUniqueIds"] = args ? args.resolveAwsUniqueIds : undefined;
+            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["roleTag"] = args ? args.roleTag : undefined;
+            resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
+            resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
+            resourceInputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
+            resourceInputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
+            resourceInputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
+            resourceInputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
+            resourceInputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
+            resourceInputs["tokenTtl"] = args ? args.tokenTtl : undefined;
+            resourceInputs["tokenType"] = args ? args.tokenType : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackendRole.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackendRole.__pulumiType, name, resourceInputs, opts);
     }
 }
 

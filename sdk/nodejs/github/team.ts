@@ -86,26 +86,24 @@ export class Team extends pulumi.CustomResource {
      */
     constructor(name: string, args: TeamArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TeamArgs | TeamState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TeamState | undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
-            inputs["team"] = state ? state.team : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["team"] = state ? state.team : undefined;
         } else {
             const args = argsOrState as TeamArgs | undefined;
             if ((!args || args.team === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'team'");
             }
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
-            inputs["team"] = args ? args.team : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["policies"] = args ? args.policies : undefined;
+            resourceInputs["team"] = args ? args.team : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Team.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Team.__pulumiType, name, resourceInputs, opts);
     }
 }
 

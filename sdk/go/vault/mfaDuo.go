@@ -219,7 +219,7 @@ type MfaDuoInput interface {
 }
 
 func (*MfaDuo) ElementType() reflect.Type {
-	return reflect.TypeOf((*MfaDuo)(nil))
+	return reflect.TypeOf((**MfaDuo)(nil)).Elem()
 }
 
 func (i *MfaDuo) ToMfaDuoOutput() MfaDuoOutput {
@@ -228,35 +228,6 @@ func (i *MfaDuo) ToMfaDuoOutput() MfaDuoOutput {
 
 func (i *MfaDuo) ToMfaDuoOutputWithContext(ctx context.Context) MfaDuoOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MfaDuoOutput)
-}
-
-func (i *MfaDuo) ToMfaDuoPtrOutput() MfaDuoPtrOutput {
-	return i.ToMfaDuoPtrOutputWithContext(context.Background())
-}
-
-func (i *MfaDuo) ToMfaDuoPtrOutputWithContext(ctx context.Context) MfaDuoPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MfaDuoPtrOutput)
-}
-
-type MfaDuoPtrInput interface {
-	pulumi.Input
-
-	ToMfaDuoPtrOutput() MfaDuoPtrOutput
-	ToMfaDuoPtrOutputWithContext(ctx context.Context) MfaDuoPtrOutput
-}
-
-type mfaDuoPtrType MfaDuoArgs
-
-func (*mfaDuoPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**MfaDuo)(nil))
-}
-
-func (i *mfaDuoPtrType) ToMfaDuoPtrOutput() MfaDuoPtrOutput {
-	return i.ToMfaDuoPtrOutputWithContext(context.Background())
-}
-
-func (i *mfaDuoPtrType) ToMfaDuoPtrOutputWithContext(ctx context.Context) MfaDuoPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MfaDuoPtrOutput)
 }
 
 // MfaDuoArrayInput is an input type that accepts MfaDuoArray and MfaDuoArrayOutput values.
@@ -312,7 +283,7 @@ func (i MfaDuoMap) ToMfaDuoMapOutputWithContext(ctx context.Context) MfaDuoMapOu
 type MfaDuoOutput struct{ *pulumi.OutputState }
 
 func (MfaDuoOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*MfaDuo)(nil))
+	return reflect.TypeOf((**MfaDuo)(nil)).Elem()
 }
 
 func (o MfaDuoOutput) ToMfaDuoOutput() MfaDuoOutput {
@@ -323,44 +294,10 @@ func (o MfaDuoOutput) ToMfaDuoOutputWithContext(ctx context.Context) MfaDuoOutpu
 	return o
 }
 
-func (o MfaDuoOutput) ToMfaDuoPtrOutput() MfaDuoPtrOutput {
-	return o.ToMfaDuoPtrOutputWithContext(context.Background())
-}
-
-func (o MfaDuoOutput) ToMfaDuoPtrOutputWithContext(ctx context.Context) MfaDuoPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v MfaDuo) *MfaDuo {
-		return &v
-	}).(MfaDuoPtrOutput)
-}
-
-type MfaDuoPtrOutput struct{ *pulumi.OutputState }
-
-func (MfaDuoPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**MfaDuo)(nil))
-}
-
-func (o MfaDuoPtrOutput) ToMfaDuoPtrOutput() MfaDuoPtrOutput {
-	return o
-}
-
-func (o MfaDuoPtrOutput) ToMfaDuoPtrOutputWithContext(ctx context.Context) MfaDuoPtrOutput {
-	return o
-}
-
-func (o MfaDuoPtrOutput) Elem() MfaDuoOutput {
-	return o.ApplyT(func(v *MfaDuo) MfaDuo {
-		if v != nil {
-			return *v
-		}
-		var ret MfaDuo
-		return ret
-	}).(MfaDuoOutput)
-}
-
 type MfaDuoArrayOutput struct{ *pulumi.OutputState }
 
 func (MfaDuoArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]MfaDuo)(nil))
+	return reflect.TypeOf((*[]*MfaDuo)(nil)).Elem()
 }
 
 func (o MfaDuoArrayOutput) ToMfaDuoArrayOutput() MfaDuoArrayOutput {
@@ -372,15 +309,15 @@ func (o MfaDuoArrayOutput) ToMfaDuoArrayOutputWithContext(ctx context.Context) M
 }
 
 func (o MfaDuoArrayOutput) Index(i pulumi.IntInput) MfaDuoOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MfaDuo {
-		return vs[0].([]MfaDuo)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *MfaDuo {
+		return vs[0].([]*MfaDuo)[vs[1].(int)]
 	}).(MfaDuoOutput)
 }
 
 type MfaDuoMapOutput struct{ *pulumi.OutputState }
 
 func (MfaDuoMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]MfaDuo)(nil))
+	return reflect.TypeOf((*map[string]*MfaDuo)(nil)).Elem()
 }
 
 func (o MfaDuoMapOutput) ToMfaDuoMapOutput() MfaDuoMapOutput {
@@ -392,18 +329,16 @@ func (o MfaDuoMapOutput) ToMfaDuoMapOutputWithContext(ctx context.Context) MfaDu
 }
 
 func (o MfaDuoMapOutput) MapIndex(k pulumi.StringInput) MfaDuoOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) MfaDuo {
-		return vs[0].(map[string]MfaDuo)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *MfaDuo {
+		return vs[0].(map[string]*MfaDuo)[vs[1].(string)]
 	}).(MfaDuoOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*MfaDuoInput)(nil)).Elem(), &MfaDuo{})
-	pulumi.RegisterInputType(reflect.TypeOf((*MfaDuoPtrInput)(nil)).Elem(), &MfaDuo{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MfaDuoArrayInput)(nil)).Elem(), MfaDuoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MfaDuoMapInput)(nil)).Elem(), MfaDuoMap{})
 	pulumi.RegisterOutputType(MfaDuoOutput{})
-	pulumi.RegisterOutputType(MfaDuoPtrOutput{})
 	pulumi.RegisterOutputType(MfaDuoArrayOutput{})
 	pulumi.RegisterOutputType(MfaDuoMapOutput{})
 }

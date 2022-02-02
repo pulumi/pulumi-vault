@@ -25,9 +25,7 @@ export function getDecrypt(args: GetDecryptArgs, opts?: pulumi.InvokeOptions): P
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:transit/getDecrypt:getDecrypt", {
         "backend": args.backend,
         "ciphertext": args.ciphertext,

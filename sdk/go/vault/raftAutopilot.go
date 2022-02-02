@@ -204,7 +204,7 @@ type RaftAutopilotInput interface {
 }
 
 func (*RaftAutopilot) ElementType() reflect.Type {
-	return reflect.TypeOf((*RaftAutopilot)(nil))
+	return reflect.TypeOf((**RaftAutopilot)(nil)).Elem()
 }
 
 func (i *RaftAutopilot) ToRaftAutopilotOutput() RaftAutopilotOutput {
@@ -213,35 +213,6 @@ func (i *RaftAutopilot) ToRaftAutopilotOutput() RaftAutopilotOutput {
 
 func (i *RaftAutopilot) ToRaftAutopilotOutputWithContext(ctx context.Context) RaftAutopilotOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RaftAutopilotOutput)
-}
-
-func (i *RaftAutopilot) ToRaftAutopilotPtrOutput() RaftAutopilotPtrOutput {
-	return i.ToRaftAutopilotPtrOutputWithContext(context.Background())
-}
-
-func (i *RaftAutopilot) ToRaftAutopilotPtrOutputWithContext(ctx context.Context) RaftAutopilotPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RaftAutopilotPtrOutput)
-}
-
-type RaftAutopilotPtrInput interface {
-	pulumi.Input
-
-	ToRaftAutopilotPtrOutput() RaftAutopilotPtrOutput
-	ToRaftAutopilotPtrOutputWithContext(ctx context.Context) RaftAutopilotPtrOutput
-}
-
-type raftAutopilotPtrType RaftAutopilotArgs
-
-func (*raftAutopilotPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RaftAutopilot)(nil))
-}
-
-func (i *raftAutopilotPtrType) ToRaftAutopilotPtrOutput() RaftAutopilotPtrOutput {
-	return i.ToRaftAutopilotPtrOutputWithContext(context.Background())
-}
-
-func (i *raftAutopilotPtrType) ToRaftAutopilotPtrOutputWithContext(ctx context.Context) RaftAutopilotPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RaftAutopilotPtrOutput)
 }
 
 // RaftAutopilotArrayInput is an input type that accepts RaftAutopilotArray and RaftAutopilotArrayOutput values.
@@ -297,7 +268,7 @@ func (i RaftAutopilotMap) ToRaftAutopilotMapOutputWithContext(ctx context.Contex
 type RaftAutopilotOutput struct{ *pulumi.OutputState }
 
 func (RaftAutopilotOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RaftAutopilot)(nil))
+	return reflect.TypeOf((**RaftAutopilot)(nil)).Elem()
 }
 
 func (o RaftAutopilotOutput) ToRaftAutopilotOutput() RaftAutopilotOutput {
@@ -308,44 +279,10 @@ func (o RaftAutopilotOutput) ToRaftAutopilotOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o RaftAutopilotOutput) ToRaftAutopilotPtrOutput() RaftAutopilotPtrOutput {
-	return o.ToRaftAutopilotPtrOutputWithContext(context.Background())
-}
-
-func (o RaftAutopilotOutput) ToRaftAutopilotPtrOutputWithContext(ctx context.Context) RaftAutopilotPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v RaftAutopilot) *RaftAutopilot {
-		return &v
-	}).(RaftAutopilotPtrOutput)
-}
-
-type RaftAutopilotPtrOutput struct{ *pulumi.OutputState }
-
-func (RaftAutopilotPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RaftAutopilot)(nil))
-}
-
-func (o RaftAutopilotPtrOutput) ToRaftAutopilotPtrOutput() RaftAutopilotPtrOutput {
-	return o
-}
-
-func (o RaftAutopilotPtrOutput) ToRaftAutopilotPtrOutputWithContext(ctx context.Context) RaftAutopilotPtrOutput {
-	return o
-}
-
-func (o RaftAutopilotPtrOutput) Elem() RaftAutopilotOutput {
-	return o.ApplyT(func(v *RaftAutopilot) RaftAutopilot {
-		if v != nil {
-			return *v
-		}
-		var ret RaftAutopilot
-		return ret
-	}).(RaftAutopilotOutput)
-}
-
 type RaftAutopilotArrayOutput struct{ *pulumi.OutputState }
 
 func (RaftAutopilotArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RaftAutopilot)(nil))
+	return reflect.TypeOf((*[]*RaftAutopilot)(nil)).Elem()
 }
 
 func (o RaftAutopilotArrayOutput) ToRaftAutopilotArrayOutput() RaftAutopilotArrayOutput {
@@ -357,15 +294,15 @@ func (o RaftAutopilotArrayOutput) ToRaftAutopilotArrayOutputWithContext(ctx cont
 }
 
 func (o RaftAutopilotArrayOutput) Index(i pulumi.IntInput) RaftAutopilotOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RaftAutopilot {
-		return vs[0].([]RaftAutopilot)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RaftAutopilot {
+		return vs[0].([]*RaftAutopilot)[vs[1].(int)]
 	}).(RaftAutopilotOutput)
 }
 
 type RaftAutopilotMapOutput struct{ *pulumi.OutputState }
 
 func (RaftAutopilotMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RaftAutopilot)(nil))
+	return reflect.TypeOf((*map[string]*RaftAutopilot)(nil)).Elem()
 }
 
 func (o RaftAutopilotMapOutput) ToRaftAutopilotMapOutput() RaftAutopilotMapOutput {
@@ -377,18 +314,16 @@ func (o RaftAutopilotMapOutput) ToRaftAutopilotMapOutputWithContext(ctx context.
 }
 
 func (o RaftAutopilotMapOutput) MapIndex(k pulumi.StringInput) RaftAutopilotOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RaftAutopilot {
-		return vs[0].(map[string]RaftAutopilot)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RaftAutopilot {
+		return vs[0].(map[string]*RaftAutopilot)[vs[1].(string)]
 	}).(RaftAutopilotOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RaftAutopilotInput)(nil)).Elem(), &RaftAutopilot{})
-	pulumi.RegisterInputType(reflect.TypeOf((*RaftAutopilotPtrInput)(nil)).Elem(), &RaftAutopilot{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RaftAutopilotArrayInput)(nil)).Elem(), RaftAutopilotArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RaftAutopilotMapInput)(nil)).Elem(), RaftAutopilotMap{})
 	pulumi.RegisterOutputType(RaftAutopilotOutput{})
-	pulumi.RegisterOutputType(RaftAutopilotPtrOutput{})
 	pulumi.RegisterOutputType(RaftAutopilotArrayOutput{})
 	pulumi.RegisterOutputType(RaftAutopilotMapOutput{})
 }

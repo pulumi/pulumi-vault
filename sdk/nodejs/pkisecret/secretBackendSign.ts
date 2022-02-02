@@ -114,28 +114,28 @@ export class SecretBackendSign extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretBackendSignArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendSignArgs | SecretBackendSignState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendSignState | undefined;
-            inputs["altNames"] = state ? state.altNames : undefined;
-            inputs["autoRenew"] = state ? state.autoRenew : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["caChains"] = state ? state.caChains : undefined;
-            inputs["certificate"] = state ? state.certificate : undefined;
-            inputs["commonName"] = state ? state.commonName : undefined;
-            inputs["csr"] = state ? state.csr : undefined;
-            inputs["excludeCnFromSans"] = state ? state.excludeCnFromSans : undefined;
-            inputs["expiration"] = state ? state.expiration : undefined;
-            inputs["format"] = state ? state.format : undefined;
-            inputs["ipSans"] = state ? state.ipSans : undefined;
-            inputs["issuingCa"] = state ? state.issuingCa : undefined;
-            inputs["minSecondsRemaining"] = state ? state.minSecondsRemaining : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["otherSans"] = state ? state.otherSans : undefined;
-            inputs["serial"] = state ? state.serial : undefined;
-            inputs["ttl"] = state ? state.ttl : undefined;
-            inputs["uriSans"] = state ? state.uriSans : undefined;
+            resourceInputs["altNames"] = state ? state.altNames : undefined;
+            resourceInputs["autoRenew"] = state ? state.autoRenew : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["caChains"] = state ? state.caChains : undefined;
+            resourceInputs["certificate"] = state ? state.certificate : undefined;
+            resourceInputs["commonName"] = state ? state.commonName : undefined;
+            resourceInputs["csr"] = state ? state.csr : undefined;
+            resourceInputs["excludeCnFromSans"] = state ? state.excludeCnFromSans : undefined;
+            resourceInputs["expiration"] = state ? state.expiration : undefined;
+            resourceInputs["format"] = state ? state.format : undefined;
+            resourceInputs["ipSans"] = state ? state.ipSans : undefined;
+            resourceInputs["issuingCa"] = state ? state.issuingCa : undefined;
+            resourceInputs["minSecondsRemaining"] = state ? state.minSecondsRemaining : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["otherSans"] = state ? state.otherSans : undefined;
+            resourceInputs["serial"] = state ? state.serial : undefined;
+            resourceInputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["uriSans"] = state ? state.uriSans : undefined;
         } else {
             const args = argsOrState as SecretBackendSignArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -147,29 +147,27 @@ export class SecretBackendSign extends pulumi.CustomResource {
             if ((!args || args.csr === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'csr'");
             }
-            inputs["altNames"] = args ? args.altNames : undefined;
-            inputs["autoRenew"] = args ? args.autoRenew : undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["commonName"] = args ? args.commonName : undefined;
-            inputs["csr"] = args ? args.csr : undefined;
-            inputs["excludeCnFromSans"] = args ? args.excludeCnFromSans : undefined;
-            inputs["format"] = args ? args.format : undefined;
-            inputs["ipSans"] = args ? args.ipSans : undefined;
-            inputs["minSecondsRemaining"] = args ? args.minSecondsRemaining : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["otherSans"] = args ? args.otherSans : undefined;
-            inputs["ttl"] = args ? args.ttl : undefined;
-            inputs["uriSans"] = args ? args.uriSans : undefined;
-            inputs["caChains"] = undefined /*out*/;
-            inputs["certificate"] = undefined /*out*/;
-            inputs["expiration"] = undefined /*out*/;
-            inputs["issuingCa"] = undefined /*out*/;
-            inputs["serial"] = undefined /*out*/;
+            resourceInputs["altNames"] = args ? args.altNames : undefined;
+            resourceInputs["autoRenew"] = args ? args.autoRenew : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["commonName"] = args ? args.commonName : undefined;
+            resourceInputs["csr"] = args ? args.csr : undefined;
+            resourceInputs["excludeCnFromSans"] = args ? args.excludeCnFromSans : undefined;
+            resourceInputs["format"] = args ? args.format : undefined;
+            resourceInputs["ipSans"] = args ? args.ipSans : undefined;
+            resourceInputs["minSecondsRemaining"] = args ? args.minSecondsRemaining : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["otherSans"] = args ? args.otherSans : undefined;
+            resourceInputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["uriSans"] = args ? args.uriSans : undefined;
+            resourceInputs["caChains"] = undefined /*out*/;
+            resourceInputs["certificate"] = undefined /*out*/;
+            resourceInputs["expiration"] = undefined /*out*/;
+            resourceInputs["issuingCa"] = undefined /*out*/;
+            resourceInputs["serial"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretBackendSign.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretBackendSign.__pulumiType, name, resourceInputs, opts);
     }
 }
 

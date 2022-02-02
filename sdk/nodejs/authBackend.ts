@@ -91,32 +91,30 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuthBackendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendArgs | AuthBackendState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendState | undefined;
-            inputs["accessor"] = state ? state.accessor : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["local"] = state ? state.local : undefined;
-            inputs["path"] = state ? state.path : undefined;
-            inputs["tune"] = state ? state.tune : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["accessor"] = state ? state.accessor : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["local"] = state ? state.local : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["tune"] = state ? state.tune : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["description"] = args ? args.description : undefined;
-            inputs["local"] = args ? args.local : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["tune"] = args ? args.tune : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["accessor"] = undefined /*out*/;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["local"] = args ? args.local : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["tune"] = args ? args.tune : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["accessor"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackend.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackend.__pulumiType, name, resourceInputs, opts);
     }
 }
 

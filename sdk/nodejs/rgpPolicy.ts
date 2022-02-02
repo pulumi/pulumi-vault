@@ -74,13 +74,13 @@ export class RgpPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args: RgpPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RgpPolicyArgs | RgpPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RgpPolicyState | undefined;
-            inputs["enforcementLevel"] = state ? state.enforcementLevel : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["policy"] = state ? state.policy : undefined;
+            resourceInputs["enforcementLevel"] = state ? state.enforcementLevel : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["policy"] = state ? state.policy : undefined;
         } else {
             const args = argsOrState as RgpPolicyArgs | undefined;
             if ((!args || args.enforcementLevel === undefined) && !opts.urn) {
@@ -89,14 +89,12 @@ export class RgpPolicy extends pulumi.CustomResource {
             if ((!args || args.policy === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'policy'");
             }
-            inputs["enforcementLevel"] = args ? args.enforcementLevel : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["policy"] = args ? args.policy : undefined;
+            resourceInputs["enforcementLevel"] = args ? args.enforcementLevel : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["policy"] = args ? args.policy : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RgpPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RgpPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

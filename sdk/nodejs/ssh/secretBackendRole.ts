@@ -163,32 +163,32 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendRoleArgs | SecretBackendRoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendRoleState | undefined;
-            inputs["algorithmSigner"] = state ? state.algorithmSigner : undefined;
-            inputs["allowBareDomains"] = state ? state.allowBareDomains : undefined;
-            inputs["allowHostCertificates"] = state ? state.allowHostCertificates : undefined;
-            inputs["allowSubdomains"] = state ? state.allowSubdomains : undefined;
-            inputs["allowUserCertificates"] = state ? state.allowUserCertificates : undefined;
-            inputs["allowUserKeyIds"] = state ? state.allowUserKeyIds : undefined;
-            inputs["allowedCriticalOptions"] = state ? state.allowedCriticalOptions : undefined;
-            inputs["allowedDomains"] = state ? state.allowedDomains : undefined;
-            inputs["allowedExtensions"] = state ? state.allowedExtensions : undefined;
-            inputs["allowedUserKeyLengths"] = state ? state.allowedUserKeyLengths : undefined;
-            inputs["allowedUsers"] = state ? state.allowedUsers : undefined;
-            inputs["allowedUsersTemplate"] = state ? state.allowedUsersTemplate : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["cidrList"] = state ? state.cidrList : undefined;
-            inputs["defaultCriticalOptions"] = state ? state.defaultCriticalOptions : undefined;
-            inputs["defaultExtensions"] = state ? state.defaultExtensions : undefined;
-            inputs["defaultUser"] = state ? state.defaultUser : undefined;
-            inputs["keyIdFormat"] = state ? state.keyIdFormat : undefined;
-            inputs["keyType"] = state ? state.keyType : undefined;
-            inputs["maxTtl"] = state ? state.maxTtl : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["algorithmSigner"] = state ? state.algorithmSigner : undefined;
+            resourceInputs["allowBareDomains"] = state ? state.allowBareDomains : undefined;
+            resourceInputs["allowHostCertificates"] = state ? state.allowHostCertificates : undefined;
+            resourceInputs["allowSubdomains"] = state ? state.allowSubdomains : undefined;
+            resourceInputs["allowUserCertificates"] = state ? state.allowUserCertificates : undefined;
+            resourceInputs["allowUserKeyIds"] = state ? state.allowUserKeyIds : undefined;
+            resourceInputs["allowedCriticalOptions"] = state ? state.allowedCriticalOptions : undefined;
+            resourceInputs["allowedDomains"] = state ? state.allowedDomains : undefined;
+            resourceInputs["allowedExtensions"] = state ? state.allowedExtensions : undefined;
+            resourceInputs["allowedUserKeyLengths"] = state ? state.allowedUserKeyLengths : undefined;
+            resourceInputs["allowedUsers"] = state ? state.allowedUsers : undefined;
+            resourceInputs["allowedUsersTemplate"] = state ? state.allowedUsersTemplate : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["cidrList"] = state ? state.cidrList : undefined;
+            resourceInputs["defaultCriticalOptions"] = state ? state.defaultCriticalOptions : undefined;
+            resourceInputs["defaultExtensions"] = state ? state.defaultExtensions : undefined;
+            resourceInputs["defaultUser"] = state ? state.defaultUser : undefined;
+            resourceInputs["keyIdFormat"] = state ? state.keyIdFormat : undefined;
+            resourceInputs["keyType"] = state ? state.keyType : undefined;
+            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -197,33 +197,31 @@ export class SecretBackendRole extends pulumi.CustomResource {
             if ((!args || args.keyType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'keyType'");
             }
-            inputs["algorithmSigner"] = args ? args.algorithmSigner : undefined;
-            inputs["allowBareDomains"] = args ? args.allowBareDomains : undefined;
-            inputs["allowHostCertificates"] = args ? args.allowHostCertificates : undefined;
-            inputs["allowSubdomains"] = args ? args.allowSubdomains : undefined;
-            inputs["allowUserCertificates"] = args ? args.allowUserCertificates : undefined;
-            inputs["allowUserKeyIds"] = args ? args.allowUserKeyIds : undefined;
-            inputs["allowedCriticalOptions"] = args ? args.allowedCriticalOptions : undefined;
-            inputs["allowedDomains"] = args ? args.allowedDomains : undefined;
-            inputs["allowedExtensions"] = args ? args.allowedExtensions : undefined;
-            inputs["allowedUserKeyLengths"] = args ? args.allowedUserKeyLengths : undefined;
-            inputs["allowedUsers"] = args ? args.allowedUsers : undefined;
-            inputs["allowedUsersTemplate"] = args ? args.allowedUsersTemplate : undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["cidrList"] = args ? args.cidrList : undefined;
-            inputs["defaultCriticalOptions"] = args ? args.defaultCriticalOptions : undefined;
-            inputs["defaultExtensions"] = args ? args.defaultExtensions : undefined;
-            inputs["defaultUser"] = args ? args.defaultUser : undefined;
-            inputs["keyIdFormat"] = args ? args.keyIdFormat : undefined;
-            inputs["keyType"] = args ? args.keyType : undefined;
-            inputs["maxTtl"] = args ? args.maxTtl : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["algorithmSigner"] = args ? args.algorithmSigner : undefined;
+            resourceInputs["allowBareDomains"] = args ? args.allowBareDomains : undefined;
+            resourceInputs["allowHostCertificates"] = args ? args.allowHostCertificates : undefined;
+            resourceInputs["allowSubdomains"] = args ? args.allowSubdomains : undefined;
+            resourceInputs["allowUserCertificates"] = args ? args.allowUserCertificates : undefined;
+            resourceInputs["allowUserKeyIds"] = args ? args.allowUserKeyIds : undefined;
+            resourceInputs["allowedCriticalOptions"] = args ? args.allowedCriticalOptions : undefined;
+            resourceInputs["allowedDomains"] = args ? args.allowedDomains : undefined;
+            resourceInputs["allowedExtensions"] = args ? args.allowedExtensions : undefined;
+            resourceInputs["allowedUserKeyLengths"] = args ? args.allowedUserKeyLengths : undefined;
+            resourceInputs["allowedUsers"] = args ? args.allowedUsers : undefined;
+            resourceInputs["allowedUsersTemplate"] = args ? args.allowedUsersTemplate : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["cidrList"] = args ? args.cidrList : undefined;
+            resourceInputs["defaultCriticalOptions"] = args ? args.defaultCriticalOptions : undefined;
+            resourceInputs["defaultExtensions"] = args ? args.defaultExtensions : undefined;
+            resourceInputs["defaultUser"] = args ? args.defaultUser : undefined;
+            resourceInputs["keyIdFormat"] = args ? args.keyIdFormat : undefined;
+            resourceInputs["keyType"] = args ? args.keyType : undefined;
+            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["ttl"] = args ? args.ttl : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretBackendRole.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretBackendRole.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -21,9 +21,7 @@ export function getAuthBackend(args: GetAuthBackendArgs, opts?: pulumi.InvokeOpt
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:index/getAuthBackend:getAuthBackend", {
         "path": args.path,
     }, opts);

@@ -94,19 +94,19 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendRoleArgs | SecretBackendRoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendRoleState | undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["creationStatements"] = state ? state.creationStatements : undefined;
-            inputs["dbName"] = state ? state.dbName : undefined;
-            inputs["defaultTtl"] = state ? state.defaultTtl : undefined;
-            inputs["maxTtl"] = state ? state.maxTtl : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["renewStatements"] = state ? state.renewStatements : undefined;
-            inputs["revocationStatements"] = state ? state.revocationStatements : undefined;
-            inputs["rollbackStatements"] = state ? state.rollbackStatements : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["creationStatements"] = state ? state.creationStatements : undefined;
+            resourceInputs["dbName"] = state ? state.dbName : undefined;
+            resourceInputs["defaultTtl"] = state ? state.defaultTtl : undefined;
+            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["renewStatements"] = state ? state.renewStatements : undefined;
+            resourceInputs["revocationStatements"] = state ? state.revocationStatements : undefined;
+            resourceInputs["rollbackStatements"] = state ? state.rollbackStatements : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -118,20 +118,18 @@ export class SecretBackendRole extends pulumi.CustomResource {
             if ((!args || args.dbName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'dbName'");
             }
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["creationStatements"] = args ? args.creationStatements : undefined;
-            inputs["dbName"] = args ? args.dbName : undefined;
-            inputs["defaultTtl"] = args ? args.defaultTtl : undefined;
-            inputs["maxTtl"] = args ? args.maxTtl : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["renewStatements"] = args ? args.renewStatements : undefined;
-            inputs["revocationStatements"] = args ? args.revocationStatements : undefined;
-            inputs["rollbackStatements"] = args ? args.rollbackStatements : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["creationStatements"] = args ? args.creationStatements : undefined;
+            resourceInputs["dbName"] = args ? args.dbName : undefined;
+            resourceInputs["defaultTtl"] = args ? args.defaultTtl : undefined;
+            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["renewStatements"] = args ? args.renewStatements : undefined;
+            resourceInputs["revocationStatements"] = args ? args.revocationStatements : undefined;
+            resourceInputs["rollbackStatements"] = args ? args.rollbackStatements : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretBackendRole.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretBackendRole.__pulumiType, name, resourceInputs, opts);
     }
 }
 

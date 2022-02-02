@@ -29,7 +29,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewRgpPolicy(ctx, "allow_all", &vault.RgpPolicyArgs{
+// 		_, err := vault.NewRgpPolicy(ctx, "allow-all", &vault.RgpPolicyArgs{
 // 			EnforcementLevel: pulumi.String("soft-mandatory"),
 // 			Policy:           pulumi.String(fmt.Sprintf("%v%v%v%v", "main = rule {\n", "  true\n", "}\n", "\n")),
 // 		})
@@ -138,7 +138,7 @@ type RgpPolicyInput interface {
 }
 
 func (*RgpPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*RgpPolicy)(nil))
+	return reflect.TypeOf((**RgpPolicy)(nil)).Elem()
 }
 
 func (i *RgpPolicy) ToRgpPolicyOutput() RgpPolicyOutput {
@@ -147,35 +147,6 @@ func (i *RgpPolicy) ToRgpPolicyOutput() RgpPolicyOutput {
 
 func (i *RgpPolicy) ToRgpPolicyOutputWithContext(ctx context.Context) RgpPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RgpPolicyOutput)
-}
-
-func (i *RgpPolicy) ToRgpPolicyPtrOutput() RgpPolicyPtrOutput {
-	return i.ToRgpPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *RgpPolicy) ToRgpPolicyPtrOutputWithContext(ctx context.Context) RgpPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RgpPolicyPtrOutput)
-}
-
-type RgpPolicyPtrInput interface {
-	pulumi.Input
-
-	ToRgpPolicyPtrOutput() RgpPolicyPtrOutput
-	ToRgpPolicyPtrOutputWithContext(ctx context.Context) RgpPolicyPtrOutput
-}
-
-type rgpPolicyPtrType RgpPolicyArgs
-
-func (*rgpPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RgpPolicy)(nil))
-}
-
-func (i *rgpPolicyPtrType) ToRgpPolicyPtrOutput() RgpPolicyPtrOutput {
-	return i.ToRgpPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *rgpPolicyPtrType) ToRgpPolicyPtrOutputWithContext(ctx context.Context) RgpPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RgpPolicyPtrOutput)
 }
 
 // RgpPolicyArrayInput is an input type that accepts RgpPolicyArray and RgpPolicyArrayOutput values.
@@ -231,7 +202,7 @@ func (i RgpPolicyMap) ToRgpPolicyMapOutputWithContext(ctx context.Context) RgpPo
 type RgpPolicyOutput struct{ *pulumi.OutputState }
 
 func (RgpPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RgpPolicy)(nil))
+	return reflect.TypeOf((**RgpPolicy)(nil)).Elem()
 }
 
 func (o RgpPolicyOutput) ToRgpPolicyOutput() RgpPolicyOutput {
@@ -242,44 +213,10 @@ func (o RgpPolicyOutput) ToRgpPolicyOutputWithContext(ctx context.Context) RgpPo
 	return o
 }
 
-func (o RgpPolicyOutput) ToRgpPolicyPtrOutput() RgpPolicyPtrOutput {
-	return o.ToRgpPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o RgpPolicyOutput) ToRgpPolicyPtrOutputWithContext(ctx context.Context) RgpPolicyPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v RgpPolicy) *RgpPolicy {
-		return &v
-	}).(RgpPolicyPtrOutput)
-}
-
-type RgpPolicyPtrOutput struct{ *pulumi.OutputState }
-
-func (RgpPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RgpPolicy)(nil))
-}
-
-func (o RgpPolicyPtrOutput) ToRgpPolicyPtrOutput() RgpPolicyPtrOutput {
-	return o
-}
-
-func (o RgpPolicyPtrOutput) ToRgpPolicyPtrOutputWithContext(ctx context.Context) RgpPolicyPtrOutput {
-	return o
-}
-
-func (o RgpPolicyPtrOutput) Elem() RgpPolicyOutput {
-	return o.ApplyT(func(v *RgpPolicy) RgpPolicy {
-		if v != nil {
-			return *v
-		}
-		var ret RgpPolicy
-		return ret
-	}).(RgpPolicyOutput)
-}
-
 type RgpPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (RgpPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RgpPolicy)(nil))
+	return reflect.TypeOf((*[]*RgpPolicy)(nil)).Elem()
 }
 
 func (o RgpPolicyArrayOutput) ToRgpPolicyArrayOutput() RgpPolicyArrayOutput {
@@ -291,15 +228,15 @@ func (o RgpPolicyArrayOutput) ToRgpPolicyArrayOutputWithContext(ctx context.Cont
 }
 
 func (o RgpPolicyArrayOutput) Index(i pulumi.IntInput) RgpPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RgpPolicy {
-		return vs[0].([]RgpPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RgpPolicy {
+		return vs[0].([]*RgpPolicy)[vs[1].(int)]
 	}).(RgpPolicyOutput)
 }
 
 type RgpPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (RgpPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RgpPolicy)(nil))
+	return reflect.TypeOf((*map[string]*RgpPolicy)(nil)).Elem()
 }
 
 func (o RgpPolicyMapOutput) ToRgpPolicyMapOutput() RgpPolicyMapOutput {
@@ -311,18 +248,16 @@ func (o RgpPolicyMapOutput) ToRgpPolicyMapOutputWithContext(ctx context.Context)
 }
 
 func (o RgpPolicyMapOutput) MapIndex(k pulumi.StringInput) RgpPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RgpPolicy {
-		return vs[0].(map[string]RgpPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RgpPolicy {
+		return vs[0].(map[string]*RgpPolicy)[vs[1].(string)]
 	}).(RgpPolicyOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RgpPolicyInput)(nil)).Elem(), &RgpPolicy{})
-	pulumi.RegisterInputType(reflect.TypeOf((*RgpPolicyPtrInput)(nil)).Elem(), &RgpPolicy{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RgpPolicyArrayInput)(nil)).Elem(), RgpPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RgpPolicyMapInput)(nil)).Elem(), RgpPolicyMap{})
 	pulumi.RegisterOutputType(RgpPolicyOutput{})
-	pulumi.RegisterOutputType(RgpPolicyPtrOutput{})
 	pulumi.RegisterOutputType(RgpPolicyArrayOutput{})
 	pulumi.RegisterOutputType(RgpPolicyMapOutput{})
 }

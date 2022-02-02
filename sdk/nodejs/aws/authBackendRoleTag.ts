@@ -119,38 +119,36 @@ export class AuthBackendRoleTag extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuthBackendRoleTagArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendRoleTagArgs | AuthBackendRoleTagState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleTagState | undefined;
-            inputs["allowInstanceMigration"] = state ? state.allowInstanceMigration : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["disallowReauthentication"] = state ? state.disallowReauthentication : undefined;
-            inputs["instanceId"] = state ? state.instanceId : undefined;
-            inputs["maxTtl"] = state ? state.maxTtl : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
-            inputs["role"] = state ? state.role : undefined;
-            inputs["tagKey"] = state ? state.tagKey : undefined;
-            inputs["tagValue"] = state ? state.tagValue : undefined;
+            resourceInputs["allowInstanceMigration"] = state ? state.allowInstanceMigration : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["disallowReauthentication"] = state ? state.disallowReauthentication : undefined;
+            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
+            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
+            resourceInputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["tagKey"] = state ? state.tagKey : undefined;
+            resourceInputs["tagValue"] = state ? state.tagValue : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleTagArgs | undefined;
             if ((!args || args.role === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            inputs["allowInstanceMigration"] = args ? args.allowInstanceMigration : undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["disallowReauthentication"] = args ? args.disallowReauthentication : undefined;
-            inputs["instanceId"] = args ? args.instanceId : undefined;
-            inputs["maxTtl"] = args ? args.maxTtl : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
-            inputs["role"] = args ? args.role : undefined;
-            inputs["tagKey"] = undefined /*out*/;
-            inputs["tagValue"] = undefined /*out*/;
+            resourceInputs["allowInstanceMigration"] = args ? args.allowInstanceMigration : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["disallowReauthentication"] = args ? args.disallowReauthentication : undefined;
+            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
+            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
+            resourceInputs["policies"] = args ? args.policies : undefined;
+            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["tagKey"] = undefined /*out*/;
+            resourceInputs["tagValue"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackendRoleTag.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackendRoleTag.__pulumiType, name, resourceInputs, opts);
     }
 }
 

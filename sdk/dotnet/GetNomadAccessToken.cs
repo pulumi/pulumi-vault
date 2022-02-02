@@ -6,17 +6,16 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Vault
 {
     public static class GetNomadAccessToken
     {
         public static Task<GetNomadAccessTokenResult> InvokeAsync(GetNomadAccessTokenArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetNomadAccessTokenResult>("vault:index/getNomadAccessToken:getNomadAccessToken", args ?? new GetNomadAccessTokenArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetNomadAccessTokenResult>("vault:index/getNomadAccessToken:getNomadAccessToken", args ?? new GetNomadAccessTokenArgs(), options.WithDefaults());
 
         public static Output<GetNomadAccessTokenResult> Invoke(GetNomadAccessTokenInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetNomadAccessTokenResult>("vault:index/getNomadAccessToken:getNomadAccessToken", args ?? new GetNomadAccessTokenInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetNomadAccessTokenResult>("vault:index/getNomadAccessToken:getNomadAccessToken", args ?? new GetNomadAccessTokenInvokeArgs(), options.WithDefaults());
     }
 
 

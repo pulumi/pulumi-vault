@@ -11,9 +11,7 @@ export function getEntity(args?: GetEntityArgs, opts?: pulumi.InvokeOptions): Pr
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:identity/getEntity:getEntity", {
         "aliasId": args.aliasId,
         "aliasMountAccessor": args.aliasMountAccessor,

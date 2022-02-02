@@ -86,13 +86,13 @@ export class AuthBackendGroup extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuthBackendGroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendGroupArgs | AuthBackendGroupState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendGroupState | undefined;
-            inputs["groupName"] = state ? state.groupName : undefined;
-            inputs["path"] = state ? state.path : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["groupName"] = state ? state.groupName : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["policies"] = state ? state.policies : undefined;
         } else {
             const args = argsOrState as AuthBackendGroupArgs | undefined;
             if ((!args || args.groupName === undefined) && !opts.urn) {
@@ -101,14 +101,12 @@ export class AuthBackendGroup extends pulumi.CustomResource {
             if ((!args || args.path === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            inputs["groupName"] = args ? args.groupName : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
+            resourceInputs["groupName"] = args ? args.groupName : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["policies"] = args ? args.policies : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackendGroup.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackendGroup.__pulumiType, name, resourceInputs, opts);
     }
 }
 

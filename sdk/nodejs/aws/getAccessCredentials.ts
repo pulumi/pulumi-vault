@@ -9,9 +9,7 @@ export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulu
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:aws/getAccessCredentials:getAccessCredentials", {
         "backend": args.backend,
         "region": args.region,

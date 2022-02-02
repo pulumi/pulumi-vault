@@ -116,38 +116,36 @@ export class AuthBackendRoleSecretID extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuthBackendRoleSecretIDArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendRoleSecretIDArgs | AuthBackendRoleSecretIDState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleSecretIDState | undefined;
-            inputs["accessor"] = state ? state.accessor : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["cidrLists"] = state ? state.cidrLists : undefined;
-            inputs["metadata"] = state ? state.metadata : undefined;
-            inputs["roleName"] = state ? state.roleName : undefined;
-            inputs["secretId"] = state ? state.secretId : undefined;
-            inputs["wrappingAccessor"] = state ? state.wrappingAccessor : undefined;
-            inputs["wrappingToken"] = state ? state.wrappingToken : undefined;
-            inputs["wrappingTtl"] = state ? state.wrappingTtl : undefined;
+            resourceInputs["accessor"] = state ? state.accessor : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["cidrLists"] = state ? state.cidrLists : undefined;
+            resourceInputs["metadata"] = state ? state.metadata : undefined;
+            resourceInputs["roleName"] = state ? state.roleName : undefined;
+            resourceInputs["secretId"] = state ? state.secretId : undefined;
+            resourceInputs["wrappingAccessor"] = state ? state.wrappingAccessor : undefined;
+            resourceInputs["wrappingToken"] = state ? state.wrappingToken : undefined;
+            resourceInputs["wrappingTtl"] = state ? state.wrappingTtl : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleSecretIDArgs | undefined;
             if ((!args || args.roleName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleName'");
             }
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["cidrLists"] = args ? args.cidrLists : undefined;
-            inputs["metadata"] = args ? args.metadata : undefined;
-            inputs["roleName"] = args ? args.roleName : undefined;
-            inputs["secretId"] = args ? args.secretId : undefined;
-            inputs["wrappingTtl"] = args ? args.wrappingTtl : undefined;
-            inputs["accessor"] = undefined /*out*/;
-            inputs["wrappingAccessor"] = undefined /*out*/;
-            inputs["wrappingToken"] = undefined /*out*/;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["cidrLists"] = args ? args.cidrLists : undefined;
+            resourceInputs["metadata"] = args ? args.metadata : undefined;
+            resourceInputs["roleName"] = args ? args.roleName : undefined;
+            resourceInputs["secretId"] = args ? args.secretId : undefined;
+            resourceInputs["wrappingTtl"] = args ? args.wrappingTtl : undefined;
+            resourceInputs["accessor"] = undefined /*out*/;
+            resourceInputs["wrappingAccessor"] = undefined /*out*/;
+            resourceInputs["wrappingToken"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackendRoleSecretID.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackendRoleSecretID.__pulumiType, name, resourceInputs, opts);
     }
 }
 

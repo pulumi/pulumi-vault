@@ -250,36 +250,36 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuthBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendRoleArgs | AuthBackendRoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleState | undefined;
-            inputs["allowedRedirectUris"] = state ? state.allowedRedirectUris : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["boundAudiences"] = state ? state.boundAudiences : undefined;
-            inputs["boundClaims"] = state ? state.boundClaims : undefined;
-            inputs["boundClaimsType"] = state ? state.boundClaimsType : undefined;
-            inputs["boundSubject"] = state ? state.boundSubject : undefined;
-            inputs["claimMappings"] = state ? state.claimMappings : undefined;
-            inputs["clockSkewLeeway"] = state ? state.clockSkewLeeway : undefined;
-            inputs["disableBoundClaimsParsing"] = state ? state.disableBoundClaimsParsing : undefined;
-            inputs["expirationLeeway"] = state ? state.expirationLeeway : undefined;
-            inputs["groupsClaim"] = state ? state.groupsClaim : undefined;
-            inputs["notBeforeLeeway"] = state ? state.notBeforeLeeway : undefined;
-            inputs["oidcScopes"] = state ? state.oidcScopes : undefined;
-            inputs["roleName"] = state ? state.roleName : undefined;
-            inputs["roleType"] = state ? state.roleType : undefined;
-            inputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
-            inputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
-            inputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
-            inputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
-            inputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
-            inputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
-            inputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
-            inputs["tokenTtl"] = state ? state.tokenTtl : undefined;
-            inputs["tokenType"] = state ? state.tokenType : undefined;
-            inputs["userClaim"] = state ? state.userClaim : undefined;
-            inputs["verboseOidcLogging"] = state ? state.verboseOidcLogging : undefined;
+            resourceInputs["allowedRedirectUris"] = state ? state.allowedRedirectUris : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["boundAudiences"] = state ? state.boundAudiences : undefined;
+            resourceInputs["boundClaims"] = state ? state.boundClaims : undefined;
+            resourceInputs["boundClaimsType"] = state ? state.boundClaimsType : undefined;
+            resourceInputs["boundSubject"] = state ? state.boundSubject : undefined;
+            resourceInputs["claimMappings"] = state ? state.claimMappings : undefined;
+            resourceInputs["clockSkewLeeway"] = state ? state.clockSkewLeeway : undefined;
+            resourceInputs["disableBoundClaimsParsing"] = state ? state.disableBoundClaimsParsing : undefined;
+            resourceInputs["expirationLeeway"] = state ? state.expirationLeeway : undefined;
+            resourceInputs["groupsClaim"] = state ? state.groupsClaim : undefined;
+            resourceInputs["notBeforeLeeway"] = state ? state.notBeforeLeeway : undefined;
+            resourceInputs["oidcScopes"] = state ? state.oidcScopes : undefined;
+            resourceInputs["roleName"] = state ? state.roleName : undefined;
+            resourceInputs["roleType"] = state ? state.roleType : undefined;
+            resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
+            resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
+            resourceInputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
+            resourceInputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
+            resourceInputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
+            resourceInputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
+            resourceInputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
+            resourceInputs["tokenTtl"] = state ? state.tokenTtl : undefined;
+            resourceInputs["tokenType"] = state ? state.tokenType : undefined;
+            resourceInputs["userClaim"] = state ? state.userClaim : undefined;
+            resourceInputs["verboseOidcLogging"] = state ? state.verboseOidcLogging : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
             if ((!args || args.roleName === undefined) && !opts.urn) {
@@ -288,37 +288,35 @@ export class AuthBackendRole extends pulumi.CustomResource {
             if ((!args || args.userClaim === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'userClaim'");
             }
-            inputs["allowedRedirectUris"] = args ? args.allowedRedirectUris : undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["boundAudiences"] = args ? args.boundAudiences : undefined;
-            inputs["boundClaims"] = args ? args.boundClaims : undefined;
-            inputs["boundClaimsType"] = args ? args.boundClaimsType : undefined;
-            inputs["boundSubject"] = args ? args.boundSubject : undefined;
-            inputs["claimMappings"] = args ? args.claimMappings : undefined;
-            inputs["clockSkewLeeway"] = args ? args.clockSkewLeeway : undefined;
-            inputs["disableBoundClaimsParsing"] = args ? args.disableBoundClaimsParsing : undefined;
-            inputs["expirationLeeway"] = args ? args.expirationLeeway : undefined;
-            inputs["groupsClaim"] = args ? args.groupsClaim : undefined;
-            inputs["notBeforeLeeway"] = args ? args.notBeforeLeeway : undefined;
-            inputs["oidcScopes"] = args ? args.oidcScopes : undefined;
-            inputs["roleName"] = args ? args.roleName : undefined;
-            inputs["roleType"] = args ? args.roleType : undefined;
-            inputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
-            inputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
-            inputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
-            inputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
-            inputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
-            inputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
-            inputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
-            inputs["tokenTtl"] = args ? args.tokenTtl : undefined;
-            inputs["tokenType"] = args ? args.tokenType : undefined;
-            inputs["userClaim"] = args ? args.userClaim : undefined;
-            inputs["verboseOidcLogging"] = args ? args.verboseOidcLogging : undefined;
+            resourceInputs["allowedRedirectUris"] = args ? args.allowedRedirectUris : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["boundAudiences"] = args ? args.boundAudiences : undefined;
+            resourceInputs["boundClaims"] = args ? args.boundClaims : undefined;
+            resourceInputs["boundClaimsType"] = args ? args.boundClaimsType : undefined;
+            resourceInputs["boundSubject"] = args ? args.boundSubject : undefined;
+            resourceInputs["claimMappings"] = args ? args.claimMappings : undefined;
+            resourceInputs["clockSkewLeeway"] = args ? args.clockSkewLeeway : undefined;
+            resourceInputs["disableBoundClaimsParsing"] = args ? args.disableBoundClaimsParsing : undefined;
+            resourceInputs["expirationLeeway"] = args ? args.expirationLeeway : undefined;
+            resourceInputs["groupsClaim"] = args ? args.groupsClaim : undefined;
+            resourceInputs["notBeforeLeeway"] = args ? args.notBeforeLeeway : undefined;
+            resourceInputs["oidcScopes"] = args ? args.oidcScopes : undefined;
+            resourceInputs["roleName"] = args ? args.roleName : undefined;
+            resourceInputs["roleType"] = args ? args.roleType : undefined;
+            resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
+            resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
+            resourceInputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
+            resourceInputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
+            resourceInputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
+            resourceInputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
+            resourceInputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
+            resourceInputs["tokenTtl"] = args ? args.tokenTtl : undefined;
+            resourceInputs["tokenType"] = args ? args.tokenType : undefined;
+            resourceInputs["userClaim"] = args ? args.userClaim : undefined;
+            resourceInputs["verboseOidcLogging"] = args ? args.verboseOidcLogging : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackendRole.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackendRole.__pulumiType, name, resourceInputs, opts);
     }
 }
 

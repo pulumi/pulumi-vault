@@ -194,57 +194,55 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     constructor(name: string, args?: AuthBackendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendArgs | AuthBackendState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendState | undefined;
-            inputs["accessor"] = state ? state.accessor : undefined;
-            inputs["boundIssuer"] = state ? state.boundIssuer : undefined;
-            inputs["defaultRole"] = state ? state.defaultRole : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["jwksCaPem"] = state ? state.jwksCaPem : undefined;
-            inputs["jwksUrl"] = state ? state.jwksUrl : undefined;
-            inputs["jwtSupportedAlgs"] = state ? state.jwtSupportedAlgs : undefined;
-            inputs["jwtValidationPubkeys"] = state ? state.jwtValidationPubkeys : undefined;
-            inputs["local"] = state ? state.local : undefined;
-            inputs["namespaceInState"] = state ? state.namespaceInState : undefined;
-            inputs["oidcClientId"] = state ? state.oidcClientId : undefined;
-            inputs["oidcClientSecret"] = state ? state.oidcClientSecret : undefined;
-            inputs["oidcDiscoveryCaPem"] = state ? state.oidcDiscoveryCaPem : undefined;
-            inputs["oidcDiscoveryUrl"] = state ? state.oidcDiscoveryUrl : undefined;
-            inputs["oidcResponseMode"] = state ? state.oidcResponseMode : undefined;
-            inputs["oidcResponseTypes"] = state ? state.oidcResponseTypes : undefined;
-            inputs["path"] = state ? state.path : undefined;
-            inputs["providerConfig"] = state ? state.providerConfig : undefined;
-            inputs["tune"] = state ? state.tune : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["accessor"] = state ? state.accessor : undefined;
+            resourceInputs["boundIssuer"] = state ? state.boundIssuer : undefined;
+            resourceInputs["defaultRole"] = state ? state.defaultRole : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["jwksCaPem"] = state ? state.jwksCaPem : undefined;
+            resourceInputs["jwksUrl"] = state ? state.jwksUrl : undefined;
+            resourceInputs["jwtSupportedAlgs"] = state ? state.jwtSupportedAlgs : undefined;
+            resourceInputs["jwtValidationPubkeys"] = state ? state.jwtValidationPubkeys : undefined;
+            resourceInputs["local"] = state ? state.local : undefined;
+            resourceInputs["namespaceInState"] = state ? state.namespaceInState : undefined;
+            resourceInputs["oidcClientId"] = state ? state.oidcClientId : undefined;
+            resourceInputs["oidcClientSecret"] = state ? state.oidcClientSecret : undefined;
+            resourceInputs["oidcDiscoveryCaPem"] = state ? state.oidcDiscoveryCaPem : undefined;
+            resourceInputs["oidcDiscoveryUrl"] = state ? state.oidcDiscoveryUrl : undefined;
+            resourceInputs["oidcResponseMode"] = state ? state.oidcResponseMode : undefined;
+            resourceInputs["oidcResponseTypes"] = state ? state.oidcResponseTypes : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["providerConfig"] = state ? state.providerConfig : undefined;
+            resourceInputs["tune"] = state ? state.tune : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
-            inputs["boundIssuer"] = args ? args.boundIssuer : undefined;
-            inputs["defaultRole"] = args ? args.defaultRole : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["jwksCaPem"] = args ? args.jwksCaPem : undefined;
-            inputs["jwksUrl"] = args ? args.jwksUrl : undefined;
-            inputs["jwtSupportedAlgs"] = args ? args.jwtSupportedAlgs : undefined;
-            inputs["jwtValidationPubkeys"] = args ? args.jwtValidationPubkeys : undefined;
-            inputs["local"] = args ? args.local : undefined;
-            inputs["namespaceInState"] = args ? args.namespaceInState : undefined;
-            inputs["oidcClientId"] = args ? args.oidcClientId : undefined;
-            inputs["oidcClientSecret"] = args ? args.oidcClientSecret : undefined;
-            inputs["oidcDiscoveryCaPem"] = args ? args.oidcDiscoveryCaPem : undefined;
-            inputs["oidcDiscoveryUrl"] = args ? args.oidcDiscoveryUrl : undefined;
-            inputs["oidcResponseMode"] = args ? args.oidcResponseMode : undefined;
-            inputs["oidcResponseTypes"] = args ? args.oidcResponseTypes : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["providerConfig"] = args ? args.providerConfig : undefined;
-            inputs["tune"] = args ? args.tune : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["accessor"] = undefined /*out*/;
+            resourceInputs["boundIssuer"] = args ? args.boundIssuer : undefined;
+            resourceInputs["defaultRole"] = args ? args.defaultRole : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["jwksCaPem"] = args ? args.jwksCaPem : undefined;
+            resourceInputs["jwksUrl"] = args ? args.jwksUrl : undefined;
+            resourceInputs["jwtSupportedAlgs"] = args ? args.jwtSupportedAlgs : undefined;
+            resourceInputs["jwtValidationPubkeys"] = args ? args.jwtValidationPubkeys : undefined;
+            resourceInputs["local"] = args ? args.local : undefined;
+            resourceInputs["namespaceInState"] = args ? args.namespaceInState : undefined;
+            resourceInputs["oidcClientId"] = args ? args.oidcClientId : undefined;
+            resourceInputs["oidcClientSecret"] = args ? args.oidcClientSecret : undefined;
+            resourceInputs["oidcDiscoveryCaPem"] = args ? args.oidcDiscoveryCaPem : undefined;
+            resourceInputs["oidcDiscoveryUrl"] = args ? args.oidcDiscoveryUrl : undefined;
+            resourceInputs["oidcResponseMode"] = args ? args.oidcResponseMode : undefined;
+            resourceInputs["oidcResponseTypes"] = args ? args.oidcResponseTypes : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["providerConfig"] = args ? args.providerConfig : undefined;
+            resourceInputs["tune"] = args ? args.tune : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["accessor"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackend.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackend.__pulumiType, name, resourceInputs, opts);
     }
 }
 

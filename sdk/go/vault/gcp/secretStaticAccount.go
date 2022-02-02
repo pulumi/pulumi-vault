@@ -224,7 +224,7 @@ type SecretStaticAccountInput interface {
 }
 
 func (*SecretStaticAccount) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretStaticAccount)(nil))
+	return reflect.TypeOf((**SecretStaticAccount)(nil)).Elem()
 }
 
 func (i *SecretStaticAccount) ToSecretStaticAccountOutput() SecretStaticAccountOutput {
@@ -233,35 +233,6 @@ func (i *SecretStaticAccount) ToSecretStaticAccountOutput() SecretStaticAccountO
 
 func (i *SecretStaticAccount) ToSecretStaticAccountOutputWithContext(ctx context.Context) SecretStaticAccountOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretStaticAccountOutput)
-}
-
-func (i *SecretStaticAccount) ToSecretStaticAccountPtrOutput() SecretStaticAccountPtrOutput {
-	return i.ToSecretStaticAccountPtrOutputWithContext(context.Background())
-}
-
-func (i *SecretStaticAccount) ToSecretStaticAccountPtrOutputWithContext(ctx context.Context) SecretStaticAccountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretStaticAccountPtrOutput)
-}
-
-type SecretStaticAccountPtrInput interface {
-	pulumi.Input
-
-	ToSecretStaticAccountPtrOutput() SecretStaticAccountPtrOutput
-	ToSecretStaticAccountPtrOutputWithContext(ctx context.Context) SecretStaticAccountPtrOutput
-}
-
-type secretStaticAccountPtrType SecretStaticAccountArgs
-
-func (*secretStaticAccountPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecretStaticAccount)(nil))
-}
-
-func (i *secretStaticAccountPtrType) ToSecretStaticAccountPtrOutput() SecretStaticAccountPtrOutput {
-	return i.ToSecretStaticAccountPtrOutputWithContext(context.Background())
-}
-
-func (i *secretStaticAccountPtrType) ToSecretStaticAccountPtrOutputWithContext(ctx context.Context) SecretStaticAccountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretStaticAccountPtrOutput)
 }
 
 // SecretStaticAccountArrayInput is an input type that accepts SecretStaticAccountArray and SecretStaticAccountArrayOutput values.
@@ -317,7 +288,7 @@ func (i SecretStaticAccountMap) ToSecretStaticAccountMapOutputWithContext(ctx co
 type SecretStaticAccountOutput struct{ *pulumi.OutputState }
 
 func (SecretStaticAccountOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretStaticAccount)(nil))
+	return reflect.TypeOf((**SecretStaticAccount)(nil)).Elem()
 }
 
 func (o SecretStaticAccountOutput) ToSecretStaticAccountOutput() SecretStaticAccountOutput {
@@ -328,44 +299,10 @@ func (o SecretStaticAccountOutput) ToSecretStaticAccountOutputWithContext(ctx co
 	return o
 }
 
-func (o SecretStaticAccountOutput) ToSecretStaticAccountPtrOutput() SecretStaticAccountPtrOutput {
-	return o.ToSecretStaticAccountPtrOutputWithContext(context.Background())
-}
-
-func (o SecretStaticAccountOutput) ToSecretStaticAccountPtrOutputWithContext(ctx context.Context) SecretStaticAccountPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretStaticAccount) *SecretStaticAccount {
-		return &v
-	}).(SecretStaticAccountPtrOutput)
-}
-
-type SecretStaticAccountPtrOutput struct{ *pulumi.OutputState }
-
-func (SecretStaticAccountPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecretStaticAccount)(nil))
-}
-
-func (o SecretStaticAccountPtrOutput) ToSecretStaticAccountPtrOutput() SecretStaticAccountPtrOutput {
-	return o
-}
-
-func (o SecretStaticAccountPtrOutput) ToSecretStaticAccountPtrOutputWithContext(ctx context.Context) SecretStaticAccountPtrOutput {
-	return o
-}
-
-func (o SecretStaticAccountPtrOutput) Elem() SecretStaticAccountOutput {
-	return o.ApplyT(func(v *SecretStaticAccount) SecretStaticAccount {
-		if v != nil {
-			return *v
-		}
-		var ret SecretStaticAccount
-		return ret
-	}).(SecretStaticAccountOutput)
-}
-
 type SecretStaticAccountArrayOutput struct{ *pulumi.OutputState }
 
 func (SecretStaticAccountArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SecretStaticAccount)(nil))
+	return reflect.TypeOf((*[]*SecretStaticAccount)(nil)).Elem()
 }
 
 func (o SecretStaticAccountArrayOutput) ToSecretStaticAccountArrayOutput() SecretStaticAccountArrayOutput {
@@ -377,15 +314,15 @@ func (o SecretStaticAccountArrayOutput) ToSecretStaticAccountArrayOutputWithCont
 }
 
 func (o SecretStaticAccountArrayOutput) Index(i pulumi.IntInput) SecretStaticAccountOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretStaticAccount {
-		return vs[0].([]SecretStaticAccount)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretStaticAccount {
+		return vs[0].([]*SecretStaticAccount)[vs[1].(int)]
 	}).(SecretStaticAccountOutput)
 }
 
 type SecretStaticAccountMapOutput struct{ *pulumi.OutputState }
 
 func (SecretStaticAccountMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SecretStaticAccount)(nil))
+	return reflect.TypeOf((*map[string]*SecretStaticAccount)(nil)).Elem()
 }
 
 func (o SecretStaticAccountMapOutput) ToSecretStaticAccountMapOutput() SecretStaticAccountMapOutput {
@@ -397,18 +334,16 @@ func (o SecretStaticAccountMapOutput) ToSecretStaticAccountMapOutputWithContext(
 }
 
 func (o SecretStaticAccountMapOutput) MapIndex(k pulumi.StringInput) SecretStaticAccountOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SecretStaticAccount {
-		return vs[0].(map[string]SecretStaticAccount)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SecretStaticAccount {
+		return vs[0].(map[string]*SecretStaticAccount)[vs[1].(string)]
 	}).(SecretStaticAccountOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretStaticAccountInput)(nil)).Elem(), &SecretStaticAccount{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SecretStaticAccountPtrInput)(nil)).Elem(), &SecretStaticAccount{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretStaticAccountArrayInput)(nil)).Elem(), SecretStaticAccountArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretStaticAccountMapInput)(nil)).Elem(), SecretStaticAccountMap{})
 	pulumi.RegisterOutputType(SecretStaticAccountOutput{})
-	pulumi.RegisterOutputType(SecretStaticAccountPtrOutput{})
 	pulumi.RegisterOutputType(SecretStaticAccountArrayOutput{})
 	pulumi.RegisterOutputType(SecretStaticAccountMapOutput{})
 }

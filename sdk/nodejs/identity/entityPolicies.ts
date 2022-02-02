@@ -100,14 +100,14 @@ export class EntityPolicies extends pulumi.CustomResource {
      */
     constructor(name: string, args: EntityPoliciesArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: EntityPoliciesArgs | EntityPoliciesState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EntityPoliciesState | undefined;
-            inputs["entityId"] = state ? state.entityId : undefined;
-            inputs["entityName"] = state ? state.entityName : undefined;
-            inputs["exclusive"] = state ? state.exclusive : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["entityId"] = state ? state.entityId : undefined;
+            resourceInputs["entityName"] = state ? state.entityName : undefined;
+            resourceInputs["exclusive"] = state ? state.exclusive : undefined;
+            resourceInputs["policies"] = state ? state.policies : undefined;
         } else {
             const args = argsOrState as EntityPoliciesArgs | undefined;
             if ((!args || args.entityId === undefined) && !opts.urn) {
@@ -116,15 +116,13 @@ export class EntityPolicies extends pulumi.CustomResource {
             if ((!args || args.policies === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'policies'");
             }
-            inputs["entityId"] = args ? args.entityId : undefined;
-            inputs["exclusive"] = args ? args.exclusive : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
-            inputs["entityName"] = undefined /*out*/;
+            resourceInputs["entityId"] = args ? args.entityId : undefined;
+            resourceInputs["exclusive"] = args ? args.exclusive : undefined;
+            resourceInputs["policies"] = args ? args.policies : undefined;
+            resourceInputs["entityName"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(EntityPolicies.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(EntityPolicies.__pulumiType, name, resourceInputs, opts);
     }
 }
 

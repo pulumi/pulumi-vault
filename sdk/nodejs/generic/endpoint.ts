@@ -87,18 +87,18 @@ export class Endpoint extends pulumi.CustomResource {
      */
     constructor(name: string, args: EndpointArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: EndpointArgs | EndpointState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EndpointState | undefined;
-            inputs["dataJson"] = state ? state.dataJson : undefined;
-            inputs["disableDelete"] = state ? state.disableDelete : undefined;
-            inputs["disableRead"] = state ? state.disableRead : undefined;
-            inputs["ignoreAbsentFields"] = state ? state.ignoreAbsentFields : undefined;
-            inputs["path"] = state ? state.path : undefined;
-            inputs["writeData"] = state ? state.writeData : undefined;
-            inputs["writeDataJson"] = state ? state.writeDataJson : undefined;
-            inputs["writeFields"] = state ? state.writeFields : undefined;
+            resourceInputs["dataJson"] = state ? state.dataJson : undefined;
+            resourceInputs["disableDelete"] = state ? state.disableDelete : undefined;
+            resourceInputs["disableRead"] = state ? state.disableRead : undefined;
+            resourceInputs["ignoreAbsentFields"] = state ? state.ignoreAbsentFields : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["writeData"] = state ? state.writeData : undefined;
+            resourceInputs["writeDataJson"] = state ? state.writeDataJson : undefined;
+            resourceInputs["writeFields"] = state ? state.writeFields : undefined;
         } else {
             const args = argsOrState as EndpointArgs | undefined;
             if ((!args || args.dataJson === undefined) && !opts.urn) {
@@ -107,19 +107,17 @@ export class Endpoint extends pulumi.CustomResource {
             if ((!args || args.path === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            inputs["dataJson"] = args ? args.dataJson : undefined;
-            inputs["disableDelete"] = args ? args.disableDelete : undefined;
-            inputs["disableRead"] = args ? args.disableRead : undefined;
-            inputs["ignoreAbsentFields"] = args ? args.ignoreAbsentFields : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["writeFields"] = args ? args.writeFields : undefined;
-            inputs["writeData"] = undefined /*out*/;
-            inputs["writeDataJson"] = undefined /*out*/;
+            resourceInputs["dataJson"] = args ? args.dataJson : undefined;
+            resourceInputs["disableDelete"] = args ? args.disableDelete : undefined;
+            resourceInputs["disableRead"] = args ? args.disableRead : undefined;
+            resourceInputs["ignoreAbsentFields"] = args ? args.ignoreAbsentFields : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["writeFields"] = args ? args.writeFields : undefined;
+            resourceInputs["writeData"] = undefined /*out*/;
+            resourceInputs["writeDataJson"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Endpoint.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Endpoint.__pulumiType, name, resourceInputs, opts);
     }
 }
 

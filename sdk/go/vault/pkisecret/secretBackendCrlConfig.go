@@ -144,7 +144,7 @@ type SecretBackendCrlConfigInput interface {
 }
 
 func (*SecretBackendCrlConfig) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendCrlConfig)(nil))
+	return reflect.TypeOf((**SecretBackendCrlConfig)(nil)).Elem()
 }
 
 func (i *SecretBackendCrlConfig) ToSecretBackendCrlConfigOutput() SecretBackendCrlConfigOutput {
@@ -153,35 +153,6 @@ func (i *SecretBackendCrlConfig) ToSecretBackendCrlConfigOutput() SecretBackendC
 
 func (i *SecretBackendCrlConfig) ToSecretBackendCrlConfigOutputWithContext(ctx context.Context) SecretBackendCrlConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCrlConfigOutput)
-}
-
-func (i *SecretBackendCrlConfig) ToSecretBackendCrlConfigPtrOutput() SecretBackendCrlConfigPtrOutput {
-	return i.ToSecretBackendCrlConfigPtrOutputWithContext(context.Background())
-}
-
-func (i *SecretBackendCrlConfig) ToSecretBackendCrlConfigPtrOutputWithContext(ctx context.Context) SecretBackendCrlConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCrlConfigPtrOutput)
-}
-
-type SecretBackendCrlConfigPtrInput interface {
-	pulumi.Input
-
-	ToSecretBackendCrlConfigPtrOutput() SecretBackendCrlConfigPtrOutput
-	ToSecretBackendCrlConfigPtrOutputWithContext(ctx context.Context) SecretBackendCrlConfigPtrOutput
-}
-
-type secretBackendCrlConfigPtrType SecretBackendCrlConfigArgs
-
-func (*secretBackendCrlConfigPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecretBackendCrlConfig)(nil))
-}
-
-func (i *secretBackendCrlConfigPtrType) ToSecretBackendCrlConfigPtrOutput() SecretBackendCrlConfigPtrOutput {
-	return i.ToSecretBackendCrlConfigPtrOutputWithContext(context.Background())
-}
-
-func (i *secretBackendCrlConfigPtrType) ToSecretBackendCrlConfigPtrOutputWithContext(ctx context.Context) SecretBackendCrlConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCrlConfigPtrOutput)
 }
 
 // SecretBackendCrlConfigArrayInput is an input type that accepts SecretBackendCrlConfigArray and SecretBackendCrlConfigArrayOutput values.
@@ -237,7 +208,7 @@ func (i SecretBackendCrlConfigMap) ToSecretBackendCrlConfigMapOutputWithContext(
 type SecretBackendCrlConfigOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendCrlConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendCrlConfig)(nil))
+	return reflect.TypeOf((**SecretBackendCrlConfig)(nil)).Elem()
 }
 
 func (o SecretBackendCrlConfigOutput) ToSecretBackendCrlConfigOutput() SecretBackendCrlConfigOutput {
@@ -248,44 +219,10 @@ func (o SecretBackendCrlConfigOutput) ToSecretBackendCrlConfigOutputWithContext(
 	return o
 }
 
-func (o SecretBackendCrlConfigOutput) ToSecretBackendCrlConfigPtrOutput() SecretBackendCrlConfigPtrOutput {
-	return o.ToSecretBackendCrlConfigPtrOutputWithContext(context.Background())
-}
-
-func (o SecretBackendCrlConfigOutput) ToSecretBackendCrlConfigPtrOutputWithContext(ctx context.Context) SecretBackendCrlConfigPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendCrlConfig) *SecretBackendCrlConfig {
-		return &v
-	}).(SecretBackendCrlConfigPtrOutput)
-}
-
-type SecretBackendCrlConfigPtrOutput struct{ *pulumi.OutputState }
-
-func (SecretBackendCrlConfigPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecretBackendCrlConfig)(nil))
-}
-
-func (o SecretBackendCrlConfigPtrOutput) ToSecretBackendCrlConfigPtrOutput() SecretBackendCrlConfigPtrOutput {
-	return o
-}
-
-func (o SecretBackendCrlConfigPtrOutput) ToSecretBackendCrlConfigPtrOutputWithContext(ctx context.Context) SecretBackendCrlConfigPtrOutput {
-	return o
-}
-
-func (o SecretBackendCrlConfigPtrOutput) Elem() SecretBackendCrlConfigOutput {
-	return o.ApplyT(func(v *SecretBackendCrlConfig) SecretBackendCrlConfig {
-		if v != nil {
-			return *v
-		}
-		var ret SecretBackendCrlConfig
-		return ret
-	}).(SecretBackendCrlConfigOutput)
-}
-
 type SecretBackendCrlConfigArrayOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendCrlConfigArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SecretBackendCrlConfig)(nil))
+	return reflect.TypeOf((*[]*SecretBackendCrlConfig)(nil)).Elem()
 }
 
 func (o SecretBackendCrlConfigArrayOutput) ToSecretBackendCrlConfigArrayOutput() SecretBackendCrlConfigArrayOutput {
@@ -297,15 +234,15 @@ func (o SecretBackendCrlConfigArrayOutput) ToSecretBackendCrlConfigArrayOutputWi
 }
 
 func (o SecretBackendCrlConfigArrayOutput) Index(i pulumi.IntInput) SecretBackendCrlConfigOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretBackendCrlConfig {
-		return vs[0].([]SecretBackendCrlConfig)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendCrlConfig {
+		return vs[0].([]*SecretBackendCrlConfig)[vs[1].(int)]
 	}).(SecretBackendCrlConfigOutput)
 }
 
 type SecretBackendCrlConfigMapOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendCrlConfigMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SecretBackendCrlConfig)(nil))
+	return reflect.TypeOf((*map[string]*SecretBackendCrlConfig)(nil)).Elem()
 }
 
 func (o SecretBackendCrlConfigMapOutput) ToSecretBackendCrlConfigMapOutput() SecretBackendCrlConfigMapOutput {
@@ -317,18 +254,16 @@ func (o SecretBackendCrlConfigMapOutput) ToSecretBackendCrlConfigMapOutputWithCo
 }
 
 func (o SecretBackendCrlConfigMapOutput) MapIndex(k pulumi.StringInput) SecretBackendCrlConfigOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SecretBackendCrlConfig {
-		return vs[0].(map[string]SecretBackendCrlConfig)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SecretBackendCrlConfig {
+		return vs[0].(map[string]*SecretBackendCrlConfig)[vs[1].(string)]
 	}).(SecretBackendCrlConfigOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendCrlConfigInput)(nil)).Elem(), &SecretBackendCrlConfig{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendCrlConfigPtrInput)(nil)).Elem(), &SecretBackendCrlConfig{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendCrlConfigArrayInput)(nil)).Elem(), SecretBackendCrlConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendCrlConfigMapInput)(nil)).Elem(), SecretBackendCrlConfigMap{})
 	pulumi.RegisterOutputType(SecretBackendCrlConfigOutput{})
-	pulumi.RegisterOutputType(SecretBackendCrlConfigPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendCrlConfigArrayOutput{})
 	pulumi.RegisterOutputType(SecretBackendCrlConfigMapOutput{})
 }

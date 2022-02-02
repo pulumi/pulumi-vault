@@ -126,7 +126,7 @@ type EntityAliasInput interface {
 }
 
 func (*EntityAlias) ElementType() reflect.Type {
-	return reflect.TypeOf((*EntityAlias)(nil))
+	return reflect.TypeOf((**EntityAlias)(nil)).Elem()
 }
 
 func (i *EntityAlias) ToEntityAliasOutput() EntityAliasOutput {
@@ -135,35 +135,6 @@ func (i *EntityAlias) ToEntityAliasOutput() EntityAliasOutput {
 
 func (i *EntityAlias) ToEntityAliasOutputWithContext(ctx context.Context) EntityAliasOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EntityAliasOutput)
-}
-
-func (i *EntityAlias) ToEntityAliasPtrOutput() EntityAliasPtrOutput {
-	return i.ToEntityAliasPtrOutputWithContext(context.Background())
-}
-
-func (i *EntityAlias) ToEntityAliasPtrOutputWithContext(ctx context.Context) EntityAliasPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EntityAliasPtrOutput)
-}
-
-type EntityAliasPtrInput interface {
-	pulumi.Input
-
-	ToEntityAliasPtrOutput() EntityAliasPtrOutput
-	ToEntityAliasPtrOutputWithContext(ctx context.Context) EntityAliasPtrOutput
-}
-
-type entityAliasPtrType EntityAliasArgs
-
-func (*entityAliasPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**EntityAlias)(nil))
-}
-
-func (i *entityAliasPtrType) ToEntityAliasPtrOutput() EntityAliasPtrOutput {
-	return i.ToEntityAliasPtrOutputWithContext(context.Background())
-}
-
-func (i *entityAliasPtrType) ToEntityAliasPtrOutputWithContext(ctx context.Context) EntityAliasPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EntityAliasPtrOutput)
 }
 
 // EntityAliasArrayInput is an input type that accepts EntityAliasArray and EntityAliasArrayOutput values.
@@ -219,7 +190,7 @@ func (i EntityAliasMap) ToEntityAliasMapOutputWithContext(ctx context.Context) E
 type EntityAliasOutput struct{ *pulumi.OutputState }
 
 func (EntityAliasOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EntityAlias)(nil))
+	return reflect.TypeOf((**EntityAlias)(nil)).Elem()
 }
 
 func (o EntityAliasOutput) ToEntityAliasOutput() EntityAliasOutput {
@@ -230,44 +201,10 @@ func (o EntityAliasOutput) ToEntityAliasOutputWithContext(ctx context.Context) E
 	return o
 }
 
-func (o EntityAliasOutput) ToEntityAliasPtrOutput() EntityAliasPtrOutput {
-	return o.ToEntityAliasPtrOutputWithContext(context.Background())
-}
-
-func (o EntityAliasOutput) ToEntityAliasPtrOutputWithContext(ctx context.Context) EntityAliasPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v EntityAlias) *EntityAlias {
-		return &v
-	}).(EntityAliasPtrOutput)
-}
-
-type EntityAliasPtrOutput struct{ *pulumi.OutputState }
-
-func (EntityAliasPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**EntityAlias)(nil))
-}
-
-func (o EntityAliasPtrOutput) ToEntityAliasPtrOutput() EntityAliasPtrOutput {
-	return o
-}
-
-func (o EntityAliasPtrOutput) ToEntityAliasPtrOutputWithContext(ctx context.Context) EntityAliasPtrOutput {
-	return o
-}
-
-func (o EntityAliasPtrOutput) Elem() EntityAliasOutput {
-	return o.ApplyT(func(v *EntityAlias) EntityAlias {
-		if v != nil {
-			return *v
-		}
-		var ret EntityAlias
-		return ret
-	}).(EntityAliasOutput)
-}
-
 type EntityAliasArrayOutput struct{ *pulumi.OutputState }
 
 func (EntityAliasArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EntityAlias)(nil))
+	return reflect.TypeOf((*[]*EntityAlias)(nil)).Elem()
 }
 
 func (o EntityAliasArrayOutput) ToEntityAliasArrayOutput() EntityAliasArrayOutput {
@@ -279,15 +216,15 @@ func (o EntityAliasArrayOutput) ToEntityAliasArrayOutputWithContext(ctx context.
 }
 
 func (o EntityAliasArrayOutput) Index(i pulumi.IntInput) EntityAliasOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EntityAlias {
-		return vs[0].([]EntityAlias)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EntityAlias {
+		return vs[0].([]*EntityAlias)[vs[1].(int)]
 	}).(EntityAliasOutput)
 }
 
 type EntityAliasMapOutput struct{ *pulumi.OutputState }
 
 func (EntityAliasMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]EntityAlias)(nil))
+	return reflect.TypeOf((*map[string]*EntityAlias)(nil)).Elem()
 }
 
 func (o EntityAliasMapOutput) ToEntityAliasMapOutput() EntityAliasMapOutput {
@@ -299,18 +236,16 @@ func (o EntityAliasMapOutput) ToEntityAliasMapOutputWithContext(ctx context.Cont
 }
 
 func (o EntityAliasMapOutput) MapIndex(k pulumi.StringInput) EntityAliasOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) EntityAlias {
-		return vs[0].(map[string]EntityAlias)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *EntityAlias {
+		return vs[0].(map[string]*EntityAlias)[vs[1].(string)]
 	}).(EntityAliasOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*EntityAliasInput)(nil)).Elem(), &EntityAlias{})
-	pulumi.RegisterInputType(reflect.TypeOf((*EntityAliasPtrInput)(nil)).Elem(), &EntityAlias{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EntityAliasArrayInput)(nil)).Elem(), EntityAliasArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EntityAliasMapInput)(nil)).Elem(), EntityAliasMap{})
 	pulumi.RegisterOutputType(EntityAliasOutput{})
-	pulumi.RegisterOutputType(EntityAliasPtrOutput{})
 	pulumi.RegisterOutputType(EntityAliasArrayOutput{})
 	pulumi.RegisterOutputType(EntityAliasMapOutput{})
 }

@@ -106,36 +106,34 @@ export class AuthBackendConfig extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuthBackendConfigArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendConfigArgs | AuthBackendConfigState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendConfigState | undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["disableIssValidation"] = state ? state.disableIssValidation : undefined;
-            inputs["disableLocalCaJwt"] = state ? state.disableLocalCaJwt : undefined;
-            inputs["issuer"] = state ? state.issuer : undefined;
-            inputs["kubernetesCaCert"] = state ? state.kubernetesCaCert : undefined;
-            inputs["kubernetesHost"] = state ? state.kubernetesHost : undefined;
-            inputs["pemKeys"] = state ? state.pemKeys : undefined;
-            inputs["tokenReviewerJwt"] = state ? state.tokenReviewerJwt : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["disableIssValidation"] = state ? state.disableIssValidation : undefined;
+            resourceInputs["disableLocalCaJwt"] = state ? state.disableLocalCaJwt : undefined;
+            resourceInputs["issuer"] = state ? state.issuer : undefined;
+            resourceInputs["kubernetesCaCert"] = state ? state.kubernetesCaCert : undefined;
+            resourceInputs["kubernetesHost"] = state ? state.kubernetesHost : undefined;
+            resourceInputs["pemKeys"] = state ? state.pemKeys : undefined;
+            resourceInputs["tokenReviewerJwt"] = state ? state.tokenReviewerJwt : undefined;
         } else {
             const args = argsOrState as AuthBackendConfigArgs | undefined;
             if ((!args || args.kubernetesHost === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'kubernetesHost'");
             }
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["disableIssValidation"] = args ? args.disableIssValidation : undefined;
-            inputs["disableLocalCaJwt"] = args ? args.disableLocalCaJwt : undefined;
-            inputs["issuer"] = args ? args.issuer : undefined;
-            inputs["kubernetesCaCert"] = args ? args.kubernetesCaCert : undefined;
-            inputs["kubernetesHost"] = args ? args.kubernetesHost : undefined;
-            inputs["pemKeys"] = args ? args.pemKeys : undefined;
-            inputs["tokenReviewerJwt"] = args ? args.tokenReviewerJwt : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["disableIssValidation"] = args ? args.disableIssValidation : undefined;
+            resourceInputs["disableLocalCaJwt"] = args ? args.disableLocalCaJwt : undefined;
+            resourceInputs["issuer"] = args ? args.issuer : undefined;
+            resourceInputs["kubernetesCaCert"] = args ? args.kubernetesCaCert : undefined;
+            resourceInputs["kubernetesHost"] = args ? args.kubernetesHost : undefined;
+            resourceInputs["pemKeys"] = args ? args.pemKeys : undefined;
+            resourceInputs["tokenReviewerJwt"] = args ? args.tokenReviewerJwt : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackendConfig.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackendConfig.__pulumiType, name, resourceInputs, opts);
     }
 }
 
