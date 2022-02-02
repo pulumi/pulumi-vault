@@ -72,25 +72,23 @@ export class SecretBackendCa extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SecretBackendCaArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendCaArgs | SecretBackendCaState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendCaState | undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["generateSigningKey"] = state ? state.generateSigningKey : undefined;
-            inputs["privateKey"] = state ? state.privateKey : undefined;
-            inputs["publicKey"] = state ? state.publicKey : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["generateSigningKey"] = state ? state.generateSigningKey : undefined;
+            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
+            resourceInputs["publicKey"] = state ? state.publicKey : undefined;
         } else {
             const args = argsOrState as SecretBackendCaArgs | undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["generateSigningKey"] = args ? args.generateSigningKey : undefined;
-            inputs["privateKey"] = args ? args.privateKey : undefined;
-            inputs["publicKey"] = args ? args.publicKey : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["generateSigningKey"] = args ? args.generateSigningKey : undefined;
+            resourceInputs["privateKey"] = args ? args.privateKey : undefined;
+            resourceInputs["publicKey"] = args ? args.publicKey : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretBackendCa.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretBackendCa.__pulumiType, name, resourceInputs, opts);
     }
 }
 

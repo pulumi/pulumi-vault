@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Vault.Gcp
 {
@@ -43,7 +42,7 @@ namespace Pulumi.Vault.Gcp
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAuthBackendRoleResult> InvokeAsync(GetAuthBackendRoleArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleResult>("vault:gcp/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleResult>("vault:gcp/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleArgs(), options.WithDefaults());
 
         /// <summary>
         /// Reads a GCP auth role from a Vault server.
@@ -76,7 +75,7 @@ namespace Pulumi.Vault.Gcp
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetAuthBackendRoleResult> Invoke(GetAuthBackendRoleInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleResult>("vault:gcp/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleResult>("vault:gcp/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleInvokeArgs(), options.WithDefaults());
     }
 
 

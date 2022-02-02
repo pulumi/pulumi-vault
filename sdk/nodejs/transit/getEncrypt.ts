@@ -12,9 +12,7 @@ export function getEncrypt(args: GetEncryptArgs, opts?: pulumi.InvokeOptions): P
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:transit/getEncrypt:getEncrypt", {
         "backend": args.backend,
         "context": args.context,

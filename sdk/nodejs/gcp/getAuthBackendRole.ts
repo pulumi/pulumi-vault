@@ -26,9 +26,7 @@ export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.I
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:gcp/getAuthBackendRole:getAuthBackendRole", {
         "backend": args.backend,
         "roleName": args.roleName,

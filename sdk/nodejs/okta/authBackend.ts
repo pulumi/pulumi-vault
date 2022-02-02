@@ -128,42 +128,40 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuthBackendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendArgs | AuthBackendState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendState | undefined;
-            inputs["accessor"] = state ? state.accessor : undefined;
-            inputs["baseUrl"] = state ? state.baseUrl : undefined;
-            inputs["bypassOktaMfa"] = state ? state.bypassOktaMfa : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["groups"] = state ? state.groups : undefined;
-            inputs["maxTtl"] = state ? state.maxTtl : undefined;
-            inputs["organization"] = state ? state.organization : undefined;
-            inputs["path"] = state ? state.path : undefined;
-            inputs["token"] = state ? state.token : undefined;
-            inputs["ttl"] = state ? state.ttl : undefined;
-            inputs["users"] = state ? state.users : undefined;
+            resourceInputs["accessor"] = state ? state.accessor : undefined;
+            resourceInputs["baseUrl"] = state ? state.baseUrl : undefined;
+            resourceInputs["bypassOktaMfa"] = state ? state.bypassOktaMfa : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["groups"] = state ? state.groups : undefined;
+            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
+            resourceInputs["organization"] = state ? state.organization : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["token"] = state ? state.token : undefined;
+            resourceInputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["users"] = state ? state.users : undefined;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
             if ((!args || args.organization === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'organization'");
             }
-            inputs["baseUrl"] = args ? args.baseUrl : undefined;
-            inputs["bypassOktaMfa"] = args ? args.bypassOktaMfa : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["groups"] = args ? args.groups : undefined;
-            inputs["maxTtl"] = args ? args.maxTtl : undefined;
-            inputs["organization"] = args ? args.organization : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["token"] = args ? args.token : undefined;
-            inputs["ttl"] = args ? args.ttl : undefined;
-            inputs["users"] = args ? args.users : undefined;
-            inputs["accessor"] = undefined /*out*/;
+            resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
+            resourceInputs["bypassOktaMfa"] = args ? args.bypassOktaMfa : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["groups"] = args ? args.groups : undefined;
+            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
+            resourceInputs["organization"] = args ? args.organization : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["token"] = args ? args.token : undefined;
+            resourceInputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["users"] = args ? args.users : undefined;
+            resourceInputs["accessor"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackend.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackend.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -242,7 +242,7 @@ type SecretBackendSignInput interface {
 }
 
 func (*SecretBackendSign) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendSign)(nil))
+	return reflect.TypeOf((**SecretBackendSign)(nil)).Elem()
 }
 
 func (i *SecretBackendSign) ToSecretBackendSignOutput() SecretBackendSignOutput {
@@ -251,35 +251,6 @@ func (i *SecretBackendSign) ToSecretBackendSignOutput() SecretBackendSignOutput 
 
 func (i *SecretBackendSign) ToSecretBackendSignOutputWithContext(ctx context.Context) SecretBackendSignOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendSignOutput)
-}
-
-func (i *SecretBackendSign) ToSecretBackendSignPtrOutput() SecretBackendSignPtrOutput {
-	return i.ToSecretBackendSignPtrOutputWithContext(context.Background())
-}
-
-func (i *SecretBackendSign) ToSecretBackendSignPtrOutputWithContext(ctx context.Context) SecretBackendSignPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendSignPtrOutput)
-}
-
-type SecretBackendSignPtrInput interface {
-	pulumi.Input
-
-	ToSecretBackendSignPtrOutput() SecretBackendSignPtrOutput
-	ToSecretBackendSignPtrOutputWithContext(ctx context.Context) SecretBackendSignPtrOutput
-}
-
-type secretBackendSignPtrType SecretBackendSignArgs
-
-func (*secretBackendSignPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecretBackendSign)(nil))
-}
-
-func (i *secretBackendSignPtrType) ToSecretBackendSignPtrOutput() SecretBackendSignPtrOutput {
-	return i.ToSecretBackendSignPtrOutputWithContext(context.Background())
-}
-
-func (i *secretBackendSignPtrType) ToSecretBackendSignPtrOutputWithContext(ctx context.Context) SecretBackendSignPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendSignPtrOutput)
 }
 
 // SecretBackendSignArrayInput is an input type that accepts SecretBackendSignArray and SecretBackendSignArrayOutput values.
@@ -335,7 +306,7 @@ func (i SecretBackendSignMap) ToSecretBackendSignMapOutputWithContext(ctx contex
 type SecretBackendSignOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendSignOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendSign)(nil))
+	return reflect.TypeOf((**SecretBackendSign)(nil)).Elem()
 }
 
 func (o SecretBackendSignOutput) ToSecretBackendSignOutput() SecretBackendSignOutput {
@@ -346,44 +317,10 @@ func (o SecretBackendSignOutput) ToSecretBackendSignOutputWithContext(ctx contex
 	return o
 }
 
-func (o SecretBackendSignOutput) ToSecretBackendSignPtrOutput() SecretBackendSignPtrOutput {
-	return o.ToSecretBackendSignPtrOutputWithContext(context.Background())
-}
-
-func (o SecretBackendSignOutput) ToSecretBackendSignPtrOutputWithContext(ctx context.Context) SecretBackendSignPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendSign) *SecretBackendSign {
-		return &v
-	}).(SecretBackendSignPtrOutput)
-}
-
-type SecretBackendSignPtrOutput struct{ *pulumi.OutputState }
-
-func (SecretBackendSignPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecretBackendSign)(nil))
-}
-
-func (o SecretBackendSignPtrOutput) ToSecretBackendSignPtrOutput() SecretBackendSignPtrOutput {
-	return o
-}
-
-func (o SecretBackendSignPtrOutput) ToSecretBackendSignPtrOutputWithContext(ctx context.Context) SecretBackendSignPtrOutput {
-	return o
-}
-
-func (o SecretBackendSignPtrOutput) Elem() SecretBackendSignOutput {
-	return o.ApplyT(func(v *SecretBackendSign) SecretBackendSign {
-		if v != nil {
-			return *v
-		}
-		var ret SecretBackendSign
-		return ret
-	}).(SecretBackendSignOutput)
-}
-
 type SecretBackendSignArrayOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendSignArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SecretBackendSign)(nil))
+	return reflect.TypeOf((*[]*SecretBackendSign)(nil)).Elem()
 }
 
 func (o SecretBackendSignArrayOutput) ToSecretBackendSignArrayOutput() SecretBackendSignArrayOutput {
@@ -395,15 +332,15 @@ func (o SecretBackendSignArrayOutput) ToSecretBackendSignArrayOutputWithContext(
 }
 
 func (o SecretBackendSignArrayOutput) Index(i pulumi.IntInput) SecretBackendSignOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretBackendSign {
-		return vs[0].([]SecretBackendSign)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendSign {
+		return vs[0].([]*SecretBackendSign)[vs[1].(int)]
 	}).(SecretBackendSignOutput)
 }
 
 type SecretBackendSignMapOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendSignMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SecretBackendSign)(nil))
+	return reflect.TypeOf((*map[string]*SecretBackendSign)(nil)).Elem()
 }
 
 func (o SecretBackendSignMapOutput) ToSecretBackendSignMapOutput() SecretBackendSignMapOutput {
@@ -415,18 +352,16 @@ func (o SecretBackendSignMapOutput) ToSecretBackendSignMapOutputWithContext(ctx 
 }
 
 func (o SecretBackendSignMapOutput) MapIndex(k pulumi.StringInput) SecretBackendSignOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SecretBackendSign {
-		return vs[0].(map[string]SecretBackendSign)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SecretBackendSign {
+		return vs[0].(map[string]*SecretBackendSign)[vs[1].(string)]
 	}).(SecretBackendSignOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendSignInput)(nil)).Elem(), &SecretBackendSign{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendSignPtrInput)(nil)).Elem(), &SecretBackendSign{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendSignArrayInput)(nil)).Elem(), SecretBackendSignArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendSignMapInput)(nil)).Elem(), SecretBackendSignMap{})
 	pulumi.RegisterOutputType(SecretBackendSignOutput{})
-	pulumi.RegisterOutputType(SecretBackendSignPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendSignArrayOutput{})
 	pulumi.RegisterOutputType(SecretBackendSignMapOutput{})
 }

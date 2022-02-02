@@ -88,26 +88,24 @@ export class AuthBackendGroup extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuthBackendGroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendGroupArgs | AuthBackendGroupState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendGroupState | undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["groupname"] = state ? state.groupname : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["groupname"] = state ? state.groupname : undefined;
+            resourceInputs["policies"] = state ? state.policies : undefined;
         } else {
             const args = argsOrState as AuthBackendGroupArgs | undefined;
             if ((!args || args.groupname === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'groupname'");
             }
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["groupname"] = args ? args.groupname : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["groupname"] = args ? args.groupname : undefined;
+            resourceInputs["policies"] = args ? args.policies : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackendGroup.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackendGroup.__pulumiType, name, resourceInputs, opts);
     }
 }
 

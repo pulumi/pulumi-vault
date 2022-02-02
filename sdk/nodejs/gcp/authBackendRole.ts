@@ -170,31 +170,31 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuthBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendRoleArgs | AuthBackendRoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleState | undefined;
-            inputs["addGroupAliases"] = state ? state.addGroupAliases : undefined;
-            inputs["allowGceInference"] = state ? state.allowGceInference : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["boundInstanceGroups"] = state ? state.boundInstanceGroups : undefined;
-            inputs["boundLabels"] = state ? state.boundLabels : undefined;
-            inputs["boundProjects"] = state ? state.boundProjects : undefined;
-            inputs["boundRegions"] = state ? state.boundRegions : undefined;
-            inputs["boundServiceAccounts"] = state ? state.boundServiceAccounts : undefined;
-            inputs["boundZones"] = state ? state.boundZones : undefined;
-            inputs["maxJwtExp"] = state ? state.maxJwtExp : undefined;
-            inputs["role"] = state ? state.role : undefined;
-            inputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
-            inputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
-            inputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
-            inputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
-            inputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
-            inputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
-            inputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
-            inputs["tokenTtl"] = state ? state.tokenTtl : undefined;
-            inputs["tokenType"] = state ? state.tokenType : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["addGroupAliases"] = state ? state.addGroupAliases : undefined;
+            resourceInputs["allowGceInference"] = state ? state.allowGceInference : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["boundInstanceGroups"] = state ? state.boundInstanceGroups : undefined;
+            resourceInputs["boundLabels"] = state ? state.boundLabels : undefined;
+            resourceInputs["boundProjects"] = state ? state.boundProjects : undefined;
+            resourceInputs["boundRegions"] = state ? state.boundRegions : undefined;
+            resourceInputs["boundServiceAccounts"] = state ? state.boundServiceAccounts : undefined;
+            resourceInputs["boundZones"] = state ? state.boundZones : undefined;
+            resourceInputs["maxJwtExp"] = state ? state.maxJwtExp : undefined;
+            resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
+            resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
+            resourceInputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
+            resourceInputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
+            resourceInputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
+            resourceInputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
+            resourceInputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
+            resourceInputs["tokenTtl"] = state ? state.tokenTtl : undefined;
+            resourceInputs["tokenType"] = state ? state.tokenType : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
             if ((!args || args.role === undefined) && !opts.urn) {
@@ -203,32 +203,30 @@ export class AuthBackendRole extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["addGroupAliases"] = args ? args.addGroupAliases : undefined;
-            inputs["allowGceInference"] = args ? args.allowGceInference : undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["boundInstanceGroups"] = args ? args.boundInstanceGroups : undefined;
-            inputs["boundLabels"] = args ? args.boundLabels : undefined;
-            inputs["boundProjects"] = args ? args.boundProjects : undefined;
-            inputs["boundRegions"] = args ? args.boundRegions : undefined;
-            inputs["boundServiceAccounts"] = args ? args.boundServiceAccounts : undefined;
-            inputs["boundZones"] = args ? args.boundZones : undefined;
-            inputs["maxJwtExp"] = args ? args.maxJwtExp : undefined;
-            inputs["role"] = args ? args.role : undefined;
-            inputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
-            inputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
-            inputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
-            inputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
-            inputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
-            inputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
-            inputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
-            inputs["tokenTtl"] = args ? args.tokenTtl : undefined;
-            inputs["tokenType"] = args ? args.tokenType : undefined;
-            inputs["type"] = args ? args.type : undefined;
+            resourceInputs["addGroupAliases"] = args ? args.addGroupAliases : undefined;
+            resourceInputs["allowGceInference"] = args ? args.allowGceInference : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["boundInstanceGroups"] = args ? args.boundInstanceGroups : undefined;
+            resourceInputs["boundLabels"] = args ? args.boundLabels : undefined;
+            resourceInputs["boundProjects"] = args ? args.boundProjects : undefined;
+            resourceInputs["boundRegions"] = args ? args.boundRegions : undefined;
+            resourceInputs["boundServiceAccounts"] = args ? args.boundServiceAccounts : undefined;
+            resourceInputs["boundZones"] = args ? args.boundZones : undefined;
+            resourceInputs["maxJwtExp"] = args ? args.maxJwtExp : undefined;
+            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
+            resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
+            resourceInputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
+            resourceInputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
+            resourceInputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
+            resourceInputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
+            resourceInputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
+            resourceInputs["tokenTtl"] = args ? args.tokenTtl : undefined;
+            resourceInputs["tokenType"] = args ? args.tokenType : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackendRole.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackendRole.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -105,16 +105,16 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretBackendStaticRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendStaticRoleArgs | SecretBackendStaticRoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendStaticRoleState | undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["dbName"] = state ? state.dbName : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
-            inputs["rotationStatements"] = state ? state.rotationStatements : undefined;
-            inputs["username"] = state ? state.username : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["dbName"] = state ? state.dbName : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
+            resourceInputs["rotationStatements"] = state ? state.rotationStatements : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
         } else {
             const args = argsOrState as SecretBackendStaticRoleArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -129,17 +129,15 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
             if ((!args || args.username === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["dbName"] = args ? args.dbName : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
-            inputs["rotationStatements"] = args ? args.rotationStatements : undefined;
-            inputs["username"] = args ? args.username : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["dbName"] = args ? args.dbName : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
+            resourceInputs["rotationStatements"] = args ? args.rotationStatements : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretBackendStaticRole.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretBackendStaticRole.__pulumiType, name, resourceInputs, opts);
     }
 }
 

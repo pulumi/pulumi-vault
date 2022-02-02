@@ -153,50 +153,48 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuthBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendRoleArgs | AuthBackendRoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleState | undefined;
-            inputs["allowedPolicies"] = state ? state.allowedPolicies : undefined;
-            inputs["disallowedPolicies"] = state ? state.disallowedPolicies : undefined;
-            inputs["orphan"] = state ? state.orphan : undefined;
-            inputs["pathSuffix"] = state ? state.pathSuffix : undefined;
-            inputs["renewable"] = state ? state.renewable : undefined;
-            inputs["roleName"] = state ? state.roleName : undefined;
-            inputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
-            inputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
-            inputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
-            inputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
-            inputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
-            inputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
-            inputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
-            inputs["tokenTtl"] = state ? state.tokenTtl : undefined;
-            inputs["tokenType"] = state ? state.tokenType : undefined;
+            resourceInputs["allowedPolicies"] = state ? state.allowedPolicies : undefined;
+            resourceInputs["disallowedPolicies"] = state ? state.disallowedPolicies : undefined;
+            resourceInputs["orphan"] = state ? state.orphan : undefined;
+            resourceInputs["pathSuffix"] = state ? state.pathSuffix : undefined;
+            resourceInputs["renewable"] = state ? state.renewable : undefined;
+            resourceInputs["roleName"] = state ? state.roleName : undefined;
+            resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
+            resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
+            resourceInputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
+            resourceInputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
+            resourceInputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
+            resourceInputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
+            resourceInputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
+            resourceInputs["tokenTtl"] = state ? state.tokenTtl : undefined;
+            resourceInputs["tokenType"] = state ? state.tokenType : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
             if ((!args || args.roleName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleName'");
             }
-            inputs["allowedPolicies"] = args ? args.allowedPolicies : undefined;
-            inputs["disallowedPolicies"] = args ? args.disallowedPolicies : undefined;
-            inputs["orphan"] = args ? args.orphan : undefined;
-            inputs["pathSuffix"] = args ? args.pathSuffix : undefined;
-            inputs["renewable"] = args ? args.renewable : undefined;
-            inputs["roleName"] = args ? args.roleName : undefined;
-            inputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
-            inputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
-            inputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
-            inputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
-            inputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
-            inputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
-            inputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
-            inputs["tokenTtl"] = args ? args.tokenTtl : undefined;
-            inputs["tokenType"] = args ? args.tokenType : undefined;
+            resourceInputs["allowedPolicies"] = args ? args.allowedPolicies : undefined;
+            resourceInputs["disallowedPolicies"] = args ? args.disallowedPolicies : undefined;
+            resourceInputs["orphan"] = args ? args.orphan : undefined;
+            resourceInputs["pathSuffix"] = args ? args.pathSuffix : undefined;
+            resourceInputs["renewable"] = args ? args.renewable : undefined;
+            resourceInputs["roleName"] = args ? args.roleName : undefined;
+            resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
+            resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
+            resourceInputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
+            resourceInputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
+            resourceInputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
+            resourceInputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
+            resourceInputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
+            resourceInputs["tokenTtl"] = args ? args.tokenTtl : undefined;
+            resourceInputs["tokenType"] = args ? args.tokenType : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackendRole.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackendRole.__pulumiType, name, resourceInputs, opts);
     }
 }
 

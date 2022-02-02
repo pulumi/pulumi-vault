@@ -114,19 +114,19 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendRoleArgs | SecretBackendRoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendRoleState | undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["credentialType"] = state ? state.credentialType : undefined;
-            inputs["defaultStsTtl"] = state ? state.defaultStsTtl : undefined;
-            inputs["iamGroups"] = state ? state.iamGroups : undefined;
-            inputs["maxStsTtl"] = state ? state.maxStsTtl : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["policyArns"] = state ? state.policyArns : undefined;
-            inputs["policyDocument"] = state ? state.policyDocument : undefined;
-            inputs["roleArns"] = state ? state.roleArns : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["credentialType"] = state ? state.credentialType : undefined;
+            resourceInputs["defaultStsTtl"] = state ? state.defaultStsTtl : undefined;
+            resourceInputs["iamGroups"] = state ? state.iamGroups : undefined;
+            resourceInputs["maxStsTtl"] = state ? state.maxStsTtl : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["policyArns"] = state ? state.policyArns : undefined;
+            resourceInputs["policyDocument"] = state ? state.policyDocument : undefined;
+            resourceInputs["roleArns"] = state ? state.roleArns : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -135,20 +135,18 @@ export class SecretBackendRole extends pulumi.CustomResource {
             if ((!args || args.credentialType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'credentialType'");
             }
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["credentialType"] = args ? args.credentialType : undefined;
-            inputs["defaultStsTtl"] = args ? args.defaultStsTtl : undefined;
-            inputs["iamGroups"] = args ? args.iamGroups : undefined;
-            inputs["maxStsTtl"] = args ? args.maxStsTtl : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["policyArns"] = args ? args.policyArns : undefined;
-            inputs["policyDocument"] = args ? args.policyDocument : undefined;
-            inputs["roleArns"] = args ? args.roleArns : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["credentialType"] = args ? args.credentialType : undefined;
+            resourceInputs["defaultStsTtl"] = args ? args.defaultStsTtl : undefined;
+            resourceInputs["iamGroups"] = args ? args.iamGroups : undefined;
+            resourceInputs["maxStsTtl"] = args ? args.maxStsTtl : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["policyArns"] = args ? args.policyArns : undefined;
+            resourceInputs["policyDocument"] = args ? args.policyDocument : undefined;
+            resourceInputs["roleArns"] = args ? args.roleArns : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretBackendRole.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretBackendRole.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -142,20 +142,20 @@ export class Mount extends pulumi.CustomResource {
      */
     constructor(name: string, args: MountArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: MountArgs | MountState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MountState | undefined;
-            inputs["accessor"] = state ? state.accessor : undefined;
-            inputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["externalEntropyAccess"] = state ? state.externalEntropyAccess : undefined;
-            inputs["local"] = state ? state.local : undefined;
-            inputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
-            inputs["options"] = state ? state.options : undefined;
-            inputs["path"] = state ? state.path : undefined;
-            inputs["sealWrap"] = state ? state.sealWrap : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["accessor"] = state ? state.accessor : undefined;
+            resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["externalEntropyAccess"] = state ? state.externalEntropyAccess : undefined;
+            resourceInputs["local"] = state ? state.local : undefined;
+            resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
+            resourceInputs["options"] = state ? state.options : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["sealWrap"] = state ? state.sealWrap : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as MountArgs | undefined;
             if ((!args || args.path === undefined) && !opts.urn) {
@@ -164,21 +164,19 @@ export class Mount extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["externalEntropyAccess"] = args ? args.externalEntropyAccess : undefined;
-            inputs["local"] = args ? args.local : undefined;
-            inputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
-            inputs["options"] = args ? args.options : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["sealWrap"] = args ? args.sealWrap : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["accessor"] = undefined /*out*/;
+            resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["externalEntropyAccess"] = args ? args.externalEntropyAccess : undefined;
+            resourceInputs["local"] = args ? args.local : undefined;
+            resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
+            resourceInputs["options"] = args ? args.options : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["sealWrap"] = args ? args.sealWrap : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["accessor"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Mount.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Mount.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -178,53 +178,51 @@ export class AuthBackendLogin extends pulumi.CustomResource {
      */
     constructor(name: string, args?: AuthBackendLoginArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendLoginArgs | AuthBackendLoginState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendLoginState | undefined;
-            inputs["accessor"] = state ? state.accessor : undefined;
-            inputs["authType"] = state ? state.authType : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["clientToken"] = state ? state.clientToken : undefined;
-            inputs["iamHttpRequestMethod"] = state ? state.iamHttpRequestMethod : undefined;
-            inputs["iamRequestBody"] = state ? state.iamRequestBody : undefined;
-            inputs["iamRequestHeaders"] = state ? state.iamRequestHeaders : undefined;
-            inputs["iamRequestUrl"] = state ? state.iamRequestUrl : undefined;
-            inputs["identity"] = state ? state.identity : undefined;
-            inputs["leaseDuration"] = state ? state.leaseDuration : undefined;
-            inputs["leaseStartTime"] = state ? state.leaseStartTime : undefined;
-            inputs["metadata"] = state ? state.metadata : undefined;
-            inputs["nonce"] = state ? state.nonce : undefined;
-            inputs["pkcs7"] = state ? state.pkcs7 : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
-            inputs["renewable"] = state ? state.renewable : undefined;
-            inputs["role"] = state ? state.role : undefined;
-            inputs["signature"] = state ? state.signature : undefined;
+            resourceInputs["accessor"] = state ? state.accessor : undefined;
+            resourceInputs["authType"] = state ? state.authType : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["clientToken"] = state ? state.clientToken : undefined;
+            resourceInputs["iamHttpRequestMethod"] = state ? state.iamHttpRequestMethod : undefined;
+            resourceInputs["iamRequestBody"] = state ? state.iamRequestBody : undefined;
+            resourceInputs["iamRequestHeaders"] = state ? state.iamRequestHeaders : undefined;
+            resourceInputs["iamRequestUrl"] = state ? state.iamRequestUrl : undefined;
+            resourceInputs["identity"] = state ? state.identity : undefined;
+            resourceInputs["leaseDuration"] = state ? state.leaseDuration : undefined;
+            resourceInputs["leaseStartTime"] = state ? state.leaseStartTime : undefined;
+            resourceInputs["metadata"] = state ? state.metadata : undefined;
+            resourceInputs["nonce"] = state ? state.nonce : undefined;
+            resourceInputs["pkcs7"] = state ? state.pkcs7 : undefined;
+            resourceInputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["renewable"] = state ? state.renewable : undefined;
+            resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["signature"] = state ? state.signature : undefined;
         } else {
             const args = argsOrState as AuthBackendLoginArgs | undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["iamHttpRequestMethod"] = args ? args.iamHttpRequestMethod : undefined;
-            inputs["iamRequestBody"] = args ? args.iamRequestBody : undefined;
-            inputs["iamRequestHeaders"] = args ? args.iamRequestHeaders : undefined;
-            inputs["iamRequestUrl"] = args ? args.iamRequestUrl : undefined;
-            inputs["identity"] = args ? args.identity : undefined;
-            inputs["nonce"] = args ? args.nonce : undefined;
-            inputs["pkcs7"] = args ? args.pkcs7 : undefined;
-            inputs["role"] = args ? args.role : undefined;
-            inputs["signature"] = args ? args.signature : undefined;
-            inputs["accessor"] = undefined /*out*/;
-            inputs["authType"] = undefined /*out*/;
-            inputs["clientToken"] = undefined /*out*/;
-            inputs["leaseDuration"] = undefined /*out*/;
-            inputs["leaseStartTime"] = undefined /*out*/;
-            inputs["metadata"] = undefined /*out*/;
-            inputs["policies"] = undefined /*out*/;
-            inputs["renewable"] = undefined /*out*/;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["iamHttpRequestMethod"] = args ? args.iamHttpRequestMethod : undefined;
+            resourceInputs["iamRequestBody"] = args ? args.iamRequestBody : undefined;
+            resourceInputs["iamRequestHeaders"] = args ? args.iamRequestHeaders : undefined;
+            resourceInputs["iamRequestUrl"] = args ? args.iamRequestUrl : undefined;
+            resourceInputs["identity"] = args ? args.identity : undefined;
+            resourceInputs["nonce"] = args ? args.nonce : undefined;
+            resourceInputs["pkcs7"] = args ? args.pkcs7 : undefined;
+            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["signature"] = args ? args.signature : undefined;
+            resourceInputs["accessor"] = undefined /*out*/;
+            resourceInputs["authType"] = undefined /*out*/;
+            resourceInputs["clientToken"] = undefined /*out*/;
+            resourceInputs["leaseDuration"] = undefined /*out*/;
+            resourceInputs["leaseStartTime"] = undefined /*out*/;
+            resourceInputs["metadata"] = undefined /*out*/;
+            resourceInputs["policies"] = undefined /*out*/;
+            resourceInputs["renewable"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackendLogin.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackendLogin.__pulumiType, name, resourceInputs, opts);
     }
 }
 

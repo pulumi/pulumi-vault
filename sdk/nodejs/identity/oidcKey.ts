@@ -74,27 +74,25 @@ export class OidcKey extends pulumi.CustomResource {
      */
     constructor(name: string, args?: OidcKeyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: OidcKeyArgs | OidcKeyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OidcKeyState | undefined;
-            inputs["algorithm"] = state ? state.algorithm : undefined;
-            inputs["allowedClientIds"] = state ? state.allowedClientIds : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
-            inputs["verificationTtl"] = state ? state.verificationTtl : undefined;
+            resourceInputs["algorithm"] = state ? state.algorithm : undefined;
+            resourceInputs["allowedClientIds"] = state ? state.allowedClientIds : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
+            resourceInputs["verificationTtl"] = state ? state.verificationTtl : undefined;
         } else {
             const args = argsOrState as OidcKeyArgs | undefined;
-            inputs["algorithm"] = args ? args.algorithm : undefined;
-            inputs["allowedClientIds"] = args ? args.allowedClientIds : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
-            inputs["verificationTtl"] = args ? args.verificationTtl : undefined;
+            resourceInputs["algorithm"] = args ? args.algorithm : undefined;
+            resourceInputs["allowedClientIds"] = args ? args.allowedClientIds : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
+            resourceInputs["verificationTtl"] = args ? args.verificationTtl : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(OidcKey.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(OidcKey.__pulumiType, name, resourceInputs, opts);
     }
 }
 

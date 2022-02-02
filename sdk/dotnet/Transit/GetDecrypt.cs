@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Vault.Transit
 {
@@ -41,7 +40,7 @@ namespace Pulumi.Vault.Transit
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDecryptResult> InvokeAsync(GetDecryptArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDecryptResult>("vault:transit/getDecrypt:getDecrypt", args ?? new GetDecryptArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetDecryptResult>("vault:transit/getDecrypt:getDecrypt", args ?? new GetDecryptArgs(), options.WithDefaults());
 
         /// <summary>
         /// This is a data source which can be used to decrypt ciphertext using a Vault Transit key.
@@ -72,7 +71,7 @@ namespace Pulumi.Vault.Transit
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDecryptResult> Invoke(GetDecryptInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDecryptResult>("vault:transit/getDecrypt:getDecrypt", args ?? new GetDecryptInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetDecryptResult>("vault:transit/getDecrypt:getDecrypt", args ?? new GetDecryptInvokeArgs(), options.WithDefaults());
     }
 
 

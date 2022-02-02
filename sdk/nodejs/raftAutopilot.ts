@@ -96,29 +96,27 @@ export class RaftAutopilot extends pulumi.CustomResource {
      */
     constructor(name: string, args?: RaftAutopilotArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RaftAutopilotArgs | RaftAutopilotState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RaftAutopilotState | undefined;
-            inputs["cleanupDeadServers"] = state ? state.cleanupDeadServers : undefined;
-            inputs["deadServerLastContactThreshold"] = state ? state.deadServerLastContactThreshold : undefined;
-            inputs["lastContactThreshold"] = state ? state.lastContactThreshold : undefined;
-            inputs["maxTrailingLogs"] = state ? state.maxTrailingLogs : undefined;
-            inputs["minQuorum"] = state ? state.minQuorum : undefined;
-            inputs["serverStabilizationTime"] = state ? state.serverStabilizationTime : undefined;
+            resourceInputs["cleanupDeadServers"] = state ? state.cleanupDeadServers : undefined;
+            resourceInputs["deadServerLastContactThreshold"] = state ? state.deadServerLastContactThreshold : undefined;
+            resourceInputs["lastContactThreshold"] = state ? state.lastContactThreshold : undefined;
+            resourceInputs["maxTrailingLogs"] = state ? state.maxTrailingLogs : undefined;
+            resourceInputs["minQuorum"] = state ? state.minQuorum : undefined;
+            resourceInputs["serverStabilizationTime"] = state ? state.serverStabilizationTime : undefined;
         } else {
             const args = argsOrState as RaftAutopilotArgs | undefined;
-            inputs["cleanupDeadServers"] = args ? args.cleanupDeadServers : undefined;
-            inputs["deadServerLastContactThreshold"] = args ? args.deadServerLastContactThreshold : undefined;
-            inputs["lastContactThreshold"] = args ? args.lastContactThreshold : undefined;
-            inputs["maxTrailingLogs"] = args ? args.maxTrailingLogs : undefined;
-            inputs["minQuorum"] = args ? args.minQuorum : undefined;
-            inputs["serverStabilizationTime"] = args ? args.serverStabilizationTime : undefined;
+            resourceInputs["cleanupDeadServers"] = args ? args.cleanupDeadServers : undefined;
+            resourceInputs["deadServerLastContactThreshold"] = args ? args.deadServerLastContactThreshold : undefined;
+            resourceInputs["lastContactThreshold"] = args ? args.lastContactThreshold : undefined;
+            resourceInputs["maxTrailingLogs"] = args ? args.maxTrailingLogs : undefined;
+            resourceInputs["minQuorum"] = args ? args.minQuorum : undefined;
+            resourceInputs["serverStabilizationTime"] = args ? args.serverStabilizationTime : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RaftAutopilot.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RaftAutopilot.__pulumiType, name, resourceInputs, opts);
     }
 }
 

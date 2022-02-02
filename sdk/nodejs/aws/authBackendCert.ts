@@ -73,14 +73,14 @@ export class AuthBackendCert extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuthBackendCertArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendCertArgs | AuthBackendCertState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendCertState | undefined;
-            inputs["awsPublicCert"] = state ? state.awsPublicCert : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["certName"] = state ? state.certName : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["awsPublicCert"] = state ? state.awsPublicCert : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["certName"] = state ? state.certName : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as AuthBackendCertArgs | undefined;
             if ((!args || args.awsPublicCert === undefined) && !opts.urn) {
@@ -89,15 +89,13 @@ export class AuthBackendCert extends pulumi.CustomResource {
             if ((!args || args.certName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'certName'");
             }
-            inputs["awsPublicCert"] = args ? args.awsPublicCert : undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["certName"] = args ? args.certName : undefined;
-            inputs["type"] = args ? args.type : undefined;
+            resourceInputs["awsPublicCert"] = args ? args.awsPublicCert : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["certName"] = args ? args.certName : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackendCert.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackendCert.__pulumiType, name, resourceInputs, opts);
     }
 }
 

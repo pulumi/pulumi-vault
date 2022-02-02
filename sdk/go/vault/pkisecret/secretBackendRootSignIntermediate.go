@@ -337,7 +337,7 @@ type SecretBackendRootSignIntermediateInput interface {
 }
 
 func (*SecretBackendRootSignIntermediate) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendRootSignIntermediate)(nil))
+	return reflect.TypeOf((**SecretBackendRootSignIntermediate)(nil)).Elem()
 }
 
 func (i *SecretBackendRootSignIntermediate) ToSecretBackendRootSignIntermediateOutput() SecretBackendRootSignIntermediateOutput {
@@ -346,35 +346,6 @@ func (i *SecretBackendRootSignIntermediate) ToSecretBackendRootSignIntermediateO
 
 func (i *SecretBackendRootSignIntermediate) ToSecretBackendRootSignIntermediateOutputWithContext(ctx context.Context) SecretBackendRootSignIntermediateOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRootSignIntermediateOutput)
-}
-
-func (i *SecretBackendRootSignIntermediate) ToSecretBackendRootSignIntermediatePtrOutput() SecretBackendRootSignIntermediatePtrOutput {
-	return i.ToSecretBackendRootSignIntermediatePtrOutputWithContext(context.Background())
-}
-
-func (i *SecretBackendRootSignIntermediate) ToSecretBackendRootSignIntermediatePtrOutputWithContext(ctx context.Context) SecretBackendRootSignIntermediatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRootSignIntermediatePtrOutput)
-}
-
-type SecretBackendRootSignIntermediatePtrInput interface {
-	pulumi.Input
-
-	ToSecretBackendRootSignIntermediatePtrOutput() SecretBackendRootSignIntermediatePtrOutput
-	ToSecretBackendRootSignIntermediatePtrOutputWithContext(ctx context.Context) SecretBackendRootSignIntermediatePtrOutput
-}
-
-type secretBackendRootSignIntermediatePtrType SecretBackendRootSignIntermediateArgs
-
-func (*secretBackendRootSignIntermediatePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecretBackendRootSignIntermediate)(nil))
-}
-
-func (i *secretBackendRootSignIntermediatePtrType) ToSecretBackendRootSignIntermediatePtrOutput() SecretBackendRootSignIntermediatePtrOutput {
-	return i.ToSecretBackendRootSignIntermediatePtrOutputWithContext(context.Background())
-}
-
-func (i *secretBackendRootSignIntermediatePtrType) ToSecretBackendRootSignIntermediatePtrOutputWithContext(ctx context.Context) SecretBackendRootSignIntermediatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendRootSignIntermediatePtrOutput)
 }
 
 // SecretBackendRootSignIntermediateArrayInput is an input type that accepts SecretBackendRootSignIntermediateArray and SecretBackendRootSignIntermediateArrayOutput values.
@@ -430,7 +401,7 @@ func (i SecretBackendRootSignIntermediateMap) ToSecretBackendRootSignIntermediat
 type SecretBackendRootSignIntermediateOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRootSignIntermediateOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendRootSignIntermediate)(nil))
+	return reflect.TypeOf((**SecretBackendRootSignIntermediate)(nil)).Elem()
 }
 
 func (o SecretBackendRootSignIntermediateOutput) ToSecretBackendRootSignIntermediateOutput() SecretBackendRootSignIntermediateOutput {
@@ -441,44 +412,10 @@ func (o SecretBackendRootSignIntermediateOutput) ToSecretBackendRootSignIntermed
 	return o
 }
 
-func (o SecretBackendRootSignIntermediateOutput) ToSecretBackendRootSignIntermediatePtrOutput() SecretBackendRootSignIntermediatePtrOutput {
-	return o.ToSecretBackendRootSignIntermediatePtrOutputWithContext(context.Background())
-}
-
-func (o SecretBackendRootSignIntermediateOutput) ToSecretBackendRootSignIntermediatePtrOutputWithContext(ctx context.Context) SecretBackendRootSignIntermediatePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendRootSignIntermediate) *SecretBackendRootSignIntermediate {
-		return &v
-	}).(SecretBackendRootSignIntermediatePtrOutput)
-}
-
-type SecretBackendRootSignIntermediatePtrOutput struct{ *pulumi.OutputState }
-
-func (SecretBackendRootSignIntermediatePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecretBackendRootSignIntermediate)(nil))
-}
-
-func (o SecretBackendRootSignIntermediatePtrOutput) ToSecretBackendRootSignIntermediatePtrOutput() SecretBackendRootSignIntermediatePtrOutput {
-	return o
-}
-
-func (o SecretBackendRootSignIntermediatePtrOutput) ToSecretBackendRootSignIntermediatePtrOutputWithContext(ctx context.Context) SecretBackendRootSignIntermediatePtrOutput {
-	return o
-}
-
-func (o SecretBackendRootSignIntermediatePtrOutput) Elem() SecretBackendRootSignIntermediateOutput {
-	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) SecretBackendRootSignIntermediate {
-		if v != nil {
-			return *v
-		}
-		var ret SecretBackendRootSignIntermediate
-		return ret
-	}).(SecretBackendRootSignIntermediateOutput)
-}
-
 type SecretBackendRootSignIntermediateArrayOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRootSignIntermediateArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SecretBackendRootSignIntermediate)(nil))
+	return reflect.TypeOf((*[]*SecretBackendRootSignIntermediate)(nil)).Elem()
 }
 
 func (o SecretBackendRootSignIntermediateArrayOutput) ToSecretBackendRootSignIntermediateArrayOutput() SecretBackendRootSignIntermediateArrayOutput {
@@ -490,15 +427,15 @@ func (o SecretBackendRootSignIntermediateArrayOutput) ToSecretBackendRootSignInt
 }
 
 func (o SecretBackendRootSignIntermediateArrayOutput) Index(i pulumi.IntInput) SecretBackendRootSignIntermediateOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretBackendRootSignIntermediate {
-		return vs[0].([]SecretBackendRootSignIntermediate)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendRootSignIntermediate {
+		return vs[0].([]*SecretBackendRootSignIntermediate)[vs[1].(int)]
 	}).(SecretBackendRootSignIntermediateOutput)
 }
 
 type SecretBackendRootSignIntermediateMapOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendRootSignIntermediateMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SecretBackendRootSignIntermediate)(nil))
+	return reflect.TypeOf((*map[string]*SecretBackendRootSignIntermediate)(nil)).Elem()
 }
 
 func (o SecretBackendRootSignIntermediateMapOutput) ToSecretBackendRootSignIntermediateMapOutput() SecretBackendRootSignIntermediateMapOutput {
@@ -510,18 +447,16 @@ func (o SecretBackendRootSignIntermediateMapOutput) ToSecretBackendRootSignInter
 }
 
 func (o SecretBackendRootSignIntermediateMapOutput) MapIndex(k pulumi.StringInput) SecretBackendRootSignIntermediateOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SecretBackendRootSignIntermediate {
-		return vs[0].(map[string]SecretBackendRootSignIntermediate)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SecretBackendRootSignIntermediate {
+		return vs[0].(map[string]*SecretBackendRootSignIntermediate)[vs[1].(string)]
 	}).(SecretBackendRootSignIntermediateOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRootSignIntermediateInput)(nil)).Elem(), &SecretBackendRootSignIntermediate{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRootSignIntermediatePtrInput)(nil)).Elem(), &SecretBackendRootSignIntermediate{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRootSignIntermediateArrayInput)(nil)).Elem(), SecretBackendRootSignIntermediateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRootSignIntermediateMapInput)(nil)).Elem(), SecretBackendRootSignIntermediateMap{})
 	pulumi.RegisterOutputType(SecretBackendRootSignIntermediateOutput{})
-	pulumi.RegisterOutputType(SecretBackendRootSignIntermediatePtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendRootSignIntermediateArrayOutput{})
 	pulumi.RegisterOutputType(SecretBackendRootSignIntermediateMapOutput{})
 }

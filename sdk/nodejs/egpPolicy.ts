@@ -79,14 +79,14 @@ export class EgpPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args: EgpPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: EgpPolicyArgs | EgpPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EgpPolicyState | undefined;
-            inputs["enforcementLevel"] = state ? state.enforcementLevel : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["paths"] = state ? state.paths : undefined;
-            inputs["policy"] = state ? state.policy : undefined;
+            resourceInputs["enforcementLevel"] = state ? state.enforcementLevel : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["paths"] = state ? state.paths : undefined;
+            resourceInputs["policy"] = state ? state.policy : undefined;
         } else {
             const args = argsOrState as EgpPolicyArgs | undefined;
             if ((!args || args.enforcementLevel === undefined) && !opts.urn) {
@@ -98,15 +98,13 @@ export class EgpPolicy extends pulumi.CustomResource {
             if ((!args || args.policy === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'policy'");
             }
-            inputs["enforcementLevel"] = args ? args.enforcementLevel : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["paths"] = args ? args.paths : undefined;
-            inputs["policy"] = args ? args.policy : undefined;
+            resourceInputs["enforcementLevel"] = args ? args.enforcementLevel : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["paths"] = args ? args.paths : undefined;
+            resourceInputs["policy"] = args ? args.policy : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(EgpPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(EgpPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

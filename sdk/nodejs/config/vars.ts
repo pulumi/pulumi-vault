@@ -91,7 +91,7 @@ Object.defineProperty(exports, "headers", {
 export declare const maxLeaseTtlSeconds: number;
 Object.defineProperty(exports, "maxLeaseTtlSeconds", {
     get() {
-        return __config.getObject<number>("maxLeaseTtlSeconds") ?? (<any>utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 1200);
+        return __config.getObject<number>("maxLeaseTtlSeconds") ?? (utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 1200);
     },
     enumerable: true,
 });
@@ -102,7 +102,7 @@ Object.defineProperty(exports, "maxLeaseTtlSeconds", {
 export declare const maxRetries: number;
 Object.defineProperty(exports, "maxRetries", {
     get() {
-        return __config.getObject<number>("maxRetries") ?? (<any>utilities.getEnvNumber("VAULT_MAX_RETRIES") || 2);
+        return __config.getObject<number>("maxRetries") ?? (utilities.getEnvNumber("VAULT_MAX_RETRIES") || 2);
     },
     enumerable: true,
 });
@@ -146,7 +146,7 @@ Object.defineProperty(exports, "skipChildToken", {
 export declare const skipTlsVerify: boolean | undefined;
 Object.defineProperty(exports, "skipTlsVerify", {
     get() {
-        return __config.getObject<boolean>("skipTlsVerify") ?? <any>utilities.getEnvBoolean("VAULT_SKIP_VERIFY");
+        return __config.getObject<boolean>("skipTlsVerify") ?? utilities.getEnvBoolean("VAULT_SKIP_VERIFY");
     },
     enumerable: true,
 });

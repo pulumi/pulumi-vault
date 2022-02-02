@@ -169,7 +169,7 @@ type AuthBackendRoleTagInput interface {
 }
 
 func (*AuthBackendRoleTag) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendRoleTag)(nil))
+	return reflect.TypeOf((**AuthBackendRoleTag)(nil)).Elem()
 }
 
 func (i *AuthBackendRoleTag) ToAuthBackendRoleTagOutput() AuthBackendRoleTagOutput {
@@ -178,35 +178,6 @@ func (i *AuthBackendRoleTag) ToAuthBackendRoleTagOutput() AuthBackendRoleTagOutp
 
 func (i *AuthBackendRoleTag) ToAuthBackendRoleTagOutputWithContext(ctx context.Context) AuthBackendRoleTagOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleTagOutput)
-}
-
-func (i *AuthBackendRoleTag) ToAuthBackendRoleTagPtrOutput() AuthBackendRoleTagPtrOutput {
-	return i.ToAuthBackendRoleTagPtrOutputWithContext(context.Background())
-}
-
-func (i *AuthBackendRoleTag) ToAuthBackendRoleTagPtrOutputWithContext(ctx context.Context) AuthBackendRoleTagPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleTagPtrOutput)
-}
-
-type AuthBackendRoleTagPtrInput interface {
-	pulumi.Input
-
-	ToAuthBackendRoleTagPtrOutput() AuthBackendRoleTagPtrOutput
-	ToAuthBackendRoleTagPtrOutputWithContext(ctx context.Context) AuthBackendRoleTagPtrOutput
-}
-
-type authBackendRoleTagPtrType AuthBackendRoleTagArgs
-
-func (*authBackendRoleTagPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AuthBackendRoleTag)(nil))
-}
-
-func (i *authBackendRoleTagPtrType) ToAuthBackendRoleTagPtrOutput() AuthBackendRoleTagPtrOutput {
-	return i.ToAuthBackendRoleTagPtrOutputWithContext(context.Background())
-}
-
-func (i *authBackendRoleTagPtrType) ToAuthBackendRoleTagPtrOutputWithContext(ctx context.Context) AuthBackendRoleTagPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendRoleTagPtrOutput)
 }
 
 // AuthBackendRoleTagArrayInput is an input type that accepts AuthBackendRoleTagArray and AuthBackendRoleTagArrayOutput values.
@@ -262,7 +233,7 @@ func (i AuthBackendRoleTagMap) ToAuthBackendRoleTagMapOutputWithContext(ctx cont
 type AuthBackendRoleTagOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendRoleTagOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendRoleTag)(nil))
+	return reflect.TypeOf((**AuthBackendRoleTag)(nil)).Elem()
 }
 
 func (o AuthBackendRoleTagOutput) ToAuthBackendRoleTagOutput() AuthBackendRoleTagOutput {
@@ -273,44 +244,10 @@ func (o AuthBackendRoleTagOutput) ToAuthBackendRoleTagOutputWithContext(ctx cont
 	return o
 }
 
-func (o AuthBackendRoleTagOutput) ToAuthBackendRoleTagPtrOutput() AuthBackendRoleTagPtrOutput {
-	return o.ToAuthBackendRoleTagPtrOutputWithContext(context.Background())
-}
-
-func (o AuthBackendRoleTagOutput) ToAuthBackendRoleTagPtrOutputWithContext(ctx context.Context) AuthBackendRoleTagPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v AuthBackendRoleTag) *AuthBackendRoleTag {
-		return &v
-	}).(AuthBackendRoleTagPtrOutput)
-}
-
-type AuthBackendRoleTagPtrOutput struct{ *pulumi.OutputState }
-
-func (AuthBackendRoleTagPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AuthBackendRoleTag)(nil))
-}
-
-func (o AuthBackendRoleTagPtrOutput) ToAuthBackendRoleTagPtrOutput() AuthBackendRoleTagPtrOutput {
-	return o
-}
-
-func (o AuthBackendRoleTagPtrOutput) ToAuthBackendRoleTagPtrOutputWithContext(ctx context.Context) AuthBackendRoleTagPtrOutput {
-	return o
-}
-
-func (o AuthBackendRoleTagPtrOutput) Elem() AuthBackendRoleTagOutput {
-	return o.ApplyT(func(v *AuthBackendRoleTag) AuthBackendRoleTag {
-		if v != nil {
-			return *v
-		}
-		var ret AuthBackendRoleTag
-		return ret
-	}).(AuthBackendRoleTagOutput)
-}
-
 type AuthBackendRoleTagArrayOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendRoleTagArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]AuthBackendRoleTag)(nil))
+	return reflect.TypeOf((*[]*AuthBackendRoleTag)(nil)).Elem()
 }
 
 func (o AuthBackendRoleTagArrayOutput) ToAuthBackendRoleTagArrayOutput() AuthBackendRoleTagArrayOutput {
@@ -322,15 +259,15 @@ func (o AuthBackendRoleTagArrayOutput) ToAuthBackendRoleTagArrayOutputWithContex
 }
 
 func (o AuthBackendRoleTagArrayOutput) Index(i pulumi.IntInput) AuthBackendRoleTagOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthBackendRoleTag {
-		return vs[0].([]AuthBackendRoleTag)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackendRoleTag {
+		return vs[0].([]*AuthBackendRoleTag)[vs[1].(int)]
 	}).(AuthBackendRoleTagOutput)
 }
 
 type AuthBackendRoleTagMapOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendRoleTagMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]AuthBackendRoleTag)(nil))
+	return reflect.TypeOf((*map[string]*AuthBackendRoleTag)(nil)).Elem()
 }
 
 func (o AuthBackendRoleTagMapOutput) ToAuthBackendRoleTagMapOutput() AuthBackendRoleTagMapOutput {
@@ -342,18 +279,16 @@ func (o AuthBackendRoleTagMapOutput) ToAuthBackendRoleTagMapOutputWithContext(ct
 }
 
 func (o AuthBackendRoleTagMapOutput) MapIndex(k pulumi.StringInput) AuthBackendRoleTagOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AuthBackendRoleTag {
-		return vs[0].(map[string]AuthBackendRoleTag)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AuthBackendRoleTag {
+		return vs[0].(map[string]*AuthBackendRoleTag)[vs[1].(string)]
 	}).(AuthBackendRoleTagOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendRoleTagInput)(nil)).Elem(), &AuthBackendRoleTag{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendRoleTagPtrInput)(nil)).Elem(), &AuthBackendRoleTag{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendRoleTagArrayInput)(nil)).Elem(), AuthBackendRoleTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendRoleTagMapInput)(nil)).Elem(), AuthBackendRoleTagMap{})
 	pulumi.RegisterOutputType(AuthBackendRoleTagOutput{})
-	pulumi.RegisterOutputType(AuthBackendRoleTagPtrOutput{})
 	pulumi.RegisterOutputType(AuthBackendRoleTagArrayOutput{})
 	pulumi.RegisterOutputType(AuthBackendRoleTagMapOutput{})
 }

@@ -162,52 +162,50 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuthBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendRoleArgs | AuthBackendRoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleState | undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["bindSecretId"] = state ? state.bindSecretId : undefined;
-            inputs["roleId"] = state ? state.roleId : undefined;
-            inputs["roleName"] = state ? state.roleName : undefined;
-            inputs["secretIdBoundCidrs"] = state ? state.secretIdBoundCidrs : undefined;
-            inputs["secretIdNumUses"] = state ? state.secretIdNumUses : undefined;
-            inputs["secretIdTtl"] = state ? state.secretIdTtl : undefined;
-            inputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
-            inputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
-            inputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
-            inputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
-            inputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
-            inputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
-            inputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
-            inputs["tokenTtl"] = state ? state.tokenTtl : undefined;
-            inputs["tokenType"] = state ? state.tokenType : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["bindSecretId"] = state ? state.bindSecretId : undefined;
+            resourceInputs["roleId"] = state ? state.roleId : undefined;
+            resourceInputs["roleName"] = state ? state.roleName : undefined;
+            resourceInputs["secretIdBoundCidrs"] = state ? state.secretIdBoundCidrs : undefined;
+            resourceInputs["secretIdNumUses"] = state ? state.secretIdNumUses : undefined;
+            resourceInputs["secretIdTtl"] = state ? state.secretIdTtl : undefined;
+            resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
+            resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
+            resourceInputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
+            resourceInputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
+            resourceInputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
+            resourceInputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
+            resourceInputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
+            resourceInputs["tokenTtl"] = state ? state.tokenTtl : undefined;
+            resourceInputs["tokenType"] = state ? state.tokenType : undefined;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
             if ((!args || args.roleName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleName'");
             }
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["bindSecretId"] = args ? args.bindSecretId : undefined;
-            inputs["roleId"] = args ? args.roleId : undefined;
-            inputs["roleName"] = args ? args.roleName : undefined;
-            inputs["secretIdBoundCidrs"] = args ? args.secretIdBoundCidrs : undefined;
-            inputs["secretIdNumUses"] = args ? args.secretIdNumUses : undefined;
-            inputs["secretIdTtl"] = args ? args.secretIdTtl : undefined;
-            inputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
-            inputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
-            inputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
-            inputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
-            inputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
-            inputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
-            inputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
-            inputs["tokenTtl"] = args ? args.tokenTtl : undefined;
-            inputs["tokenType"] = args ? args.tokenType : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["bindSecretId"] = args ? args.bindSecretId : undefined;
+            resourceInputs["roleId"] = args ? args.roleId : undefined;
+            resourceInputs["roleName"] = args ? args.roleName : undefined;
+            resourceInputs["secretIdBoundCidrs"] = args ? args.secretIdBoundCidrs : undefined;
+            resourceInputs["secretIdNumUses"] = args ? args.secretIdNumUses : undefined;
+            resourceInputs["secretIdTtl"] = args ? args.secretIdTtl : undefined;
+            resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
+            resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
+            resourceInputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
+            resourceInputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
+            resourceInputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
+            resourceInputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
+            resourceInputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
+            resourceInputs["tokenTtl"] = args ? args.tokenTtl : undefined;
+            resourceInputs["tokenType"] = args ? args.tokenType : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackendRole.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackendRole.__pulumiType, name, resourceInputs, opts);
     }
 }
 

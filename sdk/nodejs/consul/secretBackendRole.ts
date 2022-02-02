@@ -99,34 +99,32 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendRoleArgs | SecretBackendRoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendRoleState | undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["local"] = state ? state.local : undefined;
-            inputs["maxTtl"] = state ? state.maxTtl : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
-            inputs["tokenType"] = state ? state.tokenType : undefined;
-            inputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["local"] = state ? state.local : undefined;
+            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["tokenType"] = state ? state.tokenType : undefined;
+            resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
             if ((!args || args.policies === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'policies'");
             }
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["local"] = args ? args.local : undefined;
-            inputs["maxTtl"] = args ? args.maxTtl : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
-            inputs["tokenType"] = args ? args.tokenType : undefined;
-            inputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["local"] = args ? args.local : undefined;
+            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["policies"] = args ? args.policies : undefined;
+            resourceInputs["tokenType"] = args ? args.tokenType : undefined;
+            resourceInputs["ttl"] = args ? args.ttl : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretBackendRole.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretBackendRole.__pulumiType, name, resourceInputs, opts);
     }
 }
 

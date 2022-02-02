@@ -99,36 +99,34 @@ export class Transformation extends pulumi.CustomResource {
      */
     constructor(name: string, args: TransformationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TransformationArgs | TransformationState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TransformationState | undefined;
-            inputs["allowedRoles"] = state ? state.allowedRoles : undefined;
-            inputs["maskingCharacter"] = state ? state.maskingCharacter : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["path"] = state ? state.path : undefined;
-            inputs["template"] = state ? state.template : undefined;
-            inputs["templates"] = state ? state.templates : undefined;
-            inputs["tweakSource"] = state ? state.tweakSource : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["allowedRoles"] = state ? state.allowedRoles : undefined;
+            resourceInputs["maskingCharacter"] = state ? state.maskingCharacter : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["template"] = state ? state.template : undefined;
+            resourceInputs["templates"] = state ? state.templates : undefined;
+            resourceInputs["tweakSource"] = state ? state.tweakSource : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as TransformationArgs | undefined;
             if ((!args || args.path === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            inputs["allowedRoles"] = args ? args.allowedRoles : undefined;
-            inputs["maskingCharacter"] = args ? args.maskingCharacter : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["template"] = args ? args.template : undefined;
-            inputs["templates"] = args ? args.templates : undefined;
-            inputs["tweakSource"] = args ? args.tweakSource : undefined;
-            inputs["type"] = args ? args.type : undefined;
+            resourceInputs["allowedRoles"] = args ? args.allowedRoles : undefined;
+            resourceInputs["maskingCharacter"] = args ? args.maskingCharacter : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["template"] = args ? args.template : undefined;
+            resourceInputs["templates"] = args ? args.templates : undefined;
+            resourceInputs["tweakSource"] = args ? args.tweakSource : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Transformation.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Transformation.__pulumiType, name, resourceInputs, opts);
     }
 }
 

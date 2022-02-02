@@ -105,17 +105,17 @@ export class MfaDuo extends pulumi.CustomResource {
      */
     constructor(name: string, args: MfaDuoArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: MfaDuoArgs | MfaDuoState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MfaDuoState | undefined;
-            inputs["apiHostname"] = state ? state.apiHostname : undefined;
-            inputs["integrationKey"] = state ? state.integrationKey : undefined;
-            inputs["mountAccessor"] = state ? state.mountAccessor : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["pushInfo"] = state ? state.pushInfo : undefined;
-            inputs["secretKey"] = state ? state.secretKey : undefined;
-            inputs["usernameFormat"] = state ? state.usernameFormat : undefined;
+            resourceInputs["apiHostname"] = state ? state.apiHostname : undefined;
+            resourceInputs["integrationKey"] = state ? state.integrationKey : undefined;
+            resourceInputs["mountAccessor"] = state ? state.mountAccessor : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["pushInfo"] = state ? state.pushInfo : undefined;
+            resourceInputs["secretKey"] = state ? state.secretKey : undefined;
+            resourceInputs["usernameFormat"] = state ? state.usernameFormat : undefined;
         } else {
             const args = argsOrState as MfaDuoArgs | undefined;
             if ((!args || args.apiHostname === undefined) && !opts.urn) {
@@ -130,18 +130,16 @@ export class MfaDuo extends pulumi.CustomResource {
             if ((!args || args.secretKey === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'secretKey'");
             }
-            inputs["apiHostname"] = args ? args.apiHostname : undefined;
-            inputs["integrationKey"] = args ? args.integrationKey : undefined;
-            inputs["mountAccessor"] = args ? args.mountAccessor : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["pushInfo"] = args ? args.pushInfo : undefined;
-            inputs["secretKey"] = args ? args.secretKey : undefined;
-            inputs["usernameFormat"] = args ? args.usernameFormat : undefined;
+            resourceInputs["apiHostname"] = args ? args.apiHostname : undefined;
+            resourceInputs["integrationKey"] = args ? args.integrationKey : undefined;
+            resourceInputs["mountAccessor"] = args ? args.mountAccessor : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["pushInfo"] = args ? args.pushInfo : undefined;
+            resourceInputs["secretKey"] = args ? args.secretKey : undefined;
+            resourceInputs["usernameFormat"] = args ? args.usernameFormat : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(MfaDuo.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(MfaDuo.__pulumiType, name, resourceInputs, opts);
     }
 }
 

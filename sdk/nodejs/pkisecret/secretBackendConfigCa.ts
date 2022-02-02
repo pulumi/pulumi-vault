@@ -50,12 +50,12 @@ export class SecretBackendConfigCa extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretBackendConfigCaArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendConfigCaArgs | SecretBackendConfigCaState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendConfigCaState | undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["pemBundle"] = state ? state.pemBundle : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["pemBundle"] = state ? state.pemBundle : undefined;
         } else {
             const args = argsOrState as SecretBackendConfigCaArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -64,13 +64,11 @@ export class SecretBackendConfigCa extends pulumi.CustomResource {
             if ((!args || args.pemBundle === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'pemBundle'");
             }
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["pemBundle"] = args ? args.pemBundle : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["pemBundle"] = args ? args.pemBundle : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretBackendConfigCa.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretBackendConfigCa.__pulumiType, name, resourceInputs, opts);
     }
 }
 

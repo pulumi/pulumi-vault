@@ -94,13 +94,13 @@ export class GroupAlias extends pulumi.CustomResource {
      */
     constructor(name: string, args: GroupAliasArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GroupAliasArgs | GroupAliasState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupAliasState | undefined;
-            inputs["canonicalId"] = state ? state.canonicalId : undefined;
-            inputs["mountAccessor"] = state ? state.mountAccessor : undefined;
-            inputs["name"] = state ? state.name : undefined;
+            resourceInputs["canonicalId"] = state ? state.canonicalId : undefined;
+            resourceInputs["mountAccessor"] = state ? state.mountAccessor : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
         } else {
             const args = argsOrState as GroupAliasArgs | undefined;
             if ((!args || args.canonicalId === undefined) && !opts.urn) {
@@ -112,14 +112,12 @@ export class GroupAlias extends pulumi.CustomResource {
             if ((!args || args.name === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'name'");
             }
-            inputs["canonicalId"] = args ? args.canonicalId : undefined;
-            inputs["mountAccessor"] = args ? args.mountAccessor : undefined;
-            inputs["name"] = args ? args.name : undefined;
+            resourceInputs["canonicalId"] = args ? args.canonicalId : undefined;
+            resourceInputs["mountAccessor"] = args ? args.mountAccessor : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(GroupAlias.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(GroupAlias.__pulumiType, name, resourceInputs, opts);
     }
 }
 

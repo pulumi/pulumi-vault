@@ -167,60 +167,58 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
      */
     constructor(name: string, args: CertAuthBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CertAuthBackendRoleArgs | CertAuthBackendRoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CertAuthBackendRoleState | undefined;
-            inputs["allowedCommonNames"] = state ? state.allowedCommonNames : undefined;
-            inputs["allowedDnsSans"] = state ? state.allowedDnsSans : undefined;
-            inputs["allowedEmailSans"] = state ? state.allowedEmailSans : undefined;
-            inputs["allowedNames"] = state ? state.allowedNames : undefined;
-            inputs["allowedOrganizationUnits"] = state ? state.allowedOrganizationUnits : undefined;
-            inputs["allowedUriSans"] = state ? state.allowedUriSans : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["certificate"] = state ? state.certificate : undefined;
-            inputs["displayName"] = state ? state.displayName : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["requiredExtensions"] = state ? state.requiredExtensions : undefined;
-            inputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
-            inputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
-            inputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
-            inputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
-            inputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
-            inputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
-            inputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
-            inputs["tokenTtl"] = state ? state.tokenTtl : undefined;
-            inputs["tokenType"] = state ? state.tokenType : undefined;
+            resourceInputs["allowedCommonNames"] = state ? state.allowedCommonNames : undefined;
+            resourceInputs["allowedDnsSans"] = state ? state.allowedDnsSans : undefined;
+            resourceInputs["allowedEmailSans"] = state ? state.allowedEmailSans : undefined;
+            resourceInputs["allowedNames"] = state ? state.allowedNames : undefined;
+            resourceInputs["allowedOrganizationUnits"] = state ? state.allowedOrganizationUnits : undefined;
+            resourceInputs["allowedUriSans"] = state ? state.allowedUriSans : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["certificate"] = state ? state.certificate : undefined;
+            resourceInputs["displayName"] = state ? state.displayName : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["requiredExtensions"] = state ? state.requiredExtensions : undefined;
+            resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
+            resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
+            resourceInputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
+            resourceInputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
+            resourceInputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
+            resourceInputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
+            resourceInputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
+            resourceInputs["tokenTtl"] = state ? state.tokenTtl : undefined;
+            resourceInputs["tokenType"] = state ? state.tokenType : undefined;
         } else {
             const args = argsOrState as CertAuthBackendRoleArgs | undefined;
             if ((!args || args.certificate === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'certificate'");
             }
-            inputs["allowedCommonNames"] = args ? args.allowedCommonNames : undefined;
-            inputs["allowedDnsSans"] = args ? args.allowedDnsSans : undefined;
-            inputs["allowedEmailSans"] = args ? args.allowedEmailSans : undefined;
-            inputs["allowedNames"] = args ? args.allowedNames : undefined;
-            inputs["allowedOrganizationUnits"] = args ? args.allowedOrganizationUnits : undefined;
-            inputs["allowedUriSans"] = args ? args.allowedUriSans : undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["certificate"] = args ? args.certificate : undefined;
-            inputs["displayName"] = args ? args.displayName : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["requiredExtensions"] = args ? args.requiredExtensions : undefined;
-            inputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
-            inputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
-            inputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
-            inputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
-            inputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
-            inputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
-            inputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
-            inputs["tokenTtl"] = args ? args.tokenTtl : undefined;
-            inputs["tokenType"] = args ? args.tokenType : undefined;
+            resourceInputs["allowedCommonNames"] = args ? args.allowedCommonNames : undefined;
+            resourceInputs["allowedDnsSans"] = args ? args.allowedDnsSans : undefined;
+            resourceInputs["allowedEmailSans"] = args ? args.allowedEmailSans : undefined;
+            resourceInputs["allowedNames"] = args ? args.allowedNames : undefined;
+            resourceInputs["allowedOrganizationUnits"] = args ? args.allowedOrganizationUnits : undefined;
+            resourceInputs["allowedUriSans"] = args ? args.allowedUriSans : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["certificate"] = args ? args.certificate : undefined;
+            resourceInputs["displayName"] = args ? args.displayName : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["requiredExtensions"] = args ? args.requiredExtensions : undefined;
+            resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
+            resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
+            resourceInputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
+            resourceInputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
+            resourceInputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
+            resourceInputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
+            resourceInputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
+            resourceInputs["tokenTtl"] = args ? args.tokenTtl : undefined;
+            resourceInputs["tokenType"] = args ? args.tokenType : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(CertAuthBackendRole.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(CertAuthBackendRole.__pulumiType, name, resourceInputs, opts);
     }
 }
 

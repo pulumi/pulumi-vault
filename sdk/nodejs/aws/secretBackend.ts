@@ -92,35 +92,33 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SecretBackendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendArgs | SecretBackendState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendState | undefined;
-            inputs["accessKey"] = state ? state.accessKey : undefined;
-            inputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["iamEndpoint"] = state ? state.iamEndpoint : undefined;
-            inputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
-            inputs["path"] = state ? state.path : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["secretKey"] = state ? state.secretKey : undefined;
-            inputs["stsEndpoint"] = state ? state.stsEndpoint : undefined;
+            resourceInputs["accessKey"] = state ? state.accessKey : undefined;
+            resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["iamEndpoint"] = state ? state.iamEndpoint : undefined;
+            resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["secretKey"] = state ? state.secretKey : undefined;
+            resourceInputs["stsEndpoint"] = state ? state.stsEndpoint : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
-            inputs["accessKey"] = args ? args.accessKey : undefined;
-            inputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["iamEndpoint"] = args ? args.iamEndpoint : undefined;
-            inputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["secretKey"] = args ? args.secretKey : undefined;
-            inputs["stsEndpoint"] = args ? args.stsEndpoint : undefined;
+            resourceInputs["accessKey"] = args ? args.accessKey : undefined;
+            resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["iamEndpoint"] = args ? args.iamEndpoint : undefined;
+            resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["secretKey"] = args ? args.secretKey : undefined;
+            resourceInputs["stsEndpoint"] = args ? args.stsEndpoint : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretBackend.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretBackend.__pulumiType, name, resourceInputs, opts);
     }
 }
 

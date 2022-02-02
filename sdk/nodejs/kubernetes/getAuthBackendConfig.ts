@@ -15,9 +15,7 @@ export function getAuthBackendConfig(args?: GetAuthBackendConfigArgs, opts?: pul
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", {
         "backend": args.backend,
         "disableIssValidation": args.disableIssValidation,

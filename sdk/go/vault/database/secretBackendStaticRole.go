@@ -205,7 +205,7 @@ type SecretBackendStaticRoleInput interface {
 }
 
 func (*SecretBackendStaticRole) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendStaticRole)(nil))
+	return reflect.TypeOf((**SecretBackendStaticRole)(nil)).Elem()
 }
 
 func (i *SecretBackendStaticRole) ToSecretBackendStaticRoleOutput() SecretBackendStaticRoleOutput {
@@ -214,35 +214,6 @@ func (i *SecretBackendStaticRole) ToSecretBackendStaticRoleOutput() SecretBacken
 
 func (i *SecretBackendStaticRole) ToSecretBackendStaticRoleOutputWithContext(ctx context.Context) SecretBackendStaticRoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendStaticRoleOutput)
-}
-
-func (i *SecretBackendStaticRole) ToSecretBackendStaticRolePtrOutput() SecretBackendStaticRolePtrOutput {
-	return i.ToSecretBackendStaticRolePtrOutputWithContext(context.Background())
-}
-
-func (i *SecretBackendStaticRole) ToSecretBackendStaticRolePtrOutputWithContext(ctx context.Context) SecretBackendStaticRolePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendStaticRolePtrOutput)
-}
-
-type SecretBackendStaticRolePtrInput interface {
-	pulumi.Input
-
-	ToSecretBackendStaticRolePtrOutput() SecretBackendStaticRolePtrOutput
-	ToSecretBackendStaticRolePtrOutputWithContext(ctx context.Context) SecretBackendStaticRolePtrOutput
-}
-
-type secretBackendStaticRolePtrType SecretBackendStaticRoleArgs
-
-func (*secretBackendStaticRolePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecretBackendStaticRole)(nil))
-}
-
-func (i *secretBackendStaticRolePtrType) ToSecretBackendStaticRolePtrOutput() SecretBackendStaticRolePtrOutput {
-	return i.ToSecretBackendStaticRolePtrOutputWithContext(context.Background())
-}
-
-func (i *secretBackendStaticRolePtrType) ToSecretBackendStaticRolePtrOutputWithContext(ctx context.Context) SecretBackendStaticRolePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendStaticRolePtrOutput)
 }
 
 // SecretBackendStaticRoleArrayInput is an input type that accepts SecretBackendStaticRoleArray and SecretBackendStaticRoleArrayOutput values.
@@ -298,7 +269,7 @@ func (i SecretBackendStaticRoleMap) ToSecretBackendStaticRoleMapOutputWithContex
 type SecretBackendStaticRoleOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendStaticRoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendStaticRole)(nil))
+	return reflect.TypeOf((**SecretBackendStaticRole)(nil)).Elem()
 }
 
 func (o SecretBackendStaticRoleOutput) ToSecretBackendStaticRoleOutput() SecretBackendStaticRoleOutput {
@@ -309,44 +280,10 @@ func (o SecretBackendStaticRoleOutput) ToSecretBackendStaticRoleOutputWithContex
 	return o
 }
 
-func (o SecretBackendStaticRoleOutput) ToSecretBackendStaticRolePtrOutput() SecretBackendStaticRolePtrOutput {
-	return o.ToSecretBackendStaticRolePtrOutputWithContext(context.Background())
-}
-
-func (o SecretBackendStaticRoleOutput) ToSecretBackendStaticRolePtrOutputWithContext(ctx context.Context) SecretBackendStaticRolePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendStaticRole) *SecretBackendStaticRole {
-		return &v
-	}).(SecretBackendStaticRolePtrOutput)
-}
-
-type SecretBackendStaticRolePtrOutput struct{ *pulumi.OutputState }
-
-func (SecretBackendStaticRolePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecretBackendStaticRole)(nil))
-}
-
-func (o SecretBackendStaticRolePtrOutput) ToSecretBackendStaticRolePtrOutput() SecretBackendStaticRolePtrOutput {
-	return o
-}
-
-func (o SecretBackendStaticRolePtrOutput) ToSecretBackendStaticRolePtrOutputWithContext(ctx context.Context) SecretBackendStaticRolePtrOutput {
-	return o
-}
-
-func (o SecretBackendStaticRolePtrOutput) Elem() SecretBackendStaticRoleOutput {
-	return o.ApplyT(func(v *SecretBackendStaticRole) SecretBackendStaticRole {
-		if v != nil {
-			return *v
-		}
-		var ret SecretBackendStaticRole
-		return ret
-	}).(SecretBackendStaticRoleOutput)
-}
-
 type SecretBackendStaticRoleArrayOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendStaticRoleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SecretBackendStaticRole)(nil))
+	return reflect.TypeOf((*[]*SecretBackendStaticRole)(nil)).Elem()
 }
 
 func (o SecretBackendStaticRoleArrayOutput) ToSecretBackendStaticRoleArrayOutput() SecretBackendStaticRoleArrayOutput {
@@ -358,15 +295,15 @@ func (o SecretBackendStaticRoleArrayOutput) ToSecretBackendStaticRoleArrayOutput
 }
 
 func (o SecretBackendStaticRoleArrayOutput) Index(i pulumi.IntInput) SecretBackendStaticRoleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretBackendStaticRole {
-		return vs[0].([]SecretBackendStaticRole)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendStaticRole {
+		return vs[0].([]*SecretBackendStaticRole)[vs[1].(int)]
 	}).(SecretBackendStaticRoleOutput)
 }
 
 type SecretBackendStaticRoleMapOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendStaticRoleMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SecretBackendStaticRole)(nil))
+	return reflect.TypeOf((*map[string]*SecretBackendStaticRole)(nil)).Elem()
 }
 
 func (o SecretBackendStaticRoleMapOutput) ToSecretBackendStaticRoleMapOutput() SecretBackendStaticRoleMapOutput {
@@ -378,18 +315,16 @@ func (o SecretBackendStaticRoleMapOutput) ToSecretBackendStaticRoleMapOutputWith
 }
 
 func (o SecretBackendStaticRoleMapOutput) MapIndex(k pulumi.StringInput) SecretBackendStaticRoleOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SecretBackendStaticRole {
-		return vs[0].(map[string]SecretBackendStaticRole)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SecretBackendStaticRole {
+		return vs[0].(map[string]*SecretBackendStaticRole)[vs[1].(string)]
 	}).(SecretBackendStaticRoleOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendStaticRoleInput)(nil)).Elem(), &SecretBackendStaticRole{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendStaticRolePtrInput)(nil)).Elem(), &SecretBackendStaticRole{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendStaticRoleArrayInput)(nil)).Elem(), SecretBackendStaticRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendStaticRoleMapInput)(nil)).Elem(), SecretBackendStaticRoleMap{})
 	pulumi.RegisterOutputType(SecretBackendStaticRoleOutput{})
-	pulumi.RegisterOutputType(SecretBackendStaticRolePtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendStaticRoleArrayOutput{})
 	pulumi.RegisterOutputType(SecretBackendStaticRoleMapOutput{})
 }

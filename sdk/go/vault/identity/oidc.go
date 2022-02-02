@@ -126,7 +126,7 @@ type OidcInput interface {
 }
 
 func (*Oidc) ElementType() reflect.Type {
-	return reflect.TypeOf((*Oidc)(nil))
+	return reflect.TypeOf((**Oidc)(nil)).Elem()
 }
 
 func (i *Oidc) ToOidcOutput() OidcOutput {
@@ -135,35 +135,6 @@ func (i *Oidc) ToOidcOutput() OidcOutput {
 
 func (i *Oidc) ToOidcOutputWithContext(ctx context.Context) OidcOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OidcOutput)
-}
-
-func (i *Oidc) ToOidcPtrOutput() OidcPtrOutput {
-	return i.ToOidcPtrOutputWithContext(context.Background())
-}
-
-func (i *Oidc) ToOidcPtrOutputWithContext(ctx context.Context) OidcPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OidcPtrOutput)
-}
-
-type OidcPtrInput interface {
-	pulumi.Input
-
-	ToOidcPtrOutput() OidcPtrOutput
-	ToOidcPtrOutputWithContext(ctx context.Context) OidcPtrOutput
-}
-
-type oidcPtrType OidcArgs
-
-func (*oidcPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**Oidc)(nil))
-}
-
-func (i *oidcPtrType) ToOidcPtrOutput() OidcPtrOutput {
-	return i.ToOidcPtrOutputWithContext(context.Background())
-}
-
-func (i *oidcPtrType) ToOidcPtrOutputWithContext(ctx context.Context) OidcPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OidcPtrOutput)
 }
 
 // OidcArrayInput is an input type that accepts OidcArray and OidcArrayOutput values.
@@ -219,7 +190,7 @@ func (i OidcMap) ToOidcMapOutputWithContext(ctx context.Context) OidcMapOutput {
 type OidcOutput struct{ *pulumi.OutputState }
 
 func (OidcOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Oidc)(nil))
+	return reflect.TypeOf((**Oidc)(nil)).Elem()
 }
 
 func (o OidcOutput) ToOidcOutput() OidcOutput {
@@ -230,44 +201,10 @@ func (o OidcOutput) ToOidcOutputWithContext(ctx context.Context) OidcOutput {
 	return o
 }
 
-func (o OidcOutput) ToOidcPtrOutput() OidcPtrOutput {
-	return o.ToOidcPtrOutputWithContext(context.Background())
-}
-
-func (o OidcOutput) ToOidcPtrOutputWithContext(ctx context.Context) OidcPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v Oidc) *Oidc {
-		return &v
-	}).(OidcPtrOutput)
-}
-
-type OidcPtrOutput struct{ *pulumi.OutputState }
-
-func (OidcPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**Oidc)(nil))
-}
-
-func (o OidcPtrOutput) ToOidcPtrOutput() OidcPtrOutput {
-	return o
-}
-
-func (o OidcPtrOutput) ToOidcPtrOutputWithContext(ctx context.Context) OidcPtrOutput {
-	return o
-}
-
-func (o OidcPtrOutput) Elem() OidcOutput {
-	return o.ApplyT(func(v *Oidc) Oidc {
-		if v != nil {
-			return *v
-		}
-		var ret Oidc
-		return ret
-	}).(OidcOutput)
-}
-
 type OidcArrayOutput struct{ *pulumi.OutputState }
 
 func (OidcArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Oidc)(nil))
+	return reflect.TypeOf((*[]*Oidc)(nil)).Elem()
 }
 
 func (o OidcArrayOutput) ToOidcArrayOutput() OidcArrayOutput {
@@ -279,15 +216,15 @@ func (o OidcArrayOutput) ToOidcArrayOutputWithContext(ctx context.Context) OidcA
 }
 
 func (o OidcArrayOutput) Index(i pulumi.IntInput) OidcOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Oidc {
-		return vs[0].([]Oidc)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Oidc {
+		return vs[0].([]*Oidc)[vs[1].(int)]
 	}).(OidcOutput)
 }
 
 type OidcMapOutput struct{ *pulumi.OutputState }
 
 func (OidcMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]Oidc)(nil))
+	return reflect.TypeOf((*map[string]*Oidc)(nil)).Elem()
 }
 
 func (o OidcMapOutput) ToOidcMapOutput() OidcMapOutput {
@@ -299,18 +236,16 @@ func (o OidcMapOutput) ToOidcMapOutputWithContext(ctx context.Context) OidcMapOu
 }
 
 func (o OidcMapOutput) MapIndex(k pulumi.StringInput) OidcOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) Oidc {
-		return vs[0].(map[string]Oidc)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Oidc {
+		return vs[0].(map[string]*Oidc)[vs[1].(string)]
 	}).(OidcOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*OidcInput)(nil)).Elem(), &Oidc{})
-	pulumi.RegisterInputType(reflect.TypeOf((*OidcPtrInput)(nil)).Elem(), &Oidc{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OidcArrayInput)(nil)).Elem(), OidcArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OidcMapInput)(nil)).Elem(), OidcMap{})
 	pulumi.RegisterOutputType(OidcOutput{})
-	pulumi.RegisterOutputType(OidcPtrOutput{})
 	pulumi.RegisterOutputType(OidcArrayOutput{})
 	pulumi.RegisterOutputType(OidcMapOutput{})
 }

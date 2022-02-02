@@ -214,7 +214,7 @@ type GroupMemberEntityIdsInput interface {
 }
 
 func (*GroupMemberEntityIds) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupMemberEntityIds)(nil))
+	return reflect.TypeOf((**GroupMemberEntityIds)(nil)).Elem()
 }
 
 func (i *GroupMemberEntityIds) ToGroupMemberEntityIdsOutput() GroupMemberEntityIdsOutput {
@@ -223,35 +223,6 @@ func (i *GroupMemberEntityIds) ToGroupMemberEntityIdsOutput() GroupMemberEntityI
 
 func (i *GroupMemberEntityIds) ToGroupMemberEntityIdsOutputWithContext(ctx context.Context) GroupMemberEntityIdsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GroupMemberEntityIdsOutput)
-}
-
-func (i *GroupMemberEntityIds) ToGroupMemberEntityIdsPtrOutput() GroupMemberEntityIdsPtrOutput {
-	return i.ToGroupMemberEntityIdsPtrOutputWithContext(context.Background())
-}
-
-func (i *GroupMemberEntityIds) ToGroupMemberEntityIdsPtrOutputWithContext(ctx context.Context) GroupMemberEntityIdsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GroupMemberEntityIdsPtrOutput)
-}
-
-type GroupMemberEntityIdsPtrInput interface {
-	pulumi.Input
-
-	ToGroupMemberEntityIdsPtrOutput() GroupMemberEntityIdsPtrOutput
-	ToGroupMemberEntityIdsPtrOutputWithContext(ctx context.Context) GroupMemberEntityIdsPtrOutput
-}
-
-type groupMemberEntityIdsPtrType GroupMemberEntityIdsArgs
-
-func (*groupMemberEntityIdsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GroupMemberEntityIds)(nil))
-}
-
-func (i *groupMemberEntityIdsPtrType) ToGroupMemberEntityIdsPtrOutput() GroupMemberEntityIdsPtrOutput {
-	return i.ToGroupMemberEntityIdsPtrOutputWithContext(context.Background())
-}
-
-func (i *groupMemberEntityIdsPtrType) ToGroupMemberEntityIdsPtrOutputWithContext(ctx context.Context) GroupMemberEntityIdsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GroupMemberEntityIdsPtrOutput)
 }
 
 // GroupMemberEntityIdsArrayInput is an input type that accepts GroupMemberEntityIdsArray and GroupMemberEntityIdsArrayOutput values.
@@ -307,7 +278,7 @@ func (i GroupMemberEntityIdsMap) ToGroupMemberEntityIdsMapOutputWithContext(ctx 
 type GroupMemberEntityIdsOutput struct{ *pulumi.OutputState }
 
 func (GroupMemberEntityIdsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GroupMemberEntityIds)(nil))
+	return reflect.TypeOf((**GroupMemberEntityIds)(nil)).Elem()
 }
 
 func (o GroupMemberEntityIdsOutput) ToGroupMemberEntityIdsOutput() GroupMemberEntityIdsOutput {
@@ -318,44 +289,10 @@ func (o GroupMemberEntityIdsOutput) ToGroupMemberEntityIdsOutputWithContext(ctx 
 	return o
 }
 
-func (o GroupMemberEntityIdsOutput) ToGroupMemberEntityIdsPtrOutput() GroupMemberEntityIdsPtrOutput {
-	return o.ToGroupMemberEntityIdsPtrOutputWithContext(context.Background())
-}
-
-func (o GroupMemberEntityIdsOutput) ToGroupMemberEntityIdsPtrOutputWithContext(ctx context.Context) GroupMemberEntityIdsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GroupMemberEntityIds) *GroupMemberEntityIds {
-		return &v
-	}).(GroupMemberEntityIdsPtrOutput)
-}
-
-type GroupMemberEntityIdsPtrOutput struct{ *pulumi.OutputState }
-
-func (GroupMemberEntityIdsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GroupMemberEntityIds)(nil))
-}
-
-func (o GroupMemberEntityIdsPtrOutput) ToGroupMemberEntityIdsPtrOutput() GroupMemberEntityIdsPtrOutput {
-	return o
-}
-
-func (o GroupMemberEntityIdsPtrOutput) ToGroupMemberEntityIdsPtrOutputWithContext(ctx context.Context) GroupMemberEntityIdsPtrOutput {
-	return o
-}
-
-func (o GroupMemberEntityIdsPtrOutput) Elem() GroupMemberEntityIdsOutput {
-	return o.ApplyT(func(v *GroupMemberEntityIds) GroupMemberEntityIds {
-		if v != nil {
-			return *v
-		}
-		var ret GroupMemberEntityIds
-		return ret
-	}).(GroupMemberEntityIdsOutput)
-}
-
 type GroupMemberEntityIdsArrayOutput struct{ *pulumi.OutputState }
 
 func (GroupMemberEntityIdsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GroupMemberEntityIds)(nil))
+	return reflect.TypeOf((*[]*GroupMemberEntityIds)(nil)).Elem()
 }
 
 func (o GroupMemberEntityIdsArrayOutput) ToGroupMemberEntityIdsArrayOutput() GroupMemberEntityIdsArrayOutput {
@@ -367,15 +304,15 @@ func (o GroupMemberEntityIdsArrayOutput) ToGroupMemberEntityIdsArrayOutputWithCo
 }
 
 func (o GroupMemberEntityIdsArrayOutput) Index(i pulumi.IntInput) GroupMemberEntityIdsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GroupMemberEntityIds {
-		return vs[0].([]GroupMemberEntityIds)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GroupMemberEntityIds {
+		return vs[0].([]*GroupMemberEntityIds)[vs[1].(int)]
 	}).(GroupMemberEntityIdsOutput)
 }
 
 type GroupMemberEntityIdsMapOutput struct{ *pulumi.OutputState }
 
 func (GroupMemberEntityIdsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]GroupMemberEntityIds)(nil))
+	return reflect.TypeOf((*map[string]*GroupMemberEntityIds)(nil)).Elem()
 }
 
 func (o GroupMemberEntityIdsMapOutput) ToGroupMemberEntityIdsMapOutput() GroupMemberEntityIdsMapOutput {
@@ -387,18 +324,16 @@ func (o GroupMemberEntityIdsMapOutput) ToGroupMemberEntityIdsMapOutputWithContex
 }
 
 func (o GroupMemberEntityIdsMapOutput) MapIndex(k pulumi.StringInput) GroupMemberEntityIdsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) GroupMemberEntityIds {
-		return vs[0].(map[string]GroupMemberEntityIds)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *GroupMemberEntityIds {
+		return vs[0].(map[string]*GroupMemberEntityIds)[vs[1].(string)]
 	}).(GroupMemberEntityIdsOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupMemberEntityIdsInput)(nil)).Elem(), &GroupMemberEntityIds{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GroupMemberEntityIdsPtrInput)(nil)).Elem(), &GroupMemberEntityIds{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupMemberEntityIdsArrayInput)(nil)).Elem(), GroupMemberEntityIdsArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupMemberEntityIdsMapInput)(nil)).Elem(), GroupMemberEntityIdsMap{})
 	pulumi.RegisterOutputType(GroupMemberEntityIdsOutput{})
-	pulumi.RegisterOutputType(GroupMemberEntityIdsPtrOutput{})
 	pulumi.RegisterOutputType(GroupMemberEntityIdsArrayOutput{})
 	pulumi.RegisterOutputType(GroupMemberEntityIdsMapOutput{})
 }

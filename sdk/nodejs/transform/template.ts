@@ -72,34 +72,32 @@ export class Template extends pulumi.CustomResource {
      */
     constructor(name: string, args: TemplateArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TemplateArgs | TemplateState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TemplateState | undefined;
-            inputs["alphabet"] = state ? state.alphabet : undefined;
-            inputs["decodeFormats"] = state ? state.decodeFormats : undefined;
-            inputs["encodeFormat"] = state ? state.encodeFormat : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["path"] = state ? state.path : undefined;
-            inputs["pattern"] = state ? state.pattern : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["alphabet"] = state ? state.alphabet : undefined;
+            resourceInputs["decodeFormats"] = state ? state.decodeFormats : undefined;
+            resourceInputs["encodeFormat"] = state ? state.encodeFormat : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["pattern"] = state ? state.pattern : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as TemplateArgs | undefined;
             if ((!args || args.path === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            inputs["alphabet"] = args ? args.alphabet : undefined;
-            inputs["decodeFormats"] = args ? args.decodeFormats : undefined;
-            inputs["encodeFormat"] = args ? args.encodeFormat : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["pattern"] = args ? args.pattern : undefined;
-            inputs["type"] = args ? args.type : undefined;
+            resourceInputs["alphabet"] = args ? args.alphabet : undefined;
+            resourceInputs["decodeFormats"] = args ? args.decodeFormats : undefined;
+            resourceInputs["encodeFormat"] = args ? args.encodeFormat : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["pattern"] = args ? args.pattern : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Template.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Template.__pulumiType, name, resourceInputs, opts);
     }
 }
 

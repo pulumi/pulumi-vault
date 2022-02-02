@@ -78,36 +78,34 @@ export class BackendRole extends pulumi.CustomResource {
      */
     constructor(name: string, args: BackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: BackendRoleArgs | BackendRoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BackendRoleState | undefined;
-            inputs["applicationObjectId"] = state ? state.applicationObjectId : undefined;
-            inputs["azureGroups"] = state ? state.azureGroups : undefined;
-            inputs["azureRoles"] = state ? state.azureRoles : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["maxTtl"] = state ? state.maxTtl : undefined;
-            inputs["role"] = state ? state.role : undefined;
-            inputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["applicationObjectId"] = state ? state.applicationObjectId : undefined;
+            resourceInputs["azureGroups"] = state ? state.azureGroups : undefined;
+            resourceInputs["azureRoles"] = state ? state.azureRoles : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
+            resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as BackendRoleArgs | undefined;
             if ((!args || args.role === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            inputs["applicationObjectId"] = args ? args.applicationObjectId : undefined;
-            inputs["azureGroups"] = args ? args.azureGroups : undefined;
-            inputs["azureRoles"] = args ? args.azureRoles : undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["maxTtl"] = args ? args.maxTtl : undefined;
-            inputs["role"] = args ? args.role : undefined;
-            inputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["applicationObjectId"] = args ? args.applicationObjectId : undefined;
+            resourceInputs["azureGroups"] = args ? args.azureGroups : undefined;
+            resourceInputs["azureRoles"] = args ? args.azureRoles : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
+            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["ttl"] = args ? args.ttl : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(BackendRole.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(BackendRole.__pulumiType, name, resourceInputs, opts);
     }
 }
 

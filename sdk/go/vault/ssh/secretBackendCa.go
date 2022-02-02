@@ -144,7 +144,7 @@ type SecretBackendCaInput interface {
 }
 
 func (*SecretBackendCa) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendCa)(nil))
+	return reflect.TypeOf((**SecretBackendCa)(nil)).Elem()
 }
 
 func (i *SecretBackendCa) ToSecretBackendCaOutput() SecretBackendCaOutput {
@@ -153,35 +153,6 @@ func (i *SecretBackendCa) ToSecretBackendCaOutput() SecretBackendCaOutput {
 
 func (i *SecretBackendCa) ToSecretBackendCaOutputWithContext(ctx context.Context) SecretBackendCaOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCaOutput)
-}
-
-func (i *SecretBackendCa) ToSecretBackendCaPtrOutput() SecretBackendCaPtrOutput {
-	return i.ToSecretBackendCaPtrOutputWithContext(context.Background())
-}
-
-func (i *SecretBackendCa) ToSecretBackendCaPtrOutputWithContext(ctx context.Context) SecretBackendCaPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCaPtrOutput)
-}
-
-type SecretBackendCaPtrInput interface {
-	pulumi.Input
-
-	ToSecretBackendCaPtrOutput() SecretBackendCaPtrOutput
-	ToSecretBackendCaPtrOutputWithContext(ctx context.Context) SecretBackendCaPtrOutput
-}
-
-type secretBackendCaPtrType SecretBackendCaArgs
-
-func (*secretBackendCaPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecretBackendCa)(nil))
-}
-
-func (i *secretBackendCaPtrType) ToSecretBackendCaPtrOutput() SecretBackendCaPtrOutput {
-	return i.ToSecretBackendCaPtrOutputWithContext(context.Background())
-}
-
-func (i *secretBackendCaPtrType) ToSecretBackendCaPtrOutputWithContext(ctx context.Context) SecretBackendCaPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretBackendCaPtrOutput)
 }
 
 // SecretBackendCaArrayInput is an input type that accepts SecretBackendCaArray and SecretBackendCaArrayOutput values.
@@ -237,7 +208,7 @@ func (i SecretBackendCaMap) ToSecretBackendCaMapOutputWithContext(ctx context.Co
 type SecretBackendCaOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendCaOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretBackendCa)(nil))
+	return reflect.TypeOf((**SecretBackendCa)(nil)).Elem()
 }
 
 func (o SecretBackendCaOutput) ToSecretBackendCaOutput() SecretBackendCaOutput {
@@ -248,44 +219,10 @@ func (o SecretBackendCaOutput) ToSecretBackendCaOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o SecretBackendCaOutput) ToSecretBackendCaPtrOutput() SecretBackendCaPtrOutput {
-	return o.ToSecretBackendCaPtrOutputWithContext(context.Background())
-}
-
-func (o SecretBackendCaOutput) ToSecretBackendCaPtrOutputWithContext(ctx context.Context) SecretBackendCaPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretBackendCa) *SecretBackendCa {
-		return &v
-	}).(SecretBackendCaPtrOutput)
-}
-
-type SecretBackendCaPtrOutput struct{ *pulumi.OutputState }
-
-func (SecretBackendCaPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SecretBackendCa)(nil))
-}
-
-func (o SecretBackendCaPtrOutput) ToSecretBackendCaPtrOutput() SecretBackendCaPtrOutput {
-	return o
-}
-
-func (o SecretBackendCaPtrOutput) ToSecretBackendCaPtrOutputWithContext(ctx context.Context) SecretBackendCaPtrOutput {
-	return o
-}
-
-func (o SecretBackendCaPtrOutput) Elem() SecretBackendCaOutput {
-	return o.ApplyT(func(v *SecretBackendCa) SecretBackendCa {
-		if v != nil {
-			return *v
-		}
-		var ret SecretBackendCa
-		return ret
-	}).(SecretBackendCaOutput)
-}
-
 type SecretBackendCaArrayOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendCaArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SecretBackendCa)(nil))
+	return reflect.TypeOf((*[]*SecretBackendCa)(nil)).Elem()
 }
 
 func (o SecretBackendCaArrayOutput) ToSecretBackendCaArrayOutput() SecretBackendCaArrayOutput {
@@ -297,15 +234,15 @@ func (o SecretBackendCaArrayOutput) ToSecretBackendCaArrayOutputWithContext(ctx 
 }
 
 func (o SecretBackendCaArrayOutput) Index(i pulumi.IntInput) SecretBackendCaOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretBackendCa {
-		return vs[0].([]SecretBackendCa)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretBackendCa {
+		return vs[0].([]*SecretBackendCa)[vs[1].(int)]
 	}).(SecretBackendCaOutput)
 }
 
 type SecretBackendCaMapOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendCaMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SecretBackendCa)(nil))
+	return reflect.TypeOf((*map[string]*SecretBackendCa)(nil)).Elem()
 }
 
 func (o SecretBackendCaMapOutput) ToSecretBackendCaMapOutput() SecretBackendCaMapOutput {
@@ -317,18 +254,16 @@ func (o SecretBackendCaMapOutput) ToSecretBackendCaMapOutputWithContext(ctx cont
 }
 
 func (o SecretBackendCaMapOutput) MapIndex(k pulumi.StringInput) SecretBackendCaOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SecretBackendCa {
-		return vs[0].(map[string]SecretBackendCa)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SecretBackendCa {
+		return vs[0].(map[string]*SecretBackendCa)[vs[1].(string)]
 	}).(SecretBackendCaOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendCaInput)(nil)).Elem(), &SecretBackendCa{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendCaPtrInput)(nil)).Elem(), &SecretBackendCa{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendCaArrayInput)(nil)).Elem(), SecretBackendCaArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendCaMapInput)(nil)).Elem(), SecretBackendCaMap{})
 	pulumi.RegisterOutputType(SecretBackendCaOutput{})
-	pulumi.RegisterOutputType(SecretBackendCaPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendCaArrayOutput{})
 	pulumi.RegisterOutputType(SecretBackendCaMapOutput{})
 }

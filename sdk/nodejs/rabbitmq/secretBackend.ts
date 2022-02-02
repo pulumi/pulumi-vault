@@ -87,18 +87,18 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     constructor(name: string, args: SecretBackendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendArgs | SecretBackendState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendState | undefined;
-            inputs["connectionUri"] = state ? state.connectionUri : undefined;
-            inputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["path"] = state ? state.path : undefined;
-            inputs["username"] = state ? state.username : undefined;
-            inputs["verifyConnection"] = state ? state.verifyConnection : undefined;
+            resourceInputs["connectionUri"] = state ? state.connectionUri : undefined;
+            resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["verifyConnection"] = state ? state.verifyConnection : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
             if ((!args || args.connectionUri === undefined) && !opts.urn) {
@@ -110,19 +110,17 @@ export class SecretBackend extends pulumi.CustomResource {
             if ((!args || args.username === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            inputs["connectionUri"] = args ? args.connectionUri : undefined;
-            inputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["username"] = args ? args.username : undefined;
-            inputs["verifyConnection"] = args ? args.verifyConnection : undefined;
+            resourceInputs["connectionUri"] = args ? args.connectionUri : undefined;
+            resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["verifyConnection"] = args ? args.verifyConnection : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretBackend.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretBackend.__pulumiType, name, resourceInputs, opts);
     }
 }
 

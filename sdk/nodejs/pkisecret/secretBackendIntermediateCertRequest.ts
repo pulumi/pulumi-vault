@@ -130,32 +130,32 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
      */
     constructor(name: string, args: SecretBackendIntermediateCertRequestArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendIntermediateCertRequestArgs | SecretBackendIntermediateCertRequestState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendIntermediateCertRequestState | undefined;
-            inputs["altNames"] = state ? state.altNames : undefined;
-            inputs["backend"] = state ? state.backend : undefined;
-            inputs["commonName"] = state ? state.commonName : undefined;
-            inputs["country"] = state ? state.country : undefined;
-            inputs["csr"] = state ? state.csr : undefined;
-            inputs["excludeCnFromSans"] = state ? state.excludeCnFromSans : undefined;
-            inputs["format"] = state ? state.format : undefined;
-            inputs["ipSans"] = state ? state.ipSans : undefined;
-            inputs["keyBits"] = state ? state.keyBits : undefined;
-            inputs["keyType"] = state ? state.keyType : undefined;
-            inputs["locality"] = state ? state.locality : undefined;
-            inputs["organization"] = state ? state.organization : undefined;
-            inputs["otherSans"] = state ? state.otherSans : undefined;
-            inputs["ou"] = state ? state.ou : undefined;
-            inputs["postalCode"] = state ? state.postalCode : undefined;
-            inputs["privateKey"] = state ? state.privateKey : undefined;
-            inputs["privateKeyFormat"] = state ? state.privateKeyFormat : undefined;
-            inputs["privateKeyType"] = state ? state.privateKeyType : undefined;
-            inputs["province"] = state ? state.province : undefined;
-            inputs["streetAddress"] = state ? state.streetAddress : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["uriSans"] = state ? state.uriSans : undefined;
+            resourceInputs["altNames"] = state ? state.altNames : undefined;
+            resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["commonName"] = state ? state.commonName : undefined;
+            resourceInputs["country"] = state ? state.country : undefined;
+            resourceInputs["csr"] = state ? state.csr : undefined;
+            resourceInputs["excludeCnFromSans"] = state ? state.excludeCnFromSans : undefined;
+            resourceInputs["format"] = state ? state.format : undefined;
+            resourceInputs["ipSans"] = state ? state.ipSans : undefined;
+            resourceInputs["keyBits"] = state ? state.keyBits : undefined;
+            resourceInputs["keyType"] = state ? state.keyType : undefined;
+            resourceInputs["locality"] = state ? state.locality : undefined;
+            resourceInputs["organization"] = state ? state.organization : undefined;
+            resourceInputs["otherSans"] = state ? state.otherSans : undefined;
+            resourceInputs["ou"] = state ? state.ou : undefined;
+            resourceInputs["postalCode"] = state ? state.postalCode : undefined;
+            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
+            resourceInputs["privateKeyFormat"] = state ? state.privateKeyFormat : undefined;
+            resourceInputs["privateKeyType"] = state ? state.privateKeyType : undefined;
+            resourceInputs["province"] = state ? state.province : undefined;
+            resourceInputs["streetAddress"] = state ? state.streetAddress : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["uriSans"] = state ? state.uriSans : undefined;
         } else {
             const args = argsOrState as SecretBackendIntermediateCertRequestArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -167,33 +167,31 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["altNames"] = args ? args.altNames : undefined;
-            inputs["backend"] = args ? args.backend : undefined;
-            inputs["commonName"] = args ? args.commonName : undefined;
-            inputs["country"] = args ? args.country : undefined;
-            inputs["excludeCnFromSans"] = args ? args.excludeCnFromSans : undefined;
-            inputs["format"] = args ? args.format : undefined;
-            inputs["ipSans"] = args ? args.ipSans : undefined;
-            inputs["keyBits"] = args ? args.keyBits : undefined;
-            inputs["keyType"] = args ? args.keyType : undefined;
-            inputs["locality"] = args ? args.locality : undefined;
-            inputs["organization"] = args ? args.organization : undefined;
-            inputs["otherSans"] = args ? args.otherSans : undefined;
-            inputs["ou"] = args ? args.ou : undefined;
-            inputs["postalCode"] = args ? args.postalCode : undefined;
-            inputs["privateKeyFormat"] = args ? args.privateKeyFormat : undefined;
-            inputs["province"] = args ? args.province : undefined;
-            inputs["streetAddress"] = args ? args.streetAddress : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["uriSans"] = args ? args.uriSans : undefined;
-            inputs["csr"] = undefined /*out*/;
-            inputs["privateKey"] = undefined /*out*/;
-            inputs["privateKeyType"] = undefined /*out*/;
+            resourceInputs["altNames"] = args ? args.altNames : undefined;
+            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["commonName"] = args ? args.commonName : undefined;
+            resourceInputs["country"] = args ? args.country : undefined;
+            resourceInputs["excludeCnFromSans"] = args ? args.excludeCnFromSans : undefined;
+            resourceInputs["format"] = args ? args.format : undefined;
+            resourceInputs["ipSans"] = args ? args.ipSans : undefined;
+            resourceInputs["keyBits"] = args ? args.keyBits : undefined;
+            resourceInputs["keyType"] = args ? args.keyType : undefined;
+            resourceInputs["locality"] = args ? args.locality : undefined;
+            resourceInputs["organization"] = args ? args.organization : undefined;
+            resourceInputs["otherSans"] = args ? args.otherSans : undefined;
+            resourceInputs["ou"] = args ? args.ou : undefined;
+            resourceInputs["postalCode"] = args ? args.postalCode : undefined;
+            resourceInputs["privateKeyFormat"] = args ? args.privateKeyFormat : undefined;
+            resourceInputs["province"] = args ? args.province : undefined;
+            resourceInputs["streetAddress"] = args ? args.streetAddress : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["uriSans"] = args ? args.uriSans : undefined;
+            resourceInputs["csr"] = undefined /*out*/;
+            resourceInputs["privateKey"] = undefined /*out*/;
+            resourceInputs["privateKeyType"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SecretBackendIntermediateCertRequest.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SecretBackendIntermediateCertRequest.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -4,8 +4,8 @@ go 1.16
 
 require (
 	github.com/hashicorp/terraform-provider-vault v1.9.1-0.20211005125950-9dff41bf9149
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.11.0
-	github.com/pulumi/pulumi/sdk/v3 v3.17.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.18.0
+	github.com/pulumi/pulumi/sdk/v3 v3.23.2
 )
 
 replace (

@@ -90,14 +90,14 @@ export class AuthBackendUser extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuthBackendUserArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendUserArgs | AuthBackendUserState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendUserState | undefined;
-            inputs["groups"] = state ? state.groups : undefined;
-            inputs["path"] = state ? state.path : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
-            inputs["username"] = state ? state.username : undefined;
+            resourceInputs["groups"] = state ? state.groups : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
         } else {
             const args = argsOrState as AuthBackendUserArgs | undefined;
             if ((!args || args.path === undefined) && !opts.urn) {
@@ -106,15 +106,13 @@ export class AuthBackendUser extends pulumi.CustomResource {
             if ((!args || args.username === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            inputs["groups"] = args ? args.groups : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
-            inputs["username"] = args ? args.username : undefined;
+            resourceInputs["groups"] = args ? args.groups : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["policies"] = args ? args.policies : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackendUser.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackendUser.__pulumiType, name, resourceInputs, opts);
     }
 }
 

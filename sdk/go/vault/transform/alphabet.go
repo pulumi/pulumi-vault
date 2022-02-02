@@ -141,7 +141,7 @@ type AlphabetInput interface {
 }
 
 func (*Alphabet) ElementType() reflect.Type {
-	return reflect.TypeOf((*Alphabet)(nil))
+	return reflect.TypeOf((**Alphabet)(nil)).Elem()
 }
 
 func (i *Alphabet) ToAlphabetOutput() AlphabetOutput {
@@ -150,35 +150,6 @@ func (i *Alphabet) ToAlphabetOutput() AlphabetOutput {
 
 func (i *Alphabet) ToAlphabetOutputWithContext(ctx context.Context) AlphabetOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AlphabetOutput)
-}
-
-func (i *Alphabet) ToAlphabetPtrOutput() AlphabetPtrOutput {
-	return i.ToAlphabetPtrOutputWithContext(context.Background())
-}
-
-func (i *Alphabet) ToAlphabetPtrOutputWithContext(ctx context.Context) AlphabetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlphabetPtrOutput)
-}
-
-type AlphabetPtrInput interface {
-	pulumi.Input
-
-	ToAlphabetPtrOutput() AlphabetPtrOutput
-	ToAlphabetPtrOutputWithContext(ctx context.Context) AlphabetPtrOutput
-}
-
-type alphabetPtrType AlphabetArgs
-
-func (*alphabetPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**Alphabet)(nil))
-}
-
-func (i *alphabetPtrType) ToAlphabetPtrOutput() AlphabetPtrOutput {
-	return i.ToAlphabetPtrOutputWithContext(context.Background())
-}
-
-func (i *alphabetPtrType) ToAlphabetPtrOutputWithContext(ctx context.Context) AlphabetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlphabetPtrOutput)
 }
 
 // AlphabetArrayInput is an input type that accepts AlphabetArray and AlphabetArrayOutput values.
@@ -234,7 +205,7 @@ func (i AlphabetMap) ToAlphabetMapOutputWithContext(ctx context.Context) Alphabe
 type AlphabetOutput struct{ *pulumi.OutputState }
 
 func (AlphabetOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Alphabet)(nil))
+	return reflect.TypeOf((**Alphabet)(nil)).Elem()
 }
 
 func (o AlphabetOutput) ToAlphabetOutput() AlphabetOutput {
@@ -245,44 +216,10 @@ func (o AlphabetOutput) ToAlphabetOutputWithContext(ctx context.Context) Alphabe
 	return o
 }
 
-func (o AlphabetOutput) ToAlphabetPtrOutput() AlphabetPtrOutput {
-	return o.ToAlphabetPtrOutputWithContext(context.Background())
-}
-
-func (o AlphabetOutput) ToAlphabetPtrOutputWithContext(ctx context.Context) AlphabetPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v Alphabet) *Alphabet {
-		return &v
-	}).(AlphabetPtrOutput)
-}
-
-type AlphabetPtrOutput struct{ *pulumi.OutputState }
-
-func (AlphabetPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**Alphabet)(nil))
-}
-
-func (o AlphabetPtrOutput) ToAlphabetPtrOutput() AlphabetPtrOutput {
-	return o
-}
-
-func (o AlphabetPtrOutput) ToAlphabetPtrOutputWithContext(ctx context.Context) AlphabetPtrOutput {
-	return o
-}
-
-func (o AlphabetPtrOutput) Elem() AlphabetOutput {
-	return o.ApplyT(func(v *Alphabet) Alphabet {
-		if v != nil {
-			return *v
-		}
-		var ret Alphabet
-		return ret
-	}).(AlphabetOutput)
-}
-
 type AlphabetArrayOutput struct{ *pulumi.OutputState }
 
 func (AlphabetArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Alphabet)(nil))
+	return reflect.TypeOf((*[]*Alphabet)(nil)).Elem()
 }
 
 func (o AlphabetArrayOutput) ToAlphabetArrayOutput() AlphabetArrayOutput {
@@ -294,15 +231,15 @@ func (o AlphabetArrayOutput) ToAlphabetArrayOutputWithContext(ctx context.Contex
 }
 
 func (o AlphabetArrayOutput) Index(i pulumi.IntInput) AlphabetOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Alphabet {
-		return vs[0].([]Alphabet)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Alphabet {
+		return vs[0].([]*Alphabet)[vs[1].(int)]
 	}).(AlphabetOutput)
 }
 
 type AlphabetMapOutput struct{ *pulumi.OutputState }
 
 func (AlphabetMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]Alphabet)(nil))
+	return reflect.TypeOf((*map[string]*Alphabet)(nil)).Elem()
 }
 
 func (o AlphabetMapOutput) ToAlphabetMapOutput() AlphabetMapOutput {
@@ -314,18 +251,16 @@ func (o AlphabetMapOutput) ToAlphabetMapOutputWithContext(ctx context.Context) A
 }
 
 func (o AlphabetMapOutput) MapIndex(k pulumi.StringInput) AlphabetOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) Alphabet {
-		return vs[0].(map[string]Alphabet)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Alphabet {
+		return vs[0].(map[string]*Alphabet)[vs[1].(string)]
 	}).(AlphabetOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlphabetInput)(nil)).Elem(), &Alphabet{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AlphabetPtrInput)(nil)).Elem(), &Alphabet{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlphabetArrayInput)(nil)).Elem(), AlphabetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlphabetMapInput)(nil)).Elem(), AlphabetMap{})
 	pulumi.RegisterOutputType(AlphabetOutput{})
-	pulumi.RegisterOutputType(AlphabetPtrOutput{})
 	pulumi.RegisterOutputType(AlphabetArrayOutput{})
 	pulumi.RegisterOutputType(AlphabetMapOutput{})
 }

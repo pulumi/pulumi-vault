@@ -120,33 +120,31 @@ export class Group extends pulumi.CustomResource {
      */
     constructor(name: string, args?: GroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GroupArgs | GroupState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupState | undefined;
-            inputs["externalMemberEntityIds"] = state ? state.externalMemberEntityIds : undefined;
-            inputs["externalPolicies"] = state ? state.externalPolicies : undefined;
-            inputs["memberEntityIds"] = state ? state.memberEntityIds : undefined;
-            inputs["memberGroupIds"] = state ? state.memberGroupIds : undefined;
-            inputs["metadata"] = state ? state.metadata : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["externalMemberEntityIds"] = state ? state.externalMemberEntityIds : undefined;
+            resourceInputs["externalPolicies"] = state ? state.externalPolicies : undefined;
+            resourceInputs["memberEntityIds"] = state ? state.memberEntityIds : undefined;
+            resourceInputs["memberGroupIds"] = state ? state.memberGroupIds : undefined;
+            resourceInputs["metadata"] = state ? state.metadata : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as GroupArgs | undefined;
-            inputs["externalMemberEntityIds"] = args ? args.externalMemberEntityIds : undefined;
-            inputs["externalPolicies"] = args ? args.externalPolicies : undefined;
-            inputs["memberEntityIds"] = args ? args.memberEntityIds : undefined;
-            inputs["memberGroupIds"] = args ? args.memberGroupIds : undefined;
-            inputs["metadata"] = args ? args.metadata : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
-            inputs["type"] = args ? args.type : undefined;
+            resourceInputs["externalMemberEntityIds"] = args ? args.externalMemberEntityIds : undefined;
+            resourceInputs["externalPolicies"] = args ? args.externalPolicies : undefined;
+            resourceInputs["memberEntityIds"] = args ? args.memberEntityIds : undefined;
+            resourceInputs["memberGroupIds"] = args ? args.memberGroupIds : undefined;
+            resourceInputs["metadata"] = args ? args.metadata : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["policies"] = args ? args.policies : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Group.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Group.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -14,9 +14,7 @@ export function getEncode(args: GetEncodeArgs, opts?: pulumi.InvokeOptions): Pro
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:transform/getEncode:getEncode", {
         "batchInputs": args.batchInputs,
         "batchResults": args.batchResults,

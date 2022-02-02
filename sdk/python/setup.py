@@ -55,6 +55,7 @@ setup(name='pulumi_vault',
       package_data={
           'pulumi_vault': [
               'py.typed',
+              'pulumi-plugin.json',
           ]
       },
       install_requires=[

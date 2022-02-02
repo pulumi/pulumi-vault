@@ -9,9 +9,7 @@ export function getNomadAccessToken(args: GetNomadAccessTokenArgs, opts?: pulumi
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:index/getNomadAccessToken:getNomadAccessToken", {
         "backend": args.backend,
         "role": args.role,

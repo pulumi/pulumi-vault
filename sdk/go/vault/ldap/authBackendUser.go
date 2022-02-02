@@ -166,7 +166,7 @@ type AuthBackendUserInput interface {
 }
 
 func (*AuthBackendUser) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendUser)(nil))
+	return reflect.TypeOf((**AuthBackendUser)(nil)).Elem()
 }
 
 func (i *AuthBackendUser) ToAuthBackendUserOutput() AuthBackendUserOutput {
@@ -175,35 +175,6 @@ func (i *AuthBackendUser) ToAuthBackendUserOutput() AuthBackendUserOutput {
 
 func (i *AuthBackendUser) ToAuthBackendUserOutputWithContext(ctx context.Context) AuthBackendUserOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendUserOutput)
-}
-
-func (i *AuthBackendUser) ToAuthBackendUserPtrOutput() AuthBackendUserPtrOutput {
-	return i.ToAuthBackendUserPtrOutputWithContext(context.Background())
-}
-
-func (i *AuthBackendUser) ToAuthBackendUserPtrOutputWithContext(ctx context.Context) AuthBackendUserPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendUserPtrOutput)
-}
-
-type AuthBackendUserPtrInput interface {
-	pulumi.Input
-
-	ToAuthBackendUserPtrOutput() AuthBackendUserPtrOutput
-	ToAuthBackendUserPtrOutputWithContext(ctx context.Context) AuthBackendUserPtrOutput
-}
-
-type authBackendUserPtrType AuthBackendUserArgs
-
-func (*authBackendUserPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AuthBackendUser)(nil))
-}
-
-func (i *authBackendUserPtrType) ToAuthBackendUserPtrOutput() AuthBackendUserPtrOutput {
-	return i.ToAuthBackendUserPtrOutputWithContext(context.Background())
-}
-
-func (i *authBackendUserPtrType) ToAuthBackendUserPtrOutputWithContext(ctx context.Context) AuthBackendUserPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AuthBackendUserPtrOutput)
 }
 
 // AuthBackendUserArrayInput is an input type that accepts AuthBackendUserArray and AuthBackendUserArrayOutput values.
@@ -259,7 +230,7 @@ func (i AuthBackendUserMap) ToAuthBackendUserMapOutputWithContext(ctx context.Co
 type AuthBackendUserOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthBackendUser)(nil))
+	return reflect.TypeOf((**AuthBackendUser)(nil)).Elem()
 }
 
 func (o AuthBackendUserOutput) ToAuthBackendUserOutput() AuthBackendUserOutput {
@@ -270,44 +241,10 @@ func (o AuthBackendUserOutput) ToAuthBackendUserOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o AuthBackendUserOutput) ToAuthBackendUserPtrOutput() AuthBackendUserPtrOutput {
-	return o.ToAuthBackendUserPtrOutputWithContext(context.Background())
-}
-
-func (o AuthBackendUserOutput) ToAuthBackendUserPtrOutputWithContext(ctx context.Context) AuthBackendUserPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v AuthBackendUser) *AuthBackendUser {
-		return &v
-	}).(AuthBackendUserPtrOutput)
-}
-
-type AuthBackendUserPtrOutput struct{ *pulumi.OutputState }
-
-func (AuthBackendUserPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AuthBackendUser)(nil))
-}
-
-func (o AuthBackendUserPtrOutput) ToAuthBackendUserPtrOutput() AuthBackendUserPtrOutput {
-	return o
-}
-
-func (o AuthBackendUserPtrOutput) ToAuthBackendUserPtrOutputWithContext(ctx context.Context) AuthBackendUserPtrOutput {
-	return o
-}
-
-func (o AuthBackendUserPtrOutput) Elem() AuthBackendUserOutput {
-	return o.ApplyT(func(v *AuthBackendUser) AuthBackendUser {
-		if v != nil {
-			return *v
-		}
-		var ret AuthBackendUser
-		return ret
-	}).(AuthBackendUserOutput)
-}
-
 type AuthBackendUserArrayOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendUserArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]AuthBackendUser)(nil))
+	return reflect.TypeOf((*[]*AuthBackendUser)(nil)).Elem()
 }
 
 func (o AuthBackendUserArrayOutput) ToAuthBackendUserArrayOutput() AuthBackendUserArrayOutput {
@@ -319,15 +256,15 @@ func (o AuthBackendUserArrayOutput) ToAuthBackendUserArrayOutputWithContext(ctx 
 }
 
 func (o AuthBackendUserArrayOutput) Index(i pulumi.IntInput) AuthBackendUserOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthBackendUser {
-		return vs[0].([]AuthBackendUser)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthBackendUser {
+		return vs[0].([]*AuthBackendUser)[vs[1].(int)]
 	}).(AuthBackendUserOutput)
 }
 
 type AuthBackendUserMapOutput struct{ *pulumi.OutputState }
 
 func (AuthBackendUserMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]AuthBackendUser)(nil))
+	return reflect.TypeOf((*map[string]*AuthBackendUser)(nil)).Elem()
 }
 
 func (o AuthBackendUserMapOutput) ToAuthBackendUserMapOutput() AuthBackendUserMapOutput {
@@ -339,18 +276,16 @@ func (o AuthBackendUserMapOutput) ToAuthBackendUserMapOutputWithContext(ctx cont
 }
 
 func (o AuthBackendUserMapOutput) MapIndex(k pulumi.StringInput) AuthBackendUserOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AuthBackendUser {
-		return vs[0].(map[string]AuthBackendUser)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AuthBackendUser {
+		return vs[0].(map[string]*AuthBackendUser)[vs[1].(string)]
 	}).(AuthBackendUserOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendUserInput)(nil)).Elem(), &AuthBackendUser{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendUserPtrInput)(nil)).Elem(), &AuthBackendUser{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendUserArrayInput)(nil)).Elem(), AuthBackendUserArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendUserMapInput)(nil)).Elem(), AuthBackendUserMap{})
 	pulumi.RegisterOutputType(AuthBackendUserOutput{})
-	pulumi.RegisterOutputType(AuthBackendUserPtrOutput{})
 	pulumi.RegisterOutputType(AuthBackendUserArrayOutput{})
 	pulumi.RegisterOutputType(AuthBackendUserMapOutput{})
 }

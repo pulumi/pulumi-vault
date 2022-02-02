@@ -95,33 +95,31 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     constructor(name: string, args?: AuthBackendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendArgs | AuthBackendState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendState | undefined;
-            inputs["clientEmail"] = state ? state.clientEmail : undefined;
-            inputs["clientId"] = state ? state.clientId : undefined;
-            inputs["credentials"] = state ? state.credentials : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["local"] = state ? state.local : undefined;
-            inputs["path"] = state ? state.path : undefined;
-            inputs["privateKeyId"] = state ? state.privateKeyId : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["clientEmail"] = state ? state.clientEmail : undefined;
+            resourceInputs["clientId"] = state ? state.clientId : undefined;
+            resourceInputs["credentials"] = state ? state.credentials : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["local"] = state ? state.local : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["privateKeyId"] = state ? state.privateKeyId : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
-            inputs["clientEmail"] = args ? args.clientEmail : undefined;
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["credentials"] = args ? args.credentials : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["local"] = args ? args.local : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["privateKeyId"] = args ? args.privateKeyId : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["clientEmail"] = args ? args.clientEmail : undefined;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["credentials"] = args ? args.credentials : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["local"] = args ? args.local : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["privateKeyId"] = args ? args.privateKeyId : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthBackend.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthBackend.__pulumiType, name, resourceInputs, opts);
     }
 }
 

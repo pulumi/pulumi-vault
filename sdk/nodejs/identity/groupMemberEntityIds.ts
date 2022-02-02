@@ -113,28 +113,26 @@ export class GroupMemberEntityIds extends pulumi.CustomResource {
      */
     constructor(name: string, args: GroupMemberEntityIdsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GroupMemberEntityIdsArgs | GroupMemberEntityIdsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupMemberEntityIdsState | undefined;
-            inputs["exclusive"] = state ? state.exclusive : undefined;
-            inputs["groupId"] = state ? state.groupId : undefined;
-            inputs["groupName"] = state ? state.groupName : undefined;
-            inputs["memberEntityIds"] = state ? state.memberEntityIds : undefined;
+            resourceInputs["exclusive"] = state ? state.exclusive : undefined;
+            resourceInputs["groupId"] = state ? state.groupId : undefined;
+            resourceInputs["groupName"] = state ? state.groupName : undefined;
+            resourceInputs["memberEntityIds"] = state ? state.memberEntityIds : undefined;
         } else {
             const args = argsOrState as GroupMemberEntityIdsArgs | undefined;
             if ((!args || args.groupId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'groupId'");
             }
-            inputs["exclusive"] = args ? args.exclusive : undefined;
-            inputs["groupId"] = args ? args.groupId : undefined;
-            inputs["memberEntityIds"] = args ? args.memberEntityIds : undefined;
-            inputs["groupName"] = undefined /*out*/;
+            resourceInputs["exclusive"] = args ? args.exclusive : undefined;
+            resourceInputs["groupId"] = args ? args.groupId : undefined;
+            resourceInputs["memberEntityIds"] = args ? args.memberEntityIds : undefined;
+            resourceInputs["groupName"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(GroupMemberEntityIds.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(GroupMemberEntityIds.__pulumiType, name, resourceInputs, opts);
     }
 }
 

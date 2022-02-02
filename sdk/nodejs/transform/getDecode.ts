@@ -14,9 +14,7 @@ export function getDecode(args: GetDecodeArgs, opts?: pulumi.InvokeOptions): Pro
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:transform/getDecode:getDecode", {
         "batchInputs": args.batchInputs,
         "batchResults": args.batchResults,

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Vault.Kubernetes
 {
@@ -18,7 +17,7 @@ namespace Pulumi.Vault.Kubernetes
         /// information.
         /// </summary>
         public static Task<GetAuthBackendConfigResult> InvokeAsync(GetAuthBackendConfigArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? new GetAuthBackendConfigArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? new GetAuthBackendConfigArgs(), options.WithDefaults());
 
         /// <summary>
         /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
@@ -26,7 +25,7 @@ namespace Pulumi.Vault.Kubernetes
         /// information.
         /// </summary>
         public static Output<GetAuthBackendConfigResult> Invoke(GetAuthBackendConfigInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? new GetAuthBackendConfigInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? new GetAuthBackendConfigInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -158,7 +158,7 @@ type OidcRoleInput interface {
 }
 
 func (*OidcRole) ElementType() reflect.Type {
-	return reflect.TypeOf((*OidcRole)(nil))
+	return reflect.TypeOf((**OidcRole)(nil)).Elem()
 }
 
 func (i *OidcRole) ToOidcRoleOutput() OidcRoleOutput {
@@ -167,35 +167,6 @@ func (i *OidcRole) ToOidcRoleOutput() OidcRoleOutput {
 
 func (i *OidcRole) ToOidcRoleOutputWithContext(ctx context.Context) OidcRoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OidcRoleOutput)
-}
-
-func (i *OidcRole) ToOidcRolePtrOutput() OidcRolePtrOutput {
-	return i.ToOidcRolePtrOutputWithContext(context.Background())
-}
-
-func (i *OidcRole) ToOidcRolePtrOutputWithContext(ctx context.Context) OidcRolePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OidcRolePtrOutput)
-}
-
-type OidcRolePtrInput interface {
-	pulumi.Input
-
-	ToOidcRolePtrOutput() OidcRolePtrOutput
-	ToOidcRolePtrOutputWithContext(ctx context.Context) OidcRolePtrOutput
-}
-
-type oidcRolePtrType OidcRoleArgs
-
-func (*oidcRolePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**OidcRole)(nil))
-}
-
-func (i *oidcRolePtrType) ToOidcRolePtrOutput() OidcRolePtrOutput {
-	return i.ToOidcRolePtrOutputWithContext(context.Background())
-}
-
-func (i *oidcRolePtrType) ToOidcRolePtrOutputWithContext(ctx context.Context) OidcRolePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OidcRolePtrOutput)
 }
 
 // OidcRoleArrayInput is an input type that accepts OidcRoleArray and OidcRoleArrayOutput values.
@@ -251,7 +222,7 @@ func (i OidcRoleMap) ToOidcRoleMapOutputWithContext(ctx context.Context) OidcRol
 type OidcRoleOutput struct{ *pulumi.OutputState }
 
 func (OidcRoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*OidcRole)(nil))
+	return reflect.TypeOf((**OidcRole)(nil)).Elem()
 }
 
 func (o OidcRoleOutput) ToOidcRoleOutput() OidcRoleOutput {
@@ -262,44 +233,10 @@ func (o OidcRoleOutput) ToOidcRoleOutputWithContext(ctx context.Context) OidcRol
 	return o
 }
 
-func (o OidcRoleOutput) ToOidcRolePtrOutput() OidcRolePtrOutput {
-	return o.ToOidcRolePtrOutputWithContext(context.Background())
-}
-
-func (o OidcRoleOutput) ToOidcRolePtrOutputWithContext(ctx context.Context) OidcRolePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v OidcRole) *OidcRole {
-		return &v
-	}).(OidcRolePtrOutput)
-}
-
-type OidcRolePtrOutput struct{ *pulumi.OutputState }
-
-func (OidcRolePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**OidcRole)(nil))
-}
-
-func (o OidcRolePtrOutput) ToOidcRolePtrOutput() OidcRolePtrOutput {
-	return o
-}
-
-func (o OidcRolePtrOutput) ToOidcRolePtrOutputWithContext(ctx context.Context) OidcRolePtrOutput {
-	return o
-}
-
-func (o OidcRolePtrOutput) Elem() OidcRoleOutput {
-	return o.ApplyT(func(v *OidcRole) OidcRole {
-		if v != nil {
-			return *v
-		}
-		var ret OidcRole
-		return ret
-	}).(OidcRoleOutput)
-}
-
 type OidcRoleArrayOutput struct{ *pulumi.OutputState }
 
 func (OidcRoleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]OidcRole)(nil))
+	return reflect.TypeOf((*[]*OidcRole)(nil)).Elem()
 }
 
 func (o OidcRoleArrayOutput) ToOidcRoleArrayOutput() OidcRoleArrayOutput {
@@ -311,15 +248,15 @@ func (o OidcRoleArrayOutput) ToOidcRoleArrayOutputWithContext(ctx context.Contex
 }
 
 func (o OidcRoleArrayOutput) Index(i pulumi.IntInput) OidcRoleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OidcRole {
-		return vs[0].([]OidcRole)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OidcRole {
+		return vs[0].([]*OidcRole)[vs[1].(int)]
 	}).(OidcRoleOutput)
 }
 
 type OidcRoleMapOutput struct{ *pulumi.OutputState }
 
 func (OidcRoleMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]OidcRole)(nil))
+	return reflect.TypeOf((*map[string]*OidcRole)(nil)).Elem()
 }
 
 func (o OidcRoleMapOutput) ToOidcRoleMapOutput() OidcRoleMapOutput {
@@ -331,18 +268,16 @@ func (o OidcRoleMapOutput) ToOidcRoleMapOutputWithContext(ctx context.Context) O
 }
 
 func (o OidcRoleMapOutput) MapIndex(k pulumi.StringInput) OidcRoleOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) OidcRole {
-		return vs[0].(map[string]OidcRole)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *OidcRole {
+		return vs[0].(map[string]*OidcRole)[vs[1].(string)]
 	}).(OidcRoleOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*OidcRoleInput)(nil)).Elem(), &OidcRole{})
-	pulumi.RegisterInputType(reflect.TypeOf((*OidcRolePtrInput)(nil)).Elem(), &OidcRole{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OidcRoleArrayInput)(nil)).Elem(), OidcRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OidcRoleMapInput)(nil)).Elem(), OidcRoleMap{})
 	pulumi.RegisterOutputType(OidcRoleOutput{})
-	pulumi.RegisterOutputType(OidcRolePtrOutput{})
 	pulumi.RegisterOutputType(OidcRoleArrayOutput{})
 	pulumi.RegisterOutputType(OidcRoleMapOutput{})
 }

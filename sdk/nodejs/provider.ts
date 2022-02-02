@@ -63,7 +63,7 @@ export class Provider extends pulumi.ProviderResource {
      * @param opts A bag of options that control this resource's behavior.
      */
     constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
             if ((!args || args.address === undefined) && !opts.urn) {
@@ -72,26 +72,24 @@ export class Provider extends pulumi.ProviderResource {
             if ((!args || args.token === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'token'");
             }
-            inputs["addAddressToEnv"] = args ? args.addAddressToEnv : undefined;
-            inputs["address"] = args ? args.address : undefined;
-            inputs["authLogins"] = pulumi.output(args ? args.authLogins : undefined).apply(JSON.stringify);
-            inputs["caCertDir"] = args ? args.caCertDir : undefined;
-            inputs["caCertFile"] = args ? args.caCertFile : undefined;
-            inputs["clientAuths"] = pulumi.output(args ? args.clientAuths : undefined).apply(JSON.stringify);
-            inputs["headers"] = pulumi.output(args ? args.headers : undefined).apply(JSON.stringify);
-            inputs["maxLeaseTtlSeconds"] = pulumi.output((args ? args.maxLeaseTtlSeconds : undefined) ?? (<any>utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 1200)).apply(JSON.stringify);
-            inputs["maxRetries"] = pulumi.output((args ? args.maxRetries : undefined) ?? (<any>utilities.getEnvNumber("VAULT_MAX_RETRIES") || 2)).apply(JSON.stringify);
-            inputs["maxRetriesCcc"] = pulumi.output(args ? args.maxRetriesCcc : undefined).apply(JSON.stringify);
-            inputs["namespace"] = args ? args.namespace : undefined;
-            inputs["skipChildToken"] = pulumi.output(args ? args.skipChildToken : undefined).apply(JSON.stringify);
-            inputs["skipTlsVerify"] = pulumi.output((args ? args.skipTlsVerify : undefined) ?? <any>utilities.getEnvBoolean("VAULT_SKIP_VERIFY")).apply(JSON.stringify);
-            inputs["token"] = args ? args.token : undefined;
-            inputs["tokenName"] = args ? args.tokenName : undefined;
+            resourceInputs["addAddressToEnv"] = args ? args.addAddressToEnv : undefined;
+            resourceInputs["address"] = args ? args.address : undefined;
+            resourceInputs["authLogins"] = pulumi.output(args ? args.authLogins : undefined).apply(JSON.stringify);
+            resourceInputs["caCertDir"] = args ? args.caCertDir : undefined;
+            resourceInputs["caCertFile"] = args ? args.caCertFile : undefined;
+            resourceInputs["clientAuths"] = pulumi.output(args ? args.clientAuths : undefined).apply(JSON.stringify);
+            resourceInputs["headers"] = pulumi.output(args ? args.headers : undefined).apply(JSON.stringify);
+            resourceInputs["maxLeaseTtlSeconds"] = pulumi.output((args ? args.maxLeaseTtlSeconds : undefined) ?? (utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 1200)).apply(JSON.stringify);
+            resourceInputs["maxRetries"] = pulumi.output((args ? args.maxRetries : undefined) ?? (utilities.getEnvNumber("VAULT_MAX_RETRIES") || 2)).apply(JSON.stringify);
+            resourceInputs["maxRetriesCcc"] = pulumi.output(args ? args.maxRetriesCcc : undefined).apply(JSON.stringify);
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["skipChildToken"] = pulumi.output(args ? args.skipChildToken : undefined).apply(JSON.stringify);
+            resourceInputs["skipTlsVerify"] = pulumi.output((args ? args.skipTlsVerify : undefined) ?? utilities.getEnvBoolean("VAULT_SKIP_VERIFY")).apply(JSON.stringify);
+            resourceInputs["token"] = args ? args.token : undefined;
+            resourceInputs["tokenName"] = args ? args.tokenName : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Provider.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }
 

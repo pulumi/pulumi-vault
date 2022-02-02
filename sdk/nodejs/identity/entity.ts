@@ -71,27 +71,25 @@ export class Entity extends pulumi.CustomResource {
      */
     constructor(name: string, args?: EntityArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: EntityArgs | EntityState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EntityState | undefined;
-            inputs["disabled"] = state ? state.disabled : undefined;
-            inputs["externalPolicies"] = state ? state.externalPolicies : undefined;
-            inputs["metadata"] = state ? state.metadata : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["disabled"] = state ? state.disabled : undefined;
+            resourceInputs["externalPolicies"] = state ? state.externalPolicies : undefined;
+            resourceInputs["metadata"] = state ? state.metadata : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["policies"] = state ? state.policies : undefined;
         } else {
             const args = argsOrState as EntityArgs | undefined;
-            inputs["disabled"] = args ? args.disabled : undefined;
-            inputs["externalPolicies"] = args ? args.externalPolicies : undefined;
-            inputs["metadata"] = args ? args.metadata : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
+            resourceInputs["disabled"] = args ? args.disabled : undefined;
+            resourceInputs["externalPolicies"] = args ? args.externalPolicies : undefined;
+            resourceInputs["metadata"] = args ? args.metadata : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["policies"] = args ? args.policies : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Entity.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Entity.__pulumiType, name, resourceInputs, opts);
     }
 }
 

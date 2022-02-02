@@ -123,53 +123,51 @@ export class Token extends pulumi.CustomResource {
      */
     constructor(name: string, args?: TokenArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TokenArgs | TokenState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TokenState | undefined;
-            inputs["clientToken"] = state ? state.clientToken : undefined;
-            inputs["displayName"] = state ? state.displayName : undefined;
-            inputs["explicitMaxTtl"] = state ? state.explicitMaxTtl : undefined;
-            inputs["leaseDuration"] = state ? state.leaseDuration : undefined;
-            inputs["leaseStarted"] = state ? state.leaseStarted : undefined;
-            inputs["noDefaultPolicy"] = state ? state.noDefaultPolicy : undefined;
-            inputs["noParent"] = state ? state.noParent : undefined;
-            inputs["numUses"] = state ? state.numUses : undefined;
-            inputs["period"] = state ? state.period : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
-            inputs["renewIncrement"] = state ? state.renewIncrement : undefined;
-            inputs["renewMinLease"] = state ? state.renewMinLease : undefined;
-            inputs["renewable"] = state ? state.renewable : undefined;
-            inputs["roleName"] = state ? state.roleName : undefined;
-            inputs["ttl"] = state ? state.ttl : undefined;
-            inputs["wrappedToken"] = state ? state.wrappedToken : undefined;
-            inputs["wrappingAccessor"] = state ? state.wrappingAccessor : undefined;
-            inputs["wrappingTtl"] = state ? state.wrappingTtl : undefined;
+            resourceInputs["clientToken"] = state ? state.clientToken : undefined;
+            resourceInputs["displayName"] = state ? state.displayName : undefined;
+            resourceInputs["explicitMaxTtl"] = state ? state.explicitMaxTtl : undefined;
+            resourceInputs["leaseDuration"] = state ? state.leaseDuration : undefined;
+            resourceInputs["leaseStarted"] = state ? state.leaseStarted : undefined;
+            resourceInputs["noDefaultPolicy"] = state ? state.noDefaultPolicy : undefined;
+            resourceInputs["noParent"] = state ? state.noParent : undefined;
+            resourceInputs["numUses"] = state ? state.numUses : undefined;
+            resourceInputs["period"] = state ? state.period : undefined;
+            resourceInputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["renewIncrement"] = state ? state.renewIncrement : undefined;
+            resourceInputs["renewMinLease"] = state ? state.renewMinLease : undefined;
+            resourceInputs["renewable"] = state ? state.renewable : undefined;
+            resourceInputs["roleName"] = state ? state.roleName : undefined;
+            resourceInputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["wrappedToken"] = state ? state.wrappedToken : undefined;
+            resourceInputs["wrappingAccessor"] = state ? state.wrappingAccessor : undefined;
+            resourceInputs["wrappingTtl"] = state ? state.wrappingTtl : undefined;
         } else {
             const args = argsOrState as TokenArgs | undefined;
-            inputs["displayName"] = args ? args.displayName : undefined;
-            inputs["explicitMaxTtl"] = args ? args.explicitMaxTtl : undefined;
-            inputs["noDefaultPolicy"] = args ? args.noDefaultPolicy : undefined;
-            inputs["noParent"] = args ? args.noParent : undefined;
-            inputs["numUses"] = args ? args.numUses : undefined;
-            inputs["period"] = args ? args.period : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
-            inputs["renewIncrement"] = args ? args.renewIncrement : undefined;
-            inputs["renewMinLease"] = args ? args.renewMinLease : undefined;
-            inputs["renewable"] = args ? args.renewable : undefined;
-            inputs["roleName"] = args ? args.roleName : undefined;
-            inputs["ttl"] = args ? args.ttl : undefined;
-            inputs["wrappingTtl"] = args ? args.wrappingTtl : undefined;
-            inputs["clientToken"] = undefined /*out*/;
-            inputs["leaseDuration"] = undefined /*out*/;
-            inputs["leaseStarted"] = undefined /*out*/;
-            inputs["wrappedToken"] = undefined /*out*/;
-            inputs["wrappingAccessor"] = undefined /*out*/;
+            resourceInputs["displayName"] = args ? args.displayName : undefined;
+            resourceInputs["explicitMaxTtl"] = args ? args.explicitMaxTtl : undefined;
+            resourceInputs["noDefaultPolicy"] = args ? args.noDefaultPolicy : undefined;
+            resourceInputs["noParent"] = args ? args.noParent : undefined;
+            resourceInputs["numUses"] = args ? args.numUses : undefined;
+            resourceInputs["period"] = args ? args.period : undefined;
+            resourceInputs["policies"] = args ? args.policies : undefined;
+            resourceInputs["renewIncrement"] = args ? args.renewIncrement : undefined;
+            resourceInputs["renewMinLease"] = args ? args.renewMinLease : undefined;
+            resourceInputs["renewable"] = args ? args.renewable : undefined;
+            resourceInputs["roleName"] = args ? args.roleName : undefined;
+            resourceInputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["wrappingTtl"] = args ? args.wrappingTtl : undefined;
+            resourceInputs["clientToken"] = undefined /*out*/;
+            resourceInputs["leaseDuration"] = undefined /*out*/;
+            resourceInputs["leaseStarted"] = undefined /*out*/;
+            resourceInputs["wrappedToken"] = undefined /*out*/;
+            resourceInputs["wrappingAccessor"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Token.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Token.__pulumiType, name, resourceInputs, opts);
     }
 }
 

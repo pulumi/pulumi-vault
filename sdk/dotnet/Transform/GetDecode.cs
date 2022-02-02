@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Vault.Transform
 {
@@ -18,7 +17,7 @@ namespace Pulumi.Vault.Transform
         /// It decodes the provided value using a named role.
         /// </summary>
         public static Task<GetDecodeResult> InvokeAsync(GetDecodeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDecodeResult>("vault:transform/getDecode:getDecode", args ?? new GetDecodeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetDecodeResult>("vault:transform/getDecode:getDecode", args ?? new GetDecodeArgs(), options.WithDefaults());
 
         /// <summary>
         /// This data source supports the "/transform/decode/{role_name}" Vault endpoint.
@@ -26,7 +25,7 @@ namespace Pulumi.Vault.Transform
         /// It decodes the provided value using a named role.
         /// </summary>
         public static Output<GetDecodeResult> Invoke(GetDecodeInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDecodeResult>("vault:transform/getDecode:getDecode", args ?? new GetDecodeInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetDecodeResult>("vault:transform/getDecode:getDecode", args ?? new GetDecodeInvokeArgs(), options.WithDefaults());
     }
 
 

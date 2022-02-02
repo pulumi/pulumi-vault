@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Vault.AppRole
 {
@@ -43,7 +42,7 @@ namespace Pulumi.Vault.AppRole
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAuthBackendRoleIdResult> InvokeAsync(GetAuthBackendRoleIdArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleIdResult>("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args ?? new GetAuthBackendRoleIdArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleIdResult>("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args ?? new GetAuthBackendRoleIdArgs(), options.WithDefaults());
 
         /// <summary>
         /// Reads the Role ID of an AppRole from a Vault server.
@@ -76,7 +75,7 @@ namespace Pulumi.Vault.AppRole
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetAuthBackendRoleIdResult> Invoke(GetAuthBackendRoleIdInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleIdResult>("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args ?? new GetAuthBackendRoleIdInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleIdResult>("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args ?? new GetAuthBackendRoleIdInvokeArgs(), options.WithDefaults());
     }
 
 
