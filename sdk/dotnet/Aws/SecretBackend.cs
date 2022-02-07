@@ -80,6 +80,12 @@ namespace Pulumi.Vault.Aws
         [Output("stsEndpoint")]
         public Output<string?> StsEndpoint { get; private set; } = null!;
 
+        /// <summary>
+        /// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+        /// </summary>
+        [Output("usernameTemplate")]
+        public Output<string> UsernameTemplate { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a SecretBackend resource with the given unique name, arguments, and options.
@@ -185,6 +191,12 @@ namespace Pulumi.Vault.Aws
         [Input("stsEndpoint")]
         public Input<string>? StsEndpoint { get; set; }
 
+        /// <summary>
+        /// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+        /// </summary>
+        [Input("usernameTemplate")]
+        public Input<string>? UsernameTemplate { get; set; }
+
         public SecretBackendArgs()
         {
         }
@@ -250,6 +262,12 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("stsEndpoint")]
         public Input<string>? StsEndpoint { get; set; }
+
+        /// <summary>
+        /// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+        /// </summary>
+        [Input("usernameTemplate")]
+        public Input<string>? UsernameTemplate { get; set; }
 
         public SecretBackendState()
         {

@@ -47,6 +47,7 @@ import * as okta from "./okta";
 import * as pkisecret from "./pkisecret";
 import * as rabbitmq from "./rabbitmq";
 import * as ssh from "./ssh";
+import * as terraformcloud from "./terraformcloud";
 import * as tokenauth from "./tokenauth";
 import * as transform from "./transform";
 import * as transit from "./transit";
@@ -72,6 +73,7 @@ export {
     pkisecret,
     rabbitmq,
     ssh,
+    terraformcloud,
     tokenauth,
     transform,
     transit,

@@ -7,9 +7,12 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'SecretBackendRoleVhost',
+    'SecretBackendRoleVhostTopic',
+    'SecretBackendRoleVhostTopicVhost',
 ]
 
 @pulumi.output_type
@@ -38,6 +41,58 @@ class SecretBackendRoleVhost(dict):
     @pulumi.getter
     def read(self) -> str:
         return pulumi.get(self, "read")
+
+    @property
+    @pulumi.getter
+    def write(self) -> str:
+        return pulumi.get(self, "write")
+
+
+@pulumi.output_type
+class SecretBackendRoleVhostTopic(dict):
+    def __init__(__self__, *,
+                 host: str,
+                 vhosts: Optional[Sequence['outputs.SecretBackendRoleVhostTopicVhost']] = None):
+        """
+        :param Sequence['SecretBackendRoleVhostTopicVhostArgs'] vhosts: Specifies a map of virtual hosts to permissions.
+        """
+        pulumi.set(__self__, "host", host)
+        if vhosts is not None:
+            pulumi.set(__self__, "vhosts", vhosts)
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter
+    def vhosts(self) -> Optional[Sequence['outputs.SecretBackendRoleVhostTopicVhost']]:
+        """
+        Specifies a map of virtual hosts to permissions.
+        """
+        return pulumi.get(self, "vhosts")
+
+
+@pulumi.output_type
+class SecretBackendRoleVhostTopicVhost(dict):
+    def __init__(__self__, *,
+                 read: str,
+                 topic: str,
+                 write: str):
+        pulumi.set(__self__, "read", read)
+        pulumi.set(__self__, "topic", topic)
+        pulumi.set(__self__, "write", write)
+
+    @property
+    @pulumi.getter
+    def read(self) -> str:
+        return pulumi.get(self, "read")
+
+    @property
+    @pulumi.getter
+    def topic(self) -> str:
+        return pulumi.get(self, "topic")
 
     @property
     @pulumi.getter

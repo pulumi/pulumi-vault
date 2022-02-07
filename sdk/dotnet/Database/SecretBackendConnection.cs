@@ -41,6 +41,12 @@ namespace Pulumi.Vault.Database
         public Output<Outputs.SecretBackendConnectionCassandra?> Cassandra { get; private set; } = null!;
 
         /// <summary>
+        /// A nested block containing configuration options for Couchbase connections.
+        /// </summary>
+        [Output("couchbase")]
+        public Output<Outputs.SecretBackendConnectionCouchbase?> Couchbase { get; private set; } = null!;
+
+        /// <summary>
         /// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         /// </summary>
         [Output("data")]
@@ -123,6 +129,12 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Output("postgresql")]
         public Output<Outputs.SecretBackendConnectionPostgresql?> Postgresql { get; private set; } = null!;
+
+        /// <summary>
+        /// Connection parameters for the redshift-database-plugin plugin.
+        /// </summary>
+        [Output("redshift")]
+        public Output<Outputs.SecretBackendConnectionRedshift?> Redshift { get; private set; } = null!;
 
         /// <summary>
         /// A list of database statements to be executed to rotate the root user's credentials.
@@ -214,6 +226,12 @@ namespace Pulumi.Vault.Database
         [Input("cassandra")]
         public Input<Inputs.SecretBackendConnectionCassandraArgs>? Cassandra { get; set; }
 
+        /// <summary>
+        /// A nested block containing configuration options for Couchbase connections.
+        /// </summary>
+        [Input("couchbase")]
+        public Input<Inputs.SecretBackendConnectionCouchbaseArgs>? Couchbase { get; set; }
+
         [Input("data")]
         private InputMap<object>? _data;
 
@@ -304,6 +322,12 @@ namespace Pulumi.Vault.Database
         [Input("postgresql")]
         public Input<Inputs.SecretBackendConnectionPostgresqlArgs>? Postgresql { get; set; }
 
+        /// <summary>
+        /// Connection parameters for the redshift-database-plugin plugin.
+        /// </summary>
+        [Input("redshift")]
+        public Input<Inputs.SecretBackendConnectionRedshiftArgs>? Redshift { get; set; }
+
         [Input("rootRotationStatements")]
         private InputList<string>? _rootRotationStatements;
 
@@ -360,6 +384,12 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Input("cassandra")]
         public Input<Inputs.SecretBackendConnectionCassandraGetArgs>? Cassandra { get; set; }
+
+        /// <summary>
+        /// A nested block containing configuration options for Couchbase connections.
+        /// </summary>
+        [Input("couchbase")]
+        public Input<Inputs.SecretBackendConnectionCouchbaseGetArgs>? Couchbase { get; set; }
 
         [Input("data")]
         private InputMap<object>? _data;
@@ -450,6 +480,12 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Input("postgresql")]
         public Input<Inputs.SecretBackendConnectionPostgresqlGetArgs>? Postgresql { get; set; }
+
+        /// <summary>
+        /// Connection parameters for the redshift-database-plugin plugin.
+        /// </summary>
+        [Input("redshift")]
+        public Input<Inputs.SecretBackendConnectionRedshiftGetArgs>? Redshift { get; set; }
 
         [Input("rootRotationStatements")]
         private InputList<string>? _rootRotationStatements;

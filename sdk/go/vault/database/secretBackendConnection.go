@@ -28,6 +28,8 @@ type SecretBackendConnection struct {
 	Backend pulumi.StringOutput `pulumi:"backend"`
 	// A nested block containing configuration options for Cassandra connections.
 	Cassandra SecretBackendConnectionCassandraPtrOutput `pulumi:"cassandra"`
+	// A nested block containing configuration options for Couchbase connections.
+	Couchbase SecretBackendConnectionCouchbasePtrOutput `pulumi:"couchbase"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data pulumi.MapOutput `pulumi:"data"`
 	// A nested block containing configuration options for Elasticsearch connections.
@@ -56,6 +58,8 @@ type SecretBackendConnection struct {
 	Oracle SecretBackendConnectionOraclePtrOutput `pulumi:"oracle"`
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql SecretBackendConnectionPostgresqlPtrOutput `pulumi:"postgresql"`
+	// Connection parameters for the redshift-database-plugin plugin.
+	Redshift SecretBackendConnectionRedshiftPtrOutput `pulumi:"redshift"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayOutput `pulumi:"rootRotationStatements"`
 	// A nested block containing configuration options for Snowflake connections.
@@ -104,6 +108,8 @@ type secretBackendConnectionState struct {
 	Backend *string `pulumi:"backend"`
 	// A nested block containing configuration options for Cassandra connections.
 	Cassandra *SecretBackendConnectionCassandra `pulumi:"cassandra"`
+	// A nested block containing configuration options for Couchbase connections.
+	Couchbase *SecretBackendConnectionCouchbase `pulumi:"couchbase"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data map[string]interface{} `pulumi:"data"`
 	// A nested block containing configuration options for Elasticsearch connections.
@@ -132,6 +138,8 @@ type secretBackendConnectionState struct {
 	Oracle *SecretBackendConnectionOracle `pulumi:"oracle"`
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql *SecretBackendConnectionPostgresql `pulumi:"postgresql"`
+	// Connection parameters for the redshift-database-plugin plugin.
+	Redshift *SecretBackendConnectionRedshift `pulumi:"redshift"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
 	// A nested block containing configuration options for Snowflake connections.
@@ -149,6 +157,8 @@ type SecretBackendConnectionState struct {
 	Backend pulumi.StringPtrInput
 	// A nested block containing configuration options for Cassandra connections.
 	Cassandra SecretBackendConnectionCassandraPtrInput
+	// A nested block containing configuration options for Couchbase connections.
+	Couchbase SecretBackendConnectionCouchbasePtrInput
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data pulumi.MapInput
 	// A nested block containing configuration options for Elasticsearch connections.
@@ -177,6 +187,8 @@ type SecretBackendConnectionState struct {
 	Oracle SecretBackendConnectionOraclePtrInput
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql SecretBackendConnectionPostgresqlPtrInput
+	// Connection parameters for the redshift-database-plugin plugin.
+	Redshift SecretBackendConnectionRedshiftPtrInput
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput
 	// A nested block containing configuration options for Snowflake connections.
@@ -198,6 +210,8 @@ type secretBackendConnectionArgs struct {
 	Backend string `pulumi:"backend"`
 	// A nested block containing configuration options for Cassandra connections.
 	Cassandra *SecretBackendConnectionCassandra `pulumi:"cassandra"`
+	// A nested block containing configuration options for Couchbase connections.
+	Couchbase *SecretBackendConnectionCouchbase `pulumi:"couchbase"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data map[string]interface{} `pulumi:"data"`
 	// A nested block containing configuration options for Elasticsearch connections.
@@ -226,6 +240,8 @@ type secretBackendConnectionArgs struct {
 	Oracle *SecretBackendConnectionOracle `pulumi:"oracle"`
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql *SecretBackendConnectionPostgresql `pulumi:"postgresql"`
+	// Connection parameters for the redshift-database-plugin plugin.
+	Redshift *SecretBackendConnectionRedshift `pulumi:"redshift"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
 	// A nested block containing configuration options for Snowflake connections.
@@ -244,6 +260,8 @@ type SecretBackendConnectionArgs struct {
 	Backend pulumi.StringInput
 	// A nested block containing configuration options for Cassandra connections.
 	Cassandra SecretBackendConnectionCassandraPtrInput
+	// A nested block containing configuration options for Couchbase connections.
+	Couchbase SecretBackendConnectionCouchbasePtrInput
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data pulumi.MapInput
 	// A nested block containing configuration options for Elasticsearch connections.
@@ -272,6 +290,8 @@ type SecretBackendConnectionArgs struct {
 	Oracle SecretBackendConnectionOraclePtrInput
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql SecretBackendConnectionPostgresqlPtrInput
+	// Connection parameters for the redshift-database-plugin plugin.
+	Redshift SecretBackendConnectionRedshiftPtrInput
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput
 	// A nested block containing configuration options for Snowflake connections.

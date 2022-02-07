@@ -112,6 +112,18 @@ namespace Pulumi.Vault
         public Output<string> Accessor { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        /// </summary>
+        [Output("auditNonHmacRequestKeys")]
+        public Output<ImmutableArray<string>> AuditNonHmacRequestKeys { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        /// </summary>
+        [Output("auditNonHmacResponseKeys")]
+        public Output<ImmutableArray<string>> AuditNonHmacResponseKeys { get; private set; } = null!;
+
+        /// <summary>
         /// Default lease duration for tokens and secrets in seconds
         /// </summary>
         [Output("defaultLeaseTtlSeconds")]
@@ -211,6 +223,30 @@ namespace Pulumi.Vault
 
     public sealed class MountArgs : Pulumi.ResourceArgs
     {
+        [Input("auditNonHmacRequestKeys")]
+        private InputList<string>? _auditNonHmacRequestKeys;
+
+        /// <summary>
+        /// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        /// </summary>
+        public InputList<string> AuditNonHmacRequestKeys
+        {
+            get => _auditNonHmacRequestKeys ?? (_auditNonHmacRequestKeys = new InputList<string>());
+            set => _auditNonHmacRequestKeys = value;
+        }
+
+        [Input("auditNonHmacResponseKeys")]
+        private InputList<string>? _auditNonHmacResponseKeys;
+
+        /// <summary>
+        /// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        /// </summary>
+        public InputList<string> AuditNonHmacResponseKeys
+        {
+            get => _auditNonHmacResponseKeys ?? (_auditNonHmacResponseKeys = new InputList<string>());
+            set => _auditNonHmacResponseKeys = value;
+        }
+
         /// <summary>
         /// Default lease duration for tokens and secrets in seconds
         /// </summary>
@@ -283,6 +319,30 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("accessor")]
         public Input<string>? Accessor { get; set; }
+
+        [Input("auditNonHmacRequestKeys")]
+        private InputList<string>? _auditNonHmacRequestKeys;
+
+        /// <summary>
+        /// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        /// </summary>
+        public InputList<string> AuditNonHmacRequestKeys
+        {
+            get => _auditNonHmacRequestKeys ?? (_auditNonHmacRequestKeys = new InputList<string>());
+            set => _auditNonHmacRequestKeys = value;
+        }
+
+        [Input("auditNonHmacResponseKeys")]
+        private InputList<string>? _auditNonHmacResponseKeys;
+
+        /// <summary>
+        /// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        /// </summary>
+        public InputList<string> AuditNonHmacResponseKeys
+        {
+            get => _auditNonHmacResponseKeys ?? (_auditNonHmacResponseKeys = new InputList<string>());
+            set => _auditNonHmacResponseKeys = value;
+        }
 
         /// <summary>
         /// Default lease duration for tokens and secrets in seconds

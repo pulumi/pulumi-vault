@@ -23,7 +23,7 @@ namespace Pulumi.Vault.Database.Inputs
         private InputList<string>? _hosts;
 
         /// <summary>
-        /// The hosts to connect to.
+        /// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
         /// </summary>
         public InputList<string> Hosts
         {
@@ -39,7 +39,7 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<bool>? InsecureTls { get; set; }
 
         /// <summary>
-        /// The password to be used in the connection.
+        /// The root credential password used in the connection URL.
         /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }
@@ -77,7 +77,7 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<bool>? Tls { get; set; }
 
         /// <summary>
-        /// The username to be used in the connection (the account admin level).
+        /// The root credential username used in the connection URL.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }

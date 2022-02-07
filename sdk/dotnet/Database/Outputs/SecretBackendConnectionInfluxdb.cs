@@ -28,7 +28,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly bool? InsecureTls;
         /// <summary>
-        /// The password to be used in the connection.
+        /// The root credential password used in the connection URL.
         /// </summary>
         public readonly string Password;
         /// <summary>
@@ -50,7 +50,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly bool? Tls;
         /// <summary>
-        /// The username to be used in the connection (the account admin level).
+        /// The root credential username used in the connection URL.
         /// </summary>
         public readonly string Username;
         /// <summary>

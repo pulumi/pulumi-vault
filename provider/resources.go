@@ -37,28 +37,29 @@ const (
 	mainPkg = "vault"
 
 	// modules:
-	mainMod       = "index"
-	appRoleMod    = "AppRole"
-	adMod         = "AD"
-	aliCloudMod   = "AliCloud"
-	awsMod        = "Aws"
-	azureMod      = "Azure"
-	consulMod     = "Consul"
-	databaseMod   = "Database"
-	gcpMod        = "Gcp"
-	genericMod    = "Generic"
-	githubMod     = "GitHub"
-	identityMod   = "Identity"
-	jwtMod        = "Jwt"
-	kubernetesMod = "Kubernetes"
-	ldapMod       = "Ldap"
-	oktaMod       = "Okta"
-	pkiSecretMod  = "PkiSecret"
-	rabbitMqMod   = "RabbitMQ"
-	sshMod        = "Ssh"
-	tokenMod      = "TokenAuth"
-	transformMod  = "Transform"
-	transitMod    = "Transit"
+	mainMod           = "index"
+	appRoleMod        = "AppRole"
+	adMod             = "AD"
+	aliCloudMod       = "AliCloud"
+	awsMod            = "Aws"
+	azureMod          = "Azure"
+	consulMod         = "Consul"
+	databaseMod       = "Database"
+	gcpMod            = "Gcp"
+	genericMod        = "Generic"
+	githubMod         = "GitHub"
+	identityMod       = "Identity"
+	jwtMod            = "Jwt"
+	kubernetesMod     = "Kubernetes"
+	ldapMod           = "Ldap"
+	oktaMod           = "Okta"
+	pkiSecretMod      = "PkiSecret"
+	rabbitMqMod       = "RabbitMQ"
+	sshMod            = "Ssh"
+	terraformCloudMod = "TerraformCloud"
+	tokenMod          = "TokenAuth"
+	transformMod      = "Transform"
+	transitMod        = "Transit"
 )
 
 var namespaceMap = map[string]string{
@@ -353,6 +354,11 @@ func Provider() tfbridge.ProviderInfo {
 			// RabbitMQ
 			"vault_rabbitmq_secret_backend":      {Tok: makeResource(rabbitMqMod, "SecretBackend")},
 			"vault_rabbitmq_secret_backend_role": {Tok: makeResource(rabbitMqMod, "SecretBackendRole")},
+
+			// Terraform Cloud
+			"vault_terraform_cloud_secret_backend": {Tok: makeResource(terraformCloudMod, "SecretBackend")},
+			"vault_terraform_cloud_secret_creds":   {Tok: makeResource(terraformCloudMod, "SecretCreds")},
+			"vault_terraform_cloud_secret_role":    {Tok: makeResource(terraformCloudMod, "SecretRole")},
 
 			// Transform
 			"vault_transform_alphabet": {

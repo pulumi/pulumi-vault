@@ -97,6 +97,14 @@ export class Mount extends pulumi.CustomResource {
      */
     public /*out*/ readonly accessor!: pulumi.Output<string>;
     /**
+     * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+     */
+    public readonly auditNonHmacRequestKeys!: pulumi.Output<string[]>;
+    /**
+     * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+     */
+    public readonly auditNonHmacResponseKeys!: pulumi.Output<string[]>;
+    /**
      * Default lease duration for tokens and secrets in seconds
      */
     public readonly defaultLeaseTtlSeconds!: pulumi.Output<number>;
@@ -147,6 +155,8 @@ export class Mount extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as MountState | undefined;
             resourceInputs["accessor"] = state ? state.accessor : undefined;
+            resourceInputs["auditNonHmacRequestKeys"] = state ? state.auditNonHmacRequestKeys : undefined;
+            resourceInputs["auditNonHmacResponseKeys"] = state ? state.auditNonHmacResponseKeys : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["externalEntropyAccess"] = state ? state.externalEntropyAccess : undefined;
@@ -164,6 +174,8 @@ export class Mount extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
+            resourceInputs["auditNonHmacRequestKeys"] = args ? args.auditNonHmacRequestKeys : undefined;
+            resourceInputs["auditNonHmacResponseKeys"] = args ? args.auditNonHmacResponseKeys : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["externalEntropyAccess"] = args ? args.externalEntropyAccess : undefined;
@@ -188,6 +200,14 @@ export interface MountState {
      * The accessor for this mount.
      */
     accessor?: pulumi.Input<string>;
+    /**
+     * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+     */
+    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+     */
+    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Default lease duration for tokens and secrets in seconds
      */
@@ -230,6 +250,14 @@ export interface MountState {
  * The set of arguments for constructing a Mount resource.
  */
 export interface MountArgs {
+    /**
+     * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+     */
+    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+     */
+    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Default lease duration for tokens and secrets in seconds
      */

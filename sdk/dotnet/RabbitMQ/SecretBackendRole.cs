@@ -42,6 +42,12 @@ namespace Pulumi.Vault.RabbitMQ
         public Output<string?> Tags { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
+        /// </summary>
+        [Output("vhostTopics")]
+        public Output<ImmutableArray<Outputs.SecretBackendRoleVhostTopic>> VhostTopics { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies a map of virtual hosts to permissions.
         /// </summary>
         [Output("vhosts")]
@@ -113,6 +119,18 @@ namespace Pulumi.Vault.RabbitMQ
         [Input("tags")]
         public Input<string>? Tags { get; set; }
 
+        [Input("vhostTopics")]
+        private InputList<Inputs.SecretBackendRoleVhostTopicArgs>? _vhostTopics;
+
+        /// <summary>
+        /// Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
+        /// </summary>
+        public InputList<Inputs.SecretBackendRoleVhostTopicArgs> VhostTopics
+        {
+            get => _vhostTopics ?? (_vhostTopics = new InputList<Inputs.SecretBackendRoleVhostTopicArgs>());
+            set => _vhostTopics = value;
+        }
+
         [Input("vhosts")]
         private InputList<Inputs.SecretBackendRoleVhostArgs>? _vhosts;
 
@@ -151,6 +169,18 @@ namespace Pulumi.Vault.RabbitMQ
         /// </summary>
         [Input("tags")]
         public Input<string>? Tags { get; set; }
+
+        [Input("vhostTopics")]
+        private InputList<Inputs.SecretBackendRoleVhostTopicGetArgs>? _vhostTopics;
+
+        /// <summary>
+        /// Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
+        /// </summary>
+        public InputList<Inputs.SecretBackendRoleVhostTopicGetArgs> VhostTopics
+        {
+            get => _vhostTopics ?? (_vhostTopics = new InputList<Inputs.SecretBackendRoleVhostTopicGetArgs>());
+            set => _vhostTopics = value;
+        }
 
         [Input("vhosts")]
         private InputList<Inputs.SecretBackendRoleVhostGetArgs>? _vhosts;

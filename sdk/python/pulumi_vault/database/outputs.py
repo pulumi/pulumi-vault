@@ -10,6 +10,7 @@ from .. import _utilities
 
 __all__ = [
     'SecretBackendConnectionCassandra',
+    'SecretBackendConnectionCouchbase',
     'SecretBackendConnectionElasticsearch',
     'SecretBackendConnectionHana',
     'SecretBackendConnectionInfluxdb',
@@ -22,6 +23,7 @@ __all__ = [
     'SecretBackendConnectionMysqlRds',
     'SecretBackendConnectionOracle',
     'SecretBackendConnectionPostgresql',
+    'SecretBackendConnectionRedshift',
     'SecretBackendConnectionSnowflake',
 ]
 
@@ -66,10 +68,10 @@ class SecretBackendConnectionCassandra(dict):
         """
         :param int connect_timeout: The number of seconds to use as a connection
                timeout.
-        :param Sequence[str] hosts: The hosts to connect to.
+        :param Sequence[str] hosts: A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
         :param bool insecure_tls: Whether to skip verification of the server
                certificate when using TLS.
-        :param str password: The password to be used in the connection.
+        :param str password: The root credential password used in the connection URL.
         :param str pem_bundle: Concatenated PEM blocks configuring the certificate
                chain.
         :param str pem_json: A JSON structure configuring the certificate chain.
@@ -77,7 +79,7 @@ class SecretBackendConnectionCassandra(dict):
                part of the host.
         :param int protocol_version: The CQL protocol version to use.
         :param bool tls: Whether to use TLS when connecting to Cassandra.
-        :param str username: The username to be used in the connection (the account admin level).
+        :param str username: The root credential username used in the connection URL.
         """
         if connect_timeout is not None:
             pulumi.set(__self__, "connect_timeout", connect_timeout)
@@ -113,7 +115,7 @@ class SecretBackendConnectionCassandra(dict):
     @pulumi.getter
     def hosts(self) -> Optional[Sequence[str]]:
         """
-        The hosts to connect to.
+        A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
         """
         return pulumi.get(self, "hosts")
 
@@ -130,7 +132,7 @@ class SecretBackendConnectionCassandra(dict):
     @pulumi.getter
     def password(self) -> Optional[str]:
         """
-        The password to be used in the connection.
+        The root credential password used in the connection URL.
         """
         return pulumi.get(self, "password")
 
@@ -180,9 +182,134 @@ class SecretBackendConnectionCassandra(dict):
     @pulumi.getter
     def username(self) -> Optional[str]:
         """
-        The username to be used in the connection (the account admin level).
+        The root credential username used in the connection URL.
         """
         return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class SecretBackendConnectionCouchbase(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "base64Pem":
+            suggest = "base64_pem"
+        elif key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "insecureTls":
+            suggest = "insecure_tls"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionCouchbase. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretBackendConnectionCouchbase.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretBackendConnectionCouchbase.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 hosts: Sequence[str],
+                 password: str,
+                 username: str,
+                 base64_pem: Optional[str] = None,
+                 bucket_name: Optional[str] = None,
+                 insecure_tls: Optional[bool] = None,
+                 tls: Optional[bool] = None,
+                 username_template: Optional[str] = None):
+        """
+        :param Sequence[str] hosts: A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+        :param str password: The root credential password used in the connection URL.
+        :param str username: The root credential username used in the connection URL.
+        :param str base64_pem: Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
+        :param str bucket_name: Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
+        :param bool insecure_tls: Whether to skip verification of the server
+               certificate when using TLS.
+        :param bool tls: Whether to use TLS when connecting to Cassandra.
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        pulumi.set(__self__, "hosts", hosts)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "username", username)
+        if base64_pem is not None:
+            pulumi.set(__self__, "base64_pem", base64_pem)
+        if bucket_name is not None:
+            pulumi.set(__self__, "bucket_name", bucket_name)
+        if insecure_tls is not None:
+            pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if tls is not None:
+            pulumi.set(__self__, "tls", tls)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
+
+    @property
+    @pulumi.getter
+    def hosts(self) -> Sequence[str]:
+        """
+        A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+        """
+        return pulumi.get(self, "hosts")
+
+    @property
+    @pulumi.getter
+    def password(self) -> str:
+        """
+        The root credential password used in the connection URL.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The root credential username used in the connection URL.
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="base64Pem")
+    def base64_pem(self) -> Optional[str]:
+        """
+        Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
+        """
+        return pulumi.get(self, "base64_pem")
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> Optional[str]:
+        """
+        Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
+        """
+        return pulumi.get(self, "bucket_name")
+
+    @property
+    @pulumi.getter(name="insecureTls")
+    def insecure_tls(self) -> Optional[bool]:
+        """
+        Whether to skip verification of the server
+        certificate when using TLS.
+        """
+        return pulumi.get(self, "insecure_tls")
+
+    @property
+    @pulumi.getter
+    def tls(self) -> Optional[bool]:
+        """
+        Whether to use TLS when connecting to Cassandra.
+        """
+        return pulumi.get(self, "tls")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
 
 
 @pulumi.output_type
@@ -192,10 +319,10 @@ class SecretBackendConnectionElasticsearch(dict):
                  url: str,
                  username: str):
         """
-        :param str password: The password to be used in the connection.
+        :param str password: The root credential password used in the connection URL.
         :param str url: The URL for Elasticsearch's API. https requires certificate
                by trusted CA if used.
-        :param str username: The username to be used in the connection (the account admin level).
+        :param str username: The root credential username used in the connection URL.
         """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "url", url)
@@ -205,7 +332,7 @@ class SecretBackendConnectionElasticsearch(dict):
     @pulumi.getter
     def password(self) -> str:
         """
-        The password to be used in the connection.
+        The root credential password used in the connection URL.
         """
         return pulumi.get(self, "password")
 
@@ -222,7 +349,7 @@ class SecretBackendConnectionElasticsearch(dict):
     @pulumi.getter
     def username(self) -> str:
         """
-        The username to be used in the connection (the account admin level).
+        The root credential username used in the connection URL.
         """
         return pulumi.get(self, "username")
 
@@ -258,16 +385,15 @@ class SecretBackendConnectionHana(dict):
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None):
         """
-        :param str connection_url: A URL containing connection information. See
+        :param str connection_url: Specifies the Redshift DSN. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
-        :param int max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
+        :param int max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param int max_idle_connections: The maximum number of idle connections to
-               maintain.
+               the database.
         :param int max_open_connections: The maximum number of open connections to
-               use.
+               the database.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -282,9 +408,9 @@ class SecretBackendConnectionHana(dict):
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[str]:
         """
-        A URL containing connection information. See
+        Specifies the Redshift DSN. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -293,8 +419,7 @@ class SecretBackendConnectionHana(dict):
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[int]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        The maximum amount of time a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -303,7 +428,7 @@ class SecretBackendConnectionHana(dict):
     def max_idle_connections(self) -> Optional[int]:
         """
         The maximum number of idle connections to
-        maintain.
+        the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -312,7 +437,7 @@ class SecretBackendConnectionHana(dict):
     def max_open_connections(self) -> Optional[int]:
         """
         The maximum number of open connections to
-        use.
+        the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -357,8 +482,8 @@ class SecretBackendConnectionInfluxdb(dict):
                  username_template: Optional[str] = None):
         """
         :param str host: The host to connect to.
-        :param str password: The password to be used in the connection.
-        :param str username: The username to be used in the connection (the account admin level).
+        :param str password: The root credential password used in the connection URL.
+        :param str username: The root credential username used in the connection URL.
         :param int connect_timeout: The number of seconds to use as a connection
                timeout.
         :param bool insecure_tls: Whether to skip verification of the server
@@ -401,7 +526,7 @@ class SecretBackendConnectionInfluxdb(dict):
     @pulumi.getter
     def password(self) -> str:
         """
-        The password to be used in the connection.
+        The root credential password used in the connection URL.
         """
         return pulumi.get(self, "password")
 
@@ -409,7 +534,7 @@ class SecretBackendConnectionInfluxdb(dict):
     @pulumi.getter
     def username(self) -> str:
         """
-        The username to be used in the connection (the account admin level).
+        The root credential username used in the connection URL.
         """
         return pulumi.get(self, "username")
 
@@ -508,16 +633,15 @@ class SecretBackendConnectionMongodb(dict):
                  max_open_connections: Optional[int] = None,
                  username_template: Optional[str] = None):
         """
-        :param str connection_url: A URL containing connection information. See
+        :param str connection_url: Specifies the Redshift DSN. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
-        :param int max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
+        :param int max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param int max_idle_connections: The maximum number of idle connections to
-               maintain.
+               the database.
         :param int max_open_connections: The maximum number of open connections to
-               use.
+               the database.
         :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
@@ -535,9 +659,9 @@ class SecretBackendConnectionMongodb(dict):
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[str]:
         """
-        A URL containing connection information. See
+        Specifies the Redshift DSN. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -546,8 +670,7 @@ class SecretBackendConnectionMongodb(dict):
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[int]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        The maximum amount of time a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -556,7 +679,7 @@ class SecretBackendConnectionMongodb(dict):
     def max_idle_connections(self) -> Optional[int]:
         """
         The maximum number of idle connections to
-        maintain.
+        the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -565,7 +688,7 @@ class SecretBackendConnectionMongodb(dict):
     def max_open_connections(self) -> Optional[int]:
         """
         The maximum number of open connections to
-        use.
+        the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -676,20 +799,19 @@ class SecretBackendConnectionMssql(dict):
                  max_open_connections: Optional[int] = None,
                  username_template: Optional[str] = None):
         """
-        :param str connection_url: A URL containing connection information. See
+        :param str connection_url: Specifies the Redshift DSN. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
         :param bool contained_db: For Vault v1.9+. Set to true when the target is a
                Contained Database, e.g. AzureSQL.
                See the [Vault
                docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
-        :param int max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
+        :param int max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param int max_idle_connections: The maximum number of idle connections to
-               maintain.
+               the database.
         :param int max_open_connections: The maximum number of open connections to
-               use.
+               the database.
         :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
@@ -709,9 +831,9 @@ class SecretBackendConnectionMssql(dict):
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[str]:
         """
-        A URL containing connection information. See
+        Specifies the Redshift DSN. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -731,8 +853,7 @@ class SecretBackendConnectionMssql(dict):
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[int]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        The maximum amount of time a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -741,7 +862,7 @@ class SecretBackendConnectionMssql(dict):
     def max_idle_connections(self) -> Optional[int]:
         """
         The maximum number of idle connections to
-        maintain.
+        the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -750,7 +871,7 @@ class SecretBackendConnectionMssql(dict):
     def max_open_connections(self) -> Optional[int]:
         """
         The maximum number of open connections to
-        use.
+        the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -803,16 +924,15 @@ class SecretBackendConnectionMysql(dict):
                  tls_certificate_key: Optional[str] = None,
                  username_template: Optional[str] = None):
         """
-        :param str connection_url: A URL containing connection information. See
+        :param str connection_url: Specifies the Redshift DSN. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
-        :param int max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
+        :param int max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param int max_idle_connections: The maximum number of idle connections to
-               maintain.
+               the database.
         :param int max_open_connections: The maximum number of open connections to
-               use.
+               the database.
         :param str tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param str tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
@@ -836,9 +956,9 @@ class SecretBackendConnectionMysql(dict):
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[str]:
         """
-        A URL containing connection information. See
+        Specifies the Redshift DSN. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -847,8 +967,7 @@ class SecretBackendConnectionMysql(dict):
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[int]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        The maximum amount of time a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -857,7 +976,7 @@ class SecretBackendConnectionMysql(dict):
     def max_idle_connections(self) -> Optional[int]:
         """
         The maximum number of idle connections to
-        maintain.
+        the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -866,7 +985,7 @@ class SecretBackendConnectionMysql(dict):
     def max_open_connections(self) -> Optional[int]:
         """
         The maximum number of open connections to
-        use.
+        the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -929,16 +1048,15 @@ class SecretBackendConnectionMysqlAurora(dict):
                  max_open_connections: Optional[int] = None,
                  username_template: Optional[str] = None):
         """
-        :param str connection_url: A URL containing connection information. See
+        :param str connection_url: Specifies the Redshift DSN. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
-        :param int max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
+        :param int max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param int max_idle_connections: The maximum number of idle connections to
-               maintain.
+               the database.
         :param int max_open_connections: The maximum number of open connections to
-               use.
+               the database.
         :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
@@ -956,9 +1074,9 @@ class SecretBackendConnectionMysqlAurora(dict):
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[str]:
         """
-        A URL containing connection information. See
+        Specifies the Redshift DSN. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -967,8 +1085,7 @@ class SecretBackendConnectionMysqlAurora(dict):
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[int]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        The maximum amount of time a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -977,7 +1094,7 @@ class SecretBackendConnectionMysqlAurora(dict):
     def max_idle_connections(self) -> Optional[int]:
         """
         The maximum number of idle connections to
-        maintain.
+        the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -986,7 +1103,7 @@ class SecretBackendConnectionMysqlAurora(dict):
     def max_open_connections(self) -> Optional[int]:
         """
         The maximum number of open connections to
-        use.
+        the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -1033,16 +1150,15 @@ class SecretBackendConnectionMysqlLegacy(dict):
                  max_open_connections: Optional[int] = None,
                  username_template: Optional[str] = None):
         """
-        :param str connection_url: A URL containing connection information. See
+        :param str connection_url: Specifies the Redshift DSN. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
-        :param int max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
+        :param int max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param int max_idle_connections: The maximum number of idle connections to
-               maintain.
+               the database.
         :param int max_open_connections: The maximum number of open connections to
-               use.
+               the database.
         :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
@@ -1060,9 +1176,9 @@ class SecretBackendConnectionMysqlLegacy(dict):
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[str]:
         """
-        A URL containing connection information. See
+        Specifies the Redshift DSN. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -1071,8 +1187,7 @@ class SecretBackendConnectionMysqlLegacy(dict):
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[int]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        The maximum amount of time a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -1081,7 +1196,7 @@ class SecretBackendConnectionMysqlLegacy(dict):
     def max_idle_connections(self) -> Optional[int]:
         """
         The maximum number of idle connections to
-        maintain.
+        the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -1090,7 +1205,7 @@ class SecretBackendConnectionMysqlLegacy(dict):
     def max_open_connections(self) -> Optional[int]:
         """
         The maximum number of open connections to
-        use.
+        the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -1137,16 +1252,15 @@ class SecretBackendConnectionMysqlRds(dict):
                  max_open_connections: Optional[int] = None,
                  username_template: Optional[str] = None):
         """
-        :param str connection_url: A URL containing connection information. See
+        :param str connection_url: Specifies the Redshift DSN. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
-        :param int max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
+        :param int max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param int max_idle_connections: The maximum number of idle connections to
-               maintain.
+               the database.
         :param int max_open_connections: The maximum number of open connections to
-               use.
+               the database.
         :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
@@ -1164,9 +1278,9 @@ class SecretBackendConnectionMysqlRds(dict):
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[str]:
         """
-        A URL containing connection information. See
+        Specifies the Redshift DSN. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -1175,8 +1289,7 @@ class SecretBackendConnectionMysqlRds(dict):
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[int]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        The maximum amount of time a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -1185,7 +1298,7 @@ class SecretBackendConnectionMysqlRds(dict):
     def max_idle_connections(self) -> Optional[int]:
         """
         The maximum number of idle connections to
-        maintain.
+        the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -1194,7 +1307,7 @@ class SecretBackendConnectionMysqlRds(dict):
     def max_open_connections(self) -> Optional[int]:
         """
         The maximum number of open connections to
-        use.
+        the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -1241,16 +1354,15 @@ class SecretBackendConnectionOracle(dict):
                  max_open_connections: Optional[int] = None,
                  username_template: Optional[str] = None):
         """
-        :param str connection_url: A URL containing connection information. See
+        :param str connection_url: Specifies the Redshift DSN. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
-        :param int max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
+        :param int max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param int max_idle_connections: The maximum number of idle connections to
-               maintain.
+               the database.
         :param int max_open_connections: The maximum number of open connections to
-               use.
+               the database.
         :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
@@ -1268,9 +1380,9 @@ class SecretBackendConnectionOracle(dict):
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[str]:
         """
-        A URL containing connection information. See
+        Specifies the Redshift DSN. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -1279,8 +1391,7 @@ class SecretBackendConnectionOracle(dict):
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[int]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        The maximum amount of time a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -1289,7 +1400,7 @@ class SecretBackendConnectionOracle(dict):
     def max_idle_connections(self) -> Optional[int]:
         """
         The maximum number of idle connections to
-        maintain.
+        the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -1298,7 +1409,7 @@ class SecretBackendConnectionOracle(dict):
     def max_open_connections(self) -> Optional[int]:
         """
         The maximum number of open connections to
-        use.
+        the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -1345,16 +1456,15 @@ class SecretBackendConnectionPostgresql(dict):
                  max_open_connections: Optional[int] = None,
                  username_template: Optional[str] = None):
         """
-        :param str connection_url: A URL containing connection information. See
+        :param str connection_url: Specifies the Redshift DSN. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
-        :param int max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
+        :param int max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param int max_idle_connections: The maximum number of idle connections to
-               maintain.
+               the database.
         :param int max_open_connections: The maximum number of open connections to
-               use.
+               the database.
         :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
@@ -1372,9 +1482,9 @@ class SecretBackendConnectionPostgresql(dict):
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[str]:
         """
-        A URL containing connection information. See
+        Specifies the Redshift DSN. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -1383,8 +1493,7 @@ class SecretBackendConnectionPostgresql(dict):
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[int]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        The maximum amount of time a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -1393,7 +1502,7 @@ class SecretBackendConnectionPostgresql(dict):
     def max_idle_connections(self) -> Optional[int]:
         """
         The maximum number of idle connections to
-        maintain.
+        the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -1402,9 +1511,135 @@ class SecretBackendConnectionPostgresql(dict):
     def max_open_connections(self) -> Optional[int]:
         """
         The maximum number of open connections to
-        use.
+        the database.
         """
         return pulumi.get(self, "max_open_connections")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+
+@pulumi.output_type
+class SecretBackendConnectionRedshift(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionRedshift. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretBackendConnectionRedshift.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretBackendConnectionRedshift.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 connection_url: Optional[str] = None,
+                 max_connection_lifetime: Optional[int] = None,
+                 max_idle_connections: Optional[int] = None,
+                 max_open_connections: Optional[int] = None,
+                 password: Optional[str] = None,
+                 username: Optional[str] = None,
+                 username_template: Optional[str] = None):
+        """
+        :param str connection_url: Specifies the Redshift DSN. See
+               the [Vault
+               docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+               for an example.
+        :param int max_connection_lifetime: The maximum amount of time a connection may be reused.
+        :param int max_idle_connections: The maximum number of idle connections to
+               the database.
+        :param int max_open_connections: The maximum number of open connections to
+               the database.
+        :param str password: The root credential password used in the connection URL.
+        :param str username: The root credential username used in the connection URL.
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        if connection_url is not None:
+            pulumi.set(__self__, "connection_url", connection_url)
+        if max_connection_lifetime is not None:
+            pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
+        if max_idle_connections is not None:
+            pulumi.set(__self__, "max_idle_connections", max_idle_connections)
+        if max_open_connections is not None:
+            pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
+
+    @property
+    @pulumi.getter(name="connectionUrl")
+    def connection_url(self) -> Optional[str]:
+        """
+        Specifies the Redshift DSN. See
+        the [Vault
+        docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        for an example.
+        """
+        return pulumi.get(self, "connection_url")
+
+    @property
+    @pulumi.getter(name="maxConnectionLifetime")
+    def max_connection_lifetime(self) -> Optional[int]:
+        """
+        The maximum amount of time a connection may be reused.
+        """
+        return pulumi.get(self, "max_connection_lifetime")
+
+    @property
+    @pulumi.getter(name="maxIdleConnections")
+    def max_idle_connections(self) -> Optional[int]:
+        """
+        The maximum number of idle connections to
+        the database.
+        """
+        return pulumi.get(self, "max_idle_connections")
+
+    @property
+    @pulumi.getter(name="maxOpenConnections")
+    def max_open_connections(self) -> Optional[int]:
+        """
+        The maximum number of open connections to
+        the database.
+        """
+        return pulumi.get(self, "max_open_connections")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        The root credential password used in the connection URL.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        The root credential username used in the connection URL.
+        """
+        return pulumi.get(self, "username")
 
     @property
     @pulumi.getter(name="usernameTemplate")
@@ -1451,18 +1686,17 @@ class SecretBackendConnectionSnowflake(dict):
                  username: Optional[str] = None,
                  username_template: Optional[str] = None):
         """
-        :param str connection_url: A URL containing connection information. See
+        :param str connection_url: Specifies the Redshift DSN. See
                the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+               docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
-        :param int max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
+        :param int max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param int max_idle_connections: The maximum number of idle connections to
-               maintain.
+               the database.
         :param int max_open_connections: The maximum number of open connections to
-               use.
-        :param str password: The password to be used in the connection.
-        :param str username: The username to be used in the connection (the account admin level).
+               the database.
+        :param str password: The root credential password used in the connection URL.
+        :param str username: The root credential username used in the connection URL.
         :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
@@ -1484,9 +1718,9 @@ class SecretBackendConnectionSnowflake(dict):
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[str]:
         """
-        A URL containing connection information. See
+        Specifies the Redshift DSN. See
         the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         for an example.
         """
         return pulumi.get(self, "connection_url")
@@ -1495,8 +1729,7 @@ class SecretBackendConnectionSnowflake(dict):
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[int]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        The maximum amount of time a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -1505,7 +1738,7 @@ class SecretBackendConnectionSnowflake(dict):
     def max_idle_connections(self) -> Optional[int]:
         """
         The maximum number of idle connections to
-        maintain.
+        the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -1514,7 +1747,7 @@ class SecretBackendConnectionSnowflake(dict):
     def max_open_connections(self) -> Optional[int]:
         """
         The maximum number of open connections to
-        use.
+        the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -1522,7 +1755,7 @@ class SecretBackendConnectionSnowflake(dict):
     @pulumi.getter
     def password(self) -> Optional[str]:
         """
-        The password to be used in the connection.
+        The root credential password used in the connection URL.
         """
         return pulumi.get(self, "password")
 
@@ -1530,7 +1763,7 @@ class SecretBackendConnectionSnowflake(dict):
     @pulumi.getter
     def username(self) -> Optional[str]:
         """
-        The username to be used in the connection (the account admin level).
+        The root credential username used in the connection URL.
         """
         return pulumi.get(self, "username")
 
