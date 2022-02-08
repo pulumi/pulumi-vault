@@ -148,7 +148,7 @@ export namespace database {
          */
         connectTimeout?: number;
         /**
-         * The hosts to connect to.
+         * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
          */
         hosts?: string[];
         /**
@@ -157,7 +157,7 @@ export namespace database {
          */
         insecureTls?: boolean;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password?: string;
         /**
@@ -183,14 +183,50 @@ export namespace database {
          */
         tls?: boolean;
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username?: string;
     }
 
+    export interface SecretBackendConnectionCouchbase {
+        /**
+         * Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
+         */
+        base64Pem?: string;
+        /**
+         * Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
+         */
+        bucketName?: string;
+        /**
+         * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+         */
+        hosts: string[];
+        /**
+         * Whether to skip verification of the server
+         * certificate when using TLS.
+         */
+        insecureTls?: boolean;
+        /**
+         * The root credential password used in the connection URL.
+         */
+        password: string;
+        /**
+         * Whether to use TLS when connecting to Cassandra.
+         */
+        tls?: boolean;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username: string;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
+    }
+
     export interface SecretBackendConnectionElasticsearch {
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password: string;
         /**
@@ -199,32 +235,31 @@ export namespace database {
          */
         url: string;
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username: string;
     }
 
     export interface SecretBackendConnectionHana {
         /**
-         * A URL containing connection information. See
+         * Specifies the Redshift DSN. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
     }
@@ -245,7 +280,7 @@ export namespace database {
          */
         insecureTls?: boolean;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password: string;
         /**
@@ -267,7 +302,7 @@ export namespace database {
          */
         tls?: boolean;
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
          */
         username: string;
         /**
@@ -278,25 +313,24 @@ export namespace database {
 
     export interface SecretBackendConnectionMongodb {
         /**
-         * A URL containing connection information. See
+         * Specifies the Redshift DSN. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         /**
@@ -322,9 +356,9 @@ export namespace database {
 
     export interface SecretBackendConnectionMssql {
         /**
-         * A URL containing connection information. See
+         * Specifies the Redshift DSN. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
@@ -336,18 +370,17 @@ export namespace database {
          */
         containedDb?: boolean;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         /**
@@ -358,25 +391,24 @@ export namespace database {
 
     export interface SecretBackendConnectionMysql {
         /**
-         * A URL containing connection information. See
+         * Specifies the Redshift DSN. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         /**
@@ -395,25 +427,24 @@ export namespace database {
 
     export interface SecretBackendConnectionMysqlAurora {
         /**
-         * A URL containing connection information. See
+         * Specifies the Redshift DSN. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         /**
@@ -424,25 +455,24 @@ export namespace database {
 
     export interface SecretBackendConnectionMysqlLegacy {
         /**
-         * A URL containing connection information. See
+         * Specifies the Redshift DSN. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         /**
@@ -453,25 +483,24 @@ export namespace database {
 
     export interface SecretBackendConnectionMysqlRds {
         /**
-         * A URL containing connection information. See
+         * Specifies the Redshift DSN. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         /**
@@ -482,25 +511,24 @@ export namespace database {
 
     export interface SecretBackendConnectionOracle {
         /**
-         * A URL containing connection information. See
+         * Specifies the Redshift DSN. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         /**
@@ -511,25 +539,24 @@ export namespace database {
 
     export interface SecretBackendConnectionPostgresql {
         /**
-         * A URL containing connection information. See
+         * Specifies the Redshift DSN. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         /**
@@ -538,35 +565,70 @@ export namespace database {
         usernameTemplate?: string;
     }
 
-    export interface SecretBackendConnectionSnowflake {
+    export interface SecretBackendConnectionRedshift {
         /**
-         * A URL containing connection information. See
+         * Specifies the Redshift DSN. See
          * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
          * for an example.
          */
         connectionUrl?: string;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
         /**
          * The maximum number of idle connections to
-         * maintain.
+         * the database.
          */
         maxIdleConnections?: number;
         /**
          * The maximum number of open connections to
-         * use.
+         * the database.
          */
         maxOpenConnections?: number;
         /**
-         * The password to be used in the connection.
+         * The root credential password used in the connection URL.
          */
         password?: string;
         /**
-         * The username to be used in the connection (the account admin level).
+         * The root credential username used in the connection URL.
+         */
+        username?: string;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
+    }
+
+    export interface SecretBackendConnectionSnowflake {
+        /**
+         * Specifies the Redshift DSN. See
+         * the [Vault
+         * docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * for an example.
+         */
+        connectionUrl?: string;
+        /**
+         * The maximum amount of time a connection may be reused.
+         */
+        maxConnectionLifetime?: number;
+        /**
+         * The maximum number of idle connections to
+         * the database.
+         */
+        maxIdleConnections?: number;
+        /**
+         * The maximum number of open connections to
+         * the database.
+         */
+        maxOpenConnections?: number;
+        /**
+         * The root credential password used in the connection URL.
+         */
+        password?: string;
+        /**
+         * The root credential username used in the connection URL.
          */
         username?: string;
         /**
@@ -778,6 +840,20 @@ export namespace rabbitMq {
         configure: string;
         host: string;
         read: string;
+        write: string;
+    }
+
+    export interface SecretBackendRoleVhostTopic {
+        host: string;
+        /**
+         * Specifies a map of virtual hosts to permissions.
+         */
+        vhosts?: outputs.rabbitMq.SecretBackendRoleVhostTopicVhost[];
+    }
+
+    export interface SecretBackendRoleVhostTopicVhost {
+        read: string;
+        topic: string;
         write: string;
     }
 

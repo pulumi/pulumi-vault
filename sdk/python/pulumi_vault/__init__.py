@@ -69,6 +69,8 @@ if typing.TYPE_CHECKING:
     rabbitmq = __rabbitmq
     import pulumi_vault.ssh as __ssh
     ssh = __ssh
+    import pulumi_vault.terraformcloud as __terraformcloud
+    terraformcloud = __terraformcloud
     import pulumi_vault.tokenauth as __tokenauth
     tokenauth = __tokenauth
     import pulumi_vault.transform as __transform
@@ -95,6 +97,7 @@ else:
     pkisecret = _utilities.lazy_import('pulumi_vault.pkisecret')
     rabbitmq = _utilities.lazy_import('pulumi_vault.rabbitmq')
     ssh = _utilities.lazy_import('pulumi_vault.ssh')
+    terraformcloud = _utilities.lazy_import('pulumi_vault.terraformcloud')
     tokenauth = _utilities.lazy_import('pulumi_vault.tokenauth')
     transform = _utilities.lazy_import('pulumi_vault.transform')
     transit = _utilities.lazy_import('pulumi_vault.transit')
@@ -804,6 +807,30 @@ _utilities.register(
   "fqn": "pulumi_vault.ssh",
   "classes": {
    "vault:ssh/secretBackendRole:SecretBackendRole": "SecretBackendRole"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "terraformcloud/secretBackend",
+  "fqn": "pulumi_vault.terraformcloud",
+  "classes": {
+   "vault:terraformcloud/secretBackend:SecretBackend": "SecretBackend"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "terraformcloud/secretCreds",
+  "fqn": "pulumi_vault.terraformcloud",
+  "classes": {
+   "vault:terraformcloud/secretCreds:SecretCreds": "SecretCreds"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "terraformcloud/secretRole",
+  "fqn": "pulumi_vault.terraformcloud",
+  "classes": {
+   "vault:terraformcloud/secretRole:SecretRole": "SecretRole"
   }
  },
  {

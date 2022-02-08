@@ -15,6 +15,8 @@ class MountArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[str],
                  type: pulumi.Input[str],
+                 audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
@@ -26,6 +28,8 @@ class MountArgs:
         The set of arguments for constructing a Mount resource.
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[str] type: Type of the backend, such as "aws"
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[str] description: Human-friendly description of the mount
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
@@ -36,6 +40,10 @@ class MountArgs:
         """
         pulumi.set(__self__, "path", path)
         pulumi.set(__self__, "type", type)
+        if audit_non_hmac_request_keys is not None:
+            pulumi.set(__self__, "audit_non_hmac_request_keys", audit_non_hmac_request_keys)
+        if audit_non_hmac_response_keys is not None:
+            pulumi.set(__self__, "audit_non_hmac_response_keys", audit_non_hmac_response_keys)
         if default_lease_ttl_seconds is not None:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if description is not None:
@@ -74,6 +82,30 @@ class MountArgs:
     @type.setter
     def type(self, value: pulumi.Input[str]):
         pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="auditNonHmacRequestKeys")
+    def audit_non_hmac_request_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        """
+        return pulumi.get(self, "audit_non_hmac_request_keys")
+
+    @audit_non_hmac_request_keys.setter
+    def audit_non_hmac_request_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "audit_non_hmac_request_keys", value)
+
+    @property
+    @pulumi.getter(name="auditNonHmacResponseKeys")
+    def audit_non_hmac_response_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        """
+        return pulumi.get(self, "audit_non_hmac_response_keys")
+
+    @audit_non_hmac_response_keys.setter
+    def audit_non_hmac_response_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "audit_non_hmac_response_keys", value)
 
     @property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
@@ -164,6 +196,8 @@ class MountArgs:
 class _MountState:
     def __init__(__self__, *,
                  accessor: Optional[pulumi.Input[str]] = None,
+                 audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
@@ -176,6 +210,8 @@ class _MountState:
         """
         Input properties used for looking up and filtering Mount resources.
         :param pulumi.Input[str] accessor: The accessor for this mount.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[str] description: Human-friendly description of the mount
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
@@ -188,6 +224,10 @@ class _MountState:
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
+        if audit_non_hmac_request_keys is not None:
+            pulumi.set(__self__, "audit_non_hmac_request_keys", audit_non_hmac_request_keys)
+        if audit_non_hmac_response_keys is not None:
+            pulumi.set(__self__, "audit_non_hmac_response_keys", audit_non_hmac_response_keys)
         if default_lease_ttl_seconds is not None:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if description is not None:
@@ -218,6 +258,30 @@ class _MountState:
     @accessor.setter
     def accessor(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "accessor", value)
+
+    @property
+    @pulumi.getter(name="auditNonHmacRequestKeys")
+    def audit_non_hmac_request_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        """
+        return pulumi.get(self, "audit_non_hmac_request_keys")
+
+    @audit_non_hmac_request_keys.setter
+    def audit_non_hmac_request_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "audit_non_hmac_request_keys", value)
+
+    @property
+    @pulumi.getter(name="auditNonHmacResponseKeys")
+    def audit_non_hmac_response_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        """
+        return pulumi.get(self, "audit_non_hmac_response_keys")
+
+    @audit_non_hmac_response_keys.setter
+    def audit_non_hmac_response_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "audit_non_hmac_response_keys", value)
 
     @property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
@@ -333,6 +397,8 @@ class Mount(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
@@ -401,6 +467,8 @@ class Mount(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[str] description: Human-friendly description of the mount
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
@@ -488,6 +556,8 @@ class Mount(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
@@ -509,6 +579,8 @@ class Mount(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = MountArgs.__new__(MountArgs)
 
+            __props__.__dict__["audit_non_hmac_request_keys"] = audit_non_hmac_request_keys
+            __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
             __props__.__dict__["description"] = description
             __props__.__dict__["external_entropy_access"] = external_entropy_access
@@ -534,6 +606,8 @@ class Mount(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             accessor: Optional[pulumi.Input[str]] = None,
+            audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
             external_entropy_access: Optional[pulumi.Input[bool]] = None,
@@ -551,6 +625,8 @@ class Mount(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accessor: The accessor for this mount.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[str] description: Human-friendly description of the mount
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
@@ -566,6 +642,8 @@ class Mount(pulumi.CustomResource):
         __props__ = _MountState.__new__(_MountState)
 
         __props__.__dict__["accessor"] = accessor
+        __props__.__dict__["audit_non_hmac_request_keys"] = audit_non_hmac_request_keys
+        __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__.__dict__["description"] = description
         __props__.__dict__["external_entropy_access"] = external_entropy_access
@@ -584,6 +662,22 @@ class Mount(pulumi.CustomResource):
         The accessor for this mount.
         """
         return pulumi.get(self, "accessor")
+
+    @property
+    @pulumi.getter(name="auditNonHmacRequestKeys")
+    def audit_non_hmac_request_keys(self) -> pulumi.Output[Sequence[str]]:
+        """
+        Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        """
+        return pulumi.get(self, "audit_non_hmac_request_keys")
+
+    @property
+    @pulumi.getter(name="auditNonHmacResponseKeys")
+    def audit_non_hmac_response_keys(self) -> pulumi.Output[Sequence[str]]:
+        """
+        Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        """
+        return pulumi.get(self, "audit_non_hmac_response_keys")
 
     @property
     @pulumi.getter(name="defaultLeaseTtlSeconds")

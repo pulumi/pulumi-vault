@@ -21,7 +21,8 @@ class SecretBackendArgs:
                  path: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
-                 sts_endpoint: Optional[pulumi.Input[str]] = None):
+                 sts_endpoint: Optional[pulumi.Input[str]] = None,
+                 username_template: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
         :param pulumi.Input[str] access_key: The AWS Access Key ID this backend should use to
@@ -38,6 +39,7 @@ class SecretBackendArgs:
         :param pulumi.Input[str] secret_key: The AWS Secret Key this backend should use to
                issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
         :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
+        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
         """
         if access_key is not None:
             pulumi.set(__self__, "access_key", access_key)
@@ -57,6 +59,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "secret_key", secret_key)
         if sts_endpoint is not None:
             pulumi.set(__self__, "sts_endpoint", sts_endpoint)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -171,6 +175,18 @@ class SecretBackendArgs:
     def sts_endpoint(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sts_endpoint", value)
 
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+        """
+        return pulumi.get(self, "username_template")
+
+    @username_template.setter
+    def username_template(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username_template", value)
+
 
 @pulumi.input_type
 class _SecretBackendState:
@@ -183,7 +199,8 @@ class _SecretBackendState:
                  path: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
-                 sts_endpoint: Optional[pulumi.Input[str]] = None):
+                 sts_endpoint: Optional[pulumi.Input[str]] = None,
+                 username_template: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
         :param pulumi.Input[str] access_key: The AWS Access Key ID this backend should use to
@@ -200,6 +217,7 @@ class _SecretBackendState:
         :param pulumi.Input[str] secret_key: The AWS Secret Key this backend should use to
                issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
         :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
+        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
         """
         if access_key is not None:
             pulumi.set(__self__, "access_key", access_key)
@@ -219,6 +237,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "secret_key", secret_key)
         if sts_endpoint is not None:
             pulumi.set(__self__, "sts_endpoint", sts_endpoint)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -333,6 +353,18 @@ class _SecretBackendState:
     def sts_endpoint(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sts_endpoint", value)
 
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+        """
+        return pulumi.get(self, "username_template")
+
+    @username_template.setter
+    def username_template(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username_template", value)
+
 
 class SecretBackend(pulumi.CustomResource):
     @overload
@@ -348,6 +380,7 @@ class SecretBackend(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
+                 username_template: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         ## Import
@@ -374,6 +407,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] secret_key: The AWS Secret Key this backend should use to
                issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
         :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
+        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
         """
         ...
     @overload
@@ -414,6 +448,7 @@ class SecretBackend(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
+                 username_template: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -435,6 +470,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["secret_key"] = secret_key
             __props__.__dict__["sts_endpoint"] = sts_endpoint
+            __props__.__dict__["username_template"] = username_template
         super(SecretBackend, __self__).__init__(
             'vault:aws/secretBackend:SecretBackend',
             resource_name,
@@ -453,7 +489,8 @@ class SecretBackend(pulumi.CustomResource):
             path: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             secret_key: Optional[pulumi.Input[str]] = None,
-            sts_endpoint: Optional[pulumi.Input[str]] = None) -> 'SecretBackend':
+            sts_endpoint: Optional[pulumi.Input[str]] = None,
+            username_template: Optional[pulumi.Input[str]] = None) -> 'SecretBackend':
         """
         Get an existing SecretBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -475,6 +512,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] secret_key: The AWS Secret Key this backend should use to
                issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
         :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
+        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -489,6 +527,7 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["secret_key"] = secret_key
         __props__.__dict__["sts_endpoint"] = sts_endpoint
+        __props__.__dict__["username_template"] = username_template
         return SecretBackend(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -567,4 +606,12 @@ class SecretBackend(pulumi.CustomResource):
         Specifies a custom HTTP STS endpoint to use.
         """
         return pulumi.get(self, "sts_endpoint")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> pulumi.Output[str]:
+        """
+        Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+        """
+        return pulumi.get(self, "username_template")
 

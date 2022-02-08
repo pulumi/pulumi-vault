@@ -29,6 +29,8 @@ type SecretBackendRole struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies a comma-separated RabbitMQ management tags.
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
+	// Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
+	VhostTopics SecretBackendRoleVhostTopicArrayOutput `pulumi:"vhostTopics"`
 	// Specifies a map of virtual hosts to permissions.
 	Vhosts SecretBackendRoleVhostArrayOutput `pulumi:"vhosts"`
 }
@@ -73,6 +75,8 @@ type secretBackendRoleState struct {
 	Name *string `pulumi:"name"`
 	// Specifies a comma-separated RabbitMQ management tags.
 	Tags *string `pulumi:"tags"`
+	// Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
+	VhostTopics []SecretBackendRoleVhostTopic `pulumi:"vhostTopics"`
 	// Specifies a map of virtual hosts to permissions.
 	Vhosts []SecretBackendRoleVhost `pulumi:"vhosts"`
 }
@@ -86,6 +90,8 @@ type SecretBackendRoleState struct {
 	Name pulumi.StringPtrInput
 	// Specifies a comma-separated RabbitMQ management tags.
 	Tags pulumi.StringPtrInput
+	// Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
+	VhostTopics SecretBackendRoleVhostTopicArrayInput
 	// Specifies a map of virtual hosts to permissions.
 	Vhosts SecretBackendRoleVhostArrayInput
 }
@@ -103,6 +109,8 @@ type secretBackendRoleArgs struct {
 	Name *string `pulumi:"name"`
 	// Specifies a comma-separated RabbitMQ management tags.
 	Tags *string `pulumi:"tags"`
+	// Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
+	VhostTopics []SecretBackendRoleVhostTopic `pulumi:"vhostTopics"`
 	// Specifies a map of virtual hosts to permissions.
 	Vhosts []SecretBackendRoleVhost `pulumi:"vhosts"`
 }
@@ -117,6 +125,8 @@ type SecretBackendRoleArgs struct {
 	Name pulumi.StringPtrInput
 	// Specifies a comma-separated RabbitMQ management tags.
 	Tags pulumi.StringPtrInput
+	// Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
+	VhostTopics SecretBackendRoleVhostTopicArrayInput
 	// Specifies a map of virtual hosts to permissions.
 	Vhosts SecretBackendRoleVhostArrayInput
 }

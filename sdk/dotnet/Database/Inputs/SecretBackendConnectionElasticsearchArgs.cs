@@ -13,7 +13,7 @@ namespace Pulumi.Vault.Database.Inputs
     public sealed class SecretBackendConnectionElasticsearchArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The password to be used in the connection.
+        /// The root credential password used in the connection URL.
         /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
@@ -26,7 +26,7 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<string> Url { get; set; } = null!;
 
         /// <summary>
-        /// The username to be used in the connection (the account admin level).
+        /// The root credential username used in the connection URL.
         /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;

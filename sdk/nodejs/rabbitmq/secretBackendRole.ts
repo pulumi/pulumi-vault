@@ -57,6 +57,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string | undefined>;
     /**
+     * Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
+     */
+    public readonly vhostTopics!: pulumi.Output<outputs.rabbitMq.SecretBackendRoleVhostTopic[] | undefined>;
+    /**
      * Specifies a map of virtual hosts to permissions.
      */
     public readonly vhosts!: pulumi.Output<outputs.rabbitMq.SecretBackendRoleVhost[] | undefined>;
@@ -77,6 +81,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["vhostTopics"] = state ? state.vhostTopics : undefined;
             resourceInputs["vhosts"] = state ? state.vhosts : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
@@ -86,6 +91,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["vhostTopics"] = args ? args.vhostTopics : undefined;
             resourceInputs["vhosts"] = args ? args.vhosts : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -112,6 +118,10 @@ export interface SecretBackendRoleState {
      */
     tags?: pulumi.Input<string>;
     /**
+     * Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
+     */
+    vhostTopics?: pulumi.Input<pulumi.Input<inputs.rabbitMq.SecretBackendRoleVhostTopic>[]>;
+    /**
      * Specifies a map of virtual hosts to permissions.
      */
     vhosts?: pulumi.Input<pulumi.Input<inputs.rabbitMq.SecretBackendRoleVhost>[]>;
@@ -135,6 +145,10 @@ export interface SecretBackendRoleArgs {
      * Specifies a comma-separated RabbitMQ management tags.
      */
     tags?: pulumi.Input<string>;
+    /**
+     * Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
+     */
+    vhostTopics?: pulumi.Input<pulumi.Input<inputs.rabbitMq.SecretBackendRoleVhostTopic>[]>;
     /**
      * Specifies a map of virtual hosts to permissions.
      */

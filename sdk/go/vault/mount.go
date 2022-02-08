@@ -122,6 +122,10 @@ type Mount struct {
 
 	// The accessor for this mount.
 	Accessor pulumi.StringOutput `pulumi:"accessor"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacRequestKeys"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacResponseKeys"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// Human-friendly description of the mount
@@ -179,6 +183,10 @@ func GetMount(ctx *pulumi.Context,
 type mountState struct {
 	// The accessor for this mount.
 	Accessor *string `pulumi:"accessor"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// Human-friendly description of the mount
@@ -202,6 +210,10 @@ type mountState struct {
 type MountState struct {
 	// The accessor for this mount.
 	Accessor pulumi.StringPtrInput
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys pulumi.StringArrayInput
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys pulumi.StringArrayInput
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// Human-friendly description of the mount
@@ -227,6 +239,10 @@ func (MountState) ElementType() reflect.Type {
 }
 
 type mountArgs struct {
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// Human-friendly description of the mount
@@ -249,6 +265,10 @@ type mountArgs struct {
 
 // The set of arguments for constructing a Mount resource.
 type MountArgs struct {
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys pulumi.StringArrayInput
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys pulumi.StringArrayInput
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// Human-friendly description of the mount

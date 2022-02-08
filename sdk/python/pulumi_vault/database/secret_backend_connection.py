@@ -18,6 +18,7 @@ class SecretBackendConnectionArgs:
                  backend: pulumi.Input[str],
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  cassandra: Optional[pulumi.Input['SecretBackendConnectionCassandraArgs']] = None,
+                 couchbase: Optional[pulumi.Input['SecretBackendConnectionCouchbaseArgs']] = None,
                  data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  elasticsearch: Optional[pulumi.Input['SecretBackendConnectionElasticsearchArgs']] = None,
                  hana: Optional[pulumi.Input['SecretBackendConnectionHanaArgs']] = None,
@@ -32,6 +33,7 @@ class SecretBackendConnectionArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  oracle: Optional[pulumi.Input['SecretBackendConnectionOracleArgs']] = None,
                  postgresql: Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']] = None,
+                 redshift: Optional[pulumi.Input['SecretBackendConnectionRedshiftArgs']] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  snowflake: Optional[pulumi.Input['SecretBackendConnectionSnowflakeArgs']] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
@@ -41,6 +43,7 @@ class SecretBackendConnectionArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input['SecretBackendConnectionCassandraArgs'] cassandra: A nested block containing configuration options for Cassandra connections.
+        :param pulumi.Input['SecretBackendConnectionCouchbaseArgs'] couchbase: A nested block containing configuration options for Couchbase connections.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         :param pulumi.Input['SecretBackendConnectionElasticsearchArgs'] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input['SecretBackendConnectionHanaArgs'] hana: A nested block containing configuration options for SAP HanaDB connections.
@@ -55,6 +58,7 @@ class SecretBackendConnectionArgs:
         :param pulumi.Input[str] name: A unique name to give the database connection.
         :param pulumi.Input['SecretBackendConnectionOracleArgs'] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input['SecretBackendConnectionPostgresqlArgs'] postgresql: A nested block containing configuration options for PostgreSQL connections.
+        :param pulumi.Input['SecretBackendConnectionRedshiftArgs'] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input['SecretBackendConnectionSnowflakeArgs'] snowflake: A nested block containing configuration options for Snowflake connections.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
@@ -65,6 +69,8 @@ class SecretBackendConnectionArgs:
             pulumi.set(__self__, "allowed_roles", allowed_roles)
         if cassandra is not None:
             pulumi.set(__self__, "cassandra", cassandra)
+        if couchbase is not None:
+            pulumi.set(__self__, "couchbase", couchbase)
         if data is not None:
             pulumi.set(__self__, "data", data)
         if elasticsearch is not None:
@@ -93,6 +99,8 @@ class SecretBackendConnectionArgs:
             pulumi.set(__self__, "oracle", oracle)
         if postgresql is not None:
             pulumi.set(__self__, "postgresql", postgresql)
+        if redshift is not None:
+            pulumi.set(__self__, "redshift", redshift)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
         if snowflake is not None:
@@ -139,6 +147,18 @@ class SecretBackendConnectionArgs:
 
     @property
     @pulumi.getter
+    def couchbase(self) -> Optional[pulumi.Input['SecretBackendConnectionCouchbaseArgs']]:
+        """
+        A nested block containing configuration options for Couchbase connections.
+        """
+        return pulumi.get(self, "couchbase")
+
+    @couchbase.setter
+    def couchbase(self, value: Optional[pulumi.Input['SecretBackendConnectionCouchbaseArgs']]):
+        pulumi.set(self, "couchbase", value)
+
+    @property
+    @pulumi.getter
     def data(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
@@ -306,6 +326,18 @@ class SecretBackendConnectionArgs:
         pulumi.set(self, "postgresql", value)
 
     @property
+    @pulumi.getter
+    def redshift(self) -> Optional[pulumi.Input['SecretBackendConnectionRedshiftArgs']]:
+        """
+        Connection parameters for the redshift-database-plugin plugin.
+        """
+        return pulumi.get(self, "redshift")
+
+    @redshift.setter
+    def redshift(self, value: Optional[pulumi.Input['SecretBackendConnectionRedshiftArgs']]):
+        pulumi.set(self, "redshift", value)
+
+    @property
     @pulumi.getter(name="rootRotationStatements")
     def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -349,6 +381,7 @@ class _SecretBackendConnectionState:
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  cassandra: Optional[pulumi.Input['SecretBackendConnectionCassandraArgs']] = None,
+                 couchbase: Optional[pulumi.Input['SecretBackendConnectionCouchbaseArgs']] = None,
                  data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  elasticsearch: Optional[pulumi.Input['SecretBackendConnectionElasticsearchArgs']] = None,
                  hana: Optional[pulumi.Input['SecretBackendConnectionHanaArgs']] = None,
@@ -363,6 +396,7 @@ class _SecretBackendConnectionState:
                  name: Optional[pulumi.Input[str]] = None,
                  oracle: Optional[pulumi.Input['SecretBackendConnectionOracleArgs']] = None,
                  postgresql: Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']] = None,
+                 redshift: Optional[pulumi.Input['SecretBackendConnectionRedshiftArgs']] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  snowflake: Optional[pulumi.Input['SecretBackendConnectionSnowflakeArgs']] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
@@ -372,6 +406,7 @@ class _SecretBackendConnectionState:
                connection.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input['SecretBackendConnectionCassandraArgs'] cassandra: A nested block containing configuration options for Cassandra connections.
+        :param pulumi.Input['SecretBackendConnectionCouchbaseArgs'] couchbase: A nested block containing configuration options for Couchbase connections.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         :param pulumi.Input['SecretBackendConnectionElasticsearchArgs'] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input['SecretBackendConnectionHanaArgs'] hana: A nested block containing configuration options for SAP HanaDB connections.
@@ -386,6 +421,7 @@ class _SecretBackendConnectionState:
         :param pulumi.Input[str] name: A unique name to give the database connection.
         :param pulumi.Input['SecretBackendConnectionOracleArgs'] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input['SecretBackendConnectionPostgresqlArgs'] postgresql: A nested block containing configuration options for PostgreSQL connections.
+        :param pulumi.Input['SecretBackendConnectionRedshiftArgs'] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input['SecretBackendConnectionSnowflakeArgs'] snowflake: A nested block containing configuration options for Snowflake connections.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
@@ -397,6 +433,8 @@ class _SecretBackendConnectionState:
             pulumi.set(__self__, "backend", backend)
         if cassandra is not None:
             pulumi.set(__self__, "cassandra", cassandra)
+        if couchbase is not None:
+            pulumi.set(__self__, "couchbase", couchbase)
         if data is not None:
             pulumi.set(__self__, "data", data)
         if elasticsearch is not None:
@@ -425,6 +463,8 @@ class _SecretBackendConnectionState:
             pulumi.set(__self__, "oracle", oracle)
         if postgresql is not None:
             pulumi.set(__self__, "postgresql", postgresql)
+        if redshift is not None:
+            pulumi.set(__self__, "redshift", redshift)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
         if snowflake is not None:
@@ -471,6 +511,18 @@ class _SecretBackendConnectionState:
 
     @property
     @pulumi.getter
+    def couchbase(self) -> Optional[pulumi.Input['SecretBackendConnectionCouchbaseArgs']]:
+        """
+        A nested block containing configuration options for Couchbase connections.
+        """
+        return pulumi.get(self, "couchbase")
+
+    @couchbase.setter
+    def couchbase(self, value: Optional[pulumi.Input['SecretBackendConnectionCouchbaseArgs']]):
+        pulumi.set(self, "couchbase", value)
+
+    @property
+    @pulumi.getter
     def data(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
@@ -636,6 +688,18 @@ class _SecretBackendConnectionState:
     @postgresql.setter
     def postgresql(self, value: Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']]):
         pulumi.set(self, "postgresql", value)
+
+    @property
+    @pulumi.getter
+    def redshift(self) -> Optional[pulumi.Input['SecretBackendConnectionRedshiftArgs']]:
+        """
+        Connection parameters for the redshift-database-plugin plugin.
+        """
+        return pulumi.get(self, "redshift")
+
+    @redshift.setter
+    def redshift(self, value: Optional[pulumi.Input['SecretBackendConnectionRedshiftArgs']]):
+        pulumi.set(self, "redshift", value)
 
     @property
     @pulumi.getter(name="rootRotationStatements")
@@ -683,6 +747,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  cassandra: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionCassandraArgs']]] = None,
+                 couchbase: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionCouchbaseArgs']]] = None,
                  data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  elasticsearch: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']]] = None,
                  hana: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']]] = None,
@@ -697,6 +762,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
                  postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
+                 redshift: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  snowflake: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None,
@@ -716,6 +782,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                connection.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionCassandraArgs']] cassandra: A nested block containing configuration options for Cassandra connections.
+        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionCouchbaseArgs']] couchbase: A nested block containing configuration options for Couchbase connections.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']] hana: A nested block containing configuration options for SAP HanaDB connections.
@@ -730,6 +797,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[str] name: A unique name to give the database connection.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']] postgresql: A nested block containing configuration options for PostgreSQL connections.
+        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']] snowflake: A nested block containing configuration options for Snowflake connections.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
@@ -768,6 +836,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  cassandra: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionCassandraArgs']]] = None,
+                 couchbase: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionCouchbaseArgs']]] = None,
                  data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  elasticsearch: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']]] = None,
                  hana: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']]] = None,
@@ -782,6 +851,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
                  postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
+                 redshift: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  snowflake: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None,
@@ -802,6 +872,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
             __props__.__dict__["cassandra"] = cassandra
+            __props__.__dict__["couchbase"] = couchbase
             __props__.__dict__["data"] = data
             __props__.__dict__["elasticsearch"] = elasticsearch
             __props__.__dict__["hana"] = hana
@@ -816,6 +887,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["oracle"] = oracle
             __props__.__dict__["postgresql"] = postgresql
+            __props__.__dict__["redshift"] = redshift
             __props__.__dict__["root_rotation_statements"] = root_rotation_statements
             __props__.__dict__["snowflake"] = snowflake
             __props__.__dict__["verify_connection"] = verify_connection
@@ -832,6 +904,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             cassandra: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionCassandraArgs']]] = None,
+            couchbase: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionCouchbaseArgs']]] = None,
             data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             elasticsearch: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']]] = None,
             hana: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']]] = None,
@@ -846,6 +919,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
             postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
+            redshift: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']]] = None,
             root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             snowflake: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']]] = None,
             verify_connection: Optional[pulumi.Input[bool]] = None) -> 'SecretBackendConnection':
@@ -860,6 +934,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                connection.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionCassandraArgs']] cassandra: A nested block containing configuration options for Cassandra connections.
+        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionCouchbaseArgs']] couchbase: A nested block containing configuration options for Couchbase connections.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']] hana: A nested block containing configuration options for SAP HanaDB connections.
@@ -874,6 +949,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[str] name: A unique name to give the database connection.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']] postgresql: A nested block containing configuration options for PostgreSQL connections.
+        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']] snowflake: A nested block containing configuration options for Snowflake connections.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
@@ -886,6 +962,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         __props__.__dict__["allowed_roles"] = allowed_roles
         __props__.__dict__["backend"] = backend
         __props__.__dict__["cassandra"] = cassandra
+        __props__.__dict__["couchbase"] = couchbase
         __props__.__dict__["data"] = data
         __props__.__dict__["elasticsearch"] = elasticsearch
         __props__.__dict__["hana"] = hana
@@ -900,6 +977,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["oracle"] = oracle
         __props__.__dict__["postgresql"] = postgresql
+        __props__.__dict__["redshift"] = redshift
         __props__.__dict__["root_rotation_statements"] = root_rotation_statements
         __props__.__dict__["snowflake"] = snowflake
         __props__.__dict__["verify_connection"] = verify_connection
@@ -929,6 +1007,14 @@ class SecretBackendConnection(pulumi.CustomResource):
         A nested block containing configuration options for Cassandra connections.
         """
         return pulumi.get(self, "cassandra")
+
+    @property
+    @pulumi.getter
+    def couchbase(self) -> pulumi.Output[Optional['outputs.SecretBackendConnectionCouchbase']]:
+        """
+        A nested block containing configuration options for Couchbase connections.
+        """
+        return pulumi.get(self, "couchbase")
 
     @property
     @pulumi.getter
@@ -1041,6 +1127,14 @@ class SecretBackendConnection(pulumi.CustomResource):
         A nested block containing configuration options for PostgreSQL connections.
         """
         return pulumi.get(self, "postgresql")
+
+    @property
+    @pulumi.getter
+    def redshift(self) -> pulumi.Output[Optional['outputs.SecretBackendConnectionRedshift']]:
+        """
+        Connection parameters for the redshift-database-plugin plugin.
+        """
+        return pulumi.get(self, "redshift")
 
     @property
     @pulumi.getter(name="rootRotationStatements")

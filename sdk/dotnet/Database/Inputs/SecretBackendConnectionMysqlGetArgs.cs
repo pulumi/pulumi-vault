@@ -13,31 +13,30 @@ namespace Pulumi.Vault.Database.Inputs
     public sealed class SecretBackendConnectionMysqlGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A URL containing connection information. See
+        /// Specifies the Redshift DSN. See
         /// the [Vault
-        /// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        /// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         /// for an example.
         /// </summary>
         [Input("connectionUrl")]
         public Input<string>? ConnectionUrl { get; set; }
 
         /// <summary>
-        /// The maximum number of seconds to keep
-        /// a connection alive for.
+        /// The maximum amount of time a connection may be reused.
         /// </summary>
         [Input("maxConnectionLifetime")]
         public Input<int>? MaxConnectionLifetime { get; set; }
 
         /// <summary>
         /// The maximum number of idle connections to
-        /// maintain.
+        /// the database.
         /// </summary>
         [Input("maxIdleConnections")]
         public Input<int>? MaxIdleConnections { get; set; }
 
         /// <summary>
         /// The maximum number of open connections to
-        /// use.
+        /// the database.
         /// </summary>
         [Input("maxOpenConnections")]
         public Input<int>? MaxOpenConnections { get; set; }

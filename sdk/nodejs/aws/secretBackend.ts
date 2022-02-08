@@ -82,6 +82,10 @@ export class SecretBackend extends pulumi.CustomResource {
      * Specifies a custom HTTP STS endpoint to use.
      */
     public readonly stsEndpoint!: pulumi.Output<string | undefined>;
+    /**
+     * Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+     */
+    public readonly usernameTemplate!: pulumi.Output<string>;
 
     /**
      * Create a SecretBackend resource with the given unique name, arguments, and options.
@@ -105,6 +109,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["secretKey"] = state ? state.secretKey : undefined;
             resourceInputs["stsEndpoint"] = state ? state.stsEndpoint : undefined;
+            resourceInputs["usernameTemplate"] = state ? state.usernameTemplate : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
             resourceInputs["accessKey"] = args ? args.accessKey : undefined;
@@ -116,6 +121,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["secretKey"] = args ? args.secretKey : undefined;
             resourceInputs["stsEndpoint"] = args ? args.stsEndpoint : undefined;
+            resourceInputs["usernameTemplate"] = args ? args.usernameTemplate : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackend.__pulumiType, name, resourceInputs, opts);
@@ -167,6 +173,10 @@ export interface SecretBackendState {
      * Specifies a custom HTTP STS endpoint to use.
      */
     stsEndpoint?: pulumi.Input<string>;
+    /**
+     * Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+     */
+    usernameTemplate?: pulumi.Input<string>;
 }
 
 /**
@@ -214,4 +224,8 @@ export interface SecretBackendArgs {
      * Specifies a custom HTTP STS endpoint to use.
      */
     stsEndpoint?: pulumi.Input<string>;
+    /**
+     * Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+     */
+    usernameTemplate?: pulumi.Input<string>;
 }

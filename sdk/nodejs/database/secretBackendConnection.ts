@@ -56,6 +56,10 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      */
     public readonly cassandra!: pulumi.Output<outputs.database.SecretBackendConnectionCassandra | undefined>;
     /**
+     * A nested block containing configuration options for Couchbase connections.
+     */
+    public readonly couchbase!: pulumi.Output<outputs.database.SecretBackendConnectionCouchbase | undefined>;
+    /**
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      */
     public readonly data!: pulumi.Output<{[key: string]: any} | undefined>;
@@ -112,6 +116,10 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      */
     public readonly postgresql!: pulumi.Output<outputs.database.SecretBackendConnectionPostgresql | undefined>;
     /**
+     * Connection parameters for the redshift-database-plugin plugin.
+     */
+    public readonly redshift!: pulumi.Output<outputs.database.SecretBackendConnectionRedshift | undefined>;
+    /**
      * A list of database statements to be executed to rotate the root user's credentials.
      */
     public readonly rootRotationStatements!: pulumi.Output<string[] | undefined>;
@@ -141,6 +149,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             resourceInputs["allowedRoles"] = state ? state.allowedRoles : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["cassandra"] = state ? state.cassandra : undefined;
+            resourceInputs["couchbase"] = state ? state.couchbase : undefined;
             resourceInputs["data"] = state ? state.data : undefined;
             resourceInputs["elasticsearch"] = state ? state.elasticsearch : undefined;
             resourceInputs["hana"] = state ? state.hana : undefined;
@@ -155,6 +164,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["oracle"] = state ? state.oracle : undefined;
             resourceInputs["postgresql"] = state ? state.postgresql : undefined;
+            resourceInputs["redshift"] = state ? state.redshift : undefined;
             resourceInputs["rootRotationStatements"] = state ? state.rootRotationStatements : undefined;
             resourceInputs["snowflake"] = state ? state.snowflake : undefined;
             resourceInputs["verifyConnection"] = state ? state.verifyConnection : undefined;
@@ -166,6 +176,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             resourceInputs["allowedRoles"] = args ? args.allowedRoles : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["cassandra"] = args ? args.cassandra : undefined;
+            resourceInputs["couchbase"] = args ? args.couchbase : undefined;
             resourceInputs["data"] = args ? args.data : undefined;
             resourceInputs["elasticsearch"] = args ? args.elasticsearch : undefined;
             resourceInputs["hana"] = args ? args.hana : undefined;
@@ -180,6 +191,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["oracle"] = args ? args.oracle : undefined;
             resourceInputs["postgresql"] = args ? args.postgresql : undefined;
+            resourceInputs["redshift"] = args ? args.redshift : undefined;
             resourceInputs["rootRotationStatements"] = args ? args.rootRotationStatements : undefined;
             resourceInputs["snowflake"] = args ? args.snowflake : undefined;
             resourceInputs["verifyConnection"] = args ? args.verifyConnection : undefined;
@@ -206,6 +218,10 @@ export interface SecretBackendConnectionState {
      * A nested block containing configuration options for Cassandra connections.
      */
     cassandra?: pulumi.Input<inputs.database.SecretBackendConnectionCassandra>;
+    /**
+     * A nested block containing configuration options for Couchbase connections.
+     */
+    couchbase?: pulumi.Input<inputs.database.SecretBackendConnectionCouchbase>;
     /**
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      */
@@ -262,6 +278,10 @@ export interface SecretBackendConnectionState {
      * A nested block containing configuration options for PostgreSQL connections.
      */
     postgresql?: pulumi.Input<inputs.database.SecretBackendConnectionPostgresql>;
+    /**
+     * Connection parameters for the redshift-database-plugin plugin.
+     */
+    redshift?: pulumi.Input<inputs.database.SecretBackendConnectionRedshift>;
     /**
      * A list of database statements to be executed to rotate the root user's credentials.
      */
@@ -295,6 +315,10 @@ export interface SecretBackendConnectionArgs {
      */
     cassandra?: pulumi.Input<inputs.database.SecretBackendConnectionCassandra>;
     /**
+     * A nested block containing configuration options for Couchbase connections.
+     */
+    couchbase?: pulumi.Input<inputs.database.SecretBackendConnectionCouchbase>;
+    /**
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      */
     data?: pulumi.Input<{[key: string]: any}>;
@@ -350,6 +374,10 @@ export interface SecretBackendConnectionArgs {
      * A nested block containing configuration options for PostgreSQL connections.
      */
     postgresql?: pulumi.Input<inputs.database.SecretBackendConnectionPostgresql>;
+    /**
+     * Connection parameters for the redshift-database-plugin plugin.
+     */
+    redshift?: pulumi.Input<inputs.database.SecretBackendConnectionRedshift>;
     /**
      * A list of database statements to be executed to rotate the root user's credentials.
      */

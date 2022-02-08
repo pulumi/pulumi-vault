@@ -43,6 +43,8 @@ type SecretBackend struct {
 	SecretKey pulumi.StringPtrOutput `pulumi:"secretKey"`
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint pulumi.StringPtrOutput `pulumi:"stsEndpoint"`
+	// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+	UsernameTemplate pulumi.StringOutput `pulumi:"usernameTemplate"`
 }
 
 // NewSecretBackend registers a new resource with the given unique name, arguments, and options.
@@ -97,6 +99,8 @@ type secretBackendState struct {
 	SecretKey *string `pulumi:"secretKey"`
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint *string `pulumi:"stsEndpoint"`
+	// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
 type SecretBackendState struct {
@@ -123,6 +127,8 @@ type SecretBackendState struct {
 	SecretKey pulumi.StringPtrInput
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint pulumi.StringPtrInput
+	// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+	UsernameTemplate pulumi.StringPtrInput
 }
 
 func (SecretBackendState) ElementType() reflect.Type {
@@ -153,6 +159,8 @@ type secretBackendArgs struct {
 	SecretKey *string `pulumi:"secretKey"`
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint *string `pulumi:"stsEndpoint"`
+	// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
 // The set of arguments for constructing a SecretBackend resource.
@@ -180,6 +188,8 @@ type SecretBackendArgs struct {
 	SecretKey pulumi.StringPtrInput
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint pulumi.StringPtrInput
+	// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+	UsernameTemplate pulumi.StringPtrInput
 }
 
 func (SecretBackendArgs) ElementType() reflect.Type {

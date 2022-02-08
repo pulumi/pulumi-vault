@@ -14,25 +14,24 @@ namespace Pulumi.Vault.Database.Outputs
     public sealed class SecretBackendConnectionHana
     {
         /// <summary>
-        /// A URL containing connection information. See
+        /// Specifies the Redshift DSN. See
         /// the [Vault
-        /// docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        /// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         /// for an example.
         /// </summary>
         public readonly string? ConnectionUrl;
         /// <summary>
-        /// The maximum number of seconds to keep
-        /// a connection alive for.
+        /// The maximum amount of time a connection may be reused.
         /// </summary>
         public readonly int? MaxConnectionLifetime;
         /// <summary>
         /// The maximum number of idle connections to
-        /// maintain.
+        /// the database.
         /// </summary>
         public readonly int? MaxIdleConnections;
         /// <summary>
         /// The maximum number of open connections to
-        /// use.
+        /// the database.
         /// </summary>
         public readonly int? MaxOpenConnections;
 
