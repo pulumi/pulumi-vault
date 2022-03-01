@@ -207,6 +207,35 @@ class SecretBackendRole(pulumi.CustomResource):
                  vhosts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        rabbitmq = vault.rabbit_mq.SecretBackend("rabbitmq",
+            connection_uri="https://.....",
+            username="user",
+            password="password")
+        role = vault.rabbit_mq.SecretBackendRole("role",
+            backend=rabbitmq.path,
+            tags="tag1,tag2",
+            vhosts=[vault.rabbit.mq.SecretBackendRoleVhostArgs(
+                host="/",
+                configure="",
+                read=".*",
+                write="",
+            )],
+            vhost_topics=[vault.rabbit.mq.SecretBackendRoleVhostTopicArgs(
+                vhosts=[vault.rabbit.mq.SecretBackendRoleVhostTopicVhostArgs(
+                    topic="amq.topic",
+                    read=".*",
+                    write="",
+                )],
+                host="/",
+            )])
+        ```
+
         ## Import
 
         RabbitMQ secret backend roles can be imported using the `path`, e.g.
@@ -232,6 +261,35 @@ class SecretBackendRole(pulumi.CustomResource):
                  args: SecretBackendRoleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        rabbitmq = vault.rabbit_mq.SecretBackend("rabbitmq",
+            connection_uri="https://.....",
+            username="user",
+            password="password")
+        role = vault.rabbit_mq.SecretBackendRole("role",
+            backend=rabbitmq.path,
+            tags="tag1,tag2",
+            vhosts=[vault.rabbit.mq.SecretBackendRoleVhostArgs(
+                host="/",
+                configure="",
+                read=".*",
+                write="",
+            )],
+            vhost_topics=[vault.rabbit.mq.SecretBackendRoleVhostTopicArgs(
+                vhosts=[vault.rabbit.mq.SecretBackendRoleVhostTopicVhostArgs(
+                    topic="amq.topic",
+                    read=".*",
+                    write="",
+                )],
+                host="/",
+            )])
+        ```
+
         ## Import
 
         RabbitMQ secret backend roles can be imported using the `path`, e.g.

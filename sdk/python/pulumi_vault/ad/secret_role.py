@@ -210,6 +210,26 @@ class SecretRole(pulumi.CustomResource):
                  ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        config = vault.ad.SecretBackend("config",
+            backend="ad",
+            binddn="CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
+            bindpass="SuperSecretPassw0rd",
+            url="ldaps://ad",
+            insecure_tls=True,
+            userdn="CN=Users,DC=corp,DC=example,DC=net")
+        role = vault.ad.SecretRole("role",
+            backend=config.backend,
+            role="bob",
+            service_account_name="Bob",
+            ttl=60)
+        ```
+
         ## Import
 
         AD secret backend roles can be imported using the `path`, e.g.
@@ -236,6 +256,26 @@ class SecretRole(pulumi.CustomResource):
                  args: SecretRoleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        config = vault.ad.SecretBackend("config",
+            backend="ad",
+            binddn="CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
+            bindpass="SuperSecretPassw0rd",
+            url="ldaps://ad",
+            insecure_tls=True,
+            userdn="CN=Users,DC=corp,DC=example,DC=net")
+        role = vault.ad.SecretRole("role",
+            backend=config.backend,
+            role="bob",
+            service_account_name="Bob",
+            ttl=60)
+        ```
+
         ## Import
 
         AD secret backend roles can be imported using the `path`, e.g.

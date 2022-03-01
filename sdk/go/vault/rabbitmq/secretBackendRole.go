@@ -11,6 +11,58 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/rabbitMq"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		rabbitmq, err := rabbitMq.NewSecretBackend(ctx, "rabbitmq", &rabbitMq.SecretBackendArgs{
+// 			ConnectionUri: pulumi.String("https://....."),
+// 			Username:      pulumi.String("user"),
+// 			Password:      pulumi.String("password"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = rabbitMq.NewSecretBackendRole(ctx, "role", &rabbitMq.SecretBackendRoleArgs{
+// 			Backend: rabbitmq.Path,
+// 			Tags:    pulumi.String("tag1,tag2"),
+// 			Vhosts: rabbitmq.SecretBackendRoleVhostArray{
+// 				&rabbitmq.SecretBackendRoleVhostArgs{
+// 					Host:      pulumi.String("/"),
+// 					Configure: pulumi.String(""),
+// 					Read:      pulumi.String(".*"),
+// 					Write:     pulumi.String(""),
+// 				},
+// 			},
+// 			VhostTopics: rabbitmq.SecretBackendRoleVhostTopicArray{
+// 				&rabbitmq.SecretBackendRoleVhostTopicArgs{
+// 					Vhosts: rabbitmq.SecretBackendRoleVhostTopicVhostArray{
+// 						&rabbitmq.SecretBackendRoleVhostTopicVhostArgs{
+// 							Topic: pulumi.String("amq.topic"),
+// 							Read:  pulumi.String(".*"),
+// 							Write: pulumi.String(""),
+// 						},
+// 					},
+// 					Host: pulumi.String("/"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // RabbitMQ secret backend roles can be imported using the `path`, e.g.

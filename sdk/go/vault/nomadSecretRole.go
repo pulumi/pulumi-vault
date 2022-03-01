@@ -11,6 +11,45 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		config, err := vault.NewNomadSecretBackend(ctx, "config", &vault.NomadSecretBackendArgs{
+// 			Backend:                pulumi.String("nomad"),
+// 			Description:            pulumi.String("test description"),
+// 			DefaultLeaseTtlSeconds: pulumi.Int(3600),
+// 			MaxLeaseTtlSeconds:     pulumi.Int(7200),
+// 			Address:                pulumi.String("https://127.0.0.1:4646"),
+// 			Token:                  pulumi.String("ae20ceaa-..."),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = vault.NewNomadSecretRole(ctx, "test", &vault.NomadSecretRoleArgs{
+// 			Backend: config.Backend,
+// 			Role:    pulumi.String("test"),
+// 			Type:    pulumi.String("client"),
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("readonly"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // Nomad secret role can be imported using the `backend`, e.g.

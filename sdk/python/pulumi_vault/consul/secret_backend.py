@@ -398,6 +398,19 @@ class SecretBackend(pulumi.CustomResource):
                  token: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.consul.SecretBackend("test",
+            address="127.0.0.1:8500",
+            description="Manages the Consul backend",
+            path="consul",
+            token="4240861b-ce3d-8530-115a-521ff070dd29")
+        ```
+
         ## Import
 
         Consul secret backends can be imported using the `path`, e.g.
@@ -428,6 +441,19 @@ class SecretBackend(pulumi.CustomResource):
                  args: SecretBackendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.consul.SecretBackend("test",
+            address="127.0.0.1:8500",
+            description="Manages the Consul backend",
+            path="consul",
+            token="4240861b-ce3d-8530-115a-521ff070dd29")
+        ```
+
         ## Import
 
         Consul secret backends can be imported using the `path`, e.g.

@@ -210,6 +210,19 @@ class OidcKey(pulumi.CustomResource):
                  verification_ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        key = vault.identity.OidcKey("key", algorithm="RS256")
+        role_oidc_role = vault.identity.OidcRole("roleOidcRole", key=key.name)
+        role_oidc_key_allowed_client_id = vault.identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID",
+            key_name=key.name,
+            allowed_client_id=role_oidc_role.client_id)
+        ```
+
         ## Import
 
         The key can be imported with the key name, for example
@@ -236,6 +249,19 @@ class OidcKey(pulumi.CustomResource):
                  args: Optional[OidcKeyArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        key = vault.identity.OidcKey("key", algorithm="RS256")
+        role_oidc_role = vault.identity.OidcRole("roleOidcRole", key=key.name)
+        role_oidc_key_allowed_client_id = vault.identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID",
+            key_name=key.name,
+            allowed_client_id=role_oidc_role.client_id)
+        ```
+
         ## Import
 
         The key can be imported with the key name, for example

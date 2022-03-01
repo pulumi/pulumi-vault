@@ -97,7 +97,17 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
                  certificate: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a SecretBackendIntermediateSetSigned resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        intermediate = vault.pki_secret.SecretBackendIntermediateSetSigned("intermediate",
+            backend=vault_mount["intermediate"]["path"],
+            certificate="<...>")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
@@ -110,7 +120,17 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
                  args: SecretBackendIntermediateSetSignedArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a SecretBackendIntermediateSetSigned resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        intermediate = vault.pki_secret.SecretBackendIntermediateSetSigned("intermediate",
+            backend=vault_mount["intermediate"]["path"],
+            certificate="<...>")
+        ```
+
         :param str resource_name: The name of the resource.
         :param SecretBackendIntermediateSetSignedArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

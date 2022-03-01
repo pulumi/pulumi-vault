@@ -10,6 +10,34 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Vault.Token("example", new Vault.TokenArgs
+    ///         {
+    ///             Policies = 
+    ///             {
+    ///                 "policy1",
+    ///                 "policy2",
+    ///             },
+    ///             RenewIncrement = 86400,
+    ///             RenewMinLease = 43200,
+    ///             Renewable = true,
+    ///             RoleName = "app",
+    ///             Ttl = "24h",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Tokens can be imported using its `id` as accessor id, e.g.

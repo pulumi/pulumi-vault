@@ -11,6 +11,33 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+// ### Local Storage
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := vault.NewRaftSnapshotAgentConfig(ctx, "localBackups", &vault.RaftSnapshotAgentConfigArgs{
+// 			IntervalSeconds: pulumi.Int(86400),
+// 			LocalMaxSpace:   pulumi.Int(10000000),
+// 			PathPrefix:      pulumi.String("/opt/vault/snapshots/"),
+// 			Retain:          pulumi.Int(7),
+// 			StorageType:     pulumi.String("local"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // Raft Snapshot Agent Configurations can be imported using the `name`, e.g.

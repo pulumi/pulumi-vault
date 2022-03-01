@@ -138,6 +138,19 @@ class AuthBackendStsRole(pulumi.CustomResource):
                  sts_role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.AuthBackend("aws", type="aws")
+        role = vault.aws.AuthBackendStsRole("role",
+            backend=aws.path,
+            account_id="1234567890",
+            sts_role="arn:aws:iam::1234567890:role/my-role")
+        ```
+
         ## Import
 
         AWS auth backend STS roles can be imported using `auth/`, the `backend` path, `/config/sts/`, and the `account_id` e.g.
@@ -161,6 +174,19 @@ class AuthBackendStsRole(pulumi.CustomResource):
                  args: AuthBackendStsRoleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.AuthBackend("aws", type="aws")
+        role = vault.aws.AuthBackendStsRole("role",
+            backend=aws.path,
+            account_id="1234567890",
+            sts_role="arn:aws:iam::1234567890:role/my-role")
+        ```
+
         ## Import
 
         AWS auth backend STS roles can be imported using `auth/`, the `backend` path, `/config/sts/`, and the `account_id` e.g.

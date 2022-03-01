@@ -10,6 +10,31 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Aws
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var exampleAuthBackend = new Vault.AuthBackend("exampleAuthBackend", new Vault.AuthBackendArgs
+    ///         {
+    ///             Type = "aws",
+    ///         });
+    ///         var exampleAuthBackendClient = new Vault.Aws.AuthBackendClient("exampleAuthBackendClient", new Vault.Aws.AuthBackendClientArgs
+    ///         {
+    ///             Backend = exampleAuthBackend.Path,
+    ///             AccessKey = "INSERT_AWS_ACCESS_KEY",
+    ///             SecretKey = "INSERT_AWS_SECRET_KEY",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// AWS auth backend clients can be imported using `auth/`, the `backend` path, and `/config/client` e.g.

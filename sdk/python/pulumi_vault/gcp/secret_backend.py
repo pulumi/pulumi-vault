@@ -243,7 +243,15 @@ class SecretBackend(pulumi.CustomResource):
                  path: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a SecretBackend resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        gcp = vault.gcp.SecretBackend("gcp", credentials=(lambda path: open(path).read())("credentials.json"))
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] credentials: The GCP service account credentials in JSON format.
@@ -263,7 +271,15 @@ class SecretBackend(pulumi.CustomResource):
                  args: Optional[SecretBackendArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a SecretBackend resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        gcp = vault.gcp.SecretBackend("gcp", credentials=(lambda path: open(path).read())("credentials.json"))
+        ```
+
         :param str resource_name: The name of the resource.
         :param SecretBackendArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

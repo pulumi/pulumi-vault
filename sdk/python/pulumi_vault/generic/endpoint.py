@@ -293,6 +293,52 @@ class Endpoint(pulumi.CustomResource):
                  write_fields: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        userpass = vault.AuthBackend("userpass", type="userpass")
+        u1 = vault.generic.Endpoint("u1",
+            path="auth/userpass/users/u1",
+            ignore_absent_fields=True,
+            data_json=\"\"\"{
+          "policies": ["p1"],
+          "password": "changeme"
+        }
+        \"\"\",
+            opts=pulumi.ResourceOptions(depends_on=[userpass]))
+        u1_token = vault.generic.Endpoint("u1Token",
+            path="auth/userpass/login/u1",
+            disable_read=True,
+            disable_delete=True,
+            data_json=\"\"\"{
+          "password": "changeme"
+        }
+        \"\"\",
+            opts=pulumi.ResourceOptions(depends_on=[u1]))
+        u1_entity = vault.generic.Endpoint("u1Entity",
+            disable_read=True,
+            disable_delete=True,
+            path="identity/lookup/entity",
+            ignore_absent_fields=True,
+            write_fields=["id"],
+            data_json=\"\"\"{
+          "alias_name": "u1",
+          "alias_mount_accessor": vault_auth_backend.userpass.accessor
+        }
+        \"\"\",
+            opts=pulumi.ResourceOptions(depends_on=[u1_token]))
+        pulumi.export("u1Id", u1_entity.write_data["id"])
+        ```
+        ## Required Vault Capabilities
+
+        Use of this resource requires the `create` or `update` capability
+        (depending on whether the resource already exists) on the given path. If
+        `disable_delete` is false, the `delete` capbility is also required. If
+        `disable_delete` is false, the `read` capbility is required.
+
         ## Import
 
         Import is not supported for this resource.
@@ -321,6 +367,52 @@ class Endpoint(pulumi.CustomResource):
                  args: EndpointArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        userpass = vault.AuthBackend("userpass", type="userpass")
+        u1 = vault.generic.Endpoint("u1",
+            path="auth/userpass/users/u1",
+            ignore_absent_fields=True,
+            data_json=\"\"\"{
+          "policies": ["p1"],
+          "password": "changeme"
+        }
+        \"\"\",
+            opts=pulumi.ResourceOptions(depends_on=[userpass]))
+        u1_token = vault.generic.Endpoint("u1Token",
+            path="auth/userpass/login/u1",
+            disable_read=True,
+            disable_delete=True,
+            data_json=\"\"\"{
+          "password": "changeme"
+        }
+        \"\"\",
+            opts=pulumi.ResourceOptions(depends_on=[u1]))
+        u1_entity = vault.generic.Endpoint("u1Entity",
+            disable_read=True,
+            disable_delete=True,
+            path="identity/lookup/entity",
+            ignore_absent_fields=True,
+            write_fields=["id"],
+            data_json=\"\"\"{
+          "alias_name": "u1",
+          "alias_mount_accessor": vault_auth_backend.userpass.accessor
+        }
+        \"\"\",
+            opts=pulumi.ResourceOptions(depends_on=[u1_token]))
+        pulumi.export("u1Id", u1_entity.write_data["id"])
+        ```
+        ## Required Vault Capabilities
+
+        Use of this resource requires the `create` or `update` capability
+        (depending on whether the resource already exists) on the given path. If
+        `disable_delete` is false, the `delete` capbility is also required. If
+        `disable_delete` is false, the `read` capbility is required.
+
         ## Import
 
         Import is not supported for this resource.

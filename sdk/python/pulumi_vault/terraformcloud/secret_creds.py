@@ -183,7 +183,25 @@ class SecretCreds(pulumi.CustomResource):
                  role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a SecretCreds resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.terraformcloud.SecretBackend("test",
+            backend="terraform",
+            description="Manages the Terraform Cloud backend",
+            token="V0idfhi2iksSDU234ucdbi2nidsi...")
+        example = vault.terraformcloud.SecretRole("example",
+            backend=test.backend,
+            organization="example-organization-name",
+            team_id="team-ieF4isC...")
+        token = vault.terraformcloud.SecretCreds("token",
+            backend=test.backend,
+            role=example.name)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Terraform Cloud secret backend to generate tokens from
@@ -196,7 +214,25 @@ class SecretCreds(pulumi.CustomResource):
                  args: SecretCredsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a SecretCreds resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.terraformcloud.SecretBackend("test",
+            backend="terraform",
+            description="Manages the Terraform Cloud backend",
+            token="V0idfhi2iksSDU234ucdbi2nidsi...")
+        example = vault.terraformcloud.SecretRole("example",
+            backend=test.backend,
+            organization="example-organization-name",
+            team_id="team-ieF4isC...")
+        token = vault.terraformcloud.SecretCreds("token",
+            backend=test.backend,
+            role=example.name)
+        ```
+
         :param str resource_name: The name of the resource.
         :param SecretCredsArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

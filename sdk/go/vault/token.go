@@ -10,6 +10,37 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := vault.NewToken(ctx, "example", &vault.TokenArgs{
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("policy1"),
+// 				pulumi.String("policy2"),
+// 			},
+// 			RenewIncrement: pulumi.Int(86400),
+// 			RenewMinLease:  pulumi.Int(43200),
+// 			Renewable:      pulumi.Bool(true),
+// 			RoleName:       pulumi.String("app"),
+// 			Ttl:            pulumi.String("24h"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // Tokens can be imported using its `id` as accessor id, e.g.

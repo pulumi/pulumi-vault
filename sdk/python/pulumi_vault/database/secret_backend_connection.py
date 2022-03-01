@@ -768,6 +768,26 @@ class SecretBackendConnection(pulumi.CustomResource):
                  verify_connection: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        db = vault.Mount("db",
+            path="postgres",
+            type="database")
+        postgres = vault.database.SecretBackendConnection("postgres",
+            backend=db.path,
+            allowed_roles=[
+                "dev",
+                "prod",
+            ],
+            postgresql=vault.database.SecretBackendConnectionPostgresqlArgs(
+                connection_url="postgres://username:password@host:port/database",
+            ))
+        ```
+
         ## Import
 
         Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.
@@ -810,6 +830,26 @@ class SecretBackendConnection(pulumi.CustomResource):
                  args: SecretBackendConnectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        db = vault.Mount("db",
+            path="postgres",
+            type="database")
+        postgres = vault.database.SecretBackendConnection("postgres",
+            backend=db.path,
+            allowed_roles=[
+                "dev",
+                "prod",
+            ],
+            postgresql=vault.database.SecretBackendConnectionPostgresqlArgs(
+                connection_url="postgres://username:password@host:port/database",
+            ))
+        ```
+
         ## Import
 
         Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.

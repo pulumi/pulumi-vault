@@ -383,6 +383,17 @@ class SecretBackend(pulumi.CustomResource):
                  username_template: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.aws.SecretBackend("aws",
+            access_key="AKIA.....",
+            secret_key="AWS secret key")
+        ```
+
         ## Import
 
         AWS secret backends can be imported using the `path`, e.g.
@@ -416,6 +427,17 @@ class SecretBackend(pulumi.CustomResource):
                  args: Optional[SecretBackendArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.aws.SecretBackend("aws",
+            access_key="AKIA.....",
+            secret_key="AWS secret key")
+        ```
+
         ## Import
 
         AWS secret backends can be imported using the `path`, e.g.

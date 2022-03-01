@@ -11,6 +11,54 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/database"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		db, err := vault.NewMount(ctx, "db", &vault.MountArgs{
+// 			Path: pulumi.String("postgres"),
+// 			Type: pulumi.String("database"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		postgres, err := database.NewSecretBackendConnection(ctx, "postgres", &database.SecretBackendConnectionArgs{
+// 			Backend: db.Path,
+// 			AllowedRoles: pulumi.StringArray{
+// 				pulumi.String("dev"),
+// 				pulumi.String("prod"),
+// 			},
+// 			Postgresql: &database.SecretBackendConnectionPostgresqlArgs{
+// 				ConnectionUrl: pulumi.String("postgres://username:password@host:port/database"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = database.NewSecretBackendRole(ctx, "role", &database.SecretBackendRoleArgs{
+// 			Backend: db.Path,
+// 			DbName:  postgres.Name,
+// 			CreationStatements: pulumi.StringArray{
+// 				pulumi.String("CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // Database secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.

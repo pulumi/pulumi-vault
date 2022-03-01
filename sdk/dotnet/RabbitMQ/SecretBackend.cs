@@ -10,6 +10,27 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.RabbitMQ
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var rabbitmq = new Vault.RabbitMQ.SecretBackend("rabbitmq", new Vault.RabbitMQ.SecretBackendArgs
+    ///         {
+    ///             ConnectionUri = "https://.....",
+    ///             Password = "password",
+    ///             Username = "user",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// RabbitMQ secret backends can be imported using the `path`, e.g.

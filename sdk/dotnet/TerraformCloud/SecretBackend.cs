@@ -10,6 +10,27 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.TerraformCloud
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Vault.TerraformCloud.SecretBackend("test", new Vault.TerraformCloud.SecretBackendArgs
+    ///         {
+    ///             Backend = "terraform",
+    ///             Description = "Manages the Terraform Cloud backend",
+    ///             Token = "V0idfhi2iksSDU234ucdbi2nidsi...",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Terraform Cloud secret backends can be imported using the `backend`, e.g.

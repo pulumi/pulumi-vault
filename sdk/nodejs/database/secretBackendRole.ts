@@ -5,6 +5,33 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const db = new vault.Mount("db", {
+ *     path: "postgres",
+ *     type: "database",
+ * });
+ * const postgres = new vault.database.SecretBackendConnection("postgres", {
+ *     backend: db.path,
+ *     allowedRoles: [
+ *         "dev",
+ *         "prod",
+ *     ],
+ *     postgresql: {
+ *         connectionUrl: "postgres://username:password@host:port/database",
+ *     },
+ * });
+ * const role = new vault.database.SecretBackendRole("role", {
+ *     backend: db.path,
+ *     dbName: postgres.name,
+ *     creationStatements: ["CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Database secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.

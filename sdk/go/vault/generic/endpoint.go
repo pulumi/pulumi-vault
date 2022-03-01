@@ -11,6 +11,77 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/generic"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		userpass, err := vault.NewAuthBackend(ctx, "userpass", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("userpass"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		u1, err := generic.NewEndpoint(ctx, "u1", &generic.EndpointArgs{
+// 			Path:               pulumi.String("auth/userpass/users/u1"),
+// 			IgnoreAbsentFields: pulumi.Bool(true),
+// 			DataJson:           pulumi.String(fmt.Sprintf("%v%v%v%v", "{\n", "  \"policies\": [\"p1\"],\n", "  \"password\": \"changeme\"\n", "}\n")),
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			userpass,
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		u1Token, err := generic.NewEndpoint(ctx, "u1Token", &generic.EndpointArgs{
+// 			Path:          pulumi.String("auth/userpass/login/u1"),
+// 			DisableRead:   pulumi.Bool(true),
+// 			DisableDelete: pulumi.Bool(true),
+// 			DataJson:      pulumi.String(fmt.Sprintf("%v%v%v", "{\n", "  \"password\": \"changeme\"\n", "}\n")),
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			u1,
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		u1Entity, err := generic.NewEndpoint(ctx, "u1Entity", &generic.EndpointArgs{
+// 			DisableRead:        pulumi.Bool(true),
+// 			DisableDelete:      pulumi.Bool(true),
+// 			Path:               pulumi.String("identity/lookup/entity"),
+// 			IgnoreAbsentFields: pulumi.Bool(true),
+// 			WriteFields: pulumi.StringArray{
+// 				pulumi.String("id"),
+// 			},
+// 			DataJson: pulumi.String(fmt.Sprintf("%v%v%v%v", "{\n", "  \"alias_name\": \"u1\",\n", "  \"alias_mount_accessor\": vault_auth_backend.userpass.accessor\n", "}\n")),
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			u1Token,
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("u1Id", u1Entity.WriteData.ApplyT(func(writeData map[string]string) (string, error) {
+// 			return writeData.Id, nil
+// 		}).(pulumi.StringOutput))
+// 		return nil
+// 	})
+// }
+// ```
+// ## Required Vault Capabilities
+//
+// Use of this resource requires the `create` or `update` capability
+// (depending on whether the resource already exists) on the given path. If
+// `disableDelete` is false, the `delete` capbility is also required. If
+// `disableDelete` is false, the `read` capbility is required.
+//
 // ## Import
 //
 // Import is not supported for this resource.

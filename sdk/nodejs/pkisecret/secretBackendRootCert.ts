@@ -4,6 +4,30 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const test = new vault.pkisecret.SecretBackendRootCert("test", {
+ *     backend: vault_mount.pki.path,
+ *     type: "internal",
+ *     commonName: "Root CA",
+ *     ttl: "315360000",
+ *     format: "pem",
+ *     privateKeyFormat: "der",
+ *     keyType: "rsa",
+ *     keyBits: 4096,
+ *     excludeCnFromSans: true,
+ *     ou: "My OU",
+ *     organization: "My organization",
+ * }, {
+ *     dependsOn: [vault_mount.pki],
+ * });
+ * ```
+ */
 export class SecretBackendRootCert extends pulumi.CustomResource {
     /**
      * Get an existing SecretBackendRootCert resource's state with the given name, ID, and optional extra

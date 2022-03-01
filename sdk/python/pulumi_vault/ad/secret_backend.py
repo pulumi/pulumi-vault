@@ -1167,6 +1167,21 @@ class SecretBackend(pulumi.CustomResource):
                  userdn: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        config = vault.ad.SecretBackend("config",
+            backend="ad",
+            binddn="CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
+            bindpass="SuperSecretPassw0rd",
+            insecure_tls=True,
+            url="ldaps://ad",
+            userdn="CN=Users,DC=corp,DC=example,DC=net")
+        ```
+
         ## Import
 
         AD secret backend can be imported using the `backend`, e.g.
@@ -1237,6 +1252,21 @@ class SecretBackend(pulumi.CustomResource):
                  args: SecretBackendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        config = vault.ad.SecretBackend("config",
+            backend="ad",
+            binddn="CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
+            bindpass="SuperSecretPassw0rd",
+            insecure_tls=True,
+            url="ldaps://ad",
+            userdn="CN=Users,DC=corp,DC=example,DC=net")
+        ```
+
         ## Import
 
         AD secret backend can be imported using the `backend`, e.g.

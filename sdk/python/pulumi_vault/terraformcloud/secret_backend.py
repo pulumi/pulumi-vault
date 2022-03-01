@@ -268,6 +268,18 @@ class SecretBackend(pulumi.CustomResource):
                  token: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.terraformcloud.SecretBackend("test",
+            backend="terraform",
+            description="Manages the Terraform Cloud backend",
+            token="V0idfhi2iksSDU234ucdbi2nidsi...")
+        ```
+
         ## Import
 
         Terraform Cloud secret backends can be imported using the `backend`, e.g.
@@ -294,6 +306,18 @@ class SecretBackend(pulumi.CustomResource):
                  args: Optional[SecretBackendArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.terraformcloud.SecretBackend("test",
+            backend="terraform",
+            description="Manages the Terraform Cloud backend",
+            token="V0idfhi2iksSDU234ucdbi2nidsi...")
+        ```
+
         ## Import
 
         Terraform Cloud secret backends can be imported using the `backend`, e.g.

@@ -9,6 +9,27 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.PkiSecret
 {
+    /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var intermediate = new Vault.PkiSecret.SecretBackendIntermediateSetSigned("intermediate", new Vault.PkiSecret.SecretBackendIntermediateSetSignedArgs
+    ///         {
+    ///             Backend = vault_mount.Intermediate.Path,
+    ///             Certificate = "&lt;...&gt;",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned")]
     public partial class SecretBackendIntermediateSetSigned : Pulumi.CustomResource
     {

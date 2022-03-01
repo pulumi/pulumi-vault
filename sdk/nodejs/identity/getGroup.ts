@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const group = pulumi.output(vault.identity.getGroup({
+ *     groupName: "user",
+ * }));
+ * ```
+ * ## Required Vault Capabilities
+ *
+ * Use of this resource requires the `create` capability on `/identity/lookup/group`.
+ */
 export function getGroup(args?: GetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetGroupResult> {
     args = args || {};
     if (!opts) {

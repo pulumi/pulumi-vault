@@ -10,6 +10,42 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Aws
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var aws = new Vault.Aws.SecretBackend("aws", new Vault.Aws.SecretBackendArgs
+    ///         {
+    ///             AccessKey = "AKIA.....",
+    ///             SecretKey = "AWS secret key",
+    ///         });
+    ///         var role = new Vault.Aws.SecretBackendRole("role", new Vault.Aws.SecretBackendRoleArgs
+    ///         {
+    ///             Backend = aws.Path,
+    ///             CredentialType = "iam_user",
+    ///             PolicyDocument = @"{
+    ///   ""Version"": ""2012-10-17"",
+    ///   ""Statement"": [
+    ///     {
+    ///       ""Effect"": ""Allow"",
+    ///       ""Action"": ""iam:*"",
+    ///       ""Resource"": ""*""
+    ///     }
+    ///   ]
+    /// }
+    /// ",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// AWS secret backend roles can be imported using the `path`, e.g.

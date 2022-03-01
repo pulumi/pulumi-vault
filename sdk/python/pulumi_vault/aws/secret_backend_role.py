@@ -436,6 +436,31 @@ class SecretBackendRole(pulumi.CustomResource):
                  role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.aws.SecretBackend("aws",
+            access_key="AKIA.....",
+            secret_key="AWS secret key")
+        role = vault.aws.SecretBackendRole("role",
+            backend=aws.path,
+            credential_type="iam_user",
+            policy_document=\"\"\"{
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": "iam:*",
+              "Resource": "*"
+            }
+          ]
+        }
+        \"\"\")
+        ```
+
         ## Import
 
         AWS secret backend roles can be imported using the `path`, e.g.
@@ -490,6 +515,31 @@ class SecretBackendRole(pulumi.CustomResource):
                  args: SecretBackendRoleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.aws.SecretBackend("aws",
+            access_key="AKIA.....",
+            secret_key="AWS secret key")
+        role = vault.aws.SecretBackendRole("role",
+            backend=aws.path,
+            credential_type="iam_user",
+            policy_document=\"\"\"{
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": "iam:*",
+              "Resource": "*"
+            }
+          ]
+        }
+        \"\"\")
+        ```
+
         ## Import
 
         AWS secret backend roles can be imported using the `path`, e.g.

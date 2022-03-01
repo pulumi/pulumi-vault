@@ -10,6 +10,28 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Consul
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Vault.Consul.SecretBackend("test", new Vault.Consul.SecretBackendArgs
+    ///         {
+    ///             Address = "127.0.0.1:8500",
+    ///             Description = "Manages the Consul backend",
+    ///             Path = "consul",
+    ///             Token = "4240861b-ce3d-8530-115a-521ff070dd29",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Consul secret backends can be imported using the `path`, e.g.

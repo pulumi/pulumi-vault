@@ -257,6 +257,21 @@ class AuthBackendConfig(pulumi.CustomResource):
                  tenant_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example_auth_backend = vault.AuthBackend("exampleAuthBackend", type="azure")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("exampleAuthBackendConfig",
+            backend=example_auth_backend.path,
+            tenant_id="11111111-2222-3333-4444-555555555555",
+            client_id="11111111-2222-3333-4444-555555555555",
+            client_secret="01234567890123456789",
+            resource="https://vault.hashicorp.com")
+        ```
+
         ## Import
 
         Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.
@@ -288,6 +303,21 @@ class AuthBackendConfig(pulumi.CustomResource):
                  args: AuthBackendConfigArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example_auth_backend = vault.AuthBackend("exampleAuthBackend", type="azure")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("exampleAuthBackendConfig",
+            backend=example_auth_backend.path,
+            tenant_id="11111111-2222-3333-4444-555555555555",
+            client_id="11111111-2222-3333-4444-555555555555",
+            client_secret="01234567890123456789",
+            resource="https://vault.hashicorp.com")
+        ```
+
         ## Import
 
         Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.

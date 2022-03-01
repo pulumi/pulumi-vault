@@ -35,7 +35,7 @@ import (
 // 						"delete",
 // 						"list",
 // 					},
-// 					Description: "allow all on secrets",
+// 					Description: pulumi.StringRef("allow all on secrets"),
 // 				},
 // 			},
 // 		}, nil)

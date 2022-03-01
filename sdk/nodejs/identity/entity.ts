@@ -5,6 +5,20 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const test = new vault.identity.Entity("test", {
+ *     metadata: {
+ *         foo: "bar",
+ *     },
+ *     policies: ["test"],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Identity entity can be imported using the `id`, e.g.

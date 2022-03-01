@@ -10,6 +10,37 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.AD
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var config = new Vault.AD.SecretBackend("config", new Vault.AD.SecretBackendArgs
+    ///         {
+    ///             Backend = "ad",
+    ///             Binddn = "CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
+    ///             Bindpass = "SuperSecretPassw0rd",
+    ///             Url = "ldaps://ad",
+    ///             InsecureTls = true,
+    ///             Userdn = "CN=Users,DC=corp,DC=example,DC=net",
+    ///         });
+    ///         var role = new Vault.AD.SecretRole("role", new Vault.AD.SecretRoleArgs
+    ///         {
+    ///             Backend = config.Backend,
+    ///             Role = "bob",
+    ///             ServiceAccountName = "Bob",
+    ///             Ttl = 60,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// AD secret backend roles can be imported using the `path`, e.g.

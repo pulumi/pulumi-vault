@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const app = new vault.pkisecret.SecretBackendCert("app", {
+ *     backend: vault_mount.intermediate.path,
+ *     commonName: "app.my.domain",
+ * }, {
+ *     dependsOn: [vault_pki_secret_backend_role.admin],
+ * });
+ * ```
+ */
 export class SecretBackendCert extends pulumi.CustomResource {
     /**
      * Get an existing SecretBackendCert resource's state with the given name, ID, and optional extra

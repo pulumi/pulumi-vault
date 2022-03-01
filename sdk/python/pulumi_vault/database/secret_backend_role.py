@@ -355,6 +355,30 @@ class SecretBackendRole(pulumi.CustomResource):
                  rollback_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        db = vault.Mount("db",
+            path="postgres",
+            type="database")
+        postgres = vault.database.SecretBackendConnection("postgres",
+            backend=db.path,
+            allowed_roles=[
+                "dev",
+                "prod",
+            ],
+            postgresql=vault.database.SecretBackendConnectionPostgresqlArgs(
+                connection_url="postgres://username:password@host:port/database",
+            ))
+        role = vault.database.SecretBackendRole("role",
+            backend=db.path,
+            db_name=postgres.name,
+            creation_statements=["CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"])
+        ```
+
         ## Import
 
         Database secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
@@ -389,6 +413,30 @@ class SecretBackendRole(pulumi.CustomResource):
                  args: SecretBackendRoleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        db = vault.Mount("db",
+            path="postgres",
+            type="database")
+        postgres = vault.database.SecretBackendConnection("postgres",
+            backend=db.path,
+            allowed_roles=[
+                "dev",
+                "prod",
+            ],
+            postgresql=vault.database.SecretBackendConnectionPostgresqlArgs(
+                connection_url="postgres://username:password@host:port/database",
+            ))
+        role = vault.database.SecretBackendRole("role",
+            backend=db.path,
+            db_name=postgres.name,
+            creation_statements=["CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"])
+        ```
+
         ## Import
 
         Database secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.

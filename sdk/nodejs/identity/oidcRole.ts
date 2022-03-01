@@ -5,6 +5,42 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * You need to create a role with a named key.
+ * At creation time, the key can be created independently of the role. However, the key must
+ * exist before the role can be used to issue tokens. You must also configure the key with the
+ * role's Client ID to allow the role to use the key.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const config = new pulumi.Config();
+ * const key = config.get("key") || "key";
+ * const role = new vault.identity.OidcRole("role", {key: key});
+ * const keyOidcKey = new vault.identity.OidcKey("keyOidcKey", {
+ *     algorithm: "RS256",
+ *     allowedClientIds: [role.clientId],
+ * });
+ * ```
+ *
+ * If you want to create the key first before creating the role, you can use a separate
+ * resource to configure the allowed Client ID on
+ * the key.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const key = new vault.identity.OidcKey("key", {algorithm: "RS256"});
+ * const roleOidcRole = new vault.identity.OidcRole("roleOidcRole", {key: key.name});
+ * const roleOidcKeyAllowedClientID = new vault.identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID", {
+ *     keyName: key.name,
+ *     allowedClientId: roleOidcRole.clientId,
+ * });
+ * ```
+ *
  * ## Import
  *
  * The key can be imported with the role name, for example

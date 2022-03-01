@@ -11,9 +11,65 @@ namespace Pulumi.Vault.Azure
 {
     public static class GetAccessCredentials
     {
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var creds = Output.Create(Vault.Azure.GetAccessCredentials.InvokeAsync(new Vault.Azure.GetAccessCredentialsArgs
+        ///         {
+        ///             Role = "my-role",
+        ///             ValidateCreds = true,
+        ///             NumSequentialSuccesses = 8,
+        ///             NumSecondsBetweenTests = 7,
+        ///             MaxCredValidationSeconds = 1200,
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetAccessCredentialsResult> InvokeAsync(GetAccessCredentialsArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:azure/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var creds = Output.Create(Vault.Azure.GetAccessCredentials.InvokeAsync(new Vault.Azure.GetAccessCredentialsArgs
+        ///         {
+        ///             Role = "my-role",
+        ///             ValidateCreds = true,
+        ///             NumSequentialSuccesses = 8,
+        ///             NumSecondsBetweenTests = 7,
+        ///             MaxCredValidationSeconds = 1200,
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetAccessCredentialsResult> Invoke(GetAccessCredentialsInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetAccessCredentialsResult>("vault:azure/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsInvokeArgs(), options.WithDefaults());
     }

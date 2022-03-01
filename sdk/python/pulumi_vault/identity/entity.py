@@ -198,6 +198,19 @@ class Entity(pulumi.CustomResource):
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.identity.Entity("test",
+            metadata={
+                "foo": "bar",
+            },
+            policies=["test"])
+        ```
+
         ## Import
 
         Identity entity can be imported using the `id`, e.g.
@@ -221,6 +234,19 @@ class Entity(pulumi.CustomResource):
                  args: Optional[EntityArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.identity.Entity("test",
+            metadata={
+                "foo": "bar",
+            },
+            policies=["test"])
+        ```
+
         ## Import
 
         Identity entity can be imported using the `id`, e.g.
