@@ -83,7 +83,7 @@ namespace Pulumi.Vault.Kubernetes
         /// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
         /// </summary>
         [Output("kubernetesCaCert")]
-        public Output<string?> KubernetesCaCert { get; private set; } = null!;
+        public Output<string> KubernetesCaCert { get; private set; } = null!;
 
         /// <summary>
         /// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.

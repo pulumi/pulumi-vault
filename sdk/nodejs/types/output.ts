@@ -262,6 +262,14 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: number;
+        /**
+         * The root credential password used in the connection URL.
+         */
+        password?: string;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: string;
     }
 
     export interface SecretBackendConnectionInfluxdb {
@@ -334,6 +342,14 @@ export namespace database {
          */
         maxOpenConnections?: number;
         /**
+         * The root credential password used in the connection URL.
+         */
+        password?: string;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: string;
+        /**
          * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
@@ -384,6 +400,14 @@ export namespace database {
          */
         maxOpenConnections?: number;
         /**
+         * The root credential password used in the connection URL.
+         */
+        password?: string;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: string;
+        /**
          * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
@@ -412,6 +436,10 @@ export namespace database {
          */
         maxOpenConnections?: number;
         /**
+         * The root credential password used in the connection URL.
+         */
+        password?: string;
+        /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
          */
         tlsCa?: string;
@@ -419,6 +447,10 @@ export namespace database {
          * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
          */
         tlsCertificateKey?: string;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: string;
         /**
          * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
@@ -448,6 +480,14 @@ export namespace database {
          */
         maxOpenConnections?: number;
         /**
+         * The root credential password used in the connection URL.
+         */
+        password?: string;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: string;
+        /**
          * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
@@ -475,6 +515,14 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: number;
+        /**
+         * The root credential password used in the connection URL.
+         */
+        password?: string;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: string;
         /**
          * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
@@ -504,6 +552,14 @@ export namespace database {
          */
         maxOpenConnections?: number;
         /**
+         * The root credential password used in the connection URL.
+         */
+        password?: string;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: string;
+        /**
          * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
@@ -532,6 +588,14 @@ export namespace database {
          */
         maxOpenConnections?: number;
         /**
+         * The root credential password used in the connection URL.
+         */
+        password?: string;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: string;
+        /**
          * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
@@ -559,6 +623,14 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: number;
+        /**
+         * The root credential password used in the connection URL.
+         */
+        password?: string;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: string;
         /**
          * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */

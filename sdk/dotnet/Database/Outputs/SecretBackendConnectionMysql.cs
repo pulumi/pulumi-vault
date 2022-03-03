@@ -35,6 +35,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly int? MaxOpenConnections;
         /// <summary>
+        /// The root credential password used in the connection URL.
+        /// </summary>
+        public readonly string? Password;
+        /// <summary>
         /// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         /// </summary>
         public readonly string? TlsCa;
@@ -42,6 +46,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         /// </summary>
         public readonly string? TlsCertificateKey;
+        /// <summary>
+        /// The root credential username used in the connection URL.
+        /// </summary>
+        public readonly string? Username;
         /// <summary>
         /// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         /// </summary>
@@ -57,9 +65,13 @@ namespace Pulumi.Vault.Database.Outputs
 
             int? maxOpenConnections,
 
+            string? password,
+
             string? tlsCa,
 
             string? tlsCertificateKey,
+
+            string? username,
 
             string? usernameTemplate)
         {
@@ -67,8 +79,10 @@ namespace Pulumi.Vault.Database.Outputs
             MaxConnectionLifetime = maxConnectionLifetime;
             MaxIdleConnections = maxIdleConnections;
             MaxOpenConnections = maxOpenConnections;
+            Password = password;
             TlsCa = tlsCa;
             TlsCertificateKey = tlsCertificateKey;
+            Username = username;
             UsernameTemplate = usernameTemplate;
         }
     }

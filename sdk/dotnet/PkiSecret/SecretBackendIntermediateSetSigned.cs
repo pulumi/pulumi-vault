@@ -19,7 +19,9 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// The certificate
+        /// Specifies the PEM encoded certificate. May optionally append additional
+        /// CA certificates to populate the whole chain, which will then enable returning the full chain from
+        /// issue and sign operations.
         /// </summary>
         [Output("certificate")]
         public Output<string> Certificate { get; private set; } = null!;
@@ -77,7 +79,9 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
-        /// The certificate
+        /// Specifies the PEM encoded certificate. May optionally append additional
+        /// CA certificates to populate the whole chain, which will then enable returning the full chain from
+        /// issue and sign operations.
         /// </summary>
         [Input("certificate", required: true)]
         public Input<string> Certificate { get; set; } = null!;
@@ -96,7 +100,9 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// The certificate
+        /// Specifies the PEM encoded certificate. May optionally append additional
+        /// CA certificates to populate the whole chain, which will then enable returning the full chain from
+        /// issue and sign operations.
         /// </summary>
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }

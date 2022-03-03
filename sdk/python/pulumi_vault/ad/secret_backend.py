@@ -25,11 +25,13 @@ class SecretBackendArgs:
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  discoverdn: Optional[pulumi.Input[bool]] = None,
+                 formatter: Optional[pulumi.Input[str]] = None,
                  groupattr: Optional[pulumi.Input[str]] = None,
                  groupdn: Optional[pulumi.Input[str]] = None,
                  groupfilter: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
                  last_rotation_tolerance: Optional[pulumi.Input[int]] = None,
+                 length: Optional[pulumi.Input[int]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
@@ -64,6 +66,7 @@ class SecretBackendArgs:
                defaults to true.
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
         :param pulumi.Input[bool] discoverdn: Use anonymous bind to discover the bind Distinguished Name of a user.
+        :param pulumi.Input[str] formatter: **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
                user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
         :param pulumi.Input[str] groupdn: LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org).
@@ -73,6 +76,7 @@ class SecretBackendArgs:
                Defaults to `false`.
         :param pulumi.Input[int] last_rotation_tolerance: The number of seconds after a Vault rotation where, if Active Directory
                shows a later rotation, it should be considered out-of-band
+        :param pulumi.Input[int] length: **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
@@ -122,6 +126,11 @@ class SecretBackendArgs:
             pulumi.set(__self__, "description", description)
         if discoverdn is not None:
             pulumi.set(__self__, "discoverdn", discoverdn)
+        if formatter is not None:
+            warnings.warn("""Formatter is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
+            pulumi.log.warn("""formatter is deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.""")
+        if formatter is not None:
+            pulumi.set(__self__, "formatter", formatter)
         if groupattr is not None:
             pulumi.set(__self__, "groupattr", groupattr)
         if groupdn is not None:
@@ -132,6 +141,11 @@ class SecretBackendArgs:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
         if last_rotation_tolerance is not None:
             pulumi.set(__self__, "last_rotation_tolerance", last_rotation_tolerance)
+        if length is not None:
+            warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
+            pulumi.log.warn("""length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.""")
+        if length is not None:
+            pulumi.set(__self__, "length", length)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
@@ -314,6 +328,18 @@ class SecretBackendArgs:
 
     @property
     @pulumi.getter
+    def formatter(self) -> Optional[pulumi.Input[str]]:
+        """
+        **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
+        """
+        return pulumi.get(self, "formatter")
+
+    @formatter.setter
+    def formatter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "formatter", value)
+
+    @property
+    @pulumi.getter
     def groupattr(self) -> Optional[pulumi.Input[str]]:
         """
         LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
@@ -375,6 +401,18 @@ class SecretBackendArgs:
     @last_rotation_tolerance.setter
     def last_rotation_tolerance(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "last_rotation_tolerance", value)
+
+    @property
+    @pulumi.getter
+    def length(self) -> Optional[pulumi.Input[int]]:
+        """
+        **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
+        """
+        return pulumi.get(self, "length")
+
+    @length.setter
+    def length(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "length", value)
 
     @property
     @pulumi.getter
@@ -583,11 +621,13 @@ class _SecretBackendState:
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  discoverdn: Optional[pulumi.Input[bool]] = None,
+                 formatter: Optional[pulumi.Input[str]] = None,
                  groupattr: Optional[pulumi.Input[str]] = None,
                  groupdn: Optional[pulumi.Input[str]] = None,
                  groupfilter: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
                  last_rotation_tolerance: Optional[pulumi.Input[int]] = None,
+                 length: Optional[pulumi.Input[int]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
@@ -622,6 +662,7 @@ class _SecretBackendState:
                defaults to true.
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
         :param pulumi.Input[bool] discoverdn: Use anonymous bind to discover the bind Distinguished Name of a user.
+        :param pulumi.Input[str] formatter: **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
                user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
         :param pulumi.Input[str] groupdn: LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org).
@@ -631,6 +672,7 @@ class _SecretBackendState:
                Defaults to `false`.
         :param pulumi.Input[int] last_rotation_tolerance: The number of seconds after a Vault rotation where, if Active Directory
                shows a later rotation, it should be considered out-of-band
+        :param pulumi.Input[int] length: **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
@@ -682,6 +724,11 @@ class _SecretBackendState:
             pulumi.set(__self__, "description", description)
         if discoverdn is not None:
             pulumi.set(__self__, "discoverdn", discoverdn)
+        if formatter is not None:
+            warnings.warn("""Formatter is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
+            pulumi.log.warn("""formatter is deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.""")
+        if formatter is not None:
+            pulumi.set(__self__, "formatter", formatter)
         if groupattr is not None:
             pulumi.set(__self__, "groupattr", groupattr)
         if groupdn is not None:
@@ -692,6 +739,11 @@ class _SecretBackendState:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
         if last_rotation_tolerance is not None:
             pulumi.set(__self__, "last_rotation_tolerance", last_rotation_tolerance)
+        if length is not None:
+            warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
+            pulumi.log.warn("""length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.""")
+        if length is not None:
+            pulumi.set(__self__, "length", length)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
@@ -874,6 +926,18 @@ class _SecretBackendState:
 
     @property
     @pulumi.getter
+    def formatter(self) -> Optional[pulumi.Input[str]]:
+        """
+        **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
+        """
+        return pulumi.get(self, "formatter")
+
+    @formatter.setter
+    def formatter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "formatter", value)
+
+    @property
+    @pulumi.getter
     def groupattr(self) -> Optional[pulumi.Input[str]]:
         """
         LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
@@ -935,6 +999,18 @@ class _SecretBackendState:
     @last_rotation_tolerance.setter
     def last_rotation_tolerance(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "last_rotation_tolerance", value)
+
+    @property
+    @pulumi.getter
+    def length(self) -> Optional[pulumi.Input[int]]:
+        """
+        **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
+        """
+        return pulumi.get(self, "length")
+
+    @length.setter
+    def length(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "length", value)
 
     @property
     @pulumi.getter
@@ -1145,11 +1221,13 @@ class SecretBackend(pulumi.CustomResource):
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  discoverdn: Optional[pulumi.Input[bool]] = None,
+                 formatter: Optional[pulumi.Input[str]] = None,
                  groupattr: Optional[pulumi.Input[str]] = None,
                  groupdn: Optional[pulumi.Input[str]] = None,
                  groupfilter: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
                  last_rotation_tolerance: Optional[pulumi.Input[int]] = None,
+                 length: Optional[pulumi.Input[int]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
@@ -1194,6 +1272,7 @@ class SecretBackend(pulumi.CustomResource):
                defaults to true.
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
         :param pulumi.Input[bool] discoverdn: Use anonymous bind to discover the bind Distinguished Name of a user.
+        :param pulumi.Input[str] formatter: **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
                user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
         :param pulumi.Input[str] groupdn: LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org).
@@ -1203,6 +1282,7 @@ class SecretBackend(pulumi.CustomResource):
                Defaults to `false`.
         :param pulumi.Input[int] last_rotation_tolerance: The number of seconds after a Vault rotation where, if Active Directory
                shows a later rotation, it should be considered out-of-band
+        :param pulumi.Input[int] length: **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
@@ -1272,11 +1352,13 @@ class SecretBackend(pulumi.CustomResource):
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  discoverdn: Optional[pulumi.Input[bool]] = None,
+                 formatter: Optional[pulumi.Input[str]] = None,
                  groupattr: Optional[pulumi.Input[str]] = None,
                  groupdn: Optional[pulumi.Input[str]] = None,
                  groupfilter: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
                  last_rotation_tolerance: Optional[pulumi.Input[int]] = None,
+                 length: Optional[pulumi.Input[int]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
@@ -1320,11 +1402,19 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["deny_null_bind"] = deny_null_bind
             __props__.__dict__["description"] = description
             __props__.__dict__["discoverdn"] = discoverdn
+            if formatter is not None and not opts.urn:
+                warnings.warn("""Formatter is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
+                pulumi.log.warn("""formatter is deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.""")
+            __props__.__dict__["formatter"] = formatter
             __props__.__dict__["groupattr"] = groupattr
             __props__.__dict__["groupdn"] = groupdn
             __props__.__dict__["groupfilter"] = groupfilter
             __props__.__dict__["insecure_tls"] = insecure_tls
             __props__.__dict__["last_rotation_tolerance"] = last_rotation_tolerance
+            if length is not None and not opts.urn:
+                warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
+                pulumi.log.warn("""length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.""")
+            __props__.__dict__["length"] = length
             __props__.__dict__["local"] = local
             __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
             __props__.__dict__["max_ttl"] = max_ttl
@@ -1362,11 +1452,13 @@ class SecretBackend(pulumi.CustomResource):
             deny_null_bind: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
             discoverdn: Optional[pulumi.Input[bool]] = None,
+            formatter: Optional[pulumi.Input[str]] = None,
             groupattr: Optional[pulumi.Input[str]] = None,
             groupdn: Optional[pulumi.Input[str]] = None,
             groupfilter: Optional[pulumi.Input[str]] = None,
             insecure_tls: Optional[pulumi.Input[bool]] = None,
             last_rotation_tolerance: Optional[pulumi.Input[int]] = None,
+            length: Optional[pulumi.Input[int]] = None,
             local: Optional[pulumi.Input[bool]] = None,
             max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             max_ttl: Optional[pulumi.Input[int]] = None,
@@ -1406,6 +1498,7 @@ class SecretBackend(pulumi.CustomResource):
                defaults to true.
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
         :param pulumi.Input[bool] discoverdn: Use anonymous bind to discover the bind Distinguished Name of a user.
+        :param pulumi.Input[str] formatter: **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
                user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
         :param pulumi.Input[str] groupdn: LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org).
@@ -1415,6 +1508,7 @@ class SecretBackend(pulumi.CustomResource):
                Defaults to `false`.
         :param pulumi.Input[int] last_rotation_tolerance: The number of seconds after a Vault rotation where, if Active Directory
                shows a later rotation, it should be considered out-of-band
+        :param pulumi.Input[int] length: **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
@@ -1458,11 +1552,13 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["deny_null_bind"] = deny_null_bind
         __props__.__dict__["description"] = description
         __props__.__dict__["discoverdn"] = discoverdn
+        __props__.__dict__["formatter"] = formatter
         __props__.__dict__["groupattr"] = groupattr
         __props__.__dict__["groupdn"] = groupdn
         __props__.__dict__["groupfilter"] = groupfilter
         __props__.__dict__["insecure_tls"] = insecure_tls
         __props__.__dict__["last_rotation_tolerance"] = last_rotation_tolerance
+        __props__.__dict__["length"] = length
         __props__.__dict__["local"] = local
         __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
         __props__.__dict__["max_ttl"] = max_ttl
@@ -1583,6 +1679,14 @@ class SecretBackend(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def formatter(self) -> pulumi.Output[str]:
+        """
+        **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
+        """
+        return pulumi.get(self, "formatter")
+
+    @property
+    @pulumi.getter
     def groupattr(self) -> pulumi.Output[Optional[str]]:
         """
         LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
@@ -1624,6 +1728,14 @@ class SecretBackend(pulumi.CustomResource):
         shows a later rotation, it should be considered out-of-band
         """
         return pulumi.get(self, "last_rotation_tolerance")
+
+    @property
+    @pulumi.getter
+    def length(self) -> pulumi.Output[int]:
+        """
+        **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
+        """
+        return pulumi.get(self, "length")
 
     @property
     @pulumi.getter

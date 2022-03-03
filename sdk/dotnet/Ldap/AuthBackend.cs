@@ -68,6 +68,12 @@ namespace Pulumi.Vault.Ldap
         public Output<string> Bindpass { get; private set; } = null!;
 
         /// <summary>
+        /// Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
+        /// </summary>
+        [Output("caseSensitiveNames")]
+        public Output<bool> CaseSensitiveNames { get; private set; } = null!;
+
+        /// <summary>
         /// Trusted CA to validate TLS certificate
         /// </summary>
         [Output("certificate")]
@@ -306,6 +312,12 @@ namespace Pulumi.Vault.Ldap
         public Input<string>? Bindpass { get; set; }
 
         /// <summary>
+        /// Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
+        /// </summary>
+        [Input("caseSensitiveNames")]
+        public Input<bool>? CaseSensitiveNames { get; set; }
+
+        /// <summary>
         /// Trusted CA to validate TLS certificate
         /// </summary>
         [Input("certificate")]
@@ -521,6 +533,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("bindpass")]
         public Input<string>? Bindpass { get; set; }
+
+        /// <summary>
+        /// Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
+        /// </summary>
+        [Input("caseSensitiveNames")]
+        public Input<bool>? CaseSensitiveNames { get; set; }
 
         /// <summary>
         /// Trusted CA to validate TLS certificate

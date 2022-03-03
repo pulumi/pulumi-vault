@@ -16,6 +16,7 @@ class AuthBackendRoleArgs:
                  bound_service_account_names: pulumi.Input[Sequence[pulumi.Input[str]]],
                  bound_service_account_namespaces: pulumi.Input[Sequence[pulumi.Input[str]]],
                  role_name: pulumi.Input[str],
+                 alias_name_source: Optional[pulumi.Input[str]] = None,
                  audience: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -32,6 +33,8 @@ class AuthBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_account_namespaces: List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
         :param pulumi.Input[str] role_name: Name of the role.
+        :param pulumi.Input[str] alias_name_source: Configures how identity aliases are generated.
+               Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
         :param pulumi.Input[str] audience: Audience claim to verify in the JWT.
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
@@ -54,8 +57,7 @@ class AuthBackendRoleArgs:
                value of this field. Specified in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
                on the auth method, this list may be supplemented by user/group/other values.
-        :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
                `batch`, or `default` to use the mount's tuned default (which unless changed will be
                `service` tokens). For token store roles, there are two additional possibilities:
@@ -65,6 +67,8 @@ class AuthBackendRoleArgs:
         pulumi.set(__self__, "bound_service_account_names", bound_service_account_names)
         pulumi.set(__self__, "bound_service_account_namespaces", bound_service_account_namespaces)
         pulumi.set(__self__, "role_name", role_name)
+        if alias_name_source is not None:
+            pulumi.set(__self__, "alias_name_source", alias_name_source)
         if audience is not None:
             pulumi.set(__self__, "audience", audience)
         if backend is not None:
@@ -123,6 +127,19 @@ class AuthBackendRoleArgs:
     @role_name.setter
     def role_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "role_name", value)
+
+    @property
+    @pulumi.getter(name="aliasNameSource")
+    def alias_name_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configures how identity aliases are generated.
+        Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
+        """
+        return pulumi.get(self, "alias_name_source")
+
+    @alias_name_source.setter
+    def alias_name_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alias_name_source", value)
 
     @property
     @pulumi.getter
@@ -249,8 +266,7 @@ class AuthBackendRoleArgs:
     @pulumi.getter(name="tokenTtl")
     def token_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The incremental lifetime for generated tokens in number of seconds.
-        Its current value will be referenced at renewal time.
+        The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 
@@ -278,6 +294,7 @@ class AuthBackendRoleArgs:
 @pulumi.input_type
 class _AuthBackendRoleState:
     def __init__(__self__, *,
+                 alias_name_source: Optional[pulumi.Input[str]] = None,
                  audience: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  bound_service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -294,6 +311,8 @@ class _AuthBackendRoleState:
                  token_type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRole resources.
+        :param pulumi.Input[str] alias_name_source: Configures how identity aliases are generated.
+               Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
         :param pulumi.Input[str] audience: Audience claim to verify in the JWT.
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
@@ -319,14 +338,15 @@ class _AuthBackendRoleState:
                value of this field. Specified in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
                on the auth method, this list may be supplemented by user/group/other values.
-        :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
                `batch`, or `default` to use the mount's tuned default (which unless changed will be
                `service` tokens). For token store roles, there are two additional possibilities:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
         """
+        if alias_name_source is not None:
+            pulumi.set(__self__, "alias_name_source", alias_name_source)
         if audience is not None:
             pulumi.set(__self__, "audience", audience)
         if backend is not None:
@@ -355,6 +375,19 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "token_ttl", token_ttl)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
+
+    @property
+    @pulumi.getter(name="aliasNameSource")
+    def alias_name_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configures how identity aliases are generated.
+        Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
+        """
+        return pulumi.get(self, "alias_name_source")
+
+    @alias_name_source.setter
+    def alias_name_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alias_name_source", value)
 
     @property
     @pulumi.getter
@@ -517,8 +550,7 @@ class _AuthBackendRoleState:
     @pulumi.getter(name="tokenTtl")
     def token_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The incremental lifetime for generated tokens in number of seconds.
-        Its current value will be referenced at renewal time.
+        The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 
@@ -548,6 +580,7 @@ class AuthBackendRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alias_name_source: Optional[pulumi.Input[str]] = None,
                  audience: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  bound_service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -599,6 +632,8 @@ class AuthBackendRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] alias_name_source: Configures how identity aliases are generated.
+               Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
         :param pulumi.Input[str] audience: Audience claim to verify in the JWT.
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
@@ -624,8 +659,7 @@ class AuthBackendRole(pulumi.CustomResource):
                value of this field. Specified in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
                on the auth method, this list may be supplemented by user/group/other values.
-        :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
                `batch`, or `default` to use the mount's tuned default (which unless changed will be
                `service` tokens). For token store roles, there are two additional possibilities:
@@ -687,6 +721,7 @@ class AuthBackendRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alias_name_source: Optional[pulumi.Input[str]] = None,
                  audience: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  bound_service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -713,6 +748,7 @@ class AuthBackendRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AuthBackendRoleArgs.__new__(AuthBackendRoleArgs)
 
+            __props__.__dict__["alias_name_source"] = alias_name_source
             __props__.__dict__["audience"] = audience
             __props__.__dict__["backend"] = backend
             if bound_service_account_names is None and not opts.urn:
@@ -743,6 +779,7 @@ class AuthBackendRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            alias_name_source: Optional[pulumi.Input[str]] = None,
             audience: Optional[pulumi.Input[str]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             bound_service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -764,6 +801,8 @@ class AuthBackendRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] alias_name_source: Configures how identity aliases are generated.
+               Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
         :param pulumi.Input[str] audience: Audience claim to verify in the JWT.
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
@@ -789,8 +828,7 @@ class AuthBackendRole(pulumi.CustomResource):
                value of this field. Specified in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
                on the auth method, this list may be supplemented by user/group/other values.
-        :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
                `batch`, or `default` to use the mount's tuned default (which unless changed will be
                `service` tokens). For token store roles, there are two additional possibilities:
@@ -801,6 +839,7 @@ class AuthBackendRole(pulumi.CustomResource):
 
         __props__ = _AuthBackendRoleState.__new__(_AuthBackendRoleState)
 
+        __props__.__dict__["alias_name_source"] = alias_name_source
         __props__.__dict__["audience"] = audience
         __props__.__dict__["backend"] = backend
         __props__.__dict__["bound_service_account_names"] = bound_service_account_names
@@ -816,6 +855,15 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["token_ttl"] = token_ttl
         __props__.__dict__["token_type"] = token_type
         return AuthBackendRole(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="aliasNameSource")
+    def alias_name_source(self) -> pulumi.Output[str]:
+        """
+        Configures how identity aliases are generated.
+        Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
+        """
+        return pulumi.get(self, "alias_name_source")
 
     @property
     @pulumi.getter
@@ -930,8 +978,7 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenTtl")
     def token_ttl(self) -> pulumi.Output[Optional[int]]:
         """
-        The incremental lifetime for generated tokens in number of seconds.
-        Its current value will be referenced at renewal time.
+        The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 

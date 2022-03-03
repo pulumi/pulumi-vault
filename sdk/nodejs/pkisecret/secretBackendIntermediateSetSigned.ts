@@ -37,7 +37,9 @@ export class SecretBackendIntermediateSetSigned extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string>;
     /**
-     * The certificate
+     * Specifies the PEM encoded certificate. May optionally append additional
+     * CA certificates to populate the whole chain, which will then enable returning the full chain from
+     * issue and sign operations.
      */
     public readonly certificate!: pulumi.Output<string>;
 
@@ -81,7 +83,9 @@ export interface SecretBackendIntermediateSetSignedState {
      */
     backend?: pulumi.Input<string>;
     /**
-     * The certificate
+     * Specifies the PEM encoded certificate. May optionally append additional
+     * CA certificates to populate the whole chain, which will then enable returning the full chain from
+     * issue and sign operations.
      */
     certificate?: pulumi.Input<string>;
 }
@@ -95,7 +99,9 @@ export interface SecretBackendIntermediateSetSignedArgs {
      */
     backend: pulumi.Input<string>;
     /**
-     * The certificate
+     * Specifies the PEM encoded certificate. May optionally append additional
+     * CA certificates to populate the whole chain, which will then enable returning the full chain from
+     * issue and sign operations.
      */
     certificate: pulumi.Input<string>;
 }

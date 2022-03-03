@@ -72,6 +72,52 @@ import (
 // 	})
 // }
 // ```
+// ## Caveats
+//
+// It's important to note that Vault identity groups names are *case-insensitive*. For example the following resources would be equivalent.
+// Applying this configuration would result in the provider failing to create one of the identity groups, since the resources share the same `name`.
+//
+// This sort of pattern should be avoided:
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := identity.NewGroup(ctx, "internalIdentity/groupGroup", &identity.GroupArgs{
+// 			Metadata: pulumi.StringMap{
+// 				"version": pulumi.String("2"),
+// 			},
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("dev"),
+// 				pulumi.String("test"),
+// 			},
+// 			Type: pulumi.String("internal"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewGroup(ctx, "internalGroup", &identity.GroupArgs{
+// 			Metadata: pulumi.StringMap{
+// 				"version": pulumi.String("2"),
+// 			},
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("dev"),
+// 				pulumi.String("test"),
+// 			},
+// 			Type: pulumi.String("internal"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 //
 // ## Import
 //

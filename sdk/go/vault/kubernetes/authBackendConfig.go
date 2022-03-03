@@ -69,7 +69,7 @@ type AuthBackendConfig struct {
 	// JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
 	Issuer pulumi.StringPtrOutput `pulumi:"issuer"`
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
-	KubernetesCaCert pulumi.StringPtrOutput `pulumi:"kubernetesCaCert"`
+	KubernetesCaCert pulumi.StringOutput `pulumi:"kubernetesCaCert"`
 	// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
 	KubernetesHost pulumi.StringOutput `pulumi:"kubernetesHost"`
 	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.

@@ -62,13 +62,18 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string>;
     /**
-     * The CA chain
+     * A list of the issuing and intermediate CA certificates in the `format` specified.
      */
-    public /*out*/ readonly caChain!: pulumi.Output<string>;
+    public /*out*/ readonly caChains!: pulumi.Output<string[]>;
     /**
-     * The certificate
+     * The intermediate CA certificate in the `format` specified.
      */
     public /*out*/ readonly certificate!: pulumi.Output<string>;
+    /**
+     * The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+     * Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
+     */
+    public /*out*/ readonly certificateBundle!: pulumi.Output<string>;
     /**
      * CN of intermediate to create
      */
@@ -94,7 +99,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      */
     public readonly ipSans!: pulumi.Output<string[] | undefined>;
     /**
-     * The issuing CA
+     * The issuing CA certificate in the `format` specified.
      */
     public /*out*/ readonly issuingCa!: pulumi.Output<string>;
     /**
@@ -165,8 +170,9 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             const state = argsOrState as SecretBackendRootSignIntermediateState | undefined;
             resourceInputs["altNames"] = state ? state.altNames : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["caChain"] = state ? state.caChain : undefined;
+            resourceInputs["caChains"] = state ? state.caChains : undefined;
             resourceInputs["certificate"] = state ? state.certificate : undefined;
+            resourceInputs["certificateBundle"] = state ? state.certificateBundle : undefined;
             resourceInputs["commonName"] = state ? state.commonName : undefined;
             resourceInputs["country"] = state ? state.country : undefined;
             resourceInputs["csr"] = state ? state.csr : undefined;
@@ -218,8 +224,9 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["ttl"] = args ? args.ttl : undefined;
             resourceInputs["uriSans"] = args ? args.uriSans : undefined;
             resourceInputs["useCsrValues"] = args ? args.useCsrValues : undefined;
-            resourceInputs["caChain"] = undefined /*out*/;
+            resourceInputs["caChains"] = undefined /*out*/;
             resourceInputs["certificate"] = undefined /*out*/;
+            resourceInputs["certificateBundle"] = undefined /*out*/;
             resourceInputs["issuingCa"] = undefined /*out*/;
             resourceInputs["serial"] = undefined /*out*/;
         }
@@ -241,13 +248,18 @@ export interface SecretBackendRootSignIntermediateState {
      */
     backend?: pulumi.Input<string>;
     /**
-     * The CA chain
+     * A list of the issuing and intermediate CA certificates in the `format` specified.
      */
-    caChain?: pulumi.Input<string>;
+    caChains?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The certificate
+     * The intermediate CA certificate in the `format` specified.
      */
     certificate?: pulumi.Input<string>;
+    /**
+     * The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+     * Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
+     */
+    certificateBundle?: pulumi.Input<string>;
     /**
      * CN of intermediate to create
      */
@@ -273,7 +285,7 @@ export interface SecretBackendRootSignIntermediateState {
      */
     ipSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The issuing CA
+     * The issuing CA certificate in the `format` specified.
      */
     issuingCa?: pulumi.Input<string>;
     /**

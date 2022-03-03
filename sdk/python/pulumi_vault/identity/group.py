@@ -331,6 +331,35 @@ class Group(pulumi.CustomResource):
             policies=["test"],
             type="external")
         ```
+        ## Caveats
+
+        It's important to note that Vault identity groups names are *case-insensitive*. For example the following resources would be equivalent.
+        Applying this configuration would result in the provider failing to create one of the identity groups, since the resources share the same `name`.
+
+        This sort of pattern should be avoided:
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        internal_identity_group_group = vault.identity.Group("internalIdentity/groupGroup",
+            metadata={
+                "version": "2",
+            },
+            policies=[
+                "dev",
+                "test",
+            ],
+            type="internal")
+        internal_group = vault.identity.Group("internalGroup",
+            metadata={
+                "version": "2",
+            },
+            policies=[
+                "dev",
+                "test",
+            ],
+            type="internal")
+        ```
 
         ## Import
 
@@ -391,6 +420,35 @@ class Group(pulumi.CustomResource):
             },
             policies=["test"],
             type="external")
+        ```
+        ## Caveats
+
+        It's important to note that Vault identity groups names are *case-insensitive*. For example the following resources would be equivalent.
+        Applying this configuration would result in the provider failing to create one of the identity groups, since the resources share the same `name`.
+
+        This sort of pattern should be avoided:
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        internal_identity_group_group = vault.identity.Group("internalIdentity/groupGroup",
+            metadata={
+                "version": "2",
+            },
+            policies=[
+                "dev",
+                "test",
+            ],
+            type="internal")
+        internal_group = vault.identity.Group("internalGroup",
+            metadata={
+                "version": "2",
+            },
+            policies=[
+                "dev",
+                "test",
+            ],
+            type="internal")
         ```
 
         ## Import

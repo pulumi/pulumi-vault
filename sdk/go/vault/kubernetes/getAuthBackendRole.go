@@ -24,7 +24,7 @@ func LookupAuthBackendRole(ctx *pulumi.Context, args *LookupAuthBackendRoleArgs,
 
 // A collection of arguments for invoking getAuthBackendRole.
 type LookupAuthBackendRoleArgs struct {
-	// (Optional) Audience claim to verify in the JWT.
+	// Audience claim to verify in the JWT.
 	Audience *string `pulumi:"audience"`
 	// The unique name for the Kubernetes backend the role to
 	// retrieve Role attributes for resides in. Defaults to "kubernetes".
@@ -71,7 +71,9 @@ type LookupAuthBackendRoleArgs struct {
 
 // A collection of values returned by getAuthBackendRole.
 type LookupAuthBackendRoleResult struct {
-	// (Optional) Audience claim to verify in the JWT.
+	// Method used for generating identity aliases. (vault-1.9+)
+	AliasNameSource string `pulumi:"aliasNameSource"`
+	// Audience claim to verify in the JWT.
 	Audience *string `pulumi:"audience"`
 	Backend  *string `pulumi:"backend"`
 	// List of service account names able to access this role. If set to "*" all names are allowed, both this and boundServiceAccountNamespaces can not be "*".
@@ -130,7 +132,7 @@ func LookupAuthBackendRoleOutput(ctx *pulumi.Context, args LookupAuthBackendRole
 
 // A collection of arguments for invoking getAuthBackendRole.
 type LookupAuthBackendRoleOutputArgs struct {
-	// (Optional) Audience claim to verify in the JWT.
+	// Audience claim to verify in the JWT.
 	Audience pulumi.StringPtrInput `pulumi:"audience"`
 	// The unique name for the Kubernetes backend the role to
 	// retrieve Role attributes for resides in. Defaults to "kubernetes".
@@ -194,7 +196,12 @@ func (o LookupAuthBackendRoleResultOutput) ToLookupAuthBackendRoleResultOutputWi
 	return o
 }
 
-// (Optional) Audience claim to verify in the JWT.
+// Method used for generating identity aliases. (vault-1.9+)
+func (o LookupAuthBackendRoleResultOutput) AliasNameSource() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) string { return v.AliasNameSource }).(pulumi.StringOutput)
+}
+
+// Audience claim to verify in the JWT.
 func (o LookupAuthBackendRoleResultOutput) Audience() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupAuthBackendRoleResult) *string { return v.Audience }).(pulumi.StringPtrOutput)
 }

@@ -396,7 +396,9 @@ class SecretBackendConnectionHanaArgs:
                  connection_url: Optional[pulumi.Input[str]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
-                 max_open_connections: Optional[pulumi.Input[int]] = None):
+                 max_open_connections: Optional[pulumi.Input[int]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. See
                the [Vault
@@ -407,6 +409,8 @@ class SecretBackendConnectionHanaArgs:
                the database.
         :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -416,6 +420,10 @@ class SecretBackendConnectionHanaArgs:
             pulumi.set(__self__, "max_idle_connections", max_idle_connections)
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -469,6 +477,30 @@ class SecretBackendConnectionHanaArgs:
     @max_open_connections.setter
     def max_open_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_open_connections", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential password used in the connection URL.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential username used in the connection URL.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
 
 
 @pulumi.input_type
@@ -650,6 +682,8 @@ class SecretBackendConnectionMongodbArgs:
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. See
@@ -661,6 +695,8 @@ class SecretBackendConnectionMongodbArgs:
                the database.
         :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL.
         :param pulumi.Input[str] username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
@@ -671,6 +707,10 @@ class SecretBackendConnectionMongodbArgs:
             pulumi.set(__self__, "max_idle_connections", max_idle_connections)
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
         if username_template is not None:
             pulumi.set(__self__, "username_template", username_template)
 
@@ -726,6 +766,30 @@ class SecretBackendConnectionMongodbArgs:
     @max_open_connections.setter
     def max_open_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_open_connections", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential password used in the connection URL.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential username used in the connection URL.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
 
     @property
     @pulumi.getter(name="usernameTemplate")
@@ -800,6 +864,8 @@ class SecretBackendConnectionMssqlArgs:
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. See
@@ -815,6 +881,8 @@ class SecretBackendConnectionMssqlArgs:
                the database.
         :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL.
         :param pulumi.Input[str] username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
@@ -827,6 +895,10 @@ class SecretBackendConnectionMssqlArgs:
             pulumi.set(__self__, "max_idle_connections", max_idle_connections)
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
         if username_template is not None:
             pulumi.set(__self__, "username_template", username_template)
 
@@ -899,6 +971,30 @@ class SecretBackendConnectionMssqlArgs:
         pulumi.set(self, "max_open_connections", value)
 
     @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential password used in the connection URL.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential username used in the connection URL.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+    @property
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
@@ -918,8 +1014,10 @@ class SecretBackendConnectionMysqlArgs:
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
                  tls_ca: Optional[pulumi.Input[str]] = None,
                  tls_certificate_key: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. See
@@ -931,8 +1029,10 @@ class SecretBackendConnectionMysqlArgs:
                the database.
         :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL.
         :param pulumi.Input[str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL.
         :param pulumi.Input[str] username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
@@ -943,10 +1043,14 @@ class SecretBackendConnectionMysqlArgs:
             pulumi.set(__self__, "max_idle_connections", max_idle_connections)
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if tls_ca is not None:
             pulumi.set(__self__, "tls_ca", tls_ca)
         if tls_certificate_key is not None:
             pulumi.set(__self__, "tls_certificate_key", tls_certificate_key)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
         if username_template is not None:
             pulumi.set(__self__, "username_template", username_template)
 
@@ -1002,6 +1106,18 @@ class SecretBackendConnectionMysqlArgs:
     @max_open_connections.setter
     def max_open_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_open_connections", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential password used in the connection URL.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
 
     @property
     @pulumi.getter(name="tlsCa")
@@ -1028,6 +1144,18 @@ class SecretBackendConnectionMysqlArgs:
         pulumi.set(self, "tls_certificate_key", value)
 
     @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential username used in the connection URL.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+    @property
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1047,6 +1175,8 @@ class SecretBackendConnectionMysqlAuroraArgs:
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. See
@@ -1058,6 +1188,8 @@ class SecretBackendConnectionMysqlAuroraArgs:
                the database.
         :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL.
         :param pulumi.Input[str] username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
@@ -1068,6 +1200,10 @@ class SecretBackendConnectionMysqlAuroraArgs:
             pulumi.set(__self__, "max_idle_connections", max_idle_connections)
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
         if username_template is not None:
             pulumi.set(__self__, "username_template", username_template)
 
@@ -1123,6 +1259,30 @@ class SecretBackendConnectionMysqlAuroraArgs:
     @max_open_connections.setter
     def max_open_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_open_connections", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential password used in the connection URL.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential username used in the connection URL.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
 
     @property
     @pulumi.getter(name="usernameTemplate")
@@ -1144,6 +1304,8 @@ class SecretBackendConnectionMysqlLegacyArgs:
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. See
@@ -1155,6 +1317,8 @@ class SecretBackendConnectionMysqlLegacyArgs:
                the database.
         :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL.
         :param pulumi.Input[str] username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
@@ -1165,6 +1329,10 @@ class SecretBackendConnectionMysqlLegacyArgs:
             pulumi.set(__self__, "max_idle_connections", max_idle_connections)
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
         if username_template is not None:
             pulumi.set(__self__, "username_template", username_template)
 
@@ -1220,6 +1388,30 @@ class SecretBackendConnectionMysqlLegacyArgs:
     @max_open_connections.setter
     def max_open_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_open_connections", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential password used in the connection URL.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential username used in the connection URL.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
 
     @property
     @pulumi.getter(name="usernameTemplate")
@@ -1241,6 +1433,8 @@ class SecretBackendConnectionMysqlRdsArgs:
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. See
@@ -1252,6 +1446,8 @@ class SecretBackendConnectionMysqlRdsArgs:
                the database.
         :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL.
         :param pulumi.Input[str] username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
@@ -1262,6 +1458,10 @@ class SecretBackendConnectionMysqlRdsArgs:
             pulumi.set(__self__, "max_idle_connections", max_idle_connections)
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
         if username_template is not None:
             pulumi.set(__self__, "username_template", username_template)
 
@@ -1317,6 +1517,30 @@ class SecretBackendConnectionMysqlRdsArgs:
     @max_open_connections.setter
     def max_open_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_open_connections", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential password used in the connection URL.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential username used in the connection URL.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
 
     @property
     @pulumi.getter(name="usernameTemplate")
@@ -1338,6 +1562,8 @@ class SecretBackendConnectionOracleArgs:
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. See
@@ -1349,6 +1575,8 @@ class SecretBackendConnectionOracleArgs:
                the database.
         :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL.
         :param pulumi.Input[str] username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
@@ -1359,6 +1587,10 @@ class SecretBackendConnectionOracleArgs:
             pulumi.set(__self__, "max_idle_connections", max_idle_connections)
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
         if username_template is not None:
             pulumi.set(__self__, "username_template", username_template)
 
@@ -1414,6 +1646,30 @@ class SecretBackendConnectionOracleArgs:
     @max_open_connections.setter
     def max_open_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_open_connections", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential password used in the connection URL.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential username used in the connection URL.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
 
     @property
     @pulumi.getter(name="usernameTemplate")
@@ -1435,6 +1691,8 @@ class SecretBackendConnectionPostgresqlArgs:
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. See
@@ -1446,6 +1704,8 @@ class SecretBackendConnectionPostgresqlArgs:
                the database.
         :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
                the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL.
         :param pulumi.Input[str] username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         if connection_url is not None:
@@ -1456,6 +1716,10 @@ class SecretBackendConnectionPostgresqlArgs:
             pulumi.set(__self__, "max_idle_connections", max_idle_connections)
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
         if username_template is not None:
             pulumi.set(__self__, "username_template", username_template)
 
@@ -1511,6 +1775,30 @@ class SecretBackendConnectionPostgresqlArgs:
     @max_open_connections.setter
     def max_open_connections(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_open_connections", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential password used in the connection URL.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The root credential username used in the connection URL.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
 
     @property
     @pulumi.getter(name="usernameTemplate")

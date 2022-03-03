@@ -340,8 +340,9 @@ class _SecretBackendRootSignIntermediateState:
     def __init__(__self__, *,
                  alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
-                 ca_chain: Optional[pulumi.Input[str]] = None,
+                 ca_chains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
+                 certificate_bundle: Optional[pulumi.Input[str]] = None,
                  common_name: Optional[pulumi.Input[str]] = None,
                  country: Optional[pulumi.Input[str]] = None,
                  csr: Optional[pulumi.Input[str]] = None,
@@ -366,15 +367,17 @@ class _SecretBackendRootSignIntermediateState:
         Input properties used for looking up and filtering SecretBackendRootSignIntermediate resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
-        :param pulumi.Input[str] ca_chain: The CA chain
-        :param pulumi.Input[str] certificate: The certificate
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ca_chains: A list of the issuing and intermediate CA certificates in the `format` specified.
+        :param pulumi.Input[str] certificate: The intermediate CA certificate in the `format` specified.
+        :param pulumi.Input[str] certificate_bundle: The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+               Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
         :param pulumi.Input[str] common_name: CN of intermediate to create
         :param pulumi.Input[str] country: The country
         :param pulumi.Input[str] csr: The CSR
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
-        :param pulumi.Input[str] issuing_ca: The issuing CA
+        :param pulumi.Input[str] issuing_ca: The issuing CA certificate in the `format` specified.
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[str] organization: The organization
@@ -393,10 +396,12 @@ class _SecretBackendRootSignIntermediateState:
             pulumi.set(__self__, "alt_names", alt_names)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
-        if ca_chain is not None:
-            pulumi.set(__self__, "ca_chain", ca_chain)
+        if ca_chains is not None:
+            pulumi.set(__self__, "ca_chains", ca_chains)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
+        if certificate_bundle is not None:
+            pulumi.set(__self__, "certificate_bundle", certificate_bundle)
         if common_name is not None:
             pulumi.set(__self__, "common_name", common_name)
         if country is not None:
@@ -463,28 +468,41 @@ class _SecretBackendRootSignIntermediateState:
         pulumi.set(self, "backend", value)
 
     @property
-    @pulumi.getter(name="caChain")
-    def ca_chain(self) -> Optional[pulumi.Input[str]]:
+    @pulumi.getter(name="caChains")
+    def ca_chains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The CA chain
+        A list of the issuing and intermediate CA certificates in the `format` specified.
         """
-        return pulumi.get(self, "ca_chain")
+        return pulumi.get(self, "ca_chains")
 
-    @ca_chain.setter
-    def ca_chain(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "ca_chain", value)
+    @ca_chains.setter
+    def ca_chains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ca_chains", value)
 
     @property
     @pulumi.getter
     def certificate(self) -> Optional[pulumi.Input[str]]:
         """
-        The certificate
+        The intermediate CA certificate in the `format` specified.
         """
         return pulumi.get(self, "certificate")
 
     @certificate.setter
     def certificate(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "certificate", value)
+
+    @property
+    @pulumi.getter(name="certificateBundle")
+    def certificate_bundle(self) -> Optional[pulumi.Input[str]]:
+        """
+        The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+        Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
+        """
+        return pulumi.get(self, "certificate_bundle")
+
+    @certificate_bundle.setter
+    def certificate_bundle(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "certificate_bundle", value)
 
     @property
     @pulumi.getter(name="commonName")
@@ -562,7 +580,7 @@ class _SecretBackendRootSignIntermediateState:
     @pulumi.getter(name="issuingCa")
     def issuing_ca(self) -> Optional[pulumi.Input[str]]:
         """
-        The issuing CA
+        The issuing CA certificate in the `format` specified.
         """
         return pulumi.get(self, "issuing_ca")
 
@@ -893,8 +911,9 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             __props__.__dict__["ttl"] = ttl
             __props__.__dict__["uri_sans"] = uri_sans
             __props__.__dict__["use_csr_values"] = use_csr_values
-            __props__.__dict__["ca_chain"] = None
+            __props__.__dict__["ca_chains"] = None
             __props__.__dict__["certificate"] = None
+            __props__.__dict__["certificate_bundle"] = None
             __props__.__dict__["issuing_ca"] = None
             __props__.__dict__["serial"] = None
         super(SecretBackendRootSignIntermediate, __self__).__init__(
@@ -909,8 +928,9 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             backend: Optional[pulumi.Input[str]] = None,
-            ca_chain: Optional[pulumi.Input[str]] = None,
+            ca_chains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
+            certificate_bundle: Optional[pulumi.Input[str]] = None,
             common_name: Optional[pulumi.Input[str]] = None,
             country: Optional[pulumi.Input[str]] = None,
             csr: Optional[pulumi.Input[str]] = None,
@@ -940,15 +960,17 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
-        :param pulumi.Input[str] ca_chain: The CA chain
-        :param pulumi.Input[str] certificate: The certificate
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ca_chains: A list of the issuing and intermediate CA certificates in the `format` specified.
+        :param pulumi.Input[str] certificate: The intermediate CA certificate in the `format` specified.
+        :param pulumi.Input[str] certificate_bundle: The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+               Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
         :param pulumi.Input[str] common_name: CN of intermediate to create
         :param pulumi.Input[str] country: The country
         :param pulumi.Input[str] csr: The CSR
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
-        :param pulumi.Input[str] issuing_ca: The issuing CA
+        :param pulumi.Input[str] issuing_ca: The issuing CA certificate in the `format` specified.
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[str] organization: The organization
@@ -969,8 +991,9 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
 
         __props__.__dict__["alt_names"] = alt_names
         __props__.__dict__["backend"] = backend
-        __props__.__dict__["ca_chain"] = ca_chain
+        __props__.__dict__["ca_chains"] = ca_chains
         __props__.__dict__["certificate"] = certificate
+        __props__.__dict__["certificate_bundle"] = certificate_bundle
         __props__.__dict__["common_name"] = common_name
         __props__.__dict__["country"] = country
         __props__.__dict__["csr"] = csr
@@ -1010,20 +1033,29 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         return pulumi.get(self, "backend")
 
     @property
-    @pulumi.getter(name="caChain")
-    def ca_chain(self) -> pulumi.Output[str]:
+    @pulumi.getter(name="caChains")
+    def ca_chains(self) -> pulumi.Output[Sequence[str]]:
         """
-        The CA chain
+        A list of the issuing and intermediate CA certificates in the `format` specified.
         """
-        return pulumi.get(self, "ca_chain")
+        return pulumi.get(self, "ca_chains")
 
     @property
     @pulumi.getter
     def certificate(self) -> pulumi.Output[str]:
         """
-        The certificate
+        The intermediate CA certificate in the `format` specified.
         """
         return pulumi.get(self, "certificate")
+
+    @property
+    @pulumi.getter(name="certificateBundle")
+    def certificate_bundle(self) -> pulumi.Output[str]:
+        """
+        The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+        Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
+        """
+        return pulumi.get(self, "certificate_bundle")
 
     @property
     @pulumi.getter(name="commonName")
@@ -1077,7 +1109,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
     @pulumi.getter(name="issuingCa")
     def issuing_ca(self) -> pulumi.Output[str]:
         """
-        The issuing CA
+        The issuing CA certificate in the `format` specified.
         """
         return pulumi.get(self, "issuing_ca")
 

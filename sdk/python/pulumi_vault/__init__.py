@@ -57,6 +57,8 @@ if typing.TYPE_CHECKING:
     identity = __identity
     import pulumi_vault.jwt as __jwt
     jwt = __jwt
+    import pulumi_vault.kmip as __kmip
+    kmip = __kmip
     import pulumi_vault.kubernetes as __kubernetes
     kubernetes = __kubernetes
     import pulumi_vault.ldap as __ldap
@@ -91,6 +93,7 @@ else:
     github = _utilities.lazy_import('pulumi_vault.github')
     identity = _utilities.lazy_import('pulumi_vault.identity')
     jwt = _utilities.lazy_import('pulumi_vault.jwt')
+    kmip = _utilities.lazy_import('pulumi_vault.kmip')
     kubernetes = _utilities.lazy_import('pulumi_vault.kubernetes')
     ldap = _utilities.lazy_import('pulumi_vault.ldap')
     okta = _utilities.lazy_import('pulumi_vault.okta')
@@ -631,6 +634,30 @@ _utilities.register(
   "fqn": "pulumi_vault.jwt",
   "classes": {
    "vault:jwt/authBackendRole:AuthBackendRole": "AuthBackendRole"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "kmip/secretBackend",
+  "fqn": "pulumi_vault.kmip",
+  "classes": {
+   "vault:kmip/secretBackend:SecretBackend": "SecretBackend"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "kmip/secretRole",
+  "fqn": "pulumi_vault.kmip",
+  "classes": {
+   "vault:kmip/secretRole:SecretRole": "SecretRole"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "kmip/secretScope",
+  "fqn": "pulumi_vault.kmip",
+  "classes": {
+   "vault:kmip/secretScope:SecretScope": "SecretScope"
   }
  },
  {

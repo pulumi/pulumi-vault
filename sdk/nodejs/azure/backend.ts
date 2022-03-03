@@ -60,6 +60,11 @@ export class Backend extends pulumi.CustomResource {
      * - The tenant id for the Azure Active Directory.
      */
     public readonly tenantId!: pulumi.Output<string>;
+    /**
+     * - Use the Microsoft Graph API introduced in `vault-1.9`. 
+     * Should be set to true for `vault-1.10+`
+     */
+    public readonly useMicrosoftGraphApi!: pulumi.Output<boolean>;
 
     /**
      * Create a Backend resource with the given unique name, arguments, and options.
@@ -81,6 +86,7 @@ export class Backend extends pulumi.CustomResource {
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["subscriptionId"] = state ? state.subscriptionId : undefined;
             resourceInputs["tenantId"] = state ? state.tenantId : undefined;
+            resourceInputs["useMicrosoftGraphApi"] = state ? state.useMicrosoftGraphApi : undefined;
         } else {
             const args = argsOrState as BackendArgs | undefined;
             if ((!args || args.subscriptionId === undefined) && !opts.urn) {
@@ -96,6 +102,7 @@ export class Backend extends pulumi.CustomResource {
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["subscriptionId"] = args ? args.subscriptionId : undefined;
             resourceInputs["tenantId"] = args ? args.tenantId : undefined;
+            resourceInputs["useMicrosoftGraphApi"] = args ? args.useMicrosoftGraphApi : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Backend.__pulumiType, name, resourceInputs, opts);
@@ -134,6 +141,11 @@ export interface BackendState {
      * - The tenant id for the Azure Active Directory.
      */
     tenantId?: pulumi.Input<string>;
+    /**
+     * - Use the Microsoft Graph API introduced in `vault-1.9`. 
+     * Should be set to true for `vault-1.10+`
+     */
+    useMicrosoftGraphApi?: pulumi.Input<boolean>;
 }
 
 /**
@@ -168,4 +180,9 @@ export interface BackendArgs {
      * - The tenant id for the Azure Active Directory.
      */
     tenantId: pulumi.Input<string>;
+    /**
+     * - Use the Microsoft Graph API introduced in `vault-1.9`. 
+     * Should be set to true for `vault-1.10+`
+     */
+    useMicrosoftGraphApi?: pulumi.Input<boolean>;
 }

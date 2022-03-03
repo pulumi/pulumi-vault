@@ -16,7 +16,9 @@ type SecretBackendIntermediateSetSigned struct {
 
 	// The PKI secret backend the resource belongs to.
 	Backend pulumi.StringOutput `pulumi:"backend"`
-	// The certificate
+	// Specifies the PEM encoded certificate. May optionally append additional
+	// CA certificates to populate the whole chain, which will then enable returning the full chain from
+	// issue and sign operations.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
 }
 
@@ -57,14 +59,18 @@ func GetSecretBackendIntermediateSetSigned(ctx *pulumi.Context,
 type secretBackendIntermediateSetSignedState struct {
 	// The PKI secret backend the resource belongs to.
 	Backend *string `pulumi:"backend"`
-	// The certificate
+	// Specifies the PEM encoded certificate. May optionally append additional
+	// CA certificates to populate the whole chain, which will then enable returning the full chain from
+	// issue and sign operations.
 	Certificate *string `pulumi:"certificate"`
 }
 
 type SecretBackendIntermediateSetSignedState struct {
 	// The PKI secret backend the resource belongs to.
 	Backend pulumi.StringPtrInput
-	// The certificate
+	// Specifies the PEM encoded certificate. May optionally append additional
+	// CA certificates to populate the whole chain, which will then enable returning the full chain from
+	// issue and sign operations.
 	Certificate pulumi.StringPtrInput
 }
 
@@ -75,7 +81,9 @@ func (SecretBackendIntermediateSetSignedState) ElementType() reflect.Type {
 type secretBackendIntermediateSetSignedArgs struct {
 	// The PKI secret backend the resource belongs to.
 	Backend string `pulumi:"backend"`
-	// The certificate
+	// Specifies the PEM encoded certificate. May optionally append additional
+	// CA certificates to populate the whole chain, which will then enable returning the full chain from
+	// issue and sign operations.
 	Certificate string `pulumi:"certificate"`
 }
 
@@ -83,7 +91,9 @@ type secretBackendIntermediateSetSignedArgs struct {
 type SecretBackendIntermediateSetSignedArgs struct {
 	// The PKI secret backend the resource belongs to.
 	Backend pulumi.StringInput
-	// The certificate
+	// Specifies the PEM encoded certificate. May optionally append additional
+	// CA certificates to populate the whole chain, which will then enable returning the full chain from
+	// issue and sign operations.
 	Certificate pulumi.StringInput
 }
 

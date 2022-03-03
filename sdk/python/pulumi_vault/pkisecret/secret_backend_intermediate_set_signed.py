@@ -18,7 +18,9 @@ class SecretBackendIntermediateSetSignedArgs:
         """
         The set of arguments for constructing a SecretBackendIntermediateSetSigned resource.
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
-        :param pulumi.Input[str] certificate: The certificate
+        :param pulumi.Input[str] certificate: Specifies the PEM encoded certificate. May optionally append additional
+               CA certificates to populate the whole chain, which will then enable returning the full chain from
+               issue and sign operations.
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "certificate", certificate)
@@ -39,7 +41,9 @@ class SecretBackendIntermediateSetSignedArgs:
     @pulumi.getter
     def certificate(self) -> pulumi.Input[str]:
         """
-        The certificate
+        Specifies the PEM encoded certificate. May optionally append additional
+        CA certificates to populate the whole chain, which will then enable returning the full chain from
+        issue and sign operations.
         """
         return pulumi.get(self, "certificate")
 
@@ -56,7 +60,9 @@ class _SecretBackendIntermediateSetSignedState:
         """
         Input properties used for looking up and filtering SecretBackendIntermediateSetSigned resources.
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
-        :param pulumi.Input[str] certificate: The certificate
+        :param pulumi.Input[str] certificate: Specifies the PEM encoded certificate. May optionally append additional
+               CA certificates to populate the whole chain, which will then enable returning the full chain from
+               issue and sign operations.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -79,7 +85,9 @@ class _SecretBackendIntermediateSetSignedState:
     @pulumi.getter
     def certificate(self) -> Optional[pulumi.Input[str]]:
         """
-        The certificate
+        Specifies the PEM encoded certificate. May optionally append additional
+        CA certificates to populate the whole chain, which will then enable returning the full chain from
+        issue and sign operations.
         """
         return pulumi.get(self, "certificate")
 
@@ -101,7 +109,9 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
-        :param pulumi.Input[str] certificate: The certificate
+        :param pulumi.Input[str] certificate: Specifies the PEM encoded certificate. May optionally append additional
+               CA certificates to populate the whole chain, which will then enable returning the full chain from
+               issue and sign operations.
         """
         ...
     @overload
@@ -166,7 +176,9 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
-        :param pulumi.Input[str] certificate: The certificate
+        :param pulumi.Input[str] certificate: Specifies the PEM encoded certificate. May optionally append additional
+               CA certificates to populate the whole chain, which will then enable returning the full chain from
+               issue and sign operations.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -188,7 +200,9 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
     @pulumi.getter
     def certificate(self) -> pulumi.Output[str]:
         """
-        The certificate
+        Specifies the PEM encoded certificate. May optionally append additional
+        CA certificates to populate the whole chain, which will then enable returning the full chain from
+        issue and sign operations.
         """
         return pulumi.get(self, "certificate")
 

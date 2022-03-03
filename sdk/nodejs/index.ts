@@ -41,6 +41,7 @@ import * as generic from "./generic";
 import * as github from "./github";
 import * as identity from "./identity";
 import * as jwt from "./jwt";
+import * as kmip from "./kmip";
 import * as kubernetes from "./kubernetes";
 import * as ldap from "./ldap";
 import * as okta from "./okta";
@@ -67,6 +68,7 @@ export {
     github,
     identity,
     jwt,
+    kmip,
     kubernetes,
     ldap,
     okta,

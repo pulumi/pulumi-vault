@@ -125,6 +125,14 @@ namespace Pulumi.Vault.Database
         public Output<Outputs.SecretBackendConnectionOracle?> Oracle { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies the name of the plugin to use. All values must be prefixed
+        /// to match the corresponding database engine directive.
+        /// For example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+        /// </summary>
+        [Output("pluginName")]
+        public Output<string> PluginName { get; private set; } = null!;
+
+        /// <summary>
         /// A nested block containing configuration options for PostgreSQL connections.
         /// </summary>
         [Output("postgresql")]
@@ -317,6 +325,14 @@ namespace Pulumi.Vault.Database
         public Input<Inputs.SecretBackendConnectionOracleArgs>? Oracle { get; set; }
 
         /// <summary>
+        /// Specifies the name of the plugin to use. All values must be prefixed
+        /// to match the corresponding database engine directive.
+        /// For example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+        /// </summary>
+        [Input("pluginName")]
+        public Input<string>? PluginName { get; set; }
+
+        /// <summary>
         /// A nested block containing configuration options for PostgreSQL connections.
         /// </summary>
         [Input("postgresql")]
@@ -474,6 +490,14 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Input("oracle")]
         public Input<Inputs.SecretBackendConnectionOracleGetArgs>? Oracle { get; set; }
+
+        /// <summary>
+        /// Specifies the name of the plugin to use. All values must be prefixed
+        /// to match the corresponding database engine directive.
+        /// For example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+        /// </summary>
+        [Input("pluginName")]
+        public Input<string>? PluginName { get; set; }
 
         /// <summary>
         /// A nested block containing configuration options for PostgreSQL connections.

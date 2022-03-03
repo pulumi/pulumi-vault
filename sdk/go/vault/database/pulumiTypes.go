@@ -801,6 +801,10 @@ type SecretBackendConnectionHana struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// The root credential password used in the connection URL.
+	Password *string `pulumi:"password"`
+	// The root credential username used in the connection URL.
+	Username *string `pulumi:"username"`
 }
 
 // SecretBackendConnectionHanaInput is an input type that accepts SecretBackendConnectionHanaArgs and SecretBackendConnectionHanaOutput values.
@@ -828,6 +832,10 @@ type SecretBackendConnectionHanaArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	// The root credential password used in the connection URL.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The root credential username used in the connection URL.
+	Username pulumi.StringPtrInput `pulumi:"username"`
 }
 
 func (SecretBackendConnectionHanaArgs) ElementType() reflect.Type {
@@ -932,6 +940,16 @@ func (o SecretBackendConnectionHanaOutput) MaxOpenConnections() pulumi.IntPtrOut
 	return o.ApplyT(func(v SecretBackendConnectionHana) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionHanaOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionHana) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionHanaOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionHana) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionHanaPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionHanaPtrOutput) ElementType() reflect.Type {
@@ -999,6 +1017,26 @@ func (o SecretBackendConnectionHanaPtrOutput) MaxOpenConnections() pulumi.IntPtr
 		}
 		return v.MaxOpenConnections
 	}).(pulumi.IntPtrOutput)
+}
+
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionHanaPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionHana) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionHanaPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionHana) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
 }
 
 type SecretBackendConnectionInfluxdb struct {
@@ -1339,6 +1377,10 @@ type SecretBackendConnectionMongodb struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// The root credential password used in the connection URL.
+	Password *string `pulumi:"password"`
+	// The root credential username used in the connection URL.
+	Username *string `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
@@ -1368,6 +1410,10 @@ type SecretBackendConnectionMongodbArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	// The root credential password used in the connection URL.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The root credential username used in the connection URL.
+	Username pulumi.StringPtrInput `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
@@ -1474,6 +1520,16 @@ func (o SecretBackendConnectionMongodbOutput) MaxOpenConnections() pulumi.IntPtr
 	return o.ApplyT(func(v SecretBackendConnectionMongodb) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionMongodbOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionMongodbOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
 // - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 func (o SecretBackendConnectionMongodbOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
@@ -1546,6 +1602,26 @@ func (o SecretBackendConnectionMongodbPtrOutput) MaxOpenConnections() pulumi.Int
 		}
 		return v.MaxOpenConnections
 	}).(pulumi.IntPtrOutput)
+}
+
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionMongodbPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMongodb) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionMongodbPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMongodb) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
 }
 
 // - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
@@ -1752,6 +1828,10 @@ type SecretBackendConnectionMssql struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// The root credential password used in the connection URL.
+	Password *string `pulumi:"password"`
+	// The root credential username used in the connection URL.
+	Username *string `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
@@ -1786,6 +1866,10 @@ type SecretBackendConnectionMssqlArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	// The root credential password used in the connection URL.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The root credential username used in the connection URL.
+	Username pulumi.StringPtrInput `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
@@ -1900,6 +1984,16 @@ func (o SecretBackendConnectionMssqlOutput) MaxOpenConnections() pulumi.IntPtrOu
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionMssqlOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMssql) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionMssqlOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMssql) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
 // - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 func (o SecretBackendConnectionMssqlOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
@@ -1987,6 +2081,26 @@ func (o SecretBackendConnectionMssqlPtrOutput) MaxOpenConnections() pulumi.IntPt
 	}).(pulumi.IntPtrOutput)
 }
 
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionMssqlPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMssql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionMssqlPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMssql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
 // - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 func (o SecretBackendConnectionMssqlPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMssql) *string {
@@ -2011,10 +2125,14 @@ type SecretBackendConnectionMysql struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// The root credential password used in the connection URL.
+	Password *string `pulumi:"password"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
+	// The root credential username used in the connection URL.
+	Username *string `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
@@ -2044,10 +2162,14 @@ type SecretBackendConnectionMysqlArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	// The root credential password used in the connection URL.
+	Password pulumi.StringPtrInput `pulumi:"password"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
+	// The root credential username used in the connection URL.
+	Username pulumi.StringPtrInput `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
@@ -2154,6 +2276,11 @@ func (o SecretBackendConnectionMysqlOutput) MaxOpenConnections() pulumi.IntPtrOu
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionMysqlOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
 // x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 func (o SecretBackendConnectionMysqlOutput) TlsCa() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.TlsCa }).(pulumi.StringPtrOutput)
@@ -2162,6 +2289,11 @@ func (o SecretBackendConnectionMysqlOutput) TlsCa() pulumi.StringPtrOutput {
 // x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 func (o SecretBackendConnectionMysqlOutput) TlsCertificateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionMysqlOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
 // - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
@@ -2238,6 +2370,16 @@ func (o SecretBackendConnectionMysqlPtrOutput) MaxOpenConnections() pulumi.IntPt
 	}).(pulumi.IntPtrOutput)
 }
 
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionMysqlPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
 // x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 func (o SecretBackendConnectionMysqlPtrOutput) TlsCa() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysql) *string {
@@ -2255,6 +2397,16 @@ func (o SecretBackendConnectionMysqlPtrOutput) TlsCertificateKey() pulumi.String
 			return nil
 		}
 		return v.TlsCertificateKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionMysqlPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -2282,6 +2434,10 @@ type SecretBackendConnectionMysqlAurora struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// The root credential password used in the connection URL.
+	Password *string `pulumi:"password"`
+	// The root credential username used in the connection URL.
+	Username *string `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
@@ -2311,6 +2467,10 @@ type SecretBackendConnectionMysqlAuroraArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	// The root credential password used in the connection URL.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The root credential username used in the connection URL.
+	Username pulumi.StringPtrInput `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
@@ -2417,6 +2577,16 @@ func (o SecretBackendConnectionMysqlAuroraOutput) MaxOpenConnections() pulumi.In
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionMysqlAuroraOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionMysqlAuroraOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
 // - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 func (o SecretBackendConnectionMysqlAuroraOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
@@ -2491,6 +2661,26 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) MaxOpenConnections() pulumi
 	}).(pulumi.IntPtrOutput)
 }
 
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionMysqlAuroraPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionMysqlAuroraPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
 // - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *string {
@@ -2515,6 +2705,10 @@ type SecretBackendConnectionMysqlLegacy struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// The root credential password used in the connection URL.
+	Password *string `pulumi:"password"`
+	// The root credential username used in the connection URL.
+	Username *string `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
@@ -2544,6 +2738,10 @@ type SecretBackendConnectionMysqlLegacyArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	// The root credential password used in the connection URL.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The root credential username used in the connection URL.
+	Username pulumi.StringPtrInput `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
@@ -2650,6 +2848,16 @@ func (o SecretBackendConnectionMysqlLegacyOutput) MaxOpenConnections() pulumi.In
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionMysqlLegacyOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionMysqlLegacyOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
 // - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 func (o SecretBackendConnectionMysqlLegacyOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
@@ -2724,6 +2932,26 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) MaxOpenConnections() pulumi
 	}).(pulumi.IntPtrOutput)
 }
 
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionMysqlLegacyPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionMysqlLegacyPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
 // - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *string {
@@ -2748,6 +2976,10 @@ type SecretBackendConnectionMysqlRds struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// The root credential password used in the connection URL.
+	Password *string `pulumi:"password"`
+	// The root credential username used in the connection URL.
+	Username *string `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
@@ -2777,6 +3009,10 @@ type SecretBackendConnectionMysqlRdsArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	// The root credential password used in the connection URL.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The root credential username used in the connection URL.
+	Username pulumi.StringPtrInput `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
@@ -2883,6 +3119,16 @@ func (o SecretBackendConnectionMysqlRdsOutput) MaxOpenConnections() pulumi.IntPt
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionMysqlRdsOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionMysqlRdsOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
 // - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 func (o SecretBackendConnectionMysqlRdsOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
@@ -2957,6 +3203,26 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) MaxOpenConnections() pulumi.In
 	}).(pulumi.IntPtrOutput)
 }
 
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionMysqlRdsPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionMysqlRdsPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
 // - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 func (o SecretBackendConnectionMysqlRdsPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *string {
@@ -2981,6 +3247,10 @@ type SecretBackendConnectionOracle struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// The root credential password used in the connection URL.
+	Password *string `pulumi:"password"`
+	// The root credential username used in the connection URL.
+	Username *string `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
@@ -3010,6 +3280,10 @@ type SecretBackendConnectionOracleArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	// The root credential password used in the connection URL.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The root credential username used in the connection URL.
+	Username pulumi.StringPtrInput `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
@@ -3116,6 +3390,16 @@ func (o SecretBackendConnectionOracleOutput) MaxOpenConnections() pulumi.IntPtrO
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionOracleOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionOracle) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionOracleOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionOracle) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
 // - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 func (o SecretBackendConnectionOracleOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
@@ -3190,6 +3474,26 @@ func (o SecretBackendConnectionOraclePtrOutput) MaxOpenConnections() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionOraclePtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionOracle) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionOraclePtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionOracle) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
 // - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 func (o SecretBackendConnectionOraclePtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionOracle) *string {
@@ -3214,6 +3518,10 @@ type SecretBackendConnectionPostgresql struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// The root credential password used in the connection URL.
+	Password *string `pulumi:"password"`
+	// The root credential username used in the connection URL.
+	Username *string `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
@@ -3243,6 +3551,10 @@ type SecretBackendConnectionPostgresqlArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	// The root credential password used in the connection URL.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The root credential username used in the connection URL.
+	Username pulumi.StringPtrInput `pulumi:"username"`
 	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
@@ -3349,6 +3661,16 @@ func (o SecretBackendConnectionPostgresqlOutput) MaxOpenConnections() pulumi.Int
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionPostgresqlOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionPostgresqlOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
 // - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
 func (o SecretBackendConnectionPostgresqlOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
@@ -3421,6 +3743,26 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) MaxOpenConnections() pulumi.
 		}
 		return v.MaxOpenConnections
 	}).(pulumi.IntPtrOutput)
+}
+
+// The root credential password used in the connection URL.
+func (o SecretBackendConnectionPostgresqlPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// The root credential username used in the connection URL.
+func (o SecretBackendConnectionPostgresqlPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
 }
 
 // - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.

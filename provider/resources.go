@@ -50,6 +50,7 @@ const (
 	githubMod         = "GitHub"
 	identityMod       = "Identity"
 	jwtMod            = "Jwt"
+	kmipMod           = "Kmip"
 	kubernetesMod     = "Kubernetes"
 	ldapMod           = "Ldap"
 	oktaMod           = "Okta"
@@ -293,6 +294,11 @@ func Provider() tfbridge.ProviderInfo {
 			// JWT
 			"vault_jwt_auth_backend":      {Tok: makeResource(jwtMod, "AuthBackend")},
 			"vault_jwt_auth_backend_role": {Tok: makeResource(jwtMod, "AuthBackendRole")},
+
+			// KMIP
+			"vault_kmip_secret_backend": {Tok: makeResource(kmipMod, "SecretBackend")},
+			"vault_kmip_secret_role":    {Tok: makeResource(kmipMod, "SecretRole")},
+			"vault_kmip_secret_scope":   {Tok: makeResource(kmipMod, "SecretScope")},
 
 			// Kubernetes
 			"vault_kubernetes_auth_backend_config": {

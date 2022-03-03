@@ -16,6 +16,7 @@ class AuthBackendArgs:
                  url: pulumi.Input[str],
                  binddn: Optional[pulumi.Input[str]] = None,
                  bindpass: Optional[pulumi.Input[str]] = None,
+                 case_sensitive_names: Optional[pulumi.Input[bool]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  client_tls_cert: Optional[pulumi.Input[str]] = None,
                  client_tls_key: Optional[pulumi.Input[str]] = None,
@@ -49,6 +50,7 @@ class AuthBackendArgs:
         :param pulumi.Input[str] url: The URL of the LDAP server
         :param pulumi.Input[str] binddn: DN of object to bind when performing user search
         :param pulumi.Input[str] bindpass: Password to use with `binddn` when performing user search
+        :param pulumi.Input[bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[str] certificate: Trusted CA to validate TLS certificate
         :param pulumi.Input[str] description: Description for the LDAP auth backend mount
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by groupfilter
@@ -97,6 +99,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "binddn", binddn)
         if bindpass is not None:
             pulumi.set(__self__, "bindpass", bindpass)
+        if case_sensitive_names is not None:
+            pulumi.set(__self__, "case_sensitive_names", case_sensitive_names)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
         if client_tls_cert is not None:
@@ -189,6 +193,18 @@ class AuthBackendArgs:
     @bindpass.setter
     def bindpass(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "bindpass", value)
+
+    @property
+    @pulumi.getter(name="caseSensitiveNames")
+    def case_sensitive_names(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
+        """
+        return pulumi.get(self, "case_sensitive_names")
+
+    @case_sensitive_names.setter
+    def case_sensitive_names(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "case_sensitive_names", value)
 
     @property
     @pulumi.getter
@@ -539,6 +555,7 @@ class _AuthBackendState:
                  accessor: Optional[pulumi.Input[str]] = None,
                  binddn: Optional[pulumi.Input[str]] = None,
                  bindpass: Optional[pulumi.Input[str]] = None,
+                 case_sensitive_names: Optional[pulumi.Input[bool]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  client_tls_cert: Optional[pulumi.Input[str]] = None,
                  client_tls_key: Optional[pulumi.Input[str]] = None,
@@ -573,6 +590,7 @@ class _AuthBackendState:
         :param pulumi.Input[str] accessor: The accessor for this auth mount.
         :param pulumi.Input[str] binddn: DN of object to bind when performing user search
         :param pulumi.Input[str] bindpass: Password to use with `binddn` when performing user search
+        :param pulumi.Input[bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[str] certificate: Trusted CA to validate TLS certificate
         :param pulumi.Input[str] description: Description for the LDAP auth backend mount
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by groupfilter
@@ -623,6 +641,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "binddn", binddn)
         if bindpass is not None:
             pulumi.set(__self__, "bindpass", bindpass)
+        if case_sensitive_names is not None:
+            pulumi.set(__self__, "case_sensitive_names", case_sensitive_names)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
         if client_tls_cert is not None:
@@ -717,6 +737,18 @@ class _AuthBackendState:
     @bindpass.setter
     def bindpass(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "bindpass", value)
+
+    @property
+    @pulumi.getter(name="caseSensitiveNames")
+    def case_sensitive_names(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
+        """
+        return pulumi.get(self, "case_sensitive_names")
+
+    @case_sensitive_names.setter
+    def case_sensitive_names(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "case_sensitive_names", value)
 
     @property
     @pulumi.getter
@@ -1080,6 +1112,7 @@ class AuthBackend(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  binddn: Optional[pulumi.Input[str]] = None,
                  bindpass: Optional[pulumi.Input[str]] = None,
+                 case_sensitive_names: Optional[pulumi.Input[bool]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  client_tls_cert: Optional[pulumi.Input[str]] = None,
                  client_tls_key: Optional[pulumi.Input[str]] = None,
@@ -1142,6 +1175,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] binddn: DN of object to bind when performing user search
         :param pulumi.Input[str] bindpass: Password to use with `binddn` when performing user search
+        :param pulumi.Input[bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[str] certificate: Trusted CA to validate TLS certificate
         :param pulumi.Input[str] description: Description for the LDAP auth backend mount
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by groupfilter
@@ -1237,6 +1271,7 @@ class AuthBackend(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  binddn: Optional[pulumi.Input[str]] = None,
                  bindpass: Optional[pulumi.Input[str]] = None,
+                 case_sensitive_names: Optional[pulumi.Input[bool]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  client_tls_cert: Optional[pulumi.Input[str]] = None,
                  client_tls_key: Optional[pulumi.Input[str]] = None,
@@ -1280,6 +1315,7 @@ class AuthBackend(pulumi.CustomResource):
 
             __props__.__dict__["binddn"] = binddn
             __props__.__dict__["bindpass"] = bindpass
+            __props__.__dict__["case_sensitive_names"] = case_sensitive_names
             __props__.__dict__["certificate"] = certificate
             __props__.__dict__["client_tls_cert"] = client_tls_cert
             __props__.__dict__["client_tls_key"] = client_tls_key
@@ -1325,6 +1361,7 @@ class AuthBackend(pulumi.CustomResource):
             accessor: Optional[pulumi.Input[str]] = None,
             binddn: Optional[pulumi.Input[str]] = None,
             bindpass: Optional[pulumi.Input[str]] = None,
+            case_sensitive_names: Optional[pulumi.Input[bool]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
             client_tls_cert: Optional[pulumi.Input[str]] = None,
             client_tls_key: Optional[pulumi.Input[str]] = None,
@@ -1364,6 +1401,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] accessor: The accessor for this auth mount.
         :param pulumi.Input[str] binddn: DN of object to bind when performing user search
         :param pulumi.Input[str] bindpass: Password to use with `binddn` when performing user search
+        :param pulumi.Input[bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[str] certificate: Trusted CA to validate TLS certificate
         :param pulumi.Input[str] description: Description for the LDAP auth backend mount
         :param pulumi.Input[str] groupattr: LDAP attribute to follow on objects returned by groupfilter
@@ -1415,6 +1453,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["accessor"] = accessor
         __props__.__dict__["binddn"] = binddn
         __props__.__dict__["bindpass"] = bindpass
+        __props__.__dict__["case_sensitive_names"] = case_sensitive_names
         __props__.__dict__["certificate"] = certificate
         __props__.__dict__["client_tls_cert"] = client_tls_cert
         __props__.__dict__["client_tls_key"] = client_tls_key
@@ -1469,6 +1508,14 @@ class AuthBackend(pulumi.CustomResource):
         Password to use with `binddn` when performing user search
         """
         return pulumi.get(self, "bindpass")
+
+    @property
+    @pulumi.getter(name="caseSensitiveNames")
+    def case_sensitive_names(self) -> pulumi.Output[bool]:
+        """
+        Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
+        """
+        return pulumi.get(self, "case_sensitive_names")
 
     @property
     @pulumi.getter

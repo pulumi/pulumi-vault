@@ -74,6 +74,10 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly bindpass!: pulumi.Output<string>;
     /**
+     * Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
+     */
+    public readonly caseSensitiveNames!: pulumi.Output<boolean>;
+    /**
      * Trusted CA to validate TLS certificate
      */
     public readonly certificate!: pulumi.Output<string>;
@@ -212,6 +216,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["accessor"] = state ? state.accessor : undefined;
             resourceInputs["binddn"] = state ? state.binddn : undefined;
             resourceInputs["bindpass"] = state ? state.bindpass : undefined;
+            resourceInputs["caseSensitiveNames"] = state ? state.caseSensitiveNames : undefined;
             resourceInputs["certificate"] = state ? state.certificate : undefined;
             resourceInputs["clientTlsCert"] = state ? state.clientTlsCert : undefined;
             resourceInputs["clientTlsKey"] = state ? state.clientTlsKey : undefined;
@@ -248,6 +253,7 @@ export class AuthBackend extends pulumi.CustomResource {
             }
             resourceInputs["binddn"] = args ? args.binddn : undefined;
             resourceInputs["bindpass"] = args ? args.bindpass : undefined;
+            resourceInputs["caseSensitiveNames"] = args ? args.caseSensitiveNames : undefined;
             resourceInputs["certificate"] = args ? args.certificate : undefined;
             resourceInputs["clientTlsCert"] = args ? args.clientTlsCert : undefined;
             resourceInputs["clientTlsKey"] = args ? args.clientTlsKey : undefined;
@@ -300,6 +306,10 @@ export interface AuthBackendState {
      * Password to use with `binddn` when performing user search
      */
     bindpass?: pulumi.Input<string>;
+    /**
+     * Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
+     */
+    caseSensitiveNames?: pulumi.Input<boolean>;
     /**
      * Trusted CA to validate TLS certificate
      */
@@ -436,6 +446,10 @@ export interface AuthBackendArgs {
      * Password to use with `binddn` when performing user search
      */
     bindpass?: pulumi.Input<string>;
+    /**
+     * Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
+     */
+    caseSensitiveNames?: pulumi.Input<boolean>;
     /**
      * Trusted CA to validate TLS certificate
      */

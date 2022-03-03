@@ -54,6 +54,13 @@ namespace Pulumi.Vault.Azure
         [Output("tenantId")]
         public Output<string> TenantId { get; private set; } = null!;
 
+        /// <summary>
+        /// - Use the Microsoft Graph API introduced in `vault-1.9`. 
+        /// Should be set to true for `vault-1.10+`
+        /// </summary>
+        [Output("useMicrosoftGraphApi")]
+        public Output<bool> UseMicrosoftGraphApi { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Backend resource with the given unique name, arguments, and options.
@@ -142,6 +149,13 @@ namespace Pulumi.Vault.Azure
         [Input("tenantId", required: true)]
         public Input<string> TenantId { get; set; } = null!;
 
+        /// <summary>
+        /// - Use the Microsoft Graph API introduced in `vault-1.9`. 
+        /// Should be set to true for `vault-1.10+`
+        /// </summary>
+        [Input("useMicrosoftGraphApi")]
+        public Input<bool>? UseMicrosoftGraphApi { get; set; }
+
         public BackendArgs()
         {
         }
@@ -190,6 +204,13 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("tenantId")]
         public Input<string>? TenantId { get; set; }
+
+        /// <summary>
+        /// - Use the Microsoft Graph API introduced in `vault-1.9`. 
+        /// Should be set to true for `vault-1.10+`
+        /// </summary>
+        [Input("useMicrosoftGraphApi")]
+        public Input<bool>? UseMicrosoftGraphApi { get; set; }
 
         public BackendState()
         {

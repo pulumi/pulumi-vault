@@ -68,6 +68,50 @@ namespace Pulumi.Vault.Identity
     /// 
     /// }
     /// ```
+    /// ## Caveats
+    /// 
+    /// It's important to note that Vault identity groups names are *case-insensitive*. For example the following resources would be equivalent.
+    /// Applying this configuration would result in the provider failing to create one of the identity groups, since the resources share the same `name`.
+    /// 
+    /// This sort of pattern should be avoided:
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var internalIdentity_groupGroup = new Vault.Identity.Group("internalIdentity/groupGroup", new Vault.Identity.GroupArgs
+    ///         {
+    ///             Metadata = 
+    ///             {
+    ///                 { "version", "2" },
+    ///             },
+    ///             Policies = 
+    ///             {
+    ///                 "dev",
+    ///                 "test",
+    ///             },
+    ///             Type = "internal",
+    ///         });
+    ///         var internalGroup = new Vault.Identity.Group("internalGroup", new Vault.Identity.GroupArgs
+    ///         {
+    ///             Metadata = 
+    ///             {
+    ///                 { "version", "2" },
+    ///             },
+    ///             Policies = 
+    ///             {
+    ///                 "dev",
+    ///                 "test",
+    ///             },
+    ///             Type = "internal",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// 
     /// ## Import
     /// 

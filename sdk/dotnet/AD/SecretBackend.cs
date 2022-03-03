@@ -99,6 +99,12 @@ namespace Pulumi.Vault.AD
         public Output<bool?> Discoverdn { get; private set; } = null!;
 
         /// <summary>
+        /// **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
+        /// </summary>
+        [Output("formatter")]
+        public Output<string> Formatter { get; private set; } = null!;
+
+        /// <summary>
         /// LDAP attribute to follow on objects returned by &lt;groupfilter&gt; in order to enumerate
         /// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
         /// </summary>
@@ -131,6 +137,12 @@ namespace Pulumi.Vault.AD
         /// </summary>
         [Output("lastRotationTolerance")]
         public Output<int> LastRotationTolerance { get; private set; } = null!;
+
+        /// <summary>
+        /// **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
+        /// </summary>
+        [Output("length")]
+        public Output<int> Length { get; private set; } = null!;
 
         /// <summary>
         /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
@@ -357,6 +369,12 @@ namespace Pulumi.Vault.AD
         public Input<bool>? Discoverdn { get; set; }
 
         /// <summary>
+        /// **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
+        /// </summary>
+        [Input("formatter")]
+        public Input<string>? Formatter { get; set; }
+
+        /// <summary>
         /// LDAP attribute to follow on objects returned by &lt;groupfilter&gt; in order to enumerate
         /// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
         /// </summary>
@@ -389,6 +407,12 @@ namespace Pulumi.Vault.AD
         /// </summary>
         [Input("lastRotationTolerance")]
         public Input<int>? LastRotationTolerance { get; set; }
+
+        /// <summary>
+        /// **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
+        /// </summary>
+        [Input("length")]
+        public Input<int>? Length { get; set; }
 
         /// <summary>
         /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
@@ -576,6 +600,12 @@ namespace Pulumi.Vault.AD
         public Input<bool>? Discoverdn { get; set; }
 
         /// <summary>
+        /// **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
+        /// </summary>
+        [Input("formatter")]
+        public Input<string>? Formatter { get; set; }
+
+        /// <summary>
         /// LDAP attribute to follow on objects returned by &lt;groupfilter&gt; in order to enumerate
         /// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
         /// </summary>
@@ -608,6 +638,12 @@ namespace Pulumi.Vault.AD
         /// </summary>
         [Input("lastRotationTolerance")]
         public Input<int>? LastRotationTolerance { get; set; }
+
+        /// <summary>
+        /// **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
+        /// </summary>
+        [Input("length")]
+        public Input<int>? Length { get; set; }
 
         /// <summary>
         /// Mark the secrets engine as local-only. Local engines are not replicated or removed by

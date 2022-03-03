@@ -59,6 +59,8 @@ type AuthBackend struct {
 	Binddn pulumi.StringOutput `pulumi:"binddn"`
 	// Password to use with `binddn` when performing user search
 	Bindpass pulumi.StringOutput `pulumi:"bindpass"`
+	// Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
+	CaseSensitiveNames pulumi.BoolOutput `pulumi:"caseSensitiveNames"`
 	// Trusted CA to validate TLS certificate
 	Certificate   pulumi.StringOutput `pulumi:"certificate"`
 	ClientTlsCert pulumi.StringOutput `pulumi:"clientTlsCert"`
@@ -171,6 +173,8 @@ type authBackendState struct {
 	Binddn *string `pulumi:"binddn"`
 	// Password to use with `binddn` when performing user search
 	Bindpass *string `pulumi:"bindpass"`
+	// Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
+	CaseSensitiveNames *bool `pulumi:"caseSensitiveNames"`
 	// Trusted CA to validate TLS certificate
 	Certificate   *string `pulumi:"certificate"`
 	ClientTlsCert *string `pulumi:"clientTlsCert"`
@@ -252,6 +256,8 @@ type AuthBackendState struct {
 	Binddn pulumi.StringPtrInput
 	// Password to use with `binddn` when performing user search
 	Bindpass pulumi.StringPtrInput
+	// Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
+	CaseSensitiveNames pulumi.BoolPtrInput
 	// Trusted CA to validate TLS certificate
 	Certificate   pulumi.StringPtrInput
 	ClientTlsCert pulumi.StringPtrInput
@@ -335,6 +341,8 @@ type authBackendArgs struct {
 	Binddn *string `pulumi:"binddn"`
 	// Password to use with `binddn` when performing user search
 	Bindpass *string `pulumi:"bindpass"`
+	// Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
+	CaseSensitiveNames *bool `pulumi:"caseSensitiveNames"`
 	// Trusted CA to validate TLS certificate
 	Certificate   *string `pulumi:"certificate"`
 	ClientTlsCert *string `pulumi:"clientTlsCert"`
@@ -415,6 +423,8 @@ type AuthBackendArgs struct {
 	Binddn pulumi.StringPtrInput
 	// Password to use with `binddn` when performing user search
 	Bindpass pulumi.StringPtrInput
+	// Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
+	CaseSensitiveNames pulumi.BoolPtrInput
 	// Trusted CA to validate TLS certificate
 	Certificate   pulumi.StringPtrInput
 	ClientTlsCert pulumi.StringPtrInput
