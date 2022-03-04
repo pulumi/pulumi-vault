@@ -16,6 +16,7 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.tokenauth.AuthBackendRole("example", {
+ *     allowedEntityAliases: ["test_entity"],
  *     allowedPolicies: [
  *         "dev",
  *         "test",
@@ -67,13 +68,25 @@ export class AuthBackendRole extends pulumi.CustomResource {
     }
 
     /**
+     * List of allowed entity aliases.
+     */
+    public readonly allowedEntityAliases!: pulumi.Output<string[] | undefined>;
+    /**
      * List of allowed policies for given role.
      */
     public readonly allowedPolicies!: pulumi.Output<string[] | undefined>;
     /**
+     * Set of allowed policies with glob match for given role.
+     */
+    public readonly allowedPoliciesGlobs!: pulumi.Output<string[] | undefined>;
+    /**
      * List of disallowed policies for given role.
      */
     public readonly disallowedPolicies!: pulumi.Output<string[] | undefined>;
+    /**
+     * Set of disallowed policies with glob match for given role.
+     */
+    public readonly disallowedPoliciesGlobs!: pulumi.Output<string[] | undefined>;
     /**
      * If true, tokens created against this policy will be orphan tokens.
      */
@@ -157,8 +170,11 @@ export class AuthBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleState | undefined;
+            resourceInputs["allowedEntityAliases"] = state ? state.allowedEntityAliases : undefined;
             resourceInputs["allowedPolicies"] = state ? state.allowedPolicies : undefined;
+            resourceInputs["allowedPoliciesGlobs"] = state ? state.allowedPoliciesGlobs : undefined;
             resourceInputs["disallowedPolicies"] = state ? state.disallowedPolicies : undefined;
+            resourceInputs["disallowedPoliciesGlobs"] = state ? state.disallowedPoliciesGlobs : undefined;
             resourceInputs["orphan"] = state ? state.orphan : undefined;
             resourceInputs["pathSuffix"] = state ? state.pathSuffix : undefined;
             resourceInputs["renewable"] = state ? state.renewable : undefined;
@@ -177,8 +193,11 @@ export class AuthBackendRole extends pulumi.CustomResource {
             if ((!args || args.roleName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleName'");
             }
+            resourceInputs["allowedEntityAliases"] = args ? args.allowedEntityAliases : undefined;
             resourceInputs["allowedPolicies"] = args ? args.allowedPolicies : undefined;
+            resourceInputs["allowedPoliciesGlobs"] = args ? args.allowedPoliciesGlobs : undefined;
             resourceInputs["disallowedPolicies"] = args ? args.disallowedPolicies : undefined;
+            resourceInputs["disallowedPoliciesGlobs"] = args ? args.disallowedPoliciesGlobs : undefined;
             resourceInputs["orphan"] = args ? args.orphan : undefined;
             resourceInputs["pathSuffix"] = args ? args.pathSuffix : undefined;
             resourceInputs["renewable"] = args ? args.renewable : undefined;
@@ -203,13 +222,25 @@ export class AuthBackendRole extends pulumi.CustomResource {
  */
 export interface AuthBackendRoleState {
     /**
+     * List of allowed entity aliases.
+     */
+    allowedEntityAliases?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * List of allowed policies for given role.
      */
     allowedPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * Set of allowed policies with glob match for given role.
+     */
+    allowedPoliciesGlobs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * List of disallowed policies for given role.
      */
     disallowedPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Set of disallowed policies with glob match for given role.
+     */
+    disallowedPoliciesGlobs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If true, tokens created against this policy will be orphan tokens.
      */
@@ -286,13 +317,25 @@ export interface AuthBackendRoleState {
  */
 export interface AuthBackendRoleArgs {
     /**
+     * List of allowed entity aliases.
+     */
+    allowedEntityAliases?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * List of allowed policies for given role.
      */
     allowedPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * Set of allowed policies with glob match for given role.
+     */
+    allowedPoliciesGlobs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * List of disallowed policies for given role.
      */
     disallowedPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Set of disallowed policies with glob match for given role.
+     */
+    disallowedPoliciesGlobs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If true, tokens created against this policy will be orphan tokens.
      */

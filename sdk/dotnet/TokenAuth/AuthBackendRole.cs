@@ -26,16 +26,34 @@ namespace Pulumi.Vault.TokenAuth
     public partial class AuthBackendRole : Pulumi.CustomResource
     {
         /// <summary>
+        /// List of allowed entity aliases.
+        /// </summary>
+        [Output("allowedEntityAliases")]
+        public Output<ImmutableArray<string>> AllowedEntityAliases { get; private set; } = null!;
+
+        /// <summary>
         /// List of allowed policies for given role.
         /// </summary>
         [Output("allowedPolicies")]
         public Output<ImmutableArray<string>> AllowedPolicies { get; private set; } = null!;
 
         /// <summary>
+        /// Set of allowed policies with glob match for given role.
+        /// </summary>
+        [Output("allowedPoliciesGlobs")]
+        public Output<ImmutableArray<string>> AllowedPoliciesGlobs { get; private set; } = null!;
+
+        /// <summary>
         /// List of disallowed policies for given role.
         /// </summary>
         [Output("disallowedPolicies")]
         public Output<ImmutableArray<string>> DisallowedPolicies { get; private set; } = null!;
+
+        /// <summary>
+        /// Set of disallowed policies with glob match for given role.
+        /// </summary>
+        [Output("disallowedPoliciesGlobs")]
+        public Output<ImmutableArray<string>> DisallowedPoliciesGlobs { get; private set; } = null!;
 
         /// <summary>
         /// If true, tokens created against this policy will be orphan tokens.
@@ -178,6 +196,18 @@ namespace Pulumi.Vault.TokenAuth
 
     public sealed class AuthBackendRoleArgs : Pulumi.ResourceArgs
     {
+        [Input("allowedEntityAliases")]
+        private InputList<string>? _allowedEntityAliases;
+
+        /// <summary>
+        /// List of allowed entity aliases.
+        /// </summary>
+        public InputList<string> AllowedEntityAliases
+        {
+            get => _allowedEntityAliases ?? (_allowedEntityAliases = new InputList<string>());
+            set => _allowedEntityAliases = value;
+        }
+
         [Input("allowedPolicies")]
         private InputList<string>? _allowedPolicies;
 
@@ -190,6 +220,18 @@ namespace Pulumi.Vault.TokenAuth
             set => _allowedPolicies = value;
         }
 
+        [Input("allowedPoliciesGlobs")]
+        private InputList<string>? _allowedPoliciesGlobs;
+
+        /// <summary>
+        /// Set of allowed policies with glob match for given role.
+        /// </summary>
+        public InputList<string> AllowedPoliciesGlobs
+        {
+            get => _allowedPoliciesGlobs ?? (_allowedPoliciesGlobs = new InputList<string>());
+            set => _allowedPoliciesGlobs = value;
+        }
+
         [Input("disallowedPolicies")]
         private InputList<string>? _disallowedPolicies;
 
@@ -200,6 +242,18 @@ namespace Pulumi.Vault.TokenAuth
         {
             get => _disallowedPolicies ?? (_disallowedPolicies = new InputList<string>());
             set => _disallowedPolicies = value;
+        }
+
+        [Input("disallowedPoliciesGlobs")]
+        private InputList<string>? _disallowedPoliciesGlobs;
+
+        /// <summary>
+        /// Set of disallowed policies with glob match for given role.
+        /// </summary>
+        public InputList<string> DisallowedPoliciesGlobs
+        {
+            get => _disallowedPoliciesGlobs ?? (_disallowedPoliciesGlobs = new InputList<string>());
+            set => _disallowedPoliciesGlobs = value;
         }
 
         /// <summary>
@@ -316,6 +370,18 @@ namespace Pulumi.Vault.TokenAuth
 
     public sealed class AuthBackendRoleState : Pulumi.ResourceArgs
     {
+        [Input("allowedEntityAliases")]
+        private InputList<string>? _allowedEntityAliases;
+
+        /// <summary>
+        /// List of allowed entity aliases.
+        /// </summary>
+        public InputList<string> AllowedEntityAliases
+        {
+            get => _allowedEntityAliases ?? (_allowedEntityAliases = new InputList<string>());
+            set => _allowedEntityAliases = value;
+        }
+
         [Input("allowedPolicies")]
         private InputList<string>? _allowedPolicies;
 
@@ -328,6 +394,18 @@ namespace Pulumi.Vault.TokenAuth
             set => _allowedPolicies = value;
         }
 
+        [Input("allowedPoliciesGlobs")]
+        private InputList<string>? _allowedPoliciesGlobs;
+
+        /// <summary>
+        /// Set of allowed policies with glob match for given role.
+        /// </summary>
+        public InputList<string> AllowedPoliciesGlobs
+        {
+            get => _allowedPoliciesGlobs ?? (_allowedPoliciesGlobs = new InputList<string>());
+            set => _allowedPoliciesGlobs = value;
+        }
+
         [Input("disallowedPolicies")]
         private InputList<string>? _disallowedPolicies;
 
@@ -338,6 +416,18 @@ namespace Pulumi.Vault.TokenAuth
         {
             get => _disallowedPolicies ?? (_disallowedPolicies = new InputList<string>());
             set => _disallowedPolicies = value;
+        }
+
+        [Input("disallowedPoliciesGlobs")]
+        private InputList<string>? _disallowedPoliciesGlobs;
+
+        /// <summary>
+        /// Set of disallowed policies with glob match for given role.
+        /// </summary>
+        public InputList<string> DisallowedPoliciesGlobs
+        {
+            get => _disallowedPoliciesGlobs ?? (_disallowedPoliciesGlobs = new InputList<string>());
+            set => _disallowedPoliciesGlobs = value;
         }
 
         /// <summary>

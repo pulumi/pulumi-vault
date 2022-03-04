@@ -58,16 +58,23 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// The CA chain
+        /// A list of the issuing and intermediate CA certificates in the `format` specified.
         /// </summary>
-        [Output("caChain")]
-        public Output<string> CaChain { get; private set; } = null!;
+        [Output("caChains")]
+        public Output<ImmutableArray<string>> CaChains { get; private set; } = null!;
 
         /// <summary>
-        /// The certificate
+        /// The intermediate CA certificate in the `format` specified.
         /// </summary>
         [Output("certificate")]
         public Output<string> Certificate { get; private set; } = null!;
+
+        /// <summary>
+        /// The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+        /// Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
+        /// </summary>
+        [Output("certificateBundle")]
+        public Output<string> CertificateBundle { get; private set; } = null!;
 
         /// <summary>
         /// CN of intermediate to create
@@ -106,7 +113,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> IpSans { get; private set; } = null!;
 
         /// <summary>
-        /// The issuing CA
+        /// The issuing CA certificate in the `format` specified.
         /// </summary>
         [Output("issuingCa")]
         public Output<string> IssuingCa { get; private set; } = null!;
@@ -410,17 +417,30 @@ namespace Pulumi.Vault.PkiSecret
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
-        /// <summary>
-        /// The CA chain
-        /// </summary>
-        [Input("caChain")]
-        public Input<string>? CaChain { get; set; }
+        [Input("caChains")]
+        private InputList<string>? _caChains;
 
         /// <summary>
-        /// The certificate
+        /// A list of the issuing and intermediate CA certificates in the `format` specified.
+        /// </summary>
+        public InputList<string> CaChains
+        {
+            get => _caChains ?? (_caChains = new InputList<string>());
+            set => _caChains = value;
+        }
+
+        /// <summary>
+        /// The intermediate CA certificate in the `format` specified.
         /// </summary>
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
+
+        /// <summary>
+        /// The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+        /// Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
+        /// </summary>
+        [Input("certificateBundle")]
+        public Input<string>? CertificateBundle { get; set; }
 
         /// <summary>
         /// CN of intermediate to create
@@ -465,7 +485,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// The issuing CA
+        /// The issuing CA certificate in the `format` specified.
         /// </summary>
         [Input("issuingCa")]
         public Input<string>? IssuingCa { get; set; }

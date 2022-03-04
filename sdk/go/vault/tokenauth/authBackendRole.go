@@ -25,10 +25,16 @@ import (
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
 
+	// List of allowed entity aliases.
+	AllowedEntityAliases pulumi.StringArrayOutput `pulumi:"allowedEntityAliases"`
 	// List of allowed policies for given role.
 	AllowedPolicies pulumi.StringArrayOutput `pulumi:"allowedPolicies"`
+	// Set of allowed policies with glob match for given role.
+	AllowedPoliciesGlobs pulumi.StringArrayOutput `pulumi:"allowedPoliciesGlobs"`
 	// List of disallowed policies for given role.
 	DisallowedPolicies pulumi.StringArrayOutput `pulumi:"disallowedPolicies"`
+	// Set of disallowed policies with glob match for given role.
+	DisallowedPoliciesGlobs pulumi.StringArrayOutput `pulumi:"disallowedPoliciesGlobs"`
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan pulumi.BoolPtrOutput `pulumi:"orphan"`
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
@@ -106,10 +112,16 @@ func GetAuthBackendRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AuthBackendRole resources.
 type authBackendRoleState struct {
+	// List of allowed entity aliases.
+	AllowedEntityAliases []string `pulumi:"allowedEntityAliases"`
 	// List of allowed policies for given role.
 	AllowedPolicies []string `pulumi:"allowedPolicies"`
+	// Set of allowed policies with glob match for given role.
+	AllowedPoliciesGlobs []string `pulumi:"allowedPoliciesGlobs"`
 	// List of disallowed policies for given role.
 	DisallowedPolicies []string `pulumi:"disallowedPolicies"`
+	// Set of disallowed policies with glob match for given role.
+	DisallowedPoliciesGlobs []string `pulumi:"disallowedPoliciesGlobs"`
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan *bool `pulumi:"orphan"`
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
@@ -156,10 +168,16 @@ type authBackendRoleState struct {
 }
 
 type AuthBackendRoleState struct {
+	// List of allowed entity aliases.
+	AllowedEntityAliases pulumi.StringArrayInput
 	// List of allowed policies for given role.
 	AllowedPolicies pulumi.StringArrayInput
+	// Set of allowed policies with glob match for given role.
+	AllowedPoliciesGlobs pulumi.StringArrayInput
 	// List of disallowed policies for given role.
 	DisallowedPolicies pulumi.StringArrayInput
+	// Set of disallowed policies with glob match for given role.
+	DisallowedPoliciesGlobs pulumi.StringArrayInput
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan pulumi.BoolPtrInput
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
@@ -210,10 +228,16 @@ func (AuthBackendRoleState) ElementType() reflect.Type {
 }
 
 type authBackendRoleArgs struct {
+	// List of allowed entity aliases.
+	AllowedEntityAliases []string `pulumi:"allowedEntityAliases"`
 	// List of allowed policies for given role.
 	AllowedPolicies []string `pulumi:"allowedPolicies"`
+	// Set of allowed policies with glob match for given role.
+	AllowedPoliciesGlobs []string `pulumi:"allowedPoliciesGlobs"`
 	// List of disallowed policies for given role.
 	DisallowedPolicies []string `pulumi:"disallowedPolicies"`
+	// Set of disallowed policies with glob match for given role.
+	DisallowedPoliciesGlobs []string `pulumi:"disallowedPoliciesGlobs"`
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan *bool `pulumi:"orphan"`
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
@@ -261,10 +285,16 @@ type authBackendRoleArgs struct {
 
 // The set of arguments for constructing a AuthBackendRole resource.
 type AuthBackendRoleArgs struct {
+	// List of allowed entity aliases.
+	AllowedEntityAliases pulumi.StringArrayInput
 	// List of allowed policies for given role.
 	AllowedPolicies pulumi.StringArrayInput
+	// Set of allowed policies with glob match for given role.
+	AllowedPoliciesGlobs pulumi.StringArrayInput
 	// List of disallowed policies for given role.
 	DisallowedPolicies pulumi.StringArrayInput
+	// Set of disallowed policies with glob match for given role.
+	DisallowedPoliciesGlobs pulumi.StringArrayInput
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan pulumi.BoolPtrInput
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.

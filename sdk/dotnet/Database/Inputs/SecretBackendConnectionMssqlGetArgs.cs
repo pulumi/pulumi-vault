@@ -51,6 +51,18 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<int>? MaxOpenConnections { get; set; }
 
         /// <summary>
+        /// The root credential password used in the connection URL.
+        /// </summary>
+        [Input("password")]
+        public Input<string>? Password { get; set; }
+
+        /// <summary>
+        /// The root credential username used in the connection URL.
+        /// </summary>
+        [Input("username")]
+        public Input<string>? Username { get; set; }
+
+        /// <summary>
         /// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         /// </summary>
         [Input("usernameTemplate")]

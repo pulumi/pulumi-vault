@@ -20,7 +20,10 @@ class GetAuthBackendRoleResult:
     """
     A collection of values returned by getAuthBackendRole.
     """
-    def __init__(__self__, audience=None, backend=None, bound_service_account_names=None, bound_service_account_namespaces=None, id=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None):
+    def __init__(__self__, alias_name_source=None, audience=None, backend=None, bound_service_account_names=None, bound_service_account_namespaces=None, id=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None):
+        if alias_name_source and not isinstance(alias_name_source, str):
+            raise TypeError("Expected argument 'alias_name_source' to be a str")
+        pulumi.set(__self__, "alias_name_source", alias_name_source)
         if audience and not isinstance(audience, str):
             raise TypeError("Expected argument 'audience' to be a str")
         pulumi.set(__self__, "audience", audience)
@@ -68,10 +71,18 @@ class GetAuthBackendRoleResult:
         pulumi.set(__self__, "token_type", token_type)
 
     @property
+    @pulumi.getter(name="aliasNameSource")
+    def alias_name_source(self) -> str:
+        """
+        Method used for generating identity aliases. (vault-1.9+)
+        """
+        return pulumi.get(self, "alias_name_source")
+
+    @property
     @pulumi.getter
     def audience(self) -> Optional[str]:
         """
-        (Optional) Audience claim to verify in the JWT.
+        Audience claim to verify in the JWT.
         """
         return pulumi.get(self, "audience")
 
@@ -206,6 +217,7 @@ class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
         if False:
             yield self
         return GetAuthBackendRoleResult(
+            alias_name_source=self.alias_name_source,
             audience=self.audience,
             backend=self.backend,
             bound_service_account_names=self.bound_service_account_names,
@@ -242,7 +254,7 @@ def get_auth_backend_role(audience: Optional[str] = None,
     information.
 
 
-    :param str audience: (Optional) Audience claim to verify in the JWT.
+    :param str audience: Audience claim to verify in the JWT.
     :param str backend: The unique name for the Kubernetes backend the role to
            retrieve Role attributes for resides in. Defaults to "kubernetes".
     :param str role_name: The name of the role to retrieve the Role attributes for.
@@ -294,6 +306,7 @@ def get_auth_backend_role(audience: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('vault:kubernetes/getAuthBackendRole:getAuthBackendRole', __args__, opts=opts, typ=GetAuthBackendRoleResult).value
 
     return AwaitableGetAuthBackendRoleResult(
+        alias_name_source=__ret__.alias_name_source,
         audience=__ret__.audience,
         backend=__ret__.backend,
         bound_service_account_names=__ret__.bound_service_account_names,
@@ -331,7 +344,7 @@ def get_auth_backend_role_output(audience: Optional[pulumi.Input[Optional[str]]]
     information.
 
 
-    :param str audience: (Optional) Audience claim to verify in the JWT.
+    :param str audience: Audience claim to verify in the JWT.
     :param str backend: The unique name for the Kubernetes backend the role to
            retrieve Role attributes for resides in. Defaults to "kubernetes".
     :param str role_name: The name of the role to retrieve the Role attributes for.

@@ -42,6 +42,12 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<int>? MaxOpenConnections { get; set; }
 
         /// <summary>
+        /// The root credential password used in the connection URL.
+        /// </summary>
+        [Input("password")]
+        public Input<string>? Password { get; set; }
+
+        /// <summary>
         /// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         /// </summary>
         [Input("tlsCa")]
@@ -52,6 +58,12 @@ namespace Pulumi.Vault.Database.Inputs
         /// </summary>
         [Input("tlsCertificateKey")]
         public Input<string>? TlsCertificateKey { get; set; }
+
+        /// <summary>
+        /// The root credential username used in the connection URL.
+        /// </summary>
+        [Input("username")]
+        public Input<string>? Username { get; set; }
 
         /// <summary>
         /// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.

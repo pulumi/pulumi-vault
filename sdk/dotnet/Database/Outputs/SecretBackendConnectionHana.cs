@@ -34,6 +34,14 @@ namespace Pulumi.Vault.Database.Outputs
         /// the database.
         /// </summary>
         public readonly int? MaxOpenConnections;
+        /// <summary>
+        /// The root credential password used in the connection URL.
+        /// </summary>
+        public readonly string? Password;
+        /// <summary>
+        /// The root credential username used in the connection URL.
+        /// </summary>
+        public readonly string? Username;
 
         [OutputConstructor]
         private SecretBackendConnectionHana(
@@ -43,12 +51,18 @@ namespace Pulumi.Vault.Database.Outputs
 
             int? maxIdleConnections,
 
-            int? maxOpenConnections)
+            int? maxOpenConnections,
+
+            string? password,
+
+            string? username)
         {
             ConnectionUrl = connectionUrl;
             MaxConnectionLifetime = maxConnectionLifetime;
             MaxIdleConnections = maxIdleConnections;
             MaxOpenConnections = maxOpenConnections;
+            Password = password;
+            Username = username;
         }
     }
 }

@@ -317,6 +317,14 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * The root credential password used in the connection URL.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionInfluxdb {
@@ -389,6 +397,14 @@ export namespace database {
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
+         * The root credential password used in the connection URL.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: pulumi.Input<string>;
+        /**
          * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: pulumi.Input<string>;
@@ -439,6 +455,14 @@ export namespace database {
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
+         * The root credential password used in the connection URL.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: pulumi.Input<string>;
+        /**
          * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: pulumi.Input<string>;
@@ -467,6 +491,10 @@ export namespace database {
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
+         * The root credential password used in the connection URL.
+         */
+        password?: pulumi.Input<string>;
+        /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
          */
         tlsCa?: pulumi.Input<string>;
@@ -474,6 +502,10 @@ export namespace database {
          * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
          */
         tlsCertificateKey?: pulumi.Input<string>;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: pulumi.Input<string>;
         /**
          * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
@@ -503,6 +535,14 @@ export namespace database {
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
+         * The root credential password used in the connection URL.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: pulumi.Input<string>;
+        /**
          * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: pulumi.Input<string>;
@@ -530,6 +570,14 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * The root credential password used in the connection URL.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: pulumi.Input<string>;
         /**
          * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
@@ -559,6 +607,14 @@ export namespace database {
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
+         * The root credential password used in the connection URL.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: pulumi.Input<string>;
+        /**
          * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: pulumi.Input<string>;
@@ -587,6 +643,14 @@ export namespace database {
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
+         * The root credential password used in the connection URL.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: pulumi.Input<string>;
+        /**
          * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: pulumi.Input<string>;
@@ -614,6 +678,14 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * The root credential password used in the connection URL.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * The root credential username used in the connection URL.
+         */
+        username?: pulumi.Input<string>;
         /**
          * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */

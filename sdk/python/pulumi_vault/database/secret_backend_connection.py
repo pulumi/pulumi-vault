@@ -32,6 +32,7 @@ class SecretBackendConnectionArgs:
                  mysql_rds: Optional[pulumi.Input['SecretBackendConnectionMysqlRdsArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  oracle: Optional[pulumi.Input['SecretBackendConnectionOracleArgs']] = None,
+                 plugin_name: Optional[pulumi.Input[str]] = None,
                  postgresql: Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']] = None,
                  redshift: Optional[pulumi.Input['SecretBackendConnectionRedshiftArgs']] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -57,6 +58,9 @@ class SecretBackendConnectionArgs:
         :param pulumi.Input['SecretBackendConnectionMysqlRdsArgs'] mysql_rds: A nested block containing configuration options for RDS MySQL connections.
         :param pulumi.Input[str] name: A unique name to give the database connection.
         :param pulumi.Input['SecretBackendConnectionOracleArgs'] oracle: A nested block containing configuration options for Oracle connections.
+        :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use. All values must be prefixed
+               to match the corresponding database engine directive.
+               For example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.
         :param pulumi.Input['SecretBackendConnectionPostgresqlArgs'] postgresql: A nested block containing configuration options for PostgreSQL connections.
         :param pulumi.Input['SecretBackendConnectionRedshiftArgs'] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
@@ -97,6 +101,8 @@ class SecretBackendConnectionArgs:
             pulumi.set(__self__, "name", name)
         if oracle is not None:
             pulumi.set(__self__, "oracle", oracle)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
         if postgresql is not None:
             pulumi.set(__self__, "postgresql", postgresql)
         if redshift is not None:
@@ -314,6 +320,20 @@ class SecretBackendConnectionArgs:
         pulumi.set(self, "oracle", value)
 
     @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the name of the plugin to use. All values must be prefixed
+        to match the corresponding database engine directive.
+        For example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @plugin_name.setter
+    def plugin_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "plugin_name", value)
+
+    @property
     @pulumi.getter
     def postgresql(self) -> Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']]:
         """
@@ -395,6 +415,7 @@ class _SecretBackendConnectionState:
                  mysql_rds: Optional[pulumi.Input['SecretBackendConnectionMysqlRdsArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  oracle: Optional[pulumi.Input['SecretBackendConnectionOracleArgs']] = None,
+                 plugin_name: Optional[pulumi.Input[str]] = None,
                  postgresql: Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']] = None,
                  redshift: Optional[pulumi.Input['SecretBackendConnectionRedshiftArgs']] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -420,6 +441,9 @@ class _SecretBackendConnectionState:
         :param pulumi.Input['SecretBackendConnectionMysqlRdsArgs'] mysql_rds: A nested block containing configuration options for RDS MySQL connections.
         :param pulumi.Input[str] name: A unique name to give the database connection.
         :param pulumi.Input['SecretBackendConnectionOracleArgs'] oracle: A nested block containing configuration options for Oracle connections.
+        :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use. All values must be prefixed
+               to match the corresponding database engine directive.
+               For example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.
         :param pulumi.Input['SecretBackendConnectionPostgresqlArgs'] postgresql: A nested block containing configuration options for PostgreSQL connections.
         :param pulumi.Input['SecretBackendConnectionRedshiftArgs'] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
@@ -461,6 +485,8 @@ class _SecretBackendConnectionState:
             pulumi.set(__self__, "name", name)
         if oracle is not None:
             pulumi.set(__self__, "oracle", oracle)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
         if postgresql is not None:
             pulumi.set(__self__, "postgresql", postgresql)
         if redshift is not None:
@@ -678,6 +704,20 @@ class _SecretBackendConnectionState:
         pulumi.set(self, "oracle", value)
 
     @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the name of the plugin to use. All values must be prefixed
+        to match the corresponding database engine directive.
+        For example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @plugin_name.setter
+    def plugin_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "plugin_name", value)
+
+    @property
     @pulumi.getter
     def postgresql(self) -> Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']]:
         """
@@ -761,6 +801,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  mysql_rds: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlRdsArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
+                 plugin_name: Optional[pulumi.Input[str]] = None,
                  postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
                  redshift: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -796,6 +837,9 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlRdsArgs']] mysql_rds: A nested block containing configuration options for RDS MySQL connections.
         :param pulumi.Input[str] name: A unique name to give the database connection.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']] oracle: A nested block containing configuration options for Oracle connections.
+        :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use. All values must be prefixed
+               to match the corresponding database engine directive.
+               For example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']] postgresql: A nested block containing configuration options for PostgreSQL connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
@@ -850,6 +894,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  mysql_rds: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlRdsArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
+                 plugin_name: Optional[pulumi.Input[str]] = None,
                  postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
                  redshift: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -886,6 +931,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             __props__.__dict__["mysql_rds"] = mysql_rds
             __props__.__dict__["name"] = name
             __props__.__dict__["oracle"] = oracle
+            __props__.__dict__["plugin_name"] = plugin_name
             __props__.__dict__["postgresql"] = postgresql
             __props__.__dict__["redshift"] = redshift
             __props__.__dict__["root_rotation_statements"] = root_rotation_statements
@@ -918,6 +964,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             mysql_rds: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlRdsArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
+            plugin_name: Optional[pulumi.Input[str]] = None,
             postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
             redshift: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']]] = None,
             root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -948,6 +995,9 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlRdsArgs']] mysql_rds: A nested block containing configuration options for RDS MySQL connections.
         :param pulumi.Input[str] name: A unique name to give the database connection.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']] oracle: A nested block containing configuration options for Oracle connections.
+        :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use. All values must be prefixed
+               to match the corresponding database engine directive.
+               For example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']] postgresql: A nested block containing configuration options for PostgreSQL connections.
         :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
@@ -976,6 +1026,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         __props__.__dict__["mysql_rds"] = mysql_rds
         __props__.__dict__["name"] = name
         __props__.__dict__["oracle"] = oracle
+        __props__.__dict__["plugin_name"] = plugin_name
         __props__.__dict__["postgresql"] = postgresql
         __props__.__dict__["redshift"] = redshift
         __props__.__dict__["root_rotation_statements"] = root_rotation_statements
@@ -1119,6 +1170,16 @@ class SecretBackendConnection(pulumi.CustomResource):
         A nested block containing configuration options for Oracle connections.
         """
         return pulumi.get(self, "oracle")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> pulumi.Output[str]:
+        """
+        Specifies the name of the plugin to use. All values must be prefixed
+        to match the corresponding database engine directive.
+        For example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+        """
+        return pulumi.get(self, "plugin_name")
 
     @property
     @pulumi.getter

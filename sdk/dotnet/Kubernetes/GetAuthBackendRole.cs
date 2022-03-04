@@ -32,7 +32,7 @@ namespace Pulumi.Vault.Kubernetes
     public sealed class GetAuthBackendRoleArgs : Pulumi.InvokeArgs
     {
         /// <summary>
-        /// (Optional) Audience claim to verify in the JWT.
+        /// Audience claim to verify in the JWT.
         /// </summary>
         [Input("audience")]
         public string? Audience { get; set; }
@@ -142,7 +142,7 @@ namespace Pulumi.Vault.Kubernetes
     public sealed class GetAuthBackendRoleInvokeArgs : Pulumi.InvokeArgs
     {
         /// <summary>
-        /// (Optional) Audience claim to verify in the JWT.
+        /// Audience claim to verify in the JWT.
         /// </summary>
         [Input("audience")]
         public Input<string>? Audience { get; set; }
@@ -254,7 +254,11 @@ namespace Pulumi.Vault.Kubernetes
     public sealed class GetAuthBackendRoleResult
     {
         /// <summary>
-        /// (Optional) Audience claim to verify in the JWT.
+        /// Method used for generating identity aliases. (vault-1.9+)
+        /// </summary>
+        public readonly string AliasNameSource;
+        /// <summary>
+        /// Audience claim to verify in the JWT.
         /// </summary>
         public readonly string? Audience;
         public readonly string? Backend;
@@ -328,6 +332,8 @@ namespace Pulumi.Vault.Kubernetes
 
         [OutputConstructor]
         private GetAuthBackendRoleResult(
+            string aliasNameSource,
+
             string? audience,
 
             string? backend,
@@ -358,6 +364,7 @@ namespace Pulumi.Vault.Kubernetes
 
             string? tokenType)
         {
+            AliasNameSource = aliasNameSource;
             Audience = audience;
             Backend = backend;
             BoundServiceAccountNames = boundServiceAccountNames;

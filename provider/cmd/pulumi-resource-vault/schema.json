@@ -506,6 +506,24 @@
                             "mapCase": false
                         }
                     }
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The root credential password used in the connection URL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The root credential username used in the connection URL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object"
@@ -648,6 +666,24 @@
                         }
                     }
                 },
+                "password": {
+                    "type": "string",
+                    "description": "The root credential password used in the connection URL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The root credential username used in the connection URL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "usernameTemplate": {
                     "type": "string",
                     "description": "- [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.\n",
@@ -744,6 +780,24 @@
                         }
                     }
                 },
+                "password": {
+                    "type": "string",
+                    "description": "The root credential password used in the connection URL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The root credential username used in the connection URL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "usernameTemplate": {
                     "type": "string",
                     "description": "- [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.\n",
@@ -794,6 +848,15 @@
                         }
                     }
                 },
+                "password": {
+                    "type": "string",
+                    "description": "The root credential password used in the connection URL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "tlsCa": {
                     "type": "string",
                     "description": "x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.\n",
@@ -806,6 +869,15 @@
                 "tlsCertificateKey": {
                     "type": "string",
                     "description": "x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The root credential username used in the connection URL.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -862,6 +934,24 @@
                         }
                     }
                 },
+                "password": {
+                    "type": "string",
+                    "description": "The root credential password used in the connection URL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The root credential username used in the connection URL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "usernameTemplate": {
                     "type": "string",
                     "description": "- [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.\n",
@@ -906,6 +996,24 @@
                 "maxOpenConnections": {
                     "type": "integer",
                     "description": "The maximum number of open connections to\nthe database.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The root credential password used in the connection URL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The root credential username used in the connection URL.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -962,6 +1070,24 @@
                         }
                     }
                 },
+                "password": {
+                    "type": "string",
+                    "description": "The root credential password used in the connection URL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The root credential username used in the connection URL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "usernameTemplate": {
                     "type": "string",
                     "description": "- [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.\n",
@@ -1012,6 +1138,24 @@
                         }
                     }
                 },
+                "password": {
+                    "type": "string",
+                    "description": "The root credential password used in the connection URL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The root credential username used in the connection URL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "usernameTemplate": {
                     "type": "string",
                     "description": "- [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.\n",
@@ -1056,6 +1200,24 @@
                 "maxOpenConnections": {
                     "type": "integer",
                     "description": "The maximum number of open connections to\nthe database.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The root credential password used in the connection URL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The root credential username used in the connection URL.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2316,6 +2478,11 @@
                     "type": "boolean",
                     "description": "Use anonymous bind to discover the bind Distinguished Name of a user.\n"
                 },
+                "formatter": {
+                    "type": "string",
+                    "description": "**Deprecated** use `password_policy`. Text to insert the password into, ex. \"customPrefix{{PASSWORD}}customSuffix\".\n",
+                    "deprecationMessage": "Formatter is deprecated and password_policy should be used with Vault \u003e= 1.5."
+                },
                 "groupattr": {
                     "type": "string",
                     "description": "LDAP attribute to follow on objects returned by \u003cgroupfilter\u003e in order to enumerate\nuser group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.\n"
@@ -2335,6 +2502,11 @@
                 "lastRotationTolerance": {
                     "type": "integer",
                     "description": "The number of seconds after a Vault rotation where, if Active Directory\nshows a later rotation, it should be considered out-of-band\n"
+                },
+                "length": {
+                    "type": "integer",
+                    "description": "**Deprecated** use `password_policy`. The desired length of passwords that Vault generates.\n",
+                    "deprecationMessage": "Length is deprecated and password_policy should be used with Vault \u003e= 1.5."
                 },
                 "local": {
                     "type": "boolean",
@@ -2401,7 +2573,9 @@
                 "binddn",
                 "bindpass",
                 "defaultLeaseTtlSeconds",
+                "formatter",
                 "lastRotationTolerance",
+                "length",
                 "maxLeaseTtlSeconds",
                 "maxTtl",
                 "starttls",
@@ -2460,6 +2634,11 @@
                     "type": "boolean",
                     "description": "Use anonymous bind to discover the bind Distinguished Name of a user.\n"
                 },
+                "formatter": {
+                    "type": "string",
+                    "description": "**Deprecated** use `password_policy`. Text to insert the password into, ex. \"customPrefix{{PASSWORD}}customSuffix\".\n",
+                    "deprecationMessage": "Formatter is deprecated and password_policy should be used with Vault \u003e= 1.5."
+                },
                 "groupattr": {
                     "type": "string",
                     "description": "LDAP attribute to follow on objects returned by \u003cgroupfilter\u003e in order to enumerate\nuser group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.\n"
@@ -2479,6 +2658,11 @@
                 "lastRotationTolerance": {
                     "type": "integer",
                     "description": "The number of seconds after a Vault rotation where, if Active Directory\nshows a later rotation, it should be considered out-of-band\n"
+                },
+                "length": {
+                    "type": "integer",
+                    "description": "**Deprecated** use `password_policy`. The desired length of passwords that Vault generates.\n",
+                    "deprecationMessage": "Length is deprecated and password_policy should be used with Vault \u003e= 1.5."
                 },
                 "local": {
                     "type": "boolean",
@@ -2596,6 +2780,11 @@
                         "type": "boolean",
                         "description": "Use anonymous bind to discover the bind Distinguished Name of a user.\n"
                     },
+                    "formatter": {
+                        "type": "string",
+                        "description": "**Deprecated** use `password_policy`. Text to insert the password into, ex. \"customPrefix{{PASSWORD}}customSuffix\".\n",
+                        "deprecationMessage": "Formatter is deprecated and password_policy should be used with Vault \u003e= 1.5."
+                    },
                     "groupattr": {
                         "type": "string",
                         "description": "LDAP attribute to follow on objects returned by \u003cgroupfilter\u003e in order to enumerate\nuser group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.\n"
@@ -2615,6 +2804,11 @@
                     "lastRotationTolerance": {
                         "type": "integer",
                         "description": "The number of seconds after a Vault rotation where, if Active Directory\nshows a later rotation, it should be considered out-of-band\n"
+                    },
+                    "length": {
+                        "type": "integer",
+                        "description": "**Deprecated** use `password_policy`. The desired length of passwords that Vault generates.\n",
+                        "deprecationMessage": "Length is deprecated and password_policy should be used with Vault \u003e= 1.5."
                     },
                     "local": {
                         "type": "boolean",
@@ -5400,11 +5594,16 @@
                 "tenantId": {
                     "type": "string",
                     "description": "- The tenant id for the Azure Active Directory.\n"
+                },
+                "useMicrosoftGraphApi": {
+                    "type": "boolean",
+                    "description": "- Use the Microsoft Graph API introduced in `vault-1.9`. \nShould be set to true for `vault-1.10+`\n"
                 }
             },
             "required": [
                 "subscriptionId",
-                "tenantId"
+                "tenantId",
+                "useMicrosoftGraphApi"
             ],
             "inputProperties": {
                 "clientId": {
@@ -5434,6 +5633,10 @@
                 "tenantId": {
                     "type": "string",
                     "description": "- The tenant id for the Azure Active Directory.\n"
+                },
+                "useMicrosoftGraphApi": {
+                    "type": "boolean",
+                    "description": "- Use the Microsoft Graph API introduced in `vault-1.9`. \nShould be set to true for `vault-1.10+`\n"
                 }
             },
             "requiredInputs": [
@@ -5470,6 +5673,10 @@
                     "tenantId": {
                         "type": "string",
                         "description": "- The tenant id for the Azure Active Directory.\n"
+                    },
+                    "useMicrosoftGraphApi": {
+                        "type": "boolean",
+                        "description": "- Use the Microsoft Graph API introduced in `vault-1.9`. \nShould be set to true for `vault-1.10+`\n"
                     }
                 },
                 "type": "object"
@@ -5950,6 +6157,10 @@
                     "$ref": "#/types/vault:database/SecretBackendConnectionOracle:SecretBackendConnectionOracle",
                     "description": "A nested block containing configuration options for Oracle connections.\n"
                 },
+                "pluginName": {
+                    "type": "string",
+                    "description": "Specifies the name of the plugin to use. All values must be prefixed\nto match the corresponding database engine directive.\nFor example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.\n"
+                },
                 "postgresql": {
                     "$ref": "#/types/vault:database/SecretBackendConnectionPostgresql:SecretBackendConnectionPostgresql",
                     "description": "A nested block containing configuration options for PostgreSQL connections.\n"
@@ -5976,7 +6187,8 @@
             },
             "required": [
                 "backend",
-                "name"
+                "name",
+                "pluginName"
             ],
             "inputProperties": {
                 "allowedRoles": {
@@ -6052,6 +6264,10 @@
                 "oracle": {
                     "$ref": "#/types/vault:database/SecretBackendConnectionOracle:SecretBackendConnectionOracle",
                     "description": "A nested block containing configuration options for Oracle connections.\n"
+                },
+                "pluginName": {
+                    "type": "string",
+                    "description": "Specifies the name of the plugin to use. All values must be prefixed\nto match the corresponding database engine directive.\nFor example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.\n"
                 },
                 "postgresql": {
                     "$ref": "#/types/vault:database/SecretBackendConnectionPostgresql:SecretBackendConnectionPostgresql",
@@ -6156,6 +6372,10 @@
                     "oracle": {
                         "$ref": "#/types/vault:database/SecretBackendConnectionOracle:SecretBackendConnectionOracle",
                         "description": "A nested block containing configuration options for Oracle connections.\n"
+                    },
+                    "pluginName": {
+                        "type": "string",
+                        "description": "Specifies the name of the plugin to use. All values must be prefixed\nto match the corresponding database engine directive.\nFor example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.\n"
                     },
                     "postgresql": {
                         "$ref": "#/types/vault:database/SecretBackendConnectionPostgresql:SecretBackendConnectionPostgresql",
@@ -8088,7 +8308,7 @@
             }
         },
         "vault:identity/group:Group": {
-            "description": "Creates an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.\n\nA group can contain multiple entities as its members. A group can also have subgroups. Policies set on the group is granted to all members of the group. During request time, when the token's entity ID is being evaluated for the policies that it has access to; along with the policies on the entity itself, policies that are inherited due to group memberships are also granted.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Internal Group\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst internal = new vault.identity.Group(\"internal\", {\n    metadata: {\n        version: \"2\",\n    },\n    policies: [\n        \"dev\",\n        \"test\",\n    ],\n    type: \"internal\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ninternal = vault.identity.Group(\"internal\",\n    metadata={\n        \"version\": \"2\",\n    },\n    policies=[\n        \"dev\",\n        \"test\",\n    ],\n    type=\"internal\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @internal = new Vault.Identity.Group(\"internal\", new Vault.Identity.GroupArgs\n        {\n            Metadata = \n            {\n                { \"version\", \"2\" },\n            },\n            Policies = \n            {\n                \"dev\",\n                \"test\",\n            },\n            Type = \"internal\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := identity.NewGroup(ctx, \"internal\", \u0026identity.GroupArgs{\n\t\t\tMetadata: pulumi.StringMap{\n\t\t\t\t\"version\": pulumi.String(\"2\"),\n\t\t\t},\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"test\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"internal\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### External Group\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst group = new vault.identity.Group(\"group\", {\n    metadata: {\n        version: \"1\",\n    },\n    policies: [\"test\"],\n    type: \"external\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ngroup = vault.identity.Group(\"group\",\n    metadata={\n        \"version\": \"1\",\n    },\n    policies=[\"test\"],\n    type=\"external\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @group = new Vault.Identity.Group(\"group\", new Vault.Identity.GroupArgs\n        {\n            Metadata = \n            {\n                { \"version\", \"1\" },\n            },\n            Policies = \n            {\n                \"test\",\n            },\n            Type = \"external\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := identity.NewGroup(ctx, \"group\", \u0026identity.GroupArgs{\n\t\t\tMetadata: pulumi.StringMap{\n\t\t\t\t\"version\": pulumi.String(\"1\"),\n\t\t\t},\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"test\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"external\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nIdentity group can be imported using the `id`, e.g.\n\n```sh\n $ pulumi import vault:identity/group:Group test 'fcbf1efb-2b69-4209-bed8-811e3475dad3'\n```\n\n ",
+            "description": "Creates an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.\n\nA group can contain multiple entities as its members. A group can also have subgroups. Policies set on the group is granted to all members of the group. During request time, when the token's entity ID is being evaluated for the policies that it has access to; along with the policies on the entity itself, policies that are inherited due to group memberships are also granted.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Internal Group\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst internal = new vault.identity.Group(\"internal\", {\n    metadata: {\n        version: \"2\",\n    },\n    policies: [\n        \"dev\",\n        \"test\",\n    ],\n    type: \"internal\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ninternal = vault.identity.Group(\"internal\",\n    metadata={\n        \"version\": \"2\",\n    },\n    policies=[\n        \"dev\",\n        \"test\",\n    ],\n    type=\"internal\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @internal = new Vault.Identity.Group(\"internal\", new Vault.Identity.GroupArgs\n        {\n            Metadata = \n            {\n                { \"version\", \"2\" },\n            },\n            Policies = \n            {\n                \"dev\",\n                \"test\",\n            },\n            Type = \"internal\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := identity.NewGroup(ctx, \"internal\", \u0026identity.GroupArgs{\n\t\t\tMetadata: pulumi.StringMap{\n\t\t\t\t\"version\": pulumi.String(\"2\"),\n\t\t\t},\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"test\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"internal\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### External Group\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst group = new vault.identity.Group(\"group\", {\n    metadata: {\n        version: \"1\",\n    },\n    policies: [\"test\"],\n    type: \"external\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ngroup = vault.identity.Group(\"group\",\n    metadata={\n        \"version\": \"1\",\n    },\n    policies=[\"test\"],\n    type=\"external\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @group = new Vault.Identity.Group(\"group\", new Vault.Identity.GroupArgs\n        {\n            Metadata = \n            {\n                { \"version\", \"1\" },\n            },\n            Policies = \n            {\n                \"test\",\n            },\n            Type = \"external\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := identity.NewGroup(ctx, \"group\", \u0026identity.GroupArgs{\n\t\t\tMetadata: pulumi.StringMap{\n\t\t\t\t\"version\": pulumi.String(\"1\"),\n\t\t\t},\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"test\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"external\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Caveats\n\nIt's important to note that Vault identity groups names are *case-insensitive*. For example the following resources would be equivalent.\nApplying this configuration would result in the provider failing to create one of the identity groups, since the resources share the same `name`.\n\nThis sort of pattern should be avoided:\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst internalIdentityGroup = new vault.identity.Group(\"internal\", {\n    metadata: {\n        version: \"2\",\n    },\n    policies: [\n        \"dev\",\n        \"test\",\n    ],\n    type: \"internal\",\n});\nconst internalGroup = new vault.identity.Group(\"Internal\", {\n    metadata: {\n        version: \"2\",\n    },\n    policies: [\n        \"dev\",\n        \"test\",\n    ],\n    type: \"internal\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ninternal_identity_group_group = vault.identity.Group(\"internalIdentity/groupGroup\",\n    metadata={\n        \"version\": \"2\",\n    },\n    policies=[\n        \"dev\",\n        \"test\",\n    ],\n    type=\"internal\")\ninternal_group = vault.identity.Group(\"internalGroup\",\n    metadata={\n        \"version\": \"2\",\n    },\n    policies=[\n        \"dev\",\n        \"test\",\n    ],\n    type=\"internal\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var internalIdentity_groupGroup = new Vault.Identity.Group(\"internalIdentity/groupGroup\", new Vault.Identity.GroupArgs\n        {\n            Metadata = \n            {\n                { \"version\", \"2\" },\n            },\n            Policies = \n            {\n                \"dev\",\n                \"test\",\n            },\n            Type = \"internal\",\n        });\n        var internalGroup = new Vault.Identity.Group(\"internalGroup\", new Vault.Identity.GroupArgs\n        {\n            Metadata = \n            {\n                { \"version\", \"2\" },\n            },\n            Policies = \n            {\n                \"dev\",\n                \"test\",\n            },\n            Type = \"internal\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := identity.NewGroup(ctx, \"internalIdentity/groupGroup\", \u0026identity.GroupArgs{\n\t\t\tMetadata: pulumi.StringMap{\n\t\t\t\t\"version\": pulumi.String(\"2\"),\n\t\t\t},\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"test\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"internal\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = identity.NewGroup(ctx, \"internalGroup\", \u0026identity.GroupArgs{\n\t\t\tMetadata: pulumi.StringMap{\n\t\t\t\t\"version\": pulumi.String(\"2\"),\n\t\t\t},\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"test\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"internal\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\n## Import\n\nIdentity group can be imported using the `id`, e.g.\n\n```sh\n $ pulumi import vault:identity/group:Group test 'fcbf1efb-2b69-4209-bed8-811e3475dad3'\n```\n\n ",
             "properties": {
                 "externalMemberEntityIds": {
                     "type": "boolean",
@@ -11523,6 +11743,527 @@
                 "type": "object"
             }
         },
+        "vault:kmip/secretBackend:SecretBackend": {
+            "description": "Manages KMIP Secret backends in a Vault server. This feature requires\nVault Enterprise. See the [Vault documentation](https://www.vaultproject.io/docs/secrets/kmip)\nfor more information.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst defaultSecretBackend = new vault.kmip.SecretBackend(\"default\", {\n    defaultTlsClientKeyBits: 4096,\n    defaultTlsClientKeyType: \"rsa\",\n    defaultTlsClientTtl: 86400,\n    description: \"Vault KMIP backend\",\n    listenAddrs: [\n        \"127.0.0.1:5696\",\n        \"127.0.0.1:8080\",\n    ],\n    path: \"kmip\",\n    tlsCaKeyBits: 4096,\n    tlsCaKeyType: \"rsa\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ndefault = vault.kmip.SecretBackend(\"default\",\n    default_tls_client_key_bits=4096,\n    default_tls_client_key_type=\"rsa\",\n    default_tls_client_ttl=86400,\n    description=\"Vault KMIP backend\",\n    listen_addrs=[\n        \"127.0.0.1:5696\",\n        \"127.0.0.1:8080\",\n    ],\n    path=\"kmip\",\n    tls_ca_key_bits=4096,\n    tls_ca_key_type=\"rsa\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @default = new Vault.Kmip.SecretBackend(\"default\", new Vault.Kmip.SecretBackendArgs\n        {\n            DefaultTlsClientKeyBits = 4096,\n            DefaultTlsClientKeyType = \"rsa\",\n            DefaultTlsClientTtl = 86400,\n            Description = \"Vault KMIP backend\",\n            ListenAddrs = \n            {\n                \"127.0.0.1:5696\",\n                \"127.0.0.1:8080\",\n            },\n            Path = \"kmip\",\n            TlsCaKeyBits = 4096,\n            TlsCaKeyType = \"rsa\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kmip\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := kmip.NewSecretBackend(ctx, \"default\", \u0026kmip.SecretBackendArgs{\n\t\t\tDefaultTlsClientKeyBits: pulumi.Int(4096),\n\t\t\tDefaultTlsClientKeyType: pulumi.String(\"rsa\"),\n\t\t\tDefaultTlsClientTtl:     pulumi.Int(86400),\n\t\t\tDescription:             pulumi.String(\"Vault KMIP backend\"),\n\t\t\tListenAddrs: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"127.0.0.1:5696\"),\n\t\t\t\tpulumi.String(\"127.0.0.1:8080\"),\n\t\t\t},\n\t\t\tPath:         pulumi.String(\"kmip\"),\n\t\t\tTlsCaKeyBits: pulumi.Int(4096),\n\t\t\tTlsCaKeyType: pulumi.String(\"rsa\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nKMIP Secret backend can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:kmip/secretBackend:SecretBackend default kmip\n```\n\n ",
+            "properties": {
+                "defaultTlsClientKeyBits": {
+                    "type": "integer",
+                    "description": "Client certificate key bits, valid values depend on key type.\n"
+                },
+                "defaultTlsClientKeyType": {
+                    "type": "string",
+                    "description": "Client certificate key type, `rsa` or `ec`.\n"
+                },
+                "defaultTlsClientTtl": {
+                    "type": "integer",
+                    "description": "Client certificate TTL in seconds\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A human-friendly description for this backend.\n"
+                },
+                "listenAddrs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Addresses the KMIP server should listen on (`host:port`).\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `kmip`.\n"
+                },
+                "serverHostnames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Hostnames to include in the server's TLS certificate as SAN DNS names. The first will be used as the common name (CN).\n"
+                },
+                "serverIps": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "IPs to include in the server's TLS certificate as SAN IP addresses.\n"
+                },
+                "tlsCaKeyBits": {
+                    "type": "integer",
+                    "description": "CA key bits, valid values depend on key type.\n"
+                },
+                "tlsCaKeyType": {
+                    "type": "string",
+                    "description": "CA key type, rsa or ec.\n"
+                },
+                "tlsMinVersion": {
+                    "type": "string",
+                    "description": "Minimum TLS version to accept.\n"
+                }
+            },
+            "required": [
+                "defaultTlsClientKeyBits",
+                "defaultTlsClientKeyType",
+                "defaultTlsClientTtl",
+                "listenAddrs",
+                "path",
+                "serverHostnames",
+                "serverIps",
+                "tlsCaKeyBits",
+                "tlsCaKeyType",
+                "tlsMinVersion"
+            ],
+            "inputProperties": {
+                "defaultTlsClientKeyBits": {
+                    "type": "integer",
+                    "description": "Client certificate key bits, valid values depend on key type.\n"
+                },
+                "defaultTlsClientKeyType": {
+                    "type": "string",
+                    "description": "Client certificate key type, `rsa` or `ec`.\n"
+                },
+                "defaultTlsClientTtl": {
+                    "type": "integer",
+                    "description": "Client certificate TTL in seconds\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A human-friendly description for this backend.\n"
+                },
+                "listenAddrs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Addresses the KMIP server should listen on (`host:port`).\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `kmip`.\n"
+                },
+                "serverHostnames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Hostnames to include in the server's TLS certificate as SAN DNS names. The first will be used as the common name (CN).\n"
+                },
+                "serverIps": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "IPs to include in the server's TLS certificate as SAN IP addresses.\n"
+                },
+                "tlsCaKeyBits": {
+                    "type": "integer",
+                    "description": "CA key bits, valid values depend on key type.\n"
+                },
+                "tlsCaKeyType": {
+                    "type": "string",
+                    "description": "CA key type, rsa or ec.\n"
+                },
+                "tlsMinVersion": {
+                    "type": "string",
+                    "description": "Minimum TLS version to accept.\n"
+                }
+            },
+            "requiredInputs": [
+                "path"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SecretBackend resources.\n",
+                "properties": {
+                    "defaultTlsClientKeyBits": {
+                        "type": "integer",
+                        "description": "Client certificate key bits, valid values depend on key type.\n"
+                    },
+                    "defaultTlsClientKeyType": {
+                        "type": "string",
+                        "description": "Client certificate key type, `rsa` or `ec`.\n"
+                    },
+                    "defaultTlsClientTtl": {
+                        "type": "integer",
+                        "description": "Client certificate TTL in seconds\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "A human-friendly description for this backend.\n"
+                    },
+                    "listenAddrs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Addresses the KMIP server should listen on (`host:port`).\n"
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `kmip`.\n"
+                    },
+                    "serverHostnames": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Hostnames to include in the server's TLS certificate as SAN DNS names. The first will be used as the common name (CN).\n"
+                    },
+                    "serverIps": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "IPs to include in the server's TLS certificate as SAN IP addresses.\n"
+                    },
+                    "tlsCaKeyBits": {
+                        "type": "integer",
+                        "description": "CA key bits, valid values depend on key type.\n"
+                    },
+                    "tlsCaKeyType": {
+                        "type": "string",
+                        "description": "CA key type, rsa or ec.\n"
+                    },
+                    "tlsMinVersion": {
+                        "type": "string",
+                        "description": "Minimum TLS version to accept.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:kmip/secretRole:SecretRole": {
+            "description": "Manages KMIP Secret roles in a Vault server. This feature requires\nVault Enterprise. See the [Vault documentation](https://www.vaultproject.io/docs/secrets/kmip)\nfor more information.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst _default = new vault.kmip.SecretBackend(\"default\", {\n    path: \"kmip\",\n    description: \"Vault KMIP backend\",\n});\nconst dev = new vault.kmip.SecretScope(\"dev\", {\n    path: _default.path,\n    scope: \"dev\",\n    force: true,\n});\nconst admin = new vault.kmip.SecretRole(\"admin\", {\n    path: dev.path,\n    scope: dev.scope,\n    role: \"admin\",\n    tlsClientKeyType: \"ec\",\n    tlsClientKeyBits: 256,\n    operationActivate: true,\n    operationGet: true,\n    operationGetAttributes: true,\n    operationCreate: true,\n    operationDestroy: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ndefault = vault.kmip.SecretBackend(\"default\",\n    path=\"kmip\",\n    description=\"Vault KMIP backend\")\ndev = vault.kmip.SecretScope(\"dev\",\n    path=default.path,\n    scope=\"dev\",\n    force=True)\nadmin = vault.kmip.SecretRole(\"admin\",\n    path=dev.path,\n    scope=dev.scope,\n    role=\"admin\",\n    tls_client_key_type=\"ec\",\n    tls_client_key_bits=256,\n    operation_activate=True,\n    operation_get=True,\n    operation_get_attributes=True,\n    operation_create=True,\n    operation_destroy=True)\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @default = new Vault.Kmip.SecretBackend(\"default\", new Vault.Kmip.SecretBackendArgs\n        {\n            Path = \"kmip\",\n            Description = \"Vault KMIP backend\",\n        });\n        var dev = new Vault.Kmip.SecretScope(\"dev\", new Vault.Kmip.SecretScopeArgs\n        {\n            Path = @default.Path,\n            Scope = \"dev\",\n            Force = true,\n        });\n        var admin = new Vault.Kmip.SecretRole(\"admin\", new Vault.Kmip.SecretRoleArgs\n        {\n            Path = dev.Path,\n            Scope = dev.Scope,\n            Role = \"admin\",\n            TlsClientKeyType = \"ec\",\n            TlsClientKeyBits = 256,\n            OperationActivate = true,\n            OperationGet = true,\n            OperationGetAttributes = true,\n            OperationCreate = true,\n            OperationDestroy = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kmip\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := kmip.NewSecretBackend(ctx, \"default\", \u0026kmip.SecretBackendArgs{\n\t\t\tPath:        pulumi.String(\"kmip\"),\n\t\t\tDescription: pulumi.String(\"Vault KMIP backend\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tdev, err := kmip.NewSecretScope(ctx, \"dev\", \u0026kmip.SecretScopeArgs{\n\t\t\tPath:  _default.Path,\n\t\t\tScope: pulumi.String(\"dev\"),\n\t\t\tForce: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kmip.NewSecretRole(ctx, \"admin\", \u0026kmip.SecretRoleArgs{\n\t\t\tPath:                   dev.Path,\n\t\t\tScope:                  dev.Scope,\n\t\t\tRole:                   pulumi.String(\"admin\"),\n\t\t\tTlsClientKeyType:       pulumi.String(\"ec\"),\n\t\t\tTlsClientKeyBits:       pulumi.Int(256),\n\t\t\tOperationActivate:      pulumi.Bool(true),\n\t\t\tOperationGet:           pulumi.Bool(true),\n\t\t\tOperationGetAttributes: pulumi.Bool(true),\n\t\t\tOperationCreate:        pulumi.Bool(true),\n\t\t\tOperationDestroy:       pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nKMIP Secret role can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:kmip/secretRole:SecretRole admin kmip\n```\n\n ",
+            "properties": {
+                "operationActivate": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Activate operation.\n"
+                },
+                "operationAddAttribute": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Add Attribute operation.\n"
+                },
+                "operationAll": {
+                    "type": "boolean",
+                    "description": "Grant all permissions to this role. May not be specified with any other `operation_*` params.\n"
+                },
+                "operationCreate": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Create operation.\n"
+                },
+                "operationDestroy": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Destroy operation.\n"
+                },
+                "operationDiscoverVersions": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Discover Version operation.\n"
+                },
+                "operationGet": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Get operation.\n"
+                },
+                "operationGetAttributeList": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Get Atrribute List operation.\n"
+                },
+                "operationGetAttributes": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Get Atrributes operation.\n"
+                },
+                "operationLocate": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Get Locate operation.\n"
+                },
+                "operationNone": {
+                    "type": "boolean",
+                    "description": "Remove all permissions from this role. May not be specified with any other `operation_*` params.\n"
+                },
+                "operationRegister": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Register operation.\n"
+                },
+                "operationRekey": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Rekey operation.\n"
+                },
+                "operationRevoke": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Revoke operation.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `kmip`.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "Name of the role.\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "Name of the scope.\n"
+                },
+                "tlsClientKeyBits": {
+                    "type": "integer",
+                    "description": "Client certificate key bits, valid values depend on key type.\n"
+                },
+                "tlsClientKeyType": {
+                    "type": "string",
+                    "description": "Client certificate key type, `rsa` or `ec`.\n"
+                },
+                "tlsClientTtl": {
+                    "type": "integer",
+                    "description": "Client certificate TTL in seconds.\n"
+                }
+            },
+            "required": [
+                "operationActivate",
+                "operationAddAttribute",
+                "operationAll",
+                "operationCreate",
+                "operationDestroy",
+                "operationDiscoverVersions",
+                "operationGet",
+                "operationGetAttributeList",
+                "operationGetAttributes",
+                "operationLocate",
+                "operationNone",
+                "operationRegister",
+                "operationRekey",
+                "operationRevoke",
+                "path",
+                "role",
+                "scope"
+            ],
+            "inputProperties": {
+                "operationActivate": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Activate operation.\n"
+                },
+                "operationAddAttribute": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Add Attribute operation.\n"
+                },
+                "operationAll": {
+                    "type": "boolean",
+                    "description": "Grant all permissions to this role. May not be specified with any other `operation_*` params.\n"
+                },
+                "operationCreate": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Create operation.\n"
+                },
+                "operationDestroy": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Destroy operation.\n"
+                },
+                "operationDiscoverVersions": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Discover Version operation.\n"
+                },
+                "operationGet": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Get operation.\n"
+                },
+                "operationGetAttributeList": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Get Atrribute List operation.\n"
+                },
+                "operationGetAttributes": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Get Atrributes operation.\n"
+                },
+                "operationLocate": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Get Locate operation.\n"
+                },
+                "operationNone": {
+                    "type": "boolean",
+                    "description": "Remove all permissions from this role. May not be specified with any other `operation_*` params.\n"
+                },
+                "operationRegister": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Register operation.\n"
+                },
+                "operationRekey": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Rekey operation.\n"
+                },
+                "operationRevoke": {
+                    "type": "boolean",
+                    "description": "Grant permission to use the KMIP Revoke operation.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `kmip`.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "Name of the role.\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "Name of the scope.\n"
+                },
+                "tlsClientKeyBits": {
+                    "type": "integer",
+                    "description": "Client certificate key bits, valid values depend on key type.\n"
+                },
+                "tlsClientKeyType": {
+                    "type": "string",
+                    "description": "Client certificate key type, `rsa` or `ec`.\n"
+                },
+                "tlsClientTtl": {
+                    "type": "integer",
+                    "description": "Client certificate TTL in seconds.\n"
+                }
+            },
+            "requiredInputs": [
+                "path",
+                "role",
+                "scope"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SecretRole resources.\n",
+                "properties": {
+                    "operationActivate": {
+                        "type": "boolean",
+                        "description": "Grant permission to use the KMIP Activate operation.\n"
+                    },
+                    "operationAddAttribute": {
+                        "type": "boolean",
+                        "description": "Grant permission to use the KMIP Add Attribute operation.\n"
+                    },
+                    "operationAll": {
+                        "type": "boolean",
+                        "description": "Grant all permissions to this role. May not be specified with any other `operation_*` params.\n"
+                    },
+                    "operationCreate": {
+                        "type": "boolean",
+                        "description": "Grant permission to use the KMIP Create operation.\n"
+                    },
+                    "operationDestroy": {
+                        "type": "boolean",
+                        "description": "Grant permission to use the KMIP Destroy operation.\n"
+                    },
+                    "operationDiscoverVersions": {
+                        "type": "boolean",
+                        "description": "Grant permission to use the KMIP Discover Version operation.\n"
+                    },
+                    "operationGet": {
+                        "type": "boolean",
+                        "description": "Grant permission to use the KMIP Get operation.\n"
+                    },
+                    "operationGetAttributeList": {
+                        "type": "boolean",
+                        "description": "Grant permission to use the KMIP Get Atrribute List operation.\n"
+                    },
+                    "operationGetAttributes": {
+                        "type": "boolean",
+                        "description": "Grant permission to use the KMIP Get Atrributes operation.\n"
+                    },
+                    "operationLocate": {
+                        "type": "boolean",
+                        "description": "Grant permission to use the KMIP Get Locate operation.\n"
+                    },
+                    "operationNone": {
+                        "type": "boolean",
+                        "description": "Remove all permissions from this role. May not be specified with any other `operation_*` params.\n"
+                    },
+                    "operationRegister": {
+                        "type": "boolean",
+                        "description": "Grant permission to use the KMIP Register operation.\n"
+                    },
+                    "operationRekey": {
+                        "type": "boolean",
+                        "description": "Grant permission to use the KMIP Rekey operation.\n"
+                    },
+                    "operationRevoke": {
+                        "type": "boolean",
+                        "description": "Grant permission to use the KMIP Revoke operation.\n"
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `kmip`.\n"
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "Name of the role.\n"
+                    },
+                    "scope": {
+                        "type": "string",
+                        "description": "Name of the scope.\n"
+                    },
+                    "tlsClientKeyBits": {
+                        "type": "integer",
+                        "description": "Client certificate key bits, valid values depend on key type.\n"
+                    },
+                    "tlsClientKeyType": {
+                        "type": "string",
+                        "description": "Client certificate key type, `rsa` or `ec`.\n"
+                    },
+                    "tlsClientTtl": {
+                        "type": "integer",
+                        "description": "Client certificate TTL in seconds.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:kmip/secretScope:SecretScope": {
+            "description": "Manages KMIP Secret Scopes in a Vault server. This feature requires\nVault Enterprise. See the [Vault documentation](https://www.vaultproject.io/docs/secrets/kmip)\nfor more information.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst _default = new vault.kmip.SecretBackend(\"default\", {\n    path: \"kmip\",\n    description: \"Vault KMIP backend\",\n});\nconst dev = new vault.kmip.SecretScope(\"dev\", {\n    path: _default.path,\n    scope: \"dev\",\n    force: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ndefault = vault.kmip.SecretBackend(\"default\",\n    path=\"kmip\",\n    description=\"Vault KMIP backend\")\ndev = vault.kmip.SecretScope(\"dev\",\n    path=default.path,\n    scope=\"dev\",\n    force=True)\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @default = new Vault.Kmip.SecretBackend(\"default\", new Vault.Kmip.SecretBackendArgs\n        {\n            Path = \"kmip\",\n            Description = \"Vault KMIP backend\",\n        });\n        var dev = new Vault.Kmip.SecretScope(\"dev\", new Vault.Kmip.SecretScopeArgs\n        {\n            Path = @default.Path,\n            Scope = \"dev\",\n            Force = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kmip\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := kmip.NewSecretBackend(ctx, \"default\", \u0026kmip.SecretBackendArgs{\n\t\t\tPath:        pulumi.String(\"kmip\"),\n\t\t\tDescription: pulumi.String(\"Vault KMIP backend\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kmip.NewSecretScope(ctx, \"dev\", \u0026kmip.SecretScopeArgs{\n\t\t\tPath:  _default.Path,\n\t\t\tScope: pulumi.String(\"dev\"),\n\t\t\tForce: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nKMIP Secret scope can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:kmip/secretScope:SecretScope dev kmip\n```\n\n ",
+            "properties": {
+                "force": {
+                    "type": "boolean",
+                    "description": "Boolean field to force deletion even if there are managed objects in the scope.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `kmip`.\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "Name of the scope.\n"
+                }
+            },
+            "required": [
+                "path",
+                "scope"
+            ],
+            "inputProperties": {
+                "force": {
+                    "type": "boolean",
+                    "description": "Boolean field to force deletion even if there are managed objects in the scope.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `kmip`.\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "Name of the scope.\n"
+                }
+            },
+            "requiredInputs": [
+                "path",
+                "scope"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SecretScope resources.\n",
+                "properties": {
+                    "force": {
+                        "type": "boolean",
+                        "description": "Boolean field to force deletion even if there are managed objects in the scope.\n"
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `kmip`.\n"
+                    },
+                    "scope": {
+                        "type": "string",
+                        "description": "Name of the scope.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "vault:kubernetes/authBackendConfig:AuthBackendConfig": {
             "description": "Manages an Kubernetes auth backend config in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst kubernetes = new vault.AuthBackend(\"kubernetes\", {type: \"kubernetes\"});\nconst example = new vault.kubernetes.AuthBackendConfig(\"example\", {\n    backend: kubernetes.path,\n    kubernetesHost: \"http://example.com:443\",\n    kubernetesCaCert: `-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----`,\n    tokenReviewerJwt: \"ZXhhbXBsZQo=\",\n    issuer: \"api\",\n    disableIssValidation: \"true\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nkubernetes = vault.AuthBackend(\"kubernetes\", type=\"kubernetes\")\nexample = vault.kubernetes.AuthBackendConfig(\"example\",\n    backend=kubernetes.path,\n    kubernetes_host=\"http://example.com:443\",\n    kubernetes_ca_cert=\"\"\"-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----\"\"\",\n    token_reviewer_jwt=\"ZXhhbXBsZQo=\",\n    issuer=\"api\",\n    disable_iss_validation=True)\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var kubernetes = new Vault.AuthBackend(\"kubernetes\", new Vault.AuthBackendArgs\n        {\n            Type = \"kubernetes\",\n        });\n        var example = new Vault.Kubernetes.AuthBackendConfig(\"example\", new Vault.Kubernetes.AuthBackendConfigArgs\n        {\n            Backend = kubernetes.Path,\n            KubernetesHost = \"http://example.com:443\",\n            KubernetesCaCert = @\"-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----\",\n            TokenReviewerJwt = \"ZXhhbXBsZQo=\",\n            Issuer = \"api\",\n            DisableIssValidation = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tkubernetes, err := vault.NewAuthBackend(ctx, \"kubernetes\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"kubernetes\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kubernetes.NewAuthBackendConfig(ctx, \"example\", \u0026kubernetes.AuthBackendConfigArgs{\n\t\t\tBackend:              kubernetes.Path,\n\t\t\tKubernetesHost:       pulumi.String(\"http://example.com:443\"),\n\t\t\tKubernetesCaCert:     pulumi.String(\"-----BEGIN CERTIFICATE-----\\nexample\\n-----END CERTIFICATE-----\"),\n\t\t\tTokenReviewerJwt:     pulumi.String(\"ZXhhbXBsZQo=\"),\n\t\t\tIssuer:               pulumi.String(\"api\"),\n\t\t\tDisableIssValidation: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nKubernetes authentication backend can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config\n```\n\n ",
             "properties": {
@@ -11565,6 +12306,7 @@
             "required": [
                 "disableIssValidation",
                 "disableLocalCaJwt",
+                "kubernetesCaCert",
                 "kubernetesHost"
             ],
             "inputProperties": {
@@ -11652,6 +12394,10 @@
         "vault:kubernetes/authBackendRole:AuthBackendRole": {
             "description": "Manages an Kubernetes auth backend role in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst kubernetes = new vault.AuthBackend(\"kubernetes\", {type: \"kubernetes\"});\nconst example = new vault.kubernetes.AuthBackendRole(\"example\", {\n    backend: kubernetes.path,\n    roleName: \"example-role\",\n    boundServiceAccountNames: [\"example\"],\n    boundServiceAccountNamespaces: [\"example\"],\n    tokenTtl: 3600,\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    audience: \"vault\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nkubernetes = vault.AuthBackend(\"kubernetes\", type=\"kubernetes\")\nexample = vault.kubernetes.AuthBackendRole(\"example\",\n    backend=kubernetes.path,\n    role_name=\"example-role\",\n    bound_service_account_names=[\"example\"],\n    bound_service_account_namespaces=[\"example\"],\n    token_ttl=3600,\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    audience=\"vault\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var kubernetes = new Vault.AuthBackend(\"kubernetes\", new Vault.AuthBackendArgs\n        {\n            Type = \"kubernetes\",\n        });\n        var example = new Vault.Kubernetes.AuthBackendRole(\"example\", new Vault.Kubernetes.AuthBackendRoleArgs\n        {\n            Backend = kubernetes.Path,\n            RoleName = \"example-role\",\n            BoundServiceAccountNames = \n            {\n                \"example\",\n            },\n            BoundServiceAccountNamespaces = \n            {\n                \"example\",\n            },\n            TokenTtl = 3600,\n            TokenPolicies = \n            {\n                \"default\",\n                \"dev\",\n                \"prod\",\n            },\n            Audience = \"vault\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kubernetes\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tkubernetes, err := vault.NewAuthBackend(ctx, \"kubernetes\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"kubernetes\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kubernetes.NewAuthBackendRole(ctx, \"example\", \u0026kubernetes.AuthBackendRoleArgs{\n\t\t\tBackend:  kubernetes.Path,\n\t\t\tRoleName: pulumi.String(\"example-role\"),\n\t\t\tBoundServiceAccountNames: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"example\"),\n\t\t\t},\n\t\t\tBoundServiceAccountNamespaces: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"example\"),\n\t\t\t},\n\t\t\tTokenTtl: pulumi.Int(3600),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"default\"),\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"prod\"),\n\t\t\t},\n\t\t\tAudience: pulumi.String(\"vault\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nKubernetes auth backend role can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:kubernetes/authBackendRole:AuthBackendRole foo auth/kubernetes/role/foo\n```\n\n ",
             "properties": {
+                "aliasNameSource": {
+                    "type": "string",
+                    "description": "Configures how identity aliases are generated.\nValid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)\n"
+                },
                 "audience": {
                     "type": "string",
                     "description": "Audience claim to verify in the JWT.\n"
@@ -11714,7 +12460,7 @@
                 },
                 "tokenTtl": {
                     "type": "integer",
-                    "description": "The incremental lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\n"
+                    "description": "The initial ttl of the token to generate in seconds\n"
                 },
                 "tokenType": {
                     "type": "string",
@@ -11722,11 +12468,16 @@
                 }
             },
             "required": [
+                "aliasNameSource",
                 "boundServiceAccountNames",
                 "boundServiceAccountNamespaces",
                 "roleName"
             ],
             "inputProperties": {
+                "aliasNameSource": {
+                    "type": "string",
+                    "description": "Configures how identity aliases are generated.\nValid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)\n"
+                },
                 "audience": {
                     "type": "string",
                     "description": "Audience claim to verify in the JWT.\n"
@@ -11789,7 +12540,7 @@
                 },
                 "tokenTtl": {
                     "type": "integer",
-                    "description": "The incremental lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\n"
+                    "description": "The initial ttl of the token to generate in seconds\n"
                 },
                 "tokenType": {
                     "type": "string",
@@ -11804,6 +12555,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering AuthBackendRole resources.\n",
                 "properties": {
+                    "aliasNameSource": {
+                        "type": "string",
+                        "description": "Configures how identity aliases are generated.\nValid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)\n"
+                    },
                     "audience": {
                         "type": "string",
                         "description": "Audience claim to verify in the JWT.\n"
@@ -11866,7 +12621,7 @@
                     },
                     "tokenTtl": {
                         "type": "integer",
-                        "description": "The incremental lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\n"
+                        "description": "The initial ttl of the token to generate in seconds\n"
                     },
                     "tokenType": {
                         "type": "string",
@@ -11890,6 +12645,10 @@
                 "bindpass": {
                     "type": "string",
                     "description": "Password to use with `binddn` when performing user search\n"
+                },
+                "caseSensitiveNames": {
+                    "type": "boolean",
+                    "description": "Control case senstivity of objects fetched from LDAP, this is used for object matching in vault\n"
                 },
                 "certificate": {
                     "type": "string",
@@ -12014,6 +12773,7 @@
                 "accessor",
                 "binddn",
                 "bindpass",
+                "caseSensitiveNames",
                 "certificate",
                 "clientTlsCert",
                 "clientTlsKey",
@@ -12041,6 +12801,10 @@
                 "bindpass": {
                     "type": "string",
                     "description": "Password to use with `binddn` when performing user search\n"
+                },
+                "caseSensitiveNames": {
+                    "type": "boolean",
+                    "description": "Control case senstivity of objects fetched from LDAP, this is used for object matching in vault\n"
                 },
                 "certificate": {
                     "type": "string",
@@ -12178,6 +12942,10 @@
                     "bindpass": {
                         "type": "string",
                         "description": "Password to use with `binddn` when performing user search\n"
+                    },
+                    "caseSensitiveNames": {
+                        "type": "boolean",
+                        "description": "Control case senstivity of objects fetched from LDAP, this is used for object matching in vault\n"
                     },
                     "certificate": {
                         "type": "string",
@@ -13564,7 +14332,7 @@
                 },
                 "certificate": {
                     "type": "string",
-                    "description": "The certificate\n"
+                    "description": "Specifies the PEM encoded certificate. May optionally append additional\nCA certificates to populate the whole chain, which will then enable returning the full chain from\nissue and sign operations.\n"
                 }
             },
             "required": [
@@ -13578,7 +14346,7 @@
                 },
                 "certificate": {
                     "type": "string",
-                    "description": "The certificate\n"
+                    "description": "Specifies the PEM encoded certificate. May optionally append additional\nCA certificates to populate the whole chain, which will then enable returning the full chain from\nissue and sign operations.\n"
                 }
             },
             "requiredInputs": [
@@ -13594,7 +14362,7 @@
                     },
                     "certificate": {
                         "type": "string",
-                        "description": "The certificate\n"
+                        "description": "Specifies the PEM encoded certificate. May optionally append additional\nCA certificates to populate the whole chain, which will then enable returning the full chain from\nissue and sign operations.\n"
                     }
                 },
                 "type": "object"
@@ -14566,13 +15334,20 @@
                     "type": "string",
                     "description": "The PKI secret backend the resource belongs to.\n"
                 },
-                "caChain": {
-                    "type": "string",
-                    "description": "The CA chain\n"
+                "caChains": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of the issuing and intermediate CA certificates in the `format` specified.\n"
                 },
                 "certificate": {
                     "type": "string",
-                    "description": "The certificate\n"
+                    "description": "The intermediate CA certificate in the `format` specified.\n"
+                },
+                "certificateBundle": {
+                    "type": "string",
+                    "description": "The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). \nRequires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.\n"
                 },
                 "commonName": {
                     "type": "string",
@@ -14603,7 +15378,7 @@
                 },
                 "issuingCa": {
                     "type": "string",
-                    "description": "The issuing CA\n"
+                    "description": "The issuing CA certificate in the `format` specified.\n"
                 },
                 "locality": {
                     "type": "string",
@@ -14669,8 +15444,9 @@
             },
             "required": [
                 "backend",
-                "caChain",
+                "caChains",
                 "certificate",
+                "certificateBundle",
                 "commonName",
                 "csr",
                 "issuingCa",
@@ -14792,13 +15568,20 @@
                         "type": "string",
                         "description": "The PKI secret backend the resource belongs to.\n"
                     },
-                    "caChain": {
-                        "type": "string",
-                        "description": "The CA chain\n"
+                    "caChains": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A list of the issuing and intermediate CA certificates in the `format` specified.\n"
                     },
                     "certificate": {
                         "type": "string",
-                        "description": "The certificate\n"
+                        "description": "The intermediate CA certificate in the `format` specified.\n"
+                    },
+                    "certificateBundle": {
+                        "type": "string",
+                        "description": "The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). \nRequires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.\n"
                     },
                     "commonName": {
                         "type": "string",
@@ -14829,7 +15612,7 @@
                     },
                     "issuingCa": {
                         "type": "string",
-                        "description": "The issuing CA\n"
+                        "description": "The issuing CA certificate in the `format` specified.\n"
                     },
                     "locality": {
                         "type": "string",
@@ -16049,8 +16832,15 @@
             }
         },
         "vault:tokenauth/authBackendRole:AuthBackendRole": {
-            "description": "Manages Token auth backend role in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/token.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.tokenauth.AuthBackendRole(\"example\", {\n    allowedPolicies: [\n        \"dev\",\n        \"test\",\n    ],\n    disallowedPolicies: [\"default\"],\n    explicitMaxTtl: \"115200\",\n    orphan: true,\n    pathSuffix: \"path-suffix\",\n    renewable: true,\n    roleName: \"my-role\",\n    tokenPeriod: 86400,\n});\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nToken auth backend roles can be imported with `auth/token/roles/` followed by the `role_name`, e.g.\n\n```sh\n $ pulumi import vault:tokenauth/authBackendRole:AuthBackendRole example auth/token/roles/my-role\n```\n\n ",
+            "description": "Manages Token auth backend role in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/token.html) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.tokenauth.AuthBackendRole(\"example\", {\n    allowedEntityAliases: [\"test_entity\"],\n    allowedPolicies: [\n        \"dev\",\n        \"test\",\n    ],\n    disallowedPolicies: [\"default\"],\n    explicitMaxTtl: \"115200\",\n    orphan: true,\n    pathSuffix: \"path-suffix\",\n    renewable: true,\n    roleName: \"my-role\",\n    tokenPeriod: 86400,\n});\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nToken auth backend roles can be imported with `auth/token/roles/` followed by the `role_name`, e.g.\n\n```sh\n $ pulumi import vault:tokenauth/authBackendRole:AuthBackendRole example auth/token/roles/my-role\n```\n\n ",
             "properties": {
+                "allowedEntityAliases": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of allowed entity aliases.\n"
+                },
                 "allowedPolicies": {
                     "type": "array",
                     "items": {
@@ -16058,12 +16848,26 @@
                     },
                     "description": "List of allowed policies for given role.\n"
                 },
+                "allowedPoliciesGlobs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Set of allowed policies with glob match for given role.\n"
+                },
                 "disallowedPolicies": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
                     "description": "List of disallowed policies for given role.\n"
+                },
+                "disallowedPoliciesGlobs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Set of disallowed policies with glob match for given role.\n"
                 },
                 "orphan": {
                     "type": "boolean",
@@ -16128,6 +16932,13 @@
                 "roleName"
             ],
             "inputProperties": {
+                "allowedEntityAliases": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of allowed entity aliases.\n"
+                },
                 "allowedPolicies": {
                     "type": "array",
                     "items": {
@@ -16135,12 +16946,26 @@
                     },
                     "description": "List of allowed policies for given role.\n"
                 },
+                "allowedPoliciesGlobs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Set of allowed policies with glob match for given role.\n"
+                },
                 "disallowedPolicies": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
                     "description": "List of disallowed policies for given role.\n"
+                },
+                "disallowedPoliciesGlobs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Set of disallowed policies with glob match for given role.\n"
                 },
                 "orphan": {
                     "type": "boolean",
@@ -16207,6 +17032,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering AuthBackendRole resources.\n",
                 "properties": {
+                    "allowedEntityAliases": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of allowed entity aliases.\n"
+                    },
                     "allowedPolicies": {
                         "type": "array",
                         "items": {
@@ -16214,12 +17046,26 @@
                         },
                         "description": "List of allowed policies for given role.\n"
                     },
+                    "allowedPoliciesGlobs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Set of allowed policies with glob match for given role.\n"
+                    },
                     "disallowedPolicies": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
                         "description": "List of disallowed policies for given role.\n"
+                    },
+                    "disallowedPoliciesGlobs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Set of disallowed policies with glob match for given role.\n"
                     },
                     "orphan": {
                         "type": "boolean",
@@ -18044,7 +18890,7 @@
                 "properties": {
                     "audience": {
                         "type": "string",
-                        "description": "(Optional) Audience claim to verify in the JWT.\n"
+                        "description": "Audience claim to verify in the JWT.\n"
                     },
                     "backend": {
                         "type": "string",
@@ -18105,9 +18951,13 @@
             "outputs": {
                 "description": "A collection of values returned by getAuthBackendRole.\n",
                 "properties": {
+                    "aliasNameSource": {
+                        "type": "string",
+                        "description": "Method used for generating identity aliases. (vault-1.9+)\n"
+                    },
                     "audience": {
                         "type": "string",
-                        "description": "(Optional) Audience claim to verify in the JWT.\n"
+                        "description": "Audience claim to verify in the JWT.\n"
                     },
                     "backend": {
                         "type": "string"
@@ -18178,6 +19028,7 @@
                 },
                 "type": "object",
                 "required": [
+                    "aliasNameSource",
                     "boundServiceAccountNames",
                     "boundServiceAccountNamespaces",
                     "roleName",
@@ -18556,6 +19407,7 @@
                 "identity": "Identity",
                 "index": "index",
                 "jwt": "Jwt",
+                "kmip": "Kmip",
                 "kubernetes": "Kubernetes",
                 "ldap": "Ldap",
                 "okta": "Okta",

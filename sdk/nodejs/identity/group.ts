@@ -41,6 +41,37 @@ import * as utilities from "../utilities";
  *     type: "external",
  * });
  * ```
+ * ## Caveats
+ *
+ * It's important to note that Vault identity groups names are *case-insensitive*. For example the following resources would be equivalent.
+ * Applying this configuration would result in the provider failing to create one of the identity groups, since the resources share the same `name`.
+ *
+ * This sort of pattern should be avoided:
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const internalIdentityGroup = new vault.identity.Group("internal", {
+ *     metadata: {
+ *         version: "2",
+ *     },
+ *     policies: [
+ *         "dev",
+ *         "test",
+ *     ],
+ *     type: "internal",
+ * });
+ * const internalGroup = new vault.identity.Group("Internal", {
+ *     metadata: {
+ *         version: "2",
+ *     },
+ *     policies: [
+ *         "dev",
+ *         "test",
+ *     ],
+ *     type: "internal",
+ * });
+ * ```
  *
  * ## Import
  *

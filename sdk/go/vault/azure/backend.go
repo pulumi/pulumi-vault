@@ -28,6 +28,9 @@ type Backend struct {
 	SubscriptionId pulumi.StringOutput `pulumi:"subscriptionId"`
 	// - The tenant id for the Azure Active Directory.
 	TenantId pulumi.StringOutput `pulumi:"tenantId"`
+	// - Use the Microsoft Graph API introduced in `vault-1.9`.
+	//   Should be set to true for `vault-1.10+`
+	UseMicrosoftGraphApi pulumi.BoolOutput `pulumi:"useMicrosoftGraphApi"`
 }
 
 // NewBackend registers a new resource with the given unique name, arguments, and options.
@@ -79,6 +82,9 @@ type backendState struct {
 	SubscriptionId *string `pulumi:"subscriptionId"`
 	// - The tenant id for the Azure Active Directory.
 	TenantId *string `pulumi:"tenantId"`
+	// - Use the Microsoft Graph API introduced in `vault-1.9`.
+	//   Should be set to true for `vault-1.10+`
+	UseMicrosoftGraphApi *bool `pulumi:"useMicrosoftGraphApi"`
 }
 
 type BackendState struct {
@@ -96,6 +102,9 @@ type BackendState struct {
 	SubscriptionId pulumi.StringPtrInput
 	// - The tenant id for the Azure Active Directory.
 	TenantId pulumi.StringPtrInput
+	// - Use the Microsoft Graph API introduced in `vault-1.9`.
+	//   Should be set to true for `vault-1.10+`
+	UseMicrosoftGraphApi pulumi.BoolPtrInput
 }
 
 func (BackendState) ElementType() reflect.Type {
@@ -117,6 +126,9 @@ type backendArgs struct {
 	SubscriptionId string `pulumi:"subscriptionId"`
 	// - The tenant id for the Azure Active Directory.
 	TenantId string `pulumi:"tenantId"`
+	// - Use the Microsoft Graph API introduced in `vault-1.9`.
+	//   Should be set to true for `vault-1.10+`
+	UseMicrosoftGraphApi *bool `pulumi:"useMicrosoftGraphApi"`
 }
 
 // The set of arguments for constructing a Backend resource.
@@ -135,6 +147,9 @@ type BackendArgs struct {
 	SubscriptionId pulumi.StringInput
 	// - The tenant id for the Azure Active Directory.
 	TenantId pulumi.StringInput
+	// - Use the Microsoft Graph API introduced in `vault-1.9`.
+	//   Should be set to true for `vault-1.10+`
+	UseMicrosoftGraphApi pulumi.BoolPtrInput
 }
 
 func (BackendArgs) ElementType() reflect.Type {

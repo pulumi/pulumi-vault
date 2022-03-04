@@ -66,6 +66,13 @@ namespace Pulumi.Vault.Kubernetes
     public partial class AuthBackendRole : Pulumi.CustomResource
     {
         /// <summary>
+        /// Configures how identity aliases are generated.
+        /// Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
+        /// </summary>
+        [Output("aliasNameSource")]
+        public Output<string> AliasNameSource { get; private set; } = null!;
+
+        /// <summary>
         /// Audience claim to verify in the JWT.
         /// </summary>
         [Output("audience")]
@@ -151,8 +158,7 @@ namespace Pulumi.Vault.Kubernetes
         public Output<ImmutableArray<string>> TokenPolicies { get; private set; } = null!;
 
         /// <summary>
-        /// The incremental lifetime for generated tokens in number of seconds.
-        /// Its current value will be referenced at renewal time.
+        /// The initial ttl of the token to generate in seconds
         /// </summary>
         [Output("tokenTtl")]
         public Output<int?> TokenTtl { get; private set; } = null!;
@@ -213,6 +219,13 @@ namespace Pulumi.Vault.Kubernetes
 
     public sealed class AuthBackendRoleArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Configures how identity aliases are generated.
+        /// Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
+        /// </summary>
+        [Input("aliasNameSource")]
+        public Input<string>? AliasNameSource { get; set; }
+
         /// <summary>
         /// Audience claim to verify in the JWT.
         /// </summary>
@@ -323,8 +336,7 @@ namespace Pulumi.Vault.Kubernetes
         }
 
         /// <summary>
-        /// The incremental lifetime for generated tokens in number of seconds.
-        /// Its current value will be referenced at renewal time.
+        /// The initial ttl of the token to generate in seconds
         /// </summary>
         [Input("tokenTtl")]
         public Input<int>? TokenTtl { get; set; }
@@ -346,6 +358,13 @@ namespace Pulumi.Vault.Kubernetes
 
     public sealed class AuthBackendRoleState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Configures how identity aliases are generated.
+        /// Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
+        /// </summary>
+        [Input("aliasNameSource")]
+        public Input<string>? AliasNameSource { get; set; }
+
         /// <summary>
         /// Audience claim to verify in the JWT.
         /// </summary>
@@ -456,8 +475,7 @@ namespace Pulumi.Vault.Kubernetes
         }
 
         /// <summary>
-        /// The incremental lifetime for generated tokens in number of seconds.
-        /// Its current value will be referenced at renewal time.
+        /// The initial ttl of the token to generate in seconds
         /// </summary>
         [Input("tokenTtl")]
         public Input<int>? TokenTtl { get; set; }

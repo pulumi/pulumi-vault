@@ -49,10 +49,13 @@ type SecretBackendRootSignIntermediate struct {
 	AltNames pulumi.StringArrayOutput `pulumi:"altNames"`
 	// The PKI secret backend the resource belongs to.
 	Backend pulumi.StringOutput `pulumi:"backend"`
-	// The CA chain
-	CaChain pulumi.StringOutput `pulumi:"caChain"`
-	// The certificate
+	// A list of the issuing and intermediate CA certificates in the `format` specified.
+	CaChains pulumi.StringArrayOutput `pulumi:"caChains"`
+	// The intermediate CA certificate in the `format` specified.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
+	// The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded).
+	// Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
+	CertificateBundle pulumi.StringOutput `pulumi:"certificateBundle"`
 	// CN of intermediate to create
 	CommonName pulumi.StringOutput `pulumi:"commonName"`
 	// The country
@@ -65,7 +68,7 @@ type SecretBackendRootSignIntermediate struct {
 	Format pulumi.StringPtrOutput `pulumi:"format"`
 	// List of alternative IPs
 	IpSans pulumi.StringArrayOutput `pulumi:"ipSans"`
-	// The issuing CA
+	// The issuing CA certificate in the `format` specified.
 	IssuingCa pulumi.StringOutput `pulumi:"issuingCa"`
 	// The locality
 	Locality pulumi.StringPtrOutput `pulumi:"locality"`
@@ -137,10 +140,13 @@ type secretBackendRootSignIntermediateState struct {
 	AltNames []string `pulumi:"altNames"`
 	// The PKI secret backend the resource belongs to.
 	Backend *string `pulumi:"backend"`
-	// The CA chain
-	CaChain *string `pulumi:"caChain"`
-	// The certificate
+	// A list of the issuing and intermediate CA certificates in the `format` specified.
+	CaChains []string `pulumi:"caChains"`
+	// The intermediate CA certificate in the `format` specified.
 	Certificate *string `pulumi:"certificate"`
+	// The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded).
+	// Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
+	CertificateBundle *string `pulumi:"certificateBundle"`
 	// CN of intermediate to create
 	CommonName *string `pulumi:"commonName"`
 	// The country
@@ -153,7 +159,7 @@ type secretBackendRootSignIntermediateState struct {
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
 	IpSans []string `pulumi:"ipSans"`
-	// The issuing CA
+	// The issuing CA certificate in the `format` specified.
 	IssuingCa *string `pulumi:"issuingCa"`
 	// The locality
 	Locality *string `pulumi:"locality"`
@@ -188,10 +194,13 @@ type SecretBackendRootSignIntermediateState struct {
 	AltNames pulumi.StringArrayInput
 	// The PKI secret backend the resource belongs to.
 	Backend pulumi.StringPtrInput
-	// The CA chain
-	CaChain pulumi.StringPtrInput
-	// The certificate
+	// A list of the issuing and intermediate CA certificates in the `format` specified.
+	CaChains pulumi.StringArrayInput
+	// The intermediate CA certificate in the `format` specified.
 	Certificate pulumi.StringPtrInput
+	// The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded).
+	// Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
+	CertificateBundle pulumi.StringPtrInput
 	// CN of intermediate to create
 	CommonName pulumi.StringPtrInput
 	// The country
@@ -204,7 +213,7 @@ type SecretBackendRootSignIntermediateState struct {
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
 	IpSans pulumi.StringArrayInput
-	// The issuing CA
+	// The issuing CA certificate in the `format` specified.
 	IssuingCa pulumi.StringPtrInput
 	// The locality
 	Locality pulumi.StringPtrInput

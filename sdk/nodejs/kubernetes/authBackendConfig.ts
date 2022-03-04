@@ -83,7 +83,7 @@ export class AuthBackendConfig extends pulumi.CustomResource {
     /**
      * PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
      */
-    public readonly kubernetesCaCert!: pulumi.Output<string | undefined>;
+    public readonly kubernetesCaCert!: pulumi.Output<string>;
     /**
      * Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
      */

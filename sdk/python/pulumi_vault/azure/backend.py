@@ -19,7 +19,8 @@ class BackendArgs:
                  client_secret: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  environment: Optional[pulumi.Input[str]] = None,
-                 path: Optional[pulumi.Input[str]] = None):
+                 path: Optional[pulumi.Input[str]] = None,
+                 use_microsoft_graph_api: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Backend resource.
         :param pulumi.Input[str] subscription_id: - The subscription id for the Azure Active Directory.
@@ -29,6 +30,8 @@ class BackendArgs:
         :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
         :param pulumi.Input[str] environment: - The Azure environment.
         :param pulumi.Input[str] path: - The unique path this backend should be mounted at. Defaults to `azure`.
+        :param pulumi.Input[bool] use_microsoft_graph_api: - Use the Microsoft Graph API introduced in `vault-1.9`. 
+               Should be set to true for `vault-1.10+`
         """
         pulumi.set(__self__, "subscription_id", subscription_id)
         pulumi.set(__self__, "tenant_id", tenant_id)
@@ -42,6 +45,8 @@ class BackendArgs:
             pulumi.set(__self__, "environment", environment)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if use_microsoft_graph_api is not None:
+            pulumi.set(__self__, "use_microsoft_graph_api", use_microsoft_graph_api)
 
     @property
     @pulumi.getter(name="subscriptionId")
@@ -127,6 +132,19 @@ class BackendArgs:
     def path(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "path", value)
 
+    @property
+    @pulumi.getter(name="useMicrosoftGraphApi")
+    def use_microsoft_graph_api(self) -> Optional[pulumi.Input[bool]]:
+        """
+        - Use the Microsoft Graph API introduced in `vault-1.9`. 
+        Should be set to true for `vault-1.10+`
+        """
+        return pulumi.get(self, "use_microsoft_graph_api")
+
+    @use_microsoft_graph_api.setter
+    def use_microsoft_graph_api(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_microsoft_graph_api", value)
+
 
 @pulumi.input_type
 class _BackendState:
@@ -137,7 +155,8 @@ class _BackendState:
                  environment: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  subscription_id: Optional[pulumi.Input[str]] = None,
-                 tenant_id: Optional[pulumi.Input[str]] = None):
+                 tenant_id: Optional[pulumi.Input[str]] = None,
+                 use_microsoft_graph_api: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering Backend resources.
         :param pulumi.Input[str] client_id: - The OAuth2 client id to connect to Azure.
@@ -147,6 +166,8 @@ class _BackendState:
         :param pulumi.Input[str] path: - The unique path this backend should be mounted at. Defaults to `azure`.
         :param pulumi.Input[str] subscription_id: - The subscription id for the Azure Active Directory.
         :param pulumi.Input[str] tenant_id: - The tenant id for the Azure Active Directory.
+        :param pulumi.Input[bool] use_microsoft_graph_api: - Use the Microsoft Graph API introduced in `vault-1.9`. 
+               Should be set to true for `vault-1.10+`
         """
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
@@ -162,6 +183,8 @@ class _BackendState:
             pulumi.set(__self__, "subscription_id", subscription_id)
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
+        if use_microsoft_graph_api is not None:
+            pulumi.set(__self__, "use_microsoft_graph_api", use_microsoft_graph_api)
 
     @property
     @pulumi.getter(name="clientId")
@@ -247,6 +270,19 @@ class _BackendState:
     def tenant_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "tenant_id", value)
 
+    @property
+    @pulumi.getter(name="useMicrosoftGraphApi")
+    def use_microsoft_graph_api(self) -> Optional[pulumi.Input[bool]]:
+        """
+        - Use the Microsoft Graph API introduced in `vault-1.9`. 
+        Should be set to true for `vault-1.10+`
+        """
+        return pulumi.get(self, "use_microsoft_graph_api")
+
+    @use_microsoft_graph_api.setter
+    def use_microsoft_graph_api(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_microsoft_graph_api", value)
+
 
 class Backend(pulumi.CustomResource):
     @overload
@@ -260,6 +296,7 @@ class Backend(pulumi.CustomResource):
                  path: Optional[pulumi.Input[str]] = None,
                  subscription_id: Optional[pulumi.Input[str]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
+                 use_microsoft_graph_api: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         Create a Backend resource with the given unique name, props, and options.
@@ -272,6 +309,8 @@ class Backend(pulumi.CustomResource):
         :param pulumi.Input[str] path: - The unique path this backend should be mounted at. Defaults to `azure`.
         :param pulumi.Input[str] subscription_id: - The subscription id for the Azure Active Directory.
         :param pulumi.Input[str] tenant_id: - The tenant id for the Azure Active Directory.
+        :param pulumi.Input[bool] use_microsoft_graph_api: - Use the Microsoft Graph API introduced in `vault-1.9`. 
+               Should be set to true for `vault-1.10+`
         """
         ...
     @overload
@@ -303,6 +342,7 @@ class Backend(pulumi.CustomResource):
                  path: Optional[pulumi.Input[str]] = None,
                  subscription_id: Optional[pulumi.Input[str]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
+                 use_microsoft_graph_api: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -326,6 +366,7 @@ class Backend(pulumi.CustomResource):
             if tenant_id is None and not opts.urn:
                 raise TypeError("Missing required property 'tenant_id'")
             __props__.__dict__["tenant_id"] = tenant_id
+            __props__.__dict__["use_microsoft_graph_api"] = use_microsoft_graph_api
         super(Backend, __self__).__init__(
             'vault:azure/backend:Backend',
             resource_name,
@@ -342,7 +383,8 @@ class Backend(pulumi.CustomResource):
             environment: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             subscription_id: Optional[pulumi.Input[str]] = None,
-            tenant_id: Optional[pulumi.Input[str]] = None) -> 'Backend':
+            tenant_id: Optional[pulumi.Input[str]] = None,
+            use_microsoft_graph_api: Optional[pulumi.Input[bool]] = None) -> 'Backend':
         """
         Get an existing Backend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -357,6 +399,8 @@ class Backend(pulumi.CustomResource):
         :param pulumi.Input[str] path: - The unique path this backend should be mounted at. Defaults to `azure`.
         :param pulumi.Input[str] subscription_id: - The subscription id for the Azure Active Directory.
         :param pulumi.Input[str] tenant_id: - The tenant id for the Azure Active Directory.
+        :param pulumi.Input[bool] use_microsoft_graph_api: - Use the Microsoft Graph API introduced in `vault-1.9`. 
+               Should be set to true for `vault-1.10+`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -369,6 +413,7 @@ class Backend(pulumi.CustomResource):
         __props__.__dict__["path"] = path
         __props__.__dict__["subscription_id"] = subscription_id
         __props__.__dict__["tenant_id"] = tenant_id
+        __props__.__dict__["use_microsoft_graph_api"] = use_microsoft_graph_api
         return Backend(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -426,4 +471,13 @@ class Backend(pulumi.CustomResource):
         - The tenant id for the Azure Active Directory.
         """
         return pulumi.get(self, "tenant_id")
+
+    @property
+    @pulumi.getter(name="useMicrosoftGraphApi")
+    def use_microsoft_graph_api(self) -> pulumi.Output[bool]:
+        """
+        - Use the Microsoft Graph API introduced in `vault-1.9`. 
+        Should be set to true for `vault-1.10+`
+        """
+        return pulumi.get(self, "use_microsoft_graph_api")
 

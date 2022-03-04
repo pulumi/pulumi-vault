@@ -14,8 +14,11 @@ __all__ = ['AuthBackendRoleArgs', 'AuthBackendRole']
 class AuthBackendRoleArgs:
     def __init__(__self__, *,
                  role_name: pulumi.Input[str],
+                 allowed_entity_aliases: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disallowed_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 disallowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  orphan: Optional[pulumi.Input[bool]] = None,
                  path_suffix: Optional[pulumi.Input[str]] = None,
                  renewable: Optional[pulumi.Input[bool]] = None,
@@ -31,8 +34,11 @@ class AuthBackendRoleArgs:
         """
         The set of arguments for constructing a AuthBackendRole resource.
         :param pulumi.Input[str] role_name: The name of the role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_entity_aliases: List of allowed entity aliases.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_policies: List of allowed policies for given role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_policies_globs: Set of allowed policies with glob match for given role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies: List of disallowed policies for given role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies_globs: Set of disallowed policies with glob match for given role.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
         :param pulumi.Input[bool] renewable: Whether to disable the ability of the token to be renewed past its initial TTL.
@@ -64,10 +70,16 @@ class AuthBackendRoleArgs:
                requests a different type at generation time.
         """
         pulumi.set(__self__, "role_name", role_name)
+        if allowed_entity_aliases is not None:
+            pulumi.set(__self__, "allowed_entity_aliases", allowed_entity_aliases)
         if allowed_policies is not None:
             pulumi.set(__self__, "allowed_policies", allowed_policies)
+        if allowed_policies_globs is not None:
+            pulumi.set(__self__, "allowed_policies_globs", allowed_policies_globs)
         if disallowed_policies is not None:
             pulumi.set(__self__, "disallowed_policies", disallowed_policies)
+        if disallowed_policies_globs is not None:
+            pulumi.set(__self__, "disallowed_policies_globs", disallowed_policies_globs)
         if orphan is not None:
             pulumi.set(__self__, "orphan", orphan)
         if path_suffix is not None:
@@ -106,6 +118,18 @@ class AuthBackendRoleArgs:
         pulumi.set(self, "role_name", value)
 
     @property
+    @pulumi.getter(name="allowedEntityAliases")
+    def allowed_entity_aliases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of allowed entity aliases.
+        """
+        return pulumi.get(self, "allowed_entity_aliases")
+
+    @allowed_entity_aliases.setter
+    def allowed_entity_aliases(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_entity_aliases", value)
+
+    @property
     @pulumi.getter(name="allowedPolicies")
     def allowed_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -118,6 +142,18 @@ class AuthBackendRoleArgs:
         pulumi.set(self, "allowed_policies", value)
 
     @property
+    @pulumi.getter(name="allowedPoliciesGlobs")
+    def allowed_policies_globs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Set of allowed policies with glob match for given role.
+        """
+        return pulumi.get(self, "allowed_policies_globs")
+
+    @allowed_policies_globs.setter
+    def allowed_policies_globs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_policies_globs", value)
+
+    @property
     @pulumi.getter(name="disallowedPolicies")
     def disallowed_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -128,6 +164,18 @@ class AuthBackendRoleArgs:
     @disallowed_policies.setter
     def disallowed_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "disallowed_policies", value)
+
+    @property
+    @pulumi.getter(name="disallowedPoliciesGlobs")
+    def disallowed_policies_globs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Set of disallowed policies with glob match for given role.
+        """
+        return pulumi.get(self, "disallowed_policies_globs")
+
+    @disallowed_policies_globs.setter
+    def disallowed_policies_globs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "disallowed_policies_globs", value)
 
     @property
     @pulumi.getter
@@ -294,8 +342,11 @@ class AuthBackendRoleArgs:
 @pulumi.input_type
 class _AuthBackendRoleState:
     def __init__(__self__, *,
+                 allowed_entity_aliases: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disallowed_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 disallowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  orphan: Optional[pulumi.Input[bool]] = None,
                  path_suffix: Optional[pulumi.Input[str]] = None,
                  renewable: Optional[pulumi.Input[bool]] = None,
@@ -311,8 +362,11 @@ class _AuthBackendRoleState:
                  token_type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRole resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_entity_aliases: List of allowed entity aliases.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_policies: List of allowed policies for given role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_policies_globs: Set of allowed policies with glob match for given role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies: List of disallowed policies for given role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies_globs: Set of disallowed policies with glob match for given role.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
         :param pulumi.Input[bool] renewable: Whether to disable the ability of the token to be renewed past its initial TTL.
@@ -344,10 +398,16 @@ class _AuthBackendRoleState:
                `default-service` and `default-batch` which specify the type to return unless the client
                requests a different type at generation time.
         """
+        if allowed_entity_aliases is not None:
+            pulumi.set(__self__, "allowed_entity_aliases", allowed_entity_aliases)
         if allowed_policies is not None:
             pulumi.set(__self__, "allowed_policies", allowed_policies)
+        if allowed_policies_globs is not None:
+            pulumi.set(__self__, "allowed_policies_globs", allowed_policies_globs)
         if disallowed_policies is not None:
             pulumi.set(__self__, "disallowed_policies", disallowed_policies)
+        if disallowed_policies_globs is not None:
+            pulumi.set(__self__, "disallowed_policies_globs", disallowed_policies_globs)
         if orphan is not None:
             pulumi.set(__self__, "orphan", orphan)
         if path_suffix is not None:
@@ -376,6 +436,18 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "token_type", token_type)
 
     @property
+    @pulumi.getter(name="allowedEntityAliases")
+    def allowed_entity_aliases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of allowed entity aliases.
+        """
+        return pulumi.get(self, "allowed_entity_aliases")
+
+    @allowed_entity_aliases.setter
+    def allowed_entity_aliases(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_entity_aliases", value)
+
+    @property
     @pulumi.getter(name="allowedPolicies")
     def allowed_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -388,6 +460,18 @@ class _AuthBackendRoleState:
         pulumi.set(self, "allowed_policies", value)
 
     @property
+    @pulumi.getter(name="allowedPoliciesGlobs")
+    def allowed_policies_globs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Set of allowed policies with glob match for given role.
+        """
+        return pulumi.get(self, "allowed_policies_globs")
+
+    @allowed_policies_globs.setter
+    def allowed_policies_globs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_policies_globs", value)
+
+    @property
     @pulumi.getter(name="disallowedPolicies")
     def disallowed_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -398,6 +482,18 @@ class _AuthBackendRoleState:
     @disallowed_policies.setter
     def disallowed_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "disallowed_policies", value)
+
+    @property
+    @pulumi.getter(name="disallowedPoliciesGlobs")
+    def disallowed_policies_globs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Set of disallowed policies with glob match for given role.
+        """
+        return pulumi.get(self, "disallowed_policies_globs")
+
+    @disallowed_policies_globs.setter
+    def disallowed_policies_globs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "disallowed_policies_globs", value)
 
     @property
     @pulumi.getter
@@ -578,8 +674,11 @@ class AuthBackendRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_entity_aliases: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disallowed_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 disallowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  orphan: Optional[pulumi.Input[bool]] = None,
                  path_suffix: Optional[pulumi.Input[str]] = None,
                  renewable: Optional[pulumi.Input[bool]] = None,
@@ -609,8 +708,11 @@ class AuthBackendRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_entity_aliases: List of allowed entity aliases.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_policies: List of allowed policies for given role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_policies_globs: Set of allowed policies with glob match for given role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies: List of disallowed policies for given role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies_globs: Set of disallowed policies with glob match for given role.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
         :param pulumi.Input[bool] renewable: Whether to disable the ability of the token to be renewed past its initial TTL.
@@ -676,8 +778,11 @@ class AuthBackendRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_entity_aliases: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  disallowed_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 disallowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  orphan: Optional[pulumi.Input[bool]] = None,
                  path_suffix: Optional[pulumi.Input[str]] = None,
                  renewable: Optional[pulumi.Input[bool]] = None,
@@ -703,8 +808,11 @@ class AuthBackendRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AuthBackendRoleArgs.__new__(AuthBackendRoleArgs)
 
+            __props__.__dict__["allowed_entity_aliases"] = allowed_entity_aliases
             __props__.__dict__["allowed_policies"] = allowed_policies
+            __props__.__dict__["allowed_policies_globs"] = allowed_policies_globs
             __props__.__dict__["disallowed_policies"] = disallowed_policies
+            __props__.__dict__["disallowed_policies_globs"] = disallowed_policies_globs
             __props__.__dict__["orphan"] = orphan
             __props__.__dict__["path_suffix"] = path_suffix
             __props__.__dict__["renewable"] = renewable
@@ -730,8 +838,11 @@ class AuthBackendRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            allowed_entity_aliases: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             allowed_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            allowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             disallowed_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            disallowed_policies_globs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             orphan: Optional[pulumi.Input[bool]] = None,
             path_suffix: Optional[pulumi.Input[str]] = None,
             renewable: Optional[pulumi.Input[bool]] = None,
@@ -752,8 +863,11 @@ class AuthBackendRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_entity_aliases: List of allowed entity aliases.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_policies: List of allowed policies for given role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_policies_globs: Set of allowed policies with glob match for given role.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies: List of disallowed policies for given role.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies_globs: Set of disallowed policies with glob match for given role.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
         :param pulumi.Input[bool] renewable: Whether to disable the ability of the token to be renewed past its initial TTL.
@@ -789,8 +903,11 @@ class AuthBackendRole(pulumi.CustomResource):
 
         __props__ = _AuthBackendRoleState.__new__(_AuthBackendRoleState)
 
+        __props__.__dict__["allowed_entity_aliases"] = allowed_entity_aliases
         __props__.__dict__["allowed_policies"] = allowed_policies
+        __props__.__dict__["allowed_policies_globs"] = allowed_policies_globs
         __props__.__dict__["disallowed_policies"] = disallowed_policies
+        __props__.__dict__["disallowed_policies_globs"] = disallowed_policies_globs
         __props__.__dict__["orphan"] = orphan
         __props__.__dict__["path_suffix"] = path_suffix
         __props__.__dict__["renewable"] = renewable
@@ -807,6 +924,14 @@ class AuthBackendRole(pulumi.CustomResource):
         return AuthBackendRole(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter(name="allowedEntityAliases")
+    def allowed_entity_aliases(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of allowed entity aliases.
+        """
+        return pulumi.get(self, "allowed_entity_aliases")
+
+    @property
     @pulumi.getter(name="allowedPolicies")
     def allowed_policies(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
@@ -815,12 +940,28 @@ class AuthBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "allowed_policies")
 
     @property
+    @pulumi.getter(name="allowedPoliciesGlobs")
+    def allowed_policies_globs(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Set of allowed policies with glob match for given role.
+        """
+        return pulumi.get(self, "allowed_policies_globs")
+
+    @property
     @pulumi.getter(name="disallowedPolicies")
     def disallowed_policies(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of disallowed policies for given role.
         """
         return pulumi.get(self, "disallowed_policies")
+
+    @property
+    @pulumi.getter(name="disallowedPoliciesGlobs")
+    def disallowed_policies_globs(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Set of disallowed policies with glob match for given role.
+        """
+        return pulumi.get(self, "disallowed_policies_globs")
 
     @property
     @pulumi.getter

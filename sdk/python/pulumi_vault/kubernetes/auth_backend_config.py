@@ -501,7 +501,7 @@ class AuthBackendConfig(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="kubernetesCaCert")
-    def kubernetes_ca_cert(self) -> pulumi.Output[Optional[str]]:
+    def kubernetes_ca_cert(self) -> pulumi.Output[str]:
         """
         PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
         """

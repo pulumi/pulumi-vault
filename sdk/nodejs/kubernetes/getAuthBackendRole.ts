@@ -36,7 +36,7 @@ export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.I
  */
 export interface GetAuthBackendRoleArgs {
     /**
-     * (Optional) Audience claim to verify in the JWT.
+     * Audience claim to verify in the JWT.
      */
     audience?: string;
     /**
@@ -109,7 +109,11 @@ export interface GetAuthBackendRoleArgs {
  */
 export interface GetAuthBackendRoleResult {
     /**
-     * (Optional) Audience claim to verify in the JWT.
+     * Method used for generating identity aliases. (vault-1.9+)
+     */
+    readonly aliasNameSource: string;
+    /**
+     * Audience claim to verify in the JWT.
      */
     readonly audience?: string;
     readonly backend?: string;
@@ -191,7 +195,7 @@ export function getAuthBackendRoleOutput(args: GetAuthBackendRoleOutputArgs, opt
  */
 export interface GetAuthBackendRoleOutputArgs {
     /**
-     * (Optional) Audience claim to verify in the JWT.
+     * Audience claim to verify in the JWT.
      */
     audience?: pulumi.Input<string>;
     /**

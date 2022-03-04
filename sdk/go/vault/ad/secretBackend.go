@@ -50,6 +50,10 @@ type SecretBackend struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Use anonymous bind to discover the bind Distinguished Name of a user.
 	Discoverdn pulumi.BoolPtrOutput `pulumi:"discoverdn"`
+	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
+	//
+	// Deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.
+	Formatter pulumi.StringOutput `pulumi:"formatter"`
 	// LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
 	// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
 	Groupattr pulumi.StringPtrOutput `pulumi:"groupattr"`
@@ -64,6 +68,10 @@ type SecretBackend struct {
 	// The number of seconds after a Vault rotation where, if Active Directory
 	// shows a later rotation, it should be considered out-of-band
 	LastRotationTolerance pulumi.IntOutput `pulumi:"lastRotationTolerance"`
+	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
+	//
+	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
+	Length pulumi.IntOutput `pulumi:"length"`
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
@@ -171,6 +179,10 @@ type secretBackendState struct {
 	Description *string `pulumi:"description"`
 	// Use anonymous bind to discover the bind Distinguished Name of a user.
 	Discoverdn *bool `pulumi:"discoverdn"`
+	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
+	//
+	// Deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.
+	Formatter *string `pulumi:"formatter"`
 	// LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
 	// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
 	Groupattr *string `pulumi:"groupattr"`
@@ -185,6 +197,10 @@ type secretBackendState struct {
 	// The number of seconds after a Vault rotation where, if Active Directory
 	// shows a later rotation, it should be considered out-of-band
 	LastRotationTolerance *int `pulumi:"lastRotationTolerance"`
+	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
+	//
+	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
+	Length *int `pulumi:"length"`
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local *bool `pulumi:"local"`
@@ -258,6 +274,10 @@ type SecretBackendState struct {
 	Description pulumi.StringPtrInput
 	// Use anonymous bind to discover the bind Distinguished Name of a user.
 	Discoverdn pulumi.BoolPtrInput
+	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
+	//
+	// Deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.
+	Formatter pulumi.StringPtrInput
 	// LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
 	// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
 	Groupattr pulumi.StringPtrInput
@@ -272,6 +292,10 @@ type SecretBackendState struct {
 	// The number of seconds after a Vault rotation where, if Active Directory
 	// shows a later rotation, it should be considered out-of-band
 	LastRotationTolerance pulumi.IntPtrInput
+	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
+	//
+	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
+	Length pulumi.IntPtrInput
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local pulumi.BoolPtrInput
@@ -349,6 +373,10 @@ type secretBackendArgs struct {
 	Description *string `pulumi:"description"`
 	// Use anonymous bind to discover the bind Distinguished Name of a user.
 	Discoverdn *bool `pulumi:"discoverdn"`
+	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
+	//
+	// Deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.
+	Formatter *string `pulumi:"formatter"`
 	// LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
 	// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
 	Groupattr *string `pulumi:"groupattr"`
@@ -363,6 +391,10 @@ type secretBackendArgs struct {
 	// The number of seconds after a Vault rotation where, if Active Directory
 	// shows a later rotation, it should be considered out-of-band
 	LastRotationTolerance *int `pulumi:"lastRotationTolerance"`
+	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
+	//
+	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
+	Length *int `pulumi:"length"`
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local *bool `pulumi:"local"`
@@ -437,6 +469,10 @@ type SecretBackendArgs struct {
 	Description pulumi.StringPtrInput
 	// Use anonymous bind to discover the bind Distinguished Name of a user.
 	Discoverdn pulumi.BoolPtrInput
+	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
+	//
+	// Deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.
+	Formatter pulumi.StringPtrInput
 	// LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
 	// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
 	Groupattr pulumi.StringPtrInput
@@ -451,6 +487,10 @@ type SecretBackendArgs struct {
 	// The number of seconds after a Vault rotation where, if Active Directory
 	// shows a later rotation, it should be considered out-of-band
 	LastRotationTolerance pulumi.IntPtrInput
+	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
+	//
+	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
+	Length pulumi.IntPtrInput
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local pulumi.BoolPtrInput

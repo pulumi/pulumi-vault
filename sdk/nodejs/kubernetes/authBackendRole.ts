@@ -68,6 +68,11 @@ export class AuthBackendRole extends pulumi.CustomResource {
     }
 
     /**
+     * Configures how identity aliases are generated.
+     * Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
+     */
+    public readonly aliasNameSource!: pulumi.Output<string>;
+    /**
      * Audience claim to verify in the JWT.
      */
     public readonly audience!: pulumi.Output<string | undefined>;
@@ -129,8 +134,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly tokenPolicies!: pulumi.Output<string[] | undefined>;
     /**
-     * The incremental lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * The initial ttl of the token to generate in seconds
      */
     public readonly tokenTtl!: pulumi.Output<number | undefined>;
     /**
@@ -155,6 +159,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleState | undefined;
+            resourceInputs["aliasNameSource"] = state ? state.aliasNameSource : undefined;
             resourceInputs["audience"] = state ? state.audience : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["boundServiceAccountNames"] = state ? state.boundServiceAccountNames : undefined;
@@ -180,6 +185,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             if ((!args || args.roleName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleName'");
             }
+            resourceInputs["aliasNameSource"] = args ? args.aliasNameSource : undefined;
             resourceInputs["audience"] = args ? args.audience : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["boundServiceAccountNames"] = args ? args.boundServiceAccountNames : undefined;
@@ -204,6 +210,11 @@ export class AuthBackendRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AuthBackendRole resources.
  */
 export interface AuthBackendRoleState {
+    /**
+     * Configures how identity aliases are generated.
+     * Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
+     */
+    aliasNameSource?: pulumi.Input<string>;
     /**
      * Audience claim to verify in the JWT.
      */
@@ -266,8 +277,7 @@ export interface AuthBackendRoleState {
      */
     tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The incremental lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * The initial ttl of the token to generate in seconds
      */
     tokenTtl?: pulumi.Input<number>;
     /**
@@ -284,6 +294,11 @@ export interface AuthBackendRoleState {
  * The set of arguments for constructing a AuthBackendRole resource.
  */
 export interface AuthBackendRoleArgs {
+    /**
+     * Configures how identity aliases are generated.
+     * Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
+     */
+    aliasNameSource?: pulumi.Input<string>;
     /**
      * Audience claim to verify in the JWT.
      */
@@ -346,8 +361,7 @@ export interface AuthBackendRoleArgs {
      */
     tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The incremental lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * The initial ttl of the token to generate in seconds
      */
     tokenTtl?: pulumi.Input<number>;
     /**

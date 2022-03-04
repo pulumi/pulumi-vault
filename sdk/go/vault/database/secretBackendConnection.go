@@ -56,6 +56,10 @@ type SecretBackendConnection struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// A nested block containing configuration options for Oracle connections.
 	Oracle SecretBackendConnectionOraclePtrOutput `pulumi:"oracle"`
+	// Specifies the name of the plugin to use. All values must be prefixed
+	// to match the corresponding database engine directive.
+	// For example the `pluginName` for the `mysqlAurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+	PluginName pulumi.StringOutput `pulumi:"pluginName"`
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql SecretBackendConnectionPostgresqlPtrOutput `pulumi:"postgresql"`
 	// Connection parameters for the redshift-database-plugin plugin.
@@ -136,6 +140,10 @@ type secretBackendConnectionState struct {
 	Name *string `pulumi:"name"`
 	// A nested block containing configuration options for Oracle connections.
 	Oracle *SecretBackendConnectionOracle `pulumi:"oracle"`
+	// Specifies the name of the plugin to use. All values must be prefixed
+	// to match the corresponding database engine directive.
+	// For example the `pluginName` for the `mysqlAurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+	PluginName *string `pulumi:"pluginName"`
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql *SecretBackendConnectionPostgresql `pulumi:"postgresql"`
 	// Connection parameters for the redshift-database-plugin plugin.
@@ -185,6 +193,10 @@ type SecretBackendConnectionState struct {
 	Name pulumi.StringPtrInput
 	// A nested block containing configuration options for Oracle connections.
 	Oracle SecretBackendConnectionOraclePtrInput
+	// Specifies the name of the plugin to use. All values must be prefixed
+	// to match the corresponding database engine directive.
+	// For example the `pluginName` for the `mysqlAurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+	PluginName pulumi.StringPtrInput
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql SecretBackendConnectionPostgresqlPtrInput
 	// Connection parameters for the redshift-database-plugin plugin.
@@ -238,6 +250,10 @@ type secretBackendConnectionArgs struct {
 	Name *string `pulumi:"name"`
 	// A nested block containing configuration options for Oracle connections.
 	Oracle *SecretBackendConnectionOracle `pulumi:"oracle"`
+	// Specifies the name of the plugin to use. All values must be prefixed
+	// to match the corresponding database engine directive.
+	// For example the `pluginName` for the `mysqlAurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+	PluginName *string `pulumi:"pluginName"`
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql *SecretBackendConnectionPostgresql `pulumi:"postgresql"`
 	// Connection parameters for the redshift-database-plugin plugin.
@@ -288,6 +304,10 @@ type SecretBackendConnectionArgs struct {
 	Name pulumi.StringPtrInput
 	// A nested block containing configuration options for Oracle connections.
 	Oracle SecretBackendConnectionOraclePtrInput
+	// Specifies the name of the plugin to use. All values must be prefixed
+	// to match the corresponding database engine directive.
+	// For example the `pluginName` for the `mysqlAurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+	PluginName pulumi.StringPtrInput
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql SecretBackendConnectionPostgresqlPtrInput
 	// Connection parameters for the redshift-database-plugin plugin.

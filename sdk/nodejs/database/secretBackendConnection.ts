@@ -112,6 +112,12 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      */
     public readonly oracle!: pulumi.Output<outputs.database.SecretBackendConnectionOracle | undefined>;
     /**
+     * Specifies the name of the plugin to use. All values must be prefixed
+     * to match the corresponding database engine directive.
+     * For example the `pluginName` for the `mysqlAurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+     */
+    public readonly pluginName!: pulumi.Output<string>;
+    /**
      * A nested block containing configuration options for PostgreSQL connections.
      */
     public readonly postgresql!: pulumi.Output<outputs.database.SecretBackendConnectionPostgresql | undefined>;
@@ -163,6 +169,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             resourceInputs["mysqlRds"] = state ? state.mysqlRds : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["oracle"] = state ? state.oracle : undefined;
+            resourceInputs["pluginName"] = state ? state.pluginName : undefined;
             resourceInputs["postgresql"] = state ? state.postgresql : undefined;
             resourceInputs["redshift"] = state ? state.redshift : undefined;
             resourceInputs["rootRotationStatements"] = state ? state.rootRotationStatements : undefined;
@@ -190,6 +197,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             resourceInputs["mysqlRds"] = args ? args.mysqlRds : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["oracle"] = args ? args.oracle : undefined;
+            resourceInputs["pluginName"] = args ? args.pluginName : undefined;
             resourceInputs["postgresql"] = args ? args.postgresql : undefined;
             resourceInputs["redshift"] = args ? args.redshift : undefined;
             resourceInputs["rootRotationStatements"] = args ? args.rootRotationStatements : undefined;
@@ -274,6 +282,12 @@ export interface SecretBackendConnectionState {
      * A nested block containing configuration options for Oracle connections.
      */
     oracle?: pulumi.Input<inputs.database.SecretBackendConnectionOracle>;
+    /**
+     * Specifies the name of the plugin to use. All values must be prefixed
+     * to match the corresponding database engine directive.
+     * For example the `pluginName` for the `mysqlAurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+     */
+    pluginName?: pulumi.Input<string>;
     /**
      * A nested block containing configuration options for PostgreSQL connections.
      */
@@ -370,6 +384,12 @@ export interface SecretBackendConnectionArgs {
      * A nested block containing configuration options for Oracle connections.
      */
     oracle?: pulumi.Input<inputs.database.SecretBackendConnectionOracle>;
+    /**
+     * Specifies the name of the plugin to use. All values must be prefixed
+     * to match the corresponding database engine directive.
+     * For example the `pluginName` for the `mysqlAurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+     */
+    pluginName?: pulumi.Input<string>;
     /**
      * A nested block containing configuration options for PostgreSQL connections.
      */

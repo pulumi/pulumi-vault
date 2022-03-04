@@ -69,6 +69,9 @@ import (
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
 
+	// Configures how identity aliases are generated.
+	// Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
+	AliasNameSource pulumi.StringOutput `pulumi:"aliasNameSource"`
 	// Audience claim to verify in the JWT.
 	Audience pulumi.StringPtrOutput `pulumi:"audience"`
 	// Unique name of the kubernetes backend to configure.
@@ -106,8 +109,7 @@ type AuthBackendRole struct {
 	// List of policies to encode onto generated tokens. Depending
 	// on the auth method, this list may be supplemented by user/group/other values.
 	TokenPolicies pulumi.StringArrayOutput `pulumi:"tokenPolicies"`
-	// The incremental lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The initial ttl of the token to generate in seconds
 	TokenTtl pulumi.IntPtrOutput `pulumi:"tokenTtl"`
 	// The type of token that should be generated. Can be `service`,
 	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
@@ -155,6 +157,9 @@ func GetAuthBackendRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AuthBackendRole resources.
 type authBackendRoleState struct {
+	// Configures how identity aliases are generated.
+	// Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
+	AliasNameSource *string `pulumi:"aliasNameSource"`
 	// Audience claim to verify in the JWT.
 	Audience *string `pulumi:"audience"`
 	// Unique name of the kubernetes backend to configure.
@@ -192,8 +197,7 @@ type authBackendRoleState struct {
 	// List of policies to encode onto generated tokens. Depending
 	// on the auth method, this list may be supplemented by user/group/other values.
 	TokenPolicies []string `pulumi:"tokenPolicies"`
-	// The incremental lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The initial ttl of the token to generate in seconds
 	TokenTtl *int `pulumi:"tokenTtl"`
 	// The type of token that should be generated. Can be `service`,
 	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
@@ -204,6 +208,9 @@ type authBackendRoleState struct {
 }
 
 type AuthBackendRoleState struct {
+	// Configures how identity aliases are generated.
+	// Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
+	AliasNameSource pulumi.StringPtrInput
 	// Audience claim to verify in the JWT.
 	Audience pulumi.StringPtrInput
 	// Unique name of the kubernetes backend to configure.
@@ -241,8 +248,7 @@ type AuthBackendRoleState struct {
 	// List of policies to encode onto generated tokens. Depending
 	// on the auth method, this list may be supplemented by user/group/other values.
 	TokenPolicies pulumi.StringArrayInput
-	// The incremental lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The initial ttl of the token to generate in seconds
 	TokenTtl pulumi.IntPtrInput
 	// The type of token that should be generated. Can be `service`,
 	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
@@ -257,6 +263,9 @@ func (AuthBackendRoleState) ElementType() reflect.Type {
 }
 
 type authBackendRoleArgs struct {
+	// Configures how identity aliases are generated.
+	// Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
+	AliasNameSource *string `pulumi:"aliasNameSource"`
 	// Audience claim to verify in the JWT.
 	Audience *string `pulumi:"audience"`
 	// Unique name of the kubernetes backend to configure.
@@ -294,8 +303,7 @@ type authBackendRoleArgs struct {
 	// List of policies to encode onto generated tokens. Depending
 	// on the auth method, this list may be supplemented by user/group/other values.
 	TokenPolicies []string `pulumi:"tokenPolicies"`
-	// The incremental lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The initial ttl of the token to generate in seconds
 	TokenTtl *int `pulumi:"tokenTtl"`
 	// The type of token that should be generated. Can be `service`,
 	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
@@ -307,6 +315,9 @@ type authBackendRoleArgs struct {
 
 // The set of arguments for constructing a AuthBackendRole resource.
 type AuthBackendRoleArgs struct {
+	// Configures how identity aliases are generated.
+	// Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
+	AliasNameSource pulumi.StringPtrInput
 	// Audience claim to verify in the JWT.
 	Audience pulumi.StringPtrInput
 	// Unique name of the kubernetes backend to configure.
@@ -344,8 +355,7 @@ type AuthBackendRoleArgs struct {
 	// List of policies to encode onto generated tokens. Depending
 	// on the auth method, this list may be supplemented by user/group/other values.
 	TokenPolicies pulumi.StringArrayInput
-	// The incremental lifetime for generated tokens in number of seconds.
-	// Its current value will be referenced at renewal time.
+	// The initial ttl of the token to generate in seconds
 	TokenTtl pulumi.IntPtrInput
 	// The type of token that should be generated. Can be `service`,
 	// `batch`, or `default` to use the mount's tuned default (which unless changed will be
