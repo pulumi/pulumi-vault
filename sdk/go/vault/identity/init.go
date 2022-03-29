@@ -37,12 +37,20 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &GroupPolicies{}
 	case "vault:identity/oidc:Oidc":
 		r = &Oidc{}
+	case "vault:identity/oidcAssignment:OidcAssignment":
+		r = &OidcAssignment{}
+	case "vault:identity/oidcClient:OidcClient":
+		r = &OidcClient{}
 	case "vault:identity/oidcKey:OidcKey":
 		r = &OidcKey{}
 	case "vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID":
 		r = &OidcKeyAllowedClientID{}
+	case "vault:identity/oidcProvider:OidcProvider":
+		r = &OidcProvider{}
 	case "vault:identity/oidcRole:OidcRole":
 		r = &OidcRole{}
+	case "vault:identity/oidcScope:OidcScope":
+		r = &OidcScope{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -98,6 +106,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"vault",
+		"identity/oidcAssignment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"identity/oidcClient",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
 		"identity/oidcKey",
 		&module{version},
 	)
@@ -108,7 +126,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"vault",
+		"identity/oidcProvider",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
 		"identity/oidcRole",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"identity/oidcScope",
 		&module{version},
 	)
 }

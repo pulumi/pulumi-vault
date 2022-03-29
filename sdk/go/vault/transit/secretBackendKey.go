@@ -60,6 +60,9 @@ type SecretBackendKey struct {
 	// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
 	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
 	AllowPlaintextBackup pulumi.BoolPtrOutput `pulumi:"allowPlaintextBackup"`
+	// Amount of time the key should live before being automatically rotated.
+	// A value of 0 disables automatic rotation for the key.
+	AutoRotateInterval pulumi.IntOutput `pulumi:"autoRotateInterval"`
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringOutput `pulumi:"backend"`
 	// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
@@ -132,6 +135,9 @@ type secretBackendKeyState struct {
 	// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
 	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
 	AllowPlaintextBackup *bool `pulumi:"allowPlaintextBackup"`
+	// Amount of time the key should live before being automatically rotated.
+	// A value of 0 disables automatic rotation for the key.
+	AutoRotateInterval *int `pulumi:"autoRotateInterval"`
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend *string `pulumi:"backend"`
 	// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
@@ -173,6 +179,9 @@ type SecretBackendKeyState struct {
 	// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
 	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
 	AllowPlaintextBackup pulumi.BoolPtrInput
+	// Amount of time the key should live before being automatically rotated.
+	// A value of 0 disables automatic rotation for the key.
+	AutoRotateInterval pulumi.IntPtrInput
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringPtrInput
 	// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
@@ -218,6 +227,9 @@ type secretBackendKeyArgs struct {
 	// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
 	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
 	AllowPlaintextBackup *bool `pulumi:"allowPlaintextBackup"`
+	// Amount of time the key should live before being automatically rotated.
+	// A value of 0 disables automatic rotation for the key.
+	AutoRotateInterval *int `pulumi:"autoRotateInterval"`
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
 	// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
@@ -244,6 +256,9 @@ type SecretBackendKeyArgs struct {
 	// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
 	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
 	AllowPlaintextBackup pulumi.BoolPtrInput
+	// Amount of time the key should live before being automatically rotated.
+	// A value of 0 disables automatic rotation for the key.
+	AutoRotateInterval pulumi.IntPtrInput
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringInput
 	// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.

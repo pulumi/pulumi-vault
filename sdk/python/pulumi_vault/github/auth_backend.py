@@ -18,6 +18,7 @@ class AuthBackendArgs:
                  organization: pulumi.Input[str],
                  base_url: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 organization_id: Optional[pulumi.Input[int]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -36,6 +37,8 @@ class AuthBackendArgs:
                are running GitHub Enterprise or an API-compatible authentication server.
         :param pulumi.Input[str] description: Specifies the description of the mount.
                This overrides the current stored value, if any.
+        :param pulumi.Input[int] organization_id: The ID of the organization users must be part of.
+               Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
         :param pulumi.Input[str] path: Path where the auth backend is mounted. Defaults to `auth/github`
                if not specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: (Optional) List of CIDR blocks; if set, specifies blocks of IP
@@ -69,6 +72,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "base_url", base_url)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if token_bound_cidrs is not None:
@@ -129,6 +134,19 @@ class AuthBackendArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The ID of the organization users must be part of.
+        Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
+        """
+        return pulumi.get(self, "organization_id")
+
+    @organization_id.setter
+    def organization_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "organization_id", value)
 
     @property
     @pulumi.getter
@@ -286,6 +304,7 @@ class _AuthBackendState:
                  base_url: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
+                 organization_id: Optional[pulumi.Input[int]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -305,6 +324,8 @@ class _AuthBackendState:
         :param pulumi.Input[str] description: Specifies the description of the mount.
                This overrides the current stored value, if any.
         :param pulumi.Input[str] organization: The organization configured users must be part of.
+        :param pulumi.Input[int] organization_id: The ID of the organization users must be part of.
+               Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
         :param pulumi.Input[str] path: Path where the auth backend is mounted. Defaults to `auth/github`
                if not specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: (Optional) List of CIDR blocks; if set, specifies blocks of IP
@@ -341,6 +362,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "description", description)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if token_bound_cidrs is not None:
@@ -413,6 +436,19 @@ class _AuthBackendState:
     @organization.setter
     def organization(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "organization", value)
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The ID of the organization users must be part of.
+        Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
+        """
+        return pulumi.get(self, "organization_id")
+
+    @organization_id.setter
+    def organization_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "organization_id", value)
 
     @property
     @pulumi.getter
@@ -571,6 +607,7 @@ class AuthBackend(pulumi.CustomResource):
                  base_url: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
+                 organization_id: Optional[pulumi.Input[int]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -612,6 +649,8 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] description: Specifies the description of the mount.
                This overrides the current stored value, if any.
         :param pulumi.Input[str] organization: The organization configured users must be part of.
+        :param pulumi.Input[int] organization_id: The ID of the organization users must be part of.
+               Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
         :param pulumi.Input[str] path: Path where the auth backend is mounted. Defaults to `auth/github`
                if not specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: (Optional) List of CIDR blocks; if set, specifies blocks of IP
@@ -686,6 +725,7 @@ class AuthBackend(pulumi.CustomResource):
                  base_url: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
+                 organization_id: Optional[pulumi.Input[int]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -714,6 +754,7 @@ class AuthBackend(pulumi.CustomResource):
             if organization is None and not opts.urn:
                 raise TypeError("Missing required property 'organization'")
             __props__.__dict__["organization"] = organization
+            __props__.__dict__["organization_id"] = organization_id
             __props__.__dict__["path"] = path
             __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
             __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
@@ -740,6 +781,7 @@ class AuthBackend(pulumi.CustomResource):
             base_url: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             organization: Optional[pulumi.Input[str]] = None,
+            organization_id: Optional[pulumi.Input[int]] = None,
             path: Optional[pulumi.Input[str]] = None,
             token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -764,6 +806,8 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] description: Specifies the description of the mount.
                This overrides the current stored value, if any.
         :param pulumi.Input[str] organization: The organization configured users must be part of.
+        :param pulumi.Input[int] organization_id: The ID of the organization users must be part of.
+               Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
         :param pulumi.Input[str] path: Path where the auth backend is mounted. Defaults to `auth/github`
                if not specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: (Optional) List of CIDR blocks; if set, specifies blocks of IP
@@ -800,6 +844,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["base_url"] = base_url
         __props__.__dict__["description"] = description
         __props__.__dict__["organization"] = organization
+        __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["path"] = path
         __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
         __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
@@ -846,6 +891,15 @@ class AuthBackend(pulumi.CustomResource):
         The organization configured users must be part of.
         """
         return pulumi.get(self, "organization")
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> pulumi.Output[int]:
+        """
+        The ID of the organization users must be part of.
+        Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
+        """
+        return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter

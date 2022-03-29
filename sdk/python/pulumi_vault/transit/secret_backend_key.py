@@ -15,6 +15,7 @@ class SecretBackendKeyArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[str],
                  allow_plaintext_backup: Optional[pulumi.Input[bool]] = None,
+                 auto_rotate_interval: Optional[pulumi.Input[int]] = None,
                  convergent_encryption: Optional[pulumi.Input[bool]] = None,
                  deletion_allowed: Optional[pulumi.Input[bool]] = None,
                  derived: Optional[pulumi.Input[bool]] = None,
@@ -28,6 +29,8 @@ class SecretBackendKeyArgs:
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
                * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
+        :param pulumi.Input[int] auto_rotate_interval: Amount of time the key should live before being automatically rotated.
+               A value of 0 disables automatic rotation for the key.
         :param pulumi.Input[bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
         :param pulumi.Input[bool] deletion_allowed: Specifies if the key is allowed to be deleted.
         :param pulumi.Input[bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
@@ -41,6 +44,8 @@ class SecretBackendKeyArgs:
         pulumi.set(__self__, "backend", backend)
         if allow_plaintext_backup is not None:
             pulumi.set(__self__, "allow_plaintext_backup", allow_plaintext_backup)
+        if auto_rotate_interval is not None:
+            pulumi.set(__self__, "auto_rotate_interval", auto_rotate_interval)
         if convergent_encryption is not None:
             pulumi.set(__self__, "convergent_encryption", convergent_encryption)
         if deletion_allowed is not None:
@@ -82,6 +87,19 @@ class SecretBackendKeyArgs:
     @allow_plaintext_backup.setter
     def allow_plaintext_backup(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "allow_plaintext_backup", value)
+
+    @property
+    @pulumi.getter(name="autoRotateInterval")
+    def auto_rotate_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Amount of time the key should live before being automatically rotated.
+        A value of 0 disables automatic rotation for the key.
+        """
+        return pulumi.get(self, "auto_rotate_interval")
+
+    @auto_rotate_interval.setter
+    def auto_rotate_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "auto_rotate_interval", value)
 
     @property
     @pulumi.getter(name="convergentEncryption")
@@ -185,6 +203,7 @@ class SecretBackendKeyArgs:
 class _SecretBackendKeyState:
     def __init__(__self__, *,
                  allow_plaintext_backup: Optional[pulumi.Input[bool]] = None,
+                 auto_rotate_interval: Optional[pulumi.Input[int]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  convergent_encryption: Optional[pulumi.Input[bool]] = None,
                  deletion_allowed: Optional[pulumi.Input[bool]] = None,
@@ -205,6 +224,8 @@ class _SecretBackendKeyState:
         Input properties used for looking up and filtering SecretBackendKey resources.
         :param pulumi.Input[bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
                * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
+        :param pulumi.Input[int] auto_rotate_interval: Amount of time the key should live before being automatically rotated.
+               A value of 0 disables automatic rotation for the key.
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
         :param pulumi.Input[bool] deletion_allowed: Specifies if the key is allowed to be deleted.
@@ -227,6 +248,8 @@ class _SecretBackendKeyState:
         """
         if allow_plaintext_backup is not None:
             pulumi.set(__self__, "allow_plaintext_backup", allow_plaintext_backup)
+        if auto_rotate_interval is not None:
+            pulumi.set(__self__, "auto_rotate_interval", auto_rotate_interval)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
         if convergent_encryption is not None:
@@ -272,6 +295,19 @@ class _SecretBackendKeyState:
     @allow_plaintext_backup.setter
     def allow_plaintext_backup(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "allow_plaintext_backup", value)
+
+    @property
+    @pulumi.getter(name="autoRotateInterval")
+    def auto_rotate_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Amount of time the key should live before being automatically rotated.
+        A value of 0 disables automatic rotation for the key.
+        """
+        return pulumi.get(self, "auto_rotate_interval")
+
+    @auto_rotate_interval.setter
+    def auto_rotate_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "auto_rotate_interval", value)
 
     @property
     @pulumi.getter
@@ -475,6 +511,7 @@ class SecretBackendKey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_plaintext_backup: Optional[pulumi.Input[bool]] = None,
+                 auto_rotate_interval: Optional[pulumi.Input[int]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  convergent_encryption: Optional[pulumi.Input[bool]] = None,
                  deletion_allowed: Optional[pulumi.Input[bool]] = None,
@@ -515,6 +552,8 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
                * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
+        :param pulumi.Input[int] auto_rotate_interval: Amount of time the key should live before being automatically rotated.
+               A value of 0 disables automatic rotation for the key.
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
         :param pulumi.Input[bool] deletion_allowed: Specifies if the key is allowed to be deleted.
@@ -574,6 +613,7 @@ class SecretBackendKey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_plaintext_backup: Optional[pulumi.Input[bool]] = None,
+                 auto_rotate_interval: Optional[pulumi.Input[int]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  convergent_encryption: Optional[pulumi.Input[bool]] = None,
                  deletion_allowed: Optional[pulumi.Input[bool]] = None,
@@ -596,6 +636,7 @@ class SecretBackendKey(pulumi.CustomResource):
             __props__ = SecretBackendKeyArgs.__new__(SecretBackendKeyArgs)
 
             __props__.__dict__["allow_plaintext_backup"] = allow_plaintext_backup
+            __props__.__dict__["auto_rotate_interval"] = auto_rotate_interval
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
@@ -625,6 +666,7 @@ class SecretBackendKey(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             allow_plaintext_backup: Optional[pulumi.Input[bool]] = None,
+            auto_rotate_interval: Optional[pulumi.Input[int]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             convergent_encryption: Optional[pulumi.Input[bool]] = None,
             deletion_allowed: Optional[pulumi.Input[bool]] = None,
@@ -650,6 +692,8 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
                * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
+        :param pulumi.Input[int] auto_rotate_interval: Amount of time the key should live before being automatically rotated.
+               A value of 0 disables automatic rotation for the key.
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
         :param pulumi.Input[bool] deletion_allowed: Specifies if the key is allowed to be deleted.
@@ -675,6 +719,7 @@ class SecretBackendKey(pulumi.CustomResource):
         __props__ = _SecretBackendKeyState.__new__(_SecretBackendKeyState)
 
         __props__.__dict__["allow_plaintext_backup"] = allow_plaintext_backup
+        __props__.__dict__["auto_rotate_interval"] = auto_rotate_interval
         __props__.__dict__["backend"] = backend
         __props__.__dict__["convergent_encryption"] = convergent_encryption
         __props__.__dict__["deletion_allowed"] = deletion_allowed
@@ -701,6 +746,15 @@ class SecretBackendKey(pulumi.CustomResource):
         * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
         """
         return pulumi.get(self, "allow_plaintext_backup")
+
+    @property
+    @pulumi.getter(name="autoRotateInterval")
+    def auto_rotate_interval(self) -> pulumi.Output[int]:
+        """
+        Amount of time the key should live before being automatically rotated.
+        A value of 0 disables automatic rotation for the key.
+        """
+        return pulumi.get(self, "auto_rotate_interval")
 
     @property
     @pulumi.getter

@@ -480,6 +480,15 @@
                         }
                     }
                 },
+                "disableEscaping": {
+                    "type": "boolean",
+                    "description": "Disable special character escaping in username and password.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "maxConnectionLifetime": {
                     "type": "integer",
                     "description": "The maximum amount of time a connection may be reused.\n",
@@ -747,6 +756,15 @@
                 "containedDb": {
                     "type": "boolean",
                     "description": "For Vault v1.9+. Set to true when the target is a\nContained Database, e.g. AzureSQL.\nSee the [Vault\ndocs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "disableEscaping": {
+                    "type": "boolean",
+                    "description": "Disable special character escaping in username and password.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1179,6 +1197,15 @@
                         }
                     }
                 },
+                "disableEscaping": {
+                    "type": "boolean",
+                    "description": "Disable special character escaping in username and password.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "maxConnectionLifetime": {
                     "type": "integer",
                     "description": "The maximum amount of time a connection may be reused.\n",
@@ -1241,6 +1268,15 @@
                 "connectionUrl": {
                     "type": "string",
                     "description": "Specifies the Redshift DSN. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)\nfor an example.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "disableEscaping": {
+                    "type": "boolean",
+                    "description": "Disable special character escaping in username and password.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3649,6 +3685,10 @@
                     "type": "string",
                     "description": "The SecretID to be created. If set, uses \"Push\"\nmode.  Defaults to Vault auto-generating SecretIDs.\n"
                 },
+                "withWrappedAccessor": {
+                    "type": "boolean",
+                    "description": "Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever\nthe wrapping token is expired or invalidated through unwrapping.\n"
+                },
                 "wrappingAccessor": {
                     "type": "string",
                     "description": "The unique ID for the response-wrapped SecretID that can\nbe safely logged.\n"
@@ -3693,6 +3733,10 @@
                     "type": "string",
                     "description": "The SecretID to be created. If set, uses \"Push\"\nmode.  Defaults to Vault auto-generating SecretIDs.\n"
                 },
+                "withWrappedAccessor": {
+                    "type": "boolean",
+                    "description": "Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever\nthe wrapping token is expired or invalidated through unwrapping.\n"
+                },
                 "wrappingTtl": {
                     "type": "string",
                     "description": "If set, the SecretID response will be\n[response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)\nand available for the duration specified. Only a single unwrapping of the\ntoken is allowed.\n"
@@ -3730,6 +3774,10 @@
                     "secretId": {
                         "type": "string",
                         "description": "The SecretID to be created. If set, uses \"Push\"\nmode.  Defaults to Vault auto-generating SecretIDs.\n"
+                    },
+                    "withWrappedAccessor": {
+                        "type": "boolean",
+                        "description": "Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever\nthe wrapping token is expired or invalidated through unwrapping.\n"
                     },
                     "wrappingAccessor": {
                         "type": "string",
@@ -5974,6 +6022,17 @@
                     "type": "string",
                     "description": "The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.\n"
                 },
+                "consulNamespace": {
+                    "type": "string",
+                    "description": "The Consul namespace that the token will be created in.\nApplicable for Vault 1.10+ and Consul 1.7+\",\n"
+                },
+                "consulRoles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Set of Consul roles to attach to the token.\nApplicable for Vault 1.10+ with Consul 1.5+.\n"
+                },
                 "local": {
                     "type": "boolean",
                     "description": "Indicates that the token should not be replicated globally and instead be local to the current datacenter.\n"
@@ -5985,6 +6044,10 @@
                 "name": {
                     "type": "string",
                     "description": "The name of the Consul secrets engine role to create.\n"
+                },
+                "partition": {
+                    "type": "string",
+                    "description": "The admin partition that the token will be created in.\nApplicable for Vault 1.10+ and Consul 1.11+\",\n"
                 },
                 "policies": {
                     "type": "array",
@@ -6003,13 +6066,25 @@
                 }
             },
             "required": [
+                "consulNamespace",
                 "name",
-                "policies"
+                "partition"
             ],
             "inputProperties": {
                 "backend": {
                     "type": "string",
                     "description": "The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.\n"
+                },
+                "consulNamespace": {
+                    "type": "string",
+                    "description": "The Consul namespace that the token will be created in.\nApplicable for Vault 1.10+ and Consul 1.7+\",\n"
+                },
+                "consulRoles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Set of Consul roles to attach to the token.\nApplicable for Vault 1.10+ with Consul 1.5+.\n"
                 },
                 "local": {
                     "type": "boolean",
@@ -6022,6 +6097,10 @@
                 "name": {
                     "type": "string",
                     "description": "The name of the Consul secrets engine role to create.\n"
+                },
+                "partition": {
+                    "type": "string",
+                    "description": "The admin partition that the token will be created in.\nApplicable for Vault 1.10+ and Consul 1.11+\",\n"
                 },
                 "policies": {
                     "type": "array",
@@ -6039,15 +6118,23 @@
                     "description": "Specifies the TTL for this role.\n"
                 }
             },
-            "requiredInputs": [
-                "policies"
-            ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering SecretBackendRole resources.\n",
                 "properties": {
                     "backend": {
                         "type": "string",
                         "description": "The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.\n"
+                    },
+                    "consulNamespace": {
+                        "type": "string",
+                        "description": "The Consul namespace that the token will be created in.\nApplicable for Vault 1.10+ and Consul 1.7+\",\n"
+                    },
+                    "consulRoles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Set of Consul roles to attach to the token.\nApplicable for Vault 1.10+ with Consul 1.5+.\n"
                     },
                     "local": {
                         "type": "boolean",
@@ -6060,6 +6147,10 @@
                     "name": {
                         "type": "string",
                         "description": "The name of the Consul secrets engine role to create.\n"
+                    },
+                    "partition": {
+                        "type": "string",
+                        "description": "The admin partition that the token will be created in.\nApplicable for Vault 1.10+ and Consul 1.11+\",\n"
                     },
                     "policies": {
                         "type": "array",
@@ -6159,7 +6250,7 @@
                 },
                 "pluginName": {
                     "type": "string",
-                    "description": "Specifies the name of the plugin to use. All values must be prefixed\nto match the corresponding database engine directive.\nFor example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.\n"
+                    "description": "Specifies the name of the plugin to use.\n"
                 },
                 "postgresql": {
                     "$ref": "#/types/vault:database/SecretBackendConnectionPostgresql:SecretBackendConnectionPostgresql",
@@ -6267,7 +6358,7 @@
                 },
                 "pluginName": {
                     "type": "string",
-                    "description": "Specifies the name of the plugin to use. All values must be prefixed\nto match the corresponding database engine directive.\nFor example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.\n"
+                    "description": "Specifies the name of the plugin to use.\n"
                 },
                 "postgresql": {
                     "$ref": "#/types/vault:database/SecretBackendConnectionPostgresql:SecretBackendConnectionPostgresql",
@@ -6375,7 +6466,7 @@
                     },
                     "pluginName": {
                         "type": "string",
-                        "description": "Specifies the name of the plugin to use. All values must be prefixed\nto match the corresponding database engine directive.\nFor example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.\n"
+                        "description": "Specifies the name of the plugin to use.\n"
                     },
                     "postgresql": {
                         "$ref": "#/types/vault:database/SecretBackendConnectionPostgresql:SecretBackendConnectionPostgresql",
@@ -7705,6 +7796,10 @@
                     "type": "string",
                     "description": "The organization configured users must be part of.\n"
                 },
+                "organizationId": {
+                    "type": "integer",
+                    "description": "The ID of the organization users must be part of.\nVault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)\n"
+                },
                 "path": {
                     "type": "string",
                     "description": "Path where the auth backend is mounted. Defaults to `auth/github`\nif not specified.\n"
@@ -7759,6 +7854,7 @@
             "required": [
                 "accessor",
                 "organization",
+                "organizationId",
                 "tune"
             ],
             "inputProperties": {
@@ -7773,6 +7869,10 @@
                 "organization": {
                     "type": "string",
                     "description": "The organization configured users must be part of.\n"
+                },
+                "organizationId": {
+                    "type": "integer",
+                    "description": "The ID of the organization users must be part of.\nVault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)\n"
                 },
                 "path": {
                     "type": "string",
@@ -7846,6 +7946,10 @@
                     "organization": {
                         "type": "string",
                         "description": "The organization configured users must be part of.\n"
+                    },
+                    "organizationId": {
+                        "type": "integer",
+                        "description": "The ID of the organization users must be part of.\nVault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)\n"
                     },
                     "path": {
                         "type": "string",
@@ -8690,6 +8794,216 @@
                 "type": "object"
             }
         },
+        "vault:identity/oidcAssignment:OidcAssignment": {
+            "description": "Manages OIDC Assignments in a Vault server. See the [Vault documentation](https://www.vaultproject.io/api-docs/secret/identity/oidc-provider#create-or-update-an-assignment)\nfor more information.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst internal = new vault.identity.Group(\"internal\", {\n    type: \"internal\",\n    policies: [\n        \"dev\",\n        \"test\",\n    ],\n});\nconst test = new vault.identity.Entity(\"test\", {policies: [\"test\"]});\nconst _default = new vault.identity.OidcAssignment(\"default\", {\n    entityIds: [test.name],\n    groupIds: [internal.name],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ninternal = vault.identity.Group(\"internal\",\n    type=\"internal\",\n    policies=[\n        \"dev\",\n        \"test\",\n    ])\ntest = vault.identity.Entity(\"test\", policies=[\"test\"])\ndefault = vault.identity.OidcAssignment(\"default\",\n    entity_ids=[test.name],\n    group_ids=[internal.name])\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @internal = new Vault.Identity.Group(\"internal\", new Vault.Identity.GroupArgs\n        {\n            Type = \"internal\",\n            Policies = \n            {\n                \"dev\",\n                \"test\",\n            },\n        });\n        var test = new Vault.Identity.Entity(\"test\", new Vault.Identity.EntityArgs\n        {\n            Policies = \n            {\n                \"test\",\n            },\n        });\n        var @default = new Vault.Identity.OidcAssignment(\"default\", new Vault.Identity.OidcAssignmentArgs\n        {\n            EntityIds = \n            {\n                test.Name,\n            },\n            GroupIds = \n            {\n                @internal.Name,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tinternal, err := identity.NewGroup(ctx, \"internal\", \u0026identity.GroupArgs{\n\t\t\tType: pulumi.String(\"internal\"),\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"test\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttest, err := identity.NewEntity(ctx, \"test\", \u0026identity.EntityArgs{\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"test\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = identity.NewOidcAssignment(ctx, \"default\", \u0026identity.OidcAssignmentArgs{\n\t\t\tEntityIds: pulumi.StringArray{\n\t\t\t\ttest.Name,\n\t\t\t},\n\t\t\tGroupIds: pulumi.StringArray{\n\t\t\t\tinternal.Name,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nOIDC Assignments can be imported using the `name`, e.g.\n\n```sh\n $ pulumi import vault:identity/oidcAssignment:OidcAssignment default assignment\n```\n\n ",
+            "properties": {
+                "entityIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A set of Vault entity IDs.\n"
+                },
+                "groupIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A set of Vault group IDs.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the assignment.\n"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "entityIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A set of Vault entity IDs.\n"
+                },
+                "groupIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A set of Vault group IDs.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the assignment.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering OidcAssignment resources.\n",
+                "properties": {
+                    "entityIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A set of Vault entity IDs.\n"
+                    },
+                    "groupIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A set of Vault group IDs.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the assignment.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:identity/oidcClient:OidcClient": {
+            "description": "Manages OIDC Clients in a Vault server. See the [Vault documentation](https://www.vaultproject.io/api-docs/secret/identity/oidc-provider#create-or-update-an-assignment)\nfor more information.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst testOidcAssignment = new vault.identity.OidcAssignment(\"testOidcAssignment\", {\n    entityIds: [\"ascbascas-2231a-sdfaa\"],\n    groupIds: [\"sajkdsad-32414-sfsada\"],\n});\nconst testOidcClient = new vault.identity.OidcClient(\"testOidcClient\", {\n    redirectUris: [\n        \"http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback\",\n        \"http://127.0.0.1:8251/callback\",\n        \"http://127.0.0.1:8080/callback\",\n    ],\n    assignments: [testOidcAssignment.name],\n    idTokenTtl: 2400,\n    accessTokenTtl: 7200,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntest_oidc_assignment = vault.identity.OidcAssignment(\"testOidcAssignment\",\n    entity_ids=[\"ascbascas-2231a-sdfaa\"],\n    group_ids=[\"sajkdsad-32414-sfsada\"])\ntest_oidc_client = vault.identity.OidcClient(\"testOidcClient\",\n    redirect_uris=[\n        \"http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback\",\n        \"http://127.0.0.1:8251/callback\",\n        \"http://127.0.0.1:8080/callback\",\n    ],\n    assignments=[test_oidc_assignment.name],\n    id_token_ttl=2400,\n    access_token_ttl=7200)\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testOidcAssignment = new Vault.Identity.OidcAssignment(\"testOidcAssignment\", new Vault.Identity.OidcAssignmentArgs\n        {\n            EntityIds = \n            {\n                \"ascbascas-2231a-sdfaa\",\n            },\n            GroupIds = \n            {\n                \"sajkdsad-32414-sfsada\",\n            },\n        });\n        var testOidcClient = new Vault.Identity.OidcClient(\"testOidcClient\", new Vault.Identity.OidcClientArgs\n        {\n            RedirectUris = \n            {\n                \"http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback\",\n                \"http://127.0.0.1:8251/callback\",\n                \"http://127.0.0.1:8080/callback\",\n            },\n            Assignments = \n            {\n                testOidcAssignment.Name,\n            },\n            IdTokenTtl = 2400,\n            AccessTokenTtl = 7200,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestOidcAssignment, err := identity.NewOidcAssignment(ctx, \"testOidcAssignment\", \u0026identity.OidcAssignmentArgs{\n\t\t\tEntityIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ascbascas-2231a-sdfaa\"),\n\t\t\t},\n\t\t\tGroupIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"sajkdsad-32414-sfsada\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = identity.NewOidcClient(ctx, \"testOidcClient\", \u0026identity.OidcClientArgs{\n\t\t\tRedirectUris: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback\"),\n\t\t\t\tpulumi.String(\"http://127.0.0.1:8251/callback\"),\n\t\t\t\tpulumi.String(\"http://127.0.0.1:8080/callback\"),\n\t\t\t},\n\t\t\tAssignments: pulumi.StringArray{\n\t\t\t\ttestOidcAssignment.Name,\n\t\t\t},\n\t\t\tIdTokenTtl:     pulumi.Int(2400),\n\t\t\tAccessTokenTtl: pulumi.Int(7200),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nOIDC Clients can be imported using the `name`, e.g.\n\n```sh\n $ pulumi import vault:identity/oidcClient:OidcClient test my-app\n```\n\n ",
+            "properties": {
+                "accessTokenTtl": {
+                    "type": "integer",
+                    "description": "The time-to-live for access tokens obtained by the client.\n"
+                },
+                "assignments": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of assignment resources associated with the client.\n"
+                },
+                "clientId": {
+                    "type": "string",
+                    "description": "The Client ID from Vault.\n"
+                },
+                "clientSecret": {
+                    "type": "string",
+                    "description": "The Client Secret from Vault.\n"
+                },
+                "clientType": {
+                    "type": "string",
+                    "description": "The client type based on its ability to maintain confidentiality of credentials.\nThe following client types are supported: `confidential`, `public`. Defaults to `confidential`.\n"
+                },
+                "idTokenTtl": {
+                    "type": "integer",
+                    "description": "The time-to-live for ID tokens obtained by the client. \nThe value should be less than the `verification_ttl` on the key.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "A reference to a named key resource in Vault.\nThis cannot be modified after creation. If not provided, the `default`\nkey is used.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the client.\n"
+                },
+                "redirectUris": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Redirection URI values used by the client. \nOne of these values must exactly match the `redirect_uri` parameter value\nused in each authentication request.\n"
+                }
+            },
+            "required": [
+                "accessTokenTtl",
+                "clientId",
+                "clientSecret",
+                "clientType",
+                "idTokenTtl",
+                "key",
+                "name"
+            ],
+            "inputProperties": {
+                "accessTokenTtl": {
+                    "type": "integer",
+                    "description": "The time-to-live for access tokens obtained by the client.\n"
+                },
+                "assignments": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of assignment resources associated with the client.\n"
+                },
+                "clientType": {
+                    "type": "string",
+                    "description": "The client type based on its ability to maintain confidentiality of credentials.\nThe following client types are supported: `confidential`, `public`. Defaults to `confidential`.\n"
+                },
+                "idTokenTtl": {
+                    "type": "integer",
+                    "description": "The time-to-live for ID tokens obtained by the client. \nThe value should be less than the `verification_ttl` on the key.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "A reference to a named key resource in Vault.\nThis cannot be modified after creation. If not provided, the `default`\nkey is used.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the client.\n"
+                },
+                "redirectUris": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Redirection URI values used by the client. \nOne of these values must exactly match the `redirect_uri` parameter value\nused in each authentication request.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering OidcClient resources.\n",
+                "properties": {
+                    "accessTokenTtl": {
+                        "type": "integer",
+                        "description": "The time-to-live for access tokens obtained by the client.\n"
+                    },
+                    "assignments": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A list of assignment resources associated with the client.\n"
+                    },
+                    "clientId": {
+                        "type": "string",
+                        "description": "The Client ID from Vault.\n"
+                    },
+                    "clientSecret": {
+                        "type": "string",
+                        "description": "The Client Secret from Vault.\n"
+                    },
+                    "clientType": {
+                        "type": "string",
+                        "description": "The client type based on its ability to maintain confidentiality of credentials.\nThe following client types are supported: `confidential`, `public`. Defaults to `confidential`.\n"
+                    },
+                    "idTokenTtl": {
+                        "type": "integer",
+                        "description": "The time-to-live for ID tokens obtained by the client. \nThe value should be less than the `verification_ttl` on the key.\n"
+                    },
+                    "key": {
+                        "type": "string",
+                        "description": "A reference to a named key resource in Vault.\nThis cannot be modified after creation. If not provided, the `default`\nkey is used.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the client.\n"
+                    },
+                    "redirectUris": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Redirection URI values used by the client. \nOne of these values must exactly match the `redirect_uri` parameter value\nused in each authentication request.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "vault:identity/oidcKey:OidcKey": {
             "description": "\n\n\n## Import\n\nThe key can be imported with the key name, for example\n\n```sh\n $ pulumi import vault:identity/oidcKey:OidcKey key key\n```\n\n ",
             "properties": {
@@ -8820,6 +9134,109 @@
                 "type": "object"
             }
         },
+        "vault:identity/oidcProvider:OidcProvider": {
+            "description": "Manages OIDC Providers in a Vault server. See the [Vault documentation](https://www.vaultproject.io/api-docs/secret/identity/oidc-provider#create-or-update-an-assignment)\nfor more information.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst testOidcKey = new vault.identity.OidcKey(\"testOidcKey\", {\n    allowedClientIds: [\"*\"],\n    rotationPeriod: 3600,\n    verificationTtl: 3600,\n});\nconst testOidcAssignment = new vault.identity.OidcAssignment(\"testOidcAssignment\", {\n    entityIds: [\"fake-ascbascas-2231a-sdfaa\"],\n    groupIds: [\"fake-sajkdsad-32414-sfsada\"],\n});\nconst testOidcClient = new vault.identity.OidcClient(\"testOidcClient\", {\n    key: testOidcKey.name,\n    redirectUris: [\n        \"http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback\",\n        \"http://127.0.0.1:8251/callback\",\n        \"http://127.0.0.1:8080/callback\",\n    ],\n    assignments: [testOidcAssignment.name],\n    idTokenTtl: 2400,\n    accessTokenTtl: 7200,\n});\nconst testOidcScope = new vault.identity.OidcScope(\"testOidcScope\", {\n    template: JSON.stringify({\n        groups: \"{{identity.entity.groups.names}}\",\n    }),\n    description: \"Groups scope.\",\n});\nconst testOidcProvider = new vault.identity.OidcProvider(\"testOidcProvider\", {\n    httpsEnabled: false,\n    issuerHost: \"127.0.0.1:8200\",\n    allowedClientIds: [testOidcClient.clientId],\n    scopesSupporteds: [testOidcScope.name],\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumi_vault as vault\n\ntest_oidc_key = vault.identity.OidcKey(\"testOidcKey\",\n    allowed_client_ids=[\"*\"],\n    rotation_period=3600,\n    verification_ttl=3600)\ntest_oidc_assignment = vault.identity.OidcAssignment(\"testOidcAssignment\",\n    entity_ids=[\"fake-ascbascas-2231a-sdfaa\"],\n    group_ids=[\"fake-sajkdsad-32414-sfsada\"])\ntest_oidc_client = vault.identity.OidcClient(\"testOidcClient\",\n    key=test_oidc_key.name,\n    redirect_uris=[\n        \"http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback\",\n        \"http://127.0.0.1:8251/callback\",\n        \"http://127.0.0.1:8080/callback\",\n    ],\n    assignments=[test_oidc_assignment.name],\n    id_token_ttl=2400,\n    access_token_ttl=7200)\ntest_oidc_scope = vault.identity.OidcScope(\"testOidcScope\",\n    template=json.dumps({\n        \"groups\": \"{{identity.entity.groups.names}}\",\n    }),\n    description=\"Groups scope.\")\ntest_oidc_provider = vault.identity.OidcProvider(\"testOidcProvider\",\n    https_enabled=False,\n    issuer_host=\"127.0.0.1:8200\",\n    allowed_client_ids=[test_oidc_client.client_id],\n    scopes_supporteds=[test_oidc_scope.name])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Text.Json;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testOidcKey = new Vault.Identity.OidcKey(\"testOidcKey\", new Vault.Identity.OidcKeyArgs\n        {\n            AllowedClientIds = \n            {\n                \"*\",\n            },\n            RotationPeriod = 3600,\n            VerificationTtl = 3600,\n        });\n        var testOidcAssignment = new Vault.Identity.OidcAssignment(\"testOidcAssignment\", new Vault.Identity.OidcAssignmentArgs\n        {\n            EntityIds = \n            {\n                \"fake-ascbascas-2231a-sdfaa\",\n            },\n            GroupIds = \n            {\n                \"fake-sajkdsad-32414-sfsada\",\n            },\n        });\n        var testOidcClient = new Vault.Identity.OidcClient(\"testOidcClient\", new Vault.Identity.OidcClientArgs\n        {\n            Key = testOidcKey.Name,\n            RedirectUris = \n            {\n                \"http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback\",\n                \"http://127.0.0.1:8251/callback\",\n                \"http://127.0.0.1:8080/callback\",\n            },\n            Assignments = \n            {\n                testOidcAssignment.Name,\n            },\n            IdTokenTtl = 2400,\n            AccessTokenTtl = 7200,\n        });\n        var testOidcScope = new Vault.Identity.OidcScope(\"testOidcScope\", new Vault.Identity.OidcScopeArgs\n        {\n            Template = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n            {\n                { \"groups\", \"{{identity.entity.groups.names}}\" },\n            }),\n            Description = \"Groups scope.\",\n        });\n        var testOidcProvider = new Vault.Identity.OidcProvider(\"testOidcProvider\", new Vault.Identity.OidcProviderArgs\n        {\n            HttpsEnabled = false,\n            IssuerHost = \"127.0.0.1:8200\",\n            AllowedClientIds = \n            {\n                testOidcClient.ClientId,\n            },\n            ScopesSupporteds = \n            {\n                testOidcScope.Name,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestOidcKey, err := identity.NewOidcKey(ctx, \"testOidcKey\", \u0026identity.OidcKeyArgs{\n\t\t\tAllowedClientIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"*\"),\n\t\t\t},\n\t\t\tRotationPeriod:  pulumi.Int(3600),\n\t\t\tVerificationTtl: pulumi.Int(3600),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestOidcAssignment, err := identity.NewOidcAssignment(ctx, \"testOidcAssignment\", \u0026identity.OidcAssignmentArgs{\n\t\t\tEntityIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"fake-ascbascas-2231a-sdfaa\"),\n\t\t\t},\n\t\t\tGroupIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"fake-sajkdsad-32414-sfsada\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestOidcClient, err := identity.NewOidcClient(ctx, \"testOidcClient\", \u0026identity.OidcClientArgs{\n\t\t\tKey: testOidcKey.Name,\n\t\t\tRedirectUris: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback\"),\n\t\t\t\tpulumi.String(\"http://127.0.0.1:8251/callback\"),\n\t\t\t\tpulumi.String(\"http://127.0.0.1:8080/callback\"),\n\t\t\t},\n\t\t\tAssignments: pulumi.StringArray{\n\t\t\t\ttestOidcAssignment.Name,\n\t\t\t},\n\t\t\tIdTokenTtl:     pulumi.Int(2400),\n\t\t\tAccessTokenTtl: pulumi.Int(7200),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"groups\": \"{{identity.entity.groups.names}}\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\ttestOidcScope, err := identity.NewOidcScope(ctx, \"testOidcScope\", \u0026identity.OidcScopeArgs{\n\t\t\tTemplate:    pulumi.String(json0),\n\t\t\tDescription: pulumi.String(\"Groups scope.\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = identity.NewOidcProvider(ctx, \"testOidcProvider\", \u0026identity.OidcProviderArgs{\n\t\t\tHttpsEnabled: pulumi.Bool(false),\n\t\t\tIssuerHost:   pulumi.String(\"127.0.0.1:8200\"),\n\t\t\tAllowedClientIds: pulumi.StringArray{\n\t\t\t\ttestOidcClient.ClientId,\n\t\t\t},\n\t\t\tScopesSupporteds: pulumi.StringArray{\n\t\t\t\ttestOidcScope.Name,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nOIDC Providers can be imported using the `name`, e.g.\n\n```sh\n $ pulumi import vault:identity/oidcProvider:OidcProvider test my-provider\n```\n\n ",
+            "properties": {
+                "allowedClientIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The client IDs that are permitted to use the provider. \nIf empty, no clients are allowed. If `*`, all clients are allowed.\n"
+                },
+                "httpsEnabled": {
+                    "type": "boolean",
+                    "description": "Set to true if the issuer endpoint uses HTTPS.\n"
+                },
+                "issuer": {
+                    "type": "string",
+                    "description": "Specifies what will be used as the `scheme://host:port`\ncomponent for the `iss` claim of ID tokens. This value is computed using the\n`issuer_host` and `https_enabled` fields.\n"
+                },
+                "issuerHost": {
+                    "type": "string",
+                    "description": "The host for the issuer. Can be either host or host:port.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the provider.\n"
+                },
+                "scopesSupporteds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The scopes available for requesting on the provider.\n"
+                }
+            },
+            "required": [
+                "issuer",
+                "name"
+            ],
+            "inputProperties": {
+                "allowedClientIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The client IDs that are permitted to use the provider. \nIf empty, no clients are allowed. If `*`, all clients are allowed.\n"
+                },
+                "httpsEnabled": {
+                    "type": "boolean",
+                    "description": "Set to true if the issuer endpoint uses HTTPS.\n"
+                },
+                "issuerHost": {
+                    "type": "string",
+                    "description": "The host for the issuer. Can be either host or host:port.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the provider.\n"
+                },
+                "scopesSupporteds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The scopes available for requesting on the provider.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering OidcProvider resources.\n",
+                "properties": {
+                    "allowedClientIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The client IDs that are permitted to use the provider. \nIf empty, no clients are allowed. If `*`, all clients are allowed.\n"
+                    },
+                    "httpsEnabled": {
+                        "type": "boolean",
+                        "description": "Set to true if the issuer endpoint uses HTTPS.\n"
+                    },
+                    "issuer": {
+                        "type": "string",
+                        "description": "Specifies what will be used as the `scheme://host:port`\ncomponent for the `iss` claim of ID tokens. This value is computed using the\n`issuer_host` and `https_enabled` fields.\n"
+                    },
+                    "issuerHost": {
+                        "type": "string",
+                        "description": "The host for the issuer. Can be either host or host:port.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the provider.\n"
+                    },
+                    "scopesSupporteds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The scopes available for requesting on the provider.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "vault:identity/oidcRole:OidcRole": {
             "description": "\n\n\n## Import\n\nThe key can be imported with the role name, for example\n\n```sh\n $ pulumi import vault:identity/oidcRole:OidcRole role role\n```\n\n ",
             "properties": {
@@ -8896,6 +9313,58 @@
                     "ttl": {
                         "type": "integer",
                         "description": "TTL of the tokens generated against the role in number of seconds.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:identity/oidcScope:OidcScope": {
+            "description": "Manages OIDC Scopes in a Vault server. See the [Vault documentation](https://www.vaultproject.io/api-docs/secret/identity/oidc-provider#create-or-update-a-scope)\nfor more information.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst groups = new vault.identity.OidcScope(\"groups\", {\n    template: JSON.stringify({\n        groups: \"{{identity.entity.groups.names}}\",\n    }),\n    description: \"Vault OIDC Groups Scope\",\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumi_vault as vault\n\ngroups = vault.identity.OidcScope(\"groups\",\n    template=json.dumps({\n        \"groups\": \"{{identity.entity.groups.names}}\",\n    }),\n    description=\"Vault OIDC Groups Scope\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Text.Json;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var groups = new Vault.Identity.OidcScope(\"groups\", new Vault.Identity.OidcScopeArgs\n        {\n            Template = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n            {\n                { \"groups\", \"{{identity.entity.groups.names}}\" },\n            }),\n            Description = \"Vault OIDC Groups Scope\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"groups\": \"{{identity.entity.groups.names}}\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err := identity.NewOidcScope(ctx, \"groups\", \u0026identity.OidcScopeArgs{\n\t\t\tTemplate:    pulumi.String(json0),\n\t\t\tDescription: pulumi.String(\"Vault OIDC Groups Scope\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nOIDC Scopes can be imported using the `name`, e.g.\n\n```sh\n $ pulumi import vault:identity/oidcScope:OidcScope groups groups\n```\n\n ",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "A description of the scope.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the scope. The `openid` scope name is reserved.\n"
+                },
+                "template": {
+                    "type": "string",
+                    "description": "The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.\n"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "A description of the scope.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the scope. The `openid` scope name is reserved.\n"
+                },
+                "template": {
+                    "type": "string",
+                    "description": "The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering OidcScope resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "A description of the scope.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the scope. The `openid` scope name is reserved.\n"
+                    },
+                    "template": {
+                        "type": "string",
+                        "description": "The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.\n"
                     }
                 },
                 "type": "object"
@@ -17519,6 +17988,10 @@
                     "type": "boolean",
                     "description": "Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.\n* Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)\n"
                 },
+                "autoRotateInterval": {
+                    "type": "integer",
+                    "description": "Amount of time the key should live before being automatically rotated.\nA value of 0 disables automatic rotation for the key.\n"
+                },
                 "backend": {
                     "type": "string",
                     "description": "The path the transit secret backend is mounted at, with no leading or trailing `/`s.\n"
@@ -17591,6 +18064,7 @@
                 }
             },
             "required": [
+                "autoRotateInterval",
                 "backend",
                 "keys",
                 "latestVersion",
@@ -17605,6 +18079,10 @@
                 "allowPlaintextBackup": {
                     "type": "boolean",
                     "description": "Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.\n* Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)\n"
+                },
+                "autoRotateInterval": {
+                    "type": "integer",
+                    "description": "Amount of time the key should live before being automatically rotated.\nA value of 0 disables automatic rotation for the key.\n"
                 },
                 "backend": {
                     "type": "string",
@@ -17652,6 +18130,10 @@
                     "allowPlaintextBackup": {
                         "type": "boolean",
                         "description": "Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.\n* Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)\n"
+                    },
+                    "autoRotateInterval": {
+                        "type": "integer",
+                        "description": "Amount of time the key should live before being automatically rotated.\nA value of 0 disables automatic rotation for the key.\n"
                     },
                     "backend": {
                         "type": "string",
@@ -17986,11 +18468,11 @@
                     },
                     "maxCredValidationSeconds": {
                         "type": "integer",
-                        "description": "If 'validate_creds' is true, \nthe number of seconds after which to give up validating credentials. Defaults\nto 1,200 (20 minutes).\n"
+                        "description": "If 'validate_creds' is true, \nthe number of seconds after which to give up validating credentials. Defaults\nto 300.\n"
                     },
                     "numSecondsBetweenTests": {
                         "type": "integer",
-                        "description": "If 'validate_creds' is true, \nthe number of seconds to wait between each test of generated credentials.\nDefaults to 7.\n"
+                        "description": "If 'validate_creds' is true, \nthe number of seconds to wait between each test of generated credentials.\nDefaults to 1.\n"
                     },
                     "numSequentialSuccesses": {
                         "type": "integer",
@@ -17999,6 +18481,14 @@
                     "role": {
                         "type": "string",
                         "description": "The name of the Azure secret backend role to read\ncredentials from, with no leading or trailing `/`s.\n"
+                    },
+                    "subscriptionId": {
+                        "type": "string",
+                        "description": "The subscription ID to use during credential\nvalidation. Defaults to the subscription ID configured in the Vault `backend`.\n"
+                    },
+                    "tenantId": {
+                        "type": "string",
+                        "description": "The tenant ID to use during credential validation.\nDefaults to the tenant ID configured in the Vault `backend`.\n"
                     },
                     "validateCreds": {
                         "type": "boolean",
@@ -18053,6 +18543,12 @@
                         "type": "integer"
                     },
                     "role": {
+                        "type": "string"
+                    },
+                    "subscriptionId": {
+                        "type": "string"
+                    },
+                    "tenantId": {
                         "type": "string"
                     },
                     "validateCreds": {
@@ -18635,6 +19131,201 @@
                     "parentGroupIds",
                     "policies",
                     "type",
+                    "id"
+                ]
+            }
+        },
+        "vault:identity/getOidcClientCreds:getOidcClientCreds": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getOidcClientCreds.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the OIDC Client in Vault.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getOidcClientCreds.\n",
+                "properties": {
+                    "clientId": {
+                        "type": "string",
+                        "description": "The Client ID returned by Vault.\n"
+                    },
+                    "clientSecret": {
+                        "type": "string",
+                        "description": "The Client Secret Key returned by Vault.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "clientId",
+                    "clientSecret",
+                    "name",
+                    "id"
+                ]
+            }
+        },
+        "vault:identity/getOidcOpenidConfig:getOidcOpenidConfig": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getOidcOpenidConfig.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the OIDC Provider in Vault.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getOidcOpenidConfig.\n",
+                "properties": {
+                    "authorizationEndpoint": {
+                        "type": "string",
+                        "description": "The Authorization Endpoint for the provider.\n"
+                    },
+                    "grantTypesSupporteds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The grant types supported by the provider.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "idTokenSigningAlgValuesSupporteds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The signing algorithms supported by \nthe provider.\n"
+                    },
+                    "issuer": {
+                        "type": "string",
+                        "description": "The URL of the issuer for the provider.\n"
+                    },
+                    "jwksUri": {
+                        "type": "string",
+                        "description": "The well known keys URI for the provider.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "requestUriParameterSupported": {
+                        "type": "boolean",
+                        "description": "Specifies whether Request URI Parameter is \nsupported by the provider.\n"
+                    },
+                    "responseTypesSupporteds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The response types supported by the provider.\n"
+                    },
+                    "scopesSupporteds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The scopes supported by the provider.\n"
+                    },
+                    "subjectTypesSupporteds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The subject types supported by the provider.\n"
+                    },
+                    "tokenEndpoint": {
+                        "type": "string",
+                        "description": "The Token Endpoint for the provider.\n"
+                    },
+                    "tokenEndpointAuthMethodsSupporteds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The token endpoint auth methods supported by the provider.\n"
+                    },
+                    "userinfoEndpoint": {
+                        "type": "string",
+                        "description": "The User Info Endpoint for the provider\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "authorizationEndpoint",
+                    "grantTypesSupporteds",
+                    "idTokenSigningAlgValuesSupporteds",
+                    "issuer",
+                    "jwksUri",
+                    "name",
+                    "requestUriParameterSupported",
+                    "responseTypesSupporteds",
+                    "scopesSupporteds",
+                    "subjectTypesSupporteds",
+                    "tokenEndpoint",
+                    "tokenEndpointAuthMethodsSupporteds",
+                    "userinfoEndpoint",
+                    "id"
+                ]
+            }
+        },
+        "vault:identity/getOidcPublicKeys:getOidcPublicKeys": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getOidcPublicKeys.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the OIDC Provider in Vault.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getOidcPublicKeys.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "keys": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "pulumi.json#/Any"
+                            }
+                        },
+                        "description": "The public portion of keys for an OIDC provider. \nClients can use them to validate the authenticity of an identity token.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "keys",
+                    "name",
                     "id"
                 ]
             }

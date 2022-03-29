@@ -13,48 +13,52 @@ __all__ = ['SecretBackendRoleArgs', 'SecretBackendRole']
 @pulumi.input_type
 class SecretBackendRoleArgs:
     def __init__(__self__, *,
-                 policies: pulumi.Input[Sequence[pulumi.Input[str]]],
                  backend: Optional[pulumi.Input[str]] = None,
+                 consul_namespace: Optional[pulumi.Input[str]] = None,
+                 consul_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 partition: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_type: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a SecretBackendRole resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: The list of Consul ACL policies to associate with these roles.
         :param pulumi.Input[str] backend: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        :param pulumi.Input[str] consul_namespace: The Consul namespace that the token will be created in.
+               Applicable for Vault 1.10+ and Consul 1.7+",
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] consul_roles: Set of Consul roles to attach to the token.
+               Applicable for Vault 1.10+ with Consul 1.5+.
         :param pulumi.Input[bool] local: Indicates that the token should not be replicated globally and instead be local to the current datacenter.
         :param pulumi.Input[int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
         :param pulumi.Input[str] name: The name of the Consul secrets engine role to create.
+        :param pulumi.Input[str] partition: The admin partition that the token will be created in.
+               Applicable for Vault 1.10+ and Consul 1.11+",
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: The list of Consul ACL policies to associate with these roles.
         :param pulumi.Input[str] token_type: Specifies the type of token to create when using this role. Valid values are "client" or "management".
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
         """
-        pulumi.set(__self__, "policies", policies)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if consul_namespace is not None:
+            pulumi.set(__self__, "consul_namespace", consul_namespace)
+        if consul_roles is not None:
+            pulumi.set(__self__, "consul_roles", consul_roles)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if partition is not None:
+            pulumi.set(__self__, "partition", partition)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
-
-    @property
-    @pulumi.getter
-    def policies(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        """
-        The list of Consul ACL policies to associate with these roles.
-        """
-        return pulumi.get(self, "policies")
-
-    @policies.setter
-    def policies(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "policies", value)
 
     @property
     @pulumi.getter
@@ -67,6 +71,32 @@ class SecretBackendRoleArgs:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="consulNamespace")
+    def consul_namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Consul namespace that the token will be created in.
+        Applicable for Vault 1.10+ and Consul 1.7+",
+        """
+        return pulumi.get(self, "consul_namespace")
+
+    @consul_namespace.setter
+    def consul_namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "consul_namespace", value)
+
+    @property
+    @pulumi.getter(name="consulRoles")
+    def consul_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Set of Consul roles to attach to the token.
+        Applicable for Vault 1.10+ with Consul 1.5+.
+        """
+        return pulumi.get(self, "consul_roles")
+
+    @consul_roles.setter
+    def consul_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "consul_roles", value)
 
     @property
     @pulumi.getter
@@ -103,6 +133,31 @@ class SecretBackendRoleArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def partition(self) -> Optional[pulumi.Input[str]]:
+        """
+        The admin partition that the token will be created in.
+        Applicable for Vault 1.10+ and Consul 1.11+",
+        """
+        return pulumi.get(self, "partition")
+
+    @partition.setter
+    def partition(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "partition", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of Consul ACL policies to associate with these roles.
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policies", value)
 
     @property
     @pulumi.getter(name="tokenType")
@@ -133,30 +188,45 @@ class SecretBackendRoleArgs:
 class _SecretBackendRoleState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
+                 consul_namespace: Optional[pulumi.Input[str]] = None,
+                 consul_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 partition: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_type: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
         :param pulumi.Input[str] backend: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        :param pulumi.Input[str] consul_namespace: The Consul namespace that the token will be created in.
+               Applicable for Vault 1.10+ and Consul 1.7+",
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] consul_roles: Set of Consul roles to attach to the token.
+               Applicable for Vault 1.10+ with Consul 1.5+.
         :param pulumi.Input[bool] local: Indicates that the token should not be replicated globally and instead be local to the current datacenter.
         :param pulumi.Input[int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
         :param pulumi.Input[str] name: The name of the Consul secrets engine role to create.
+        :param pulumi.Input[str] partition: The admin partition that the token will be created in.
+               Applicable for Vault 1.10+ and Consul 1.11+",
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: The list of Consul ACL policies to associate with these roles.
         :param pulumi.Input[str] token_type: Specifies the type of token to create when using this role. Valid values are "client" or "management".
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if consul_namespace is not None:
+            pulumi.set(__self__, "consul_namespace", consul_namespace)
+        if consul_roles is not None:
+            pulumi.set(__self__, "consul_roles", consul_roles)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if partition is not None:
+            pulumi.set(__self__, "partition", partition)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
         if token_type is not None:
@@ -175,6 +245,32 @@ class _SecretBackendRoleState:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="consulNamespace")
+    def consul_namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Consul namespace that the token will be created in.
+        Applicable for Vault 1.10+ and Consul 1.7+",
+        """
+        return pulumi.get(self, "consul_namespace")
+
+    @consul_namespace.setter
+    def consul_namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "consul_namespace", value)
+
+    @property
+    @pulumi.getter(name="consulRoles")
+    def consul_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Set of Consul roles to attach to the token.
+        Applicable for Vault 1.10+ with Consul 1.5+.
+        """
+        return pulumi.get(self, "consul_roles")
+
+    @consul_roles.setter
+    def consul_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "consul_roles", value)
 
     @property
     @pulumi.getter
@@ -211,6 +307,19 @@ class _SecretBackendRoleState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def partition(self) -> Optional[pulumi.Input[str]]:
+        """
+        The admin partition that the token will be created in.
+        Applicable for Vault 1.10+ and Consul 1.11+",
+        """
+        return pulumi.get(self, "partition")
+
+    @partition.setter
+    def partition(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "partition", value)
 
     @property
     @pulumi.getter
@@ -255,9 +364,12 @@ class SecretBackendRole(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 consul_namespace: Optional[pulumi.Input[str]] = None,
+                 consul_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 partition: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_type: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
@@ -292,9 +404,15 @@ class SecretBackendRole(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        :param pulumi.Input[str] consul_namespace: The Consul namespace that the token will be created in.
+               Applicable for Vault 1.10+ and Consul 1.7+",
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] consul_roles: Set of Consul roles to attach to the token.
+               Applicable for Vault 1.10+ with Consul 1.5+.
         :param pulumi.Input[bool] local: Indicates that the token should not be replicated globally and instead be local to the current datacenter.
         :param pulumi.Input[int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
         :param pulumi.Input[str] name: The name of the Consul secrets engine role to create.
+        :param pulumi.Input[str] partition: The admin partition that the token will be created in.
+               Applicable for Vault 1.10+ and Consul 1.11+",
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: The list of Consul ACL policies to associate with these roles.
         :param pulumi.Input[str] token_type: Specifies the type of token to create when using this role. Valid values are "client" or "management".
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
@@ -303,7 +421,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: SecretBackendRoleArgs,
+                 args: Optional[SecretBackendRoleArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a Consul secrets role for a Consul secrets engine in Vault. Consul secret backends can then issue Consul tokens.
@@ -348,9 +466,12 @@ class SecretBackendRole(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 consul_namespace: Optional[pulumi.Input[str]] = None,
+                 consul_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 partition: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_type: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
@@ -367,11 +488,12 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__ = SecretBackendRoleArgs.__new__(SecretBackendRoleArgs)
 
             __props__.__dict__["backend"] = backend
+            __props__.__dict__["consul_namespace"] = consul_namespace
+            __props__.__dict__["consul_roles"] = consul_roles
             __props__.__dict__["local"] = local
             __props__.__dict__["max_ttl"] = max_ttl
             __props__.__dict__["name"] = name
-            if policies is None and not opts.urn:
-                raise TypeError("Missing required property 'policies'")
+            __props__.__dict__["partition"] = partition
             __props__.__dict__["policies"] = policies
             __props__.__dict__["token_type"] = token_type
             __props__.__dict__["ttl"] = ttl
@@ -386,9 +508,12 @@ class SecretBackendRole(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
+            consul_namespace: Optional[pulumi.Input[str]] = None,
+            consul_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             local: Optional[pulumi.Input[bool]] = None,
             max_ttl: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            partition: Optional[pulumi.Input[str]] = None,
             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             token_type: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[int]] = None) -> 'SecretBackendRole':
@@ -400,9 +525,15 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        :param pulumi.Input[str] consul_namespace: The Consul namespace that the token will be created in.
+               Applicable for Vault 1.10+ and Consul 1.7+",
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] consul_roles: Set of Consul roles to attach to the token.
+               Applicable for Vault 1.10+ with Consul 1.5+.
         :param pulumi.Input[bool] local: Indicates that the token should not be replicated globally and instead be local to the current datacenter.
         :param pulumi.Input[int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
         :param pulumi.Input[str] name: The name of the Consul secrets engine role to create.
+        :param pulumi.Input[str] partition: The admin partition that the token will be created in.
+               Applicable for Vault 1.10+ and Consul 1.11+",
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: The list of Consul ACL policies to associate with these roles.
         :param pulumi.Input[str] token_type: Specifies the type of token to create when using this role. Valid values are "client" or "management".
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
@@ -412,9 +543,12 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__ = _SecretBackendRoleState.__new__(_SecretBackendRoleState)
 
         __props__.__dict__["backend"] = backend
+        __props__.__dict__["consul_namespace"] = consul_namespace
+        __props__.__dict__["consul_roles"] = consul_roles
         __props__.__dict__["local"] = local
         __props__.__dict__["max_ttl"] = max_ttl
         __props__.__dict__["name"] = name
+        __props__.__dict__["partition"] = partition
         __props__.__dict__["policies"] = policies
         __props__.__dict__["token_type"] = token_type
         __props__.__dict__["ttl"] = ttl
@@ -427,6 +561,24 @@ class SecretBackendRole(pulumi.CustomResource):
         The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
         """
         return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter(name="consulNamespace")
+    def consul_namespace(self) -> pulumi.Output[str]:
+        """
+        The Consul namespace that the token will be created in.
+        Applicable for Vault 1.10+ and Consul 1.7+",
+        """
+        return pulumi.get(self, "consul_namespace")
+
+    @property
+    @pulumi.getter(name="consulRoles")
+    def consul_roles(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Set of Consul roles to attach to the token.
+        Applicable for Vault 1.10+ with Consul 1.5+.
+        """
+        return pulumi.get(self, "consul_roles")
 
     @property
     @pulumi.getter
@@ -454,7 +606,16 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def policies(self) -> pulumi.Output[Sequence[str]]:
+    def partition(self) -> pulumi.Output[str]:
+        """
+        The admin partition that the token will be created in.
+        Applicable for Vault 1.10+ and Consul 1.11+",
+        """
+        return pulumi.get(self, "partition")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         The list of Consul ACL policies to associate with these roles.
         """

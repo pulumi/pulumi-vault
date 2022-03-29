@@ -31,6 +31,12 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<bool>? ContainedDb { get; set; }
 
         /// <summary>
+        /// Disable special character escaping in username and password.
+        /// </summary>
+        [Input("disableEscaping")]
+        public Input<bool>? DisableEscaping { get; set; }
+
+        /// <summary>
         /// The maximum amount of time a connection may be reused.
         /// </summary>
         [Input("maxConnectionLifetime")]

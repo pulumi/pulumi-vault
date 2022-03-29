@@ -96,6 +96,13 @@ namespace Pulumi.Vault.AppRole
         public Output<string> SecretId { get; private set; } = null!;
 
         /// <summary>
+        /// Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
+        /// the wrapping token is expired or invalidated through unwrapping.
+        /// </summary>
+        [Output("withWrappedAccessor")]
+        public Output<bool?> WithWrappedAccessor { get; private set; } = null!;
+
+        /// <summary>
         /// The unique ID for the response-wrapped SecretID that can
         /// be safely logged.
         /// </summary>
@@ -203,6 +210,13 @@ namespace Pulumi.Vault.AppRole
         public Input<string>? SecretId { get; set; }
 
         /// <summary>
+        /// Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
+        /// the wrapping token is expired or invalidated through unwrapping.
+        /// </summary>
+        [Input("withWrappedAccessor")]
+        public Input<bool>? WithWrappedAccessor { get; set; }
+
+        /// <summary>
         /// If set, the SecretID response will be
         /// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
         /// and available for the duration specified. Only a single unwrapping of the
@@ -262,6 +276,13 @@ namespace Pulumi.Vault.AppRole
         /// </summary>
         [Input("secretId")]
         public Input<string>? SecretId { get; set; }
+
+        /// <summary>
+        /// Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
+        /// the wrapping token is expired or invalidated through unwrapping.
+        /// </summary>
+        [Input("withWrappedAccessor")]
+        public Input<bool>? WithWrappedAccessor { get; set; }
 
         /// <summary>
         /// The unique ID for the response-wrapped SecretID that can

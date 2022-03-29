@@ -249,6 +249,10 @@ export namespace database {
          */
         connectionUrl?: string;
         /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: boolean;
+        /**
          * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
@@ -385,6 +389,10 @@ export namespace database {
          * docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
          */
         containedDb?: boolean;
+        /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: boolean;
         /**
          * The maximum amount of time a connection may be reused.
          */
@@ -610,6 +618,10 @@ export namespace database {
          */
         connectionUrl?: string;
         /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: boolean;
+        /**
          * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
@@ -645,6 +657,10 @@ export namespace database {
          * for an example.
          */
         connectionUrl?: string;
+        /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: boolean;
         /**
          * The maximum amount of time a connection may be reused.
          */

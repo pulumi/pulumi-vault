@@ -31,7 +31,7 @@ namespace Pulumi.Vault.Azure
         /// <summary>
         /// If 'validate_creds' is true, 
         /// the number of seconds after which to give up validating credentials. Defaults
-        /// to 1,200 (20 minutes).
+        /// to 300.
         /// </summary>
         [Input("maxCredValidationSeconds")]
         public int? MaxCredValidationSeconds { get; set; }
@@ -39,7 +39,7 @@ namespace Pulumi.Vault.Azure
         /// <summary>
         /// If 'validate_creds' is true, 
         /// the number of seconds to wait between each test of generated credentials.
-        /// Defaults to 7.
+        /// Defaults to 1.
         /// </summary>
         [Input("numSecondsBetweenTests")]
         public int? NumSecondsBetweenTests { get; set; }
@@ -58,6 +58,20 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("role", required: true)]
         public string Role { get; set; } = null!;
+
+        /// <summary>
+        /// The subscription ID to use during credential
+        /// validation. Defaults to the subscription ID configured in the Vault `backend`.
+        /// </summary>
+        [Input("subscriptionId")]
+        public string? SubscriptionId { get; set; }
+
+        /// <summary>
+        /// The tenant ID to use during credential validation.
+        /// Defaults to the tenant ID configured in the Vault `backend`.
+        /// </summary>
+        [Input("tenantId")]
+        public string? TenantId { get; set; }
 
         /// <summary>
         /// Whether generated credentials should be 
@@ -85,7 +99,7 @@ namespace Pulumi.Vault.Azure
         /// <summary>
         /// If 'validate_creds' is true, 
         /// the number of seconds after which to give up validating credentials. Defaults
-        /// to 1,200 (20 minutes).
+        /// to 300.
         /// </summary>
         [Input("maxCredValidationSeconds")]
         public Input<int>? MaxCredValidationSeconds { get; set; }
@@ -93,7 +107,7 @@ namespace Pulumi.Vault.Azure
         /// <summary>
         /// If 'validate_creds' is true, 
         /// the number of seconds to wait between each test of generated credentials.
-        /// Defaults to 7.
+        /// Defaults to 1.
         /// </summary>
         [Input("numSecondsBetweenTests")]
         public Input<int>? NumSecondsBetweenTests { get; set; }
@@ -112,6 +126,20 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
+
+        /// <summary>
+        /// The subscription ID to use during credential
+        /// validation. Defaults to the subscription ID configured in the Vault `backend`.
+        /// </summary>
+        [Input("subscriptionId")]
+        public Input<string>? SubscriptionId { get; set; }
+
+        /// <summary>
+        /// The tenant ID to use during credential validation.
+        /// Defaults to the tenant ID configured in the Vault `backend`.
+        /// </summary>
+        [Input("tenantId")]
+        public Input<string>? TenantId { get; set; }
 
         /// <summary>
         /// Whether generated credentials should be 
@@ -160,6 +188,8 @@ namespace Pulumi.Vault.Azure
         public readonly int? NumSecondsBetweenTests;
         public readonly int? NumSequentialSuccesses;
         public readonly string Role;
+        public readonly string? SubscriptionId;
+        public readonly string? TenantId;
         public readonly bool? ValidateCreds;
 
         [OutputConstructor]
@@ -188,6 +218,10 @@ namespace Pulumi.Vault.Azure
 
             string role,
 
+            string? subscriptionId,
+
+            string? tenantId,
+
             bool? validateCreds)
         {
             Backend = backend;
@@ -202,6 +236,8 @@ namespace Pulumi.Vault.Azure
             NumSecondsBetweenTests = numSecondsBetweenTests;
             NumSequentialSuccesses = numSequentialSuccesses;
             Role = role;
+            SubscriptionId = subscriptionId;
+            TenantId = tenantId;
             ValidateCreds = validateCreds;
         }
     }

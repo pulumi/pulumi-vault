@@ -394,6 +394,7 @@ class SecretBackendConnectionElasticsearchArgs:
 class SecretBackendConnectionHanaArgs:
     def __init__(__self__, *,
                  connection_url: Optional[pulumi.Input[str]] = None,
+                 disable_escaping: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
@@ -404,6 +405,7 @@ class SecretBackendConnectionHanaArgs:
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
+        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password.
         :param pulumi.Input[int] max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
                the database.
@@ -414,6 +416,8 @@ class SecretBackendConnectionHanaArgs:
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
+        if disable_escaping is not None:
+            pulumi.set(__self__, "disable_escaping", disable_escaping)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -439,6 +443,18 @@ class SecretBackendConnectionHanaArgs:
     @connection_url.setter
     def connection_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "connection_url", value)
+
+    @property
+    @pulumi.getter(name="disableEscaping")
+    def disable_escaping(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable special character escaping in username and password.
+        """
+        return pulumi.get(self, "disable_escaping")
+
+    @disable_escaping.setter
+    def disable_escaping(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_escaping", value)
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -861,6 +877,7 @@ class SecretBackendConnectionMssqlArgs:
     def __init__(__self__, *,
                  connection_url: Optional[pulumi.Input[str]] = None,
                  contained_db: Optional[pulumi.Input[bool]] = None,
+                 disable_escaping: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
@@ -876,6 +893,7 @@ class SecretBackendConnectionMssqlArgs:
                Contained Database, e.g. AzureSQL.
                See the [Vault
                docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password.
         :param pulumi.Input[int] max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
                the database.
@@ -889,6 +907,8 @@ class SecretBackendConnectionMssqlArgs:
             pulumi.set(__self__, "connection_url", connection_url)
         if contained_db is not None:
             pulumi.set(__self__, "contained_db", contained_db)
+        if disable_escaping is not None:
+            pulumi.set(__self__, "disable_escaping", disable_escaping)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -931,6 +951,18 @@ class SecretBackendConnectionMssqlArgs:
     @contained_db.setter
     def contained_db(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "contained_db", value)
+
+    @property
+    @pulumi.getter(name="disableEscaping")
+    def disable_escaping(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable special character escaping in username and password.
+        """
+        return pulumi.get(self, "disable_escaping")
+
+    @disable_escaping.setter
+    def disable_escaping(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_escaping", value)
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -1688,6 +1720,7 @@ class SecretBackendConnectionOracleArgs:
 class SecretBackendConnectionPostgresqlArgs:
     def __init__(__self__, *,
                  connection_url: Optional[pulumi.Input[str]] = None,
+                 disable_escaping: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
@@ -1699,6 +1732,7 @@ class SecretBackendConnectionPostgresqlArgs:
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
+        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password.
         :param pulumi.Input[int] max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
                the database.
@@ -1710,6 +1744,8 @@ class SecretBackendConnectionPostgresqlArgs:
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
+        if disable_escaping is not None:
+            pulumi.set(__self__, "disable_escaping", disable_escaping)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -1737,6 +1773,18 @@ class SecretBackendConnectionPostgresqlArgs:
     @connection_url.setter
     def connection_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "connection_url", value)
+
+    @property
+    @pulumi.getter(name="disableEscaping")
+    def disable_escaping(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable special character escaping in username and password.
+        """
+        return pulumi.get(self, "disable_escaping")
+
+    @disable_escaping.setter
+    def disable_escaping(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_escaping", value)
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -1817,6 +1865,7 @@ class SecretBackendConnectionPostgresqlArgs:
 class SecretBackendConnectionRedshiftArgs:
     def __init__(__self__, *,
                  connection_url: Optional[pulumi.Input[str]] = None,
+                 disable_escaping: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
@@ -1828,6 +1877,7 @@ class SecretBackendConnectionRedshiftArgs:
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
+        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password.
         :param pulumi.Input[int] max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
                the database.
@@ -1839,6 +1889,8 @@ class SecretBackendConnectionRedshiftArgs:
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
+        if disable_escaping is not None:
+            pulumi.set(__self__, "disable_escaping", disable_escaping)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -1866,6 +1918,18 @@ class SecretBackendConnectionRedshiftArgs:
     @connection_url.setter
     def connection_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "connection_url", value)
+
+    @property
+    @pulumi.getter(name="disableEscaping")
+    def disable_escaping(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable special character escaping in username and password.
+        """
+        return pulumi.get(self, "disable_escaping")
+
+    @disable_escaping.setter
+    def disable_escaping(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_escaping", value)
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")

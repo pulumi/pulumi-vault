@@ -10,14 +10,21 @@ export * from "./entityAlias";
 export * from "./entityPolicies";
 export * from "./getEntity";
 export * from "./getGroup";
+export * from "./getOidcClientCreds";
+export * from "./getOidcOpenidConfig";
+export * from "./getOidcPublicKeys";
 export * from "./group";
 export * from "./groupAlias";
 export * from "./groupMemberEntityIds";
 export * from "./groupPolicies";
 export * from "./oidc";
+export * from "./oidcAssignment";
+export * from "./oidcClient";
 export * from "./oidcKey";
 export * from "./oidcKeyAllowedClientID";
+export * from "./oidcProvider";
 export * from "./oidcRole";
+export * from "./oidcScope";
 
 // Import resources to register:
 import { Entity } from "./entity";
@@ -28,9 +35,13 @@ import { GroupAlias } from "./groupAlias";
 import { GroupMemberEntityIds } from "./groupMemberEntityIds";
 import { GroupPolicies } from "./groupPolicies";
 import { Oidc } from "./oidc";
+import { OidcAssignment } from "./oidcAssignment";
+import { OidcClient } from "./oidcClient";
 import { OidcKey } from "./oidcKey";
 import { OidcKeyAllowedClientID } from "./oidcKeyAllowedClientID";
+import { OidcProvider } from "./oidcProvider";
 import { OidcRole } from "./oidcRole";
+import { OidcScope } from "./oidcScope";
 
 const _module = {
     version: utilities.getVersion(),
@@ -52,12 +63,20 @@ const _module = {
                 return new GroupPolicies(name, <any>undefined, { urn })
             case "vault:identity/oidc:Oidc":
                 return new Oidc(name, <any>undefined, { urn })
+            case "vault:identity/oidcAssignment:OidcAssignment":
+                return new OidcAssignment(name, <any>undefined, { urn })
+            case "vault:identity/oidcClient:OidcClient":
+                return new OidcClient(name, <any>undefined, { urn })
             case "vault:identity/oidcKey:OidcKey":
                 return new OidcKey(name, <any>undefined, { urn })
             case "vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID":
                 return new OidcKeyAllowedClientID(name, <any>undefined, { urn })
+            case "vault:identity/oidcProvider:OidcProvider":
+                return new OidcProvider(name, <any>undefined, { urn })
             case "vault:identity/oidcRole:OidcRole":
                 return new OidcRole(name, <any>undefined, { urn })
+            case "vault:identity/oidcScope:OidcScope":
+                return new OidcScope(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -71,6 +90,10 @@ pulumi.runtime.registerResourceModule("vault", "identity/groupAlias", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/groupMemberEntityIds", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/groupPolicies", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/oidc", _module)
+pulumi.runtime.registerResourceModule("vault", "identity/oidcAssignment", _module)
+pulumi.runtime.registerResourceModule("vault", "identity/oidcClient", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/oidcKey", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/oidcKeyAllowedClientID", _module)
+pulumi.runtime.registerResourceModule("vault", "identity/oidcProvider", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/oidcRole", _module)
+pulumi.runtime.registerResourceModule("vault", "identity/oidcScope", _module)
