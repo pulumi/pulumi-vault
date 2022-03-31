@@ -10,6 +10,39 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/terraformcloud"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		test, err := terraformcloud.NewSecretBackend(ctx, "test", &terraformcloud.SecretBackendArgs{
+// 			Backend:     pulumi.String("terraform"),
+// 			Description: pulumi.String("Manages the Terraform Cloud backend"),
+// 			Token:       pulumi.String("V0idfhi2iksSDU234ucdbi2nidsi..."),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = terraformcloud.NewSecretRole(ctx, "example", &terraformcloud.SecretRoleArgs{
+// 			Backend:      test.Backend,
+// 			Organization: pulumi.String("example-organization-name"),
+// 			TeamId:       pulumi.String("team-ieF4isC..."),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // Terraform Cloud secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.

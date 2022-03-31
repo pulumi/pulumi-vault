@@ -5,6 +5,22 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const exampleAuthBackend = new vault.AuthBackend("exampleAuthBackend", {type: "azure"});
+ * const exampleAuthBackendConfig = new vault.azure.AuthBackendConfig("exampleAuthBackendConfig", {
+ *     backend: exampleAuthBackend.path,
+ *     tenantId: "11111111-2222-3333-4444-555555555555",
+ *     clientId: "11111111-2222-3333-4444-555555555555",
+ *     clientSecret: "01234567890123456789",
+ *     resource: "https://vault.hashicorp.com",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.

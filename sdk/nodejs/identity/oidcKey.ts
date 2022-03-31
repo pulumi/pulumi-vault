@@ -5,6 +5,20 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const key = new vault.identity.OidcKey("key", {algorithm: "RS256"});
+ * const roleOidcRole = new vault.identity.OidcRole("roleOidcRole", {key: key.name});
+ * const roleOidcKeyAllowedClientID = new vault.identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID", {
+ *     keyName: key.name,
+ *     allowedClientId: roleOidcRole.clientId,
+ * });
+ * ```
+ *
  * ## Import
  *
  * The key can be imported with the key name, for example

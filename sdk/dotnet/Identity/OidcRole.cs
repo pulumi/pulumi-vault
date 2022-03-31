@@ -10,6 +10,70 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Identity
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// You need to create a role with a named key.
+    /// At creation time, the key can be created independently of the role. However, the key must
+    /// exist before the role can be used to issue tokens. You must also configure the key with the
+    /// role's Client ID to allow the role to use the key.
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var config = new Config();
+    ///         var key = config.Get("key") ?? "key";
+    ///         var role = new Vault.Identity.OidcRole("role", new Vault.Identity.OidcRoleArgs
+    ///         {
+    ///             Key = key,
+    ///         });
+    ///         var keyOidcKey = new Vault.Identity.OidcKey("keyOidcKey", new Vault.Identity.OidcKeyArgs
+    ///         {
+    ///             Algorithm = "RS256",
+    ///             AllowedClientIds = 
+    ///             {
+    ///                 role.ClientId,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// If you want to create the key first before creating the role, you can use a separate
+    /// resource to configure the allowed Client ID on
+    /// the key.
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var key = new Vault.Identity.OidcKey("key", new Vault.Identity.OidcKeyArgs
+    ///         {
+    ///             Algorithm = "RS256",
+    ///         });
+    ///         var roleOidcRole = new Vault.Identity.OidcRole("roleOidcRole", new Vault.Identity.OidcRoleArgs
+    ///         {
+    ///             Key = key.Name,
+    ///         });
+    ///         var roleOidcKeyAllowedClientID = new Vault.Identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID", new Vault.Identity.OidcKeyAllowedClientIDArgs
+    ///         {
+    ///             KeyName = key.Name,
+    ///             AllowedClientId = roleOidcRole.ClientId,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// The key can be imported with the role name, for example

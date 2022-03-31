@@ -5,6 +5,20 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const test = new vault.consul.SecretBackend("test", {
+ *     address: "127.0.0.1:8500",
+ *     description: "Manages the Consul backend",
+ *     path: "consul",
+ *     token: "4240861b-ce3d-8530-115a-521ff070dd29",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Consul secret backends can be imported using the `path`, e.g.

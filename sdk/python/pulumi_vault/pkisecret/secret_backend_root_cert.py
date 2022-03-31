@@ -804,7 +804,27 @@ class SecretBackendRootCert(pulumi.CustomResource):
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Create a SecretBackendRootCert resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.pki_secret.SecretBackendRootCert("test",
+            backend=vault_mount["pki"]["path"],
+            type="internal",
+            common_name="Root CA",
+            ttl="315360000",
+            format="pem",
+            private_key_format="der",
+            key_type="rsa",
+            key_bits=4096,
+            exclude_cn_from_sans=True,
+            ou="My OU",
+            organization="My organization",
+            opts=pulumi.ResourceOptions(depends_on=[vault_mount["pki"]]))
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
@@ -837,7 +857,27 @@ class SecretBackendRootCert(pulumi.CustomResource):
                  args: SecretBackendRootCertArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a SecretBackendRootCert resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.pki_secret.SecretBackendRootCert("test",
+            backend=vault_mount["pki"]["path"],
+            type="internal",
+            common_name="Root CA",
+            ttl="315360000",
+            format="pem",
+            private_key_format="der",
+            key_type="rsa",
+            key_bits=4096,
+            exclude_cn_from_sans=True,
+            ou="My OU",
+            organization="My organization",
+            opts=pulumi.ResourceOptions(depends_on=[vault_mount["pki"]]))
+        ```
+
         :param str resource_name: The name of the resource.
         :param SecretBackendRootCertArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

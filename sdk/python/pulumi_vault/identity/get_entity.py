@@ -241,7 +241,18 @@ def get_entity(alias_id: Optional[str] = None,
                entity_name: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEntityResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    entity = vault.identity.get_entity(entity_name="entity_12345")
+    ```
+    ## Required Vault Capabilities
+
+    Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+
 
     :param str alias_id: ID of the alias.
     :param str alias_mount_accessor: Accessor of the mount to which the alias belongs to.
@@ -292,7 +303,18 @@ def get_entity_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
                       entity_name: Optional[pulumi.Input[Optional[str]]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEntityResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    entity = vault.identity.get_entity(entity_name="entity_12345")
+    ```
+    ## Required Vault Capabilities
+
+    Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+
 
     :param str alias_id: ID of the alias.
     :param str alias_mount_accessor: Accessor of the mount to which the alias belongs to.

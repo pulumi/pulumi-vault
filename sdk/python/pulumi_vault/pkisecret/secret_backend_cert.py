@@ -572,7 +572,18 @@ class SecretBackendCert(pulumi.CustomResource):
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Create a SecretBackendCert resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        app = vault.pki_secret.SecretBackendCert("app",
+            backend=vault_mount["intermediate"]["path"],
+            common_name="app.my.domain",
+            opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_role["admin"]]))
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
@@ -596,7 +607,18 @@ class SecretBackendCert(pulumi.CustomResource):
                  args: SecretBackendCertArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a SecretBackendCert resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        app = vault.pki_secret.SecretBackendCert("app",
+            backend=vault_mount["intermediate"]["path"],
+            common_name="app.my.domain",
+            opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_role["admin"]]))
+        ```
+
         :param str resource_name: The name of the resource.
         :param SecretBackendCertArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -1005,6 +1005,20 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
                  storage_type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+        ### Local Storage
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        local_backups = vault.RaftSnapshotAgentConfig("localBackups",
+            interval_seconds=86400,
+            local_max_space=10000000,
+            path_prefix="/opt/vault/snapshots/",
+            retain=7,
+            storage_type="local")
+        ```
+
         ## Import
 
         Raft Snapshot Agent Configurations can be imported using the `name`, e.g.
@@ -1071,6 +1085,20 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
                  args: RaftSnapshotAgentConfigArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+        ### Local Storage
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        local_backups = vault.RaftSnapshotAgentConfig("localBackups",
+            interval_seconds=86400,
+            local_max_space=10000000,
+            path_prefix="/opt/vault/snapshots/",
+            retain=7,
+            storage_type="local")
+        ```
+
         ## Import
 
         Raft Snapshot Agent Configurations can be imported using the `name`, e.g.

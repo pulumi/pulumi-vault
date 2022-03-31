@@ -90,7 +90,28 @@ def get_nomad_access_token(backend: Optional[str] = None,
                            role: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNomadAccessTokenResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    config = vault.NomadSecretBackend("config",
+        backend="nomad",
+        description="test description",
+        default_lease_ttl_seconds=3600,
+        max_lease_ttl_seconds=7200,
+        address="https://127.0.0.1:4646",
+        token="ae20ceaa-...")
+    test = vault.NomadSecretRole("test",
+        backend=config.backend,
+        role="test",
+        type="client",
+        policies=["readonly"])
+    token = pulumi.Output.all(config.backend, test.role).apply(lambda backend, role: vault.get_nomad_access_token_output(backend=backend,
+        role=role))
+    ```
+
 
     :param str backend: The path to the Nomad secret backend to
            read credentials from, with no leading or trailing `/`s.
@@ -119,7 +140,28 @@ def get_nomad_access_token_output(backend: Optional[pulumi.Input[str]] = None,
                                   role: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNomadAccessTokenResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    config = vault.NomadSecretBackend("config",
+        backend="nomad",
+        description="test description",
+        default_lease_ttl_seconds=3600,
+        max_lease_ttl_seconds=7200,
+        address="https://127.0.0.1:4646",
+        token="ae20ceaa-...")
+    test = vault.NomadSecretRole("test",
+        backend=config.backend,
+        role="test",
+        type="client",
+        policies=["readonly"])
+    token = pulumi.Output.all(config.backend, test.role).apply(lambda backend, role: vault.get_nomad_access_token_output(backend=backend,
+        role=role))
+    ```
+
 
     :param str backend: The path to the Nomad secret backend to
            read credentials from, with no leading or trailing `/`s.

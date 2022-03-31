@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const rundeckAuth = vault.generic.getSecret({
+ *     path: "secret/rundeck_auth",
+ * });
+ * ```
+ * ## Required Vault Capabilities
+ *
+ * Use of this resource requires the `read` capability on the given path.
+ */
 export function getSecret(args: GetSecretArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretResult> {
     if (!opts) {
         opts = {}

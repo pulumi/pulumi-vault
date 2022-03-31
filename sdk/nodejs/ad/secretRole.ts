@@ -5,6 +5,28 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const config = new vault.ad.SecretBackend("config", {
+ *     backend: "ad",
+ *     binddn: "CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
+ *     bindpass: "SuperSecretPassw0rd",
+ *     url: "ldaps://ad",
+ *     insecureTls: "true",
+ *     userdn: "CN=Users,DC=corp,DC=example,DC=net",
+ * });
+ * const role = new vault.ad.SecretRole("role", {
+ *     backend: config.backend,
+ *     role: "bob",
+ *     serviceAccountName: "Bob",
+ *     ttl: 60,
+ * });
+ * ```
+ *
  * ## Import
  *
  * AD secret backend roles can be imported using the `path`, e.g.

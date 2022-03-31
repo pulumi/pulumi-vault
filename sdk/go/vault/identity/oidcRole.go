@@ -11,6 +11,87 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// You need to create a role with a named key.
+// At creation time, the key can be created independently of the role. However, the key must
+// exist before the role can be used to issue tokens. You must also configure the key with the
+// role's Client ID to allow the role to use the key.
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		cfg := config.New(ctx, "")
+// 		key := "key"
+// 		if param := cfg.Get("key"); param != "" {
+// 			key = param
+// 		}
+// 		role, err := identity.NewOidcRole(ctx, "role", &identity.OidcRoleArgs{
+// 			Key: pulumi.String(key),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewOidcKey(ctx, "keyOidcKey", &identity.OidcKeyArgs{
+// 			Algorithm: pulumi.String("RS256"),
+// 			AllowedClientIds: pulumi.StringArray{
+// 				role.ClientId,
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// If you want to create the key first before creating the role, you can use a separate
+// resource to configure the allowed Client ID on
+// the key.
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		key, err := identity.NewOidcKey(ctx, "key", &identity.OidcKeyArgs{
+// 			Algorithm: pulumi.String("RS256"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		roleOidcRole, err := identity.NewOidcRole(ctx, "roleOidcRole", &identity.OidcRoleArgs{
+// 			Key: key.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewOidcKeyAllowedClientID(ctx, "roleOidcKeyAllowedClientID", &identity.OidcKeyAllowedClientIDArgs{
+// 			KeyName:         key.Name,
+// 			AllowedClientId: roleOidcRole.ClientId,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // The key can be imported with the role name, for example

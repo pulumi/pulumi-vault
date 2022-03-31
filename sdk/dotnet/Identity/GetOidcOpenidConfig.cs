@@ -11,9 +11,113 @@ namespace Pulumi.Vault.Identity
 {
     public static class GetOidcOpenidConfig
     {
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var key = new Vault.Identity.OidcKey("key", new Vault.Identity.OidcKeyArgs
+        ///         {
+        ///             AllowedClientIds = 
+        ///             {
+        ///                 "*",
+        ///             },
+        ///             RotationPeriod = 3600,
+        ///             VerificationTtl = 3600,
+        ///         });
+        ///         var app = new Vault.Identity.OidcClient("app", new Vault.Identity.OidcClientArgs
+        ///         {
+        ///             Key = key.Name,
+        ///             RedirectUris = 
+        ///             {
+        ///                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+        ///                 "http://127.0.0.1:8251/callback",
+        ///                 "http://127.0.0.1:8080/callback",
+        ///             },
+        ///             IdTokenTtl = 2400,
+        ///             AccessTokenTtl = 7200,
+        ///         });
+        ///         var provider = new Vault.Identity.OidcProvider("provider", new Vault.Identity.OidcProviderArgs
+        ///         {
+        ///             AllowedClientIds = 
+        ///             {
+        ///                 vault_identity_oidc_client.Test.Client_id,
+        ///             },
+        ///         });
+        ///         var config = Vault.Identity.GetOidcOpenidConfig.Invoke(new Vault.Identity.GetOidcOpenidConfigInvokeArgs
+        ///         {
+        ///             Name = provider.Name,
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetOidcOpenidConfigResult> InvokeAsync(GetOidcOpenidConfigArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetOidcOpenidConfigResult>("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", args ?? new GetOidcOpenidConfigArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var key = new Vault.Identity.OidcKey("key", new Vault.Identity.OidcKeyArgs
+        ///         {
+        ///             AllowedClientIds = 
+        ///             {
+        ///                 "*",
+        ///             },
+        ///             RotationPeriod = 3600,
+        ///             VerificationTtl = 3600,
+        ///         });
+        ///         var app = new Vault.Identity.OidcClient("app", new Vault.Identity.OidcClientArgs
+        ///         {
+        ///             Key = key.Name,
+        ///             RedirectUris = 
+        ///             {
+        ///                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+        ///                 "http://127.0.0.1:8251/callback",
+        ///                 "http://127.0.0.1:8080/callback",
+        ///             },
+        ///             IdTokenTtl = 2400,
+        ///             AccessTokenTtl = 7200,
+        ///         });
+        ///         var provider = new Vault.Identity.OidcProvider("provider", new Vault.Identity.OidcProviderArgs
+        ///         {
+        ///             AllowedClientIds = 
+        ///             {
+        ///                 vault_identity_oidc_client.Test.Client_id,
+        ///             },
+        ///         });
+        ///         var config = Vault.Identity.GetOidcOpenidConfig.Invoke(new Vault.Identity.GetOidcOpenidConfigInvokeArgs
+        ///         {
+        ///             Name = provider.Name,
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetOidcOpenidConfigResult> Invoke(GetOidcOpenidConfigInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetOidcOpenidConfigResult>("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", args ?? new GetOidcOpenidConfigInvokeArgs(), options.WithDefaults());
     }

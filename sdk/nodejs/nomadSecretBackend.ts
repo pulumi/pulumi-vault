@@ -5,6 +5,24 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const config = new vault.NomadSecretBackend("config", {
+ *     address: "https://127.0.0.1:4646",
+ *     backend: "nomad",
+ *     defaultLeaseTtlSeconds: 3600,
+ *     description: "test description",
+ *     maxLeaseTtlSeconds: 7200,
+ *     maxTtl: 240,
+ *     token: "ae20ceaa-...",
+ *     ttl: 120,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Nomad secret backend can be imported using the `backend`, e.g.

@@ -5,6 +5,25 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const example = new vault.Token("example", {
+ *     policies: [
+ *         "policy1",
+ *         "policy2",
+ *     ],
+ *     renewIncrement: 86400,
+ *     renewMinLease: 43200,
+ *     renewable: true,
+ *     roleName: "app",
+ *     ttl: "24h",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Tokens can be imported using its `id` as accessor id, e.g.

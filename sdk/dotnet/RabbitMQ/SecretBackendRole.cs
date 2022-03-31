@@ -10,6 +10,58 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.RabbitMQ
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var rabbitmq = new Vault.RabbitMQ.SecretBackend("rabbitmq", new Vault.RabbitMQ.SecretBackendArgs
+    ///         {
+    ///             ConnectionUri = "https://.....",
+    ///             Username = "user",
+    ///             Password = "password",
+    ///         });
+    ///         var role = new Vault.RabbitMQ.SecretBackendRole("role", new Vault.RabbitMQ.SecretBackendRoleArgs
+    ///         {
+    ///             Backend = rabbitmq.Path,
+    ///             Tags = "tag1,tag2",
+    ///             Vhosts = 
+    ///             {
+    ///                 new Vault.RabbitMQ.Inputs.SecretBackendRoleVhostArgs
+    ///                 {
+    ///                     Host = "/",
+    ///                     Configure = "",
+    ///                     Read = ".*",
+    ///                     Write = "",
+    ///                 },
+    ///             },
+    ///             VhostTopics = 
+    ///             {
+    ///                 new Vault.RabbitMQ.Inputs.SecretBackendRoleVhostTopicArgs
+    ///                 {
+    ///                     Vhosts = 
+    ///                     {
+    ///                         new Vault.RabbitMQ.Inputs.SecretBackendRoleVhostTopicVhostArgs
+    ///                         {
+    ///                             Topic = "amq.topic",
+    ///                             Read = ".*",
+    ///                             Write = "",
+    ///                         },
+    ///                     },
+    ///                     Host = "/",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// RabbitMQ secret backend roles can be imported using the `path`, e.g.

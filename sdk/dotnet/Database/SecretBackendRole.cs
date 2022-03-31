@@ -10,6 +10,48 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Database
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var db = new Vault.Mount("db", new Vault.MountArgs
+    ///         {
+    ///             Path = "postgres",
+    ///             Type = "database",
+    ///         });
+    ///         var postgres = new Vault.Database.SecretBackendConnection("postgres", new Vault.Database.SecretBackendConnectionArgs
+    ///         {
+    ///             Backend = db.Path,
+    ///             AllowedRoles = 
+    ///             {
+    ///                 "dev",
+    ///                 "prod",
+    ///             },
+    ///             Postgresql = new Vault.Database.Inputs.SecretBackendConnectionPostgresqlArgs
+    ///             {
+    ///                 ConnectionUrl = "postgres://username:password@host:port/database",
+    ///             },
+    ///         });
+    ///         var role = new Vault.Database.SecretBackendRole("role", new Vault.Database.SecretBackendRoleArgs
+    ///         {
+    ///             Backend = db.Path,
+    ///             DbName = postgres.Name,
+    ///             CreationStatements = 
+    ///             {
+    ///                 "CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Database secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.

@@ -11,6 +11,58 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		azure, err := azure.NewBackend(ctx, "azure", &azure.BackendArgs{
+// 			SubscriptionId: pulumi.Any(_var.Subscription_id),
+// 			TenantId:       pulumi.Any(_var.Tenant_id),
+// 			ClientSecret:   pulumi.Any(_var.Client_secret),
+// 			ClientId:       pulumi.Any(_var.Client_id),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = azure.NewBackendRole(ctx, "generatedRole", &azure.BackendRoleArgs{
+// 			Backend: azure.Path,
+// 			Role:    pulumi.String("generated_role"),
+// 			Ttl:     pulumi.String("300"),
+// 			MaxTtl:  pulumi.String("600"),
+// 			AzureRoles: azure.BackendRoleAzureRoleArray{
+// 				&azure.BackendRoleAzureRoleArgs{
+// 					RoleName: pulumi.String("Reader"),
+// 					Scope:    pulumi.String(fmt.Sprintf("%v%v%v", "/subscriptions/", _var.Subscription_id, "/resourceGroups/azure-vault-group")),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = azure.NewBackendRole(ctx, "existingObjectId", &azure.BackendRoleArgs{
+// 			Backend:             azure.Path,
+// 			Role:                pulumi.String("existing_object_id"),
+// 			ApplicationObjectId: pulumi.String("11111111-2222-3333-4444-44444444444"),
+// 			Ttl:                 pulumi.String("300"),
+// 			MaxTtl:              pulumi.String("600"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type BackendRole struct {
 	pulumi.CustomResourceState
 

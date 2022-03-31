@@ -79,7 +79,23 @@ class AwaitableGetOidcClientCredsResult(GetOidcClientCredsResult):
 def get_oidc_client_creds(name: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOidcClientCredsResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    app = vault.identity.OidcClient("app",
+        redirect_uris=[
+            "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+            "http://127.0.0.1:8251/callback",
+            "http://127.0.0.1:8080/callback",
+        ],
+        id_token_ttl=2400,
+        access_token_ttl=7200)
+    creds = vault.identity.get_oidc_client_creds_output(name=app.name)
+    ```
+
 
     :param str name: The name of the OIDC Client in Vault.
     """
@@ -102,7 +118,23 @@ def get_oidc_client_creds(name: Optional[str] = None,
 def get_oidc_client_creds_output(name: Optional[pulumi.Input[str]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOidcClientCredsResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    app = vault.identity.OidcClient("app",
+        redirect_uris=[
+            "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+            "http://127.0.0.1:8251/callback",
+            "http://127.0.0.1:8080/callback",
+        ],
+        id_token_ttl=2400,
+        access_token_ttl=7200)
+    creds = vault.identity.get_oidc_client_creds_output(name=app.name)
+    ```
+
 
     :param str name: The name of the OIDC Client in Vault.
     """

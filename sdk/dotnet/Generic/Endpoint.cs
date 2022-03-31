@@ -10,6 +10,88 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Generic
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var userpass = new Vault.AuthBackend("userpass", new Vault.AuthBackendArgs
+    ///         {
+    ///             Type = "userpass",
+    ///         });
+    ///         var u1 = new Vault.Generic.Endpoint("u1", new Vault.Generic.EndpointArgs
+    ///         {
+    ///             Path = "auth/userpass/users/u1",
+    ///             IgnoreAbsentFields = true,
+    ///             DataJson = @"{
+    ///   ""policies"": [""p1""],
+    ///   ""password"": ""changeme""
+    /// }
+    /// ",
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn = 
+    ///             {
+    ///                 userpass,
+    ///             },
+    ///         });
+    ///         var u1Token = new Vault.Generic.Endpoint("u1Token", new Vault.Generic.EndpointArgs
+    ///         {
+    ///             Path = "auth/userpass/login/u1",
+    ///             DisableRead = true,
+    ///             DisableDelete = true,
+    ///             DataJson = @"{
+    ///   ""password"": ""changeme""
+    /// }
+    /// ",
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn = 
+    ///             {
+    ///                 u1,
+    ///             },
+    ///         });
+    ///         var u1Entity = new Vault.Generic.Endpoint("u1Entity", new Vault.Generic.EndpointArgs
+    ///         {
+    ///             DisableRead = true,
+    ///             DisableDelete = true,
+    ///             Path = "identity/lookup/entity",
+    ///             IgnoreAbsentFields = true,
+    ///             WriteFields = 
+    ///             {
+    ///                 "id",
+    ///             },
+    ///             DataJson = @"{
+    ///   ""alias_name"": ""u1"",
+    ///   ""alias_mount_accessor"": vault_auth_backend.userpass.accessor
+    /// }
+    /// ",
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn = 
+    ///             {
+    ///                 u1Token,
+    ///             },
+    ///         });
+    ///         this.U1Id = u1Entity.WriteData.Apply(writeData =&gt; writeData.Id);
+    ///     }
+    /// 
+    ///     [Output("u1Id")]
+    ///     public Output&lt;string&gt; U1Id { get; set; }
+    /// }
+    /// ```
+    /// ## Required Vault Capabilities
+    /// 
+    /// Use of this resource requires the `create` or `update` capability
+    /// (depending on whether the resource already exists) on the given path. If
+    /// `disable_delete` is false, the `delete` capbility is also required. If
+    /// `disable_delete` is false, the `read` capbility is required.
+    /// 
     /// ## Import
     /// 
     /// Import is not supported for this resource.

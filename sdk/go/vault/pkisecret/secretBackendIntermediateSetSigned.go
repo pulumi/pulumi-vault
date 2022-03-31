@@ -11,6 +11,29 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := pkiSecret.NewSecretBackendIntermediateSetSigned(ctx, "intermediate", &pkiSecret.SecretBackendIntermediateSetSignedArgs{
+// 			Backend:     pulumi.Any(vault_mount.Intermediate.Path),
+// 			Certificate: pulumi.String("<...>"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type SecretBackendIntermediateSetSigned struct {
 	pulumi.CustomResourceState
 

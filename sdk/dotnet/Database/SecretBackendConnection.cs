@@ -10,6 +10,39 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Database
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var db = new Vault.Mount("db", new Vault.MountArgs
+    ///         {
+    ///             Path = "postgres",
+    ///             Type = "database",
+    ///         });
+    ///         var postgres = new Vault.Database.SecretBackendConnection("postgres", new Vault.Database.SecretBackendConnectionArgs
+    ///         {
+    ///             Backend = db.Path,
+    ///             AllowedRoles = 
+    ///             {
+    ///                 "dev",
+    ///                 "prod",
+    ///             },
+    ///             Postgresql = new Vault.Database.Inputs.SecretBackendConnectionPostgresqlArgs
+    ///             {
+    ///                 ConnectionUrl = "postgres://username:password@host:port/database",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.

@@ -137,7 +137,18 @@ def get_secret(path: Optional[str] = None,
                version: Optional[int] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    rundeck_auth = vault.generic.get_secret(path="secret/rundeck_auth")
+    ```
+    ## Required Vault Capabilities
+
+    Use of this resource requires the `read` capability on the given path.
+
 
     :param str path: The full logical path from which to request data.
            To read data from the "generic" secret backend mounted in Vault by
@@ -174,7 +185,18 @@ def get_secret_output(path: Optional[pulumi.Input[str]] = None,
                       version: Optional[pulumi.Input[Optional[int]]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    rundeck_auth = vault.generic.get_secret(path="secret/rundeck_auth")
+    ```
+    ## Required Vault Capabilities
+
+    Use of this resource requires the `read` capability on the given path.
+
 
     :param str path: The full logical path from which to request data.
            To read data from the "generic" secret backend mounted in Vault by

@@ -10,6 +10,31 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Aws
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var aws = new Vault.AuthBackend("aws", new Vault.AuthBackendArgs
+    ///         {
+    ///             Type = "aws",
+    ///         });
+    ///         var role = new Vault.Aws.AuthBackendStsRole("role", new Vault.Aws.AuthBackendStsRoleArgs
+    ///         {
+    ///             Backend = aws.Path,
+    ///             AccountId = "1234567890",
+    ///             StsRole = "arn:aws:iam::1234567890:role/my-role",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// AWS auth backend STS roles can be imported using `auth/`, the `backend` path, `/config/sts/`, and the `account_id` e.g.

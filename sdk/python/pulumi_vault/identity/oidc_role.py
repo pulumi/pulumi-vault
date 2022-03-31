@@ -217,6 +217,42 @@ class OidcRole(pulumi.CustomResource):
                  ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        You need to create a role with a named key.
+        At creation time, the key can be created independently of the role. However, the key must
+        exist before the role can be used to issue tokens. You must also configure the key with the
+        role's Client ID to allow the role to use the key.
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        config = pulumi.Config()
+        key = config.get("key")
+        if key is None:
+            key = "key"
+        role = vault.identity.OidcRole("role", key=key)
+        key_oidc_key = vault.identity.OidcKey("keyOidcKey",
+            algorithm="RS256",
+            allowed_client_ids=[role.client_id])
+        ```
+
+        If you want to create the key first before creating the role, you can use a separate
+        resource to configure the allowed Client ID on
+        the key.
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        key = vault.identity.OidcKey("key", algorithm="RS256")
+        role_oidc_role = vault.identity.OidcRole("roleOidcRole", key=key.name)
+        role_oidc_key_allowed_client_id = vault.identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID",
+            key_name=key.name,
+            allowed_client_id=role_oidc_role.client_id)
+        ```
+
         ## Import
 
         The key can be imported with the role name, for example
@@ -245,6 +281,42 @@ class OidcRole(pulumi.CustomResource):
                  args: OidcRoleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        You need to create a role with a named key.
+        At creation time, the key can be created independently of the role. However, the key must
+        exist before the role can be used to issue tokens. You must also configure the key with the
+        role's Client ID to allow the role to use the key.
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        config = pulumi.Config()
+        key = config.get("key")
+        if key is None:
+            key = "key"
+        role = vault.identity.OidcRole("role", key=key)
+        key_oidc_key = vault.identity.OidcKey("keyOidcKey",
+            algorithm="RS256",
+            allowed_client_ids=[role.client_id])
+        ```
+
+        If you want to create the key first before creating the role, you can use a separate
+        resource to configure the allowed Client ID on
+        the key.
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        key = vault.identity.OidcKey("key", algorithm="RS256")
+        role_oidc_role = vault.identity.OidcRole("roleOidcRole", key=key.name)
+        role_oidc_key_allowed_client_id = vault.identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID",
+            key_name=key.name,
+            allowed_client_id=role_oidc_role.client_id)
+        ```
+
         ## Import
 
         The key can be imported with the role name, for example

@@ -5,6 +5,19 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const test = new vault.terraformcloud.SecretBackend("test", {
+ *     backend: "terraform",
+ *     description: "Manages the Terraform Cloud backend",
+ *     token: "V0idfhi2iksSDU234ucdbi2nidsi...",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Terraform Cloud secret backends can be imported using the `backend`, e.g.

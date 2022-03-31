@@ -9,6 +9,39 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.TerraformCloud
 {
+    /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Vault.TerraformCloud.SecretBackend("test", new Vault.TerraformCloud.SecretBackendArgs
+    ///         {
+    ///             Backend = "terraform",
+    ///             Description = "Manages the Terraform Cloud backend",
+    ///             Token = "V0idfhi2iksSDU234ucdbi2nidsi...",
+    ///         });
+    ///         var example = new Vault.TerraformCloud.SecretRole("example", new Vault.TerraformCloud.SecretRoleArgs
+    ///         {
+    ///             Backend = test.Backend,
+    ///             Organization = "example-organization-name",
+    ///             TeamId = "team-ieF4isC...",
+    ///         });
+    ///         var token = new Vault.TerraformCloud.SecretCreds("token", new Vault.TerraformCloud.SecretCredsArgs
+    ///         {
+    ///             Backend = test.Backend,
+    ///             Role = example.Name,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     [VaultResourceType("vault:terraformcloud/secretCreds:SecretCreds")]
     public partial class SecretCreds : Pulumi.CustomResource
     {

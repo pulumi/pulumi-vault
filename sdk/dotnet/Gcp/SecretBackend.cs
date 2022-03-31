@@ -9,6 +9,27 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Gcp
 {
+    /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.IO;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var gcp = new Vault.Gcp.SecretBackend("gcp", new Vault.Gcp.SecretBackendArgs
+    ///         {
+    ///             Credentials = File.ReadAllText("credentials.json"),
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     [VaultResourceType("vault:gcp/secretBackend:SecretBackend")]
     public partial class SecretBackend : Pulumi.CustomResource
     {

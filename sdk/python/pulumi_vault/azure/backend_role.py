@@ -310,7 +310,34 @@ class BackendRole(pulumi.CustomResource):
                  ttl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a BackendRole resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        azure = vault.azure.Backend("azure",
+            subscription_id=var["subscription_id"],
+            tenant_id=var["tenant_id"],
+            client_secret=var["client_secret"],
+            client_id=var["client_id"])
+        generated_role = vault.azure.BackendRole("generatedRole",
+            backend=azure.path,
+            role="generated_role",
+            ttl="300",
+            max_ttl="600",
+            azure_roles=[vault.azure.BackendRoleAzureRoleArgs(
+                role_name="Reader",
+                scope=f"/subscriptions/{var['subscription_id']}/resourceGroups/azure-vault-group",
+            )])
+        existing_object_id = vault.azure.BackendRole("existingObjectId",
+            backend=azure.path,
+            role="existing_object_id",
+            application_object_id="11111111-2222-3333-4444-44444444444",
+            ttl="300",
+            max_ttl="600")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] application_object_id: Application Object ID for an existing service principal that will
@@ -332,7 +359,34 @@ class BackendRole(pulumi.CustomResource):
                  args: BackendRoleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a BackendRole resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        azure = vault.azure.Backend("azure",
+            subscription_id=var["subscription_id"],
+            tenant_id=var["tenant_id"],
+            client_secret=var["client_secret"],
+            client_id=var["client_id"])
+        generated_role = vault.azure.BackendRole("generatedRole",
+            backend=azure.path,
+            role="generated_role",
+            ttl="300",
+            max_ttl="600",
+            azure_roles=[vault.azure.BackendRoleAzureRoleArgs(
+                role_name="Reader",
+                scope=f"/subscriptions/{var['subscription_id']}/resourceGroups/azure-vault-group",
+            )])
+        existing_object_id = vault.azure.BackendRole("existingObjectId",
+            backend=azure.path,
+            role="existing_object_id",
+            application_object_id="11111111-2222-3333-4444-44444444444",
+            ttl="300",
+            max_ttl="600")
+        ```
+
         :param str resource_name: The name of the resource.
         :param BackendRoleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

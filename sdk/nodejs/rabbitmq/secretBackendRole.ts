@@ -6,6 +6,37 @@ import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const rabbitmq = new vault.rabbitmq.SecretBackend("rabbitmq", {
+ *     connectionUri: "https://.....",
+ *     username: "user",
+ *     password: "password",
+ * });
+ * const role = new vault.rabbitmq.SecretBackendRole("role", {
+ *     backend: rabbitmq.path,
+ *     tags: "tag1,tag2",
+ *     vhosts: [{
+ *         host: "/",
+ *         configure: "",
+ *         read: ".*",
+ *         write: "",
+ *     }],
+ *     vhostTopics: [{
+ *         vhosts: [{
+ *             topic: "amq.topic",
+ *             read: ".*",
+ *             write: "",
+ *         }],
+ *         host: "/",
+ *     }],
+ * });
+ * ```
+ *
  * ## Import
  *
  * RabbitMQ secret backend roles can be imported using the `path`, e.g.

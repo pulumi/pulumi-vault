@@ -24,9 +24,8 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "my-approle-backend"
 // 		role, err := appRole.GetAuthBackendRoleId(ctx, &approle.GetAuthBackendRoleIdArgs{
-// 			Backend:  &opt0,
+// 			Backend:  pulumi.StringRef("my-approle-backend"),
 // 			RoleName: "my-role",
 // 		}, nil)
 // 		if err != nil {

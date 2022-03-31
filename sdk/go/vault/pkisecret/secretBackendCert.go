@@ -11,6 +11,31 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := pkiSecret.NewSecretBackendCert(ctx, "app", &pkiSecret.SecretBackendCertArgs{
+// 			Backend:    pulumi.Any(vault_mount.Intermediate.Path),
+// 			CommonName: pulumi.String("app.my.domain"),
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			vault_pki_secret_backend_role.Admin,
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type SecretBackendCert struct {
 	pulumi.CustomResourceState
 

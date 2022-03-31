@@ -11,6 +11,32 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/consul"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := consul.NewSecretBackend(ctx, "test", &consul.SecretBackendArgs{
+// 			Address:     pulumi.String("127.0.0.1:8500"),
+// 			Description: pulumi.String("Manages the Consul backend"),
+// 			Path:        pulumi.String("consul"),
+// 			Token:       pulumi.String("4240861b-ce3d-8530-115a-521ff070dd29"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // Consul secret backends can be imported using the `path`, e.g.

@@ -10,6 +10,29 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault
 {
     /// <summary>
+    /// ## Example Usage
+    /// ### Local Storage
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var localBackups = new Vault.RaftSnapshotAgentConfig("localBackups", new Vault.RaftSnapshotAgentConfigArgs
+    ///         {
+    ///             IntervalSeconds = 86400,
+    ///             LocalMaxSpace = 10000000,
+    ///             PathPrefix = "/opt/vault/snapshots/",
+    ///             Retain = 7,
+    ///             StorageType = "local",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Raft Snapshot Agent Configurations can be imported using the `name`, e.g.

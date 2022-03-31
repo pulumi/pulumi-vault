@@ -5,6 +5,18 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const aws = new vault.aws.SecretBackend("aws", {
+ *     accessKey: "AKIA.....",
+ *     secretKey: "AWS secret key",
+ * });
+ * ```
+ *
  * ## Import
  *
  * AWS secret backends can be imported using the `path`, e.g.

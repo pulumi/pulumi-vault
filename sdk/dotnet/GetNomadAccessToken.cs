@@ -11,9 +11,107 @@ namespace Pulumi.Vault
 {
     public static class GetNomadAccessToken
     {
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var config = new Vault.NomadSecretBackend("config", new Vault.NomadSecretBackendArgs
+        ///         {
+        ///             Backend = "nomad",
+        ///             Description = "test description",
+        ///             DefaultLeaseTtlSeconds = 3600,
+        ///             MaxLeaseTtlSeconds = 7200,
+        ///             Address = "https://127.0.0.1:4646",
+        ///             Token = "ae20ceaa-...",
+        ///         });
+        ///         var test = new Vault.NomadSecretRole("test", new Vault.NomadSecretRoleArgs
+        ///         {
+        ///             Backend = config.Backend,
+        ///             Role = "test",
+        ///             Type = "client",
+        ///             Policies = 
+        ///             {
+        ///                 "readonly",
+        ///             },
+        ///         });
+        ///         var token = Output.Tuple(config.Backend, test.Role).Apply(values =&gt;
+        ///         {
+        ///             var backend = values.Item1;
+        ///             var role = values.Item2;
+        ///             return Vault.GetNomadAccessToken.Invoke(new Vault.GetNomadAccessTokenInvokeArgs
+        ///             {
+        ///                 Backend = backend,
+        ///                 Role = role,
+        ///             });
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetNomadAccessTokenResult> InvokeAsync(GetNomadAccessTokenArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetNomadAccessTokenResult>("vault:index/getNomadAccessToken:getNomadAccessToken", args ?? new GetNomadAccessTokenArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var config = new Vault.NomadSecretBackend("config", new Vault.NomadSecretBackendArgs
+        ///         {
+        ///             Backend = "nomad",
+        ///             Description = "test description",
+        ///             DefaultLeaseTtlSeconds = 3600,
+        ///             MaxLeaseTtlSeconds = 7200,
+        ///             Address = "https://127.0.0.1:4646",
+        ///             Token = "ae20ceaa-...",
+        ///         });
+        ///         var test = new Vault.NomadSecretRole("test", new Vault.NomadSecretRoleArgs
+        ///         {
+        ///             Backend = config.Backend,
+        ///             Role = "test",
+        ///             Type = "client",
+        ///             Policies = 
+        ///             {
+        ///                 "readonly",
+        ///             },
+        ///         });
+        ///         var token = Output.Tuple(config.Backend, test.Role).Apply(values =&gt;
+        ///         {
+        ///             var backend = values.Item1;
+        ///             var role = values.Item2;
+        ///             return Vault.GetNomadAccessToken.Invoke(new Vault.GetNomadAccessTokenInvokeArgs
+        ///             {
+        ///                 Backend = backend,
+        ///                 Role = role,
+        ///             });
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetNomadAccessTokenResult> Invoke(GetNomadAccessTokenInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetNomadAccessTokenResult>("vault:index/getNomadAccessToken:getNomadAccessToken", args ?? new GetNomadAccessTokenInvokeArgs(), options.WithDefaults());
     }

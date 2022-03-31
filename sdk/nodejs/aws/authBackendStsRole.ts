@@ -5,6 +5,20 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const aws = new vault.AuthBackend("aws", {type: "aws"});
+ * const role = new vault.aws.AuthBackendStsRole("role", {
+ *     backend: aws.path,
+ *     accountId: "1234567890",
+ *     stsRole: "arn:aws:iam::1234567890:role/my-role",
+ * });
+ * ```
+ *
  * ## Import
  *
  * AWS auth backend STS roles can be imported using `auth/`, the `backend` path, `/config/sts/`, and the `account_id` e.g.
