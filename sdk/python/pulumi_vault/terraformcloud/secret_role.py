@@ -264,6 +264,22 @@ class SecretRole(pulumi.CustomResource):
                  user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.terraformcloud.SecretBackend("test",
+            backend="terraform",
+            description="Manages the Terraform Cloud backend",
+            token="V0idfhi2iksSDU234ucdbi2nidsi...")
+        example = vault.terraformcloud.SecretRole("example",
+            backend=test.backend,
+            organization="example-organization-name",
+            team_id="team-ieF4isC...")
+        ```
+
         ## Import
 
         Terraform Cloud secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
@@ -289,6 +305,22 @@ class SecretRole(pulumi.CustomResource):
                  args: Optional[SecretRoleArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.terraformcloud.SecretBackend("test",
+            backend="terraform",
+            description="Manages the Terraform Cloud backend",
+            token="V0idfhi2iksSDU234ucdbi2nidsi...")
+        example = vault.terraformcloud.SecretRole("example",
+            backend=test.backend,
+            organization="example-organization-name",
+            team_id="team-ieF4isC...")
+        ```
+
         ## Import
 
         Terraform Cloud secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.

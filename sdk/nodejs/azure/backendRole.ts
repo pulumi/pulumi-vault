@@ -5,6 +5,38 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const azure = new vault.azure.Backend("azure", {
+ *     subscriptionId: _var.subscription_id,
+ *     tenantId: _var.tenant_id,
+ *     clientSecret: _var.client_secret,
+ *     clientId: _var.client_id,
+ * });
+ * const generatedRole = new vault.azure.BackendRole("generatedRole", {
+ *     backend: azure.path,
+ *     role: "generated_role",
+ *     ttl: 300,
+ *     maxTtl: 600,
+ *     azureRoles: [{
+ *         roleName: "Reader",
+ *         scope: `/subscriptions/${_var.subscription_id}/resourceGroups/azure-vault-group`,
+ *     }],
+ * });
+ * const existingObjectId = new vault.azure.BackendRole("existingObjectId", {
+ *     backend: azure.path,
+ *     role: "existing_object_id",
+ *     applicationObjectId: "11111111-2222-3333-4444-44444444444",
+ *     ttl: 300,
+ *     maxTtl: 600,
+ * });
+ * ```
+ */
 export class BackendRole extends pulumi.CustomResource {
     /**
      * Get an existing BackendRole resource's state with the given name, ID, and optional extra

@@ -5,6 +5,24 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const test = new vault.terraformcloud.SecretBackend("test", {
+ *     backend: "terraform",
+ *     description: "Manages the Terraform Cloud backend",
+ *     token: "V0idfhi2iksSDU234ucdbi2nidsi...",
+ * });
+ * const example = new vault.terraformcloud.SecretRole("example", {
+ *     backend: test.backend,
+ *     organization: "example-organization-name",
+ *     teamId: "team-ieF4isC...",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Terraform Cloud secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.

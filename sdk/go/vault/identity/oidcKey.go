@@ -10,6 +10,42 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		key, err := identity.NewOidcKey(ctx, "key", &identity.OidcKeyArgs{
+// 			Algorithm: pulumi.String("RS256"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		roleOidcRole, err := identity.NewOidcRole(ctx, "roleOidcRole", &identity.OidcRoleArgs{
+// 			Key: key.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewOidcKeyAllowedClientID(ctx, "roleOidcKeyAllowedClientID", &identity.OidcKeyAllowedClientIDArgs{
+// 			KeyName:         key.Name,
+// 			AllowedClientId: roleOidcRole.ClientId,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // The key can be imported with the key name, for example

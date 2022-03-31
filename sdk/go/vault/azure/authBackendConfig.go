@@ -11,6 +11,40 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		exampleAuthBackend, err := vault.NewAuthBackend(ctx, "exampleAuthBackend", &vault.AuthBackendArgs{
+// 			Type: pulumi.String("azure"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = azure.NewAuthBackendConfig(ctx, "exampleAuthBackendConfig", &azure.AuthBackendConfigArgs{
+// 			Backend:      exampleAuthBackend.Path,
+// 			TenantId:     pulumi.String("11111111-2222-3333-4444-555555555555"),
+// 			ClientId:     pulumi.String("11111111-2222-3333-4444-555555555555"),
+// 			ClientSecret: pulumi.String("01234567890123456789"),
+// 			Resource:     pulumi.String("https://vault.hashicorp.com"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.

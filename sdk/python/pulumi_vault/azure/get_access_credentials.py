@@ -193,7 +193,19 @@ def get_access_credentials(backend: Optional[str] = None,
                            validate_creds: Optional[bool] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccessCredentialsResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    creds = vault.azure.get_access_credentials(role="my-role",
+        validate_creds=True,
+        num_sequential_successes=8,
+        num_seconds_between_tests=1,
+        max_cred_validation_seconds=300)
+    ```
+
 
     :param str backend: The path to the Azure secret backend to
            read credentials from, with no leading or trailing `/`s.
@@ -261,7 +273,19 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
                                   validate_creds: Optional[pulumi.Input[Optional[bool]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccessCredentialsResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    creds = vault.azure.get_access_credentials(role="my-role",
+        validate_creds=True,
+        num_sequential_successes=8,
+        num_seconds_between_tests=1,
+        max_cred_validation_seconds=300)
+    ```
+
 
     :param str backend: The path to the Azure secret backend to
            read credentials from, with no leading or trailing `/`s.

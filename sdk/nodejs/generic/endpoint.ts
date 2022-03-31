@@ -5,6 +5,58 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const userpass = new vault.AuthBackend("userpass", {type: "userpass"});
+ * const u1 = new vault.generic.Endpoint("u1", {
+ *     path: "auth/userpass/users/u1",
+ *     ignoreAbsentFields: true,
+ *     dataJson: `{
+ *   "policies": ["p1"],
+ *   "password": "changeme"
+ * }
+ * `,
+ * }, {
+ *     dependsOn: [userpass],
+ * });
+ * const u1Token = new vault.generic.Endpoint("u1Token", {
+ *     path: "auth/userpass/login/u1",
+ *     disableRead: true,
+ *     disableDelete: true,
+ *     dataJson: `{
+ *   "password": "changeme"
+ * }
+ * `,
+ * }, {
+ *     dependsOn: [u1],
+ * });
+ * const u1Entity = new vault.generic.Endpoint("u1Entity", {
+ *     disableRead: true,
+ *     disableDelete: true,
+ *     path: "identity/lookup/entity",
+ *     ignoreAbsentFields: true,
+ *     writeFields: ["id"],
+ *     dataJson: `{
+ *   "alias_name": "u1",
+ *   "alias_mount_accessor": vault_auth_backend.userpass.accessor
+ * }
+ * `,
+ * }, {
+ *     dependsOn: [u1Token],
+ * });
+ * export const u1Id = u1Entity.writeData.id;
+ * ```
+ * ## Required Vault Capabilities
+ *
+ * Use of this resource requires the `create` or `update` capability
+ * (depending on whether the resource already exists) on the given path. If
+ * `disableDelete` is false, the `delete` capbility is also required. If
+ * `disableDelete` is false, the `read` capbility is required.
+ *
  * ## Import
  *
  * Import is not supported for this resource.

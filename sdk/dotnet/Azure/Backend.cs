@@ -9,6 +9,55 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Azure
 {
+    /// <summary>
+    /// ## Example Usage
+    /// ### *Vault-1.9 And Above*
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var azure = new Vault.Azure.Backend("azure", new Vault.Azure.BackendArgs
+    ///         {
+    ///             ClientId = "11111111-2222-3333-4444-333333333333",
+    ///             ClientSecret = "12345678901234567890",
+    ///             Environment = "AzurePublicCloud",
+    ///             SubscriptionId = "11111111-2222-3333-4444-111111111111",
+    ///             TenantId = "11111111-2222-3333-4444-222222222222",
+    ///             UseMicrosoftGraphApi = true,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### *Vault-1.8 And Below*
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var azure = new Vault.Azure.Backend("azure", new Vault.Azure.BackendArgs
+    ///         {
+    ///             ClientId = "11111111-2222-3333-4444-333333333333",
+    ///             ClientSecret = "12345678901234567890",
+    ///             Environment = "AzurePublicCloud",
+    ///             SubscriptionId = "11111111-2222-3333-4444-111111111111",
+    ///             TenantId = "11111111-2222-3333-4444-222222222222",
+    ///             UseMicrosoftGraphApi = false,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     [VaultResourceType("vault:azure/backend:Backend")]
     public partial class Backend : Pulumi.CustomResource
     {

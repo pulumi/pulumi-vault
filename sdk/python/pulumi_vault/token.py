@@ -542,6 +542,24 @@ class Token(pulumi.CustomResource):
                  wrapping_ttl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.Token("example",
+            policies=[
+                "policy1",
+                "policy2",
+            ],
+            renew_increment=86400,
+            renew_min_lease=43200,
+            renewable=True,
+            role_name="app",
+            ttl="24h")
+        ```
+
         ## Import
 
         Tokens can be imported using its `id` as accessor id, e.g.
@@ -573,6 +591,24 @@ class Token(pulumi.CustomResource):
                  args: Optional[TokenArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.Token("example",
+            policies=[
+                "policy1",
+                "policy2",
+            ],
+            renew_increment=86400,
+            renew_min_lease=43200,
+            renewable=True,
+            role_name="app",
+            ttl="24h")
+        ```
+
         ## Import
 
         Tokens can be imported using its `id` as accessor id, e.g.

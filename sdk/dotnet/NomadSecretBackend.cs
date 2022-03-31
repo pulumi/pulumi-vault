@@ -10,6 +10,32 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var config = new Vault.NomadSecretBackend("config", new Vault.NomadSecretBackendArgs
+    ///         {
+    ///             Address = "https://127.0.0.1:4646",
+    ///             Backend = "nomad",
+    ///             DefaultLeaseTtlSeconds = 3600,
+    ///             Description = "test description",
+    ///             MaxLeaseTtlSeconds = 7200,
+    ///             MaxTtl = 240,
+    ///             Token = "ae20ceaa-...",
+    ///             Ttl = 120,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Nomad secret backend can be imported using the `backend`, e.g.

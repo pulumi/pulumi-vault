@@ -5,6 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const entity = pulumi.output(vault.identity.getEntity({
+ *     entityName: "entity_12345",
+ * }));
+ * ```
+ * ## Required Vault Capabilities
+ *
+ * Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+ */
 export function getEntity(args?: GetEntityArgs, opts?: pulumi.InvokeOptions): Promise<GetEntityResult> {
     args = args || {};
     if (!opts) {

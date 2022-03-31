@@ -9,6 +9,52 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Azure
 {
+    /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var azure = new Vault.Azure.Backend("azure", new Vault.Azure.BackendArgs
+    ///         {
+    ///             SubscriptionId = @var.Subscription_id,
+    ///             TenantId = @var.Tenant_id,
+    ///             ClientSecret = @var.Client_secret,
+    ///             ClientId = @var.Client_id,
+    ///         });
+    ///         var generatedRole = new Vault.Azure.BackendRole("generatedRole", new Vault.Azure.BackendRoleArgs
+    ///         {
+    ///             Backend = azure.Path,
+    ///             Role = "generated_role",
+    ///             Ttl = "300",
+    ///             MaxTtl = "600",
+    ///             AzureRoles = 
+    ///             {
+    ///                 new Vault.Azure.Inputs.BackendRoleAzureRoleArgs
+    ///                 {
+    ///                     RoleName = "Reader",
+    ///                     Scope = $"/subscriptions/{@var.Subscription_id}/resourceGroups/azure-vault-group",
+    ///                 },
+    ///             },
+    ///         });
+    ///         var existingObjectId = new Vault.Azure.BackendRole("existingObjectId", new Vault.Azure.BackendRoleArgs
+    ///         {
+    ///             Backend = azure.Path,
+    ///             Role = "existing_object_id",
+    ///             ApplicationObjectId = "11111111-2222-3333-4444-44444444444",
+    ///             Ttl = "300",
+    ///             MaxTtl = "600",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     [VaultResourceType("vault:azure/backendRole:BackendRole")]
     public partial class BackendRole : Pulumi.CustomResource
     {

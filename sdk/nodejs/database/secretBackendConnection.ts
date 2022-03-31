@@ -6,6 +6,28 @@ import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const db = new vault.Mount("db", {
+ *     path: "postgres",
+ *     type: "database",
+ * });
+ * const postgres = new vault.database.SecretBackendConnection("postgres", {
+ *     backend: db.path,
+ *     allowedRoles: [
+ *         "dev",
+ *         "prod",
+ *     ],
+ *     postgresql: {
+ *         connectionUrl: "postgres://username:password@host:port/database",
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.

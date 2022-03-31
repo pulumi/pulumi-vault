@@ -310,6 +310,18 @@ class SecretBackend(pulumi.CustomResource):
                  verify_connection: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        rabbitmq = vault.rabbit_mq.SecretBackend("rabbitmq",
+            connection_uri="https://.....",
+            password="password",
+            username="user")
+        ```
+
         ## Import
 
         RabbitMQ secret backends can be imported using the `path`, e.g.
@@ -340,6 +352,18 @@ class SecretBackend(pulumi.CustomResource):
                  args: SecretBackendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        rabbitmq = vault.rabbit_mq.SecretBackend("rabbitmq",
+            connection_uri="https://.....",
+            password="password",
+            username="user")
+        ```
+
         ## Import
 
         RabbitMQ secret backends can be imported using the `path`, e.g.

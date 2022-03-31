@@ -11,9 +11,63 @@ namespace Pulumi.Vault.Identity
 {
     public static class GetEntity
     {
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var entity = Output.Create(Vault.Identity.GetEntity.InvokeAsync(new Vault.Identity.GetEntityArgs
+        ///         {
+        ///             EntityName = "entity_12345",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// ## Required Vault Capabilities
+        /// 
+        /// Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+        /// </summary>
         public static Task<GetEntityResult> InvokeAsync(GetEntityArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? new GetEntityArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var entity = Output.Create(Vault.Identity.GetEntity.InvokeAsync(new Vault.Identity.GetEntityArgs
+        ///         {
+        ///             EntityName = "entity_12345",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// ## Required Vault Capabilities
+        /// 
+        /// Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+        /// </summary>
         public static Output<GetEntityResult> Invoke(GetEntityInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? new GetEntityInvokeArgs(), options.WithDefaults());
     }

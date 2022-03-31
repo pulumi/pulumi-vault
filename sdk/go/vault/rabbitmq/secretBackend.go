@@ -11,6 +11,31 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/rabbitMq"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := rabbitMq.NewSecretBackend(ctx, "rabbitmq", &rabbitMq.SecretBackendArgs{
+// 			ConnectionUri: pulumi.String("https://....."),
+// 			Password:      pulumi.String("password"),
+// 			Username:      pulumi.String("user"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // RabbitMQ secret backends can be imported using the `path`, e.g.

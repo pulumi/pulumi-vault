@@ -5,6 +5,20 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const exampleAuthBackend = new vault.AuthBackend("exampleAuthBackend", {type: "aws"});
+ * const exampleAuthBackendClient = new vault.aws.AuthBackendClient("exampleAuthBackendClient", {
+ *     backend: exampleAuthBackend.path,
+ *     accessKey: "INSERT_AWS_ACCESS_KEY",
+ *     secretKey: "INSERT_AWS_SECRET_KEY",
+ * });
+ * ```
+ *
  * ## Import
  *
  * AWS auth backend clients can be imported using `auth/`, the `backend` path, and `/config/client` e.g.

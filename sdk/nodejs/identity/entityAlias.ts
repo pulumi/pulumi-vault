@@ -5,6 +5,18 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const test = new vault.identity.EntityAlias("test", {
+ *     canonicalId: "49877D63-07AD-4B85-BDA8-B61626C477E8",
+ *     mountAccessor: "token_1f2bd5",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Identity entity alias can be imported using the `id`, e.g.

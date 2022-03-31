@@ -9,6 +9,42 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.PkiSecret
 {
+    /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Vault.PkiSecret.SecretBackendRootCert("test", new Vault.PkiSecret.SecretBackendRootCertArgs
+    ///         {
+    ///             Backend = vault_mount.Pki.Path,
+    ///             Type = "internal",
+    ///             CommonName = "Root CA",
+    ///             Ttl = "315360000",
+    ///             Format = "pem",
+    ///             PrivateKeyFormat = "der",
+    ///             KeyType = "rsa",
+    ///             KeyBits = 4096,
+    ///             ExcludeCnFromSans = true,
+    ///             Ou = "My OU",
+    ///             Organization = "My organization",
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn = 
+    ///             {
+    ///                 vault_mount.Pki,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendRootCert:SecretBackendRootCert")]
     public partial class SecretBackendRootCert : Pulumi.CustomResource
     {

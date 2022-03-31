@@ -4,6 +4,33 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const config = new vault.NomadSecretBackend("config", {
+ *     backend: "nomad",
+ *     description: "test description",
+ *     defaultLeaseTtlSeconds: "3600",
+ *     maxLeaseTtlSeconds: "7200",
+ *     address: "https://127.0.0.1:4646",
+ *     token: "ae20ceaa-...",
+ * });
+ * const test = new vault.NomadSecretRole("test", {
+ *     backend: config.backend,
+ *     role: "test",
+ *     type: "client",
+ *     policies: ["readonly"],
+ * });
+ * const token = pulumi.all([config.backend, test.role]).apply(([backend, role]) => vault.getNomadAccessTokenOutput({
+ *     backend: backend,
+ *     role: role,
+ * }));
+ * ```
+ */
 export function getNomadAccessToken(args: GetNomadAccessTokenArgs, opts?: pulumi.InvokeOptions): Promise<GetNomadAccessTokenResult> {
     if (!opts) {
         opts = {}

@@ -10,6 +10,31 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := identity.LookupEntity(ctx, &identity.LookupEntityArgs{
+// 			EntityName: pulumi.StringRef("entity_12345"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ## Required Vault Capabilities
+//
+// Use of this resource requires the `create` capability on `/identity/lookup/entity`.
 func LookupEntity(ctx *pulumi.Context, args *LookupEntityArgs, opts ...pulumi.InvokeOption) (*LookupEntityResult, error) {
 	var rv LookupEntityResult
 	err := ctx.Invoke("vault:identity/getEntity:getEntity", args, &rv, opts...)

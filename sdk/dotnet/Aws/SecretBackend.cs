@@ -10,6 +10,26 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Aws
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var aws = new Vault.Aws.SecretBackend("aws", new Vault.Aws.SecretBackendArgs
+    ///         {
+    ///             AccessKey = "AKIA.....",
+    ///             SecretKey = "AWS secret key",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// AWS secret backends can be imported using the `path`, e.g.

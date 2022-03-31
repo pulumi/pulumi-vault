@@ -5,6 +5,19 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const rabbitmq = new vault.rabbitMq.SecretBackend("rabbitmq", {
+ *     connectionUri: "https://.....",
+ *     password: "password",
+ *     username: "user",
+ * });
+ * ```
+ *
  * ## Import
  *
  * RabbitMQ secret backends can be imported using the `path`, e.g.

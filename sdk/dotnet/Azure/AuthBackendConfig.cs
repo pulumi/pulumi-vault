@@ -10,6 +10,33 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Azure
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var exampleAuthBackend = new Vault.AuthBackend("exampleAuthBackend", new Vault.AuthBackendArgs
+    ///         {
+    ///             Type = "azure",
+    ///         });
+    ///         var exampleAuthBackendConfig = new Vault.Azure.AuthBackendConfig("exampleAuthBackendConfig", new Vault.Azure.AuthBackendConfigArgs
+    ///         {
+    ///             Backend = exampleAuthBackend.Path,
+    ///             TenantId = "11111111-2222-3333-4444-555555555555",
+    ///             ClientId = "11111111-2222-3333-4444-555555555555",
+    ///             ClientSecret = "01234567890123456789",
+    ///             Resource = "https://vault.hashicorp.com",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.

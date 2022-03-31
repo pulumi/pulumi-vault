@@ -4,6 +4,22 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const creds = vault.azure.getAccessCredentials({
+ *     role: "my-role",
+ *     validateCreds: true,
+ *     numSequentialSuccesses: 8,
+ *     numSecondsBetweenTests: 1,
+ *     maxCredValidationSeconds: 300,
+ * });
+ * ```
+ */
 export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessCredentialsResult> {
     if (!opts) {
         opts = {}

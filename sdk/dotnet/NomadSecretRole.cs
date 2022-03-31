@@ -10,6 +10,40 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var config = new Vault.NomadSecretBackend("config", new Vault.NomadSecretBackendArgs
+    ///         {
+    ///             Backend = "nomad",
+    ///             Description = "test description",
+    ///             DefaultLeaseTtlSeconds = 3600,
+    ///             MaxLeaseTtlSeconds = 7200,
+    ///             Address = "https://127.0.0.1:4646",
+    ///             Token = "ae20ceaa-...",
+    ///         });
+    ///         var test = new Vault.NomadSecretRole("test", new Vault.NomadSecretRoleArgs
+    ///         {
+    ///             Backend = config.Backend,
+    ///             Role = "test",
+    ///             Type = "client",
+    ///             Policies = 
+    ///             {
+    ///                 "readonly",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Nomad secret role can be imported using the `backend`, e.g.

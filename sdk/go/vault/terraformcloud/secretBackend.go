@@ -10,6 +10,31 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/terraformcloud"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := terraformcloud.NewSecretBackend(ctx, "test", &terraformcloud.SecretBackendArgs{
+// 			Backend:     pulumi.String("terraform"),
+// 			Description: pulumi.String("Manages the Terraform Cloud backend"),
+// 			Token:       pulumi.String("V0idfhi2iksSDU234ucdbi2nidsi..."),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // Terraform Cloud secret backends can be imported using the `backend`, e.g.

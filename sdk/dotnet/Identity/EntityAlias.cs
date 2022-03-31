@@ -10,6 +10,26 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Identity
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Vault.Identity.EntityAlias("test", new Vault.Identity.EntityAliasArgs
+    ///         {
+    ///             CanonicalId = "49877D63-07AD-4B85-BDA8-B61626C477E8",
+    ///             MountAccessor = "token_1f2bd5",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Identity entity alias can be imported using the `id`, e.g.

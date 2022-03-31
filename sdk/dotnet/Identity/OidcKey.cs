@@ -10,6 +10,34 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Identity
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var key = new Vault.Identity.OidcKey("key", new Vault.Identity.OidcKeyArgs
+    ///         {
+    ///             Algorithm = "RS256",
+    ///         });
+    ///         var roleOidcRole = new Vault.Identity.OidcRole("roleOidcRole", new Vault.Identity.OidcRoleArgs
+    ///         {
+    ///             Key = key.Name,
+    ///         });
+    ///         var roleOidcKeyAllowedClientID = new Vault.Identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID", new Vault.Identity.OidcKeyAllowedClientIDArgs
+    ///         {
+    ///             KeyName = key.Name,
+    ///             AllowedClientId = roleOidcRole.ClientId,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// The key can be imported with the key name, for example

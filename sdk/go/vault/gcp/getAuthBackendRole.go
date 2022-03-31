@@ -24,9 +24,8 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "my-gcp-backend"
 // 		role, err := gcp.LookupAuthBackendRole(ctx, &gcp.LookupAuthBackendRoleArgs{
-// 			Backend:  &opt0,
+// 			Backend:  pulumi.StringRef("my-gcp-backend"),
 // 			RoleName: "my-role",
 // 		}, nil)
 // 		if err != nil {

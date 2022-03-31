@@ -4,6 +4,27 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const app = new vault.identity.OidcClient("app", {
+ *     redirectUris: [
+ *         "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+ *         "http://127.0.0.1:8251/callback",
+ *         "http://127.0.0.1:8080/callback",
+ *     ],
+ *     idTokenTtl: 2400,
+ *     accessTokenTtl: 7200,
+ * });
+ * const creds = vault.identity.getOidcClientCredsOutput({
+ *     name: app.name,
+ * });
+ * ```
+ */
 export function getOidcClientCreds(args: GetOidcClientCredsArgs, opts?: pulumi.InvokeOptions): Promise<GetOidcClientCredsResult> {
     if (!opts) {
         opts = {}

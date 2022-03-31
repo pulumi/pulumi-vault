@@ -97,7 +97,19 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
                  key_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a OidcKeyAllowedClientID resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        key = vault.identity.OidcKey("key", algorithm="RS256")
+        role_oidc_role = vault.identity.OidcRole("roleOidcRole", key=key.name)
+        role_oidc_key_allowed_client_id = vault.identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID",
+            key_name=key.name,
+            allowed_client_id=role_oidc_role.client_id)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] allowed_client_id: Client ID to allow usage with the OIDC named key
@@ -110,7 +122,19 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
                  args: OidcKeyAllowedClientIDArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a OidcKeyAllowedClientID resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        key = vault.identity.OidcKey("key", algorithm="RS256")
+        role_oidc_role = vault.identity.OidcRole("roleOidcRole", key=key.name)
+        role_oidc_key_allowed_client_id = vault.identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID",
+            key_name=key.name,
+            allowed_client_id=role_oidc_role.client_id)
+        ```
+
         :param str resource_name: The name of the resource.
         :param OidcKeyAllowedClientIDArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -10,6 +10,56 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		key, err := identity.NewOidcKey(ctx, "key", &identity.OidcKeyArgs{
+// 			AllowedClientIds: pulumi.StringArray{
+// 				pulumi.String("*"),
+// 			},
+// 			RotationPeriod:  pulumi.Int(3600),
+// 			VerificationTtl: pulumi.Int(3600),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = identity.NewOidcClient(ctx, "app", &identity.OidcClientArgs{
+// 			Key: key.Name,
+// 			RedirectUris: pulumi.StringArray{
+// 				pulumi.String("http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback"),
+// 				pulumi.String("http://127.0.0.1:8251/callback"),
+// 				pulumi.String("http://127.0.0.1:8080/callback"),
+// 			},
+// 			IdTokenTtl:     pulumi.Int(2400),
+// 			AccessTokenTtl: pulumi.Int(7200),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		provider, err := identity.NewOidcProvider(ctx, "provider", &identity.OidcProviderArgs{
+// 			AllowedClientIds: pulumi.StringArray{
+// 				pulumi.Any(vault_identity_oidc_client.Test.Client_id),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_ = identity.GetOidcOpenidConfigOutput(ctx, identity.GetOidcOpenidConfigOutputArgs{
+// 			Name: provider.Name,
+// 		}, nil)
+// 		return nil
+// 	})
+// }
+// ```
 func GetOidcOpenidConfig(ctx *pulumi.Context, args *GetOidcOpenidConfigArgs, opts ...pulumi.InvokeOption) (*GetOidcOpenidConfigResult, error) {
 	var rv GetOidcOpenidConfigResult
 	err := ctx.Invoke("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", args, &rv, opts...)

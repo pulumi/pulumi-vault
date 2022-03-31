@@ -68,7 +68,29 @@ class AwaitableGetOidcPublicKeysResult(GetOidcPublicKeysResult):
 def get_oidc_public_keys(name: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOidcPublicKeysResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    key = vault.identity.OidcKey("key",
+        allowed_client_ids=["*"],
+        rotation_period=3600,
+        verification_ttl=3600)
+    app = vault.identity.OidcClient("app",
+        key=key.name,
+        redirect_uris=[
+            "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+            "http://127.0.0.1:8251/callback",
+            "http://127.0.0.1:8080/callback",
+        ],
+        id_token_ttl=2400,
+        access_token_ttl=7200)
+    provider = vault.identity.OidcProvider("provider", allowed_client_ids=[vault_identity_oidc_client["test"]["client_id"]])
+    public_keys = vault.identity.get_oidc_public_keys_output(name=provider.name)
+    ```
+
 
     :param str name: The name of the OIDC Provider in Vault.
     """
@@ -90,7 +112,29 @@ def get_oidc_public_keys(name: Optional[str] = None,
 def get_oidc_public_keys_output(name: Optional[pulumi.Input[str]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOidcPublicKeysResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    key = vault.identity.OidcKey("key",
+        allowed_client_ids=["*"],
+        rotation_period=3600,
+        verification_ttl=3600)
+    app = vault.identity.OidcClient("app",
+        key=key.name,
+        redirect_uris=[
+            "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+            "http://127.0.0.1:8251/callback",
+            "http://127.0.0.1:8080/callback",
+        ],
+        id_token_ttl=2400,
+        access_token_ttl=7200)
+    provider = vault.identity.OidcProvider("provider", allowed_client_ids=[vault_identity_oidc_client["test"]["client_id"]])
+    public_keys = vault.identity.get_oidc_public_keys_output(name=provider.name)
+    ```
+
 
     :param str name: The name of the OIDC Provider in Vault.
     """

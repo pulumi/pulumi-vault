@@ -312,7 +312,18 @@ def get_group(alias_id: Optional[str] = None,
               group_name: Optional[str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    group = vault.identity.get_group(group_name="user")
+    ```
+    ## Required Vault Capabilities
+
+    Use of this resource requires the `create` capability on `/identity/lookup/group`.
+
 
     :param str alias_id: ID of the alias.
     :param str alias_mount_accessor: Accessor of the mount to which the alias belongs to.
@@ -369,7 +380,18 @@ def get_group_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
                      group_name: Optional[pulumi.Input[Optional[str]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGroupResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    group = vault.identity.get_group(group_name="user")
+    ```
+    ## Required Vault Capabilities
+
+    Use of this resource requires the `create` capability on `/identity/lookup/group`.
+
 
     :param str alias_id: ID of the alias.
     :param str alias_mount_accessor: Accessor of the mount to which the alias belongs to.

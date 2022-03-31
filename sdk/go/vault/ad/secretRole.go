@@ -11,6 +11,43 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ad"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		config, err := ad.NewSecretBackend(ctx, "config", &ad.SecretBackendArgs{
+// 			Backend:     pulumi.String("ad"),
+// 			Binddn:      pulumi.String("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net"),
+// 			Bindpass:    pulumi.String("SuperSecretPassw0rd"),
+// 			Url:         pulumi.String("ldaps://ad"),
+// 			InsecureTls: pulumi.Bool(true),
+// 			Userdn:      pulumi.String("CN=Users,DC=corp,DC=example,DC=net"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = ad.NewSecretRole(ctx, "role", &ad.SecretRoleArgs{
+// 			Backend:            config.Backend,
+// 			Role:               pulumi.String("bob"),
+// 			ServiceAccountName: pulumi.String("Bob"),
+// 			Ttl:                pulumi.Int(60),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // AD secret backend roles can be imported using the `path`, e.g.

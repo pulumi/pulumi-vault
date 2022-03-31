@@ -4,6 +4,29 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const test = new vault.terraformcloud.SecretBackend("test", {
+ *     backend: "terraform",
+ *     description: "Manages the Terraform Cloud backend",
+ *     token: "V0idfhi2iksSDU234ucdbi2nidsi...",
+ * });
+ * const example = new vault.terraformcloud.SecretRole("example", {
+ *     backend: test.backend,
+ *     organization: "example-organization-name",
+ *     teamId: "team-ieF4isC...",
+ * });
+ * const token = new vault.terraformcloud.SecretCreds("token", {
+ *     backend: test.backend,
+ *     role: example.name,
+ * });
+ * ```
+ */
 export class SecretCreds extends pulumi.CustomResource {
     /**
      * Get an existing SecretCreds resource's state with the given name, ID, and optional extra

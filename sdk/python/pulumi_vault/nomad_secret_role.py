@@ -216,6 +216,26 @@ class NomadSecretRole(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        config = vault.NomadSecretBackend("config",
+            backend="nomad",
+            description="test description",
+            default_lease_ttl_seconds=3600,
+            max_lease_ttl_seconds=7200,
+            address="https://127.0.0.1:4646",
+            token="ae20ceaa-...")
+        test = vault.NomadSecretRole("test",
+            backend=config.backend,
+            role="test",
+            type="client",
+            policies=["readonly"])
+        ```
+
         ## Import
 
         Nomad secret role can be imported using the `backend`, e.g.
@@ -244,6 +264,26 @@ class NomadSecretRole(pulumi.CustomResource):
                  args: NomadSecretRoleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        config = vault.NomadSecretBackend("config",
+            backend="nomad",
+            description="test description",
+            default_lease_ttl_seconds=3600,
+            max_lease_ttl_seconds=7200,
+            address="https://127.0.0.1:4646",
+            token="ae20ceaa-...")
+        test = vault.NomadSecretRole("test",
+            backend=config.backend,
+            role="test",
+            type="client",
+            policies=["readonly"])
+        ```
+
         ## Import
 
         Nomad secret role can be imported using the `backend`, e.g.

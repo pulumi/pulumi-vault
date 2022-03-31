@@ -5,6 +5,33 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const aws = new vault.aws.SecretBackend("aws", {
+ *     accessKey: "AKIA.....",
+ *     secretKey: "AWS secret key",
+ * });
+ * const role = new vault.aws.SecretBackendRole("role", {
+ *     backend: aws.path,
+ *     credentialType: "iam_user",
+ *     policyDocument: `{
+ *   "Version": "2012-10-17",
+ *   "Statement": [
+ *     {
+ *       "Effect": "Allow",
+ *       "Action": "iam:*",
+ *       "Resource": "*"
+ *     }
+ *   ]
+ * }
+ * `,
+ * });
+ * ```
+ *
  * ## Import
  *
  * AWS secret backend roles can be imported using the `path`, e.g.

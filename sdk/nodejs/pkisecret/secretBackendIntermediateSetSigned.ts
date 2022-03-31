@@ -4,6 +4,19 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const intermediate = new vault.pkisecret.SecretBackendIntermediateSetSigned("intermediate", {
+ *     backend: vault_mount.intermediate.path,
+ *     certificate: "<...>",
+ * });
+ * ```
+ */
 export class SecretBackendIntermediateSetSigned extends pulumi.CustomResource {
     /**
      * Get an existing SecretBackendIntermediateSetSigned resource's state with the given name, ID, and optional extra

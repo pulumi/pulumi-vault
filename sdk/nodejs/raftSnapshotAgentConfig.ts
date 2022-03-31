@@ -5,6 +5,22 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ * ### Local Storage
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const localBackups = new vault.RaftSnapshotAgentConfig("local_backups", {
+ *     intervalSeconds: 86400, // 24h
+ *     // Storage Type Configuration
+ *     localMaxSpace: 10000000,
+ *     pathPrefix: "/opt/vault/snapshots/",
+ *     retain: 7,
+ *     storageType: "local",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Raft Snapshot Agent Configurations can be imported using the `name`, e.g.
