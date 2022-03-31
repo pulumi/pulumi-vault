@@ -58,6 +58,9 @@ type AuthBackend struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The organization configured users must be part of.
 	Organization pulumi.StringOutput `pulumi:"organization"`
+	// The ID of the organization users must be part of.
+	// Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
+	OrganizationId pulumi.IntOutput `pulumi:"organizationId"`
 	// Path where the auth backend is mounted. Defaults to `auth/github`
 	// if not specified.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
@@ -140,6 +143,9 @@ type authBackendState struct {
 	Description *string `pulumi:"description"`
 	// The organization configured users must be part of.
 	Organization *string `pulumi:"organization"`
+	// The ID of the organization users must be part of.
+	// Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
+	OrganizationId *int `pulumi:"organizationId"`
 	// Path where the auth backend is mounted. Defaults to `auth/github`
 	// if not specified.
 	Path *string `pulumi:"path"`
@@ -191,6 +197,9 @@ type AuthBackendState struct {
 	Description pulumi.StringPtrInput
 	// The organization configured users must be part of.
 	Organization pulumi.StringPtrInput
+	// The ID of the organization users must be part of.
+	// Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
+	OrganizationId pulumi.IntPtrInput
 	// Path where the auth backend is mounted. Defaults to `auth/github`
 	// if not specified.
 	Path pulumi.StringPtrInput
@@ -244,6 +253,9 @@ type authBackendArgs struct {
 	Description *string `pulumi:"description"`
 	// The organization configured users must be part of.
 	Organization string `pulumi:"organization"`
+	// The ID of the organization users must be part of.
+	// Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
+	OrganizationId *int `pulumi:"organizationId"`
 	// Path where the auth backend is mounted. Defaults to `auth/github`
 	// if not specified.
 	Path *string `pulumi:"path"`
@@ -294,6 +306,9 @@ type AuthBackendArgs struct {
 	Description pulumi.StringPtrInput
 	// The organization configured users must be part of.
 	Organization pulumi.StringInput
+	// The ID of the organization users must be part of.
+	// Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
+	OrganizationId pulumi.IntPtrInput
 	// Path where the auth backend is mounted. Defaults to `auth/github`
 	// if not specified.
 	Path pulumi.StringPtrInput

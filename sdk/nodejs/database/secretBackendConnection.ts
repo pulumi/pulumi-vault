@@ -112,9 +112,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      */
     public readonly oracle!: pulumi.Output<outputs.database.SecretBackendConnectionOracle | undefined>;
     /**
-     * Specifies the name of the plugin to use. All values must be prefixed
-     * to match the corresponding database engine directive.
-     * For example the `pluginName` for the `mysqlAurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+     * Specifies the name of the plugin to use.
      */
     public readonly pluginName!: pulumi.Output<string>;
     /**
@@ -283,9 +281,7 @@ export interface SecretBackendConnectionState {
      */
     oracle?: pulumi.Input<inputs.database.SecretBackendConnectionOracle>;
     /**
-     * Specifies the name of the plugin to use. All values must be prefixed
-     * to match the corresponding database engine directive.
-     * For example the `pluginName` for the `mysqlAurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+     * Specifies the name of the plugin to use.
      */
     pluginName?: pulumi.Input<string>;
     /**
@@ -385,9 +381,7 @@ export interface SecretBackendConnectionArgs {
      */
     oracle?: pulumi.Input<inputs.database.SecretBackendConnectionOracle>;
     /**
-     * Specifies the name of the plugin to use. All values must be prefixed
-     * to match the corresponding database engine directive.
-     * For example the `pluginName` for the `mysqlAurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+     * Specifies the name of the plugin to use.
      */
     pluginName?: pulumi.Input<string>;
     /**

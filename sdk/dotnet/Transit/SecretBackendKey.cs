@@ -58,6 +58,13 @@ namespace Pulumi.Vault.Transit
         public Output<bool?> AllowPlaintextBackup { get; private set; } = null!;
 
         /// <summary>
+        /// Amount of time the key should live before being automatically rotated.
+        /// A value of 0 disables automatic rotation for the key.
+        /// </summary>
+        [Output("autoRotateInterval")]
+        public Output<int> AutoRotateInterval { get; private set; } = null!;
+
+        /// <summary>
         /// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         /// </summary>
         [Output("backend")]
@@ -210,6 +217,13 @@ namespace Pulumi.Vault.Transit
         public Input<bool>? AllowPlaintextBackup { get; set; }
 
         /// <summary>
+        /// Amount of time the key should live before being automatically rotated.
+        /// A value of 0 disables automatic rotation for the key.
+        /// </summary>
+        [Input("autoRotateInterval")]
+        public Input<int>? AutoRotateInterval { get; set; }
+
+        /// <summary>
         /// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         /// </summary>
         [Input("backend", required: true)]
@@ -277,6 +291,13 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         [Input("allowPlaintextBackup")]
         public Input<bool>? AllowPlaintextBackup { get; set; }
+
+        /// <summary>
+        /// Amount of time the key should live before being automatically rotated.
+        /// A value of 0 disables automatic rotation for the key.
+        /// </summary>
+        [Input("autoRotateInterval")]
+        public Input<int>? AutoRotateInterval { get; set; }
 
         /// <summary>
         /// The path the transit secret backend is mounted at, with no leading or trailing `/`s.

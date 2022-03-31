@@ -60,6 +60,20 @@ namespace Pulumi.Vault.Consul
         public Output<string?> Backend { get; private set; } = null!;
 
         /// <summary>
+        /// The Consul namespace that the token will be created in.
+        /// Applicable for Vault 1.10+ and Consul 1.7+",
+        /// </summary>
+        [Output("consulNamespace")]
+        public Output<string> ConsulNamespace { get; private set; } = null!;
+
+        /// <summary>
+        /// Set of Consul roles to attach to the token.
+        /// Applicable for Vault 1.10+ with Consul 1.5+.
+        /// </summary>
+        [Output("consulRoles")]
+        public Output<ImmutableArray<string>> ConsulRoles { get; private set; } = null!;
+
+        /// <summary>
         /// Indicates that the token should not be replicated globally and instead be local to the current datacenter.
         /// </summary>
         [Output("local")]
@@ -76,6 +90,13 @@ namespace Pulumi.Vault.Consul
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The admin partition that the token will be created in.
+        /// Applicable for Vault 1.10+ and Consul 1.11+",
+        /// </summary>
+        [Output("partition")]
+        public Output<string> Partition { get; private set; } = null!;
 
         /// <summary>
         /// The list of Consul ACL policies to associate with these roles.
@@ -103,7 +124,7 @@ namespace Pulumi.Vault.Consul
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public SecretBackendRole(string name, SecretBackendRoleArgs args, CustomResourceOptions? options = null)
+        public SecretBackendRole(string name, SecretBackendRoleArgs? args = null, CustomResourceOptions? options = null)
             : base("vault:consul/secretBackendRole:SecretBackendRole", name, args ?? new SecretBackendRoleArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -148,6 +169,26 @@ namespace Pulumi.Vault.Consul
         public Input<string>? Backend { get; set; }
 
         /// <summary>
+        /// The Consul namespace that the token will be created in.
+        /// Applicable for Vault 1.10+ and Consul 1.7+",
+        /// </summary>
+        [Input("consulNamespace")]
+        public Input<string>? ConsulNamespace { get; set; }
+
+        [Input("consulRoles")]
+        private InputList<string>? _consulRoles;
+
+        /// <summary>
+        /// Set of Consul roles to attach to the token.
+        /// Applicable for Vault 1.10+ with Consul 1.5+.
+        /// </summary>
+        public InputList<string> ConsulRoles
+        {
+            get => _consulRoles ?? (_consulRoles = new InputList<string>());
+            set => _consulRoles = value;
+        }
+
+        /// <summary>
         /// Indicates that the token should not be replicated globally and instead be local to the current datacenter.
         /// </summary>
         [Input("local")]
@@ -165,7 +206,14 @@ namespace Pulumi.Vault.Consul
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        [Input("policies", required: true)]
+        /// <summary>
+        /// The admin partition that the token will be created in.
+        /// Applicable for Vault 1.10+ and Consul 1.11+",
+        /// </summary>
+        [Input("partition")]
+        public Input<string>? Partition { get; set; }
+
+        [Input("policies")]
         private InputList<string>? _policies;
 
         /// <summary>
@@ -203,6 +251,26 @@ namespace Pulumi.Vault.Consul
         public Input<string>? Backend { get; set; }
 
         /// <summary>
+        /// The Consul namespace that the token will be created in.
+        /// Applicable for Vault 1.10+ and Consul 1.7+",
+        /// </summary>
+        [Input("consulNamespace")]
+        public Input<string>? ConsulNamespace { get; set; }
+
+        [Input("consulRoles")]
+        private InputList<string>? _consulRoles;
+
+        /// <summary>
+        /// Set of Consul roles to attach to the token.
+        /// Applicable for Vault 1.10+ with Consul 1.5+.
+        /// </summary>
+        public InputList<string> ConsulRoles
+        {
+            get => _consulRoles ?? (_consulRoles = new InputList<string>());
+            set => _consulRoles = value;
+        }
+
+        /// <summary>
         /// Indicates that the token should not be replicated globally and instead be local to the current datacenter.
         /// </summary>
         [Input("local")]
@@ -219,6 +287,13 @@ namespace Pulumi.Vault.Consul
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The admin partition that the token will be created in.
+        /// Applicable for Vault 1.10+ and Consul 1.11+",
+        /// </summary>
+        [Input("partition")]
+        public Input<string>? Partition { get; set; }
 
         [Input("policies")]
         private InputList<string>? _policies;

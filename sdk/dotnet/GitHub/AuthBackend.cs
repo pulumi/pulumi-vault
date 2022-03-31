@@ -71,6 +71,13 @@ namespace Pulumi.Vault.GitHub
         public Output<string> Organization { get; private set; } = null!;
 
         /// <summary>
+        /// The ID of the organization users must be part of.
+        /// Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
+        /// </summary>
+        [Output("organizationId")]
+        public Output<int> OrganizationId { get; private set; } = null!;
+
+        /// <summary>
         /// Path where the auth backend is mounted. Defaults to `auth/github`
         /// if not specified.
         /// </summary>
@@ -219,6 +226,13 @@ namespace Pulumi.Vault.GitHub
         public Input<string> Organization { get; set; } = null!;
 
         /// <summary>
+        /// The ID of the organization users must be part of.
+        /// Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
+        /// </summary>
+        [Input("organizationId")]
+        public Input<int>? OrganizationId { get; set; }
+
+        /// <summary>
         /// Path where the auth backend is mounted. Defaults to `auth/github`
         /// if not specified.
         /// </summary>
@@ -344,6 +358,13 @@ namespace Pulumi.Vault.GitHub
         /// </summary>
         [Input("organization")]
         public Input<string>? Organization { get; set; }
+
+        /// <summary>
+        /// The ID of the organization users must be part of.
+        /// Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
+        /// </summary>
+        [Input("organizationId")]
+        public Input<int>? OrganizationId { get; set; }
 
         /// <summary>
         /// Path where the auth backend is mounted. Defaults to `auth/github`

@@ -304,6 +304,10 @@ export namespace database {
          */
         connectionUrl?: pulumi.Input<string>;
         /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: pulumi.Input<boolean>;
+        /**
          * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
@@ -440,6 +444,10 @@ export namespace database {
          * docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
          */
         containedDb?: pulumi.Input<boolean>;
+        /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: pulumi.Input<boolean>;
         /**
          * The maximum amount of time a connection may be reused.
          */
@@ -665,6 +673,10 @@ export namespace database {
          */
         connectionUrl?: pulumi.Input<string>;
         /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: pulumi.Input<boolean>;
+        /**
          * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
@@ -700,6 +712,10 @@ export namespace database {
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
+        /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: pulumi.Input<boolean>;
         /**
          * The maximum amount of time a connection may be reused.
          */

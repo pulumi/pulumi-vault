@@ -462,6 +462,22 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "identity/oidcAssignment",
+  "fqn": "pulumi_vault.identity",
+  "classes": {
+   "vault:identity/oidcAssignment:OidcAssignment": "OidcAssignment"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "identity/oidcClient",
+  "fqn": "pulumi_vault.identity",
+  "classes": {
+   "vault:identity/oidcClient:OidcClient": "OidcClient"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "identity/oidcKey",
   "fqn": "pulumi_vault.identity",
   "classes": {
@@ -478,10 +494,26 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "identity/oidcProvider",
+  "fqn": "pulumi_vault.identity",
+  "classes": {
+   "vault:identity/oidcProvider:OidcProvider": "OidcProvider"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "identity/oidcRole",
   "fqn": "pulumi_vault.identity",
   "classes": {
    "vault:identity/oidcRole:OidcRole": "OidcRole"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "identity/oidcScope",
+  "fqn": "pulumi_vault.identity",
+  "classes": {
+   "vault:identity/oidcScope:OidcScope": "OidcScope"
   }
  },
  {

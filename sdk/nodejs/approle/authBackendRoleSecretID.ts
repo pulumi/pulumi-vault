@@ -91,6 +91,11 @@ export class AuthBackendRoleSecretID extends pulumi.CustomResource {
      */
     public readonly secretId!: pulumi.Output<string>;
     /**
+     * Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
+     * the wrapping token is expired or invalidated through unwrapping.
+     */
+    public readonly withWrappedAccessor!: pulumi.Output<boolean | undefined>;
+    /**
      * The unique ID for the response-wrapped SecretID that can
      * be safely logged.
      */
@@ -126,6 +131,7 @@ export class AuthBackendRoleSecretID extends pulumi.CustomResource {
             resourceInputs["metadata"] = state ? state.metadata : undefined;
             resourceInputs["roleName"] = state ? state.roleName : undefined;
             resourceInputs["secretId"] = state ? state.secretId : undefined;
+            resourceInputs["withWrappedAccessor"] = state ? state.withWrappedAccessor : undefined;
             resourceInputs["wrappingAccessor"] = state ? state.wrappingAccessor : undefined;
             resourceInputs["wrappingToken"] = state ? state.wrappingToken : undefined;
             resourceInputs["wrappingTtl"] = state ? state.wrappingTtl : undefined;
@@ -139,6 +145,7 @@ export class AuthBackendRoleSecretID extends pulumi.CustomResource {
             resourceInputs["metadata"] = args ? args.metadata : undefined;
             resourceInputs["roleName"] = args ? args.roleName : undefined;
             resourceInputs["secretId"] = args ? args.secretId : undefined;
+            resourceInputs["withWrappedAccessor"] = args ? args.withWrappedAccessor : undefined;
             resourceInputs["wrappingTtl"] = args ? args.wrappingTtl : undefined;
             resourceInputs["accessor"] = undefined /*out*/;
             resourceInputs["wrappingAccessor"] = undefined /*out*/;
@@ -180,6 +187,11 @@ export interface AuthBackendRoleSecretIDState {
      * mode.  Defaults to Vault auto-generating SecretIDs.
      */
     secretId?: pulumi.Input<string>;
+    /**
+     * Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
+     * the wrapping token is expired or invalidated through unwrapping.
+     */
+    withWrappedAccessor?: pulumi.Input<boolean>;
     /**
      * The unique ID for the response-wrapped SecretID that can
      * be safely logged.
@@ -225,6 +237,11 @@ export interface AuthBackendRoleSecretIDArgs {
      * mode.  Defaults to Vault auto-generating SecretIDs.
      */
     secretId?: pulumi.Input<string>;
+    /**
+     * Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
+     * the wrapping token is expired or invalidated through unwrapping.
+     */
+    withWrappedAccessor?: pulumi.Input<boolean>;
     /**
      * If set, the SecretID response will be
      * [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)

@@ -20,7 +20,7 @@ class GetAccessCredentialsResult:
     """
     A collection of values returned by getAccessCredentials.
     """
-    def __init__(__self__, backend=None, client_id=None, client_secret=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, max_cred_validation_seconds=None, num_seconds_between_tests=None, num_sequential_successes=None, role=None, validate_creds=None):
+    def __init__(__self__, backend=None, client_id=None, client_secret=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, max_cred_validation_seconds=None, num_seconds_between_tests=None, num_sequential_successes=None, role=None, subscription_id=None, tenant_id=None, validate_creds=None):
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         pulumi.set(__self__, "backend", backend)
@@ -57,6 +57,12 @@ class GetAccessCredentialsResult:
         if role and not isinstance(role, str):
             raise TypeError("Expected argument 'role' to be a str")
         pulumi.set(__self__, "role", role)
+        if subscription_id and not isinstance(subscription_id, str):
+            raise TypeError("Expected argument 'subscription_id' to be a str")
+        pulumi.set(__self__, "subscription_id", subscription_id)
+        if tenant_id and not isinstance(tenant_id, str):
+            raise TypeError("Expected argument 'tenant_id' to be a str")
+        pulumi.set(__self__, "tenant_id", tenant_id)
         if validate_creds and not isinstance(validate_creds, bool):
             raise TypeError("Expected argument 'validate_creds' to be a bool")
         pulumi.set(__self__, "validate_creds", validate_creds)
@@ -139,6 +145,16 @@ class GetAccessCredentialsResult:
         return pulumi.get(self, "role")
 
     @property
+    @pulumi.getter(name="subscriptionId")
+    def subscription_id(self) -> Optional[str]:
+        return pulumi.get(self, "subscription_id")
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> Optional[str]:
+        return pulumi.get(self, "tenant_id")
+
+    @property
     @pulumi.getter(name="validateCreds")
     def validate_creds(self) -> Optional[bool]:
         return pulumi.get(self, "validate_creds")
@@ -162,6 +178,8 @@ class AwaitableGetAccessCredentialsResult(GetAccessCredentialsResult):
             num_seconds_between_tests=self.num_seconds_between_tests,
             num_sequential_successes=self.num_sequential_successes,
             role=self.role,
+            subscription_id=self.subscription_id,
+            tenant_id=self.tenant_id,
             validate_creds=self.validate_creds)
 
 
@@ -170,6 +188,8 @@ def get_access_credentials(backend: Optional[str] = None,
                            num_seconds_between_tests: Optional[int] = None,
                            num_sequential_successes: Optional[int] = None,
                            role: Optional[str] = None,
+                           subscription_id: Optional[str] = None,
+                           tenant_id: Optional[str] = None,
                            validate_creds: Optional[bool] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccessCredentialsResult:
     """
@@ -179,15 +199,19 @@ def get_access_credentials(backend: Optional[str] = None,
            read credentials from, with no leading or trailing `/`s.
     :param int max_cred_validation_seconds: If 'validate_creds' is true, 
            the number of seconds after which to give up validating credentials. Defaults
-           to 1,200 (20 minutes).
+           to 300.
     :param int num_seconds_between_tests: If 'validate_creds' is true, 
            the number of seconds to wait between each test of generated credentials.
-           Defaults to 7.
+           Defaults to 1.
     :param int num_sequential_successes: If 'validate_creds' is true, 
            the number of sequential successes required to validate generated
            credentials. Defaults to 8.
     :param str role: The name of the Azure secret backend role to read
            credentials from, with no leading or trailing `/`s.
+    :param str subscription_id: The subscription ID to use during credential
+           validation. Defaults to the subscription ID configured in the Vault `backend`.
+    :param str tenant_id: The tenant ID to use during credential validation.
+           Defaults to the tenant ID configured in the Vault `backend`.
     :param bool validate_creds: Whether generated credentials should be 
            validated before being returned. Defaults to `false`, which returns
            credentials without checking whether they have fully propagated throughout
@@ -199,6 +223,8 @@ def get_access_credentials(backend: Optional[str] = None,
     __args__['numSecondsBetweenTests'] = num_seconds_between_tests
     __args__['numSequentialSuccesses'] = num_sequential_successes
     __args__['role'] = role
+    __args__['subscriptionId'] = subscription_id
+    __args__['tenantId'] = tenant_id
     __args__['validateCreds'] = validate_creds
     if opts is None:
         opts = pulumi.InvokeOptions()
@@ -219,6 +245,8 @@ def get_access_credentials(backend: Optional[str] = None,
         num_seconds_between_tests=__ret__.num_seconds_between_tests,
         num_sequential_successes=__ret__.num_sequential_successes,
         role=__ret__.role,
+        subscription_id=__ret__.subscription_id,
+        tenant_id=__ret__.tenant_id,
         validate_creds=__ret__.validate_creds)
 
 
@@ -228,6 +256,8 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
                                   num_seconds_between_tests: Optional[pulumi.Input[Optional[int]]] = None,
                                   num_sequential_successes: Optional[pulumi.Input[Optional[int]]] = None,
                                   role: Optional[pulumi.Input[str]] = None,
+                                  subscription_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                  tenant_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   validate_creds: Optional[pulumi.Input[Optional[bool]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccessCredentialsResult]:
     """
@@ -237,15 +267,19 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
            read credentials from, with no leading or trailing `/`s.
     :param int max_cred_validation_seconds: If 'validate_creds' is true, 
            the number of seconds after which to give up validating credentials. Defaults
-           to 1,200 (20 minutes).
+           to 300.
     :param int num_seconds_between_tests: If 'validate_creds' is true, 
            the number of seconds to wait between each test of generated credentials.
-           Defaults to 7.
+           Defaults to 1.
     :param int num_sequential_successes: If 'validate_creds' is true, 
            the number of sequential successes required to validate generated
            credentials. Defaults to 8.
     :param str role: The name of the Azure secret backend role to read
            credentials from, with no leading or trailing `/`s.
+    :param str subscription_id: The subscription ID to use during credential
+           validation. Defaults to the subscription ID configured in the Vault `backend`.
+    :param str tenant_id: The tenant ID to use during credential validation.
+           Defaults to the tenant ID configured in the Vault `backend`.
     :param bool validate_creds: Whether generated credentials should be 
            validated before being returned. Defaults to `false`, which returns
            credentials without checking whether they have fully propagated throughout

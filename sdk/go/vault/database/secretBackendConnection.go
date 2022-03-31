@@ -56,9 +56,7 @@ type SecretBackendConnection struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// A nested block containing configuration options for Oracle connections.
 	Oracle SecretBackendConnectionOraclePtrOutput `pulumi:"oracle"`
-	// Specifies the name of the plugin to use. All values must be prefixed
-	// to match the corresponding database engine directive.
-	// For example the `pluginName` for the `mysqlAurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringOutput `pulumi:"pluginName"`
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql SecretBackendConnectionPostgresqlPtrOutput `pulumi:"postgresql"`
@@ -140,9 +138,7 @@ type secretBackendConnectionState struct {
 	Name *string `pulumi:"name"`
 	// A nested block containing configuration options for Oracle connections.
 	Oracle *SecretBackendConnectionOracle `pulumi:"oracle"`
-	// Specifies the name of the plugin to use. All values must be prefixed
-	// to match the corresponding database engine directive.
-	// For example the `pluginName` for the `mysqlAurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql *SecretBackendConnectionPostgresql `pulumi:"postgresql"`
@@ -193,9 +189,7 @@ type SecretBackendConnectionState struct {
 	Name pulumi.StringPtrInput
 	// A nested block containing configuration options for Oracle connections.
 	Oracle SecretBackendConnectionOraclePtrInput
-	// Specifies the name of the plugin to use. All values must be prefixed
-	// to match the corresponding database engine directive.
-	// For example the `pluginName` for the `mysqlAurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql SecretBackendConnectionPostgresqlPtrInput
@@ -250,9 +244,7 @@ type secretBackendConnectionArgs struct {
 	Name *string `pulumi:"name"`
 	// A nested block containing configuration options for Oracle connections.
 	Oracle *SecretBackendConnectionOracle `pulumi:"oracle"`
-	// Specifies the name of the plugin to use. All values must be prefixed
-	// to match the corresponding database engine directive.
-	// For example the `pluginName` for the `mysqlAurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql *SecretBackendConnectionPostgresql `pulumi:"postgresql"`
@@ -304,9 +296,7 @@ type SecretBackendConnectionArgs struct {
 	Name pulumi.StringPtrInput
 	// A nested block containing configuration options for Oracle connections.
 	Oracle SecretBackendConnectionOraclePtrInput
-	// Specifies the name of the plugin to use. All values must be prefixed
-	// to match the corresponding database engine directive.
-	// For example the `pluginName` for the `mysqlAurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql SecretBackendConnectionPostgresqlPtrInput

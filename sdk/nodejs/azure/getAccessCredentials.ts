@@ -16,6 +16,8 @@ export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulu
         "numSecondsBetweenTests": args.numSecondsBetweenTests,
         "numSequentialSuccesses": args.numSequentialSuccesses,
         "role": args.role,
+        "subscriptionId": args.subscriptionId,
+        "tenantId": args.tenantId,
         "validateCreds": args.validateCreds,
     }, opts);
 }
@@ -32,13 +34,13 @@ export interface GetAccessCredentialsArgs {
     /**
      * If 'validate_creds' is true, 
      * the number of seconds after which to give up validating credentials. Defaults
-     * to 1,200 (20 minutes).
+     * to 300.
      */
     maxCredValidationSeconds?: number;
     /**
      * If 'validate_creds' is true, 
      * the number of seconds to wait between each test of generated credentials.
-     * Defaults to 7.
+     * Defaults to 1.
      */
     numSecondsBetweenTests?: number;
     /**
@@ -52,6 +54,16 @@ export interface GetAccessCredentialsArgs {
      * credentials from, with no leading or trailing `/`s.
      */
     role: string;
+    /**
+     * The subscription ID to use during credential
+     * validation. Defaults to the subscription ID configured in the Vault `backend`.
+     */
+    subscriptionId?: string;
+    /**
+     * The tenant ID to use during credential validation.
+     * Defaults to the tenant ID configured in the Vault `backend`.
+     */
+    tenantId?: string;
     /**
      * Whether generated credentials should be 
      * validated before being returned. Defaults to `false`, which returns
@@ -94,6 +106,8 @@ export interface GetAccessCredentialsResult {
     readonly numSecondsBetweenTests?: number;
     readonly numSequentialSuccesses?: number;
     readonly role: string;
+    readonly subscriptionId?: string;
+    readonly tenantId?: string;
     readonly validateCreds?: boolean;
 }
 
@@ -113,13 +127,13 @@ export interface GetAccessCredentialsOutputArgs {
     /**
      * If 'validate_creds' is true, 
      * the number of seconds after which to give up validating credentials. Defaults
-     * to 1,200 (20 minutes).
+     * to 300.
      */
     maxCredValidationSeconds?: pulumi.Input<number>;
     /**
      * If 'validate_creds' is true, 
      * the number of seconds to wait between each test of generated credentials.
-     * Defaults to 7.
+     * Defaults to 1.
      */
     numSecondsBetweenTests?: pulumi.Input<number>;
     /**
@@ -133,6 +147,16 @@ export interface GetAccessCredentialsOutputArgs {
      * credentials from, with no leading or trailing `/`s.
      */
     role: pulumi.Input<string>;
+    /**
+     * The subscription ID to use during credential
+     * validation. Defaults to the subscription ID configured in the Vault `backend`.
+     */
+    subscriptionId?: pulumi.Input<string>;
+    /**
+     * The tenant ID to use during credential validation.
+     * Defaults to the tenant ID configured in the Vault `backend`.
+     */
+    tenantId?: pulumi.Input<string>;
     /**
      * Whether generated credentials should be 
      * validated before being returned. Defaults to `false`, which returns

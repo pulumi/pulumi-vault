@@ -66,6 +66,16 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
+     * The Consul namespace that the token will be created in.
+     * Applicable for Vault 1.10+ and Consul 1.7+",
+     */
+    public readonly consulNamespace!: pulumi.Output<string>;
+    /**
+     * Set of Consul roles to attach to the token.
+     * Applicable for Vault 1.10+ with Consul 1.5+.
+     */
+    public readonly consulRoles!: pulumi.Output<string[] | undefined>;
+    /**
      * Indicates that the token should not be replicated globally and instead be local to the current datacenter.
      */
     public readonly local!: pulumi.Output<boolean | undefined>;
@@ -78,9 +88,14 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The admin partition that the token will be created in.
+     * Applicable for Vault 1.10+ and Consul 1.11+",
+     */
+    public readonly partition!: pulumi.Output<string>;
+    /**
      * The list of Consul ACL policies to associate with these roles.
      */
-    public readonly policies!: pulumi.Output<string[]>;
+    public readonly policies!: pulumi.Output<string[] | undefined>;
     /**
      * Specifies the type of token to create when using this role. Valid values are "client" or "management".
      */
@@ -97,28 +112,31 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: SecretBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: SecretBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SecretBackendRoleArgs | SecretBackendRoleState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendRoleState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["consulNamespace"] = state ? state.consulNamespace : undefined;
+            resourceInputs["consulRoles"] = state ? state.consulRoles : undefined;
             resourceInputs["local"] = state ? state.local : undefined;
             resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["partition"] = state ? state.partition : undefined;
             resourceInputs["policies"] = state ? state.policies : undefined;
             resourceInputs["tokenType"] = state ? state.tokenType : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
-            if ((!args || args.policies === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'policies'");
-            }
             resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["consulNamespace"] = args ? args.consulNamespace : undefined;
+            resourceInputs["consulRoles"] = args ? args.consulRoles : undefined;
             resourceInputs["local"] = args ? args.local : undefined;
             resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["partition"] = args ? args.partition : undefined;
             resourceInputs["policies"] = args ? args.policies : undefined;
             resourceInputs["tokenType"] = args ? args.tokenType : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
@@ -137,6 +155,16 @@ export interface SecretBackendRoleState {
      */
     backend?: pulumi.Input<string>;
     /**
+     * The Consul namespace that the token will be created in.
+     * Applicable for Vault 1.10+ and Consul 1.7+",
+     */
+    consulNamespace?: pulumi.Input<string>;
+    /**
+     * Set of Consul roles to attach to the token.
+     * Applicable for Vault 1.10+ with Consul 1.5+.
+     */
+    consulRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Indicates that the token should not be replicated globally and instead be local to the current datacenter.
      */
     local?: pulumi.Input<boolean>;
@@ -148,6 +176,11 @@ export interface SecretBackendRoleState {
      * The name of the Consul secrets engine role to create.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The admin partition that the token will be created in.
+     * Applicable for Vault 1.10+ and Consul 1.11+",
+     */
+    partition?: pulumi.Input<string>;
     /**
      * The list of Consul ACL policies to associate with these roles.
      */
@@ -171,6 +204,16 @@ export interface SecretBackendRoleArgs {
      */
     backend?: pulumi.Input<string>;
     /**
+     * The Consul namespace that the token will be created in.
+     * Applicable for Vault 1.10+ and Consul 1.7+",
+     */
+    consulNamespace?: pulumi.Input<string>;
+    /**
+     * Set of Consul roles to attach to the token.
+     * Applicable for Vault 1.10+ with Consul 1.5+.
+     */
+    consulRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Indicates that the token should not be replicated globally and instead be local to the current datacenter.
      */
     local?: pulumi.Input<boolean>;
@@ -183,9 +226,14 @@ export interface SecretBackendRoleArgs {
      */
     name?: pulumi.Input<string>;
     /**
+     * The admin partition that the token will be created in.
+     * Applicable for Vault 1.10+ and Consul 1.11+",
+     */
+    partition?: pulumi.Input<string>;
+    /**
      * The list of Consul ACL policies to associate with these roles.
      */
-    policies: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the type of token to create when using this role. Valid values are "client" or "management".
      */

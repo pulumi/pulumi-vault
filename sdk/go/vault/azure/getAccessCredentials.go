@@ -26,11 +26,11 @@ type GetAccessCredentialsArgs struct {
 	Backend string `pulumi:"backend"`
 	// If 'validate_creds' is true,
 	// the number of seconds after which to give up validating credentials. Defaults
-	// to 1,200 (20 minutes).
+	// to 300.
 	MaxCredValidationSeconds *int `pulumi:"maxCredValidationSeconds"`
 	// If 'validate_creds' is true,
 	// the number of seconds to wait between each test of generated credentials.
-	// Defaults to 7.
+	// Defaults to 1.
 	NumSecondsBetweenTests *int `pulumi:"numSecondsBetweenTests"`
 	// If 'validate_creds' is true,
 	// the number of sequential successes required to validate generated
@@ -39,6 +39,12 @@ type GetAccessCredentialsArgs struct {
 	// The name of the Azure secret backend role to read
 	// credentials from, with no leading or trailing `/`s.
 	Role string `pulumi:"role"`
+	// The subscription ID to use during credential
+	// validation. Defaults to the subscription ID configured in the Vault `backend`.
+	SubscriptionId *string `pulumi:"subscriptionId"`
+	// The tenant ID to use during credential validation.
+	// Defaults to the tenant ID configured in the Vault `backend`.
+	TenantId *string `pulumi:"tenantId"`
 	// Whether generated credentials should be
 	// validated before being returned. Defaults to `false`, which returns
 	// credentials without checking whether they have fully propagated throughout
@@ -60,14 +66,16 @@ type GetAccessCredentialsResult struct {
 	// generated with this data may fail to apply.
 	LeaseDuration int `pulumi:"leaseDuration"`
 	// The lease identifier assigned by Vault.
-	LeaseId                  string `pulumi:"leaseId"`
-	LeaseRenewable           bool   `pulumi:"leaseRenewable"`
-	LeaseStartTime           string `pulumi:"leaseStartTime"`
-	MaxCredValidationSeconds *int   `pulumi:"maxCredValidationSeconds"`
-	NumSecondsBetweenTests   *int   `pulumi:"numSecondsBetweenTests"`
-	NumSequentialSuccesses   *int   `pulumi:"numSequentialSuccesses"`
-	Role                     string `pulumi:"role"`
-	ValidateCreds            *bool  `pulumi:"validateCreds"`
+	LeaseId                  string  `pulumi:"leaseId"`
+	LeaseRenewable           bool    `pulumi:"leaseRenewable"`
+	LeaseStartTime           string  `pulumi:"leaseStartTime"`
+	MaxCredValidationSeconds *int    `pulumi:"maxCredValidationSeconds"`
+	NumSecondsBetweenTests   *int    `pulumi:"numSecondsBetweenTests"`
+	NumSequentialSuccesses   *int    `pulumi:"numSequentialSuccesses"`
+	Role                     string  `pulumi:"role"`
+	SubscriptionId           *string `pulumi:"subscriptionId"`
+	TenantId                 *string `pulumi:"tenantId"`
+	ValidateCreds            *bool   `pulumi:"validateCreds"`
 }
 
 func GetAccessCredentialsOutput(ctx *pulumi.Context, args GetAccessCredentialsOutputArgs, opts ...pulumi.InvokeOption) GetAccessCredentialsResultOutput {
@@ -86,11 +94,11 @@ type GetAccessCredentialsOutputArgs struct {
 	Backend pulumi.StringInput `pulumi:"backend"`
 	// If 'validate_creds' is true,
 	// the number of seconds after which to give up validating credentials. Defaults
-	// to 1,200 (20 minutes).
+	// to 300.
 	MaxCredValidationSeconds pulumi.IntPtrInput `pulumi:"maxCredValidationSeconds"`
 	// If 'validate_creds' is true,
 	// the number of seconds to wait between each test of generated credentials.
-	// Defaults to 7.
+	// Defaults to 1.
 	NumSecondsBetweenTests pulumi.IntPtrInput `pulumi:"numSecondsBetweenTests"`
 	// If 'validate_creds' is true,
 	// the number of sequential successes required to validate generated
@@ -99,6 +107,12 @@ type GetAccessCredentialsOutputArgs struct {
 	// The name of the Azure secret backend role to read
 	// credentials from, with no leading or trailing `/`s.
 	Role pulumi.StringInput `pulumi:"role"`
+	// The subscription ID to use during credential
+	// validation. Defaults to the subscription ID configured in the Vault `backend`.
+	SubscriptionId pulumi.StringPtrInput `pulumi:"subscriptionId"`
+	// The tenant ID to use during credential validation.
+	// Defaults to the tenant ID configured in the Vault `backend`.
+	TenantId pulumi.StringPtrInput `pulumi:"tenantId"`
 	// Whether generated credentials should be
 	// validated before being returned. Defaults to `false`, which returns
 	// credentials without checking whether they have fully propagated throughout
@@ -178,6 +192,14 @@ func (o GetAccessCredentialsResultOutput) NumSequentialSuccesses() pulumi.IntPtr
 
 func (o GetAccessCredentialsResultOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.Role }).(pulumi.StringOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) SubscriptionId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) *string { return v.SubscriptionId }).(pulumi.StringPtrOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) TenantId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) *string { return v.TenantId }).(pulumi.StringPtrOutput)
 }
 
 func (o GetAccessCredentialsResultOutput) ValidateCreds() pulumi.BoolPtrOutput {

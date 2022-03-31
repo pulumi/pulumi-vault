@@ -76,6 +76,11 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly organization!: pulumi.Output<string>;
     /**
+     * The ID of the organization users must be part of.
+     * Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
+     */
+    public readonly organizationId!: pulumi.Output<number>;
+    /**
      * Path where the auth backend is mounted. Defaults to `auth/github`
      * if not specified.
      */
@@ -153,6 +158,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["baseUrl"] = state ? state.baseUrl : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["organization"] = state ? state.organization : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
             resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
@@ -172,6 +178,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["organization"] = args ? args.organization : undefined;
+            resourceInputs["organizationId"] = args ? args.organizationId : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
             resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
@@ -212,6 +219,11 @@ export interface AuthBackendState {
      * The organization configured users must be part of.
      */
     organization?: pulumi.Input<string>;
+    /**
+     * The ID of the organization users must be part of.
+     * Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
+     */
+    organizationId?: pulumi.Input<number>;
     /**
      * Path where the auth backend is mounted. Defaults to `auth/github`
      * if not specified.
@@ -292,6 +304,11 @@ export interface AuthBackendArgs {
      * The organization configured users must be part of.
      */
     organization: pulumi.Input<string>;
+    /**
+     * The ID of the organization users must be part of.
+     * Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
+     */
+    organizationId?: pulumi.Input<number>;
     /**
      * Path where the auth backend is mounted. Defaults to `auth/github`
      * if not specified.

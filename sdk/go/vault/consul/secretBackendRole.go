@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -60,12 +59,21 @@ type SecretBackendRole struct {
 
 	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
+	// The Consul namespace that the token will be created in.
+	// Applicable for Vault 1.10+ and Consul 1.7+",
+	ConsulNamespace pulumi.StringOutput `pulumi:"consulNamespace"`
+	// Set of Consul roles to attach to the token.
+	// Applicable for Vault 1.10+ with Consul 1.5+.
+	ConsulRoles pulumi.StringArrayOutput `pulumi:"consulRoles"`
 	// Indicates that the token should not be replicated globally and instead be local to the current datacenter.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// Maximum TTL for leases associated with this role, in seconds.
 	MaxTtl pulumi.IntPtrOutput `pulumi:"maxTtl"`
 	// The name of the Consul secrets engine role to create.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The admin partition that the token will be created in.
+	// Applicable for Vault 1.10+ and Consul 1.11+",
+	Partition pulumi.StringOutput `pulumi:"partition"`
 	// The list of Consul ACL policies to associate with these roles.
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// Specifies the type of token to create when using this role. Valid values are "client" or "management".
@@ -78,12 +86,9 @@ type SecretBackendRole struct {
 func NewSecretBackendRole(ctx *pulumi.Context,
 	name string, args *SecretBackendRoleArgs, opts ...pulumi.ResourceOption) (*SecretBackendRole, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &SecretBackendRoleArgs{}
 	}
 
-	if args.Policies == nil {
-		return nil, errors.New("invalid value for required argument 'Policies'")
-	}
 	var resource SecretBackendRole
 	err := ctx.RegisterResource("vault:consul/secretBackendRole:SecretBackendRole", name, args, &resource, opts...)
 	if err != nil {
@@ -108,12 +113,21 @@ func GetSecretBackendRole(ctx *pulumi.Context,
 type secretBackendRoleState struct {
 	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
 	Backend *string `pulumi:"backend"`
+	// The Consul namespace that the token will be created in.
+	// Applicable for Vault 1.10+ and Consul 1.7+",
+	ConsulNamespace *string `pulumi:"consulNamespace"`
+	// Set of Consul roles to attach to the token.
+	// Applicable for Vault 1.10+ with Consul 1.5+.
+	ConsulRoles []string `pulumi:"consulRoles"`
 	// Indicates that the token should not be replicated globally and instead be local to the current datacenter.
 	Local *bool `pulumi:"local"`
 	// Maximum TTL for leases associated with this role, in seconds.
 	MaxTtl *int `pulumi:"maxTtl"`
 	// The name of the Consul secrets engine role to create.
 	Name *string `pulumi:"name"`
+	// The admin partition that the token will be created in.
+	// Applicable for Vault 1.10+ and Consul 1.11+",
+	Partition *string `pulumi:"partition"`
 	// The list of Consul ACL policies to associate with these roles.
 	Policies []string `pulumi:"policies"`
 	// Specifies the type of token to create when using this role. Valid values are "client" or "management".
@@ -125,12 +139,21 @@ type secretBackendRoleState struct {
 type SecretBackendRoleState struct {
 	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
 	Backend pulumi.StringPtrInput
+	// The Consul namespace that the token will be created in.
+	// Applicable for Vault 1.10+ and Consul 1.7+",
+	ConsulNamespace pulumi.StringPtrInput
+	// Set of Consul roles to attach to the token.
+	// Applicable for Vault 1.10+ with Consul 1.5+.
+	ConsulRoles pulumi.StringArrayInput
 	// Indicates that the token should not be replicated globally and instead be local to the current datacenter.
 	Local pulumi.BoolPtrInput
 	// Maximum TTL for leases associated with this role, in seconds.
 	MaxTtl pulumi.IntPtrInput
 	// The name of the Consul secrets engine role to create.
 	Name pulumi.StringPtrInput
+	// The admin partition that the token will be created in.
+	// Applicable for Vault 1.10+ and Consul 1.11+",
+	Partition pulumi.StringPtrInput
 	// The list of Consul ACL policies to associate with these roles.
 	Policies pulumi.StringArrayInput
 	// Specifies the type of token to create when using this role. Valid values are "client" or "management".
@@ -146,12 +169,21 @@ func (SecretBackendRoleState) ElementType() reflect.Type {
 type secretBackendRoleArgs struct {
 	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
 	Backend *string `pulumi:"backend"`
+	// The Consul namespace that the token will be created in.
+	// Applicable for Vault 1.10+ and Consul 1.7+",
+	ConsulNamespace *string `pulumi:"consulNamespace"`
+	// Set of Consul roles to attach to the token.
+	// Applicable for Vault 1.10+ with Consul 1.5+.
+	ConsulRoles []string `pulumi:"consulRoles"`
 	// Indicates that the token should not be replicated globally and instead be local to the current datacenter.
 	Local *bool `pulumi:"local"`
 	// Maximum TTL for leases associated with this role, in seconds.
 	MaxTtl *int `pulumi:"maxTtl"`
 	// The name of the Consul secrets engine role to create.
 	Name *string `pulumi:"name"`
+	// The admin partition that the token will be created in.
+	// Applicable for Vault 1.10+ and Consul 1.11+",
+	Partition *string `pulumi:"partition"`
 	// The list of Consul ACL policies to associate with these roles.
 	Policies []string `pulumi:"policies"`
 	// Specifies the type of token to create when using this role. Valid values are "client" or "management".
@@ -164,12 +196,21 @@ type secretBackendRoleArgs struct {
 type SecretBackendRoleArgs struct {
 	// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
 	Backend pulumi.StringPtrInput
+	// The Consul namespace that the token will be created in.
+	// Applicable for Vault 1.10+ and Consul 1.7+",
+	ConsulNamespace pulumi.StringPtrInput
+	// Set of Consul roles to attach to the token.
+	// Applicable for Vault 1.10+ with Consul 1.5+.
+	ConsulRoles pulumi.StringArrayInput
 	// Indicates that the token should not be replicated globally and instead be local to the current datacenter.
 	Local pulumi.BoolPtrInput
 	// Maximum TTL for leases associated with this role, in seconds.
 	MaxTtl pulumi.IntPtrInput
 	// The name of the Consul secrets engine role to create.
 	Name pulumi.StringPtrInput
+	// The admin partition that the token will be created in.
+	// Applicable for Vault 1.10+ and Consul 1.11+",
+	Partition pulumi.StringPtrInput
 	// The list of Consul ACL policies to associate with these roles.
 	Policies pulumi.StringArrayInput
 	// Specifies the type of token to create when using this role. Valid values are "client" or "management".

@@ -290,6 +290,10 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 			"vault_identity_group_member_entity_ids": {Tok: makeResource(identityMod, "GroupMemberEntityIds")},
+			"vault_identity_oidc_assignment":         {Tok: makeResource(identityMod, "OidcAssignment")},
+			"vault_identity_oidc_client":             {Tok: makeResource(identityMod, "OidcClient")},
+			"vault_identity_oidc_provider":           {Tok: makeResource(identityMod, "OidcProvider")},
+			"vault_identity_oidc_scope":              {Tok: makeResource(identityMod, "OidcScope")},
 
 			// JWT
 			"vault_jwt_auth_backend":      {Tok: makeResource(jwtMod, "AuthBackend")},
@@ -428,8 +432,11 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_gcp_auth_backend_role": {Tok: makeDataSource(gcpMod, "getAuthBackendRole")},
 
 			// Identity
-			"vault_identity_group":  {Tok: makeDataSource(identityMod, "getGroup")},
-			"vault_identity_entity": {Tok: makeDataSource(identityMod, "getEntity")},
+			"vault_identity_group":              {Tok: makeDataSource(identityMod, "getGroup")},
+			"vault_identity_entity":             {Tok: makeDataSource(identityMod, "getEntity")},
+			"vault_identity_oidc_client_creds":  {Tok: makeDataSource(identityMod, "getOidcClientCreds")},
+			"vault_identity_oidc_openid_config": {Tok: makeDataSource(identityMod, "getOidcOpenidConfig")},
+			"vault_identity_oidc_public_keys":   {Tok: makeDataSource(identityMod, "getOidcPublicKeys")},
 
 			// Kubernetes
 			"vault_kubernetes_auth_backend_config": {

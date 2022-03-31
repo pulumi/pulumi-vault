@@ -793,6 +793,8 @@ type SecretBackendConnectionHana struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// Disable special character escaping in username and password.
+	DisableEscaping *bool `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -824,6 +826,8 @@ type SecretBackendConnectionHanaArgs struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// Disable special character escaping in username and password.
+	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -923,6 +927,11 @@ func (o SecretBackendConnectionHanaOutput) ConnectionUrl() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v SecretBackendConnectionHana) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
+// Disable special character escaping in username and password.
+func (o SecretBackendConnectionHanaOutput) DisableEscaping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionHana) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
+}
+
 // The maximum amount of time a connection may be reused.
 func (o SecretBackendConnectionHanaOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionHana) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
@@ -985,6 +994,16 @@ func (o SecretBackendConnectionHanaPtrOutput) ConnectionUrl() pulumi.StringPtrOu
 		}
 		return v.ConnectionUrl
 	}).(pulumi.StringPtrOutput)
+}
+
+// Disable special character escaping in username and password.
+func (o SecretBackendConnectionHanaPtrOutput) DisableEscaping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionHana) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DisableEscaping
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The maximum amount of time a connection may be reused.
@@ -1820,6 +1839,8 @@ type SecretBackendConnectionMssql struct {
 	// See the [Vault
 	// docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
 	ContainedDb *bool `pulumi:"containedDb"`
+	// Disable special character escaping in username and password.
+	DisableEscaping *bool `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -1858,6 +1879,8 @@ type SecretBackendConnectionMssqlArgs struct {
 	// See the [Vault
 	// docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
 	ContainedDb pulumi.BoolPtrInput `pulumi:"containedDb"`
+	// Disable special character escaping in username and password.
+	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -1967,6 +1990,11 @@ func (o SecretBackendConnectionMssqlOutput) ContainedDb() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *bool { return v.ContainedDb }).(pulumi.BoolPtrOutput)
 }
 
+// Disable special character escaping in username and password.
+func (o SecretBackendConnectionMssqlOutput) DisableEscaping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMssql) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
+}
+
 // The maximum amount of time a connection may be reused.
 func (o SecretBackendConnectionMssqlOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
@@ -2046,6 +2074,16 @@ func (o SecretBackendConnectionMssqlPtrOutput) ContainedDb() pulumi.BoolPtrOutpu
 			return nil
 		}
 		return v.ContainedDb
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Disable special character escaping in username and password.
+func (o SecretBackendConnectionMssqlPtrOutput) DisableEscaping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMssql) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DisableEscaping
 	}).(pulumi.BoolPtrOutput)
 }
 
@@ -3510,6 +3548,8 @@ type SecretBackendConnectionPostgresql struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// Disable special character escaping in username and password.
+	DisableEscaping *bool `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -3543,6 +3583,8 @@ type SecretBackendConnectionPostgresqlArgs struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// Disable special character escaping in username and password.
+	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -3644,6 +3686,11 @@ func (o SecretBackendConnectionPostgresqlOutput) ConnectionUrl() pulumi.StringPt
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
+// Disable special character escaping in username and password.
+func (o SecretBackendConnectionPostgresqlOutput) DisableEscaping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
+}
+
 // The maximum amount of time a connection may be reused.
 func (o SecretBackendConnectionPostgresqlOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
@@ -3711,6 +3758,16 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) ConnectionUrl() pulumi.Strin
 		}
 		return v.ConnectionUrl
 	}).(pulumi.StringPtrOutput)
+}
+
+// Disable special character escaping in username and password.
+func (o SecretBackendConnectionPostgresqlPtrOutput) DisableEscaping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DisableEscaping
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The maximum amount of time a connection may be reused.
@@ -3781,6 +3838,8 @@ type SecretBackendConnectionRedshift struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// Disable special character escaping in username and password.
+	DisableEscaping *bool `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -3814,6 +3873,8 @@ type SecretBackendConnectionRedshiftArgs struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// Disable special character escaping in username and password.
+	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -3915,6 +3976,11 @@ func (o SecretBackendConnectionRedshiftOutput) ConnectionUrl() pulumi.StringPtrO
 	return o.ApplyT(func(v SecretBackendConnectionRedshift) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
+// Disable special character escaping in username and password.
+func (o SecretBackendConnectionRedshiftOutput) DisableEscaping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionRedshift) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
+}
+
 // The maximum amount of time a connection may be reused.
 func (o SecretBackendConnectionRedshiftOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedshift) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
@@ -3982,6 +4048,16 @@ func (o SecretBackendConnectionRedshiftPtrOutput) ConnectionUrl() pulumi.StringP
 		}
 		return v.ConnectionUrl
 	}).(pulumi.StringPtrOutput)
+}
+
+// Disable special character escaping in username and password.
+func (o SecretBackendConnectionRedshiftPtrOutput) DisableEscaping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionRedshift) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DisableEscaping
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The maximum amount of time a connection may be reused.

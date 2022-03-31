@@ -125,9 +125,7 @@ namespace Pulumi.Vault.Database
         public Output<Outputs.SecretBackendConnectionOracle?> Oracle { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the name of the plugin to use. All values must be prefixed
-        /// to match the corresponding database engine directive.
-        /// For example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+        /// Specifies the name of the plugin to use.
         /// </summary>
         [Output("pluginName")]
         public Output<string> PluginName { get; private set; } = null!;
@@ -325,9 +323,7 @@ namespace Pulumi.Vault.Database
         public Input<Inputs.SecretBackendConnectionOracleArgs>? Oracle { get; set; }
 
         /// <summary>
-        /// Specifies the name of the plugin to use. All values must be prefixed
-        /// to match the corresponding database engine directive.
-        /// For example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+        /// Specifies the name of the plugin to use.
         /// </summary>
         [Input("pluginName")]
         public Input<string>? PluginName { get; set; }
@@ -492,9 +488,7 @@ namespace Pulumi.Vault.Database
         public Input<Inputs.SecretBackendConnectionOracleGetArgs>? Oracle { get; set; }
 
         /// <summary>
-        /// Specifies the name of the plugin to use. All values must be prefixed
-        /// to match the corresponding database engine directive.
-        /// For example the `plugin_name` for the `mysql_aurora` engine must begin with `mysql-aurora`. Note the hyphenation.
+        /// Specifies the name of the plugin to use.
         /// </summary>
         [Input("pluginName")]
         public Input<string>? PluginName { get; set; }

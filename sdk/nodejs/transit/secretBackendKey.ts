@@ -65,6 +65,11 @@ export class SecretBackendKey extends pulumi.CustomResource {
      */
     public readonly allowPlaintextBackup!: pulumi.Output<boolean | undefined>;
     /**
+     * Amount of time the key should live before being automatically rotated.
+     * A value of 0 disables automatic rotation for the key.
+     */
+    public readonly autoRotateInterval!: pulumi.Output<number>;
+    /**
      * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
      */
     public readonly backend!: pulumi.Output<string>;
@@ -146,6 +151,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SecretBackendKeyState | undefined;
             resourceInputs["allowPlaintextBackup"] = state ? state.allowPlaintextBackup : undefined;
+            resourceInputs["autoRotateInterval"] = state ? state.autoRotateInterval : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["convergentEncryption"] = state ? state.convergentEncryption : undefined;
             resourceInputs["deletionAllowed"] = state ? state.deletionAllowed : undefined;
@@ -168,6 +174,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
                 throw new Error("Missing required property 'backend'");
             }
             resourceInputs["allowPlaintextBackup"] = args ? args.allowPlaintextBackup : undefined;
+            resourceInputs["autoRotateInterval"] = args ? args.autoRotateInterval : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["convergentEncryption"] = args ? args.convergentEncryption : undefined;
             resourceInputs["deletionAllowed"] = args ? args.deletionAllowed : undefined;
@@ -199,6 +206,11 @@ export interface SecretBackendKeyState {
      * * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
      */
     allowPlaintextBackup?: pulumi.Input<boolean>;
+    /**
+     * Amount of time the key should live before being automatically rotated.
+     * A value of 0 disables automatic rotation for the key.
+     */
+    autoRotateInterval?: pulumi.Input<number>;
     /**
      * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
      */
@@ -277,6 +289,11 @@ export interface SecretBackendKeyArgs {
      * * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
      */
     allowPlaintextBackup?: pulumi.Input<boolean>;
+    /**
+     * Amount of time the key should live before being automatically rotated.
+     * A value of 0 disables automatic rotation for the key.
+     */
+    autoRotateInterval?: pulumi.Input<number>;
     /**
      * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
      */
