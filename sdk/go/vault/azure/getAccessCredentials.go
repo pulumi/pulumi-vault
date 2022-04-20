@@ -36,6 +36,11 @@ import (
 // 	})
 // }
 // ```
+// ## Caveats
+//
+// The `validateCreds` option requires read-access to the `backend` config endpoint.
+// If the effective Vault role does not have the required permissions then valid values
+// are required to be set for: `subscriptionId`, `tenantId`, `environment`.
 func GetAccessCredentials(ctx *pulumi.Context, args *GetAccessCredentialsArgs, opts ...pulumi.InvokeOption) (*GetAccessCredentialsResult, error) {
 	var rv GetAccessCredentialsResult
 	err := ctx.Invoke("vault:azure/getAccessCredentials:getAccessCredentials", args, &rv, opts...)
@@ -50,6 +55,11 @@ type GetAccessCredentialsArgs struct {
 	// The path to the Azure secret backend to
 	// read credentials from, with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
+	// The Azure environment to use during credential validation.
+	// Defaults to the environment configured in the Vault backend.
+	// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+	// *See the caveats section for more information on this field.*
+	Environment *string `pulumi:"environment"`
 	// If 'validate_creds' is true,
 	// the number of seconds after which to give up validating credentials. Defaults
 	// to 300.
@@ -67,9 +77,11 @@ type GetAccessCredentialsArgs struct {
 	Role string `pulumi:"role"`
 	// The subscription ID to use during credential
 	// validation. Defaults to the subscription ID configured in the Vault `backend`.
+	// *See the caveats section for more information on this field.*
 	SubscriptionId *string `pulumi:"subscriptionId"`
 	// The tenant ID to use during credential validation.
 	// Defaults to the tenant ID configured in the Vault `backend`.
+	// *See the caveats section for more information on this field.*
 	TenantId *string `pulumi:"tenantId"`
 	// Whether generated credentials should be
 	// validated before being returned. Defaults to `false`, which returns
@@ -84,7 +96,8 @@ type GetAccessCredentialsResult struct {
 	// The client id for credentials to query the Azure APIs.
 	ClientId string `pulumi:"clientId"`
 	// The client secret for credentials to query the Azure APIs.
-	ClientSecret string `pulumi:"clientSecret"`
+	ClientSecret string  `pulumi:"clientSecret"`
+	Environment  *string `pulumi:"environment"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The duration of the secret lease, in seconds relative
@@ -118,6 +131,11 @@ type GetAccessCredentialsOutputArgs struct {
 	// The path to the Azure secret backend to
 	// read credentials from, with no leading or trailing `/`s.
 	Backend pulumi.StringInput `pulumi:"backend"`
+	// The Azure environment to use during credential validation.
+	// Defaults to the environment configured in the Vault backend.
+	// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+	// *See the caveats section for more information on this field.*
+	Environment pulumi.StringPtrInput `pulumi:"environment"`
 	// If 'validate_creds' is true,
 	// the number of seconds after which to give up validating credentials. Defaults
 	// to 300.
@@ -135,9 +153,11 @@ type GetAccessCredentialsOutputArgs struct {
 	Role pulumi.StringInput `pulumi:"role"`
 	// The subscription ID to use during credential
 	// validation. Defaults to the subscription ID configured in the Vault `backend`.
+	// *See the caveats section for more information on this field.*
 	SubscriptionId pulumi.StringPtrInput `pulumi:"subscriptionId"`
 	// The tenant ID to use during credential validation.
 	// Defaults to the tenant ID configured in the Vault `backend`.
+	// *See the caveats section for more information on this field.*
 	TenantId pulumi.StringPtrInput `pulumi:"tenantId"`
 	// Whether generated credentials should be
 	// validated before being returned. Defaults to `false`, which returns
@@ -177,6 +197,10 @@ func (o GetAccessCredentialsResultOutput) ClientId() pulumi.StringOutput {
 // The client secret for credentials to query the Azure APIs.
 func (o GetAccessCredentialsResultOutput) ClientSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccessCredentialsResult) string { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+func (o GetAccessCredentialsResultOutput) Environment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAccessCredentialsResult) *string { return v.Environment }).(pulumi.StringPtrOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

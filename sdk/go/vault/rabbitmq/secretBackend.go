@@ -58,11 +58,15 @@ type SecretBackend struct {
 	MaxLeaseTtlSeconds pulumi.IntOutput `pulumi:"maxLeaseTtlSeconds"`
 	// Specifies the RabbitMQ management administrator password.
 	Password pulumi.StringOutput `pulumi:"password"`
+	// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+	PasswordPolicy pulumi.StringPtrOutput `pulumi:"passwordPolicy"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `rabbitmq`.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
 	// Specifies the RabbitMQ management administrator username.
 	Username pulumi.StringOutput `pulumi:"username"`
+	// Template describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrOutput `pulumi:"usernameTemplate"`
 	// Specifies whether to verify connection URI, username, and password.
 	// Defaults to `true`.
 	VerifyConnection pulumi.BoolPtrOutput `pulumi:"verifyConnection"`
@@ -118,11 +122,15 @@ type secretBackendState struct {
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
 	// Specifies the RabbitMQ management administrator password.
 	Password *string `pulumi:"password"`
+	// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `rabbitmq`.
 	Path *string `pulumi:"path"`
 	// Specifies the RabbitMQ management administrator username.
 	Username *string `pulumi:"username"`
+	// Template describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Specifies whether to verify connection URI, username, and password.
 	// Defaults to `true`.
 	VerifyConnection *bool `pulumi:"verifyConnection"`
@@ -141,11 +149,15 @@ type SecretBackendState struct {
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
 	// Specifies the RabbitMQ management administrator password.
 	Password pulumi.StringPtrInput
+	// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+	PasswordPolicy pulumi.StringPtrInput
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `rabbitmq`.
 	Path pulumi.StringPtrInput
 	// Specifies the RabbitMQ management administrator username.
 	Username pulumi.StringPtrInput
+	// Template describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput
 	// Specifies whether to verify connection URI, username, and password.
 	// Defaults to `true`.
 	VerifyConnection pulumi.BoolPtrInput
@@ -168,11 +180,15 @@ type secretBackendArgs struct {
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
 	// Specifies the RabbitMQ management administrator password.
 	Password string `pulumi:"password"`
+	// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `rabbitmq`.
 	Path *string `pulumi:"path"`
 	// Specifies the RabbitMQ management administrator username.
 	Username string `pulumi:"username"`
+	// Template describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Specifies whether to verify connection URI, username, and password.
 	// Defaults to `true`.
 	VerifyConnection *bool `pulumi:"verifyConnection"`
@@ -192,11 +208,15 @@ type SecretBackendArgs struct {
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
 	// Specifies the RabbitMQ management administrator password.
 	Password pulumi.StringInput
+	// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+	PasswordPolicy pulumi.StringPtrInput
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `rabbitmq`.
 	Path pulumi.StringPtrInput
 	// Specifies the RabbitMQ management administrator username.
 	Username pulumi.StringInput
+	// Template describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput
 	// Specifies whether to verify connection URI, username, and password.
 	// Defaults to `true`.
 	VerifyConnection pulumi.BoolPtrInput

@@ -28,10 +28,9 @@ import * as utilities from "../utilities";
  * const id = new vault.approle.AuthBackendRoleSecretID("id", {
  *     backend: approle.path,
  *     roleName: example.roleName,
- *     metadata: `  {
- *     "hello": "world"
- *   }
- * `,
+ *     metadata: JSON.stringify({
+ *         hello: "world",
+ *     }),
  * });
  * ```
  */
@@ -91,8 +90,9 @@ export class AuthBackendRoleSecretID extends pulumi.CustomResource {
      */
     public readonly secretId!: pulumi.Output<string>;
     /**
-     * Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
-     * the wrapping token is expired or invalidated through unwrapping.
+     * Set to `true` to use the wrapped secret-id accessor as the resource ID.
+     * If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+     * invalidated through unwrapping.
      */
     public readonly withWrappedAccessor!: pulumi.Output<boolean | undefined>;
     /**
@@ -188,8 +188,9 @@ export interface AuthBackendRoleSecretIDState {
      */
     secretId?: pulumi.Input<string>;
     /**
-     * Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
-     * the wrapping token is expired or invalidated through unwrapping.
+     * Set to `true` to use the wrapped secret-id accessor as the resource ID.
+     * If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+     * invalidated through unwrapping.
      */
     withWrappedAccessor?: pulumi.Input<boolean>;
     /**
@@ -238,8 +239,9 @@ export interface AuthBackendRoleSecretIDArgs {
      */
     secretId?: pulumi.Input<string>;
     /**
-     * Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
-     * the wrapping token is expired or invalidated through unwrapping.
+     * Set to `true` to use the wrapped secret-id accessor as the resource ID.
+     * If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+     * invalidated through unwrapping.
      */
     withWrappedAccessor?: pulumi.Input<boolean>;
     /**

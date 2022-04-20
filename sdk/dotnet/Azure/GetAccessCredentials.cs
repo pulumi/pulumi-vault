@@ -38,6 +38,11 @@ namespace Pulumi.Vault.Azure
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
+        /// ## Caveats
+        /// 
+        /// The `validate_creds` option requires read-access to the `backend` config endpoint.
+        /// If the effective Vault role does not have the required permissions then valid values 
+        /// are required to be set for: `subscription_id`, `tenant_id`, `environment`.
         /// </summary>
         public static Task<GetAccessCredentialsResult> InvokeAsync(GetAccessCredentialsArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:azure/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsArgs(), options.WithDefaults());
@@ -69,6 +74,11 @@ namespace Pulumi.Vault.Azure
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
+        /// ## Caveats
+        /// 
+        /// The `validate_creds` option requires read-access to the `backend` config endpoint.
+        /// If the effective Vault role does not have the required permissions then valid values 
+        /// are required to be set for: `subscription_id`, `tenant_id`, `environment`.
         /// </summary>
         public static Output<GetAccessCredentialsResult> Invoke(GetAccessCredentialsInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetAccessCredentialsResult>("vault:azure/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsInvokeArgs(), options.WithDefaults());
@@ -83,6 +93,15 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("backend", required: true)]
         public string Backend { get; set; } = null!;
+
+        /// <summary>
+        /// The Azure environment to use during credential validation.
+        /// Defaults to the environment configured in the Vault backend.
+        /// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+        /// *See the caveats section for more information on this field.*
+        /// </summary>
+        [Input("environment")]
+        public string? Environment { get; set; }
 
         /// <summary>
         /// If 'validate_creds' is true, 
@@ -118,6 +137,7 @@ namespace Pulumi.Vault.Azure
         /// <summary>
         /// The subscription ID to use during credential
         /// validation. Defaults to the subscription ID configured in the Vault `backend`.
+        /// *See the caveats section for more information on this field.*
         /// </summary>
         [Input("subscriptionId")]
         public string? SubscriptionId { get; set; }
@@ -125,6 +145,7 @@ namespace Pulumi.Vault.Azure
         /// <summary>
         /// The tenant ID to use during credential validation.
         /// Defaults to the tenant ID configured in the Vault `backend`.
+        /// *See the caveats section for more information on this field.*
         /// </summary>
         [Input("tenantId")]
         public string? TenantId { get; set; }
@@ -151,6 +172,15 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
+
+        /// <summary>
+        /// The Azure environment to use during credential validation.
+        /// Defaults to the environment configured in the Vault backend.
+        /// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+        /// *See the caveats section for more information on this field.*
+        /// </summary>
+        [Input("environment")]
+        public Input<string>? Environment { get; set; }
 
         /// <summary>
         /// If 'validate_creds' is true, 
@@ -186,6 +216,7 @@ namespace Pulumi.Vault.Azure
         /// <summary>
         /// The subscription ID to use during credential
         /// validation. Defaults to the subscription ID configured in the Vault `backend`.
+        /// *See the caveats section for more information on this field.*
         /// </summary>
         [Input("subscriptionId")]
         public Input<string>? SubscriptionId { get; set; }
@@ -193,6 +224,7 @@ namespace Pulumi.Vault.Azure
         /// <summary>
         /// The tenant ID to use during credential validation.
         /// Defaults to the tenant ID configured in the Vault `backend`.
+        /// *See the caveats section for more information on this field.*
         /// </summary>
         [Input("tenantId")]
         public Input<string>? TenantId { get; set; }
@@ -224,6 +256,7 @@ namespace Pulumi.Vault.Azure
         /// The client secret for credentials to query the Azure APIs.
         /// </summary>
         public readonly string ClientSecret;
+        public readonly string? Environment;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -256,6 +289,8 @@ namespace Pulumi.Vault.Azure
 
             string clientSecret,
 
+            string? environment,
+
             string id,
 
             int leaseDuration,
@@ -283,6 +318,7 @@ namespace Pulumi.Vault.Azure
             Backend = backend;
             ClientId = clientId;
             ClientSecret = clientSecret;
+            Environment = environment;
             Id = id;
             LeaseDuration = leaseDuration;
             LeaseId = leaseId;

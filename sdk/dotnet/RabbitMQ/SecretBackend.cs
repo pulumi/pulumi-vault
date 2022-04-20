@@ -75,6 +75,12 @@ namespace Pulumi.Vault.RabbitMQ
         public Output<string> Password { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+        /// </summary>
+        [Output("passwordPolicy")]
+        public Output<string?> PasswordPolicy { get; private set; } = null!;
+
+        /// <summary>
         /// The unique path this backend should be mounted at. Must
         /// not begin or end with a `/`. Defaults to `rabbitmq`.
         /// </summary>
@@ -86,6 +92,12 @@ namespace Pulumi.Vault.RabbitMQ
         /// </summary>
         [Output("username")]
         public Output<string> Username { get; private set; } = null!;
+
+        /// <summary>
+        /// Template describing how dynamic usernames are generated.
+        /// </summary>
+        [Output("usernameTemplate")]
+        public Output<string?> UsernameTemplate { get; private set; } = null!;
 
         /// <summary>
         /// Specifies whether to verify connection URI, username, and password.
@@ -173,6 +185,12 @@ namespace Pulumi.Vault.RabbitMQ
         public Input<string> Password { get; set; } = null!;
 
         /// <summary>
+        /// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+        /// </summary>
+        [Input("passwordPolicy")]
+        public Input<string>? PasswordPolicy { get; set; }
+
+        /// <summary>
         /// The unique path this backend should be mounted at. Must
         /// not begin or end with a `/`. Defaults to `rabbitmq`.
         /// </summary>
@@ -184,6 +202,12 @@ namespace Pulumi.Vault.RabbitMQ
         /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
+
+        /// <summary>
+        /// Template describing how dynamic usernames are generated.
+        /// </summary>
+        [Input("usernameTemplate")]
+        public Input<string>? UsernameTemplate { get; set; }
 
         /// <summary>
         /// Specifies whether to verify connection URI, username, and password.
@@ -232,6 +256,12 @@ namespace Pulumi.Vault.RabbitMQ
         public Input<string>? Password { get; set; }
 
         /// <summary>
+        /// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+        /// </summary>
+        [Input("passwordPolicy")]
+        public Input<string>? PasswordPolicy { get; set; }
+
+        /// <summary>
         /// The unique path this backend should be mounted at. Must
         /// not begin or end with a `/`. Defaults to `rabbitmq`.
         /// </summary>
@@ -243,6 +273,12 @@ namespace Pulumi.Vault.RabbitMQ
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
+
+        /// <summary>
+        /// Template describing how dynamic usernames are generated.
+        /// </summary>
+        [Input("usernameTemplate")]
+        public Input<string>? UsernameTemplate { get; set; }
 
         /// <summary>
         /// Specifies whether to verify connection URI, username, and password.

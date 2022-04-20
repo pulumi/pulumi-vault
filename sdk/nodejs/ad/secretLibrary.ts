@@ -4,6 +4,41 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const config = new vault.ad.SecretBackend("config", {
+ *     backend: "ad",
+ *     binddn: "CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
+ *     bindpass: "SuperSecretPassw0rd",
+ *     url: "ldaps://ad",
+ *     insecureTls: "true",
+ *     userdn: "CN=Users,DC=corp,DC=example,DC=net",
+ * });
+ * const qa = new vault.ad.SecretLibrary("qa", {
+ *     backend: config.backend,
+ *     serviceAccountNames: [
+ *         "Bob",
+ *         "Mary",
+ *     ],
+ *     ttl: 60,
+ *     disableCheckInEnforcement: true,
+ *     maxTtl: 120,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * AD secret backend libraries can be imported using the `path`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
+ * ```
+ */
 export class SecretLibrary extends pulumi.CustomResource {
     /**
      * Get an existing SecretLibrary resource's state with the given name, ID, and optional extra
@@ -33,7 +68,8 @@ export class SecretLibrary extends pulumi.CustomResource {
     }
 
     /**
-     * The mount path for the AD backend.
+     * The path the AD secret backend is mounted at,
+     * with no leading or trailing `/`s.
      */
     public readonly backend!: pulumi.Output<string>;
     /**
@@ -41,20 +77,22 @@ export class SecretLibrary extends pulumi.CustomResource {
      */
     public readonly disableCheckInEnforcement!: pulumi.Output<boolean | undefined>;
     /**
-     * The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.
+     * The maximum password time-to-live in seconds. Defaults to the configuration
+     * maxTtl if not provided.
      */
     public readonly maxTtl!: pulumi.Output<number>;
     /**
-     * The name of the set of service accounts.
+     * The name to identify this set of service accounts.
+     * Must be unique within the backend.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The names of all the service accounts that can be checked out from this set. These service accounts must already exist
-     * in Active Directory.
+     * Specifies the slice of service accounts mapped to this set.
      */
     public readonly serviceAccountNames!: pulumi.Output<string[]>;
     /**
-     * The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.
+     * The password time-to-live in seconds. Defaults to the configuration
+     * ttl if not provided.
      */
     public readonly ttl!: pulumi.Output<number>;
 
@@ -102,7 +140,8 @@ export class SecretLibrary extends pulumi.CustomResource {
  */
 export interface SecretLibraryState {
     /**
-     * The mount path for the AD backend.
+     * The path the AD secret backend is mounted at,
+     * with no leading or trailing `/`s.
      */
     backend?: pulumi.Input<string>;
     /**
@@ -110,20 +149,22 @@ export interface SecretLibraryState {
      */
     disableCheckInEnforcement?: pulumi.Input<boolean>;
     /**
-     * The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.
+     * The maximum password time-to-live in seconds. Defaults to the configuration
+     * maxTtl if not provided.
      */
     maxTtl?: pulumi.Input<number>;
     /**
-     * The name of the set of service accounts.
+     * The name to identify this set of service accounts.
+     * Must be unique within the backend.
      */
     name?: pulumi.Input<string>;
     /**
-     * The names of all the service accounts that can be checked out from this set. These service accounts must already exist
-     * in Active Directory.
+     * Specifies the slice of service accounts mapped to this set.
      */
     serviceAccountNames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.
+     * The password time-to-live in seconds. Defaults to the configuration
+     * ttl if not provided.
      */
     ttl?: pulumi.Input<number>;
 }
@@ -133,7 +174,8 @@ export interface SecretLibraryState {
  */
 export interface SecretLibraryArgs {
     /**
-     * The mount path for the AD backend.
+     * The path the AD secret backend is mounted at,
+     * with no leading or trailing `/`s.
      */
     backend: pulumi.Input<string>;
     /**
@@ -141,20 +183,22 @@ export interface SecretLibraryArgs {
      */
     disableCheckInEnforcement?: pulumi.Input<boolean>;
     /**
-     * The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.
+     * The maximum password time-to-live in seconds. Defaults to the configuration
+     * maxTtl if not provided.
      */
     maxTtl?: pulumi.Input<number>;
     /**
-     * The name of the set of service accounts.
+     * The name to identify this set of service accounts.
+     * Must be unique within the backend.
      */
     name?: pulumi.Input<string>;
     /**
-     * The names of all the service accounts that can be checked out from this set. These service accounts must already exist
-     * in Active Directory.
+     * Specifies the slice of service accounts mapped to this set.
      */
     serviceAccountNames: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.
+     * The password time-to-live in seconds. Defaults to the configuration
+     * ttl if not provided.
      */
     ttl?: pulumi.Input<number>;
 }

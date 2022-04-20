@@ -77,6 +77,10 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly password!: pulumi.Output<string>;
     /**
+     * Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+     */
+    public readonly passwordPolicy!: pulumi.Output<string | undefined>;
+    /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `rabbitmq`.
      */
@@ -85,6 +89,10 @@ export class SecretBackend extends pulumi.CustomResource {
      * Specifies the RabbitMQ management administrator username.
      */
     public readonly username!: pulumi.Output<string>;
+    /**
+     * Template describing how dynamic usernames are generated.
+     */
+    public readonly usernameTemplate!: pulumi.Output<string | undefined>;
     /**
      * Specifies whether to verify connection URI, username, and password.
      * Defaults to `true`.
@@ -109,8 +117,10 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["passwordPolicy"] = state ? state.passwordPolicy : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["usernameTemplate"] = state ? state.usernameTemplate : undefined;
             resourceInputs["verifyConnection"] = state ? state.verifyConnection : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
@@ -128,8 +138,10 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["passwordPolicy"] = args ? args.passwordPolicy : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["usernameTemplate"] = args ? args.usernameTemplate : undefined;
             resourceInputs["verifyConnection"] = args ? args.verifyConnection : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -164,6 +176,10 @@ export interface SecretBackendState {
      */
     password?: pulumi.Input<string>;
     /**
+     * Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+     */
+    passwordPolicy?: pulumi.Input<string>;
+    /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `rabbitmq`.
      */
@@ -172,6 +188,10 @@ export interface SecretBackendState {
      * Specifies the RabbitMQ management administrator username.
      */
     username?: pulumi.Input<string>;
+    /**
+     * Template describing how dynamic usernames are generated.
+     */
+    usernameTemplate?: pulumi.Input<string>;
     /**
      * Specifies whether to verify connection URI, username, and password.
      * Defaults to `true`.
@@ -206,6 +226,10 @@ export interface SecretBackendArgs {
      */
     password: pulumi.Input<string>;
     /**
+     * Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+     */
+    passwordPolicy?: pulumi.Input<string>;
+    /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `rabbitmq`.
      */
@@ -214,6 +238,10 @@ export interface SecretBackendArgs {
      * Specifies the RabbitMQ management administrator username.
      */
     username: pulumi.Input<string>;
+    /**
+     * Template describing how dynamic usernames are generated.
+     */
+    usernameTemplate?: pulumi.Input<string>;
     /**
      * Specifies whether to verify connection URI, username, and password.
      * Defaults to `true`.

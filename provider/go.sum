@@ -1508,8 +1508,8 @@ github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e h1:Di
 github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e/go.mod h1:sZ9FUzGO+yM41hsQHs/yIcj/Y993qMdBxBU5mpDmAfQ=
 github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20211230170131-3a7c83bfab87 h1:Reqyb/CbcDwThvBRzA62H7cvuCqgTJuGNt+F6mnmXJ4=
 github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20211230170131-3a7c83bfab87/go.mod h1:FjM9DXWfP0w/AeOtJoSKHBZ01LqmaO6uP4bXhv3fekw=
-github.com/pulumi/terraform-provider-vault v1.9.1-0.20220329180703-c4847b33cad9 h1:Ws6AigqLZWR3esMeHc3gHDsG27s3LLoh72mNxDTkvHA=
-github.com/pulumi/terraform-provider-vault v1.9.1-0.20220329180703-c4847b33cad9/go.mod h1:A9dz/T6FZPXugwG/bYmBp0R91fWNADaym6GESvNy5B4=
+github.com/pulumi/terraform-provider-vault v1.9.1-0.20220420212337-6ff94291749d h1:WQfRFCdNCi1nbWk6cZZiThmMZUKeosJwh360AQzmsCU=
+github.com/pulumi/terraform-provider-vault v1.9.1-0.20220420212337-6ff94291749d/go.mod h1:A9dz/T6FZPXugwG/bYmBp0R91fWNADaym6GESvNy5B4=
 github.com/rboyer/safeio v0.2.1/go.mod h1:Cq/cEPK+YXFn622lsQ0K4KsPZSPtaptHHEldsy7Fmig=
 github.com/rcrowley/go-metrics v0.0.0-20181016184325-3113b8401b8a/go.mod h1:bCqnVzQkZxMG4s8nGwiZ5l3QUCyqpo9Y+/ZMZ9VjZe4=
 github.com/renier/xmlrpc v0.0.0-20170708154548-ce4a1a486c03/go.mod h1:gRAiPF5C5Nd0eyyRdqIu9qTiFSoZzpTq727b5B8fkkU=

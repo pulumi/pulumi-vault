@@ -20,7 +20,7 @@ class GetAccessCredentialsResult:
     """
     A collection of values returned by getAccessCredentials.
     """
-    def __init__(__self__, backend=None, client_id=None, client_secret=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, max_cred_validation_seconds=None, num_seconds_between_tests=None, num_sequential_successes=None, role=None, subscription_id=None, tenant_id=None, validate_creds=None):
+    def __init__(__self__, backend=None, client_id=None, client_secret=None, environment=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, max_cred_validation_seconds=None, num_seconds_between_tests=None, num_sequential_successes=None, role=None, subscription_id=None, tenant_id=None, validate_creds=None):
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         pulumi.set(__self__, "backend", backend)
@@ -30,6 +30,9 @@ class GetAccessCredentialsResult:
         if client_secret and not isinstance(client_secret, str):
             raise TypeError("Expected argument 'client_secret' to be a str")
         pulumi.set(__self__, "client_secret", client_secret)
+        if environment and not isinstance(environment, str):
+            raise TypeError("Expected argument 'environment' to be a str")
+        pulumi.set(__self__, "environment", environment)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -87,6 +90,11 @@ class GetAccessCredentialsResult:
         The client secret for credentials to query the Azure APIs.
         """
         return pulumi.get(self, "client_secret")
+
+    @property
+    @pulumi.getter
+    def environment(self) -> Optional[str]:
+        return pulumi.get(self, "environment")
 
     @property
     @pulumi.getter
@@ -169,6 +177,7 @@ class AwaitableGetAccessCredentialsResult(GetAccessCredentialsResult):
             backend=self.backend,
             client_id=self.client_id,
             client_secret=self.client_secret,
+            environment=self.environment,
             id=self.id,
             lease_duration=self.lease_duration,
             lease_id=self.lease_id,
@@ -184,6 +193,7 @@ class AwaitableGetAccessCredentialsResult(GetAccessCredentialsResult):
 
 
 def get_access_credentials(backend: Optional[str] = None,
+                           environment: Optional[str] = None,
                            max_cred_validation_seconds: Optional[int] = None,
                            num_seconds_between_tests: Optional[int] = None,
                            num_sequential_successes: Optional[int] = None,
@@ -205,10 +215,19 @@ def get_access_credentials(backend: Optional[str] = None,
         num_seconds_between_tests=1,
         max_cred_validation_seconds=300)
     ```
+    ## Caveats
+
+    The `validate_creds` option requires read-access to the `backend` config endpoint.
+    If the effective Vault role does not have the required permissions then valid values
+    are required to be set for: `subscription_id`, `tenant_id`, `environment`.
 
 
     :param str backend: The path to the Azure secret backend to
            read credentials from, with no leading or trailing `/`s.
+    :param str environment: The Azure environment to use during credential validation.
+           Defaults to the environment configured in the Vault backend.
+           Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+           *See the caveats section for more information on this field.*
     :param int max_cred_validation_seconds: If 'validate_creds' is true, 
            the number of seconds after which to give up validating credentials. Defaults
            to 300.
@@ -222,8 +241,10 @@ def get_access_credentials(backend: Optional[str] = None,
            credentials from, with no leading or trailing `/`s.
     :param str subscription_id: The subscription ID to use during credential
            validation. Defaults to the subscription ID configured in the Vault `backend`.
+           *See the caveats section for more information on this field.*
     :param str tenant_id: The tenant ID to use during credential validation.
            Defaults to the tenant ID configured in the Vault `backend`.
+           *See the caveats section for more information on this field.*
     :param bool validate_creds: Whether generated credentials should be 
            validated before being returned. Defaults to `false`, which returns
            credentials without checking whether they have fully propagated throughout
@@ -231,6 +252,7 @@ def get_access_credentials(backend: Optional[str] = None,
     """
     __args__ = dict()
     __args__['backend'] = backend
+    __args__['environment'] = environment
     __args__['maxCredValidationSeconds'] = max_cred_validation_seconds
     __args__['numSecondsBetweenTests'] = num_seconds_between_tests
     __args__['numSequentialSuccesses'] = num_sequential_successes
@@ -248,6 +270,7 @@ def get_access_credentials(backend: Optional[str] = None,
         backend=__ret__.backend,
         client_id=__ret__.client_id,
         client_secret=__ret__.client_secret,
+        environment=__ret__.environment,
         id=__ret__.id,
         lease_duration=__ret__.lease_duration,
         lease_id=__ret__.lease_id,
@@ -264,6 +287,7 @@ def get_access_credentials(backend: Optional[str] = None,
 
 @_utilities.lift_output_func(get_access_credentials)
 def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
+                                  environment: Optional[pulumi.Input[Optional[str]]] = None,
                                   max_cred_validation_seconds: Optional[pulumi.Input[Optional[int]]] = None,
                                   num_seconds_between_tests: Optional[pulumi.Input[Optional[int]]] = None,
                                   num_sequential_successes: Optional[pulumi.Input[Optional[int]]] = None,
@@ -285,10 +309,19 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
         num_seconds_between_tests=1,
         max_cred_validation_seconds=300)
     ```
+    ## Caveats
+
+    The `validate_creds` option requires read-access to the `backend` config endpoint.
+    If the effective Vault role does not have the required permissions then valid values
+    are required to be set for: `subscription_id`, `tenant_id`, `environment`.
 
 
     :param str backend: The path to the Azure secret backend to
            read credentials from, with no leading or trailing `/`s.
+    :param str environment: The Azure environment to use during credential validation.
+           Defaults to the environment configured in the Vault backend.
+           Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+           *See the caveats section for more information on this field.*
     :param int max_cred_validation_seconds: If 'validate_creds' is true, 
            the number of seconds after which to give up validating credentials. Defaults
            to 300.
@@ -302,8 +335,10 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
            credentials from, with no leading or trailing `/`s.
     :param str subscription_id: The subscription ID to use during credential
            validation. Defaults to the subscription ID configured in the Vault `backend`.
+           *See the caveats section for more information on this field.*
     :param str tenant_id: The tenant ID to use during credential validation.
            Defaults to the tenant ID configured in the Vault `backend`.
+           *See the caveats section for more information on this field.*
     :param bool validate_creds: Whether generated credentials should be 
            validated before being returned. Defaults to `false`, which returns
            credentials without checking whether they have fully propagated throughout

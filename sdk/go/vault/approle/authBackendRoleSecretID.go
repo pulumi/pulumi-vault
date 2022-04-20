@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
+// 	"encoding/json"
 //
 // 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
 // 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/appRole"
@@ -48,10 +48,17 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
+// 		tmpJSON0, err := json.Marshal(map[string]interface{}{
+// 			"hello": "world",
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		json0 := string(tmpJSON0)
 // 		_, err = appRole.NewAuthBackendRoleSecretID(ctx, "id", &appRole.AuthBackendRoleSecretIDArgs{
 // 			Backend:  approle.Path,
 // 			RoleName: example.RoleName,
-// 			Metadata: pulumi.String(fmt.Sprintf("%v%v%v", "  {\n", "    \"hello\": \"world\"\n", "  }\n")),
+// 			Metadata: pulumi.String(json0),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -78,8 +85,9 @@ type AuthBackendRoleSecretID struct {
 	// The SecretID to be created. If set, uses "Push"
 	// mode.  Defaults to Vault auto-generating SecretIDs.
 	SecretId pulumi.StringOutput `pulumi:"secretId"`
-	// Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
-	// the wrapping token is expired or invalidated through unwrapping.
+	// Set to `true` to use the wrapped secret-id accessor as the resource ID.
+	// If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+	// invalidated through unwrapping.
 	WithWrappedAccessor pulumi.BoolPtrOutput `pulumi:"withWrappedAccessor"`
 	// The unique ID for the response-wrapped SecretID that can
 	// be safely logged.
@@ -140,8 +148,9 @@ type authBackendRoleSecretIDState struct {
 	// The SecretID to be created. If set, uses "Push"
 	// mode.  Defaults to Vault auto-generating SecretIDs.
 	SecretId *string `pulumi:"secretId"`
-	// Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
-	// the wrapping token is expired or invalidated through unwrapping.
+	// Set to `true` to use the wrapped secret-id accessor as the resource ID.
+	// If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+	// invalidated through unwrapping.
 	WithWrappedAccessor *bool `pulumi:"withWrappedAccessor"`
 	// The unique ID for the response-wrapped SecretID that can
 	// be safely logged.
@@ -171,8 +180,9 @@ type AuthBackendRoleSecretIDState struct {
 	// The SecretID to be created. If set, uses "Push"
 	// mode.  Defaults to Vault auto-generating SecretIDs.
 	SecretId pulumi.StringPtrInput
-	// Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
-	// the wrapping token is expired or invalidated through unwrapping.
+	// Set to `true` to use the wrapped secret-id accessor as the resource ID.
+	// If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+	// invalidated through unwrapping.
 	WithWrappedAccessor pulumi.BoolPtrInput
 	// The unique ID for the response-wrapped SecretID that can
 	// be safely logged.
@@ -204,8 +214,9 @@ type authBackendRoleSecretIDArgs struct {
 	// The SecretID to be created. If set, uses "Push"
 	// mode.  Defaults to Vault auto-generating SecretIDs.
 	SecretId *string `pulumi:"secretId"`
-	// Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
-	// the wrapping token is expired or invalidated through unwrapping.
+	// Set to `true` to use the wrapped secret-id accessor as the resource ID.
+	// If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+	// invalidated through unwrapping.
 	WithWrappedAccessor *bool `pulumi:"withWrappedAccessor"`
 	// If set, the SecretID response will be
 	// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
@@ -229,8 +240,9 @@ type AuthBackendRoleSecretIDArgs struct {
 	// The SecretID to be created. If set, uses "Push"
 	// mode.  Defaults to Vault auto-generating SecretIDs.
 	SecretId pulumi.StringPtrInput
-	// Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
-	// the wrapping token is expired or invalidated through unwrapping.
+	// Set to `true` to use the wrapped secret-id accessor as the resource ID.
+	// If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+	// invalidated through unwrapping.
 	WithWrappedAccessor pulumi.BoolPtrInput
 	// If set, the SecretID response will be
 	// [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)

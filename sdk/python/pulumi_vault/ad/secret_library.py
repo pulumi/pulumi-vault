@@ -21,13 +21,16 @@ class SecretLibraryArgs:
                  ttl: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a SecretLibrary resource.
-        :param pulumi.Input[str] backend: The mount path for the AD backend.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] service_account_names: The names of all the service accounts that can be checked out from this set. These service accounts must already exist
-               in Active Directory.
+        :param pulumi.Input[str] backend: The path the AD secret backend is mounted at,
+               with no leading or trailing `/`s.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] service_account_names: Specifies the slice of service accounts mapped to this set.
         :param pulumi.Input[bool] disable_check_in_enforcement: Disable enforcing that service accounts must be checked in by the entity or client token that checked them out.
-        :param pulumi.Input[int] max_ttl: The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.
-        :param pulumi.Input[str] name: The name of the set of service accounts.
-        :param pulumi.Input[int] ttl: The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.
+        :param pulumi.Input[int] max_ttl: The maximum password time-to-live in seconds. Defaults to the configuration
+               max_ttl if not provided.
+        :param pulumi.Input[str] name: The name to identify this set of service accounts.
+               Must be unique within the backend.
+        :param pulumi.Input[int] ttl: The password time-to-live in seconds. Defaults to the configuration
+               ttl if not provided.
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "service_account_names", service_account_names)
@@ -44,7 +47,8 @@ class SecretLibraryArgs:
     @pulumi.getter
     def backend(self) -> pulumi.Input[str]:
         """
-        The mount path for the AD backend.
+        The path the AD secret backend is mounted at,
+        with no leading or trailing `/`s.
         """
         return pulumi.get(self, "backend")
 
@@ -56,8 +60,7 @@ class SecretLibraryArgs:
     @pulumi.getter(name="serviceAccountNames")
     def service_account_names(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        The names of all the service accounts that can be checked out from this set. These service accounts must already exist
-        in Active Directory.
+        Specifies the slice of service accounts mapped to this set.
         """
         return pulumi.get(self, "service_account_names")
 
@@ -81,7 +84,8 @@ class SecretLibraryArgs:
     @pulumi.getter(name="maxTtl")
     def max_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.
+        The maximum password time-to-live in seconds. Defaults to the configuration
+        max_ttl if not provided.
         """
         return pulumi.get(self, "max_ttl")
 
@@ -93,7 +97,8 @@ class SecretLibraryArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the set of service accounts.
+        The name to identify this set of service accounts.
+        Must be unique within the backend.
         """
         return pulumi.get(self, "name")
 
@@ -105,7 +110,8 @@ class SecretLibraryArgs:
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.
+        The password time-to-live in seconds. Defaults to the configuration
+        ttl if not provided.
         """
         return pulumi.get(self, "ttl")
 
@@ -125,13 +131,16 @@ class _SecretLibraryState:
                  ttl: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering SecretLibrary resources.
-        :param pulumi.Input[str] backend: The mount path for the AD backend.
+        :param pulumi.Input[str] backend: The path the AD secret backend is mounted at,
+               with no leading or trailing `/`s.
         :param pulumi.Input[bool] disable_check_in_enforcement: Disable enforcing that service accounts must be checked in by the entity or client token that checked them out.
-        :param pulumi.Input[int] max_ttl: The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.
-        :param pulumi.Input[str] name: The name of the set of service accounts.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] service_account_names: The names of all the service accounts that can be checked out from this set. These service accounts must already exist
-               in Active Directory.
-        :param pulumi.Input[int] ttl: The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.
+        :param pulumi.Input[int] max_ttl: The maximum password time-to-live in seconds. Defaults to the configuration
+               max_ttl if not provided.
+        :param pulumi.Input[str] name: The name to identify this set of service accounts.
+               Must be unique within the backend.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] service_account_names: Specifies the slice of service accounts mapped to this set.
+        :param pulumi.Input[int] ttl: The password time-to-live in seconds. Defaults to the configuration
+               ttl if not provided.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -150,7 +159,8 @@ class _SecretLibraryState:
     @pulumi.getter
     def backend(self) -> Optional[pulumi.Input[str]]:
         """
-        The mount path for the AD backend.
+        The path the AD secret backend is mounted at,
+        with no leading or trailing `/`s.
         """
         return pulumi.get(self, "backend")
 
@@ -174,7 +184,8 @@ class _SecretLibraryState:
     @pulumi.getter(name="maxTtl")
     def max_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.
+        The maximum password time-to-live in seconds. Defaults to the configuration
+        max_ttl if not provided.
         """
         return pulumi.get(self, "max_ttl")
 
@@ -186,7 +197,8 @@ class _SecretLibraryState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the set of service accounts.
+        The name to identify this set of service accounts.
+        Must be unique within the backend.
         """
         return pulumi.get(self, "name")
 
@@ -198,8 +210,7 @@ class _SecretLibraryState:
     @pulumi.getter(name="serviceAccountNames")
     def service_account_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The names of all the service accounts that can be checked out from this set. These service accounts must already exist
-        in Active Directory.
+        Specifies the slice of service accounts mapped to this set.
         """
         return pulumi.get(self, "service_account_names")
 
@@ -211,7 +222,8 @@ class _SecretLibraryState:
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.
+        The password time-to-live in seconds. Defaults to the configuration
+        ttl if not provided.
         """
         return pulumi.get(self, "ttl")
 
@@ -233,16 +245,50 @@ class SecretLibrary(pulumi.CustomResource):
                  ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Create a SecretLibrary resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        config = vault.ad.SecretBackend("config",
+            backend="ad",
+            binddn="CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
+            bindpass="SuperSecretPassw0rd",
+            url="ldaps://ad",
+            insecure_tls=True,
+            userdn="CN=Users,DC=corp,DC=example,DC=net")
+        qa = vault.ad.SecretLibrary("qa",
+            backend=config.backend,
+            service_account_names=[
+                "Bob",
+                "Mary",
+            ],
+            ttl=60,
+            disable_check_in_enforcement=True,
+            max_ttl=120)
+        ```
+
+        ## Import
+
+        AD secret backend libraries can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend: The mount path for the AD backend.
+        :param pulumi.Input[str] backend: The path the AD secret backend is mounted at,
+               with no leading or trailing `/`s.
         :param pulumi.Input[bool] disable_check_in_enforcement: Disable enforcing that service accounts must be checked in by the entity or client token that checked them out.
-        :param pulumi.Input[int] max_ttl: The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.
-        :param pulumi.Input[str] name: The name of the set of service accounts.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] service_account_names: The names of all the service accounts that can be checked out from this set. These service accounts must already exist
-               in Active Directory.
-        :param pulumi.Input[int] ttl: The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.
+        :param pulumi.Input[int] max_ttl: The maximum password time-to-live in seconds. Defaults to the configuration
+               max_ttl if not provided.
+        :param pulumi.Input[str] name: The name to identify this set of service accounts.
+               Must be unique within the backend.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] service_account_names: Specifies the slice of service accounts mapped to this set.
+        :param pulumi.Input[int] ttl: The password time-to-live in seconds. Defaults to the configuration
+               ttl if not provided.
         """
         ...
     @overload
@@ -251,7 +297,38 @@ class SecretLibrary(pulumi.CustomResource):
                  args: SecretLibraryArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a SecretLibrary resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        config = vault.ad.SecretBackend("config",
+            backend="ad",
+            binddn="CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
+            bindpass="SuperSecretPassw0rd",
+            url="ldaps://ad",
+            insecure_tls=True,
+            userdn="CN=Users,DC=corp,DC=example,DC=net")
+        qa = vault.ad.SecretLibrary("qa",
+            backend=config.backend,
+            service_account_names=[
+                "Bob",
+                "Mary",
+            ],
+            ttl=60,
+            disable_check_in_enforcement=True,
+            max_ttl=120)
+        ```
+
+        ## Import
+
+        AD secret backend libraries can be imported using the `path`, e.g.
+
+        ```sh
+         $ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
+        ```
+
         :param str resource_name: The name of the resource.
         :param SecretLibraryArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -318,13 +395,16 @@ class SecretLibrary(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend: The mount path for the AD backend.
+        :param pulumi.Input[str] backend: The path the AD secret backend is mounted at,
+               with no leading or trailing `/`s.
         :param pulumi.Input[bool] disable_check_in_enforcement: Disable enforcing that service accounts must be checked in by the entity or client token that checked them out.
-        :param pulumi.Input[int] max_ttl: The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.
-        :param pulumi.Input[str] name: The name of the set of service accounts.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] service_account_names: The names of all the service accounts that can be checked out from this set. These service accounts must already exist
-               in Active Directory.
-        :param pulumi.Input[int] ttl: The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.
+        :param pulumi.Input[int] max_ttl: The maximum password time-to-live in seconds. Defaults to the configuration
+               max_ttl if not provided.
+        :param pulumi.Input[str] name: The name to identify this set of service accounts.
+               Must be unique within the backend.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] service_account_names: Specifies the slice of service accounts mapped to this set.
+        :param pulumi.Input[int] ttl: The password time-to-live in seconds. Defaults to the configuration
+               ttl if not provided.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -342,7 +422,8 @@ class SecretLibrary(pulumi.CustomResource):
     @pulumi.getter
     def backend(self) -> pulumi.Output[str]:
         """
-        The mount path for the AD backend.
+        The path the AD secret backend is mounted at,
+        with no leading or trailing `/`s.
         """
         return pulumi.get(self, "backend")
 
@@ -358,7 +439,8 @@ class SecretLibrary(pulumi.CustomResource):
     @pulumi.getter(name="maxTtl")
     def max_ttl(self) -> pulumi.Output[int]:
         """
-        The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.
+        The maximum password time-to-live in seconds. Defaults to the configuration
+        max_ttl if not provided.
         """
         return pulumi.get(self, "max_ttl")
 
@@ -366,7 +448,8 @@ class SecretLibrary(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the set of service accounts.
+        The name to identify this set of service accounts.
+        Must be unique within the backend.
         """
         return pulumi.get(self, "name")
 
@@ -374,8 +457,7 @@ class SecretLibrary(pulumi.CustomResource):
     @pulumi.getter(name="serviceAccountNames")
     def service_account_names(self) -> pulumi.Output[Sequence[str]]:
         """
-        The names of all the service accounts that can be checked out from this set. These service accounts must already exist
-        in Active Directory.
+        Specifies the slice of service accounts mapped to this set.
         """
         return pulumi.get(self, "service_account_names")
 
@@ -383,7 +465,8 @@ class SecretLibrary(pulumi.CustomResource):
     @pulumi.getter
     def ttl(self) -> pulumi.Output[int]:
         """
-        The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.
+        The password time-to-live in seconds. Defaults to the configuration
+        ttl if not provided.
         """
         return pulumi.get(self, "ttl")
 

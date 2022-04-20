@@ -19,7 +19,9 @@ class SecretBackendArgs:
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 password_policy: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
@@ -31,8 +33,10 @@ class SecretBackendArgs:
         :param pulumi.Input[str] description: A human-friendly description for this backend.
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
+        :param pulumi.Input[str] password_policy: Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `rabbitmq`.
+        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
         :param pulumi.Input[bool] verify_connection: Specifies whether to verify connection URI, username, and password.
                Defaults to `true`.
         """
@@ -45,8 +49,12 @@ class SecretBackendArgs:
             pulumi.set(__self__, "description", description)
         if max_lease_ttl_seconds is not None:
             pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
         if verify_connection is not None:
             pulumi.set(__self__, "verify_connection", verify_connection)
 
@@ -125,6 +133,18 @@ class SecretBackendArgs:
         pulumi.set(self, "max_lease_ttl_seconds", value)
 
     @property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @property
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
@@ -136,6 +156,18 @@ class SecretBackendArgs:
     @path.setter
     def path(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+    @username_template.setter
+    def username_template(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username_template", value)
 
     @property
     @pulumi.getter(name="verifyConnection")
@@ -159,8 +191,10 @@ class _SecretBackendState:
                  description: Optional[pulumi.Input[str]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 password_policy: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
+                 username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
@@ -171,9 +205,11 @@ class _SecretBackendState:
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
         :param pulumi.Input[str] password: Specifies the RabbitMQ management administrator password.
+        :param pulumi.Input[str] password_policy: Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `rabbitmq`.
         :param pulumi.Input[str] username: Specifies the RabbitMQ management administrator username.
+        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
         :param pulumi.Input[bool] verify_connection: Specifies whether to verify connection URI, username, and password.
                Defaults to `true`.
         """
@@ -187,10 +223,14 @@ class _SecretBackendState:
             pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if username is not None:
             pulumi.set(__self__, "username", username)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
         if verify_connection is not None:
             pulumi.set(__self__, "verify_connection", verify_connection)
 
@@ -257,6 +297,18 @@ class _SecretBackendState:
         pulumi.set(self, "password", value)
 
     @property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @property
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
@@ -282,6 +334,18 @@ class _SecretBackendState:
         pulumi.set(self, "username", value)
 
     @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[pulumi.Input[str]]:
+        """
+        Template describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+    @username_template.setter
+    def username_template(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username_template", value)
+
+    @property
     @pulumi.getter(name="verifyConnection")
     def verify_connection(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -305,8 +369,10 @@ class SecretBackend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 password_policy: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
+                 username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
@@ -339,9 +405,11 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
         :param pulumi.Input[str] password: Specifies the RabbitMQ management administrator password.
+        :param pulumi.Input[str] password_policy: Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `rabbitmq`.
         :param pulumi.Input[str] username: Specifies the RabbitMQ management administrator username.
+        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
         :param pulumi.Input[bool] verify_connection: Specifies whether to verify connection URI, username, and password.
                Defaults to `true`.
         """
@@ -392,8 +460,10 @@ class SecretBackend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 password_policy: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
+                 username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         if opts is None:
@@ -416,10 +486,12 @@ class SecretBackend(pulumi.CustomResource):
             if password is None and not opts.urn:
                 raise TypeError("Missing required property 'password'")
             __props__.__dict__["password"] = password
+            __props__.__dict__["password_policy"] = password_policy
             __props__.__dict__["path"] = path
             if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
             __props__.__dict__["username"] = username
+            __props__.__dict__["username_template"] = username_template
             __props__.__dict__["verify_connection"] = verify_connection
         super(SecretBackend, __self__).__init__(
             'vault:rabbitMq/secretBackend:SecretBackend',
@@ -436,8 +508,10 @@ class SecretBackend(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             password: Optional[pulumi.Input[str]] = None,
+            password_policy: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             username: Optional[pulumi.Input[str]] = None,
+            username_template: Optional[pulumi.Input[str]] = None,
             verify_connection: Optional[pulumi.Input[bool]] = None) -> 'SecretBackend':
         """
         Get an existing SecretBackend resource's state with the given name, id, and optional extra
@@ -453,9 +527,11 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
         :param pulumi.Input[str] password: Specifies the RabbitMQ management administrator password.
+        :param pulumi.Input[str] password_policy: Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `rabbitmq`.
         :param pulumi.Input[str] username: Specifies the RabbitMQ management administrator username.
+        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
         :param pulumi.Input[bool] verify_connection: Specifies whether to verify connection URI, username, and password.
                Defaults to `true`.
         """
@@ -468,8 +544,10 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
         __props__.__dict__["password"] = password
+        __props__.__dict__["password_policy"] = password_policy
         __props__.__dict__["path"] = path
         __props__.__dict__["username"] = username
+        __props__.__dict__["username_template"] = username_template
         __props__.__dict__["verify_connection"] = verify_connection
         return SecretBackend(resource_name, opts=opts, __props__=__props__)
 
@@ -516,6 +594,14 @@ class SecretBackend(pulumi.CustomResource):
         return pulumi.get(self, "password")
 
     @property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @property
     @pulumi.getter
     def path(self) -> pulumi.Output[Optional[str]]:
         """
@@ -531,6 +617,14 @@ class SecretBackend(pulumi.CustomResource):
         Specifies the RabbitMQ management administrator username.
         """
         return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> pulumi.Output[Optional[str]]:
+        """
+        Template describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
 
     @property
     @pulumi.getter(name="verifyConnection")
