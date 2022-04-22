@@ -21,7 +21,7 @@ import * as utilities from "../utilities";
  * });
  * const role = new vault.pkisecret.SecretBackendRole("role", {
  *     backend: pki.path,
- *     ttl: 3600,
+ *     ttl: "3600",
  *     allowIpSans: true,
  *     keyType: "rsa",
  *     keyBits: 4096,

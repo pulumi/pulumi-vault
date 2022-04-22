@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  * -----END CERTIFICATE-----`,
  *     tokenReviewerJwt: "ZXhhbXBsZQo=",
  *     issuer: "api",
- *     disableIssValidation: "true",
+ *     disableIssValidation: true,
  * });
  * ```
  *

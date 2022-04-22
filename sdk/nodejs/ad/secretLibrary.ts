@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  *     binddn: "CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
  *     bindpass: "SuperSecretPassw0rd",
  *     url: "ldaps://ad",
- *     insecureTls: "true",
+ *     insecureTls: true,
  *     userdn: "CN=Users,DC=corp,DC=example,DC=net",
  * });
  * const qa = new vault.ad.SecretLibrary("qa", {
