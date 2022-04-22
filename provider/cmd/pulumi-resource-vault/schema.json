@@ -2911,10 +2911,11 @@
             }
         },
         "vault:ad/secretLibrary:SecretLibrary": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst config = new vault.ad.SecretBackend(\"config\", {\n    backend: \"ad\",\n    binddn: \"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\",\n    bindpass: \"SuperSecretPassw0rd\",\n    url: \"ldaps://ad\",\n    insecureTls: \"true\",\n    userdn: \"CN=Users,DC=corp,DC=example,DC=net\",\n});\nconst qa = new vault.ad.SecretLibrary(\"qa\", {\n    backend: config.backend,\n    serviceAccountNames: [\n        \"Bob\",\n        \"Mary\",\n    ],\n    ttl: 60,\n    disableCheckInEnforcement: true,\n    maxTtl: 120,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nconfig = vault.ad.SecretBackend(\"config\",\n    backend=\"ad\",\n    binddn=\"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\",\n    bindpass=\"SuperSecretPassw0rd\",\n    url=\"ldaps://ad\",\n    insecure_tls=True,\n    userdn=\"CN=Users,DC=corp,DC=example,DC=net\")\nqa = vault.ad.SecretLibrary(\"qa\",\n    backend=config.backend,\n    service_account_names=[\n        \"Bob\",\n        \"Mary\",\n    ],\n    ttl=60,\n    disable_check_in_enforcement=True,\n    max_ttl=120)\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var config = new Vault.AD.SecretBackend(\"config\", new Vault.AD.SecretBackendArgs\n        {\n            Backend = \"ad\",\n            Binddn = \"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\",\n            Bindpass = \"SuperSecretPassw0rd\",\n            Url = \"ldaps://ad\",\n            InsecureTls = true,\n            Userdn = \"CN=Users,DC=corp,DC=example,DC=net\",\n        });\n        var qa = new Vault.AD.SecretLibrary(\"qa\", new Vault.AD.SecretLibraryArgs\n        {\n            Backend = config.Backend,\n            ServiceAccountNames = \n            {\n                \"Bob\",\n                \"Mary\",\n            },\n            Ttl = 60,\n            DisableCheckInEnforcement = true,\n            MaxTtl = 120,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tconfig, err := ad.NewSecretBackend(ctx, \"config\", \u0026ad.SecretBackendArgs{\n\t\t\tBackend:     pulumi.String(\"ad\"),\n\t\t\tBinddn:      pulumi.String(\"CN=Administrator,CN=Users,DC=corp,DC=example,DC=net\"),\n\t\t\tBindpass:    pulumi.String(\"SuperSecretPassw0rd\"),\n\t\t\tUrl:         pulumi.String(\"ldaps://ad\"),\n\t\t\tInsecureTls: pulumi.Bool(true),\n\t\t\tUserdn:      pulumi.String(\"CN=Users,DC=corp,DC=example,DC=net\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ad.NewSecretLibrary(ctx, \"qa\", \u0026ad.SecretLibraryArgs{\n\t\t\tBackend: config.Backend,\n\t\t\tServiceAccountNames: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"Bob\"),\n\t\t\t\tpulumi.String(\"Mary\"),\n\t\t\t},\n\t\t\tTtl:                       pulumi.Int(60),\n\t\t\tDisableCheckInEnforcement: pulumi.Bool(true),\n\t\t\tMaxTtl:                    pulumi.Int(120),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAD secret backend libraries can be imported using the `path`, e.g.\n\n```sh\n $ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob\n```\n\n ",
             "properties": {
                 "backend": {
                     "type": "string",
-                    "description": "The mount path for the AD backend.\n"
+                    "description": "The path the AD secret backend is mounted at,\nwith no leading or trailing `/`s.\n"
                 },
                 "disableCheckInEnforcement": {
                     "type": "boolean",
@@ -2922,22 +2923,22 @@
                 },
                 "maxTtl": {
                     "type": "integer",
-                    "description": "The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.\n"
+                    "description": "The maximum password time-to-live in seconds. Defaults to the configuration\nmax_ttl if not provided.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the set of service accounts.\n"
+                    "description": "The name to identify this set of service accounts.\nMust be unique within the backend.\n"
                 },
                 "serviceAccountNames": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "The names of all the service accounts that can be checked out from this set. These service accounts must already exist\nin Active Directory.\n"
+                    "description": "Specifies the slice of service accounts mapped to this set.\n"
                 },
                 "ttl": {
                     "type": "integer",
-                    "description": "The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.\n"
+                    "description": "The password time-to-live in seconds. Defaults to the configuration\nttl if not provided.\n"
                 }
             },
             "required": [
@@ -2950,7 +2951,7 @@
             "inputProperties": {
                 "backend": {
                     "type": "string",
-                    "description": "The mount path for the AD backend.\n"
+                    "description": "The path the AD secret backend is mounted at,\nwith no leading or trailing `/`s.\n"
                 },
                 "disableCheckInEnforcement": {
                     "type": "boolean",
@@ -2958,22 +2959,22 @@
                 },
                 "maxTtl": {
                     "type": "integer",
-                    "description": "The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.\n"
+                    "description": "The maximum password time-to-live in seconds. Defaults to the configuration\nmax_ttl if not provided.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the set of service accounts.\n"
+                    "description": "The name to identify this set of service accounts.\nMust be unique within the backend.\n"
                 },
                 "serviceAccountNames": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "The names of all the service accounts that can be checked out from this set. These service accounts must already exist\nin Active Directory.\n"
+                    "description": "Specifies the slice of service accounts mapped to this set.\n"
                 },
                 "ttl": {
                     "type": "integer",
-                    "description": "The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.\n"
+                    "description": "The password time-to-live in seconds. Defaults to the configuration\nttl if not provided.\n"
                 }
             },
             "requiredInputs": [
@@ -2985,7 +2986,7 @@
                 "properties": {
                     "backend": {
                         "type": "string",
-                        "description": "The mount path for the AD backend.\n"
+                        "description": "The path the AD secret backend is mounted at,\nwith no leading or trailing `/`s.\n"
                     },
                     "disableCheckInEnforcement": {
                         "type": "boolean",
@@ -2993,22 +2994,22 @@
                     },
                     "maxTtl": {
                         "type": "integer",
-                        "description": "The maximum amount of time, in seconds, a check-out last with renewal before Vault automatically checks it back in.\n"
+                        "description": "The maximum password time-to-live in seconds. Defaults to the configuration\nmax_ttl if not provided.\n"
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of the set of service accounts.\n"
+                        "description": "The name to identify this set of service accounts.\nMust be unique within the backend.\n"
                     },
                     "serviceAccountNames": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "The names of all the service accounts that can be checked out from this set. These service accounts must already exist\nin Active Directory.\n"
+                        "description": "Specifies the slice of service accounts mapped to this set.\n"
                     },
                     "ttl": {
                         "type": "integer",
-                        "description": "The amount of time, in seconds, a single check-out lasts before Vault automatically checks it back in.\n"
+                        "description": "The password time-to-live in seconds. Defaults to the configuration\nttl if not provided.\n"
                     }
                 },
                 "type": "object"
@@ -3656,7 +3657,7 @@
             }
         },
         "vault:appRole/authBackendRoleSecretID:AuthBackendRoleSecretID": {
-            "description": "Manages an AppRole auth backend SecretID in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/approle) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst approle = new vault.AuthBackend(\"approle\", {type: \"approle\"});\nconst example = new vault.approle.AuthBackendRole(\"example\", {\n    backend: approle.path,\n    roleName: \"test-role\",\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n});\nconst id = new vault.approle.AuthBackendRoleSecretID(\"id\", {\n    backend: approle.path,\n    roleName: example.roleName,\n    metadata: `  {\n    \"hello\": \"world\"\n  }\n`,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\napprole = vault.AuthBackend(\"approle\", type=\"approle\")\nexample = vault.app_role.AuthBackendRole(\"example\",\n    backend=approle.path,\n    role_name=\"test-role\",\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ])\nid = vault.app_role.AuthBackendRoleSecretID(\"id\",\n    backend=approle.path,\n    role_name=example.role_name,\n    metadata=\"\"\"  {\n    \"hello\": \"world\"\n  }\n\"\"\")\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var approle = new Vault.AuthBackend(\"approle\", new Vault.AuthBackendArgs\n        {\n            Type = \"approle\",\n        });\n        var example = new Vault.AppRole.AuthBackendRole(\"example\", new Vault.AppRole.AuthBackendRoleArgs\n        {\n            Backend = approle.Path,\n            RoleName = \"test-role\",\n            TokenPolicies = \n            {\n                \"default\",\n                \"dev\",\n                \"prod\",\n            },\n        });\n        var id = new Vault.AppRole.AuthBackendRoleSecretID(\"id\", new Vault.AppRole.AuthBackendRoleSecretIDArgs\n        {\n            Backend = approle.Path,\n            RoleName = example.RoleName,\n            Metadata = @\"  {\n    \"\"hello\"\": \"\"world\"\"\n  }\n\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/appRole\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tapprole, err := vault.NewAuthBackend(ctx, \"approle\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"approle\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample, err := appRole.NewAuthBackendRole(ctx, \"example\", \u0026appRole.AuthBackendRoleArgs{\n\t\t\tBackend:  approle.Path,\n\t\t\tRoleName: pulumi.String(\"test-role\"),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"default\"),\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"prod\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = appRole.NewAuthBackendRoleSecretID(ctx, \"id\", \u0026appRole.AuthBackendRoleSecretIDArgs{\n\t\t\tBackend:  approle.Path,\n\t\t\tRoleName: example.RoleName,\n\t\t\tMetadata: pulumi.String(fmt.Sprintf(\"%v%v%v\", \"  {\\n\", \"    \\\"hello\\\": \\\"world\\\"\\n\", \"  }\\n\")),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages an AppRole auth backend SecretID in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/approle) for more\ninformation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst approle = new vault.AuthBackend(\"approle\", {type: \"approle\"});\nconst example = new vault.approle.AuthBackendRole(\"example\", {\n    backend: approle.path,\n    roleName: \"test-role\",\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n});\nconst id = new vault.approle.AuthBackendRoleSecretID(\"id\", {\n    backend: approle.path,\n    roleName: example.roleName,\n    metadata: JSON.stringify({\n        hello: \"world\",\n    }),\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumi_vault as vault\n\napprole = vault.AuthBackend(\"approle\", type=\"approle\")\nexample = vault.app_role.AuthBackendRole(\"example\",\n    backend=approle.path,\n    role_name=\"test-role\",\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ])\nid = vault.app_role.AuthBackendRoleSecretID(\"id\",\n    backend=approle.path,\n    role_name=example.role_name,\n    metadata=json.dumps({\n        \"hello\": \"world\",\n    }))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Text.Json;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var approle = new Vault.AuthBackend(\"approle\", new Vault.AuthBackendArgs\n        {\n            Type = \"approle\",\n        });\n        var example = new Vault.AppRole.AuthBackendRole(\"example\", new Vault.AppRole.AuthBackendRoleArgs\n        {\n            Backend = approle.Path,\n            RoleName = \"test-role\",\n            TokenPolicies = \n            {\n                \"default\",\n                \"dev\",\n                \"prod\",\n            },\n        });\n        var id = new Vault.AppRole.AuthBackendRoleSecretID(\"id\", new Vault.AppRole.AuthBackendRoleSecretIDArgs\n        {\n            Backend = approle.Path,\n            RoleName = example.RoleName,\n            Metadata = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n            {\n                { \"hello\", \"world\" },\n            }),\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/appRole\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tapprole, err := vault.NewAuthBackend(ctx, \"approle\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"approle\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample, err := appRole.NewAuthBackendRole(ctx, \"example\", \u0026appRole.AuthBackendRoleArgs{\n\t\t\tBackend:  approle.Path,\n\t\t\tRoleName: pulumi.String(\"test-role\"),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"default\"),\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"prod\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"hello\": \"world\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = appRole.NewAuthBackendRoleSecretID(ctx, \"id\", \u0026appRole.AuthBackendRoleSecretIDArgs{\n\t\t\tBackend:  approle.Path,\n\t\t\tRoleName: example.RoleName,\n\t\t\tMetadata: pulumi.String(json0),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "accessor": {
                     "type": "string",
@@ -3687,7 +3688,7 @@
                 },
                 "withWrappedAccessor": {
                     "type": "boolean",
-                    "description": "Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever\nthe wrapping token is expired or invalidated through unwrapping.\n"
+                    "description": "Set to `true` to use the wrapped secret-id accessor as the resource ID.\nIf `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or\ninvalidated through unwrapping.\n"
                 },
                 "wrappingAccessor": {
                     "type": "string",
@@ -3735,7 +3736,7 @@
                 },
                 "withWrappedAccessor": {
                     "type": "boolean",
-                    "description": "Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever\nthe wrapping token is expired or invalidated through unwrapping.\n"
+                    "description": "Set to `true` to use the wrapped secret-id accessor as the resource ID.\nIf `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or\ninvalidated through unwrapping.\n"
                 },
                 "wrappingTtl": {
                     "type": "string",
@@ -3777,7 +3778,7 @@
                     },
                     "withWrappedAccessor": {
                         "type": "boolean",
-                        "description": "Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever\nthe wrapping token is expired or invalidated through unwrapping.\n"
+                        "description": "Set to `true` to use the wrapped secret-id accessor as the resource ID.\nIf `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or\ninvalidated through unwrapping.\n"
                     },
                     "wrappingAccessor": {
                         "type": "string",
@@ -16447,6 +16448,10 @@
                     "type": "string",
                     "description": "Specifies the RabbitMQ management administrator password.\n"
                 },
+                "passwordPolicy": {
+                    "type": "string",
+                    "description": "Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.\n"
+                },
                 "path": {
                     "type": "string",
                     "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `rabbitmq`.\n"
@@ -16454,6 +16459,10 @@
                 "username": {
                     "type": "string",
                     "description": "Specifies the RabbitMQ management administrator username.\n"
+                },
+                "usernameTemplate": {
+                    "type": "string",
+                    "description": "Template describing how dynamic usernames are generated.\n"
                 },
                 "verifyConnection": {
                     "type": "boolean",
@@ -16488,6 +16497,10 @@
                     "type": "string",
                     "description": "Specifies the RabbitMQ management administrator password.\n"
                 },
+                "passwordPolicy": {
+                    "type": "string",
+                    "description": "Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.\n"
+                },
                 "path": {
                     "type": "string",
                     "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `rabbitmq`.\n"
@@ -16495,6 +16508,10 @@
                 "username": {
                     "type": "string",
                     "description": "Specifies the RabbitMQ management administrator username.\n"
+                },
+                "usernameTemplate": {
+                    "type": "string",
+                    "description": "Template describing how dynamic usernames are generated.\n"
                 },
                 "verifyConnection": {
                     "type": "boolean",
@@ -16529,6 +16546,10 @@
                         "type": "string",
                         "description": "Specifies the RabbitMQ management administrator password.\n"
                     },
+                    "passwordPolicy": {
+                        "type": "string",
+                        "description": "Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.\n"
+                    },
                     "path": {
                         "type": "string",
                         "description": "The unique path this backend should be mounted at. Must\nnot begin or end with a `/`. Defaults to `rabbitmq`.\n"
@@ -16536,6 +16557,10 @@
                     "username": {
                         "type": "string",
                         "description": "Specifies the RabbitMQ management administrator username.\n"
+                    },
+                    "usernameTemplate": {
+                        "type": "string",
+                        "description": "Template describing how dynamic usernames are generated.\n"
                     },
                     "verifyConnection": {
                         "type": "boolean",
@@ -18471,13 +18496,17 @@
             }
         },
         "vault:azure/getAccessCredentials:getAccessCredentials": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst creds = vault.azure.getAccessCredentials({\n    role: \"my-role\",\n    validateCreds: true,\n    numSequentialSuccesses: 8,\n    numSecondsBetweenTests: 1,\n    maxCredValidationSeconds: 300,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ncreds = vault.azure.get_access_credentials(role=\"my-role\",\n    validate_creds=True,\n    num_sequential_successes=8,\n    num_seconds_between_tests=1,\n    max_cred_validation_seconds=300)\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var creds = Output.Create(Vault.Azure.GetAccessCredentials.InvokeAsync(new Vault.Azure.GetAccessCredentialsArgs\n        {\n            Role = \"my-role\",\n            ValidateCreds = true,\n            NumSequentialSuccesses = 8,\n            NumSecondsBetweenTests = 1,\n            MaxCredValidationSeconds = 300,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := azure.GetAccessCredentials(ctx, \u0026azure.GetAccessCredentialsArgs{\n\t\t\tRole:                     \"my-role\",\n\t\t\tValidateCreds:            pulumi.BoolRef(true),\n\t\t\tNumSequentialSuccesses:   pulumi.IntRef(8),\n\t\t\tNumSecondsBetweenTests:   pulumi.IntRef(1),\n\t\t\tMaxCredValidationSeconds: pulumi.IntRef(300),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst creds = vault.azure.getAccessCredentials({\n    role: \"my-role\",\n    validateCreds: true,\n    numSequentialSuccesses: 8,\n    numSecondsBetweenTests: 1,\n    maxCredValidationSeconds: 300,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ncreds = vault.azure.get_access_credentials(role=\"my-role\",\n    validate_creds=True,\n    num_sequential_successes=8,\n    num_seconds_between_tests=1,\n    max_cred_validation_seconds=300)\n```\n```csharp\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var creds = Output.Create(Vault.Azure.GetAccessCredentials.InvokeAsync(new Vault.Azure.GetAccessCredentialsArgs\n        {\n            Role = \"my-role\",\n            ValidateCreds = true,\n            NumSequentialSuccesses = 8,\n            NumSecondsBetweenTests = 1,\n            MaxCredValidationSeconds = 300,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := azure.GetAccessCredentials(ctx, \u0026azure.GetAccessCredentialsArgs{\n\t\t\tRole:                     \"my-role\",\n\t\t\tValidateCreds:            pulumi.BoolRef(true),\n\t\t\tNumSequentialSuccesses:   pulumi.IntRef(8),\n\t\t\tNumSecondsBetweenTests:   pulumi.IntRef(1),\n\t\t\tMaxCredValidationSeconds: pulumi.IntRef(300),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n## Caveats\n\nThe `validate_creds` option requires read-access to the `backend` config endpoint.\nIf the effective Vault role does not have the required permissions then valid values \nare required to be set for: `subscription_id`, `tenant_id`, `environment`.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getAccessCredentials.\n",
                 "properties": {
                     "backend": {
                         "type": "string",
                         "description": "The path to the Azure secret backend to\nread credentials from, with no leading or trailing `/`s.\n"
+                    },
+                    "environment": {
+                        "type": "string",
+                        "description": "The Azure environment to use during credential validation.\nDefaults to the environment configured in the Vault backend.\nSome possible values: `AzurePublicCloud`, `AzureGovernmentCloud`\n*See the caveats section for more information on this field.*\n"
                     },
                     "maxCredValidationSeconds": {
                         "type": "integer",
@@ -18497,11 +18526,11 @@
                     },
                     "subscriptionId": {
                         "type": "string",
-                        "description": "The subscription ID to use during credential\nvalidation. Defaults to the subscription ID configured in the Vault `backend`.\n"
+                        "description": "The subscription ID to use during credential\nvalidation. Defaults to the subscription ID configured in the Vault `backend`.\n*See the caveats section for more information on this field.*\n"
                     },
                     "tenantId": {
                         "type": "string",
-                        "description": "The tenant ID to use during credential validation.\nDefaults to the tenant ID configured in the Vault `backend`.\n"
+                        "description": "The tenant ID to use during credential validation.\nDefaults to the tenant ID configured in the Vault `backend`.\n*See the caveats section for more information on this field.*\n"
                     },
                     "validateCreds": {
                         "type": "boolean",
@@ -18527,6 +18556,9 @@
                     "clientSecret": {
                         "type": "string",
                         "description": "The client secret for credentials to query the Azure APIs.\n"
+                    },
+                    "environment": {
+                        "type": "string"
                     },
                     "id": {
                         "type": "string",

@@ -17,6 +17,8 @@ namespace Pulumi.Vault.AppRole
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Text.Json;
     /// using Pulumi;
     /// using Vault = Pulumi.Vault;
     /// 
@@ -43,10 +45,10 @@ namespace Pulumi.Vault.AppRole
     ///         {
     ///             Backend = approle.Path,
     ///             RoleName = example.RoleName,
-    ///             Metadata = @"  {
-    ///     ""hello"": ""world""
-    ///   }
-    /// ",
+    ///             Metadata = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 { "hello", "world" },
+    ///             }),
     ///         });
     ///     }
     /// 
@@ -96,8 +98,9 @@ namespace Pulumi.Vault.AppRole
         public Output<string> SecretId { get; private set; } = null!;
 
         /// <summary>
-        /// Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
-        /// the wrapping token is expired or invalidated through unwrapping.
+        /// Set to `true` to use the wrapped secret-id accessor as the resource ID.
+        /// If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+        /// invalidated through unwrapping.
         /// </summary>
         [Output("withWrappedAccessor")]
         public Output<bool?> WithWrappedAccessor { get; private set; } = null!;
@@ -210,8 +213,9 @@ namespace Pulumi.Vault.AppRole
         public Input<string>? SecretId { get; set; }
 
         /// <summary>
-        /// Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
-        /// the wrapping token is expired or invalidated through unwrapping.
+        /// Set to `true` to use the wrapped secret-id accessor as the resource ID.
+        /// If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+        /// invalidated through unwrapping.
         /// </summary>
         [Input("withWrappedAccessor")]
         public Input<bool>? WithWrappedAccessor { get; set; }
@@ -278,8 +282,9 @@ namespace Pulumi.Vault.AppRole
         public Input<string>? SecretId { get; set; }
 
         /// <summary>
-        /// Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
-        /// the wrapping token is expired or invalidated through unwrapping.
+        /// Set to `true` to use the wrapped secret-id accessor as the resource ID.
+        /// If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+        /// invalidated through unwrapping.
         /// </summary>
         [Input("withWrappedAccessor")]
         public Input<bool>? WithWrappedAccessor { get; set; }

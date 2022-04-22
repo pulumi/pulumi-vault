@@ -19,6 +19,11 @@ import * as utilities from "../utilities";
  *     maxCredValidationSeconds: 300,
  * });
  * ```
+ * ## Caveats
+ *
+ * The `validateCreds` option requires read-access to the `backend` config endpoint.
+ * If the effective Vault role does not have the required permissions then valid values
+ * are required to be set for: `subscriptionId`, `tenantId`, `environment`.
  */
 export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessCredentialsResult> {
     if (!opts) {
@@ -28,6 +33,7 @@ export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulu
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("vault:azure/getAccessCredentials:getAccessCredentials", {
         "backend": args.backend,
+        "environment": args.environment,
         "maxCredValidationSeconds": args.maxCredValidationSeconds,
         "numSecondsBetweenTests": args.numSecondsBetweenTests,
         "numSequentialSuccesses": args.numSequentialSuccesses,
@@ -47,6 +53,13 @@ export interface GetAccessCredentialsArgs {
      * read credentials from, with no leading or trailing `/`s.
      */
     backend: string;
+    /**
+     * The Azure environment to use during credential validation.
+     * Defaults to the environment configured in the Vault backend.
+     * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+     * *See the caveats section for more information on this field.*
+     */
+    environment?: string;
     /**
      * If 'validate_creds' is true, 
      * the number of seconds after which to give up validating credentials. Defaults
@@ -73,11 +86,13 @@ export interface GetAccessCredentialsArgs {
     /**
      * The subscription ID to use during credential
      * validation. Defaults to the subscription ID configured in the Vault `backend`.
+     * *See the caveats section for more information on this field.*
      */
     subscriptionId?: string;
     /**
      * The tenant ID to use during credential validation.
      * Defaults to the tenant ID configured in the Vault `backend`.
+     * *See the caveats section for more information on this field.*
      */
     tenantId?: string;
     /**
@@ -102,6 +117,7 @@ export interface GetAccessCredentialsResult {
      * The client secret for credentials to query the Azure APIs.
      */
     readonly clientSecret: string;
+    readonly environment?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -141,6 +157,13 @@ export interface GetAccessCredentialsOutputArgs {
      */
     backend: pulumi.Input<string>;
     /**
+     * The Azure environment to use during credential validation.
+     * Defaults to the environment configured in the Vault backend.
+     * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
+     * *See the caveats section for more information on this field.*
+     */
+    environment?: pulumi.Input<string>;
+    /**
      * If 'validate_creds' is true, 
      * the number of seconds after which to give up validating credentials. Defaults
      * to 300.
@@ -166,11 +189,13 @@ export interface GetAccessCredentialsOutputArgs {
     /**
      * The subscription ID to use during credential
      * validation. Defaults to the subscription ID configured in the Vault `backend`.
+     * *See the caveats section for more information on this field.*
      */
     subscriptionId?: pulumi.Input<string>;
     /**
      * The tenant ID to use during credential validation.
      * Defaults to the tenant ID configured in the Vault `backend`.
+     * *See the caveats section for more information on this field.*
      */
     tenantId?: pulumi.Input<string>;
     /**

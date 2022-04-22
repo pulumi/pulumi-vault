@@ -178,7 +178,12 @@ func Provider() tfbridge.ProviderInfo {
 			// AD
 			"vault_ad_secret_backend": {Tok: makeResource(adMod, "SecretBackend")},
 			"vault_ad_secret_role":    {Tok: makeResource(adMod, "SecretRole")},
-			"vault_ad_secret_library": {Tok: makeResource(adMod, "SecretLibrary")},
+			"vault_ad_secret_library": {
+				Tok: makeResource(adMod, "SecretLibrary"),
+				Docs: &tfbridge.DocInfo{
+					Source: "ad_secret_backend_library.html.md",
+				},
+			},
 
 			// AppRole
 			"vault_approle_auth_backend_role":           {Tok: makeResource(appRoleMod, "AuthBackendRole")},

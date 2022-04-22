@@ -30,8 +30,9 @@ class AuthBackendRoleSecretIDArgs:
                key-value pairs to be set on tokens issued with this SecretID.
         :param pulumi.Input[str] secret_id: The SecretID to be created. If set, uses "Push"
                mode.  Defaults to Vault auto-generating SecretIDs.
-        :param pulumi.Input[bool] with_wrapped_accessor: Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
-               the wrapping token is expired or invalidated through unwrapping.
+        :param pulumi.Input[bool] with_wrapped_accessor: Set to `true` to use the wrapped secret-id accessor as the resource ID.
+               If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+               invalidated through unwrapping.
         :param pulumi.Input[str] wrapping_ttl: If set, the SecretID response will be
                [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
                and available for the duration specified. Only a single unwrapping of the
@@ -118,8 +119,9 @@ class AuthBackendRoleSecretIDArgs:
     @pulumi.getter(name="withWrappedAccessor")
     def with_wrapped_accessor(self) -> Optional[pulumi.Input[bool]]:
         """
-        Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
-        the wrapping token is expired or invalidated through unwrapping.
+        Set to `true` to use the wrapped secret-id accessor as the resource ID.
+        If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+        invalidated through unwrapping.
         """
         return pulumi.get(self, "with_wrapped_accessor")
 
@@ -167,8 +169,9 @@ class _AuthBackendRoleSecretIDState:
         :param pulumi.Input[str] role_name: The name of the role to create the SecretID for.
         :param pulumi.Input[str] secret_id: The SecretID to be created. If set, uses "Push"
                mode.  Defaults to Vault auto-generating SecretIDs.
-        :param pulumi.Input[bool] with_wrapped_accessor: Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
-               the wrapping token is expired or invalidated through unwrapping.
+        :param pulumi.Input[bool] with_wrapped_accessor: Set to `true` to use the wrapped secret-id accessor as the resource ID.
+               If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+               invalidated through unwrapping.
         :param pulumi.Input[str] wrapping_accessor: The unique ID for the response-wrapped SecretID that can
                be safely logged.
         :param pulumi.Input[str] wrapping_token: The token used to retrieve a response-wrapped SecretID.
@@ -277,8 +280,9 @@ class _AuthBackendRoleSecretIDState:
     @pulumi.getter(name="withWrappedAccessor")
     def with_wrapped_accessor(self) -> Optional[pulumi.Input[bool]]:
         """
-        Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
-        the wrapping token is expired or invalidated through unwrapping.
+        Set to `true` to use the wrapped secret-id accessor as the resource ID.
+        If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+        invalidated through unwrapping.
         """
         return pulumi.get(self, "with_wrapped_accessor")
 
@@ -349,6 +353,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import json
         import pulumi_vault as vault
 
         approle = vault.AuthBackend("approle", type="approle")
@@ -363,10 +368,9 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
         id = vault.app_role.AuthBackendRoleSecretID("id",
             backend=approle.path,
             role_name=example.role_name,
-            metadata=\"\"\"  {
-            "hello": "world"
-          }
-        \"\"\")
+            metadata=json.dumps({
+                "hello": "world",
+            }))
         ```
 
         :param str resource_name: The name of the resource.
@@ -379,8 +383,9 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
         :param pulumi.Input[str] role_name: The name of the role to create the SecretID for.
         :param pulumi.Input[str] secret_id: The SecretID to be created. If set, uses "Push"
                mode.  Defaults to Vault auto-generating SecretIDs.
-        :param pulumi.Input[bool] with_wrapped_accessor: Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
-               the wrapping token is expired or invalidated through unwrapping.
+        :param pulumi.Input[bool] with_wrapped_accessor: Set to `true` to use the wrapped secret-id accessor as the resource ID.
+               If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+               invalidated through unwrapping.
         :param pulumi.Input[str] wrapping_ttl: If set, the SecretID response will be
                [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
                and available for the duration specified. Only a single unwrapping of the
@@ -401,6 +406,7 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import json
         import pulumi_vault as vault
 
         approle = vault.AuthBackend("approle", type="approle")
@@ -415,10 +421,9 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
         id = vault.app_role.AuthBackendRoleSecretID("id",
             backend=approle.path,
             role_name=example.role_name,
-            metadata=\"\"\"  {
-            "hello": "world"
-          }
-        \"\"\")
+            metadata=json.dumps({
+                "hello": "world",
+            }))
         ```
 
         :param str resource_name: The name of the resource.
@@ -503,8 +508,9 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
         :param pulumi.Input[str] role_name: The name of the role to create the SecretID for.
         :param pulumi.Input[str] secret_id: The SecretID to be created. If set, uses "Push"
                mode.  Defaults to Vault auto-generating SecretIDs.
-        :param pulumi.Input[bool] with_wrapped_accessor: Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
-               the wrapping token is expired or invalidated through unwrapping.
+        :param pulumi.Input[bool] with_wrapped_accessor: Set to `true` to use the wrapped secret-id accessor as the resource ID.
+               If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+               invalidated through unwrapping.
         :param pulumi.Input[str] wrapping_accessor: The unique ID for the response-wrapped SecretID that can
                be safely logged.
         :param pulumi.Input[str] wrapping_token: The token used to retrieve a response-wrapped SecretID.
@@ -584,8 +590,9 @@ class AuthBackendRoleSecretID(pulumi.CustomResource):
     @pulumi.getter(name="withWrappedAccessor")
     def with_wrapped_accessor(self) -> pulumi.Output[Optional[bool]]:
         """
-        Use the wrapped secret-id accessor as the id of this resource. If false, a fresh secret-id will be regenerated whenever
-        the wrapping token is expired or invalidated through unwrapping.
+        Set to `true` to use the wrapped secret-id accessor as the resource ID.
+        If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+        invalidated through unwrapping.
         """
         return pulumi.get(self, "with_wrapped_accessor")
 
