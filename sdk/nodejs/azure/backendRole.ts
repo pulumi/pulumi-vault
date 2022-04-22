@@ -21,8 +21,8 @@ import * as utilities from "../utilities";
  * const generatedRole = new vault.azure.BackendRole("generatedRole", {
  *     backend: azure.path,
  *     role: "generated_role",
- *     ttl: 300,
- *     maxTtl: 600,
+ *     ttl: "300",
+ *     maxTtl: "600",
  *     azureRoles: [{
  *         roleName: "Reader",
  *         scope: `/subscriptions/${_var.subscription_id}/resourceGroups/azure-vault-group`,
@@ -32,8 +32,8 @@ import * as utilities from "../utilities";
  *     backend: azure.path,
  *     role: "existing_object_id",
  *     applicationObjectId: "11111111-2222-3333-4444-44444444444",
- *     ttl: 300,
- *     maxTtl: 600,
+ *     ttl: "300",
+ *     maxTtl: "600",
  * });
  * ```
  */

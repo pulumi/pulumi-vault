@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  *     backend: db.path,
  *     dbName: postgres.name,
  *     username: "example",
- *     rotationPeriod: "3600",
+ *     rotationPeriod: 3600,
  *     rotationStatements: ["ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"],
  * });
  * ```
