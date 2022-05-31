@@ -84,8 +84,16 @@ type SecretBackendRole struct {
 	AllowedDomains pulumi.StringPtrOutput `pulumi:"allowedDomains"`
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions pulumi.StringPtrOutput `pulumi:"allowedExtensions"`
-	// Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
-	AllowedUserKeyLengths pulumi.MapOutput `pulumi:"allowedUserKeyLengths"`
+	// Set of configuration blocks to define allowed\
+	// user key configuration, like key type and their lengths. Can be specified multiple times.
+	// *See Configuration-Options for more info*
+	AllowedUserKeyConfigs SecretBackendRoleAllowedUserKeyConfigArrayOutput `pulumi:"allowedUserKeyConfigs"`
+	// Specifies a map of ssh key types and their expected sizes which
+	// are allowed to be signed by the CA type.
+	// *Deprecated: use* allowedUserKeyConfig *instead*
+	//
+	// Deprecated: Set in allowed_user_key_config
+	AllowedUserKeyLengths pulumi.IntMapOutput `pulumi:"allowedUserKeyLengths"`
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers pulumi.StringPtrOutput `pulumi:"allowedUsers"`
 	// Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
@@ -165,8 +173,16 @@ type secretBackendRoleState struct {
 	AllowedDomains *string `pulumi:"allowedDomains"`
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions *string `pulumi:"allowedExtensions"`
-	// Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
-	AllowedUserKeyLengths map[string]interface{} `pulumi:"allowedUserKeyLengths"`
+	// Set of configuration blocks to define allowed\
+	// user key configuration, like key type and their lengths. Can be specified multiple times.
+	// *See Configuration-Options for more info*
+	AllowedUserKeyConfigs []SecretBackendRoleAllowedUserKeyConfig `pulumi:"allowedUserKeyConfigs"`
+	// Specifies a map of ssh key types and their expected sizes which
+	// are allowed to be signed by the CA type.
+	// *Deprecated: use* allowedUserKeyConfig *instead*
+	//
+	// Deprecated: Set in allowed_user_key_config
+	AllowedUserKeyLengths map[string]int `pulumi:"allowedUserKeyLengths"`
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers *string `pulumi:"allowedUsers"`
 	// Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
@@ -212,8 +228,16 @@ type SecretBackendRoleState struct {
 	AllowedDomains pulumi.StringPtrInput
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions pulumi.StringPtrInput
-	// Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
-	AllowedUserKeyLengths pulumi.MapInput
+	// Set of configuration blocks to define allowed\
+	// user key configuration, like key type and their lengths. Can be specified multiple times.
+	// *See Configuration-Options for more info*
+	AllowedUserKeyConfigs SecretBackendRoleAllowedUserKeyConfigArrayInput
+	// Specifies a map of ssh key types and their expected sizes which
+	// are allowed to be signed by the CA type.
+	// *Deprecated: use* allowedUserKeyConfig *instead*
+	//
+	// Deprecated: Set in allowed_user_key_config
+	AllowedUserKeyLengths pulumi.IntMapInput
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers pulumi.StringPtrInput
 	// Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
@@ -263,8 +287,16 @@ type secretBackendRoleArgs struct {
 	AllowedDomains *string `pulumi:"allowedDomains"`
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions *string `pulumi:"allowedExtensions"`
-	// Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
-	AllowedUserKeyLengths map[string]interface{} `pulumi:"allowedUserKeyLengths"`
+	// Set of configuration blocks to define allowed\
+	// user key configuration, like key type and their lengths. Can be specified multiple times.
+	// *See Configuration-Options for more info*
+	AllowedUserKeyConfigs []SecretBackendRoleAllowedUserKeyConfig `pulumi:"allowedUserKeyConfigs"`
+	// Specifies a map of ssh key types and their expected sizes which
+	// are allowed to be signed by the CA type.
+	// *Deprecated: use* allowedUserKeyConfig *instead*
+	//
+	// Deprecated: Set in allowed_user_key_config
+	AllowedUserKeyLengths map[string]int `pulumi:"allowedUserKeyLengths"`
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers *string `pulumi:"allowedUsers"`
 	// Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
@@ -311,8 +343,16 @@ type SecretBackendRoleArgs struct {
 	AllowedDomains pulumi.StringPtrInput
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions pulumi.StringPtrInput
-	// Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
-	AllowedUserKeyLengths pulumi.MapInput
+	// Set of configuration blocks to define allowed\
+	// user key configuration, like key type and their lengths. Can be specified multiple times.
+	// *See Configuration-Options for more info*
+	AllowedUserKeyConfigs SecretBackendRoleAllowedUserKeyConfigArrayInput
+	// Specifies a map of ssh key types and their expected sizes which
+	// are allowed to be signed by the CA type.
+	// *Deprecated: use* allowedUserKeyConfig *instead*
+	//
+	// Deprecated: Set in allowed_user_key_config
+	AllowedUserKeyLengths pulumi.IntMapInput
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers pulumi.StringPtrInput
 	// Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.

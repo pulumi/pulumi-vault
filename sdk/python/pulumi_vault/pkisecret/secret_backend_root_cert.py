@@ -391,6 +391,7 @@ class _SecretBackendRootCertState:
                  private_key_format: Optional[pulumi.Input[str]] = None,
                  province: Optional[pulumi.Input[str]] = None,
                  serial: Optional[pulumi.Input[str]] = None,
+                 serial_number: Optional[pulumi.Input[str]] = None,
                  street_address: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -399,13 +400,13 @@ class _SecretBackendRootCertState:
         Input properties used for looking up and filtering SecretBackendRootCert resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
-        :param pulumi.Input[str] certificate: The certificate
+        :param pulumi.Input[str] certificate: The certificate.
         :param pulumi.Input[str] common_name: CN of intermediate to create
         :param pulumi.Input[str] country: The country
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
-        :param pulumi.Input[str] issuing_ca: The issuing CA
+        :param pulumi.Input[str] issuing_ca: The issuing CA certificate.
         :param pulumi.Input[int] key_bits: The number of bits to use
         :param pulumi.Input[str] key_type: The desired key type
         :param pulumi.Input[str] locality: The locality
@@ -417,7 +418,8 @@ class _SecretBackendRootCertState:
         :param pulumi.Input[str] postal_code: The postal code
         :param pulumi.Input[str] private_key_format: The private key format
         :param pulumi.Input[str] province: The province
-        :param pulumi.Input[str] serial: The serial
+        :param pulumi.Input[str] serial: Deprecated, use `serial_number` instead.
+        :param pulumi.Input[str] serial_number: The certificate's serial number, hex formatted.
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[str] type: Type of intermediate to create. Must be either \"exported\" or \"internal\"
@@ -464,7 +466,12 @@ class _SecretBackendRootCertState:
         if province is not None:
             pulumi.set(__self__, "province", province)
         if serial is not None:
+            warnings.warn("""Use serial_number instead""", DeprecationWarning)
+            pulumi.log.warn("""serial is deprecated: Use serial_number instead""")
+        if serial is not None:
             pulumi.set(__self__, "serial", serial)
+        if serial_number is not None:
+            pulumi.set(__self__, "serial_number", serial_number)
         if street_address is not None:
             pulumi.set(__self__, "street_address", street_address)
         if ttl is not None:
@@ -502,7 +509,7 @@ class _SecretBackendRootCertState:
     @pulumi.getter
     def certificate(self) -> Optional[pulumi.Input[str]]:
         """
-        The certificate
+        The certificate.
         """
         return pulumi.get(self, "certificate")
 
@@ -574,7 +581,7 @@ class _SecretBackendRootCertState:
     @pulumi.getter(name="issuingCa")
     def issuing_ca(self) -> Optional[pulumi.Input[str]]:
         """
-        The issuing CA
+        The issuing CA certificate.
         """
         return pulumi.get(self, "issuing_ca")
 
@@ -718,13 +725,25 @@ class _SecretBackendRootCertState:
     @pulumi.getter
     def serial(self) -> Optional[pulumi.Input[str]]:
         """
-        The serial
+        Deprecated, use `serial_number` instead.
         """
         return pulumi.get(self, "serial")
 
     @serial.setter
     def serial(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "serial", value)
+
+    @property
+    @pulumi.getter(name="serialNumber")
+    def serial_number(self) -> Optional[pulumi.Input[str]]:
+        """
+        The certificate's serial number, hex formatted.
+        """
+        return pulumi.get(self, "serial_number")
+
+    @serial_number.setter
+    def serial_number(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "serial_number", value)
 
     @property
     @pulumi.getter(name="streetAddress")
@@ -958,6 +977,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
             __props__.__dict__["certificate"] = None
             __props__.__dict__["issuing_ca"] = None
             __props__.__dict__["serial"] = None
+            __props__.__dict__["serial_number"] = None
         super(SecretBackendRootCert, __self__).__init__(
             'vault:pkiSecret/secretBackendRootCert:SecretBackendRootCert',
             resource_name,
@@ -989,6 +1009,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
             private_key_format: Optional[pulumi.Input[str]] = None,
             province: Optional[pulumi.Input[str]] = None,
             serial: Optional[pulumi.Input[str]] = None,
+            serial_number: Optional[pulumi.Input[str]] = None,
             street_address: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
@@ -1002,13 +1023,13 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
-        :param pulumi.Input[str] certificate: The certificate
+        :param pulumi.Input[str] certificate: The certificate.
         :param pulumi.Input[str] common_name: CN of intermediate to create
         :param pulumi.Input[str] country: The country
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
-        :param pulumi.Input[str] issuing_ca: The issuing CA
+        :param pulumi.Input[str] issuing_ca: The issuing CA certificate.
         :param pulumi.Input[int] key_bits: The number of bits to use
         :param pulumi.Input[str] key_type: The desired key type
         :param pulumi.Input[str] locality: The locality
@@ -1020,7 +1041,8 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[str] postal_code: The postal code
         :param pulumi.Input[str] private_key_format: The private key format
         :param pulumi.Input[str] province: The province
-        :param pulumi.Input[str] serial: The serial
+        :param pulumi.Input[str] serial: Deprecated, use `serial_number` instead.
+        :param pulumi.Input[str] serial_number: The certificate's serial number, hex formatted.
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[str] type: Type of intermediate to create. Must be either \"exported\" or \"internal\"
@@ -1051,6 +1073,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         __props__.__dict__["private_key_format"] = private_key_format
         __props__.__dict__["province"] = province
         __props__.__dict__["serial"] = serial
+        __props__.__dict__["serial_number"] = serial_number
         __props__.__dict__["street_address"] = street_address
         __props__.__dict__["ttl"] = ttl
         __props__.__dict__["type"] = type
@@ -1077,7 +1100,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
     @pulumi.getter
     def certificate(self) -> pulumi.Output[str]:
         """
-        The certificate
+        The certificate.
         """
         return pulumi.get(self, "certificate")
 
@@ -1125,7 +1148,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
     @pulumi.getter(name="issuingCa")
     def issuing_ca(self) -> pulumi.Output[str]:
         """
-        The issuing CA
+        The issuing CA certificate.
         """
         return pulumi.get(self, "issuing_ca")
 
@@ -1221,9 +1244,17 @@ class SecretBackendRootCert(pulumi.CustomResource):
     @pulumi.getter
     def serial(self) -> pulumi.Output[str]:
         """
-        The serial
+        Deprecated, use `serial_number` instead.
         """
         return pulumi.get(self, "serial")
+
+    @property
+    @pulumi.getter(name="serialNumber")
+    def serial_number(self) -> pulumi.Output[str]:
+        """
+        The certificate's serial number, hex formatted.
+        """
+        return pulumi.get(self, "serial_number")
 
     @property
     @pulumi.getter(name="streetAddress")

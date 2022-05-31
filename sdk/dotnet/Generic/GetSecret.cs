@@ -15,6 +15,7 @@ namespace Pulumi.Vault.Generic
         /// {{% examples %}}
         /// ## Example Usage
         /// {{% example %}}
+        /// ### Generic secret
         /// 
         /// ```csharp
         /// using Pulumi;
@@ -45,6 +46,7 @@ namespace Pulumi.Vault.Generic
         /// {{% examples %}}
         /// ## Example Usage
         /// {{% example %}}
+        /// ### Generic secret
         /// 
         /// ```csharp
         /// using Pulumi;
@@ -93,6 +95,9 @@ namespace Pulumi.Vault.Generic
         [Input("version")]
         public int? Version { get; set; }
 
+        [Input("withLeaseStartTime")]
+        public bool? WithLeaseStartTime { get; set; }
+
         public GetSecretArgs()
         {
         }
@@ -117,6 +122,9 @@ namespace Pulumi.Vault.Generic
         /// </summary>
         [Input("version")]
         public Input<int>? Version { get; set; }
+
+        [Input("withLeaseStartTime")]
+        public Input<bool>? WithLeaseStartTime { get; set; }
 
         public GetSecretInvokeArgs()
         {
@@ -157,6 +165,7 @@ namespace Pulumi.Vault.Generic
         public readonly string LeaseStartTime;
         public readonly string Path;
         public readonly int? Version;
+        public readonly bool? WithLeaseStartTime;
 
         [OutputConstructor]
         private GetSecretResult(
@@ -176,7 +185,9 @@ namespace Pulumi.Vault.Generic
 
             string path,
 
-            int? version)
+            int? version,
+
+            bool? withLeaseStartTime)
         {
             Data = data;
             DataJson = dataJson;
@@ -187,6 +198,7 @@ namespace Pulumi.Vault.Generic
             LeaseStartTime = leaseStartTime;
             Path = path;
             Version = version;
+            WithLeaseStartTime = withLeaseStartTime;
         }
     }
 }

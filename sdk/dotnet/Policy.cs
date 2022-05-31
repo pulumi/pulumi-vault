@@ -10,29 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault
 {
     /// <summary>
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var example = new Vault.Policy("example", new Vault.PolicyArgs
-    ///         {
-    ///             Policy = @"path ""secret/my_app"" {
-    ///   capabilities = [""update""]
-    /// }
-    /// 
-    /// ",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Policies can be imported using the `name`, e.g.

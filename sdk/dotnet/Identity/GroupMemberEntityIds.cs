@@ -116,7 +116,9 @@ namespace Pulumi.Vault.Identity
         public Output<string> GroupId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the group that are assigned the member entities.
+        /// The name of the group that are assigned the member entities.  
+        /// *Deprecated: The value for group_name may not always be accurate*
+        /// *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
         /// </summary>
         [Output("groupName")]
         public Output<string> GroupName { get; private set; } = null!;
@@ -217,7 +219,9 @@ namespace Pulumi.Vault.Identity
         public Input<string>? GroupId { get; set; }
 
         /// <summary>
-        /// The name of the group that are assigned the member entities.
+        /// The name of the group that are assigned the member entities.  
+        /// *Deprecated: The value for group_name may not always be accurate*
+        /// *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
         /// </summary>
         [Input("groupName")]
         public Input<string>? GroupName { get; set; }

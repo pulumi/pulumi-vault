@@ -40,7 +40,7 @@ class SecretBackendSignArgs:
         :param pulumi.Input[str] name: Name of the role to create the certificate against
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ttl: Time to live
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alterative URIs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "common_name", common_name)
@@ -214,7 +214,7 @@ class SecretBackendSignArgs:
     @pulumi.getter(name="uriSans")
     def uri_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of alterative URIs
+        List of alternative URIs
         """
         return pulumi.get(self, "uri_sans")
 
@@ -242,6 +242,7 @@ class _SecretBackendSignState:
                  name: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  serial: Optional[pulumi.Input[str]] = None,
+                 serial_number: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
@@ -261,9 +262,10 @@ class _SecretBackendSignState:
         :param pulumi.Input[int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
         :param pulumi.Input[str] name: Name of the role to create the certificate against
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
-        :param pulumi.Input[str] serial: The serial
+        :param pulumi.Input[str] serial: The serial number.
+        :param pulumi.Input[str] serial_number: The certificate's serial number, hex formatted.
         :param pulumi.Input[str] ttl: Time to live
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alterative URIs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         """
         if alt_names is not None:
             pulumi.set(__self__, "alt_names", alt_names)
@@ -296,7 +298,12 @@ class _SecretBackendSignState:
         if other_sans is not None:
             pulumi.set(__self__, "other_sans", other_sans)
         if serial is not None:
+            warnings.warn("""Use serial_number instead""", DeprecationWarning)
+            pulumi.log.warn("""serial is deprecated: Use serial_number instead""")
+        if serial is not None:
             pulumi.set(__self__, "serial", serial)
+        if serial_number is not None:
+            pulumi.set(__self__, "serial_number", serial_number)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
         if uri_sans is not None:
@@ -486,13 +493,25 @@ class _SecretBackendSignState:
     @pulumi.getter
     def serial(self) -> Optional[pulumi.Input[str]]:
         """
-        The serial
+        The serial number.
         """
         return pulumi.get(self, "serial")
 
     @serial.setter
     def serial(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "serial", value)
+
+    @property
+    @pulumi.getter(name="serialNumber")
+    def serial_number(self) -> Optional[pulumi.Input[str]]:
+        """
+        The certificate's serial number, hex formatted.
+        """
+        return pulumi.get(self, "serial_number")
+
+    @serial_number.setter
+    def serial_number(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "serial_number", value)
 
     @property
     @pulumi.getter
@@ -510,7 +529,7 @@ class _SecretBackendSignState:
     @pulumi.getter(name="uriSans")
     def uri_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of alterative URIs
+        List of alternative URIs
         """
         return pulumi.get(self, "uri_sans")
 
@@ -578,6 +597,9 @@ class SecretBackendSign(pulumi.CustomResource):
             common_name="test.my.domain",
             opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_role["admin"]]))
         ```
+        ## Deprecations
+
+        * `serial` - Use `serial_number` instead.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -593,7 +615,7 @@ class SecretBackendSign(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the role to create the certificate against
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ttl: Time to live
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alterative URIs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         """
         ...
     @overload
@@ -641,6 +663,9 @@ class SecretBackendSign(pulumi.CustomResource):
             common_name="test.my.domain",
             opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_role["admin"]]))
         ```
+        ## Deprecations
+
+        * `serial` - Use `serial_number` instead.
 
         :param str resource_name: The name of the resource.
         :param SecretBackendSignArgs args: The arguments to use to populate this resource's properties.
@@ -706,6 +731,7 @@ class SecretBackendSign(pulumi.CustomResource):
             __props__.__dict__["expiration"] = None
             __props__.__dict__["issuing_ca"] = None
             __props__.__dict__["serial"] = None
+            __props__.__dict__["serial_number"] = None
         super(SecretBackendSign, __self__).__init__(
             'vault:pkiSecret/secretBackendSign:SecretBackendSign',
             resource_name,
@@ -732,6 +758,7 @@ class SecretBackendSign(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             serial: Optional[pulumi.Input[str]] = None,
+            serial_number: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[str]] = None,
             uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'SecretBackendSign':
         """
@@ -756,9 +783,10 @@ class SecretBackendSign(pulumi.CustomResource):
         :param pulumi.Input[int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
         :param pulumi.Input[str] name: Name of the role to create the certificate against
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
-        :param pulumi.Input[str] serial: The serial
+        :param pulumi.Input[str] serial: The serial number.
+        :param pulumi.Input[str] serial_number: The certificate's serial number, hex formatted.
         :param pulumi.Input[str] ttl: Time to live
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alterative URIs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -780,6 +808,7 @@ class SecretBackendSign(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["other_sans"] = other_sans
         __props__.__dict__["serial"] = serial
+        __props__.__dict__["serial_number"] = serial_number
         __props__.__dict__["ttl"] = ttl
         __props__.__dict__["uri_sans"] = uri_sans
         return SecretBackendSign(resource_name, opts=opts, __props__=__props__)
@@ -908,9 +937,17 @@ class SecretBackendSign(pulumi.CustomResource):
     @pulumi.getter
     def serial(self) -> pulumi.Output[str]:
         """
-        The serial
+        The serial number.
         """
         return pulumi.get(self, "serial")
+
+    @property
+    @pulumi.getter(name="serialNumber")
+    def serial_number(self) -> pulumi.Output[str]:
+        """
+        The certificate's serial number, hex formatted.
+        """
+        return pulumi.get(self, "serial_number")
 
     @property
     @pulumi.getter
@@ -924,7 +961,7 @@ class SecretBackendSign(pulumi.CustomResource):
     @pulumi.getter(name="uriSans")
     def uri_sans(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        List of alterative URIs
+        List of alternative URIs
         """
         return pulumi.get(self, "uri_sans")
 

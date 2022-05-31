@@ -116,6 +116,10 @@ export class SecretBackendCert extends pulumi.CustomResource {
      */
     public /*out*/ readonly privateKeyType!: pulumi.Output<string>;
     /**
+     * If set to `true`, the certificate will be revoked on resource destruction.
+     */
+    public readonly revoke!: pulumi.Output<boolean | undefined>;
+    /**
      * The serial number
      */
     public /*out*/ readonly serialNumber!: pulumi.Output<string>;
@@ -158,6 +162,7 @@ export class SecretBackendCert extends pulumi.CustomResource {
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
             resourceInputs["privateKeyFormat"] = state ? state.privateKeyFormat : undefined;
             resourceInputs["privateKeyType"] = state ? state.privateKeyType : undefined;
+            resourceInputs["revoke"] = state ? state.revoke : undefined;
             resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
             resourceInputs["uriSans"] = state ? state.uriSans : undefined;
@@ -180,6 +185,7 @@ export class SecretBackendCert extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["otherSans"] = args ? args.otherSans : undefined;
             resourceInputs["privateKeyFormat"] = args ? args.privateKeyFormat : undefined;
+            resourceInputs["revoke"] = args ? args.revoke : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
             resourceInputs["uriSans"] = args ? args.uriSans : undefined;
             resourceInputs["caChain"] = undefined /*out*/;
@@ -268,6 +274,10 @@ export interface SecretBackendCertState {
      */
     privateKeyType?: pulumi.Input<string>;
     /**
+     * If set to `true`, the certificate will be revoked on resource destruction.
+     */
+    revoke?: pulumi.Input<boolean>;
+    /**
      * The serial number
      */
     serialNumber?: pulumi.Input<string>;
@@ -329,6 +339,10 @@ export interface SecretBackendCertArgs {
      * The private key format
      */
     privateKeyFormat?: pulumi.Input<string>;
+    /**
+     * If set to `true`, the certificate will be revoked on resource destruction.
+     */
+    revoke?: pulumi.Input<boolean>;
     /**
      * Time to live
      */

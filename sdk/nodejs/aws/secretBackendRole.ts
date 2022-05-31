@@ -108,6 +108,13 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The ARN of the AWS Permissions 
+     * Boundary to attach to IAM users created in the role. Valid only when
+     * `credentialType` is `iamUser`. If not specified, then no permissions boundary
+     * policy will be attached.
+     */
+    public readonly permissionsBoundaryArn!: pulumi.Output<string | undefined>;
+    /**
      * Specifies a list of AWS managed policy ARNs. The
      * behavior depends on the credential type. With `iamUser`, the policies will be
      * attached to IAM users when they are requested. With `assumedRole` and
@@ -131,6 +138,11 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * prohibited otherwise.
      */
     public readonly roleArns!: pulumi.Output<string[] | undefined>;
+    /**
+     * The path for the user name. Valid only when 
+     * `credentialType` is `iamUser`. Default is `/`.
+     */
+    public readonly userPath!: pulumi.Output<string | undefined>;
 
     /**
      * Create a SecretBackendRole resource with the given unique name, arguments, and options.
@@ -151,9 +163,11 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["iamGroups"] = state ? state.iamGroups : undefined;
             resourceInputs["maxStsTtl"] = state ? state.maxStsTtl : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["permissionsBoundaryArn"] = state ? state.permissionsBoundaryArn : undefined;
             resourceInputs["policyArns"] = state ? state.policyArns : undefined;
             resourceInputs["policyDocument"] = state ? state.policyDocument : undefined;
             resourceInputs["roleArns"] = state ? state.roleArns : undefined;
+            resourceInputs["userPath"] = state ? state.userPath : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -168,9 +182,11 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["iamGroups"] = args ? args.iamGroups : undefined;
             resourceInputs["maxStsTtl"] = args ? args.maxStsTtl : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["permissionsBoundaryArn"] = args ? args.permissionsBoundaryArn : undefined;
             resourceInputs["policyArns"] = args ? args.policyArns : undefined;
             resourceInputs["policyDocument"] = args ? args.policyDocument : undefined;
             resourceInputs["roleArns"] = args ? args.roleArns : undefined;
+            resourceInputs["userPath"] = args ? args.userPath : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendRole.__pulumiType, name, resourceInputs, opts);
@@ -221,6 +237,13 @@ export interface SecretBackendRoleState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The ARN of the AWS Permissions 
+     * Boundary to attach to IAM users created in the role. Valid only when
+     * `credentialType` is `iamUser`. If not specified, then no permissions boundary
+     * policy will be attached.
+     */
+    permissionsBoundaryArn?: pulumi.Input<string>;
+    /**
      * Specifies a list of AWS managed policy ARNs. The
      * behavior depends on the credential type. With `iamUser`, the policies will be
      * attached to IAM users when they are requested. With `assumedRole` and
@@ -244,6 +267,11 @@ export interface SecretBackendRoleState {
      * prohibited otherwise.
      */
     roleArns?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The path for the user name. Valid only when 
+     * `credentialType` is `iamUser`. Default is `/`.
+     */
+    userPath?: pulumi.Input<string>;
 }
 
 /**
@@ -290,6 +318,13 @@ export interface SecretBackendRoleArgs {
      */
     name?: pulumi.Input<string>;
     /**
+     * The ARN of the AWS Permissions 
+     * Boundary to attach to IAM users created in the role. Valid only when
+     * `credentialType` is `iamUser`. If not specified, then no permissions boundary
+     * policy will be attached.
+     */
+    permissionsBoundaryArn?: pulumi.Input<string>;
+    /**
      * Specifies a list of AWS managed policy ARNs. The
      * behavior depends on the credential type. With `iamUser`, the policies will be
      * attached to IAM users when they are requested. With `assumedRole` and
@@ -313,4 +348,9 @@ export interface SecretBackendRoleArgs {
      * prohibited otherwise.
      */
     roleArns?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The path for the user name. Valid only when 
+     * `credentialType` is `iamUser`. Default is `/`.
+     */
+    userPath?: pulumi.Input<string>;
 }

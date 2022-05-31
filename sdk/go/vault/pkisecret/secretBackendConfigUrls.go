@@ -19,14 +19,25 @@ import (
 // package main
 //
 // import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
 // 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := pkiSecret.NewSecretBackendConfigUrls(ctx, "configUrls", &pkiSecret.SecretBackendConfigUrlsArgs{
-// 			Backend: pulumi.Any(vault_mount.Pki.Path),
+// 		root, err := vault.NewMount(ctx, "root", &vault.MountArgs{
+// 			Path:                   pulumi.String("pki-root"),
+// 			Type:                   pulumi.String("pki"),
+// 			Description:            pulumi.String("root PKI"),
+// 			DefaultLeaseTtlSeconds: pulumi.Int(8640000),
+// 			MaxLeaseTtlSeconds:     pulumi.Int(8640000),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = pkiSecret.NewSecretBackendConfigUrls(ctx, "example", &pkiSecret.SecretBackendConfigUrlsArgs{
+// 			Backend: root.Path,
 // 			IssuingCertificates: pulumi.StringArray{
 // 				pulumi.String("http://127.0.0.1:8200/v1/pki/ca"),
 // 			},
@@ -37,6 +48,18 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// The PKI config URLs can be imported using the resource's `id`.
+//
+// In the case of the example above the `id` would be `pki-root/config/urls`,
+//
+// where the `pki-root` component is the resource's `backend`, e.g.
+//
+// ```sh
+//  $ pulumi import vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls example pki-root/config/urls
 // ```
 type SecretBackendConfigUrls struct {
 	pulumi.CustomResourceState

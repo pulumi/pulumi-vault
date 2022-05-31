@@ -47,6 +47,10 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
+     * Name to use as the SNI host when connecting via TLS.
+     */
+    public readonly tlsServerName!: pulumi.Output<string | undefined>;
+    /**
      * Token to use to authenticate to Vault.
      */
     public readonly token!: pulumi.Output<string>;
@@ -85,6 +89,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["skipChildToken"] = pulumi.output(args ? args.skipChildToken : undefined).apply(JSON.stringify);
             resourceInputs["skipTlsVerify"] = pulumi.output((args ? args.skipTlsVerify : undefined) ?? utilities.getEnvBoolean("VAULT_SKIP_VERIFY")).apply(JSON.stringify);
+            resourceInputs["tlsServerName"] = args ? args.tlsServerName : undefined;
             resourceInputs["token"] = args ? args.token : undefined;
             resourceInputs["tokenName"] = args ? args.tokenName : undefined;
         }
@@ -149,6 +154,10 @@ export interface ProviderArgs {
      * Set this to true only if the target Vault server is an insecure development instance.
      */
     skipTlsVerify?: pulumi.Input<boolean>;
+    /**
+     * Name to use as the SNI host when connecting via TLS.
+     */
+    tlsServerName?: pulumi.Input<string>;
     /**
      * Token to use to authenticate to Vault.
      */

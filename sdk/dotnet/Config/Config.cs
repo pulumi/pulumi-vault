@@ -162,6 +162,16 @@ namespace Pulumi.Vault
             set => _skipTlsVerify.Set(value);
         }
 
+        private static readonly __Value<string?> _tlsServerName = new __Value<string?>(() => __config.Get("tlsServerName"));
+        /// <summary>
+        /// Name to use as the SNI host when connecting via TLS.
+        /// </summary>
+        public static string? TlsServerName
+        {
+            get => _tlsServerName.Get();
+            set => _tlsServerName.Set(value);
+        }
+
         private static readonly __Value<string?> _token = new __Value<string?>(() => __config.Get("token"));
         /// <summary>
         /// Token to use to authenticate to Vault.

@@ -8,11 +8,13 @@ import * as utilities from "../utilities";
 export * from "./secretBackendConnection";
 export * from "./secretBackendRole";
 export * from "./secretBackendStaticRole";
+export * from "./secretsMount";
 
 // Import resources to register:
 import { SecretBackendConnection } from "./secretBackendConnection";
 import { SecretBackendRole } from "./secretBackendRole";
 import { SecretBackendStaticRole } from "./secretBackendStaticRole";
+import { SecretsMount } from "./secretsMount";
 
 const _module = {
     version: utilities.getVersion(),
@@ -24,6 +26,8 @@ const _module = {
                 return new SecretBackendRole(name, <any>undefined, { urn })
             case "vault:database/secretBackendStaticRole:SecretBackendStaticRole":
                 return new SecretBackendStaticRole(name, <any>undefined, { urn })
+            case "vault:database/secretsMount:SecretsMount":
+                return new SecretsMount(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -32,3 +36,4 @@ const _module = {
 pulumi.runtime.registerResourceModule("vault", "database/secretBackendConnection", _module)
 pulumi.runtime.registerResourceModule("vault", "database/secretBackendRole", _module)
 pulumi.runtime.registerResourceModule("vault", "database/secretBackendStaticRole", _module)
+pulumi.runtime.registerResourceModule("vault", "database/secretsMount", _module)

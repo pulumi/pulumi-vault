@@ -63,6 +63,9 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// }
     /// ```
+    /// ## Deprecations
+    /// 
+    /// * `serial` - Use `serial_number` instead.
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendSign:SecretBackendSign")]
     public partial class SecretBackendSign : Pulumi.CustomResource
@@ -158,10 +161,16 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> OtherSans { get; private set; } = null!;
 
         /// <summary>
-        /// The serial
+        /// The serial number.
         /// </summary>
         [Output("serial")]
         public Output<string> Serial { get; private set; } = null!;
+
+        /// <summary>
+        /// The certificate's serial number, hex formatted.
+        /// </summary>
+        [Output("serialNumber")]
+        public Output<string> SerialNumber { get; private set; } = null!;
 
         /// <summary>
         /// Time to live
@@ -170,7 +179,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string?> Ttl { get; private set; } = null!;
 
         /// <summary>
-        /// List of alterative URIs
+        /// List of alternative URIs
         /// </summary>
         [Output("uriSans")]
         public Output<ImmutableArray<string>> UriSans { get; private set; } = null!;
@@ -315,7 +324,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _uriSans;
 
         /// <summary>
-        /// List of alterative URIs
+        /// List of alternative URIs
         /// </summary>
         public InputList<string> UriSans
         {
@@ -445,10 +454,16 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// The serial
+        /// The serial number.
         /// </summary>
         [Input("serial")]
         public Input<string>? Serial { get; set; }
+
+        /// <summary>
+        /// The certificate's serial number, hex formatted.
+        /// </summary>
+        [Input("serialNumber")]
+        public Input<string>? SerialNumber { get; set; }
 
         /// <summary>
         /// Time to live
@@ -460,7 +475,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _uriSans;
 
         /// <summary>
-        /// List of alterative URIs
+        /// List of alternative URIs
         /// </summary>
         public InputList<string> UriSans
         {

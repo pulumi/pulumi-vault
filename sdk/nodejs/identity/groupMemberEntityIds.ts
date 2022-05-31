@@ -96,7 +96,12 @@ export class GroupMemberEntityIds extends pulumi.CustomResource {
      */
     public readonly groupId!: pulumi.Output<string>;
     /**
-     * The name of the group that are assigned the member entities.
+     * The name of the group that are assigned the member entities.  
+     * *Deprecated: The value for groupName may not always be accurate*
+     * *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
+     *
+     * @deprecated The value for group_name may not always be accurate, 
+use "data.vault_identity_group.*.group_name", "vault_identity_group.*.group_name" instead
      */
     public /*out*/ readonly groupName!: pulumi.Output<string>;
     /**
@@ -149,7 +154,12 @@ export interface GroupMemberEntityIdsState {
      */
     groupId?: pulumi.Input<string>;
     /**
-     * The name of the group that are assigned the member entities.
+     * The name of the group that are assigned the member entities.  
+     * *Deprecated: The value for groupName may not always be accurate*
+     * *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
+     *
+     * @deprecated The value for group_name may not always be accurate, 
+use "data.vault_identity_group.*.group_name", "vault_identity_group.*.group_name" instead
      */
     groupName?: pulumi.Input<string>;
     /**

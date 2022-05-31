@@ -56,9 +56,8 @@ class AuthBackendRoleArgs:
                Its current value will be referenced at renewal time.
         :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
                generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The
-               [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-               if any, in number of seconds to set on the token.
+        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/auth/approle#token_num_uses)
+               of times a generated token may be used (within its lifetime); 0 means unlimited.
         :param pulumi.Input[int] token_period: If set, indicates that the
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
@@ -255,9 +254,8 @@ class AuthBackendRoleArgs:
     @pulumi.getter(name="tokenNumUses")
     def token_num_uses(self) -> Optional[pulumi.Input[int]]:
         """
-        The
-        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        if any, in number of seconds to set on the token.
+        The [maximum number](https://www.vaultproject.io/api-docs/auth/approle#token_num_uses)
+        of times a generated token may be used (within its lifetime); 0 means unlimited.
         """
         return pulumi.get(self, "token_num_uses")
 
@@ -369,9 +367,8 @@ class _AuthBackendRoleState:
                Its current value will be referenced at renewal time.
         :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
                generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The
-               [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-               if any, in number of seconds to set on the token.
+        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/auth/approle#token_num_uses)
+               of times a generated token may be used (within its lifetime); 0 means unlimited.
         :param pulumi.Input[int] token_period: If set, indicates that the
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
@@ -569,9 +566,8 @@ class _AuthBackendRoleState:
     @pulumi.getter(name="tokenNumUses")
     def token_num_uses(self) -> Optional[pulumi.Input[int]]:
         """
-        The
-        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        if any, in number of seconds to set on the token.
+        The [maximum number](https://www.vaultproject.io/api-docs/auth/approle#token_num_uses)
+        of times a generated token may be used (within its lifetime); 0 means unlimited.
         """
         return pulumi.get(self, "token_num_uses")
 
@@ -716,9 +712,8 @@ class AuthBackendRole(pulumi.CustomResource):
                Its current value will be referenced at renewal time.
         :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
                generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The
-               [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-               if any, in number of seconds to set on the token.
+        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/auth/approle#token_num_uses)
+               of times a generated token may be used (within its lifetime); 0 means unlimited.
         :param pulumi.Input[int] token_period: If set, indicates that the
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
@@ -888,9 +883,8 @@ class AuthBackendRole(pulumi.CustomResource):
                Its current value will be referenced at renewal time.
         :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
                generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The
-               [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-               if any, in number of seconds to set on the token.
+        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/auth/approle#token_num_uses)
+               of times a generated token may be used (within its lifetime); 0 means unlimited.
         :param pulumi.Input[int] token_period: If set, indicates that the
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
@@ -1033,9 +1027,8 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenNumUses")
     def token_num_uses(self) -> pulumi.Output[Optional[int]]:
         """
-        The
-        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        if any, in number of seconds to set on the token.
+        The [maximum number](https://www.vaultproject.io/api-docs/auth/approle#token_num_uses)
+        of times a generated token may be used (within its lifetime); 0 means unlimited.
         """
         return pulumi.get(self, "token_num_uses")
 

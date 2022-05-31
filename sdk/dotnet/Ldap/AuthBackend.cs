@@ -183,9 +183,8 @@ namespace Pulumi.Vault.Ldap
         public Output<bool?> TokenNoDefaultPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// The
-        /// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        /// if any, in number of seconds to set on the token.
+        /// The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+        /// of times a generated token may be used (within its lifetime); 0 means unlimited.
         /// </summary>
         [Output("tokenNumUses")]
         public Output<int?> TokenNumUses { get; private set; } = null!;
@@ -252,6 +251,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Output("userdn")]
         public Output<string> Userdn { get; private set; } = null!;
+
+        /// <summary>
+        /// LDAP user search filter
+        /// </summary>
+        [Output("userfilter")]
+        public Output<string> Userfilter { get; private set; } = null!;
 
 
         /// <summary>
@@ -433,9 +438,8 @@ namespace Pulumi.Vault.Ldap
         public Input<bool>? TokenNoDefaultPolicy { get; set; }
 
         /// <summary>
-        /// The
-        /// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        /// if any, in number of seconds to set on the token.
+        /// The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+        /// of times a generated token may be used (within its lifetime); 0 means unlimited.
         /// </summary>
         [Input("tokenNumUses")]
         public Input<int>? TokenNumUses { get; set; }
@@ -508,6 +512,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("userdn")]
         public Input<string>? Userdn { get; set; }
+
+        /// <summary>
+        /// LDAP user search filter
+        /// </summary>
+        [Input("userfilter")]
+        public Input<string>? Userfilter { get; set; }
 
         public AuthBackendArgs()
         {
@@ -656,9 +666,8 @@ namespace Pulumi.Vault.Ldap
         public Input<bool>? TokenNoDefaultPolicy { get; set; }
 
         /// <summary>
-        /// The
-        /// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        /// if any, in number of seconds to set on the token.
+        /// The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+        /// of times a generated token may be used (within its lifetime); 0 means unlimited.
         /// </summary>
         [Input("tokenNumUses")]
         public Input<int>? TokenNumUses { get; set; }
@@ -731,6 +740,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("userdn")]
         public Input<string>? Userdn { get; set; }
+
+        /// <summary>
+        /// LDAP user search filter
+        /// </summary>
+        [Input("userfilter")]
+        public Input<string>? Userfilter { get; set; }
 
         public AuthBackendState()
         {

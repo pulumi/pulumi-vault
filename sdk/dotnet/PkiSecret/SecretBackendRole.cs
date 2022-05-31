@@ -114,6 +114,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> AllowedOtherSans { get; private set; } = null!;
 
         /// <summary>
+        /// An array of allowed serial numbers to put in Subject
+        /// </summary>
+        [Output("allowedSerialNumbers")]
+        public Output<ImmutableArray<string>> AllowedSerialNumbers { get; private set; } = null!;
+
+        /// <summary>
         /// Defines allowed URI SANs
         /// </summary>
         [Output("allowedUriSans")]
@@ -180,7 +186,8 @@ namespace Pulumi.Vault.PkiSecret
         public Output<int?> KeyBits { get; private set; } = null!;
 
         /// <summary>
-        /// The type of generated keys
+        /// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+        /// Defaults to `rsa`
         /// </summary>
         [Output("keyType")]
         public Output<string?> KeyType { get; private set; } = null!;
@@ -198,10 +205,10 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> Localities { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum TTL
+        /// The maximum lease TTL, in seconds, for the role.
         /// </summary>
         [Output("maxTtl")]
-        public Output<string?> MaxTtl { get; private set; } = null!;
+        public Output<string> MaxTtl { get; private set; } = null!;
 
         /// <summary>
         /// The name to identify this role within the backend. Must be unique within the backend.
@@ -270,10 +277,10 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> StreetAddresses { get; private set; } = null!;
 
         /// <summary>
-        /// The TTL
+        /// The TTL, in seconds, for any certificate issued against this role.
         /// </summary>
         [Output("ttl")]
-        public Output<string?> Ttl { get; private set; } = null!;
+        public Output<string> Ttl { get; private set; } = null!;
 
         /// <summary>
         /// Flag to use the CN in the CSR
@@ -399,6 +406,18 @@ namespace Pulumi.Vault.PkiSecret
             set => _allowedOtherSans = value;
         }
 
+        [Input("allowedSerialNumbers")]
+        private InputList<string>? _allowedSerialNumbers;
+
+        /// <summary>
+        /// An array of allowed serial numbers to put in Subject
+        /// </summary>
+        public InputList<string> AllowedSerialNumbers
+        {
+            get => _allowedSerialNumbers ?? (_allowedSerialNumbers = new InputList<string>());
+            set => _allowedSerialNumbers = value;
+        }
+
         [Input("allowedUriSans")]
         private InputList<string>? _allowedUriSans;
 
@@ -484,7 +503,8 @@ namespace Pulumi.Vault.PkiSecret
         public Input<int>? KeyBits { get; set; }
 
         /// <summary>
-        /// The type of generated keys
+        /// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+        /// Defaults to `rsa`
         /// </summary>
         [Input("keyType")]
         public Input<string>? KeyType { get; set; }
@@ -514,7 +534,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// The maximum TTL
+        /// The maximum lease TTL, in seconds, for the role.
         /// </summary>
         [Input("maxTtl")]
         public Input<string>? MaxTtl { get; set; }
@@ -622,7 +642,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// The TTL
+        /// The TTL, in seconds, for any certificate issued against this role.
         /// </summary>
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }
@@ -712,6 +732,18 @@ namespace Pulumi.Vault.PkiSecret
             set => _allowedOtherSans = value;
         }
 
+        [Input("allowedSerialNumbers")]
+        private InputList<string>? _allowedSerialNumbers;
+
+        /// <summary>
+        /// An array of allowed serial numbers to put in Subject
+        /// </summary>
+        public InputList<string> AllowedSerialNumbers
+        {
+            get => _allowedSerialNumbers ?? (_allowedSerialNumbers = new InputList<string>());
+            set => _allowedSerialNumbers = value;
+        }
+
         [Input("allowedUriSans")]
         private InputList<string>? _allowedUriSans;
 
@@ -797,7 +829,8 @@ namespace Pulumi.Vault.PkiSecret
         public Input<int>? KeyBits { get; set; }
 
         /// <summary>
-        /// The type of generated keys
+        /// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+        /// Defaults to `rsa`
         /// </summary>
         [Input("keyType")]
         public Input<string>? KeyType { get; set; }
@@ -827,7 +860,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// The maximum TTL
+        /// The maximum lease TTL, in seconds, for the role.
         /// </summary>
         [Input("maxTtl")]
         public Input<string>? MaxTtl { get; set; }
@@ -935,7 +968,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// The TTL
+        /// The TTL, in seconds, for any certificate issued against this role.
         /// </summary>
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }

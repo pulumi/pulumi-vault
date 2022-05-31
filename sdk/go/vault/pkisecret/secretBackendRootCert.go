@@ -52,7 +52,7 @@ type SecretBackendRootCert struct {
 	AltNames pulumi.StringArrayOutput `pulumi:"altNames"`
 	// The PKI secret backend the resource belongs to.
 	Backend pulumi.StringOutput `pulumi:"backend"`
-	// The certificate
+	// The certificate.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
 	// CN of intermediate to create
 	CommonName pulumi.StringOutput `pulumi:"commonName"`
@@ -64,7 +64,7 @@ type SecretBackendRootCert struct {
 	Format pulumi.StringPtrOutput `pulumi:"format"`
 	// List of alternative IPs
 	IpSans pulumi.StringArrayOutput `pulumi:"ipSans"`
-	// The issuing CA
+	// The issuing CA certificate.
 	IssuingCa pulumi.StringOutput `pulumi:"issuingCa"`
 	// The number of bits to use
 	KeyBits pulumi.IntPtrOutput `pulumi:"keyBits"`
@@ -88,8 +88,12 @@ type SecretBackendRootCert struct {
 	PrivateKeyFormat pulumi.StringPtrOutput `pulumi:"privateKeyFormat"`
 	// The province
 	Province pulumi.StringPtrOutput `pulumi:"province"`
-	// The serial
+	// Deprecated, use `serialNumber` instead.
+	//
+	// Deprecated: Use serial_number instead
 	Serial pulumi.StringOutput `pulumi:"serial"`
+	// The certificate's serial number, hex formatted.
+	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
 	// The street address
 	StreetAddress pulumi.StringPtrOutput `pulumi:"streetAddress"`
 	// Time to live
@@ -142,7 +146,7 @@ type secretBackendRootCertState struct {
 	AltNames []string `pulumi:"altNames"`
 	// The PKI secret backend the resource belongs to.
 	Backend *string `pulumi:"backend"`
-	// The certificate
+	// The certificate.
 	Certificate *string `pulumi:"certificate"`
 	// CN of intermediate to create
 	CommonName *string `pulumi:"commonName"`
@@ -154,7 +158,7 @@ type secretBackendRootCertState struct {
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
 	IpSans []string `pulumi:"ipSans"`
-	// The issuing CA
+	// The issuing CA certificate.
 	IssuingCa *string `pulumi:"issuingCa"`
 	// The number of bits to use
 	KeyBits *int `pulumi:"keyBits"`
@@ -178,8 +182,12 @@ type secretBackendRootCertState struct {
 	PrivateKeyFormat *string `pulumi:"privateKeyFormat"`
 	// The province
 	Province *string `pulumi:"province"`
-	// The serial
+	// Deprecated, use `serialNumber` instead.
+	//
+	// Deprecated: Use serial_number instead
 	Serial *string `pulumi:"serial"`
+	// The certificate's serial number, hex formatted.
+	SerialNumber *string `pulumi:"serialNumber"`
 	// The street address
 	StreetAddress *string `pulumi:"streetAddress"`
 	// Time to live
@@ -195,7 +203,7 @@ type SecretBackendRootCertState struct {
 	AltNames pulumi.StringArrayInput
 	// The PKI secret backend the resource belongs to.
 	Backend pulumi.StringPtrInput
-	// The certificate
+	// The certificate.
 	Certificate pulumi.StringPtrInput
 	// CN of intermediate to create
 	CommonName pulumi.StringPtrInput
@@ -207,7 +215,7 @@ type SecretBackendRootCertState struct {
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
 	IpSans pulumi.StringArrayInput
-	// The issuing CA
+	// The issuing CA certificate.
 	IssuingCa pulumi.StringPtrInput
 	// The number of bits to use
 	KeyBits pulumi.IntPtrInput
@@ -231,8 +239,12 @@ type SecretBackendRootCertState struct {
 	PrivateKeyFormat pulumi.StringPtrInput
 	// The province
 	Province pulumi.StringPtrInput
-	// The serial
+	// Deprecated, use `serialNumber` instead.
+	//
+	// Deprecated: Use serial_number instead
 	Serial pulumi.StringPtrInput
+	// The certificate's serial number, hex formatted.
+	SerialNumber pulumi.StringPtrInput
 	// The street address
 	StreetAddress pulumi.StringPtrInput
 	// Time to live

@@ -85,6 +85,11 @@ func GetSkipTlsVerify(ctx *pulumi.Context) bool {
 	return getEnvOrDefault(false, parseEnvBool, "VAULT_SKIP_VERIFY").(bool)
 }
 
+// Name to use as the SNI host when connecting via TLS.
+func GetTlsServerName(ctx *pulumi.Context) string {
+	return config.Get(ctx, "vault:tlsServerName")
+}
+
 // Token to use to authenticate to Vault.
 func GetToken(ctx *pulumi.Context) string {
 	return config.Get(ctx, "vault:token")

@@ -28,6 +28,7 @@ class ProviderArgs:
                  namespace: Optional[pulumi.Input[str]] = None,
                  skip_child_token: Optional[pulumi.Input[bool]] = None,
                  skip_tls_verify: Optional[pulumi.Input[bool]] = None,
+                 tls_server_name: Optional[pulumi.Input[str]] = None,
                  token_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
@@ -45,6 +46,7 @@ class ProviderArgs:
         :param pulumi.Input[str] namespace: The namespace to use. Available only for Vault Enterprise.
         :param pulumi.Input[bool] skip_child_token: Set this to true to prevent the creation of ephemeral child token used by this provider.
         :param pulumi.Input[bool] skip_tls_verify: Set this to true only if the target Vault server is an insecure development instance.
+        :param pulumi.Input[str] tls_server_name: Name to use as the SNI host when connecting via TLS.
         :param pulumi.Input[str] token_name: Token name to use for creating the Vault child token.
         """
         pulumi.set(__self__, "address", address)
@@ -79,6 +81,8 @@ class ProviderArgs:
             skip_tls_verify = _utilities.get_env_bool('VAULT_SKIP_VERIFY')
         if skip_tls_verify is not None:
             pulumi.set(__self__, "skip_tls_verify", skip_tls_verify)
+        if tls_server_name is not None:
+            pulumi.set(__self__, "tls_server_name", tls_server_name)
         if token_name is not None:
             pulumi.set(__self__, "token_name", token_name)
 
@@ -251,6 +255,18 @@ class ProviderArgs:
         pulumi.set(self, "skip_tls_verify", value)
 
     @property
+    @pulumi.getter(name="tlsServerName")
+    def tls_server_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name to use as the SNI host when connecting via TLS.
+        """
+        return pulumi.get(self, "tls_server_name")
+
+    @tls_server_name.setter
+    def tls_server_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_server_name", value)
+
+    @property
     @pulumi.getter(name="tokenName")
     def token_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -281,6 +297,7 @@ class Provider(pulumi.ProviderResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  skip_child_token: Optional[pulumi.Input[bool]] = None,
                  skip_tls_verify: Optional[pulumi.Input[bool]] = None,
+                 tls_server_name: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  token_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -305,6 +322,7 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[str] namespace: The namespace to use. Available only for Vault Enterprise.
         :param pulumi.Input[bool] skip_child_token: Set this to true to prevent the creation of ephemeral child token used by this provider.
         :param pulumi.Input[bool] skip_tls_verify: Set this to true only if the target Vault server is an insecure development instance.
+        :param pulumi.Input[str] tls_server_name: Name to use as the SNI host when connecting via TLS.
         :param pulumi.Input[str] token: Token to use to authenticate to Vault.
         :param pulumi.Input[str] token_name: Token name to use for creating the Vault child token.
         """
@@ -348,6 +366,7 @@ class Provider(pulumi.ProviderResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  skip_child_token: Optional[pulumi.Input[bool]] = None,
                  skip_tls_verify: Optional[pulumi.Input[bool]] = None,
+                 tls_server_name: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  token_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -383,6 +402,7 @@ class Provider(pulumi.ProviderResource):
             if skip_tls_verify is None:
                 skip_tls_verify = _utilities.get_env_bool('VAULT_SKIP_VERIFY')
             __props__.__dict__["skip_tls_verify"] = pulumi.Output.from_input(skip_tls_verify).apply(pulumi.runtime.to_json) if skip_tls_verify is not None else None
+            __props__.__dict__["tls_server_name"] = tls_server_name
             if token is None and not opts.urn:
                 raise TypeError("Missing required property 'token'")
             __props__.__dict__["token"] = token
@@ -432,6 +452,14 @@ class Provider(pulumi.ProviderResource):
         The namespace to use. Available only for Vault Enterprise.
         """
         return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter(name="tlsServerName")
+    def tls_server_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        Name to use as the SNI host when connecting via TLS.
+        """
+        return pulumi.get(self, "tls_server_name")
 
     @property
     @pulumi.getter

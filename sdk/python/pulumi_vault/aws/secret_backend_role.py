@@ -19,9 +19,11 @@ class SecretBackendRoleArgs:
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 permissions_boundary_arn: Optional[pulumi.Input[str]] = None,
                  policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  policy_document: Optional[pulumi.Input[str]] = None,
-                 role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user_path: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretBackendRole resource.
         :param pulumi.Input[str] backend: The path the AWS secret backend is mounted at,
@@ -45,6 +47,10 @@ class SecretBackendRoleArgs:
                one of `assumed_role` or `federation_token`.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
+        :param pulumi.Input[str] permissions_boundary_arn: The ARN of the AWS Permissions 
+               Boundary to attach to IAM users created in the role. Valid only when
+               `credential_type` is `iam_user`. If not specified, then no permissions boundary
+               policy will be attached.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_arns: Specifies a list of AWS managed policy ARNs. The
                behavior depends on the credential type. With `iam_user`, the policies will be
                attached to IAM users when they are requested. With `assumed_role` and
@@ -60,6 +66,8 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_arns: Specifies the ARNs of the AWS roles this Vault role
                is allowed to assume. Required when `credential_type` is `assumed_role` and
                prohibited otherwise.
+        :param pulumi.Input[str] user_path: The path for the user name. Valid only when 
+               `credential_type` is `iam_user`. Default is `/`.
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "credential_type", credential_type)
@@ -71,12 +79,16 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "max_sts_ttl", max_sts_ttl)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if permissions_boundary_arn is not None:
+            pulumi.set(__self__, "permissions_boundary_arn", permissions_boundary_arn)
         if policy_arns is not None:
             pulumi.set(__self__, "policy_arns", policy_arns)
         if policy_document is not None:
             pulumi.set(__self__, "policy_document", policy_document)
         if role_arns is not None:
             pulumi.set(__self__, "role_arns", role_arns)
+        if user_path is not None:
+            pulumi.set(__self__, "user_path", user_path)
 
     @property
     @pulumi.getter
@@ -166,6 +178,21 @@ class SecretBackendRoleArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="permissionsBoundaryArn")
+    def permissions_boundary_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ARN of the AWS Permissions 
+        Boundary to attach to IAM users created in the role. Valid only when
+        `credential_type` is `iam_user`. If not specified, then no permissions boundary
+        policy will be attached.
+        """
+        return pulumi.get(self, "permissions_boundary_arn")
+
+    @permissions_boundary_arn.setter
+    def permissions_boundary_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "permissions_boundary_arn", value)
+
+    @property
     @pulumi.getter(name="policyArns")
     def policy_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -213,6 +240,19 @@ class SecretBackendRoleArgs:
     def role_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "role_arns", value)
 
+    @property
+    @pulumi.getter(name="userPath")
+    def user_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path for the user name. Valid only when 
+        `credential_type` is `iam_user`. Default is `/`.
+        """
+        return pulumi.get(self, "user_path")
+
+    @user_path.setter
+    def user_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_path", value)
+
 
 @pulumi.input_type
 class _SecretBackendRoleState:
@@ -223,9 +263,11 @@ class _SecretBackendRoleState:
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 permissions_boundary_arn: Optional[pulumi.Input[str]] = None,
                  policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  policy_document: Optional[pulumi.Input[str]] = None,
-                 role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user_path: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
         :param pulumi.Input[str] backend: The path the AWS secret backend is mounted at,
@@ -249,6 +291,10 @@ class _SecretBackendRoleState:
                one of `assumed_role` or `federation_token`.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
+        :param pulumi.Input[str] permissions_boundary_arn: The ARN of the AWS Permissions 
+               Boundary to attach to IAM users created in the role. Valid only when
+               `credential_type` is `iam_user`. If not specified, then no permissions boundary
+               policy will be attached.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_arns: Specifies a list of AWS managed policy ARNs. The
                behavior depends on the credential type. With `iam_user`, the policies will be
                attached to IAM users when they are requested. With `assumed_role` and
@@ -264,6 +310,8 @@ class _SecretBackendRoleState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_arns: Specifies the ARNs of the AWS roles this Vault role
                is allowed to assume. Required when `credential_type` is `assumed_role` and
                prohibited otherwise.
+        :param pulumi.Input[str] user_path: The path for the user name. Valid only when 
+               `credential_type` is `iam_user`. Default is `/`.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -277,12 +325,16 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "max_sts_ttl", max_sts_ttl)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if permissions_boundary_arn is not None:
+            pulumi.set(__self__, "permissions_boundary_arn", permissions_boundary_arn)
         if policy_arns is not None:
             pulumi.set(__self__, "policy_arns", policy_arns)
         if policy_document is not None:
             pulumi.set(__self__, "policy_document", policy_document)
         if role_arns is not None:
             pulumi.set(__self__, "role_arns", role_arns)
+        if user_path is not None:
+            pulumi.set(__self__, "user_path", user_path)
 
     @property
     @pulumi.getter
@@ -372,6 +424,21 @@ class _SecretBackendRoleState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="permissionsBoundaryArn")
+    def permissions_boundary_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ARN of the AWS Permissions 
+        Boundary to attach to IAM users created in the role. Valid only when
+        `credential_type` is `iam_user`. If not specified, then no permissions boundary
+        policy will be attached.
+        """
+        return pulumi.get(self, "permissions_boundary_arn")
+
+    @permissions_boundary_arn.setter
+    def permissions_boundary_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "permissions_boundary_arn", value)
+
+    @property
     @pulumi.getter(name="policyArns")
     def policy_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -419,6 +486,19 @@ class _SecretBackendRoleState:
     def role_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "role_arns", value)
 
+    @property
+    @pulumi.getter(name="userPath")
+    def user_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path for the user name. Valid only when 
+        `credential_type` is `iam_user`. Default is `/`.
+        """
+        return pulumi.get(self, "user_path")
+
+    @user_path.setter
+    def user_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_path", value)
+
 
 class SecretBackendRole(pulumi.CustomResource):
     @overload
@@ -431,9 +511,11 @@ class SecretBackendRole(pulumi.CustomResource):
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 permissions_boundary_arn: Optional[pulumi.Input[str]] = None,
                  policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  policy_document: Optional[pulumi.Input[str]] = None,
                  role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user_path: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -492,6 +574,10 @@ class SecretBackendRole(pulumi.CustomResource):
                one of `assumed_role` or `federation_token`.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
+        :param pulumi.Input[str] permissions_boundary_arn: The ARN of the AWS Permissions 
+               Boundary to attach to IAM users created in the role. Valid only when
+               `credential_type` is `iam_user`. If not specified, then no permissions boundary
+               policy will be attached.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_arns: Specifies a list of AWS managed policy ARNs. The
                behavior depends on the credential type. With `iam_user`, the policies will be
                attached to IAM users when they are requested. With `assumed_role` and
@@ -507,6 +593,8 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_arns: Specifies the ARNs of the AWS roles this Vault role
                is allowed to assume. Required when `credential_type` is `assumed_role` and
                prohibited otherwise.
+        :param pulumi.Input[str] user_path: The path for the user name. Valid only when 
+               `credential_type` is `iam_user`. Default is `/`.
         """
         ...
     @overload
@@ -569,9 +657,11 @@ class SecretBackendRole(pulumi.CustomResource):
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 permissions_boundary_arn: Optional[pulumi.Input[str]] = None,
                  policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  policy_document: Optional[pulumi.Input[str]] = None,
                  role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user_path: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -594,9 +684,11 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["iam_groups"] = iam_groups
             __props__.__dict__["max_sts_ttl"] = max_sts_ttl
             __props__.__dict__["name"] = name
+            __props__.__dict__["permissions_boundary_arn"] = permissions_boundary_arn
             __props__.__dict__["policy_arns"] = policy_arns
             __props__.__dict__["policy_document"] = policy_document
             __props__.__dict__["role_arns"] = role_arns
+            __props__.__dict__["user_path"] = user_path
         super(SecretBackendRole, __self__).__init__(
             'vault:aws/secretBackendRole:SecretBackendRole',
             resource_name,
@@ -613,9 +705,11 @@ class SecretBackendRole(pulumi.CustomResource):
             iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             max_sts_ttl: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            permissions_boundary_arn: Optional[pulumi.Input[str]] = None,
             policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             policy_document: Optional[pulumi.Input[str]] = None,
-            role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'SecretBackendRole':
+            role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            user_path: Optional[pulumi.Input[str]] = None) -> 'SecretBackendRole':
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -644,6 +738,10 @@ class SecretBackendRole(pulumi.CustomResource):
                one of `assumed_role` or `federation_token`.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
+        :param pulumi.Input[str] permissions_boundary_arn: The ARN of the AWS Permissions 
+               Boundary to attach to IAM users created in the role. Valid only when
+               `credential_type` is `iam_user`. If not specified, then no permissions boundary
+               policy will be attached.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_arns: Specifies a list of AWS managed policy ARNs. The
                behavior depends on the credential type. With `iam_user`, the policies will be
                attached to IAM users when they are requested. With `assumed_role` and
@@ -659,6 +757,8 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_arns: Specifies the ARNs of the AWS roles this Vault role
                is allowed to assume. Required when `credential_type` is `assumed_role` and
                prohibited otherwise.
+        :param pulumi.Input[str] user_path: The path for the user name. Valid only when 
+               `credential_type` is `iam_user`. Default is `/`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -670,9 +770,11 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["iam_groups"] = iam_groups
         __props__.__dict__["max_sts_ttl"] = max_sts_ttl
         __props__.__dict__["name"] = name
+        __props__.__dict__["permissions_boundary_arn"] = permissions_boundary_arn
         __props__.__dict__["policy_arns"] = policy_arns
         __props__.__dict__["policy_document"] = policy_document
         __props__.__dict__["role_arns"] = role_arns
+        __props__.__dict__["user_path"] = user_path
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -739,6 +841,17 @@ class SecretBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="permissionsBoundaryArn")
+    def permissions_boundary_arn(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ARN of the AWS Permissions 
+        Boundary to attach to IAM users created in the role. Valid only when
+        `credential_type` is `iam_user`. If not specified, then no permissions boundary
+        policy will be attached.
+        """
+        return pulumi.get(self, "permissions_boundary_arn")
+
+    @property
     @pulumi.getter(name="policyArns")
     def policy_arns(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
@@ -773,4 +886,13 @@ class SecretBackendRole(pulumi.CustomResource):
         prohibited otherwise.
         """
         return pulumi.get(self, "role_arns")
+
+    @property
+    @pulumi.getter(name="userPath")
+    def user_path(self) -> pulumi.Output[Optional[str]]:
+        """
+        The path for the user name. Valid only when 
+        `credential_type` is `iam_user`. Default is `/`.
+        """
+        return pulumi.get(self, "user_path")
 

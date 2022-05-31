@@ -16,6 +16,7 @@ class SecretBackendKeyArgs:
                  backend: pulumi.Input[str],
                  allow_plaintext_backup: Optional[pulumi.Input[bool]] = None,
                  auto_rotate_interval: Optional[pulumi.Input[int]] = None,
+                 auto_rotate_period: Optional[pulumi.Input[int]] = None,
                  convergent_encryption: Optional[pulumi.Input[bool]] = None,
                  deletion_allowed: Optional[pulumi.Input[bool]] = None,
                  derived: Optional[pulumi.Input[bool]] = None,
@@ -29,7 +30,9 @@ class SecretBackendKeyArgs:
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
                * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
-        :param pulumi.Input[int] auto_rotate_interval: Amount of time the key should live before being automatically rotated.
+        :param pulumi.Input[int] auto_rotate_interval: Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
+               key.
+        :param pulumi.Input[int] auto_rotate_period: Amount of time the key should live before being automatically rotated.
                A value of 0 disables automatic rotation for the key.
         :param pulumi.Input[bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
         :param pulumi.Input[bool] deletion_allowed: Specifies if the key is allowed to be deleted.
@@ -45,7 +48,12 @@ class SecretBackendKeyArgs:
         if allow_plaintext_backup is not None:
             pulumi.set(__self__, "allow_plaintext_backup", allow_plaintext_backup)
         if auto_rotate_interval is not None:
+            warnings.warn("""Use auto_rotate_period instead""", DeprecationWarning)
+            pulumi.log.warn("""auto_rotate_interval is deprecated: Use auto_rotate_period instead""")
+        if auto_rotate_interval is not None:
             pulumi.set(__self__, "auto_rotate_interval", auto_rotate_interval)
+        if auto_rotate_period is not None:
+            pulumi.set(__self__, "auto_rotate_period", auto_rotate_period)
         if convergent_encryption is not None:
             pulumi.set(__self__, "convergent_encryption", convergent_encryption)
         if deletion_allowed is not None:
@@ -92,14 +100,27 @@ class SecretBackendKeyArgs:
     @pulumi.getter(name="autoRotateInterval")
     def auto_rotate_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        Amount of time the key should live before being automatically rotated.
-        A value of 0 disables automatic rotation for the key.
+        Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
+        key.
         """
         return pulumi.get(self, "auto_rotate_interval")
 
     @auto_rotate_interval.setter
     def auto_rotate_interval(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "auto_rotate_interval", value)
+
+    @property
+    @pulumi.getter(name="autoRotatePeriod")
+    def auto_rotate_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        Amount of time the key should live before being automatically rotated.
+        A value of 0 disables automatic rotation for the key.
+        """
+        return pulumi.get(self, "auto_rotate_period")
+
+    @auto_rotate_period.setter
+    def auto_rotate_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "auto_rotate_period", value)
 
     @property
     @pulumi.getter(name="convergentEncryption")
@@ -204,6 +225,7 @@ class _SecretBackendKeyState:
     def __init__(__self__, *,
                  allow_plaintext_backup: Optional[pulumi.Input[bool]] = None,
                  auto_rotate_interval: Optional[pulumi.Input[int]] = None,
+                 auto_rotate_period: Optional[pulumi.Input[int]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  convergent_encryption: Optional[pulumi.Input[bool]] = None,
                  deletion_allowed: Optional[pulumi.Input[bool]] = None,
@@ -224,7 +246,9 @@ class _SecretBackendKeyState:
         Input properties used for looking up and filtering SecretBackendKey resources.
         :param pulumi.Input[bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
                * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
-        :param pulumi.Input[int] auto_rotate_interval: Amount of time the key should live before being automatically rotated.
+        :param pulumi.Input[int] auto_rotate_interval: Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
+               key.
+        :param pulumi.Input[int] auto_rotate_period: Amount of time the key should live before being automatically rotated.
                A value of 0 disables automatic rotation for the key.
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
@@ -249,7 +273,12 @@ class _SecretBackendKeyState:
         if allow_plaintext_backup is not None:
             pulumi.set(__self__, "allow_plaintext_backup", allow_plaintext_backup)
         if auto_rotate_interval is not None:
+            warnings.warn("""Use auto_rotate_period instead""", DeprecationWarning)
+            pulumi.log.warn("""auto_rotate_interval is deprecated: Use auto_rotate_period instead""")
+        if auto_rotate_interval is not None:
             pulumi.set(__self__, "auto_rotate_interval", auto_rotate_interval)
+        if auto_rotate_period is not None:
+            pulumi.set(__self__, "auto_rotate_period", auto_rotate_period)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
         if convergent_encryption is not None:
@@ -300,14 +329,27 @@ class _SecretBackendKeyState:
     @pulumi.getter(name="autoRotateInterval")
     def auto_rotate_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        Amount of time the key should live before being automatically rotated.
-        A value of 0 disables automatic rotation for the key.
+        Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
+        key.
         """
         return pulumi.get(self, "auto_rotate_interval")
 
     @auto_rotate_interval.setter
     def auto_rotate_interval(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "auto_rotate_interval", value)
+
+    @property
+    @pulumi.getter(name="autoRotatePeriod")
+    def auto_rotate_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        Amount of time the key should live before being automatically rotated.
+        A value of 0 disables automatic rotation for the key.
+        """
+        return pulumi.get(self, "auto_rotate_period")
+
+    @auto_rotate_period.setter
+    def auto_rotate_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "auto_rotate_period", value)
 
     @property
     @pulumi.getter
@@ -512,6 +554,7 @@ class SecretBackendKey(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_plaintext_backup: Optional[pulumi.Input[bool]] = None,
                  auto_rotate_interval: Optional[pulumi.Input[int]] = None,
+                 auto_rotate_period: Optional[pulumi.Input[int]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  convergent_encryption: Optional[pulumi.Input[bool]] = None,
                  deletion_allowed: Optional[pulumi.Input[bool]] = None,
@@ -539,6 +582,9 @@ class SecretBackendKey(pulumi.CustomResource):
             max_lease_ttl_seconds=86400)
         key = vault.transit.SecretBackendKey("key", backend=transit.path)
         ```
+        ## Deprecations
+
+        * `auto_rotate_interval` - Replaced by `auto_rotate_period`.
 
         ## Import
 
@@ -552,7 +598,9 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
                * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
-        :param pulumi.Input[int] auto_rotate_interval: Amount of time the key should live before being automatically rotated.
+        :param pulumi.Input[int] auto_rotate_interval: Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
+               key.
+        :param pulumi.Input[int] auto_rotate_period: Amount of time the key should live before being automatically rotated.
                A value of 0 disables automatic rotation for the key.
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
@@ -588,6 +636,9 @@ class SecretBackendKey(pulumi.CustomResource):
             max_lease_ttl_seconds=86400)
         key = vault.transit.SecretBackendKey("key", backend=transit.path)
         ```
+        ## Deprecations
+
+        * `auto_rotate_interval` - Replaced by `auto_rotate_period`.
 
         ## Import
 
@@ -614,6 +665,7 @@ class SecretBackendKey(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_plaintext_backup: Optional[pulumi.Input[bool]] = None,
                  auto_rotate_interval: Optional[pulumi.Input[int]] = None,
+                 auto_rotate_period: Optional[pulumi.Input[int]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  convergent_encryption: Optional[pulumi.Input[bool]] = None,
                  deletion_allowed: Optional[pulumi.Input[bool]] = None,
@@ -636,7 +688,11 @@ class SecretBackendKey(pulumi.CustomResource):
             __props__ = SecretBackendKeyArgs.__new__(SecretBackendKeyArgs)
 
             __props__.__dict__["allow_plaintext_backup"] = allow_plaintext_backup
+            if auto_rotate_interval is not None and not opts.urn:
+                warnings.warn("""Use auto_rotate_period instead""", DeprecationWarning)
+                pulumi.log.warn("""auto_rotate_interval is deprecated: Use auto_rotate_period instead""")
             __props__.__dict__["auto_rotate_interval"] = auto_rotate_interval
+            __props__.__dict__["auto_rotate_period"] = auto_rotate_period
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
@@ -667,6 +723,7 @@ class SecretBackendKey(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             allow_plaintext_backup: Optional[pulumi.Input[bool]] = None,
             auto_rotate_interval: Optional[pulumi.Input[int]] = None,
+            auto_rotate_period: Optional[pulumi.Input[int]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             convergent_encryption: Optional[pulumi.Input[bool]] = None,
             deletion_allowed: Optional[pulumi.Input[bool]] = None,
@@ -692,7 +749,9 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
                * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
-        :param pulumi.Input[int] auto_rotate_interval: Amount of time the key should live before being automatically rotated.
+        :param pulumi.Input[int] auto_rotate_interval: Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
+               key.
+        :param pulumi.Input[int] auto_rotate_period: Amount of time the key should live before being automatically rotated.
                A value of 0 disables automatic rotation for the key.
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
@@ -720,6 +779,7 @@ class SecretBackendKey(pulumi.CustomResource):
 
         __props__.__dict__["allow_plaintext_backup"] = allow_plaintext_backup
         __props__.__dict__["auto_rotate_interval"] = auto_rotate_interval
+        __props__.__dict__["auto_rotate_period"] = auto_rotate_period
         __props__.__dict__["backend"] = backend
         __props__.__dict__["convergent_encryption"] = convergent_encryption
         __props__.__dict__["deletion_allowed"] = deletion_allowed
@@ -751,10 +811,19 @@ class SecretBackendKey(pulumi.CustomResource):
     @pulumi.getter(name="autoRotateInterval")
     def auto_rotate_interval(self) -> pulumi.Output[int]:
         """
+        Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
+        key.
+        """
+        return pulumi.get(self, "auto_rotate_interval")
+
+    @property
+    @pulumi.getter(name="autoRotatePeriod")
+    def auto_rotate_period(self) -> pulumi.Output[int]:
+        """
         Amount of time the key should live before being automatically rotated.
         A value of 0 disables automatic rotation for the key.
         """
-        return pulumi.get(self, "auto_rotate_interval")
+        return pulumi.get(self, "auto_rotate_period")
 
     @property
     @pulumi.getter

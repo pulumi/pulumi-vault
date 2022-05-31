@@ -83,6 +83,8 @@ type SecretBackendRole struct {
 	AllowedDomainsTemplate pulumi.BoolPtrOutput `pulumi:"allowedDomainsTemplate"`
 	// Defines allowed custom SANs
 	AllowedOtherSans pulumi.StringArrayOutput `pulumi:"allowedOtherSans"`
+	// An array of allowed serial numbers to put in Subject
+	AllowedSerialNumbers pulumi.StringArrayOutput `pulumi:"allowedSerialNumbers"`
 	// Defines allowed URI SANs
 	AllowedUriSans pulumi.StringArrayOutput `pulumi:"allowedUriSans"`
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -105,14 +107,15 @@ type SecretBackendRole struct {
 	GenerateLease pulumi.BoolPtrOutput `pulumi:"generateLease"`
 	// The number of bits of generated keys
 	KeyBits pulumi.IntPtrOutput `pulumi:"keyBits"`
-	// The type of generated keys
+	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\
+	// Defaults to `rsa`
 	KeyType pulumi.StringPtrOutput `pulumi:"keyType"`
 	// Specify the allowed key usage constraint on issued certificates
 	KeyUsages pulumi.StringArrayOutput `pulumi:"keyUsages"`
 	// The locality of generated certificates
 	Localities pulumi.StringArrayOutput `pulumi:"localities"`
-	// The maximum TTL
-	MaxTtl pulumi.StringPtrOutput `pulumi:"maxTtl"`
+	// The maximum lease TTL, in seconds, for the role.
+	MaxTtl pulumi.StringOutput `pulumi:"maxTtl"`
 	// The name to identify this role within the backend. Must be unique within the backend.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Flag to not store certificates in the storage backend
@@ -135,8 +138,8 @@ type SecretBackendRole struct {
 	ServerFlag pulumi.BoolPtrOutput `pulumi:"serverFlag"`
 	// The street address of generated certificates
 	StreetAddresses pulumi.StringArrayOutput `pulumi:"streetAddresses"`
-	// The TTL
-	Ttl pulumi.StringPtrOutput `pulumi:"ttl"`
+	// The TTL, in seconds, for any certificate issued against this role.
+	Ttl pulumi.StringOutput `pulumi:"ttl"`
 	// Flag to use the CN in the CSR
 	UseCsrCommonName pulumi.BoolPtrOutput `pulumi:"useCsrCommonName"`
 	// Flag to use the SANs in the CSR
@@ -193,6 +196,8 @@ type secretBackendRoleState struct {
 	AllowedDomainsTemplate *bool `pulumi:"allowedDomainsTemplate"`
 	// Defines allowed custom SANs
 	AllowedOtherSans []string `pulumi:"allowedOtherSans"`
+	// An array of allowed serial numbers to put in Subject
+	AllowedSerialNumbers []string `pulumi:"allowedSerialNumbers"`
 	// Defines allowed URI SANs
 	AllowedUriSans []string `pulumi:"allowedUriSans"`
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -215,13 +220,14 @@ type secretBackendRoleState struct {
 	GenerateLease *bool `pulumi:"generateLease"`
 	// The number of bits of generated keys
 	KeyBits *int `pulumi:"keyBits"`
-	// The type of generated keys
+	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\
+	// Defaults to `rsa`
 	KeyType *string `pulumi:"keyType"`
 	// Specify the allowed key usage constraint on issued certificates
 	KeyUsages []string `pulumi:"keyUsages"`
 	// The locality of generated certificates
 	Localities []string `pulumi:"localities"`
-	// The maximum TTL
+	// The maximum lease TTL, in seconds, for the role.
 	MaxTtl *string `pulumi:"maxTtl"`
 	// The name to identify this role within the backend. Must be unique within the backend.
 	Name *string `pulumi:"name"`
@@ -245,7 +251,7 @@ type secretBackendRoleState struct {
 	ServerFlag *bool `pulumi:"serverFlag"`
 	// The street address of generated certificates
 	StreetAddresses []string `pulumi:"streetAddresses"`
-	// The TTL
+	// The TTL, in seconds, for any certificate issued against this role.
 	Ttl *string `pulumi:"ttl"`
 	// Flag to use the CN in the CSR
 	UseCsrCommonName *bool `pulumi:"useCsrCommonName"`
@@ -272,6 +278,8 @@ type SecretBackendRoleState struct {
 	AllowedDomainsTemplate pulumi.BoolPtrInput
 	// Defines allowed custom SANs
 	AllowedOtherSans pulumi.StringArrayInput
+	// An array of allowed serial numbers to put in Subject
+	AllowedSerialNumbers pulumi.StringArrayInput
 	// Defines allowed URI SANs
 	AllowedUriSans pulumi.StringArrayInput
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -294,13 +302,14 @@ type SecretBackendRoleState struct {
 	GenerateLease pulumi.BoolPtrInput
 	// The number of bits of generated keys
 	KeyBits pulumi.IntPtrInput
-	// The type of generated keys
+	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\
+	// Defaults to `rsa`
 	KeyType pulumi.StringPtrInput
 	// Specify the allowed key usage constraint on issued certificates
 	KeyUsages pulumi.StringArrayInput
 	// The locality of generated certificates
 	Localities pulumi.StringArrayInput
-	// The maximum TTL
+	// The maximum lease TTL, in seconds, for the role.
 	MaxTtl pulumi.StringPtrInput
 	// The name to identify this role within the backend. Must be unique within the backend.
 	Name pulumi.StringPtrInput
@@ -324,7 +333,7 @@ type SecretBackendRoleState struct {
 	ServerFlag pulumi.BoolPtrInput
 	// The street address of generated certificates
 	StreetAddresses pulumi.StringArrayInput
-	// The TTL
+	// The TTL, in seconds, for any certificate issued against this role.
 	Ttl pulumi.StringPtrInput
 	// Flag to use the CN in the CSR
 	UseCsrCommonName pulumi.BoolPtrInput
@@ -355,6 +364,8 @@ type secretBackendRoleArgs struct {
 	AllowedDomainsTemplate *bool `pulumi:"allowedDomainsTemplate"`
 	// Defines allowed custom SANs
 	AllowedOtherSans []string `pulumi:"allowedOtherSans"`
+	// An array of allowed serial numbers to put in Subject
+	AllowedSerialNumbers []string `pulumi:"allowedSerialNumbers"`
 	// Defines allowed URI SANs
 	AllowedUriSans []string `pulumi:"allowedUriSans"`
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -377,13 +388,14 @@ type secretBackendRoleArgs struct {
 	GenerateLease *bool `pulumi:"generateLease"`
 	// The number of bits of generated keys
 	KeyBits *int `pulumi:"keyBits"`
-	// The type of generated keys
+	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\
+	// Defaults to `rsa`
 	KeyType *string `pulumi:"keyType"`
 	// Specify the allowed key usage constraint on issued certificates
 	KeyUsages []string `pulumi:"keyUsages"`
 	// The locality of generated certificates
 	Localities []string `pulumi:"localities"`
-	// The maximum TTL
+	// The maximum lease TTL, in seconds, for the role.
 	MaxTtl *string `pulumi:"maxTtl"`
 	// The name to identify this role within the backend. Must be unique within the backend.
 	Name *string `pulumi:"name"`
@@ -407,7 +419,7 @@ type secretBackendRoleArgs struct {
 	ServerFlag *bool `pulumi:"serverFlag"`
 	// The street address of generated certificates
 	StreetAddresses []string `pulumi:"streetAddresses"`
-	// The TTL
+	// The TTL, in seconds, for any certificate issued against this role.
 	Ttl *string `pulumi:"ttl"`
 	// Flag to use the CN in the CSR
 	UseCsrCommonName *bool `pulumi:"useCsrCommonName"`
@@ -435,6 +447,8 @@ type SecretBackendRoleArgs struct {
 	AllowedDomainsTemplate pulumi.BoolPtrInput
 	// Defines allowed custom SANs
 	AllowedOtherSans pulumi.StringArrayInput
+	// An array of allowed serial numbers to put in Subject
+	AllowedSerialNumbers pulumi.StringArrayInput
 	// Defines allowed URI SANs
 	AllowedUriSans pulumi.StringArrayInput
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -457,13 +471,14 @@ type SecretBackendRoleArgs struct {
 	GenerateLease pulumi.BoolPtrInput
 	// The number of bits of generated keys
 	KeyBits pulumi.IntPtrInput
-	// The type of generated keys
+	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`\
+	// Defaults to `rsa`
 	KeyType pulumi.StringPtrInput
 	// Specify the allowed key usage constraint on issued certificates
 	KeyUsages pulumi.StringArrayInput
 	// The locality of generated certificates
 	Localities pulumi.StringArrayInput
-	// The maximum TTL
+	// The maximum lease TTL, in seconds, for the role.
 	MaxTtl pulumi.StringPtrInput
 	// The name to identify this role within the backend. Must be unique within the backend.
 	Name pulumi.StringPtrInput
@@ -487,7 +502,7 @@ type SecretBackendRoleArgs struct {
 	ServerFlag pulumi.BoolPtrInput
 	// The street address of generated certificates
 	StreetAddresses pulumi.StringArrayInput
-	// The TTL
+	// The TTL, in seconds, for any certificate issued against this role.
 	Ttl pulumi.StringPtrInput
 	// Flag to use the CN in the CSR
 	UseCsrCommonName pulumi.BoolPtrInput

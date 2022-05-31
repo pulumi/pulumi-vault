@@ -193,6 +193,10 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly role!: pulumi.Output<string>;
     /**
+     * The Vault generated role ID.
+     */
+    public /*out*/ readonly roleId!: pulumi.Output<string>;
+    /**
      * If set, enable role tags for this role. The value set
      * for this field should be the key of the tag on the EC2 instance. `authType`
      * must be set to `ec2` or `inferredEntityType` must be set to `ec2Instance`
@@ -223,9 +227,8 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly tokenNoDefaultPolicy!: pulumi.Output<boolean | undefined>;
     /**
-     * The
-     * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-     * if any, in number of seconds to set on the token.
+     * The [maximum number](https://www.vaultproject.io/api-docs/auth/aws#token_num_uses)
+     * of times a generated token may be used (within its lifetime); 0 means unlimited.
      */
     public readonly tokenNumUses!: pulumi.Output<number | undefined>;
     /**
@@ -284,6 +287,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             resourceInputs["inferredEntityType"] = state ? state.inferredEntityType : undefined;
             resourceInputs["resolveAwsUniqueIds"] = state ? state.resolveAwsUniqueIds : undefined;
             resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["roleId"] = state ? state.roleId : undefined;
             resourceInputs["roleTag"] = state ? state.roleTag : undefined;
             resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
             resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
@@ -326,6 +330,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             resourceInputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
             resourceInputs["tokenTtl"] = args ? args.tokenTtl : undefined;
             resourceInputs["tokenType"] = args ? args.tokenType : undefined;
+            resourceInputs["roleId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AuthBackendRole.__pulumiType, name, resourceInputs, opts);
@@ -453,6 +458,10 @@ export interface AuthBackendRoleState {
      */
     role?: pulumi.Input<string>;
     /**
+     * The Vault generated role ID.
+     */
+    roleId?: pulumi.Input<string>;
+    /**
      * If set, enable role tags for this role. The value set
      * for this field should be the key of the tag on the EC2 instance. `authType`
      * must be set to `ec2` or `inferredEntityType` must be set to `ec2Instance`
@@ -483,9 +492,8 @@ export interface AuthBackendRoleState {
      */
     tokenNoDefaultPolicy?: pulumi.Input<boolean>;
     /**
-     * The
-     * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-     * if any, in number of seconds to set on the token.
+     * The [maximum number](https://www.vaultproject.io/api-docs/auth/aws#token_num_uses)
+     * of times a generated token may be used (within its lifetime); 0 means unlimited.
      */
     tokenNumUses?: pulumi.Input<number>;
     /**
@@ -666,9 +674,8 @@ export interface AuthBackendRoleArgs {
      */
     tokenNoDefaultPolicy?: pulumi.Input<boolean>;
     /**
-     * The
-     * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-     * if any, in number of seconds to set on the token.
+     * The [maximum number](https://www.vaultproject.io/api-docs/auth/aws#token_num_uses)
+     * of times a generated token may be used (within its lifetime); 0 means unlimited.
      */
     tokenNumUses?: pulumi.Input<number>;
     /**

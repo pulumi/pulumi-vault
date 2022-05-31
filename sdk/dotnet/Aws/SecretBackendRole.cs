@@ -109,6 +109,15 @@ namespace Pulumi.Vault.Aws
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The ARN of the AWS Permissions 
+        /// Boundary to attach to IAM users created in the role. Valid only when
+        /// `credential_type` is `iam_user`. If not specified, then no permissions boundary
+        /// policy will be attached.
+        /// </summary>
+        [Output("permissionsBoundaryArn")]
+        public Output<string?> PermissionsBoundaryArn { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies a list of AWS managed policy ARNs. The
         /// behavior depends on the credential type. With `iam_user`, the policies will be
         /// attached to IAM users when they are requested. With `assumed_role` and
@@ -137,6 +146,13 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Output("roleArns")]
         public Output<ImmutableArray<string>> RoleArns { get; private set; } = null!;
+
+        /// <summary>
+        /// The path for the user name. Valid only when 
+        /// `credential_type` is `iam_user`. Default is `/`.
+        /// </summary>
+        [Output("userPath")]
+        public Output<string?> UserPath { get; private set; } = null!;
 
 
         /// <summary>
@@ -241,6 +257,15 @@ namespace Pulumi.Vault.Aws
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The ARN of the AWS Permissions 
+        /// Boundary to attach to IAM users created in the role. Valid only when
+        /// `credential_type` is `iam_user`. If not specified, then no permissions boundary
+        /// policy will be attached.
+        /// </summary>
+        [Input("permissionsBoundaryArn")]
+        public Input<string>? PermissionsBoundaryArn { get; set; }
+
         [Input("policyArns")]
         private InputList<string>? _policyArns;
 
@@ -282,6 +307,13 @@ namespace Pulumi.Vault.Aws
             get => _roleArns ?? (_roleArns = new InputList<string>());
             set => _roleArns = value;
         }
+
+        /// <summary>
+        /// The path for the user name. Valid only when 
+        /// `credential_type` is `iam_user`. Default is `/`.
+        /// </summary>
+        [Input("userPath")]
+        public Input<string>? UserPath { get; set; }
 
         public SecretBackendRoleArgs()
         {
@@ -347,6 +379,15 @@ namespace Pulumi.Vault.Aws
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The ARN of the AWS Permissions 
+        /// Boundary to attach to IAM users created in the role. Valid only when
+        /// `credential_type` is `iam_user`. If not specified, then no permissions boundary
+        /// policy will be attached.
+        /// </summary>
+        [Input("permissionsBoundaryArn")]
+        public Input<string>? PermissionsBoundaryArn { get; set; }
+
         [Input("policyArns")]
         private InputList<string>? _policyArns;
 
@@ -388,6 +429,13 @@ namespace Pulumi.Vault.Aws
             get => _roleArns ?? (_roleArns = new InputList<string>());
             set => _roleArns = value;
         }
+
+        /// <summary>
+        /// The path for the user name. Valid only when 
+        /// `credential_type` is `iam_user`. Default is `/`.
+        /// </summary>
+        [Input("userPath")]
+        public Input<string>? UserPath { get; set; }
 
         public SecretBackendRoleState()
         {

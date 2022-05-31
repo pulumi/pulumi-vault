@@ -17,15 +17,78 @@ import (
 // package main
 //
 // import (
+// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
 // 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := pkiSecret.NewSecretBackendIntermediateSetSigned(ctx, "intermediate", &pkiSecret.SecretBackendIntermediateSetSignedArgs{
-// 			Backend:     pulumi.Any(vault_mount.Intermediate.Path),
-// 			Certificate: pulumi.String("<...>"),
+// 		root, err := vault.NewMount(ctx, "root", &vault.MountArgs{
+// 			Path:                   pulumi.String("pki-root"),
+// 			Type:                   pulumi.String("pki"),
+// 			Description:            pulumi.String("root"),
+// 			DefaultLeaseTtlSeconds: pulumi.Int(8640000),
+// 			MaxLeaseTtlSeconds:     pulumi.Int(8640000),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		intermediate, err := vault.NewMount(ctx, "intermediate", &vault.MountArgs{
+// 			Path:                   pulumi.String("pki-int"),
+// 			Type:                   root.Type,
+// 			Description:            pulumi.String("intermediate"),
+// 			DefaultLeaseTtlSeconds: pulumi.Int(86400),
+// 			MaxLeaseTtlSeconds:     pulumi.Int(86400),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleSecretBackendRootCert, err := pkiSecret.NewSecretBackendRootCert(ctx, "exampleSecretBackendRootCert", &pkiSecret.SecretBackendRootCertArgs{
+// 			Backend:           root.Path,
+// 			Type:              pulumi.String("internal"),
+// 			CommonName:        pulumi.String("RootOrg Root CA"),
+// 			Ttl:               pulumi.String("86400"),
+// 			Format:            pulumi.String("pem"),
+// 			PrivateKeyFormat:  pulumi.String("der"),
+// 			KeyType:           pulumi.String("rsa"),
+// 			KeyBits:           pulumi.Int(4096),
+// 			ExcludeCnFromSans: pulumi.Bool(true),
+// 			Ou:                pulumi.String("Organizational Unit"),
+// 			Organization:      pulumi.String("RootOrg"),
+// 			Country:           pulumi.String("US"),
+// 			Locality:          pulumi.String("San Francisco"),
+// 			Province:          pulumi.String("CA"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleSecretBackendIntermediateCertRequest, err := pkiSecret.NewSecretBackendIntermediateCertRequest(ctx, "exampleSecretBackendIntermediateCertRequest", &pkiSecret.SecretBackendIntermediateCertRequestArgs{
+// 			Backend:    intermediate.Path,
+// 			Type:       exampleSecretBackendRootCert.Type,
+// 			CommonName: pulumi.String("SubOrg Intermediate CA"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleSecretBackendRootSignIntermediate, err := pkiSecret.NewSecretBackendRootSignIntermediate(ctx, "exampleSecretBackendRootSignIntermediate", &pkiSecret.SecretBackendRootSignIntermediateArgs{
+// 			Backend:           root.Path,
+// 			Csr:               exampleSecretBackendIntermediateCertRequest.Csr,
+// 			CommonName:        pulumi.String("SubOrg Intermediate CA"),
+// 			ExcludeCnFromSans: pulumi.Bool(true),
+// 			Ou:                pulumi.String("SubUnit"),
+// 			Organization:      pulumi.String("SubOrg"),
+// 			Country:           pulumi.String("US"),
+// 			Locality:          pulumi.String("San Francisco"),
+// 			Province:          pulumi.String("CA"),
+// 			Revoke:            pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = pkiSecret.NewSecretBackendIntermediateSetSigned(ctx, "exampleSecretBackendIntermediateSetSigned", &pkiSecret.SecretBackendIntermediateSetSignedArgs{
+// 			Backend:     intermediate.Path,
+// 			Certificate: exampleSecretBackendRootSignIntermediate.Certificate,
 // 		})
 // 		if err != nil {
 // 			return err

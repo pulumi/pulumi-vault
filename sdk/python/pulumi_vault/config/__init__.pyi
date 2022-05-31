@@ -74,6 +74,11 @@ skipTlsVerify: Optional[bool]
 Set this to true only if the target Vault server is an insecure development instance.
 """
 
+tlsServerName: Optional[str]
+"""
+Name to use as the SNI host when connecting via TLS.
+"""
+
 token: Optional[str]
 """
 Token to use to authenticate to Vault.

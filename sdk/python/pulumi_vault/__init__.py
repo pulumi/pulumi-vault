@@ -13,6 +13,9 @@ from .get_auth_backend import *
 from .get_nomad_access_token import *
 from .get_policy_document import *
 from .mfa_duo import *
+from .mfa_okta import *
+from .mfa_pingid import *
+from .mfa_totp import *
 from .mount import *
 from .namespace import *
 from .nomad_secret_backend import *
@@ -318,6 +321,14 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "database/secretsMount",
+  "fqn": "pulumi_vault.database",
+  "classes": {
+   "vault:database/secretsMount:SecretsMount": "SecretsMount"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "gcp/authBackend",
   "fqn": "pulumi_vault.gcp",
   "classes": {
@@ -554,6 +565,30 @@ _utilities.register(
   "fqn": "pulumi_vault",
   "classes": {
    "vault:index/mfaDuo:MfaDuo": "MfaDuo"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/mfaOkta",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/mfaOkta:MfaOkta": "MfaOkta"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/mfaPingid",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/mfaPingid:MfaPingid": "MfaPingid"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/mfaTotp",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/mfaTotp:MfaTotp": "MfaTotp"
   }
  },
  {

@@ -22,9 +22,17 @@ namespace Pulumi.Vault.PkiSecret
     /// {
     ///     public MyStack()
     ///     {
-    ///         var configUrls = new Vault.PkiSecret.SecretBackendConfigUrls("configUrls", new Vault.PkiSecret.SecretBackendConfigUrlsArgs
+    ///         var root = new Vault.Mount("root", new Vault.MountArgs
     ///         {
-    ///             Backend = vault_mount.Pki.Path,
+    ///             Path = "pki-root",
+    ///             Type = "pki",
+    ///             Description = "root PKI",
+    ///             DefaultLeaseTtlSeconds = 8640000,
+    ///             MaxLeaseTtlSeconds = 8640000,
+    ///         });
+    ///         var example = new Vault.PkiSecret.SecretBackendConfigUrls("example", new Vault.PkiSecret.SecretBackendConfigUrlsArgs
+    ///         {
+    ///             Backend = root.Path,
     ///             IssuingCertificates = 
     ///             {
     ///                 "http://127.0.0.1:8200/v1/pki/ca",
@@ -33,6 +41,18 @@ namespace Pulumi.Vault.PkiSecret
     ///     }
     /// 
     /// }
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// The PKI config URLs can be imported using the resource's `id`.
+    /// 
+    /// In the case of the example above the `id` would be `pki-root/config/urls`,
+    /// 
+    /// where the `pki-root` component is the resource's `backend`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls example pki-root/config/urls
     /// ```
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls")]

@@ -98,19 +98,6 @@ class Policy(pulumi.CustomResource):
                  policy: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        example = vault.Policy("example", policy=\"\"\"path "secret/my_app" {
-          capabilities = ["update"]
-        }
-
-        \"\"\")
-        ```
-
         ## Import
 
         Policies can be imported using the `name`, e.g.
@@ -131,19 +118,6 @@ class Policy(pulumi.CustomResource):
                  args: PolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        example = vault.Policy("example", policy=\"\"\"path "secret/my_app" {
-          capabilities = ["update"]
-        }
-
-        \"\"\")
-        ```
-
         ## Import
 
         Policies can be imported using the `name`, e.g.

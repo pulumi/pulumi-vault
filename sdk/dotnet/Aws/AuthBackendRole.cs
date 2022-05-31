@@ -237,6 +237,12 @@ namespace Pulumi.Vault.Aws
         public Output<string> Role { get; private set; } = null!;
 
         /// <summary>
+        /// The Vault generated role ID.
+        /// </summary>
+        [Output("roleId")]
+        public Output<string> RoleId { get; private set; } = null!;
+
+        /// <summary>
         /// If set, enable role tags for this role. The value set
         /// for this field should be the key of the tag on the EC2 instance. `auth_type`
         /// must be set to `ec2` or `inferred_entity_type` must be set to `ec2_instance`
@@ -277,9 +283,8 @@ namespace Pulumi.Vault.Aws
         public Output<bool?> TokenNoDefaultPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// The
-        /// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        /// if any, in number of seconds to set on the token.
+        /// The [maximum number](https://www.vaultproject.io/api-docs/auth/aws#token_num_uses)
+        /// of times a generated token may be used (within its lifetime); 0 means unlimited.
         /// </summary>
         [Output("tokenNumUses")]
         public Output<int?> TokenNumUses { get; private set; } = null!;
@@ -614,9 +619,8 @@ namespace Pulumi.Vault.Aws
         public Input<bool>? TokenNoDefaultPolicy { get; set; }
 
         /// <summary>
-        /// The
-        /// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        /// if any, in number of seconds to set on the token.
+        /// The [maximum number](https://www.vaultproject.io/api-docs/auth/aws#token_num_uses)
+        /// of times a generated token may be used (within its lifetime); 0 means unlimited.
         /// </summary>
         [Input("tokenNumUses")]
         public Input<int>? TokenNumUses { get; set; }
@@ -872,6 +876,12 @@ namespace Pulumi.Vault.Aws
         public Input<string>? Role { get; set; }
 
         /// <summary>
+        /// The Vault generated role ID.
+        /// </summary>
+        [Input("roleId")]
+        public Input<string>? RoleId { get; set; }
+
+        /// <summary>
         /// If set, enable role tags for this role. The value set
         /// for this field should be the key of the tag on the EC2 instance. `auth_type`
         /// must be set to `ec2` or `inferred_entity_type` must be set to `ec2_instance`
@@ -918,9 +928,8 @@ namespace Pulumi.Vault.Aws
         public Input<bool>? TokenNoDefaultPolicy { get; set; }
 
         /// <summary>
-        /// The
-        /// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        /// if any, in number of seconds to set on the token.
+        /// The [maximum number](https://www.vaultproject.io/api-docs/auth/aws#token_num_uses)
+        /// of times a generated token may be used (within its lifetime); 0 means unlimited.
         /// </summary>
         [Input("tokenNumUses")]
         public Input<int>? TokenNumUses { get; set; }

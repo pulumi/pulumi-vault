@@ -82,6 +82,11 @@ type SecretBackendRole struct {
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The ARN of the AWS Permissions
+	// Boundary to attach to IAM users created in the role. Valid only when
+	// `credentialType` is `iamUser`. If not specified, then no permissions boundary
+	// policy will be attached.
+	PermissionsBoundaryArn pulumi.StringPtrOutput `pulumi:"permissionsBoundaryArn"`
 	// Specifies a list of AWS managed policy ARNs. The
 	// behavior depends on the credential type. With `iamUser`, the policies will be
 	// attached to IAM users when they are requested. With `assumedRole` and
@@ -100,6 +105,9 @@ type SecretBackendRole struct {
 	// is allowed to assume. Required when `credentialType` is `assumedRole` and
 	// prohibited otherwise.
 	RoleArns pulumi.StringArrayOutput `pulumi:"roleArns"`
+	// The path for the user name. Valid only when
+	// `credentialType` is `iamUser`. Default is `/`.
+	UserPath pulumi.StringPtrOutput `pulumi:"userPath"`
 }
 
 // NewSecretBackendRole registers a new resource with the given unique name, arguments, and options.
@@ -164,6 +172,11 @@ type secretBackendRoleState struct {
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name *string `pulumi:"name"`
+	// The ARN of the AWS Permissions
+	// Boundary to attach to IAM users created in the role. Valid only when
+	// `credentialType` is `iamUser`. If not specified, then no permissions boundary
+	// policy will be attached.
+	PermissionsBoundaryArn *string `pulumi:"permissionsBoundaryArn"`
 	// Specifies a list of AWS managed policy ARNs. The
 	// behavior depends on the credential type. With `iamUser`, the policies will be
 	// attached to IAM users when they are requested. With `assumedRole` and
@@ -182,6 +195,9 @@ type secretBackendRoleState struct {
 	// is allowed to assume. Required when `credentialType` is `assumedRole` and
 	// prohibited otherwise.
 	RoleArns []string `pulumi:"roleArns"`
+	// The path for the user name. Valid only when
+	// `credentialType` is `iamUser`. Default is `/`.
+	UserPath *string `pulumi:"userPath"`
 }
 
 type SecretBackendRoleState struct {
@@ -212,6 +228,11 @@ type SecretBackendRoleState struct {
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name pulumi.StringPtrInput
+	// The ARN of the AWS Permissions
+	// Boundary to attach to IAM users created in the role. Valid only when
+	// `credentialType` is `iamUser`. If not specified, then no permissions boundary
+	// policy will be attached.
+	PermissionsBoundaryArn pulumi.StringPtrInput
 	// Specifies a list of AWS managed policy ARNs. The
 	// behavior depends on the credential type. With `iamUser`, the policies will be
 	// attached to IAM users when they are requested. With `assumedRole` and
@@ -230,6 +251,9 @@ type SecretBackendRoleState struct {
 	// is allowed to assume. Required when `credentialType` is `assumedRole` and
 	// prohibited otherwise.
 	RoleArns pulumi.StringArrayInput
+	// The path for the user name. Valid only when
+	// `credentialType` is `iamUser`. Default is `/`.
+	UserPath pulumi.StringPtrInput
 }
 
 func (SecretBackendRoleState) ElementType() reflect.Type {
@@ -264,6 +288,11 @@ type secretBackendRoleArgs struct {
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name *string `pulumi:"name"`
+	// The ARN of the AWS Permissions
+	// Boundary to attach to IAM users created in the role. Valid only when
+	// `credentialType` is `iamUser`. If not specified, then no permissions boundary
+	// policy will be attached.
+	PermissionsBoundaryArn *string `pulumi:"permissionsBoundaryArn"`
 	// Specifies a list of AWS managed policy ARNs. The
 	// behavior depends on the credential type. With `iamUser`, the policies will be
 	// attached to IAM users when they are requested. With `assumedRole` and
@@ -282,6 +311,9 @@ type secretBackendRoleArgs struct {
 	// is allowed to assume. Required when `credentialType` is `assumedRole` and
 	// prohibited otherwise.
 	RoleArns []string `pulumi:"roleArns"`
+	// The path for the user name. Valid only when
+	// `credentialType` is `iamUser`. Default is `/`.
+	UserPath *string `pulumi:"userPath"`
 }
 
 // The set of arguments for constructing a SecretBackendRole resource.
@@ -313,6 +345,11 @@ type SecretBackendRoleArgs struct {
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name pulumi.StringPtrInput
+	// The ARN of the AWS Permissions
+	// Boundary to attach to IAM users created in the role. Valid only when
+	// `credentialType` is `iamUser`. If not specified, then no permissions boundary
+	// policy will be attached.
+	PermissionsBoundaryArn pulumi.StringPtrInput
 	// Specifies a list of AWS managed policy ARNs. The
 	// behavior depends on the credential type. With `iamUser`, the policies will be
 	// attached to IAM users when they are requested. With `assumedRole` and
@@ -331,6 +368,9 @@ type SecretBackendRoleArgs struct {
 	// is allowed to assume. Required when `credentialType` is `assumedRole` and
 	// prohibited otherwise.
 	RoleArns pulumi.StringArrayInput
+	// The path for the user name. Valid only when
+	// `credentialType` is `iamUser`. Default is `/`.
+	UserPath pulumi.StringPtrInput
 }
 
 func (SecretBackendRoleArgs) ElementType() reflect.Type {

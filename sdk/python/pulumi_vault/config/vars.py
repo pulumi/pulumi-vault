@@ -107,6 +107,13 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get_bool('skipTlsVerify') or _utilities.get_env_bool('VAULT_SKIP_VERIFY')
 
     @property
+    def tls_server_name(self) -> Optional[str]:
+        """
+        Name to use as the SNI host when connecting via TLS.
+        """
+        return __config__.get('tlsServerName')
+
+    @property
     def token(self) -> Optional[str]:
         """
         Token to use to authenticate to Vault.

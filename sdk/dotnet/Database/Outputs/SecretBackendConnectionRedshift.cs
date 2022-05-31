@@ -21,10 +21,6 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? ConnectionUrl;
         /// <summary>
-        /// Disable special character escaping in username and password.
-        /// </summary>
-        public readonly bool? DisableEscaping;
-        /// <summary>
         /// The maximum amount of time a connection may be reused.
         /// </summary>
         public readonly int? MaxConnectionLifetime;
@@ -55,8 +51,6 @@ namespace Pulumi.Vault.Database.Outputs
         private SecretBackendConnectionRedshift(
             string? connectionUrl,
 
-            bool? disableEscaping,
-
             int? maxConnectionLifetime,
 
             int? maxIdleConnections,
@@ -70,7 +64,6 @@ namespace Pulumi.Vault.Database.Outputs
             string? usernameTemplate)
         {
             ConnectionUrl = connectionUrl;
-            DisableEscaping = disableEscaping;
             MaxConnectionLifetime = maxConnectionLifetime;
             MaxIdleConnections = maxIdleConnections;
             MaxOpenConnections = maxOpenConnections;

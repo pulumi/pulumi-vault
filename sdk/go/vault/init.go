@@ -30,6 +30,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &EgpPolicy{}
 	case "vault:index/mfaDuo:MfaDuo":
 		r = &MfaDuo{}
+	case "vault:index/mfaOkta:MfaOkta":
+		r = &MfaOkta{}
+	case "vault:index/mfaPingid:MfaPingid":
+		r = &MfaPingid{}
+	case "vault:index/mfaTotp:MfaTotp":
+		r = &MfaTotp{}
 	case "vault:index/mount:Mount":
 		r = &Mount{}
 	case "vault:index/namespace:Namespace":
@@ -105,6 +111,21 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"index/mfaDuo",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/mfaOkta",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/mfaPingid",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/mfaTotp",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

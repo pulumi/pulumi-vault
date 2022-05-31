@@ -6,6 +6,7 @@ import * as utilities from "../utilities";
 
 /**
  * ## Example Usage
+ * ### Generic secret
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -28,6 +29,7 @@ export function getSecret(args: GetSecretArgs, opts?: pulumi.InvokeOptions): Pro
     return pulumi.runtime.invoke("vault:generic/getSecret:getSecret", {
         "path": args.path,
         "version": args.version,
+        "withLeaseStartTime": args.withLeaseStartTime,
     }, opts);
 }
 
@@ -49,6 +51,7 @@ export interface GetSecretArgs {
      * to read.
      */
     version?: number;
+    withLeaseStartTime?: boolean;
 }
 
 /**
@@ -85,6 +88,7 @@ export interface GetSecretResult {
     readonly leaseStartTime: string;
     readonly path: string;
     readonly version?: number;
+    readonly withLeaseStartTime?: boolean;
 }
 
 export function getSecretOutput(args: GetSecretOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretResult> {
@@ -109,4 +113,5 @@ export interface GetSecretOutputArgs {
      * to read.
      */
     version?: pulumi.Input<number>;
+    withLeaseStartTime?: pulumi.Input<boolean>;
 }

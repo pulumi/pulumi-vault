@@ -28,6 +28,8 @@ type Provider struct {
 	CaCertFile pulumi.StringPtrOutput `pulumi:"caCertFile"`
 	// The namespace to use. Available only for Vault Enterprise.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// Name to use as the SNI host when connecting via TLS.
+	TlsServerName pulumi.StringPtrOutput `pulumi:"tlsServerName"`
 	// Token to use to authenticate to Vault.
 	Token pulumi.StringOutput `pulumi:"token"`
 	// Token name to use for creating the Vault child token.
@@ -91,6 +93,8 @@ type providerArgs struct {
 	SkipChildToken *bool `pulumi:"skipChildToken"`
 	// Set this to true only if the target Vault server is an insecure development instance.
 	SkipTlsVerify *bool `pulumi:"skipTlsVerify"`
+	// Name to use as the SNI host when connecting via TLS.
+	TlsServerName *string `pulumi:"tlsServerName"`
 	// Token to use to authenticate to Vault.
 	Token string `pulumi:"token"`
 	// Token name to use for creating the Vault child token.
@@ -125,6 +129,8 @@ type ProviderArgs struct {
 	SkipChildToken pulumi.BoolPtrInput
 	// Set this to true only if the target Vault server is an insecure development instance.
 	SkipTlsVerify pulumi.BoolPtrInput
+	// Name to use as the SNI host when connecting via TLS.
+	TlsServerName pulumi.StringPtrInput
 	// Token to use to authenticate to Vault.
 	Token pulumi.StringInput
 	// Token name to use for creating the Vault child token.
