@@ -122,9 +122,8 @@ class AuthBackendRoleArgs:
                Its current value will be referenced at renewal time.
         :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
                generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The
-               [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-               if any, in number of seconds to set on the token.
+        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/auth/aws#token_num_uses)
+               of times a generated token may be used (within its lifetime); 0 means unlimited.
         :param pulumi.Input[int] token_period: If set, indicates that the
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
@@ -519,9 +518,8 @@ class AuthBackendRoleArgs:
     @pulumi.getter(name="tokenNumUses")
     def token_num_uses(self) -> Optional[pulumi.Input[int]]:
         """
-        The
-        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        if any, in number of seconds to set on the token.
+        The [maximum number](https://www.vaultproject.io/api-docs/auth/aws#token_num_uses)
+        of times a generated token may be used (within its lifetime); 0 means unlimited.
         """
         return pulumi.get(self, "token_num_uses")
 
@@ -607,6 +605,7 @@ class _AuthBackendRoleState:
                  inferred_entity_type: Optional[pulumi.Input[str]] = None,
                  resolve_aws_unique_ids: Optional[pulumi.Input[bool]] = None,
                  role: Optional[pulumi.Input[str]] = None,
+                 role_id: Optional[pulumi.Input[str]] = None,
                  role_tag: Optional[pulumi.Input[str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -684,6 +683,7 @@ class _AuthBackendRoleState:
                principals of the same name. Defaults to `true`.
                Once set to `true`, this cannot be changed to `false` without recreating the role.
         :param pulumi.Input[str] role: The name of the role.
+        :param pulumi.Input[str] role_id: The Vault generated role ID.
         :param pulumi.Input[str] role_tag: If set, enable role tags for this role. The value set
                for this field should be the key of the tag on the EC2 instance. `auth_type`
                must be set to `ec2` or `inferred_entity_type` must be set to `ec2_instance`
@@ -699,9 +699,8 @@ class _AuthBackendRoleState:
                Its current value will be referenced at renewal time.
         :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
                generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The
-               [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-               if any, in number of seconds to set on the token.
+        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/auth/aws#token_num_uses)
+               of times a generated token may be used (within its lifetime); 0 means unlimited.
         :param pulumi.Input[int] token_period: If set, indicates that the
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
@@ -750,6 +749,8 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "resolve_aws_unique_ids", resolve_aws_unique_ids)
         if role is not None:
             pulumi.set(__self__, "role", role)
+        if role_id is not None:
+            pulumi.set(__self__, "role_id", role_id)
         if role_tag is not None:
             pulumi.set(__self__, "role_tag", role_tag)
         if token_bound_cidrs is not None:
@@ -1024,6 +1025,18 @@ class _AuthBackendRoleState:
         pulumi.set(self, "role", value)
 
     @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Vault generated role ID.
+        """
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_id", value)
+
+    @property
     @pulumi.getter(name="roleTag")
     def role_tag(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1097,9 +1110,8 @@ class _AuthBackendRoleState:
     @pulumi.getter(name="tokenNumUses")
     def token_num_uses(self) -> Optional[pulumi.Input[int]]:
         """
-        The
-        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        if any, in number of seconds to set on the token.
+        The [maximum number](https://www.vaultproject.io/api-docs/auth/aws#token_num_uses)
+        of times a generated token may be used (within its lifetime); 0 means unlimited.
         """
         return pulumi.get(self, "token_num_uses")
 
@@ -1323,9 +1335,8 @@ class AuthBackendRole(pulumi.CustomResource):
                Its current value will be referenced at renewal time.
         :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
                generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The
-               [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-               if any, in number of seconds to set on the token.
+        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/auth/aws#token_num_uses)
+               of times a generated token may be used (within its lifetime); 0 means unlimited.
         :param pulumi.Input[int] token_period: If set, indicates that the
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
@@ -1472,6 +1483,7 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__.__dict__["token_policies"] = token_policies
             __props__.__dict__["token_ttl"] = token_ttl
             __props__.__dict__["token_type"] = token_type
+            __props__.__dict__["role_id"] = None
         super(AuthBackendRole, __self__).__init__(
             'vault:aws/authBackendRole:AuthBackendRole',
             resource_name,
@@ -1499,6 +1511,7 @@ class AuthBackendRole(pulumi.CustomResource):
             inferred_entity_type: Optional[pulumi.Input[str]] = None,
             resolve_aws_unique_ids: Optional[pulumi.Input[bool]] = None,
             role: Optional[pulumi.Input[str]] = None,
+            role_id: Optional[pulumi.Input[str]] = None,
             role_tag: Optional[pulumi.Input[str]] = None,
             token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
@@ -1581,6 +1594,7 @@ class AuthBackendRole(pulumi.CustomResource):
                principals of the same name. Defaults to `true`.
                Once set to `true`, this cannot be changed to `false` without recreating the role.
         :param pulumi.Input[str] role: The name of the role.
+        :param pulumi.Input[str] role_id: The Vault generated role ID.
         :param pulumi.Input[str] role_tag: If set, enable role tags for this role. The value set
                for this field should be the key of the tag on the EC2 instance. `auth_type`
                must be set to `ec2` or `inferred_entity_type` must be set to `ec2_instance`
@@ -1596,9 +1610,8 @@ class AuthBackendRole(pulumi.CustomResource):
                Its current value will be referenced at renewal time.
         :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
                generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The
-               [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-               if any, in number of seconds to set on the token.
+        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/auth/aws#token_num_uses)
+               of times a generated token may be used (within its lifetime); 0 means unlimited.
         :param pulumi.Input[int] token_period: If set, indicates that the
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
@@ -1634,6 +1647,7 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["inferred_entity_type"] = inferred_entity_type
         __props__.__dict__["resolve_aws_unique_ids"] = resolve_aws_unique_ids
         __props__.__dict__["role"] = role
+        __props__.__dict__["role_id"] = role_id
         __props__.__dict__["role_tag"] = role_tag
         __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
         __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
@@ -1831,6 +1845,14 @@ class AuthBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "role")
 
     @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> pulumi.Output[str]:
+        """
+        The Vault generated role ID.
+        """
+        return pulumi.get(self, "role_id")
+
+    @property
     @pulumi.getter(name="roleTag")
     def role_tag(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1884,9 +1906,8 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenNumUses")
     def token_num_uses(self) -> pulumi.Output[Optional[int]]:
         """
-        The
-        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        if any, in number of seconds to set on the token.
+        The [maximum number](https://www.vaultproject.io/api-docs/auth/aws#token_num_uses)
+        of times a generated token may be used (within its lifetime); 0 means unlimited.
         """
         return pulumi.get(self, "token_num_uses")
 

@@ -281,9 +281,33 @@ export namespace database {
 
     export interface SecretBackendConnectionElasticsearch {
         /**
+         * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+         */
+        caCert?: pulumi.Input<string>;
+        /**
+         * The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+         */
+        caPath?: pulumi.Input<string>;
+        /**
+         * The path to the certificate for the Elasticsearch client to present for communication.
+         */
+        clientCert?: pulumi.Input<string>;
+        /**
+         * The path to the key for the Elasticsearch client to use for communication.
+         */
+        clientKey?: pulumi.Input<string>;
+        /**
+         * Whether to disable certificate verification.
+         */
+        insecure?: pulumi.Input<boolean>;
+        /**
          * The root credential password used in the connection URL.
          */
         password: pulumi.Input<string>;
+        /**
+         * This, if set, is used to set the SNI host when connecting via TLS.
+         */
+        tlsServerName?: pulumi.Input<string>;
         /**
          * The URL for Elasticsearch's API. https requires certificate
          * by trusted CA if used.
@@ -293,6 +317,10 @@ export namespace database {
          * The root credential username used in the connection URL.
          */
         username: pulumi.Input<string>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionHana {
@@ -303,10 +331,6 @@ export namespace database {
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
-        /**
-         * Disable special character escaping in username and password.
-         */
-        disableEscaping?: pulumi.Input<boolean>;
         /**
          * The maximum amount of time a connection may be reused.
          */
@@ -673,10 +697,6 @@ export namespace database {
          */
         connectionUrl?: pulumi.Input<string>;
         /**
-         * Disable special character escaping in username and password.
-         */
-        disableEscaping?: pulumi.Input<boolean>;
-        /**
          * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
@@ -712,10 +732,6 @@ export namespace database {
          * for an example.
          */
         connectionUrl?: pulumi.Input<string>;
-        /**
-         * Disable special character escaping in username and password.
-         */
-        disableEscaping?: pulumi.Input<boolean>;
         /**
          * The maximum amount of time a connection may be reused.
          */
@@ -778,6 +794,962 @@ export namespace database {
          * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: pulumi.Input<string>;
+    }
+
+    export interface SecretsMountCassandra {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The number of seconds to use as a connection
+         * timeout.
+         */
+        connectTimeout?: pulumi.Input<number>;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+         */
+        hosts?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Whether to skip verification of the server
+         * certificate when using TLS.
+         */
+        insecureTls?: pulumi.Input<boolean>;
+        name: pulumi.Input<string>;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * Concatenated PEM blocks configuring the certificate
+         * chain.
+         */
+        pemBundle?: pulumi.Input<string>;
+        /**
+         * A JSON structure configuring the certificate chain.
+         */
+        pemJson?: pulumi.Input<string>;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName?: pulumi.Input<string>;
+        /**
+         * The default port to connect to if no port is specified as
+         * part of the host.
+         */
+        port?: pulumi.Input<number>;
+        /**
+         * The CQL protocol version to use.
+         */
+        protocolVersion?: pulumi.Input<number>;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Whether to use TLS when connecting to Cassandra.
+         */
+        tls?: pulumi.Input<boolean>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: pulumi.Input<string>;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: pulumi.Input<boolean>;
+    }
+
+    export interface SecretsMountCouchbase {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
+         */
+        base64Pem?: pulumi.Input<string>;
+        /**
+         * Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
+         */
+        bucketName?: pulumi.Input<string>;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+         */
+        hosts: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Whether to skip verification of the server
+         * certificate when using TLS.
+         */
+        insecureTls?: pulumi.Input<boolean>;
+        name: pulumi.Input<string>;
+        /**
+         * The password to be used in the connection.
+         */
+        password: pulumi.Input<string>;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName?: pulumi.Input<string>;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Whether to use TLS when connecting to Cassandra.
+         */
+        tls?: pulumi.Input<boolean>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username: pulumi.Input<string>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: pulumi.Input<boolean>;
+    }
+
+    export interface SecretsMountElasticsearch {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+         */
+        caCert?: pulumi.Input<string>;
+        /**
+         * The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+         */
+        caPath?: pulumi.Input<string>;
+        /**
+         * The path to the certificate for the Elasticsearch client to present for communication.
+         */
+        clientCert?: pulumi.Input<string>;
+        /**
+         * The path to the key for the Elasticsearch client to use for communication.
+         */
+        clientKey?: pulumi.Input<string>;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * Whether to disable certificate verification.
+         */
+        insecure?: pulumi.Input<boolean>;
+        name: pulumi.Input<string>;
+        /**
+         * The password to be used in the connection.
+         */
+        password: pulumi.Input<string>;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName?: pulumi.Input<string>;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * This, if set, is used to set the SNI host when connecting via TLS.
+         */
+        tlsServerName?: pulumi.Input<string>;
+        /**
+         * The URL for Elasticsearch's API. https requires certificate
+         * by trusted CA if used.
+         */
+        url: pulumi.Input<string>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username: pulumi.Input<string>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: pulumi.Input<boolean>;
+    }
+
+    export interface SecretsMountHana {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: pulumi.Input<string>;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: pulumi.Input<number>;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: pulumi.Input<number>;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: pulumi.Input<number>;
+        name: pulumi.Input<string>;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName?: pulumi.Input<string>;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: pulumi.Input<string>;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: pulumi.Input<boolean>;
+    }
+
+    export interface SecretsMountInfluxdb {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The number of seconds to use as a connection
+         * timeout.
+         */
+        connectTimeout?: pulumi.Input<number>;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * The host to connect to.
+         */
+        host: pulumi.Input<string>;
+        /**
+         * Whether to skip verification of the server
+         * certificate when using TLS.
+         */
+        insecureTls?: pulumi.Input<boolean>;
+        name: pulumi.Input<string>;
+        /**
+         * The password to be used in the connection.
+         */
+        password: pulumi.Input<string>;
+        /**
+         * Concatenated PEM blocks configuring the certificate
+         * chain.
+         */
+        pemBundle?: pulumi.Input<string>;
+        /**
+         * A JSON structure configuring the certificate chain.
+         */
+        pemJson?: pulumi.Input<string>;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName?: pulumi.Input<string>;
+        /**
+         * The default port to connect to if no port is specified as
+         * part of the host.
+         */
+        port?: pulumi.Input<number>;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Whether to use TLS when connecting to Cassandra.
+         */
+        tls?: pulumi.Input<boolean>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username: pulumi.Input<string>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: pulumi.Input<boolean>;
+    }
+
+    export interface SecretsMountMongodb {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: pulumi.Input<string>;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: pulumi.Input<number>;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: pulumi.Input<number>;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: pulumi.Input<number>;
+        name: pulumi.Input<string>;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName?: pulumi.Input<string>;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: pulumi.Input<string>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: pulumi.Input<boolean>;
+    }
+
+    export interface SecretsMountMongodbatla {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        name: pulumi.Input<string>;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName?: pulumi.Input<string>;
+        /**
+         * The Private Programmatic API Key used to connect with MongoDB Atlas API.
+         */
+        privateKey: pulumi.Input<string>;
+        /**
+         * The Project ID the Database User should be created within.
+         */
+        projectId: pulumi.Input<string>;
+        /**
+         * The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+         */
+        publicKey: pulumi.Input<string>;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: pulumi.Input<boolean>;
+    }
+
+    export interface SecretsMountMssql {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: pulumi.Input<string>;
+        /**
+         * For Vault v1.9+. Set to true when the target is a
+         * Contained Database, e.g. AzureSQL.
+         * See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+         */
+        containedDb?: pulumi.Input<boolean>;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: pulumi.Input<boolean>;
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: pulumi.Input<number>;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: pulumi.Input<number>;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: pulumi.Input<number>;
+        name: pulumi.Input<string>;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName?: pulumi.Input<string>;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: pulumi.Input<string>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: pulumi.Input<boolean>;
+    }
+
+    export interface SecretsMountMysql {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: pulumi.Input<string>;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: pulumi.Input<number>;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: pulumi.Input<number>;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: pulumi.Input<number>;
+        name: pulumi.Input<string>;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName?: pulumi.Input<string>;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+         */
+        tlsCa?: pulumi.Input<string>;
+        /**
+         * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+         */
+        tlsCertificateKey?: pulumi.Input<string>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: pulumi.Input<string>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: pulumi.Input<boolean>;
+    }
+
+    export interface SecretsMountMysqlAurora {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: pulumi.Input<string>;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: pulumi.Input<number>;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: pulumi.Input<number>;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: pulumi.Input<number>;
+        name: pulumi.Input<string>;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName?: pulumi.Input<string>;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: pulumi.Input<string>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: pulumi.Input<boolean>;
+    }
+
+    export interface SecretsMountMysqlLegacy {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: pulumi.Input<string>;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: pulumi.Input<number>;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: pulumi.Input<number>;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: pulumi.Input<number>;
+        name: pulumi.Input<string>;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName?: pulumi.Input<string>;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: pulumi.Input<string>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: pulumi.Input<boolean>;
+    }
+
+    export interface SecretsMountMysqlRd {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: pulumi.Input<string>;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: pulumi.Input<number>;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: pulumi.Input<number>;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: pulumi.Input<number>;
+        name: pulumi.Input<string>;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName?: pulumi.Input<string>;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: pulumi.Input<string>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: pulumi.Input<boolean>;
+    }
+
+    export interface SecretsMountOracle {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: pulumi.Input<string>;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: pulumi.Input<number>;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: pulumi.Input<number>;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: pulumi.Input<number>;
+        name: pulumi.Input<string>;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName?: pulumi.Input<string>;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: pulumi.Input<string>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: pulumi.Input<boolean>;
+    }
+
+    export interface SecretsMountPostgresql {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: pulumi.Input<string>;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: pulumi.Input<number>;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: pulumi.Input<number>;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: pulumi.Input<number>;
+        name: pulumi.Input<string>;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName?: pulumi.Input<string>;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: pulumi.Input<string>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: pulumi.Input<boolean>;
+    }
+
+    export interface SecretsMountRedshift {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: pulumi.Input<string>;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: pulumi.Input<number>;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: pulumi.Input<number>;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: pulumi.Input<number>;
+        name: pulumi.Input<string>;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName?: pulumi.Input<string>;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: pulumi.Input<string>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: pulumi.Input<boolean>;
+    }
+
+    export interface SecretsMountSnowflake {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: pulumi.Input<string>;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: pulumi.Input<number>;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: pulumi.Input<number>;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: pulumi.Input<number>;
+        name: pulumi.Input<string>;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: pulumi.Input<string>;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName?: pulumi.Input<string>;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: pulumi.Input<string>;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: pulumi.Input<boolean>;
     }
 }
 
@@ -950,5 +1922,24 @@ export namespace rabbitMq {
         read: pulumi.Input<string>;
         topic: pulumi.Input<string>;
         write: pulumi.Input<string>;
+    }
+}
+
+export namespace ssh {
+    export interface SecretBackendRoleAllowedUserKeyConfig {
+        /**
+         * A list of allowed key lengths as integers. 
+         * For key types that do not support setting the length a value of `[0]` should be used.
+         * Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
+         * must be set to a single element list.
+         */
+        lengths: pulumi.Input<pulumi.Input<number>[]>;
+        /**
+         * The SSH public key type.  
+         * *Supported key types are:*
+         * `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
+         * `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
+         */
+        type: pulumi.Input<string>;
     }
 }

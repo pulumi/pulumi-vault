@@ -8,5 +8,6 @@ import typing
 from .secret_backend_connection import *
 from .secret_backend_role import *
 from .secret_backend_static_role import *
+from .secrets_mount import *
 from ._inputs import *
 from . import outputs

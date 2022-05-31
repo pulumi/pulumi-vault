@@ -61,7 +61,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// The certificate
+        /// The certificate.
         /// </summary>
         [Output("certificate")]
         public Output<string> Certificate { get; private set; } = null!;
@@ -97,7 +97,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> IpSans { get; private set; } = null!;
 
         /// <summary>
-        /// The issuing CA
+        /// The issuing CA certificate.
         /// </summary>
         [Output("issuingCa")]
         public Output<string> IssuingCa { get; private set; } = null!;
@@ -169,10 +169,16 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string?> Province { get; private set; } = null!;
 
         /// <summary>
-        /// The serial
+        /// Deprecated, use `serial_number` instead.
         /// </summary>
         [Output("serial")]
         public Output<string> Serial { get; private set; } = null!;
+
+        /// <summary>
+        /// The certificate's serial number, hex formatted.
+        /// </summary>
+        [Output("serialNumber")]
+        public Output<string> SerialNumber { get; private set; } = null!;
 
         /// <summary>
         /// The street address
@@ -432,7 +438,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// The certificate
+        /// The certificate.
         /// </summary>
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
@@ -474,7 +480,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// The issuing CA
+        /// The issuing CA certificate.
         /// </summary>
         [Input("issuingCa")]
         public Input<string>? IssuingCa { get; set; }
@@ -558,10 +564,16 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Province { get; set; }
 
         /// <summary>
-        /// The serial
+        /// Deprecated, use `serial_number` instead.
         /// </summary>
         [Input("serial")]
         public Input<string>? Serial { get; set; }
+
+        /// <summary>
+        /// The certificate's serial number, hex formatted.
+        /// </summary>
+        [Input("serialNumber")]
+        public Input<string>? SerialNumber { get; set; }
 
         /// <summary>
         /// The street address

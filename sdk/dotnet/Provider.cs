@@ -49,6 +49,12 @@ namespace Pulumi.Vault
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
+        /// Name to use as the SNI host when connecting via TLS.
+        /// </summary>
+        [Output("tlsServerName")]
+        public Output<string?> TlsServerName { get; private set; } = null!;
+
+        /// <summary>
         /// Token to use to authenticate to Vault.
         /// </summary>
         [Output("token")]
@@ -183,6 +189,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("skipTlsVerify", json: true)]
         public Input<bool>? SkipTlsVerify { get; set; }
+
+        /// <summary>
+        /// Name to use as the SNI host when connecting via TLS.
+        /// </summary>
+        [Input("tlsServerName")]
+        public Input<string>? TlsServerName { get; set; }
 
         /// <summary>
         /// Token to use to authenticate to Vault.

@@ -134,9 +134,8 @@ namespace Pulumi.Vault.Kubernetes
         public Output<bool?> TokenNoDefaultPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// The
-        /// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        /// if any, in number of seconds to set on the token.
+        /// The [maximum number](https://www.vaultproject.io/api-docs/kubernetes#token_num_uses)
+        /// of times a generated token may be used (within its lifetime); 0 means unlimited.
         /// </summary>
         [Output("tokenNumUses")]
         public Output<int?> TokenNumUses { get; private set; } = null!;
@@ -306,9 +305,8 @@ namespace Pulumi.Vault.Kubernetes
         public Input<bool>? TokenNoDefaultPolicy { get; set; }
 
         /// <summary>
-        /// The
-        /// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        /// if any, in number of seconds to set on the token.
+        /// The [maximum number](https://www.vaultproject.io/api-docs/kubernetes#token_num_uses)
+        /// of times a generated token may be used (within its lifetime); 0 means unlimited.
         /// </summary>
         [Input("tokenNumUses")]
         public Input<int>? TokenNumUses { get; set; }
@@ -445,9 +443,8 @@ namespace Pulumi.Vault.Kubernetes
         public Input<bool>? TokenNoDefaultPolicy { get; set; }
 
         /// <summary>
-        /// The
-        /// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        /// if any, in number of seconds to set on the token.
+        /// The [maximum number](https://www.vaultproject.io/api-docs/kubernetes#token_num_uses)
+        /// of times a generated token may be used (within its lifetime); 0 means unlimited.
         /// </summary>
         [Input("tokenNumUses")]
         public Input<int>? TokenNumUses { get; set; }

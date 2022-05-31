@@ -155,6 +155,9 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_cert_auth_backend_role": {Tok: makeResource(mainMod, "CertAuthBackendRole")},
 			"vault_egp_policy":             {Tok: makeResource(mainMod, "EgpPolicy")},
 			"vault_mfa_duo":                {Tok: makeResource(mainMod, "MfaDuo")},
+			"vault_mfa_okta":               {Tok: makeResource(mainMod, "MfaOkta")},
+			"vault_mfa_pingid":             {Tok: makeResource(mainMod, "MfaPingid")},
+			"vault_mfa_totp":               {Tok: makeResource(mainMod, "MfaTotp")},
 			"vault_mount":                  {Tok: makeResource(mainMod, "Mount")},
 			"vault_namespace":              {Tok: makeResource(mainMod, "Namespace")},
 			"vault_policy": {
@@ -234,6 +237,7 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "database_secret_backend_static_role.md",
 				},
 			},
+			"vault_database_secrets_mount": {Tok: makeResource(databaseMod, "SecretsMount")},
 
 			// GCP
 			"vault_gcp_auth_backend":          {Tok: makeResource(gcpMod, "AuthBackend")},

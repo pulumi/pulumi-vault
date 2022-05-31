@@ -44,7 +44,8 @@ class AuthBackendArgs:
                  upndomain: Optional[pulumi.Input[str]] = None,
                  use_token_groups: Optional[pulumi.Input[bool]] = None,
                  userattr: Optional[pulumi.Input[str]] = None,
-                 userdn: Optional[pulumi.Input[str]] = None):
+                 userdn: Optional[pulumi.Input[str]] = None,
+                 userfilter: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
         :param pulumi.Input[str] url: The URL of the LDAP server
@@ -73,9 +74,8 @@ class AuthBackendArgs:
                Its current value will be referenced at renewal time.
         :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
                generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The
-               [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-               if any, in number of seconds to set on the token.
+        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+               of times a generated token may be used (within its lifetime); 0 means unlimited.
         :param pulumi.Input[int] token_period: If set, indicates that the
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
@@ -93,6 +93,7 @@ class AuthBackendArgs:
         :param pulumi.Input[bool] use_token_groups: Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
         :param pulumi.Input[str] userattr: Attribute on user object matching username passed in
         :param pulumi.Input[str] userdn: Base DN under which to perform user search
+        :param pulumi.Input[str] userfilter: LDAP user search filter
         """
         pulumi.set(__self__, "url", url)
         if binddn is not None:
@@ -157,6 +158,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "userattr", userattr)
         if userdn is not None:
             pulumi.set(__self__, "userdn", userdn)
+        if userfilter is not None:
+            pulumi.set(__self__, "userfilter", userfilter)
 
     @property
     @pulumi.getter
@@ -433,9 +436,8 @@ class AuthBackendArgs:
     @pulumi.getter(name="tokenNumUses")
     def token_num_uses(self) -> Optional[pulumi.Input[int]]:
         """
-        The
-        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        if any, in number of seconds to set on the token.
+        The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+        of times a generated token may be used (within its lifetime); 0 means unlimited.
         """
         return pulumi.get(self, "token_num_uses")
 
@@ -548,6 +550,18 @@ class AuthBackendArgs:
     def userdn(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "userdn", value)
 
+    @property
+    @pulumi.getter
+    def userfilter(self) -> Optional[pulumi.Input[str]]:
+        """
+        LDAP user search filter
+        """
+        return pulumi.get(self, "userfilter")
+
+    @userfilter.setter
+    def userfilter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "userfilter", value)
+
 
 @pulumi.input_type
 class _AuthBackendState:
@@ -584,7 +598,8 @@ class _AuthBackendState:
                  url: Optional[pulumi.Input[str]] = None,
                  use_token_groups: Optional[pulumi.Input[bool]] = None,
                  userattr: Optional[pulumi.Input[str]] = None,
-                 userdn: Optional[pulumi.Input[str]] = None):
+                 userdn: Optional[pulumi.Input[str]] = None,
+                 userfilter: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
         :param pulumi.Input[str] accessor: The accessor for this auth mount.
@@ -613,9 +628,8 @@ class _AuthBackendState:
                Its current value will be referenced at renewal time.
         :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
                generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The
-               [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-               if any, in number of seconds to set on the token.
+        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+               of times a generated token may be used (within its lifetime); 0 means unlimited.
         :param pulumi.Input[int] token_period: If set, indicates that the
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
@@ -634,6 +648,7 @@ class _AuthBackendState:
         :param pulumi.Input[bool] use_token_groups: Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
         :param pulumi.Input[str] userattr: Attribute on user object matching username passed in
         :param pulumi.Input[str] userdn: Base DN under which to perform user search
+        :param pulumi.Input[str] userfilter: LDAP user search filter
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
@@ -701,6 +716,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "userattr", userattr)
         if userdn is not None:
             pulumi.set(__self__, "userdn", userdn)
+        if userfilter is not None:
+            pulumi.set(__self__, "userfilter", userfilter)
 
     @property
     @pulumi.getter
@@ -977,9 +994,8 @@ class _AuthBackendState:
     @pulumi.getter(name="tokenNumUses")
     def token_num_uses(self) -> Optional[pulumi.Input[int]]:
         """
-        The
-        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        if any, in number of seconds to set on the token.
+        The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+        of times a generated token may be used (within its lifetime); 0 means unlimited.
         """
         return pulumi.get(self, "token_num_uses")
 
@@ -1104,6 +1120,18 @@ class _AuthBackendState:
     def userdn(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "userdn", value)
 
+    @property
+    @pulumi.getter
+    def userfilter(self) -> Optional[pulumi.Input[str]]:
+        """
+        LDAP user search filter
+        """
+        return pulumi.get(self, "userfilter")
+
+    @userfilter.setter
+    def userfilter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "userfilter", value)
+
 
 class AuthBackend(pulumi.CustomResource):
     @overload
@@ -1142,6 +1170,7 @@ class AuthBackend(pulumi.CustomResource):
                  use_token_groups: Optional[pulumi.Input[bool]] = None,
                  userattr: Optional[pulumi.Input[str]] = None,
                  userdn: Optional[pulumi.Input[str]] = None,
+                 userfilter: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a resource for managing an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
@@ -1198,9 +1227,8 @@ class AuthBackend(pulumi.CustomResource):
                Its current value will be referenced at renewal time.
         :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
                generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The
-               [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-               if any, in number of seconds to set on the token.
+        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+               of times a generated token may be used (within its lifetime); 0 means unlimited.
         :param pulumi.Input[int] token_period: If set, indicates that the
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
@@ -1219,6 +1247,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] use_token_groups: Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
         :param pulumi.Input[str] userattr: Attribute on user object matching username passed in
         :param pulumi.Input[str] userdn: Base DN under which to perform user search
+        :param pulumi.Input[str] userfilter: LDAP user search filter
         """
         ...
     @overload
@@ -1301,6 +1330,7 @@ class AuthBackend(pulumi.CustomResource):
                  use_token_groups: Optional[pulumi.Input[bool]] = None,
                  userattr: Optional[pulumi.Input[str]] = None,
                  userdn: Optional[pulumi.Input[str]] = None,
+                 userfilter: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -1347,6 +1377,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["use_token_groups"] = use_token_groups
             __props__.__dict__["userattr"] = userattr
             __props__.__dict__["userdn"] = userdn
+            __props__.__dict__["userfilter"] = userfilter
             __props__.__dict__["accessor"] = None
         super(AuthBackend, __self__).__init__(
             'vault:ldap/authBackend:AuthBackend',
@@ -1390,7 +1421,8 @@ class AuthBackend(pulumi.CustomResource):
             url: Optional[pulumi.Input[str]] = None,
             use_token_groups: Optional[pulumi.Input[bool]] = None,
             userattr: Optional[pulumi.Input[str]] = None,
-            userdn: Optional[pulumi.Input[str]] = None) -> 'AuthBackend':
+            userdn: Optional[pulumi.Input[str]] = None,
+            userfilter: Optional[pulumi.Input[str]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1424,9 +1456,8 @@ class AuthBackend(pulumi.CustomResource):
                Its current value will be referenced at renewal time.
         :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
                generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The
-               [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-               if any, in number of seconds to set on the token.
+        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+               of times a generated token may be used (within its lifetime); 0 means unlimited.
         :param pulumi.Input[int] token_period: If set, indicates that the
                token generated using this role should never expire. The token should be renewed within the
                duration specified by this value. At each renewal, the token's TTL will be set to the
@@ -1445,6 +1476,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] use_token_groups: Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
         :param pulumi.Input[str] userattr: Attribute on user object matching username passed in
         :param pulumi.Input[str] userdn: Base DN under which to perform user search
+        :param pulumi.Input[str] userfilter: LDAP user search filter
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1483,6 +1515,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["use_token_groups"] = use_token_groups
         __props__.__dict__["userattr"] = userattr
         __props__.__dict__["userdn"] = userdn
+        __props__.__dict__["userfilter"] = userfilter
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1668,9 +1701,8 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="tokenNumUses")
     def token_num_uses(self) -> pulumi.Output[Optional[int]]:
         """
-        The
-        [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-        if any, in number of seconds to set on the token.
+        The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+        of times a generated token may be used (within its lifetime); 0 means unlimited.
         """
         return pulumi.get(self, "token_num_uses")
 
@@ -1754,4 +1786,12 @@ class AuthBackend(pulumi.CustomResource):
         Base DN under which to perform user search
         """
         return pulumi.get(self, "userdn")
+
+    @property
+    @pulumi.getter
+    def userfilter(self) -> pulumi.Output[str]:
+        """
+        LDAP user search filter
+        """
+        return pulumi.get(self, "userfilter")
 

@@ -24,6 +24,9 @@ import * as utilities from "../utilities";
  *     dependsOn: [vault_pki_secret_backend_intermediate_cert_request.intermediate],
  * });
  * ```
+ * ## Deprecations
+ *
+ * * `serial` - Use `serialNumber` instead.
  */
 export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
     /**
@@ -135,9 +138,19 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      */
     public readonly province!: pulumi.Output<string | undefined>;
     /**
-     * The serial
+     * If set to `true`, the certificate will be revoked on resource destruction.
+     */
+    public readonly revoke!: pulumi.Output<boolean | undefined>;
+    /**
+     * The serial number.
+     *
+     * @deprecated Use serial_number instead
      */
     public /*out*/ readonly serial!: pulumi.Output<string>;
+    /**
+     * The certificate's serial number, hex formatted.
+     */
+    public /*out*/ readonly serialNumber!: pulumi.Output<string>;
     /**
      * The street address
      */
@@ -188,7 +201,9 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["permittedDnsDomains"] = state ? state.permittedDnsDomains : undefined;
             resourceInputs["postalCode"] = state ? state.postalCode : undefined;
             resourceInputs["province"] = state ? state.province : undefined;
+            resourceInputs["revoke"] = state ? state.revoke : undefined;
             resourceInputs["serial"] = state ? state.serial : undefined;
+            resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
             resourceInputs["streetAddress"] = state ? state.streetAddress : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
             resourceInputs["uriSans"] = state ? state.uriSans : undefined;
@@ -220,6 +235,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["permittedDnsDomains"] = args ? args.permittedDnsDomains : undefined;
             resourceInputs["postalCode"] = args ? args.postalCode : undefined;
             resourceInputs["province"] = args ? args.province : undefined;
+            resourceInputs["revoke"] = args ? args.revoke : undefined;
             resourceInputs["streetAddress"] = args ? args.streetAddress : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
             resourceInputs["uriSans"] = args ? args.uriSans : undefined;
@@ -229,6 +245,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["certificateBundle"] = undefined /*out*/;
             resourceInputs["issuingCa"] = undefined /*out*/;
             resourceInputs["serial"] = undefined /*out*/;
+            resourceInputs["serialNumber"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendRootSignIntermediate.__pulumiType, name, resourceInputs, opts);
@@ -321,9 +338,19 @@ export interface SecretBackendRootSignIntermediateState {
      */
     province?: pulumi.Input<string>;
     /**
-     * The serial
+     * If set to `true`, the certificate will be revoked on resource destruction.
+     */
+    revoke?: pulumi.Input<boolean>;
+    /**
+     * The serial number.
+     *
+     * @deprecated Use serial_number instead
      */
     serial?: pulumi.Input<string>;
+    /**
+     * The certificate's serial number, hex formatted.
+     */
+    serialNumber?: pulumi.Input<string>;
     /**
      * The street address
      */
@@ -410,6 +437,10 @@ export interface SecretBackendRootSignIntermediateArgs {
      * The province
      */
     province?: pulumi.Input<string>;
+    /**
+     * If set to `true`, the certificate will be revoked on resource destruction.
+     */
+    revoke?: pulumi.Input<boolean>;
     /**
      * The street address
      */

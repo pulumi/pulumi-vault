@@ -73,6 +73,8 @@ type SecretBackendCert struct {
 	PrivateKeyFormat pulumi.StringPtrOutput `pulumi:"privateKeyFormat"`
 	// The private key type
 	PrivateKeyType pulumi.StringOutput `pulumi:"privateKeyType"`
+	// If set to `true`, the certificate will be revoked on resource destruction.
+	Revoke pulumi.BoolPtrOutput `pulumi:"revoke"`
 	// The serial number
 	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
 	// Time to live
@@ -150,6 +152,8 @@ type secretBackendCertState struct {
 	PrivateKeyFormat *string `pulumi:"privateKeyFormat"`
 	// The private key type
 	PrivateKeyType *string `pulumi:"privateKeyType"`
+	// If set to `true`, the certificate will be revoked on resource destruction.
+	Revoke *bool `pulumi:"revoke"`
 	// The serial number
 	SerialNumber *string `pulumi:"serialNumber"`
 	// Time to live
@@ -193,6 +197,8 @@ type SecretBackendCertState struct {
 	PrivateKeyFormat pulumi.StringPtrInput
 	// The private key type
 	PrivateKeyType pulumi.StringPtrInput
+	// If set to `true`, the certificate will be revoked on resource destruction.
+	Revoke pulumi.BoolPtrInput
 	// The serial number
 	SerialNumber pulumi.StringPtrInput
 	// Time to live
@@ -228,6 +234,8 @@ type secretBackendCertArgs struct {
 	OtherSans []string `pulumi:"otherSans"`
 	// The private key format
 	PrivateKeyFormat *string `pulumi:"privateKeyFormat"`
+	// If set to `true`, the certificate will be revoked on resource destruction.
+	Revoke *bool `pulumi:"revoke"`
 	// Time to live
 	Ttl *string `pulumi:"ttl"`
 	// List of alternative URIs
@@ -258,6 +266,8 @@ type SecretBackendCertArgs struct {
 	OtherSans pulumi.StringArrayInput
 	// The private key format
 	PrivateKeyFormat pulumi.StringPtrInput
+	// If set to `true`, the certificate will be revoked on resource destruction.
+	Revoke pulumi.BoolPtrInput
 	// Time to live
 	Ttl pulumi.StringPtrInput
 	// List of alternative URIs

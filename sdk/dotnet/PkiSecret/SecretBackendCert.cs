@@ -142,6 +142,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> PrivateKeyType { get; private set; } = null!;
 
         /// <summary>
+        /// If set to `true`, the certificate will be revoked on resource destruction.
+        /// </summary>
+        [Output("revoke")]
+        public Output<bool?> Revoke { get; private set; } = null!;
+
+        /// <summary>
         /// The serial number
         /// </summary>
         [Output("serialNumber")]
@@ -290,6 +296,12 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? PrivateKeyFormat { get; set; }
 
         /// <summary>
+        /// If set to `true`, the certificate will be revoked on resource destruction.
+        /// </summary>
+        [Input("revoke")]
+        public Input<bool>? Revoke { get; set; }
+
+        /// <summary>
         /// Time to live
         /// </summary>
         [Input("ttl")]
@@ -433,6 +445,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("privateKeyType")]
         public Input<string>? PrivateKeyType { get; set; }
+
+        /// <summary>
+        /// If set to `true`, the certificate will be revoked on resource destruction.
+        /// </summary>
+        [Input("revoke")]
+        public Input<bool>? Revoke { get; set; }
 
         /// <summary>
         /// The serial number

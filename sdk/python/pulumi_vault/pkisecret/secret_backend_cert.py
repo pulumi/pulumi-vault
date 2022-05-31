@@ -24,6 +24,7 @@ class SecretBackendCertArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  private_key_format: Optional[pulumi.Input[str]] = None,
+                 revoke: Optional[pulumi.Input[bool]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
@@ -39,6 +40,7 @@ class SecretBackendCertArgs:
         :param pulumi.Input[str] name: Name of the role to create the certificate against
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] private_key_format: The private key format
+        :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         """
@@ -62,6 +64,8 @@ class SecretBackendCertArgs:
             pulumi.set(__self__, "other_sans", other_sans)
         if private_key_format is not None:
             pulumi.set(__self__, "private_key_format", private_key_format)
+        if revoke is not None:
+            pulumi.set(__self__, "revoke", revoke)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
         if uri_sans is not None:
@@ -201,6 +205,18 @@ class SecretBackendCertArgs:
 
     @property
     @pulumi.getter
+    def revoke(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to `true`, the certificate will be revoked on resource destruction.
+        """
+        return pulumi.get(self, "revoke")
+
+    @revoke.setter
+    def revoke(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "revoke", value)
+
+    @property
+    @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[str]]:
         """
         Time to live
@@ -244,6 +260,7 @@ class _SecretBackendCertState:
                  private_key: Optional[pulumi.Input[str]] = None,
                  private_key_format: Optional[pulumi.Input[str]] = None,
                  private_key_type: Optional[pulumi.Input[str]] = None,
+                 revoke: Optional[pulumi.Input[bool]] = None,
                  serial_number: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
@@ -266,6 +283,7 @@ class _SecretBackendCertState:
         :param pulumi.Input[str] private_key: The private key
         :param pulumi.Input[str] private_key_format: The private key format
         :param pulumi.Input[str] private_key_type: The private key type
+        :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
         :param pulumi.Input[str] serial_number: The serial number
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
@@ -304,6 +322,8 @@ class _SecretBackendCertState:
             pulumi.set(__self__, "private_key_format", private_key_format)
         if private_key_type is not None:
             pulumi.set(__self__, "private_key_type", private_key_type)
+        if revoke is not None:
+            pulumi.set(__self__, "revoke", revoke)
         if serial_number is not None:
             pulumi.set(__self__, "serial_number", serial_number)
         if ttl is not None:
@@ -516,6 +536,18 @@ class _SecretBackendCertState:
         pulumi.set(self, "private_key_type", value)
 
     @property
+    @pulumi.getter
+    def revoke(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to `true`, the certificate will be revoked on resource destruction.
+        """
+        return pulumi.get(self, "revoke")
+
+    @revoke.setter
+    def revoke(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "revoke", value)
+
+    @property
     @pulumi.getter(name="serialNumber")
     def serial_number(self) -> Optional[pulumi.Input[str]]:
         """
@@ -568,6 +600,7 @@ class SecretBackendCert(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  private_key_format: Optional[pulumi.Input[str]] = None,
+                 revoke: Optional[pulumi.Input[bool]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -597,6 +630,7 @@ class SecretBackendCert(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the role to create the certificate against
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] private_key_format: The private key format
+        :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         """
@@ -645,6 +679,7 @@ class SecretBackendCert(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  private_key_format: Optional[pulumi.Input[str]] = None,
+                 revoke: Optional[pulumi.Input[bool]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -674,6 +709,7 @@ class SecretBackendCert(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["other_sans"] = other_sans
             __props__.__dict__["private_key_format"] = private_key_format
+            __props__.__dict__["revoke"] = revoke
             __props__.__dict__["ttl"] = ttl
             __props__.__dict__["uri_sans"] = uri_sans
             __props__.__dict__["ca_chain"] = None
@@ -710,6 +746,7 @@ class SecretBackendCert(pulumi.CustomResource):
             private_key: Optional[pulumi.Input[str]] = None,
             private_key_format: Optional[pulumi.Input[str]] = None,
             private_key_type: Optional[pulumi.Input[str]] = None,
+            revoke: Optional[pulumi.Input[bool]] = None,
             serial_number: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[str]] = None,
             uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'SecretBackendCert':
@@ -737,6 +774,7 @@ class SecretBackendCert(pulumi.CustomResource):
         :param pulumi.Input[str] private_key: The private key
         :param pulumi.Input[str] private_key_format: The private key format
         :param pulumi.Input[str] private_key_type: The private key type
+        :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
         :param pulumi.Input[str] serial_number: The serial number
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
@@ -762,6 +800,7 @@ class SecretBackendCert(pulumi.CustomResource):
         __props__.__dict__["private_key"] = private_key
         __props__.__dict__["private_key_format"] = private_key_format
         __props__.__dict__["private_key_type"] = private_key_type
+        __props__.__dict__["revoke"] = revoke
         __props__.__dict__["serial_number"] = serial_number
         __props__.__dict__["ttl"] = ttl
         __props__.__dict__["uri_sans"] = uri_sans
@@ -902,6 +941,14 @@ class SecretBackendCert(pulumi.CustomResource):
         The private key type
         """
         return pulumi.get(self, "private_key_type")
+
+    @property
+    @pulumi.getter
+    def revoke(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set to `true`, the certificate will be revoked on resource destruction.
+        """
+        return pulumi.get(self, "revoke")
 
     @property
     @pulumi.getter(name="serialNumber")

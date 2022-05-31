@@ -149,9 +149,8 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly tokenNoDefaultPolicy!: pulumi.Output<boolean | undefined>;
     /**
-     * The
-     * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-     * if any, in number of seconds to set on the token.
+     * The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+     * of times a generated token may be used (within its lifetime); 0 means unlimited.
      */
     public readonly tokenNumUses!: pulumi.Output<number | undefined>;
     /**
@@ -199,6 +198,10 @@ export class AuthBackend extends pulumi.CustomResource {
      * Base DN under which to perform user search
      */
     public readonly userdn!: pulumi.Output<string>;
+    /**
+     * LDAP user search filter
+     */
+    public readonly userfilter!: pulumi.Output<string>;
 
     /**
      * Create a AuthBackend resource with the given unique name, arguments, and options.
@@ -246,6 +249,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["useTokenGroups"] = state ? state.useTokenGroups : undefined;
             resourceInputs["userattr"] = state ? state.userattr : undefined;
             resourceInputs["userdn"] = state ? state.userdn : undefined;
+            resourceInputs["userfilter"] = state ? state.userfilter : undefined;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
             if ((!args || args.url === undefined) && !opts.urn) {
@@ -283,6 +287,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["useTokenGroups"] = args ? args.useTokenGroups : undefined;
             resourceInputs["userattr"] = args ? args.userattr : undefined;
             resourceInputs["userdn"] = args ? args.userdn : undefined;
+            resourceInputs["userfilter"] = args ? args.userfilter : undefined;
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -382,9 +387,8 @@ export interface AuthBackendState {
      */
     tokenNoDefaultPolicy?: pulumi.Input<boolean>;
     /**
-     * The
-     * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-     * if any, in number of seconds to set on the token.
+     * The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+     * of times a generated token may be used (within its lifetime); 0 means unlimited.
      */
     tokenNumUses?: pulumi.Input<number>;
     /**
@@ -432,6 +436,10 @@ export interface AuthBackendState {
      * Base DN under which to perform user search
      */
     userdn?: pulumi.Input<string>;
+    /**
+     * LDAP user search filter
+     */
+    userfilter?: pulumi.Input<string>;
 }
 
 /**
@@ -522,9 +530,8 @@ export interface AuthBackendArgs {
      */
     tokenNoDefaultPolicy?: pulumi.Input<boolean>;
     /**
-     * The
-     * [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-     * if any, in number of seconds to set on the token.
+     * The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+     * of times a generated token may be used (within its lifetime); 0 means unlimited.
      */
     tokenNumUses?: pulumi.Input<number>;
     /**
@@ -572,4 +579,8 @@ export interface AuthBackendArgs {
      * Base DN under which to perform user search
      */
     userdn?: pulumi.Input<string>;
+    /**
+     * LDAP user search filter
+     */
+    userfilter?: pulumi.Input<string>;
 }

@@ -172,9 +172,27 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        config_urls = vault.pki_secret.SecretBackendConfigUrls("configUrls",
-            backend=vault_mount["pki"]["path"],
+        root = vault.Mount("root",
+            path="pki-root",
+            type="pki",
+            description="root PKI",
+            default_lease_ttl_seconds=8640000,
+            max_lease_ttl_seconds=8640000)
+        example = vault.pki_secret.SecretBackendConfigUrls("example",
+            backend=root.path,
             issuing_certificates=["http://127.0.0.1:8200/v1/pki/ca"])
+        ```
+
+        ## Import
+
+        The PKI config URLs can be imported using the resource's `id`.
+
+        In the case of the example above the `id` would be `pki-root/config/urls`,
+
+        where the `pki-root` component is the resource's `backend`, e.g.
+
+        ```sh
+         $ pulumi import vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls example pki-root/config/urls
         ```
 
         :param str resource_name: The name of the resource.
@@ -199,9 +217,27 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        config_urls = vault.pki_secret.SecretBackendConfigUrls("configUrls",
-            backend=vault_mount["pki"]["path"],
+        root = vault.Mount("root",
+            path="pki-root",
+            type="pki",
+            description="root PKI",
+            default_lease_ttl_seconds=8640000,
+            max_lease_ttl_seconds=8640000)
+        example = vault.pki_secret.SecretBackendConfigUrls("example",
+            backend=root.path,
             issuing_certificates=["http://127.0.0.1:8200/v1/pki/ca"])
+        ```
+
+        ## Import
+
+        The PKI config URLs can be imported using the resource's `id`.
+
+        In the case of the example above the `id` would be `pki-root/config/urls`,
+
+        where the `pki-root` component is the resource's `backend`, e.g.
+
+        ```sh
+         $ pulumi import vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls example pki-root/config/urls
         ```
 
         :param str resource_name: The name of the resource.

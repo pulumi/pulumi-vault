@@ -25,6 +25,22 @@ __all__ = [
     'SecretBackendConnectionPostgresql',
     'SecretBackendConnectionRedshift',
     'SecretBackendConnectionSnowflake',
+    'SecretsMountCassandra',
+    'SecretsMountCouchbase',
+    'SecretsMountElasticsearch',
+    'SecretsMountHana',
+    'SecretsMountInfluxdb',
+    'SecretsMountMongodb',
+    'SecretsMountMongodbatla',
+    'SecretsMountMssql',
+    'SecretsMountMysql',
+    'SecretsMountMysqlAurora',
+    'SecretsMountMysqlLegacy',
+    'SecretsMountMysqlRd',
+    'SecretsMountOracle',
+    'SecretsMountPostgresql',
+    'SecretsMountRedshift',
+    'SecretsMountSnowflake',
 ]
 
 @pulumi.output_type
@@ -314,19 +330,74 @@ class SecretBackendConnectionCouchbase(dict):
 
 @pulumi.output_type
 class SecretBackendConnectionElasticsearch(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "caCert":
+            suggest = "ca_cert"
+        elif key == "caPath":
+            suggest = "ca_path"
+        elif key == "clientCert":
+            suggest = "client_cert"
+        elif key == "clientKey":
+            suggest = "client_key"
+        elif key == "tlsServerName":
+            suggest = "tls_server_name"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionElasticsearch. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretBackendConnectionElasticsearch.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretBackendConnectionElasticsearch.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  password: str,
                  url: str,
-                 username: str):
+                 username: str,
+                 ca_cert: Optional[str] = None,
+                 ca_path: Optional[str] = None,
+                 client_cert: Optional[str] = None,
+                 client_key: Optional[str] = None,
+                 insecure: Optional[bool] = None,
+                 tls_server_name: Optional[str] = None,
+                 username_template: Optional[str] = None):
         """
         :param str password: The root credential password used in the connection URL.
         :param str url: The URL for Elasticsearch's API. https requires certificate
                by trusted CA if used.
         :param str username: The root credential username used in the connection URL.
+        :param str ca_cert: The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        :param str ca_path: The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+        :param str client_cert: The path to the certificate for the Elasticsearch client to present for communication.
+        :param str client_key: The path to the key for the Elasticsearch client to use for communication.
+        :param bool insecure: Whether to disable certificate verification.
+        :param str tls_server_name: This, if set, is used to set the SNI host when connecting via TLS.
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "url", url)
         pulumi.set(__self__, "username", username)
+        if ca_cert is not None:
+            pulumi.set(__self__, "ca_cert", ca_cert)
+        if ca_path is not None:
+            pulumi.set(__self__, "ca_path", ca_path)
+        if client_cert is not None:
+            pulumi.set(__self__, "client_cert", client_cert)
+        if client_key is not None:
+            pulumi.set(__self__, "client_key", client_key)
+        if insecure is not None:
+            pulumi.set(__self__, "insecure", insecure)
+        if tls_server_name is not None:
+            pulumi.set(__self__, "tls_server_name", tls_server_name)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
 
     @property
     @pulumi.getter
@@ -353,6 +424,62 @@ class SecretBackendConnectionElasticsearch(dict):
         """
         return pulumi.get(self, "username")
 
+    @property
+    @pulumi.getter(name="caCert")
+    def ca_cert(self) -> Optional[str]:
+        """
+        The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        """
+        return pulumi.get(self, "ca_cert")
+
+    @property
+    @pulumi.getter(name="caPath")
+    def ca_path(self) -> Optional[str]:
+        """
+        The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+        """
+        return pulumi.get(self, "ca_path")
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> Optional[str]:
+        """
+        The path to the certificate for the Elasticsearch client to present for communication.
+        """
+        return pulumi.get(self, "client_cert")
+
+    @property
+    @pulumi.getter(name="clientKey")
+    def client_key(self) -> Optional[str]:
+        """
+        The path to the key for the Elasticsearch client to use for communication.
+        """
+        return pulumi.get(self, "client_key")
+
+    @property
+    @pulumi.getter
+    def insecure(self) -> Optional[bool]:
+        """
+        Whether to disable certificate verification.
+        """
+        return pulumi.get(self, "insecure")
+
+    @property
+    @pulumi.getter(name="tlsServerName")
+    def tls_server_name(self) -> Optional[str]:
+        """
+        This, if set, is used to set the SNI host when connecting via TLS.
+        """
+        return pulumi.get(self, "tls_server_name")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
 
 @pulumi.output_type
 class SecretBackendConnectionHana(dict):
@@ -361,8 +488,6 @@ class SecretBackendConnectionHana(dict):
         suggest = None
         if key == "connectionUrl":
             suggest = "connection_url"
-        elif key == "disableEscaping":
-            suggest = "disable_escaping"
         elif key == "maxConnectionLifetime":
             suggest = "max_connection_lifetime"
         elif key == "maxIdleConnections":
@@ -383,7 +508,6 @@ class SecretBackendConnectionHana(dict):
 
     def __init__(__self__, *,
                  connection_url: Optional[str] = None,
-                 disable_escaping: Optional[bool] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
@@ -394,7 +518,6 @@ class SecretBackendConnectionHana(dict):
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
-        :param bool disable_escaping: Disable special character escaping in username and password.
         :param int max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param int max_idle_connections: The maximum number of idle connections to
                the database.
@@ -405,8 +528,6 @@ class SecretBackendConnectionHana(dict):
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
-        if disable_escaping is not None:
-            pulumi.set(__self__, "disable_escaping", disable_escaping)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -428,14 +549,6 @@ class SecretBackendConnectionHana(dict):
         for an example.
         """
         return pulumi.get(self, "connection_url")
-
-    @property
-    @pulumi.getter(name="disableEscaping")
-    def disable_escaping(self) -> Optional[bool]:
-        """
-        Disable special character escaping in username and password.
-        """
-        return pulumi.get(self, "disable_escaping")
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -1649,8 +1762,6 @@ class SecretBackendConnectionPostgresql(dict):
         suggest = None
         if key == "connectionUrl":
             suggest = "connection_url"
-        elif key == "disableEscaping":
-            suggest = "disable_escaping"
         elif key == "maxConnectionLifetime":
             suggest = "max_connection_lifetime"
         elif key == "maxIdleConnections":
@@ -1673,7 +1784,6 @@ class SecretBackendConnectionPostgresql(dict):
 
     def __init__(__self__, *,
                  connection_url: Optional[str] = None,
-                 disable_escaping: Optional[bool] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
@@ -1685,7 +1795,6 @@ class SecretBackendConnectionPostgresql(dict):
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
-        :param bool disable_escaping: Disable special character escaping in username and password.
         :param int max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param int max_idle_connections: The maximum number of idle connections to
                the database.
@@ -1697,8 +1806,6 @@ class SecretBackendConnectionPostgresql(dict):
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
-        if disable_escaping is not None:
-            pulumi.set(__self__, "disable_escaping", disable_escaping)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -1722,14 +1829,6 @@ class SecretBackendConnectionPostgresql(dict):
         for an example.
         """
         return pulumi.get(self, "connection_url")
-
-    @property
-    @pulumi.getter(name="disableEscaping")
-    def disable_escaping(self) -> Optional[bool]:
-        """
-        Disable special character escaping in username and password.
-        """
-        return pulumi.get(self, "disable_escaping")
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -1789,8 +1888,6 @@ class SecretBackendConnectionRedshift(dict):
         suggest = None
         if key == "connectionUrl":
             suggest = "connection_url"
-        elif key == "disableEscaping":
-            suggest = "disable_escaping"
         elif key == "maxConnectionLifetime":
             suggest = "max_connection_lifetime"
         elif key == "maxIdleConnections":
@@ -1813,7 +1910,6 @@ class SecretBackendConnectionRedshift(dict):
 
     def __init__(__self__, *,
                  connection_url: Optional[str] = None,
-                 disable_escaping: Optional[bool] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
@@ -1825,7 +1921,6 @@ class SecretBackendConnectionRedshift(dict):
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
                for an example.
-        :param bool disable_escaping: Disable special character escaping in username and password.
         :param int max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param int max_idle_connections: The maximum number of idle connections to
                the database.
@@ -1837,8 +1932,6 @@ class SecretBackendConnectionRedshift(dict):
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
-        if disable_escaping is not None:
-            pulumi.set(__self__, "disable_escaping", disable_escaping)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -1862,14 +1955,6 @@ class SecretBackendConnectionRedshift(dict):
         for an example.
         """
         return pulumi.get(self, "connection_url")
-
-    @property
-    @pulumi.getter(name="disableEscaping")
-    def disable_escaping(self) -> Optional[bool]:
-        """
-        Disable special character escaping in username and password.
-        """
-        return pulumi.get(self, "disable_escaping")
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -2046,5 +2131,3335 @@ class SecretBackendConnectionSnowflake(dict):
         - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         """
         return pulumi.get(self, "username_template")
+
+
+@pulumi.output_type
+class SecretsMountCassandra(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedRoles":
+            suggest = "allowed_roles"
+        elif key == "connectTimeout":
+            suggest = "connect_timeout"
+        elif key == "insecureTls":
+            suggest = "insecure_tls"
+        elif key == "pemBundle":
+            suggest = "pem_bundle"
+        elif key == "pemJson":
+            suggest = "pem_json"
+        elif key == "pluginName":
+            suggest = "plugin_name"
+        elif key == "protocolVersion":
+            suggest = "protocol_version"
+        elif key == "rootRotationStatements":
+            suggest = "root_rotation_statements"
+        elif key == "verifyConnection":
+            suggest = "verify_connection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretsMountCassandra. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretsMountCassandra.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretsMountCassandra.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 allowed_roles: Optional[Sequence[str]] = None,
+                 connect_timeout: Optional[int] = None,
+                 data: Optional[Mapping[str, Any]] = None,
+                 hosts: Optional[Sequence[str]] = None,
+                 insecure_tls: Optional[bool] = None,
+                 password: Optional[str] = None,
+                 pem_bundle: Optional[str] = None,
+                 pem_json: Optional[str] = None,
+                 plugin_name: Optional[str] = None,
+                 port: Optional[int] = None,
+                 protocol_version: Optional[int] = None,
+                 root_rotation_statements: Optional[Sequence[str]] = None,
+                 tls: Optional[bool] = None,
+                 username: Optional[str] = None,
+                 verify_connection: Optional[bool] = None):
+        """
+        :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param int connect_timeout: The number of seconds to use as a connection
+               timeout.
+        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Sequence[str] hosts: A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+        :param bool insecure_tls: Whether to skip verification of the server
+               certificate when using TLS.
+        :param str password: The password to be used in the connection.
+        :param str pem_bundle: Concatenated PEM blocks configuring the certificate
+               chain.
+        :param str pem_json: A JSON structure configuring the certificate chain.
+        :param str plugin_name: Specifies the name of the plugin to use.
+        :param int port: The default port to connect to if no port is specified as
+               part of the host.
+        :param int protocol_version: The CQL protocol version to use.
+        :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param bool tls: Whether to use TLS when connecting to Cassandra.
+        :param str username: The username to be used in the connection (the account admin level).
+        :param bool verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "name", name)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if connect_timeout is not None:
+            pulumi.set(__self__, "connect_timeout", connect_timeout)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if hosts is not None:
+            pulumi.set(__self__, "hosts", hosts)
+        if insecure_tls is not None:
+            pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if pem_bundle is not None:
+            pulumi.set(__self__, "pem_bundle", pem_bundle)
+        if pem_json is not None:
+            pulumi.set(__self__, "pem_json", pem_json)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if protocol_version is not None:
+            pulumi.set(__self__, "protocol_version", protocol_version)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if tls is not None:
+            pulumi.set(__self__, "tls", tls)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[Sequence[str]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="connectTimeout")
+    def connect_timeout(self) -> Optional[int]:
+        """
+        The number of seconds to use as a connection
+        timeout.
+        """
+        return pulumi.get(self, "connect_timeout")
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter
+    def hosts(self) -> Optional[Sequence[str]]:
+        """
+        A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+        """
+        return pulumi.get(self, "hosts")
+
+    @property
+    @pulumi.getter(name="insecureTls")
+    def insecure_tls(self) -> Optional[bool]:
+        """
+        Whether to skip verification of the server
+        certificate when using TLS.
+        """
+        return pulumi.get(self, "insecure_tls")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="pemBundle")
+    def pem_bundle(self) -> Optional[str]:
+        """
+        Concatenated PEM blocks configuring the certificate
+        chain.
+        """
+        return pulumi.get(self, "pem_bundle")
+
+    @property
+    @pulumi.getter(name="pemJson")
+    def pem_json(self) -> Optional[str]:
+        """
+        A JSON structure configuring the certificate chain.
+        """
+        return pulumi.get(self, "pem_json")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[str]:
+        """
+        Specifies the name of the plugin to use.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        The default port to connect to if no port is specified as
+        part of the host.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="protocolVersion")
+    def protocol_version(self) -> Optional[int]:
+        """
+        The CQL protocol version to use.
+        """
+        return pulumi.get(self, "protocol_version")
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[Sequence[str]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter
+    def tls(self) -> Optional[bool]:
+        """
+        Whether to use TLS when connecting to Cassandra.
+        """
+        return pulumi.get(self, "tls")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[bool]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
+
+
+@pulumi.output_type
+class SecretsMountCouchbase(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedRoles":
+            suggest = "allowed_roles"
+        elif key == "base64Pem":
+            suggest = "base64_pem"
+        elif key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "insecureTls":
+            suggest = "insecure_tls"
+        elif key == "pluginName":
+            suggest = "plugin_name"
+        elif key == "rootRotationStatements":
+            suggest = "root_rotation_statements"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
+        elif key == "verifyConnection":
+            suggest = "verify_connection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretsMountCouchbase. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretsMountCouchbase.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretsMountCouchbase.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 hosts: Sequence[str],
+                 name: str,
+                 password: str,
+                 username: str,
+                 allowed_roles: Optional[Sequence[str]] = None,
+                 base64_pem: Optional[str] = None,
+                 bucket_name: Optional[str] = None,
+                 data: Optional[Mapping[str, Any]] = None,
+                 insecure_tls: Optional[bool] = None,
+                 plugin_name: Optional[str] = None,
+                 root_rotation_statements: Optional[Sequence[str]] = None,
+                 tls: Optional[bool] = None,
+                 username_template: Optional[str] = None,
+                 verify_connection: Optional[bool] = None):
+        """
+        :param Sequence[str] hosts: A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+        :param str password: The password to be used in the connection.
+        :param str username: The username to be used in the connection (the account admin level).
+        :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param str base64_pem: Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
+        :param str bucket_name: Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
+        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param bool insecure_tls: Whether to skip verification of the server
+               certificate when using TLS.
+        :param str plugin_name: Specifies the name of the plugin to use.
+        :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param bool tls: Whether to use TLS when connecting to Cassandra.
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param bool verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "hosts", hosts)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "username", username)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if base64_pem is not None:
+            pulumi.set(__self__, "base64_pem", base64_pem)
+        if bucket_name is not None:
+            pulumi.set(__self__, "bucket_name", bucket_name)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if insecure_tls is not None:
+            pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if tls is not None:
+            pulumi.set(__self__, "tls", tls)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def hosts(self) -> Sequence[str]:
+        """
+        A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+        """
+        return pulumi.get(self, "hosts")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def password(self) -> str:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[Sequence[str]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="base64Pem")
+    def base64_pem(self) -> Optional[str]:
+        """
+        Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
+        """
+        return pulumi.get(self, "base64_pem")
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> Optional[str]:
+        """
+        Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
+        """
+        return pulumi.get(self, "bucket_name")
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter(name="insecureTls")
+    def insecure_tls(self) -> Optional[bool]:
+        """
+        Whether to skip verification of the server
+        certificate when using TLS.
+        """
+        return pulumi.get(self, "insecure_tls")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[str]:
+        """
+        Specifies the name of the plugin to use.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[Sequence[str]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter
+    def tls(self) -> Optional[bool]:
+        """
+        Whether to use TLS when connecting to Cassandra.
+        """
+        return pulumi.get(self, "tls")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[bool]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
+
+
+@pulumi.output_type
+class SecretsMountElasticsearch(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedRoles":
+            suggest = "allowed_roles"
+        elif key == "caCert":
+            suggest = "ca_cert"
+        elif key == "caPath":
+            suggest = "ca_path"
+        elif key == "clientCert":
+            suggest = "client_cert"
+        elif key == "clientKey":
+            suggest = "client_key"
+        elif key == "pluginName":
+            suggest = "plugin_name"
+        elif key == "rootRotationStatements":
+            suggest = "root_rotation_statements"
+        elif key == "tlsServerName":
+            suggest = "tls_server_name"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
+        elif key == "verifyConnection":
+            suggest = "verify_connection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretsMountElasticsearch. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretsMountElasticsearch.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretsMountElasticsearch.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 password: str,
+                 url: str,
+                 username: str,
+                 allowed_roles: Optional[Sequence[str]] = None,
+                 ca_cert: Optional[str] = None,
+                 ca_path: Optional[str] = None,
+                 client_cert: Optional[str] = None,
+                 client_key: Optional[str] = None,
+                 data: Optional[Mapping[str, Any]] = None,
+                 insecure: Optional[bool] = None,
+                 plugin_name: Optional[str] = None,
+                 root_rotation_statements: Optional[Sequence[str]] = None,
+                 tls_server_name: Optional[str] = None,
+                 username_template: Optional[str] = None,
+                 verify_connection: Optional[bool] = None):
+        """
+        :param str password: The password to be used in the connection.
+        :param str url: The URL for Elasticsearch's API. https requires certificate
+               by trusted CA if used.
+        :param str username: The username to be used in the connection (the account admin level).
+        :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param str ca_cert: The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        :param str ca_path: The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+        :param str client_cert: The path to the certificate for the Elasticsearch client to present for communication.
+        :param str client_key: The path to the key for the Elasticsearch client to use for communication.
+        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param bool insecure: Whether to disable certificate verification.
+        :param str plugin_name: Specifies the name of the plugin to use.
+        :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param str tls_server_name: This, if set, is used to set the SNI host when connecting via TLS.
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param bool verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "url", url)
+        pulumi.set(__self__, "username", username)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if ca_cert is not None:
+            pulumi.set(__self__, "ca_cert", ca_cert)
+        if ca_path is not None:
+            pulumi.set(__self__, "ca_path", ca_path)
+        if client_cert is not None:
+            pulumi.set(__self__, "client_cert", client_cert)
+        if client_key is not None:
+            pulumi.set(__self__, "client_key", client_key)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if insecure is not None:
+            pulumi.set(__self__, "insecure", insecure)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if tls_server_name is not None:
+            pulumi.set(__self__, "tls_server_name", tls_server_name)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def password(self) -> str:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        """
+        The URL for Elasticsearch's API. https requires certificate
+        by trusted CA if used.
+        """
+        return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[Sequence[str]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="caCert")
+    def ca_cert(self) -> Optional[str]:
+        """
+        The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        """
+        return pulumi.get(self, "ca_cert")
+
+    @property
+    @pulumi.getter(name="caPath")
+    def ca_path(self) -> Optional[str]:
+        """
+        The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+        """
+        return pulumi.get(self, "ca_path")
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> Optional[str]:
+        """
+        The path to the certificate for the Elasticsearch client to present for communication.
+        """
+        return pulumi.get(self, "client_cert")
+
+    @property
+    @pulumi.getter(name="clientKey")
+    def client_key(self) -> Optional[str]:
+        """
+        The path to the key for the Elasticsearch client to use for communication.
+        """
+        return pulumi.get(self, "client_key")
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter
+    def insecure(self) -> Optional[bool]:
+        """
+        Whether to disable certificate verification.
+        """
+        return pulumi.get(self, "insecure")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[str]:
+        """
+        Specifies the name of the plugin to use.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[Sequence[str]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter(name="tlsServerName")
+    def tls_server_name(self) -> Optional[str]:
+        """
+        This, if set, is used to set the SNI host when connecting via TLS.
+        """
+        return pulumi.get(self, "tls_server_name")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[bool]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
+
+
+@pulumi.output_type
+class SecretsMountHana(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedRoles":
+            suggest = "allowed_roles"
+        elif key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+        elif key == "pluginName":
+            suggest = "plugin_name"
+        elif key == "rootRotationStatements":
+            suggest = "root_rotation_statements"
+        elif key == "verifyConnection":
+            suggest = "verify_connection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretsMountHana. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretsMountHana.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretsMountHana.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 allowed_roles: Optional[Sequence[str]] = None,
+                 connection_url: Optional[str] = None,
+                 data: Optional[Mapping[str, Any]] = None,
+                 max_connection_lifetime: Optional[int] = None,
+                 max_idle_connections: Optional[int] = None,
+                 max_open_connections: Optional[int] = None,
+                 password: Optional[str] = None,
+                 plugin_name: Optional[str] = None,
+                 root_rotation_statements: Optional[Sequence[str]] = None,
+                 username: Optional[str] = None,
+                 verify_connection: Optional[bool] = None):
+        """
+        :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param str connection_url: A URL containing connection information.  
+               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param int max_connection_lifetime: The maximum number of seconds to keep
+               a connection alive for.
+        :param int max_idle_connections: The maximum number of idle connections to
+               maintain.
+        :param int max_open_connections: The maximum number of open connections to
+               use.
+        :param str password: The password to be used in the connection.
+        :param str plugin_name: Specifies the name of the plugin to use.
+        :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param str username: The username to be used in the connection (the account admin level).
+        :param bool verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "name", name)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if connection_url is not None:
+            pulumi.set(__self__, "connection_url", connection_url)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if max_connection_lifetime is not None:
+            pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
+        if max_idle_connections is not None:
+            pulumi.set(__self__, "max_idle_connections", max_idle_connections)
+        if max_open_connections is not None:
+            pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[Sequence[str]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="connectionUrl")
+    def connection_url(self) -> Optional[str]:
+        """
+        A URL containing connection information.  
+        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        """
+        return pulumi.get(self, "connection_url")
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter(name="maxConnectionLifetime")
+    def max_connection_lifetime(self) -> Optional[int]:
+        """
+        The maximum number of seconds to keep
+        a connection alive for.
+        """
+        return pulumi.get(self, "max_connection_lifetime")
+
+    @property
+    @pulumi.getter(name="maxIdleConnections")
+    def max_idle_connections(self) -> Optional[int]:
+        """
+        The maximum number of idle connections to
+        maintain.
+        """
+        return pulumi.get(self, "max_idle_connections")
+
+    @property
+    @pulumi.getter(name="maxOpenConnections")
+    def max_open_connections(self) -> Optional[int]:
+        """
+        The maximum number of open connections to
+        use.
+        """
+        return pulumi.get(self, "max_open_connections")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[str]:
+        """
+        Specifies the name of the plugin to use.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[Sequence[str]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[bool]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
+
+
+@pulumi.output_type
+class SecretsMountInfluxdb(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedRoles":
+            suggest = "allowed_roles"
+        elif key == "connectTimeout":
+            suggest = "connect_timeout"
+        elif key == "insecureTls":
+            suggest = "insecure_tls"
+        elif key == "pemBundle":
+            suggest = "pem_bundle"
+        elif key == "pemJson":
+            suggest = "pem_json"
+        elif key == "pluginName":
+            suggest = "plugin_name"
+        elif key == "rootRotationStatements":
+            suggest = "root_rotation_statements"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
+        elif key == "verifyConnection":
+            suggest = "verify_connection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretsMountInfluxdb. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretsMountInfluxdb.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretsMountInfluxdb.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 host: str,
+                 name: str,
+                 password: str,
+                 username: str,
+                 allowed_roles: Optional[Sequence[str]] = None,
+                 connect_timeout: Optional[int] = None,
+                 data: Optional[Mapping[str, Any]] = None,
+                 insecure_tls: Optional[bool] = None,
+                 pem_bundle: Optional[str] = None,
+                 pem_json: Optional[str] = None,
+                 plugin_name: Optional[str] = None,
+                 port: Optional[int] = None,
+                 root_rotation_statements: Optional[Sequence[str]] = None,
+                 tls: Optional[bool] = None,
+                 username_template: Optional[str] = None,
+                 verify_connection: Optional[bool] = None):
+        """
+        :param str host: The host to connect to.
+        :param str password: The password to be used in the connection.
+        :param str username: The username to be used in the connection (the account admin level).
+        :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param int connect_timeout: The number of seconds to use as a connection
+               timeout.
+        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param bool insecure_tls: Whether to skip verification of the server
+               certificate when using TLS.
+        :param str pem_bundle: Concatenated PEM blocks configuring the certificate
+               chain.
+        :param str pem_json: A JSON structure configuring the certificate chain.
+        :param str plugin_name: Specifies the name of the plugin to use.
+        :param int port: The default port to connect to if no port is specified as
+               part of the host.
+        :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param bool tls: Whether to use TLS when connecting to Cassandra.
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param bool verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "username", username)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if connect_timeout is not None:
+            pulumi.set(__self__, "connect_timeout", connect_timeout)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if insecure_tls is not None:
+            pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if pem_bundle is not None:
+            pulumi.set(__self__, "pem_bundle", pem_bundle)
+        if pem_json is not None:
+            pulumi.set(__self__, "pem_json", pem_json)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if tls is not None:
+            pulumi.set(__self__, "tls", tls)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The host to connect to.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def password(self) -> str:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[Sequence[str]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="connectTimeout")
+    def connect_timeout(self) -> Optional[int]:
+        """
+        The number of seconds to use as a connection
+        timeout.
+        """
+        return pulumi.get(self, "connect_timeout")
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter(name="insecureTls")
+    def insecure_tls(self) -> Optional[bool]:
+        """
+        Whether to skip verification of the server
+        certificate when using TLS.
+        """
+        return pulumi.get(self, "insecure_tls")
+
+    @property
+    @pulumi.getter(name="pemBundle")
+    def pem_bundle(self) -> Optional[str]:
+        """
+        Concatenated PEM blocks configuring the certificate
+        chain.
+        """
+        return pulumi.get(self, "pem_bundle")
+
+    @property
+    @pulumi.getter(name="pemJson")
+    def pem_json(self) -> Optional[str]:
+        """
+        A JSON structure configuring the certificate chain.
+        """
+        return pulumi.get(self, "pem_json")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[str]:
+        """
+        Specifies the name of the plugin to use.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        The default port to connect to if no port is specified as
+        part of the host.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[Sequence[str]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter
+    def tls(self) -> Optional[bool]:
+        """
+        Whether to use TLS when connecting to Cassandra.
+        """
+        return pulumi.get(self, "tls")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[bool]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
+
+
+@pulumi.output_type
+class SecretsMountMongodb(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedRoles":
+            suggest = "allowed_roles"
+        elif key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+        elif key == "pluginName":
+            suggest = "plugin_name"
+        elif key == "rootRotationStatements":
+            suggest = "root_rotation_statements"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
+        elif key == "verifyConnection":
+            suggest = "verify_connection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretsMountMongodb. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretsMountMongodb.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretsMountMongodb.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 allowed_roles: Optional[Sequence[str]] = None,
+                 connection_url: Optional[str] = None,
+                 data: Optional[Mapping[str, Any]] = None,
+                 max_connection_lifetime: Optional[int] = None,
+                 max_idle_connections: Optional[int] = None,
+                 max_open_connections: Optional[int] = None,
+                 password: Optional[str] = None,
+                 plugin_name: Optional[str] = None,
+                 root_rotation_statements: Optional[Sequence[str]] = None,
+                 username: Optional[str] = None,
+                 username_template: Optional[str] = None,
+                 verify_connection: Optional[bool] = None):
+        """
+        :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param str connection_url: A URL containing connection information.  
+               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param int max_connection_lifetime: The maximum number of seconds to keep
+               a connection alive for.
+        :param int max_idle_connections: The maximum number of idle connections to
+               maintain.
+        :param int max_open_connections: The maximum number of open connections to
+               use.
+        :param str password: The password to be used in the connection.
+        :param str plugin_name: Specifies the name of the plugin to use.
+        :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param str username: The username to be used in the connection (the account admin level).
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param bool verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "name", name)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if connection_url is not None:
+            pulumi.set(__self__, "connection_url", connection_url)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if max_connection_lifetime is not None:
+            pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
+        if max_idle_connections is not None:
+            pulumi.set(__self__, "max_idle_connections", max_idle_connections)
+        if max_open_connections is not None:
+            pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[Sequence[str]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="connectionUrl")
+    def connection_url(self) -> Optional[str]:
+        """
+        A URL containing connection information.  
+        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        """
+        return pulumi.get(self, "connection_url")
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter(name="maxConnectionLifetime")
+    def max_connection_lifetime(self) -> Optional[int]:
+        """
+        The maximum number of seconds to keep
+        a connection alive for.
+        """
+        return pulumi.get(self, "max_connection_lifetime")
+
+    @property
+    @pulumi.getter(name="maxIdleConnections")
+    def max_idle_connections(self) -> Optional[int]:
+        """
+        The maximum number of idle connections to
+        maintain.
+        """
+        return pulumi.get(self, "max_idle_connections")
+
+    @property
+    @pulumi.getter(name="maxOpenConnections")
+    def max_open_connections(self) -> Optional[int]:
+        """
+        The maximum number of open connections to
+        use.
+        """
+        return pulumi.get(self, "max_open_connections")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[str]:
+        """
+        Specifies the name of the plugin to use.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[Sequence[str]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[bool]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
+
+
+@pulumi.output_type
+class SecretsMountMongodbatla(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "privateKey":
+            suggest = "private_key"
+        elif key == "projectId":
+            suggest = "project_id"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "allowedRoles":
+            suggest = "allowed_roles"
+        elif key == "pluginName":
+            suggest = "plugin_name"
+        elif key == "rootRotationStatements":
+            suggest = "root_rotation_statements"
+        elif key == "verifyConnection":
+            suggest = "verify_connection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretsMountMongodbatla. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretsMountMongodbatla.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretsMountMongodbatla.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 private_key: str,
+                 project_id: str,
+                 public_key: str,
+                 allowed_roles: Optional[Sequence[str]] = None,
+                 data: Optional[Mapping[str, Any]] = None,
+                 plugin_name: Optional[str] = None,
+                 root_rotation_statements: Optional[Sequence[str]] = None,
+                 verify_connection: Optional[bool] = None):
+        """
+        :param str private_key: The Private Programmatic API Key used to connect with MongoDB Atlas API.
+        :param str project_id: The Project ID the Database User should be created within.
+        :param str public_key: The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+        :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param str plugin_name: Specifies the name of the plugin to use.
+        :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param bool verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "private_key", private_key)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "public_key", public_key)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> str:
+        """
+        The Private Programmatic API Key used to connect with MongoDB Atlas API.
+        """
+        return pulumi.get(self, "private_key")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The Project ID the Database User should be created within.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> str:
+        """
+        The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+        """
+        return pulumi.get(self, "public_key")
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[Sequence[str]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[str]:
+        """
+        Specifies the name of the plugin to use.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[Sequence[str]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[bool]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
+
+
+@pulumi.output_type
+class SecretsMountMssql(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedRoles":
+            suggest = "allowed_roles"
+        elif key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "containedDb":
+            suggest = "contained_db"
+        elif key == "disableEscaping":
+            suggest = "disable_escaping"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+        elif key == "pluginName":
+            suggest = "plugin_name"
+        elif key == "rootRotationStatements":
+            suggest = "root_rotation_statements"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
+        elif key == "verifyConnection":
+            suggest = "verify_connection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretsMountMssql. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretsMountMssql.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretsMountMssql.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 allowed_roles: Optional[Sequence[str]] = None,
+                 connection_url: Optional[str] = None,
+                 contained_db: Optional[bool] = None,
+                 data: Optional[Mapping[str, Any]] = None,
+                 disable_escaping: Optional[bool] = None,
+                 max_connection_lifetime: Optional[int] = None,
+                 max_idle_connections: Optional[int] = None,
+                 max_open_connections: Optional[int] = None,
+                 password: Optional[str] = None,
+                 plugin_name: Optional[str] = None,
+                 root_rotation_statements: Optional[Sequence[str]] = None,
+                 username: Optional[str] = None,
+                 username_template: Optional[str] = None,
+                 verify_connection: Optional[bool] = None):
+        """
+        :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param str connection_url: A URL containing connection information.  
+               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        :param bool contained_db: For Vault v1.9+. Set to true when the target is a
+               Contained Database, e.g. AzureSQL.
+               See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param bool disable_escaping: Disable special character escaping in username and password.
+        :param int max_connection_lifetime: The maximum number of seconds to keep
+               a connection alive for.
+        :param int max_idle_connections: The maximum number of idle connections to
+               maintain.
+        :param int max_open_connections: The maximum number of open connections to
+               use.
+        :param str password: The password to be used in the connection.
+        :param str plugin_name: Specifies the name of the plugin to use.
+        :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param str username: The username to be used in the connection (the account admin level).
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param bool verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "name", name)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if connection_url is not None:
+            pulumi.set(__self__, "connection_url", connection_url)
+        if contained_db is not None:
+            pulumi.set(__self__, "contained_db", contained_db)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if disable_escaping is not None:
+            pulumi.set(__self__, "disable_escaping", disable_escaping)
+        if max_connection_lifetime is not None:
+            pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
+        if max_idle_connections is not None:
+            pulumi.set(__self__, "max_idle_connections", max_idle_connections)
+        if max_open_connections is not None:
+            pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[Sequence[str]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="connectionUrl")
+    def connection_url(self) -> Optional[str]:
+        """
+        A URL containing connection information.  
+        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        """
+        return pulumi.get(self, "connection_url")
+
+    @property
+    @pulumi.getter(name="containedDb")
+    def contained_db(self) -> Optional[bool]:
+        """
+        For Vault v1.9+. Set to true when the target is a
+        Contained Database, e.g. AzureSQL.
+        See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+        """
+        return pulumi.get(self, "contained_db")
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter(name="disableEscaping")
+    def disable_escaping(self) -> Optional[bool]:
+        """
+        Disable special character escaping in username and password.
+        """
+        return pulumi.get(self, "disable_escaping")
+
+    @property
+    @pulumi.getter(name="maxConnectionLifetime")
+    def max_connection_lifetime(self) -> Optional[int]:
+        """
+        The maximum number of seconds to keep
+        a connection alive for.
+        """
+        return pulumi.get(self, "max_connection_lifetime")
+
+    @property
+    @pulumi.getter(name="maxIdleConnections")
+    def max_idle_connections(self) -> Optional[int]:
+        """
+        The maximum number of idle connections to
+        maintain.
+        """
+        return pulumi.get(self, "max_idle_connections")
+
+    @property
+    @pulumi.getter(name="maxOpenConnections")
+    def max_open_connections(self) -> Optional[int]:
+        """
+        The maximum number of open connections to
+        use.
+        """
+        return pulumi.get(self, "max_open_connections")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[str]:
+        """
+        Specifies the name of the plugin to use.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[Sequence[str]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[bool]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
+
+
+@pulumi.output_type
+class SecretsMountMysql(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedRoles":
+            suggest = "allowed_roles"
+        elif key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+        elif key == "pluginName":
+            suggest = "plugin_name"
+        elif key == "rootRotationStatements":
+            suggest = "root_rotation_statements"
+        elif key == "tlsCa":
+            suggest = "tls_ca"
+        elif key == "tlsCertificateKey":
+            suggest = "tls_certificate_key"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
+        elif key == "verifyConnection":
+            suggest = "verify_connection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretsMountMysql. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretsMountMysql.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretsMountMysql.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 allowed_roles: Optional[Sequence[str]] = None,
+                 connection_url: Optional[str] = None,
+                 data: Optional[Mapping[str, Any]] = None,
+                 max_connection_lifetime: Optional[int] = None,
+                 max_idle_connections: Optional[int] = None,
+                 max_open_connections: Optional[int] = None,
+                 password: Optional[str] = None,
+                 plugin_name: Optional[str] = None,
+                 root_rotation_statements: Optional[Sequence[str]] = None,
+                 tls_ca: Optional[str] = None,
+                 tls_certificate_key: Optional[str] = None,
+                 username: Optional[str] = None,
+                 username_template: Optional[str] = None,
+                 verify_connection: Optional[bool] = None):
+        """
+        :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param str connection_url: A URL containing connection information.  
+               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param int max_connection_lifetime: The maximum number of seconds to keep
+               a connection alive for.
+        :param int max_idle_connections: The maximum number of idle connections to
+               maintain.
+        :param int max_open_connections: The maximum number of open connections to
+               use.
+        :param str password: The password to be used in the connection.
+        :param str plugin_name: Specifies the name of the plugin to use.
+        :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param str tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        :param str tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        :param str username: The username to be used in the connection (the account admin level).
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param bool verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "name", name)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if connection_url is not None:
+            pulumi.set(__self__, "connection_url", connection_url)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if max_connection_lifetime is not None:
+            pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
+        if max_idle_connections is not None:
+            pulumi.set(__self__, "max_idle_connections", max_idle_connections)
+        if max_open_connections is not None:
+            pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if tls_ca is not None:
+            pulumi.set(__self__, "tls_ca", tls_ca)
+        if tls_certificate_key is not None:
+            pulumi.set(__self__, "tls_certificate_key", tls_certificate_key)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[Sequence[str]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="connectionUrl")
+    def connection_url(self) -> Optional[str]:
+        """
+        A URL containing connection information.  
+        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        """
+        return pulumi.get(self, "connection_url")
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter(name="maxConnectionLifetime")
+    def max_connection_lifetime(self) -> Optional[int]:
+        """
+        The maximum number of seconds to keep
+        a connection alive for.
+        """
+        return pulumi.get(self, "max_connection_lifetime")
+
+    @property
+    @pulumi.getter(name="maxIdleConnections")
+    def max_idle_connections(self) -> Optional[int]:
+        """
+        The maximum number of idle connections to
+        maintain.
+        """
+        return pulumi.get(self, "max_idle_connections")
+
+    @property
+    @pulumi.getter(name="maxOpenConnections")
+    def max_open_connections(self) -> Optional[int]:
+        """
+        The maximum number of open connections to
+        use.
+        """
+        return pulumi.get(self, "max_open_connections")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[str]:
+        """
+        Specifies the name of the plugin to use.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[Sequence[str]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter(name="tlsCa")
+    def tls_ca(self) -> Optional[str]:
+        """
+        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_ca")
+
+    @property
+    @pulumi.getter(name="tlsCertificateKey")
+    def tls_certificate_key(self) -> Optional[str]:
+        """
+        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        """
+        return pulumi.get(self, "tls_certificate_key")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[bool]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
+
+
+@pulumi.output_type
+class SecretsMountMysqlAurora(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedRoles":
+            suggest = "allowed_roles"
+        elif key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+        elif key == "pluginName":
+            suggest = "plugin_name"
+        elif key == "rootRotationStatements":
+            suggest = "root_rotation_statements"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
+        elif key == "verifyConnection":
+            suggest = "verify_connection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretsMountMysqlAurora. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretsMountMysqlAurora.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretsMountMysqlAurora.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 allowed_roles: Optional[Sequence[str]] = None,
+                 connection_url: Optional[str] = None,
+                 data: Optional[Mapping[str, Any]] = None,
+                 max_connection_lifetime: Optional[int] = None,
+                 max_idle_connections: Optional[int] = None,
+                 max_open_connections: Optional[int] = None,
+                 password: Optional[str] = None,
+                 plugin_name: Optional[str] = None,
+                 root_rotation_statements: Optional[Sequence[str]] = None,
+                 username: Optional[str] = None,
+                 username_template: Optional[str] = None,
+                 verify_connection: Optional[bool] = None):
+        """
+        :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param str connection_url: A URL containing connection information.  
+               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param int max_connection_lifetime: The maximum number of seconds to keep
+               a connection alive for.
+        :param int max_idle_connections: The maximum number of idle connections to
+               maintain.
+        :param int max_open_connections: The maximum number of open connections to
+               use.
+        :param str password: The password to be used in the connection.
+        :param str plugin_name: Specifies the name of the plugin to use.
+        :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param str username: The username to be used in the connection (the account admin level).
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param bool verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "name", name)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if connection_url is not None:
+            pulumi.set(__self__, "connection_url", connection_url)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if max_connection_lifetime is not None:
+            pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
+        if max_idle_connections is not None:
+            pulumi.set(__self__, "max_idle_connections", max_idle_connections)
+        if max_open_connections is not None:
+            pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[Sequence[str]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="connectionUrl")
+    def connection_url(self) -> Optional[str]:
+        """
+        A URL containing connection information.  
+        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        """
+        return pulumi.get(self, "connection_url")
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter(name="maxConnectionLifetime")
+    def max_connection_lifetime(self) -> Optional[int]:
+        """
+        The maximum number of seconds to keep
+        a connection alive for.
+        """
+        return pulumi.get(self, "max_connection_lifetime")
+
+    @property
+    @pulumi.getter(name="maxIdleConnections")
+    def max_idle_connections(self) -> Optional[int]:
+        """
+        The maximum number of idle connections to
+        maintain.
+        """
+        return pulumi.get(self, "max_idle_connections")
+
+    @property
+    @pulumi.getter(name="maxOpenConnections")
+    def max_open_connections(self) -> Optional[int]:
+        """
+        The maximum number of open connections to
+        use.
+        """
+        return pulumi.get(self, "max_open_connections")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[str]:
+        """
+        Specifies the name of the plugin to use.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[Sequence[str]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[bool]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
+
+
+@pulumi.output_type
+class SecretsMountMysqlLegacy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedRoles":
+            suggest = "allowed_roles"
+        elif key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+        elif key == "pluginName":
+            suggest = "plugin_name"
+        elif key == "rootRotationStatements":
+            suggest = "root_rotation_statements"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
+        elif key == "verifyConnection":
+            suggest = "verify_connection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretsMountMysqlLegacy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretsMountMysqlLegacy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretsMountMysqlLegacy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 allowed_roles: Optional[Sequence[str]] = None,
+                 connection_url: Optional[str] = None,
+                 data: Optional[Mapping[str, Any]] = None,
+                 max_connection_lifetime: Optional[int] = None,
+                 max_idle_connections: Optional[int] = None,
+                 max_open_connections: Optional[int] = None,
+                 password: Optional[str] = None,
+                 plugin_name: Optional[str] = None,
+                 root_rotation_statements: Optional[Sequence[str]] = None,
+                 username: Optional[str] = None,
+                 username_template: Optional[str] = None,
+                 verify_connection: Optional[bool] = None):
+        """
+        :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param str connection_url: A URL containing connection information.  
+               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param int max_connection_lifetime: The maximum number of seconds to keep
+               a connection alive for.
+        :param int max_idle_connections: The maximum number of idle connections to
+               maintain.
+        :param int max_open_connections: The maximum number of open connections to
+               use.
+        :param str password: The password to be used in the connection.
+        :param str plugin_name: Specifies the name of the plugin to use.
+        :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param str username: The username to be used in the connection (the account admin level).
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param bool verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "name", name)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if connection_url is not None:
+            pulumi.set(__self__, "connection_url", connection_url)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if max_connection_lifetime is not None:
+            pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
+        if max_idle_connections is not None:
+            pulumi.set(__self__, "max_idle_connections", max_idle_connections)
+        if max_open_connections is not None:
+            pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[Sequence[str]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="connectionUrl")
+    def connection_url(self) -> Optional[str]:
+        """
+        A URL containing connection information.  
+        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        """
+        return pulumi.get(self, "connection_url")
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter(name="maxConnectionLifetime")
+    def max_connection_lifetime(self) -> Optional[int]:
+        """
+        The maximum number of seconds to keep
+        a connection alive for.
+        """
+        return pulumi.get(self, "max_connection_lifetime")
+
+    @property
+    @pulumi.getter(name="maxIdleConnections")
+    def max_idle_connections(self) -> Optional[int]:
+        """
+        The maximum number of idle connections to
+        maintain.
+        """
+        return pulumi.get(self, "max_idle_connections")
+
+    @property
+    @pulumi.getter(name="maxOpenConnections")
+    def max_open_connections(self) -> Optional[int]:
+        """
+        The maximum number of open connections to
+        use.
+        """
+        return pulumi.get(self, "max_open_connections")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[str]:
+        """
+        Specifies the name of the plugin to use.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[Sequence[str]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[bool]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
+
+
+@pulumi.output_type
+class SecretsMountMysqlRd(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedRoles":
+            suggest = "allowed_roles"
+        elif key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+        elif key == "pluginName":
+            suggest = "plugin_name"
+        elif key == "rootRotationStatements":
+            suggest = "root_rotation_statements"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
+        elif key == "verifyConnection":
+            suggest = "verify_connection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretsMountMysqlRd. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretsMountMysqlRd.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretsMountMysqlRd.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 allowed_roles: Optional[Sequence[str]] = None,
+                 connection_url: Optional[str] = None,
+                 data: Optional[Mapping[str, Any]] = None,
+                 max_connection_lifetime: Optional[int] = None,
+                 max_idle_connections: Optional[int] = None,
+                 max_open_connections: Optional[int] = None,
+                 password: Optional[str] = None,
+                 plugin_name: Optional[str] = None,
+                 root_rotation_statements: Optional[Sequence[str]] = None,
+                 username: Optional[str] = None,
+                 username_template: Optional[str] = None,
+                 verify_connection: Optional[bool] = None):
+        """
+        :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param str connection_url: A URL containing connection information.  
+               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param int max_connection_lifetime: The maximum number of seconds to keep
+               a connection alive for.
+        :param int max_idle_connections: The maximum number of idle connections to
+               maintain.
+        :param int max_open_connections: The maximum number of open connections to
+               use.
+        :param str password: The password to be used in the connection.
+        :param str plugin_name: Specifies the name of the plugin to use.
+        :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param str username: The username to be used in the connection (the account admin level).
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param bool verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "name", name)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if connection_url is not None:
+            pulumi.set(__self__, "connection_url", connection_url)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if max_connection_lifetime is not None:
+            pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
+        if max_idle_connections is not None:
+            pulumi.set(__self__, "max_idle_connections", max_idle_connections)
+        if max_open_connections is not None:
+            pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[Sequence[str]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="connectionUrl")
+    def connection_url(self) -> Optional[str]:
+        """
+        A URL containing connection information.  
+        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        """
+        return pulumi.get(self, "connection_url")
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter(name="maxConnectionLifetime")
+    def max_connection_lifetime(self) -> Optional[int]:
+        """
+        The maximum number of seconds to keep
+        a connection alive for.
+        """
+        return pulumi.get(self, "max_connection_lifetime")
+
+    @property
+    @pulumi.getter(name="maxIdleConnections")
+    def max_idle_connections(self) -> Optional[int]:
+        """
+        The maximum number of idle connections to
+        maintain.
+        """
+        return pulumi.get(self, "max_idle_connections")
+
+    @property
+    @pulumi.getter(name="maxOpenConnections")
+    def max_open_connections(self) -> Optional[int]:
+        """
+        The maximum number of open connections to
+        use.
+        """
+        return pulumi.get(self, "max_open_connections")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[str]:
+        """
+        Specifies the name of the plugin to use.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[Sequence[str]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[bool]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
+
+
+@pulumi.output_type
+class SecretsMountOracle(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedRoles":
+            suggest = "allowed_roles"
+        elif key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+        elif key == "pluginName":
+            suggest = "plugin_name"
+        elif key == "rootRotationStatements":
+            suggest = "root_rotation_statements"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
+        elif key == "verifyConnection":
+            suggest = "verify_connection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretsMountOracle. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretsMountOracle.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretsMountOracle.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 allowed_roles: Optional[Sequence[str]] = None,
+                 connection_url: Optional[str] = None,
+                 data: Optional[Mapping[str, Any]] = None,
+                 max_connection_lifetime: Optional[int] = None,
+                 max_idle_connections: Optional[int] = None,
+                 max_open_connections: Optional[int] = None,
+                 password: Optional[str] = None,
+                 plugin_name: Optional[str] = None,
+                 root_rotation_statements: Optional[Sequence[str]] = None,
+                 username: Optional[str] = None,
+                 username_template: Optional[str] = None,
+                 verify_connection: Optional[bool] = None):
+        """
+        :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param str connection_url: A URL containing connection information.  
+               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param int max_connection_lifetime: The maximum number of seconds to keep
+               a connection alive for.
+        :param int max_idle_connections: The maximum number of idle connections to
+               maintain.
+        :param int max_open_connections: The maximum number of open connections to
+               use.
+        :param str password: The password to be used in the connection.
+        :param str plugin_name: Specifies the name of the plugin to use.
+        :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param str username: The username to be used in the connection (the account admin level).
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param bool verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "name", name)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if connection_url is not None:
+            pulumi.set(__self__, "connection_url", connection_url)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if max_connection_lifetime is not None:
+            pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
+        if max_idle_connections is not None:
+            pulumi.set(__self__, "max_idle_connections", max_idle_connections)
+        if max_open_connections is not None:
+            pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[Sequence[str]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="connectionUrl")
+    def connection_url(self) -> Optional[str]:
+        """
+        A URL containing connection information.  
+        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        """
+        return pulumi.get(self, "connection_url")
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter(name="maxConnectionLifetime")
+    def max_connection_lifetime(self) -> Optional[int]:
+        """
+        The maximum number of seconds to keep
+        a connection alive for.
+        """
+        return pulumi.get(self, "max_connection_lifetime")
+
+    @property
+    @pulumi.getter(name="maxIdleConnections")
+    def max_idle_connections(self) -> Optional[int]:
+        """
+        The maximum number of idle connections to
+        maintain.
+        """
+        return pulumi.get(self, "max_idle_connections")
+
+    @property
+    @pulumi.getter(name="maxOpenConnections")
+    def max_open_connections(self) -> Optional[int]:
+        """
+        The maximum number of open connections to
+        use.
+        """
+        return pulumi.get(self, "max_open_connections")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[str]:
+        """
+        Specifies the name of the plugin to use.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[Sequence[str]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[bool]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
+
+
+@pulumi.output_type
+class SecretsMountPostgresql(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedRoles":
+            suggest = "allowed_roles"
+        elif key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+        elif key == "pluginName":
+            suggest = "plugin_name"
+        elif key == "rootRotationStatements":
+            suggest = "root_rotation_statements"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
+        elif key == "verifyConnection":
+            suggest = "verify_connection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretsMountPostgresql. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretsMountPostgresql.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretsMountPostgresql.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 allowed_roles: Optional[Sequence[str]] = None,
+                 connection_url: Optional[str] = None,
+                 data: Optional[Mapping[str, Any]] = None,
+                 max_connection_lifetime: Optional[int] = None,
+                 max_idle_connections: Optional[int] = None,
+                 max_open_connections: Optional[int] = None,
+                 password: Optional[str] = None,
+                 plugin_name: Optional[str] = None,
+                 root_rotation_statements: Optional[Sequence[str]] = None,
+                 username: Optional[str] = None,
+                 username_template: Optional[str] = None,
+                 verify_connection: Optional[bool] = None):
+        """
+        :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param str connection_url: A URL containing connection information.  
+               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param int max_connection_lifetime: The maximum number of seconds to keep
+               a connection alive for.
+        :param int max_idle_connections: The maximum number of idle connections to
+               maintain.
+        :param int max_open_connections: The maximum number of open connections to
+               use.
+        :param str password: The password to be used in the connection.
+        :param str plugin_name: Specifies the name of the plugin to use.
+        :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param str username: The username to be used in the connection (the account admin level).
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param bool verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "name", name)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if connection_url is not None:
+            pulumi.set(__self__, "connection_url", connection_url)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if max_connection_lifetime is not None:
+            pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
+        if max_idle_connections is not None:
+            pulumi.set(__self__, "max_idle_connections", max_idle_connections)
+        if max_open_connections is not None:
+            pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[Sequence[str]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="connectionUrl")
+    def connection_url(self) -> Optional[str]:
+        """
+        A URL containing connection information.  
+        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        """
+        return pulumi.get(self, "connection_url")
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter(name="maxConnectionLifetime")
+    def max_connection_lifetime(self) -> Optional[int]:
+        """
+        The maximum number of seconds to keep
+        a connection alive for.
+        """
+        return pulumi.get(self, "max_connection_lifetime")
+
+    @property
+    @pulumi.getter(name="maxIdleConnections")
+    def max_idle_connections(self) -> Optional[int]:
+        """
+        The maximum number of idle connections to
+        maintain.
+        """
+        return pulumi.get(self, "max_idle_connections")
+
+    @property
+    @pulumi.getter(name="maxOpenConnections")
+    def max_open_connections(self) -> Optional[int]:
+        """
+        The maximum number of open connections to
+        use.
+        """
+        return pulumi.get(self, "max_open_connections")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[str]:
+        """
+        Specifies the name of the plugin to use.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[Sequence[str]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[bool]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
+
+
+@pulumi.output_type
+class SecretsMountRedshift(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedRoles":
+            suggest = "allowed_roles"
+        elif key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+        elif key == "pluginName":
+            suggest = "plugin_name"
+        elif key == "rootRotationStatements":
+            suggest = "root_rotation_statements"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
+        elif key == "verifyConnection":
+            suggest = "verify_connection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretsMountRedshift. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretsMountRedshift.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretsMountRedshift.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 allowed_roles: Optional[Sequence[str]] = None,
+                 connection_url: Optional[str] = None,
+                 data: Optional[Mapping[str, Any]] = None,
+                 max_connection_lifetime: Optional[int] = None,
+                 max_idle_connections: Optional[int] = None,
+                 max_open_connections: Optional[int] = None,
+                 password: Optional[str] = None,
+                 plugin_name: Optional[str] = None,
+                 root_rotation_statements: Optional[Sequence[str]] = None,
+                 username: Optional[str] = None,
+                 username_template: Optional[str] = None,
+                 verify_connection: Optional[bool] = None):
+        """
+        :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param str connection_url: A URL containing connection information.  
+               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param int max_connection_lifetime: The maximum number of seconds to keep
+               a connection alive for.
+        :param int max_idle_connections: The maximum number of idle connections to
+               maintain.
+        :param int max_open_connections: The maximum number of open connections to
+               use.
+        :param str password: The password to be used in the connection.
+        :param str plugin_name: Specifies the name of the plugin to use.
+        :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param str username: The username to be used in the connection (the account admin level).
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param bool verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "name", name)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if connection_url is not None:
+            pulumi.set(__self__, "connection_url", connection_url)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if max_connection_lifetime is not None:
+            pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
+        if max_idle_connections is not None:
+            pulumi.set(__self__, "max_idle_connections", max_idle_connections)
+        if max_open_connections is not None:
+            pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[Sequence[str]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="connectionUrl")
+    def connection_url(self) -> Optional[str]:
+        """
+        A URL containing connection information.  
+        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        """
+        return pulumi.get(self, "connection_url")
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter(name="maxConnectionLifetime")
+    def max_connection_lifetime(self) -> Optional[int]:
+        """
+        The maximum number of seconds to keep
+        a connection alive for.
+        """
+        return pulumi.get(self, "max_connection_lifetime")
+
+    @property
+    @pulumi.getter(name="maxIdleConnections")
+    def max_idle_connections(self) -> Optional[int]:
+        """
+        The maximum number of idle connections to
+        maintain.
+        """
+        return pulumi.get(self, "max_idle_connections")
+
+    @property
+    @pulumi.getter(name="maxOpenConnections")
+    def max_open_connections(self) -> Optional[int]:
+        """
+        The maximum number of open connections to
+        use.
+        """
+        return pulumi.get(self, "max_open_connections")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[str]:
+        """
+        Specifies the name of the plugin to use.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[Sequence[str]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[bool]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
+
+
+@pulumi.output_type
+class SecretsMountSnowflake(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowedRoles":
+            suggest = "allowed_roles"
+        elif key == "connectionUrl":
+            suggest = "connection_url"
+        elif key == "maxConnectionLifetime":
+            suggest = "max_connection_lifetime"
+        elif key == "maxIdleConnections":
+            suggest = "max_idle_connections"
+        elif key == "maxOpenConnections":
+            suggest = "max_open_connections"
+        elif key == "pluginName":
+            suggest = "plugin_name"
+        elif key == "rootRotationStatements":
+            suggest = "root_rotation_statements"
+        elif key == "usernameTemplate":
+            suggest = "username_template"
+        elif key == "verifyConnection":
+            suggest = "verify_connection"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretsMountSnowflake. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretsMountSnowflake.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretsMountSnowflake.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 allowed_roles: Optional[Sequence[str]] = None,
+                 connection_url: Optional[str] = None,
+                 data: Optional[Mapping[str, Any]] = None,
+                 max_connection_lifetime: Optional[int] = None,
+                 max_idle_connections: Optional[int] = None,
+                 max_open_connections: Optional[int] = None,
+                 password: Optional[str] = None,
+                 plugin_name: Optional[str] = None,
+                 root_rotation_statements: Optional[Sequence[str]] = None,
+                 username: Optional[str] = None,
+                 username_template: Optional[str] = None,
+                 verify_connection: Optional[bool] = None):
+        """
+        :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
+               connection.
+        :param str connection_url: A URL containing connection information.  
+               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param int max_connection_lifetime: The maximum number of seconds to keep
+               a connection alive for.
+        :param int max_idle_connections: The maximum number of idle connections to
+               maintain.
+        :param int max_open_connections: The maximum number of open connections to
+               use.
+        :param str password: The password to be used in the connection.
+        :param str plugin_name: Specifies the name of the plugin to use.
+        :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param str username: The username to be used in the connection (the account admin level).
+        :param str username_template: - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param bool verify_connection: Whether the connection should be verified on
+               initial configuration or not.
+        """
+        pulumi.set(__self__, "name", name)
+        if allowed_roles is not None:
+            pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if connection_url is not None:
+            pulumi.set(__self__, "connection_url", connection_url)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if max_connection_lifetime is not None:
+            pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
+        if max_idle_connections is not None:
+            pulumi.set(__self__, "max_idle_connections", max_idle_connections)
+        if max_open_connections is not None:
+            pulumi.set(__self__, "max_open_connections", max_open_connections)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if plugin_name is not None:
+            pulumi.set(__self__, "plugin_name", plugin_name)
+        if root_rotation_statements is not None:
+            pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
+        if verify_connection is not None:
+            pulumi.set(__self__, "verify_connection", verify_connection)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="allowedRoles")
+    def allowed_roles(self) -> Optional[Sequence[str]]:
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="connectionUrl")
+    def connection_url(self) -> Optional[str]:
+        """
+        A URL containing connection information.  
+        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+        """
+        return pulumi.get(self, "connection_url")
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[Mapping[str, Any]]:
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter(name="maxConnectionLifetime")
+    def max_connection_lifetime(self) -> Optional[int]:
+        """
+        The maximum number of seconds to keep
+        a connection alive for.
+        """
+        return pulumi.get(self, "max_connection_lifetime")
+
+    @property
+    @pulumi.getter(name="maxIdleConnections")
+    def max_idle_connections(self) -> Optional[int]:
+        """
+        The maximum number of idle connections to
+        maintain.
+        """
+        return pulumi.get(self, "max_idle_connections")
+
+    @property
+    @pulumi.getter(name="maxOpenConnections")
+    def max_open_connections(self) -> Optional[int]:
+        """
+        The maximum number of open connections to
+        use.
+        """
+        return pulumi.get(self, "max_open_connections")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        The password to be used in the connection.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="pluginName")
+    def plugin_name(self) -> Optional[str]:
+        """
+        Specifies the name of the plugin to use.
+        """
+        return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter(name="rootRotationStatements")
+    def root_rotation_statements(self) -> Optional[Sequence[str]]:
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        The username to be used in the connection (the account admin level).
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[str]:
+        """
+        - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+    @property
+    @pulumi.getter(name="verifyConnection")
+    def verify_connection(self) -> Optional[bool]:
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+        return pulumi.get(self, "verify_connection")
 
 

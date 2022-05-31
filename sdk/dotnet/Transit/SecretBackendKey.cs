@@ -38,6 +38,9 @@ namespace Pulumi.Vault.Transit
     /// 
     /// }
     /// ```
+    /// ## Deprecations
+    /// 
+    /// * `auto_rotate_interval` - Replaced by `auto_rotate_period`.
     /// 
     /// ## Import
     /// 
@@ -58,11 +61,18 @@ namespace Pulumi.Vault.Transit
         public Output<bool?> AllowPlaintextBackup { get; private set; } = null!;
 
         /// <summary>
-        /// Amount of time the key should live before being automatically rotated.
-        /// A value of 0 disables automatic rotation for the key.
+        /// Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
+        /// key.
         /// </summary>
         [Output("autoRotateInterval")]
         public Output<int> AutoRotateInterval { get; private set; } = null!;
+
+        /// <summary>
+        /// Amount of time the key should live before being automatically rotated.
+        /// A value of 0 disables automatic rotation for the key.
+        /// </summary>
+        [Output("autoRotatePeriod")]
+        public Output<int> AutoRotatePeriod { get; private set; } = null!;
 
         /// <summary>
         /// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
@@ -217,11 +227,18 @@ namespace Pulumi.Vault.Transit
         public Input<bool>? AllowPlaintextBackup { get; set; }
 
         /// <summary>
-        /// Amount of time the key should live before being automatically rotated.
-        /// A value of 0 disables automatic rotation for the key.
+        /// Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
+        /// key.
         /// </summary>
         [Input("autoRotateInterval")]
         public Input<int>? AutoRotateInterval { get; set; }
+
+        /// <summary>
+        /// Amount of time the key should live before being automatically rotated.
+        /// A value of 0 disables automatic rotation for the key.
+        /// </summary>
+        [Input("autoRotatePeriod")]
+        public Input<int>? AutoRotatePeriod { get; set; }
 
         /// <summary>
         /// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
@@ -293,11 +310,18 @@ namespace Pulumi.Vault.Transit
         public Input<bool>? AllowPlaintextBackup { get; set; }
 
         /// <summary>
-        /// Amount of time the key should live before being automatically rotated.
-        /// A value of 0 disables automatic rotation for the key.
+        /// Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
+        /// key.
         /// </summary>
         [Input("autoRotateInterval")]
         public Input<int>? AutoRotateInterval { get; set; }
+
+        /// <summary>
+        /// Amount of time the key should live before being automatically rotated.
+        /// A value of 0 disables automatic rotation for the key.
+        /// </summary>
+        [Input("autoRotatePeriod")]
+        public Input<int>? AutoRotatePeriod { get; set; }
 
         /// <summary>
         /// The path the transit secret backend is mounted at, with no leading or trailing `/`s.

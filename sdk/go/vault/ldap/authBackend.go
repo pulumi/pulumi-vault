@@ -102,9 +102,8 @@ type AuthBackend struct {
 	// If set, the default policy will not be set on
 	// generated tokens; otherwise it will be added to the policies set in token_policies.
 	TokenNoDefaultPolicy pulumi.BoolPtrOutput `pulumi:"tokenNoDefaultPolicy"`
-	// The
-	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-	// if any, in number of seconds to set on the token.
+	// The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+	// of times a generated token may be used (within its lifetime); 0 means unlimited.
 	TokenNumUses pulumi.IntPtrOutput `pulumi:"tokenNumUses"`
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
@@ -133,6 +132,8 @@ type AuthBackend struct {
 	Userattr pulumi.StringOutput `pulumi:"userattr"`
 	// Base DN under which to perform user search
 	Userdn pulumi.StringOutput `pulumi:"userdn"`
+	// LDAP user search filter
+	Userfilter pulumi.StringOutput `pulumi:"userfilter"`
 }
 
 // NewAuthBackend registers a new resource with the given unique name, arguments, and options.
@@ -216,9 +217,8 @@ type authBackendState struct {
 	// If set, the default policy will not be set on
 	// generated tokens; otherwise it will be added to the policies set in token_policies.
 	TokenNoDefaultPolicy *bool `pulumi:"tokenNoDefaultPolicy"`
-	// The
-	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-	// if any, in number of seconds to set on the token.
+	// The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+	// of times a generated token may be used (within its lifetime); 0 means unlimited.
 	TokenNumUses *int `pulumi:"tokenNumUses"`
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
@@ -247,6 +247,8 @@ type authBackendState struct {
 	Userattr *string `pulumi:"userattr"`
 	// Base DN under which to perform user search
 	Userdn *string `pulumi:"userdn"`
+	// LDAP user search filter
+	Userfilter *string `pulumi:"userfilter"`
 }
 
 type AuthBackendState struct {
@@ -299,9 +301,8 @@ type AuthBackendState struct {
 	// If set, the default policy will not be set on
 	// generated tokens; otherwise it will be added to the policies set in token_policies.
 	TokenNoDefaultPolicy pulumi.BoolPtrInput
-	// The
-	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-	// if any, in number of seconds to set on the token.
+	// The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+	// of times a generated token may be used (within its lifetime); 0 means unlimited.
 	TokenNumUses pulumi.IntPtrInput
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
@@ -330,6 +331,8 @@ type AuthBackendState struct {
 	Userattr pulumi.StringPtrInput
 	// Base DN under which to perform user search
 	Userdn pulumi.StringPtrInput
+	// LDAP user search filter
+	Userfilter pulumi.StringPtrInput
 }
 
 func (AuthBackendState) ElementType() reflect.Type {
@@ -384,9 +387,8 @@ type authBackendArgs struct {
 	// If set, the default policy will not be set on
 	// generated tokens; otherwise it will be added to the policies set in token_policies.
 	TokenNoDefaultPolicy *bool `pulumi:"tokenNoDefaultPolicy"`
-	// The
-	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-	// if any, in number of seconds to set on the token.
+	// The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+	// of times a generated token may be used (within its lifetime); 0 means unlimited.
 	TokenNumUses *int `pulumi:"tokenNumUses"`
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
@@ -415,6 +417,8 @@ type authBackendArgs struct {
 	Userattr *string `pulumi:"userattr"`
 	// Base DN under which to perform user search
 	Userdn *string `pulumi:"userdn"`
+	// LDAP user search filter
+	Userfilter *string `pulumi:"userfilter"`
 }
 
 // The set of arguments for constructing a AuthBackend resource.
@@ -466,9 +470,8 @@ type AuthBackendArgs struct {
 	// If set, the default policy will not be set on
 	// generated tokens; otherwise it will be added to the policies set in token_policies.
 	TokenNoDefaultPolicy pulumi.BoolPtrInput
-	// The
-	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-	// if any, in number of seconds to set on the token.
+	// The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
+	// of times a generated token may be used (within its lifetime); 0 means unlimited.
 	TokenNumUses pulumi.IntPtrInput
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
@@ -497,6 +500,8 @@ type AuthBackendArgs struct {
 	Userattr pulumi.StringPtrInput
 	// Base DN under which to perform user search
 	Userdn pulumi.StringPtrInput
+	// LDAP user search filter
+	Userfilter pulumi.StringPtrInput
 }
 
 func (AuthBackendArgs) ElementType() reflect.Type {

@@ -65,7 +65,7 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string>;
     /**
-     * The certificate
+     * The certificate.
      */
     public /*out*/ readonly certificate!: pulumi.Output<string>;
     /**
@@ -89,7 +89,7 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
      */
     public readonly ipSans!: pulumi.Output<string[] | undefined>;
     /**
-     * The issuing CA
+     * The issuing CA certificate.
      */
     public /*out*/ readonly issuingCa!: pulumi.Output<string>;
     /**
@@ -137,9 +137,15 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
      */
     public readonly province!: pulumi.Output<string | undefined>;
     /**
-     * The serial
+     * Deprecated, use `serialNumber` instead.
+     *
+     * @deprecated Use serial_number instead
      */
     public /*out*/ readonly serial!: pulumi.Output<string>;
+    /**
+     * The certificate's serial number, hex formatted.
+     */
+    public /*out*/ readonly serialNumber!: pulumi.Output<string>;
     /**
      * The street address
      */
@@ -191,6 +197,7 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
             resourceInputs["privateKeyFormat"] = state ? state.privateKeyFormat : undefined;
             resourceInputs["province"] = state ? state.province : undefined;
             resourceInputs["serial"] = state ? state.serial : undefined;
+            resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
             resourceInputs["streetAddress"] = state ? state.streetAddress : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -231,6 +238,7 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
             resourceInputs["certificate"] = undefined /*out*/;
             resourceInputs["issuingCa"] = undefined /*out*/;
             resourceInputs["serial"] = undefined /*out*/;
+            resourceInputs["serialNumber"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendRootCert.__pulumiType, name, resourceInputs, opts);
@@ -250,7 +258,7 @@ export interface SecretBackendRootCertState {
      */
     backend?: pulumi.Input<string>;
     /**
-     * The certificate
+     * The certificate.
      */
     certificate?: pulumi.Input<string>;
     /**
@@ -274,7 +282,7 @@ export interface SecretBackendRootCertState {
      */
     ipSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The issuing CA
+     * The issuing CA certificate.
      */
     issuingCa?: pulumi.Input<string>;
     /**
@@ -322,9 +330,15 @@ export interface SecretBackendRootCertState {
      */
     province?: pulumi.Input<string>;
     /**
-     * The serial
+     * Deprecated, use `serialNumber` instead.
+     *
+     * @deprecated Use serial_number instead
      */
     serial?: pulumi.Input<string>;
+    /**
+     * The certificate's serial number, hex formatted.
+     */
+    serialNumber?: pulumi.Input<string>;
     /**
      * The street address
      */

@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -102,9 +103,19 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly allowedExtensions!: pulumi.Output<string | undefined>;
     /**
-     * Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+     * Set of configuration blocks to define allowed  
+     * user key configuration, like key type and their lengths. Can be specified multiple times.
+     * *See Configuration-Options for more info*
      */
-    public readonly allowedUserKeyLengths!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly allowedUserKeyConfigs!: pulumi.Output<outputs.ssh.SecretBackendRoleAllowedUserKeyConfig[] | undefined>;
+    /**
+     * Specifies a map of ssh key types and their expected sizes which 
+     * are allowed to be signed by the CA type.
+     * *Deprecated: use* allowedUserKeyConfig *instead*
+     *
+     * @deprecated Set in allowed_user_key_config
+     */
+    public readonly allowedUserKeyLengths!: pulumi.Output<{[key: string]: number} | undefined>;
     /**
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      */
@@ -176,6 +187,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["allowedCriticalOptions"] = state ? state.allowedCriticalOptions : undefined;
             resourceInputs["allowedDomains"] = state ? state.allowedDomains : undefined;
             resourceInputs["allowedExtensions"] = state ? state.allowedExtensions : undefined;
+            resourceInputs["allowedUserKeyConfigs"] = state ? state.allowedUserKeyConfigs : undefined;
             resourceInputs["allowedUserKeyLengths"] = state ? state.allowedUserKeyLengths : undefined;
             resourceInputs["allowedUsers"] = state ? state.allowedUsers : undefined;
             resourceInputs["allowedUsersTemplate"] = state ? state.allowedUsersTemplate : undefined;
@@ -206,6 +218,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["allowedCriticalOptions"] = args ? args.allowedCriticalOptions : undefined;
             resourceInputs["allowedDomains"] = args ? args.allowedDomains : undefined;
             resourceInputs["allowedExtensions"] = args ? args.allowedExtensions : undefined;
+            resourceInputs["allowedUserKeyConfigs"] = args ? args.allowedUserKeyConfigs : undefined;
             resourceInputs["allowedUserKeyLengths"] = args ? args.allowedUserKeyLengths : undefined;
             resourceInputs["allowedUsers"] = args ? args.allowedUsers : undefined;
             resourceInputs["allowedUsersTemplate"] = args ? args.allowedUsersTemplate : undefined;
@@ -266,9 +279,19 @@ export interface SecretBackendRoleState {
      */
     allowedExtensions?: pulumi.Input<string>;
     /**
-     * Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+     * Set of configuration blocks to define allowed  
+     * user key configuration, like key type and their lengths. Can be specified multiple times.
+     * *See Configuration-Options for more info*
      */
-    allowedUserKeyLengths?: pulumi.Input<{[key: string]: any}>;
+    allowedUserKeyConfigs?: pulumi.Input<pulumi.Input<inputs.ssh.SecretBackendRoleAllowedUserKeyConfig>[]>;
+    /**
+     * Specifies a map of ssh key types and their expected sizes which 
+     * are allowed to be signed by the CA type.
+     * *Deprecated: use* allowedUserKeyConfig *instead*
+     *
+     * @deprecated Set in allowed_user_key_config
+     */
+    allowedUserKeyLengths?: pulumi.Input<{[key: string]: pulumi.Input<number>}>;
     /**
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      */
@@ -360,9 +383,19 @@ export interface SecretBackendRoleArgs {
      */
     allowedExtensions?: pulumi.Input<string>;
     /**
-     * Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+     * Set of configuration blocks to define allowed  
+     * user key configuration, like key type and their lengths. Can be specified multiple times.
+     * *See Configuration-Options for more info*
      */
-    allowedUserKeyLengths?: pulumi.Input<{[key: string]: any}>;
+    allowedUserKeyConfigs?: pulumi.Input<pulumi.Input<inputs.ssh.SecretBackendRoleAllowedUserKeyConfig>[]>;
+    /**
+     * Specifies a map of ssh key types and their expected sizes which 
+     * are allowed to be signed by the CA type.
+     * *Deprecated: use* allowedUserKeyConfig *instead*
+     *
+     * @deprecated Set in allowed_user_key_config
+     */
+    allowedUserKeyLengths?: pulumi.Input<{[key: string]: pulumi.Input<number>}>;
     /**
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      */

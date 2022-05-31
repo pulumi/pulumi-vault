@@ -20,7 +20,7 @@ class GetSecretResult:
     """
     A collection of values returned by getSecret.
     """
-    def __init__(__self__, data=None, data_json=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, path=None, version=None):
+    def __init__(__self__, data=None, data_json=None, id=None, lease_duration=None, lease_id=None, lease_renewable=None, lease_start_time=None, path=None, version=None, with_lease_start_time=None):
         if data and not isinstance(data, dict):
             raise TypeError("Expected argument 'data' to be a dict")
         pulumi.set(__self__, "data", data)
@@ -48,6 +48,9 @@ class GetSecretResult:
         if version and not isinstance(version, int):
             raise TypeError("Expected argument 'version' to be a int")
         pulumi.set(__self__, "version", version)
+        if with_lease_start_time and not isinstance(with_lease_start_time, bool):
+            raise TypeError("Expected argument 'with_lease_start_time' to be a bool")
+        pulumi.set(__self__, "with_lease_start_time", with_lease_start_time)
 
     @property
     @pulumi.getter
@@ -115,6 +118,11 @@ class GetSecretResult:
     def version(self) -> Optional[int]:
         return pulumi.get(self, "version")
 
+    @property
+    @pulumi.getter(name="withLeaseStartTime")
+    def with_lease_start_time(self) -> Optional[bool]:
+        return pulumi.get(self, "with_lease_start_time")
+
 
 class AwaitableGetSecretResult(GetSecretResult):
     # pylint: disable=using-constant-test
@@ -130,14 +138,17 @@ class AwaitableGetSecretResult(GetSecretResult):
             lease_renewable=self.lease_renewable,
             lease_start_time=self.lease_start_time,
             path=self.path,
-            version=self.version)
+            version=self.version,
+            with_lease_start_time=self.with_lease_start_time)
 
 
 def get_secret(path: Optional[str] = None,
                version: Optional[int] = None,
+               with_lease_start_time: Optional[bool] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretResult:
     """
     ## Example Usage
+    ### Generic secret
 
     ```python
     import pulumi
@@ -162,6 +173,7 @@ def get_secret(path: Optional[str] = None,
     __args__ = dict()
     __args__['path'] = path
     __args__['version'] = version
+    __args__['withLeaseStartTime'] = with_lease_start_time
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
@@ -177,15 +189,18 @@ def get_secret(path: Optional[str] = None,
         lease_renewable=__ret__.lease_renewable,
         lease_start_time=__ret__.lease_start_time,
         path=__ret__.path,
-        version=__ret__.version)
+        version=__ret__.version,
+        with_lease_start_time=__ret__.with_lease_start_time)
 
 
 @_utilities.lift_output_func(get_secret)
 def get_secret_output(path: Optional[pulumi.Input[str]] = None,
                       version: Optional[pulumi.Input[Optional[int]]] = None,
+                      with_lease_start_time: Optional[pulumi.Input[Optional[bool]]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretResult]:
     """
     ## Example Usage
+    ### Generic secret
 
     ```python
     import pulumi

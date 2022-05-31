@@ -11,33 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := vault.NewAuthBackend(ctx, "example", &vault.AuthBackendArgs{
-// 			Tune: &AuthBackendTuneArgs{
-// 				ListingVisibility: pulumi.String("unauth"),
-// 				MaxLeaseTtl:       pulumi.String("90000s"),
-// 			},
-// 			Type: pulumi.String("github"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
 // ## Import
 //
 // Auth methods can be imported using the `path`, e.g.

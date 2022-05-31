@@ -106,6 +106,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly allowedOtherSans!: pulumi.Output<string[] | undefined>;
     /**
+     * An array of allowed serial numbers to put in Subject
+     */
+    public readonly allowedSerialNumbers!: pulumi.Output<string[] | undefined>;
+    /**
      * Defines allowed URI SANs
      */
     public readonly allowedUriSans!: pulumi.Output<string[] | undefined>;
@@ -150,21 +154,22 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly keyBits!: pulumi.Output<number | undefined>;
     /**
-     * The type of generated keys
+     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+     * Defaults to `rsa`
      */
     public readonly keyType!: pulumi.Output<string | undefined>;
     /**
      * Specify the allowed key usage constraint on issued certificates
      */
-    public readonly keyUsages!: pulumi.Output<string[] | undefined>;
+    public readonly keyUsages!: pulumi.Output<string[]>;
     /**
      * The locality of generated certificates
      */
     public readonly localities!: pulumi.Output<string[] | undefined>;
     /**
-     * The maximum TTL
+     * The maximum lease TTL, in seconds, for the role.
      */
-    public readonly maxTtl!: pulumi.Output<string | undefined>;
+    public readonly maxTtl!: pulumi.Output<string>;
     /**
      * The name to identify this role within the backend. Must be unique within the backend.
      */
@@ -210,9 +215,9 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly streetAddresses!: pulumi.Output<string[] | undefined>;
     /**
-     * The TTL
+     * The TTL, in seconds, for any certificate issued against this role.
      */
-    public readonly ttl!: pulumi.Output<string | undefined>;
+    public readonly ttl!: pulumi.Output<string>;
     /**
      * Flag to use the CN in the CSR
      */
@@ -244,6 +249,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["allowedDomains"] = state ? state.allowedDomains : undefined;
             resourceInputs["allowedDomainsTemplate"] = state ? state.allowedDomainsTemplate : undefined;
             resourceInputs["allowedOtherSans"] = state ? state.allowedOtherSans : undefined;
+            resourceInputs["allowedSerialNumbers"] = state ? state.allowedSerialNumbers : undefined;
             resourceInputs["allowedUriSans"] = state ? state.allowedUriSans : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["basicConstraintsValidForNonCa"] = state ? state.basicConstraintsValidForNonCa : undefined;
@@ -287,6 +293,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["allowedDomains"] = args ? args.allowedDomains : undefined;
             resourceInputs["allowedDomainsTemplate"] = args ? args.allowedDomainsTemplate : undefined;
             resourceInputs["allowedOtherSans"] = args ? args.allowedOtherSans : undefined;
+            resourceInputs["allowedSerialNumbers"] = args ? args.allowedSerialNumbers : undefined;
             resourceInputs["allowedUriSans"] = args ? args.allowedUriSans : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["basicConstraintsValidForNonCa"] = args ? args.basicConstraintsValidForNonCa : undefined;
@@ -363,6 +370,10 @@ export interface SecretBackendRoleState {
      */
     allowedOtherSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * An array of allowed serial numbers to put in Subject
+     */
+    allowedSerialNumbers?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Defines allowed URI SANs
      */
     allowedUriSans?: pulumi.Input<pulumi.Input<string>[]>;
@@ -407,7 +418,8 @@ export interface SecretBackendRoleState {
      */
     keyBits?: pulumi.Input<number>;
     /**
-     * The type of generated keys
+     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+     * Defaults to `rsa`
      */
     keyType?: pulumi.Input<string>;
     /**
@@ -419,7 +431,7 @@ export interface SecretBackendRoleState {
      */
     localities?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The maximum TTL
+     * The maximum lease TTL, in seconds, for the role.
      */
     maxTtl?: pulumi.Input<string>;
     /**
@@ -467,7 +479,7 @@ export interface SecretBackendRoleState {
      */
     streetAddresses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The TTL
+     * The TTL, in seconds, for any certificate issued against this role.
      */
     ttl?: pulumi.Input<string>;
     /**
@@ -521,6 +533,10 @@ export interface SecretBackendRoleArgs {
      */
     allowedOtherSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * An array of allowed serial numbers to put in Subject
+     */
+    allowedSerialNumbers?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Defines allowed URI SANs
      */
     allowedUriSans?: pulumi.Input<pulumi.Input<string>[]>;
@@ -565,7 +581,8 @@ export interface SecretBackendRoleArgs {
      */
     keyBits?: pulumi.Input<number>;
     /**
-     * The type of generated keys
+     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+     * Defaults to `rsa`
      */
     keyType?: pulumi.Input<string>;
     /**
@@ -577,7 +594,7 @@ export interface SecretBackendRoleArgs {
      */
     localities?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The maximum TTL
+     * The maximum lease TTL, in seconds, for the role.
      */
     maxTtl?: pulumi.Input<string>;
     /**
@@ -625,7 +642,7 @@ export interface SecretBackendRoleArgs {
      */
     streetAddresses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The TTL
+     * The TTL, in seconds, for any certificate issued against this role.
      */
     ttl?: pulumi.Input<string>;
     /**

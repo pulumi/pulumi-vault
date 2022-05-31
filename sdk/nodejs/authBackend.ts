@@ -6,21 +6,6 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const example = new vault.AuthBackend("example", {
- *     tune: {
- *         listingVisibility: "unauth",
- *         maxLeaseTtl: "90000s",
- *     },
- *     type: "github",
- * });
- * ```
- *
  * ## Import
  *
  * Auth methods can be imported using the `path`, e.g.

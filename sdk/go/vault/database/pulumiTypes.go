@@ -609,13 +609,27 @@ func (o SecretBackendConnectionCouchbasePtrOutput) UsernameTemplate() pulumi.Str
 }
 
 type SecretBackendConnectionElasticsearch struct {
+	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+	CaCert *string `pulumi:"caCert"`
+	// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+	CaPath *string `pulumi:"caPath"`
+	// The path to the certificate for the Elasticsearch client to present for communication.
+	ClientCert *string `pulumi:"clientCert"`
+	// The path to the key for the Elasticsearch client to use for communication.
+	ClientKey *string `pulumi:"clientKey"`
+	// Whether to disable certificate verification.
+	Insecure *bool `pulumi:"insecure"`
 	// The root credential password used in the connection URL.
 	Password string `pulumi:"password"`
+	// This, if set, is used to set the SNI host when connecting via TLS.
+	TlsServerName *string `pulumi:"tlsServerName"`
 	// The URL for Elasticsearch's API. https requires certificate
 	// by trusted CA if used.
 	Url string `pulumi:"url"`
 	// The root credential username used in the connection URL.
 	Username string `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
 // SecretBackendConnectionElasticsearchInput is an input type that accepts SecretBackendConnectionElasticsearchArgs and SecretBackendConnectionElasticsearchOutput values.
@@ -630,13 +644,27 @@ type SecretBackendConnectionElasticsearchInput interface {
 }
 
 type SecretBackendConnectionElasticsearchArgs struct {
+	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+	CaCert pulumi.StringPtrInput `pulumi:"caCert"`
+	// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+	CaPath pulumi.StringPtrInput `pulumi:"caPath"`
+	// The path to the certificate for the Elasticsearch client to present for communication.
+	ClientCert pulumi.StringPtrInput `pulumi:"clientCert"`
+	// The path to the key for the Elasticsearch client to use for communication.
+	ClientKey pulumi.StringPtrInput `pulumi:"clientKey"`
+	// Whether to disable certificate verification.
+	Insecure pulumi.BoolPtrInput `pulumi:"insecure"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringInput `pulumi:"password"`
+	// This, if set, is used to set the SNI host when connecting via TLS.
+	TlsServerName pulumi.StringPtrInput `pulumi:"tlsServerName"`
 	// The URL for Elasticsearch's API. https requires certificate
 	// by trusted CA if used.
 	Url pulumi.StringInput `pulumi:"url"`
 	// The root credential username used in the connection URL.
 	Username pulumi.StringInput `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
 func (SecretBackendConnectionElasticsearchArgs) ElementType() reflect.Type {
@@ -716,9 +744,39 @@ func (o SecretBackendConnectionElasticsearchOutput) ToSecretBackendConnectionEla
 	}).(SecretBackendConnectionElasticsearchPtrOutput)
 }
 
+// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+func (o SecretBackendConnectionElasticsearchOutput) CaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) *string { return v.CaCert }).(pulumi.StringPtrOutput)
+}
+
+// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+func (o SecretBackendConnectionElasticsearchOutput) CaPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) *string { return v.CaPath }).(pulumi.StringPtrOutput)
+}
+
+// The path to the certificate for the Elasticsearch client to present for communication.
+func (o SecretBackendConnectionElasticsearchOutput) ClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) *string { return v.ClientCert }).(pulumi.StringPtrOutput)
+}
+
+// The path to the key for the Elasticsearch client to use for communication.
+func (o SecretBackendConnectionElasticsearchOutput) ClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) *string { return v.ClientKey }).(pulumi.StringPtrOutput)
+}
+
+// Whether to disable certificate verification.
+func (o SecretBackendConnectionElasticsearchOutput) Insecure() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) *bool { return v.Insecure }).(pulumi.BoolPtrOutput)
+}
+
 // The root credential password used in the connection URL.
 func (o SecretBackendConnectionElasticsearchOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// This, if set, is used to set the SNI host when connecting via TLS.
+func (o SecretBackendConnectionElasticsearchOutput) TlsServerName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) *string { return v.TlsServerName }).(pulumi.StringPtrOutput)
 }
 
 // The URL for Elasticsearch's API. https requires certificate
@@ -730,6 +788,11 @@ func (o SecretBackendConnectionElasticsearchOutput) Url() pulumi.StringOutput {
 // The root credential username used in the connection URL.
 func (o SecretBackendConnectionElasticsearchOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) string { return v.Username }).(pulumi.StringOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionElasticsearchOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
 
 type SecretBackendConnectionElasticsearchPtrOutput struct{ *pulumi.OutputState }
@@ -756,6 +819,56 @@ func (o SecretBackendConnectionElasticsearchPtrOutput) Elem() SecretBackendConne
 	}).(SecretBackendConnectionElasticsearchOutput)
 }
 
+// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+func (o SecretBackendConnectionElasticsearchPtrOutput) CaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CaCert
+	}).(pulumi.StringPtrOutput)
+}
+
+// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+func (o SecretBackendConnectionElasticsearchPtrOutput) CaPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CaPath
+	}).(pulumi.StringPtrOutput)
+}
+
+// The path to the certificate for the Elasticsearch client to present for communication.
+func (o SecretBackendConnectionElasticsearchPtrOutput) ClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientCert
+	}).(pulumi.StringPtrOutput)
+}
+
+// The path to the key for the Elasticsearch client to use for communication.
+func (o SecretBackendConnectionElasticsearchPtrOutput) ClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether to disable certificate verification.
+func (o SecretBackendConnectionElasticsearchPtrOutput) Insecure() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Insecure
+	}).(pulumi.BoolPtrOutput)
+}
+
 // The root credential password used in the connection URL.
 func (o SecretBackendConnectionElasticsearchPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *string {
@@ -763,6 +876,16 @@ func (o SecretBackendConnectionElasticsearchPtrOutput) Password() pulumi.StringP
 			return nil
 		}
 		return &v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// This, if set, is used to set the SNI host when connecting via TLS.
+func (o SecretBackendConnectionElasticsearchPtrOutput) TlsServerName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsServerName
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -787,14 +910,22 @@ func (o SecretBackendConnectionElasticsearchPtrOutput) Username() pulumi.StringP
 	}).(pulumi.StringPtrOutput)
 }
 
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretBackendConnectionElasticsearchPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UsernameTemplate
+	}).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionHana struct {
 	// Specifies the Redshift DSN. See
 	// the [Vault
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
-	// Disable special character escaping in username and password.
-	DisableEscaping *bool `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -826,8 +957,6 @@ type SecretBackendConnectionHanaArgs struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
-	// Disable special character escaping in username and password.
-	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -927,11 +1056,6 @@ func (o SecretBackendConnectionHanaOutput) ConnectionUrl() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v SecretBackendConnectionHana) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
-// Disable special character escaping in username and password.
-func (o SecretBackendConnectionHanaOutput) DisableEscaping() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v SecretBackendConnectionHana) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
-}
-
 // The maximum amount of time a connection may be reused.
 func (o SecretBackendConnectionHanaOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionHana) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
@@ -994,16 +1118,6 @@ func (o SecretBackendConnectionHanaPtrOutput) ConnectionUrl() pulumi.StringPtrOu
 		}
 		return v.ConnectionUrl
 	}).(pulumi.StringPtrOutput)
-}
-
-// Disable special character escaping in username and password.
-func (o SecretBackendConnectionHanaPtrOutput) DisableEscaping() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *SecretBackendConnectionHana) *bool {
-		if v == nil {
-			return nil
-		}
-		return v.DisableEscaping
-	}).(pulumi.BoolPtrOutput)
 }
 
 // The maximum amount of time a connection may be reused.
@@ -3548,8 +3662,6 @@ type SecretBackendConnectionPostgresql struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
-	// Disable special character escaping in username and password.
-	DisableEscaping *bool `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -3583,8 +3695,6 @@ type SecretBackendConnectionPostgresqlArgs struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
-	// Disable special character escaping in username and password.
-	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -3686,11 +3796,6 @@ func (o SecretBackendConnectionPostgresqlOutput) ConnectionUrl() pulumi.StringPt
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
-// Disable special character escaping in username and password.
-func (o SecretBackendConnectionPostgresqlOutput) DisableEscaping() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
-}
-
 // The maximum amount of time a connection may be reused.
 func (o SecretBackendConnectionPostgresqlOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
@@ -3758,16 +3863,6 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) ConnectionUrl() pulumi.Strin
 		}
 		return v.ConnectionUrl
 	}).(pulumi.StringPtrOutput)
-}
-
-// Disable special character escaping in username and password.
-func (o SecretBackendConnectionPostgresqlPtrOutput) DisableEscaping() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *bool {
-		if v == nil {
-			return nil
-		}
-		return v.DisableEscaping
-	}).(pulumi.BoolPtrOutput)
 }
 
 // The maximum amount of time a connection may be reused.
@@ -3838,8 +3933,6 @@ type SecretBackendConnectionRedshift struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
-	// Disable special character escaping in username and password.
-	DisableEscaping *bool `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -3873,8 +3966,6 @@ type SecretBackendConnectionRedshiftArgs struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
-	// Disable special character escaping in username and password.
-	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -3976,11 +4067,6 @@ func (o SecretBackendConnectionRedshiftOutput) ConnectionUrl() pulumi.StringPtrO
 	return o.ApplyT(func(v SecretBackendConnectionRedshift) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
-// Disable special character escaping in username and password.
-func (o SecretBackendConnectionRedshiftOutput) DisableEscaping() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v SecretBackendConnectionRedshift) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
-}
-
 // The maximum amount of time a connection may be reused.
 func (o SecretBackendConnectionRedshiftOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedshift) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
@@ -4048,16 +4134,6 @@ func (o SecretBackendConnectionRedshiftPtrOutput) ConnectionUrl() pulumi.StringP
 		}
 		return v.ConnectionUrl
 	}).(pulumi.StringPtrOutput)
-}
-
-// Disable special character escaping in username and password.
-func (o SecretBackendConnectionRedshiftPtrOutput) DisableEscaping() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *SecretBackendConnectionRedshift) *bool {
-		if v == nil {
-			return nil
-		}
-		return v.DisableEscaping
-	}).(pulumi.BoolPtrOutput)
 }
 
 // The maximum amount of time a connection may be reused.
@@ -4393,6 +4469,3583 @@ func (o SecretBackendConnectionSnowflakePtrOutput) UsernameTemplate() pulumi.Str
 	}).(pulumi.StringPtrOutput)
 }
 
+type SecretsMountCassandra struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles []string `pulumi:"allowedRoles"`
+	// The number of seconds to use as a connection
+	// timeout.
+	ConnectTimeout *int `pulumi:"connectTimeout"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data map[string]interface{} `pulumi:"data"`
+	// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+	Hosts []string `pulumi:"hosts"`
+	// Whether to skip verification of the server
+	// certificate when using TLS.
+	InsecureTls *bool  `pulumi:"insecureTls"`
+	Name        string `pulumi:"name"`
+	// The password to be used in the connection.
+	Password *string `pulumi:"password"`
+	// Concatenated PEM blocks configuring the certificate
+	// chain.
+	PemBundle *string `pulumi:"pemBundle"`
+	// A JSON structure configuring the certificate chain.
+	PemJson *string `pulumi:"pemJson"`
+	// Specifies the name of the plugin to use.
+	PluginName *string `pulumi:"pluginName"`
+	// The default port to connect to if no port is specified as
+	// part of the host.
+	Port *int `pulumi:"port"`
+	// The CQL protocol version to use.
+	ProtocolVersion *int `pulumi:"protocolVersion"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// Whether to use TLS when connecting to Cassandra.
+	Tls *bool `pulumi:"tls"`
+	// The username to be used in the connection (the account admin level).
+	Username *string `pulumi:"username"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection *bool `pulumi:"verifyConnection"`
+}
+
+// SecretsMountCassandraInput is an input type that accepts SecretsMountCassandraArgs and SecretsMountCassandraOutput values.
+// You can construct a concrete instance of `SecretsMountCassandraInput` via:
+//
+//          SecretsMountCassandraArgs{...}
+type SecretsMountCassandraInput interface {
+	pulumi.Input
+
+	ToSecretsMountCassandraOutput() SecretsMountCassandraOutput
+	ToSecretsMountCassandraOutputWithContext(context.Context) SecretsMountCassandraOutput
+}
+
+type SecretsMountCassandraArgs struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	// The number of seconds to use as a connection
+	// timeout.
+	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data pulumi.MapInput `pulumi:"data"`
+	// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+	Hosts pulumi.StringArrayInput `pulumi:"hosts"`
+	// Whether to skip verification of the server
+	// certificate when using TLS.
+	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
+	Name        pulumi.StringInput  `pulumi:"name"`
+	// The password to be used in the connection.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Concatenated PEM blocks configuring the certificate
+	// chain.
+	PemBundle pulumi.StringPtrInput `pulumi:"pemBundle"`
+	// A JSON structure configuring the certificate chain.
+	PemJson pulumi.StringPtrInput `pulumi:"pemJson"`
+	// Specifies the name of the plugin to use.
+	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// The default port to connect to if no port is specified as
+	// part of the host.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// The CQL protocol version to use.
+	ProtocolVersion pulumi.IntPtrInput `pulumi:"protocolVersion"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// Whether to use TLS when connecting to Cassandra.
+	Tls pulumi.BoolPtrInput `pulumi:"tls"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringPtrInput `pulumi:"username"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+}
+
+func (SecretsMountCassandraArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountCassandra)(nil)).Elem()
+}
+
+func (i SecretsMountCassandraArgs) ToSecretsMountCassandraOutput() SecretsMountCassandraOutput {
+	return i.ToSecretsMountCassandraOutputWithContext(context.Background())
+}
+
+func (i SecretsMountCassandraArgs) ToSecretsMountCassandraOutputWithContext(ctx context.Context) SecretsMountCassandraOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountCassandraOutput)
+}
+
+// SecretsMountCassandraArrayInput is an input type that accepts SecretsMountCassandraArray and SecretsMountCassandraArrayOutput values.
+// You can construct a concrete instance of `SecretsMountCassandraArrayInput` via:
+//
+//          SecretsMountCassandraArray{ SecretsMountCassandraArgs{...} }
+type SecretsMountCassandraArrayInput interface {
+	pulumi.Input
+
+	ToSecretsMountCassandraArrayOutput() SecretsMountCassandraArrayOutput
+	ToSecretsMountCassandraArrayOutputWithContext(context.Context) SecretsMountCassandraArrayOutput
+}
+
+type SecretsMountCassandraArray []SecretsMountCassandraInput
+
+func (SecretsMountCassandraArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountCassandra)(nil)).Elem()
+}
+
+func (i SecretsMountCassandraArray) ToSecretsMountCassandraArrayOutput() SecretsMountCassandraArrayOutput {
+	return i.ToSecretsMountCassandraArrayOutputWithContext(context.Background())
+}
+
+func (i SecretsMountCassandraArray) ToSecretsMountCassandraArrayOutputWithContext(ctx context.Context) SecretsMountCassandraArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountCassandraArrayOutput)
+}
+
+type SecretsMountCassandraOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountCassandraOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountCassandra)(nil)).Elem()
+}
+
+func (o SecretsMountCassandraOutput) ToSecretsMountCassandraOutput() SecretsMountCassandraOutput {
+	return o
+}
+
+func (o SecretsMountCassandraOutput) ToSecretsMountCassandraOutputWithContext(ctx context.Context) SecretsMountCassandraOutput {
+	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretsMountCassandraOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// The number of seconds to use as a connection
+// timeout.
+func (o SecretsMountCassandraOutput) ConnectTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretsMountCassandraOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+func (o SecretsMountCassandraOutput) Hosts() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) []string { return v.Hosts }).(pulumi.StringArrayOutput)
+}
+
+// Whether to skip verification of the server
+// certificate when using TLS.
+func (o SecretsMountCassandraOutput) InsecureTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
+}
+
+func (o SecretsMountCassandraOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretsMountCassandraOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Concatenated PEM blocks configuring the certificate
+// chain.
+func (o SecretsMountCassandraOutput) PemBundle() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.PemBundle }).(pulumi.StringPtrOutput)
+}
+
+// A JSON structure configuring the certificate chain.
+func (o SecretsMountCassandraOutput) PemJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.PemJson }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretsMountCassandraOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// The default port to connect to if no port is specified as
+// part of the host.
+func (o SecretsMountCassandraOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// The CQL protocol version to use.
+func (o SecretsMountCassandraOutput) ProtocolVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *int { return v.ProtocolVersion }).(pulumi.IntPtrOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretsMountCassandraOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// Whether to use TLS when connecting to Cassandra.
+func (o SecretsMountCassandraOutput) Tls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretsMountCassandraOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretsMountCassandraOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+type SecretsMountCassandraArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountCassandraArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountCassandra)(nil)).Elem()
+}
+
+func (o SecretsMountCassandraArrayOutput) ToSecretsMountCassandraArrayOutput() SecretsMountCassandraArrayOutput {
+	return o
+}
+
+func (o SecretsMountCassandraArrayOutput) ToSecretsMountCassandraArrayOutputWithContext(ctx context.Context) SecretsMountCassandraArrayOutput {
+	return o
+}
+
+func (o SecretsMountCassandraArrayOutput) Index(i pulumi.IntInput) SecretsMountCassandraOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountCassandra {
+		return vs[0].([]SecretsMountCassandra)[vs[1].(int)]
+	}).(SecretsMountCassandraOutput)
+}
+
+type SecretsMountCouchbase struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles []string `pulumi:"allowedRoles"`
+	// Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
+	Base64Pem *string `pulumi:"base64Pem"`
+	// Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
+	BucketName *string `pulumi:"bucketName"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data map[string]interface{} `pulumi:"data"`
+	// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+	Hosts []string `pulumi:"hosts"`
+	// Whether to skip verification of the server
+	// certificate when using TLS.
+	InsecureTls *bool  `pulumi:"insecureTls"`
+	Name        string `pulumi:"name"`
+	// The password to be used in the connection.
+	Password string `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName *string `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// Whether to use TLS when connecting to Cassandra.
+	Tls *bool `pulumi:"tls"`
+	// The username to be used in the connection (the account admin level).
+	Username string `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection *bool `pulumi:"verifyConnection"`
+}
+
+// SecretsMountCouchbaseInput is an input type that accepts SecretsMountCouchbaseArgs and SecretsMountCouchbaseOutput values.
+// You can construct a concrete instance of `SecretsMountCouchbaseInput` via:
+//
+//          SecretsMountCouchbaseArgs{...}
+type SecretsMountCouchbaseInput interface {
+	pulumi.Input
+
+	ToSecretsMountCouchbaseOutput() SecretsMountCouchbaseOutput
+	ToSecretsMountCouchbaseOutputWithContext(context.Context) SecretsMountCouchbaseOutput
+}
+
+type SecretsMountCouchbaseArgs struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	// Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
+	Base64Pem pulumi.StringPtrInput `pulumi:"base64Pem"`
+	// Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
+	BucketName pulumi.StringPtrInput `pulumi:"bucketName"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data pulumi.MapInput `pulumi:"data"`
+	// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+	Hosts pulumi.StringArrayInput `pulumi:"hosts"`
+	// Whether to skip verification of the server
+	// certificate when using TLS.
+	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
+	Name        pulumi.StringInput  `pulumi:"name"`
+	// The password to be used in the connection.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// Whether to use TLS when connecting to Cassandra.
+	Tls pulumi.BoolPtrInput `pulumi:"tls"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringInput `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+}
+
+func (SecretsMountCouchbaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountCouchbase)(nil)).Elem()
+}
+
+func (i SecretsMountCouchbaseArgs) ToSecretsMountCouchbaseOutput() SecretsMountCouchbaseOutput {
+	return i.ToSecretsMountCouchbaseOutputWithContext(context.Background())
+}
+
+func (i SecretsMountCouchbaseArgs) ToSecretsMountCouchbaseOutputWithContext(ctx context.Context) SecretsMountCouchbaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountCouchbaseOutput)
+}
+
+// SecretsMountCouchbaseArrayInput is an input type that accepts SecretsMountCouchbaseArray and SecretsMountCouchbaseArrayOutput values.
+// You can construct a concrete instance of `SecretsMountCouchbaseArrayInput` via:
+//
+//          SecretsMountCouchbaseArray{ SecretsMountCouchbaseArgs{...} }
+type SecretsMountCouchbaseArrayInput interface {
+	pulumi.Input
+
+	ToSecretsMountCouchbaseArrayOutput() SecretsMountCouchbaseArrayOutput
+	ToSecretsMountCouchbaseArrayOutputWithContext(context.Context) SecretsMountCouchbaseArrayOutput
+}
+
+type SecretsMountCouchbaseArray []SecretsMountCouchbaseInput
+
+func (SecretsMountCouchbaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountCouchbase)(nil)).Elem()
+}
+
+func (i SecretsMountCouchbaseArray) ToSecretsMountCouchbaseArrayOutput() SecretsMountCouchbaseArrayOutput {
+	return i.ToSecretsMountCouchbaseArrayOutputWithContext(context.Background())
+}
+
+func (i SecretsMountCouchbaseArray) ToSecretsMountCouchbaseArrayOutputWithContext(ctx context.Context) SecretsMountCouchbaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountCouchbaseArrayOutput)
+}
+
+type SecretsMountCouchbaseOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountCouchbaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountCouchbase)(nil)).Elem()
+}
+
+func (o SecretsMountCouchbaseOutput) ToSecretsMountCouchbaseOutput() SecretsMountCouchbaseOutput {
+	return o
+}
+
+func (o SecretsMountCouchbaseOutput) ToSecretsMountCouchbaseOutputWithContext(ctx context.Context) SecretsMountCouchbaseOutput {
+	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretsMountCouchbaseOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountCouchbase) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
+func (o SecretsMountCouchbaseOutput) Base64Pem() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountCouchbase) *string { return v.Base64Pem }).(pulumi.StringPtrOutput)
+}
+
+// Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
+func (o SecretsMountCouchbaseOutput) BucketName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountCouchbase) *string { return v.BucketName }).(pulumi.StringPtrOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretsMountCouchbaseOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v SecretsMountCouchbase) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+func (o SecretsMountCouchbaseOutput) Hosts() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountCouchbase) []string { return v.Hosts }).(pulumi.StringArrayOutput)
+}
+
+// Whether to skip verification of the server
+// certificate when using TLS.
+func (o SecretsMountCouchbaseOutput) InsecureTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountCouchbase) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
+}
+
+func (o SecretsMountCouchbaseOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountCouchbase) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretsMountCouchbaseOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountCouchbase) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretsMountCouchbaseOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountCouchbase) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretsMountCouchbaseOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountCouchbase) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// Whether to use TLS when connecting to Cassandra.
+func (o SecretsMountCouchbaseOutput) Tls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountCouchbase) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretsMountCouchbaseOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountCouchbase) string { return v.Username }).(pulumi.StringOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretsMountCouchbaseOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountCouchbase) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretsMountCouchbaseOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountCouchbase) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+type SecretsMountCouchbaseArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountCouchbaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountCouchbase)(nil)).Elem()
+}
+
+func (o SecretsMountCouchbaseArrayOutput) ToSecretsMountCouchbaseArrayOutput() SecretsMountCouchbaseArrayOutput {
+	return o
+}
+
+func (o SecretsMountCouchbaseArrayOutput) ToSecretsMountCouchbaseArrayOutputWithContext(ctx context.Context) SecretsMountCouchbaseArrayOutput {
+	return o
+}
+
+func (o SecretsMountCouchbaseArrayOutput) Index(i pulumi.IntInput) SecretsMountCouchbaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountCouchbase {
+		return vs[0].([]SecretsMountCouchbase)[vs[1].(int)]
+	}).(SecretsMountCouchbaseOutput)
+}
+
+type SecretsMountElasticsearch struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles []string `pulumi:"allowedRoles"`
+	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+	CaCert *string `pulumi:"caCert"`
+	// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+	CaPath *string `pulumi:"caPath"`
+	// The path to the certificate for the Elasticsearch client to present for communication.
+	ClientCert *string `pulumi:"clientCert"`
+	// The path to the key for the Elasticsearch client to use for communication.
+	ClientKey *string `pulumi:"clientKey"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data map[string]interface{} `pulumi:"data"`
+	// Whether to disable certificate verification.
+	Insecure *bool  `pulumi:"insecure"`
+	Name     string `pulumi:"name"`
+	// The password to be used in the connection.
+	Password string `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName *string `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// This, if set, is used to set the SNI host when connecting via TLS.
+	TlsServerName *string `pulumi:"tlsServerName"`
+	// The URL for Elasticsearch's API. https requires certificate
+	// by trusted CA if used.
+	Url string `pulumi:"url"`
+	// The username to be used in the connection (the account admin level).
+	Username string `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection *bool `pulumi:"verifyConnection"`
+}
+
+// SecretsMountElasticsearchInput is an input type that accepts SecretsMountElasticsearchArgs and SecretsMountElasticsearchOutput values.
+// You can construct a concrete instance of `SecretsMountElasticsearchInput` via:
+//
+//          SecretsMountElasticsearchArgs{...}
+type SecretsMountElasticsearchInput interface {
+	pulumi.Input
+
+	ToSecretsMountElasticsearchOutput() SecretsMountElasticsearchOutput
+	ToSecretsMountElasticsearchOutputWithContext(context.Context) SecretsMountElasticsearchOutput
+}
+
+type SecretsMountElasticsearchArgs struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+	CaCert pulumi.StringPtrInput `pulumi:"caCert"`
+	// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+	CaPath pulumi.StringPtrInput `pulumi:"caPath"`
+	// The path to the certificate for the Elasticsearch client to present for communication.
+	ClientCert pulumi.StringPtrInput `pulumi:"clientCert"`
+	// The path to the key for the Elasticsearch client to use for communication.
+	ClientKey pulumi.StringPtrInput `pulumi:"clientKey"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data pulumi.MapInput `pulumi:"data"`
+	// Whether to disable certificate verification.
+	Insecure pulumi.BoolPtrInput `pulumi:"insecure"`
+	Name     pulumi.StringInput  `pulumi:"name"`
+	// The password to be used in the connection.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// This, if set, is used to set the SNI host when connecting via TLS.
+	TlsServerName pulumi.StringPtrInput `pulumi:"tlsServerName"`
+	// The URL for Elasticsearch's API. https requires certificate
+	// by trusted CA if used.
+	Url pulumi.StringInput `pulumi:"url"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringInput `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+}
+
+func (SecretsMountElasticsearchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountElasticsearch)(nil)).Elem()
+}
+
+func (i SecretsMountElasticsearchArgs) ToSecretsMountElasticsearchOutput() SecretsMountElasticsearchOutput {
+	return i.ToSecretsMountElasticsearchOutputWithContext(context.Background())
+}
+
+func (i SecretsMountElasticsearchArgs) ToSecretsMountElasticsearchOutputWithContext(ctx context.Context) SecretsMountElasticsearchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountElasticsearchOutput)
+}
+
+// SecretsMountElasticsearchArrayInput is an input type that accepts SecretsMountElasticsearchArray and SecretsMountElasticsearchArrayOutput values.
+// You can construct a concrete instance of `SecretsMountElasticsearchArrayInput` via:
+//
+//          SecretsMountElasticsearchArray{ SecretsMountElasticsearchArgs{...} }
+type SecretsMountElasticsearchArrayInput interface {
+	pulumi.Input
+
+	ToSecretsMountElasticsearchArrayOutput() SecretsMountElasticsearchArrayOutput
+	ToSecretsMountElasticsearchArrayOutputWithContext(context.Context) SecretsMountElasticsearchArrayOutput
+}
+
+type SecretsMountElasticsearchArray []SecretsMountElasticsearchInput
+
+func (SecretsMountElasticsearchArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountElasticsearch)(nil)).Elem()
+}
+
+func (i SecretsMountElasticsearchArray) ToSecretsMountElasticsearchArrayOutput() SecretsMountElasticsearchArrayOutput {
+	return i.ToSecretsMountElasticsearchArrayOutputWithContext(context.Background())
+}
+
+func (i SecretsMountElasticsearchArray) ToSecretsMountElasticsearchArrayOutputWithContext(ctx context.Context) SecretsMountElasticsearchArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountElasticsearchArrayOutput)
+}
+
+type SecretsMountElasticsearchOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountElasticsearchOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountElasticsearch)(nil)).Elem()
+}
+
+func (o SecretsMountElasticsearchOutput) ToSecretsMountElasticsearchOutput() SecretsMountElasticsearchOutput {
+	return o
+}
+
+func (o SecretsMountElasticsearchOutput) ToSecretsMountElasticsearchOutputWithContext(ctx context.Context) SecretsMountElasticsearchOutput {
+	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretsMountElasticsearchOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+func (o SecretsMountElasticsearchOutput) CaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) *string { return v.CaCert }).(pulumi.StringPtrOutput)
+}
+
+// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+func (o SecretsMountElasticsearchOutput) CaPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) *string { return v.CaPath }).(pulumi.StringPtrOutput)
+}
+
+// The path to the certificate for the Elasticsearch client to present for communication.
+func (o SecretsMountElasticsearchOutput) ClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) *string { return v.ClientCert }).(pulumi.StringPtrOutput)
+}
+
+// The path to the key for the Elasticsearch client to use for communication.
+func (o SecretsMountElasticsearchOutput) ClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) *string { return v.ClientKey }).(pulumi.StringPtrOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretsMountElasticsearchOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// Whether to disable certificate verification.
+func (o SecretsMountElasticsearchOutput) Insecure() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) *bool { return v.Insecure }).(pulumi.BoolPtrOutput)
+}
+
+func (o SecretsMountElasticsearchOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretsMountElasticsearchOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretsMountElasticsearchOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretsMountElasticsearchOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// This, if set, is used to set the SNI host when connecting via TLS.
+func (o SecretsMountElasticsearchOutput) TlsServerName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) *string { return v.TlsServerName }).(pulumi.StringPtrOutput)
+}
+
+// The URL for Elasticsearch's API. https requires certificate
+// by trusted CA if used.
+func (o SecretsMountElasticsearchOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) string { return v.Url }).(pulumi.StringOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretsMountElasticsearchOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) string { return v.Username }).(pulumi.StringOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretsMountElasticsearchOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretsMountElasticsearchOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+type SecretsMountElasticsearchArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountElasticsearchArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountElasticsearch)(nil)).Elem()
+}
+
+func (o SecretsMountElasticsearchArrayOutput) ToSecretsMountElasticsearchArrayOutput() SecretsMountElasticsearchArrayOutput {
+	return o
+}
+
+func (o SecretsMountElasticsearchArrayOutput) ToSecretsMountElasticsearchArrayOutputWithContext(ctx context.Context) SecretsMountElasticsearchArrayOutput {
+	return o
+}
+
+func (o SecretsMountElasticsearchArrayOutput) Index(i pulumi.IntInput) SecretsMountElasticsearchOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountElasticsearch {
+		return vs[0].([]SecretsMountElasticsearch)[vs[1].(int)]
+	}).(SecretsMountElasticsearchOutput)
+}
+
+type SecretsMountHana struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles []string `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data map[string]interface{} `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
+	Name               string `pulumi:"name"`
+	// The password to be used in the connection.
+	Password *string `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName *string `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username *string `pulumi:"username"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection *bool `pulumi:"verifyConnection"`
+}
+
+// SecretsMountHanaInput is an input type that accepts SecretsMountHanaArgs and SecretsMountHanaOutput values.
+// You can construct a concrete instance of `SecretsMountHanaInput` via:
+//
+//          SecretsMountHanaArgs{...}
+type SecretsMountHanaInput interface {
+	pulumi.Input
+
+	ToSecretsMountHanaOutput() SecretsMountHanaOutput
+	ToSecretsMountHanaOutputWithContext(context.Context) SecretsMountHanaOutput
+}
+
+type SecretsMountHanaArgs struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data pulumi.MapInput `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	Name               pulumi.StringInput `pulumi:"name"`
+	// The password to be used in the connection.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringPtrInput `pulumi:"username"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+}
+
+func (SecretsMountHanaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountHana)(nil)).Elem()
+}
+
+func (i SecretsMountHanaArgs) ToSecretsMountHanaOutput() SecretsMountHanaOutput {
+	return i.ToSecretsMountHanaOutputWithContext(context.Background())
+}
+
+func (i SecretsMountHanaArgs) ToSecretsMountHanaOutputWithContext(ctx context.Context) SecretsMountHanaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountHanaOutput)
+}
+
+// SecretsMountHanaArrayInput is an input type that accepts SecretsMountHanaArray and SecretsMountHanaArrayOutput values.
+// You can construct a concrete instance of `SecretsMountHanaArrayInput` via:
+//
+//          SecretsMountHanaArray{ SecretsMountHanaArgs{...} }
+type SecretsMountHanaArrayInput interface {
+	pulumi.Input
+
+	ToSecretsMountHanaArrayOutput() SecretsMountHanaArrayOutput
+	ToSecretsMountHanaArrayOutputWithContext(context.Context) SecretsMountHanaArrayOutput
+}
+
+type SecretsMountHanaArray []SecretsMountHanaInput
+
+func (SecretsMountHanaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountHana)(nil)).Elem()
+}
+
+func (i SecretsMountHanaArray) ToSecretsMountHanaArrayOutput() SecretsMountHanaArrayOutput {
+	return i.ToSecretsMountHanaArrayOutputWithContext(context.Background())
+}
+
+func (i SecretsMountHanaArray) ToSecretsMountHanaArrayOutputWithContext(ctx context.Context) SecretsMountHanaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountHanaArrayOutput)
+}
+
+type SecretsMountHanaOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountHanaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountHana)(nil)).Elem()
+}
+
+func (o SecretsMountHanaOutput) ToSecretsMountHanaOutput() SecretsMountHanaOutput {
+	return o
+}
+
+func (o SecretsMountHanaOutput) ToSecretsMountHanaOutputWithContext(ctx context.Context) SecretsMountHanaOutput {
+	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretsMountHanaOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountHana) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// A URL containing connection information.\
+// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+func (o SecretsMountHanaOutput) ConnectionUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountHana) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretsMountHanaOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v SecretsMountHana) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// The maximum number of seconds to keep
+// a connection alive for.
+func (o SecretsMountHanaOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountHana) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of idle connections to
+// maintain.
+func (o SecretsMountHanaOutput) MaxIdleConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountHana) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of open connections to
+// use.
+func (o SecretsMountHanaOutput) MaxOpenConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountHana) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+}
+
+func (o SecretsMountHanaOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountHana) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretsMountHanaOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountHana) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretsMountHanaOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountHana) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretsMountHanaOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountHana) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretsMountHanaOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountHana) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretsMountHanaOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountHana) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+type SecretsMountHanaArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountHanaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountHana)(nil)).Elem()
+}
+
+func (o SecretsMountHanaArrayOutput) ToSecretsMountHanaArrayOutput() SecretsMountHanaArrayOutput {
+	return o
+}
+
+func (o SecretsMountHanaArrayOutput) ToSecretsMountHanaArrayOutputWithContext(ctx context.Context) SecretsMountHanaArrayOutput {
+	return o
+}
+
+func (o SecretsMountHanaArrayOutput) Index(i pulumi.IntInput) SecretsMountHanaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountHana {
+		return vs[0].([]SecretsMountHana)[vs[1].(int)]
+	}).(SecretsMountHanaOutput)
+}
+
+type SecretsMountInfluxdb struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles []string `pulumi:"allowedRoles"`
+	// The number of seconds to use as a connection
+	// timeout.
+	ConnectTimeout *int `pulumi:"connectTimeout"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data map[string]interface{} `pulumi:"data"`
+	// The host to connect to.
+	Host string `pulumi:"host"`
+	// Whether to skip verification of the server
+	// certificate when using TLS.
+	InsecureTls *bool  `pulumi:"insecureTls"`
+	Name        string `pulumi:"name"`
+	// The password to be used in the connection.
+	Password string `pulumi:"password"`
+	// Concatenated PEM blocks configuring the certificate
+	// chain.
+	PemBundle *string `pulumi:"pemBundle"`
+	// A JSON structure configuring the certificate chain.
+	PemJson *string `pulumi:"pemJson"`
+	// Specifies the name of the plugin to use.
+	PluginName *string `pulumi:"pluginName"`
+	// The default port to connect to if no port is specified as
+	// part of the host.
+	Port *int `pulumi:"port"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// Whether to use TLS when connecting to Cassandra.
+	Tls *bool `pulumi:"tls"`
+	// The username to be used in the connection (the account admin level).
+	Username string `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection *bool `pulumi:"verifyConnection"`
+}
+
+// SecretsMountInfluxdbInput is an input type that accepts SecretsMountInfluxdbArgs and SecretsMountInfluxdbOutput values.
+// You can construct a concrete instance of `SecretsMountInfluxdbInput` via:
+//
+//          SecretsMountInfluxdbArgs{...}
+type SecretsMountInfluxdbInput interface {
+	pulumi.Input
+
+	ToSecretsMountInfluxdbOutput() SecretsMountInfluxdbOutput
+	ToSecretsMountInfluxdbOutputWithContext(context.Context) SecretsMountInfluxdbOutput
+}
+
+type SecretsMountInfluxdbArgs struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	// The number of seconds to use as a connection
+	// timeout.
+	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data pulumi.MapInput `pulumi:"data"`
+	// The host to connect to.
+	Host pulumi.StringInput `pulumi:"host"`
+	// Whether to skip verification of the server
+	// certificate when using TLS.
+	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
+	Name        pulumi.StringInput  `pulumi:"name"`
+	// The password to be used in the connection.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Concatenated PEM blocks configuring the certificate
+	// chain.
+	PemBundle pulumi.StringPtrInput `pulumi:"pemBundle"`
+	// A JSON structure configuring the certificate chain.
+	PemJson pulumi.StringPtrInput `pulumi:"pemJson"`
+	// Specifies the name of the plugin to use.
+	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// The default port to connect to if no port is specified as
+	// part of the host.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// Whether to use TLS when connecting to Cassandra.
+	Tls pulumi.BoolPtrInput `pulumi:"tls"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringInput `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+}
+
+func (SecretsMountInfluxdbArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountInfluxdb)(nil)).Elem()
+}
+
+func (i SecretsMountInfluxdbArgs) ToSecretsMountInfluxdbOutput() SecretsMountInfluxdbOutput {
+	return i.ToSecretsMountInfluxdbOutputWithContext(context.Background())
+}
+
+func (i SecretsMountInfluxdbArgs) ToSecretsMountInfluxdbOutputWithContext(ctx context.Context) SecretsMountInfluxdbOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountInfluxdbOutput)
+}
+
+// SecretsMountInfluxdbArrayInput is an input type that accepts SecretsMountInfluxdbArray and SecretsMountInfluxdbArrayOutput values.
+// You can construct a concrete instance of `SecretsMountInfluxdbArrayInput` via:
+//
+//          SecretsMountInfluxdbArray{ SecretsMountInfluxdbArgs{...} }
+type SecretsMountInfluxdbArrayInput interface {
+	pulumi.Input
+
+	ToSecretsMountInfluxdbArrayOutput() SecretsMountInfluxdbArrayOutput
+	ToSecretsMountInfluxdbArrayOutputWithContext(context.Context) SecretsMountInfluxdbArrayOutput
+}
+
+type SecretsMountInfluxdbArray []SecretsMountInfluxdbInput
+
+func (SecretsMountInfluxdbArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountInfluxdb)(nil)).Elem()
+}
+
+func (i SecretsMountInfluxdbArray) ToSecretsMountInfluxdbArrayOutput() SecretsMountInfluxdbArrayOutput {
+	return i.ToSecretsMountInfluxdbArrayOutputWithContext(context.Background())
+}
+
+func (i SecretsMountInfluxdbArray) ToSecretsMountInfluxdbArrayOutputWithContext(ctx context.Context) SecretsMountInfluxdbArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountInfluxdbArrayOutput)
+}
+
+type SecretsMountInfluxdbOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountInfluxdbOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountInfluxdb)(nil)).Elem()
+}
+
+func (o SecretsMountInfluxdbOutput) ToSecretsMountInfluxdbOutput() SecretsMountInfluxdbOutput {
+	return o
+}
+
+func (o SecretsMountInfluxdbOutput) ToSecretsMountInfluxdbOutputWithContext(ctx context.Context) SecretsMountInfluxdbOutput {
+	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretsMountInfluxdbOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// The number of seconds to use as a connection
+// timeout.
+func (o SecretsMountInfluxdbOutput) ConnectTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretsMountInfluxdbOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// The host to connect to.
+func (o SecretsMountInfluxdbOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// Whether to skip verification of the server
+// certificate when using TLS.
+func (o SecretsMountInfluxdbOutput) InsecureTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
+}
+
+func (o SecretsMountInfluxdbOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretsMountInfluxdbOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Concatenated PEM blocks configuring the certificate
+// chain.
+func (o SecretsMountInfluxdbOutput) PemBundle() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) *string { return v.PemBundle }).(pulumi.StringPtrOutput)
+}
+
+// A JSON structure configuring the certificate chain.
+func (o SecretsMountInfluxdbOutput) PemJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) *string { return v.PemJson }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretsMountInfluxdbOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// The default port to connect to if no port is specified as
+// part of the host.
+func (o SecretsMountInfluxdbOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretsMountInfluxdbOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// Whether to use TLS when connecting to Cassandra.
+func (o SecretsMountInfluxdbOutput) Tls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretsMountInfluxdbOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) string { return v.Username }).(pulumi.StringOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretsMountInfluxdbOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretsMountInfluxdbOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+type SecretsMountInfluxdbArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountInfluxdbArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountInfluxdb)(nil)).Elem()
+}
+
+func (o SecretsMountInfluxdbArrayOutput) ToSecretsMountInfluxdbArrayOutput() SecretsMountInfluxdbArrayOutput {
+	return o
+}
+
+func (o SecretsMountInfluxdbArrayOutput) ToSecretsMountInfluxdbArrayOutputWithContext(ctx context.Context) SecretsMountInfluxdbArrayOutput {
+	return o
+}
+
+func (o SecretsMountInfluxdbArrayOutput) Index(i pulumi.IntInput) SecretsMountInfluxdbOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountInfluxdb {
+		return vs[0].([]SecretsMountInfluxdb)[vs[1].(int)]
+	}).(SecretsMountInfluxdbOutput)
+}
+
+type SecretsMountMongodb struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles []string `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data map[string]interface{} `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
+	Name               string `pulumi:"name"`
+	// The password to be used in the connection.
+	Password *string `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName *string `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username *string `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection *bool `pulumi:"verifyConnection"`
+}
+
+// SecretsMountMongodbInput is an input type that accepts SecretsMountMongodbArgs and SecretsMountMongodbOutput values.
+// You can construct a concrete instance of `SecretsMountMongodbInput` via:
+//
+//          SecretsMountMongodbArgs{...}
+type SecretsMountMongodbInput interface {
+	pulumi.Input
+
+	ToSecretsMountMongodbOutput() SecretsMountMongodbOutput
+	ToSecretsMountMongodbOutputWithContext(context.Context) SecretsMountMongodbOutput
+}
+
+type SecretsMountMongodbArgs struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data pulumi.MapInput `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	Name               pulumi.StringInput `pulumi:"name"`
+	// The password to be used in the connection.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringPtrInput `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+}
+
+func (SecretsMountMongodbArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountMongodb)(nil)).Elem()
+}
+
+func (i SecretsMountMongodbArgs) ToSecretsMountMongodbOutput() SecretsMountMongodbOutput {
+	return i.ToSecretsMountMongodbOutputWithContext(context.Background())
+}
+
+func (i SecretsMountMongodbArgs) ToSecretsMountMongodbOutputWithContext(ctx context.Context) SecretsMountMongodbOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMongodbOutput)
+}
+
+// SecretsMountMongodbArrayInput is an input type that accepts SecretsMountMongodbArray and SecretsMountMongodbArrayOutput values.
+// You can construct a concrete instance of `SecretsMountMongodbArrayInput` via:
+//
+//          SecretsMountMongodbArray{ SecretsMountMongodbArgs{...} }
+type SecretsMountMongodbArrayInput interface {
+	pulumi.Input
+
+	ToSecretsMountMongodbArrayOutput() SecretsMountMongodbArrayOutput
+	ToSecretsMountMongodbArrayOutputWithContext(context.Context) SecretsMountMongodbArrayOutput
+}
+
+type SecretsMountMongodbArray []SecretsMountMongodbInput
+
+func (SecretsMountMongodbArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountMongodb)(nil)).Elem()
+}
+
+func (i SecretsMountMongodbArray) ToSecretsMountMongodbArrayOutput() SecretsMountMongodbArrayOutput {
+	return i.ToSecretsMountMongodbArrayOutputWithContext(context.Background())
+}
+
+func (i SecretsMountMongodbArray) ToSecretsMountMongodbArrayOutputWithContext(ctx context.Context) SecretsMountMongodbArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMongodbArrayOutput)
+}
+
+type SecretsMountMongodbOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountMongodbOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountMongodb)(nil)).Elem()
+}
+
+func (o SecretsMountMongodbOutput) ToSecretsMountMongodbOutput() SecretsMountMongodbOutput {
+	return o
+}
+
+func (o SecretsMountMongodbOutput) ToSecretsMountMongodbOutputWithContext(ctx context.Context) SecretsMountMongodbOutput {
+	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretsMountMongodbOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// A URL containing connection information.\
+// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+func (o SecretsMountMongodbOutput) ConnectionUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretsMountMongodbOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// The maximum number of seconds to keep
+// a connection alive for.
+func (o SecretsMountMongodbOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of idle connections to
+// maintain.
+func (o SecretsMountMongodbOutput) MaxIdleConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of open connections to
+// use.
+func (o SecretsMountMongodbOutput) MaxOpenConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+}
+
+func (o SecretsMountMongodbOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretsMountMongodbOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretsMountMongodbOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretsMountMongodbOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretsMountMongodbOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretsMountMongodbOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretsMountMongodbOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+type SecretsMountMongodbArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountMongodbArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountMongodb)(nil)).Elem()
+}
+
+func (o SecretsMountMongodbArrayOutput) ToSecretsMountMongodbArrayOutput() SecretsMountMongodbArrayOutput {
+	return o
+}
+
+func (o SecretsMountMongodbArrayOutput) ToSecretsMountMongodbArrayOutputWithContext(ctx context.Context) SecretsMountMongodbArrayOutput {
+	return o
+}
+
+func (o SecretsMountMongodbArrayOutput) Index(i pulumi.IntInput) SecretsMountMongodbOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountMongodb {
+		return vs[0].([]SecretsMountMongodb)[vs[1].(int)]
+	}).(SecretsMountMongodbOutput)
+}
+
+type SecretsMountMongodbatla struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles []string `pulumi:"allowedRoles"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data map[string]interface{} `pulumi:"data"`
+	Name string                 `pulumi:"name"`
+	// Specifies the name of the plugin to use.
+	PluginName *string `pulumi:"pluginName"`
+	// The Private Programmatic API Key used to connect with MongoDB Atlas API.
+	PrivateKey string `pulumi:"privateKey"`
+	// The Project ID the Database User should be created within.
+	ProjectId string `pulumi:"projectId"`
+	// The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+	PublicKey string `pulumi:"publicKey"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection *bool `pulumi:"verifyConnection"`
+}
+
+// SecretsMountMongodbatlaInput is an input type that accepts SecretsMountMongodbatlaArgs and SecretsMountMongodbatlaOutput values.
+// You can construct a concrete instance of `SecretsMountMongodbatlaInput` via:
+//
+//          SecretsMountMongodbatlaArgs{...}
+type SecretsMountMongodbatlaInput interface {
+	pulumi.Input
+
+	ToSecretsMountMongodbatlaOutput() SecretsMountMongodbatlaOutput
+	ToSecretsMountMongodbatlaOutputWithContext(context.Context) SecretsMountMongodbatlaOutput
+}
+
+type SecretsMountMongodbatlaArgs struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data pulumi.MapInput    `pulumi:"data"`
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the name of the plugin to use.
+	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// The Private Programmatic API Key used to connect with MongoDB Atlas API.
+	PrivateKey pulumi.StringInput `pulumi:"privateKey"`
+	// The Project ID the Database User should be created within.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+	PublicKey pulumi.StringInput `pulumi:"publicKey"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+}
+
+func (SecretsMountMongodbatlaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountMongodbatla)(nil)).Elem()
+}
+
+func (i SecretsMountMongodbatlaArgs) ToSecretsMountMongodbatlaOutput() SecretsMountMongodbatlaOutput {
+	return i.ToSecretsMountMongodbatlaOutputWithContext(context.Background())
+}
+
+func (i SecretsMountMongodbatlaArgs) ToSecretsMountMongodbatlaOutputWithContext(ctx context.Context) SecretsMountMongodbatlaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMongodbatlaOutput)
+}
+
+// SecretsMountMongodbatlaArrayInput is an input type that accepts SecretsMountMongodbatlaArray and SecretsMountMongodbatlaArrayOutput values.
+// You can construct a concrete instance of `SecretsMountMongodbatlaArrayInput` via:
+//
+//          SecretsMountMongodbatlaArray{ SecretsMountMongodbatlaArgs{...} }
+type SecretsMountMongodbatlaArrayInput interface {
+	pulumi.Input
+
+	ToSecretsMountMongodbatlaArrayOutput() SecretsMountMongodbatlaArrayOutput
+	ToSecretsMountMongodbatlaArrayOutputWithContext(context.Context) SecretsMountMongodbatlaArrayOutput
+}
+
+type SecretsMountMongodbatlaArray []SecretsMountMongodbatlaInput
+
+func (SecretsMountMongodbatlaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountMongodbatla)(nil)).Elem()
+}
+
+func (i SecretsMountMongodbatlaArray) ToSecretsMountMongodbatlaArrayOutput() SecretsMountMongodbatlaArrayOutput {
+	return i.ToSecretsMountMongodbatlaArrayOutputWithContext(context.Background())
+}
+
+func (i SecretsMountMongodbatlaArray) ToSecretsMountMongodbatlaArrayOutputWithContext(ctx context.Context) SecretsMountMongodbatlaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMongodbatlaArrayOutput)
+}
+
+type SecretsMountMongodbatlaOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountMongodbatlaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountMongodbatla)(nil)).Elem()
+}
+
+func (o SecretsMountMongodbatlaOutput) ToSecretsMountMongodbatlaOutput() SecretsMountMongodbatlaOutput {
+	return o
+}
+
+func (o SecretsMountMongodbatlaOutput) ToSecretsMountMongodbatlaOutputWithContext(ctx context.Context) SecretsMountMongodbatlaOutput {
+	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretsMountMongodbatlaOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountMongodbatla) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretsMountMongodbatlaOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v SecretsMountMongodbatla) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+func (o SecretsMountMongodbatlaOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountMongodbatla) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretsMountMongodbatlaOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodbatla) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// The Private Programmatic API Key used to connect with MongoDB Atlas API.
+func (o SecretsMountMongodbatlaOutput) PrivateKey() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountMongodbatla) string { return v.PrivateKey }).(pulumi.StringOutput)
+}
+
+// The Project ID the Database User should be created within.
+func (o SecretsMountMongodbatlaOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountMongodbatla) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+func (o SecretsMountMongodbatlaOutput) PublicKey() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountMongodbatla) string { return v.PublicKey }).(pulumi.StringOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretsMountMongodbatlaOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountMongodbatla) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretsMountMongodbatlaOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodbatla) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+type SecretsMountMongodbatlaArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountMongodbatlaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountMongodbatla)(nil)).Elem()
+}
+
+func (o SecretsMountMongodbatlaArrayOutput) ToSecretsMountMongodbatlaArrayOutput() SecretsMountMongodbatlaArrayOutput {
+	return o
+}
+
+func (o SecretsMountMongodbatlaArrayOutput) ToSecretsMountMongodbatlaArrayOutputWithContext(ctx context.Context) SecretsMountMongodbatlaArrayOutput {
+	return o
+}
+
+func (o SecretsMountMongodbatlaArrayOutput) Index(i pulumi.IntInput) SecretsMountMongodbatlaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountMongodbatla {
+		return vs[0].([]SecretsMountMongodbatla)[vs[1].(int)]
+	}).(SecretsMountMongodbatlaOutput)
+}
+
+type SecretsMountMssql struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles []string `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// For Vault v1.9+. Set to true when the target is a
+	// Contained Database, e.g. AzureSQL.
+	// See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+	ContainedDb *bool `pulumi:"containedDb"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data map[string]interface{} `pulumi:"data"`
+	// Disable special character escaping in username and password.
+	DisableEscaping *bool `pulumi:"disableEscaping"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
+	Name               string `pulumi:"name"`
+	// The password to be used in the connection.
+	Password *string `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName *string `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username *string `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection *bool `pulumi:"verifyConnection"`
+}
+
+// SecretsMountMssqlInput is an input type that accepts SecretsMountMssqlArgs and SecretsMountMssqlOutput values.
+// You can construct a concrete instance of `SecretsMountMssqlInput` via:
+//
+//          SecretsMountMssqlArgs{...}
+type SecretsMountMssqlInput interface {
+	pulumi.Input
+
+	ToSecretsMountMssqlOutput() SecretsMountMssqlOutput
+	ToSecretsMountMssqlOutputWithContext(context.Context) SecretsMountMssqlOutput
+}
+
+type SecretsMountMssqlArgs struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// For Vault v1.9+. Set to true when the target is a
+	// Contained Database, e.g. AzureSQL.
+	// See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+	ContainedDb pulumi.BoolPtrInput `pulumi:"containedDb"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data pulumi.MapInput `pulumi:"data"`
+	// Disable special character escaping in username and password.
+	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	Name               pulumi.StringInput `pulumi:"name"`
+	// The password to be used in the connection.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringPtrInput `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+}
+
+func (SecretsMountMssqlArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountMssql)(nil)).Elem()
+}
+
+func (i SecretsMountMssqlArgs) ToSecretsMountMssqlOutput() SecretsMountMssqlOutput {
+	return i.ToSecretsMountMssqlOutputWithContext(context.Background())
+}
+
+func (i SecretsMountMssqlArgs) ToSecretsMountMssqlOutputWithContext(ctx context.Context) SecretsMountMssqlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMssqlOutput)
+}
+
+// SecretsMountMssqlArrayInput is an input type that accepts SecretsMountMssqlArray and SecretsMountMssqlArrayOutput values.
+// You can construct a concrete instance of `SecretsMountMssqlArrayInput` via:
+//
+//          SecretsMountMssqlArray{ SecretsMountMssqlArgs{...} }
+type SecretsMountMssqlArrayInput interface {
+	pulumi.Input
+
+	ToSecretsMountMssqlArrayOutput() SecretsMountMssqlArrayOutput
+	ToSecretsMountMssqlArrayOutputWithContext(context.Context) SecretsMountMssqlArrayOutput
+}
+
+type SecretsMountMssqlArray []SecretsMountMssqlInput
+
+func (SecretsMountMssqlArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountMssql)(nil)).Elem()
+}
+
+func (i SecretsMountMssqlArray) ToSecretsMountMssqlArrayOutput() SecretsMountMssqlArrayOutput {
+	return i.ToSecretsMountMssqlArrayOutputWithContext(context.Background())
+}
+
+func (i SecretsMountMssqlArray) ToSecretsMountMssqlArrayOutputWithContext(ctx context.Context) SecretsMountMssqlArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMssqlArrayOutput)
+}
+
+type SecretsMountMssqlOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountMssqlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountMssql)(nil)).Elem()
+}
+
+func (o SecretsMountMssqlOutput) ToSecretsMountMssqlOutput() SecretsMountMssqlOutput {
+	return o
+}
+
+func (o SecretsMountMssqlOutput) ToSecretsMountMssqlOutputWithContext(ctx context.Context) SecretsMountMssqlOutput {
+	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretsMountMssqlOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountMssql) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// A URL containing connection information.\
+// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+func (o SecretsMountMssqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMssql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+}
+
+// For Vault v1.9+. Set to true when the target is a
+// Contained Database, e.g. AzureSQL.
+// See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+func (o SecretsMountMssqlOutput) ContainedDb() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountMssql) *bool { return v.ContainedDb }).(pulumi.BoolPtrOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretsMountMssqlOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v SecretsMountMssql) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// Disable special character escaping in username and password.
+func (o SecretsMountMssqlOutput) DisableEscaping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountMssql) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
+}
+
+// The maximum number of seconds to keep
+// a connection alive for.
+func (o SecretsMountMssqlOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMssql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of idle connections to
+// maintain.
+func (o SecretsMountMssqlOutput) MaxIdleConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMssql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of open connections to
+// use.
+func (o SecretsMountMssqlOutput) MaxOpenConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMssql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+}
+
+func (o SecretsMountMssqlOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountMssql) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretsMountMssqlOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMssql) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretsMountMssqlOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMssql) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretsMountMssqlOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountMssql) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretsMountMssqlOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMssql) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretsMountMssqlOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMssql) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretsMountMssqlOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountMssql) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+type SecretsMountMssqlArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountMssqlArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountMssql)(nil)).Elem()
+}
+
+func (o SecretsMountMssqlArrayOutput) ToSecretsMountMssqlArrayOutput() SecretsMountMssqlArrayOutput {
+	return o
+}
+
+func (o SecretsMountMssqlArrayOutput) ToSecretsMountMssqlArrayOutputWithContext(ctx context.Context) SecretsMountMssqlArrayOutput {
+	return o
+}
+
+func (o SecretsMountMssqlArrayOutput) Index(i pulumi.IntInput) SecretsMountMssqlOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountMssql {
+		return vs[0].([]SecretsMountMssql)[vs[1].(int)]
+	}).(SecretsMountMssqlOutput)
+}
+
+type SecretsMountMysql struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles []string `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data map[string]interface{} `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
+	Name               string `pulumi:"name"`
+	// The password to be used in the connection.
+	Password *string `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName *string `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+	TlsCa *string `pulumi:"tlsCa"`
+	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
+	// The username to be used in the connection (the account admin level).
+	Username *string `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection *bool `pulumi:"verifyConnection"`
+}
+
+// SecretsMountMysqlInput is an input type that accepts SecretsMountMysqlArgs and SecretsMountMysqlOutput values.
+// You can construct a concrete instance of `SecretsMountMysqlInput` via:
+//
+//          SecretsMountMysqlArgs{...}
+type SecretsMountMysqlInput interface {
+	pulumi.Input
+
+	ToSecretsMountMysqlOutput() SecretsMountMysqlOutput
+	ToSecretsMountMysqlOutputWithContext(context.Context) SecretsMountMysqlOutput
+}
+
+type SecretsMountMysqlArgs struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data pulumi.MapInput `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	Name               pulumi.StringInput `pulumi:"name"`
+	// The password to be used in the connection.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
+	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringPtrInput `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+}
+
+func (SecretsMountMysqlArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountMysql)(nil)).Elem()
+}
+
+func (i SecretsMountMysqlArgs) ToSecretsMountMysqlOutput() SecretsMountMysqlOutput {
+	return i.ToSecretsMountMysqlOutputWithContext(context.Background())
+}
+
+func (i SecretsMountMysqlArgs) ToSecretsMountMysqlOutputWithContext(ctx context.Context) SecretsMountMysqlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMysqlOutput)
+}
+
+// SecretsMountMysqlArrayInput is an input type that accepts SecretsMountMysqlArray and SecretsMountMysqlArrayOutput values.
+// You can construct a concrete instance of `SecretsMountMysqlArrayInput` via:
+//
+//          SecretsMountMysqlArray{ SecretsMountMysqlArgs{...} }
+type SecretsMountMysqlArrayInput interface {
+	pulumi.Input
+
+	ToSecretsMountMysqlArrayOutput() SecretsMountMysqlArrayOutput
+	ToSecretsMountMysqlArrayOutputWithContext(context.Context) SecretsMountMysqlArrayOutput
+}
+
+type SecretsMountMysqlArray []SecretsMountMysqlInput
+
+func (SecretsMountMysqlArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountMysql)(nil)).Elem()
+}
+
+func (i SecretsMountMysqlArray) ToSecretsMountMysqlArrayOutput() SecretsMountMysqlArrayOutput {
+	return i.ToSecretsMountMysqlArrayOutputWithContext(context.Background())
+}
+
+func (i SecretsMountMysqlArray) ToSecretsMountMysqlArrayOutputWithContext(ctx context.Context) SecretsMountMysqlArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMysqlArrayOutput)
+}
+
+type SecretsMountMysqlOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountMysqlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountMysql)(nil)).Elem()
+}
+
+func (o SecretsMountMysqlOutput) ToSecretsMountMysqlOutput() SecretsMountMysqlOutput {
+	return o
+}
+
+func (o SecretsMountMysqlOutput) ToSecretsMountMysqlOutputWithContext(ctx context.Context) SecretsMountMysqlOutput {
+	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretsMountMysqlOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountMysql) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// A URL containing connection information.\
+// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+func (o SecretsMountMysqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretsMountMysqlOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v SecretsMountMysql) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// The maximum number of seconds to keep
+// a connection alive for.
+func (o SecretsMountMysqlOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of idle connections to
+// maintain.
+func (o SecretsMountMysqlOutput) MaxIdleConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of open connections to
+// use.
+func (o SecretsMountMysqlOutput) MaxOpenConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+}
+
+func (o SecretsMountMysqlOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountMysql) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretsMountMysqlOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysql) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretsMountMysqlOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysql) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretsMountMysqlOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountMysql) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+func (o SecretsMountMysqlOutput) TlsCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysql) *string { return v.TlsCa }).(pulumi.StringPtrOutput)
+}
+
+// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+func (o SecretsMountMysqlOutput) TlsCertificateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysql) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretsMountMysqlOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysql) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretsMountMysqlOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysql) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretsMountMysqlOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysql) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+type SecretsMountMysqlArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountMysqlArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountMysql)(nil)).Elem()
+}
+
+func (o SecretsMountMysqlArrayOutput) ToSecretsMountMysqlArrayOutput() SecretsMountMysqlArrayOutput {
+	return o
+}
+
+func (o SecretsMountMysqlArrayOutput) ToSecretsMountMysqlArrayOutputWithContext(ctx context.Context) SecretsMountMysqlArrayOutput {
+	return o
+}
+
+func (o SecretsMountMysqlArrayOutput) Index(i pulumi.IntInput) SecretsMountMysqlOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountMysql {
+		return vs[0].([]SecretsMountMysql)[vs[1].(int)]
+	}).(SecretsMountMysqlOutput)
+}
+
+type SecretsMountMysqlAurora struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles []string `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data map[string]interface{} `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
+	Name               string `pulumi:"name"`
+	// The password to be used in the connection.
+	Password *string `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName *string `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username *string `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection *bool `pulumi:"verifyConnection"`
+}
+
+// SecretsMountMysqlAuroraInput is an input type that accepts SecretsMountMysqlAuroraArgs and SecretsMountMysqlAuroraOutput values.
+// You can construct a concrete instance of `SecretsMountMysqlAuroraInput` via:
+//
+//          SecretsMountMysqlAuroraArgs{...}
+type SecretsMountMysqlAuroraInput interface {
+	pulumi.Input
+
+	ToSecretsMountMysqlAuroraOutput() SecretsMountMysqlAuroraOutput
+	ToSecretsMountMysqlAuroraOutputWithContext(context.Context) SecretsMountMysqlAuroraOutput
+}
+
+type SecretsMountMysqlAuroraArgs struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data pulumi.MapInput `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	Name               pulumi.StringInput `pulumi:"name"`
+	// The password to be used in the connection.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringPtrInput `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+}
+
+func (SecretsMountMysqlAuroraArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountMysqlAurora)(nil)).Elem()
+}
+
+func (i SecretsMountMysqlAuroraArgs) ToSecretsMountMysqlAuroraOutput() SecretsMountMysqlAuroraOutput {
+	return i.ToSecretsMountMysqlAuroraOutputWithContext(context.Background())
+}
+
+func (i SecretsMountMysqlAuroraArgs) ToSecretsMountMysqlAuroraOutputWithContext(ctx context.Context) SecretsMountMysqlAuroraOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMysqlAuroraOutput)
+}
+
+// SecretsMountMysqlAuroraArrayInput is an input type that accepts SecretsMountMysqlAuroraArray and SecretsMountMysqlAuroraArrayOutput values.
+// You can construct a concrete instance of `SecretsMountMysqlAuroraArrayInput` via:
+//
+//          SecretsMountMysqlAuroraArray{ SecretsMountMysqlAuroraArgs{...} }
+type SecretsMountMysqlAuroraArrayInput interface {
+	pulumi.Input
+
+	ToSecretsMountMysqlAuroraArrayOutput() SecretsMountMysqlAuroraArrayOutput
+	ToSecretsMountMysqlAuroraArrayOutputWithContext(context.Context) SecretsMountMysqlAuroraArrayOutput
+}
+
+type SecretsMountMysqlAuroraArray []SecretsMountMysqlAuroraInput
+
+func (SecretsMountMysqlAuroraArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountMysqlAurora)(nil)).Elem()
+}
+
+func (i SecretsMountMysqlAuroraArray) ToSecretsMountMysqlAuroraArrayOutput() SecretsMountMysqlAuroraArrayOutput {
+	return i.ToSecretsMountMysqlAuroraArrayOutputWithContext(context.Background())
+}
+
+func (i SecretsMountMysqlAuroraArray) ToSecretsMountMysqlAuroraArrayOutputWithContext(ctx context.Context) SecretsMountMysqlAuroraArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMysqlAuroraArrayOutput)
+}
+
+type SecretsMountMysqlAuroraOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountMysqlAuroraOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountMysqlAurora)(nil)).Elem()
+}
+
+func (o SecretsMountMysqlAuroraOutput) ToSecretsMountMysqlAuroraOutput() SecretsMountMysqlAuroraOutput {
+	return o
+}
+
+func (o SecretsMountMysqlAuroraOutput) ToSecretsMountMysqlAuroraOutputWithContext(ctx context.Context) SecretsMountMysqlAuroraOutput {
+	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretsMountMysqlAuroraOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// A URL containing connection information.\
+// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+func (o SecretsMountMysqlAuroraOutput) ConnectionUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretsMountMysqlAuroraOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// The maximum number of seconds to keep
+// a connection alive for.
+func (o SecretsMountMysqlAuroraOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of idle connections to
+// maintain.
+func (o SecretsMountMysqlAuroraOutput) MaxIdleConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of open connections to
+// use.
+func (o SecretsMountMysqlAuroraOutput) MaxOpenConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+}
+
+func (o SecretsMountMysqlAuroraOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretsMountMysqlAuroraOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretsMountMysqlAuroraOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretsMountMysqlAuroraOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretsMountMysqlAuroraOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretsMountMysqlAuroraOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretsMountMysqlAuroraOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+type SecretsMountMysqlAuroraArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountMysqlAuroraArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountMysqlAurora)(nil)).Elem()
+}
+
+func (o SecretsMountMysqlAuroraArrayOutput) ToSecretsMountMysqlAuroraArrayOutput() SecretsMountMysqlAuroraArrayOutput {
+	return o
+}
+
+func (o SecretsMountMysqlAuroraArrayOutput) ToSecretsMountMysqlAuroraArrayOutputWithContext(ctx context.Context) SecretsMountMysqlAuroraArrayOutput {
+	return o
+}
+
+func (o SecretsMountMysqlAuroraArrayOutput) Index(i pulumi.IntInput) SecretsMountMysqlAuroraOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountMysqlAurora {
+		return vs[0].([]SecretsMountMysqlAurora)[vs[1].(int)]
+	}).(SecretsMountMysqlAuroraOutput)
+}
+
+type SecretsMountMysqlLegacy struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles []string `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data map[string]interface{} `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
+	Name               string `pulumi:"name"`
+	// The password to be used in the connection.
+	Password *string `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName *string `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username *string `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection *bool `pulumi:"verifyConnection"`
+}
+
+// SecretsMountMysqlLegacyInput is an input type that accepts SecretsMountMysqlLegacyArgs and SecretsMountMysqlLegacyOutput values.
+// You can construct a concrete instance of `SecretsMountMysqlLegacyInput` via:
+//
+//          SecretsMountMysqlLegacyArgs{...}
+type SecretsMountMysqlLegacyInput interface {
+	pulumi.Input
+
+	ToSecretsMountMysqlLegacyOutput() SecretsMountMysqlLegacyOutput
+	ToSecretsMountMysqlLegacyOutputWithContext(context.Context) SecretsMountMysqlLegacyOutput
+}
+
+type SecretsMountMysqlLegacyArgs struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data pulumi.MapInput `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	Name               pulumi.StringInput `pulumi:"name"`
+	// The password to be used in the connection.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringPtrInput `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+}
+
+func (SecretsMountMysqlLegacyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountMysqlLegacy)(nil)).Elem()
+}
+
+func (i SecretsMountMysqlLegacyArgs) ToSecretsMountMysqlLegacyOutput() SecretsMountMysqlLegacyOutput {
+	return i.ToSecretsMountMysqlLegacyOutputWithContext(context.Background())
+}
+
+func (i SecretsMountMysqlLegacyArgs) ToSecretsMountMysqlLegacyOutputWithContext(ctx context.Context) SecretsMountMysqlLegacyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMysqlLegacyOutput)
+}
+
+// SecretsMountMysqlLegacyArrayInput is an input type that accepts SecretsMountMysqlLegacyArray and SecretsMountMysqlLegacyArrayOutput values.
+// You can construct a concrete instance of `SecretsMountMysqlLegacyArrayInput` via:
+//
+//          SecretsMountMysqlLegacyArray{ SecretsMountMysqlLegacyArgs{...} }
+type SecretsMountMysqlLegacyArrayInput interface {
+	pulumi.Input
+
+	ToSecretsMountMysqlLegacyArrayOutput() SecretsMountMysqlLegacyArrayOutput
+	ToSecretsMountMysqlLegacyArrayOutputWithContext(context.Context) SecretsMountMysqlLegacyArrayOutput
+}
+
+type SecretsMountMysqlLegacyArray []SecretsMountMysqlLegacyInput
+
+func (SecretsMountMysqlLegacyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountMysqlLegacy)(nil)).Elem()
+}
+
+func (i SecretsMountMysqlLegacyArray) ToSecretsMountMysqlLegacyArrayOutput() SecretsMountMysqlLegacyArrayOutput {
+	return i.ToSecretsMountMysqlLegacyArrayOutputWithContext(context.Background())
+}
+
+func (i SecretsMountMysqlLegacyArray) ToSecretsMountMysqlLegacyArrayOutputWithContext(ctx context.Context) SecretsMountMysqlLegacyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMysqlLegacyArrayOutput)
+}
+
+type SecretsMountMysqlLegacyOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountMysqlLegacyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountMysqlLegacy)(nil)).Elem()
+}
+
+func (o SecretsMountMysqlLegacyOutput) ToSecretsMountMysqlLegacyOutput() SecretsMountMysqlLegacyOutput {
+	return o
+}
+
+func (o SecretsMountMysqlLegacyOutput) ToSecretsMountMysqlLegacyOutputWithContext(ctx context.Context) SecretsMountMysqlLegacyOutput {
+	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretsMountMysqlLegacyOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// A URL containing connection information.\
+// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+func (o SecretsMountMysqlLegacyOutput) ConnectionUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretsMountMysqlLegacyOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// The maximum number of seconds to keep
+// a connection alive for.
+func (o SecretsMountMysqlLegacyOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of idle connections to
+// maintain.
+func (o SecretsMountMysqlLegacyOutput) MaxIdleConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of open connections to
+// use.
+func (o SecretsMountMysqlLegacyOutput) MaxOpenConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+}
+
+func (o SecretsMountMysqlLegacyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretsMountMysqlLegacyOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretsMountMysqlLegacyOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretsMountMysqlLegacyOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretsMountMysqlLegacyOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretsMountMysqlLegacyOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretsMountMysqlLegacyOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+type SecretsMountMysqlLegacyArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountMysqlLegacyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountMysqlLegacy)(nil)).Elem()
+}
+
+func (o SecretsMountMysqlLegacyArrayOutput) ToSecretsMountMysqlLegacyArrayOutput() SecretsMountMysqlLegacyArrayOutput {
+	return o
+}
+
+func (o SecretsMountMysqlLegacyArrayOutput) ToSecretsMountMysqlLegacyArrayOutputWithContext(ctx context.Context) SecretsMountMysqlLegacyArrayOutput {
+	return o
+}
+
+func (o SecretsMountMysqlLegacyArrayOutput) Index(i pulumi.IntInput) SecretsMountMysqlLegacyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountMysqlLegacy {
+		return vs[0].([]SecretsMountMysqlLegacy)[vs[1].(int)]
+	}).(SecretsMountMysqlLegacyOutput)
+}
+
+type SecretsMountMysqlRd struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles []string `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data map[string]interface{} `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
+	Name               string `pulumi:"name"`
+	// The password to be used in the connection.
+	Password *string `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName *string `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username *string `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection *bool `pulumi:"verifyConnection"`
+}
+
+// SecretsMountMysqlRdInput is an input type that accepts SecretsMountMysqlRdArgs and SecretsMountMysqlRdOutput values.
+// You can construct a concrete instance of `SecretsMountMysqlRdInput` via:
+//
+//          SecretsMountMysqlRdArgs{...}
+type SecretsMountMysqlRdInput interface {
+	pulumi.Input
+
+	ToSecretsMountMysqlRdOutput() SecretsMountMysqlRdOutput
+	ToSecretsMountMysqlRdOutputWithContext(context.Context) SecretsMountMysqlRdOutput
+}
+
+type SecretsMountMysqlRdArgs struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data pulumi.MapInput `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	Name               pulumi.StringInput `pulumi:"name"`
+	// The password to be used in the connection.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringPtrInput `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+}
+
+func (SecretsMountMysqlRdArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountMysqlRd)(nil)).Elem()
+}
+
+func (i SecretsMountMysqlRdArgs) ToSecretsMountMysqlRdOutput() SecretsMountMysqlRdOutput {
+	return i.ToSecretsMountMysqlRdOutputWithContext(context.Background())
+}
+
+func (i SecretsMountMysqlRdArgs) ToSecretsMountMysqlRdOutputWithContext(ctx context.Context) SecretsMountMysqlRdOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMysqlRdOutput)
+}
+
+// SecretsMountMysqlRdArrayInput is an input type that accepts SecretsMountMysqlRdArray and SecretsMountMysqlRdArrayOutput values.
+// You can construct a concrete instance of `SecretsMountMysqlRdArrayInput` via:
+//
+//          SecretsMountMysqlRdArray{ SecretsMountMysqlRdArgs{...} }
+type SecretsMountMysqlRdArrayInput interface {
+	pulumi.Input
+
+	ToSecretsMountMysqlRdArrayOutput() SecretsMountMysqlRdArrayOutput
+	ToSecretsMountMysqlRdArrayOutputWithContext(context.Context) SecretsMountMysqlRdArrayOutput
+}
+
+type SecretsMountMysqlRdArray []SecretsMountMysqlRdInput
+
+func (SecretsMountMysqlRdArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountMysqlRd)(nil)).Elem()
+}
+
+func (i SecretsMountMysqlRdArray) ToSecretsMountMysqlRdArrayOutput() SecretsMountMysqlRdArrayOutput {
+	return i.ToSecretsMountMysqlRdArrayOutputWithContext(context.Background())
+}
+
+func (i SecretsMountMysqlRdArray) ToSecretsMountMysqlRdArrayOutputWithContext(ctx context.Context) SecretsMountMysqlRdArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountMysqlRdArrayOutput)
+}
+
+type SecretsMountMysqlRdOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountMysqlRdOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountMysqlRd)(nil)).Elem()
+}
+
+func (o SecretsMountMysqlRdOutput) ToSecretsMountMysqlRdOutput() SecretsMountMysqlRdOutput {
+	return o
+}
+
+func (o SecretsMountMysqlRdOutput) ToSecretsMountMysqlRdOutputWithContext(ctx context.Context) SecretsMountMysqlRdOutput {
+	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretsMountMysqlRdOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// A URL containing connection information.\
+// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+func (o SecretsMountMysqlRdOutput) ConnectionUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretsMountMysqlRdOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// The maximum number of seconds to keep
+// a connection alive for.
+func (o SecretsMountMysqlRdOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of idle connections to
+// maintain.
+func (o SecretsMountMysqlRdOutput) MaxIdleConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of open connections to
+// use.
+func (o SecretsMountMysqlRdOutput) MaxOpenConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+}
+
+func (o SecretsMountMysqlRdOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretsMountMysqlRdOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretsMountMysqlRdOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretsMountMysqlRdOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretsMountMysqlRdOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretsMountMysqlRdOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretsMountMysqlRdOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+type SecretsMountMysqlRdArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountMysqlRdArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountMysqlRd)(nil)).Elem()
+}
+
+func (o SecretsMountMysqlRdArrayOutput) ToSecretsMountMysqlRdArrayOutput() SecretsMountMysqlRdArrayOutput {
+	return o
+}
+
+func (o SecretsMountMysqlRdArrayOutput) ToSecretsMountMysqlRdArrayOutputWithContext(ctx context.Context) SecretsMountMysqlRdArrayOutput {
+	return o
+}
+
+func (o SecretsMountMysqlRdArrayOutput) Index(i pulumi.IntInput) SecretsMountMysqlRdOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountMysqlRd {
+		return vs[0].([]SecretsMountMysqlRd)[vs[1].(int)]
+	}).(SecretsMountMysqlRdOutput)
+}
+
+type SecretsMountOracle struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles []string `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data map[string]interface{} `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
+	Name               string `pulumi:"name"`
+	// The password to be used in the connection.
+	Password *string `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName *string `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username *string `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection *bool `pulumi:"verifyConnection"`
+}
+
+// SecretsMountOracleInput is an input type that accepts SecretsMountOracleArgs and SecretsMountOracleOutput values.
+// You can construct a concrete instance of `SecretsMountOracleInput` via:
+//
+//          SecretsMountOracleArgs{...}
+type SecretsMountOracleInput interface {
+	pulumi.Input
+
+	ToSecretsMountOracleOutput() SecretsMountOracleOutput
+	ToSecretsMountOracleOutputWithContext(context.Context) SecretsMountOracleOutput
+}
+
+type SecretsMountOracleArgs struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data pulumi.MapInput `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	Name               pulumi.StringInput `pulumi:"name"`
+	// The password to be used in the connection.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringPtrInput `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+}
+
+func (SecretsMountOracleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountOracle)(nil)).Elem()
+}
+
+func (i SecretsMountOracleArgs) ToSecretsMountOracleOutput() SecretsMountOracleOutput {
+	return i.ToSecretsMountOracleOutputWithContext(context.Background())
+}
+
+func (i SecretsMountOracleArgs) ToSecretsMountOracleOutputWithContext(ctx context.Context) SecretsMountOracleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountOracleOutput)
+}
+
+// SecretsMountOracleArrayInput is an input type that accepts SecretsMountOracleArray and SecretsMountOracleArrayOutput values.
+// You can construct a concrete instance of `SecretsMountOracleArrayInput` via:
+//
+//          SecretsMountOracleArray{ SecretsMountOracleArgs{...} }
+type SecretsMountOracleArrayInput interface {
+	pulumi.Input
+
+	ToSecretsMountOracleArrayOutput() SecretsMountOracleArrayOutput
+	ToSecretsMountOracleArrayOutputWithContext(context.Context) SecretsMountOracleArrayOutput
+}
+
+type SecretsMountOracleArray []SecretsMountOracleInput
+
+func (SecretsMountOracleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountOracle)(nil)).Elem()
+}
+
+func (i SecretsMountOracleArray) ToSecretsMountOracleArrayOutput() SecretsMountOracleArrayOutput {
+	return i.ToSecretsMountOracleArrayOutputWithContext(context.Background())
+}
+
+func (i SecretsMountOracleArray) ToSecretsMountOracleArrayOutputWithContext(ctx context.Context) SecretsMountOracleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountOracleArrayOutput)
+}
+
+type SecretsMountOracleOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountOracleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountOracle)(nil)).Elem()
+}
+
+func (o SecretsMountOracleOutput) ToSecretsMountOracleOutput() SecretsMountOracleOutput {
+	return o
+}
+
+func (o SecretsMountOracleOutput) ToSecretsMountOracleOutputWithContext(ctx context.Context) SecretsMountOracleOutput {
+	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretsMountOracleOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountOracle) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// A URL containing connection information.\
+// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+func (o SecretsMountOracleOutput) ConnectionUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountOracle) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretsMountOracleOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v SecretsMountOracle) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// The maximum number of seconds to keep
+// a connection alive for.
+func (o SecretsMountOracleOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountOracle) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of idle connections to
+// maintain.
+func (o SecretsMountOracleOutput) MaxIdleConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountOracle) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of open connections to
+// use.
+func (o SecretsMountOracleOutput) MaxOpenConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountOracle) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+}
+
+func (o SecretsMountOracleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountOracle) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretsMountOracleOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountOracle) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretsMountOracleOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountOracle) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretsMountOracleOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountOracle) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretsMountOracleOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountOracle) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretsMountOracleOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountOracle) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretsMountOracleOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountOracle) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+type SecretsMountOracleArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountOracleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountOracle)(nil)).Elem()
+}
+
+func (o SecretsMountOracleArrayOutput) ToSecretsMountOracleArrayOutput() SecretsMountOracleArrayOutput {
+	return o
+}
+
+func (o SecretsMountOracleArrayOutput) ToSecretsMountOracleArrayOutputWithContext(ctx context.Context) SecretsMountOracleArrayOutput {
+	return o
+}
+
+func (o SecretsMountOracleArrayOutput) Index(i pulumi.IntInput) SecretsMountOracleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountOracle {
+		return vs[0].([]SecretsMountOracle)[vs[1].(int)]
+	}).(SecretsMountOracleOutput)
+}
+
+type SecretsMountPostgresql struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles []string `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data map[string]interface{} `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
+	Name               string `pulumi:"name"`
+	// The password to be used in the connection.
+	Password *string `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName *string `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username *string `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection *bool `pulumi:"verifyConnection"`
+}
+
+// SecretsMountPostgresqlInput is an input type that accepts SecretsMountPostgresqlArgs and SecretsMountPostgresqlOutput values.
+// You can construct a concrete instance of `SecretsMountPostgresqlInput` via:
+//
+//          SecretsMountPostgresqlArgs{...}
+type SecretsMountPostgresqlInput interface {
+	pulumi.Input
+
+	ToSecretsMountPostgresqlOutput() SecretsMountPostgresqlOutput
+	ToSecretsMountPostgresqlOutputWithContext(context.Context) SecretsMountPostgresqlOutput
+}
+
+type SecretsMountPostgresqlArgs struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data pulumi.MapInput `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	Name               pulumi.StringInput `pulumi:"name"`
+	// The password to be used in the connection.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringPtrInput `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+}
+
+func (SecretsMountPostgresqlArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountPostgresql)(nil)).Elem()
+}
+
+func (i SecretsMountPostgresqlArgs) ToSecretsMountPostgresqlOutput() SecretsMountPostgresqlOutput {
+	return i.ToSecretsMountPostgresqlOutputWithContext(context.Background())
+}
+
+func (i SecretsMountPostgresqlArgs) ToSecretsMountPostgresqlOutputWithContext(ctx context.Context) SecretsMountPostgresqlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountPostgresqlOutput)
+}
+
+// SecretsMountPostgresqlArrayInput is an input type that accepts SecretsMountPostgresqlArray and SecretsMountPostgresqlArrayOutput values.
+// You can construct a concrete instance of `SecretsMountPostgresqlArrayInput` via:
+//
+//          SecretsMountPostgresqlArray{ SecretsMountPostgresqlArgs{...} }
+type SecretsMountPostgresqlArrayInput interface {
+	pulumi.Input
+
+	ToSecretsMountPostgresqlArrayOutput() SecretsMountPostgresqlArrayOutput
+	ToSecretsMountPostgresqlArrayOutputWithContext(context.Context) SecretsMountPostgresqlArrayOutput
+}
+
+type SecretsMountPostgresqlArray []SecretsMountPostgresqlInput
+
+func (SecretsMountPostgresqlArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountPostgresql)(nil)).Elem()
+}
+
+func (i SecretsMountPostgresqlArray) ToSecretsMountPostgresqlArrayOutput() SecretsMountPostgresqlArrayOutput {
+	return i.ToSecretsMountPostgresqlArrayOutputWithContext(context.Background())
+}
+
+func (i SecretsMountPostgresqlArray) ToSecretsMountPostgresqlArrayOutputWithContext(ctx context.Context) SecretsMountPostgresqlArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountPostgresqlArrayOutput)
+}
+
+type SecretsMountPostgresqlOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountPostgresqlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountPostgresql)(nil)).Elem()
+}
+
+func (o SecretsMountPostgresqlOutput) ToSecretsMountPostgresqlOutput() SecretsMountPostgresqlOutput {
+	return o
+}
+
+func (o SecretsMountPostgresqlOutput) ToSecretsMountPostgresqlOutputWithContext(ctx context.Context) SecretsMountPostgresqlOutput {
+	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretsMountPostgresqlOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// A URL containing connection information.\
+// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+func (o SecretsMountPostgresqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretsMountPostgresqlOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// The maximum number of seconds to keep
+// a connection alive for.
+func (o SecretsMountPostgresqlOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of idle connections to
+// maintain.
+func (o SecretsMountPostgresqlOutput) MaxIdleConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of open connections to
+// use.
+func (o SecretsMountPostgresqlOutput) MaxOpenConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+}
+
+func (o SecretsMountPostgresqlOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretsMountPostgresqlOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretsMountPostgresqlOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretsMountPostgresqlOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretsMountPostgresqlOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretsMountPostgresqlOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretsMountPostgresqlOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+type SecretsMountPostgresqlArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountPostgresqlArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountPostgresql)(nil)).Elem()
+}
+
+func (o SecretsMountPostgresqlArrayOutput) ToSecretsMountPostgresqlArrayOutput() SecretsMountPostgresqlArrayOutput {
+	return o
+}
+
+func (o SecretsMountPostgresqlArrayOutput) ToSecretsMountPostgresqlArrayOutputWithContext(ctx context.Context) SecretsMountPostgresqlArrayOutput {
+	return o
+}
+
+func (o SecretsMountPostgresqlArrayOutput) Index(i pulumi.IntInput) SecretsMountPostgresqlOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountPostgresql {
+		return vs[0].([]SecretsMountPostgresql)[vs[1].(int)]
+	}).(SecretsMountPostgresqlOutput)
+}
+
+type SecretsMountRedshift struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles []string `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data map[string]interface{} `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
+	Name               string `pulumi:"name"`
+	// The password to be used in the connection.
+	Password *string `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName *string `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username *string `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection *bool `pulumi:"verifyConnection"`
+}
+
+// SecretsMountRedshiftInput is an input type that accepts SecretsMountRedshiftArgs and SecretsMountRedshiftOutput values.
+// You can construct a concrete instance of `SecretsMountRedshiftInput` via:
+//
+//          SecretsMountRedshiftArgs{...}
+type SecretsMountRedshiftInput interface {
+	pulumi.Input
+
+	ToSecretsMountRedshiftOutput() SecretsMountRedshiftOutput
+	ToSecretsMountRedshiftOutputWithContext(context.Context) SecretsMountRedshiftOutput
+}
+
+type SecretsMountRedshiftArgs struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data pulumi.MapInput `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	Name               pulumi.StringInput `pulumi:"name"`
+	// The password to be used in the connection.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringPtrInput `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+}
+
+func (SecretsMountRedshiftArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountRedshift)(nil)).Elem()
+}
+
+func (i SecretsMountRedshiftArgs) ToSecretsMountRedshiftOutput() SecretsMountRedshiftOutput {
+	return i.ToSecretsMountRedshiftOutputWithContext(context.Background())
+}
+
+func (i SecretsMountRedshiftArgs) ToSecretsMountRedshiftOutputWithContext(ctx context.Context) SecretsMountRedshiftOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountRedshiftOutput)
+}
+
+// SecretsMountRedshiftArrayInput is an input type that accepts SecretsMountRedshiftArray and SecretsMountRedshiftArrayOutput values.
+// You can construct a concrete instance of `SecretsMountRedshiftArrayInput` via:
+//
+//          SecretsMountRedshiftArray{ SecretsMountRedshiftArgs{...} }
+type SecretsMountRedshiftArrayInput interface {
+	pulumi.Input
+
+	ToSecretsMountRedshiftArrayOutput() SecretsMountRedshiftArrayOutput
+	ToSecretsMountRedshiftArrayOutputWithContext(context.Context) SecretsMountRedshiftArrayOutput
+}
+
+type SecretsMountRedshiftArray []SecretsMountRedshiftInput
+
+func (SecretsMountRedshiftArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountRedshift)(nil)).Elem()
+}
+
+func (i SecretsMountRedshiftArray) ToSecretsMountRedshiftArrayOutput() SecretsMountRedshiftArrayOutput {
+	return i.ToSecretsMountRedshiftArrayOutputWithContext(context.Background())
+}
+
+func (i SecretsMountRedshiftArray) ToSecretsMountRedshiftArrayOutputWithContext(ctx context.Context) SecretsMountRedshiftArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountRedshiftArrayOutput)
+}
+
+type SecretsMountRedshiftOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountRedshiftOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountRedshift)(nil)).Elem()
+}
+
+func (o SecretsMountRedshiftOutput) ToSecretsMountRedshiftOutput() SecretsMountRedshiftOutput {
+	return o
+}
+
+func (o SecretsMountRedshiftOutput) ToSecretsMountRedshiftOutputWithContext(ctx context.Context) SecretsMountRedshiftOutput {
+	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretsMountRedshiftOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// A URL containing connection information.\
+// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+func (o SecretsMountRedshiftOutput) ConnectionUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretsMountRedshiftOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// The maximum number of seconds to keep
+// a connection alive for.
+func (o SecretsMountRedshiftOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of idle connections to
+// maintain.
+func (o SecretsMountRedshiftOutput) MaxIdleConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of open connections to
+// use.
+func (o SecretsMountRedshiftOutput) MaxOpenConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+}
+
+func (o SecretsMountRedshiftOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretsMountRedshiftOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretsMountRedshiftOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretsMountRedshiftOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretsMountRedshiftOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretsMountRedshiftOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretsMountRedshiftOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+type SecretsMountRedshiftArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountRedshiftArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountRedshift)(nil)).Elem()
+}
+
+func (o SecretsMountRedshiftArrayOutput) ToSecretsMountRedshiftArrayOutput() SecretsMountRedshiftArrayOutput {
+	return o
+}
+
+func (o SecretsMountRedshiftArrayOutput) ToSecretsMountRedshiftArrayOutputWithContext(ctx context.Context) SecretsMountRedshiftArrayOutput {
+	return o
+}
+
+func (o SecretsMountRedshiftArrayOutput) Index(i pulumi.IntInput) SecretsMountRedshiftOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountRedshift {
+		return vs[0].([]SecretsMountRedshift)[vs[1].(int)]
+	}).(SecretsMountRedshiftOutput)
+}
+
+type SecretsMountSnowflake struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles []string `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data map[string]interface{} `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
+	Name               string `pulumi:"name"`
+	// The password to be used in the connection.
+	Password *string `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName *string `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username *string `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection *bool `pulumi:"verifyConnection"`
+}
+
+// SecretsMountSnowflakeInput is an input type that accepts SecretsMountSnowflakeArgs and SecretsMountSnowflakeOutput values.
+// You can construct a concrete instance of `SecretsMountSnowflakeInput` via:
+//
+//          SecretsMountSnowflakeArgs{...}
+type SecretsMountSnowflakeInput interface {
+	pulumi.Input
+
+	ToSecretsMountSnowflakeOutput() SecretsMountSnowflakeOutput
+	ToSecretsMountSnowflakeOutputWithContext(context.Context) SecretsMountSnowflakeOutput
+}
+
+type SecretsMountSnowflakeArgs struct {
+	// A list of roles that are allowed to use this
+	// connection.
+	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	// A URL containing connection information.\
+	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+	Data pulumi.MapInput `pulumi:"data"`
+	// The maximum number of seconds to keep
+	// a connection alive for.
+	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
+	// The maximum number of idle connections to
+	// maintain.
+	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
+	// The maximum number of open connections to
+	// use.
+	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
+	Name               pulumi.StringInput `pulumi:"name"`
+	// The password to be used in the connection.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Specifies the name of the plugin to use.
+	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// A list of database statements to be executed to rotate the root user's credentials.
+	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// The username to be used in the connection (the account admin level).
+	Username pulumi.StringPtrInput `pulumi:"username"`
+	// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
+	// Whether the connection should be verified on
+	// initial configuration or not.
+	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+}
+
+func (SecretsMountSnowflakeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountSnowflake)(nil)).Elem()
+}
+
+func (i SecretsMountSnowflakeArgs) ToSecretsMountSnowflakeOutput() SecretsMountSnowflakeOutput {
+	return i.ToSecretsMountSnowflakeOutputWithContext(context.Background())
+}
+
+func (i SecretsMountSnowflakeArgs) ToSecretsMountSnowflakeOutputWithContext(ctx context.Context) SecretsMountSnowflakeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountSnowflakeOutput)
+}
+
+// SecretsMountSnowflakeArrayInput is an input type that accepts SecretsMountSnowflakeArray and SecretsMountSnowflakeArrayOutput values.
+// You can construct a concrete instance of `SecretsMountSnowflakeArrayInput` via:
+//
+//          SecretsMountSnowflakeArray{ SecretsMountSnowflakeArgs{...} }
+type SecretsMountSnowflakeArrayInput interface {
+	pulumi.Input
+
+	ToSecretsMountSnowflakeArrayOutput() SecretsMountSnowflakeArrayOutput
+	ToSecretsMountSnowflakeArrayOutputWithContext(context.Context) SecretsMountSnowflakeArrayOutput
+}
+
+type SecretsMountSnowflakeArray []SecretsMountSnowflakeInput
+
+func (SecretsMountSnowflakeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountSnowflake)(nil)).Elem()
+}
+
+func (i SecretsMountSnowflakeArray) ToSecretsMountSnowflakeArrayOutput() SecretsMountSnowflakeArrayOutput {
+	return i.ToSecretsMountSnowflakeArrayOutputWithContext(context.Background())
+}
+
+func (i SecretsMountSnowflakeArray) ToSecretsMountSnowflakeArrayOutputWithContext(ctx context.Context) SecretsMountSnowflakeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountSnowflakeArrayOutput)
+}
+
+type SecretsMountSnowflakeOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountSnowflakeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountSnowflake)(nil)).Elem()
+}
+
+func (o SecretsMountSnowflakeOutput) ToSecretsMountSnowflakeOutput() SecretsMountSnowflakeOutput {
+	return o
+}
+
+func (o SecretsMountSnowflakeOutput) ToSecretsMountSnowflakeOutputWithContext(ctx context.Context) SecretsMountSnowflakeOutput {
+	return o
+}
+
+// A list of roles that are allowed to use this
+// connection.
+func (o SecretsMountSnowflakeOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+}
+
+// A URL containing connection information.\
+// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+func (o SecretsMountSnowflakeOutput) ConnectionUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
+}
+
+// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+func (o SecretsMountSnowflakeOutput) Data() pulumi.MapOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+}
+
+// The maximum number of seconds to keep
+// a connection alive for.
+func (o SecretsMountSnowflakeOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of idle connections to
+// maintain.
+func (o SecretsMountSnowflakeOutput) MaxIdleConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
+}
+
+// The maximum number of open connections to
+// use.
+func (o SecretsMountSnowflakeOutput) MaxOpenConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
+}
+
+func (o SecretsMountSnowflakeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The password to be used in the connection.
+func (o SecretsMountSnowflakeOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the name of the plugin to use.
+func (o SecretsMountSnowflakeOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// A list of database statements to be executed to rotate the root user's credentials.
+func (o SecretsMountSnowflakeOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// The username to be used in the connection (the account admin level).
+func (o SecretsMountSnowflakeOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+func (o SecretsMountSnowflakeOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
+// Whether the connection should be verified on
+// initial configuration or not.
+func (o SecretsMountSnowflakeOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+type SecretsMountSnowflakeArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretsMountSnowflakeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountSnowflake)(nil)).Elem()
+}
+
+func (o SecretsMountSnowflakeArrayOutput) ToSecretsMountSnowflakeArrayOutput() SecretsMountSnowflakeArrayOutput {
+	return o
+}
+
+func (o SecretsMountSnowflakeArrayOutput) ToSecretsMountSnowflakeArrayOutputWithContext(ctx context.Context) SecretsMountSnowflakeArrayOutput {
+	return o
+}
+
+func (o SecretsMountSnowflakeArrayOutput) Index(i pulumi.IntInput) SecretsMountSnowflakeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountSnowflake {
+		return vs[0].([]SecretsMountSnowflake)[vs[1].(int)]
+	}).(SecretsMountSnowflakeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionCassandraInput)(nil)).Elem(), SecretBackendConnectionCassandraArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionCassandraPtrInput)(nil)).Elem(), SecretBackendConnectionCassandraArgs{})
@@ -4426,6 +8079,38 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionRedshiftPtrInput)(nil)).Elem(), SecretBackendConnectionRedshiftArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionSnowflakeInput)(nil)).Elem(), SecretBackendConnectionSnowflakeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendConnectionSnowflakePtrInput)(nil)).Elem(), SecretBackendConnectionSnowflakeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountCassandraInput)(nil)).Elem(), SecretsMountCassandraArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountCassandraArrayInput)(nil)).Elem(), SecretsMountCassandraArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountCouchbaseInput)(nil)).Elem(), SecretsMountCouchbaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountCouchbaseArrayInput)(nil)).Elem(), SecretsMountCouchbaseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountElasticsearchInput)(nil)).Elem(), SecretsMountElasticsearchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountElasticsearchArrayInput)(nil)).Elem(), SecretsMountElasticsearchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountHanaInput)(nil)).Elem(), SecretsMountHanaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountHanaArrayInput)(nil)).Elem(), SecretsMountHanaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountInfluxdbInput)(nil)).Elem(), SecretsMountInfluxdbArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountInfluxdbArrayInput)(nil)).Elem(), SecretsMountInfluxdbArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountMongodbInput)(nil)).Elem(), SecretsMountMongodbArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountMongodbArrayInput)(nil)).Elem(), SecretsMountMongodbArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountMongodbatlaInput)(nil)).Elem(), SecretsMountMongodbatlaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountMongodbatlaArrayInput)(nil)).Elem(), SecretsMountMongodbatlaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountMssqlInput)(nil)).Elem(), SecretsMountMssqlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountMssqlArrayInput)(nil)).Elem(), SecretsMountMssqlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountMysqlInput)(nil)).Elem(), SecretsMountMysqlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountMysqlArrayInput)(nil)).Elem(), SecretsMountMysqlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountMysqlAuroraInput)(nil)).Elem(), SecretsMountMysqlAuroraArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountMysqlAuroraArrayInput)(nil)).Elem(), SecretsMountMysqlAuroraArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountMysqlLegacyInput)(nil)).Elem(), SecretsMountMysqlLegacyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountMysqlLegacyArrayInput)(nil)).Elem(), SecretsMountMysqlLegacyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountMysqlRdInput)(nil)).Elem(), SecretsMountMysqlRdArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountMysqlRdArrayInput)(nil)).Elem(), SecretsMountMysqlRdArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountOracleInput)(nil)).Elem(), SecretsMountOracleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountOracleArrayInput)(nil)).Elem(), SecretsMountOracleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountPostgresqlInput)(nil)).Elem(), SecretsMountPostgresqlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountPostgresqlArrayInput)(nil)).Elem(), SecretsMountPostgresqlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRedshiftInput)(nil)).Elem(), SecretsMountRedshiftArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRedshiftArrayInput)(nil)).Elem(), SecretsMountRedshiftArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountSnowflakeInput)(nil)).Elem(), SecretsMountSnowflakeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountSnowflakeArrayInput)(nil)).Elem(), SecretsMountSnowflakeArray{})
 	pulumi.RegisterOutputType(SecretBackendConnectionCassandraOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionCassandraPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionCouchbaseOutput{})
@@ -4458,4 +8143,36 @@ func init() {
 	pulumi.RegisterOutputType(SecretBackendConnectionRedshiftPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionSnowflakeOutput{})
 	pulumi.RegisterOutputType(SecretBackendConnectionSnowflakePtrOutput{})
+	pulumi.RegisterOutputType(SecretsMountCassandraOutput{})
+	pulumi.RegisterOutputType(SecretsMountCassandraArrayOutput{})
+	pulumi.RegisterOutputType(SecretsMountCouchbaseOutput{})
+	pulumi.RegisterOutputType(SecretsMountCouchbaseArrayOutput{})
+	pulumi.RegisterOutputType(SecretsMountElasticsearchOutput{})
+	pulumi.RegisterOutputType(SecretsMountElasticsearchArrayOutput{})
+	pulumi.RegisterOutputType(SecretsMountHanaOutput{})
+	pulumi.RegisterOutputType(SecretsMountHanaArrayOutput{})
+	pulumi.RegisterOutputType(SecretsMountInfluxdbOutput{})
+	pulumi.RegisterOutputType(SecretsMountInfluxdbArrayOutput{})
+	pulumi.RegisterOutputType(SecretsMountMongodbOutput{})
+	pulumi.RegisterOutputType(SecretsMountMongodbArrayOutput{})
+	pulumi.RegisterOutputType(SecretsMountMongodbatlaOutput{})
+	pulumi.RegisterOutputType(SecretsMountMongodbatlaArrayOutput{})
+	pulumi.RegisterOutputType(SecretsMountMssqlOutput{})
+	pulumi.RegisterOutputType(SecretsMountMssqlArrayOutput{})
+	pulumi.RegisterOutputType(SecretsMountMysqlOutput{})
+	pulumi.RegisterOutputType(SecretsMountMysqlArrayOutput{})
+	pulumi.RegisterOutputType(SecretsMountMysqlAuroraOutput{})
+	pulumi.RegisterOutputType(SecretsMountMysqlAuroraArrayOutput{})
+	pulumi.RegisterOutputType(SecretsMountMysqlLegacyOutput{})
+	pulumi.RegisterOutputType(SecretsMountMysqlLegacyArrayOutput{})
+	pulumi.RegisterOutputType(SecretsMountMysqlRdOutput{})
+	pulumi.RegisterOutputType(SecretsMountMysqlRdArrayOutput{})
+	pulumi.RegisterOutputType(SecretsMountOracleOutput{})
+	pulumi.RegisterOutputType(SecretsMountOracleArrayOutput{})
+	pulumi.RegisterOutputType(SecretsMountPostgresqlOutput{})
+	pulumi.RegisterOutputType(SecretsMountPostgresqlArrayOutput{})
+	pulumi.RegisterOutputType(SecretsMountRedshiftOutput{})
+	pulumi.RegisterOutputType(SecretsMountRedshiftArrayOutput{})
+	pulumi.RegisterOutputType(SecretsMountSnowflakeOutput{})
+	pulumi.RegisterOutputType(SecretsMountSnowflakeArrayOutput{})
 }

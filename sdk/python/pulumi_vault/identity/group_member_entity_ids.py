@@ -76,13 +76,20 @@ class _GroupMemberEntityIdsState:
         Input properties used for looking up and filtering GroupMemberEntityIds resources.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
-        :param pulumi.Input[str] group_name: The name of the group that are assigned the member entities.
+        :param pulumi.Input[str] group_name: The name of the group that are assigned the member entities.  
+               *Deprecated: The value for group_name may not always be accurate*
+               *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
         """
         if exclusive is not None:
             pulumi.set(__self__, "exclusive", exclusive)
         if group_id is not None:
             pulumi.set(__self__, "group_id", group_id)
+        if group_name is not None:
+            warnings.warn("""The value for group_name may not always be accurate, 
+use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_name\" instead""", DeprecationWarning)
+            pulumi.log.warn("""group_name is deprecated: The value for group_name may not always be accurate, 
+use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_name\" instead""")
         if group_name is not None:
             pulumi.set(__self__, "group_name", group_name)
         if member_entity_ids is not None:
@@ -116,7 +123,9 @@ class _GroupMemberEntityIdsState:
     @pulumi.getter(name="groupName")
     def group_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the group that are assigned the member entities.
+        The name of the group that are assigned the member entities.  
+        *Deprecated: The value for group_name may not always be accurate*
+        *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
         """
         return pulumi.get(self, "group_name")
 
@@ -317,7 +326,9 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] exclusive: Defaults to `true`.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
-        :param pulumi.Input[str] group_name: The name of the group that are assigned the member entities.
+        :param pulumi.Input[str] group_name: The name of the group that are assigned the member entities.  
+               *Deprecated: The value for group_name may not always be accurate*
+               *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -350,7 +361,9 @@ class GroupMemberEntityIds(pulumi.CustomResource):
     @pulumi.getter(name="groupName")
     def group_name(self) -> pulumi.Output[str]:
         """
-        The name of the group that are assigned the member entities.
+        The name of the group that are assigned the member entities.  
+        *Deprecated: The value for group_name may not always be accurate*
+        *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
         """
         return pulumi.get(self, "group_name")
 

@@ -13,10 +13,46 @@ namespace Pulumi.Vault.Database.Inputs
     public sealed class SecretBackendConnectionElasticsearchArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        /// </summary>
+        [Input("caCert")]
+        public Input<string>? CaCert { get; set; }
+
+        /// <summary>
+        /// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+        /// </summary>
+        [Input("caPath")]
+        public Input<string>? CaPath { get; set; }
+
+        /// <summary>
+        /// The path to the certificate for the Elasticsearch client to present for communication.
+        /// </summary>
+        [Input("clientCert")]
+        public Input<string>? ClientCert { get; set; }
+
+        /// <summary>
+        /// The path to the key for the Elasticsearch client to use for communication.
+        /// </summary>
+        [Input("clientKey")]
+        public Input<string>? ClientKey { get; set; }
+
+        /// <summary>
+        /// Whether to disable certificate verification.
+        /// </summary>
+        [Input("insecure")]
+        public Input<bool>? Insecure { get; set; }
+
+        /// <summary>
         /// The root credential password used in the connection URL.
         /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
+
+        /// <summary>
+        /// This, if set, is used to set the SNI host when connecting via TLS.
+        /// </summary>
+        [Input("tlsServerName")]
+        public Input<string>? TlsServerName { get; set; }
 
         /// <summary>
         /// The URL for Elasticsearch's API. https requires certificate
@@ -30,6 +66,12 @@ namespace Pulumi.Vault.Database.Inputs
         /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
+
+        /// <summary>
+        /// - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        /// </summary>
+        [Input("usernameTemplate")]
+        public Input<string>? UsernameTemplate { get; set; }
 
         public SecretBackendConnectionElasticsearchArgs()
         {

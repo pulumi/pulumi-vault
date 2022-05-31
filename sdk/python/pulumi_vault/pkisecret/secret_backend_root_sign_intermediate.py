@@ -29,6 +29,7 @@ class SecretBackendRootSignIntermediateArgs:
                  permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  postal_code: Optional[pulumi.Input[str]] = None,
                  province: Optional[pulumi.Input[str]] = None,
+                 revoke: Optional[pulumi.Input[bool]] = None,
                  street_address: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -51,6 +52,7 @@ class SecretBackendRootSignIntermediateArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_dns_domains: List of domains for which certificates are allowed to be issued
         :param pulumi.Input[str] postal_code: The postal code
         :param pulumi.Input[str] province: The province
+        :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
@@ -85,6 +87,8 @@ class SecretBackendRootSignIntermediateArgs:
             pulumi.set(__self__, "postal_code", postal_code)
         if province is not None:
             pulumi.set(__self__, "province", province)
+        if revoke is not None:
+            pulumi.set(__self__, "revoke", revoke)
         if street_address is not None:
             pulumi.set(__self__, "street_address", street_address)
         if ttl is not None:
@@ -287,6 +291,18 @@ class SecretBackendRootSignIntermediateArgs:
         pulumi.set(self, "province", value)
 
     @property
+    @pulumi.getter
+    def revoke(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to `true`, the certificate will be revoked on resource destruction.
+        """
+        return pulumi.get(self, "revoke")
+
+    @revoke.setter
+    def revoke(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "revoke", value)
+
+    @property
     @pulumi.getter(name="streetAddress")
     def street_address(self) -> Optional[pulumi.Input[str]]:
         """
@@ -358,7 +374,9 @@ class _SecretBackendRootSignIntermediateState:
                  permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  postal_code: Optional[pulumi.Input[str]] = None,
                  province: Optional[pulumi.Input[str]] = None,
+                 revoke: Optional[pulumi.Input[bool]] = None,
                  serial: Optional[pulumi.Input[str]] = None,
+                 serial_number: Optional[pulumi.Input[str]] = None,
                  street_address: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -386,7 +404,9 @@ class _SecretBackendRootSignIntermediateState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_dns_domains: List of domains for which certificates are allowed to be issued
         :param pulumi.Input[str] postal_code: The postal code
         :param pulumi.Input[str] province: The province
-        :param pulumi.Input[str] serial: The serial
+        :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
+        :param pulumi.Input[str] serial: The serial number.
+        :param pulumi.Input[str] serial_number: The certificate's serial number, hex formatted.
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
@@ -432,8 +452,15 @@ class _SecretBackendRootSignIntermediateState:
             pulumi.set(__self__, "postal_code", postal_code)
         if province is not None:
             pulumi.set(__self__, "province", province)
+        if revoke is not None:
+            pulumi.set(__self__, "revoke", revoke)
+        if serial is not None:
+            warnings.warn("""Use serial_number instead""", DeprecationWarning)
+            pulumi.log.warn("""serial is deprecated: Use serial_number instead""")
         if serial is not None:
             pulumi.set(__self__, "serial", serial)
+        if serial_number is not None:
+            pulumi.set(__self__, "serial_number", serial_number)
         if street_address is not None:
             pulumi.set(__self__, "street_address", street_address)
         if ttl is not None:
@@ -686,15 +713,39 @@ class _SecretBackendRootSignIntermediateState:
 
     @property
     @pulumi.getter
+    def revoke(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to `true`, the certificate will be revoked on resource destruction.
+        """
+        return pulumi.get(self, "revoke")
+
+    @revoke.setter
+    def revoke(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "revoke", value)
+
+    @property
+    @pulumi.getter
     def serial(self) -> Optional[pulumi.Input[str]]:
         """
-        The serial
+        The serial number.
         """
         return pulumi.get(self, "serial")
 
     @serial.setter
     def serial(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "serial", value)
+
+    @property
+    @pulumi.getter(name="serialNumber")
+    def serial_number(self) -> Optional[pulumi.Input[str]]:
+        """
+        The certificate's serial number, hex formatted.
+        """
+        return pulumi.get(self, "serial_number")
+
+    @serial_number.setter
+    def serial_number(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "serial_number", value)
 
     @property
     @pulumi.getter(name="streetAddress")
@@ -766,6 +817,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                  permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  postal_code: Optional[pulumi.Input[str]] = None,
                  province: Optional[pulumi.Input[str]] = None,
+                 revoke: Optional[pulumi.Input[bool]] = None,
                  street_address: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -789,6 +841,9 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             organization="My organization",
             opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_intermediate_cert_request["intermediate"]]))
         ```
+        ## Deprecations
+
+        * `serial` - Use `serial_number` instead.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -808,6 +863,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_dns_domains: List of domains for which certificates are allowed to be issued
         :param pulumi.Input[str] postal_code: The postal code
         :param pulumi.Input[str] province: The province
+        :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
@@ -837,6 +893,9 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             organization="My organization",
             opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_intermediate_cert_request["intermediate"]]))
         ```
+        ## Deprecations
+
+        * `serial` - Use `serial_number` instead.
 
         :param str resource_name: The name of the resource.
         :param SecretBackendRootSignIntermediateArgs args: The arguments to use to populate this resource's properties.
@@ -869,6 +928,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                  permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  postal_code: Optional[pulumi.Input[str]] = None,
                  province: Optional[pulumi.Input[str]] = None,
+                 revoke: Optional[pulumi.Input[bool]] = None,
                  street_address: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -907,6 +967,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             __props__.__dict__["permitted_dns_domains"] = permitted_dns_domains
             __props__.__dict__["postal_code"] = postal_code
             __props__.__dict__["province"] = province
+            __props__.__dict__["revoke"] = revoke
             __props__.__dict__["street_address"] = street_address
             __props__.__dict__["ttl"] = ttl
             __props__.__dict__["uri_sans"] = uri_sans
@@ -916,6 +977,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             __props__.__dict__["certificate_bundle"] = None
             __props__.__dict__["issuing_ca"] = None
             __props__.__dict__["serial"] = None
+            __props__.__dict__["serial_number"] = None
         super(SecretBackendRootSignIntermediate, __self__).__init__(
             'vault:pkiSecret/secretBackendRootSignIntermediate:SecretBackendRootSignIntermediate',
             resource_name,
@@ -946,7 +1008,9 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             postal_code: Optional[pulumi.Input[str]] = None,
             province: Optional[pulumi.Input[str]] = None,
+            revoke: Optional[pulumi.Input[bool]] = None,
             serial: Optional[pulumi.Input[str]] = None,
+            serial_number: Optional[pulumi.Input[str]] = None,
             street_address: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[str]] = None,
             uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -979,7 +1043,9 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_dns_domains: List of domains for which certificates are allowed to be issued
         :param pulumi.Input[str] postal_code: The postal code
         :param pulumi.Input[str] province: The province
-        :param pulumi.Input[str] serial: The serial
+        :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
+        :param pulumi.Input[str] serial: The serial number.
+        :param pulumi.Input[str] serial_number: The certificate's serial number, hex formatted.
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
@@ -1009,7 +1075,9 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         __props__.__dict__["permitted_dns_domains"] = permitted_dns_domains
         __props__.__dict__["postal_code"] = postal_code
         __props__.__dict__["province"] = province
+        __props__.__dict__["revoke"] = revoke
         __props__.__dict__["serial"] = serial
+        __props__.__dict__["serial_number"] = serial_number
         __props__.__dict__["street_address"] = street_address
         __props__.__dict__["ttl"] = ttl
         __props__.__dict__["uri_sans"] = uri_sans
@@ -1179,11 +1247,27 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def revoke(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set to `true`, the certificate will be revoked on resource destruction.
+        """
+        return pulumi.get(self, "revoke")
+
+    @property
+    @pulumi.getter
     def serial(self) -> pulumi.Output[str]:
         """
-        The serial
+        The serial number.
         """
         return pulumi.get(self, "serial")
+
+    @property
+    @pulumi.getter(name="serialNumber")
+    def serial_number(self) -> pulumi.Output[str]:
+        """
+        The certificate's serial number, hex formatted.
+        """
+        return pulumi.get(self, "serial_number")
 
     @property
     @pulumi.getter(name="streetAddress")

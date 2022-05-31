@@ -11,6 +11,7 @@ import (
 )
 
 // ## Example Usage
+// ### Generic secret
 //
 // ```go
 // package main
@@ -55,7 +56,8 @@ type LookupSecretArgs struct {
 	// The version of the secret to read. This is used by the
 	// Vault KV secrets engine - version 2 to indicate which version of the secret
 	// to read.
-	Version *int `pulumi:"version"`
+	Version            *int  `pulumi:"version"`
+	WithLeaseStartTime *bool `pulumi:"withLeaseStartTime"`
 }
 
 // A collection of values returned by getSecret.
@@ -75,11 +77,12 @@ type LookupSecretResult struct {
 	// generated with this data may fail to apply.
 	LeaseDuration int `pulumi:"leaseDuration"`
 	// The lease identifier assigned by Vault, if any.
-	LeaseId        string `pulumi:"leaseId"`
-	LeaseRenewable bool   `pulumi:"leaseRenewable"`
-	LeaseStartTime string `pulumi:"leaseStartTime"`
-	Path           string `pulumi:"path"`
-	Version        *int   `pulumi:"version"`
+	LeaseId            string `pulumi:"leaseId"`
+	LeaseRenewable     bool   `pulumi:"leaseRenewable"`
+	LeaseStartTime     string `pulumi:"leaseStartTime"`
+	Path               string `pulumi:"path"`
+	Version            *int   `pulumi:"version"`
+	WithLeaseStartTime *bool  `pulumi:"withLeaseStartTime"`
 }
 
 func LookupSecretOutput(ctx *pulumi.Context, args LookupSecretOutputArgs, opts ...pulumi.InvokeOption) LookupSecretResultOutput {
@@ -106,7 +109,8 @@ type LookupSecretOutputArgs struct {
 	// The version of the secret to read. This is used by the
 	// Vault KV secrets engine - version 2 to indicate which version of the secret
 	// to read.
-	Version pulumi.IntPtrInput `pulumi:"version"`
+	Version            pulumi.IntPtrInput  `pulumi:"version"`
+	WithLeaseStartTime pulumi.BoolPtrInput `pulumi:"withLeaseStartTime"`
 }
 
 func (LookupSecretOutputArgs) ElementType() reflect.Type {
@@ -173,6 +177,10 @@ func (o LookupSecretResultOutput) Path() pulumi.StringOutput {
 
 func (o LookupSecretResultOutput) Version() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupSecretResult) *int { return v.Version }).(pulumi.IntPtrOutput)
+}
+
+func (o LookupSecretResultOutput) WithLeaseStartTime() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupSecretResult) *bool { return v.WithLeaseStartTime }).(pulumi.BoolPtrOutput)
 }
 
 func init() {

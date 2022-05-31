@@ -5,20 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const example = new vault.Policy("example", {
- *     policy: `path "secret/my_app" {
- *   capabilities = ["update"]
- * }
- * `,
- * });
- * ```
- *
  * ## Import
  *
  * Policies can be imported using the `name`, e.g.

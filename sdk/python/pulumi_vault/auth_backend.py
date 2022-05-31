@@ -215,20 +215,6 @@ class AuthBackend(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        example = vault.AuthBackend("example",
-            tune=vault.AuthBackendTuneArgs(
-                listing_visibility="unauth",
-                max_lease_ttl="90000s",
-            ),
-            type="github")
-        ```
-
         ## Import
 
         Auth methods can be imported using the `path`, e.g.
@@ -252,20 +238,6 @@ class AuthBackend(pulumi.CustomResource):
                  args: AuthBackendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        example = vault.AuthBackend("example",
-            tune=vault.AuthBackendTuneArgs(
-                listing_visibility="unauth",
-                max_lease_ttl="90000s",
-            ),
-            type="github")
-        ```
-
         ## Import
 
         Auth methods can be imported using the `path`, e.g.

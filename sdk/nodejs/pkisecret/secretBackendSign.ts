@@ -46,6 +46,9 @@ import * as utilities from "../utilities";
  *     dependsOn: [vault_pki_secret_backend_role.admin],
  * });
  * ```
+ * ## Deprecations
+ *
+ * * `serial` - Use `serialNumber` instead.
  */
 export class SecretBackendSign extends pulumi.CustomResource {
     /**
@@ -136,15 +139,21 @@ export class SecretBackendSign extends pulumi.CustomResource {
      */
     public readonly otherSans!: pulumi.Output<string[] | undefined>;
     /**
-     * The serial
+     * The serial number.
+     *
+     * @deprecated Use serial_number instead
      */
     public /*out*/ readonly serial!: pulumi.Output<string>;
+    /**
+     * The certificate's serial number, hex formatted.
+     */
+    public /*out*/ readonly serialNumber!: pulumi.Output<string>;
     /**
      * Time to live
      */
     public readonly ttl!: pulumi.Output<string | undefined>;
     /**
-     * List of alterative URIs
+     * List of alternative URIs
      */
     public readonly uriSans!: pulumi.Output<string[] | undefined>;
 
@@ -177,6 +186,7 @@ export class SecretBackendSign extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["otherSans"] = state ? state.otherSans : undefined;
             resourceInputs["serial"] = state ? state.serial : undefined;
+            resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
             resourceInputs["uriSans"] = state ? state.uriSans : undefined;
         } else {
@@ -208,6 +218,7 @@ export class SecretBackendSign extends pulumi.CustomResource {
             resourceInputs["expiration"] = undefined /*out*/;
             resourceInputs["issuingCa"] = undefined /*out*/;
             resourceInputs["serial"] = undefined /*out*/;
+            resourceInputs["serialNumber"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendSign.__pulumiType, name, resourceInputs, opts);
@@ -279,15 +290,21 @@ export interface SecretBackendSignState {
      */
     otherSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The serial
+     * The serial number.
+     *
+     * @deprecated Use serial_number instead
      */
     serial?: pulumi.Input<string>;
+    /**
+     * The certificate's serial number, hex formatted.
+     */
+    serialNumber?: pulumi.Input<string>;
     /**
      * Time to live
      */
     ttl?: pulumi.Input<string>;
     /**
-     * List of alterative URIs
+     * List of alternative URIs
      */
     uriSans?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -345,7 +362,7 @@ export interface SecretBackendSignArgs {
      */
     ttl?: pulumi.Input<string>;
     /**
-     * List of alterative URIs
+     * List of alternative URIs
      */
     uriSans?: pulumi.Input<pulumi.Input<string>[]>;
 }

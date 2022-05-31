@@ -112,10 +112,20 @@ namespace Pulumi.Vault.Ssh
         public Output<string?> AllowedExtensions { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+        /// Set of configuration blocks to define allowed  
+        /// user key configuration, like key type and their lengths. Can be specified multiple times.
+        /// *See Configuration-Options for more info*
+        /// </summary>
+        [Output("allowedUserKeyConfigs")]
+        public Output<ImmutableArray<Outputs.SecretBackendRoleAllowedUserKeyConfig>> AllowedUserKeyConfigs { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies a map of ssh key types and their expected sizes which 
+        /// are allowed to be signed by the CA type.
+        /// *Deprecated: use* allowed_user_key_config *instead*
         /// </summary>
         [Output("allowedUserKeyLengths")]
-        public Output<ImmutableDictionary<string, object>?> AllowedUserKeyLengths { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, int>?> AllowedUserKeyLengths { get; private set; } = null!;
 
         /// <summary>
         /// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
@@ -289,15 +299,32 @@ namespace Pulumi.Vault.Ssh
         [Input("allowedExtensions")]
         public Input<string>? AllowedExtensions { get; set; }
 
-        [Input("allowedUserKeyLengths")]
-        private InputMap<object>? _allowedUserKeyLengths;
+        [Input("allowedUserKeyConfigs")]
+        private InputList<Inputs.SecretBackendRoleAllowedUserKeyConfigArgs>? _allowedUserKeyConfigs;
 
         /// <summary>
-        /// Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+        /// Set of configuration blocks to define allowed  
+        /// user key configuration, like key type and their lengths. Can be specified multiple times.
+        /// *See Configuration-Options for more info*
         /// </summary>
-        public InputMap<object> AllowedUserKeyLengths
+        public InputList<Inputs.SecretBackendRoleAllowedUserKeyConfigArgs> AllowedUserKeyConfigs
         {
-            get => _allowedUserKeyLengths ?? (_allowedUserKeyLengths = new InputMap<object>());
+            get => _allowedUserKeyConfigs ?? (_allowedUserKeyConfigs = new InputList<Inputs.SecretBackendRoleAllowedUserKeyConfigArgs>());
+            set => _allowedUserKeyConfigs = value;
+        }
+
+        [Input("allowedUserKeyLengths")]
+        private InputMap<int>? _allowedUserKeyLengths;
+
+        /// <summary>
+        /// Specifies a map of ssh key types and their expected sizes which 
+        /// are allowed to be signed by the CA type.
+        /// *Deprecated: use* allowed_user_key_config *instead*
+        /// </summary>
+        [Obsolete(@"Set in allowed_user_key_config")]
+        public InputMap<int> AllowedUserKeyLengths
+        {
+            get => _allowedUserKeyLengths ?? (_allowedUserKeyLengths = new InputMap<int>());
             set => _allowedUserKeyLengths = value;
         }
 
@@ -446,15 +473,32 @@ namespace Pulumi.Vault.Ssh
         [Input("allowedExtensions")]
         public Input<string>? AllowedExtensions { get; set; }
 
-        [Input("allowedUserKeyLengths")]
-        private InputMap<object>? _allowedUserKeyLengths;
+        [Input("allowedUserKeyConfigs")]
+        private InputList<Inputs.SecretBackendRoleAllowedUserKeyConfigGetArgs>? _allowedUserKeyConfigs;
 
         /// <summary>
-        /// Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+        /// Set of configuration blocks to define allowed  
+        /// user key configuration, like key type and their lengths. Can be specified multiple times.
+        /// *See Configuration-Options for more info*
         /// </summary>
-        public InputMap<object> AllowedUserKeyLengths
+        public InputList<Inputs.SecretBackendRoleAllowedUserKeyConfigGetArgs> AllowedUserKeyConfigs
         {
-            get => _allowedUserKeyLengths ?? (_allowedUserKeyLengths = new InputMap<object>());
+            get => _allowedUserKeyConfigs ?? (_allowedUserKeyConfigs = new InputList<Inputs.SecretBackendRoleAllowedUserKeyConfigGetArgs>());
+            set => _allowedUserKeyConfigs = value;
+        }
+
+        [Input("allowedUserKeyLengths")]
+        private InputMap<int>? _allowedUserKeyLengths;
+
+        /// <summary>
+        /// Specifies a map of ssh key types and their expected sizes which 
+        /// are allowed to be signed by the CA type.
+        /// *Deprecated: use* allowed_user_key_config *instead*
+        /// </summary>
+        [Obsolete(@"Set in allowed_user_key_config")]
+        public InputMap<int> AllowedUserKeyLengths
+        {
+            get => _allowedUserKeyLengths ?? (_allowedUserKeyLengths = new InputMap<int>());
             set => _allowedUserKeyLengths = value;
         }
 

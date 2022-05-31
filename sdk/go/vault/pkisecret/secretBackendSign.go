@@ -39,6 +39,9 @@ import (
 // 	})
 // }
 // ```
+// ## Deprecations
+//
+// * `serial` - Use `serialNumber` instead.
 type SecretBackendSign struct {
 	pulumi.CustomResourceState
 
@@ -72,11 +75,15 @@ type SecretBackendSign struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// List of other SANs
 	OtherSans pulumi.StringArrayOutput `pulumi:"otherSans"`
-	// The serial
+	// The serial number.
+	//
+	// Deprecated: Use serial_number instead
 	Serial pulumi.StringOutput `pulumi:"serial"`
+	// The certificate's serial number, hex formatted.
+	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
 	// Time to live
 	Ttl pulumi.StringPtrOutput `pulumi:"ttl"`
-	// List of alterative URIs
+	// List of alternative URIs
 	UriSans pulumi.StringArrayOutput `pulumi:"uriSans"`
 }
 
@@ -148,11 +155,15 @@ type secretBackendSignState struct {
 	Name *string `pulumi:"name"`
 	// List of other SANs
 	OtherSans []string `pulumi:"otherSans"`
-	// The serial
+	// The serial number.
+	//
+	// Deprecated: Use serial_number instead
 	Serial *string `pulumi:"serial"`
+	// The certificate's serial number, hex formatted.
+	SerialNumber *string `pulumi:"serialNumber"`
 	// Time to live
 	Ttl *string `pulumi:"ttl"`
-	// List of alterative URIs
+	// List of alternative URIs
 	UriSans []string `pulumi:"uriSans"`
 }
 
@@ -187,11 +198,15 @@ type SecretBackendSignState struct {
 	Name pulumi.StringPtrInput
 	// List of other SANs
 	OtherSans pulumi.StringArrayInput
-	// The serial
+	// The serial number.
+	//
+	// Deprecated: Use serial_number instead
 	Serial pulumi.StringPtrInput
+	// The certificate's serial number, hex formatted.
+	SerialNumber pulumi.StringPtrInput
 	// Time to live
 	Ttl pulumi.StringPtrInput
-	// List of alterative URIs
+	// List of alternative URIs
 	UriSans pulumi.StringArrayInput
 }
 
@@ -224,7 +239,7 @@ type secretBackendSignArgs struct {
 	OtherSans []string `pulumi:"otherSans"`
 	// Time to live
 	Ttl *string `pulumi:"ttl"`
-	// List of alterative URIs
+	// List of alternative URIs
 	UriSans []string `pulumi:"uriSans"`
 }
 
@@ -254,7 +269,7 @@ type SecretBackendSignArgs struct {
 	OtherSans pulumi.StringArrayInput
 	// Time to live
 	Ttl pulumi.StringPtrInput
-	// List of alterative URIs
+	// List of alternative URIs
 	UriSans pulumi.StringArrayInput
 }
 

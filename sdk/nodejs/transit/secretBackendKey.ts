@@ -22,6 +22,9 @@ import * as utilities from "../utilities";
  * });
  * const key = new vault.transit.SecretBackendKey("key", {backend: transit.path});
  * ```
+ * ## Deprecations
+ *
+ * * `autoRotateInterval` - Replaced by `autoRotatePeriod`.
  *
  * ## Import
  *
@@ -65,10 +68,17 @@ export class SecretBackendKey extends pulumi.CustomResource {
      */
     public readonly allowPlaintextBackup!: pulumi.Output<boolean | undefined>;
     /**
+     * Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
+     * key.
+     *
+     * @deprecated Use auto_rotate_period instead
+     */
+    public readonly autoRotateInterval!: pulumi.Output<number>;
+    /**
      * Amount of time the key should live before being automatically rotated.
      * A value of 0 disables automatic rotation for the key.
      */
-    public readonly autoRotateInterval!: pulumi.Output<number>;
+    public readonly autoRotatePeriod!: pulumi.Output<number>;
     /**
      * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
      */
@@ -152,6 +162,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
             const state = argsOrState as SecretBackendKeyState | undefined;
             resourceInputs["allowPlaintextBackup"] = state ? state.allowPlaintextBackup : undefined;
             resourceInputs["autoRotateInterval"] = state ? state.autoRotateInterval : undefined;
+            resourceInputs["autoRotatePeriod"] = state ? state.autoRotatePeriod : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["convergentEncryption"] = state ? state.convergentEncryption : undefined;
             resourceInputs["deletionAllowed"] = state ? state.deletionAllowed : undefined;
@@ -175,6 +186,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
             }
             resourceInputs["allowPlaintextBackup"] = args ? args.allowPlaintextBackup : undefined;
             resourceInputs["autoRotateInterval"] = args ? args.autoRotateInterval : undefined;
+            resourceInputs["autoRotatePeriod"] = args ? args.autoRotatePeriod : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["convergentEncryption"] = args ? args.convergentEncryption : undefined;
             resourceInputs["deletionAllowed"] = args ? args.deletionAllowed : undefined;
@@ -207,10 +219,17 @@ export interface SecretBackendKeyState {
      */
     allowPlaintextBackup?: pulumi.Input<boolean>;
     /**
+     * Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
+     * key.
+     *
+     * @deprecated Use auto_rotate_period instead
+     */
+    autoRotateInterval?: pulumi.Input<number>;
+    /**
      * Amount of time the key should live before being automatically rotated.
      * A value of 0 disables automatic rotation for the key.
      */
-    autoRotateInterval?: pulumi.Input<number>;
+    autoRotatePeriod?: pulumi.Input<number>;
     /**
      * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
      */
@@ -290,10 +309,17 @@ export interface SecretBackendKeyArgs {
      */
     allowPlaintextBackup?: pulumi.Input<boolean>;
     /**
+     * Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
+     * key.
+     *
+     * @deprecated Use auto_rotate_period instead
+     */
+    autoRotateInterval?: pulumi.Input<number>;
+    /**
      * Amount of time the key should live before being automatically rotated.
      * A value of 0 disables automatic rotation for the key.
      */
-    autoRotateInterval?: pulumi.Input<number>;
+    autoRotatePeriod?: pulumi.Input<number>;
     /**
      * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
      */

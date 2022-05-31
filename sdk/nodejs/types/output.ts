@@ -226,9 +226,33 @@ export namespace database {
 
     export interface SecretBackendConnectionElasticsearch {
         /**
+         * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+         */
+        caCert?: string;
+        /**
+         * The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+         */
+        caPath?: string;
+        /**
+         * The path to the certificate for the Elasticsearch client to present for communication.
+         */
+        clientCert?: string;
+        /**
+         * The path to the key for the Elasticsearch client to use for communication.
+         */
+        clientKey?: string;
+        /**
+         * Whether to disable certificate verification.
+         */
+        insecure?: boolean;
+        /**
          * The root credential password used in the connection URL.
          */
         password: string;
+        /**
+         * This, if set, is used to set the SNI host when connecting via TLS.
+         */
+        tlsServerName?: string;
         /**
          * The URL for Elasticsearch's API. https requires certificate
          * by trusted CA if used.
@@ -238,6 +262,10 @@ export namespace database {
          * The root credential username used in the connection URL.
          */
         username: string;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
     }
 
     export interface SecretBackendConnectionHana {
@@ -248,10 +276,6 @@ export namespace database {
          * for an example.
          */
         connectionUrl?: string;
-        /**
-         * Disable special character escaping in username and password.
-         */
-        disableEscaping?: boolean;
         /**
          * The maximum amount of time a connection may be reused.
          */
@@ -618,10 +642,6 @@ export namespace database {
          */
         connectionUrl?: string;
         /**
-         * Disable special character escaping in username and password.
-         */
-        disableEscaping?: boolean;
-        /**
          * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
@@ -657,10 +677,6 @@ export namespace database {
          * for an example.
          */
         connectionUrl?: string;
-        /**
-         * Disable special character escaping in username and password.
-         */
-        disableEscaping?: boolean;
         /**
          * The maximum amount of time a connection may be reused.
          */
@@ -723,6 +739,962 @@ export namespace database {
          * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
          */
         usernameTemplate?: string;
+    }
+
+    export interface SecretsMountCassandra {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: string[];
+        /**
+         * The number of seconds to use as a connection
+         * timeout.
+         */
+        connectTimeout?: number;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: any};
+        /**
+         * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+         */
+        hosts?: string[];
+        /**
+         * Whether to skip verification of the server
+         * certificate when using TLS.
+         */
+        insecureTls?: boolean;
+        name: string;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: string;
+        /**
+         * Concatenated PEM blocks configuring the certificate
+         * chain.
+         */
+        pemBundle?: string;
+        /**
+         * A JSON structure configuring the certificate chain.
+         */
+        pemJson?: string;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName: string;
+        /**
+         * The default port to connect to if no port is specified as
+         * part of the host.
+         */
+        port?: number;
+        /**
+         * The CQL protocol version to use.
+         */
+        protocolVersion?: number;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: string[];
+        /**
+         * Whether to use TLS when connecting to Cassandra.
+         */
+        tls?: boolean;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: string;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: boolean;
+    }
+
+    export interface SecretsMountCouchbase {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: string[];
+        /**
+         * Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
+         */
+        base64Pem?: string;
+        /**
+         * Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
+         */
+        bucketName?: string;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: any};
+        /**
+         * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+         */
+        hosts: string[];
+        /**
+         * Whether to skip verification of the server
+         * certificate when using TLS.
+         */
+        insecureTls?: boolean;
+        name: string;
+        /**
+         * The password to be used in the connection.
+         */
+        password: string;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName: string;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: string[];
+        /**
+         * Whether to use TLS when connecting to Cassandra.
+         */
+        tls?: boolean;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username: string;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: boolean;
+    }
+
+    export interface SecretsMountElasticsearch {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: string[];
+        /**
+         * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+         */
+        caCert?: string;
+        /**
+         * The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+         */
+        caPath?: string;
+        /**
+         * The path to the certificate for the Elasticsearch client to present for communication.
+         */
+        clientCert?: string;
+        /**
+         * The path to the key for the Elasticsearch client to use for communication.
+         */
+        clientKey?: string;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: any};
+        /**
+         * Whether to disable certificate verification.
+         */
+        insecure?: boolean;
+        name: string;
+        /**
+         * The password to be used in the connection.
+         */
+        password: string;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName: string;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: string[];
+        /**
+         * This, if set, is used to set the SNI host when connecting via TLS.
+         */
+        tlsServerName?: string;
+        /**
+         * The URL for Elasticsearch's API. https requires certificate
+         * by trusted CA if used.
+         */
+        url: string;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username: string;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: boolean;
+    }
+
+    export interface SecretsMountHana {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: string[];
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: string;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: any};
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: number;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: number;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: number;
+        name: string;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: string;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName: string;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: string[];
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: string;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: boolean;
+    }
+
+    export interface SecretsMountInfluxdb {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: string[];
+        /**
+         * The number of seconds to use as a connection
+         * timeout.
+         */
+        connectTimeout?: number;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: any};
+        /**
+         * The host to connect to.
+         */
+        host: string;
+        /**
+         * Whether to skip verification of the server
+         * certificate when using TLS.
+         */
+        insecureTls?: boolean;
+        name: string;
+        /**
+         * The password to be used in the connection.
+         */
+        password: string;
+        /**
+         * Concatenated PEM blocks configuring the certificate
+         * chain.
+         */
+        pemBundle?: string;
+        /**
+         * A JSON structure configuring the certificate chain.
+         */
+        pemJson?: string;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName: string;
+        /**
+         * The default port to connect to if no port is specified as
+         * part of the host.
+         */
+        port?: number;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: string[];
+        /**
+         * Whether to use TLS when connecting to Cassandra.
+         */
+        tls?: boolean;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username: string;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: boolean;
+    }
+
+    export interface SecretsMountMongodb {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: string[];
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: string;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: any};
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: number;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: number;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: number;
+        name: string;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: string;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName: string;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: string[];
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: string;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: boolean;
+    }
+
+    export interface SecretsMountMongodbatla {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: string[];
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: any};
+        name: string;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName: string;
+        /**
+         * The Private Programmatic API Key used to connect with MongoDB Atlas API.
+         */
+        privateKey: string;
+        /**
+         * The Project ID the Database User should be created within.
+         */
+        projectId: string;
+        /**
+         * The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+         */
+        publicKey: string;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: string[];
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: boolean;
+    }
+
+    export interface SecretsMountMssql {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: string[];
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: string;
+        /**
+         * For Vault v1.9+. Set to true when the target is a
+         * Contained Database, e.g. AzureSQL.
+         * See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+         */
+        containedDb?: boolean;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: any};
+        /**
+         * Disable special character escaping in username and password.
+         */
+        disableEscaping?: boolean;
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: number;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: number;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: number;
+        name: string;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: string;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName: string;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: string[];
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: string;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: boolean;
+    }
+
+    export interface SecretsMountMysql {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: string[];
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: string;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: any};
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: number;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: number;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: number;
+        name: string;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: string;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName: string;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: string[];
+        /**
+         * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+         */
+        tlsCa?: string;
+        /**
+         * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+         */
+        tlsCertificateKey?: string;
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: string;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: boolean;
+    }
+
+    export interface SecretsMountMysqlAurora {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: string[];
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: string;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: any};
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: number;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: number;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: number;
+        name: string;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: string;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName: string;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: string[];
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: string;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: boolean;
+    }
+
+    export interface SecretsMountMysqlLegacy {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: string[];
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: string;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: any};
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: number;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: number;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: number;
+        name: string;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: string;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName: string;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: string[];
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: string;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: boolean;
+    }
+
+    export interface SecretsMountMysqlRd {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: string[];
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: string;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: any};
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: number;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: number;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: number;
+        name: string;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: string;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName: string;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: string[];
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: string;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: boolean;
+    }
+
+    export interface SecretsMountOracle {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: string[];
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: string;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: any};
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: number;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: number;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: number;
+        name: string;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: string;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName: string;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: string[];
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: string;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: boolean;
+    }
+
+    export interface SecretsMountPostgresql {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: string[];
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: string;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: any};
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: number;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: number;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: number;
+        name: string;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: string;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName: string;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: string[];
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: string;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: boolean;
+    }
+
+    export interface SecretsMountRedshift {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: string[];
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: string;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: any};
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: number;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: number;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: number;
+        name: string;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: string;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName: string;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: string[];
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: string;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: boolean;
+    }
+
+    export interface SecretsMountSnowflake {
+        /**
+         * A list of roles that are allowed to use this
+         * connection.
+         */
+        allowedRoles?: string[];
+        /**
+         * A URL containing connection information.  
+         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)
+         */
+        connectionUrl?: string;
+        /**
+         * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: any};
+        /**
+         * The maximum number of seconds to keep
+         * a connection alive for.
+         */
+        maxConnectionLifetime?: number;
+        /**
+         * The maximum number of idle connections to
+         * maintain.
+         */
+        maxIdleConnections?: number;
+        /**
+         * The maximum number of open connections to
+         * use.
+         */
+        maxOpenConnections?: number;
+        name: string;
+        /**
+         * The password to be used in the connection.
+         */
+        password?: string;
+        /**
+         * Specifies the name of the plugin to use.
+         */
+        pluginName: string;
+        /**
+         * A list of database statements to be executed to rotate the root user's credentials.
+         */
+        rootRotationStatements?: string[];
+        /**
+         * The username to be used in the connection (the account admin level).
+         */
+        username?: string;
+        /**
+         * - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
+        /**
+         * Whether the connection should be verified on
+         * initial configuration or not.
+         */
+        verifyConnection?: boolean;
     }
 
 }
@@ -943,6 +1915,26 @@ export namespace rabbitMq {
         read: string;
         topic: string;
         write: string;
+    }
+
+}
+
+export namespace ssh {
+    export interface SecretBackendRoleAllowedUserKeyConfig {
+        /**
+         * A list of allowed key lengths as integers. 
+         * For key types that do not support setting the length a value of `[0]` should be used.
+         * Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
+         * must be set to a single element list.
+         */
+        lengths: number[];
+        /**
+         * The SSH public key type.  
+         * *Supported key types are:*
+         * `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
+         * `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
+         */
+        type: string;
     }
 
 }

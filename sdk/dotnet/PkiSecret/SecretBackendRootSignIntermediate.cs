@@ -41,6 +41,9 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// }
     /// ```
+    /// ## Deprecations
+    /// 
+    /// * `serial` - Use `serial_number` instead.
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendRootSignIntermediate:SecretBackendRootSignIntermediate")]
     public partial class SecretBackendRootSignIntermediate : Pulumi.CustomResource
@@ -167,10 +170,22 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string?> Province { get; private set; } = null!;
 
         /// <summary>
-        /// The serial
+        /// If set to `true`, the certificate will be revoked on resource destruction.
+        /// </summary>
+        [Output("revoke")]
+        public Output<bool?> Revoke { get; private set; } = null!;
+
+        /// <summary>
+        /// The serial number.
         /// </summary>
         [Output("serial")]
         public Output<string> Serial { get; private set; } = null!;
+
+        /// <summary>
+        /// The certificate's serial number, hex formatted.
+        /// </summary>
+        [Output("serialNumber")]
+        public Output<string> SerialNumber { get; private set; } = null!;
 
         /// <summary>
         /// The street address
@@ -363,6 +378,12 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Province { get; set; }
 
         /// <summary>
+        /// If set to `true`, the certificate will be revoked on resource destruction.
+        /// </summary>
+        [Input("revoke")]
+        public Input<bool>? Revoke { get; set; }
+
+        /// <summary>
         /// The street address
         /// </summary>
         [Input("streetAddress")]
@@ -551,10 +572,22 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Province { get; set; }
 
         /// <summary>
-        /// The serial
+        /// If set to `true`, the certificate will be revoked on resource destruction.
+        /// </summary>
+        [Input("revoke")]
+        public Input<bool>? Revoke { get; set; }
+
+        /// <summary>
+        /// The serial number.
         /// </summary>
         [Input("serial")]
         public Input<string>? Serial { get; set; }
+
+        /// <summary>
+        /// The certificate's serial number, hex formatted.
+        /// </summary>
+        [Input("serialNumber")]
+        public Input<string>? SerialNumber { get; set; }
 
         /// <summary>
         /// The street address

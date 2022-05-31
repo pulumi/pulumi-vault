@@ -42,6 +42,9 @@ import (
 // 	})
 // }
 // ```
+// ## Deprecations
+//
+// * `serial` - Use `serialNumber` instead.
 type SecretBackendRootSignIntermediate struct {
 	pulumi.CustomResourceState
 
@@ -86,8 +89,14 @@ type SecretBackendRootSignIntermediate struct {
 	PostalCode pulumi.StringPtrOutput `pulumi:"postalCode"`
 	// The province
 	Province pulumi.StringPtrOutput `pulumi:"province"`
-	// The serial
+	// If set to `true`, the certificate will be revoked on resource destruction.
+	Revoke pulumi.BoolPtrOutput `pulumi:"revoke"`
+	// The serial number.
+	//
+	// Deprecated: Use serial_number instead
 	Serial pulumi.StringOutput `pulumi:"serial"`
+	// The certificate's serial number, hex formatted.
+	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
 	// The street address
 	StreetAddress pulumi.StringPtrOutput `pulumi:"streetAddress"`
 	// Time to live
@@ -177,8 +186,14 @@ type secretBackendRootSignIntermediateState struct {
 	PostalCode *string `pulumi:"postalCode"`
 	// The province
 	Province *string `pulumi:"province"`
-	// The serial
+	// If set to `true`, the certificate will be revoked on resource destruction.
+	Revoke *bool `pulumi:"revoke"`
+	// The serial number.
+	//
+	// Deprecated: Use serial_number instead
 	Serial *string `pulumi:"serial"`
+	// The certificate's serial number, hex formatted.
+	SerialNumber *string `pulumi:"serialNumber"`
 	// The street address
 	StreetAddress *string `pulumi:"streetAddress"`
 	// Time to live
@@ -231,8 +246,14 @@ type SecretBackendRootSignIntermediateState struct {
 	PostalCode pulumi.StringPtrInput
 	// The province
 	Province pulumi.StringPtrInput
-	// The serial
+	// If set to `true`, the certificate will be revoked on resource destruction.
+	Revoke pulumi.BoolPtrInput
+	// The serial number.
+	//
+	// Deprecated: Use serial_number instead
 	Serial pulumi.StringPtrInput
+	// The certificate's serial number, hex formatted.
+	SerialNumber pulumi.StringPtrInput
 	// The street address
 	StreetAddress pulumi.StringPtrInput
 	// Time to live
@@ -280,6 +301,8 @@ type secretBackendRootSignIntermediateArgs struct {
 	PostalCode *string `pulumi:"postalCode"`
 	// The province
 	Province *string `pulumi:"province"`
+	// If set to `true`, the certificate will be revoked on resource destruction.
+	Revoke *bool `pulumi:"revoke"`
 	// The street address
 	StreetAddress *string `pulumi:"streetAddress"`
 	// Time to live
@@ -324,6 +347,8 @@ type SecretBackendRootSignIntermediateArgs struct {
 	PostalCode pulumi.StringPtrInput
 	// The province
 	Province pulumi.StringPtrInput
+	// If set to `true`, the certificate will be revoked on resource destruction.
+	Revoke pulumi.BoolPtrInput
 	// The street address
 	StreetAddress pulumi.StringPtrInput
 	// Time to live

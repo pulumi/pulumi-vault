@@ -7,6 +7,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['SecretBackendRoleArgs', 'SecretBackendRole']
 
@@ -24,7 +26,8 @@ class SecretBackendRoleArgs:
                  allowed_critical_options: Optional[pulumi.Input[str]] = None,
                  allowed_domains: Optional[pulumi.Input[str]] = None,
                  allowed_extensions: Optional[pulumi.Input[str]] = None,
-                 allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]] = None,
+                 allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]] = None,
                  allowed_users: Optional[pulumi.Input[str]] = None,
                  allowed_users_template: Optional[pulumi.Input[bool]] = None,
                  cidr_list: Optional[pulumi.Input[str]] = None,
@@ -48,7 +51,12 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[str] allowed_critical_options: Specifies a comma-separated list of critical options that certificates can have when signed.
         :param pulumi.Input[str] allowed_domains: The list of domains for which a client can request a host certificate.
         :param pulumi.Input[str] allowed_extensions: Specifies a comma-separated list of extensions that certificates can have when signed.
-        :param pulumi.Input[Mapping[str, Any]] allowed_user_key_lengths: Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+        :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]] allowed_user_key_configs: Set of configuration blocks to define allowed  
+               user key configuration, like key type and their lengths. Can be specified multiple times.
+               *See Configuration-Options for more info*
+        :param pulumi.Input[Mapping[str, pulumi.Input[int]]] allowed_user_key_lengths: Specifies a map of ssh key types and their expected sizes which 
+               are allowed to be signed by the CA type.
+               *Deprecated: use* allowed_user_key_config *instead*
         :param pulumi.Input[str] allowed_users: Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         :param pulumi.Input[bool] allowed_users_template: Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         :param pulumi.Input[str] cidr_list: The comma-separated string of CIDR blocks for which this role is applicable.
@@ -80,6 +88,11 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "allowed_domains", allowed_domains)
         if allowed_extensions is not None:
             pulumi.set(__self__, "allowed_extensions", allowed_extensions)
+        if allowed_user_key_configs is not None:
+            pulumi.set(__self__, "allowed_user_key_configs", allowed_user_key_configs)
+        if allowed_user_key_lengths is not None:
+            warnings.warn("""Set in allowed_user_key_config""", DeprecationWarning)
+            pulumi.log.warn("""allowed_user_key_lengths is deprecated: Set in allowed_user_key_config""")
         if allowed_user_key_lengths is not None:
             pulumi.set(__self__, "allowed_user_key_lengths", allowed_user_key_lengths)
         if allowed_users is not None:
@@ -236,15 +249,31 @@ class SecretBackendRoleArgs:
         pulumi.set(self, "allowed_extensions", value)
 
     @property
-    @pulumi.getter(name="allowedUserKeyLengths")
-    def allowed_user_key_lengths(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    @pulumi.getter(name="allowedUserKeyConfigs")
+    def allowed_user_key_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]]:
         """
-        Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+        Set of configuration blocks to define allowed  
+        user key configuration, like key type and their lengths. Can be specified multiple times.
+        *See Configuration-Options for more info*
+        """
+        return pulumi.get(self, "allowed_user_key_configs")
+
+    @allowed_user_key_configs.setter
+    def allowed_user_key_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]]):
+        pulumi.set(self, "allowed_user_key_configs", value)
+
+    @property
+    @pulumi.getter(name="allowedUserKeyLengths")
+    def allowed_user_key_lengths(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]]:
+        """
+        Specifies a map of ssh key types and their expected sizes which 
+        are allowed to be signed by the CA type.
+        *Deprecated: use* allowed_user_key_config *instead*
         """
         return pulumi.get(self, "allowed_user_key_lengths")
 
     @allowed_user_key_lengths.setter
-    def allowed_user_key_lengths(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def allowed_user_key_lengths(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]]):
         pulumi.set(self, "allowed_user_key_lengths", value)
 
     @property
@@ -380,7 +409,8 @@ class _SecretBackendRoleState:
                  allowed_critical_options: Optional[pulumi.Input[str]] = None,
                  allowed_domains: Optional[pulumi.Input[str]] = None,
                  allowed_extensions: Optional[pulumi.Input[str]] = None,
-                 allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]] = None,
+                 allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]] = None,
                  allowed_users: Optional[pulumi.Input[str]] = None,
                  allowed_users_template: Optional[pulumi.Input[bool]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
@@ -404,7 +434,12 @@ class _SecretBackendRoleState:
         :param pulumi.Input[str] allowed_critical_options: Specifies a comma-separated list of critical options that certificates can have when signed.
         :param pulumi.Input[str] allowed_domains: The list of domains for which a client can request a host certificate.
         :param pulumi.Input[str] allowed_extensions: Specifies a comma-separated list of extensions that certificates can have when signed.
-        :param pulumi.Input[Mapping[str, Any]] allowed_user_key_lengths: Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+        :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]] allowed_user_key_configs: Set of configuration blocks to define allowed  
+               user key configuration, like key type and their lengths. Can be specified multiple times.
+               *See Configuration-Options for more info*
+        :param pulumi.Input[Mapping[str, pulumi.Input[int]]] allowed_user_key_lengths: Specifies a map of ssh key types and their expected sizes which 
+               are allowed to be signed by the CA type.
+               *Deprecated: use* allowed_user_key_config *instead*
         :param pulumi.Input[str] allowed_users: Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         :param pulumi.Input[bool] allowed_users_template: Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted.
@@ -436,6 +471,11 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "allowed_domains", allowed_domains)
         if allowed_extensions is not None:
             pulumi.set(__self__, "allowed_extensions", allowed_extensions)
+        if allowed_user_key_configs is not None:
+            pulumi.set(__self__, "allowed_user_key_configs", allowed_user_key_configs)
+        if allowed_user_key_lengths is not None:
+            warnings.warn("""Set in allowed_user_key_config""", DeprecationWarning)
+            pulumi.log.warn("""allowed_user_key_lengths is deprecated: Set in allowed_user_key_config""")
         if allowed_user_key_lengths is not None:
             pulumi.set(__self__, "allowed_user_key_lengths", allowed_user_key_lengths)
         if allowed_users is not None:
@@ -572,15 +612,31 @@ class _SecretBackendRoleState:
         pulumi.set(self, "allowed_extensions", value)
 
     @property
-    @pulumi.getter(name="allowedUserKeyLengths")
-    def allowed_user_key_lengths(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    @pulumi.getter(name="allowedUserKeyConfigs")
+    def allowed_user_key_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]]:
         """
-        Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+        Set of configuration blocks to define allowed  
+        user key configuration, like key type and their lengths. Can be specified multiple times.
+        *See Configuration-Options for more info*
+        """
+        return pulumi.get(self, "allowed_user_key_configs")
+
+    @allowed_user_key_configs.setter
+    def allowed_user_key_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]]):
+        pulumi.set(self, "allowed_user_key_configs", value)
+
+    @property
+    @pulumi.getter(name="allowedUserKeyLengths")
+    def allowed_user_key_lengths(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]]:
+        """
+        Specifies a map of ssh key types and their expected sizes which 
+        are allowed to be signed by the CA type.
+        *Deprecated: use* allowed_user_key_config *instead*
         """
         return pulumi.get(self, "allowed_user_key_lengths")
 
     @allowed_user_key_lengths.setter
-    def allowed_user_key_lengths(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def allowed_user_key_lengths(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]]):
         pulumi.set(self, "allowed_user_key_lengths", value)
 
     @property
@@ -742,7 +798,8 @@ class SecretBackendRole(pulumi.CustomResource):
                  allowed_critical_options: Optional[pulumi.Input[str]] = None,
                  allowed_domains: Optional[pulumi.Input[str]] = None,
                  allowed_extensions: Optional[pulumi.Input[str]] = None,
-                 allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleAllowedUserKeyConfigArgs']]]]] = None,
+                 allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]] = None,
                  allowed_users: Optional[pulumi.Input[str]] = None,
                  allowed_users_template: Optional[pulumi.Input[bool]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
@@ -798,7 +855,12 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] allowed_critical_options: Specifies a comma-separated list of critical options that certificates can have when signed.
         :param pulumi.Input[str] allowed_domains: The list of domains for which a client can request a host certificate.
         :param pulumi.Input[str] allowed_extensions: Specifies a comma-separated list of extensions that certificates can have when signed.
-        :param pulumi.Input[Mapping[str, Any]] allowed_user_key_lengths: Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleAllowedUserKeyConfigArgs']]]] allowed_user_key_configs: Set of configuration blocks to define allowed  
+               user key configuration, like key type and their lengths. Can be specified multiple times.
+               *See Configuration-Options for more info*
+        :param pulumi.Input[Mapping[str, pulumi.Input[int]]] allowed_user_key_lengths: Specifies a map of ssh key types and their expected sizes which 
+               are allowed to be signed by the CA type.
+               *Deprecated: use* allowed_user_key_config *instead*
         :param pulumi.Input[str] allowed_users: Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         :param pulumi.Input[bool] allowed_users_template: Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted.
@@ -873,7 +935,8 @@ class SecretBackendRole(pulumi.CustomResource):
                  allowed_critical_options: Optional[pulumi.Input[str]] = None,
                  allowed_domains: Optional[pulumi.Input[str]] = None,
                  allowed_extensions: Optional[pulumi.Input[str]] = None,
-                 allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleAllowedUserKeyConfigArgs']]]]] = None,
+                 allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]] = None,
                  allowed_users: Optional[pulumi.Input[str]] = None,
                  allowed_users_template: Optional[pulumi.Input[bool]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
@@ -907,6 +970,10 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["allowed_critical_options"] = allowed_critical_options
             __props__.__dict__["allowed_domains"] = allowed_domains
             __props__.__dict__["allowed_extensions"] = allowed_extensions
+            __props__.__dict__["allowed_user_key_configs"] = allowed_user_key_configs
+            if allowed_user_key_lengths is not None and not opts.urn:
+                warnings.warn("""Set in allowed_user_key_config""", DeprecationWarning)
+                pulumi.log.warn("""allowed_user_key_lengths is deprecated: Set in allowed_user_key_config""")
             __props__.__dict__["allowed_user_key_lengths"] = allowed_user_key_lengths
             __props__.__dict__["allowed_users"] = allowed_users
             __props__.__dict__["allowed_users_template"] = allowed_users_template
@@ -943,7 +1010,8 @@ class SecretBackendRole(pulumi.CustomResource):
             allowed_critical_options: Optional[pulumi.Input[str]] = None,
             allowed_domains: Optional[pulumi.Input[str]] = None,
             allowed_extensions: Optional[pulumi.Input[str]] = None,
-            allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleAllowedUserKeyConfigArgs']]]]] = None,
+            allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]] = None,
             allowed_users: Optional[pulumi.Input[str]] = None,
             allowed_users_template: Optional[pulumi.Input[bool]] = None,
             backend: Optional[pulumi.Input[str]] = None,
@@ -972,7 +1040,12 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] allowed_critical_options: Specifies a comma-separated list of critical options that certificates can have when signed.
         :param pulumi.Input[str] allowed_domains: The list of domains for which a client can request a host certificate.
         :param pulumi.Input[str] allowed_extensions: Specifies a comma-separated list of extensions that certificates can have when signed.
-        :param pulumi.Input[Mapping[str, Any]] allowed_user_key_lengths: Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleAllowedUserKeyConfigArgs']]]] allowed_user_key_configs: Set of configuration blocks to define allowed  
+               user key configuration, like key type and their lengths. Can be specified multiple times.
+               *See Configuration-Options for more info*
+        :param pulumi.Input[Mapping[str, pulumi.Input[int]]] allowed_user_key_lengths: Specifies a map of ssh key types and their expected sizes which 
+               are allowed to be signed by the CA type.
+               *Deprecated: use* allowed_user_key_config *instead*
         :param pulumi.Input[str] allowed_users: Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         :param pulumi.Input[bool] allowed_users_template: Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted.
@@ -999,6 +1072,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["allowed_critical_options"] = allowed_critical_options
         __props__.__dict__["allowed_domains"] = allowed_domains
         __props__.__dict__["allowed_extensions"] = allowed_extensions
+        __props__.__dict__["allowed_user_key_configs"] = allowed_user_key_configs
         __props__.__dict__["allowed_user_key_lengths"] = allowed_user_key_lengths
         __props__.__dict__["allowed_users"] = allowed_users
         __props__.__dict__["allowed_users_template"] = allowed_users_template
@@ -1087,10 +1161,22 @@ class SecretBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "allowed_extensions")
 
     @property
-    @pulumi.getter(name="allowedUserKeyLengths")
-    def allowed_user_key_lengths(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    @pulumi.getter(name="allowedUserKeyConfigs")
+    def allowed_user_key_configs(self) -> pulumi.Output[Optional[Sequence['outputs.SecretBackendRoleAllowedUserKeyConfig']]]:
         """
-        Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.
+        Set of configuration blocks to define allowed  
+        user key configuration, like key type and their lengths. Can be specified multiple times.
+        *See Configuration-Options for more info*
+        """
+        return pulumi.get(self, "allowed_user_key_configs")
+
+    @property
+    @pulumi.getter(name="allowedUserKeyLengths")
+    def allowed_user_key_lengths(self) -> pulumi.Output[Optional[Mapping[str, int]]]:
+        """
+        Specifies a map of ssh key types and their expected sizes which 
+        are allowed to be signed by the CA type.
+        *Deprecated: use* allowed_user_key_config *instead*
         """
         return pulumi.get(self, "allowed_user_key_lengths")
 

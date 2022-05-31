@@ -23,6 +23,7 @@ class SecretBackendRoleArgs:
                  allowed_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_domains_template: Optional[pulumi.Input[bool]] = None,
                  allowed_other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_serial_numbers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
                  client_flag: Optional[pulumi.Input[bool]] = None,
@@ -63,6 +64,7 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_domains: List of allowed domains for certificates
         :param pulumi.Input[bool] allowed_domains_template: Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_other_sans: Defines allowed custom SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_serial_numbers: An array of allowed serial numbers to put in Subject
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
         :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
         :param pulumi.Input[bool] client_flag: Flag to specify certificates for client use
@@ -73,10 +75,11 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usages: Specify the allowed extended key usage constraint on issued certificates
         :param pulumi.Input[bool] generate_lease: Flag to generate leases with certificates
         :param pulumi.Input[int] key_bits: The number of bits of generated keys
-        :param pulumi.Input[str] key_type: The type of generated keys
+        :param pulumi.Input[str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+               Defaults to `rsa`
         :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
-        :param pulumi.Input[str] max_ttl: The maximum TTL
+        :param pulumi.Input[str] max_ttl: The maximum lease TTL, in seconds, for the role.
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
@@ -88,7 +91,7 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[bool] require_cn: Flag to force CN usage
         :param pulumi.Input[bool] server_flag: Flag to specify certificates for server use
         :param pulumi.Input[Sequence[pulumi.Input[str]]] street_addresses: The street address of generated certificates
-        :param pulumi.Input[str] ttl: The TTL
+        :param pulumi.Input[str] ttl: The TTL, in seconds, for any certificate issued against this role.
         :param pulumi.Input[bool] use_csr_common_name: Flag to use the CN in the CSR
         :param pulumi.Input[bool] use_csr_sans: Flag to use the SANs in the CSR
         """
@@ -111,6 +114,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "allowed_domains_template", allowed_domains_template)
         if allowed_other_sans is not None:
             pulumi.set(__self__, "allowed_other_sans", allowed_other_sans)
+        if allowed_serial_numbers is not None:
+            pulumi.set(__self__, "allowed_serial_numbers", allowed_serial_numbers)
         if allowed_uri_sans is not None:
             pulumi.set(__self__, "allowed_uri_sans", allowed_uri_sans)
         if basic_constraints_valid_for_non_ca is not None:
@@ -289,6 +294,18 @@ class SecretBackendRoleArgs:
         pulumi.set(self, "allowed_other_sans", value)
 
     @property
+    @pulumi.getter(name="allowedSerialNumbers")
+    def allowed_serial_numbers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        An array of allowed serial numbers to put in Subject
+        """
+        return pulumi.get(self, "allowed_serial_numbers")
+
+    @allowed_serial_numbers.setter
+    def allowed_serial_numbers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_serial_numbers", value)
+
+    @property
     @pulumi.getter(name="allowedUriSans")
     def allowed_uri_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -412,7 +429,8 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="keyType")
     def key_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of generated keys
+        The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+        Defaults to `rsa`
         """
         return pulumi.get(self, "key_type")
 
@@ -448,7 +466,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="maxTtl")
     def max_ttl(self) -> Optional[pulumi.Input[str]]:
         """
-        The maximum TTL
+        The maximum lease TTL, in seconds, for the role.
         """
         return pulumi.get(self, "max_ttl")
 
@@ -592,7 +610,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[str]]:
         """
-        The TTL
+        The TTL, in seconds, for any certificate issued against this role.
         """
         return pulumi.get(self, "ttl")
 
@@ -637,6 +655,7 @@ class _SecretBackendRoleState:
                  allowed_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_domains_template: Optional[pulumi.Input[bool]] = None,
                  allowed_other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_serial_numbers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
@@ -677,6 +696,7 @@ class _SecretBackendRoleState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_domains: List of allowed domains for certificates
         :param pulumi.Input[bool] allowed_domains_template: Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_other_sans: Defines allowed custom SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_serial_numbers: An array of allowed serial numbers to put in Subject
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
@@ -688,10 +708,11 @@ class _SecretBackendRoleState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usages: Specify the allowed extended key usage constraint on issued certificates
         :param pulumi.Input[bool] generate_lease: Flag to generate leases with certificates
         :param pulumi.Input[int] key_bits: The number of bits of generated keys
-        :param pulumi.Input[str] key_type: The type of generated keys
+        :param pulumi.Input[str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+               Defaults to `rsa`
         :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
-        :param pulumi.Input[str] max_ttl: The maximum TTL
+        :param pulumi.Input[str] max_ttl: The maximum lease TTL, in seconds, for the role.
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
@@ -703,7 +724,7 @@ class _SecretBackendRoleState:
         :param pulumi.Input[bool] require_cn: Flag to force CN usage
         :param pulumi.Input[bool] server_flag: Flag to specify certificates for server use
         :param pulumi.Input[Sequence[pulumi.Input[str]]] street_addresses: The street address of generated certificates
-        :param pulumi.Input[str] ttl: The TTL
+        :param pulumi.Input[str] ttl: The TTL, in seconds, for any certificate issued against this role.
         :param pulumi.Input[bool] use_csr_common_name: Flag to use the CN in the CSR
         :param pulumi.Input[bool] use_csr_sans: Flag to use the SANs in the CSR
         """
@@ -725,6 +746,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "allowed_domains_template", allowed_domains_template)
         if allowed_other_sans is not None:
             pulumi.set(__self__, "allowed_other_sans", allowed_other_sans)
+        if allowed_serial_numbers is not None:
+            pulumi.set(__self__, "allowed_serial_numbers", allowed_serial_numbers)
         if allowed_uri_sans is not None:
             pulumi.set(__self__, "allowed_uri_sans", allowed_uri_sans)
         if backend is not None:
@@ -893,6 +916,18 @@ class _SecretBackendRoleState:
         pulumi.set(self, "allowed_other_sans", value)
 
     @property
+    @pulumi.getter(name="allowedSerialNumbers")
+    def allowed_serial_numbers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        An array of allowed serial numbers to put in Subject
+        """
+        return pulumi.get(self, "allowed_serial_numbers")
+
+    @allowed_serial_numbers.setter
+    def allowed_serial_numbers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_serial_numbers", value)
+
+    @property
     @pulumi.getter(name="allowedUriSans")
     def allowed_uri_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -1028,7 +1063,8 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="keyType")
     def key_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of generated keys
+        The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+        Defaults to `rsa`
         """
         return pulumi.get(self, "key_type")
 
@@ -1064,7 +1100,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="maxTtl")
     def max_ttl(self) -> Optional[pulumi.Input[str]]:
         """
-        The maximum TTL
+        The maximum lease TTL, in seconds, for the role.
         """
         return pulumi.get(self, "max_ttl")
 
@@ -1208,7 +1244,7 @@ class _SecretBackendRoleState:
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[str]]:
         """
-        The TTL
+        The TTL, in seconds, for any certificate issued against this role.
         """
         return pulumi.get(self, "ttl")
 
@@ -1255,6 +1291,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  allowed_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_domains_template: Optional[pulumi.Input[bool]] = None,
                  allowed_other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_serial_numbers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
@@ -1331,6 +1368,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_domains: List of allowed domains for certificates
         :param pulumi.Input[bool] allowed_domains_template: Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_other_sans: Defines allowed custom SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_serial_numbers: An array of allowed serial numbers to put in Subject
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
@@ -1342,10 +1380,11 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usages: Specify the allowed extended key usage constraint on issued certificates
         :param pulumi.Input[bool] generate_lease: Flag to generate leases with certificates
         :param pulumi.Input[int] key_bits: The number of bits of generated keys
-        :param pulumi.Input[str] key_type: The type of generated keys
+        :param pulumi.Input[str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+               Defaults to `rsa`
         :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
-        :param pulumi.Input[str] max_ttl: The maximum TTL
+        :param pulumi.Input[str] max_ttl: The maximum lease TTL, in seconds, for the role.
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
@@ -1357,7 +1396,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[bool] require_cn: Flag to force CN usage
         :param pulumi.Input[bool] server_flag: Flag to specify certificates for server use
         :param pulumi.Input[Sequence[pulumi.Input[str]]] street_addresses: The street address of generated certificates
-        :param pulumi.Input[str] ttl: The TTL
+        :param pulumi.Input[str] ttl: The TTL, in seconds, for any certificate issued against this role.
         :param pulumi.Input[bool] use_csr_common_name: Flag to use the CN in the CSR
         :param pulumi.Input[bool] use_csr_sans: Flag to use the SANs in the CSR
         """
@@ -1426,6 +1465,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  allowed_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_domains_template: Optional[pulumi.Input[bool]] = None,
                  allowed_other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_serial_numbers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
@@ -1476,6 +1516,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["allowed_domains"] = allowed_domains
             __props__.__dict__["allowed_domains_template"] = allowed_domains_template
             __props__.__dict__["allowed_other_sans"] = allowed_other_sans
+            __props__.__dict__["allowed_serial_numbers"] = allowed_serial_numbers
             __props__.__dict__["allowed_uri_sans"] = allowed_uri_sans
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
@@ -1526,6 +1567,7 @@ class SecretBackendRole(pulumi.CustomResource):
             allowed_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             allowed_domains_template: Optional[pulumi.Input[bool]] = None,
             allowed_other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            allowed_serial_numbers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
@@ -1571,6 +1613,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_domains: List of allowed domains for certificates
         :param pulumi.Input[bool] allowed_domains_template: Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_other_sans: Defines allowed custom SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_serial_numbers: An array of allowed serial numbers to put in Subject
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Defines allowed URI SANs
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
@@ -1582,10 +1625,11 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usages: Specify the allowed extended key usage constraint on issued certificates
         :param pulumi.Input[bool] generate_lease: Flag to generate leases with certificates
         :param pulumi.Input[int] key_bits: The number of bits of generated keys
-        :param pulumi.Input[str] key_type: The type of generated keys
+        :param pulumi.Input[str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+               Defaults to `rsa`
         :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specify the allowed key usage constraint on issued certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] localities: The locality of generated certificates
-        :param pulumi.Input[str] max_ttl: The maximum TTL
+        :param pulumi.Input[str] max_ttl: The maximum lease TTL, in seconds, for the role.
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
@@ -1597,7 +1641,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[bool] require_cn: Flag to force CN usage
         :param pulumi.Input[bool] server_flag: Flag to specify certificates for server use
         :param pulumi.Input[Sequence[pulumi.Input[str]]] street_addresses: The street address of generated certificates
-        :param pulumi.Input[str] ttl: The TTL
+        :param pulumi.Input[str] ttl: The TTL, in seconds, for any certificate issued against this role.
         :param pulumi.Input[bool] use_csr_common_name: Flag to use the CN in the CSR
         :param pulumi.Input[bool] use_csr_sans: Flag to use the SANs in the CSR
         """
@@ -1614,6 +1658,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["allowed_domains"] = allowed_domains
         __props__.__dict__["allowed_domains_template"] = allowed_domains_template
         __props__.__dict__["allowed_other_sans"] = allowed_other_sans
+        __props__.__dict__["allowed_serial_numbers"] = allowed_serial_numbers
         __props__.__dict__["allowed_uri_sans"] = allowed_uri_sans
         __props__.__dict__["backend"] = backend
         __props__.__dict__["basic_constraints_valid_for_non_ca"] = basic_constraints_valid_for_non_ca
@@ -1718,6 +1763,14 @@ class SecretBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "allowed_other_sans")
 
     @property
+    @pulumi.getter(name="allowedSerialNumbers")
+    def allowed_serial_numbers(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        An array of allowed serial numbers to put in Subject
+        """
+        return pulumi.get(self, "allowed_serial_numbers")
+
+    @property
     @pulumi.getter(name="allowedUriSans")
     def allowed_uri_sans(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
@@ -1809,13 +1862,14 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="keyType")
     def key_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The type of generated keys
+        The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`  
+        Defaults to `rsa`
         """
         return pulumi.get(self, "key_type")
 
     @property
     @pulumi.getter(name="keyUsages")
-    def key_usages(self) -> pulumi.Output[Optional[Sequence[str]]]:
+    def key_usages(self) -> pulumi.Output[Sequence[str]]:
         """
         Specify the allowed key usage constraint on issued certificates
         """
@@ -1831,9 +1885,9 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> pulumi.Output[Optional[str]]:
+    def max_ttl(self) -> pulumi.Output[str]:
         """
-        The maximum TTL
+        The maximum lease TTL, in seconds, for the role.
         """
         return pulumi.get(self, "max_ttl")
 
@@ -1927,9 +1981,9 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def ttl(self) -> pulumi.Output[Optional[str]]:
+    def ttl(self) -> pulumi.Output[str]:
         """
-        The TTL
+        The TTL, in seconds, for any certificate issued against this role.
         """
         return pulumi.get(self, "ttl")
 

@@ -13,6 +13,9 @@ export * from "./getAuthBackend";
 export * from "./getNomadAccessToken";
 export * from "./getPolicyDocument";
 export * from "./mfaDuo";
+export * from "./mfaOkta";
+export * from "./mfaPingid";
+export * from "./mfaTotp";
 export * from "./mount";
 export * from "./namespace";
 export * from "./nomadSecretBackend";
@@ -88,6 +91,9 @@ import { AuthBackend } from "./authBackend";
 import { CertAuthBackendRole } from "./certAuthBackendRole";
 import { EgpPolicy } from "./egpPolicy";
 import { MfaDuo } from "./mfaDuo";
+import { MfaOkta } from "./mfaOkta";
+import { MfaPingid } from "./mfaPingid";
+import { MfaTotp } from "./mfaTotp";
 import { Mount } from "./mount";
 import { Namespace } from "./namespace";
 import { NomadSecretBackend } from "./nomadSecretBackend";
@@ -115,6 +121,12 @@ const _module = {
                 return new EgpPolicy(name, <any>undefined, { urn })
             case "vault:index/mfaDuo:MfaDuo":
                 return new MfaDuo(name, <any>undefined, { urn })
+            case "vault:index/mfaOkta:MfaOkta":
+                return new MfaOkta(name, <any>undefined, { urn })
+            case "vault:index/mfaPingid:MfaPingid":
+                return new MfaPingid(name, <any>undefined, { urn })
+            case "vault:index/mfaTotp:MfaTotp":
+                return new MfaTotp(name, <any>undefined, { urn })
             case "vault:index/mount:Mount":
                 return new Mount(name, <any>undefined, { urn })
             case "vault:index/namespace:Namespace":
@@ -149,6 +161,9 @@ pulumi.runtime.registerResourceModule("vault", "index/authBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "index/certAuthBackendRole", _module)
 pulumi.runtime.registerResourceModule("vault", "index/egpPolicy", _module)
 pulumi.runtime.registerResourceModule("vault", "index/mfaDuo", _module)
+pulumi.runtime.registerResourceModule("vault", "index/mfaOkta", _module)
+pulumi.runtime.registerResourceModule("vault", "index/mfaPingid", _module)
+pulumi.runtime.registerResourceModule("vault", "index/mfaTotp", _module)
 pulumi.runtime.registerResourceModule("vault", "index/mount", _module)
 pulumi.runtime.registerResourceModule("vault", "index/namespace", _module)
 pulumi.runtime.registerResourceModule("vault", "index/nomadSecretBackend", _module)

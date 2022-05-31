@@ -79,9 +79,8 @@ type AuthBackend struct {
 	// (Optional) If set, the default policy will not be set on
 	// generated tokens; otherwise it will be added to the policies set in token_policies.
 	TokenNoDefaultPolicy pulumi.BoolPtrOutput `pulumi:"tokenNoDefaultPolicy"`
-	// (Optional) The
-	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-	// if any, in number of seconds to set on the token.
+	// (Optional) The [maximum number](https://www.vaultproject.io/api-docs/github#token_num_uses)
+	// of times a generated token may be used (within its lifetime); 0 means unlimited.
 	TokenNumUses pulumi.IntPtrOutput `pulumi:"tokenNumUses"`
 	// (Optional) If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
@@ -164,9 +163,8 @@ type authBackendState struct {
 	// (Optional) If set, the default policy will not be set on
 	// generated tokens; otherwise it will be added to the policies set in token_policies.
 	TokenNoDefaultPolicy *bool `pulumi:"tokenNoDefaultPolicy"`
-	// (Optional) The
-	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-	// if any, in number of seconds to set on the token.
+	// (Optional) The [maximum number](https://www.vaultproject.io/api-docs/github#token_num_uses)
+	// of times a generated token may be used (within its lifetime); 0 means unlimited.
 	TokenNumUses *int `pulumi:"tokenNumUses"`
 	// (Optional) If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
@@ -218,9 +216,8 @@ type AuthBackendState struct {
 	// (Optional) If set, the default policy will not be set on
 	// generated tokens; otherwise it will be added to the policies set in token_policies.
 	TokenNoDefaultPolicy pulumi.BoolPtrInput
-	// (Optional) The
-	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-	// if any, in number of seconds to set on the token.
+	// (Optional) The [maximum number](https://www.vaultproject.io/api-docs/github#token_num_uses)
+	// of times a generated token may be used (within its lifetime); 0 means unlimited.
 	TokenNumUses pulumi.IntPtrInput
 	// (Optional) If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
@@ -274,9 +271,8 @@ type authBackendArgs struct {
 	// (Optional) If set, the default policy will not be set on
 	// generated tokens; otherwise it will be added to the policies set in token_policies.
 	TokenNoDefaultPolicy *bool `pulumi:"tokenNoDefaultPolicy"`
-	// (Optional) The
-	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-	// if any, in number of seconds to set on the token.
+	// (Optional) The [maximum number](https://www.vaultproject.io/api-docs/github#token_num_uses)
+	// of times a generated token may be used (within its lifetime); 0 means unlimited.
 	TokenNumUses *int `pulumi:"tokenNumUses"`
 	// (Optional) If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
@@ -327,9 +323,8 @@ type AuthBackendArgs struct {
 	// (Optional) If set, the default policy will not be set on
 	// generated tokens; otherwise it will be added to the policies set in token_policies.
 	TokenNoDefaultPolicy pulumi.BoolPtrInput
-	// (Optional) The
-	// [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls),
-	// if any, in number of seconds to set on the token.
+	// (Optional) The [maximum number](https://www.vaultproject.io/api-docs/github#token_num_uses)
+	// of times a generated token may be used (within its lifetime); 0 means unlimited.
 	TokenNumUses pulumi.IntPtrInput
 	// (Optional) If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the

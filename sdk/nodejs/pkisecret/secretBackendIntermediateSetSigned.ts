@@ -11,9 +11,56 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const intermediate = new vault.pkisecret.SecretBackendIntermediateSetSigned("intermediate", {
- *     backend: vault_mount.intermediate.path,
- *     certificate: "<...>",
+ * const root = new vault.Mount("root", {
+ *     path: "pki-root",
+ *     type: "pki",
+ *     description: "root",
+ *     defaultLeaseTtlSeconds: 8640000,
+ *     maxLeaseTtlSeconds: 8640000,
+ * });
+ * const intermediate = new vault.Mount("intermediate", {
+ *     path: "pki-int",
+ *     type: root.type,
+ *     description: "intermediate",
+ *     defaultLeaseTtlSeconds: 86400,
+ *     maxLeaseTtlSeconds: 86400,
+ * });
+ * const exampleSecretBackendRootCert = new vault.pkisecret.SecretBackendRootCert("exampleSecretBackendRootCert", {
+ *     backend: root.path,
+ *     type: "internal",
+ *     commonName: "RootOrg Root CA",
+ *     ttl: "86400",
+ *     format: "pem",
+ *     privateKeyFormat: "der",
+ *     keyType: "rsa",
+ *     keyBits: 4096,
+ *     excludeCnFromSans: true,
+ *     ou: "Organizational Unit",
+ *     organization: "RootOrg",
+ *     country: "US",
+ *     locality: "San Francisco",
+ *     province: "CA",
+ * });
+ * const exampleSecretBackendIntermediateCertRequest = new vault.pkisecret.SecretBackendIntermediateCertRequest("exampleSecretBackendIntermediateCertRequest", {
+ *     backend: intermediate.path,
+ *     type: exampleSecretBackendRootCert.type,
+ *     commonName: "SubOrg Intermediate CA",
+ * });
+ * const exampleSecretBackendRootSignIntermediate = new vault.pkisecret.SecretBackendRootSignIntermediate("exampleSecretBackendRootSignIntermediate", {
+ *     backend: root.path,
+ *     csr: exampleSecretBackendIntermediateCertRequest.csr,
+ *     commonName: "SubOrg Intermediate CA",
+ *     excludeCnFromSans: true,
+ *     ou: "SubUnit",
+ *     organization: "SubOrg",
+ *     country: "US",
+ *     locality: "San Francisco",
+ *     province: "CA",
+ *     revoke: true,
+ * });
+ * const exampleSecretBackendIntermediateSetSigned = new vault.pkisecret.SecretBackendIntermediateSetSigned("exampleSecretBackendIntermediateSetSigned", {
+ *     backend: intermediate.path,
+ *     certificate: exampleSecretBackendRootSignIntermediate.certificate,
  * });
  * ```
  */

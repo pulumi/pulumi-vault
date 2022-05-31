@@ -152,6 +152,17 @@ Object.defineProperty(exports, "skipTlsVerify", {
 });
 
 /**
+ * Name to use as the SNI host when connecting via TLS.
+ */
+export declare const tlsServerName: string | undefined;
+Object.defineProperty(exports, "tlsServerName", {
+    get() {
+        return __config.get("tlsServerName");
+    },
+    enumerable: true,
+});
+
+/**
  * Token to use to authenticate to Vault.
  */
 export declare const token: string | undefined;
