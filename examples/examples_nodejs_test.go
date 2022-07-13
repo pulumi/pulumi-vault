@@ -1,4 +1,5 @@
 // Copyright 2016-2017, Pulumi Corporation.  All rights reserved.
+//go:build nodejs || all
 // +build nodejs all
 
 package examples
@@ -11,7 +12,7 @@ import (
 )
 
 func TestAccPolicy(t *testing.T) {
-	test := getJSBaseOptions(t).
+	test := getJSBaseOptions().
 		With(integration.ProgramTestOptions{
 			Dir: path.Join(getCwd(t), "policy"),
 		})
@@ -19,13 +20,11 @@ func TestAccPolicy(t *testing.T) {
 	integration.ProgramTest(t, &test)
 }
 
-func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
-	token := getToken(t)
+func getJSBaseOptions() integration.ProgramTestOptions {
 	base := getBaseOptions()
 	baseJS := base.With(integration.ProgramTestOptions{
 		Config: map[string]string{
-			"vault:address": "http://127.0.0.1:8200",
-			"vault:token":   token,
+			"vault:skipChildToken": "true",
 		},
 		Dependencies: []string{
 			"@pulumi/vault",

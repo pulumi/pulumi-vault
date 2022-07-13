@@ -9,13 +9,13 @@ import (
 	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
 )
 
-func getToken(t *testing.T) string {
-	token := os.Getenv("VAULT_DEV_ROOT_TOKEN_ID")
-	if token == "" {
-		t.Skipf("Skipping test due to missing VAULT_DEV_ROOT_TOKEN_ID environment variable")
+func getVaultAddr() string {
+	addr := os.Getenv("VAULT_ADDR")
+	if addr == "" {
+		return "http://127.0.0.1:8200"
 	}
 
-	return token
+	return addr
 }
 
 func getCwd(t *testing.T) string {
@@ -28,5 +28,7 @@ func getCwd(t *testing.T) string {
 }
 
 func getBaseOptions() integration.ProgramTestOptions {
-	return integration.ProgramTestOptions{}
+	return integration.ProgramTestOptions{
+		RunUpdateTest: false,
+	}
 }
