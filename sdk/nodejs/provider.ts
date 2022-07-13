@@ -53,7 +53,7 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * Token to use to authenticate to Vault.
      */
-    public readonly token!: pulumi.Output<string>;
+    public readonly token!: pulumi.Output<string | undefined>;
     /**
      * Token name to use for creating the Vault child token.
      */
@@ -72,9 +72,6 @@ export class Provider extends pulumi.ProviderResource {
         {
             if ((!args || args.address === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'address'");
-            }
-            if ((!args || args.token === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'token'");
             }
             resourceInputs["addAddressToEnv"] = args ? args.addAddressToEnv : undefined;
             resourceInputs["address"] = args ? args.address : undefined;
@@ -161,7 +158,7 @@ export interface ProviderArgs {
     /**
      * Token to use to authenticate to Vault.
      */
-    token: pulumi.Input<string>;
+    token?: pulumi.Input<string>;
     /**
      * Token name to use for creating the Vault child token.
      */

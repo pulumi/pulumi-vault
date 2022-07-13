@@ -15,7 +15,6 @@ __all__ = ['ProviderArgs', 'Provider']
 class ProviderArgs:
     def __init__(__self__, *,
                  address: pulumi.Input[str],
-                 token: pulumi.Input[str],
                  add_address_to_env: Optional[pulumi.Input[str]] = None,
                  auth_logins: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderAuthLoginArgs']]]] = None,
                  ca_cert_dir: Optional[pulumi.Input[str]] = None,
@@ -29,11 +28,11 @@ class ProviderArgs:
                  skip_child_token: Optional[pulumi.Input[bool]] = None,
                  skip_tls_verify: Optional[pulumi.Input[bool]] = None,
                  tls_server_name: Optional[pulumi.Input[str]] = None,
+                 token: Optional[pulumi.Input[str]] = None,
                  token_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] address: URL of the root of the target Vault server.
-        :param pulumi.Input[str] token: Token to use to authenticate to Vault.
         :param pulumi.Input[str] add_address_to_env: If true, adds the value of the `address` argument to the Terraform process environment.
         :param pulumi.Input[Sequence[pulumi.Input['ProviderAuthLoginArgs']]] auth_logins: Login to vault with an existing auth method using auth/<mount>/login
         :param pulumi.Input[str] ca_cert_dir: Path to directory containing CA certificate files to validate the server's certificate.
@@ -47,10 +46,10 @@ class ProviderArgs:
         :param pulumi.Input[bool] skip_child_token: Set this to true to prevent the creation of ephemeral child token used by this provider.
         :param pulumi.Input[bool] skip_tls_verify: Set this to true only if the target Vault server is an insecure development instance.
         :param pulumi.Input[str] tls_server_name: Name to use as the SNI host when connecting via TLS.
+        :param pulumi.Input[str] token: Token to use to authenticate to Vault.
         :param pulumi.Input[str] token_name: Token name to use for creating the Vault child token.
         """
         pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "token", token)
         if add_address_to_env is not None:
             pulumi.set(__self__, "add_address_to_env", add_address_to_env)
         if auth_logins is not None:
@@ -83,6 +82,8 @@ class ProviderArgs:
             pulumi.set(__self__, "skip_tls_verify", skip_tls_verify)
         if tls_server_name is not None:
             pulumi.set(__self__, "tls_server_name", tls_server_name)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
         if token_name is not None:
             pulumi.set(__self__, "token_name", token_name)
 
@@ -97,18 +98,6 @@ class ProviderArgs:
     @address.setter
     def address(self, value: pulumi.Input[str]):
         pulumi.set(self, "address", value)
-
-    @property
-    @pulumi.getter
-    def token(self) -> pulumi.Input[str]:
-        """
-        Token to use to authenticate to Vault.
-        """
-        return pulumi.get(self, "token")
-
-    @token.setter
-    def token(self, value: pulumi.Input[str]):
-        pulumi.set(self, "token", value)
 
     @property
     @pulumi.getter(name="addAddressToEnv")
@@ -267,6 +256,18 @@ class ProviderArgs:
         pulumi.set(self, "tls_server_name", value)
 
     @property
+    @pulumi.getter
+    def token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Token to use to authenticate to Vault.
+        """
+        return pulumi.get(self, "token")
+
+    @token.setter
+    def token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token", value)
+
+    @property
     @pulumi.getter(name="tokenName")
     def token_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -403,8 +404,6 @@ class Provider(pulumi.ProviderResource):
                 skip_tls_verify = _utilities.get_env_bool('VAULT_SKIP_VERIFY')
             __props__.__dict__["skip_tls_verify"] = pulumi.Output.from_input(skip_tls_verify).apply(pulumi.runtime.to_json) if skip_tls_verify is not None else None
             __props__.__dict__["tls_server_name"] = tls_server_name
-            if token is None and not opts.urn:
-                raise TypeError("Missing required property 'token'")
             __props__.__dict__["token"] = token
             __props__.__dict__["token_name"] = token_name
         super(Provider, __self__).__init__(
@@ -463,7 +462,7 @@ class Provider(pulumi.ProviderResource):
 
     @property
     @pulumi.getter
-    def token(self) -> pulumi.Output[str]:
+    def token(self) -> pulumi.Output[Optional[str]]:
         """
         Token to use to authenticate to Vault.
         """

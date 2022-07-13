@@ -31,7 +31,7 @@ type Provider struct {
 	// Name to use as the SNI host when connecting via TLS.
 	TlsServerName pulumi.StringPtrOutput `pulumi:"tlsServerName"`
 	// Token to use to authenticate to Vault.
-	Token pulumi.StringOutput `pulumi:"token"`
+	Token pulumi.StringPtrOutput `pulumi:"token"`
 	// Token name to use for creating the Vault child token.
 	TokenName pulumi.StringPtrOutput `pulumi:"tokenName"`
 }
@@ -45,9 +45,6 @@ func NewProvider(ctx *pulumi.Context,
 
 	if args.Address == nil {
 		return nil, errors.New("invalid value for required argument 'Address'")
-	}
-	if args.Token == nil {
-		return nil, errors.New("invalid value for required argument 'Token'")
 	}
 	if isZero(args.MaxLeaseTtlSeconds) {
 		args.MaxLeaseTtlSeconds = pulumi.IntPtr(getEnvOrDefault(1200, parseEnvInt, "TERRAFORM_VAULT_MAX_TTL").(int))
@@ -96,7 +93,7 @@ type providerArgs struct {
 	// Name to use as the SNI host when connecting via TLS.
 	TlsServerName *string `pulumi:"tlsServerName"`
 	// Token to use to authenticate to Vault.
-	Token string `pulumi:"token"`
+	Token *string `pulumi:"token"`
 	// Token name to use for creating the Vault child token.
 	TokenName *string `pulumi:"tokenName"`
 }
@@ -132,7 +129,7 @@ type ProviderArgs struct {
 	// Name to use as the SNI host when connecting via TLS.
 	TlsServerName pulumi.StringPtrInput
 	// Token to use to authenticate to Vault.
-	Token pulumi.StringInput
+	Token pulumi.StringPtrInput
 	// Token name to use for creating the Vault child token.
 	TokenName pulumi.StringPtrInput
 }

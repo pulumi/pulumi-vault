@@ -106,8 +106,7 @@
             }
         },
         "defaults": [
-            "address",
-            "token"
+            "address"
         ]
     },
     "types": {
@@ -4807,8 +4806,7 @@
             }
         },
         "required": [
-            "address",
-            "token"
+            "address"
         ],
         "inputProperties": {
             "addAddressToEnv": {
@@ -4903,8 +4901,7 @@
             }
         },
         "requiredInputs": [
-            "address",
-            "token"
+            "address"
         ]
     },
     "resources": {

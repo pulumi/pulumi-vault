@@ -58,7 +58,7 @@ namespace Pulumi.Vault
         /// Token to use to authenticate to Vault.
         /// </summary>
         [Output("token")]
-        public Output<string> Token { get; private set; } = null!;
+        public Output<string?> Token { get; private set; } = null!;
 
         /// <summary>
         /// Token name to use for creating the Vault child token.
@@ -199,8 +199,8 @@ namespace Pulumi.Vault
         /// <summary>
         /// Token to use to authenticate to Vault.
         /// </summary>
-        [Input("token", required: true)]
-        public Input<string> Token { get; set; } = null!;
+        [Input("token")]
+        public Input<string>? Token { get; set; }
 
         /// <summary>
         /// Token name to use for creating the Vault child token.
